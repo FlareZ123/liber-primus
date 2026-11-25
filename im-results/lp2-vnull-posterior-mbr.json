@@ -1,0 +1,3931 @@
+{
+  "groups": {
+    "native": {
+      "n": 80,
+      "maxWrong": -6.297492425311789,
+      "map": {
+        "pass": 49,
+        "exact": 44,
+        "meanPos": 0.8168505946982328,
+        "meanEdit": 0.625,
+        "minLL": -2.7304097889773136,
+        "maxStates": 4
+      },
+      "mbr": {
+        "pass": 51,
+        "exact": 44,
+        "meanPos": 0.827798945100908,
+        "meanEdit": 0.675,
+        "minLL": -2.7304097889773136,
+        "maxStates": 69
+      },
+      "knownLength": {
+        "pass": 61,
+        "exact": 56,
+        "meanPos": 0.8965118200308282,
+        "meanEdit": 0.6,
+        "minLL": -2.739509769792692,
+        "maxStates": 69
+      }
+    },
+    "Gibran": {
+      "n": 40,
+      "maxWrong": -6.3496895810279925,
+      "map": {
+        "pass": 20,
+        "exact": 14,
+        "meanPos": 0.6901041250917286,
+        "meanEdit": 0.95,
+        "minLL": -2.2801929679812916,
+        "maxStates": 4
+      },
+      "mbr": {
+        "pass": 23,
+        "exact": 14,
+        "meanPos": 0.7263104810061969,
+        "meanEdit": 1.2,
+        "minLL": -2.2801929679812916,
+        "maxStates": 90
+      },
+      "knownLength": {
+        "pass": 32,
+        "exact": 26,
+        "meanPos": 0.9166419156273582,
+        "meanEdit": 0.625,
+        "minLL": -2.2801929679812916,
+        "maxStates": 83
+      }
+    },
+    "all": {
+      "n": 120,
+      "maxWrong": -6.297492425311789,
+      "map": {
+        "pass": 69,
+        "exact": 58,
+        "meanPos": 0.7746017714960646,
+        "meanEdit": 0.7333333333333333,
+        "minLL": -2.7304097889773136,
+        "maxStates": 4
+      },
+      "mbr": {
+        "pass": 74,
+        "exact": 58,
+        "meanPos": 0.7939694570693377,
+        "meanEdit": 0.85,
+        "minLL": -2.7304097889773136,
+        "maxStates": 90
+      },
+      "knownLength": {
+        "pass": 93,
+        "exact": 82,
+        "meanPos": 0.9032218518963384,
+        "meanEdit": 0.6083333333333333,
+        "minLL": -2.739509769792692,
+        "maxStates": 83
+      }
+    }
+  },
+  "control": [
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 4,
+        "states": 19
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 4,
+        "states": 19
+      },
+      "wrongLL": -6.667123830839763,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.9895719784434825
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 1,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 1,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 1,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 1,
+        "states": 12
+      },
+      "wrongLL": -7.4163503285576455,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.7301824622253619
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.7770700636942676,
+        "edit": 1,
+        "ll": -2.5578061067497972,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7770700636942676,
+        "edit": 1,
+        "ll": -2.5578061067497972,
+        "nulls": 6,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 5,
+        "states": 22
+      },
+      "wrongLL": -6.587464643789972,
+      "modeLength": 156,
+      "chosenLength": 156,
+      "lengthProbability": 0.937005351901515
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 140,
+      "at": 218,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8892587279927917,
+        "nulls": 5,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8892587279927917,
+        "nulls": 5,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8892587279927917,
+        "nulls": 5,
+        "states": 21
+      },
+      "wrongLL": -6.92043279737049,
+      "modeLength": 140,
+      "chosenLength": 140,
+      "lengthProbability": 0.9238471921225728
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 129,
+      "at": 20,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.813953488372093,
+        "edit": 1,
+        "ll": -2.0769930772776672,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0656880838770633,
+        "nulls": 8,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0656880838770633,
+        "nulls": 8,
+        "states": 28
+      },
+      "wrongLL": -6.6405193620684555,
+      "modeLength": 129,
+      "chosenLength": 129,
+      "lengthProbability": 0.4719110114235894
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 7,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 7,
+        "states": 24
+      },
+      "wrongLL": -6.683052519092558,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.5847793350871386
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 122,
+      "at": 56,
+      "trueNulls": 2,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0157873643294795,
+        "nulls": 2,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0157873643294795,
+        "nulls": 2,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0157873643294795,
+        "nulls": 2,
+        "states": 10
+      },
+      "wrongLL": -6.297492425311789,
+      "modeLength": 122,
+      "chosenLength": 122,
+      "lengthProbability": 0.9643874191293442
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 203,
+      "at": 574,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0581686876930987,
+        "nulls": 3,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0581686876930987,
+        "nulls": 3,
+        "states": 21
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0581686876930987,
+        "nulls": 3,
+        "states": 21
+      },
+      "wrongLL": -6.869591652933804,
+      "modeLength": 203,
+      "chosenLength": 203,
+      "lengthProbability": 0.6562727172504127
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 151,
+      "at": 3,
+      "trueNulls": 1,
+      "map": {
+        "pos": 0.26490066225165565,
+        "edit": 1,
+        "ll": -2.5779372468514774,
+        "nulls": 2,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.26490066225165565,
+        "edit": 1,
+        "ll": -2.5779372468514774,
+        "nulls": 2,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.594746643178101,
+        "nulls": 1,
+        "states": 12
+      },
+      "wrongLL": -6.825338998078282,
+      "modeLength": 150,
+      "chosenLength": 150,
+      "lengthProbability": 0.6992219799103158
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 266,
+      "at": 166,
+      "trueNulls": 13,
+      "map": {
+        "pos": 0.10526315789473684,
+        "edit": 2,
+        "ll": -2.027660155730498,
+        "nulls": 11,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.10526315789473684,
+        "edit": 2,
+        "ll": -2.027660155730498,
+        "nulls": 11,
+        "states": 55
+      },
+      "knownLength": {
+        "pos": 0.45864661654135336,
+        "edit": 2,
+        "ll": -2.031310983365374,
+        "nulls": 13,
+        "states": 55
+      },
+      "wrongLL": -6.70801923855554,
+      "modeLength": 268,
+      "chosenLength": 268,
+      "lengthProbability": 0.4661538743469055
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 142,
+      "at": 13,
+      "trueNulls": 2,
+      "map": {
+        "pos": 0.8098591549295775,
+        "edit": 2,
+        "ll": -2.6344520511860843,
+        "nulls": 2,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.8098591549295775,
+        "edit": 2,
+        "ll": -2.6344520511860843,
+        "nulls": 2,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 0.8098591549295775,
+        "edit": 2,
+        "ll": -2.6344520511860843,
+        "nulls": 2,
+        "states": 12
+      },
+      "wrongLL": -6.953643258547574,
+      "modeLength": 142,
+      "chosenLength": 142,
+      "lengthProbability": 0.44647034652395673
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 131,
+      "at": 465,
+      "trueNulls": 2,
+      "map": {
+        "pos": 0.3282442748091603,
+        "edit": 1,
+        "ll": -1.9879594088178665,
+        "nulls": 3,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.3282442748091603,
+        "edit": 1,
+        "ll": -1.9879594088178665,
+        "nulls": 3,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 0.7175572519083969,
+        "edit": 2,
+        "ll": -2.01244897874747,
+        "nulls": 2,
+        "states": 10
+      },
+      "wrongLL": -6.484763085883571,
+      "modeLength": 130,
+      "chosenLength": 130,
+      "lengthProbability": 0.8382054383289953
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 18
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 18
+      },
+      "wrongLL": -7.181930343303684,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.5927422031501737
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 143,
+      "at": 224,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9451706794150423,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9451706794150423,
+        "nulls": 5,
+        "states": 16
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9451706794150423,
+        "nulls": 5,
+        "states": 16
+      },
+      "wrongLL": -6.694558819946259,
+      "modeLength": 143,
+      "chosenLength": 143,
+      "lengthProbability": 0.7953378735441266
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 144,
+      "at": 7,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5981025544048615,
+        "nulls": 3,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5981025544048615,
+        "nulls": 3,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5981025544048615,
+        "nulls": 3,
+        "states": 12
+      },
+      "wrongLL": -7.026791683295403,
+      "modeLength": 144,
+      "chosenLength": 144,
+      "lengthProbability": 0.9368349318180504
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 150,
+      "at": 6,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.9333333333333333,
+        "edit": 1,
+        "ll": -2.5237712977660274,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.9333333333333333,
+        "edit": 1,
+        "ll": -2.5237712977660274,
+        "nulls": 7,
+        "states": 16
+      },
+      "knownLength": {
+        "pos": 0.94,
+        "edit": 2,
+        "ll": -2.534469572892903,
+        "nulls": 6,
+        "states": 16
+      },
+      "wrongLL": -6.725800977426069,
+      "modeLength": 149,
+      "chosenLength": 149,
+      "lengthProbability": 0.5015120301585252
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 291,
+      "at": 60,
+      "trueNulls": 10,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9630326003259222,
+        "nulls": 10,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9630326003259222,
+        "nulls": 10,
+        "states": 40
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9630326003259222,
+        "nulls": 10,
+        "states": 40
+      },
+      "wrongLL": -6.890896518206861,
+      "modeLength": 291,
+      "chosenLength": 291,
+      "lengthProbability": 0.4950163377217703
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 129,
+      "at": 545,
+      "trueNulls": 1,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0662829832164666,
+        "nulls": 1,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0662829832164666,
+        "nulls": 1,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0662829832164666,
+        "nulls": 1,
+        "states": 10
+      },
+      "wrongLL": -6.59905600470832,
+      "modeLength": 129,
+      "chosenLength": 129,
+      "lengthProbability": 0.973760191252258
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 20
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 20
+      },
+      "wrongLL": -6.794550726132633,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.43197075021603365
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 131,
+      "at": 438,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.9312977099236641,
+        "edit": 1,
+        "ll": -2.0281845855336904,
+        "nulls": 6,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.9312977099236641,
+        "edit": 1,
+        "ll": -2.0281845855336904,
+        "nulls": 6,
+        "states": 33
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.042829887564495,
+        "nulls": 5,
+        "states": 33
+      },
+      "wrongLL": -6.924583286340431,
+      "modeLength": 130,
+      "chosenLength": 130,
+      "lengthProbability": 0.5908482800088577
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 6,
+        "states": 22
+      },
+      "wrongLL": -6.480177888218204,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.8123264716967126
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 3,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 3,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 3,
+        "states": 9
+      },
+      "wrongLL": -6.837190289234628,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.9879987512857029
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 3,
+      "map": {
+        "pos": 0.5732484076433121,
+        "edit": 1,
+        "ll": -2.477862629905349,
+        "nulls": 4,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.5732484076433121,
+        "edit": 1,
+        "ll": -2.477862629905349,
+        "nulls": 4,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 0.47770700636942676,
+        "edit": 2,
+        "ll": -2.5146051472719586,
+        "nulls": 3,
+        "states": 22
+      },
+      "wrongLL": -6.561807062058291,
+      "modeLength": 156,
+      "chosenLength": 156,
+      "lengthProbability": 0.7104026346717212
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 198,
+      "at": 391,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.5909090909090909,
+        "edit": 1,
+        "ll": -2.0199378049599535,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7171717171717171,
+        "edit": 2,
+        "ll": -2.028532558162609,
+        "nulls": 7,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 0.7171717171717171,
+        "edit": 2,
+        "ll": -2.028532558162609,
+        "nulls": 7,
+        "states": 36
+      },
+      "wrongLL": -6.750799021855595,
+      "modeLength": 197,
+      "chosenLength": 198,
+      "lengthProbability": 0.4299551906989087
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 10,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 10,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 10,
+        "states": 26
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 10,
+        "states": 24
+      },
+      "wrongLL": -6.538774147818043,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.9043567705530059
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 4,
+      "map": {
+        "pos": 0.967391304347826,
+        "edit": 1,
+        "ll": -1.9768367155676592,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.967391304347826,
+        "edit": 1,
+        "ll": -1.9768367155676592,
+        "nulls": 5,
+        "states": 42
+      },
+      "knownLength": {
+        "pos": 0.5380434782608695,
+        "edit": 2,
+        "ll": -1.9871262989470855,
+        "nulls": 4,
+        "states": 39
+      },
+      "wrongLL": -6.732475981832083,
+      "modeLength": 183,
+      "chosenLength": 183,
+      "lengthProbability": 0.4900480641356539
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.5987261146496815,
+        "edit": 2,
+        "ll": -2.560251658212649,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.5987261146496815,
+        "edit": 2,
+        "ll": -2.560251658212649,
+        "nulls": 7,
+        "states": 20
+      },
+      "knownLength": {
+        "pos": 0.5987261146496815,
+        "edit": 2,
+        "ll": -2.560251658212649,
+        "nulls": 7,
+        "states": 20
+      },
+      "wrongLL": -7.010458454377298,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.48111419654438
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 181,
+      "at": 93,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8713496427537475,
+        "nulls": 3,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8713496427537475,
+        "nulls": 3,
+        "states": 18
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8713496427537475,
+        "nulls": 3,
+        "states": 18
+      },
+      "wrongLL": -7.3449471898661765,
+      "modeLength": 181,
+      "chosenLength": 181,
+      "lengthProbability": 0.9058313598090981
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 263,
+      "at": 347,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.925259025141441,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.925259025141441,
+        "nulls": 6,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.925259025141441,
+        "nulls": 6,
+        "states": 28
+      },
+      "wrongLL": -6.887930487749243,
+      "modeLength": 263,
+      "chosenLength": 263,
+      "lengthProbability": 0.7518395580762457
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.9184782608695652,
+        "edit": 1,
+        "ll": -2.009938079205582,
+        "nulls": 6,
+        "states": 27
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 27
+      },
+      "wrongLL": -6.818388415884543,
+      "modeLength": 185,
+      "chosenLength": 185,
+      "lengthProbability": 0.4400148887770926
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 348,
+      "at": 278,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.5517241379310345,
+        "edit": 1,
+        "ll": -1.9276155136296949,
+        "nulls": 9,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.5574712643678161,
+        "edit": 2,
+        "ll": -1.9332207853622287,
+        "nulls": 8,
+        "states": 49
+      },
+      "knownLength": {
+        "pos": 0.6379310344827587,
+        "edit": 2,
+        "ll": -1.9350391946621321,
+        "nulls": 8,
+        "states": 49
+      },
+      "wrongLL": -6.935787765665878,
+      "modeLength": 348,
+      "chosenLength": 348,
+      "lengthProbability": 0.42740840341218916
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 212,
+      "at": 253,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9408838780905315,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9408838780905315,
+        "nulls": 6,
+        "states": 39
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9408838780905315,
+        "nulls": 6,
+        "states": 39
+      },
+      "wrongLL": -6.761763708259433,
+      "modeLength": 212,
+      "chosenLength": 212,
+      "lengthProbability": 0.9068704283411332
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 228,
+      "at": 93,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9836337820141061,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9836337820141061,
+        "nulls": 5,
+        "states": 27
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9836337820141061,
+        "nulls": 5,
+        "states": 27
+      },
+      "wrongLL": -6.609098225852242,
+      "modeLength": 228,
+      "chosenLength": 228,
+      "lengthProbability": 0.5863432914414787
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 8,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 8,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 8,
+        "states": 24
+      },
+      "wrongLL": -7.037437666147653,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.6002528421354622
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 305,
+      "at": 147,
+      "trueNulls": 8,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9023873771439115,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9023873771439115,
+        "nulls": 8,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9023873771439115,
+        "nulls": 8,
+        "states": 26
+      },
+      "wrongLL": -7.14900496321398,
+      "modeLength": 305,
+      "chosenLength": 305,
+      "lengthProbability": 0.44095799863347346
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 136,
+      "at": 2,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.026991036949635,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.026991036949635,
+        "nulls": 5,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.026991036949635,
+        "nulls": 5,
+        "states": 24
+      },
+      "wrongLL": -6.915963039162971,
+      "modeLength": 136,
+      "chosenLength": 136,
+      "lengthProbability": 0.9503738199162642
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 353,
+      "at": 45,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.993614522494228,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.993614522494228,
+        "nulls": 6,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.993614522494228,
+        "nulls": 6,
+        "states": 36
+      },
+      "wrongLL": -6.4770960890428295,
+      "modeLength": 353,
+      "chosenLength": 353,
+      "lengthProbability": 0.7947609277864252
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 295,
+      "at": 13,
+      "trueNulls": 12,
+      "map": {
+        "pos": 0.9389830508474576,
+        "edit": 1,
+        "ll": -1.88153800451747,
+        "nulls": 13,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.9389830508474576,
+        "edit": 1,
+        "ll": -1.88153800451747,
+        "nulls": 13,
+        "states": 69
+      },
+      "knownLength": {
+        "pos": 0.9898305084745763,
+        "edit": 2,
+        "ll": -1.8887648733781646,
+        "nulls": 12,
+        "states": 69
+      },
+      "wrongLL": -6.83737488898237,
+      "modeLength": 294,
+      "chosenLength": 294,
+      "lengthProbability": 0.5221159444167631
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 2,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 2,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 2,
+        "states": 39
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 2,
+        "states": 39
+      },
+      "wrongLL": -6.808140724119901,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.5424659389352273
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 300,
+      "at": 170,
+      "trueNulls": 11,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0145195707449246,
+        "nulls": 11,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0145195707449246,
+        "nulls": 11,
+        "states": 60
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0145195707449246,
+        "nulls": 11,
+        "states": 60
+      },
+      "wrongLL": -7.168885596459965,
+      "modeLength": 300,
+      "chosenLength": 300,
+      "lengthProbability": 0.4914910623013948
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.4968152866242038,
+        "edit": 2,
+        "ll": -2.544103892316091,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.4968152866242038,
+        "edit": 2,
+        "ll": -2.544103892316091,
+        "nulls": 6,
+        "states": 26
+      },
+      "knownLength": {
+        "pos": 0.4968152866242038,
+        "edit": 2,
+        "ll": -2.544103892316091,
+        "nulls": 6,
+        "states": 24
+      },
+      "wrongLL": -7.220015648563455,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.4772325838415198
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 9,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 9,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 9,
+        "states": 45
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 9,
+        "states": 45
+      },
+      "wrongLL": -6.735955643307367,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.8227982392305444
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 175,
+      "at": 383,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9545728359398227,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9545728359398227,
+        "nulls": 7,
+        "states": 31
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9545728359398227,
+        "nulls": 7,
+        "states": 19
+      },
+      "wrongLL": -7.091840084849941,
+      "modeLength": 175,
+      "chosenLength": 175,
+      "lengthProbability": 0.9673794324747684
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 11,
+      "map": {
+        "pos": 0.657608695652174,
+        "edit": 1,
+        "ll": -1.9877541834754997,
+        "nulls": 10,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.5434782608695652,
+        "edit": 2,
+        "ll": -2.0033151634666972,
+        "nulls": 9,
+        "states": 60
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 11,
+        "states": 60
+      },
+      "wrongLL": -6.799870334914824,
+      "modeLength": 186,
+      "chosenLength": 186,
+      "lengthProbability": 0.4092100969184502
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 163,
+      "at": 3,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.003114963043534,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.003114963043534,
+        "nulls": 5,
+        "states": 20
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.003114963043534,
+        "nulls": 5,
+        "states": 20
+      },
+      "wrongLL": -7.700213116085822,
+      "modeLength": 163,
+      "chosenLength": 163,
+      "lengthProbability": 0.9431219303453511
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 193,
+      "at": 454,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9812952744571337,
+        "nulls": 7,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9812952744571337,
+        "nulls": 7,
+        "states": 29
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9812952744571337,
+        "nulls": 7,
+        "states": 29
+      },
+      "wrongLL": -7.309116669605454,
+      "modeLength": 193,
+      "chosenLength": 193,
+      "lengthProbability": 0.9059809130025767
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 2,
+      "map": {
+        "pos": 0.802547770700637,
+        "edit": 2,
+        "ll": -2.555677692723601,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.9872611464968153,
+        "edit": 1,
+        "ll": -2.563660689678312,
+        "nulls": 3,
+        "states": 16
+      },
+      "knownLength": {
+        "pos": 0.6624203821656051,
+        "edit": 2,
+        "ll": -2.571584738605416,
+        "nulls": 2,
+        "states": 16
+      },
+      "wrongLL": -6.594914626786469,
+      "modeLength": 156,
+      "chosenLength": 156,
+      "lengthProbability": 0.46003450586946304
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 139,
+      "at": 3,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.5755395683453237,
+        "edit": 2,
+        "ll": -2.403136514561591,
+        "nulls": 7,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.5755395683453237,
+        "edit": 2,
+        "ll": -2.403136514561591,
+        "nulls": 7,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 0.5755395683453237,
+        "edit": 2,
+        "ll": -2.403136514561591,
+        "nulls": 7,
+        "states": 30
+      },
+      "wrongLL": -6.5628067167359445,
+      "modeLength": 139,
+      "chosenLength": 139,
+      "lengthProbability": 0.5908893748119728
+    },
+    {
+      "kind": "native",
+      "name": "0_koan_1",
+      "L": 195,
+      "at": 47,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.3128205128205128,
+        "edit": 3,
+        "ll": -1.83900417604375,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.3128205128205128,
+        "edit": 3,
+        "ll": -1.83900417604375,
+        "nulls": 7,
+        "states": 49
+      },
+      "knownLength": {
+        "pos": 0.4205128205128205,
+        "edit": 2,
+        "ll": -1.8309734573265803,
+        "nulls": 8,
+        "states": 49
+      },
+      "wrongLL": -6.906257939879173,
+      "modeLength": 196,
+      "chosenLength": 196,
+      "lengthProbability": 0.3992744088386967
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.45108695652173914,
+        "edit": 1,
+        "ll": -1.9598497150142855,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.45108695652173914,
+        "edit": 1,
+        "ll": -1.9598497150142855,
+        "nulls": 7,
+        "states": 46
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 6,
+        "states": 46
+      },
+      "wrongLL": -6.488119276015182,
+      "modeLength": 183,
+      "chosenLength": 183,
+      "lengthProbability": 0.7121089368009805
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 211,
+      "at": 106,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.3412322274881517,
+        "edit": 2,
+        "ll": -1.9021648404174447,
+        "nulls": 6,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.7061611374407583,
+        "edit": 3,
+        "ll": -1.9004169381628615,
+        "nulls": 7,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 0.3412322274881517,
+        "edit": 2,
+        "ll": -1.9021648404174447,
+        "nulls": 6,
+        "states": 34
+      },
+      "wrongLL": -6.325699324395318,
+      "modeLength": 210,
+      "chosenLength": 210,
+      "lengthProbability": 0.44113001649282296
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 3,
+      "map": {
+        "pos": 0.7643312101910829,
+        "edit": 2,
+        "ll": -2.5651497900997193,
+        "nulls": 3,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7643312101910829,
+        "edit": 2,
+        "ll": -2.5651497900997193,
+        "nulls": 3,
+        "states": 15
+      },
+      "knownLength": {
+        "pos": 0.7643312101910829,
+        "edit": 2,
+        "ll": -2.5651497900997193,
+        "nulls": 3,
+        "states": 15
+      },
+      "wrongLL": -6.476142413139653,
+      "modeLength": 157,
+      "chosenLength": 157,
+      "lengthProbability": 0.5417658992270971
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 2,
+      "map": {
+        "pos": 0.643312101910828,
+        "edit": 1,
+        "ll": -2.575842890799133,
+        "nulls": 3,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.643312101910828,
+        "edit": 1,
+        "ll": -2.575842890799133,
+        "nulls": 3,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.5837827926846337,
+        "nulls": 2,
+        "states": 10
+      },
+      "wrongLL": -7.14372276817409,
+      "modeLength": 156,
+      "chosenLength": 156,
+      "lengthProbability": 0.5667236737836229
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.17391304347826086,
+        "edit": 1,
+        "ll": -1.9827652174462458,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.17391304347826086,
+        "edit": 1,
+        "ll": -1.9827652174462458,
+        "nulls": 6,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 0.2826086956521739,
+        "edit": 2,
+        "ll": -1.990271207084358,
+        "nulls": 7,
+        "states": 28
+      },
+      "wrongLL": -6.875513185001814,
+      "modeLength": 185,
+      "chosenLength": 185,
+      "lengthProbability": 0.9168394201280142
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 148,
+      "at": 216,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.41216216216216217,
+        "edit": 1,
+        "ll": -1.9473624646190266,
+        "nulls": 6,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.41216216216216217,
+        "edit": 1,
+        "ll": -1.9473624646190266,
+        "nulls": 6,
+        "states": 18
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.963134177395882,
+        "nulls": 5,
+        "states": 18
+      },
+      "wrongLL": -6.796036692392543,
+      "modeLength": 147,
+      "chosenLength": 147,
+      "lengthProbability": 0.4885255089838523
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 148,
+      "at": 5,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.4391891891891892,
+        "edit": 1,
+        "ll": -2.5916708384395255,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.4391891891891892,
+        "edit": 1,
+        "ll": -2.5916708384395255,
+        "nulls": 6,
+        "states": 16
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.61358411780817,
+        "nulls": 5,
+        "states": 16
+      },
+      "wrongLL": -6.787016365261144,
+      "modeLength": 147,
+      "chosenLength": 147,
+      "lengthProbability": 0.8890508985807588
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 239,
+      "at": 200,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0226503306139008,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0226503306139008,
+        "nulls": 6,
+        "states": 34
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0226503306139008,
+        "nulls": 6,
+        "states": 34
+      },
+      "wrongLL": -6.456129052955571,
+      "modeLength": 239,
+      "chosenLength": 239,
+      "lengthProbability": 0.8690160653689228
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 30
+      },
+      "wrongLL": -6.875587361907004,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.8307150114703952
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 319,
+      "at": 46,
+      "trueNulls": 12,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9347669503619989,
+        "nulls": 12,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9347669503619989,
+        "nulls": 12,
+        "states": 61
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9347669503619989,
+        "nulls": 12,
+        "states": 61
+      },
+      "wrongLL": -6.948404018804804,
+      "modeLength": 319,
+      "chosenLength": 319,
+      "lengthProbability": 0.7325910962644423
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.8471337579617835,
+        "edit": 3,
+        "ll": -2.5419728881978707,
+        "nulls": 5,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.8471337579617835,
+        "edit": 3,
+        "ll": -2.5419728881978707,
+        "nulls": 5,
+        "states": 27
+      },
+      "knownLength": {
+        "pos": 0.910828025477707,
+        "edit": 2,
+        "ll": -2.541465446735295,
+        "nulls": 6,
+        "states": 21
+      },
+      "wrongLL": -7.020600135644215,
+      "modeLength": 158,
+      "chosenLength": 158,
+      "lengthProbability": 0.5358831657608008
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 356,
+      "at": 371,
+      "trueNulls": 13,
+      "map": {
+        "pos": 0.5168539325842697,
+        "edit": 1,
+        "ll": -1.9582394967388816,
+        "nulls": 14,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.5168539325842697,
+        "edit": 1,
+        "ll": -1.9582394967388816,
+        "nulls": 14,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9633879534590846,
+        "nulls": 13,
+        "states": 46
+      },
+      "wrongLL": -6.7902070266727685,
+      "modeLength": 355,
+      "chosenLength": 355,
+      "lengthProbability": 0.5500124236176024
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 252,
+      "at": 228,
+      "trueNulls": 12,
+      "map": {
+        "pos": 0.3253968253968254,
+        "edit": 1,
+        "ll": -1.99761113967345,
+        "nulls": 13,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.3253968253968254,
+        "edit": 1,
+        "ll": -1.99761113967345,
+        "nulls": 13,
+        "states": 58
+      },
+      "knownLength": {
+        "pos": 0.5079365079365079,
+        "edit": 2,
+        "ll": -2.009866627293645,
+        "nulls": 12,
+        "states": 58
+      },
+      "wrongLL": -6.531525160597851,
+      "modeLength": 251,
+      "chosenLength": 251,
+      "lengthProbability": 0.7270061312308223
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 323,
+      "at": 186,
+      "trueNulls": 8,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9842953227982174,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9842953227982174,
+        "nulls": 8,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9842953227982174,
+        "nulls": 8,
+        "states": 48
+      },
+      "wrongLL": -6.907659538704488,
+      "modeLength": 323,
+      "chosenLength": 323,
+      "lengthProbability": 0.6393581836735315
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 319,
+      "at": 0,
+      "trueNulls": 11,
+      "map": {
+        "pos": 0.5611285266457681,
+        "edit": 2,
+        "ll": -1.9567420752509248,
+        "nulls": 9,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.5611285266457681,
+        "edit": 2,
+        "ll": -1.9567420752509248,
+        "nulls": 9,
+        "states": 39
+      },
+      "knownLength": {
+        "pos": 0.9561128526645768,
+        "edit": 2,
+        "ll": -1.9583558873375448,
+        "nulls": 11,
+        "states": 39
+      },
+      "wrongLL": -6.899771506587936,
+      "modeLength": 321,
+      "chosenLength": 321,
+      "lengthProbability": 0.4447739051003818
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 208,
+      "at": 78,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.7067307692307693,
+        "edit": 1,
+        "ll": -1.8588691297228397,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7067307692307693,
+        "edit": 1,
+        "ll": -1.8588691297228397,
+        "nulls": 4,
+        "states": 52
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8542726162589036,
+        "nulls": 5,
+        "states": 43
+      },
+      "wrongLL": -6.6311764472771975,
+      "modeLength": 209,
+      "chosenLength": 209,
+      "lengthProbability": 0.4422876362525721
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 145,
+      "at": 168,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9011453625110306,
+        "nulls": 3,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9011453625110306,
+        "nulls": 3,
+        "states": 16
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9011453625110306,
+        "nulls": 3,
+        "states": 16
+      },
+      "wrongLL": -7.108710574079065,
+      "modeLength": 145,
+      "chosenLength": 145,
+      "lengthProbability": 0.6811570694336568
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.5978260869565217,
+        "edit": 1,
+        "ll": -1.9823770826322826,
+        "nulls": 5,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.5978260869565217,
+        "edit": 1,
+        "ll": -1.9823770826322826,
+        "nulls": 5,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 0.7065217391304348,
+        "edit": 2,
+        "ll": -1.9899156142027088,
+        "nulls": 6,
+        "states": 20
+      },
+      "wrongLL": -6.839104298432198,
+      "modeLength": 185,
+      "chosenLength": 185,
+      "lengthProbability": 0.6646270619600388
+    },
+    {
+      "kind": "native",
+      "name": "0_welcome",
+      "L": 342,
+      "at": 94,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0063365149335852,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0063365149335852,
+        "nulls": 6,
+        "states": 46
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0063365149335852,
+        "nulls": 6,
+        "states": 46
+      },
+      "wrongLL": -6.872464272424971,
+      "modeLength": 342,
+      "chosenLength": 342,
+      "lengthProbability": 0.6961409510847038
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 230,
+      "at": 86,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.8739130434782608,
+        "edit": 1,
+        "ll": -1.896640488174157,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.8739130434782608,
+        "edit": 1,
+        "ll": -1.896640488174157,
+        "nulls": 6,
+        "states": 46
+      },
+      "knownLength": {
+        "pos": 0.5521739130434783,
+        "edit": 2,
+        "ll": -1.904930284075612,
+        "nulls": 7,
+        "states": 46
+      },
+      "wrongLL": -6.82863873184601,
+      "modeLength": 231,
+      "chosenLength": 231,
+      "lengthProbability": 0.7898800005793329
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.46195652173913043,
+        "edit": 1,
+        "ll": -1.9798929881760456,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.46195652173913043,
+        "edit": 1,
+        "ll": -1.9798929881760456,
+        "nulls": 7,
+        "states": 14
+      },
+      "knownLength": {
+        "pos": 0.875,
+        "edit": 2,
+        "ll": -1.9904979760076276,
+        "nulls": 6,
+        "states": 14
+      },
+      "wrongLL": -7.106980550626324,
+      "modeLength": 183,
+      "chosenLength": 183,
+      "lengthProbability": 0.5123412487892133
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 301,
+      "at": 246,
+      "trueNulls": 8,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.928732271146519,
+        "nulls": 8,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.928732271146519,
+        "nulls": 8,
+        "states": 54
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.928732271146519,
+        "nulls": 8,
+        "states": 54
+      },
+      "wrongLL": -6.83281714019122,
+      "modeLength": 301,
+      "chosenLength": 301,
+      "lengthProbability": 0.6027976285356546
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 157,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.643312101910828,
+        "edit": 2,
+        "ll": -2.555539742599961,
+        "nulls": 8,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.8471337579617835,
+        "edit": 3,
+        "ll": -2.566187157784736,
+        "nulls": 7,
+        "states": 18
+      },
+      "knownLength": {
+        "pos": 0.7834394904458599,
+        "edit": 2,
+        "ll": -2.5741885611544046,
+        "nulls": 6,
+        "states": 18
+      },
+      "wrongLL": -6.651194948293139,
+      "modeLength": 156,
+      "chosenLength": 156,
+      "lengthProbability": 0.46011274593025453
+    },
+    {
+      "kind": "native",
+      "name": "jpg107-167",
+      "L": 224,
+      "at": 39,
+      "trueNulls": 9,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.847135738706959,
+        "nulls": 9,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.847135738706959,
+        "nulls": 9,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.847135738706959,
+        "nulls": 9,
+        "states": 48
+      },
+      "wrongLL": -7.232412145635317,
+      "modeLength": 224,
+      "chosenLength": 224,
+      "lengthProbability": 0.5318651200878177
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 270,
+      "at": 472,
+      "trueNulls": 8,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.995208461053018,
+        "nulls": 8,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.995208461053018,
+        "nulls": 8,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.995208461053018,
+        "nulls": 8,
+        "states": 30
+      },
+      "wrongLL": -6.808272773539886,
+      "modeLength": 270,
+      "chosenLength": 270,
+      "lengthProbability": 0.8053218391906057
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 122,
+      "at": 84,
+      "trueNulls": 1,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9077422403101965,
+        "nulls": 1,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9077422403101965,
+        "nulls": 1,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9077422403101965,
+        "nulls": 1,
+        "states": 10
+      },
+      "wrongLL": -6.86262173621747,
+      "modeLength": 122,
+      "chosenLength": 122,
+      "lengthProbability": 0.9984468734106163
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 6,
+        "states": 37
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 6,
+        "states": 37
+      },
+      "wrongLL": -6.578233911465197,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.8916392676352086
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 158,
+      "at": 15,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9742955266265372,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9742955266265372,
+        "nulls": 6,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9742955266265372,
+        "nulls": 6,
+        "states": 22
+      },
+      "wrongLL": -6.798187552390551,
+      "modeLength": 158,
+      "chosenLength": 158,
+      "lengthProbability": 0.9007958498132957
+    },
+    {
+      "kind": "native",
+      "name": "0_wisdom",
+      "L": 120,
+      "at": 34,
+      "trueNulls": 3,
+      "map": {
+        "pos": 0.5583333333333333,
+        "edit": 1,
+        "ll": -2.7304097889773136,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.5583333333333333,
+        "edit": 1,
+        "ll": -2.7304097889773136,
+        "nulls": 4,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.739509769792692,
+        "nulls": 3,
+        "states": 12
+      },
+      "wrongLL": -6.763796501945058,
+      "modeLength": 119,
+      "chosenLength": 119,
+      "lengthProbability": 0.5669954622306173
+    },
+    {
+      "kind": "native",
+      "name": "0_loss_of_divinity",
+      "L": 326,
+      "at": 266,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9335333794596261,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9335333794596261,
+        "nulls": 4,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9335333794596261,
+        "nulls": 4,
+        "states": 48
+      },
+      "wrongLL": -6.831075164179111,
+      "modeLength": 326,
+      "chosenLength": 326,
+      "lengthProbability": 0.4384090071065281
+    },
+    {
+      "kind": "native",
+      "name": "0_warning",
+      "L": 184,
+      "at": 0,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.999735736624019,
+        "nulls": 7,
+        "states": 30
+      },
+      "wrongLL": -6.9043156793722105,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.705020077741666
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 347,
+      "at": 26984,
+      "trueNulls": 11,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.077351280504261,
+        "nulls": 11,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.077351280504261,
+        "nulls": 11,
+        "states": 63
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.077351280504261,
+        "nulls": 11,
+        "states": 63
+      },
+      "wrongLL": -6.58808171624675,
+      "modeLength": 347,
+      "chosenLength": 347,
+      "lengthProbability": 0.8133106011706274
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 335,
+      "at": 4655,
+      "trueNulls": 12,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8745283417104281,
+        "nulls": 12,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8745283417104281,
+        "nulls": 12,
+        "states": 86
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8745283417104281,
+        "nulls": 12,
+        "states": 83
+      },
+      "wrongLL": -6.3496895810279925,
+      "modeLength": 335,
+      "chosenLength": 335,
+      "lengthProbability": 0.5647764862555893
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 315,
+      "at": 42932,
+      "trueNulls": 16,
+      "map": {
+        "pos": 0.9968253968253968,
+        "edit": 1,
+        "ll": -1.9933571483449788,
+        "nulls": 16,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.8634920634920635,
+        "edit": 2,
+        "ll": -1.9986274126083514,
+        "nulls": 15,
+        "states": 90
+      },
+      "knownLength": {
+        "pos": 0.9968253968253968,
+        "edit": 1,
+        "ll": -1.9933571483449788,
+        "nulls": 16,
+        "states": 77
+      },
+      "wrongLL": -6.728456445227336,
+      "modeLength": 316,
+      "chosenLength": 316,
+      "lengthProbability": 0.404745277956722
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 295,
+      "at": 8786,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8184802167201959,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8184802167201959,
+        "nulls": 4,
+        "states": 34
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8184802167201959,
+        "nulls": 4,
+        "states": 34
+      },
+      "wrongLL": -7.031578149171466,
+      "modeLength": 295,
+      "chosenLength": 295,
+      "lengthProbability": 0.703083759828861
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 255,
+      "at": 26319,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.40784313725490196,
+        "edit": 2,
+        "ll": -1.9100150233392843,
+        "nulls": 6,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.40784313725490196,
+        "edit": 2,
+        "ll": -1.9100150233392843,
+        "nulls": 6,
+        "states": 51
+      },
+      "knownLength": {
+        "pos": 0.996078431372549,
+        "edit": 1,
+        "ll": -1.91789782325907,
+        "nulls": 5,
+        "states": 51
+      },
+      "wrongLL": -6.45298091443255,
+      "modeLength": 254,
+      "chosenLength": 254,
+      "lengthProbability": 0.5188551351873825
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 252,
+      "at": 2886,
+      "trueNulls": 9,
+      "map": {
+        "pos": 0.30952380952380953,
+        "edit": 2,
+        "ll": -2.136338398521559,
+        "nulls": 11,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.4246031746031746,
+        "edit": 4,
+        "ll": -2.1396561692751637,
+        "nulls": 11,
+        "states": 54
+      },
+      "knownLength": {
+        "pos": 0.7420634920634921,
+        "edit": 2,
+        "ll": -2.15142057372295,
+        "nulls": 9,
+        "states": 54
+      },
+      "wrongLL": -7.04513064333198,
+      "modeLength": 250,
+      "chosenLength": 250,
+      "lengthProbability": 0.34101097748982345
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 168,
+      "at": 9525,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.27976190476190477,
+        "edit": 1,
+        "ll": -1.846402710171528,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.9761904761904762,
+        "edit": 2,
+        "ll": -1.8407285897444385,
+        "nulls": 5,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8371367899792086,
+        "nulls": 5,
+        "states": 24
+      },
+      "wrongLL": -6.941150394644696,
+      "modeLength": 168,
+      "chosenLength": 168,
+      "lengthProbability": 0.4853978374058116
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 327,
+      "at": 6880,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.26299694189602446,
+        "edit": 1,
+        "ll": -2.0140305419915046,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.26299694189602446,
+        "edit": 1,
+        "ll": -2.0140305419915046,
+        "nulls": 6,
+        "states": 32
+      },
+      "knownLength": {
+        "pos": 0.8501529051987767,
+        "edit": 2,
+        "ll": -2.0179128466516563,
+        "nulls": 7,
+        "states": 32
+      },
+      "wrongLL": -6.742502516880579,
+      "modeLength": 328,
+      "chosenLength": 328,
+      "lengthProbability": 0.8721801453662424
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 194,
+      "at": 36732,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.7577319587628866,
+        "edit": 2,
+        "ll": -2.2723805618956883,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7577319587628866,
+        "edit": 2,
+        "ll": -2.2723805618956883,
+        "nulls": 5,
+        "states": 33
+      },
+      "knownLength": {
+        "pos": 0.7577319587628866,
+        "edit": 2,
+        "ll": -2.2723805618956883,
+        "nulls": 5,
+        "states": 33
+      },
+      "wrongLL": -6.718298074399063,
+      "modeLength": 194,
+      "chosenLength": 194,
+      "lengthProbability": 0.6705212361095256
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 341,
+      "at": 8490,
+      "trueNulls": 15,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9386332959406534,
+        "nulls": 15,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9386332959406534,
+        "nulls": 15,
+        "states": 61
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9386332959406534,
+        "nulls": 15,
+        "states": 61
+      },
+      "wrongLL": -6.757660949075439,
+      "modeLength": 341,
+      "chosenLength": 341,
+      "lengthProbability": 0.6895407903611737
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 174,
+      "at": 23817,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0553917963290056,
+        "nulls": 4,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.9367816091954023,
+        "edit": 1,
+        "ll": -2.063989299876796,
+        "nulls": 3,
+        "states": 12
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0553917963290056,
+        "nulls": 4,
+        "states": 12
+      },
+      "wrongLL": -6.866879887209567,
+      "modeLength": 175,
+      "chosenLength": 175,
+      "lengthProbability": 0.4739698338959326
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 256,
+      "at": 42083,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.8359375,
+        "edit": 1,
+        "ll": -1.9715674062408848,
+        "nulls": 4,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9657705076145886,
+        "nulls": 5,
+        "states": 34
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9657705076145886,
+        "nulls": 5,
+        "states": 34
+      },
+      "wrongLL": -6.824157961259346,
+      "modeLength": 256,
+      "chosenLength": 256,
+      "lengthProbability": 0.41564158166032117
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 264,
+      "at": 14653,
+      "trueNulls": 12,
+      "map": {
+        "pos": 0.6742424242424242,
+        "edit": 2,
+        "ll": -2.0894892720859897,
+        "nulls": 12,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.49242424242424243,
+        "edit": 3,
+        "ll": -2.0847230084849513,
+        "nulls": 13,
+        "states": 46
+      },
+      "knownLength": {
+        "pos": 0.6742424242424242,
+        "edit": 2,
+        "ll": -2.0894892720859897,
+        "nulls": 12,
+        "states": 46
+      },
+      "wrongLL": -7.010363881761011,
+      "modeLength": 263,
+      "chosenLength": 263,
+      "lengthProbability": 0.40133910820762325
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 174,
+      "at": 16861,
+      "trueNulls": 5,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8604080563774912,
+        "nulls": 5,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8604080563774912,
+        "nulls": 5,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8604080563774912,
+        "nulls": 5,
+        "states": 22
+      },
+      "wrongLL": -6.400507945352339,
+      "modeLength": 174,
+      "chosenLength": 174,
+      "lengthProbability": 0.8815422734548881
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 195,
+      "at": 10423,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.8923076923076924,
+        "edit": 1,
+        "ll": -2.118791679676788,
+        "nulls": 8,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.8923076923076924,
+        "edit": 1,
+        "ll": -2.118791679676788,
+        "nulls": 8,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1276947336651295,
+        "nulls": 7,
+        "states": 48
+      },
+      "wrongLL": -6.957510183425837,
+      "modeLength": 194,
+      "chosenLength": 194,
+      "lengthProbability": 0.4596013610300033
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 208,
+      "at": 3822,
+      "trueNulls": 4,
+      "map": {
+        "pos": 0.8605769230769231,
+        "edit": 2,
+        "ll": -1.9287508558276034,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.8605769230769231,
+        "edit": 2,
+        "ll": -1.9287508558276034,
+        "nulls": 6,
+        "states": 20
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9633491392963143,
+        "nulls": 4,
+        "states": 20
+      },
+      "wrongLL": -6.736330742117968,
+      "modeLength": 206,
+      "chosenLength": 206,
+      "lengthProbability": 0.5031472592267163
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 250,
+      "at": 16661,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.82,
+        "edit": 1,
+        "ll": -1.9866945522190125,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.936,
+        "edit": 2,
+        "ll": -1.9942559714603192,
+        "nulls": 7,
+        "states": 26
+      },
+      "knownLength": {
+        "pos": 0.936,
+        "edit": 2,
+        "ll": -1.9942559714603192,
+        "nulls": 7,
+        "states": 24
+      },
+      "wrongLL": -6.8844330290968925,
+      "modeLength": 250,
+      "chosenLength": 250,
+      "lengthProbability": 0.44247287769813304
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 245,
+      "at": 31405,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.209327985373062,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.209327985373062,
+        "nulls": 4,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.209327985373062,
+        "nulls": 4,
+        "states": 36
+      },
+      "wrongLL": -6.772560382191979,
+      "modeLength": 245,
+      "chosenLength": 245,
+      "lengthProbability": 0.83970258705978
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 196,
+      "at": 27082,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.141384922780124,
+        "nulls": 3,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.141384922780124,
+        "nulls": 3,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.141384922780124,
+        "nulls": 3,
+        "states": 22
+      },
+      "wrongLL": -6.798380122895311,
+      "modeLength": 196,
+      "chosenLength": 196,
+      "lengthProbability": 0.7330634346959634
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 213,
+      "at": 36749,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.3192488262910798,
+        "edit": 1,
+        "ll": -2.236676923006754,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.3192488262910798,
+        "edit": 1,
+        "ll": -2.236676923006754,
+        "nulls": 8,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.246752120106845,
+        "nulls": 7,
+        "states": 28
+      },
+      "wrongLL": -6.692370365036686,
+      "modeLength": 212,
+      "chosenLength": 212,
+      "lengthProbability": 0.6308448764125192
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 279,
+      "at": 20806,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.9139784946236559,
+        "edit": 1,
+        "ll": -1.9316285832202467,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.9139784946236559,
+        "edit": 1,
+        "ll": -1.9316285832202467,
+        "nulls": 7,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9405039278960587,
+        "nulls": 6,
+        "states": 22
+      },
+      "wrongLL": -6.816018131756258,
+      "modeLength": 278,
+      "chosenLength": 278,
+      "lengthProbability": 0.5328887206874293
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 188,
+      "at": 45916,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.9946808510638298,
+        "edit": 1,
+        "ll": -2.0830892437821085,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.9946808510638298,
+        "edit": 1,
+        "ll": -2.0830892437821085,
+        "nulls": 8,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 0.9946808510638298,
+        "edit": 1,
+        "ll": -2.0830892437821085,
+        "nulls": 8,
+        "states": 36
+      },
+      "wrongLL": -6.7488455617302865,
+      "modeLength": 188,
+      "chosenLength": 188,
+      "lengthProbability": 0.3837292261162753
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 187,
+      "at": 44212,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.2994652406417112,
+        "edit": 1,
+        "ll": -2.108892905706663,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.2994652406417112,
+        "edit": 1,
+        "ll": -2.108892905706663,
+        "nulls": 6,
+        "states": 39
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.130871256636992,
+        "nulls": 5,
+        "states": 39
+      },
+      "wrongLL": -6.62231064310686,
+      "modeLength": 186,
+      "chosenLength": 186,
+      "lengthProbability": 0.5019295897340191
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 184,
+      "at": 33553,
+      "trueNulls": 3,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1337244974681067,
+        "nulls": 3,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 0.9184782608695652,
+        "edit": 2,
+        "ll": -2.139857591181681,
+        "nulls": 3,
+        "states": 36
+      },
+      "knownLength": {
+        "pos": 0.9184782608695652,
+        "edit": 2,
+        "ll": -2.139857591181681,
+        "nulls": 3,
+        "states": 36
+      },
+      "wrongLL": -6.729886378268224,
+      "modeLength": 184,
+      "chosenLength": 184,
+      "lengthProbability": 0.3855279864758352
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 358,
+      "at": 16762,
+      "trueNulls": 15,
+      "map": {
+        "pos": 0.7737430167597765,
+        "edit": 1,
+        "ll": -1.9633055262340737,
+        "nulls": 16,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9688305430332282,
+        "nulls": 15,
+        "states": 55
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9688305430332282,
+        "nulls": 15,
+        "states": 55
+      },
+      "wrongLL": -7.01416477312632,
+      "modeLength": 358,
+      "chosenLength": 358,
+      "lengthProbability": 0.41104116051716705
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 195,
+      "at": 21801,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.06153846153846154,
+        "edit": 3,
+        "ll": -2.216225877572881,
+        "nulls": 5,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.6512820512820513,
+        "edit": 4,
+        "ll": -2.2110940770688874,
+        "nulls": 6,
+        "states": 22
+      },
+      "knownLength": {
+        "pos": 0.6717948717948717,
+        "edit": 2,
+        "ll": -2.2108216362860986,
+        "nulls": 6,
+        "states": 22
+      },
+      "wrongLL": -6.372889182933813,
+      "modeLength": 195,
+      "chosenLength": 195,
+      "lengthProbability": 0.42414219006223014
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 299,
+      "at": 46993,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.2909698996655518,
+        "edit": 2,
+        "ll": -2.049732406582564,
+        "nulls": 10,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.2909698996655518,
+        "edit": 2,
+        "ll": -2.049732406582564,
+        "nulls": 10,
+        "states": 39
+      },
+      "knownLength": {
+        "pos": 0.6387959866220736,
+        "edit": 2,
+        "ll": -2.064902506173226,
+        "nulls": 8,
+        "states": 39
+      },
+      "wrongLL": -6.558448085740495,
+      "modeLength": 297,
+      "chosenLength": 297,
+      "lengthProbability": 0.45993745493303273
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 236,
+      "at": 41488,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.07203389830508475,
+        "edit": 3,
+        "ll": -2.0533816867990833,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.1016949152542373,
+        "edit": 4,
+        "ll": -2.0627681729671883,
+        "nulls": 6,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 0.4830508474576271,
+        "edit": 2,
+        "ll": -2.0638224935138325,
+        "nulls": 6,
+        "states": 24
+      },
+      "wrongLL": -6.984102287561774,
+      "modeLength": 236,
+      "chosenLength": 236,
+      "lengthProbability": 0.44183184456292435
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 186,
+      "at": 28286,
+      "trueNulls": 7,
+      "map": {
+        "pos": 0.3548387096774194,
+        "edit": 1,
+        "ll": -1.9043393595906115,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.3548387096774194,
+        "edit": 1,
+        "ll": -1.9043393595906115,
+        "nulls": 8,
+        "states": 33
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9215285586683941,
+        "nulls": 7,
+        "states": 33
+      },
+      "wrongLL": -6.792571838841126,
+      "modeLength": 185,
+      "chosenLength": 185,
+      "lengthProbability": 0.637010685176915
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 344,
+      "at": 6749,
+      "trueNulls": 9,
+      "map": {
+        "pos": 0.9912790697674418,
+        "edit": 1,
+        "ll": -2.0461743392811353,
+        "nulls": 8,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.688953488372093,
+        "edit": 2,
+        "ll": -2.0480977017343784,
+        "nulls": 9,
+        "states": 57
+      },
+      "knownLength": {
+        "pos": 0.45930232558139533,
+        "edit": 2,
+        "ll": -2.044074528514614,
+        "nulls": 9,
+        "states": 48
+      },
+      "wrongLL": -6.843291749554759,
+      "modeLength": 344,
+      "chosenLength": 344,
+      "lengthProbability": 0.41477867071945645
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 122,
+      "at": 14300,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9094441013094432,
+        "nulls": 4,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9094441013094432,
+        "nulls": 4,
+        "states": 10
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9094441013094432,
+        "nulls": 4,
+        "states": 10
+      },
+      "wrongLL": -6.747870090444284,
+      "modeLength": 122,
+      "chosenLength": 122,
+      "lengthProbability": 0.9962761092551043
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 309,
+      "at": 27022,
+      "trueNulls": 8,
+      "map": {
+        "pos": 0.11650485436893204,
+        "edit": 2,
+        "ll": -2.103375422779312,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.11650485436893204,
+        "edit": 1,
+        "ll": -2.0996830542904275,
+        "nulls": 7,
+        "states": 34
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0961712802969554,
+        "nulls": 8,
+        "states": 32
+      },
+      "wrongLL": -6.584953104233841,
+      "modeLength": 310,
+      "chosenLength": 310,
+      "lengthProbability": 0.45750035496268726
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 277,
+      "at": 20015,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.33935018050541516,
+        "edit": 1,
+        "ll": -1.9521337226525055,
+        "nulls": 7,
+        "states": 2
+      },
+      "mbr": {
+        "pos": 0.33935018050541516,
+        "edit": 1,
+        "ll": -1.9521337226525055,
+        "nulls": 7,
+        "states": 30
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9684516055408703,
+        "nulls": 6,
+        "states": 30
+      },
+      "wrongLL": -6.687718807332919,
+      "modeLength": 276,
+      "chosenLength": 276,
+      "lengthProbability": 0.8340974090452375
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 310,
+      "at": 493,
+      "trueNulls": 7,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1646313122956387,
+        "nulls": 7,
+        "states": 4
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1646313122956387,
+        "nulls": 7,
+        "states": 54
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1646313122956387,
+        "nulls": 7,
+        "states": 54
+      },
+      "wrongLL": -6.775750665280587,
+      "modeLength": 310,
+      "chosenLength": 310,
+      "lengthProbability": 0.6082399100189245
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 354,
+      "at": 30305,
+      "trueNulls": 11,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8752332476797826,
+        "nulls": 11,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8752332476797826,
+        "nulls": 11,
+        "states": 49
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8752332476797826,
+        "nulls": 11,
+        "states": 49
+      },
+      "wrongLL": -6.941310324416061,
+      "modeLength": 354,
+      "chosenLength": 354,
+      "lengthProbability": 0.6484233061086493
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 191,
+      "at": 3343,
+      "trueNulls": 5,
+      "map": {
+        "pos": 0.05235602094240838,
+        "edit": 2,
+        "ll": -2.083701821462902,
+        "nulls": 3,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.05235602094240838,
+        "edit": 2,
+        "ll": -2.083701821462902,
+        "nulls": 3,
+        "states": 24
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0818142755298776,
+        "nulls": 5,
+        "states": 24
+      },
+      "wrongLL": -6.914249420274854,
+      "modeLength": 193,
+      "chosenLength": 193,
+      "lengthProbability": 0.5151192044926866
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 355,
+      "at": 8384,
+      "trueNulls": 11,
+      "map": {
+        "pos": 0.5211267605633803,
+        "edit": 1,
+        "ll": -1.9608119440822238,
+        "nulls": 10,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.7943661971830986,
+        "edit": 2,
+        "ll": -1.96223082591056,
+        "nulls": 11,
+        "states": 48
+      },
+      "knownLength": {
+        "pos": 0.5464788732394367,
+        "edit": 2,
+        "ll": -1.9566417955579016,
+        "nulls": 11,
+        "states": 48
+      },
+      "wrongLL": -6.576497225544379,
+      "modeLength": 355,
+      "chosenLength": 355,
+      "lengthProbability": 0.40450698082582764
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 206,
+      "at": 44953,
+      "trueNulls": 6,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.2801929679812916,
+        "nulls": 6,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.2801929679812916,
+        "nulls": 6,
+        "states": 42
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.2801929679812916,
+        "nulls": 6,
+        "states": 42
+      },
+      "wrongLL": -6.842934005694756,
+      "modeLength": 206,
+      "chosenLength": 206,
+      "lengthProbability": 0.5326964781847804
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 144,
+      "at": 13473,
+      "trueNulls": 4,
+      "map": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8613630395544432,
+        "nulls": 4,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8613630395544432,
+        "nulls": 4,
+        "states": 18
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8613630395544432,
+        "nulls": 4,
+        "states": 18
+      },
+      "wrongLL": -7.028452197927739,
+      "modeLength": 144,
+      "chosenLength": 144,
+      "lengthProbability": 0.9812130166632426
+    },
+    {
+      "kind": "Gibran",
+      "name": "Gibran",
+      "L": 264,
+      "at": 1550,
+      "trueNulls": 6,
+      "map": {
+        "pos": 0.4053030303030303,
+        "edit": 1,
+        "ll": -2.1472966524208608,
+        "nulls": 7,
+        "states": 3
+      },
+      "mbr": {
+        "pos": 0.4053030303030303,
+        "edit": 1,
+        "ll": -2.1472966524208608,
+        "nulls": 7,
+        "states": 28
+      },
+      "knownLength": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1679044467450392,
+        "nulls": 6,
+        "states": 26
+      },
+      "wrongLL": -6.804640135195957,
+      "modeLength": 263,
+      "chosenLength": 263,
+      "lengthProbability": 0.5719847984724769
+    }
+  ],
+  "method": "exact posterior on legal event DAG with augmented output length; maximum expected positional matches over legal paths; no true length used except labelled oracle"
+}
