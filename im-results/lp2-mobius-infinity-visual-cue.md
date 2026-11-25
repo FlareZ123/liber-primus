@@ -40,6 +40,38 @@ This produces no readable text. The grouping into quartets and assignment to p50
 
 The reproducible script sims/lp2_mobius_infinity_visual_cue_sft.cjs implements these tests from the original corpus, transcription, p50 grid, and solved-page controls.
 
+## Issue #2851: extra-state serialization and authentic F collisions
+
+The source has not selected a unique thirtieth token. The enlarged infinity ornament on p15 is physically separate from the text, between the numeral square and the lower heading; the six smaller instances on p0–2 are framing ornaments (see [original ornament audit](lp2-original-infinity-ornament-source-gate.md)). It is not a recurrent inter-rune symbol. The word dot and 13-dot rubric are distinct visible marks. F is already one of the 29 chart runes.
+
+Using the rich Rain transcription's rune-containing lines (excluding the numeric and hash rows) and checking the rune sequence against the canonical corpus, the actual token inventories are:
+
+| Page | GP29 runes | Word dots | 13-dot token | 10-dot token | Other punctuation |
+|---|---:|---:|---:|---:|---|
+| p15 | 159 | 35 | 3 | 0 | 0 |
+| p56 | 85 | 21 | 2 | 1 | 1 |
+| p57 | 95 | 16 | 2 | 1 | 2 |
+
+The p57 terminal 23-dot glyph is transcribed as the combined 10+13 tokens; these are transcription-token counts, not separate physical glyph counts. Both word-dot and rubric-token mappings to projective infinity have exact round trips when distinct remaining framing is retained. Neither is an authenticated mapping. A single generic punctuation token cannot reproduce the distinct source marks without supplementary framing. The literal infinity ornament has no corresponding token in the two solved controls.
+
+### Necessary obstruction for a fixed-F projective receiver
+
+If every position-dependent projective bijection preserves both the separator point infinity and the literal F point 0, it must be a multiplication by a nonzero field element: fixing infinity forces the lower-left matrix entry to zero, and fixing 0 forces the upper-right entry to zero. Consequently no nonzero plaintext rune can map to ciphertext F, even with an arbitrary secret state sequence. More generally this obstruction applies to any permutation fixing F, independent of the other fixed point.
+
+The independently established p56 prime-minus-one encryption with a conditional F bypass exactly regenerates all 85 original runes and yields these five ciphertext F positions (zero-based):
+
+| Position | Plain GP index | Prime consumed |
+|---|---:|---:|
+| 35 | 24 (A) | 151 |
+| 47 | 10 (I) | 223 |
+| 51 | 23 (D) | 239 |
+| 56 | 0 (F) | none |
+| 74 | 5 (C) | 373 |
+
+Four actual consumed F collisions falsify the fixed-F bijection interpretation. A proposed visible extra escape glyph distinguishing those collisions from literal F is also absent: the original prints the same F rune in all five cases. A latent state or separate conditional bypass can escape the obstruction, but requires a decoder rule beyond the proposed symbol mapping. In particular, the established F hold is not a fixed point of every consuming permutation. This does not exclude arbitrary projective models on unknown pages or a conditional bypass external to their projective action.
+
+The source-input reproducer [lp2_projective_extra_state_gate.cjs](../sims/lp2_projective_extra_state_gate.cjs) checks the three native inventories, reversible token mappings and authentic p56 collision pattern. No fitting on unknown ciphertext was done. The earlier [all-secret p15 projective gate](lp2-p15-infinity-projective30-allsecret-original-gate.md) already rejects its specific quadrant maps and Fibonacci-ratio cycles; the [LP1 global 30-symbol clock](lp1-mobius-full30-all-symbol-clock.md) is also negative. The new result closes the proposed unique extra-token selector, not the mathematical projective family. A new independently authenticated encoding/decoder is required before running an untouched-page inverse.
+
 ## Decision
 
 The LP1 MOBIUS/TOTIENT/PRIMES terms plus LP2 p15's infinity symbol are a genuine cross-release clue worth preserving. They motivate P¹(F₂₉) and Möbius transformations. But the available evidence does not select a unique matrix, coefficient source, page/key schedule, operand, or recipient. The global PGL(2,29) substitution and the natural Möbius-strip pointer constructions fail independent controls or are underdetermined.
