@@ -1,0 +1,952 @@
+{
+  "N": 12956,
+  "bounds": [
+    0,
+    729,
+    1874,
+    3603,
+    5506,
+    6527,
+    7960,
+    9640,
+    12648,
+    12956
+  ],
+  "donors": [
+    {
+      "name": "Gibran",
+      "runes": 46834,
+      "n": 12956,
+      "windows": 33879,
+      "min": 1416,
+      "max": 1575,
+      "at": 15446
+    },
+    {
+      "name": "Emerson",
+      "runes": 306590,
+      "n": 12956,
+      "windows": 293635,
+      "min": 1491,
+      "max": 1717,
+      "at": 37960
+    },
+    {
+      "name": "Shakespeare",
+      "runes": 217106,
+      "n": 12956,
+      "windows": 204151,
+      "min": 1408,
+      "max": 1675,
+      "at": 99596
+    }
+  ],
+  "modes": [
+    {
+      "q": 8,
+      "hold": false,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1222,
+      "zero": 86,
+      "chapterCaps": [
+        1222
+      ]
+    },
+    {
+      "q": 8,
+      "hold": false,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 1726,
+      "zero": 88,
+      "chapterCaps": [
+        118,
+        153,
+        227,
+        243,
+        147,
+        193,
+        213,
+        366,
+        66
+      ]
+    },
+    {
+      "q": 8,
+      "hold": false,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1251,
+      "zero": 86,
+      "chapterCaps": [
+        1251
+      ]
+    },
+    {
+      "q": 8,
+      "hold": false,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 1704,
+      "zero": 88,
+      "chapterCaps": [
+        115,
+        155,
+        213,
+        251,
+        148,
+        189,
+        217,
+        345,
+        71
+      ]
+    },
+    {
+      "q": 8,
+      "hold": false,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 1728,
+      "zero": 86,
+      "chapterCaps": [
+        1728
+      ]
+    },
+    {
+      "q": 8,
+      "hold": false,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 3474,
+      "zero": 88,
+      "chapterCaps": [
+        275,
+        348,
+        448,
+        481,
+        316,
+        387,
+        424,
+        620,
+        175
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1255,
+      "zero": 86,
+      "chapterCaps": [
+        1255
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 1711,
+      "zero": 88,
+      "chapterCaps": [
+        119,
+        165,
+        224,
+        239,
+        147,
+        191,
+        211,
+        347,
+        68
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1215,
+      "zero": 86,
+      "chapterCaps": [
+        1215
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 1691,
+      "zero": 88,
+      "chapterCaps": [
+        115,
+        156,
+        221,
+        226,
+        163,
+        195,
+        215,
+        336,
+        64
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 1753,
+      "zero": 86,
+      "chapterCaps": [
+        1753
+      ]
+    },
+    {
+      "q": 8,
+      "hold": true,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 3442,
+      "zero": 88,
+      "chapterCaps": [
+        256,
+        344,
+        436,
+        463,
+        328,
+        395,
+        430,
+        621,
+        169
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1313,
+      "zero": 86,
+      "chapterCaps": [
+        1313
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 1936,
+      "zero": 88,
+      "chapterCaps": [
+        126,
+        181,
+        252,
+        262,
+        172,
+        218,
+        240,
+        395,
+        90
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1282,
+      "zero": 86,
+      "chapterCaps": [
+        1282
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 1890,
+      "zero": 88,
+      "chapterCaps": [
+        129,
+        186,
+        236,
+        262,
+        175,
+        209,
+        238,
+        384,
+        71
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 1972,
+      "zero": 86,
+      "chapterCaps": [
+        1972
+      ]
+    },
+    {
+      "q": 13,
+      "hold": false,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 4260,
+      "zero": 88,
+      "chapterCaps": [
+        349,
+        443,
+        518,
+        562,
+        426,
+        479,
+        530,
+        751,
+        202
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1270,
+      "zero": 86,
+      "chapterCaps": [
+        1270
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 1904,
+      "zero": 88,
+      "chapterCaps": [
+        124,
+        180,
+        246,
+        266,
+        165,
+        213,
+        244,
+        385,
+        81
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1277,
+      "zero": 86,
+      "chapterCaps": [
+        1277
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 1900,
+      "zero": 88,
+      "chapterCaps": [
+        130,
+        179,
+        245,
+        261,
+        166,
+        218,
+        246,
+        382,
+        73
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 1999,
+      "zero": 86,
+      "chapterCaps": [
+        1999
+      ]
+    },
+    {
+      "q": 13,
+      "hold": true,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 4225,
+      "zero": 88,
+      "chapterCaps": [
+        341,
+        427,
+        535,
+        567,
+        414,
+        467,
+        533,
+        746,
+        195
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1410,
+      "zero": 86,
+      "chapterCaps": [
+        1410
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 2349,
+      "zero": 88,
+      "chapterCaps": [
+        164,
+        223,
+        294,
+        329,
+        206,
+        269,
+        306,
+        448,
+        110
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1438,
+      "zero": 86,
+      "chapterCaps": [
+        1438
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 2357,
+      "zero": 88,
+      "chapterCaps": [
+        168,
+        226,
+        294,
+        322,
+        224,
+        269,
+        293,
+        454,
+        107
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 2503,
+      "zero": 86,
+      "chapterCaps": [
+        2503
+      ]
+    },
+    {
+      "q": 28,
+      "hold": false,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 5970,
+      "zero": 88,
+      "chapterCaps": [
+        466,
+        626,
+        761,
+        830,
+        575,
+        686,
+        761,
+        1015,
+        250
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1432,
+      "zero": 86,
+      "chapterCaps": [
+        1432
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 2345,
+      "zero": 88,
+      "chapterCaps": [
+        179,
+        233,
+        301,
+        311,
+        214,
+        260,
+        303,
+        441,
+        103
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1440,
+      "zero": 86,
+      "chapterCaps": [
+        1440
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 2368,
+      "zero": 88,
+      "chapterCaps": [
+        171,
+        232,
+        310,
+        331,
+        221,
+        262,
+        286,
+        447,
+        108
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 2461,
+      "zero": 86,
+      "chapterCaps": [
+        2461
+      ]
+    },
+    {
+      "q": 28,
+      "hold": true,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 5988,
+      "zero": 88,
+      "chapterCaps": [
+        474,
+        617,
+        779,
+        813,
+        584,
+        691,
+        761,
+        1005,
+        264
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1486,
+      "zero": 86,
+      "chapterCaps": [
+        1486
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 2395,
+      "zero": 88,
+      "chapterCaps": [
+        172,
+        224,
+        298,
+        325,
+        220,
+        274,
+        305,
+        470,
+        107
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1463,
+      "zero": 86,
+      "chapterCaps": [
+        1463
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 2397,
+      "zero": 88,
+      "chapterCaps": [
+        172,
+        230,
+        313,
+        322,
+        218,
+        279,
+        301,
+        458,
+        104
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 2551,
+      "zero": 86,
+      "chapterCaps": [
+        2551
+      ]
+    },
+    {
+      "q": 29,
+      "hold": false,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 6107,
+      "zero": 88,
+      "chapterCaps": [
+        486,
+        632,
+        794,
+        818,
+        582,
+        717,
+        780,
+        1043,
+        255
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 1442,
+      "zero": 86,
+      "chapterCaps": [
+        1442
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 2361,
+      "zero": 88,
+      "chapterCaps": [
+        176,
+        221,
+        297,
+        327,
+        219,
+        257,
+        296,
+        464,
+        104
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 1444,
+      "zero": 86,
+      "chapterCaps": [
+        1444
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 2368,
+      "zero": 88,
+      "chapterCaps": [
+        172,
+        230,
+        293,
+        321,
+        221,
+        280,
+        297,
+        450,
+        104
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 2535,
+      "zero": 86,
+      "chapterCaps": [
+        2535
+      ]
+    },
+    {
+      "q": 29,
+      "hold": true,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 6119,
+      "zero": 88,
+      "chapterCaps": [
+        477,
+        619,
+        784,
+        835,
+        598,
+        741,
+        786,
+        1026,
+        253
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 2438,
+      "zero": 86,
+      "chapterCaps": [
+        2438
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 5730,
+      "zero": 88,
+      "chapterCaps": [
+        532,
+        586,
+        708,
+        742,
+        562,
+        640,
+        677,
+        975,
+        308
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 2401,
+      "zero": 86,
+      "chapterCaps": [
+        2401
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 5741,
+      "zero": 88,
+      "chapterCaps": [
+        536,
+        581,
+        692,
+        737,
+        568,
+        649,
+        681,
+        989,
+        308
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 6385,
+      "zero": 86,
+      "chapterCaps": [
+        6385
+      ]
+    },
+    {
+      "q": 256,
+      "hold": false,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 11529,
+      "zero": 88,
+      "chapterCaps": [
+        712,
+        1075,
+        1530,
+        1678,
+        980,
+        1306,
+        1500,
+        2443,
+        305
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "none",
+      "privateChapters": false,
+      "Ecap": 2466,
+      "zero": 86,
+      "chapterCaps": [
+        2466
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "none",
+      "privateChapters": true,
+      "Ecap": 5767,
+      "zero": 88,
+      "chapterCaps": [
+        540,
+        598,
+        712,
+        746,
+        575,
+        639,
+        679,
+        970,
+        308
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "before",
+      "privateChapters": false,
+      "Ecap": 2352,
+      "zero": 86,
+      "chapterCaps": [
+        2352
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "before",
+      "privateChapters": true,
+      "Ecap": 5727,
+      "zero": 88,
+      "chapterCaps": [
+        535,
+        594,
+        680,
+        718,
+        588,
+        630,
+        692,
+        982,
+        308
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "after",
+      "privateChapters": false,
+      "Ecap": 6361,
+      "zero": 86,
+      "chapterCaps": [
+        6361
+      ]
+    },
+    {
+      "q": 256,
+      "hold": true,
+      "order": "after",
+      "privateChapters": true,
+      "Ecap": 11495,
+      "zero": 88,
+      "chapterCaps": [
+        705,
+        1066,
+        1525,
+        1658,
+        968,
+        1310,
+        1506,
+        2451,
+        306
+      ]
+    }
+  ],
+  "inputBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  ]
+}
