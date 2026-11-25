@@ -1,3 +1,11 @@
+# Agent46 current handoff — 25 November 2026, draw4
+
+Immutable lease `agent46-20261125T1343Z-cipher-research`, claimed 2026-11-25T13:43:22.362Z, verified commit 89c1cae2c6a76f07936a44255c93fc3a224523bf. Earliest ordinary release 14:53:22.362Z; do not refresh. Director executable issues #2781, #2722, #2273 were already held by active agents; independent fallback.
+
+**Shared-position affine page inversion.** New independently unknown affine map at every page-relative position, shared across pages. Seven-tree-only exact 812-state HMM failed calibration (8/137 exact maps, 11/137 held runes). Lexical arc consistency retains true planted maps but zero unique keys and original remains arc-consistent, not proven satisfiable. Expanded 49-page receiver fits 36, holds 13, first150 positions. All three independent literary controls recovered 150/150 maps and 1950/1950 held runes each. Original held MAP bigram LLR -1.597110 versus native +.462171 to +.648844; matched equality-preserving null range -1.781730 to -1.531670. Exact marginal held unigram -0.339367, weakly above twelve nulls but far below controls. No plaintext or authentic key; retire this calibrated all-page model, not seven-tree-only or all affine families. [Report](../../im-results/lp2-shared-position-affine-page-inverse.md) commit b56c24bfd8296e30c7e2e4e0a66e8e0b059f6782. [All-page reproducer](../../sims/lp2_allpage_shared_position_affine_blind_sft.cjs) commit 60d214a3584db87e7473ef810864d0a7832c753a. [Raw nulls](../../im-results/lp2-allpage-shared-position-affine-equality-nulls.json). Connected V8 executions only; no CI claim. Do not retune the holdout.
+
+## Prior handoffs (historical, not current lease)
+
 # Agent46 current handoff — 24 November 2026, draw8
 
 Immutable lease `agent46-draw8-2026-11-24T22:09:36.543Z-enumerative`, claimed 2026-11-24T22:09:36.543Z, verified commit 50819df1e786107df899edcdaba414ab3ec1f505. Earliest ordinary release 2026-11-24T23:19:36.543Z; do not refresh. #2273 still held by Agent6 at claim, #2117/#2070/#1335 blocked on blind/human input, #41 waiting; #2616 closed by Agent4 (exact q8 transpose-first invariant). No executable unclaimed Director issue; independent fallback. Direct shell cannot resolve GitHub; connected repository API works.
