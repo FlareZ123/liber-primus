@@ -228,6 +228,41 @@ A genuine solved-p57 register of 95 native GP rune indices was independently con
 
 **Decision:** Retire direct no-key full-integer SHED→BASE29 prose. The original full 256-digit D field and inner112 key-shaped object still exist as exact mathematical source-derived values. Neither transport gives unknown plaintext or specifies a source-authenticated further permutation/decryption. If a newly recovered first-party instruction chooses a particular scope and a new keyed transformation, that would constitute a new hypothesis requiring an untouched original passage, rather than a reason to tune these outputs retroactively.
 
+
+## 7c. Spiral-addressed two-shell core pointer: WE ↔ MUST (provisional)
+
+This is a specific, source-motivated receiver test, distinct from the failed row-major pointer variants. It joins four independent clues:
+
+- p56 says the way is a "path of spirals";
+- p57 says "WE MUST SHED THE CIRCUMFERENCES" and "FIND THE DIVINITY WITHIN";
+- p11 says "THEIR NUMBERS ARE THE DIRECTION", independently foregrounding numeric word values and their order;
+- the authenticated 2016 message says the words are the map and their numbers the direction.
+
+The two-shell peel leaves a 28×4 core from the original 32×8 table. Use the p57 GP0 word sum as an address into a spiral ordering of that core, and the cell's base-59 value (remove lowercase `f` from the 60-symbol alphabet) as the next address. The complete p57 solved sequence contains 20 words; its adjacent `WE` and `MUST` addresses are 25 and 51.
+
+Across all eight dihedral spiral orientations, both radices, and both full-table/core scopes (32 configurations), the **only adjacent p57 word edge** is:
+
+`WE(25) → MUST(51)`
+
+It occurs in the twice-shed 28×4 core, base59, clockwise spiral starting at the core's top-right corner (the 90° counterclockwise matrix transform followed by the standard clockwise spiral). It is reciprocal:
+
+| p57 word/address | Spiral position | Original 32×8 cell (0-based row, column) | Token | Base59 next address |
+| --- | ---: | ---: | --- | ---: |
+| WE / 25 | 25 | 221 (27, 5) | `0q` | 51 = MUST |
+| MUST / 51 | 51 | 66 (8, 2) | `0P` | 25 = WE |
+
+The radix change is essential: `0q` is 52 in base60 but 51 in base59; `0P` remains 25 in either radix. Thus the literal `SHED` operation closes the WE↔MUST two-cycle. The other 18 adjacent p57 word pairs do not map under this selected variant. The full 20-word list, all 32 controls, physical-cell trace and deterministic reproducer are in [`lp2_p50_core_spiral_wordpointer_sft.cjs`](../sims/lp2_p50_core_spiral_wordpointer_sft.cjs).
+
+A 100,000-permutation null (seed `0x3301`), shuffling the 112 core base59 values while preserving their multiset and testing all eight spiral orientations, gives:
+- specific WE↔MUST mutual cycle: 259/100,000 (0.259%);
+- any mutual cycle among distinct p57 word addresses: 5,209/100,000 (5.209%);
+- one-way WE→MUST edge: 13.679%;
+- any adjacent p57-word edge: 62.625%.
+
+So the one-way edge alone is not surprising; the reciprocal WE/MUST cycle is the notable feature. The 0.259% figure is conditional on this specific source-selected word pair and the tested spiral family, not a global p-value; the broader any-word-pair familywise rate is 5.209%.
+
+**Status: promising navigation-structure candidate, not a decryption.** The top-right clockwise start is the unique match among the eight standard spiral orientations, but no independent visible start marker has yet selected that corner. The map does not yet continue through the remaining p57 words or reach a destination, and it recovers no unknown LP2 plaintext. Do not conflate this raw base59 pointer map with the separate five-state base60−base59 difference field or interpret those differences as literal compass directions. Independent reproduction and a source-based explanation of the spiral start are the next decisive tests.
+
 ## 8. Research consequence
 
 The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism. There is an unresolved radix fork: the SHED/DH-shell branch below uses conditional base59, while the p29/p50 root24 test conditionally favors conventional base60 if the inferred p39 high-first polynomial and p29/p50 relation are intended. No original source fixes a global digit legend, so neither branch is established and they must not be merged into a dual-radix state machine:
@@ -238,7 +273,7 @@ The p50 arithmetic remains a candidate structural interpretation, not an establi
 - the `TUNNELNG` lookup gives a candidate p55 address in base59;
 - the historical `EMERGE=300` boundary and repeated `DJU/BEI` pair provide an independent handoff to p27:28.
 
-The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established.
+The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established. A distinct p56/p57-selected spiral-core base59 pointer candidate now gives the reciprocal p57 WE↔MUST cycle (see §7c), but it has not yet continued to a destination or plaintext and remains provisional.
 
 Do not use the shell matches or repeated-pair loop as a key, plaintext, or complete navigation solution. The next useful work must resolve the radix/receiver fork with a source-selected operation and an original-text holdout, or recover the missing historical page/key. Further generic pointer variants would repeat failed branches.
 
