@@ -1,6 +1,6 @@
 # Original 729-rune opening square: full secret row-column mask key-recovery attack
 
-**Agent2, 21 November 2026; Agent40 all-key extension, 24 November 2026. Evidence class: original-source grid and historical signed heading, explicit direct-GP29 cipher inverse, independently trained language model and exact source-native planted positive. Outcome: negative for this complete additive row-column mechanism; no unknown plaintext.**
+**Agent2, 21 November 2026; Agent40 all-key extensions, 24–25 November 2026. Evidence class: original-source grid and historical signed heading, explicit direct-GP29 cipher inverse, independently trained language model and exact source-native planted positive. Outcome: bounded negatives for additive, rank-one additive-product and centered multiplicative row-column mechanisms; no unknown plaintext.**
 
 ## Source-selected opportunity and falsifiable hypothesis
 
@@ -80,9 +80,41 @@ Four deterministic planted controls from the first 729 solved-LP1-reference GP r
 
 [Standalone CJS SFT](../sims/lp2_p0_27square_permuted_additive_rectangle_sft.cjs), exact experiment executed in connected JavaScript runtime with the repository's unchanged canonical source and controls. Script commit [4f8863b](https://github.com/FlareZ123/liber-primus/commit/4f8863b0bdb7aeeeb1663995826635debbdc967b). No CI execution is claimed for this extension.
 
+## Centered multiplicative row/column receiver: exact all-key rectangle gate (Agent40, 25 November)
+
+A different separable cipher multiplies the **plaintext value** by the two secret row/column factors, instead of adding their product to it. To allow unknown global alphabet origins, freeze the broad direct-GP family
+
+`C[r,c] = β + A[r] B[c] (P[σ(r),τ(c)] − α) mod29`,
+
+with every A and B nonzero, arbitrary α,β in GF29, arbitrary independent row/column permutations and optional plaintext transpose. This is the multiplicative analogue of the separable additive grid; the 729-rune chapter and opposing crosses motivate checking a two-dimensional operation, but the artwork and known GP arithmetic do not specifically select it. No title crib or English-score optimization is used.
+
+For each possible center α or β, the locations of the centered zero form a bipartite row–column incidence graph. Its count and unordered pair of sorted row/column degree multisets are invariant. On rectangles with four nonzero centered entries, define the condition
+
+`(X[r,c]−z)(X[s,d]−z) = (X[r,d]−z)(X[s,c]−z) mod29`.
+
+Row/column scales cancel exactly; row/column permutations only reorder rectangles and transpose exchanges the axes. Therefore both the count T of four-nonzero rectangles and the count Q satisfying the product equality are all-key invariants. Computing discrete logs with primitive root 2 modulo 29 converts each valid row-pair ratio to a difference in Z28. An arbitrary row scale shifts its 28-bin histogram, while column scales cancel; the complete multiset of sorted ratio histograms is invariant (transpose swaps row and column collections). The zero pattern and Q/T together give a stronger gate than a single distribution statistic.
+
+**Untouched original:** p0,p1,p2 lengths 262,266,201. Enumerate all 29 candidate output centers, not only F. Center zero counts span 17–34, Q spans 3,646–4,060, T spans 101,643–112,089. For original F=0 specifically, n=34, Q=3,682, T=101,643. All 29 input centers are evaluated for every fixed donor window. Row/column permutation and all nonzero factor choices are accounted for by the invariance proof, not sampled.
+
+| Reference | Windows | Center pairs with equal zero count | Also equal degree multisets | Equal zero count and Q | Equal zero count, Q and T | All necessary conditions |
+|---|---:|---:|---:|---:|---:|---:|
+| Gibran | 86 | 939 | 6 | 0 | 0 | 0 |
+| Shakespeare | 300 | 3,751 | 22 | 7 | 0 | 0 |
+| Emerson | 445 | 5,604 | 15 | 7 | 1 | 0 |
+| LP1 printed-clear GP (concatenated segments) | 1 | 14 | 1 | 0 | 0 | 0 |
+| Total | **832** | **10,308** | **44** | **14** | **1** | **0** |
+
+The three literary references use the same frozen nonoverlapping GP conversion as the earlier additive experiment (including source file headers). Unlike the earlier editorial LP1 comparison, the additional native control uses actual printed-clear rune-bearing segments 3,8,9,10,11,14 of `lp1_wulfic_canonical.txt` (1,001 runes before taking the first 729; see [source classification](../resources/transcriptions/README.md)). This concatenation includes gaps between original segments and is not an unbroken original passage. The 832 windows are a finite comparison population, not iid observations. Center counts alone leave many candidates, and Q alone has 14 exact equalities; the joint invariant rejects all, including the sole Q/T match.
+
+**Calibration:** eight deterministic full 729-rune plants, four from overlapping native-clear LP1 windows and four literary windows, with independent random nonzero row/column factors, input/output origins, permutations, alternating transposition. The supplied-key inverse recovers 5,832/5,832 source symbols and all eight preserve the complete exact invariants. This verifies the algebra/implementation; it does not demonstrate blind key recovery, authorial selection or a universal language exclusion. Executed the experiment in the connected JS runtime on repository inputs; no CI run claimed.
+
+**Decision:** no tested reference window is compatible with this entire centered multiplicative direct-prose family, for any secret factors or row/column order. This does not exclude other plaintexts, arbitrary cell permutations, additive-plus-multiplicative noncommuting row/column actions, dynamic clocks or a cross-rune cipher. Since the source does not select scaling, do not expand this family by tuning arbitrary parameters. No unknown plaintext or source-authenticated key has been recovered.
+
+[Standalone CJS SFT](../sims/lp2_p0_27square_centered_multiplicative_rectangle_sft.cjs), script commit [998c6bac](https://github.com/FlareZ123/liber-primus/commit/998c6bac09c80e30da938119cd1fa87de320df04).
+
 ## Scientific decision
 
-Both directly source-motivated secret matrix masks `R[row]+K[column]` and `R[row]×K[column]` over GF29 are computationally recoverable from known original-style plaintext under the source-fixed 13-rune heading, and the solver is exact on the planted full-cipher 729-rune case. The original 729-rune body remains overwhelmingly unlike the independently held-out known-GP source under the best recovered **40-parameter** secret. These are strong bounded negatives for both the arbitrary separable additive and arbitrary rank-one multiplicative GP29 grid-mask families with direct natural-language plaintext. The exact rectangle invariant additionally extends the additive negative to arbitrary independent row and column permutations, transposition, and a global nonzero field scale; all 835 fixed native-style control windows fail the original invariant.
+Both directly source-motivated secret matrix masks `R[row]+K[column]` and `R[row]×K[column]` over GF29 are computationally recoverable from known original-style plaintext under the source-fixed 13-rune heading, and the solver is exact on the planted full-cipher 729-rune case. The original 729-rune body remains overwhelmingly unlike the independently held-out known-GP source under the best recovered **40-parameter** secret. These are strong bounded negatives for both the arbitrary separable additive and arbitrary rank-one multiplicative GP29 grid-mask families with direct natural-language plaintext. The exact rectangle invariant additionally extends the additive negative to arbitrary independent row and column permutations, transposition, and a global nonzero field scale; all 835 fixed native-style control windows fail the original invariant. The separate centered multiplicative direct-GP family also fails every one of 832 fixed reference windows under the complete input/output origin search and arbitrary row/column permutations.
 
 The experiment does not exclude a fully general **729-symbol** pad, a nonseparable or nonlinear matrix transform, varying keyed alphabets, dynamic state/ciphertext feedback, general cell-level transposition or permuted bilinear masking, a compressed/intermediate encrypted layer, or a different plaintext register. It offers no first-party authorship proof for the row-column model and makes no claim to have recovered unknown p0–p2 plaintext or a creator-selected cryptographic operation. Do **not** rescue the branch by introducing untethered per-cell secrets; those can fit arbitrary text and have no source-selected key.
 
