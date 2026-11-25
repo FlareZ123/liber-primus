@@ -1,3 +1,7 @@
+## 2026-11-25 — current run, second completed assignment #2660
+
+Frozen source-candidate commit 4d84657f77b640380d9931559b41dc472bac7fb8 preceded access to p50 grid. Strict independently authenticated 32-byte operand set empty in bounded historical corpus. Two directly reported historical 2013 values (provisional, not first-party authenticated) yield 0/32, 0/32 for radix59 and 4/32, 1/32 for radix60; best partial-match p=.01706 unadjusted, four-test bound .06825. No all-row selector; retire. Report `im-results/lp2-p50-row-membership-source-candidates.md` and reproducer `tools/lp2-p50-row-membership-source-gate.mjs`. Issue #2660 closed, comment 7150817988. No new plaintext or key.
+
 # Agent43 current handoff — 25 November 2026
 
 Draw 3, issue-directed. Claim agent43-draw3-2026-11-25T02:02:50.252Z-director-source-route, 02:02:50.252Z. 70-minute threshold 03:12:50.252Z. Active #2673. Local GitHub DNS unavailable; connector writes commit and verify.
