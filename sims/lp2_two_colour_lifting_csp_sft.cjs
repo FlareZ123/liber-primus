@@ -60,6 +60,25 @@ function experiment(raw){
   const ff=factors(c,rows,1,g.solutions[0]),f=solver(ff);
   return {g,f,key:!f.capped&&f.solutions.length===1&&f.observed===29?{g:g.solutions[0],f:f.solutions[0]}:null,projected:{gRows:gf.length,gTuples:gf.reduce((s,f)=>s+f.tuples.length,0),fTuples:ff.reduce((s,f)=>s+f.tuples.length,0),fEmpty:ff.filter(f=>!f.tuples.length).map(f=>f.row)}};
  }
+ // Sound disjoint projected-lexicon contradiction cores, independent of any f.
+ function oovCertificate(c,rows){
+  const fs=factors(c,rows,0),projections=fs.map(()=>new Map());
+  function proj(i,shared){const k=shared.join(",");if(!projections[i].has(k)){const p=shared.map(v=>fs[i].vars.indexOf(v));projections[i].set(k,new Set(fs[i].tuples.map(t=>id(p.map(j=>t[j])))));}return projections[i].get(k);}
+  const edges=[];for(let i=0;i<fs.length;i++)for(let j=i+1;j<fs.length;j++){const shared=fs[i].vars.filter(v=>fs[j].vars.includes(v));if(!shared.length)continue;const a=proj(i,shared),b=proj(j,shared);if(![...a].some(v=>b.has(v)))edges.push({i,j,shared});}
+  const used=new Set(),cores=[];for(const f of fs)if(!f.tuples.length){used.add(f.row);cores.push([f.row]);}
+  // Greedy disjoint edges give a valid lower bound, not necessarily maximum matching.
+  const degree=Array(fs.length).fill(0);for(const e of edges){degree[e.i]++;degree[e.j]++;}
+  edges.sort((a,b)=>degree[a.i]+degree[a.j]-degree[b.i]-degree[b.j]);
+  for(const {i,j} of edges)if(!used.has(i)&&!used.has(j)){used.add(i);used.add(j);cores.push([i,j]);}
+  const rootUnsat=arr=>{const q=solver(arr,1,1);return !q.capped&&!q.solutions.length;};
+  // Each additional core is a root-propagation contradiction; minimize by chunk deletion.
+  let remaining=fs.filter(f=>!used.has(f.row)),searchCalls=0;
+  while(cores.length<=Math.floor(.05*rows.length)&&remaining.length&&rootUnsat(remaining)){
+   let core=[...remaining];for(let parts=2;parts<=core.length;){const size=Math.ceil(core.length/parts);let removed=false;for(let i=0;i<core.length;i+=size){const q=core.filter((_,j)=>j<i||j>=i+size);searchCalls++;if(q.length&&rootUnsat(q)){core=q;parts=Math.max(2,parts-1);removed=true;break;}}if(!removed){if(parts>=core.length)break;parts=Math.min(core.length,parts*2);}}
+   check(rootUnsat(core),"each core independently contradictory");const rs=core.map(f=>f.row);cores.push(rs);for(const i of rs)used.add(i);remaining=remaining.filter(f=>!used.has(f.row));
+  }
+  return {lowerBound:cores.length,budget:Math.floor(.05*rows.length),edges:edges.length,cores:cores.map(rs=>rs.map(i=>({row:i,start:rows[i].start,len:rows[i].len}))),searchCalls};
+ }
  let seed=2815;function R(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed;}
  const controls=[];
  for(let d=0;d<3;d++){
@@ -73,7 +92,8 @@ function experiment(raw){
  const calibration=controls.every(x=>x.exactKey&&x.fitCorrect===729&&x.holdCorrect===308);
  const original=calibration?fit(A,aRows):null;
  const originalPrediction=original?.key?{fit:decode(A,original.key),heldout:decode(B,original.key)}:null;
- return {register:types.size,controls,calibration,original,originalPrediction};
+ const oov=calibration&&!original?.key?oovCertificate(A,aRows):null;
+ return {register:types.size,controls,calibration,original,originalPrediction,oov};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/english_wordfreq_textblob.txt","resources/transcriptions/lp2-image-corrected.txt"];
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
