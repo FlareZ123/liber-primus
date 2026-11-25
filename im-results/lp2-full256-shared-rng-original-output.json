@@ -1,0 +1,1743 @@
+{
+  "sources": [
+    {
+      "name": "grid",
+      "sha512": "bbb14b9db89b0a55fd15e08bcc82238b397bcdaffa43a0bd8463838e69ee6bf13b6a1e36216dd83d159484979e5497d6c2675e791e6e9df7d64ce1b2020b3f20",
+      "check": [
+        2771980068,
+        985848752,
+        1703214129,
+        2236561509,
+        2259977384,
+        3932182977,
+        1611350355,
+        1055075156
+      ]
+    },
+    {
+      "name": "onion2",
+      "sha512": "881fc9e850842a8765c86e020e854b5c49680e5027625ca45a7a2fca6b2093d57b35aecf1b3b40b0604e26f2421fd6b0884203cc68e9674fa4abfad4f904f5a2",
+      "check": [
+        946298941,
+        4206224457,
+        780932064,
+        1090530888,
+        3760699922,
+        1314046840,
+        1960589158,
+        1910494214
+      ]
+    }
+  ],
+  "scopeLengths": {
+    "book": 12956,
+    "after-grid": 842
+  },
+  "results": [
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 5836,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1038,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 2241,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 2192,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 2345,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 2026,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7719507072797449
+        ]
+      ],
+      "score": -6.508374985709972,
+      "threshold": 7573827978671382,
+      "plain": "CDMWEOESNEOERALEAGOEOCXPJUGEIAJYFLIEOLHYIAHIARCDEOOENGGNMUFNAEBCIASMPXJXOENSITHOEHCMABPEOTHCXHAERIAUOERSROTHMNFNBASYMOPAIEASYAAUITNGSSTHJBDNGEARMC"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 690,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7270653706732822
+        ]
+      ],
+      "score": -6.352086490714755,
+      "threshold": 7209613747051080,
+      "plain": "CWOESTGAERPNCXFEAEOIANYOEPXTNGFLOBNGPPOSYNOWDEACSYAEIANBLCOECRTHLICSAEEAAEMAPHGSOEEAXTHFRPOTHFNHILXHNIADNDAEIABDOEATHUYTHOEHEBTHTTHEARGOPHNAEOIAIAGOPH"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7270653706732822
+        ]
+      ],
+      "score": -6.589320668716542,
+      "threshold": 6877918585073168,
+      "plain": "NWRXNCOUCURRHLNGSACRPFTBMBNGEADHCWNTTNGERISLIAFEOCMRAGMDTHDTHFWJGSEFEOATHOECIABUNGIHOENGNGIAMICWGGUXYTHEEARIAJNSLEOEIACPYPCOEUJXNGOIAOBLDJGUUSWW"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          6521879377751451
+        ]
+      ],
+      "score": -6.454731159972914,
+      "threshold": 6503531420582483,
+      "plain": "CEOEASXAMTAEDDENGEAWNGRAEAEIAJFCBWSAEONOEAWAUAUXMCLUPHNEOEAHCYBLTHCYEAIWPWUNGTUMYMEANGPOEEWBEOEOASDAEEAEIMHIBICTHAEEAJWPAMAEXROEWCIACDCIADCHJMNEGONHLW"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          6521879377751451
+        ]
+      ],
+      "score": -6.367427599970357,
+      "threshold": 6503531420582483,
+      "plain": "NTHIAXJTNEOETSFTINEOBNGYWXNGMYTHTAXTRAESAUDYOEIAREATHTHUNGCXRGRFOEPAEAEEUHTSLROFPFPLUEAIECIAGMIAHNGAFIPCYTUTHPDEAHNGTHGGTYJWIAWEONGPBTOEOTWLWLCTWGNGY"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          6960629753926294
+        ]
+      ],
+      "score": -6.5880737281441455,
+      "threshold": 6722906608669904,
+      "plain": "WTTHJTHGIRIEOBRGNGRNGEATHEATHTHXMJUYXYXFOEAXOEEASETTHHEAUBWJBPEOPRAEAOEJYOEANGEAJYTCFUAEAOJSAWYSAETXFSSODUDTHNGITLRTJRIAXFLOERIAFLHXSLUOEDMNGLEUBRMBM"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 554,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7719507072797449
+        ]
+      ],
+      "score": -6.22101297433808,
+      "threshold": 6736025430078350,
+      "plain": "XIACATABNXIAOEAEFEOLOEMBNDREEACSANOMAETHPFTHGEEBIACBOEGYRAEAYTTHBTIOIABEMETHPHIYGAOROEEOGWEMFEODLTHAAEONSATDJPDTRODJXSBIIHNICAEHOELFRNRBTUJTDEA"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7719507072797449
+        ]
+      ],
+      "score": -6.4560965547315154,
+      "threshold": 6736025430078350,
+      "plain": "FTNGCNTBXBHXTLFDNGNGCXNGNGRTEAPNNEAIABCCNILFAETMFEMULLUOIORBJOEUEAMDLREACGPFAAISBPWEFFWYYHREOBSRSNGUCOEGAETBMFTCRNCOBRYDUUXJMBJNGTTHCAERTJD"
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "BE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 456,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7944349742681555
+        ]
+      ],
+      "score": -6.456191875968779,
+      "threshold": 7804121117932218,
+      "plain": "OWIALJIASOBTTHOENPLOEIAJLGXAELGEJOHJLCAEGJAEEOPSYOUIHDWTBISNGTHFMJNFBUXJYJNGNDYPLJAWXMJMOEYPOETHEOJRTIAOUHNONGORATHDOEGUNFEAOEXGEHAYTEOWLWEAGGMJ"
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 842,
+      "intervals": [
+        [
+          6485183463413515,
+          7944349742681555
+        ]
+      ],
+      "score": -6.393843873918776,
+      "threshold": 7768489959860833,
+      "plain": "JWEANXPPTHUDWAEEAAEAEJDGTHEAJAERHLLTEXGSYPLOESDTHEOTTHCUWIYAUSAEJSJJHJIAEAHIOHNGGFPGEORMBAIACEAEOPANGBEAELLEOEATBNGADHDEATUFFWAPLIARNAETHREOOEEOPPEHNGLLAEY"
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "LE",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 2241,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 456,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 456,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 653,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 909,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "grid",
+      "repr": "Py3-bytes-v2",
+      "scope": "after-grid",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 1,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 909,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 909,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 1038,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 5825,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 653,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 2241,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "BE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 5836,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 909,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 5476,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 782,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 909,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "LE",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 2345,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 4713,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "randrange",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 5970,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 456,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 979,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "float",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 207,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": 1,
+      "dead": 456,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "conditional",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": 1,
+      "dead": 2016,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "keyfirst",
+      "sign": -1,
+      "dead": 932,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": 1,
+      "dead": 122,
+      "intervals": []
+    },
+    {
+      "source": "onion2",
+      "repr": "Py3-bytes-v2",
+      "scope": "book",
+      "mode": "uint32",
+      "schedule": "coinfirst",
+      "sign": -1,
+      "dead": 456,
+      "intervals": []
+    }
+  ],
+  "control": {
+    "n": 842,
+    "accuracy": 842,
+    "score": -2.607749917310287
+  }
+}
