@@ -48,7 +48,7 @@ None yields continuous coherent native prose. The complete exact 85-digit key an
 
 ## Two-solved-anchor fractional-linear extension (Agent 6, 25 November 21:43Z)
 
-**Decision:** a shared invertible BASE29 fractional-linear inverse containing the affine family passes two blinded key-recovery controls but does not predict native prose on the original withheld p0–2 or p54–55 chapter openings. No new authentic key or unknown plaintext. This is a finite-beam receiver failure, not an all-key theorem.
+**Decision:** a shared invertible BASE29 fractional-linear inverse containing the affine family passes two blinded key-recovery controls but does not predict native prose on the original withheld p0–2 or p54–55 chapter openings. No new authentic key or unknown plaintext. The spacing-free result is a finite-beam receiver failure. The exact lexical extension below additionally excludes every member of the declared family under the intact-group native register with two allowed exceptions.
 
 The historical BASE29 positional integer and DH modular arithmetic motivate the broader one-parameter receiver only at the level of an exploratory operation. There is no historical evidence selecting a common map for p56, p57 and the unknown chapters, and the established p56 and p57 algorithms are distinct. The fixed scope is 85 low digits per chapter, natural reading order as little-endian significance, every rune consuming (including F=0), with no lexical segmentation assumption. The big-endian low-digit bijection obstruction from the affine section above also applies to this family.
 
@@ -73,3 +73,21 @@ The fitted original starts include apparent isolated lexical matches such as TH.
 - [SFT](../sims/lp2_two_anchor_base29_mobius_sft.cjs), connected V8 core executed, standalone Node wrapper not independently run.
 - [Raw output and pinned source blobs](lp2-two-anchor-base29-mobius-output.json).
 - Reproduction: `node sims/lp2_two_anchor_base29_mobius_sft.cjs`.
+
+### Exact all-key prefix restriction under intact printed word units
+
+The preceding finite-beam result is complemented by an exact short-prefix gate. It uses the same two authentic anchors, permits all 84 free digits of c (through their relevant low-order prefixes), and imposes lexical constraints only on the first two complete groups of each of the seven middle chapters. The 33,386-form dictionary uses the same native register as the [short exponent receiver](lp2-chapter-base29-short-exponent-exact.md): the broad English word-frequency source in both native tokenizations plus known solved sections excluding the two held native controls. The exact group offsets are checked against all 12,956 original runes and 2,896 complete printed groups.
+
+For every possible next c digit, evaluate each next plaintext digit with the exact residual identity above. A printed group is marked out-of-vocabulary once its current prefix is absent from the same-length native register. Count each group only once and permit up to two arbitrary failed groups among the fourteen. The eight-digit horizon reaches at least part of both groups on each track (length pairs: 2+11, 4+8, 4+5, 2+6, 3+12, 2+8, 3+5). No candidate is dropped by score or beam; the safety cap was never reached. The unresolved higher digits of c cannot affect any already-tested low digit.
+
+| Input | Surviving prefixes after digit 1 | digit 2 | digit 3 | digit 8 | Extensions evaluated |
+|---|---:|---:|---:|---:|---:|
+| Held native first KOAN plant | 1 | 1 | 6 | 1 | 842 |
+| Held native LOSS OF DIVINITY plant, two deliberately OOV first words | 1 | 6 | 4 | 1 | 436 |
+| Original middle chapter prefixes | 1 | 1 (already two OOV groups) | **0** | — | 59 |
+
+Both controls recover the exact seven freely chosen c digits, uniquely; the second succeeds despite two deliberate OOV groups. Thus no member of the full-width shared two-solved-anchor fractional-linear family can satisfy this prefix gate with at most two exceptions in the selected register. This is an exact conditional rejection, not a statement that original printed groups are real words or that authorial prose must occur in this dictionary. The independent spacing-free calibrated holdout failure above remains important if boundaries are decoys. Neither result supplies a new plaintext/key. An independent clue selecting a different representation or key coupling is needed before expanding the map.
+
+- [Exact lexical SFT](../sims/lp2_two_anchor_base29_mobius_lexical_sft.cjs)
+- [Raw lexical result](lp2-two-anchor-base29-mobius-lexical-output.json)
+- Reproduction: `node sims/lp2_two_anchor_base29_mobius_lexical_sft.cjs`. Connected V8 core executed; standalone Node wrapper not separately run.
