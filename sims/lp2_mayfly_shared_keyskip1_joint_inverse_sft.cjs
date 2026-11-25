@@ -9,7 +9,7 @@ function experiment(raw, config={}) {
   const p57=solved.sections.find(x=>x.name==="p57_parable").source_text;
   const p57r=[...p57].map(x=>gp.runes.indexOf(x)).filter(x=>x>=0);
   const p57lat="PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE";
-  // Verify original donor sizes; native spelling control is separate and literal.
+  if(native(p57lat).join(",")!==p57r.join(","))throw Error("p57 spelling control");
   const donors=raw.slice(2).map(native);
   if(donors.map(x=>x.length).join(",")!=="62492,217106,321327")throw Error("donor size");
   const N=config.N||128,B=config.B||512;
@@ -37,8 +37,26 @@ function experiment(raw, config={}) {
     if(!best)return {ok:false,explored,retained};const keys=[],masks=[];for(let p=best.node;p;p=p.parent){keys.push(p.k);masks.push(p.mask);}keys.reverse();masks.reverse();const v=replay(C,keys,masks);if(Math.abs(v.score-best.score)>1e-7)throw Error("score mismatch "+v.score+" "+best.score);return {ok:true,...v,keys,masks,explored,retained}
   }
   const results=[];
-  for(let q=0;q<(config.trials||4);q++){const P=donors.map((a,j)=>a.slice(Math.floor(a.length*.82)+q*1027+j*71,Math.floor(a.length*.82)+q*1027+j*71+N));const planted=plant(P,0xBAAD1200+q),tr=replay(planted.C,planted.keys,planted.masks);if(tr.p.some((a,j)=>a.some((x,i)=>x!==P[j][i])))throw Error("plant replay mismatch");const d=decode(planted.C);const match=d.ok?d.p.map((a,j)=>a.filter((x,i)=>x===P[j][i]).length):[0,0,0];const item={q,N,B,trueSkip:tr.skip,trueScore:tr.score,score:d.score,match,decodedSkip:d.skip,explored:d.explored,retained:d.retained,pass:match.every(x=>x>=.8*N)};if(q===0&&!item.pass){const o=decode(planted.C,planted.masks);item.oracle={match:o.ok?o.p.map((a,j)=>a.filter((x,i)=>x===P[j][i]).length):[0,0,0],score:o.score,explored:o.explored};}results.push(item)}
-  return {config:{N,B,s,skipCap:Math.ceil(N/16),training:"first 80% of each donor, order 4 interpolated Dirichlet alpha 8"},p57Control:p57r.length,results,gate:results.length>=4&&results.filter(x=>x.pass).length>=3,cache:cache.size};
+  for(let q=(config.startTrial||0);q<(config.startTrial||0)+(config.trials||4);q++){const P=donors.map((a,j)=>a.slice(Math.floor(a.length*.82)+q*1027+j*71,Math.floor(a.length*.82)+q*1027+j*71+N));const planted=plant(P,0xBAAD1200+q),tr=replay(planted.C,planted.keys,planted.masks);if(tr.p.some((a,j)=>a.some((x,i)=>x!==P[j][i])))throw Error("plant replay mismatch");const d=decode(planted.C);const match=d.ok?d.p.map((a,j)=>a.filter((x,i)=>x===P[j][i]).length):[0,0,0];const item={q,N,B,trueSkip:tr.skip,trueScore:tr.score,score:d.score,match,decodedSkip:d.skip,explored:d.explored,retained:d.retained,pass:match.every(x=>x>=.8*N)};if(config.oracle&&!item.pass){const o=decode(planted.C,planted.masks);item.oracle={match:o.ok?o.p.map((a,j)=>a.filter((x,i)=>x===P[j][i]).length):[0,0,0],score:o.score,explored:o.explored};}results.push(item)}
+  const gate=results.length>=4&&results.filter(x=>x.pass).length>=3;
+  const nulls=[];
+  if(config.nulls)for(let q=0;q<config.nulls;q++){
+    const P=donors.map((a,j)=>a.slice(Math.floor(a.length*.94)+q*499+j*31,Math.floor(a.length*.94)+q*499+j*31+N));
+    if(P.some(x=>x.length!==N))throw Error("null window");
+    const plant0=plant(P,0x1FDEA100+q,true),d=decode(plant0.C);
+    nulls.push({q,score:d.score,match:d.ok?d.p.map((a,j)=>a.filter((x,i)=>x===P[j][i]).length):[0,0,0],skip:d.skip,explored:d.explored});
+  }
+  const original=[];
+  if(gate&&config.original){
+    const full=[24,25,26].map(p=>gp.pages[p].indices);
+    for(const offsets of [[0,0,0],[3,2,1]]){
+      const C=full.map((a,j)=>a.slice(offsets[j],offsets[j]+N));
+      if(C.some(x=>x.length!==N))throw Error("original window");
+      const d=decode(C);
+      original.push({offsets,score:d.score,skip:d.skip,explored:d.explored,keys:d.keys,masks:d.masks,plain:d.p,render:d.p?.map(a=>a.map(x=>gp.translit[x]).join(""))});
+    }
+  }
+  return {config:{N,B,s,skipCap:Math.ceil(N/16),training:"first 80% of each donor, order 4 interpolated Dirichlet alpha 8"},p57Control:p57r.length,results,gate,nulls,original,cache:cache.size};
 }
-const args={N:128,B:512,trials:4};
+const args=process.argv.includes("--full")?{N:264,B:512,startTrial:4,trials:4,nulls:4,original:true}:{N:128,B:512,trials:4,nulls:4,original:true};
 const result=experiment(files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8")),args);console.log(JSON.stringify(result,null,2));
