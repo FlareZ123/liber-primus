@@ -1,0 +1,1064 @@
+{
+  "lexicon": 35944,
+  "p56": {
+    "runes": 85,
+    "consumes": 84
+  },
+  "stats": [
+    {
+      "a": 0,
+      "b": 56,
+      "groups": 2896,
+      "tests": {
+        "1:any": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 597,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 239,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 101,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 488,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 239,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 5709,
+            "origins": 0,
+            "max": 96,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 0,
+      "b": 3,
+      "groups": 158,
+      "tests": {
+        "1:any": [
+          {
+            "length": 311,
+            "origins": 267,
+            "max": 311,
+            "zero": false
+          },
+          {
+            "length": 214,
+            "origins": 199,
+            "max": 214,
+            "zero": false
+          },
+          {
+            "length": 125,
+            "origins": 439,
+            "max": 125,
+            "zero": false
+          },
+          {
+            "length": 59,
+            "origins": 853,
+            "max": 59,
+            "zero": false
+          },
+          {
+            "length": 18,
+            "origins": 1852,
+            "max": 18,
+            "zero": true
+          },
+          {
+            "length": 2,
+            "origins": 3064,
+            "max": 2,
+            "zero": true
+          }
+        ],
+        "1:single": [
+          {
+            "length": 311,
+            "origins": 0,
+            "max": 239,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 311,
+            "origins": 0,
+            "max": 101,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 311,
+            "origins": 206,
+            "max": 311,
+            "zero": false
+          },
+          {
+            "length": 214,
+            "origins": 152,
+            "max": 214,
+            "zero": false
+          },
+          {
+            "length": 125,
+            "origins": 423,
+            "max": 125,
+            "zero": false
+          },
+          {
+            "length": 59,
+            "origins": 859,
+            "max": 59,
+            "zero": true
+          },
+          {
+            "length": 18,
+            "origins": 1763,
+            "max": 18,
+            "zero": true
+          },
+          {
+            "length": 2,
+            "origins": 3194,
+            "max": 2,
+            "zero": true
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 311,
+            "origins": 0,
+            "max": 239,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 311,
+            "origins": 0,
+            "max": 96,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 3,
+      "b": 8,
+      "groups": 255,
+      "tests": {
+        "1:any": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 388,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 124,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 66,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 412,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 126,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 502,
+            "origins": 0,
+            "max": 55,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 8,
+      "b": 15,
+      "groups": 383,
+      "tests": {
+        "1:any": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 417,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 205,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 81,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 413,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 205,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 755,
+            "origins": 0,
+            "max": 84,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 15,
+      "b": 23,
+      "groups": 437,
+      "tests": {
+        "1:any": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 614,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 130,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 62,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 477,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 140,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 856,
+            "origins": 0,
+            "max": 77,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 23,
+      "b": 27,
+      "groups": 224,
+      "tests": {
+        "1:any": [
+          {
+            "length": 443,
+            "origins": 2,
+            "max": 443,
+            "zero": false
+          },
+          {
+            "length": 319,
+            "origins": 4,
+            "max": 319,
+            "zero": false
+          },
+          {
+            "length": 159,
+            "origins": 883,
+            "max": 159,
+            "zero": true
+          },
+          {
+            "length": 75,
+            "origins": 596,
+            "max": 75,
+            "zero": false
+          },
+          {
+            "length": 21,
+            "origins": 1517,
+            "max": 21,
+            "zero": false
+          },
+          {
+            "length": 2,
+            "origins": 3183,
+            "max": 2,
+            "zero": true
+          },
+          {
+            "length": 2,
+            "origins": 3066,
+            "max": 2,
+            "zero": true
+          }
+        ],
+        "1:single": [
+          {
+            "length": 443,
+            "origins": 0,
+            "max": 210,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 443,
+            "origins": 0,
+            "max": 53,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 443,
+            "origins": 6,
+            "max": 443,
+            "zero": false
+          },
+          {
+            "length": 319,
+            "origins": 3,
+            "max": 319,
+            "zero": false
+          },
+          {
+            "length": 159,
+            "origins": 944,
+            "max": 159,
+            "zero": false
+          },
+          {
+            "length": 75,
+            "origins": 623,
+            "max": 75,
+            "zero": false
+          },
+          {
+            "length": 21,
+            "origins": 1565,
+            "max": 21,
+            "zero": true
+          },
+          {
+            "length": 2,
+            "origins": 3182,
+            "max": 2,
+            "zero": true
+          },
+          {
+            "length": 2,
+            "origins": 3060,
+            "max": 2,
+            "zero": true
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 443,
+            "origins": 0,
+            "max": 215,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 443,
+            "origins": 0,
+            "max": 81,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 27,
+      "b": 33,
+      "groups": 326,
+      "tests": {
+        "1:any": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 447,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 196,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 93,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 604,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 196,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 640,
+            "origins": 0,
+            "max": 72,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 33,
+      "b": 40,
+      "groups": 378,
+      "tests": {
+        "1:any": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 344,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 174,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 79,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 332,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 174,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 747,
+            "origins": 0,
+            "max": 73,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 40,
+      "b": 54,
+      "groups": 669,
+      "tests": {
+        "1:any": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 632,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 285,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 73,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 619,
+            "zero": false
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 257,
+            "zero": false
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 1325,
+            "origins": 0,
+            "max": 62,
+            "zero": false
+          }
+        ]
+      }
+    },
+    {
+      "a": 54,
+      "b": 56,
+      "groups": 66,
+      "tests": {
+        "1:any": [
+          {
+            "length": 130,
+            "origins": 134,
+            "max": 130,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 115,
+            "max": 92,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 1041,
+            "max": 51,
+            "zero": true
+          },
+          {
+            "length": 23,
+            "origins": 1479,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 3112,
+            "max": 8,
+            "zero": true
+          },
+          {
+            "length": 3,
+            "origins": 2959,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 3180,
+            "max": 1,
+            "zero": false
+          }
+        ],
+        "1:single": [
+          {
+            "length": 130,
+            "origins": 5,
+            "max": 130,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 115,
+            "max": 92,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 1041,
+            "max": 51,
+            "zero": true
+          },
+          {
+            "length": 23,
+            "origins": 1479,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 3112,
+            "max": 8,
+            "zero": true
+          },
+          {
+            "length": 3,
+            "origins": 2959,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 3180,
+            "max": 1,
+            "zero": false
+          }
+        ],
+        "1:native27": [
+          {
+            "length": 130,
+            "origins": 0,
+            "max": 54,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 1,
+            "max": 92,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 50,
+            "max": 51,
+            "zero": false
+          },
+          {
+            "length": 23,
+            "origins": 268,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 2321,
+            "max": 8,
+            "zero": true
+          },
+          {
+            "length": 3,
+            "origins": 2319,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 2943,
+            "max": 1,
+            "zero": false
+          }
+        ],
+        "-1:any": [
+          {
+            "length": 130,
+            "origins": 126,
+            "max": 130,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 156,
+            "max": 92,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 1010,
+            "max": 51,
+            "zero": true
+          },
+          {
+            "length": 23,
+            "origins": 1456,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 3075,
+            "max": 8,
+            "zero": true
+          },
+          {
+            "length": 3,
+            "origins": 2955,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 3301,
+            "max": 1,
+            "zero": true
+          }
+        ],
+        "-1:single": [
+          {
+            "length": 130,
+            "origins": 3,
+            "max": 130,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 156,
+            "max": 92,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 1010,
+            "max": 51,
+            "zero": true
+          },
+          {
+            "length": 23,
+            "origins": 1456,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 3075,
+            "max": 8,
+            "zero": true
+          },
+          {
+            "length": 3,
+            "origins": 2955,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 3301,
+            "max": 1,
+            "zero": true
+          }
+        ],
+        "-1:native27": [
+          {
+            "length": 130,
+            "origins": 0,
+            "max": 56,
+            "zero": false
+          },
+          {
+            "length": 92,
+            "origins": 0,
+            "max": 65,
+            "zero": false
+          },
+          {
+            "length": 51,
+            "origins": 49,
+            "max": 51,
+            "zero": false
+          },
+          {
+            "length": 23,
+            "origins": 282,
+            "max": 23,
+            "zero": false
+          },
+          {
+            "length": 8,
+            "origins": 2284,
+            "max": 8,
+            "zero": false
+          },
+          {
+            "length": 3,
+            "origins": 2363,
+            "max": 3,
+            "zero": true
+          },
+          {
+            "length": 1,
+            "origins": 3057,
+            "max": 1,
+            "zero": true
+          }
+        ]
+      }
+    }
+  ],
+  "original": [
+    {
+      "D": 1,
+      "sign": 1,
+      "origins": [
+        5,
+        1
+      ],
+      "pairs": 5,
+      "best": 34,
+      "winners": [
+        [
+          871
+        ]
+      ],
+      "winnerCount": 1,
+      "counts": {
+        "34": 1,
+        "35": 1,
+        "36": 2,
+        "38": 1
+      }
+    },
+    {
+      "D": 2,
+      "sign": 1,
+      "origins": [
+        5,
+        115
+      ],
+      "pairs": 575,
+      "best": 57,
+      "winners": [
+        [
+          1645,
+          107
+        ],
+        [
+          1645,
+          171
+        ],
+        [
+          1645,
+          703
+        ],
+        [
+          1645,
+          1931
+        ],
+        [
+          1645,
+          2025
+        ],
+        [
+          1645,
+          3244
+        ],
+        [
+          2380,
+          642
+        ]
+      ],
+      "winnerCount": 7,
+      "counts": {
+        "57": 7,
+        "58": 21,
+        "59": 88,
+        "60": 165,
+        "61": 180,
+        "62": 114
+      }
+    },
+    {
+      "D": 1,
+      "sign": -1,
+      "origins": [
+        3,
+        1
+      ],
+      "pairs": 3,
+      "best": 30,
+      "winners": [
+        [
+          1953
+        ]
+      ],
+      "winnerCount": 1,
+      "counts": {
+        "30": 1,
+        "33": 1,
+        "35": 1
+      }
+    },
+    {
+      "D": 2,
+      "sign": -1,
+      "origins": [
+        3,
+        156
+      ],
+      "pairs": 468,
+      "best": 55,
+      "winners": [
+        [
+          1953,
+          1514
+        ],
+        [
+          2155,
+          2313
+        ]
+      ],
+      "winnerCount": 2,
+      "counts": {
+        "55": 2,
+        "56": 4,
+        "57": 30,
+        "58": 99,
+        "59": 142,
+        "60": 60,
+        "61": 56,
+        "62": 75
+      }
+    }
+  ],
+  "plants": [
+    {
+      "z": 0,
+      "sign": 1,
+      "orig": [
+        101,
+        238
+      ],
+      "fallbackWords": 0,
+      "knownOriginMinOOV": 0
+    },
+    {
+      "z": 1,
+      "sign": -1,
+      "orig": [
+        142,
+        279
+      ],
+      "fallbackWords": 0,
+      "knownOriginMinOOV": 0
+    },
+    {
+      "z": 2,
+      "sign": 1,
+      "orig": [
+        183,
+        320
+      ],
+      "fallbackWords": 0,
+      "knownOriginMinOOV": 0
+    }
+  ]
+}
