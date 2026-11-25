@@ -75,5 +75,38 @@ function plant(model,layout,j){
  for(let i=0;i<76;i++){const a=1+rnd(28),b=rnd(29);for(let k=0;k<4;k++){const p=k===3?1:0,off=maps[k][i];ct[p][off]=(a*plaintext[p][off]+b)%29}}
  return {plaintext,spans,ct,offsets};
 }
-module.exports={prepare,problem,localGate,propagate,solve,plant};
+function pairGate(P,D,{maxProduct=20e6,minOverlap=4,passes=3}={}){
+ const Q=29,mod=x=>(x%Q+Q)%Q, inv=x=>{for(let y=1;y<Q;y++)if(mod(x*y)===1)return y;throw Error("nonunit")},logs=[],pairs=[];
+ if(!["marker-contiguous","row-outer-trim"].includes(P.name))throw Error("contiguous only");
+ for(let a=0;a<P.variables.length;a++)for(let b=a+1;b<P.variables.length;b++){
+  const cols=P.variables[a].cons.filter(c=>P.variables[b].cons.includes(c)).flatMap(c=>{const x=P.constraints[c],pa=x.parts.find(z=>z.v===a).places[0],pb=x.parts.find(z=>z.v===b).places[0];return P.ct[pa.lane][c]===P.ct[pb.lane][c]?[]:[{c,pa,pb}]});
+  if(cols.length>=minOverlap)pairs.push({a,b,cols:cols.slice(0,10)});
+ }
+ pairs.sort((a,b)=>b.cols.length-a.cols.length||D[a.a].length*D[a.b].length-D[b.a].length*D[b.b].length);
+ let tested=0;for(let pass=0;pass<passes;pass++){let changed=0;
+  for(const {a,b,cols} of pairs){
+   if(D[a].length*D[b].length>maxProduct)continue;const others=new Map();
+   for(let i=0;i<cols.length;i++){const {c,pa,pb}=cols[i],ca=P.ct[pa.lane][c],cb=P.ct[pb.lane][c];for(const part of P.constraints[c].parts)if(part.v!==a&&part.v!==b){const t=part.places[0],cc=P.ct[t.lane][c],lambda=mod((cc-ca)*inv(mod(cb-ca))),lut=new Uint8Array(841);for(let x=0;x<Q;x++)for(let y=0;y<Q;y++)lut[x*Q+y]=mod(x+lambda*(y-x));if(!others.has(part.v))others.set(part.v,[]);others.get(part.v).push({i,off:t.off,lut})}}
+   const A=P.variables[a],B=P.variables[b],aa=D[a],bb=D[b],av=aa.map(()=>0),bv=bb.map(()=>0),Ax=aa.map(()=>0); // support arrays, not packed candidate vectors
+   const ar=Array.from(aa,k=>Uint8Array.from(cols,z=>A.words[k][z.pa.off])),br=Array.from(bb,k=>Uint8Array.from(cols,z=>B.words[k][z.pb.off]));
+   const tests=Array.from(others,([v,parts])=>{const V=P.variables[v],codes=Array.from(D[v],k=>parts.reduce((acc,z)=>acc*Q+V.words[k][z.off],0));return {v,parts,codes,allowed:new Set(codes),supported:new Set()}});
+   tests.sort((x,y)=>x.allowed.size/Q**x.parts.length-y.allowed.size/Q**y.parts.length);
+   let good=0;const got=new Float64Array(tests.length),xy=new Uint16Array(cols.length);
+   for(let ai=0;ai<ar.length;ai++)for(let bi=0;bi<br.length;bi++){
+    let valid=true;for(let j=0;j<cols.length;j++){if(ar[ai][j]===br[bi][j]){valid=false;break}xy[j]=ar[ai][j]*Q+br[bi][j]}if(!valid)continue;
+    for(let k=0;k<tests.length;k++){let code=0;for(const t of tests[k].parts)code=code*Q+t.lut[xy[t.i]];if(!tests[k].allowed.has(code)){valid=false;break}got[k]=code}if(!valid)continue;
+    good++;av[ai]=1;bv[bi]=1;for(let k=0;k<tests.length;k++)tests[k].supported.add(got[k]);
+   }
+   tested+=aa.length*bb.length;const before=D.reduce((n,x)=>n+x.length,0);
+   D[a]=aa.filter((_,i)=>av[i]);D[b]=bb.filter((_,i)=>bv[i]);for(const t of tests)D[t.v]=D[t.v].filter((_,i)=>t.supported.has(t.codes[i]));
+   const after=D.reduce((n,x)=>n+x.length,0);changed+=before-after;
+   logs.push({pass,a,b,columns:cols.map(z=>z.c),pairProduct:aa.length*bb.length,good,before,after});
+   if(!good)return {ok:false,reason:"pair",a,b,logs,tested};
+   if(before!==after){const g=propagate(P,D);if(!g.ok)return {ok:false,reason:"propagate",g,logs,tested};}
+  }
+  if(!changed)break;
+ }
+ return {ok:true,logs,tested,remaining:D.map(x=>x.length)};
+}
+module.exports={prepare,problem,localGate,propagate,solve,plant,pairGate};
 if(require.main===module){const model=prepare(raw),mode=process.argv[2]||'original',j=Number(process.argv[3]||0),budget=Number(process.argv[4]||20000);if(mode==='original')console.log(JSON.stringify(model.maps.map(layout=>{const p=problem(model,layout,model.original,model.spans);return {layout:layout[0],vars:p.variables.length,...solve(p,budget,2)}}),null,2));else{const layout=model.maps[j],control=plant(model,layout,j),p=problem(model,layout,control.ct,control.spans);console.log(JSON.stringify({control,...solve(p,budget,2)},null,2))}}
