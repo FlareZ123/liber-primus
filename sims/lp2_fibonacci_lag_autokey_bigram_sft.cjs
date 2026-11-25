@@ -78,17 +78,17 @@ function experiment(gp,ink,raw,mode="--all"){
    check(Math.abs(ll-opt)<1e-7,"factor optimization replay");
    return {key,P,ll,maxWork,domains:sz};
  }
- function prefix(C){
+ function prefix(C,lo=0,hi=Infinity){
    const z=C.filter(x=>x===0).length;
    if(z>12)return {capped:true,z};
    let best=null,runner=NEG,feasible=0,maxWork=0;
-   for(let mask=0;mask<(1<<z);mask++){
+   for(let mask=lo;mask<Math.min(hi,1<<z);mask++){
      const ex=expressions(C,mask);if(!ex)continue;
      const a=optimize(ex);feasible++;maxWork=Math.max(maxWork,a.maxWork);
      check(enc(a.P,a.key).join()===C.join(),"prefix replay");
      if(!best||a.ll>best.ll){if(best)runner=Math.max(runner,best.ll);best={...a,mask}}else runner=Math.max(runner,a.ll);
    }
-   return {z,feasible,maskCount:1<<z,best,runnerMaskScore:Number.isFinite(runner)?runner:null,maxWork};
+   return {z,feasible,lo,hi:Math.min(hi,1<<z),maskCount:1<<z,best,runnerMaskScore:Number.isFinite(runner)?runner:null,maxWork};
  }
  function suffix(C,fit){
    const P=fit.P.slice(),active=P.filter(x=>x!==0);let best=null,nodes=0,paths=0,depth=0;
@@ -123,6 +123,7 @@ function experiment(gp,ink,raw,mode="--all"){
    if(hold.best)check(enc(hold.best.P,fit.best.key).join()===C.concat(HOLD).join(),"original replay");
    return{fit,hold,plaintext:hold.best?.P.map(i=>gp.translit[i]).join("")??fit.best.P.map(i=>gp.translit[i]).join("")};
  }
+ if(mode.startsWith('--part:')){const [,id,lo,hi]=mode.split(':').map(Number),s=specs[id];return{part:{id,lo,hi},fit:prefix(enc(s.P,s.key).slice(0,L),lo,hi)}}
  const controls=mode==="--all"||mode==="--original"?specs.map(control):[control(specs[Number(mode)])];
  const gate={exactKeys:controls.filter(c=>c.exactKey).length,exactHeldout:controls.filter(c=>c.heldoutCorrect===H).length,heldoutAtLeast95:controls.filter(c=>c.heldoutCorrect>=.95*H).length};
  gate.pass=controls.length===6&&gate.exactKeys===6&&gate.heldoutAtLeast95===6&&gate.exactHeldout>=5&&controls.every(c=>c.trueHeldoutF>0&&c.trueHeldoutConsumingZero>0);
