@@ -79,7 +79,7 @@ def build():
     out={**old,
          'schema':'lp2-shared-gp29-q8-terminal-corrected-fixtures-v1',
          'supersedes':'im-results/lp2-shared-gp29-q8-smt-fixtures.json',
-         'profile':{'training_page':'p54 body only; red heading excluded',
+         'profile':{'training_page':'p54 body only; visually exclude enlarged A and eight red heading runes',
                     'training_groups':48,'training_runes':223,
                     'holdout_page':'p55 only; page boundary preserved',
                     'holdout_groups':17,'holdout_runes':76,
