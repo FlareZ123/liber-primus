@@ -1,0 +1,751 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "scope": "all continuous order <=3 GF29 output filters; arbitrary stationary local plaintext function",
+  "n": 12956,
+  "result": [
+    {
+      "w": 3,
+      "directions": 871,
+      "bounds": [
+        {
+          "scope": "all",
+          "n": 12956,
+          "original": {
+            "count": 152,
+            "coef": [
+              1,
+              10,
+              18
+            ]
+          },
+          "refs": [
+            {
+              "min": 3549,
+              "max": 29706,
+              "minStart": 95723,
+              "windows": 204151
+            },
+            {
+              "min": 1517,
+              "max": 4311,
+              "minStart": 193269,
+              "windows": 293896
+            },
+            {
+              "min": 3975,
+              "max": 7426,
+              "minStart": 34555,
+              "windows": 34674
+            }
+          ],
+          "minimum": 1517,
+          "excluded": true
+        },
+        {
+          "scope": "0-2",
+          "n": 729,
+          "original": {
+            "count": 4,
+            "coef": [
+              1,
+              14,
+              0
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 638,
+              "minStart": 35365,
+              "windows": 216378
+            },
+            {
+              "min": 0,
+              "max": 156,
+              "minStart": 37450,
+              "windows": 306123
+            },
+            {
+              "min": 4,
+              "max": 344,
+              "minStart": 1566,
+              "windows": 46901
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        },
+        {
+          "scope": "3-7",
+          "n": 1145,
+          "original": {
+            "count": 5,
+            "coef": [
+              1,
+              2,
+              1
+            ]
+          },
+          "refs": [
+            {
+              "min": 5,
+              "max": 1413,
+              "minStart": 111089,
+              "windows": 215962
+            },
+            {
+              "min": 2,
+              "max": 256,
+              "minStart": 288380,
+              "windows": 305707
+            },
+            {
+              "min": 20,
+              "max": 517,
+              "minStart": 43412,
+              "windows": 46485
+            }
+          ],
+          "minimum": 2,
+          "excluded": false
+        },
+        {
+          "scope": "8-14",
+          "n": 1729,
+          "original": {
+            "count": 9,
+            "coef": [
+              1,
+              11,
+              0
+            ]
+          },
+          "refs": [
+            {
+              "min": 16,
+              "max": 2375,
+              "minStart": 111090,
+              "windows": 215378
+            },
+            {
+              "min": 13,
+              "max": 504,
+              "minStart": 288192,
+              "windows": 305123
+            },
+            {
+              "min": 53,
+              "max": 612,
+              "minStart": 43414,
+              "windows": 45901
+            }
+          ],
+          "minimum": 13,
+          "excluded": true
+        },
+        {
+          "scope": "15-22",
+          "n": 1903,
+          "original": {
+            "count": 9,
+            "coef": [
+              1,
+              24,
+              2
+            ]
+          },
+          "refs": [
+            {
+              "min": 23,
+              "max": 2526,
+              "minStart": 111090,
+              "windows": 215204
+            },
+            {
+              "min": 18,
+              "max": 512,
+              "minStart": 288019,
+              "windows": 304949
+            },
+            {
+              "min": 79,
+              "max": 644,
+              "minStart": 43414,
+              "windows": 45727
+            }
+          ],
+          "minimum": 18,
+          "excluded": true
+        },
+        {
+          "scope": "23-26",
+          "n": 1021,
+          "original": {
+            "count": 5,
+            "coef": [
+              1,
+              25,
+              4
+            ]
+          },
+          "refs": [
+            {
+              "min": 4,
+              "max": 1176,
+              "minStart": 111090,
+              "windows": 216086
+            },
+            {
+              "min": 1,
+              "max": 219,
+              "minStart": 213051,
+              "windows": 305831
+            },
+            {
+              "min": 15,
+              "max": 513,
+              "minStart": 1434,
+              "windows": 46609
+            }
+          ],
+          "minimum": 1,
+          "excluded": false
+        },
+        {
+          "scope": "27-32",
+          "n": 1433,
+          "original": {
+            "count": 6,
+            "coef": [
+              1,
+              0,
+              7
+            ]
+          },
+          "refs": [
+            {
+              "min": 12,
+              "max": 1966,
+              "minStart": 111090,
+              "windows": 215674
+            },
+            {
+              "min": 4,
+              "max": 383,
+              "minStart": 288380,
+              "windows": 305419
+            },
+            {
+              "min": 48,
+              "max": 541,
+              "minStart": 42927,
+              "windows": 46197
+            }
+          ],
+          "minimum": 4,
+          "excluded": false
+        },
+        {
+          "scope": "33-39",
+          "n": 1680,
+          "original": {
+            "count": 9,
+            "coef": [
+              1,
+              7,
+              27
+            ]
+          },
+          "refs": [
+            {
+              "min": 16,
+              "max": 2246,
+              "minStart": 111090,
+              "windows": 215427
+            },
+            {
+              "min": 9,
+              "max": 503,
+              "minStart": 288333,
+              "windows": 305172
+            },
+            {
+              "min": 52,
+              "max": 610,
+              "minStart": 43430,
+              "windows": 45950
+            }
+          ],
+          "minimum": 9,
+          "excluded": false
+        },
+        {
+          "scope": "40-53",
+          "n": 3008,
+          "original": {
+            "count": 16,
+            "coef": [
+              1,
+              14,
+              0
+            ]
+          },
+          "refs": [
+            {
+              "min": 138,
+              "max": 4523,
+              "minStart": 184320,
+              "windows": 214099
+            },
+            {
+              "min": 70,
+              "max": 834,
+              "minStart": 36047,
+              "windows": 303844
+            },
+            {
+              "min": 211,
+              "max": 1018,
+              "minStart": 37132,
+              "windows": 44622
+            }
+          ],
+          "minimum": 70,
+          "excluded": true
+        },
+        {
+          "scope": "54-55",
+          "n": 308,
+          "original": {
+            "count": 2,
+            "coef": [
+              1,
+              11,
+              5
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 184,
+              "minStart": 412,
+              "windows": 216799
+            },
+            {
+              "min": 0,
+              "max": 103,
+              "minStart": 866,
+              "windows": 306544
+            },
+            {
+              "min": 0,
+              "max": 104,
+              "minStart": 3,
+              "windows": 47322
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        }
+      ],
+      "plant": {
+        "n": 12956,
+        "plaintextPairs": 5160,
+        "filteredPairs": 5403,
+        "normalizedCoeff": [
+          1,
+          12,
+          22
+        ],
+        "recovered": 12956
+      },
+      "ms": 9800
+    },
+    {
+      "w": 4,
+      "directions": 25260,
+      "bounds": [
+        {
+          "scope": "all",
+          "n": 12956,
+          "original": {
+            "count": 170,
+            "coef": [
+              1,
+              18,
+              4,
+              3
+            ]
+          },
+          "refs": [
+            {
+              "min": 2036,
+              "max": 24750,
+              "minStart": 96303,
+              "windows": 204151
+            },
+            {
+              "min": 631,
+              "max": 2468,
+              "minStart": 30347,
+              "windows": 293896
+            },
+            {
+              "min": 1976,
+              "max": 4195,
+              "minStart": 34556,
+              "windows": 34674
+            }
+          ],
+          "minimum": 631,
+          "excluded": true
+        },
+        {
+          "scope": "0-2",
+          "n": 729,
+          "original": {
+            "count": 5,
+            "coef": [
+              1,
+              10,
+              9,
+              2
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 522,
+              "minStart": 6271,
+              "windows": 216378
+            },
+            {
+              "min": 0,
+              "max": 126,
+              "minStart": 1993,
+              "windows": 306123
+            },
+            {
+              "min": 1,
+              "max": 240,
+              "minStart": 1433,
+              "windows": 46901
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        },
+        {
+          "scope": "3-7",
+          "n": 1145,
+          "original": {
+            "count": 7,
+            "coef": [
+              1,
+              12,
+              21,
+              14
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 1165,
+              "minStart": 185697,
+              "windows": 215962
+            },
+            {
+              "min": 0,
+              "max": 189,
+              "minStart": 59258,
+              "windows": 305707
+            },
+            {
+              "min": 7,
+              "max": 350,
+              "minStart": 43413,
+              "windows": 46485
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        },
+        {
+          "scope": "8-14",
+          "n": 1729,
+          "original": {
+            "count": 10,
+            "coef": [
+              1,
+              16,
+              12,
+              1
+            ]
+          },
+          "refs": [
+            {
+              "min": 5,
+              "max": 2036,
+              "minStart": 111089,
+              "windows": 215378
+            },
+            {
+              "min": 2,
+              "max": 373,
+              "minStart": 288118,
+              "windows": 305123
+            },
+            {
+              "min": 27,
+              "max": 391,
+              "minStart": 3182,
+              "windows": 45901
+            }
+          ],
+          "minimum": 2,
+          "excluded": false
+        },
+        {
+          "scope": "15-22",
+          "n": 1903,
+          "original": {
+            "count": 11,
+            "coef": [
+              1,
+              1,
+              2,
+              27
+            ]
+          },
+          "refs": [
+            {
+              "min": 8,
+              "max": 2174,
+              "minStart": 111089,
+              "windows": 215204
+            },
+            {
+              "min": 3,
+              "max": 375,
+              "minStart": 287958,
+              "windows": 304949
+            },
+            {
+              "min": 31,
+              "max": 411,
+              "minStart": 3036,
+              "windows": 45727
+            }
+          ],
+          "minimum": 3,
+          "excluded": false
+        },
+        {
+          "scope": "23-26",
+          "n": 1021,
+          "original": {
+            "count": 7,
+            "coef": [
+              1,
+              7,
+              27,
+              1
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 970,
+              "minStart": 131640,
+              "windows": 216086
+            },
+            {
+              "min": 0,
+              "max": 162,
+              "minStart": 1993,
+              "windows": 305831
+            },
+            {
+              "min": 7,
+              "max": 347,
+              "minStart": 1433,
+              "windows": 46609
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        },
+        {
+          "scope": "27-32",
+          "n": 1433,
+          "original": {
+            "count": 9,
+            "coef": [
+              1,
+              6,
+              9,
+              13
+            ]
+          },
+          "refs": [
+            {
+              "min": 3,
+              "max": 1693,
+              "minStart": 111455,
+              "windows": 215674
+            },
+            {
+              "min": 0,
+              "max": 284,
+              "minStart": 59258,
+              "windows": 305419
+            },
+            {
+              "min": 21,
+              "max": 366,
+              "minStart": 3182,
+              "windows": 46197
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        },
+        {
+          "scope": "33-39",
+          "n": 1680,
+          "original": {
+            "count": 11,
+            "coef": [
+              1,
+              4,
+              26,
+              20
+            ]
+          },
+          "refs": [
+            {
+              "min": 5,
+              "max": 1936,
+              "minStart": 111089,
+              "windows": 215427
+            },
+            {
+              "min": 1,
+              "max": 372,
+              "minStart": 288306,
+              "windows": 305172
+            },
+            {
+              "min": 26,
+              "max": 391,
+              "minStart": 3023,
+              "windows": 45950
+            }
+          ],
+          "minimum": 1,
+          "excluded": false
+        },
+        {
+          "scope": "40-53",
+          "n": 3008,
+          "original": {
+            "count": 19,
+            "coef": [
+              1,
+              6,
+              1,
+              22
+            ]
+          },
+          "refs": [
+            {
+              "min": 75,
+              "max": 3670,
+              "minStart": 184302,
+              "windows": 214099
+            },
+            {
+              "min": 27,
+              "max": 599,
+              "minStart": 36046,
+              "windows": 303844
+            },
+            {
+              "min": 97,
+              "max": 656,
+              "minStart": 1373,
+              "windows": 44622
+            }
+          ],
+          "minimum": 27,
+          "excluded": true
+        },
+        {
+          "scope": "54-55",
+          "n": 308,
+          "original": {
+            "count": 4,
+            "coef": [
+              1,
+              11,
+              19,
+              12
+            ]
+          },
+          "refs": [
+            {
+              "min": 0,
+              "max": 157,
+              "minStart": 411,
+              "windows": 216799
+            },
+            {
+              "min": 0,
+              "max": 85,
+              "minStart": 111,
+              "windows": 306544
+            },
+            {
+              "min": 0,
+              "max": 77,
+              "minStart": 2,
+              "windows": 47322
+            }
+          ],
+          "minimum": 0,
+          "excluded": false
+        }
+      ],
+      "plant": {
+        "n": 12956,
+        "plaintextPairs": 2754,
+        "filteredPairs": 2942,
+        "normalizedCoeff": [
+          1,
+          22,
+          27,
+          11
+        ],
+        "recovered": 12956
+      },
+      "ms": 225974
+    }
+  ]
+}
