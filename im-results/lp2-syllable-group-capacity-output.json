@@ -1,0 +1,390 @@
+{
+  "schema": 1,
+  "scope": "literal one-printed-group-per-syllable, length-preserving GP rune encryption",
+  "source": "https://www.nltk.org/book_1ed/ch02.html",
+  "inputs": {
+    "corpus": {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "git_blob_sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    "original": {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "git_blob_sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    "latin": {
+      "path": "resources/liber-primus/lp1-plaintext-reference.txt",
+      "git_blob_sha": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+    },
+    "native": {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "git_blob_sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    "Gibran": {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "git_blob_sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    "Emerson": {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "git_blob_sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    "Shakespeare": {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "git_blob_sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  },
+  "cmudict": "1.1.3",
+  "native_controls": {
+    "LP1_p10-13": {
+      "words": 181,
+      "runes": 755,
+      "nuclei_lower": 261,
+      "singleton_lower": 4,
+      "short_group_lower": 87,
+      "oov": {
+        "BELEIVE": 1,
+        "PRIMALITY": 1
+      },
+      "impossible_nonempty_words": 0
+    },
+    "LP2_p57": {
+      "words": 20,
+      "runes": 95,
+      "nuclei_lower": 31,
+      "singleton_lower": 1,
+      "short_group_lower": 12,
+      "oov": {
+        "INSTAR": 1,
+        "CIRCUMFERENCES": 1
+      },
+      "impossible_nonempty_words": 0
+    },
+    "prior_2253_source": {
+      "words": 544,
+      "runes": 2137,
+      "nuclei_lower": 736,
+      "singleton_lower": 36,
+      "short_group_lower": 235,
+      "oov": {
+        "INSTAR": 2,
+        "KOAN": 2,
+        "BELEIVE": 1,
+        "CIRCUMFERENCES": 1
+      },
+      "impossible_nonempty_words": 0
+    }
+  },
+  "original": {
+    "book": {
+      "runes": 12956,
+      "groups": 2896,
+      "singletons": 83,
+      "short_groups": 531,
+      "length_hist": {
+        "1": 83,
+        "2": 448,
+        "3": 720,
+        "4": 513,
+        "5": 317,
+        "6": 256,
+        "7": 216,
+        "8": 156,
+        "9": 78,
+        "10": 52,
+        "11": 32,
+        "12": 18,
+        "13": 4,
+        "14": 3
+      }
+    },
+    "opening": {
+      "runes": 729,
+      "groups": 158,
+      "singletons": 5,
+      "short_groups": 33,
+      "length_hist": {
+        "1": 5,
+        "2": 28,
+        "3": 36,
+        "4": 20,
+        "5": 13,
+        "6": 18,
+        "7": 17,
+        "8": 9,
+        "9": 6,
+        "10": 4,
+        "11": 2
+      }
+    },
+    "terminal": {
+      "runes": 308,
+      "groups": 66,
+      "singletons": 2,
+      "short_groups": 13,
+      "length_hist": {
+        "1": 2,
+        "2": 11,
+        "3": 14,
+        "4": 9,
+        "5": 9,
+        "6": 8,
+        "7": 3,
+        "8": 6,
+        "10": 2,
+        "11": 1,
+        "13": 1
+      }
+    }
+  },
+  "donors": {
+    "Gibran": {
+      "runes": 62492,
+      "words": 15733,
+      "regions": {
+        "book": {
+          "windows": 49537,
+          "minimum": [
+            4153,
+            87,
+            1137
+          ],
+          "maximum_lower_bounds": [
+            4659,
+            204,
+            1534
+          ],
+          "min_offsets": [
+            4508,
+            20283,
+            4508
+          ],
+          "per_constraint_survivors": [
+            0,
+            0,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 82
+        },
+        "opening": {
+          "windows": 61764,
+          "minimum": [
+            213,
+            0,
+            46
+          ],
+          "maximum_lower_bounds": [
+            278,
+            21,
+            113
+          ],
+          "min_offsets": [
+            16369,
+            9262,
+            8066
+          ],
+          "per_constraint_survivors": [
+            0,
+            22577,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 12
+        },
+        "terminal": {
+          "windows": 62185,
+          "minimum": [
+            82,
+            0,
+            11
+          ],
+          "maximum_lower_bounds": [
+            121,
+            13,
+            56
+          ],
+          "min_offsets": [
+            16789,
+            0,
+            8313
+          ],
+          "per_constraint_survivors": [
+            0,
+            28297,
+            190
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 8
+        }
+      }
+    },
+    "Emerson": {
+      "runes": 321327,
+      "words": 77932,
+      "regions": {
+        "book": {
+          "windows": 308372,
+          "minimum": [
+            4355,
+            101,
+            1401
+          ],
+          "maximum_lower_bounds": [
+            4669,
+            218,
+            1657
+          ],
+          "min_offsets": [
+            192392,
+            147242,
+            147154
+          ],
+          "per_constraint_survivors": [
+            0,
+            0,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 84
+        },
+        "opening": {
+          "windows": 320599,
+          "minimum": [
+            216,
+            0,
+            52
+          ],
+          "maximum_lower_bounds": [
+            278,
+            30,
+            126
+          ],
+          "min_offsets": [
+            287807,
+            297790,
+            261069
+          ],
+          "per_constraint_survivors": [
+            0,
+            57530,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 12
+        },
+        "terminal": {
+          "windows": 321020,
+          "minimum": [
+            84,
+            0,
+            14
+          ],
+          "maximum_lower_bounds": [
+            123,
+            17,
+            64
+          ],
+          "min_offsets": [
+            288208,
+            0,
+            135851
+          ],
+          "per_constraint_survivors": [
+            0,
+            105484,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 9
+        }
+      }
+    },
+    "Shakespeare": {
+      "runes": 217106,
+      "words": 55407,
+      "regions": {
+        "book": {
+          "windows": 204151,
+          "minimum": [
+            3966,
+            171,
+            1119
+          ],
+          "maximum_lower_bounds": [
+            4287,
+            289,
+            1359
+          ],
+          "min_offsets": [
+            75342,
+            114349,
+            43774
+          ],
+          "per_constraint_survivors": [
+            0,
+            0,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 249
+        },
+        "opening": {
+          "windows": 216378,
+          "minimum": [
+            196,
+            1,
+            43
+          ],
+          "maximum_lower_bounds": [
+            261,
+            32,
+            115
+          ],
+          "min_offsets": [
+            76730,
+            5101,
+            55777
+          ],
+          "per_constraint_survivors": [
+            0,
+            8362,
+            0
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 29
+        },
+        "terminal": {
+          "windows": 216799,
+          "minimum": [
+            78,
+            0,
+            13
+          ],
+          "maximum_lower_bounds": [
+            116,
+            19,
+            56
+          ],
+          "min_offsets": [
+            82676,
+            1979,
+            45840
+          ],
+          "per_constraint_survivors": [
+            0,
+            29534,
+            17
+          ],
+          "joint_survivors": 0,
+          "max_oov_whole_words_in_window": 14
+        }
+      }
+    }
+  },
+  "toy_partitions_checked": 1023,
+  "constraints_order": [
+    "syllable_groups",
+    "singleton_groups",
+    "groups_size_at_most_2"
+  ],
+  "caveat": "finite literal donor register only, all alignment possibilities relaxed, no phoneme or rune deletions"
+}
