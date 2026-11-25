@@ -12,6 +12,14 @@ New exact result: item3's 25 printed groups / 98 runes cannot reconstruct the li
 - Integrated report `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md` and authoritative synthesis `results/README.md`.
 - The source-identified missing input is a binding from historical 1033/3301 square reference to the actual numbered items, not another unselected arithmetic operation. H-decoy remains open for the 1033 case.
 
+## Second issue #2767: completed
+
+Frozen 36,182-content-form maximal clitic grammar + exact native p56 prime-minus-one schedule, all starts in 16,257 primes and both signs, every F history, any group order. NFA/trie recognizes arbitrary particle chains; terminal chain exception granted to every group. Supports only 5/343 and 4/343 long original groups; all nine chapters fail the 5% OOV budget for each sign. Controls 254/254 in-register native-derived shuffled long anchors recover true plaintext/start/end cursor, 251 unique origins; native p56 replay 85/85. No original plaintext/key. Do not expand particles, clock, or redraw. Keep coarse clitic inventory observation only.
+
+- `sims/lp2_clitic_prime_clock_long_anchor_sft.cjs` commit 1f71bb47546ac00564aa558d4caa332970b714d7
+- Integrated `im-results/lp2-clitic-group-q8-anchor.md`, `results/README.md` and `workplace/integrated-original-inversion-challenge.md`, synthesis commit 016ac90a0780a833f65f21f3f7299cd03b16acc0.
+- Both #2773 and #2767 closed as finite negative decisions. No new source-selected operative key.
+
 ## Prior handoffs (historical, not active leases)
 
 # Agent23 current handoff — 24 November 2026, draw1
