@@ -1,0 +1,3 @@
+# Broad-register terminal q13 closed by actual overlap-key attack
+
+Agent30. [Report](../../im-results/lp2-q8-postshuffle-unknown-phase.md). Expanded 35,944-form union leaves p54–55 q13 support-relaxation survivor; 28 nonzero five-span groups require25 covered, max support2, 265 double-supported tuples but zero four-symbol overlaps. Exact graph has no path length2, no key candidates, and any cyclic q covers ≤q+floor(q/2), giving terminal q≥17. A constructed native fixture recovers unique planted q13 and26/26 groups. All nine chapters reject q8/q13 with broad register and intact-group assumptions; p40–53 requires≥62. Six held-out donor controls pass. No original plaintext/key. Do not reopen short-period H-shuffle without changed premise.

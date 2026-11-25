@@ -1,6 +1,6 @@
 # Shared periodic additive key with whole-group shuffle: exact original coverage bounds
 
-**Decision (25 November 2026):** #2684's calibrated long-anchor negative is strengthened to an all-secret-key obstruction in all nine illustrated chapters: both q8 and q13 fail at the frozen 5% OOV budget even with independently chosen group phases and arbitrary whole-group order. The largest p40–53 chapter requires period at least90 under this conditional model. No unknown plaintext or key recovered.
+**Decision (25 November 2026):** #2684's calibrated long-anchor negative is strengthened to an all-secret-key obstruction in all nine illustrated chapters: both q8 and q13 fail at the frozen 5% OOV budget even with independently chosen group phases and arbitrary whole-group order. The largest p40–53 chapter requires period at least90 under the narrow register. A 35,944-form broad-register extension reduces the lower bound to62 but still excludes both native periods across the book, after a constructive overlap-graph key attack excludes the one surviving terminal q13 case. No unknown plaintext or key recovered.
 
 ## Question and scope
 
@@ -110,6 +110,52 @@ Retire any chapter-private or book-wide **period8 or period13 additive GP29/lite
 - [Standalone CommonJS SFT](../sims/lp2_postshuffle_allkey_segment_cover_sft.cjs)
 - [Complete per-stratum/threshold integer counts, control keys and input blob identities](lp2-postshuffle-allkey-segment-cover-output.json)
 - Executed on fetched repository sources in connected V8; standalone Node/Windows CI has not been run for this extension.
+
+## Broader spelling register and actual terminal key-cycle inverse
+
+The narrowest initial margin was p54–55 q13 (4 required OOV versus budget3). To distinguish vocabulary restriction from the underlying key constraint, take the union of the original frozen 10,842 words with all valid native forms in the existing TextBlob frequency-list source `resources/control/english_wordfreq_textblob.txt`: both greedy GP transliteration and the independently used explicit ING/IO convention, and every GP29 singleton. The union contains **35,944 distinct forms** (maximum length24); no original LP2 words are fitted. Retain the original donor windows, planted keys and 5% allowance. This is an independent register sensitivity test, not an assertion of complete English coverage.
+
+| Physical pages | Groups | Budget | q8 min OOV | q13 min OOV | Necessary q ≥ from support alone |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 158 | 7 | 43 | 31 | 27 |
+| p3–7 | 255 | 12 | 90 | 60 | 32 |
+| p8–14 | 383 | 19 | 141 | 111 | 39 |
+| p15–22 | 437 | 21 | 160 | 129 | 43 |
+| p23–26 | 224 | 11 | 74 | 49 | 31 |
+| p27–32 | 326 | 16 | 117 | 87 | 37 |
+| p33–39 | 378 | 18 | 150 | 120 | 43 |
+| p40–53 | 669 | 33 | 285 | 237 | 62 |
+| p54–55 | 66 | 3 | 12 | 2 | 13 |
+
+The six held-out controls remain legal under the broad union:
+
+| Donor | q | Actual OOV | Bound OOV | Necessary q ≥ |
+|---|---:|---:|---:|---:|
+| Gibran | 8 | 3 | 3 | 7 |
+| Gibran | 13 | 3 | 3 | 11 |
+| Shakespeare | 8 | 14 | 6 | 7 |
+| Shakespeare | 13 | 14 | 5 | 10 |
+| Emerson | 8 | 8 | 7 | 7 |
+| Emerson | 13 | 8 | 4 | 11 |
+
+The eight larger chapters still reject both native periods, and p40–53 excludes all q≤61. Only p54–55 q13 survives the relaxed support bound. Rather than increase the budget, search the actual cyclic-key consistency required at this surviving target.
+
+### Exact overlap-graph key inverse on p54–55
+
+There are 28 terminal groups with a contiguous nonzero-C span of at least five runes. To satisfy the overall budget3, at least25 of these must admit a cyclic length-five key substring. Exhaustive broad-register support counts establish that **no tuple supports more than two distinct groups**; exactly265 tuples support two. Therefore a period13 key covering25 groups must have at least12 distinct double-supported cyclic five-windows. Consecutive five-windows of one cyclic key necessarily overlap by four symbols. Construct the directed de Bruijn-style graph with each double-supported tuple as an edge from its four-symbol prefix to its four-symbol suffix.
+
+A viable q13 key has a path of at least12 distinct good edges, because at most one of the 13 cyclic positions can fall outside the required 12 good windows. Exhaustively enumerate edge-simple paths to depth12. For a path of length12, test whether a final (possibly single-supported) closing edge exists; reconstruct the complete key from edge-leading symbols, assert every cyclic window, canonicalize rotation and evaluate exact GP29 literal-F word coverage across all original groups. This searches the actual key rather than optimizing a relaxation.
+
+**Constructed positive before original:** choose two distinct held-out, in-vocabulary, non-F five-rune donor words per phase of a planted q13 key, selected so their ciphertext contains no zero. This is a phase-saturated lexical fixture, not continuous prose. Graph has230 double-supported edges,384 visited search nodes,14 length12 paths,13 closures. All closures give one rotation-class key, exactly the planted key, with26/26 full word groups covered. Original all-secret-key proof does not depend on this fixture distribution. An initial implementation used an incorrect one-symbol prefix rather than the four-symbol prefix; the positive assertion stopped execution before original scoring. The corrected implementation uses floor(tuple/29) and reruns the fixture before the original.
+
+**Original terminal:** 265 double-supported edges,265 visited nodes, **maximum path length1**, zero length12 paths, zero closures, zero candidate keys. No two double-supported tuples can be consecutive in either direction (including self-loops). Thus a q13 key cannot meet the group budget. More generally, any cyclic period-q key has at most floor(q/2) double-supported positions, so its coverage of these 28 groups is at most q+floor(q/2). To cover25 requires **q≥17**. This raises the terminal broad-register minimum from13 to17; it does not identify a q17 key or warrant searching it without a source-selected premise.
+
+**Updated decision:** q8 and q13 are excluded in every physical-page chapter under the broader finite 35,944-form register and 5% group OOV allowance, even with arbitrary independent phases and no ordering assumption. For p40–53 q≥62 is necessary; for p54–55 q≥17 is necessary after exact overlap. H-decoy, other plaintext registers, nonperiodic or word-specific keys and other cipher families remain live. There is no original key or recovered plaintext. The exact graph construction is a reusable constructive recovery algorithm when source constraints force many repeated-supported key segments; do not confuse a positive fixture with an LP2 solution.
+
+- Reproduce original narrow run: `node sims/lp2_postshuffle_allkey_segment_cover_sft.cjs`
+- Reproduce broad union and terminal graph: `node sims/lp2_postshuffle_allkey_segment_cover_sft.cjs --broad`
+- [Broad per-group-support output, graph and planted key](lp2-postshuffle-allkey-segment-cover-broad-output.json).
+- Physical chapter cuts here are source page ranges. Agent1's independent #2678 [fixed-key phase-graph report](lp2-native-key-postshuffle-phase-graph.md) uses the literal dollar delimiter for one internal cut, assigning two more groups to p8–14 and two fewer to p15–22. Do not combine those chapter counts. Both use all2,896 original groups.
 
 ## Original #2684 reproduction
 
