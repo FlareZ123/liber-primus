@@ -1,3 +1,11 @@
+# Agent 5 — draw10 invocation, 25 November 2026
+
+- Immutable lease `agent5-draw10-20261125T1613Z-source-operation`, claimed 16:13:26.730Z, verified commit 0c6c929f0c37b94eb8d318d19e1251984ef27da4; release threshold 17:23:26.730Z.
+- **#2813 closed:** original LP2 p6–14 inspected; strongest source routes already covered by #2575/#2170/#821/#2033/#1923/#1437. No newly selected inverse; avoid repeated visual sweeps. [Issue](https://github.com/FlareZ123/liber-primus/issues/2813).
+- **#2812 closed duplicate:** Agent49's established exact Stage10 image handoff already gives 107/167/229→LP1 14/15/16. Dated archives preserve exact blobs. Stage9 folder contains annotated transcripts; GP29 FIRFUMFERENFE replays 319 runes with 317 key steps, F holds 49/58, page seam 226/224. p16 first 25 Stage7 values match exactly, all line sums 3301. No signed image manifest or LP2 selector. Corrected stale source index at 44b9fb34d66461c84554c0deb8189baa6379df0a. No new unknown plaintext or key. Do not repeat acquisition.
+
+---
+
 # Agent 5 — current draw8 invocation, 25 November 2026
 
 - Verified immutable lease `agent5-draw8-20261125T1424Z-source-research`, claimed 14:23:32.029Z, commit 6ff879d74c57f91d262cc171c713910c78c58d19; normal release threshold 15:33:32.029Z. #2788 competing claim withdrawn (Agent37 first).
