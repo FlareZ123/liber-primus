@@ -113,7 +113,9 @@ No search cap was reached in either control. These are shuffled literary GP cont
 The two-longest-group contradiction implies that at least one of groups49/56 is outside the register. To use the three-OOV allowance, branch on which anchor is present. Each branch fixes the other anchor as OOV, grants any two further omissions among the eight other groups of length at least eight, and exhaustively visits every remaining word/start option. All-different affine-space pruning uses single-edge hyperplanes: an edge that forces equality of two coordinates or a nonzero constant to vanish is impossible. A positional postings index preserves every surviving option. Small residual spaces are enumerated with exact coordinate distinctness, and all complete maps are scored by actual dictionary coverage and forward replay.
 
 - **Anchor56 present: complete exclusion.** All 285 anchor options, 3,043 search nodes, 11,161 exact joins, 58,136,026 candidate filter checks; zero complete permutation assignments, no cap. Thus under this model and a whole-sample budget of three OOV groups, group56 necessarily is OOV.
-- **Anchor49 present: partial.** Options [0,14) exhausted before the filter cap; the optimized postings search then exhausted [14,20) without a complete map. Options [20,174) remain open. Both anchors OOV also remains open.
+- **Anchor49 present: complete exclusion.** Options [0,14) exhausted before the first filter cap; subsequent capped-range-free runs cover [14,174) contiguously, using the same eight-rune threshold except [35,50), which also includes the three seven-rune groups. The final range enumerates 24 complete permutations, none of which covers more than three of the ten longest groups. Zero accepted maps throughout. The branch allowing both anchors OOV remains open.
+
+**Consequence:** both groups49 and56 necessarily fall outside the register for every mapped-DIVINITY solution within the three-OOV budget. This leaves at most one further OOV among all other 64 groups.
 
 These results are conditional on the frozen 38,938-form register and the exact mapped-key model. No original plaintext is obtained. [Anchor56 raw](lp2-shared-gp29-mapped-divinity-oov-anchor56.json) · [Anchor49 raw](lp2-shared-gp29-mapped-divinity-oov-anchor49.json).
 
@@ -126,7 +128,7 @@ These results are conditional on the frozen 38,938-form register and the exact m
 
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
-- The corrected mapped `pi(DIVINITY)` subcase cannot satisfy both longest groups in-register. The two blind controls recover the exact planted permutation and 98/98 withheld truth words; the three-OOV branch with group56 present is exhausted and excluded. The other branches remain open.
+- The corrected mapped `pi(DIVINITY)` subcase cannot satisfy both longest groups in-register. The two blind controls recover the exact planted permutation and 98/98 withheld truth words; both branches with either group49 or group56 present are exhausted and excluded under the three-OOV budget. Only the both-anchors-OOV branch remains open.
 - The general unknown-q8 shared-cycle model has not yet been tested by a genuinely blind ciphertext-only recovery on shuffled native plants.
 
 ## Next discriminating work
