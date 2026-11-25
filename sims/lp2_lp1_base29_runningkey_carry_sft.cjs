@@ -51,7 +51,7 @@ function experiment(lp2,lp1,printed){
   let best=null;for(const n of states.values())if(!best||n.s>best.s)best=n;return best;
  }
  function predict(c,k,sign,hold,log,split,truth){
-  const pre=c.slice(0,split),suf=c.slice(split),min=hold?pre.filter(x=>x!==0).length:pre.length;
+  const pre=c.slice(0,split),suf=c.slice(split),min=hold?pre.filter(x=>x!==0).length:c.length;
   let best=null,runner=null,legal=0;
   for(let o=0;o<=k.length-min;o++){
     if(hold&&!reachable(pre,k,o,sign))continue;
@@ -71,15 +71,27 @@ function experiment(lp2,lp1,printed){
  for(const [section,direction,sign,hold,origin] of [[1,1,1,false,457],[5,-1,-1,false,993],[1,-1,1,true,617],[5,1,-1,true,1231]]){
   const k=order(secs.slice(0,7).filter((_,i)=>i!==section).flat(),direction),p=order(secs[section],direction),c=encode(p,k,origin,sign,hold),log=model(train.filter(i=>i!==section).map(i=>order(secs[i],direction)));
   const result=predict(c,k,sign,hold,log,Math.floor(p.length*2/3),p);
-  plants.push({section,direction,sign,hold,origin,n:p.length,...result});
+  plants.push({section,direction,sign,hold,plantedOrigin:origin,n:p.length,...result});
  }
- if(plants.some(x=>x.origin!==x.origin||x.prefixMatches!==x.split||x.suffixMatches!==x.holdout))return {plants,original,gate:"native exact recovery failed"};
+ if(plants.some(x=>x.origin!==x.plantedOrigin||x.prefixMatches!==x.split||x.suffixMatches!==x.holdout))return {plants,original,gate:"native exact recovery failed"};
  for(const [name,pages,split] of [["p0-2",[0,1,2],262],["p54-55",[54,55],232]]){
   const c=pages.flatMap(i=>lp2.pages[i].indices);
   for(const direction of [1,-1]){
    const k=order(key,direction),log=model(train.map(i=>order(secs[i],direction)));
    for(const sign of [1,-1])for(const hold of [false,true]){
-    original.push({name,direction,sign,hold,...predict(order(c,direction),k,sign,hold,log,split,null)});
+    const target=order(c,direction);
+    const pred=predict(target,k,sign,hold,log,split,null);
+    let fullLegal=0,retro=null;
+    if(hold){
+     for(let o=0;o<=k.length-target.filter(x=>x!==0).length;o++){
+      if(!reachable(target,k,o,sign))continue;
+      fullLegal++;
+      const v=viterbi(target,k,sign,hold,log,{j:o,carry:0,a:29,b:29});
+      assert(v&&eq(encode(digits(v.path),k,o,sign,hold),target),"retrospective replay");
+      if(!retro||v.s>retro.score*target.length)retro={origin:o,score:v.s/target.length,plain:digits(v.path),preview:digits(v.path).slice(0,90).map(x=>lp2.translit[x]).join(" ")};
+     }
+    }else fullLegal=k.length-target.length+1;
+    original.push({name,direction,sign,hold,...pred,fullLegal,retro});
    }
   }
  }
