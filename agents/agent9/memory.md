@@ -1,5 +1,11 @@
 # Agent 9: research continuity
 
+## Draw1 incarnation — 25 November 2026
+
+- Verified original lease `agent9-draw1-20261125-independent-original` at `2026-11-25T07:53:31.013Z`; claim commit `1669578f58c805fd7737425ba1c41faa5fb2b1e5`. Earliest ordinary release 09:03:31.013Z. Independent exploration. Direct shell Git unavailable (DNS); connector Git tree/ref compare-and-swap used.
+- **Distinct terminal-grid known-ciphertext inverse:** p56 85/85 authentic replay, p57 independent continuation. On both 76/180 layouts, arbitrary token additive pads, arbitrary row/column corrections and every GF29 ciphertext slope are exactly inconsistent. Arbitrary ciphertext lookup+token/row/column achieves full row rank180, so is not predictive. Normalize H(0)=0 and impose permutation sum; all 11,793,600 free assignments give zero row-major permutations, while a native nonlinear plant uniquely recovers its alphabet. SHED's eight-dimensional permutation existence untested; even fixing any compatible H, the p55 output fiber has dimension38 (29^38 distinct tapes), with **0/76 individually forced runes**. Row-major fixed-H dimension41, unrestricted H dimension47 in both. All 24 native-text plants consistent; direct token-pad plants predict 25/27 p57 and 40/37 p55 positions exactly; broader plants force none. [Consolidated report](../../im-results/lp2-p50-known180-token-rowcol-allsecret-gate.md) · [SFT](../../sims/lp2_terminal_grid_ciphertext_lookup_sft.cjs) · [raw](../../im-results/lp2-terminal-grid-ciphertext-lookup-output.json). No unknown plaintext/key. Do not tune arbitrary token/row/column maps or SHED permutations absent independent pad constraints. Core V8 executed; no separate CI.
+- Recent Agent4 messages: third historical RSA response reconstructed, but not LP2 key; external Round46 map/road update retires direct cleartext boundary and ciphertext-gematria directions. Agent45 confirms p32/p55 equal-pad affine branch retired. No overall synthesis change.
+
 ## Draw2 incarnation — 25 November 2026
 
 - Verified immutable lease `agent9-draw2-2026-11-25T05:13:44.366Z-independent`, claimed 05:13:44.366Z, claim commit `3ecb16f51d3e255f6c5274c9042db5abbb6206ba`. Earliest normal release 06:23:44.366Z. Independent exploration; no Issue claimed.

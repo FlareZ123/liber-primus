@@ -1,0 +1,871 @@
+{
+  "source": {
+    "p56Replay": 85,
+    "consumed": 84,
+    "tokens": 161
+  },
+  "data": [
+    {
+      "layout": "row-major",
+      "mode": "token",
+      "train": [
+        71,
+        72
+      ],
+      "full": [
+        129,
+        130
+      ],
+      "hold": null,
+      "target": null
+    },
+    {
+      "layout": "row-major",
+      "mode": "offsets",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        158,
+        159
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": null
+    },
+    {
+      "layout": "row-major",
+      "mode": "slope",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        159,
+        160
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": null
+    },
+    {
+      "layout": "row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": null
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 41,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 5,
+        "free": [
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": 11793600,
+        "count": 0,
+        "first": null,
+        "witnessAccepted": null
+      }
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "token",
+      "train": [
+        69,
+        70
+      ],
+      "full": [
+        127,
+        128
+      ],
+      "hold": null,
+      "target": null
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "offsets",
+      "train": [
+        83,
+        84
+      ],
+      "full": [
+        161,
+        162
+      ],
+      "hold": null,
+      "target": null
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "slope",
+      "train": [
+        84,
+        85
+      ],
+      "full": [
+        162,
+        163
+      ],
+      "hold": null,
+      "target": null
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": null
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 38,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 8,
+        "free": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": null
+      }
+    }
+  ],
+  "controls": [
+    {
+      "layout": "row-major",
+      "mode": "token",
+      "train": [
+        71,
+        71
+      ],
+      "full": [
+        129,
+        129
+      ],
+      "hold": {
+        "forced": 25,
+        "correct": 25
+      },
+      "target": {
+        "forced": 40,
+        "correct": 40
+      },
+      "seed": 1
+    },
+    {
+      "layout": "row-major",
+      "mode": "token",
+      "train": [
+        71,
+        71
+      ],
+      "full": [
+        129,
+        129
+      ],
+      "hold": {
+        "forced": 25,
+        "correct": 25
+      },
+      "target": {
+        "forced": 40,
+        "correct": 40
+      },
+      "seed": 2
+    },
+    {
+      "layout": "row-major",
+      "mode": "token",
+      "train": [
+        71,
+        71
+      ],
+      "full": [
+        129,
+        129
+      ],
+      "hold": {
+        "forced": 25,
+        "correct": 25
+      },
+      "target": {
+        "forced": 40,
+        "correct": 40
+      },
+      "seed": 3
+    },
+    {
+      "layout": "row-major",
+      "mode": "offsets",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        158,
+        158
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 1
+    },
+    {
+      "layout": "row-major",
+      "mode": "offsets",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        158,
+        158
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 2
+    },
+    {
+      "layout": "row-major",
+      "mode": "offsets",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        158,
+        158
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 3
+    },
+    {
+      "layout": "row-major",
+      "mode": "slope",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        159,
+        159
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 1
+    },
+    {
+      "layout": "row-major",
+      "mode": "slope",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        159,
+        159
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 2
+    },
+    {
+      "layout": "row-major",
+      "mode": "slope",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        159,
+        159
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 3
+    },
+    {
+      "layout": "row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 41,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 5,
+        "free": [
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": 11793600,
+        "count": 1,
+        "first": [
+          0,
+          14,
+          7,
+          6,
+          25,
+          8,
+          23,
+          20,
+          4,
+          26,
+          18,
+          27,
+          17,
+          1,
+          12,
+          28,
+          16,
+          24,
+          3,
+          22,
+          21,
+          15,
+          10,
+          11,
+          2,
+          5,
+          13,
+          19,
+          9
+        ],
+        "witnessAccepted": true
+      },
+      "seed": 1
+    },
+    {
+      "layout": "row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 41,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 5,
+        "free": [
+          23,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": true
+      },
+      "seed": 2
+    },
+    {
+      "layout": "row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 41,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 5,
+        "free": [
+          19,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": true
+      },
+      "seed": 3
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "token",
+      "train": [
+        69,
+        69
+      ],
+      "full": [
+        127,
+        127
+      ],
+      "hold": {
+        "forced": 27,
+        "correct": 27
+      },
+      "target": {
+        "forced": 37,
+        "correct": 37
+      },
+      "seed": 1
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "token",
+      "train": [
+        69,
+        69
+      ],
+      "full": [
+        127,
+        127
+      ],
+      "hold": {
+        "forced": 27,
+        "correct": 27
+      },
+      "target": {
+        "forced": 37,
+        "correct": 37
+      },
+      "seed": 2
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "token",
+      "train": [
+        69,
+        69
+      ],
+      "full": [
+        127,
+        127
+      ],
+      "hold": {
+        "forced": 27,
+        "correct": 27
+      },
+      "target": {
+        "forced": 37,
+        "correct": 37
+      },
+      "seed": 3
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "offsets",
+      "train": [
+        83,
+        83
+      ],
+      "full": [
+        161,
+        161
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 1
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "offsets",
+      "train": [
+        83,
+        83
+      ],
+      "full": [
+        161,
+        161
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 2
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "offsets",
+      "train": [
+        83,
+        83
+      ],
+      "full": [
+        161,
+        161
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 3
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "slope",
+      "train": [
+        84,
+        84
+      ],
+      "full": [
+        162,
+        162
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 1
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "slope",
+      "train": [
+        84,
+        84
+      ],
+      "full": [
+        162,
+        162
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 2
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "slope",
+      "train": [
+        84,
+        84
+      ],
+      "full": [
+        162,
+        162
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "seed": 3
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 38,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 8,
+        "free": [
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": true
+      },
+      "seed": 1
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 38,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 8,
+        "free": [
+          17,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": true
+      },
+      "seed": 2
+    },
+    {
+      "layout": "SHED-row-major",
+      "mode": "lookup",
+      "train": [
+        85,
+        85
+      ],
+      "full": [
+        180,
+        180
+      ],
+      "hold": {
+        "forced": 0,
+        "correct": 0
+      },
+      "target": {
+        "forced": 0,
+        "correct": 0
+      },
+      "projection": {
+        "rank": 47,
+        "forced": []
+      },
+      "fixedAlphabetProjection": {
+        "rank": 38,
+        "forced": []
+      },
+      "permutation": {
+        "linearInconsistent": false,
+        "dimension": 8,
+        "free": [
+          15,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28
+        ],
+        "tested": null,
+        "count": null,
+        "first": null,
+        "witnessAccepted": true
+      },
+      "seed": 3
+    }
+  ]
+}
