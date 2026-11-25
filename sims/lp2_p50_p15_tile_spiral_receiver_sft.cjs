@@ -77,3 +77,27 @@ function directional(grid,corpus,solved){
  return {pairs:pairs.size,edges,traces,iterations,atLeast,both,exactSpecific,h}
 }
 console.log(JSON.stringify(directional(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+
+function emergence(grid,corpus,solved){
+const tile=[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12],tokens=grid.pages.flatMap(p=>p.tokens),alpha=grid.alphabet.replace('f',''),val=t=>alpha.indexOf(t[0])*59+alpha.indexOf(t[1]);
+const core=Array.from({length:7},(_,b)=>tile.map(i=>(2+4*b+(i>>2))*8+2+i%4)).flat();
+const order=core.slice();
+// Extend by one leftward step from the prior endpoint, then up, right,
+// down and left, as in p15's center-out spiral.
+for(const d of [1,0]){
+ const left=d,right=7-d,top=d,bottom=31-d;
+ for(let i=bottom-1;i>=top;i--)order.push(i*8+left);
+ for(let j=left+1;j<=right;j++)order.push(top*8+j);
+ for(let i=top+1;i<=bottom;i++)order.push(i*8+right);
+ for(let j=right-1;j>=left;j--)order.push(bottom*8+j);
+}
+if(order.length!==256||new Set(order).size!==256)throw Error("not a permutation");
+const f=order.map(i=>val(tokens[i]));
+const w=solved.sections.find(x=>x.name==='p57_parable').source_text.match(/[\u16a0-\u16ff]+/gu).map(word=>{const x=[...word].map(r=>corpus.runes.indexOf(r));return {name:x.map(i=>corpus.translit[i]).join(''),addr:x.reduce((a,b)=>a+b,0)}});
+function orbit(start){const seen=new Map(),path=[];let x=start;while(!seen.has(x)){seen.set(x,path.length);path.push(x);x=f[x]}return {path,cycle:path.slice(seen.get(x)),end:x}}
+const runs=w.map(x=>({...x,...orbit(x.addr)}));
+const basins=new Map();for(let i=0;i<256;i++){const o=orbit(i);const k=o.cycle.slice().sort((a,b)=>a-b).join(',');basins.set(k,(basins.get(k)||0)+1)}
+const wordEdges=[];for(let i=0;i<w.length;i++)for(let j=i+1;j<w.length;j++)if(f[w[i].addr]===w[j].addr)wordEdges.push([w[i].name,w[j].name]);
+return {orderLength:order.length,boundaries:[order[111],order[112],order[179],order[180],order[255]],runs,basins:[...basins],wordEdges};
+}
+console.log(JSON.stringify(emergence(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
