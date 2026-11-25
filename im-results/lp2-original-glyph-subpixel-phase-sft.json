@@ -1,0 +1,173 @@
+{
+  "input": {
+    "images": "resources/liber-primus/17.jpg..74.jpg (LP2 physical p0..p57)",
+    "master": "resources/transcriptions/liber_primus_master.txt",
+    "training_pages": "p0..p39",
+    "holdout_pages": "p40..p57",
+    "glyph_classifier_threshold": 0.02,
+    "subpixel_template_source": "p0 glyphs, per GP29 class",
+    "subpixel_shift_search_px": [
+      -2,
+      2,
+      0.05
+    ],
+    "random_seed": 3301
+  },
+  "counts": {
+    "high_confidence_glyphs": 13056,
+    "rune_classes": 29,
+    "subpixel_estimates": 13056,
+    "intra_word_pairs": 9702,
+    "training_pairs": 7122,
+    "holdout_pairs": 2580,
+    "word_space_pairs_gap_15_30": 2606,
+    "word_space_holdout_pairs": 690
+  },
+  "integer_start_model": {
+    "training_rmse_px": 0.4556,
+    "holdout_rmse_px": 0.458083,
+    "holdout_max_abs_px": 1.726001
+  },
+  "subpixel_model": {
+    "training": {
+      "n": 7122,
+      "mean": 0,
+      "sd": 0.266133,
+      "rmse": 0.266133,
+      "median": -0.02922,
+      "q01": -0.479885,
+      "q05": -0.363678,
+      "q95": 0.55103,
+      "q99": 0.842339,
+      "max_abs": 1.154259
+    },
+    "holdout": {
+      "n": 2580,
+      "mean": 0.001287,
+      "sd": 0.26276,
+      "rmse": 0.262763,
+      "median": -0.031371,
+      "q01": -0.444366,
+      "q05": -0.363009,
+      "q95": 0.537284,
+      "q99": 0.81655,
+      "max_abs": 1.368632
+    },
+    "solved_p56_p57": {
+      "n": 123,
+      "mean": -0.001689,
+      "sd": 0.229822,
+      "rmse": 0.229828,
+      "median": -0.051045,
+      "q01": -0.396373,
+      "q05": -0.336576,
+      "q95": 0.448765,
+      "q99": 0.70083,
+      "max_abs": 0.827089
+    },
+    "holdout_correlations": {
+      "current_rune": 0.002845,
+      "next_rune": 0.007347,
+      "rune_delta": 0.003122,
+      "page": 0.001578,
+      "line": 0.002037,
+      "gap": 0.091232,
+      "current_shift": 0.066314,
+      "next_shift": 0.034328
+    },
+    "within_line_autocorrelation_lags_1_20": {
+      "1": -0.190737,
+      "2": -0.079105,
+      "3": -0.024327,
+      "4": -0.043253,
+      "5": -0.018817,
+      "6": -0.038682,
+      "7": -0.011644,
+      "8": -0.034198,
+      "9": -0.026808,
+      "10": -0.012755,
+      "11": -0.012735,
+      "12": 0.000383,
+      "13": -0.003886,
+      "14": -0.00113,
+      "15": -0.000374,
+      "16": -0.001641,
+      "17": -0.007156,
+      "18": -0.00561,
+      "19": 0.017587,
+      "20": -0.017731
+    },
+    "template_correlation_quantiles": [
+      0.946363,
+      0.971341,
+      0.973889,
+      0.998928,
+      0.999956,
+      0.999999,
+      1
+    ]
+  },
+  "word_spaces": {
+    "extra_width_all_pages_px": {
+      "n": 2606,
+      "mean": 16.058493,
+      "sd": 0.316946,
+      "median": 16.000731,
+      "q01": 15.523525,
+      "q05": 15.638304,
+      "q95": 16.720887,
+      "q99": 16.957119
+    },
+    "extra_width_holdout_px": {
+      "n": 690,
+      "mean": 16.052087,
+      "sd": 0.315886,
+      "median": 15.994966,
+      "q01": 15.530434,
+      "q05": 15.631483,
+      "q95": 16.70048,
+      "q99": 16.857042
+    },
+    "gap_width_counts": {
+      "18": 2,
+      "19": 37,
+      "20": 151,
+      "21": 347,
+      "22": 794,
+      "23": 577,
+      "24": 273,
+      "25": 165,
+      "26": 161,
+      "27": 53,
+      "28": 35,
+      "29": 11
+    }
+  },
+  "synthetic_shift_controls": {
+    "0.1": {
+      "mean_error": -0.02148,
+      "sd_error": 0.027055,
+      "within_0_1": 1
+    },
+    "0.25": {
+      "mean_error": -0.037518,
+      "sd_error": 0.055113,
+      "within_0_1": 0.8
+    },
+    "0.5": {
+      "mean_error": -0.00646,
+      "sd_error": 0.105602,
+      "within_0_1": 0.671667
+    },
+    "-0.25": {
+      "mean_error": 0.039358,
+      "sd_error": 0.071207,
+      "within_0_1": 0.751667
+    },
+    "-0.5": {
+      "mean_error": -0.00646,
+      "sd_error": 0.105602,
+      "within_0_1": 0.671667
+    }
+  }
+}
