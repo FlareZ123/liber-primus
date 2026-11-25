@@ -44,6 +44,8 @@ function experiment(inputs,caseIndex){
  if(caseIndex===0)return {name:"original-76",...solve(p55,p27)};
  if(caseIndex===1){const a=p55.concat(c.pages[56].indices[0]),b=p27.concat(ch[34]),known=native(n.sections.find(s=>s.name==="p56_an_end").source_text)[0];assert(a.at(-1)===b.at(-1)&&known===24,"known seam");return {name:"original-77-known-A",...solve(a,b,known)}}
  if(caseIndex===2){return {name:"tree-p32-p55-offset19",...solve(p55,c.pages[32].indices.slice(19,95))}}
+ if(caseIndex===11){return {name:"original-70-anchor-removed",...solve(p55.slice(0,-6),p27.slice(0,-6))}}
+ if(caseIndex>=12){const k=caseIndex-12,offset=1+Math.floor(k/2)*7,rot=p27.slice(0,-6),r=rot.slice(offset).concat(rot.slice(0,offset));return {name:"original-70-rotation-"+offset,...solve(p55.slice(0,-6),r)}}
  const j=caseIndex-3,share=j%2===0,k=Math.floor(j/2),hasKnown=k%2===1,L=hasKnown?77:76;
  let a=test[k%3].slice(700+k*300,700+k*300+L),b=test[(k+1)%3].slice(2100+k*400,2100+k*400+L);
  if(hasKnown){a[a.length-1]=24;b[b.length-1]=24;}const known=hasKnown?24:null;
