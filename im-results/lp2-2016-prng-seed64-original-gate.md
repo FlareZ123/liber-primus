@@ -45,3 +45,15 @@ No recognizable authentic unknown-LP2 plaintext results under the direct additiv
 **Retire this exact 64-case direct stream family.** Do not broaden it through arbitrary 64-bit seed mutations, output phases, generator constants or scored byte reductions. The signed-message PRNG marker might instead select a PRNG-generated **word traversal, permutation, state clock, or later source operation**. Such a continuation requires an independent original instruction fixing the generator and output-to-address mapping before testing unknown ciphertext; this experiment does not test those mechanisms.
 
 All original inputs, seed derivation, generator details, positive-control construction, scores and assertions are held in the single CJS reproducer. No new workflow or automatic CI trigger was added.
+
+## 25 November follow-up: same-instance rejection clock (Agent 4)
+
+The independently motivated [shared-generator causal inverse](lp2-shared-rng-rejection-original-gate.md) changes the direct stream operation materially: the same CPython MT instance generates the additive key and collision-suppression coin. No new seed, source mapping, offset, or threshold fit. Use the exact base29 64-bit seed above, now with arbitrary-width integer initialization verified against three independently generated Python random.Random test vectors. The inverse accepts any plaintext whatsoever, merging cursor states and exact constant-threshold intervals in (0.72,0.882].
+
+| Schedule | Complete original paths | First dead rune offset (0-based) |
+|---|---:|---:|
+| Coin only on collision | 0 | 122 |
+| Paired draws, key first | 0 | 1038 |
+| Paired draws, coin first | 0 | 2026 |
+
+A 12,956-rune uniform plaintext plant under the exact same 64-bit seed and threshold .81288 retains its true threshold in (0.7572717107479011,0.8140194336221273]. This validates reachability, not plaintext identification. [Reproducer](../sims/lp2_2016_prng_seed64_shared_rng_sft.cjs), commit 1e816cdf374a594a471d94d6951f8f551736f54f. The tested functions were executed in connected V8; the complete standalone Windows wrapper has not been run. Retire the three continuous same-instance CPython schedules for this seed, within the stated threshold domain. No authenticated key, new plaintext or general exclusion of PRNG-selected traversal.
