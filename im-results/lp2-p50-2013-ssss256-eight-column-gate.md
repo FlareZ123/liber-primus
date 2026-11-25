@@ -86,9 +86,25 @@ The [single-file Node22 CommonJS SFT](../sims/lp2_p50_ssss256_eight_column_sft.c
 
 For an independent positive control, it constructs a source-native **32-byte ASCII secret** plus four deterministic field coefficients, computes all eight shares under the genuine **monic degree-five** algorithm, and recovers their constant exactly. A second positive control **scrambles source share IDs** to `[9,3,10,1,5,7,2,6]`; the same entire 151,200-assignment census finds that independently constructed correct first-six identifier mapping. This verifies the all-ID enumeration does detect a real unlabelled share arrangement.
 
+## Extension: verification rank and polynomial-mask invariance (Agent49, 25 November 2026)
+
+This is a mathematical consequence of the existing exhaustive obstruction, not another enumeration or a recovered key. It transfers the actual 2013 verification step into an exact prospective criterion for source-selected key corrections.
+
+For distinct share identifiers x_1,...,x_n over the relevant field F, let E be the n-by-5 evaluation matrix of 1,x,...,x^4, and let v_i=x_i^5. The historical monic shares satisfy y=v+Ec. Construct H by predicting each remaining share from the first five, after subtracting v: each row subtracts the appropriate Lagrange combination of the first five coordinates from one withheld coordinate. The final n-5 columns of H form an identity matrix. Thus rank(H)=n-5, HE=0, and ker(H)=im(E). The exact verification criterion is H(y-v)=0.
+
+The preserved 2013 example with seven observed shares supplies exactly two independent GF(2^176) equations (352 binary constraints); all 21 five-subset reconstructions agree because the residual vanishes. Five shares by themselves supply zero independent equations. The original p50 eight-share serialization supplies three independent GF(2^256) equations (768 binary constraints) for a fixed identifier assignment. These are algebraic ranks, not empirical false-positive probabilities; the source is not assumed random.
+
+For a prospective linear field-valued correction y=z+Mk with d unknown field parameters k, valid keys solve HMk=H(v-z). First require consistency; if consistent, the solution is an affine space of dimension d-rank(HM). In particular, a key is identified by the check alone only when rank(HM)=d. A source-fixed M and serialization must precede this test.
+
+**All-secret mask exclusion.** Suppose the observed field words are masked by an arbitrary polynomial of degree at most four, evaluated at the actual assigned identifiers, i.e. M=E. Then HM=0. This includes the same arbitrary 32-byte XOR mask on each share (constant polynomial), and all five-coefficient GF(2^256) masks (2^1280 choices per identifier assignment). Adding any such mask cannot change a failed monic-quintic check: its degree-five leading coefficient is unchanged. Consequently the preceding all-historical-ID census excludes *every* such polynomial mask on both tested original eight-word layouts, without rerunning the census. If a valid share set were found, these masks would remain wholly unidentifiable by redundancy, including arbitrary changes to the reconstructed constant.
+
+Unrestricted independent share corrections instead have M=I, leaving five field parameters arbitrary even after every check passes; the apparent corrected secret could be any field element. This is why fitted polynomial consistency is not independent key verification. A different source-specified correction whose image is not contained in im(E) remains outside this exclusion.
+
+**Research decision:** no independently selected LP2 mask or correction map is established by the historical verification step. Do not launch a mask sweep. Apply the rank/consistency gate only when a separate original artifact fixes the correction family and its parameters' interpretation. No new original-input search was performed for this extension.
+
 ## Decision
 
 **Retire both the original eight vertical 32-byte table columns and eight consecutive row-major 32-byte chunks as shares of any single secret under Cicada's original 2013 `ssss` field and identifiers 01..10.** No secret fitting, AES brute force, LP2 rune cipher or extra digest tests are justified on the false extracted constant.
 
-The exclusion is *conditional on the complete source-native column bytes and the 2013 historical format*. A separately motivated byte-order reversal, table-wide encoding transform, different field modulus or threshold, or use of the table as a non-Shamir key may be viable, but none follows from the original 2013 share instruction. No missing key or decoded unknown rune was recovered. This report replaces the weaker natural-ID-only conclusion, which is retained above as a descriptive subtest.
+The exclusion is *conditional on the complete source-native column bytes and the 2013 historical format*. A separately motivated byte-order reversal, encoding transform outside the polynomial-mask kernel, different field modulus or threshold, or use of the table as a non-Shamir key may be viable, but none follows from the original 2013 share instruction. No missing key or decoded unknown rune was recovered. This report replaces the weaker natural-ID-only conclusion, which is retained above as a descriptive subtest.
 
