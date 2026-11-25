@@ -1,0 +1,117 @@
+[
+  {
+    "start": 0,
+    "sources": [
+      {
+        "name": "The Time Machine",
+        "candidates": 205
+      },
+      {
+        "name": "The Picture of Dorian Gray",
+        "candidates": 245
+      },
+      {
+        "name": "Frankenstein",
+        "candidates": 815
+      },
+      {
+        "name": "The War of the Worlds",
+        "candidates": 512
+      },
+      {
+        "name": "Dr Jekyll and Mr Hyde",
+        "candidates": 233
+      },
+      {
+        "name": "The Prince",
+        "candidates": 698
+      },
+      {
+        "name": "As a Man Thinketh",
+        "candidates": 102
+      },
+      {
+        "name": "Meditations",
+        "candidates": 484
+      }
+    ],
+    "total": 3294,
+    "gate": true,
+    "controls": [
+      {
+        "hold": false,
+        "name": "The Time Machine",
+        "start": 65931,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 70,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "The Time Machine",
+        "start": 70082,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 80,
+        "allTrueSource": true
+      },
+      {
+        "hold": false,
+        "name": "Meditations",
+        "start": 188532,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 68,
+        "allTrueSource": true
+      },
+      {
+        "hold": true,
+        "name": "Meditations",
+        "start": 27542,
+        "prefix": 1,
+        "full": 1,
+        "trueRetained": true,
+        "forced": 65,
+        "allTrueSource": true
+      }
+    ],
+    "nulls": [
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": false,
+        "prefix": 0,
+        "full": 0
+      },
+      {
+        "hold": true,
+        "prefix": 0,
+        "full": 0
+      }
+    ],
+    "original": [
+      {
+        "hold": false,
+        "prefix": [],
+        "full": []
+      },
+      {
+        "hold": true,
+        "prefix": [],
+        "full": []
+      }
+    ]
+  }
+]
