@@ -1,0 +1,527 @@
+{
+  "tile": [
+    5,
+    6,
+    10,
+    9,
+    8,
+    4,
+    0,
+    1,
+    2,
+    3,
+    7,
+    11,
+    15,
+    14,
+    13,
+    12
+  ],
+  "order": [
+    123,
+    124,
+    132,
+    131,
+    130,
+    122,
+    114,
+    115,
+    116,
+    117,
+    125,
+    133,
+    141,
+    140,
+    139,
+    138,
+    106,
+    107,
+    108,
+    109,
+    149,
+    148,
+    147,
+    146,
+    98,
+    99,
+    100,
+    101,
+    157,
+    156,
+    155,
+    154,
+    90,
+    91,
+    92,
+    93,
+    165,
+    164,
+    163,
+    162,
+    82,
+    83,
+    84,
+    85,
+    173,
+    172,
+    171,
+    170,
+    74,
+    75,
+    76,
+    77,
+    181,
+    180,
+    179,
+    178,
+    66,
+    67,
+    68,
+    69,
+    189,
+    188,
+    187,
+    186,
+    58,
+    59,
+    60,
+    61,
+    197,
+    196,
+    195,
+    194,
+    50,
+    51,
+    52,
+    53,
+    205,
+    204,
+    203,
+    202,
+    42,
+    43,
+    44,
+    45,
+    213,
+    212,
+    211,
+    210,
+    34,
+    35,
+    36,
+    37,
+    221,
+    220,
+    219,
+    218,
+    26,
+    27,
+    28,
+    29,
+    229,
+    228,
+    227,
+    226,
+    18,
+    19,
+    20,
+    21,
+    237,
+    236,
+    235,
+    234
+  ],
+  "edges": [
+    {
+      "from": "INSTAR",
+      "to": "SURFACE",
+      "fromPos": 3,
+      "toPos": 7,
+      "cell": 203,
+      "token": "18"
+    },
+    {
+      "from": "OUR",
+      "to": "LICE",
+      "fromPos": 11,
+      "toPos": 1,
+      "cell": 116,
+      "token": "0s"
+    },
+    {
+      "from": "AND",
+      "to": "WE",
+      "fromPos": 18,
+      "toPos": 8,
+      "cell": 66,
+      "token": "0P"
+    },
+    {
+      "from": "EMERGE",
+      "to": "DIUINITY",
+      "fromPos": 19,
+      "toPos": 16,
+      "cell": 45,
+      "token": "1l"
+    }
+  ],
+  "wordOrbits": [
+    {
+      "word": "PARABLE",
+      "addr": 120,
+      "path": [],
+      "end": 120,
+      "cycle": []
+    },
+    {
+      "word": "LICE",
+      "addr": 53,
+      "path": [
+        53
+      ],
+      "end": 142,
+      "cycle": []
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20
+      ],
+      "end": 171,
+      "cycle": []
+    },
+    {
+      "word": "INSTAR",
+      "addr": 78,
+      "path": [
+        78,
+        67
+      ],
+      "end": 193,
+      "cycle": []
+    },
+    {
+      "word": "TUNNELNG",
+      "addr": 94,
+      "path": [
+        94,
+        58
+      ],
+      "end": 196,
+      "cycle": []
+    },
+    {
+      "word": "TO",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 181,
+      "cycle": []
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20
+      ],
+      "end": 171,
+      "cycle": []
+    },
+    {
+      "word": "SURFACE",
+      "addr": 67,
+      "path": [
+        67
+      ],
+      "end": 193,
+      "cycle": []
+    },
+    {
+      "word": "WE",
+      "addr": 25,
+      "path": [
+        25,
+        34
+      ],
+      "end": 232,
+      "cycle": []
+    },
+    {
+      "word": "MUST",
+      "addr": 51,
+      "path": [
+        51
+      ],
+      "end": 142,
+      "cycle": []
+    },
+    {
+      "word": "SHED",
+      "addr": 64,
+      "path": [
+        64
+      ],
+      "end": 144,
+      "cycle": []
+    },
+    {
+      "word": "OUR",
+      "addr": 8,
+      "path": [
+        8,
+        53
+      ],
+      "end": 142,
+      "cycle": []
+    },
+    {
+      "word": "OWN",
+      "addr": 19,
+      "path": [
+        19
+      ],
+      "end": 181,
+      "cycle": []
+    },
+    {
+      "word": "CIRCUMFERENCES",
+      "addr": 131,
+      "path": [],
+      "end": 131,
+      "cycle": []
+    },
+    {
+      "word": "FIND",
+      "addr": 42,
+      "path": [
+        42
+      ],
+      "end": 170,
+      "cycle": []
+    },
+    {
+      "word": "THE",
+      "addr": 20,
+      "path": [
+        20
+      ],
+      "end": 171,
+      "cycle": []
+    },
+    {
+      "word": "DIUINITY",
+      "addr": 105,
+      "path": [
+        105,
+        33,
+        48
+      ],
+      "end": 202,
+      "cycle": []
+    },
+    {
+      "word": "WITHIN",
+      "addr": 38,
+      "path": [
+        38,
+        81,
+        72,
+        46,
+        53
+      ],
+      "end": 142,
+      "cycle": []
+    },
+    {
+      "word": "AND",
+      "addr": 56,
+      "path": [
+        56,
+        25,
+        34
+      ],
+      "end": 232,
+      "cycle": []
+    },
+    {
+      "word": "EMERGE",
+      "addr": 83,
+      "path": [
+        83,
+        105,
+        33,
+        48
+      ],
+      "end": 202,
+      "cycle": []
+    }
+  ],
+  "allCoreExits": 112,
+  "whole": {
+    "prefix": 355,
+    "terminal": 0
+  },
+  "wholeFixed": {
+    "prefix": 29,
+    "terminal": 0
+  },
+  "ranges": [
+    {
+      "p": 0,
+      "n": 729,
+      "reach": {
+        "prefix": 355,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 29,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03460257163960868,
+      "ordinaryScore": -4.029898484853994
+    },
+    {
+      "p": 3,
+      "n": 1145,
+      "reach": {
+        "prefix": 409,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 20,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03476196292790179,
+      "ordinaryScore": -4.019230872420042
+    },
+    {
+      "p": 8,
+      "n": 1729,
+      "reach": {
+        "prefix": 124,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 13,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.034310535955272795,
+      "ordinaryScore": -3.9987690996868617
+    },
+    {
+      "p": 15,
+      "n": 1903,
+      "reach": {
+        "prefix": 190,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 45,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03440580012852583,
+      "ordinaryScore": -3.988891488723369
+    },
+    {
+      "p": 23,
+      "n": 1021,
+      "reach": {
+        "prefix": 145,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 12,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.034066947053062166,
+      "ordinaryScore": -4.053503812239991
+    },
+    {
+      "p": 27,
+      "n": 1433,
+      "reach": {
+        "prefix": 498,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 1,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03445130152393502,
+      "ordinaryScore": -4.016857234424039
+    },
+    {
+      "p": 33,
+      "n": 1680,
+      "reach": {
+        "prefix": 282,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 71,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.034555716271023,
+      "ordinaryScore": -4.06639634720559
+    },
+    {
+      "p": 40,
+      "n": 3008,
+      "reach": {
+        "prefix": 132,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 68,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03446037260576386,
+      "ordinaryScore": -4.032866335750651
+    },
+    {
+      "p": 54,
+      "n": 308,
+      "reach": {
+        "prefix": 149,
+        "terminal": 0
+      },
+      "fixed": {
+        "prefix": 0,
+        "terminal": 0
+      },
+      "ordinaryIoc": 0.03631710309234739,
+      "ordinaryScore": -4.046777302846251
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "phase": 0,
+      "recoveredPhase": 0,
+      "correct": 308,
+      "n": 308,
+      "score": -2.717667151928844,
+      "replay": true
+    },
+    {
+      "name": "0_koan_1",
+      "phase": 37,
+      "recoveredPhase": 37,
+      "correct": 308,
+      "n": 308,
+      "score": -2.500099633619391,
+      "replay": true
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "phase": 91,
+      "recoveredPhase": 91,
+      "correct": 308,
+      "n": 308,
+      "score": -2.809375129776435,
+      "replay": true
+    }
+  ]
+}
