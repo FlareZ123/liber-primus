@@ -1,0 +1,50 @@
+{
+  "config": {
+    "train": 1000,
+    "hold": 500,
+    "starts": 4,
+    "iters": 40,
+    "choices": 5,
+    "beam": 32,
+    "profiles": 3,
+    "controlCount": 0,
+    "periods": [
+      8
+    ],
+    "seed": 633344350,
+    "original": true,
+    "calibrationConfirmed": true,
+    "originalTargets": [
+      [
+        "p40-53",
+        9640
+      ]
+    ]
+  },
+  "languageRunes": 281914,
+  "controls": [],
+  "gate": true,
+  "original": [
+    {
+      "name": "p40-53",
+      "q": 8,
+      "softGain": 0.049757269841102694,
+      "proposals": 64,
+      "distinctLegal": 64,
+      "key": [
+        17,
+        0,
+        23,
+        6,
+        2,
+        11,
+        8,
+        12
+      ],
+      "fitLogLR": -2.4145534390155876,
+      "holdLogLR": null,
+      "fitPreview": "FSPAASPLAMHAYRTSEOESYNTHRXFMUEATEOYRTOEEOOEWXNEUBWAEIAJIAOCIMTEORNADBOPEABAEIAPOEBRHIPTSLSYTHEOJSLTHYIINGNGPAUAEIAOEAYNGYPCPENGEOETCTEABYEAJERNJDIIALTDOAEOYEOMEEOEOPOTHHEWGLYIJEAHUESNETHAENRLHANTU",
+      "holdPreview": null
+    }
+  ]
+}
