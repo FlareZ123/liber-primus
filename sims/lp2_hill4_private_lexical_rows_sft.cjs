@@ -70,7 +70,14 @@ function jointSearch(S,target,v){
  const time=Date.now();if(output.every(x=>x.length))dfs(0,new Uint8Array(spans.length),0);
  return{order,counts,visits,solutions,seconds:(Date.now()-time)/1000};
 }
+function plantTarget(S,section,start,end,A,b,erase=3){
+ const w=S.parse(S.native.sections.find(s=>s.name===section).source_text).slice(start,end),P=w.flat();let at=0;const spans=w.map(v=>{let a=at;at+=v.length;return[a,at]});
+ const sig=v=>v.map(x=>x.toString(29)).join(""),counts=new Map();for(const v of w){const q=sig(v);counts.set(q,(counts.get(q)||0)+1)}
+ const removed=[];for(const v of w){let q=sig(v);if(v.length>=4&&counts.get(q)===1&&removed.length<erase){S.dict.get(v.length).delete(q);removed.push(v)}}
+ const C=P.slice();for(let i=0;i+3<P.length;i+=4)for(let j=0;j<4;j++)C[i+j]=(A[j].reduce((s,x,k)=>s+x*P[i+k],b[j]))%29;
+ return{target:{C,spans},P,removed,restore:()=>{for(const v of removed)S.dict.get(v.length).set(sig(v),v)}};
+}
 const raw=files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'));
 const S=setup(raw);
 if(require.main===module){const target=S.pages.find(p=>p.page===Number(process.argv[2]||21));const v=rowSearch(S,target,Number(process.argv[3]||0),Number(process.argv[4]||2));const j=jointSearch(S,target,v);console.log(JSON.stringify({phase:v.phase,budget:v.budget,words:v.spans.length,n:v.n,counts:v.counts,elapsed:v.elapsed,joint:j},null,2));}
-module.exports={setup,rowSearch,jointSearch};
+module.exports={setup,rowSearch,jointSearch,plantTarget};
