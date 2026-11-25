@@ -35,3 +35,13 @@ Six target-excluded literary windows of 669 words each use three of the fixed gr
 - Executed against the repository sources in connected JS; standalone Windows Node wrapper and CI not separately run.
 
 Retire this precise literal-grid cyclic additive receiver under intact groups, including arbitrary phase and whole-group reorder. The grid's role as a key is an investigative assumption; derived keys, nonlinear maps, altered groups and other plaintext registers remain possible. No new unknown LP2 plaintext or authenticated key was recovered.
+
+## One optional non-consuming inserted null and mixed F (Agent12)
+
+Extend the exact inverse: the same 16 source grid cycles (radix59/60, row/column, forward/reverse, either sign), all 256 independent phases per group, arbitrary whole-group permutation, and fixed 35,944-form register. At each observed rune the trie may consume a key digit (including plaintext F), hold a visible F as plaintext F without advancing, or delete one arbitrary observed rune without advancing. Only one deletion per group is allowed; plaintext remains nonempty.
+
+All 16 keys have **0/187** original groups of observed length ≥9 admitting a lexical inverse. Overall coverage is 2,132–2,162/2,896; even the best requires 734 OOV groups (25.35%), exceeding the 144 global allowance. No original chapter reaches 95% coverage with any tested key. No long candidate nominated.
+
+Three 669-word held-donor windows use three different source keys, mixed F behavior, deterministic ~45% insertion and whole-group shuffle. Of 100 groups of observed length≥9, 90 are in vocabulary; all 90 true plaintext/start/end/cut edges are retained (78/90 unique among inverse alternatives).
+
+Run `node sims/lp2_grid_postshuffle_single_null_sft.cjs`; [raw](lp2-grid-postshuffle-single-null-output.json), code/results d3e76d3b5b066c09e5a9cacf1c8e7b4f3433dd16. Connected V8 actual execution; standalone Windows CI not run. Retire literal-grid additive receiver with this insertion relaxation. Additional substitution repair, consuming nulls, other derivations and non-additive models remain open. No original plaintext/key recovered.
