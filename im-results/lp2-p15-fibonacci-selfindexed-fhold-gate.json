@@ -1,0 +1,382 @@
+{
+  "prefix": 988,
+  "zeros": 39,
+  "original": [
+    {
+      "phase": 0,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 0,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 1,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 1,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 2,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 2,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 3,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 3,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 4,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 4,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 5,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 5,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 6,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 6,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 7,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 7,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 8,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 8,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 9,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 9,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 10,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 10,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 11,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 11,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 12,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 12,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 13,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 13,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 14,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 14,
+      "sign": -1,
+      "status": "unsat"
+    },
+    {
+      "phase": 15,
+      "sign": 1,
+      "status": "unsat"
+    },
+    {
+      "phase": 15,
+      "sign": -1,
+      "status": "unsat"
+    }
+  ],
+  "controls": [
+    {
+      "sign": 1,
+      "phase": 0,
+      "shift": 0,
+      "zeros": 56,
+      "planted_key": [
+        13,
+        24,
+        4,
+        24,
+        20,
+        10,
+        10,
+        9,
+        24,
+        4,
+        18,
+        4,
+        15,
+        4,
+        1,
+        7
+      ],
+      "free_key": [
+        13,
+        24,
+        4,
+        24,
+        20,
+        10,
+        24,
+        9,
+        24,
+        19,
+        18,
+        4,
+        15,
+        19,
+        24,
+        18
+      ],
+      "matching_plaintext": 305,
+      "free_status": "sat",
+      "known_key_status": "sat",
+      "free_key_exact": false,
+      "replay_exact": true
+    },
+    {
+      "sign": -1,
+      "phase": 0,
+      "shift": 0,
+      "zeros": 99,
+      "planted_key": [
+        13,
+        24,
+        4,
+        24,
+        20,
+        10,
+        10,
+        9,
+        24,
+        4,
+        18,
+        4,
+        15,
+        4,
+        1,
+        7
+      ],
+      "free_key": [
+        28,
+        16,
+        28,
+        16,
+        24,
+        14,
+        13,
+        13,
+        28,
+        7,
+        7,
+        26,
+        27,
+        7,
+        8,
+        19
+      ],
+      "matching_plaintext": 32,
+      "free_status": "sat",
+      "known_key_status": "sat",
+      "free_key_exact": false,
+      "replay_exact": true
+    },
+    {
+      "sign": 1,
+      "phase": 7,
+      "shift": 4,
+      "zeros": 70,
+      "planted_key": [
+        17,
+        20,
+        18,
+        20,
+        5,
+        18,
+        24,
+        21,
+        18,
+        0,
+        6,
+        5,
+        3,
+        24,
+        8,
+        15
+      ],
+      "free_key": [
+        26,
+        20,
+        1,
+        11,
+        17,
+        13,
+        18,
+        12,
+        18,
+        17,
+        15,
+        12,
+        20,
+        12,
+        15,
+        20
+      ],
+      "matching_plaintext": 115,
+      "free_status": "sat",
+      "known_key_status": "sat",
+      "free_key_exact": false,
+      "replay_exact": true
+    },
+    {
+      "sign": -1,
+      "phase": 12,
+      "shift": 19,
+      "zeros": 99,
+      "planted_key": [
+        16,
+        1,
+        9,
+        9,
+        20,
+        3,
+        4,
+        1,
+        5,
+        10,
+        10,
+        10,
+        18,
+        16,
+        0,
+        5
+      ],
+      "free_key": [
+        3,
+        5,
+        26,
+        4,
+        24,
+        7,
+        17,
+        14,
+        23,
+        23,
+        4,
+        3,
+        5,
+        20,
+        17,
+        0
+      ],
+      "matching_plaintext": 67,
+      "free_status": "sat",
+      "known_key_status": "sat",
+      "free_key_exact": false,
+      "replay_exact": true
+    }
+  ],
+  "phase_zero_graph": {
+    "plus_last_feasible_prefix": 149,
+    "plus_first_impossible_prefix": 150,
+    "minus_first_impossible_prefix": 1,
+    "plus_last_feasible_mask": 7,
+    "plus_last_feasible_paths": "76230",
+    "plus_last_feasible_key": [
+      5,
+      15,
+      5,
+      15,
+      7,
+      18,
+      5,
+      7,
+      23,
+      28,
+      19,
+      1,
+      8,
+      2,
+      1,
+      0
+    ],
+    "plus_first_impossible_masks_tested": 32
+  }
+}
