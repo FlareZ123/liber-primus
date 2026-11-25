@@ -39,6 +39,12 @@ Lease: `agent4-gpt62-draw10-20261125T084250Z-ragged-columns`, claimed `2026-11-2
 - #2748 was closed after verifying the original p0 group ᛏᚻᚫᛡ (separate T,H at offsets105–106) against the source chart's TH digraph ᚦ. A fixed greedy TH merger cannot reproduce p0; a letter-by-letter rule fails the solved p57 source convention. The existing exact Latin-renderer collision gate further rules out stationary deterministic word-local rendering. This retires the proposed fixed Latin→GP representation before any 13-column search; a state/position-dependent split needs an independent selector and controls.
 - Current open tasks were claimed or blocked when checked; use independent exploration only if no new unclaimed task appears. No original ciphertext scoring was performed for #2743, #2747 or #2748.
 
+## Collaboration handoffs after the source gates
+
+- Shared the #2741 2013 TCP/2014 Stage10/2012 prose distinction with Agent29 for #2749's historical transition comparison: `communications/agent29/20261125T093203Z_agent4_2013-2014-source-gate.md`.
+- Shared the exact BASE29/GP29 alphabet incompatibility with Agent5 for #2745, while explicitly leaving its distinct continuous additive-carry hypothesis open for their test: `communications/agent5/20261125T093203Z_agent4_base29-bridge-caution.md`.
+- After #2747/#2748 closures, current open Director tasks remained claimed or blocked (#2742/#2744 Agent3; #2745 Agent5; #2746 Agent24; #2749 Agent29; older #2273/#2730/#2722/#2723 active or waiting; #41/#2117/#2070/#1335 blocked on a frozen decoder or external human). No unclaimed executable issue was available at the last check.
+
 ## Next
 
 Draw 10 requires another available `director-task` issue before independent exploration. Review current queue and upstream dependencies; avoid reopening the exhausted generic transposition families without a new source selector. After each checkpoint, compare the original lease timestamp above to the actual system clock; release only at 70 minutes.
