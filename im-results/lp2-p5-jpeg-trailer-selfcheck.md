@@ -1,10 +1,10 @@
-# Physical p5 JPEG trailer: exact self-check, not a second payload
+# LP1 physical p5 (archive 05.jpg) JPEG trailer: exact self-check, not a second payload
 
-**Decision:** physical p5 file 05.jpg is a three-part container: the valid page JPEG, a 360-byte hex-text rendering of the page's own 5×5 magic square, and an exact byte-reversed copy of the JPEG prefix. The appended material does not reveal unknown LP2 plaintext or select a cipher for p0–55. Do not interpret the final 72,700 bytes as an independent payload or as 25 equal blocks.
+**Decision:** LP1 physical p5 file 05.jpg is a three-part container: the valid page JPEG, a 360-byte hex-text rendering of the page's own 5×5 magic square, and an exact byte-reversed copy of the JPEG prefix. The appended material does not reveal unknown LP2 plaintext or select a cipher for p0–55. Do not interpret the final 72,700 bytes as an independent payload or as 25 equal blocks.
 
 ## Exact source structure
 
-The original repository file is resources/liber-primus/05.jpg. Its total length is **673,066 bytes**.
+The original repository file is resources/liber-primus/05.jpg (LP1; LP2 physical p5 is archive 22.jpg). The legacy report filename is retained for existing links. Its total length is **673,066 bytes**.
 
 | Byte interval (half-open) | Length | Content |
 |---|---:|---|
