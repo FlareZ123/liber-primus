@@ -47,6 +47,12 @@ The uncapped quotient enumerates every outer completion, every visible-prefix-co
 
 [Blind SFT](../sims/lp2_double_alphabet_prime_fhold_blind_control_sft.cjs) · [Blind output](lp2-double-alphabet-prime-fhold-blind-control-output.json) · [Capped completion output](lp2-double-alphabet-prime-fhold-completion-output.json) · [Exact completion quotient SFT](../sims/lp2_double_alphabet_prime_fhold_completion_quotient_sft.cjs) · [Exact quotient output](lp2-double-alphabet-prime-fhold-completion-quotient-output.json).
 
+## Spacing-free joint optimizer calibration
+
+A separate direct ciphertext optimizer removes lexical cuts. Exact forward/backward over latent F holds supplies expected ciphertext/prime-residue counts; alternating sorted inner assignment and Hungarian outer assignment fit the unigram model, followed by fixed-mask joint swap annealing and exact quadgram mask reoptimization. The first KOAN control (780 native runes, 580 fit/200 withheld) is excluded from training. Known-key exact Viterbi recovers 780/780, but blind optimization obtains only 40/580 fitting runes and no legal frozen continuation (2/29 entries in each normalized key). The blind optimizer therefore fails calibration; no original test or exclusion follows from it.
+
+[Spacing-free SFT](../sims/lp2_double_alphabet_prime_fhold_spacingfree_sft.cjs) · [Control output](lp2-double-alphabet-prime-fhold-spacingfree-control-output.json).
+
 ## Controls, limits and disposition
 
 Seeded distinct permutations on seven planted long lexical forms preserve the actual graph constraints at source-matched offsets, and the graph solver constructs complete bijections satisfying every planted equation. These controls validate graph feasibility and injectivity, not blind full-key recovery: the existing plant construction uses supplied lexical traces, repeatedly selects a first eligible form of each length, and assigns absent symbols arbitrarily. The original contradictions are within-component and do not depend on a heuristic language score or the exact-cover completion search.
