@@ -8,7 +8,7 @@ index 1111111..2222222 100644
 +#include <stdlib.h>
  
  #include "config.h"
-@@ -72,6 +74,21 @@
+@@ -72,6 +74,22 @@
  void
  iterator_adapt(iterator *iter, bitmap *bitmap, int datalen)
  {
