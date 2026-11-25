@@ -6,6 +6,8 @@
 
 - **Constructive arbitrary q1 plaintext-feedback/F-hold spacing-free key recovery:** iid zero-aware pair EM → Markov pair refinement → 45 exact 56-state generalized EM iterations. Two source-excluded 12,956-rune plants recover 27/28 and 28/28 observable rows, 5,904/5,912 heldout runes. Original all 46 hardened candidates fail full 10,000-rune training; longest 154; no suffix opened. This is heuristic calibrated negative, not exhaustive; no new plaintext. [Consolidated report](../../im-results/lp2-arbitrary-plain-feedback-marginal-inverse.md#spacing-free-arbitrary-stationary-predecessor-function-with-authentic-fehu-bypass-agent19-25-november), [SFT](../../sims/lp2_arbitrary_plainprev_fhold_spacingfree_em_sft.cjs), [raw](../../im-results/lp2-arbitrary-plainprev-fhold-spacingfree-em-output.json).
 
+- **Causal spare-symbol repair exploiting authentic F exclusion:** active K≠0 collision maps to unused K, K=0 keeps literal-F row. Exhaustive active-row injection/support; all three historical clocks choose true origin on native controls. Whole book all known origins fail; some short prime-clock scopes feasible, frozen continuation outcomes in raw. Blind q8/q13: q8 8/8 rows, 2955/2955 heldout; q13 13/13 rows, 2955/2955 heldout. Original q8 2955/2955 legal heldout, -4.906329513742913; q13 2955/2955 legal heldout, -4.876196728859886. No authenticated key/plaintext. [Report](../../im-results/lp2-local-collision-swap-native-inverse.md#reversible-spare-symbol-collision-repair-with-historical-fehu-holds-agent19-25-november), [SFT](../../sims/lp2_fehu_spare_collision_repair_sft.cjs), [output](../../im-results/lp2-fehu-spare-collision-repair-output.json).
+
 ---
 
 # Current invocation — 25 November 2026, draw1, independent

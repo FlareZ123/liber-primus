@@ -85,3 +85,46 @@ Primary target physical p40–53 (3,008 runes, 125 zeros); same three reference 
 All three tested periods are incompatible with all 96 fixed native literary windows under the visible-length matching rule even in the broader inverse relaxation. The results are conditional on this finite register and the single chapter-continuous key clock. They neither identify a key nor establish historical collision swaps, and they do not reject other state changes or every English plaintext. Do not repeat q8/q13/q29 key search in this exact receiver without a new independent premise.
 
 [Reproducer](../sims/lp2_greedy_collision_swap_fhold_allkey_sft.cjs) · [raw output](./lp2-greedy-collision-swap-fhold-allkey-output.json). Actual algorithm and pinned source data executed in connected V8; standalone Node wrapper not independently run.
+
+
+## Reversible spare-symbol collision repair with historical Fehu holds (Agent19, 25 November)
+
+Distinct from greedy swapping adjacent positions, this proposed causal sender exploits the **one unused active output** in an authentic additive transparent-F row. For plaintext F=0, emit 0 and hold key index. For P≠0, compute X=P+K mod29; if K≠0 and X equals preceding published C, emit K, the otherwise unused active symbol. Otherwise emit X. K=0 deliberately keeps the native clear-F row (its spare output is F itself). Advance only for consuming input. The active row is bijective from 28 nonzero P to C≠previous output when K≠0, and to C≠0 when K=0. No overwritten active input is lost: at C=K≠0 or C=K with a valid nonzero shift, the active inverse is previous C−K mod29; elsewhere it is C−K. A visible zero may still be a hold or consume, as in the authentic F exception. All 29×29×28 active edges, and every 29×29×29 support entry, were exhaustively checked. This is a hypothesized modification, not the actual solved p56 sender or a source-selected repair instruction. Every nonzero ciphertext doublet requires a zero key digit; all other active nonzero emissions are legal. The zero-digit exception is necessary for this proposed rule to permit nonzero doublets at all.
+
+Use first original rune as public predecessor (IV), removing its plaintext from the test. Each chapter receives a separate free starting phase/origin. Test authentic DIUINITY and **literal FIRFUMFERENFE** keyword indices, and solved-p56 prime-minus-one stream, initial prime ordinal 0–3301 inclusive. Exact reachability allows every visible zero hold/consume history, no word boundaries. Fit first 75% by exact bigram MAP over both hold flags and all origins; freeze selected origin and terminal state before opening continuation. Separately enumerate complete original reachability. Source-independent Shakespeare GP bigram prior. Three donor-excluded control tapes of 3,007 runes choose their true origin and decode the withheld 1,007 runes as follows:
+
+| Clock | True/selected origin | Repaired | Total repeats | Fit exact | Frozen withheld exact |
+|---|---|---:|---:|---:|---:|
+| DIUINITY | 3/3 | 98 | 5 | 2000/2000 | 1007/1007 |
+| FIRFUMFERENFE | 7/7 | 83 | 22 | 2000/2000 | 1007/1007 |
+| prime-totient | 761/761 | 89 | 10 | 2000/2000 | 1004/1007 |
+
+| Scope | Tested runes | Nonzero repeats | DIUINITY legal origins / longest prefix | FIRFUMFERENFE legal origins / longest prefix | Prime-totient legal origins / longest prefix |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 728 | 4 | 0 / 121 | 13 / 728 | 15 / 728 |
+| p3–7 | 1144 | 6 | 0 / 52 | 2 / 1144 | 0 / 249 |
+| p8–14 | 1728 | 8 | 0 / 106 | 0 / 141 | 0 / 151 |
+| p15–22 | 1902 | 10 | 0 / 248 | 0 / 1003 | 0 / 1003 |
+| p23–26 | 1020 | 11 | 0 / 127 | 7 / 1020 | 0 / 318 |
+| p27–32 | 1432 | 11 | 0 / 14 | 2 / 1432 | 0 / 89 |
+| p33–39 | 1679 | 11 | 0 / 151 | 0 / 739 | 0 / 348 |
+| p40–53 | 3007 | 18 | 0 / 276 | 12 / 3007 | 0 / 928 |
+| p54–55 | 307 | 3 | 0 / 19 | 1 / 307 | 2 / 307 |
+| p0–55 | 12955 | 82 | 0 / 121 | 0 / 2015 | 0 / 781 |
+
+The fixed keyword/prime-clock receiver cannot decode the whole continuous book. Shorter independent sections with prime-clock support do not establish a key; raw output retains all actual complete origins and frozen continuation outcomes, including failures. This exact reachability decision does not depend on the language model.
+
+### Blind periodic key recovery
+
+For q8 and q13, fit unrestricted digits using a phase-only stochastic relaxation, no printed separators. Fixed source-excluded Shakespeare unigram U; active emission weight for visible pair d=(prev,C) is V[r,d]=sum_k w[r,k] U[inverse(d,k)] over legal active inverses. Hold weight U[0] if C=0. Exact phase forward/backward sums all hold histories; aggregate active posterior edge weights by (phase,d), then compute row expected counts E[r,k]. Generalized EM uses rows proportional to (E+.03)^1.035. Eight deterministic random starts (seed 0x19fe0ca), 100 iterations each, hardening every fifth iteration; select by exact deterministic marginalized training likelihood and refine up to two coordinate sweeps. Global phase rotation is unidentifiable; report key matches up to rotation. Decode selected key using exact bigram Viterbi, freeze phase/last plaintext after first 10,000 decoded runes and replay all legal output. Random controls use two independently selected zero digits, remaining digits independently random nonzero, distinct target-excluded donor passages at native offsets 18000 Gibran and 30000 Emerson. Open original for a given q only if its independent frozen positive control has at least 95% of 2,955 withheld runes correct.
+
+| Period | Repairs | Total repeats | Key matches up to rotation | Fit exact | Withheld exact | Withheld legal |
+|---:|---:|---:|---:|---:|---:|---:|
+| 8 | 260 | 183 | 8/8 | 9995/10000 | 2955/2955 | 2955/2955 |
+| 13 | 299 | 108 | 13/13 | 9997/10000 | 2955/2955 | 2955/2955 |
+
+Original:
+- q8: selected key [0,15,0,0,4,0,0,4], fit marginal -4.092784 nats/rune, withheld reach 2955/2955, withheld MAP mean -4.906329513742913; R TH C Y A M W T H IA EO P X L J EA IA N E S NG O EA I NG J E AE P M E R R IA N M O T OE OE U F EA P M EA G N D EO M F B P S S EO G E IA U R EO C Y W L F E L R NG E H E EO J IA O I.
+- q13: selected key [15,0,0,7,12,0,4,22,0,22,0,4,0], fit marginal -4.035684 nats/rune, withheld reach 2955/2955, withheld MAP mean -4.876196728859886; IA B M Y EA EO A L R L EO L E T J B IA A J O AE EA G X EA Y X AE TH M E U NG P C Y W D OE OE U F EA P M AE D N D M C F A P S S Y I E G E R EO EO Y E L F AE L E AE E U I EO OE C O NG.
+
+This is an explicitly finite blind optimizer, not exhaustive over all private periodic keys. A negative control-gated search does not establish all-key impossibility; any skipped q has no original blind result. No unknown plaintext/key authenticated. No independent clue fixes the special K=0 repair convention. Retire the tested known clocks and do not promote high relaxed likelihood to a historical sender. [Reproducer](../sims/lp2_fehu_spare_collision_repair_sft.cjs) · [full output](./lp2-fehu-spare-collision-repair-output.json). Executed experiment function against pinned canonical inputs in connected V8; Node wrapper not independently executed.
