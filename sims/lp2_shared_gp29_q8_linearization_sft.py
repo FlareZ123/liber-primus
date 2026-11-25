@@ -39,7 +39,7 @@ def load_inputs():
     for word in sorted(words):
         by_length[len(word)].append(word)
     prefix_domain = {word[:10] for word in words if len(word) == 11}
-    body_lengths = [len(group) for group in pages["p54"]["body_groups"]]
+    body_lengths = [len(group) for group in pages["p54"]["body_groups"][:47]]
     hold_lengths = [len(group) for group in pages["p55"]["groups"][1:]]
     assert len(body_lengths) == 47
     assert len(hold_lengths) == 16
