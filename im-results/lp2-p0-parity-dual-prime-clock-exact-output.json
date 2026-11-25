@@ -1,0 +1,325 @@
+{
+  "length": 716,
+  "possiblePairs": 10896601,
+  "legalOffsets": [
+    [
+      42,
+      43,
+      45,
+      72,
+      481,
+      483,
+      1105,
+      2220,
+      2221,
+      2226,
+      2227
+    ],
+    [
+      31,
+      32,
+      33,
+      71,
+      72,
+      73,
+      74,
+      75,
+      158,
+      159,
+      160,
+      250,
+      251,
+      261,
+      262,
+      313,
+      316,
+      317,
+      359,
+      360,
+      361,
+      362,
+      363,
+      364,
+      374,
+      375,
+      376,
+      409,
+      411,
+      512,
+      513,
+      551,
+      596,
+      597,
+      598,
+      800,
+      801,
+      806,
+      807,
+      842,
+      843,
+      1061,
+      1062,
+      1069,
+      1070,
+      1072,
+      1073,
+      1182,
+      1183,
+      1212,
+      1213,
+      1265,
+      1266,
+      1299,
+      1301,
+      1348,
+      1424,
+      1425,
+      1696,
+      1697,
+      1778,
+      1779,
+      1882,
+      1883,
+      1884,
+      1915,
+      1916,
+      1917,
+      1918,
+      2057,
+      2058,
+      2060,
+      2083,
+      2084,
+      2086,
+      2087,
+      2088,
+      2100,
+      2101,
+      2102,
+      2163,
+      2164,
+      2207,
+      2208,
+      2405,
+      2406,
+      2407,
+      2408,
+      2433,
+      2434,
+      2462,
+      2463,
+      2644,
+      2645,
+      2646,
+      2734,
+      2735,
+      2736,
+      2822,
+      2823,
+      2824,
+      3060,
+      3061,
+      3062,
+      3063,
+      3194,
+      3197,
+      3198,
+      3199,
+      3200,
+      3261,
+      3262
+    ]
+  ],
+  "legalPairs": 1232,
+  "peak": 54,
+  "best": {
+    "offsets": [
+      2221,
+      360
+    ],
+    "score": -4.825043797499513
+  },
+  "top20": [
+    {
+      "offsets": [
+        2221,
+        360
+      ],
+      "score": -4.825043797499513
+    },
+    {
+      "offsets": [
+        2221,
+        359
+      ],
+      "score": -4.826883846490973
+    },
+    {
+      "offsets": [
+        2220,
+        359
+      ],
+      "score": -4.844911584443899
+    },
+    {
+      "offsets": [
+        2221,
+        363
+      ],
+      "score": -4.846227399099666
+    },
+    {
+      "offsets": [
+        2220,
+        360
+      ],
+      "score": -4.847041007642
+    },
+    {
+      "offsets": [
+        2221,
+        364
+      ],
+      "score": -4.848936958730697
+    },
+    {
+      "offsets": [
+        2221,
+        1884
+      ],
+      "score": -4.857228989991488
+    },
+    {
+      "offsets": [
+        2221,
+        1883
+      ],
+      "score": -4.860255525470186
+    },
+    {
+      "offsets": [
+        2220,
+        363
+      ],
+      "score": -4.8767910817405395
+    },
+    {
+      "offsets": [
+        2220,
+        1884
+      ],
+      "score": -4.880699843170387
+    },
+    {
+      "offsets": [
+        2220,
+        364
+      ],
+      "score": -4.881317377064717
+    },
+    {
+      "offsets": [
+        2220,
+        1883
+      ],
+      "score": -4.885990690331069
+    },
+    {
+      "offsets": [
+        2221,
+        361
+      ],
+      "score": -4.890404104426262
+    },
+    {
+      "offsets": [
+        2221,
+        362
+      ],
+      "score": -4.8932994582599125
+    },
+    {
+      "offsets": [
+        2221,
+        1917
+      ],
+      "score": -4.896267838723247
+    },
+    {
+      "offsets": [
+        2221,
+        1918
+      ],
+      "score": -4.900233718441265
+    },
+    {
+      "offsets": [
+        2221,
+        1882
+      ],
+      "score": -4.9058700030527485
+    },
+    {
+      "offsets": [
+        2220,
+        1918
+      ],
+      "score": -4.915422986699202
+    },
+    {
+      "offsets": [
+        2220,
+        1917
+      ],
+      "score": -4.915492619586037
+    },
+    {
+      "offsets": [
+        2221,
+        1915
+      ],
+      "score": -4.916387755670256
+    }
+  ],
+  "plaintext": "THRIRFPOEATHOJAEEEAOLMWORHASTHXAEMTWTHIYLIHHSHWTOTLGCMNAFJWEFWNGSCCONGWDTHSWYWBRNGUEOJEBLEMUIAHPIAITHIXEOOHTHRMEIUSAEAIIMEGEATHITEOBCMPIEWRENGROEPWOETHRYNGAEOEEODDWATJABCJXUWABTAIANGOEAOEPTNGOETHBONNFLJTNGMFDCREOBFORDLONGASDJEOYOEOEMEOROAEOTSOJOETNIOMGNGUPEAEPMCGEYCABHXOETPARLFMANGJAESHIAGYSETHOSEEBHJSDBXUREAIMORUELOATHNGNGTDXONGANPGNGPJERBSSBCAEGEOETHEOGIAIRTJNGEAEGADTMXEOUWPUOEHJJGHRJICTHCYDIAFNIANDTHNIXTHBCEMAEBENGWCRNTHHESEADMITHGNGMOELDEAYNNGUARGCWCEOGYMEAABXOALDOTCOEGLLGBUGDRSSAEOMLAETLEPIAXCINGBTHLFWTIACNLEEBRIYXCILCNTGSMRFDTGOEIAECUUIANAEAEEDMYWLHGJCXNGRLBHBIIATHEHLENFXRBCDGAEFIBNGCCEOCTGEOXPHAYEGJAAMEGEOJEICLTEOIEACYHEAUEAOTHCCSMOETIAIAPPGRRSAETUUOULORAEPOELDHXSLTJPUJGWIAUFEJOGSSIAXTOEOHCACEORHNGMEEJIPRUTTHDTHJNGCEABSUNGFNGJDEOFIBNCEAGFEIAUCGEARXYOOERSTHENGTCIEADNDEHOOELOEWLHOEMCNAEGSIAOWEATOTTHOXHTWLDSEAYPOEDEIAONGTYCYTOENEOEFTHTPLNGYSDSL",
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "offsets": [
+        1033,
+        3300
+      ],
+      "recovered": [
+        1033,
+        3300
+      ],
+      "score": -2.4194179151449977,
+      "legal": [
+        173,
+        140
+      ],
+      "pairs": 24220,
+      "correct": 716,
+      "length": 716
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "offsets": [
+        3300,
+        761
+      ],
+      "recovered": [
+        3300,
+        761
+      ],
+      "score": -2.690613955915279,
+      "legal": [
+        11,
+        35
+      ],
+      "pairs": 385,
+      "correct": 716,
+      "length": 716
+    }
+  ]
+}
