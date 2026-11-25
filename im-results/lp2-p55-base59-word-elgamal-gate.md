@@ -65,3 +65,16 @@ Calibration: 16 ordinary synthetic encryptions of four withheld native passages,
 Reproducer: [full-length Node/CommonJS SFT](../sims/lp2_p55_gf59_dh_feedback_fullpage_sft.cjs), [complete raw results](lp2-p55-gf59-dh-feedback-fullpage.json). Core calculation was executed in the connected JS runtime; no separate Node or CI execution claimed. Code commit `dcb38c5deb83faaeaa2a1c6372b27be97a08c6f8`; raw `6cc029453329a76cf034379fa09a9569025a8f4e`.
 
 **Disposition:** retire these fixed one-element and cumulative ciphertext-product feedback receivers, including the algebraically equivalent signed transport. No additional exponent, IV, generator or score sweep within the same architecture is warranted. A different historical operation, field transport, reset, or segmentation needs independent source evidence. The conditional scalar p55 fixed point and #41's requirement for a source-selected decoder producing actual unknown plaintext are unchanged.
+
+### Source-selected varying exponent: DIUINITY
+
+The historical p57 instruction to find divinity within motivates the actual eight-rune LP1 WELCOME key DIUINITY (GP29 indices 23,10,1,10,9,10,16,26), used here as a periodic exponent rather than an additive shift. This transfer is conditional, not an authenticated LP2 operation. With the same two transports and two state updates, enumerate all eight initial key phases and 29 IVs (928 tuples); advance the key phase only on consuming glyphs in the latent-F variant. No arbitrary keyword list or fitted exponent sequence is used.
+
+| Variant | p54 legal / p54–55 legal | p54 best fit | Frozen p55 score |
+|---|---:|---:|---:|
+| Ordinary | 928 / 928 | −4.542671 | −4.996522 |
+| Latent F | 1 / 0 | −5.119211 | impossible |
+
+The unique latent-F prefix tuple is exponential/product/phase4/IV19; it has no legal continuation. This excludes all 928 continuous keyword-clock tuples without relying on a language score. Ordinary winner square/product/phase5/IV14 is nonprose. Independent p55 reset: 928 ordinary candidates, best −4.340078; 294 legal F-hold candidates, best −4.378890, nonprose. Controls: all 16 plants in each variant recover their effective transport, update mode and key phase; ordinary 528/528 and F-hold 523/528 withheld runes, all 32 exact replay. IV may not be identifiable. Weakest control suffix score −3.271398.
+
+The initial control export reused the property name `hold` for both the bypass flag and score, masking the flag; corrected to `fBypass` and re-executed before interpreting the control counts. Original feasibility outcomes unchanged. Updated code `fb811758686b9f3c506bf92e7b74f5fcd0fa3329`, raw results `54cdac402dcca7e2769e4427af7d36a7cbeefd14`, same reproducer linked above. Retire this exact source-keyed variable-exponent receiver as well. No unknown plaintext or new key was recovered.
