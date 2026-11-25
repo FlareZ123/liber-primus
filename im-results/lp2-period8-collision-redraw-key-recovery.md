@@ -1,6 +1,6 @@
 # Unknown periodic key recovery with collision-only one-redraw feedback
 
-**Agent9 — 24 November 2026. Independent exploration after all executable Director issues were occupied.** The method recovers 3/3 secret eight-rune keys and all 2,050 solved-native planted runes, including 934 untouched continuation runes. On original LP2, no key supports two long lexical anchors in p0–2 or in the training half of any visual chapter. Every nominated original key has a nonlinguistic independent continuation. No authentic unknown plaintext or original key recovered. The spacing-free repeated-author-phrase extension below also excludes its complete and two-period cribs at historical q8/q13; the five nominated short-crib keys fail independent continuation. Neither result excludes arbitrary plaintext under the cipher relation.
+**Agent9 — 24 November 2026. Independent exploration after all executable Director issues were occupied.** The method recovers 3/3 secret eight-rune keys and all 2,050 solved-native planted runes, including 934 untouched continuation runes. On original LP2, no key supports two long lexical anchors in p0–2 or in the training half of any visual chapter. Every nominated original key has a nonlinguistic independent continuation. No authentic unknown plaintext or original key recovered. The spacing-free repeated-author-phrase extension below also excludes its complete and two-period cribs at historical q8/q13; the five nominated short-crib keys fail independent continuation. Neither result excludes arbitrary plaintext under the cipher relation. The 25 November spacing-free 12-rune lexical-fragment extension recovers four planted keys; none of its 38 original nominated key classes has a legal full training inverse under the strict mandatory-redraw and F-hold receiver.
 
 ## Why this is an actual key-recovery test
 
@@ -93,3 +93,29 @@ The above no-F-hold model is not the only possible interpretation: LP1 establish
 Same four native control text/key pairs as the preceding section, now planted with F holds in addition to collision redraw. At 128 starts per case, all four keys are recovered, fitting 1860/1865 runes, predicting 936/940 withheld runes (four path ambiguities also present under the true key). Legal original fitting paths in all 18 section/period cases have scores -4.986736 through -4.063123. Fifteen frozen prefix-state/key combinations admit no suffix; the three legal cases are p0–2 q13 (-5.116517), p54–55 q8 (-5.535023), p23–26 q8 (-5.267080), all nonprose. Plant holdouts score -2.723478 through -2.535795. This is a bounded empirical key-recovery failure, not a claim of general key infeasibility (all-zero K is an immediate legal counterexample). Other prefix states of the selected keys may admit continuations; no selection using holdout has been performed. No LP2 plaintext. Retire this tested combination absent a new independent source constraint.
 
 Reproduce via the same input preparation and C++17 compile/run command, substituting [F-hold/redraw solver](../sims/lp2_fhold_redraw_blind.cpp). [Executed numeric output](lp2-fhold-redraw-blind-output.csv). Local g++, four deterministic worker streams, 128 starts. The first approximate-ranking attempt was superseded by strict legal-prefix reranking. No CI run.
+
+
+## All-position 12-rune lexical-anchor inverse with mandatory transparent F (Agent25, 25 November)
+
+The earlier whole-printed-group and repeated-author-phrase attacks leave the possibility of a long true word anywhere in a decoy-spaced sequence. This extension searches every possible start within the development prefix of each chapter. A non-F rune consumes one key digit, except that a tentative output equal to the preceding physical ciphertext must consume exactly one further digit and emit the second output. F emits literal zero, holds the clock, and updates the predecessor to zero. Each chapter may have an independent cyclic eight-rune key and starting phase. No printed spacing is used.
+
+Build 2,577 distinct F-free 12-rune substrings of words in TextBlob, Gibran, Shakespeare and solved-native registers (greedy and alternate ING/IO conventions). Emerson is excluded from anchor and language-model training. For each of 4,096 masks of redraw decisions within an anchor, expand each observation to (plaintext offset, observed ciphertext offset), where a redraw contributes the prior physical ciphertext followed by the actual output. A cyclic period-eight key requires equal differences between observations eight active draws apart. Index up to six independent ciphertext-difference constraints using a union-find forest on ciphertext offsets; confirm every remaining equality and exact forward replay on each match. Enumerate every anchor start and allow any phase by canonical cyclic rotation. Skip-first masks are invalid at a chapter's reset beginning. This is exhaustive anchor nomination, not exhaustive vocabulary or all-key search.
+
+Exact fixed-key trigram Viterbi evaluates every nominated key over its entire development prefix, merging only identical (phase,last-two-plaintext) states. All starting phases admitted. Freeze the best development key and final state before decoding the remainder. The LM uses 281,914 Shakespeare/Gibran runes with normalized unigram/bigram/trigram backoff. Four independent 900-rune Emerson passages selected to contain at least two eligible anchor starts in their first600 runes are planted with unknown keys and random initial phases (two keys deliberately have repeated adjacent digits). All four keys recovered. Training rune recovery 2,399/2,400, frozen holdout 1,196/1,200; all four holdout log-LR scores +0.828 to +1.125 nats/rune with exact replay. These controls establish conditional power, not the frequency of eligible words in original plaintext.
+
+| Original chapter | Development runes | Nominated keys | Two disjoint anchors | Legal full development |
+|---|---:|---:|---:|---:|
+| p0–2 |486|2|0|0|
+| p3–7 |763|8|0|0|
+| p8–14 |1158|3|0|0|
+| p15–22 |1262|9|0|0|
+| p23–26 |680|3|0|0|
+| p27–32 |955|5|0|0|
+| p33–39 |1120|3|0|0|
+| p40–53 |2005|4|0|0|
+| p54–55 |205|1|0|0|
+| Total |8634|38|0|0|
+
+No key class recurs across chapters. All original candidates are eliminated by exact full-prefix support before language ranking; no original holdout can be decoded. The joint scan (controls and originals) evaluates 42,440,704 indexed signatures, 277 candidate signature hits and 72 verified anchor paths. Decision: retire this precise strict-redraw q8 receiver conditional on at least one eligible 12-rune known-word fragment in the chapter training prefix. Especially for the short terminal chapter this condition may fail. Optional redraw, other clocks, F-bearing anchors, other registers and a continuous predecessor across chapter boundaries remain outside the result. No authentic original key or plaintext recovered.
+
+[SFT](../sims/lp2_q8_spacingfree_longanchor_redraw_sft.cjs), code commit 2c0826d5c8ae05dac6a95bfc479aa298f5ee954f; [raw outputs](lp2-q8-spacingfree-longanchor-redraw.json), result commit 200c138f70506cc7aa208d5fa1124c126d62999f. Core executed from committed code using connected V8 against six repository inputs; 59.21 s computation. Standalone filesystem wrapper not separately executed.
