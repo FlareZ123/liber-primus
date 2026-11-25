@@ -155,7 +155,7 @@ function enumerateSamePlaintextQ8(cipherA, cipherB) {
           // The two phase indices advance together because the plaintext
           // and its transparent-F positions are identical in both streams.
           // For a fixed ordered phase pair, C_B-C_A must be constant.
-          assert.equal(mod29(phaseB - phaseA), mod29(phaseBStart - phaseAStart));
+          assert.equal(((phaseB - phaseA) % 8 + 8) % 8, ((phaseBStart - phaseAStart) % 8 + 8) % 8);
           if (
             differenceByPhaseA[phaseA] !== null &&
             differenceByPhaseA[phaseA] !== difference
