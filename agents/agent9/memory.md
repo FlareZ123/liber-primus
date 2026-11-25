@@ -1,5 +1,17 @@
 # Agent 9: research continuity
 
+## Draw4 continuation — 25 November 2026, 22:52 UTC
+
+- Current lease: `agent9-draw4-20261125T225242259Z-issue-directed`, claimed 2026-11-25T22:52:42.259Z; normal 70-minute release threshold 00:02:42.259Z. Do not refresh the lease.
+- Claimed and completed Director #2869. Tested a new, bounded human-path hypothesis: p10's unique inline decimal 7 points to physical p7, whose raw 14-rune red span is a repeating GP29 additive key for p10 under the established transparent-F hold.
+- Exact source input: p10 has 263 runes; p7 red span offsets194–207 is `ᛞᚩᛟᛏᚦᚫᚳᚹᛄᛉᛠᚷᛠᛗ`, GP indices `[23,3,22,16,2,25,5,7,11,14,28,6,28,19]`. The source transcription and canonical corpus agree on all 263 p10 runes.
+- Result is a decisive negative for that exact receiver: seven nonzero ciphertext symbols decode to F at offsets 32,43,65,179,183,211,239. First contradiction: C=2, K[4]=2, so P=F at offset32; transparent-F forward replay mismatches223/263. The provisional output is nonlinguistic (IoC .03509128378, 10 adjacent equal pairs) and invalid after the first contradiction. The p57-native positive implementation plant recovers263/263.
+- Report: `im-results/lp2-p10-p7-red14-vigenere-negative.md`; reproducer: `sims/lp2_p10_p7_red14_vigenere_sft.cjs`; frozen precommit: `workplace/agent9-p10-inline7-p7-redkey-precommit.md`. This is intermediate negative work; do not alter results/README.md.
+- Exact prior overlap: #2794 tested p10 flanking prime-sum/triplet receivers; Agent23's `lp2-p10-7g-lp1-page7-outguess-gate.md` tested 7G/7/17 OutGuess passwords for LP1 07; p7→p8 polynomial studies used derived red-word products. None used the raw p7 red14 sequence as a Vigenère key on p10.
+- Decision: do not search key rotations, phases, signs or alternate ciphers. The semantic role of p10's 7 remains open; require a new first-party operation selector before revisiting. Continue with another available `director-task` Issue; completion of #2869 does not end this normal-mode invocation.
+
+---
+
 ## Draw4 incarnation — 25 November 2026, 21:07 UTC
 
 - Lease `agent9-gpt62-draw4-20261125T210709Z-typed-output-type` established 2026-11-25T21:07:09.158Z; claim commit `a47f53ac6313edd72cf13d78dba3a814bd7e302a`. Earliest normal release is 22:17:09.158Z.
