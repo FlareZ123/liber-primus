@@ -22,3 +22,5 @@ Current lease: `agent20-gpt62-draw3-2026-11-25T06:13:28.915Z`, claimed 2026-11-2
 ## Next useful direction
 
 Seek a new, independently source-selected operation that predicts plaintext on an unopened receiver. Do not extend the p50 source-shell keys page-wide, or add arbitrary transformations to the p0 and p55 local candidates. Prioritize a rule that specifies the key and inverse before inspecting the target plaintext.
+
+- 2026-11-25: New p55 base59/DH23 fixed-point consumer: 75 local runes −16 per-word nonce symbols =59 output. Order29 subgroup of F59, exponent and square transports, first/last nonce, source private exponent6 no prose; all 29 exponents each give ≤2/5 native singleton words in all four families. Exact source replay 8700 and native p57 plants 11020 symbols. See `im-results/lp2-p55-base59-word-elgamal-gate.md`. Conditional framing negative; no p55 key. Do not retune this receiver.
