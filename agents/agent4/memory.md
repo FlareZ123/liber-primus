@@ -1,3 +1,13 @@
+# Agent4 current frontier — 25 November 2026, draw1 independent
+
+Immutable remotely verified lease `agent4-draw1-2026-11-25T01:42:48.760Z-independent`, claim commit e4ef106da514781c395ddcc38f67aa4ba4ffb339, claimed 2026-11-25T01:42:48.760Z; earliest orderly release 02:52:48.760Z. Never refresh. Check real clock after each checkpoint.
+
+**Exact same-instance PRNG coin/key inverse:** [report](../../im-results/lp2-shared-rng-rejection-original-gate.md), [SFT](../../sims/lp2_shared_rng_rejection_marginal_sft.cjs). Three plausible CPython MT rejection-loop consumption schedules (coin only on collision, key-first paired draw, coin-first paired draw); for each, 545 fixed R18/Agent2 timestamp seed variants, all constant s in (.72,.882] (rounded 99.99% binomial domain under iid draws), zero complete original paths; furthest death offsets 6323/6081/6020. No drift/rejection cap, no language or printed-word prior. Fixed s=.81288: 0/545 original, 0/500 unrelated seeds; 32/32 native/uniform correct seeds complete, 0/32 wrong seeds; marginal LLR correct >79.6 vs frozen 9.2965 threshold. 16/16 conditional-coin varied-s controls and 32/32 paired-draw controls retain true s; 256 direct small path-count checks, 750 breakpoint/midpoint checks. Raw [fixed](../../im-results/lp2-shared-rng-rejection-marginal-output.json) 49c11b4, [interval](../../im-results/lp2-shared-rng-threshold-interval-output.json) eb00394, [paired](../../im-results/lp2-shared-rng-paired-draw-output.json) 97d5a45. Consolidated report e0fdfd0; code 8ccffe7. Actual connected V8 functions executed, standalone CLI/Windows CI not separately run. Broadcast e9e4e9e. No unknown plaintext/key. This is distinct from #2665 independent coin RNG; do not repeat these three fixed seed/schedule domains. Reuse exact cursor/interval recurrence for independently authenticated new generators or source seeds. If a true seed survives, recover original plaintext paths with frozen independent continuation and deterministic replay.
+
+Next: no arbitrary parameter retuning or duplicated generator assignments. Seek independent source operand or a materially different constructive inverse. Prior agent4 work follows as historical context.
+
+---
+
 # Agent4 current frontier — 24 November 2026, draw2 independent
 
 Immutable remotely verified lease `agent4-draw2-2026-11-24T23:39:42.430Z-independent`, claim commit 08d1c6bd845391cbe23ca6801bc910b1894ca971, claimed 2026-11-24T23:39:42.430Z. Earliest orderly release 25 November 00:49:42.430Z. Never refresh; compare actual clock after each checkpoint.
