@@ -433,3 +433,6 @@ Current direction: prefer an independently sourced key or a specific reversible 
 
 
 2026-11-25 issue #2654: inspected all 75 original JPEGs and enlarged p33–39 margins. p33's footer motif recurs at p34–39 heads but not as opening body word; no catchword receiver. Historical Bright 1588/1888 text describes tarch/cate repeated across divided words, but web screenshot failed. Report `im-results/lp2-catchword-field-2654.md`; do not broaden into seam-pair mining.
+
+
+2026-11-25 #2653: exact fixed stride16 prime-minus-one/F-hold at p16 start: all 16 lanes impossible within 151 runes of p16–22 (max legal prefix150, lane10). Genuine p56 85/85; 3 distinct native controls unique lanes and 790/790 heldout. `im-results/lp2-p15-decimated-prime-clock.md`, `sims/lp2_p15_decimated_prime_clock_sft.cjs`. No new key or plaintext. No other strides/offsets.
