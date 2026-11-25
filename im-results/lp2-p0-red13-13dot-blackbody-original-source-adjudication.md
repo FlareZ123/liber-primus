@@ -52,10 +52,25 @@ The first later red 13-dot mark in physical reading order is the blind p2 conseq
 At most three low-description readings are warranted:
 1. **Delimiter only:** use the 13-dot mark to separate p0's red title from its black body. This is source-supported and fixes the body start at offset13; it is not a cipher.
 2. **Constant ±13 GP29 shift:** the dot count makes 13 a conceivable shift, but neither sign, phase nor scope is selected. It is not run.
-3. **Period-13 red-title key:** the 13 red title runes could be guessed as a repeating key, but the image gives no instruction that the title is a key and no sign or continuation rule. A related p0-title/2015-prime-delta composition was already tested and rejected; it is not repeated.
+3. **Period-13 red-title key:** the image gives no instruction that the title is a key, but the simplest printed-order additive receiver has now been tested by Agent14 (25 November): use the exact 13 red GP29 values as a period-13 key from the first black body rune, with both arithmetic signs, on the 249-rune p0 body and the 716-rune p0–2 chapter remainder. Neither output develops a language signal; exact values and the bounded decision are below. This retires only the raw printed-order repeating additive key. The separate dot-ordered repeating-key and autokey tests are in [the p0 topology report](lp2-p0-red13-dot-topology-readout.md).
 
-The dated 4 February 2015 prime-delta dialogue is participant-sidecar, not a first-party Cicada instruction. It describes an imaginary preceding F, successive-prime shifting and GP29 differencing; it does not connect that operation to the p0 red title or the 13-dot mark, and it supplies no title-key or page-reset rule. The 2015 idea therefore cannot fill the missing selector.
+The dated 4 February 2015 prime-delta dialogue is participant-sidecar, not a first-party Cicada instruction. It describes an imaginary preceding F, successive-prime shifting and GP29 differencing; it does not connect that operation to the p0 red title or the 13-dot mark, and it supplies no title-key or page-reset rule. The 2015 idea therefore cannot fill the missing selector. Agent14's direct printed-order test below now supplies the first p0–2 output and language score for the raw title-as-key candidate, but it does not change this source-level conclusion.
 
 The external proposed Latin SECUENDI RATIO calculation remains an unverified arithmetic fit on the 8+5 title, using separately chosen keys and cipher directions. The physical placement supplies neither key nor direction. No p1/p2 cipher output, language score, or new cipher sweep was run; the p2 check was only the fixed original-image marker position.
 
-**Decision:** retain the corrected 8+5 red heading and body start at offset13. Treat the 13-dot glyph as recurring punctuation/section layout unless independent first-party evidence selects a cryptographic role. The p2 terminal control does not reject a cross-page or section-specific reset. No reset rule is source-selected. No unknown plaintext, key or cipher mechanism is recovered.
+## Direct printed-order red-title Vigenère test (Agent14, 25 November 2026)
+
+The source image fixes a 13-rune red heading in printed 8+5 order, then the 13-dot boundary and black body. A contemporary solver could try the title itself as a period-13 GP29 additive key, beginning at the first black rune. This is a compact, recognizable Vigenère hypothesis; it is not an operation prescribed by the image. The exact raw key is `[15,8,18,3,6,19,27,0,15,26,18,21,5]`. I tested only the two arithmetic directions, phase zero, with one continuous key clock and no F bypass or page reset.
+
+| Target | Length | Raw IoC | C−K IoC | C+K IoC |
+|---|---:|---:|---:|---:|
+| p0 black body | 249 | 0.03436326 | 0.03462236 | 0.03355357 |
+| p0–2 chapter remainder | 716 | 0.03410165 | 0.03435559 | 0.03419541 |
+| Clear p57 control | 95 | — | — | 0.06270997 |
+
+Neither direction yields a readable opening or a natural-language frequency signal. The chapter-remainder test starts the key at p0's first black rune and carries it continuously through p1 and p2, matching the original 716-rune opening unit. The direct printed-order test is distinct from the dot-topology permutation, the 13-rune autokey, and the 2015 D/E compositions already tested elsewhere. Exact inputs, original p0 image hash, both directions and round-trip implementation checks are preserved in [the Node 22 SFT](../sims/lp2_p0_red13_title_key_sft.cjs).
+
+**Decision:** retire the raw printed-order period-13 additive receiver on p0 body and the p0–2 chapter remainder. This does not show that the heading has no puzzle role; it shows only that this obvious direct Vigenère consumer does not recover the black text. The image still selects the layout boundary, not a key role or cipher direction.
+
+
+**Decision:** retain the corrected 8+5 red heading and body start at offset13. Treat the 13-dot glyph as recurring punctuation/section layout unless independent first-party evidence selects a cryptographic role; the raw printed-order period-13 additive guess is now also negative. The p2 terminal control does not reject a cross-page or section-specific reset. No reset rule is source-selected. No unknown plaintext, key or cipher mechanism is recovered.

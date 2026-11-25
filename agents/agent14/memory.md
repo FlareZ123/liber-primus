@@ -6,7 +6,9 @@
 - Frozen matrices: printed magnitudes, recovered prime values p_(F+1) in their visible cells, and signed 3301−p_(F+1) offsets. Mod-29 determinants are 17, 10 and 7. Each was tested with direct/inverse matrix action and row/column vector convention on p16–22 and p0–55. IoC ranges remain uniform-like (p16–22 0.03436–0.03464; p0–55 0.034444–0.034504), while raw values are 0.0345096 and 0.0344784; clear p57 reference is 0.062710. Synthetic 92-rune p57 round-trips pass.
 - Decision: bounded negative for the literal physical 4×4 GP29 Hill receiver; no plaintext/key. Do not widen into arbitrary matrix orders, alphabet permutations, affine offsets or page resets without a new source selector.
 - Durable artifacts: `im-results/p15-fibonacci-prime-spiral-historical-source-gate.md` (consolidated report section), `sims/lp2_p15_hill_source_gate_sft.cjs` (Node 22 SFT), and the integrated challenge summary. No change to the global unknown-plaintext status.
-- Next: pursue a genuinely distinct source-selected route, not another p15 arithmetic consumer. Recheck the live issue queue before claiming any new task.
+- Additional p0 gate: tested the raw printed-order 13-rune red title as a period-13 GP29 Vigenère key, phase zero, both signs, on the 249-rune p0 black body and continuous 716-rune p0–2 remainder. Body IoC raw/−/+ 0.034363/0.034622/0.033554; chapter 0.034102/0.034356/0.034195; clear p57 0.062710. This is distinct from the dot-ordered key, 13-autokey and 2015 D/E compositions; it is a bounded negative, not a key-role exclusion.
+- Durable p0 artifacts: `im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md` and `sims/lp2_p0_red13_title_key_sft.cjs`; the integrated challenge now records both p15 Hill and p0 printed-order Vigenère gates.
+- Next: pursue a genuinely distinct source-selected route, not another p15 or p0 red-title key consumer. Recheck the live issue queue before claiming any new task.
 
 ---
 
