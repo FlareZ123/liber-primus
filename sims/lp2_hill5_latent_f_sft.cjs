@@ -16,8 +16,9 @@ const exe=path.join(dir,'hill5'+(process.platform==='win32'?'.exe':'')),w=path.j
 cp.execFileSync(process.env.CXX||'g++',['-O3','-std=c++17','-fopenmp',path.join(__dirname,'lp2_hill5_latent_f.cpp'),'-o',exe],{stdio:'inherit',env});fs.writeFileSync(w,lp.join(' ')+'\n');
 const original=corpus.pages.filter(p=>p.page>=23&&p.page<=26).flatMap(p=>p.indices).slice(16);
 assert.equal(original.length,1005);assert.equal(original.reduce((s,x)=>s+x,0),14023);assert.equal(original.reduce((s,x,i)=>s+x*(i+1),0),7096046);
-const result=run(exe,original,w),fit=run(exe,hold.slice(0,1000),w),windows=[];for(let i=0;i+1005<=test.length;i++)windows.push(score(test.slice(i,i+1005)));
+const result=run(exe,original,w),fit=run(exe,hold.slice(0,1000),w),windows=[];
+const resetExe=path.join(dir,'hill5-reset'+(process.platform==='win32'?'.exe':''));cp.execFileSync(process.env.CXX||'g++',['-O3','-std=c++17','-fopenmp',path.join(__dirname,'lp2_hill5_latent_f_page_reset.cpp'),'-o',resetExe],{stdio:'inherit',env});const pageReset=run(resetExe,original,w);for(let i=0;i+1005<=test.length;i++)windows.push(score(test.slice(i,i+1005)));
 const candidates=[];for(let i=0;i<6;i++){try{const d=recoverHold(hold,fit.top.slice(0,6).filter((_,j)=>i!==j),train,1000);candidates.push({excluded:i,fitScore:d.fitScore,order:d.order,fitCorrect:d.plain.slice(0,1000).filter((x,i)=>x===P[i]).length,heldoutCorrect:d.plain.slice(1000).filter((x,i)=>x===P[1000+i]).length});}catch(e){candidates.push({excluded:i,error:e.message})}}
 const recovery=candidates.filter(x=>Number.isFinite(x.fitScore)).sort((a,b)=>b.fitScore-a.fitScore)[0];assert.equal(recovery.fitCorrect,1000);assert.equal(recovery.heldoutCorrect,600);
-console.log(JSON.stringify({original:result,fit,trainN:train.length,testN:test.length,windows:{n:windows.length,min:Math.min(...windows),max:Math.max(...windows)},recovery,candidates},null,2));
+console.log(JSON.stringify({original:result,pageReset,fit,trainN:train.length,testN:test.length,windows:{n:windows.length,min:Math.min(...windows),max:Math.max(...windows)},recovery,candidates},null,2));
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
