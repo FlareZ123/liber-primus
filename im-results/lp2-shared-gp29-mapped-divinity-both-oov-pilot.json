@@ -1,0 +1,47 @@
+{
+  "anchor": 47,
+  "omitted": [
+    49,
+    56
+  ],
+  "budget": 1,
+  "anchorOptions": 4370,
+  "range": [
+    0,
+    10
+  ],
+  "completedThrough": 10,
+  "complete": true,
+  "cap": null,
+  "nodes": 827,
+  "joins": 2542,
+  "filters": 2591215,
+  "featureTests": 794279,
+  "saturated": 50,
+  "dimensionNodes": {
+    "3": 1,
+    "6": 43,
+    "7": 66,
+    "8": 319,
+    "9": 354,
+    "10": 24,
+    "16": 20
+  },
+  "enumNodes": 1,
+  "enumerated": 0,
+  "leaves": 1,
+  "maxLong": 0,
+  "maxAll": 0,
+  "accepted": 0,
+  "best": [],
+  "domains": {
+    "1": 11181,
+    "2": 20619,
+    "14": 6994,
+    "15": 17244,
+    "18": 17415,
+    "36": 21200,
+    "39": 12002,
+    "47": 4370
+  }
+}
