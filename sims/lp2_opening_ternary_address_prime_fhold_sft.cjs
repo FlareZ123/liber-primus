@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs');
-function experiment(A,B) {
+function experiment(A,B,mode='original',vmin=0,vmax=1440) {
  const same=(x,y)=>x.length===y.length&&x.every((z,i)=>z===y[i]),assert=(ok,msg)=>{if(!ok)throw Error(msg)},mod=x=>(x+29)%29;
  const original=A.pages.slice(0,3).flatMap(p=>p.indices);assert(original.length===729,"opening shape");
  const maxOrigin=3301,N=729,cut=400,primes=[];for(let n=2;primes.length<maxOrigin+N+1;n++){let yes=true;for(let d=2;d*d<=n;d++)if(n%d===0){yes=false;break}if(yes)primes.push((n-1)%29)}
@@ -19,8 +19,12 @@ function experiment(A,B) {
  // Independent scalar exact check for every original candidate at origin zero and sampled offsets.
  function scalar(c,o){let h=new Set([0]);for(let i=0;i<c.length;i++){let t=new Set();for(const k of h){if(c[i]===0)t.add(k+1);if(c[i]!==primes[o+i-k])t.add(k)}if(!t.size)return i;h=t}return c.length}
  assert(reach(A.pages[56].indices,0)===85,"p56 reach");
- let prefix=0,full=0,max=0,best=null,origin0={prefix:0,full:0,max:0};const alive=[];
- for(let vi=0;vi<variants.length;vi++){const v=variants[vi],c=v.map.map(i=>original[i]);assert(reach(c,0)===scalar(c,0),"scalar exact origin0");for(let o=0;o<=maxOrigin;o++){let n=reach(c,o);if(o===0){if(n>=cut)origin0.prefix++;if(n===N)origin0.full++;origin0.max=Math.max(origin0.max,n)}if(n>=cut){prefix++;alive.push({vi,o,n})}if(n===N)full++;if(n>max){max=n;best={order:v.order,turn:v.turn,origin:o}}}let sampled=(vi*7919)%3302;assert(reach(c,sampled)===scalar(c,sampled),"scalar sampled origin")}
+ function sweep(tape) {
+   assert(tape.filter(x=>x===0).length<64,"64-bit exact state capacity");
+   let prefix=0,full=0,max=0,best=null,origin0={prefix:0,full:0,max:0};const alive=[];
+   for(let vi=vmin;vi<vmax;vi++){const v=variants[vi],c=v.map.map(i=>tape[i]);assert(reach(c,0)===scalar(c,0),"scalar exact origin0");for(let o=0;o<=maxOrigin;o++){let n=reach(c,o);if(o===0){if(n>=cut)origin0.prefix++;if(n===N)origin0.full++;origin0.max=Math.max(origin0.max,n)}if(n>=cut){prefix++;alive.push({vi,o,n})}if(n===N)full++;if(n>max){max=n;best={order:v.order,turn:v.turn,origin:o}}}let sampled=(vi*7919)%3302;assert(reach(c,sampled)===scalar(c,sampled),"scalar sampled origin")}
+   return {prefix,full,max,best,origin0,alive};
+ }
  const ordinary=Array.from({length:maxOrigin+1},(_,o)=>reach(original,o));const raw={max:Math.max(...ordinary),prefix:ordinary.filter(n=>n>=cut).length,full:ordinary.filter(n=>n===N).length};
  // Positive plants invert actual address permutation and native F encoder exactly.
  const nt=B.sections.filter(s=>s.name!=="p56_an_end"&&s.name!=="p57_parable").flatMap(native);
@@ -55,10 +59,21 @@ function experiment(A,B) {
    const top=[];for(const k of candidates){const c=cc[k.vi],score=fastScore(c,k.o);if(!Number.isFinite(score))throw Error("prefix reach and MAP disagree");if(top.length<10||score>top[top.length-1].score){top.push({...k,score});top.sort((a,b)=>b.score-a.score||a.vi-b.vi||a.o-b.o);if(top.length>10)top.pop()}}
    return top.map(k=>{const c=cc[k.vi],d=decode(c,k.o,0,cut);assert(Math.abs(d.s-k.score)<1e-8,"two-lane exact MAP check");const suffix=decode(c,k.o,cut,N,d.h,d.last);const p=suffix?[...d.p,...suffix.p]:null;return {vi:k.vi,order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,prefixScore:d.s/cut,prefixH:d.h,prefixLast:d.last,heldoutScore:suffix?suffix.s/(N-cut):null,heldoutLength:suffix?suffix.p.length:0,prefix:d.p.slice(0,70).map(x=>A.translit[x]).join(" "),heldout:suffix?suffix.p.slice(0,70).map(x=>A.translit[x]).join(" "):null,exactReplay:p?same(enc(p,k.o),c):false,plaintext:p}});
  }
- const ranked=rankPrefix(original,alive);
- const sourceZero=alive.filter(k=>k.o===0&&k.n===N).map(k=>({order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,score:fastScore(variants[k.vi].map.map(i=>original[i]),k.o,N)/N,readout:decode(variants[k.vi].map.map(i=>original[i]),k.o).p.map(x=>A.translit[x]).join(" ")}));
- const reference=plants.map((p,j)=>{const x=nt.slice(p.start,p.start+N);let s=-Math.log(29);for(let i=1;i<x.length;i++)s+=lp[x[i-1]][x[i]];return {start:p.start,mean:s/x.length}});
- return {n:N,cut,variants:variants.length,origins:maxOrigin+1,total:variants.length*(maxOrigin+1),original:{prefix,full,max,best,origin0,raw},plants,p56:p56.length,ranked,sourceZero,reference};
+ const plant=mode.startsWith("plant")?Number(mode.slice(5)):-1;
+ let tape=original,truth=null;
+ if(plant>=0){const p=plants[plant],vi=variants.findIndex(v=>same(v.order,p.order)&&v.turn===p.turn);truth=nt.slice(p.start,p.start+N);const c=enc(truth,p.origin);tape=new Array(N);for(let j=0;j<N;j++)tape[variants[vi].map[j]]=c[j]}
+ const {alive,...stats}=sweep(tape);
+ function rankComplete(tape,candidates) {
+   const cc=variants.map(v=>v.map.map(i=>tape[i])),top=[];
+   for(const k of candidates){if(k.n!==N)continue;const c=cc[k.vi],score=fastScore(c,k.o,N);if(top.length<5||score>top[top.length-1].score){top.push({...k,score});top.sort((a,b)=>b.score-a.score||a.vi-b.vi||a.o-b.o);if(top.length>5)top.pop()}}
+   return top.map(k=>{const c=cc[k.vi],d=decode(c,k.o);assert(Math.abs(d.s-k.score)<1e-8,"full MAP exact");const forward=enc(d.p,k.o),physical=new Array(N);for(let j=0;j<N;j++)physical[variants[k.vi].map[j]]=forward[j];assert(same(physical,tape),"complete physical forward replay");return {vi:k.vi,order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,score:d.s/N,readout:d.p.slice(0,100).map(x=>A.translit[x]).join(" "),exactReplay:true,plaintext:d.p,accuracy:truth?d.p.filter((x,i)=>x===truth[i]).length:null}});
+ }
+ const ranked=mode==='original-full'?[]:rankPrefix(tape,alive);
+ if(truth)for(const r of ranked){r.keyExact=same(r.order,plants[plant].order)&&r.turn===plants[plant].turn&&r.origin===plants[plant].origin;r.accuracy=r.plaintext?r.plaintext.filter((x,i)=>x===truth[i]).length:null;r.heldoutAccuracy=r.plaintext?r.plaintext.slice(cut).filter((x,i)=>x===truth[i+cut]).length:null}
+ const sourceZero=alive.filter(k=>k.o===0&&k.n===N).map(k=>({order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,score:fastScore(variants[k.vi].map.map(i=>tape[i]),k.o,N)/N,readout:decode(variants[k.vi].map.map(i=>tape[i]),k.o).p.map(x=>A.translit[x]).join(" ")}));
+ const reference=plants.map(p=>{const x=nt.slice(p.start,p.start+N);let s=-Math.log(29);for(let i=1;i<x.length;i++)s+=lp[x[i-1]][x[i]];return {start:p.start,mean:s/x.length}});
+ const rankedComplete=rankComplete(tape,alive);
+ return {mode,vmin,vmax,n:N,cut,variants:variants.length,origins:maxOrigin+1,total:(vmax-vmin)*(maxOrigin+1),stats,raw,plants,p56:p56.length,ranked,rankedComplete,sourceZero,reference};
 }
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json'),process.argv[2]||'original',Number(process.argv[3]||0),Number(process.argv[4]||1440)),null,2));
