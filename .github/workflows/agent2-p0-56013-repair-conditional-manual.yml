@@ -1,0 +1,28 @@
+name: Agent 2 exact conditional p0 title hold and spend repair search
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  search:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check exact planted cases
+        run: node sims/lp2_p0_56013_repair_conditional_sft.cjs --selftest
+      - name: Fetch verified historical operand and search
+        shell: pwsh
+        run: |
+          $source = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $source
+          if ($LASTEXITCODE -ne 0) { throw 'Historical DATA/560.13 download failed' }
+          node sims/lp2_p0_56013_repair_conditional_sft.cjs $source p0-56013-repair-conditional.json
+          if ($LASTEXITCODE -ne 0) { throw 'Conditional exact search failed' }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p0-56013-repair-conditional
+          path: p0-56013-repair-conditional.json
