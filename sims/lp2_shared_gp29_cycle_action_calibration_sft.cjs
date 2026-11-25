@@ -578,6 +578,31 @@ function testMappedDivinity() {
   };
 }
 
+function testMappedDivinityLocalDomains() {
+  const counts = CIPHER.map((cipher, index) => {
+    const words = [...dictionary.values()].filter(entry => entry.encoded.length === cipher.length);
+    const candidates = new Set();
+    let phaseOptions = 0;
+    for (const entry of words) {
+      for (let start = 0; start < 8; start++) {
+        if (!samePhaseCompatible(entry.encoded, cipher, start, divinity)) continue;
+        phaseOptions++;
+        candidates.add(String.fromCharCode(...entry.encoded));
+      }
+    }
+    return { index, length: cipher.length, phaseOptions, candidateWords: candidates.size };
+  });
+  const sorted = counts.map(entry => entry.candidateWords).sort((a, b) => a - b);
+  return {
+    groups: counts.length,
+    zeroCandidateGroups: counts.filter(entry => entry.candidateWords === 0).map(entry => entry.index),
+    minimumCandidateWords: sorted[0],
+    medianCandidateWords: sorted[Math.floor(sorted.length / 2)],
+    maximumCandidateWords: sorted[sorted.length - 1],
+    counts
+  };
+}
+
 function cycleLengths(permutation) {
   const seen = new Set(), lengths = [];
   for (let i = 0; i < permutation.length; i++) {
@@ -608,7 +633,8 @@ const report = {
   oracleControls: runOracleControls(),
   sourceSelectedDivinity: {
     numericKey: testNumericDivinity(),
-    mappedKeyword: testMappedDivinity()
+    mappedKeyword: testMappedDivinity(),
+    mappedKeywordLocalDomains: testMappedDivinityLocalDomains()
   },
   priorNonlinearCommonCycleFit: {
     originalOuterPermutationCycleLengths: cycleLengths(previousCycleFit.original.T),
