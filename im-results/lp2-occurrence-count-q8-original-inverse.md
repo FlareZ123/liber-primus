@@ -26,7 +26,7 @@ Use the frozen broad 35,944 GP word-form register (10,842 donor-training/solved 
 | p40–53 |669|87|352|33|
 | p54–55 |66|12|16|3|
 
-Even each chapter privately keyed fails. The lower bounds sum to 1,082 of 2,896 groups (37.36%); the common-key restriction could only worsen coverage. The terminal p54→p55 fit is not warranted after the prerequisite fails; p55 was included only in the all-chapter necessary tests.
+Even each chapter privately keyed fails. The lower bounds sum to 1,182 of 2,896 groups (40.81%); the common-key restriction could only worsen coverage. The terminal p54→p55 fit is not warranted after the prerequisite fails; p55 was included only in the all-chapter necessary tests.
 
 ## Calibration and reproducibility
 
