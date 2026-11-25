@@ -64,6 +64,8 @@ function experiment(gp, texts) {
   const all=gp.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
   function window(a,n,target){let count=0,min=Infinity,max=-1,matches=0;for(let i=0;i<a.length;i++){count+=+(a[i]===0);if(i>=n)count-=+(a[i-n]===0);if(i>=n-1){min=Math.min(min,count);max=Math.max(max,count);matches+=+(count===target)}}return {nativeRunes:a.length,windows:a.length-n+1,min,max,matches}}
   const originalF=all.filter(x=>x===0).length,allF={length:all.length,originalF,windows:native.map(a=>window(a,all.length,originalF)),chapterWindows:native.map(a=>window(a,cipher.length,original.originalF))};
+  const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
+  allF.byChapter=ranges.map(([lo,hi])=>{const a=gp.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices),f=a.filter(x=>x===0).length;return {lo,hi,n:a.length,f,windows:native.map(x=>{const {min,max,matches}=window(x,a.length,f);return {min,max,matches}})}});
   return {original,plants,allF};
 }
 if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.join(__dirname,"..");const read=p=>fs.readFileSync(path.join(root,p),"utf8");const paths=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt"];console.log(JSON.stringify(experiment(JSON.parse(read(paths[0])),paths.slice(1).map(read)),null,2));}
