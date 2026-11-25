@@ -25,6 +25,18 @@ A concrete Dutch-library route is now identified; this is more actionable than a
 
 **Recommended first request:** ask the Documentatiecentrum to confirm whether inventory entries B4A-22/23 still correspond to two physical copies of the 1977 Zahradnik/Severa/Kabos Dutch edition; whether either is green-dot/reference-only; and whether a non-member can inspect or receive lawful photographs of (1) title and copyright/edition pages and (2) the complete mayfly plate and facing/continued legend, including page numbers and margins. If the copies are gone, ask which local library currently holds the exact ISBN. Do not ask for or accept OCR from a later edition as a substitute. No email or loan request has been sent by this agent.
 
+
+
+### Physical English comparator in Galway (backup, not a substitute for the Dutch edition)
+
+A current search result also surfaced a physical first-edition copy of the same illustrated work in Ireland:
+
+- *A Field Guide in Colour to Insects*, Jiří Zahradník, illustrated by František Severa, translated from Czech by Olga Kuthanová; Octopus Books, London, 1977; ISBN **9780706405828**.
+- The [AbeBooks listing](https://www.abebooks.com/first-edition/Field-Guide-Colour-Insects-Jiri-Zahradnik/30135581486/bd) identifies **MW Books Ltd., Galway, Ireland**, and showed four copies available in the 25 November 2026 search result.
+- This is a **translation comparator**, not the exact Dutch edition. It may nevertheless let a human inspect the corresponding Severa plate and its caption/facing legend immediately, and may help confirm plate numbering or the Czech source text. Do not substitute it for the Dutch edition where exact Dutch wording or edition-specific pagination matters.
+
+Recommended fallback: ask MW Books for a photograph of the relevant mayfly plate and its complete facing/continued caption (the Dutch edition is reported as p.90; verify whether the English pagination matches) before buying. No seller contact or purchase has been made.
+
 ## Precommitted acceptance and fork
 
 | Acquired evidence | Decision |
