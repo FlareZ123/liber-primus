@@ -1,0 +1,2173 @@
+{
+  "summary": [
+    {
+      "radix": 59,
+      "layouts": 24,
+      "pairs": 130,
+      "forwardFailures": 23,
+      "reverseFailures": 24,
+      "eitherFailures": 24,
+      "min": 7,
+      "max": 16,
+      "forwardRange": [
+        0,
+        8
+      ]
+    },
+    {
+      "radix": 60,
+      "layouts": 24,
+      "pairs": 126,
+      "forwardFailures": 24,
+      "reverseFailures": 24,
+      "eitherFailures": 24,
+      "min": 4,
+      "max": 17,
+      "forwardRange": [
+        1,
+        7
+      ]
+    }
+  ],
+  "result": [
+    {
+      "radix": 59,
+      "layout": "row-0-0-0",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 11,
+      "either": 15,
+      "witnessF": [
+        {
+          "child": 12,
+          "parent": 243,
+          "C": 15,
+          "P": 9,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 179,
+          "parent": 172,
+          "C": 15,
+          "P": 15,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 11,
+          "parent": 218,
+          "C": 22,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 26,
+          "parent": 170,
+          "C": 2,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-0-0-1",
+      "pairs": 130,
+      "forward": 3,
+      "reverse": 8,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 26,
+          "parent": 170,
+          "C": 2,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 70,
+          "parent": 166,
+          "C": 2,
+          "P": 15,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 11,
+          "parent": 218,
+          "C": 22,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 26,
+          "parent": 170,
+          "C": 2,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-0-1-0",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 9,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 11,
+          "parent": 218,
+          "C": 15,
+          "P": 9,
+          "parentC": 1,
+          "parentP": 1
+        },
+        {
+          "child": 182,
+          "parent": 164,
+          "C": 15,
+          "P": 15,
+          "parentC": 1,
+          "parentP": 1
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 9,
+          "parent": 245,
+          "C": 19,
+          "P": 7,
+          "parentC": 19,
+          "parentP": 19
+        },
+        {
+          "child": 26,
+          "parent": 170,
+          "C": 7,
+          "P": 7,
+          "parentC": 19,
+          "parentP": 19
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-0-1-1",
+      "pairs": 130,
+      "forward": 5,
+      "reverse": 7,
+      "either": 12,
+      "witnessF": [
+        {
+          "child": 30,
+          "parent": 139,
+          "C": 5,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 133,
+          "parent": 139,
+          "C": 5,
+          "P": 5,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 52,
+          "parent": 85,
+          "C": 11,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 1
+        },
+        {
+          "child": 130,
+          "parent": 85,
+          "C": 18,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 1
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-1-0-0",
+      "pairs": 130,
+      "forward": 5,
+      "reverse": 4,
+      "either": 9,
+      "witnessF": [
+        {
+          "child": 99,
+          "parent": 34,
+          "C": 21,
+          "P": 21,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 154,
+          "parent": 14,
+          "C": 21,
+          "P": 10,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 9,
+          "parent": 245,
+          "C": 18,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 23
+        },
+        {
+          "child": 227,
+          "parent": 245,
+          "C": 6,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 23
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-1-0-1",
+      "pairs": 130,
+      "forward": 2,
+      "reverse": 10,
+      "either": 12,
+      "witnessF": [
+        {
+          "child": 86,
+          "parent": 109,
+          "C": 1,
+          "P": 1,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 211,
+          "parent": 60,
+          "C": 1,
+          "P": 15,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 29,
+          "parent": 65,
+          "C": 10,
+          "P": 10,
+          "parentC": 3,
+          "parentP": 3
+        },
+        {
+          "child": 185,
+          "parent": 154,
+          "C": 0,
+          "P": 10,
+          "parentC": 3,
+          "parentP": 3
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-1-1-0",
+      "pairs": 130,
+      "forward": 6,
+      "reverse": 5,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 54,
+          "parent": 154,
+          "C": 0,
+          "P": 0,
+          "parentC": 3,
+          "parentP": 3
+        },
+        {
+          "child": 185,
+          "parent": 154,
+          "C": 0,
+          "P": 10,
+          "parentC": 3,
+          "parentP": 3
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 121,
+          "parent": 233,
+          "C": 18,
+          "P": 18,
+          "parentC": 25,
+          "parentP": 18
+        },
+        {
+          "child": 149,
+          "parent": 171,
+          "C": 7,
+          "P": 18,
+          "parentC": 25,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "row-1-1-1",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 8,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 66,
+          "parent": 25,
+          "C": 7,
+          "P": 7,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 155,
+          "parent": 110,
+          "C": 7,
+          "P": 19,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 77,
+          "parent": 142,
+          "C": 18,
+          "P": 18,
+          "parentC": 1,
+          "parentP": 6
+        },
+        {
+          "child": 228,
+          "parent": 142,
+          "C": 6,
+          "P": 18,
+          "parentC": 1,
+          "parentP": 6
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-0-0-0",
+      "pairs": 130,
+      "forward": 3,
+      "reverse": 8,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 54,
+          "parent": 154,
+          "C": 23,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 15
+        },
+        {
+          "child": 10,
+          "parent": 154,
+          "C": 23,
+          "P": 13,
+          "parentC": 9,
+          "parentP": 15
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 138,
+          "parent": 229,
+          "C": 23,
+          "P": 16,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 147,
+          "parent": 170,
+          "C": 27,
+          "P": 16,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-0-0-1",
+      "pairs": 130,
+      "forward": 0,
+      "reverse": 12,
+      "either": 12,
+      "witnessF": null,
+      "witnessR": [
+        {
+          "child": 54,
+          "parent": 154,
+          "C": 18,
+          "P": 18,
+          "parentC": 24,
+          "parentP": 18
+        },
+        {
+          "child": 185,
+          "parent": 154,
+          "C": 13,
+          "P": 18,
+          "parentC": 24,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-0-1-0",
+      "pairs": 130,
+      "forward": 3,
+      "reverse": 10,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 154,
+          "parent": 14,
+          "C": 24,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 78,
+          "parent": 45,
+          "C": 24,
+          "P": 24,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 42,
+          "parent": 28,
+          "C": 4,
+          "P": 3,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 130,
+          "parent": 85,
+          "C": 25,
+          "P": 3,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-0-1-1",
+      "pairs": 130,
+      "forward": 8,
+      "reverse": 8,
+      "either": 16,
+      "witnessF": [
+        {
+          "child": 155,
+          "parent": 110,
+          "C": 19,
+          "P": 15,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 213,
+          "parent": 148,
+          "C": 19,
+          "P": 19,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 26,
+          "parent": 170,
+          "C": 26,
+          "P": 6,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 59,
+          "parent": 68,
+          "C": 1,
+          "P": 6,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-1-0-0",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 11,
+      "either": 14,
+      "witnessF": [
+        {
+          "child": 186,
+          "parent": 19,
+          "C": 1,
+          "P": 1,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 196,
+          "parent": 173,
+          "C": 1,
+          "P": 6,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 220,
+          "parent": 57,
+          "C": 24,
+          "P": 24,
+          "parentC": 2,
+          "parentP": 2
+        },
+        {
+          "child": 246,
+          "parent": 195,
+          "C": 20,
+          "P": 24,
+          "parentC": 2,
+          "parentP": 2
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-1-0-1",
+      "pairs": 130,
+      "forward": 1,
+      "reverse": 8,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 44,
+          "parent": 226,
+          "C": 11,
+          "P": 20,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 221,
+          "parent": 51,
+          "C": 11,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 66,
+          "parent": 25,
+          "C": 16,
+          "P": 16,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 84,
+          "parent": 170,
+          "C": 14,
+          "P": 16,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-1-1-0",
+      "pairs": 130,
+      "forward": 1,
+      "reverse": 10,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 124,
+          "parent": 13,
+          "C": 4,
+          "P": 3,
+          "parentC": 4,
+          "parentP": 18
+        },
+        {
+          "child": 139,
+          "parent": 13,
+          "C": 4,
+          "P": 4,
+          "parentC": 4,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 97,
+          "parent": 148,
+          "C": 2,
+          "P": 2,
+          "parentC": 28,
+          "parentP": 18
+        },
+        {
+          "child": 213,
+          "parent": 148,
+          "C": 5,
+          "P": 2,
+          "parentC": 28,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "column-1-1-1",
+      "pairs": 130,
+      "forward": 5,
+      "reverse": 10,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 89,
+          "parent": 217,
+          "C": 1,
+          "P": 1,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 196,
+          "parent": 173,
+          "C": 1,
+          "P": 4,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 42,
+          "parent": 28,
+          "C": 18,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 101,
+          "parent": 225,
+          "C": 24,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-0-0",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 8,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 205,
+          "parent": 75,
+          "C": 5,
+          "P": 5,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 209,
+          "parent": 172,
+          "C": 5,
+          "P": 16,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 11,
+          "parent": 218,
+          "C": 22,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 59,
+          "parent": 68,
+          "C": 18,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-0-1",
+      "pairs": 130,
+      "forward": 3,
+      "reverse": 7,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 84,
+          "parent": 170,
+          "C": 9,
+          "P": 9,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 130,
+          "parent": 85,
+          "C": 9,
+          "P": 24,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 59,
+          "parent": 68,
+          "C": 3,
+          "P": 3,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 74,
+          "parent": 202,
+          "C": 4,
+          "P": 3,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-1-0",
+      "pairs": 130,
+      "forward": 2,
+      "reverse": 6,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 182,
+          "parent": 164,
+          "C": 24,
+          "P": 4,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 185,
+          "parent": 154,
+          "C": 24,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 93,
+          "parent": 83,
+          "C": 27,
+          "P": 16,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 147,
+          "parent": 170,
+          "C": 16,
+          "P": 16,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-1-1",
+      "pairs": 130,
+      "forward": 4,
+      "reverse": 8,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 30,
+          "parent": 139,
+          "C": 1,
+          "P": 4,
+          "parentC": 19,
+          "parentP": 19
+        },
+        {
+          "child": 59,
+          "parent": 68,
+          "C": 1,
+          "P": 1,
+          "parentC": 19,
+          "parentP": 19
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 178,
+          "parent": 163,
+          "C": 18,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 86,
+          "parent": 109,
+          "C": 4,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-2-0",
+      "pairs": 130,
+      "forward": 5,
+      "reverse": 3,
+      "either": 7,
+      "witnessF": [
+        {
+          "child": 97,
+          "parent": 148,
+          "C": 19,
+          "P": 18,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 205,
+          "parent": 75,
+          "C": 19,
+          "P": 19,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 121,
+          "parent": 233,
+          "C": 3,
+          "P": 18,
+          "parentC": 26,
+          "parentP": 10
+        },
+        {
+          "child": 174,
+          "parent": 206,
+          "C": 4,
+          "P": 18,
+          "parentC": 26,
+          "parentP": 10
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-2-1",
+      "pairs": 130,
+      "forward": 3,
+      "reverse": 7,
+      "either": 9,
+      "witnessF": [
+        {
+          "child": 179,
+          "parent": 172,
+          "C": 23,
+          "P": 23,
+          "parentC": 3,
+          "parentP": 3
+        },
+        {
+          "child": 46,
+          "parent": 196,
+          "C": 23,
+          "P": 10,
+          "parentC": 3,
+          "parentP": 3
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 42,
+          "parent": 28,
+          "C": 16,
+          "P": 16,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 165,
+          "parent": 18,
+          "C": 27,
+          "P": 16,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-3-0",
+      "pairs": 130,
+      "forward": 6,
+      "reverse": 6,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 179,
+          "parent": 172,
+          "C": 4,
+          "P": 4,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 209,
+          "parent": 172,
+          "C": 4,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 11,
+          "parent": 218,
+          "C": 9,
+          "P": 24,
+          "parentC": 3,
+          "parentP": 3
+        },
+        {
+          "child": 90,
+          "parent": 195,
+          "C": 24,
+          "P": 24,
+          "parentC": 3,
+          "parentP": 3
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "layout": "ring-3-1",
+      "pairs": 130,
+      "forward": 2,
+      "reverse": 9,
+      "either": 11,
+      "witnessF": [
+        {
+          "child": 78,
+          "parent": 45,
+          "C": 1,
+          "P": 15,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 141,
+          "parent": 45,
+          "C": 1,
+          "P": 6,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 97,
+          "parent": 148,
+          "C": 18,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 133,
+          "parent": 139,
+          "C": 15,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-0-0-0",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 6,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 123,
+          "parent": 54,
+          "C": 24,
+          "P": 24,
+          "parentC": 0,
+          "parentP": 24
+        },
+        {
+          "child": 36,
+          "parent": 54,
+          "C": 24,
+          "P": 4,
+          "parentC": 0,
+          "parentP": 24
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 30,
+          "parent": 141,
+          "C": 20,
+          "P": 18,
+          "parentC": 15,
+          "parentP": 15
+        },
+        {
+          "child": 75,
+          "parent": 177,
+          "C": 18,
+          "P": 18,
+          "parentC": 15,
+          "parentP": 15
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-0-0-1",
+      "pairs": 126,
+      "forward": 3,
+      "reverse": 5,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 17,
+          "parent": 202,
+          "C": 25,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 38,
+          "parent": 133,
+          "C": 25,
+          "P": 17,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 17,
+          "parent": 202,
+          "C": 25,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 178,
+          "parent": 166,
+          "C": 18,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-0-1-0",
+      "pairs": 126,
+      "forward": 3,
+      "reverse": 8,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 204,
+          "parent": 194,
+          "C": 4,
+          "P": 4,
+          "parentC": 1,
+          "parentP": 1
+        },
+        {
+          "child": 107,
+          "parent": 218,
+          "C": 4,
+          "P": 3,
+          "parentC": 1,
+          "parentP": 1
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 101,
+          "parent": 229,
+          "C": 21,
+          "P": 10,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 217,
+          "parent": 219,
+          "C": 10,
+          "P": 10,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-0-1-1",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 10,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 30,
+          "parent": 141,
+          "C": 5,
+          "P": 23,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 53,
+          "parent": 171,
+          "C": 5,
+          "P": 2,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 62,
+          "parent": 124,
+          "C": 27,
+          "P": 16,
+          "parentC": 24,
+          "parentP": 24
+        },
+        {
+          "child": 178,
+          "parent": 166,
+          "C": 16,
+          "P": 16,
+          "parentC": 24,
+          "parentP": 24
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-1-0-0",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 9,
+      "either": 12,
+      "witnessF": [
+        {
+          "child": 99,
+          "parent": 34,
+          "C": 21,
+          "P": 21,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 154,
+          "parent": 14,
+          "C": 21,
+          "P": 10,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 18,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 221,
+          "parent": 52,
+          "C": 13,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-1-0-1",
+      "pairs": 126,
+      "forward": 6,
+      "reverse": 10,
+      "either": 16,
+      "witnessF": [
+        {
+          "child": 53,
+          "parent": 171,
+          "C": 9,
+          "P": 9,
+          "parentC": 25,
+          "parentP": 18
+        },
+        {
+          "child": 138,
+          "parent": 233,
+          "C": 9,
+          "P": 24,
+          "parentC": 25,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 123,
+          "parent": 54,
+          "C": 10,
+          "P": 10,
+          "parentC": 5,
+          "parentP": 5
+        },
+        {
+          "child": 187,
+          "parent": 81,
+          "C": 5,
+          "P": 10,
+          "parentC": 5,
+          "parentP": 5
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-1-1-0",
+      "pairs": 126,
+      "forward": 6,
+      "reverse": 5,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 60,
+          "parent": 106,
+          "C": 4,
+          "P": 4,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 242,
+          "parent": 42,
+          "C": 4,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 91,
+          "parent": 49,
+          "C": 4,
+          "P": 4,
+          "parentC": 5,
+          "parentP": 5
+        },
+        {
+          "child": 219,
+          "parent": 59,
+          "C": 24,
+          "P": 4,
+          "parentC": 5,
+          "parentP": 5
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "row-1-1-1",
+      "pairs": 126,
+      "forward": 5,
+      "reverse": 8,
+      "either": 12,
+      "witnessF": [
+        {
+          "child": 100,
+          "parent": 83,
+          "C": 21,
+          "P": 21,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 154,
+          "parent": 14,
+          "C": 21,
+          "P": 10,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 221,
+          "parent": 52,
+          "C": 13,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 225,
+          "parent": 52,
+          "C": 20,
+          "P": 18,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-0-0-0",
+      "pairs": 126,
+      "forward": 6,
+      "reverse": 10,
+      "either": 15,
+      "witnessF": [
+        {
+          "child": 11,
+          "parent": 222,
+          "C": 23,
+          "P": 4,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 101,
+          "parent": 229,
+          "C": 23,
+          "P": 23,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 4,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 78,
+          "parent": 46,
+          "C": 23,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-0-0-1",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 11,
+      "either": 14,
+      "witnessF": [
+        {
+          "child": 130,
+          "parent": 86,
+          "C": 25,
+          "P": 3,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 97,
+          "parent": 150,
+          "C": 25,
+          "P": 18,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 44,
+          "parent": 230,
+          "C": 15,
+          "P": 15,
+          "parentC": 0,
+          "parentP": 0
+        },
+        {
+          "child": 99,
+          "parent": 34,
+          "C": 19,
+          "P": 15,
+          "parentC": 0,
+          "parentP": 0
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-0-1-0",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 10,
+      "either": 14,
+      "witnessF": [
+        {
+          "child": 130,
+          "parent": 86,
+          "C": 25,
+          "P": 3,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 97,
+          "parent": 150,
+          "C": 25,
+          "P": 17,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 23,
+          "P": 10,
+          "parentC": 21,
+          "parentP": 21
+        },
+        {
+          "child": 93,
+          "parent": 84,
+          "C": 10,
+          "P": 10,
+          "parentC": 21,
+          "parentP": 21
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-0-1-1",
+      "pairs": 126,
+      "forward": 7,
+      "reverse": 10,
+      "either": 17,
+      "witnessF": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 23,
+          "P": 10,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 78,
+          "parent": 46,
+          "C": 23,
+          "P": 23,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 23,
+          "P": 10,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 93,
+          "parent": 84,
+          "C": 10,
+          "P": 10,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-1-0-0",
+      "pairs": 126,
+      "forward": 6,
+      "reverse": 7,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 186,
+          "parent": 19,
+          "C": 1,
+          "P": 1,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 222,
+          "parent": 51,
+          "C": 1,
+          "P": 15,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 30,
+          "parent": 141,
+          "C": 22,
+          "P": 18,
+          "parentC": 23,
+          "parentP": 16
+        },
+        {
+          "child": 241,
+          "parent": 141,
+          "C": 18,
+          "P": 18,
+          "parentC": 23,
+          "parentP": 16
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-1-0-1",
+      "pairs": 126,
+      "forward": 3,
+      "reverse": 8,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 217,
+          "parent": 219,
+          "C": 10,
+          "P": 10,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 21,
+          "parent": 137,
+          "C": 10,
+          "P": 1,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 30,
+          "parent": 141,
+          "C": 22,
+          "P": 18,
+          "parentC": 5,
+          "parentP": 16
+        },
+        {
+          "child": 241,
+          "parent": 141,
+          "C": 18,
+          "P": 18,
+          "parentC": 5,
+          "parentP": 16
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-1-1-0",
+      "pairs": 126,
+      "forward": 4,
+      "reverse": 5,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 60,
+          "parent": 106,
+          "C": 1,
+          "P": 6,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 202,
+          "parent": 209,
+          "C": 1,
+          "P": 1,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 116,
+          "parent": 54,
+          "C": 6,
+          "P": 1,
+          "parentC": 23,
+          "parentP": 14
+        },
+        {
+          "child": 123,
+          "parent": 54,
+          "C": 1,
+          "P": 1,
+          "parentC": 23,
+          "parentP": 14
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "column-1-1-1",
+      "pairs": 126,
+      "forward": 1,
+      "reverse": 5,
+      "either": 6,
+      "witnessF": [
+        {
+          "child": 213,
+          "parent": 150,
+          "C": 4,
+          "P": 3,
+          "parentC": 5,
+          "parentP": 23
+        },
+        {
+          "child": 28,
+          "parent": 150,
+          "C": 4,
+          "P": 4,
+          "parentC": 5,
+          "parentP": 23
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 100,
+          "parent": 83,
+          "C": 21,
+          "P": 2,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 165,
+          "parent": 18,
+          "C": 27,
+          "P": 2,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-0-0",
+      "pairs": 126,
+      "forward": 6,
+      "reverse": 12,
+      "either": 17,
+      "witnessF": [
+        {
+          "child": 107,
+          "parent": 218,
+          "C": 9,
+          "P": 9,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 222,
+          "parent": 51,
+          "C": 9,
+          "P": 24,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 26,
+          "parent": 173,
+          "C": 16,
+          "P": 16,
+          "parentC": 20,
+          "parentP": 20
+        },
+        {
+          "child": 190,
+          "parent": 170,
+          "C": 6,
+          "P": 16,
+          "parentC": 20,
+          "parentP": 20
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-0-1",
+      "pairs": 126,
+      "forward": 1,
+      "reverse": 9,
+      "either": 10,
+      "witnessF": [
+        {
+          "child": 233,
+          "parent": 234,
+          "C": 7,
+          "P": 15,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 129,
+          "parent": 179,
+          "C": 7,
+          "P": 13,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 62,
+          "parent": 124,
+          "C": 25,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 185,
+          "parent": 156,
+          "C": 13,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-1-0",
+      "pairs": 126,
+      "forward": 1,
+      "reverse": 3,
+      "either": 4,
+      "witnessF": [
+        {
+          "child": 101,
+          "parent": 229,
+          "C": 21,
+          "P": 2,
+          "parentC": 5,
+          "parentP": 5
+        },
+        {
+          "child": 81,
+          "parent": 58,
+          "C": 21,
+          "P": 26,
+          "parentC": 5,
+          "parentP": 5
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 190,
+          "parent": 170,
+          "C": 13,
+          "P": 18,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 126,
+          "parent": 163,
+          "C": 6,
+          "P": 18,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-1-1",
+      "pairs": 126,
+      "forward": 2,
+      "reverse": 7,
+      "either": 9,
+      "witnessF": [
+        {
+          "child": 190,
+          "parent": 170,
+          "C": 23,
+          "P": 16,
+          "parentC": 20,
+          "parentP": 20
+        },
+        {
+          "child": 84,
+          "parent": 173,
+          "C": 23,
+          "P": 23,
+          "parentC": 20,
+          "parentP": 20
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 62,
+          "parent": 124,
+          "C": 15,
+          "P": 13,
+          "parentC": 2,
+          "parentP": 2
+        },
+        {
+          "child": 89,
+          "parent": 220,
+          "C": 7,
+          "P": 13,
+          "parentC": 2,
+          "parentP": 2
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-2-0",
+      "pairs": 126,
+      "forward": 5,
+      "reverse": 10,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 85,
+          "parent": 28,
+          "C": 20,
+          "P": 20,
+          "parentC": 23,
+          "parentP": 23
+        },
+        {
+          "child": 225,
+          "parent": 52,
+          "C": 20,
+          "P": 2,
+          "parentC": 23,
+          "parentP": 23
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 26,
+          "parent": 173,
+          "C": 18,
+          "P": 18,
+          "parentC": 5,
+          "parentP": 5
+        },
+        {
+          "child": 177,
+          "parent": 131,
+          "C": 2,
+          "P": 18,
+          "parentC": 5,
+          "parentP": 5
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-2-1",
+      "pairs": 126,
+      "forward": 3,
+      "reverse": 10,
+      "either": 13,
+      "witnessF": [
+        {
+          "child": 85,
+          "parent": 28,
+          "C": 4,
+          "P": 4,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 177,
+          "parent": 131,
+          "C": 4,
+          "P": 3,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 41,
+          "parent": 84,
+          "C": 16,
+          "P": 24,
+          "parentC": 4,
+          "parentP": 4
+        },
+        {
+          "child": 93,
+          "parent": 84,
+          "C": 24,
+          "P": 24,
+          "parentC": 4,
+          "parentP": 4
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-3-0",
+      "pairs": 126,
+      "forward": 2,
+      "reverse": 7,
+      "either": 9,
+      "witnessF": [
+        {
+          "child": 185,
+          "parent": 156,
+          "C": 20,
+          "P": 2,
+          "parentC": 9,
+          "parentP": 9
+        },
+        {
+          "child": 42,
+          "parent": 28,
+          "C": 20,
+          "P": 20,
+          "parentC": 9,
+          "parentP": 9
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 221,
+          "parent": 52,
+          "C": 18,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        },
+        {
+          "child": 225,
+          "parent": 52,
+          "C": 22,
+          "P": 18,
+          "parentC": 18,
+          "parentP": 18
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "layout": "ring-3-1",
+      "pairs": 126,
+      "forward": 3,
+      "reverse": 5,
+      "either": 8,
+      "witnessF": [
+        {
+          "child": 221,
+          "parent": 52,
+          "C": 7,
+          "P": 18,
+          "parentC": 15,
+          "parentP": 15
+        },
+        {
+          "child": 186,
+          "parent": 19,
+          "C": 7,
+          "P": 7,
+          "parentC": 15,
+          "parentP": 15
+        }
+      ],
+      "witnessR": [
+        {
+          "child": 22,
+          "parent": 59,
+          "C": 11,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        },
+        {
+          "child": 219,
+          "parent": 59,
+          "C": 18,
+          "P": 18,
+          "parentC": 10,
+          "parentP": 10
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "radix": 59,
+      "trial": 0,
+      "roundtrip": 256,
+      "knownPairs": 130,
+      "contradictions": 0
+    },
+    {
+      "radix": 59,
+      "trial": 1,
+      "roundtrip": 256,
+      "knownPairs": 130,
+      "contradictions": 0
+    },
+    {
+      "radix": 59,
+      "trial": 2,
+      "roundtrip": 256,
+      "knownPairs": 130,
+      "contradictions": 0
+    },
+    {
+      "radix": 60,
+      "trial": 0,
+      "roundtrip": 256,
+      "knownPairs": 126,
+      "contradictions": 0
+    },
+    {
+      "radix": 60,
+      "trial": 1,
+      "roundtrip": 256,
+      "knownPairs": 126,
+      "contradictions": 0
+    },
+    {
+      "radix": 60,
+      "trial": 2,
+      "roundtrip": 256,
+      "knownPairs": 126,
+      "contradictions": 0
+    }
+  ]
+}
