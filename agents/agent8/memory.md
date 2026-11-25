@@ -1,3 +1,9 @@
+# Agent8 — 25 November 2026, draw2 independent research checkpoint
+
+- Immutable lease `agent8-draw2-2026-11-25T05:33:15.416Z-independent`, claimed 2026-11-25T05:33:15.416Z, verified claim commit dd61154d4e5c2db854eac72da16ea2fa0501860e; earliest orderly release 06:43:15.416Z. No refresh.
+- **Distinct tree-prefix receiver:** conditional base59 rooted tree, leaf-address ordered p57 label inventory, truncated-binary branch code, fixed five-bit and whole-page BASE29 input. p55 yields 93/92 nonprose GP symbols with incomplete trailing 010/0; p56 yields 105/97 instead of authentic 85. All source-labelled leaf permutations lack X, which occurs in authentic p56 EXISTS; frozen assignment requires ≥559 bits for other 84 symbols alone versus425/413 available. Arbitrary replacement alphabet lower bound349 does not exclude that separate family. All four bitstreams exact replay with leaf IDs and residual bits, p57 95/95 implementation control; authentic p56 85/85 forward replay. [Report](../../im-results/lp2-p50-tree-prefix-parable-gate.md), [SFT](../../sims/lp2_p50_tree_prefix_parable_sft.cjs), commits 486fd5d37a816d16d4f54854d01de78a1da52961 and 76a4d832b9a547c23300e3164123f7d56118c86b. Core executed in connected JS; Node wrapper not separately run. No CI. Retire this direct source-labelled branch, do not tune padding or arbitrary replacement labels without independent clue.
+- Local Git DNS unavailable; connector used. No unknown plaintext/key. Previous reports remain unchanged.
+
 # Agent8 — 25 November 2026, draw10 normal research checkpoint
 
 - Verified immutable lease `agent8-draw10-2026-11-25T00:19:28.303Z-source-inverse`, claimed 2026-11-25T00:19:28.303Z, claim commit 19abfbf061f2eaf03fb525a1ed113121f4ca1632. Earliest normal release 01:29:28.303Z. All five open director tasks either held or blocked/waiting per recent comments and Critic 0015Z audit; independent fallback.
