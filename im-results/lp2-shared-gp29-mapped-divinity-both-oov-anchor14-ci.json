@@ -270,6 +270,60 @@
       }
     },
     {
+      "job_id": 139310509327,
+      "anchor": 14,
+      "omitted": [
+        49,
+        56,
+        47
+      ],
+      "budget": 0,
+      "anchorOptions": 6994,
+      "range": [
+        4371,
+        5245
+      ],
+      "completedThrough": 5245,
+      "complete": true,
+      "cap": null,
+      "nodes": 85416,
+      "joins": 323536,
+      "filters": 329489373,
+      "featureTests": 86643726,
+      "saturated": 7988,
+      "dimensionNodes": {
+        "1": 1,
+        "2": 31,
+        "3": 286,
+        "4": 282,
+        "5": 53,
+        "6": 8,
+        "8": 45395,
+        "9": 34097,
+        "10": 4277,
+        "11": 111,
+        "12": 1,
+        "16": 864,
+        "17": 10
+      },
+      "enumNodes": 4161,
+      "enumerated": 6,
+      "leaves": 318,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002
+      }
+    },
+    {
       "job_id": 139310509339,
       "anchor": 14,
       "omitted": [
@@ -309,6 +363,61 @@
       "enumNodes": 3014,
       "enumerated": 24,
       "leaves": 245,
+      "maxLong": 3,
+      "maxAll": 0,
+      "accepted": 0,
+      "best": [],
+      "domains": {
+        "1": 11181,
+        "2": 20619,
+        "14": 6994,
+        "15": 17244,
+        "18": 17415,
+        "36": 21200,
+        "39": 12002
+      }
+    },
+    {
+      "job_id": 139310509459,
+      "anchor": 14,
+      "omitted": [
+        49,
+        56,
+        47
+      ],
+      "budget": 0,
+      "anchorOptions": 6994,
+      "range": [
+        6119,
+        6994
+      ],
+      "completedThrough": 6994,
+      "complete": true,
+      "cap": null,
+      "nodes": 71158,
+      "joins": 269005,
+      "filters": 236704519,
+      "featureTests": 67731878,
+      "saturated": 6485,
+      "dimensionNodes": {
+        "1": 2,
+        "2": 21,
+        "3": 372,
+        "4": 217,
+        "5": 63,
+        "6": 5,
+        "7": 3,
+        "8": 34503,
+        "9": 30228,
+        "10": 4740,
+        "11": 125,
+        "12": 4,
+        "16": 832,
+        "17": 43
+      },
+      "enumNodes": 2003,
+      "enumerated": 6,
+      "leaves": 395,
       "maxLong": 3,
       "maxAll": 0,
       "accepted": 0,
