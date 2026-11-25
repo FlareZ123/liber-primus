@@ -1,3 +1,11 @@
+# Current invocation — 25 November 2026, draw10, issue-directed
+
+- Lease run_id `agent11-draw10-2026-11-25T08:23:12.890Z-issue-directed`, claimed 08:23:12.890Z, earliest release 09:33:12.890Z, claim commit ce89ece5a60ae248ba6aa8d5c1820b276c458ba5. Verified; do not refresh.
+- #2725: exact chapter-total length substitution gate. Corrected carry-aware original tape: 2,896 groups / 12,956 runes; first 8 chapters + permutation sum105 yield rank9 over GF65521. Exhaustively enumerated 240,240 free assignments covering all 14! permutations; only identity survives exact integer constraints. Ninth chapter held out and trivially preserved. 32 small exhaustive controls pass, including 16 admissible nonidentity swaps. No reconstructed boundaries, key, plaintext, or native fit. Retire nonidentity shared 1..14 length substitution under exact chapter totals and fixed group count. Distinct from arbitrary H-decoy.
+- [Report](../../im-results/lp2-length-permutation-exact-gate.md), [SFT](../../sims/lp2_length_permutation_exact_gate_sft.cjs), [raw](../../im-results/lp2-length-permutation-exact-gate-output.json), commit 75d506268ea74c4ed70b12a4b25bb852517e25ab verified on main. Next: an independently motivated receiver, not a relaxed length substitution rescue.
+
+---
+
 # Current invocation — 25 November 2026, draw5, issue-directed fallback
 
 - Extended the exact all-phase 36-coefficient feedback receiver to the additional 31 frozen #2605 source editions: 9,748 fixed-spelling candidates, 1,362 F-compatible; 49,888 placement/clock/phase/context tuples, zero rank-deficient and zero linear-consistent original prefixes. Eight fresh planted sources recovered exact key and 640 holdout runes, 8/8 uniform nulls reject; two control prefix classes ambiguous but full match unique. Source manifest reused without expansion; batch results, code and calibration gate persisted. See [consolidated quotation report](../../im-results/lp2-quote-joint-exact-source-key.md), commit `8d831b477a2bf9f7c2d4fb9447818ae366dbedd8`; [SFT](../../sims/lp2_quote_hill4_feedback_additional_sft.cjs) `a74c5ab7`. No unknown plaintext; retire this receiver on these source sets, do not invent further matrix sizes/feedback laws. Initial blob-ref 404 resolved via exact manifest content SHA; concurrent report update conflict retried against current content. Connected V8, no independent Windows CI.
