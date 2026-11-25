@@ -173,7 +173,79 @@ function run(corpus, solved, sourceText, dictionaryText) {
     }
   }
 
-  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples,holdPlants,ambiguousZeroPlants,holdCounts,holdExamples,nestedCounts,nestedExamples,nestedPlants,nestedHoldPlants};
+
+  // Total-field variant: inv[0]=0 fills the finite pole with the otherwise
+  // missing finite output. Each a+b*inv(x-r), b!=0, is a 29-rune bijection;
+  // its inverse belongs to the same family. We do not skip present poles.
+  const allPoles=[-1,...Array.from({length:29},(_,i)=>i)];
+  function affineCanon(v){
+    if(!v.length)return 'empty';
+    const pivot=v.find(x=>x!==v[0]);
+    if(pivot===undefined)return 'constant';
+    return v.map(x=>mod((x-v[0])*inv[mod(pivot-v[0])])).join(',');
+  }
+  const patchIndex={direct:new Map(),delta:new Map(),holdDirect:new Map(),holdDelta:new Map()};
+  function patchKey(n,m,v){return n+':'+m+':'+affineCanon(v)}
+  for(const e of lex.values()){
+    const m=fmask(e.v),v=strip(e.v,m);
+    const modes={direct:patchKey(e.v.length,0,e.v),delta:patchKey(e.v.length,0,e.v.slice(1)),holdDirect:patchKey(e.v.length,m,v),holdDelta:patchKey(e.v.length,m,v.slice(1))};
+    for(const [mode,k] of Object.entries(modes)){const arr=patchIndex[mode].get(k)||[];arr.push(e);patchIndex[mode].set(k,arr)}
+  }
+  function getPatched(c,held,nested,ordinaryDirect=false){
+    const out=new Map(),avail=held?fmask(c):0;
+    const map=patchIndex[ordinaryDirect?(held?'holdDirect':'direct'):(held?'holdDelta':'delta')];
+    for(let m=avail;;m=(m-1)&avail){
+      const v=strip(c,m);
+      for(const r of nested?allPoles:[-1]){
+        const q=ordinaryDirect?v:delta(outer(v,r));
+        for(const s of allPoles){
+          const k=patchKey(c.length,m,outer(q,s));
+          for(const e of map.get(k)||[])out.set(e.v.join(','),e);
+        }
+      }
+      if(m===0)break;
+    }
+    return [...out.values()];
+  }
+  const patchCounts={},patchExamples={direct:[],directHeld:[],difference:[],differenceHeld:[],nested:[],nestedHeld:[]};
+  // Test both directions for every model, but do not conflate ordinary and
+  // held masks; also report how many independently keyed words match.
+  for(let wi=0;wi<original.length;wi++){
+    const c=original[wi],n=c.length;if(n<6)continue;
+    const rev=[...c].reverse();
+    const row=patchCounts[n]??={total:0,direct:0,directHeld:0,difference:0,differenceHeld:0,nested:0,nestedHeld:0};row.total++;
+    for(const [name,held,nested,dir] of [['direct',false,false,true],['directHeld',true,false,true],['difference',false,false,false],['differenceHeld',true,false,false],['nested',false,true,false],['nestedHeld',true,true,false]]){
+      const a=getPatched(c,held,nested,dir),b=getPatched(rev,held,nested,dir);
+      if(a.length||b.length){row[name]++;if(n>=9)patchExamples[name].push({wordIndex:wi,cipher:c.map(x=>corpus.translit[x]).join(''),candidates:[...new Set([...a,...b].map(e=>e.word))].slice(0,12)})}
+    }
+  }
+  let patchedPlants=0,patchPoleHits=0;
+  for(const p of native.filter(v=>v.length>=6&&v.length<=14)){
+    for(const held of [false,true]){
+      const v=held?p.filter(x=>x!==0):p;
+      const pole=v[1],a=7,b=11;
+      const enc=x=>mod(a+b*inv[mod(x-pole)]);
+      const dec=y=>mod(pole+b*inv[mod(y-a)]);
+      check(new Set(Array.from({length:29},(_,x)=>enc(x))).size===29,'total inner permutation');
+      check(Array.from({length:29},(_,x)=>dec(enc(x))===x).every(Boolean),'total inner inverse');
+      const wrap=consumed=>{let j=0;return held?p.map(x=>x===0?0:consumed[j++]):consumed};
+      const direct=wrap(v.map(enc));
+      check(getPatched(direct,held,false,true).some(e=>e.v.join(',')===p.join(',')),'patched direct native');
+      const latent=[17];for(const x of v.slice(1))latent.push(mod(latent[latent.length-1]+enc(x)));
+      const c1=wrap(latent);
+      check(getPatched(c1,held,false).some(e=>e.v.join(',')===p.join(',')),'patched difference native');
+      const outerPole=latent[1],oa=3,ob=13;
+      const oenc=x=>mod(oa+ob*inv[mod(x-outerPole)]);
+      const odec=y=>mod(outerPole+ob*inv[mod(y-oa)]);
+      const c2=wrap(latent.map(oenc));
+      check(latent.map(oenc).every((x,i)=>odec(x)===latent[i]),'patched outer inverse');
+      check(delta(latent).every((x,i)=>dec(x)===v[i+1]),'patched inner inverse');
+      check(getPatched(c2,held,true).some(e=>e.v.join(',')===p.join(',')),'patched double native');
+      patchedPlants+=3;patchPoleHits++;
+    }
+  }
+
+  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples,holdPlants,ambiguousZeroPlants,holdCounts,holdExamples,nestedCounts,nestedExamples,nestedPlants,nestedHoldPlants,patchCounts,patchExamples,patchedPlants,patchPoleHits};
 }
 const result=run(JSON.parse(load("resources/liber-primus/lp2-corpus.json")),JSON.parse(load("resources/external/relikd-solved-gp29-native-v1.json")),load("resources/liber-primus/lp2-transcription.txt"),load("resources/control/english_wordfreq_textblob.txt"));
 console.log(JSON.stringify(result,null,2));
