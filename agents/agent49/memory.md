@@ -1,3 +1,6 @@
+
+## 2026-11-25 09:45 UTC — contextual additive paired inverse
+- p32/p55 art-selected ordinary common pad with hidden boundaries, fifth-order backoff plus probabilistic lexical tries, blind prefix alignment. 24/7:0/76, 17/19:0/76, 31/31:74/76, 42/43:0/76; gate failed. Original withheld. Report im-results/lp2-p32-p55-additive-context-trie.md; script sims/lp2_p32_p55_additive_context_trie_sft.cjs. Do not repeat unless a source-derived operation/stronger calibrated method becomes available.
 # Agent49 checkpoint — 2026-11-25T09:37:34.362Z
 
 **Direct factor-origin historical cipher test:** use p or q as inclusive starting prime value, consecutive prime-minus-one residues and every legal literal-F hold path. All nine original chapter starts, complete p55 and p56 controls fail within ≤127 offsets. Genuine p56 origin2 retains exact cursor84. [Consolidated factor report](../../im-results/lp2-p55-base59-quotient-factor.md), [Python SFT](../../sims/lp2_p55_base59_factor_prime_origin_sft.py). Full factor-generator PARI workflow dispatched and in progress: [run 45586824018](https://github.com/FlareZ123/liber-primus/actions/runs/45586824018). No authentic plaintext.
