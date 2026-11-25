@@ -1,0 +1,255 @@
+{
+  "coarse": 128,
+  "fine": 1024,
+  "wordTypes": 29964,
+  "trieNodes": 267664,
+  "trainingWords": 37122,
+  "heldoutRunes": 71344,
+  "plants": [
+    {
+      "trueBeta": 1,
+      "positions": [
+        21497,
+        79
+      ],
+      "beta": 1,
+      "score": -245.16159370803027,
+      "trueCoarseRank": 1,
+      "correctA": 49,
+      "correctB": 49,
+      "decodedA": "ON SO THE WAY MADE THEE THIS SAYS AND GIUE US NOTICE OF HIS INCLINATIAN FOR WE TO MORROW HOLD PRINCE",
+      "decodedB": "ATIAN OF HAPPY RIGHT HOT WAITED US FROM HIS SOUL TO LOUE EACH OTHER HE LITTLE THOUGHT OF THIS PRINCE",
+      "fineScores": [
+        {
+          "beta": 1,
+          "score": -245.16159370803027
+        },
+        {
+          "beta": 9,
+          "score": -272.5375114514622
+        },
+        {
+          "beta": 21,
+          "score": -273.4515849907082
+        },
+        {
+          "beta": 2,
+          "score": -276.40007733851314
+        }
+      ]
+    },
+    {
+      "trueBeta": 2,
+      "positions": [
+        6632,
+        1142
+      ],
+      "beta": 2,
+      "score": -265.6065900088314,
+      "trueCoarseRank": 1,
+      "correctA": 37,
+      "correctB": 37,
+      "decodedA": "O GRANDAM YOUR OLD HART THAT HE IS DEAD THE CNG MY UNCLE EMPRESS FOOL NOW NO OF HELP TO DAY UNTO THEM OW",
+      "decodedB": "E PRINCE WHAT THEY SEUENTIES NOT SECOND MURDERER ACT LOUE STILL TO DROWN RISNG DURNG FORTUNATE",
+      "fineScores": [
+        {
+          "beta": 2,
+          "score": -265.6065900088314
+        },
+        {
+          "beta": 11,
+          "score": -276.413630097483
+        },
+        {
+          "beta": 23,
+          "score": -278.19526566340227
+        },
+        {
+          "beta": 17,
+          "score": -278.2251529825461
+        }
+      ]
+    },
+    {
+      "trueBeta": 7,
+      "positions": [
+        5910,
+        54484
+      ],
+      "beta": 14,
+      "score": -271.4693420629929,
+      "trueCoarseRank": 23,
+      "correctA": 4,
+      "correctB": 6,
+      "decodedA": "AND NICHOLAS WANT FOR DONG DUE FLY IN A SEA HE IS IT GO BACC MIND IS SO ILL HEAD FAUOR UPON YOU RAILWA",
+      "decodedB": "NYA UALET DOCTOR AND AND PLUCC WAS YOUR GENERAL I GOT PATENT TISSUES OR LEADERSHIP OH ENGINES I",
+      "fineScores": [
+        {
+          "beta": 14,
+          "score": -271.4693420629929
+        },
+        {
+          "beta": 5,
+          "score": -272.51311733394556
+        },
+        {
+          "beta": 22,
+          "score": -276.63748777379044
+        },
+        {
+          "beta": 8,
+          "score": -279.6116677659558
+        }
+      ]
+    },
+    {
+      "trueBeta": 13,
+      "positions": [
+        35297,
+        15243
+      ],
+      "beta": 19,
+      "score": -267.228365841843,
+      "trueCoarseRank": 14,
+      "correctA": 6,
+      "correctB": 1,
+      "decodedA": "LDNG HEALTH TO BACC SEND E OR IF HE MOCC BONES OF MORE OFFER J DROP WATCHED EUER I PRISE FACT OF THE DA",
+      "decodedB": "ABLISHED DOOR EUIDENCE HOUNDS STAND OF DERBY BUT O GOD I STOOD TO CNOW I ENJOY NOT THYSELF DRES",
+      "fineScores": [
+        {
+          "beta": 19,
+          "score": -267.228365841843
+        },
+        {
+          "beta": 1,
+          "score": -271.6974934629339
+        },
+        {
+          "beta": 2,
+          "score": -273.3836411516817
+        },
+        {
+          "beta": 23,
+          "score": -278.56993238811015
+        }
+      ]
+    },
+    {
+      "trueBeta": 28,
+      "positions": [
+        66442,
+        10517
+      ],
+      "beta": 28,
+      "score": -250.26503950155154,
+      "trueCoarseRank": 1,
+      "correctA": 22,
+      "correctB": 22,
+      "decodedA": "URNNG ARE YET FELT RAISE PREUENTED AND MANY A CHRISTIAN SOUNDED PEACE WITH A LAUGHNG DEAD THE COMPAN",
+      "decodedB": "TLY HIM WORTHY WAS THINC THEE HERSELF GLOUCESTER I HOPE THE CNG UARY DESOLATIAN FOR THEIR DECAY IT CL",
+      "fineScores": [
+        {
+          "beta": 28,
+          "score": -250.26503950155154
+        },
+        {
+          "beta": 1,
+          "score": -270.68009177949483
+        },
+        {
+          "beta": 12,
+          "score": -275.62437423131314
+        },
+        {
+          "beta": 13,
+          "score": -279.10578739350495
+        }
+      ]
+    }
+  ],
+  "original": {
+    "beta": 1,
+    "score": -266.00371503992204,
+    "plain1": "THE LATTER OF MEN WE LL FLOCCNG HER NATIAN FRAGRANCE MURDERER LET FLOOR ND THE COURT WHY LISTENED",
+    "plain2": "S THE WALL CLEAN OF MY MANLY WHO WHAT EACH MISS IT OH RISE THERE S MAJESTY HORSES IN ALL HIS HASTENED",
+    "coarseRank": [
+      1,
+      24,
+      25,
+      10,
+      26,
+      9,
+      17,
+      19,
+      2,
+      3,
+      14,
+      21,
+      8,
+      23,
+      13,
+      5,
+      15,
+      11,
+      12,
+      20,
+      7,
+      18,
+      16,
+      6,
+      22,
+      27,
+      4,
+      28
+    ],
+    "coarseScores": [
+      -275.4750987421866,
+      -278.9350841433914,
+      -279.2480360621358,
+      -279.40938876717206,
+      -281.4557832965119,
+      -281.6667013299724,
+      -283.3175507849037,
+      -283.9914024050478,
+      -284.14521748882754,
+      -284.8718836436154,
+      -285.40436846890105,
+      -286.96809010304776,
+      -287.10103328738427,
+      -287.18665709623906,
+      -287.7859638601027,
+      -287.86576537310094,
+      -287.87138915524775,
+      -288.57387947960484,
+      -288.6385911135604,
+      -288.71223905630217,
+      -288.9625637850091,
+      -289.46792628284544,
+      -289.47145741603805,
+      -290.22786792166704,
+      -290.6382258685026,
+      -293.12610921278974,
+      -293.9712217293941,
+      -297.18391515614286
+    ],
+    "fineScores": [
+      {
+        "beta": 1,
+        "score": -266.00371503992204
+      },
+      {
+        "beta": 25,
+        "score": -275.15583566963335
+      },
+      {
+        "beta": 10,
+        "score": -275.5027214061884
+      },
+      {
+        "beta": 24,
+        "score": -277.4030433647525
+      }
+    ],
+    "replay": 76
+  }
+}
