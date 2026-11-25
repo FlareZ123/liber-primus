@@ -1,0 +1,163 @@
+{
+  "trainingRunes": 321327,
+  "scope": {
+    "fit": 534,
+    "holdout": 308
+  },
+  "ordinary": {
+    "keySpace59": "2416113861627960568326389760",
+    "keySpace60": "3606560633100629186539683840",
+    "cases": 128,
+    "controls": [
+      {
+        "radix": 59,
+        "sign": -1,
+        "phase": 7,
+        "fit": -2.258783354198136,
+        "holdout": -2.2449975316224395,
+        "correct": 842,
+        "heldoutCorrect": 308
+      },
+      {
+        "radix": 60,
+        "sign": 1,
+        "phase": 19,
+        "fit": -2.573520063823787,
+        "holdout": -2.4474950865490714,
+        "correct": 842,
+        "heldoutCorrect": 308
+      }
+    ],
+    "original": {
+      "radix": 59,
+      "sign": 1,
+      "phase": 15,
+      "key": [
+        16,
+        24,
+        16,
+        26,
+        22,
+        12,
+        18,
+        13,
+        15,
+        16,
+        9,
+        15,
+        28,
+        14,
+        19,
+        8,
+        12,
+        19,
+        6,
+        4,
+        7,
+        24,
+        21,
+        17,
+        28,
+        25,
+        16,
+        6,
+        26,
+        24,
+        3,
+        14
+      ],
+      "fit": -4.793986194636771,
+      "holdout": -6.1243832439528365
+    }
+  },
+  "transparentF": {
+    "width": 2048,
+    "shortlist": 96,
+    "controls": [
+      {
+        "radix": 59,
+        "sign": -1,
+        "phase": 7,
+        "fit": -2.2587833541981355,
+        "holdout": -2.246110938409875,
+        "fitCorrect": 534,
+        "heldoutCorrect": 306
+      },
+      {
+        "radix": 60,
+        "sign": 1,
+        "phase": 19,
+        "fit": -2.5735200638237874,
+        "holdout": -2.452369916052324,
+        "fitCorrect": 534,
+        "heldoutCorrect": 308
+      }
+    ],
+    "original": {
+      "radix": 59,
+      "sign": -1,
+      "origin": 29,
+      "phaseAfterFit": 10,
+      "key": [
+        28,
+        16,
+        16,
+        9,
+        8,
+        4,
+        13,
+        12,
+        10,
+        3,
+        5,
+        4,
+        26,
+        3,
+        22,
+        28,
+        8,
+        24,
+        3,
+        25,
+        14,
+        25,
+        1,
+        19,
+        28,
+        20,
+        23,
+        7,
+        15,
+        12,
+        8,
+        18
+      ],
+      "holds": [
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true,
+        true,
+        false,
+        false,
+        false
+      ],
+      "fit": -4.914759830217699,
+      "expanded": 65280,
+      "finalBeam": 2046,
+      "holdoutLegal": false,
+      "firstImpossibleOffset": 40
+    }
+  }
+}
