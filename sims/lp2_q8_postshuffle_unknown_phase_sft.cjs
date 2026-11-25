@@ -143,40 +143,35 @@ function experiment(raw) {
   if (encode(extract(welcome.source_text), welcomeKey, 0).join() !== wC.join()) throw new Error("WELCOME replay failed");
   if (encode(extract(koan.source_text), koanKey, 0).join() !== kC.join()) throw new Error("KOAN replay failed");
 
-  // Controls draw authentic native words from donor tails, restricted to the
-  // frozen lexicon. The original word sequence is encrypted continuously,
-  // then the ciphertext groups (not plaintext words) are shuffled.
-  const poolByLen = new Map();
-  for (const donor of donors) for (const w of donor.slice(Math.floor(donor.length * 0.96))) {
-    const id = idOf(w);
-    if (w.length > 0 && w.length <= 14 && counts.has(id) &&
-        (w.length < 9 || w.filter(x => x !== 0).length >= 9)) {
-      if (!poolByLen.has(w.length)) poolByLen.set(w.length, []);
-      poolByLen.get(w.length).push(w);
+  // Controls are three real contiguous 669-word windows from the held-out
+  // final 20% of the three donor texts. Select the first window meeting the
+  // source-only <=5% frozen-lexicon OOV cap; no ciphertext or key is consulted.
+  const donorNames = ["Gibran", "Shakespeare", "Emerson"];
+  const controlWindows = donors.map((donor, donorIndex) => {
+    const heldoutStart = Math.floor(donor.length * 0.8), n = inventory.length;
+    for (let at = heldoutStart; at + n <= donor.length; at++) {
+      const words = donor.slice(at, at + n);
+      const oov = words.filter(w => w.length > MAX_WORD || !counts.has(idOf(w))).length;
+      const maxLen = Math.max(...words.map(w => w.length));
+      if (oov <= oovBudget && maxLen <= MAX_WORD)
+        return { donorIndex, donor: donorNames[donorIndex], start: at, end: at + n, oov, maxLen, words };
     }
-  }
-  const poolCounts = {};
-  for (let L = 1; L <= 14; L++) poolCounts[L] = (poolByLen.get(L) || []).length;
-  for (const L of inventory) if (!(poolByLen.get(L) || []).length)
-    throw new Error("no target-excluded dictionary donor word for length " + L);
-  function makeNativeControl(seed) {
-    const R = rng(seed);
-    const words = inventory.map(L => {
-      const p = poolByLen.get(L);
-      return p[Math.floor(R() * p.length)].slice();
-    });
+    throw new Error("no held-out contiguous donor window passes OOV cap for " + donorNames[donorIndex]);
+  });
+  function makeNativeControl(donorIndex, seed) {
+    const R = rng(seed), win = controlWindows[donorIndex], words = win.words;
     const K = Array.from({ length: T }, () => Math.floor(R() * Q));
     let phase = 0;
     const items = words.map((P, originalIndex) => {
       const startPhase = phase, C = encode(P, K, phase);
-      let active = 0;
-      for (const p of P) if (p !== 0) active++;
+      const active = P.filter(x => x !== 0).length;
       const endPhase = (startPhase + active) % T;
       phase = endPhase;
       return { C, P: P.slice(), word: idOf(P), originalIndex, startPhase, endPhase };
     });
     const shuffled = shuffle(items, R);
-    return { groups: shuffled.map(x => x.C), truth: shuffled, key: canonical(K), rawKey: K };
+    return { groups: shuffled.map(x => x.C), truth: shuffled, key: canonical(K), rawKey: K,
+      originalWords: words.map(w => w.slice()), window: { donor: win.donor, start: win.start, end: win.end, oov: win.oov, maxLen: win.maxLen } };
   }
   function makeNullControl(words, seed) {
     const R = rng(seed);
@@ -286,9 +281,13 @@ function experiment(raw) {
     const trueCandidate = search.ranked.find(x => x.id === trueId);
     const detail = trueCandidate ? evaluateKey(dataset.groups, dataset.key.K, true) : null;
     let trueWordsPresent = 0, trueEdgesPresent = 0, uniqueWordGroups = 0, uniqueEdgeGroups = 0;
+    const trueKnownWords = dataset.truth.filter(t => (dictByLen.get(t.P.length) || new Set()).has(t.word)).length;
+    const trueOOV = dataset.truth.length - trueKnownWords;
     if (detail) {
       for (let i = 0; i < dataset.truth.length; i++) {
-        const t = dataset.truth[i], s = (t.startPhase - dataset.key.offset + T) % T,
+        const t = dataset.truth[i];
+        if (!(dictByLen.get(t.P.length) || new Set()).has(t.word)) continue;
+        const s = (t.startPhase - dataset.key.offset + T) % T,
           e = (t.endPhase - dataset.key.offset + T) % T;
         const opts = detail.optionsByGroup[i] || [];
         if (opts.some(o => o.word === t.word)) trueWordsPresent++;
@@ -305,8 +304,9 @@ function experiment(raw) {
       trueKeyCoverage: trueCandidate ? trueCandidate.covered : 0,
       passingKeys: passIds.length,
       onlyTrueKeyPasses: passIds.length === 1 && passIds[0] === trueId,
-      trueWordsPresent, trueEdgesPresent,
+      trueWordsPresent, trueEdgesPresent, trueKnownWords, trueOOV,
       uniqueWordGroups, uniqueEdgeGroups,
+      controlWindow: dataset.window,
       truePhaseTrail: dataset.truth.slice().sort((a, b) => a.originalIndex - b.originalIndex).every((x, i, a) =>
         i === 0 ? x.startPhase === 0 : a[i - 1].endPhase === x.startPhase)
     };
@@ -355,15 +355,16 @@ function experiment(raw) {
   const nativeControls = [], nullControls = [];
   const controlSeeds = [0x26840111, 0x26840222, 0x26840333];
   for (let i = 0; i < 3; i++) {
-    const ds = makeNativeControl(controlSeeds[i]);
+    const ds = makeNativeControl(i, controlSeeds[i]);
     const search = runSearch(ds.groups);
     nativeControls.push({ name: "post-encryption-shuffle-" + (i + 1), ...inspectTrueControl(ds, search) });
-    const ns = makeNullControl(ds.truth.map(x => x.P), controlSeeds[i] ^ 0x5a5a5a5a);
+    const ns = makeNullControl(ds.originalWords, controlSeeds[i] ^ 0x5a5a5a5a);
     const nullSearch = runSearch(ns.groups);
     nullControls.push({ name: "independent-per-group-pad-" + (i + 1), ...summarizeNull(nullSearch) });
   }
   const nativeGate = nativeControls.every(x => x.trueKeyInPool && x.trueKeyCoverage >= coverageThreshold &&
-    x.onlyTrueKeyPasses && x.trueWordsPresent === inventory.length && x.trueEdgesPresent === inventory.length && x.truePhaseTrail);
+    x.onlyTrueKeyPasses && x.trueOOV <= oovBudget && x.trueWordsPresent === x.trueKnownWords &&
+    x.trueEdgesPresent === x.trueKnownWords && x.truePhaseTrail);
   const nullGate = nullControls.every(x => x.passingKeys === 0);
   const gate = nativeGate && nullGate;
   const output = {
@@ -376,7 +377,7 @@ function experiment(raw) {
       dictionaryTypes: counts.size, anchorTypes: [...anchorsByLen.values()].reduce((s, a) => s + a.length, 0),
       maxWordLength: MAX_WORD, oovBudgetGroups: oovBudget, coverageThreshold,
       sourceGroupClips: clipped.length, authenticReplay: { welcome: wC.length, koan: kC.length },
-      donorTailPoolCounts: poolCounts
+      controlWindows: controlWindows.map(w => ({ donor: w.donor, start: w.start, end: w.end, oov: w.oov, maxLen: w.maxLen }))
     },
     controls: { nativeControls, nullControls, nativeGate, nullGate, pass: gate }
   };
