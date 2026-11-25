@@ -61,37 +61,6 @@
       21,
       26,
       19
-    ],
-    "signed": [
-      0,
-      5,
-      18,
-      10,
-      1,
-      23,
-      3,
-      15,
-      7,
-      6,
-      9,
-      28,
-      22,
-      8,
-      19,
-      20,
-      26,
-      12,
-      16,
-      11,
-      21,
-      14,
-      17,
-      4,
-      2,
-      27,
-      25,
-      13,
-      24
     ]
   },
   "training": [
@@ -122,14 +91,14 @@
   ],
   "original": {
     "all": {
-      "tested": 5046,
+      "tested": 3364,
       "best": {
         "kind": "exponential",
         "mode": "previous",
         "a": 26,
         "iv": 9,
-        "fit": -4.564280095444346,
-        "hold": -5.2835759719307065,
+        "fit": -4.561652965190564,
+        "hold": -5.281201813953561,
         "holdIoC": 0.031228070175438598,
         "fitText": "OERLEANAELDLYBATHGITRSXGYWRUWACGJUGDNGEANAEOEAAEYANYNGMUGBOSUAYTHXSFSIBWEFEOXCAMYCGLTHOEWNGHYEODXEHMOEMPTHOEWXNXSOEBOINYHPGXRGEONGYTHRABTAJSLLTHSINNNTHPEOBUUHNGWHOXAGEAITTMEOTWTJYEDHDNAPYTRNGIATNGTAOETLRIRHIATGALXGHCWOTHRAECILYNGEDSUMFOANGFTIATHAEHADNGMAELPADBSMHNGAENGLTHAUES",
         "holdText": "EOUWNHWRWOXEAPEOPTHBIAETHIATIAEFNGYXDLFHEAETAEXYXINWIBUWEOIAAEASGWOMRCJEANHAJEEAPXWLRFWOECLJG",
@@ -138,14 +107,14 @@
       "topFitTies": 14
     },
     "sourceExponent": {
-      "tested": 174,
+      "tested": 116,
       "best": {
         "kind": "exponential",
         "mode": "product",
         "a": 6,
         "iv": 18,
-        "fit": -4.649631628398038,
-        "hold": -5.443619118217227,
+        "fit": -4.647666576548631,
+        "hold": -5.4415951705407295,
         "holdIoC": 0.0343859649122807,
         "fitText": "OEAOAGOEOENGEANBXTHUUCUFEAYTTFNGTGEJUPCIFIALOIALSYNBXWTTHXJLTJXHLPNOWTDGYXROELSYTHPNEAWLHTIAOEEOIXNOERCEOTTHDTTHPEWSEAEHGRIWESBEXNGANSOEATHNCPLAMGHEAUEATHNGWPLYTHBAHSEAJBJSLNRPINDGXYFRPJIOXOSTGOPHHWMNTMMUECIATHEONGCNGNGTYOSLSLTHTHGTHTTOYXRBMTEAMSXMLEAJUTHRSMYDDDARWEHONNTCTDW",
         "holdText": "LXOAELSXAERTHAECSUEOJNEEOXNNOEJWXEAIACETDIANGIIALEDCOEATNGGXLEOUYYLNGTEEDBOEIXMOJWFBAEOLOIANMCC",
@@ -154,39 +123,39 @@
       "topFitTies": 1
     },
     "sourceIndices": {
-      "tested": 12,
+      "tested": 8,
       "best": {
         "kind": "square",
         "mode": "product",
         "a": 6,
         "iv": 19,
-        "fit": -4.68708826501205,
-        "hold": -5.220551157970763,
+        "fit": -4.6848745251719786,
+        "hold": -5.217851252096722,
         "holdIoC": 0.030877192982456142,
         "fitText": "CSWPEOHEPNGPPOEDAEHSOEEATHTHLJAIAWAEEUEIITWNGDRGOEAIRTHNGTHIFYNGEIHTPPEINGOEOCOTWHEAIAWEAHXCORLHCEAOAOGFNGCEOOEEAWMIBTNGSWWJXPOFFFFJWDUFRXIATHAYAFNRWEFJTHHUTHTFIAPTHNHEAHEEOEOCTNRXOXCYEOOEEGUEEALGIALTHPTRTNJSNTHALPTHEOCIWMOYEAAEEALOTBTDTTHBOWAONGEYDLMGIALYWSFCNOTHAESTTPTCIMBRWYUDGONO",
         "holdText": "CONYNPYTHBIAMUOEHEAIEOSTHWDIAYRJUEAEEOPYOETSRLCEADTHEOEAHOEXDOOEEIEOSTHDGEAXOETUMNFHAENLAEAULLDOFIA",
         "exactReplay": true
       },
-      "topFitTies": 2
+      "topFitTies": 1
     },
-    "squareSigned": {
-      "tested": 3364,
+    "square": {
+      "tested": 1682,
       "best": {
         "kind": "square",
         "mode": "product",
         "a": 6,
         "iv": 19,
-        "fit": -4.68708826501205,
-        "hold": -5.220551157970763,
+        "fit": -4.6848745251719786,
+        "hold": -5.217851252096722,
         "holdIoC": 0.030877192982456142,
         "fitText": "CSWPEOHEPNGPPOEDAEHSOEEATHTHLJAIAWAEEUEIITWNGDRGOEAIRTHNGTHIFYNGEIHTPPEINGOEOCOTWHEAIAWEAHXCORLHCEAOAOGFNGCEOOEEAWMIBTNGSWWJXPOFFFFJWDUFRXIATHAYAFNRWEFJTHHUTHTFIAPTHNHEAHEEOEOCTNRXOXCYEOOEEGUEEALGIALTHPTRTNJSNTHALPTHEOCIWMOYEAAEEALOTBTDTTHBOWAONGEYDLMGIALYWSFCNOTHAESTTPTCIMBRWYUDGONO",
         "holdText": "CONYNPYTHBIAMUOEHEAIEOSTHWDIAYRJUEAEEOPYOETSRLCEADTHEOEAHOEXDOOEEIEOSTHDGEAXOETUMNFHAENLAEAULLDOFIA",
         "exactReplay": true
       },
-      "topFitTies": 2
+      "topFitTies": 1
     }
   },
-  "replayedOriginalSymbols": 1554168,
+  "replayedOriginalSymbols": 1036112,
   "controls": [
     {
       "donor": "0_warning",
@@ -195,9 +164,9 @@
       "a": 6,
       "iv": 8,
       "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.686884270328352,
-      "hold": -2.7744153493767825,
+      "expectedHold": -2.772273052606286,
+      "fit": -2.6850283822746657,
+      "hold": -2.772273052606286,
       "selected": {
         "kind": "exponential",
         "mode": "previous",
@@ -215,9 +184,9 @@
       "a": 6,
       "iv": 8,
       "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.691802653542025,
-      "hold": -2.7744153493767825,
+      "expectedHold": -2.772273052606286,
+      "fit": -2.689946765488339,
+      "hold": -2.772273052606286,
       "selected": {
         "kind": "exponential",
         "mode": "product",
@@ -235,9 +204,9 @@
       "a": 6,
       "iv": 8,
       "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.686884270328352,
-      "hold": -2.7744153493767825,
+      "expectedHold": -2.772273052606286,
+      "fit": -2.6850283822746657,
+      "hold": -2.772273052606286,
       "selected": {
         "kind": "square",
         "mode": "previous",
@@ -255,49 +224,9 @@
       "a": 6,
       "iv": 8,
       "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.691802653542025,
-      "hold": -2.7744153493767825,
-      "selected": {
-        "kind": "square",
-        "mode": "product",
-        "a": 6,
-        "iv": 8
-      },
-      "correctHold": 46,
-      "holdLength": 46,
-      "exactReplay": true
-    },
-    {
-      "donor": "0_warning",
-      "kind": "signed",
-      "mode": "previous",
-      "a": 6,
-      "iv": 8,
-      "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.686884270328352,
-      "hold": -2.7744153493767825,
-      "selected": {
-        "kind": "square",
-        "mode": "previous",
-        "a": 6,
-        "iv": 17
-      },
-      "correctHold": 46,
-      "holdLength": 46,
-      "exactReplay": true
-    },
-    {
-      "donor": "0_warning",
-      "kind": "signed",
-      "mode": "product",
-      "a": 6,
-      "iv": 8,
-      "split": 138,
-      "expectedHold": -2.7744153493767825,
-      "fit": -2.691802653542025,
-      "hold": -2.7744153493767825,
+      "expectedHold": -2.772273052606286,
+      "fit": -2.689946765488339,
+      "hold": -2.772273052606286,
       "selected": {
         "kind": "square",
         "mode": "product",
@@ -315,9 +244,9 @@
       "a": 17,
       "iv": 19,
       "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9261464561556427,
-      "hold": -3.272516270476983,
+      "expectedHold": -3.271397746261708,
+      "fit": -2.923413875973066,
+      "hold": -3.271397746261708,
       "selected": {
         "kind": "exponential",
         "mode": "previous",
@@ -335,9 +264,9 @@
       "a": 17,
       "iv": 19,
       "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9311273016789383,
-      "hold": -3.272516270476983,
+      "expectedHold": -3.271397746261708,
+      "fit": -2.9283947214963617,
+      "hold": -3.271397746261708,
       "selected": {
         "kind": "exponential",
         "mode": "product",
@@ -355,9 +284,9 @@
       "a": 17,
       "iv": 19,
       "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9261464561556427,
-      "hold": -3.272516270476983,
+      "expectedHold": -3.271397746261708,
+      "fit": -2.923413875973066,
+      "hold": -3.271397746261708,
       "selected": {
         "kind": "square",
         "mode": "previous",
@@ -375,49 +304,9 @@
       "a": 17,
       "iv": 19,
       "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9311273016789383,
-      "hold": -3.272516270476983,
-      "selected": {
-        "kind": "square",
-        "mode": "product",
-        "a": 17,
-        "iv": 19
-      },
-      "correctHold": 40,
-      "holdLength": 40,
-      "exactReplay": true
-    },
-    {
-      "donor": "0_wisdom",
-      "kind": "signed",
-      "mode": "previous",
-      "a": 17,
-      "iv": 19,
-      "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9261464561556427,
-      "hold": -3.272516270476983,
-      "selected": {
-        "kind": "square",
-        "mode": "previous",
-        "a": 17,
-        "iv": 23
-      },
-      "correctHold": 40,
-      "holdLength": 40,
-      "exactReplay": true
-    },
-    {
-      "donor": "0_wisdom",
-      "kind": "signed",
-      "mode": "product",
-      "a": 17,
-      "iv": 19,
-      "split": 117,
-      "expectedHold": -3.272516270476983,
-      "fit": -2.9311273016789383,
-      "hold": -3.272516270476983,
+      "expectedHold": -3.271397746261708,
+      "fit": -2.9283947214963617,
+      "hold": -3.271397746261708,
       "selected": {
         "kind": "square",
         "mode": "product",
@@ -435,9 +324,9 @@
       "a": 11,
       "iv": 13,
       "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.542442225284749,
-      "hold": -2.417887493828483,
+      "expectedHold": -2.4168169709505496,
+      "fit": -2.5390241832121774,
+      "hold": -2.4168169709505496,
       "selected": {
         "kind": "exponential",
         "mode": "previous",
@@ -455,9 +344,9 @@
       "a": 11,
       "iv": 13,
       "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.5559302662472465,
-      "hold": -2.417887493828483,
+      "expectedHold": -2.4168169709505496,
+      "fit": -2.552512224174675,
+      "hold": -2.4168169709505496,
       "selected": {
         "kind": "exponential",
         "mode": "product",
@@ -475,9 +364,9 @@
       "a": 11,
       "iv": 13,
       "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.542442225284749,
-      "hold": -2.417887493828483,
+      "expectedHold": -2.4168169709505496,
+      "fit": -2.5390241832121774,
+      "hold": -2.4168169709505496,
       "selected": {
         "kind": "square",
         "mode": "previous",
@@ -495,49 +384,9 @@
       "a": 11,
       "iv": 13,
       "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.5559302662472465,
-      "hold": -2.417887493828483,
-      "selected": {
-        "kind": "square",
-        "mode": "product",
-        "a": 11,
-        "iv": 13
-      },
-      "correctHold": 22,
-      "holdLength": 22,
-      "exactReplay": true
-    },
-    {
-      "donor": "p56_an_end",
-      "kind": "signed",
-      "mode": "previous",
-      "a": 11,
-      "iv": 13,
-      "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.542442225284749,
-      "hold": -2.417887493828483,
-      "selected": {
-        "kind": "square",
-        "mode": "previous",
-        "a": 11,
-        "iv": 18
-      },
-      "correctHold": 22,
-      "holdLength": 22,
-      "exactReplay": true
-    },
-    {
-      "donor": "p56_an_end",
-      "kind": "signed",
-      "mode": "product",
-      "a": 11,
-      "iv": 13,
-      "split": 63,
-      "expectedHold": -2.417887493828483,
-      "fit": -2.5559302662472465,
-      "hold": -2.417887493828483,
+      "expectedHold": -2.4168169709505496,
+      "fit": -2.552512224174675,
+      "hold": -2.4168169709505496,
       "selected": {
         "kind": "square",
         "mode": "product",
@@ -555,9 +404,9 @@
       "a": 23,
       "iv": 2,
       "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5859627130008325,
-      "hold": -2.0071025682032873,
+      "expectedHold": -2.003014516703349,
+      "fit": -2.584405348520234,
+      "hold": -2.003014516703349,
       "selected": {
         "kind": "exponential",
         "mode": "previous",
@@ -575,9 +424,9 @@
       "a": 23,
       "iv": 2,
       "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5987730284390818,
-      "hold": -2.0071025682032873,
+      "expectedHold": -2.003014516703349,
+      "fit": -2.5972156639584827,
+      "hold": -2.003014516703349,
       "selected": {
         "kind": "exponential",
         "mode": "product",
@@ -595,9 +444,9 @@
       "a": 23,
       "iv": 2,
       "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5859627130008325,
-      "hold": -2.0071025682032873,
+      "expectedHold": -2.003014516703349,
+      "fit": -2.584405348520234,
+      "hold": -2.003014516703349,
       "selected": {
         "kind": "square",
         "mode": "previous",
@@ -615,49 +464,9 @@
       "a": 23,
       "iv": 2,
       "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5987730284390818,
-      "hold": -2.0071025682032873,
-      "selected": {
-        "kind": "square",
-        "mode": "product",
-        "a": 23,
-        "iv": 2
-      },
-      "correctHold": 24,
-      "holdLength": 24,
-      "exactReplay": true
-    },
-    {
-      "donor": "p57_parable",
-      "kind": "signed",
-      "mode": "previous",
-      "a": 23,
-      "iv": 2,
-      "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5859627130008325,
-      "hold": -2.0071025682032873,
-      "selected": {
-        "kind": "square",
-        "mode": "previous",
-        "a": 23,
-        "iv": 6
-      },
-      "correctHold": 24,
-      "holdLength": 24,
-      "exactReplay": true
-    },
-    {
-      "donor": "p57_parable",
-      "kind": "signed",
-      "mode": "product",
-      "a": 23,
-      "iv": 2,
-      "split": 71,
-      "expectedHold": -2.0071025682032873,
-      "fit": -2.5987730284390818,
-      "hold": -2.0071025682032873,
+      "expectedHold": -2.003014516703349,
+      "fit": -2.5972156639584827,
+      "hold": -2.003014516703349,
       "selected": {
         "kind": "square",
         "mode": "product",
@@ -668,5 +477,472 @@
       "holdLength": 24,
       "exactReplay": true
     }
-  ]
+  ],
+  "fhold": {
+    "original": {
+      "all": {
+        "eligible": 3364,
+        "prefixFeasible": 120,
+        "fullFeasible": 116,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 6,
+          "iv": 27
+        },
+        "fit": -4.845487259727123,
+        "directHoldDiagnostic": -5.308310842901855,
+        "hold": null,
+        "reason": "prefix winner has no full path"
+      },
+      "sourceExponent": {
+        "eligible": 116,
+        "prefixFeasible": 1,
+        "fullFeasible": 0,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 6,
+          "iv": 27
+        },
+        "fit": -4.845487259727123,
+        "directHoldDiagnostic": null,
+        "hold": null,
+        "reason": "prefix winner has no full path"
+      },
+      "sourceIndices": {
+        "eligible": 8,
+        "prefixFeasible": 0,
+        "fullFeasible": 0
+      }
+    },
+    "controls": [
+      {
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 6,
+          "iv": 8
+        },
+        "holdLength": 46,
+        "correctHold": 46,
+        "expectedHold": -2.772273052606286,
+        "eligible": 3364,
+        "prefixFeasible": 153,
+        "fullFeasible": 147,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 6,
+          "iv": 21
+        },
+        "fit": -2.6497381987044695,
+        "directHoldDiagnostic": -2.772273052606286,
+        "hold": -2.772273052606286,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 6,
+          "iv": 8
+        },
+        "holdLength": 46,
+        "correctHold": 45,
+        "expectedHold": -2.772273052606286,
+        "eligible": 3364,
+        "prefixFeasible": 170,
+        "fullFeasible": 152,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 6,
+          "iv": 8
+        },
+        "fit": -2.6099649276306227,
+        "directHoldDiagnostic": -2.7195700739805333,
+        "hold": -2.7195700739805333,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 6,
+          "iv": 8
+        },
+        "holdLength": 46,
+        "correctHold": 44,
+        "expectedHold": -2.772273052606286,
+        "eligible": 3364,
+        "prefixFeasible": 163,
+        "fullFeasible": 150,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 6,
+          "iv": 17
+        },
+        "fit": -2.6779896290470813,
+        "directHoldDiagnostic": -2.767104191246414,
+        "hold": -2.767104191246414,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "a": 6,
+          "iv": 8
+        },
+        "holdLength": 46,
+        "correctHold": 46,
+        "expectedHold": -2.772273052606286,
+        "eligible": 3364,
+        "prefixFeasible": 196,
+        "fullFeasible": 154,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "a": 6,
+          "iv": 8
+        },
+        "fit": -2.6730570891197436,
+        "directHoldDiagnostic": -2.772273052606286,
+        "hold": -2.772273052606286,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 17,
+          "iv": 19
+        },
+        "holdLength": 40,
+        "correctHold": 40,
+        "expectedHold": -3.271397746261708,
+        "eligible": 3364,
+        "prefixFeasible": 237,
+        "fullFeasible": 149,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 17,
+          "iv": 23
+        },
+        "fit": -2.9219885416671505,
+        "directHoldDiagnostic": -3.271397746261708,
+        "hold": -3.271397746261708,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 17,
+          "iv": 19
+        },
+        "holdLength": 40,
+        "correctHold": 39,
+        "expectedHold": -3.271397746261708,
+        "eligible": 3364,
+        "prefixFeasible": 178,
+        "fullFeasible": 125,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 17,
+          "iv": 19
+        },
+        "fit": -2.9138607550859397,
+        "directHoldDiagnostic": -3.1993836217490514,
+        "hold": -3.1993836217490514,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 17,
+          "iv": 19
+        },
+        "holdLength": 40,
+        "correctHold": 40,
+        "expectedHold": -3.271397746261708,
+        "eligible": 3364,
+        "prefixFeasible": 232,
+        "fullFeasible": 156,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 17,
+          "iv": 23
+        },
+        "fit": -2.923413875973066,
+        "directHoldDiagnostic": -3.271397746261708,
+        "hold": -3.271397746261708,
+        "exactReplay": true
+      },
+      {
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "a": 17,
+          "iv": 19
+        },
+        "holdLength": 40,
+        "correctHold": 40,
+        "expectedHold": -3.271397746261708,
+        "eligible": 3364,
+        "prefixFeasible": 148,
+        "fullFeasible": 126,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "a": 17,
+          "iv": 19
+        },
+        "fit": -2.9283947214963617,
+        "directHoldDiagnostic": -3.271397746261708,
+        "hold": -3.271397746261708,
+        "exactReplay": true
+      },
+      {
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 11,
+          "iv": 13
+        },
+        "holdLength": 22,
+        "correctHold": 22,
+        "expectedHold": -2.4168169709505496,
+        "eligible": 3364,
+        "prefixFeasible": 789,
+        "fullFeasible": 453,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 11,
+          "iv": 28
+        },
+        "fit": -2.507216290022913,
+        "directHoldDiagnostic": -2.4168169709505496,
+        "hold": -2.4168169709505496,
+        "exactReplay": true
+      },
+      {
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 11,
+          "iv": 13
+        },
+        "holdLength": 22,
+        "correctHold": 22,
+        "expectedHold": -2.4168169709505496,
+        "eligible": 3364,
+        "prefixFeasible": 491,
+        "fullFeasible": 274,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 11,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "directHoldDiagnostic": -2.4168169709505496,
+        "hold": -2.4168169709505496,
+        "exactReplay": true
+      },
+      {
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 11,
+          "iv": 13
+        },
+        "holdLength": 22,
+        "correctHold": 22,
+        "expectedHold": -2.4168169709505496,
+        "eligible": 3364,
+        "prefixFeasible": 510,
+        "fullFeasible": 384,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 11,
+          "iv": 18
+        },
+        "fit": -2.5390241832121774,
+        "directHoldDiagnostic": -2.4168169709505496,
+        "hold": -2.4168169709505496,
+        "exactReplay": true
+      },
+      {
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "a": 11,
+          "iv": 13
+        },
+        "holdLength": 22,
+        "correctHold": 22,
+        "expectedHold": -2.4168169709505496,
+        "eligible": 3364,
+        "prefixFeasible": 580,
+        "fullFeasible": 370,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "a": 11,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "directHoldDiagnostic": -2.4168169709505496,
+        "hold": -2.4168169709505496,
+        "exactReplay": true
+      },
+      {
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 23,
+          "iv": 2
+        },
+        "holdLength": 24,
+        "correctHold": 24,
+        "expectedHold": -2.003014516703349,
+        "eligible": 3364,
+        "prefixFeasible": 529,
+        "fullFeasible": 303,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "a": 23,
+          "iv": 0
+        },
+        "fit": -2.550952921642434,
+        "directHoldDiagnostic": -2.003014516703349,
+        "hold": -2.003014516703349,
+        "exactReplay": true
+      },
+      {
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 23,
+          "iv": 2
+        },
+        "holdLength": 24,
+        "correctHold": 24,
+        "expectedHold": -2.003014516703349,
+        "eligible": 3364,
+        "prefixFeasible": 453,
+        "fullFeasible": 302,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "a": 23,
+          "iv": 2
+        },
+        "fit": -2.565259671761103,
+        "directHoldDiagnostic": -2.003014516703349,
+        "hold": -2.003014516703349,
+        "exactReplay": true
+      },
+      {
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 23,
+          "iv": 2
+        },
+        "holdLength": 24,
+        "correctHold": 24,
+        "expectedHold": -2.003014516703349,
+        "eligible": 3364,
+        "prefixFeasible": 444,
+        "fullFeasible": 230,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "a": 23,
+          "iv": 6
+        },
+        "fit": -2.584405348520234,
+        "directHoldDiagnostic": -2.003014516703349,
+        "hold": -2.003014516703349,
+        "exactReplay": true
+      },
+      {
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "a": 23,
+          "iv": 2
+        },
+        "holdLength": 24,
+        "correctHold": 24,
+        "expectedHold": -2.003014516703349,
+        "eligible": 3364,
+        "prefixFeasible": 529,
+        "fullFeasible": 272,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "a": 23,
+          "iv": 2
+        },
+        "fit": -2.4595576893380464,
+        "directHoldDiagnostic": -2.003014516703349,
+        "hold": -2.003014516703349,
+        "exactReplay": true
+      }
+    ]
+  },
+  "pageLocalOrdinary": {
+    "tested": 3364,
+    "best": {
+      "kind": "square",
+      "mode": "product",
+      "a": 11,
+      "iv": 8,
+      "fit": -4.209628597834371,
+      "fitText": "EAJUAELNORESUUARWOCNGATEFEAEASEOBYWDYTHEDADBEBNGCNNGORPLAEEHTHRPLFAEAHOBEOTXJOFHMXJETNGU",
+      "exactReplay": true
+    },
+    "topFitTies": 1
+  },
+  "pageLocalF": {
+    "tested": 3364,
+    "legal": 314,
+    "selected": {
+      "kind": "exponential",
+      "mode": "product",
+      "a": 27,
+      "iv": 19
+    },
+    "score": -4.308994291517972,
+    "text": "UERRNGXBMDEAYSSJNCOAEHUWSYECREPPRIEALLOGHPOEXAENYOEPUEMWADIUNGPBNGMRHEAOLSPBYYNGJMAWAETHU",
+    "exactReplay": true
+  }
 }
