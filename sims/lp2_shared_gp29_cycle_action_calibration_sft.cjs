@@ -485,6 +485,7 @@ function makeMappedKeyOptions(groupIndex, limit = Infinity) {
   const base = [];
   const normalization = new Array(29).fill(0);
   normalization[22] = 1; // pi(D) = 1 fixes the multiplicative gauge.
+  normalization[28] = 1;
   ops.addRow(base, normalization);
   for (const entry of eligible) {
     for (let start = 0; start < 8; start++) {
