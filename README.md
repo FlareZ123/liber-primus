@@ -20,6 +20,8 @@ Prioritize a **source-constrained, lossless original-cipher inverse** with expli
 
 A promising original-source clue is useful when it fixes a rule or key *before* the tested ciphertext is used for model selection. Post-selected prime coincidences, lag-five/six motifs, and language scores are provisional diagnostics. Any new key or mechanism should explain multiple manuscript-wide effects, including word boundaries, the rarity of adjacent equal runes, and printed page transitions, without fitting the same features repeatedly.
 
+The authoritative `results/README.md` is a causal frontier. Scoped negative runs and routine control successes belong in their existing consolidated `im-results/` report; update the corresponding frontier paragraph in place only when the strongest conclusion or viable route changes. Preserve unique evidence and links; do not add one summary paragraph per run. The [full 25 November evidence snapshot](im-results/archive-results-readme-20261125-0a967334a6d5-before-frontier-separation.md) retains the previous detailed synthesis verbatim.
+
 Before starting another standalone exclusion, verify whether the family has been tested in [supporting studies](im-results/) or is already excluded under its stated assumptions in [current findings](results/README.md). Prefer strengthening an existing joint original-input attack to adding another one-off simulation, duplicated report, or workflow. Keep a hypothesis's exact tested scope and useful failures reproducible.
 
 ## Repository practice
