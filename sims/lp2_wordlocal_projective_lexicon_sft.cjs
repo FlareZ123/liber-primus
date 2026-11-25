@@ -69,7 +69,60 @@ function run(corpus, solved, sourceText, dictionaryText) {
     check(get('delta',delta(c)).some(e=>e.v.join(',')===p.join(',')),'delta known word');
     plants++;
   }
-  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples};
+
+  // A transparent plaintext F (index zero) emits literal F and does not
+  // advance the consumed-symbol clock. A consumed non-F can also emit F.
+  const holdIndex={direct:new Map(),delta:new Map()};
+  const fmask=v=>v.reduce((m,x,i)=>x===0?m|(1<<i):m,0);
+  const strip=(v,m)=>v.filter((x,i)=>!(m&(1<<i)));
+  const holdKey=(n,m,v)=>n+':'+m+':'+(v.length?canon(v):'empty');
+  for(const e of lex.values()){
+    const m=fmask(e.v),v=strip(e.v,m);
+    for(const kind of ['direct','delta']){
+      const k=holdKey(e.v.length,m,kind==='direct'?v:v.slice(1));
+      const arr=holdIndex[kind].get(k)||[];arr.push(e);holdIndex[kind].set(k,arr);
+    }
+  }
+  function getHeld(kind,c){
+    const avail=fmask(c),out=[];
+    for(let m=avail;;m=(m-1)&avail){
+      const v=strip(c,m);
+      const q=kind==='direct'?v:delta(v);
+      out.push(...(holdIndex[kind].get(holdKey(c.length,m,q))||[]));
+      if(m===0)break;
+    }
+    return out;
+  }
+  const holdCounts={},holdExamples={direct:[],directEither:[],delta:[],deltaEither:[]};
+  for(let wi=0;wi<original.length;wi++){
+    const c=original[wi],n=c.length;if(n<6)continue;
+    const rev=[...c].reverse();
+    const row=holdCounts[n]??={total:0,direct:0,directEither:0,delta:0,deltaEither:0};row.total++;
+    const sets={direct:getHeld('direct',c),directEither:[...getHeld('direct',c),...getHeld('direct',rev)],delta:getHeld('delta',c),deltaEither:[...getHeld('delta',c),...getHeld('delta',rev)]};
+    for(const mode of modes)if(sets[mode].length){row[mode]++;if(n>=8)holdExamples[mode].push({wordIndex:wi,cipher:c.map(x=>corpus.translit[x]).join(''),candidates:[...new Set(sets[mode].map(e=>e.word))].slice(0,12)})}
+  }
+  let holdPlants=0,ambiguousZeroPlants=0;
+  for(const p of native.filter(v=>v.length>=6&&v.length<=14)){
+    const v=p.filter(x=>x!==0);
+    // Deliberately choose an absent finite pole; make at least one
+    // consumed symbol map to zero so literal-F and consuming-F differ.
+    const pole=Array.from({length:29},(_,i)=>i).find(x=>!v.includes(x));
+    const a=7,b=v.length?mod(-a*v[0]):1;
+    const enc=x=>mod((a*x+b)*inv[mod(x-pole)]);
+    const dec=y=>mod((y*pole+b)*inv[mod(y-a)]);
+    check(mod(-a*pole-b)!==0,'nonzero determinant');
+    const direct=p.map(x=>x===0?0:enc(x));
+    check(strip(direct,fmask(p)).every((x,i)=>dec(x)===v[i]),'held direct exact inverse');
+    check(getHeld('direct',direct).some(e=>e.v.join(',')===p.join(',')),'held direct lexical recovery');
+    if(p.some(x=>x===0)&&strip(direct,fmask(p)).includes(0))ambiguousZeroPlants++;
+    let prev=17,started=false;
+    const c=p.map(x=>{if(x===0)return 0;if(!started){started=true;return prev}prev=mod(prev+enc(x));return prev});
+    check(delta(strip(c,fmask(p))).every((x,i)=>dec(x)===v[i+1]),'held delta exact inverse');
+    check(getHeld('delta',c).some(e=>e.v.join(',')===p.join(',')),'held delta lexical recovery');
+    holdPlants++;
+  }
+
+  return {originalWords:original.length,originalRunes:original.flat().length,uniqueLexiconRuneSequences:lex.size,plants,counts,examples,holdPlants,ambiguousZeroPlants,holdCounts,holdExamples};
 }
 const result=run(JSON.parse(load("resources/liber-primus/lp2-corpus.json")),JSON.parse(load("resources/external/relikd-solved-gp29-native-v1.json")),load("resources/liber-primus/lp2-transcription.txt"),load("resources/control/english_wordfreq_textblob.txt"));
 console.log(JSON.stringify(result,null,2));
