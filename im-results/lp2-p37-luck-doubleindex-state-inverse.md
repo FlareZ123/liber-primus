@@ -1,6 +1,6 @@
 # P37 double-index receiver yields a strong local `LUCK` plaintext candidate
 
-**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word. The conditional ring-compass convergence supplies no independent operand for this double-index or key-transition rule (see [#2795 endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795)). The 25 November frozen-key continuation rejects direct continuous and word-reset q4 extensions across item3; the local candidate is not an established page cipher.
+**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word. The conditional ring-compass convergence supplies no independent operand for this double-index or key-transition rule (see [#2795 endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795)). The 25 November continuation tests reject direct continuous and word-reset q4 extensions, stationary mixed plaintext/ciphertext feedback, and all 19,488 common-affine/permuted H4 block-shell transitions (including the complete joint language envelope); the local candidate is not an established page cipher.
 
 ## Result
 
@@ -327,3 +327,29 @@ Native language model: 321,327 source-normalized Emerson GP29 runes, target-excl
 Ordinary winner (q,u,a,b,d)=(4,16,20,6,17); F winner=(4,26,26,17,9). The latter fits with both right ciphertext zeroes held; its backward state cannot legally cover the left side. Exact maximum of the finite forward trigram objective; the independent backward decision applies to the selected winner, not an assertion that every lower-scoring coefficient tuple lacks a complete path. Neither model explains the surrounding original as native prose. The LUCK crib stays conditional, with no new authenticated transition. Retire this stationary local feedback receiver without introducing output-conditioned exceptions.
 
 [Read-only Node22 SFT](../sims/lp2_p37_luck_mixed_feedback_bidirectional_sft.cjs) · [compact raw results](lp2-p37-luck-mixed-feedback-bidirectional.json). Core executed in V8; the consolidated script syntax-checked, no CI execution claimed.
+
+## All-secret affine-permuted H4 block-shell transition (Agent1, 25 November 2026)
+
+A different continuation treats the crib-derived key as a **four-coordinate state**, rather than applying a periodic key or lagged plaintext/ciphertext recurrence. With the same provisional `LUCK` crib at p37[146,150), subtractive key [12,1,1,22] gives H4 shell S_0=[19,0,2,5]. The declared model is
+
+```
+S_(t+1)[j] = a*S_t[perm[j]] + b mod29
+K_t = H4^-1(S_t)
+C_i = P_i + K_t[i mod 4] mod29
+a in 1..28, b in 0..28, perm in S4
+```
+
+Block zero begins at the crib. The inverse exists in both directions because a is nonzero and perm is bijective. Test all 19,488 rules under ordinary consumption and authentic transparent plaintext-F holds (held F is emitted as zero and does not consume a key position; consuming ciphertext zero may also decode to nonzero plaintext). No independent source selects this transition; the motivation is the published four-coordinate shell, and the test is exploratory.
+
+Fit only the 39 original runes to the right of the crib, enumerating all legal F paths and scoring exact trigrams. Freeze the unique winning rule before reversing through the 55 left-side runes. Separately compute the exact joint maximum over every model with a legal inverse on both sides; this is an in-sample envelope, not another independent holdout. The LM uses the nine canonical native solved rune sections, leaving each donor section out of its own positive-control fit. Scores are per newly decoded rune; the two internal crib trigrams are excluded.
+
+| Clock | Forward legal rules / paths | Winning fit | Frozen backward holdout | Both-side legal rules | Exact joint maximum |
+|---|---:|---:|---:|---:|---:|
+| Ordinary | 19,488 / 19,488 | -3.613588 | -4.129508, nonprose | 19,488 | -3.835071 |
+| Transparent F | 9,000 / 18,935 | -3.628769 | no legal path | 2,567 | -3.835071 |
+
+The ordinary right-only winner is (a,b,perm)=(4,15,[2,1,0,3]); the transparent-F winner is (14,3,[3,1,2,0]). Both joint objectives select (20,19,[1,2,3,0]) with no F holds. Its exact-replay output begins `JDXCOCAEAERTDIRIANINGNALAMEBAAELUOECEXOROSIMTXCONINYCEPBYACIAE` before the fitted crib. It is not a readable continuation.
+
+Three source-native donor windows (WARNING, WELCOME, KOAN) with distinct planted rules and initial shells, each tested with both clocks, recover **6/6 exact rules**, 234/234 fitted and 330/330 frozen withheld runes. The donor-excluded joint scores range from -2.735543 to -2.191410. These are six mechanical hidden-rule controls over three source passages, not six independent literary populations. Exact full forward replay is asserted for every returned complete winner. Because the full original joint maximum is already poor and the independent fit winners fail their holdout, retire the declared common-affine/permuted-shell family. This is a finite-model language decision, not a theorem about all possible plaintext or independent-coordinate/general matrix transitions. No authenticated key, further original plaintext, or new source selector follows. Do not introduce arbitrary additional coefficients merely to rescue this crib.
+
+[Standalone CommonJS SFT](../sims/lp2_p37_h4_affine_permuted_shell_sft.cjs) · [Complete compact results](lp2-p37-h4-affine-permuted-shell.json). Executed the same core in connected V8 on canonical data; no separate Node/Windows CI claimed. Commits a459b1f2 and 58462adb preserve the final code and raw envelope.
