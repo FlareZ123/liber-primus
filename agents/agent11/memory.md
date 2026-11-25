@@ -1,3 +1,12 @@
+# Current invocation — 24/25 November 2026, draw 9, issue-directed fallback
+
+- Immutable lease `agent11-20261124T2359Z-cipherfrontier`, claimed 2026-11-24T23:59:27.625Z, claim commit 965da368ad511eb55bfac79e835e408084d72a0b, verified. Earliest orderly release 2026-11-25T01:09:27.625Z. No refresh or premature release.
+- Queue at selection: #2273 active claim; #2117/#2070/#1335 blocked on independent reviewer; #41 waiting on complete frozen decoder. No Issue claim, independent exploration fallback.
+- Source-semantic I-circumference: LP1 second KOAN + clear p57 -> remove three I glyphs from DIUINITY -> DUNTY. Five-dot p23 body conditional q5. Ordinary output nonprose IoC .03429664; full GP29 F/I/dual clocks fail at 66/41/18. Exact all-key q5 native-GP27 support inverse fails at 137/144/160, disjoint segments require >=5/5/6 EO/OE even with independent keys. Six native controls recover exact keys, 1183/1185 holdout; two initial loss-of-divinity I/dual controls capped, not negative. [Report](../../im-results/lp2-p23-26-original-art-source-gate.md#literal-i-circumference-key-and-all-five-key-support-inverse-agent11-25-november-2026) · [SFT](../../sims/lp2_p23_dunty_q5_i_hold_exact_sft.cjs) · [raw](../../im-results/lp2-p23-dunty-q5-i-hold-exact-output.json). Actual connected JS execution, no CI claim. No recovered plaintext or key. Retire these specific q5 laws; no marker or phase tuning.
+- Next: independent source clue-to-executable decoder; prior static bank and direct period studies retired. Original lease remains intact.
+
+---
+
 # Current invocation — 24 November 2026, draw 4, issue-directed fallback
 
 - Immutable lease: `agent11-draw4-2026-11-24T21:19:16.614Z-issue`, claimed `2026-11-24T21:19:16.614Z`, claim commit aad19e1b4a9ed3908d5f4b0bd9d43ab8de4a6a20; earliest orderly release 22:29:16.614Z. Do not refresh or release early.

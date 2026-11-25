@@ -1,0 +1,318 @@
+{
+  "bodyLength": 1005,
+  "key8": [
+    23,
+    10,
+    1,
+    10,
+    9,
+    10,
+    16,
+    26
+  ],
+  "key": [
+    23,
+    1,
+    9,
+    16,
+    26
+  ],
+  "rare": [
+    12,
+    22
+  ],
+  "direct": [
+    {
+      "holds": [],
+      "legal": true,
+      "ioc": 0.03429664426869636,
+      "score": -3.906946882940278,
+      "preview": "CCGNTPEMAEXEGEADNCTNGIJOLIAXWNGTHEPUCOEPSOEJHCWCAOOEIABXPXIISGTHEOEAEAEOEASOERUUNGFXTHFHMIAGEEOMTHNNGNROELOEWTHYPIANYEOUTHHRSBU"
+    },
+    {
+      "holds": [
+        0
+      ],
+      "legal": false,
+      "firstImpossible": 66
+    },
+    {
+      "holds": [
+        10
+      ],
+      "legal": false,
+      "firstImpossible": 41
+    },
+    {
+      "holds": [
+        0,
+        10
+      ],
+      "legal": false,
+      "firstImpossible": 18
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "holds": [
+        0
+      ],
+      "keys": 32,
+      "peak": 30,
+      "chosen": [
+        23,
+        1,
+        9,
+        16,
+        26
+      ],
+      "trainExact": 500,
+      "holdoutExact": 280,
+      "holdoutN": 280
+    },
+    {
+      "name": "0_koan_1",
+      "holds": [
+        10
+      ],
+      "keys": 1,
+      "peak": 888,
+      "chosen": [
+        23,
+        1,
+        9,
+        16,
+        26
+      ],
+      "trainExact": 500,
+      "holdoutExact": 280,
+      "holdoutN": 280
+    },
+    {
+      "name": "0_koan_1",
+      "holds": [
+        0,
+        10
+      ],
+      "keys": 26,
+      "peak": 172,
+      "chosen": [
+        23,
+        1,
+        9,
+        16,
+        26
+      ],
+      "trainExact": 500,
+      "holdoutExact": 278,
+      "holdoutN": 280
+    },
+    {
+      "name": "0_welcome",
+      "holds": [
+        0
+      ],
+      "keys": 1,
+      "peak": 58,
+      "chosen": [
+        17,
+        2,
+        28,
+        9,
+        12
+      ],
+      "trainExact": 400,
+      "holdoutExact": 115,
+      "holdoutN": 115
+    },
+    {
+      "name": "0_welcome",
+      "holds": [
+        10
+      ],
+      "keys": 103,
+      "peak": 4970,
+      "chosen": [
+        17,
+        2,
+        28,
+        9,
+        12
+      ],
+      "trainExact": 400,
+      "holdoutExact": 115,
+      "holdoutN": 115
+    },
+    {
+      "name": "0_welcome",
+      "holds": [
+        0,
+        10
+      ],
+      "keys": 16,
+      "peak": 3256,
+      "chosen": [
+        17,
+        2,
+        28,
+        9,
+        12
+      ],
+      "trainExact": 400,
+      "holdoutExact": 115,
+      "holdoutN": 115
+    }
+  ],
+  "original": [
+    {
+      "holds": [
+        0
+      ],
+      "firstImpossible": 137,
+      "peak": 8,
+      "minRare": 5,
+      "blocks": [
+        {
+          "start": 0,
+          "end": 138,
+          "peak": 8
+        },
+        {
+          "start": 138,
+          "end": 346,
+          "peak": 32
+        },
+        {
+          "start": 346,
+          "end": 568,
+          "peak": 32
+        },
+        {
+          "start": 568,
+          "end": 723,
+          "peak": 38
+        },
+        {
+          "start": 723,
+          "end": 878,
+          "peak": 10
+        }
+      ],
+      "tailStart": 878,
+      "tail": {
+        "status": "SAT",
+        "peak": 11,
+        "states": 9
+      }
+    },
+    {
+      "holds": [
+        10
+      ],
+      "firstImpossible": 144,
+      "peak": 4,
+      "minRare": 5,
+      "blocks": [
+        {
+          "start": 0,
+          "end": 145,
+          "peak": 4
+        },
+        {
+          "start": 145,
+          "end": 288,
+          "peak": 2
+        },
+        {
+          "start": 288,
+          "end": 464,
+          "peak": 28
+        },
+        {
+          "start": 464,
+          "end": 688,
+          "peak": 38
+        },
+        {
+          "start": 688,
+          "end": 849,
+          "peak": 12
+        }
+      ],
+      "tailStart": 849,
+      "tail": {
+        "status": "SAT",
+        "peak": 32,
+        "states": 4
+      }
+    },
+    {
+      "holds": [
+        0,
+        10
+      ],
+      "firstImpossible": 160,
+      "peak": 4,
+      "minRare": 6,
+      "blocks": [
+        {
+          "start": 0,
+          "end": 161,
+          "peak": 4
+        },
+        {
+          "start": 161,
+          "end": 289,
+          "peak": 12
+        },
+        {
+          "start": 289,
+          "end": 476,
+          "peak": 823
+        },
+        {
+          "start": 476,
+          "end": 625,
+          "peak": 32
+        },
+        {
+          "start": 625,
+          "end": 762,
+          "peak": 86
+        },
+        {
+          "start": 762,
+          "end": 926,
+          "peak": 514
+        }
+      ],
+      "tailStart": 926,
+      "tail": {
+        "status": "SAT",
+        "peak": 44,
+        "states": 43
+      }
+    }
+  ],
+  "capped": [
+    {
+      "holds": [
+        10
+      ],
+      "status": "CAP",
+      "offset": 121,
+      "peak": 115283
+    },
+    {
+      "holds": [
+        0,
+        10
+      ],
+      "status": "CAP",
+      "offset": 62,
+      "peak": 171321
+    }
+  ],
+  "knownClearP57IoC": 0.06270996640537514
+}
