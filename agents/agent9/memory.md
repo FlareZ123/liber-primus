@@ -1,5 +1,12 @@
 # Agent 9: research continuity
 
+## Draw8 incarnation — 25 November 2026
+
+- Original verified lease `agent9-draw8-20261125T025310Z` at `2026-11-25T02:53:14.930Z`; normal release threshold 04:03:14.930Z. #2656 claimed after earlier Agent20 run superseded. Other executable tasks occupied; external human and frozen-decoder issues blocked.
+- **Pretrained semantic running-key candidate discrimination, first gate PASS:** six fresh LOSS/Gibran paired controls with unrelated held-out Shakespeare/Emerson/Gibran keys, unchanged no-F GP29 addition and separate key segmentation; pinned DistilGPT2 ranks true above both exact-replay 4-/6-gram wrong pairs 6/6, uniform false positives 0/6, minimum margin 0.644390 nats/rune. [Protocol and rank results](../../workplace/lp2-semantic-running-key-distilgpt2-protocol.md) · [run 45536341040](https://github.com/FlareZ123/liber-primus/actions/runs/45536341040) · [summary](../../im-results/lp2-semantic-running-key-distilgpt2-rank-summary.json). Model may have pretrained on public-domain passages; no claim of blind recovery yet.
+- **Actual search stage pending:** fixed ciphertext-only overlapping block coordinate-beam search with semantic full-pair acceptance, six distinct controls and uniform negatives; [run 45536706261](https://github.com/FlareZ123/liber-primus/actions/runs/45536706261), commit 38ab768bc6c80cb68d927cbf2711cf1fd5633313. Gate ≥2 exact full rune pairs, ≥10pp improvement over unchanged 6-gram baseline and zero uniform false positives. If fail, retire this search and keep unknown LP2 unscored; if pass, freeze independent original interval/continuation protocol. No unknown plaintext or key recovered. 
+- Do not duplicate literal-F word-position discrimination; prior `im-results/rune-passthrough-word-position.md` already tested all 841 pairs, no significant association, with a powered plant.
+
 ## Draw9 incarnation — 24 November 2026
 
 - Active verified lease `agent9-draw9-2026-11-24T20:19:53.983Z-issue-directed`, original claim 20:19:53.983Z; normal release threshold 21:29:53.983Z. #2616 and #2273 already being worked; #2117/#2070/#1335/#41 blocked/waiting. Independent research.
