@@ -1998,5 +1998,1584 @@
         10
       ]
     }
-  ]
+  ],
+  "additional": {
+    "plaintextFeedback": {
+      "source": {
+        "groups": 815,
+        "hits": 452,
+        "runes": 6180,
+        "hitRunes": 3311,
+        "identity": 0
+      },
+      "shortPredecessor": {
+        "groups": 160,
+        "hits": 75,
+        "runes": 1219,
+        "hitRunes": 592,
+        "identity": 0
+      },
+      "strata": [
+        {
+          "chapter": 0,
+          "L": 6,
+          "n": 18,
+          "baseline": 7,
+          "restricted": 11,
+          "identity": 0,
+          "best": 14,
+          "key": "27923776"
+        },
+        {
+          "chapter": 0,
+          "L": 7,
+          "n": 17,
+          "baseline": 4,
+          "restricted": 13,
+          "identity": 0,
+          "best": 10,
+          "key": "334520320"
+        },
+        {
+          "chapter": 0,
+          "L": 8,
+          "n": 9,
+          "baseline": 2,
+          "restricted": 7,
+          "identity": 0,
+          "best": 6,
+          "key": "171475029118"
+        },
+        {
+          "chapter": 0,
+          "L": 9,
+          "n": 6,
+          "baseline": 0,
+          "restricted": 6,
+          "identity": 0,
+          "best": 4,
+          "key": "2253412123648"
+        },
+        {
+          "chapter": 0,
+          "L": 10,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 2,
+          "key": "6287608241152"
+        },
+        {
+          "chapter": 0,
+          "L": 11,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "16630906880"
+        },
+        {
+          "chapter": 1,
+          "L": 6,
+          "n": 32,
+          "baseline": 10,
+          "restricted": 22,
+          "identity": 0,
+          "best": 25,
+          "key": "444306848"
+        },
+        {
+          "chapter": 1,
+          "L": 7,
+          "n": 18,
+          "baseline": 3,
+          "restricted": 15,
+          "identity": 0,
+          "best": 11,
+          "key": "3758522368"
+        },
+        {
+          "chapter": 1,
+          "L": 8,
+          "n": 11,
+          "baseline": 1,
+          "restricted": 10,
+          "identity": 0,
+          "best": 5,
+          "key": "179873054720"
+        },
+        {
+          "chapter": 1,
+          "L": 9,
+          "n": 6,
+          "baseline": 0,
+          "restricted": 6,
+          "identity": 0,
+          "best": 2,
+          "key": "1356677644288"
+        },
+        {
+          "chapter": 1,
+          "L": 10,
+          "n": 5,
+          "baseline": 0,
+          "restricted": 5,
+          "identity": 0,
+          "best": 2,
+          "key": "24036507648"
+        },
+        {
+          "chapter": 1,
+          "L": 11,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "6255619866624"
+        },
+        {
+          "chapter": 1,
+          "L": 12,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "369700130339840"
+        },
+        {
+          "chapter": 2,
+          "L": 6,
+          "n": 35,
+          "baseline": 12,
+          "restricted": 23,
+          "identity": 0,
+          "best": 26,
+          "key": "6223872"
+        },
+        {
+          "chapter": 2,
+          "L": 7,
+          "n": 26,
+          "baseline": 2,
+          "restricted": 24,
+          "identity": 0,
+          "best": 13,
+          "key": "8362455040"
+        },
+        {
+          "chapter": 2,
+          "L": 8,
+          "n": 16,
+          "baseline": 2,
+          "restricted": 14,
+          "identity": 0,
+          "best": 9,
+          "key": "532714094592"
+        },
+        {
+          "chapter": 2,
+          "L": 9,
+          "n": 14,
+          "baseline": 2,
+          "restricted": 12,
+          "identity": 0,
+          "best": 5,
+          "key": "121752256512"
+        },
+        {
+          "chapter": 2,
+          "L": 10,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 2,
+          "key": "3569587585024"
+        },
+        {
+          "chapter": 2,
+          "L": 11,
+          "n": 7,
+          "baseline": 0,
+          "restricted": 7,
+          "identity": 0,
+          "best": 3,
+          "key": "703570571689984"
+        },
+        {
+          "chapter": 2,
+          "L": 12,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "205693499998208"
+        },
+        {
+          "chapter": 2,
+          "L": 13,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "288230376151711744"
+        },
+        {
+          "chapter": 2,
+          "L": 14,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "2219468365032849408"
+        },
+        {
+          "chapter": 3,
+          "L": 6,
+          "n": 37,
+          "baseline": 6,
+          "restricted": 31,
+          "identity": 0,
+          "best": 22,
+          "key": "59328512"
+        },
+        {
+          "chapter": 3,
+          "L": 7,
+          "n": 32,
+          "baseline": 7,
+          "restricted": 25,
+          "identity": 0,
+          "best": 17,
+          "key": "9467143168"
+        },
+        {
+          "chapter": 3,
+          "L": 8,
+          "n": 28,
+          "baseline": 7,
+          "restricted": 21,
+          "identity": 0,
+          "best": 14,
+          "key": "76163853088"
+        },
+        {
+          "chapter": 3,
+          "L": 9,
+          "n": 5,
+          "baseline": 0,
+          "restricted": 5,
+          "identity": 0,
+          "best": 2,
+          "key": "4453127159808"
+        },
+        {
+          "chapter": 3,
+          "L": 10,
+          "n": 6,
+          "baseline": 1,
+          "restricted": 5,
+          "identity": 0,
+          "best": 3,
+          "key": "43004135997440"
+        },
+        {
+          "chapter": 3,
+          "L": 11,
+          "n": 4,
+          "baseline": 1,
+          "restricted": 3,
+          "identity": 0,
+          "best": 3,
+          "key": "3157800199913472"
+        },
+        {
+          "chapter": 3,
+          "L": 12,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 1,
+          "key": "416613094937600"
+        },
+        {
+          "chapter": 3,
+          "L": 13,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "7016921073451008"
+        },
+        {
+          "chapter": 4,
+          "L": 6,
+          "n": 19,
+          "baseline": 3,
+          "restricted": 16,
+          "identity": 0,
+          "best": 12,
+          "key": "329876480"
+        },
+        {
+          "chapter": 4,
+          "L": 7,
+          "n": 23,
+          "baseline": 4,
+          "restricted": 19,
+          "identity": 0,
+          "best": 13,
+          "key": "526669824"
+        },
+        {
+          "chapter": 4,
+          "L": 8,
+          "n": 12,
+          "baseline": 2,
+          "restricted": 10,
+          "identity": 0,
+          "best": 7,
+          "key": "211199983616"
+        },
+        {
+          "chapter": 4,
+          "L": 9,
+          "n": 7,
+          "baseline": 0,
+          "restricted": 7,
+          "identity": 0,
+          "best": 4,
+          "key": "1126796506112"
+        },
+        {
+          "chapter": 4,
+          "L": 10,
+          "n": 6,
+          "baseline": 0,
+          "restricted": 6,
+          "identity": 0,
+          "best": 2,
+          "key": "38458252853248"
+        },
+        {
+          "chapter": 4,
+          "L": 14,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "37039316615129202688"
+        },
+        {
+          "chapter": 5,
+          "L": 6,
+          "n": 23,
+          "baseline": 4,
+          "restricted": 19,
+          "identity": 0,
+          "best": 18,
+          "key": "449747968"
+        },
+        {
+          "chapter": 5,
+          "L": 7,
+          "n": 24,
+          "baseline": 2,
+          "restricted": 22,
+          "identity": 0,
+          "best": 13,
+          "key": "2409758720"
+        },
+        {
+          "chapter": 5,
+          "L": 8,
+          "n": 13,
+          "baseline": 3,
+          "restricted": 10,
+          "identity": 0,
+          "best": 6,
+          "key": "757661696"
+        },
+        {
+          "chapter": 5,
+          "L": 9,
+          "n": 9,
+          "baseline": 0,
+          "restricted": 9,
+          "identity": 0,
+          "best": 4,
+          "key": "4526932623360"
+        },
+        {
+          "chapter": 5,
+          "L": 10,
+          "n": 6,
+          "baseline": 1,
+          "restricted": 5,
+          "identity": 0,
+          "best": 2,
+          "key": "271363080192"
+        },
+        {
+          "chapter": 5,
+          "L": 11,
+          "n": 5,
+          "baseline": 0,
+          "restricted": 5,
+          "identity": 0,
+          "best": 1,
+          "key": "1909850112"
+        },
+        {
+          "chapter": 5,
+          "L": 12,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "1020915630997504"
+        },
+        {
+          "chapter": 6,
+          "L": 6,
+          "n": 31,
+          "baseline": 8,
+          "restricted": 23,
+          "identity": 0,
+          "best": 21,
+          "key": "3473408"
+        },
+        {
+          "chapter": 6,
+          "L": 7,
+          "n": 26,
+          "baseline": 1,
+          "restricted": 25,
+          "identity": 0,
+          "best": 14,
+          "key": "4433410976"
+        },
+        {
+          "chapter": 6,
+          "L": 8,
+          "n": 19,
+          "baseline": 3,
+          "restricted": 16,
+          "identity": 0,
+          "best": 9,
+          "key": "170593878016"
+        },
+        {
+          "chapter": 6,
+          "L": 9,
+          "n": 13,
+          "baseline": 0,
+          "restricted": 13,
+          "identity": 0,
+          "best": 4,
+          "key": "138710966272"
+        },
+        {
+          "chapter": 6,
+          "L": 10,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 3,
+          "key": "3552032751616"
+        },
+        {
+          "chapter": 6,
+          "L": 11,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "70551902879744"
+        },
+        {
+          "chapter": 6,
+          "L": 12,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "372339304824832"
+        },
+        {
+          "chapter": 7,
+          "L": 6,
+          "n": 53,
+          "baseline": 13,
+          "restricted": 40,
+          "identity": 0,
+          "best": 36,
+          "key": "18043904"
+        },
+        {
+          "chapter": 7,
+          "L": 7,
+          "n": 47,
+          "baseline": 9,
+          "restricted": 38,
+          "identity": 0,
+          "best": 22,
+          "key": "3745059424"
+        },
+        {
+          "chapter": 7,
+          "L": 8,
+          "n": 42,
+          "baseline": 6,
+          "restricted": 36,
+          "identity": 0,
+          "best": 16,
+          "key": "318221599744"
+        },
+        {
+          "chapter": 7,
+          "L": 9,
+          "n": 18,
+          "baseline": 1,
+          "restricted": 17,
+          "identity": 0,
+          "best": 7,
+          "key": "3218014502912"
+        },
+        {
+          "chapter": 7,
+          "L": 10,
+          "n": 11,
+          "baseline": 0,
+          "restricted": 11,
+          "identity": 0,
+          "best": 3,
+          "key": "23566841876480"
+        },
+        {
+          "chapter": 7,
+          "L": 11,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 2,
+          "key": "830359720689664"
+        },
+        {
+          "chapter": 7,
+          "L": 12,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "108267805997056"
+        },
+        {
+          "chapter": 7,
+          "L": 13,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "5982881054720000"
+        },
+        {
+          "chapter": 7,
+          "L": 14,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "1596411728981131264"
+        },
+        {
+          "chapter": 8,
+          "L": 6,
+          "n": 8,
+          "baseline": 3,
+          "restricted": 5,
+          "identity": 0,
+          "best": 7,
+          "key": "7294976"
+        },
+        {
+          "chapter": 8,
+          "L": 7,
+          "n": 3,
+          "baseline": 1,
+          "restricted": 2,
+          "identity": 0,
+          "best": 3,
+          "key": "51291136"
+        },
+        {
+          "chapter": 8,
+          "L": 8,
+          "n": 6,
+          "baseline": 2,
+          "restricted": 4,
+          "identity": 0,
+          "best": 5,
+          "key": "49107173376"
+        },
+        {
+          "chapter": 8,
+          "L": 10,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "1036107925504"
+        },
+        {
+          "chapter": 8,
+          "L": 11,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "5689770406912"
+        },
+        {
+          "chapter": 8,
+          "L": 13,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "24080742671912960"
+        }
+      ],
+      "shortStrata": [
+        {
+          "chapter": 0,
+          "L": 6,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 2,
+          "key": "8073344"
+        },
+        {
+          "chapter": 0,
+          "L": 7,
+          "n": 5,
+          "baseline": 0,
+          "restricted": 5,
+          "identity": 0,
+          "best": 2,
+          "key": "200951808"
+        },
+        {
+          "chapter": 0,
+          "L": 8,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 2,
+          "key": "239740403456"
+        },
+        {
+          "chapter": 0,
+          "L": 9,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "1252924192"
+        },
+        {
+          "chapter": 0,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "283035132928"
+        },
+        {
+          "chapter": 1,
+          "L": 6,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 2,
+          "key": "16712896"
+        },
+        {
+          "chapter": 1,
+          "L": 7,
+          "n": 5,
+          "baseline": 0,
+          "restricted": 5,
+          "identity": 0,
+          "best": 2,
+          "key": "370672640"
+        },
+        {
+          "chapter": 1,
+          "L": 9,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "9211219520"
+        },
+        {
+          "chapter": 1,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "72550283264"
+        },
+        {
+          "chapter": 1,
+          "L": 11,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "238521308778496"
+        },
+        {
+          "chapter": 1,
+          "L": 12,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "369700130339840"
+        },
+        {
+          "chapter": 2,
+          "L": 6,
+          "n": 7,
+          "baseline": 0,
+          "restricted": 7,
+          "identity": 0,
+          "best": 3,
+          "key": "349709312"
+        },
+        {
+          "chapter": 2,
+          "L": 7,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 2,
+          "key": "12590080"
+        },
+        {
+          "chapter": 2,
+          "L": 9,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "51952433152"
+        },
+        {
+          "chapter": 2,
+          "L": 11,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "252465669455872"
+        },
+        {
+          "chapter": 3,
+          "L": 6,
+          "n": 12,
+          "baseline": 0,
+          "restricted": 12,
+          "identity": 0,
+          "best": 3,
+          "key": "41574400"
+        },
+        {
+          "chapter": 3,
+          "L": 7,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 2,
+          "key": "244597760"
+        },
+        {
+          "chapter": 3,
+          "L": 8,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 2,
+          "key": "183078777856"
+        },
+        {
+          "chapter": 3,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "2675461435392"
+        },
+        {
+          "chapter": 3,
+          "L": 12,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "416613094937600"
+        },
+        {
+          "chapter": 4,
+          "L": 6,
+          "n": 6,
+          "baseline": 0,
+          "restricted": 6,
+          "identity": 0,
+          "best": 2,
+          "key": "480256"
+        },
+        {
+          "chapter": 4,
+          "L": 7,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 2,
+          "key": "1005817856"
+        },
+        {
+          "chapter": 4,
+          "L": 8,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "21642038272"
+        },
+        {
+          "chapter": 4,
+          "L": 9,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "2722246656"
+        },
+        {
+          "chapter": 4,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "9747631814656"
+        },
+        {
+          "chapter": 5,
+          "L": 6,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 3,
+          "key": "453038080"
+        },
+        {
+          "chapter": 5,
+          "L": 7,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 2,
+          "key": "1547152384"
+        },
+        {
+          "chapter": 5,
+          "L": 8,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "421985280"
+        },
+        {
+          "chapter": 5,
+          "L": 9,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "1617575936"
+        },
+        {
+          "chapter": 5,
+          "L": 10,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "1833446276096"
+        },
+        {
+          "chapter": 5,
+          "L": 11,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "172633905834784"
+        },
+        {
+          "chapter": 6,
+          "L": 6,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 3,
+          "key": "414511360"
+        },
+        {
+          "chapter": 6,
+          "L": 7,
+          "n": 6,
+          "baseline": 0,
+          "restricted": 6,
+          "identity": 0,
+          "best": 2,
+          "key": "6435664896"
+        },
+        {
+          "chapter": 6,
+          "L": 8,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 2,
+          "key": "461027439616"
+        },
+        {
+          "chapter": 6,
+          "L": 9,
+          "n": 4,
+          "baseline": 0,
+          "restricted": 4,
+          "identity": 0,
+          "best": 1,
+          "key": "991564800"
+        },
+        {
+          "chapter": 6,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "610802668544"
+        },
+        {
+          "chapter": 6,
+          "L": 11,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "71739024463872"
+        },
+        {
+          "chapter": 7,
+          "L": 6,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 3,
+          "key": "48956416"
+        },
+        {
+          "chapter": 7,
+          "L": 7,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 2,
+          "key": "373983648"
+        },
+        {
+          "chapter": 7,
+          "L": 8,
+          "n": 8,
+          "baseline": 0,
+          "restricted": 8,
+          "identity": 0,
+          "best": 2,
+          "key": "54459857920"
+        },
+        {
+          "chapter": 7,
+          "L": 9,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 1,
+          "key": "1062775808"
+        },
+        {
+          "chapter": 7,
+          "L": 10,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "5789884416"
+        },
+        {
+          "chapter": 7,
+          "L": 12,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 1,
+          "key": "108267805997056"
+        },
+        {
+          "chapter": 8,
+          "L": 6,
+          "n": 3,
+          "baseline": 0,
+          "restricted": 3,
+          "identity": 0,
+          "best": 2,
+          "key": "3347456"
+        },
+        {
+          "chapter": 8,
+          "L": 7,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "51291136"
+        },
+        {
+          "chapter": 8,
+          "L": 8,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "2836024512"
+        },
+        {
+          "chapter": 8,
+          "L": 10,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "1036107925504"
+        },
+        {
+          "chapter": 8,
+          "L": 11,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "5689770406912"
+        },
+        {
+          "chapter": 8,
+          "L": 13,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "24080742671912960"
+        }
+      ],
+      "direct": [
+        {
+          "key": "0",
+          "allHits": 188,
+          "longHits": 0
+        },
+        {
+          "key": "3301",
+          "allHits": 207,
+          "longHits": 0
+        }
+      ],
+      "control": {
+        "groups": 171,
+        "hits": 171,
+        "runes": 1261,
+        "hitRunes": 1261,
+        "identity": 18
+      },
+      "controlDetail": [
+        {
+          "L": 6,
+          "n": 65,
+          "baseline": 7,
+          "restricted": 58,
+          "identity": 1,
+          "best": 65,
+          "key": "372533344"
+        },
+        {
+          "L": 7,
+          "n": 47,
+          "baseline": 8,
+          "restricted": 39,
+          "identity": 4,
+          "best": 47,
+          "key": "17071961376"
+        },
+        {
+          "L": 8,
+          "n": 25,
+          "baseline": 6,
+          "restricted": 19,
+          "identity": 5,
+          "best": 25,
+          "key": "290397895680"
+        },
+        {
+          "L": 9,
+          "n": 16,
+          "baseline": 2,
+          "restricted": 14,
+          "identity": 1,
+          "best": 16,
+          "key": "16211974404864"
+        },
+        {
+          "L": 10,
+          "n": 9,
+          "baseline": 3,
+          "restricted": 6,
+          "identity": 3,
+          "best": 9,
+          "key": "502609429840896"
+        },
+        {
+          "L": 11,
+          "n": 4,
+          "baseline": 3,
+          "restricted": 1,
+          "identity": 3,
+          "best": 4,
+          "key": "596653424771072"
+        },
+        {
+          "L": 12,
+          "n": 2,
+          "baseline": 1,
+          "restricted": 1,
+          "identity": 1,
+          "best": 2,
+          "key": "9566242403291232"
+        },
+        {
+          "L": 13,
+          "n": 2,
+          "baseline": 0,
+          "restricted": 2,
+          "identity": 0,
+          "best": 2,
+          "key": "4787733587830784"
+        },
+        {
+          "L": 14,
+          "n": 1,
+          "baseline": 0,
+          "restricted": 1,
+          "identity": 0,
+          "best": 1,
+          "key": "400138711907368960"
+        }
+      ]
+    },
+    "bank": [
+      {
+        "feedback": false,
+        "budgets": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "bounds": [
+          151,
+          281,
+          483,
+          753,
+          815
+        ],
+        "detail": [
+          {
+            "L": 6,
+            "n": 256,
+            "keySupportHistogram": [
+              0,
+              1502712,
+              1796
+            ],
+            "bound": [
+              32,
+              64,
+              128,
+              256,
+              256
+            ]
+          },
+          {
+            "L": 7,
+            "n": 216,
+            "keySupportHistogram": [
+              0,
+              1404972,
+              54
+            ],
+            "bound": [
+              32,
+              64,
+              118,
+              182,
+              216
+            ]
+          },
+          {
+            "L": 8,
+            "n": 156,
+            "keySupportHistogram": [
+              0,
+              928824
+            ],
+            "bound": [
+              16,
+              32,
+              64,
+              128,
+              156
+            ]
+          },
+          {
+            "L": 9,
+            "n": 78,
+            "keySupportHistogram": [
+              0,
+              374244
+            ],
+            "bound": [
+              16,
+              32,
+              64,
+              78,
+              78
+            ]
+          },
+          {
+            "L": 10,
+            "n": 52,
+            "keySupportHistogram": [
+              0,
+              178100
+            ],
+            "bound": [
+              16,
+              32,
+              52,
+              52,
+              52
+            ]
+          },
+          {
+            "L": 11,
+            "n": 32,
+            "keySupportHistogram": [
+              0,
+              70784
+            ],
+            "bound": [
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          {
+            "L": 12,
+            "n": 18,
+            "keySupportHistogram": [
+              0,
+              22302
+            ],
+            "bound": [
+              16,
+              18,
+              18,
+              18,
+              18
+            ]
+          },
+          {
+            "L": 13,
+            "n": 4,
+            "keySupportHistogram": [
+              0,
+              2480
+            ],
+            "bound": [
+              4,
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "L": 14,
+            "n": 3,
+            "keySupportHistogram": [
+              0,
+              798
+            ],
+            "bound": [
+              3,
+              3,
+              3,
+              3,
+              3
+            ]
+          }
+        ]
+      },
+      {
+        "feedback": true,
+        "budgets": [
+          16,
+          32,
+          64,
+          128,
+          256
+        ],
+        "bounds": [
+          152,
+          282,
+          486,
+          755,
+          815
+        ],
+        "detail": [
+          {
+            "L": 6,
+            "n": 256,
+            "keySupportHistogram": [
+              0,
+              1503455,
+              1423,
+              1
+            ],
+            "bound": [
+              33,
+              65,
+              129,
+              256,
+              256
+            ]
+          },
+          {
+            "L": 7,
+            "n": 216,
+            "keySupportHistogram": [
+              0,
+              1404968,
+              56
+            ],
+            "bound": [
+              32,
+              64,
+              120,
+              184,
+              216
+            ]
+          },
+          {
+            "L": 8,
+            "n": 156,
+            "keySupportHistogram": [
+              0,
+              928824
+            ],
+            "bound": [
+              16,
+              32,
+              64,
+              128,
+              156
+            ]
+          },
+          {
+            "L": 9,
+            "n": 78,
+            "keySupportHistogram": [
+              0,
+              374244
+            ],
+            "bound": [
+              16,
+              32,
+              64,
+              78,
+              78
+            ]
+          },
+          {
+            "L": 10,
+            "n": 52,
+            "keySupportHistogram": [
+              0,
+              178100
+            ],
+            "bound": [
+              16,
+              32,
+              52,
+              52,
+              52
+            ]
+          },
+          {
+            "L": 11,
+            "n": 32,
+            "keySupportHistogram": [
+              0,
+              70784
+            ],
+            "bound": [
+              16,
+              32,
+              32,
+              32,
+              32
+            ]
+          },
+          {
+            "L": 12,
+            "n": 18,
+            "keySupportHistogram": [
+              0,
+              22302
+            ],
+            "bound": [
+              16,
+              18,
+              18,
+              18,
+              18
+            ]
+          },
+          {
+            "L": 13,
+            "n": 4,
+            "keySupportHistogram": [
+              0,
+              2480
+            ],
+            "bound": [
+              4,
+              4,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "L": 14,
+            "n": 3,
+            "keySupportHistogram": [
+              0,
+              798
+            ],
+            "bound": [
+              3,
+              3,
+              3,
+              3,
+              3
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

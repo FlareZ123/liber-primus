@@ -38,9 +38,25 @@ Static best 673/6,180 long-group runes; feedback best 687/6,180. Public zero-sec
 
 On the actual 740-word solved-source GP sequence, distinct seeded width masks were planted separately for the two variants. For each long width fit on the first two-thirds of its ciphertext instances, freeze the chosen mask, and score remaining instances. All 171 original long words re-encrypt/invert exactly using their planted keys. Both attacks recover 107/111 fitting words and **56/60 held-out words exactly**. Static keys uniquely identifiable at widths 6–9; feedback at widths 6–10. Static width10 is correctly recovered with two optimal keys. Sparse widths 11–14 are ambiguous, and their controls account for all held-out errors. The control reference spellings are included in the lexicon, so this is a **key recovery** calibration, not an independent estimate of out-of-vocabulary rates or a demonstration of Cicada's historical cipher. All original inverse replays pass, which is an implementation invariant and not evidence of key authenticity.
 
+## Plaintext-feedback relaxation and arbitrary mask banks
+
+For previous-plaintext feedback use the same reversible operation with tweak `P_(i-1) mod 2^w`. Let s be the previous word's binary width (zero at the initial state). For a nonlexical ciphertext c and any same-width dictionary candidate p, a necessary key constraint is `K >> s = (c XOR p) >> s`. When s >= w, grant a lexical hit automatically. Grant already lexical ciphertext a hit too. Otherwise allow all low s bits of the tweak independently, even if that tweak is not any genuine preceding plaintext. For each word the permissible high prefixes specify disjoint integer intervals; an endpoint sweep gives the exact maximum of this relaxed model. Consequently **452/815** long groups (3,311/6,180 runes) is an upper bound on the true feedback model, even allowing independent arbitrary keys per chapter and word width. For the 160 long groups immediately after words of at most two runes, only 75 can be supported (592/1,219 runes). Public keys 0 and 3301 give 188 and 207 lexical hits over all 2,896 groups and zero long hits. The full 740-word planted native sequence inverts causally with its planted masks, and the relaxation admits all 171 long controls. This is an upper bound, not an exact constrained plaintext-feedback optimum or blind key recovery.
+
+A second extension grants arbitrary independent banks of masks for each word width across the whole book, plus an oracle choosing any bank member for each word. For each mask count its exact individual support; sum the B largest support counts capped at the population size. This ignores overlapping support and is therefore an upper bound. The results are:
+
+| Masks per width | Static upper bound | Previous-cipherword upper bound |
+|---:|---:|---:|
+| 16 | 151 | 152 |
+| 32 | 281 | 282 |
+| 64 | 483 | 486 |
+| 128 | 753 | 755 |
+| 256 | 815 | 815 |
+
+Each column has denominator 815. At every width from 8 through 14, every candidate mask supports at most one original group, even globally. Full coverage of width eight alone therefore needs at least 156 different masks, independent of the selector. This rules out the tested 16/32-mask architectures even with the oracle; the 256-mask upper bound is merely uninformative. This does not exclude masks generated independently per word, or an architecture which first changes the printed boundaries or permutes the numeral digits.
+
 ## Decision
 
-Retire these static and previous-cipherword XOR cyclewalk models for ordinary native GP prose with intact printed groups. The exact maximum remains valid if whole word order is shuffled before a static encoding; the feedback result specifically depends on the observed predecessor order. No dictionary-level full inverse can exist within either model. The result does not exclude out-of-register plaintext, decoy word segmentation, independent arbitrary mask choices, unrelated word-level Feistel maps or a different source-selected state law. There is no basis to add further ad hoc mask schedules. A genuine new source-selected operand, or an original-input receiver with a materially different structure, is required.
+Retire these static, previous-cipherword, previous-plaintext and small-bank XOR cyclewalk models for ordinary native GP prose with intact printed groups. The exact maximum remains valid if whole word order is shuffled before a static encoding; the feedback result specifically depends on the observed predecessor order. No dictionary-level full inverse can exist within either model. The result does not exclude out-of-register plaintext, decoy word segmentation, independent arbitrary mask choices, unrelated word-level Feistel maps or a different source-selected state law. There is no basis to add further ad hoc mask schedules. A genuine new source-selected operand, or an original-input receiver with a materially different structure, is required.
 
 ## Reproduction
 

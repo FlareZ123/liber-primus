@@ -107,11 +107,12 @@ function run(gp,tr,lex,sol){
  // optimizes even this stronger relaxation over every secret key.
  const width=L=>BigInt((B[L]-1n).toString(2).length);
  function prefixBound(rows,L){
-  let baseline=0,restricted=0;
+  let baseline=0,restricted=0,identity=0;
   const events=new Map();
   const add=(p,d)=>events.set(p,(events.get(p)||0)+d);
   for(const {c,prevL} of rows){
    const s=prevL===0?0n:width(prevL);
+   if(dictionary[L].has(c))identity++;
    if(dictionary[L].has(c)||s>=width(L)){baseline++;continue}
    restricted++;
    const prefixes=new Set();
@@ -131,7 +132,7 @@ function run(gp,tr,lex,sol){
    return n;
   },0);
   assert(check===best,"prefix witness");
-  return {n:rows.length,baseline,restricted,best,key:key.toString()};
+  return {n:rows.length,baseline,restricted,identity,best,key:key.toString()};
  }
  let prevL=0;
  const lengthRows=original.map(g=>g.map(({L,c,t})=>{const row={L,c,t,prevL};prevL=L;return row}));
@@ -187,7 +188,7 @@ function run(gp,tr,lex,sol){
     for(let n=hist.length-1;n>0&&left;n--){const take=Math.min(left,hist[n]||0);total+=n*take;left-=take}
     return Math.min(rows.length,total);
    });
-   detail.push({L,n:rows.length,keySupportHistogram:hist.map(x=>x||0),bound});
+   detail.push({L,n:rows.length,keySupportHistogram:Array.from({length:hist.length},(_,i)=>hist[i]||0),bound});
   }
   bank.push({feedback,budgets,bounds:budgets.map((_,i)=>detail.reduce((s,v)=>s+v.bound[i],0)),detail});
  }
