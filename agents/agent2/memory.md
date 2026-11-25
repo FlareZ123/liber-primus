@@ -383,3 +383,12 @@ Three original p49–p51 scans (66–68.jpg) were independently given one source
 ## Next practical decision
 
 Find a **first-party original clue** that selects an exact invertible operation, original target and key/operand; alternatively an independently verifiable historical original draft. Challenge the source premise before expensive computation, preserve original ciphertext including 2014 page-level breaks, and use known p56/p57 and a disjoint held-out unknown passage as applicable. Search existing source reports and active Director Issues before new CI to avoid duplicated work. If genuine unknown original plaintext is ever recovered, update [results/README](../../results/README.md) coherently with exact reproducibility. Preserve evidence in `im-results` until that point.
+
+
+## 2026-11-25: 2014 prime-ordinal → p32 TWA extraction candidate
+
+- Source: resources/external/2014-stage10-post-square-response.html is the preserved Stage10 acknowledgement with exactly /107.jpg, /167.jpg, /229.jpg; existing im-results/lp2-grid-byte-pointer-11cycle.md records their one-based prime ordinals 28,39,50 and the fact that they are known LP1 pages14–16.
+- New use tested: the canonical LP2 corpus has exactly one 121-rune page, p32. Treat the prime ordinals as 1-based rune positions 28,39,50 (zero-based offsets 27,38,49). In a row-major 11×11 reflow they are rows3–5, column6, yielding ᛏᚹᚪ / TWA. Bosworth–Toller records Old English twā as “two”. This is unique among the 99 vertical 3-rune windows of p32. Reproducer: sims/lp2_2014_prime_ordinal_p32_twa_sft.cjs.
+- Classification: provisional source-derived 3-rune clue, not a p32 decryption. Neither the filename→rune-position rule nor the row-major 11×11 reflow is explicitly stated in a signed source; p32's printed layout is six lines, not an 11×11 square. The filenames may be incidental or have another use.
+- First direct “two” consumers tested and rejected: p50 2-cycle [249,158] mod29=[17,13] as repeating +/- additive key on p32; standard 2-rail fence; 11×11 perimeter-to-inner additive Vigenère in both orientations/signs. Do not widen into arbitrary transforms.
+- Next useful question: can “two” be tied to a source-fixed consumer (e.g. the two-page 2014 Koan or the p50 2-cycle) that makes a discriminating prediction on original ciphertext? Keep the 2014 prime-index extraction distinct from the existing use of raw filenames as p50 pointer seeds.
