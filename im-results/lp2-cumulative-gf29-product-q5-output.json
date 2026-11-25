@@ -1,0 +1,157 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ],
+  "original": {
+    "split": 255,
+    "n": 1729,
+    "sourceKey": [
+      11,
+      26,
+      8,
+      15,
+      2
+    ],
+    "direct": {
+      "fit": -6.608396930140165,
+      "holdout": -5.985515774040526,
+      "preview": "IA Y IA J P AE O N A AE P J Y L B X A R X AE NG OE NG L EO D AE A O AE M P OE B F Y X G E E W EO EO G IA NG I TH P O NG X EO EA T Y Y I N L D Y EA A U N B L B X C OE T TH AE N EA U EA G AE EA U G EO IA J T U O B J D TH H EO EO G B T"
+    },
+    "learned": {
+      "key": [
+        9,
+        27,
+        14,
+        1,
+        7
+      ],
+      "count": 17210368,
+      "fit": -5.114039294003902,
+      "margin": 8.568317836173492,
+      "holdout": -6.058680308901367,
+      "preview": "S B D A T EO D IA C Y O D OE OE N M R J L N O R N F S U E W I H U C Y E D T EO O F EA R J AE TH P A I P S W N J OE D G N S NG L IA NG AE F F O EO O N U W R Y E N H TH O I EO U W H EO IA D EA F I S B U X OE NG EO D S EA TH O"
+    },
+    "originalF": 66
+  },
+  "plants": [
+    {
+      "donor": 0,
+      "offset": 10000,
+      "key": [
+        4,
+        19,
+        7,
+        27,
+        13
+      ],
+      "learned": {
+        "key": [
+          4,
+          19,
+          7,
+          27,
+          13
+        ],
+        "count": 17210368,
+        "fit": -2.154410264414831,
+        "margin": 282.73362752536457
+      },
+      "holdout": -2.288109755408956,
+      "exactKey": true,
+      "exactFit": 255,
+      "exactHoldout": 1474
+    },
+    {
+      "donor": 2,
+      "offset": 30000,
+      "key": [
+        21,
+        6,
+        14,
+        9,
+        2
+      ],
+      "learned": {
+        "key": [
+          21,
+          6,
+          14,
+          9,
+          2
+        ],
+        "count": 17210368,
+        "fit": -2.447053216913388,
+        "margin": 200.7008331075814
+      },
+      "holdout": -2.535165492748536,
+      "exactKey": true,
+      "exactFit": 255,
+      "exactHoldout": 1474
+    }
+  ],
+  "allF": {
+    "length": 12956,
+    "originalF": 458,
+    "windows": [
+      {
+        "nativeRunes": 63114,
+        "windows": 50159,
+        "min": 252,
+        "max": 388,
+        "matches": 0
+      },
+      {
+        "nativeRunes": 324630,
+        "windows": 311675,
+        "min": 292,
+        "max": 429,
+        "matches": 0
+      },
+      {
+        "nativeRunes": 218800,
+        "windows": 205845,
+        "min": 201,
+        "max": 319,
+        "matches": 0
+      }
+    ],
+    "chapterWindows": [
+      {
+        "nativeRunes": 63114,
+        "windows": 61386,
+        "min": 23,
+        "max": 68,
+        "matches": 43
+      },
+      {
+        "nativeRunes": 324630,
+        "windows": 322902,
+        "min": 22,
+        "max": 73,
+        "matches": 288
+      },
+      {
+        "nativeRunes": 218800,
+        "windows": 217072,
+        "min": 14,
+        "max": 62,
+        "matches": 0
+      }
+    ]
+  }
+}
