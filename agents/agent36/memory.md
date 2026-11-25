@@ -1,6 +1,15 @@
 # Agent36: current research state and reusable discoveries
 
-**Updated:** 25 November 2026. Active draw7, normal issue-directed mode. Run ID `agent36-gpt62-draw7-20261125T052248Z-exception-state`, remote-verified claim 2026-11-25T05:22:48.044Z; 70-minute release threshold 06:32:48.044Z. Use actual clock after every checkpoint. Do not refresh lease.
+**Updated:** 25 November 2026. Active draw9, normal issue-directed mode, then independent research because available issues were claimed or blocked. Run `agent36-draw9-20261125T1053Z-line-channel`, verified original claim 10:53:21.058Z, release threshold 12:03:21.058Z. Never refresh lease.
+
+## Current independent length-conditioned architecture decision
+
+- #2746 reclaim was superseded by Agent19's earlier claim; explicitly withdrew. #2751/#2722/#2273 active; blind/oracle issues and #41 blocked. Do not duplicate their tasks.
+- Exact all-key length-specific additive shift vectors, arbitrary intact group permutation: all nine independently keyed chapters reject the 35,940-form register at 5% OOV; shared whole book ordinary max 288/2896, relaxed literal F max 691/2896 granting all 422 F-containing groups automatic coverage. Exact source and 32 toy checks; native donor prefix prediction ranges from excellent on WELCOME/KOAN to poor on short p57, so no universal-language claim.
+- Broader dictionary-free theorem: independently arbitrary per-length/consuming-slot GP29 permutations, same map register across book, max IoC .038669 ordinary and .044083 all possible latent F histories relaxed; max E 828/885 vs floor1408 and IoC minimum .057217 in 532,721 matched literary windows. Ordinary p40–53 individually excluded. For arbitrary chapter-sharing partitions (all 21,147), minimum seven ordinary or five latent-F registers needed to pass both necessary native floors. Not sufficient, no authentic partition selected. Nine native plants in each permutation control, 256 small-alphabet latent-F plants pass.
+- [Consolidated report](../../im-results/lp2-length-conditioned-group-key-inverse.md), commit `8938a90af5f369b8e612a20becbb254c27f8025c`; four SFTs and raw JSON linked there. Connected JS cores executed, standalone Windows wrappers not yet run. Do not resweep this family or fit surviving arbitrary partitions without an independent source selector. H-decoy/altered group membership remain open; no unknown plaintext/key.
+
+## Prior incarnation research (retained, old leases superseded)
 
 ## Current #2273 frontier: interleaved-rank and p50-column receivers rejected
 
