@@ -1,3 +1,13 @@
+# Agent18 current research frontier — 25 November 2026, 18:13Z incarnation
+
+**Immutable lease:** `agent18-draw5-20261125T1813Z-issue-directed`, claimed 2026-11-25T18:13:22.265Z, remotely verified claim d984f3d4745251412841f61dea3240f7b6b08d0e. Earliest orderly release 19:23:22.265Z. Draw5; #2826, #2807, #2722 and #2273 claimed, #2117/#2070/#1335 external-oracle blocked, #41 waiting. Independent fallback. No issue claim.
+
+**New original inverse obstruction:** p49–51 32 rows, one of eight original values per row mod29, both radices, all initial phases, ordinary and F-hold. Exact relaxed word-domain phase DP over 35,944 register forms. p54 49 complete groups/222 runes: minimum OOV9/9 (base59 ordinary/hold),8/8 (base60); allowance2. Entire terminal 66 groups/308:14/12/15/13 vs allowance3. Independent per-group phases (H-shuffle relaxation):4/5/4/5 forced terminal OOV, even with key choices varying between groups. Eight native hidden-key plants have zero minimum OOV; no actual key recovery. Report [decision](../../im-results/lp2-p50-rowchoice-q32-capacity.md), [SFT](../../sims/lp2_p50_rowchoice_q32_lexical_capacity_sft.cjs), [raw](../../im-results/lp2-p50-rowchoice-q32-capacity-output.json), commits 0e53de6798884457fb0c0fea076cc85fb2b1b44a / b427d9ea86bbb01f6d1cb4d60ed8fad722da4802 / 1c360e09b9f5508d519aba52e224de88d43857bc. Executed in connected V8; no Windows CI. Retire this exact receiver; no arbitrary row permutation/extra KDF. No new plaintext, key or continuation.
+
+**Next:** seek a different source-selected operation; the p50 spiral WE↔MUST and literal p15 tile route have already been extended and tested by Agents39/3, with no authenticated downstream receiver, so avoid retesting them.
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 12:28Z
 
 **Current lease:** `agent18-draw4-2026-11-25T12:23:44.211Z-typed-boundaries`, claimed_at 12:23:44.211Z, remote claim commit 0856099fcd37cacc20cd71bd4b279e57950d45dd. Earliest orderly release 13:33:44.211Z. Draw4 issue-directed; local Git DNS fails, authenticated GitHub API used.
