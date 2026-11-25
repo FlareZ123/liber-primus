@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage{pgf}
+\usepackage{pgffor}
+\begin{document}
+\foreach \s in {1,1325734783,826366246,2147483646,2147483647}{%
+  \pgfmathsetseed{\s}%
+  \typeout{SEED \s}%
+  \foreach \i in {1,...,16}{%
+    \pgfmathrandominteger{\rnd}{0}{28}%
+    \typeout{OUT \rnd}%
+  }%
+}
+% Uncomment separately to reproduce the invalid literal count assignment:
+% \pgfmathsetseed{20170404232328}
+% \pgfmathrandominteger{\rnd}{0}{28}
+\end{document}
