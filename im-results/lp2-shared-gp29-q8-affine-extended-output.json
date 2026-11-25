@@ -133,6 +133,17 @@
         "nodes": 1312795,
         "extensions": 9386653,
         "enumerations": 1
+      },
+      "originalThreeOOV": {
+        "found": false,
+        "timed": true,
+        "nodes": 13779160,
+        "extensions": 270270543,
+        "enumerations": 23,
+        "residual": 0,
+        "finishedCounterIncludingInterrupted": 5,
+        "total": 17,
+        "seconds": 900
       }
     },
     "mapped": {
@@ -154,7 +165,18 @@
           "unique": 12,
           "seconds": 148.039
         }
-      ]
+      ],
+      "originalZeroOOV": {
+        "found": false,
+        "timed": true,
+        "nodes": 3390639,
+        "extensions": 67665282,
+        "enumerations": 10306455,
+        "residual": 0,
+        "finishedCounterIncludingInterrupted": 6,
+        "total": 16,
+        "seconds": 900
+      }
     }
   },
   "scope": "Chapter long-anchor negatives require all selected words in register except explicit omissions. Source-pool restriction not independently established. Timeout is not exclusion.",
@@ -324,5 +346,273 @@
       "found": 0,
       "seconds": 0.124332
     }
+  },
+  "anchorSupport": {
+    "transcriptionBlob": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "method": "Count distinct zero-free length>=8 groups supported per alphabet and cyclic primitive shift key; threshold anchors minus all permitted OOV groups.",
+    "chapters": [
+      {
+        "chapter": 0,
+        "groups": 158,
+        "runes": 729,
+        "alphabets": 267,
+        "anchors": 15,
+        "budget": 7,
+        "need": 8,
+        "candidateWords": 17399055,
+        "distinctKeys": 11712213,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 2.90002
+      },
+      {
+        "chapter": 1,
+        "groups": 255,
+        "runes": 1145,
+        "alphabets": 267,
+        "anchors": 19,
+        "budget": 12,
+        "need": 7,
+        "candidateWords": 17581683,
+        "distinctKeys": 11729972,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 2.69139
+      },
+      {
+        "chapter": 2,
+        "groups": 383,
+        "runes": 1729,
+        "alphabets": 267,
+        "anchors": 30,
+        "budget": 19,
+        "need": 11,
+        "candidateWords": 29748072,
+        "distinctKeys": 16294647,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 4.28977
+      },
+      {
+        "chapter": 3,
+        "groups": 437,
+        "runes": 1903,
+        "alphabets": 267,
+        "anchors": 40,
+        "budget": 21,
+        "need": 19,
+        "candidateWords": 42919449,
+        "distinctKeys": 34866459,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 8.56306
+      },
+      {
+        "chapter": 4,
+        "groups": 224,
+        "runes": 1021,
+        "alphabets": 267,
+        "anchors": 18,
+        "budget": 11,
+        "need": 7,
+        "candidateWords": 20434044,
+        "distinctKeys": 11815556,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 1.4021
+      },
+      {
+        "chapter": 5,
+        "groups": 326,
+        "runes": 1433,
+        "alphabets": 267,
+        "anchors": 28,
+        "budget": 16,
+        "need": 12,
+        "candidateWords": 27388860,
+        "distinctKeys": 17545071,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 2.03491
+      },
+      {
+        "chapter": 6,
+        "groups": 378,
+        "runes": 1680,
+        "alphabets": 267,
+        "anchors": 34,
+        "budget": 18,
+        "need": 16,
+        "candidateWords": 34912920,
+        "distinctKeys": 19231543,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 2.19211
+      },
+      {
+        "chapter": 7,
+        "groups": 669,
+        "runes": 3008,
+        "alphabets": 267,
+        "anchors": 55,
+        "budget": 33,
+        "need": 22,
+        "candidateWords": 59016078,
+        "distinctKeys": 42373773,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 4.59743
+      }
+    ],
+    "headingChapters": [
+      {
+        "chapter": 0,
+        "groups": 156,
+        "alphabets": 3,
+        "anchors": 15,
+        "budget": 7,
+        "need": 8,
+        "candidateWords": 195495,
+        "distinctKeys": 131528,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0121348
+      },
+      {
+        "chapter": 1,
+        "groups": 252,
+        "alphabets": 4,
+        "anchors": 18,
+        "budget": 12,
+        "need": 6,
+        "candidateWords": 257948,
+        "distinctKeys": 175955,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0281058
+      },
+      {
+        "chapter": 2,
+        "groups": 381,
+        "alphabets": 3,
+        "anchors": 29,
+        "budget": 19,
+        "need": 10,
+        "candidateWords": 318000,
+        "distinctKeys": 166868,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0166839
+      },
+      {
+        "chapter": 3,
+        "groups": 435,
+        "alphabets": 3,
+        "anchors": 40,
+        "budget": 21,
+        "need": 19,
+        "candidateWords": 482241,
+        "distinctKeys": 391743,
+        "maxSupport": 2,
+        "survivors": 0,
+        "seconds": 0.0385947
+      },
+      {
+        "chapter": 4,
+        "groups": 220,
+        "alphabets": 5,
+        "anchors": 18,
+        "budget": 11,
+        "need": 7,
+        "candidateWords": 382660,
+        "distinctKeys": 220920,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.027975
+      },
+      {
+        "chapter": 5,
+        "groups": 323,
+        "alphabets": 4,
+        "anchors": 27,
+        "budget": 16,
+        "need": 11,
+        "candidateWords": 408160,
+        "distinctKeys": 262769,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0294713
+      },
+      {
+        "chapter": 6,
+        "groups": 376,
+        "alphabets": 3,
+        "anchors": 34,
+        "budget": 18,
+        "need": 16,
+        "candidateWords": 392280,
+        "distinctKeys": 216177,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0256701
+      },
+      {
+        "chapter": 7,
+        "groups": 667,
+        "alphabets": 3,
+        "anchors": 55,
+        "budget": 33,
+        "need": 22,
+        "candidateWords": 663102,
+        "distinctKeys": 475958,
+        "maxSupport": 1,
+        "survivors": 0,
+        "seconds": 0.0485995
+      }
+    ],
+    "terminal": {
+      "groups": 49,
+      "alphabets": 267,
+      "anchors": 7,
+      "budget": 3,
+      "need": 4,
+      "distinctKeys": 8677204,
+      "maxSupport": 2,
+      "survivors": 0
+    },
+    "terminalHeading": {
+      "groups": 47,
+      "alphabets": 2,
+      "anchors": 6,
+      "budget": 3,
+      "need": 3,
+      "distinctKeys": 54160,
+      "maxSupport": 1,
+      "survivors": 0
+    },
+    "blind": [
+      {
+        "plant": 0,
+        "anchors": 7,
+        "budget": 3,
+        "need": 4,
+        "candidateWords": 8522106,
+        "distinctKeys": 7232348,
+        "maxSupport": 4,
+        "survivors": 1,
+        "trueSurvivor": true
+      },
+      {
+        "plant": 1,
+        "anchors": 5,
+        "budget": 3,
+        "need": 2,
+        "candidateWords": 6424020,
+        "distinctKeys": 5784949,
+        "maxSupport": 2,
+        "survivors": 3,
+        "trueSurvivor": true
+      }
+    ]
   }
 }
