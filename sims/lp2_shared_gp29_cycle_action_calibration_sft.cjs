@@ -515,6 +515,30 @@ function solveFullPermutation(basis) {
   const pi = [0, ...values];
   return new Set(pi).size === 29 ? pi : null;
 }
+function findPermutationCompletions(basis) {
+  const pivots = new Set(basis.map(row => row.pivot));
+  const free = Array.from({ length: 28 }, (_, i) => i).filter(i => !pivots.has(i));
+  if (free.length > 2) return { assignments: 0, solutions: [] };
+  const solutions = [];
+  let assignments = 0;
+  const secondLimit = free.length > 1 ? 29 : 1;
+  for (let a = 0; a < 29; a++) {
+    for (let b = 0; b < secondLimit; b++) {
+      assignments++;
+      const values = new Array(28).fill(0);
+      if (free.length > 0) values[free[0]] = a;
+      if (free.length > 1) values[free[1]] = b;
+      for (const row of basis) {
+        let value = row.row[28];
+        for (const column of free) value = mod(value - row.row[column] * values[column]);
+        values[row.pivot] = value;
+      }
+      const pi = [0, ...values];
+      if (new Set(pi).size === 29) solutions.push(pi);
+    }
+  }
+  return { assignments, solutions };
+}
 function testMappedDivinity() {
   const A = makeMappedKeyOptions(59);
   const B = makeMappedKeyOptions(4);
@@ -528,8 +552,12 @@ function testMappedDivinity() {
   }
   let triples = 0, quads = 0, quintupleChecks = 0;
   let fullRank4 = 0, validPi4 = 0, fullRank5 = 0, validPi5 = 0;
+  let rank26CompletionStates = 0, completionAssignments = 0;
+  let bestCoverage = 0, bestUnique = 0;
   const rank4 = {}, rank5 = {};
   const fourStates = [];
+  const completionSeen = new Set();
+  const completionFindings = [];
   for (const pair of pairs) for (const d of D.out) {
     const merged = A.ops.combine(pair, d.basis);
     if (!merged) continue;
@@ -556,6 +584,26 @@ function testMappedDivinity() {
         fullRank5++;
         if (solveFullPermutation(next)) validPi5++;
       }
+      if (next.length === 26) rank26CompletionStates++;
+      const completion = findPermutationCompletions(next);
+      completionAssignments += completion.assignments;
+      for (const pi of completion.solutions) {
+        const signature = pi.join(",");
+        if (completionSeen.has(signature)) continue;
+        completionSeen.add(signature);
+        validPi5++;
+        const key = divinity.map(symbol => pi[symbol]);
+        const decoded = CIPHER.map(cipher => decodeWithDictionary(cipher, pi, key));
+        const covered = decoded.filter(candidates => candidates.length > 0).length;
+        const unique = decoded.filter(candidates => candidates.length === 1).length;
+        if (covered > bestCoverage || (covered === bestCoverage && unique > bestUnique)) {
+          bestCoverage = covered;
+          bestUnique = unique;
+        }
+        if (completionFindings.length < 10) {
+          completionFindings.push({ pi, key, covered, unique, candidateCounts: decoded.map(candidates => candidates.length) });
+        }
+      }
     }
   }
   return {
@@ -574,6 +622,11 @@ function testMappedDivinity() {
     rank5,
     fullRank5,
     validPi5,
+    rank26CompletionStates,
+    completionAssignments,
+    bestCoverage,
+    bestUnique,
+    completionFindings,
     frequencyLimit: "All dictionary candidates for 14/11/13-letter groups; top 30 compatible distinct rune words for 10/8-letter groups"
   };
 }
