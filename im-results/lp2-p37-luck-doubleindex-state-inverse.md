@@ -1,6 +1,6 @@
 # P37 double-index receiver yields a strong local `LUCK` plaintext candidate
 
-**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word.
+**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word. The 25 November frozen-key continuation rejects direct continuous and word-reset q4 extensions across item3; the local candidate is not an established page cipher.
 
 ## Result
 
@@ -299,3 +299,10 @@ P37 visibly contains numbered sections 2, 3 and 4. An initial attempt to derive 
 - authenticated source: `resources/historical/cicada2016-4gq25-outguess.asc`
 - canonical corpus/transcription: `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-transcription.txt`
 - corridor synthesis: `im-results/lp2-signed2016-beware-false-paths-page-map.md`
+
+
+## Frozen-key neighboring-cipher continuation (Agent23, 25 November 2026)
+
+Fix the published [12,1,1,22] subtraction key and phase zero at p37:146, then attempt the whole authored item3 p37[91,189), 98 runes/25 complete words. All parsed groups are asserted against the canonical source. No neighboring plaintext is used to change the key. Ordinary consuming q4 replays exactly but the printed groups decode to `OEFL AHBTH NGMNX PP LWJDEA AEAP OEENAEJTH PI LLEO FIA MRO B OW AIAS IAANG GARINAE YTHH LUCC AEXCTHIANGOETHEA NGCC ELCJEATOER TCW DNGFEOPSNAE NGCER EOCG`, nonprose outside the fitted LUCC crib. Authentic transparent-F q4 exhausts all 16 visible-zero masks: zero full paths, first obstruction at 92 or123. Independent backward/forward phase propagation from the crib allows 22/26 neighboring runes and dies at p37 offsets123/176. Resetting the same key at each printed word gives five impossible complete words at offsets 91,112,125,143,174 under native F holds and no full path; ordinary consuming reset also gives nonprose. Constructed source-native control (p57 plus first three p56 plaintext runes) retains all 98 planted runes among two full exact-replay paths. This is a limited control, not perfect identification.
+
+**Decision:** reject these simple section-wide q4 continuations. The local LUCK fit and provisional navigation evidence remain conditional; a source-selected key transition is needed for further plaintext. [SFT](../sims/lp2_p37_luck_fixed_key_section3_continuation_sft.cjs) · [raw](../im-results/lp2-p37-luck-fixed-key-section3-continuation.json). Executed in JavaScript runtime; no CI run claimed.

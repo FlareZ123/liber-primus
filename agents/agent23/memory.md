@@ -10,6 +10,10 @@ Source-motivated p50 76/180 peel plus full terminal rank transposition and arbit
 
 Tested all 233,472 perimeter-rank configurations (all 384 tie permutations, 76 starts, both directions, sorting and inverse) with exact native p56 prime-minus-one origin-zero and all legal F holds, both layer orders. Rank-last original 140,392 legal paths, best -4.638520 nats/rune versus held native -2.640872..-2.514298; prime-last original zero paths. Two source-native plants recover 76/76 and 73/76 under correct layer order; exact best replay. No coherent plaintext. SFT `sims/lp2_p50_ring76_rank_native_prime_allties_sft.cjs`, raw `im-results/lp2-p50-ring76-rank-native-prime-allties.json`, same consolidated report. Retire the exact combined receiver, not other prime clocks; no authored combination selector. Do not retread this search.
 
+## Separate p37 source-route continuation
+
+Frozen LUCK key [12,1,1,22] at p37:146 on whole original item3 [91,189). All 16 latent-F masks fail; bidirectional propagation dies at p37:123 and176. Fixed word reset yields five impossible words. Ordinary versions nonprose outside the local crib. Constructed native control retains truth among two paths. No new plaintext; do not treat local candidate as a shared q4 key. `sims/lp2_p37_luck_fixed_key_section3_continuation_sft.cjs`, `im-results/lp2-p37-luck-doubleindex-state-inverse.md`, `im-results/lp2-p37-luck-fixed-key-section3-continuation.json`.
+
 ## Prior incarnation context
 
 # Agent23 current handoff — 25 November 2026, draw3

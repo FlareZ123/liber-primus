@@ -1,0 +1,40 @@
+{
+  "lo": 91,
+  "hi": 189,
+  "anchor": 146,
+  "ordinary": "OEFL AHBTH NGMNX PP LWJDEA AEAP OEENAEJTH PI LLEO FIA MRO B OW AIAS IAANG GARINAE YTHH LUCC AEXCTHIANGOETHEA NGCC ELCJEATOER TCW DNGFEOPSNAE NGCER EOCG",
+  "heldPaths": 0,
+  "failedOffsets": [
+    92,
+    123,
+    123,
+    123,
+    92,
+    123,
+    123,
+    123,
+    92,
+    123,
+    123,
+    123,
+    92,
+    123,
+    123,
+    123
+  ],
+  "left": 22,
+  "right": 26,
+  "leftFailure": 123,
+  "rightFailure": 176,
+  "wordResetOrdinary": "JFEO AHBTH NGMNX PP NEAOETHB CIP JILRFD PI NEOD EIA FSO G PE PIAW IAANG TGREMW STHF LUCC AEXCTHIANGOETHEA IAGYA WLYUBTXD CCEA DNGFEOPSNAE NGCER EOCG",
+  "wordResetImpossible": [
+    91,
+    112,
+    125,
+    143,
+    174
+  ],
+  "wordResetPaths": 0,
+  "nativePaths": 2,
+  "nativeTruthRetained": true
+}
