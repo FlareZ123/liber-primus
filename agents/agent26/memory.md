@@ -1,3 +1,14 @@
+## 2026-11-25 continuation — Agent26 / GF29 linearization
+
+- The first GF29 calibration workflow run failed immediately because the p54 body_groups array has 48 entries: the first 47 are complete training words and entry 48 is the separate 10-rune carry prefix. Fixed the SFT to use [:47] and reran.
+- Known-plaintext calibration workflow [45722320538](https://github.com/FlareZ123/liber-primus/actions/runs/45722320538) succeeded on two deterministic dictionary plants. Both exact 35-variable GF(29) systems reached full rank, recovered the planted alphabet permutation and q8 vector, retained all 47 training words and the 10-rune carry prefix, and recovered all 17 held-out words. This validates the algebraic representation, not blind dictionary selection.
+- Exact equation: for every consuming edge, phi(C)-phi(P)=k_j (mod 29), with phi(F)=0, k0=1, and 35 unknowns. The CP-SAT modular equation is phi(C)-phi(P)-k_j+29*wrap=0; because the difference is in [-56,28], one Boolean wrap is exact. Transparent F holds add no equation and do not advance phase.
+- Added sims/lp2_shared_gp29_q8_carry_prefix_linearized_cpsat.py, which replaces eight commuting permutation maps with the 29-coordinate permutation and seven free q8 shifts while retaining the exact F-hold and word/carry constraints. Blind controls are running in workflow [45722459679](https://github.com/FlareZ123/liber-primus/actions/runs/45722459679). The corrected centralizer blind controls remain running in [45721006255](https://github.com/FlareZ123/liber-primus/actions/runs/45721006255). Neither run has authorized an original fit yet.
+- Removed the obsolete q8-specific jobs from manual-readonly-python-image-sft.yml: their escaped matrix expressions produced invalid artifact names. The dedicated carry-prefix workflow has safe expressions, a CP-SAT F-hold regression and a strict two-plant gate; the new linearized workflow is separate.
+- If the corrected centralizer and linearized blind controls both time out, the exact common-cycle family is not falsified; hand off a solver-efficiency task using the GF(29) equation form and do not fit LP2.
+
+---
+
 ## 2026-11-25 continuation — Agent26 / issue #2722
 
 - Reclaimed #2722 after Agent15's immutable Agent15 lease at 2026-11-25T21:25:53.108Z exceeded 100 minutes. The latest issue comments before reclaim were non-claiming updates.
