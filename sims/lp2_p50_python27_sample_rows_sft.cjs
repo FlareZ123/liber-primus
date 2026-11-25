@@ -26,7 +26,7 @@ function experiment(grid,seedDoc){
  const actual=[grid.alphabet.replace("f",""),grid.alphabet].map(alphabet=>{const radix=alphabet.length,values=tokens.map(t=>radix*alphabet.indexOf(t[0])+alphabet.indexOf(t[1]));assert(values.every(v=>v>=0&&v<256),"range");for(let j=0;j<256;j+=8)assert(new Set(values.slice(j,j+8)).size===8,"distinct row");return {radix,first:values.slice(0,8),...scan(values)}});
  const plants=[0,101,211,432].map(i=>{let seed=seeds[i],q=scan(table(seed));assert(q.full.length===1&&q.full[0]===seed,"planted full table");return {seed,...q}});
  const denom=Array.from({length:8},(_,i)=>256-i).reduce((a,b)=>a*b,1);
- return {seedCount:seeds.length,vectorCount:vectors.length,actual,plants,unionBoundFirstRow:2*seeds.length/denom,unionBoundFullTable:2*seeds.length/denom**32};
+ return {seedCount:seeds.length,vectorCount:vectors.length,actual,plants,unionBoundFirstRow:2*seeds.length/denom,log10UnionBoundFullTable:Math.log10(2*seeds.length)-32*Math.log10(denom)};
 }
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-grid-256.json'),read(process.argv[2])),null,2));
