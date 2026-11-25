@@ -1,0 +1,255 @@
+"use strict";
+/**
+ * Original-source MP3Stego decoder test for Cicada 2014 Stage 7.
+ *
+ * Hypothesis: the original Stage 7 Interconnectedness MP3 carries a second
+ * MP3Stego layer under the already source-recovered OpenPuff password 33011033.
+ * This is deliberately one password, one pinned original carrier, and one
+ * independently generated positive control. It is not a password sweep.
+ *
+ * Run through .github/workflows/manual-node22-sft-runner.yml.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const os = require("node:os");
+const crypto = require("node:crypto");
+const { execFileSync, spawnSync } = require("node:child_process");
+
+const STAGE7_URL =
+  "https://raw.githubusercontent.com/cijhho123/cicada3301/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07/index.mp3";
+const STAGE7_BLOB = "09fe068192b76a3697c47ec1d604b527703db798";
+const STAGE7_SIGNED_URL =
+  "https://raw.githubusercontent.com/cijhho123/cicada3301/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07/q4utgdi2n4m4uim5.onion/index.html";
+const STAGE7_SIGNED_BLOB = "afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9";
+const MP3STEGO_REPO = "https://github.com/Charleswyt/MP3Stego.git";
+const MP3STEGO_COMMIT = "9818638a1203853efdfa631006b96acca43efc58";
+const PASSWORD = "33011033";
+
+function sha256(buf) {
+  return crypto.createHash("sha256").update(buf).digest("hex");
+}
+function gitBlobSha1(buf) {
+  return crypto.createHash("sha1")
+    .update(Buffer.from("blob " + buf.length + "\0", "ascii"))
+    .update(buf)
+    .digest("hex");
+}
+async function download(url) {
+  const response = await fetch(url, { redirect: "follow" });
+  if (!response.ok) throw new Error("Download failed " + response.status + " " + url);
+  return Buffer.from(await response.arrayBuffer());
+}
+function parseSignedHex(buf) {
+  const text = buf.toString("ascii");
+  const match = text.match(
+    /-----BEGIN PGP SIGNED MESSAGE-----\r?\nHash: [^\r\n]+\r?\n\r?\n([\s\S]*?)\r?\n-----BEGIN PGP SIGNATURE-----/
+  );
+  assert.ok(match, "2014 signed source must contain a clear-signed hexadecimal body");
+  const hex = match[1].replace(/\s+/g, "");
+  assert.equal(hex.length % 2, 0, "signed hexadecimal body must have even length");
+  return Buffer.from(hex, "hex");
+}
+function synchsafe32(b, p) {
+  return ((b[p] & 127) << 21) | ((b[p + 1] & 127) << 14) |
+    ((b[p + 2] & 127) << 7) | (b[p + 3] & 127);
+}
+function inspectMp3(buf) {
+  let start = 0;
+  const frames = {};
+  if (buf.toString("ascii", 0, 3) === "ID3") {
+    const size = synchsafe32(buf, 6);
+    start = 10 + size + ((buf[5] & 16) ? 10 : 0);
+    let p = 10;
+    while (p + 10 <= start) {
+      const id = buf.toString("ascii", p, p + 4);
+      const n = buf.readUInt32BE(p + 4);
+      if (!/^[A-Z0-9]{4}$/.test(id) || n === 0 || p + 10 + n > start) break;
+      const data = buf.subarray(p + 10, p + 10 + n);
+      if ((id === "TIT2" || id === "TPE1") && data.length > 1) {
+        frames[id] = data.subarray(1).toString("latin1").replace(/\0+$/g, "");
+      }
+      p += 10 + n;
+    }
+  }
+  const bitrate = [0,32,40,48,56,64,80,96,112,128,160,192,224,256,320,0];
+  const rates = [44100,48000,32000,0];
+  let first = null;
+  for (let p = start; p + 4 <= Math.min(buf.length, start + 65536); p++) {
+    const h = buf.readUInt32BE(p);
+    if ((h >>> 21) !== 2047 || ((h >>> 19) & 3) !== 3 || ((h >>> 17) & 3) !== 1) continue;
+    const bi = (h >>> 12) & 15, ri = (h >>> 10) & 3;
+    if (bi === 0 || bi === 15 || ri === 3) continue;
+    first = {
+      offset: p,
+      bitrateKbps: bitrate[bi],
+      sampleRate: rates[ri],
+      channelMode: (h >>> 6) & 3,
+      headerHex: buf.subarray(p, p + 4).toString("hex")
+    };
+    break;
+  }
+  return { id3Bytes: start, id3TextFrames: frames, firstMpegFrame: first };
+}
+function locateExe(root, basename) {
+  const found = [];
+  function walk(dir) {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (entry.name !== ".git") walk(full);
+      } else if (entry.name.toLowerCase() === basename.toLowerCase()) {
+        found.push(full);
+      }
+    }
+  }
+  walk(root);
+  return found[0] || null;
+}
+function run(exe, args, cwd, timeout = 600000) {
+  const result = spawnSync(exe, args, {
+    cwd, encoding: "buffer", timeout, maxBuffer: 16 * 1024 * 1024,
+    windowsHide: true
+  });
+  return {
+    status: result.status,
+    signal: result.signal,
+    error: result.error ? String(result.error) : null,
+    stdout: result.stdout ? result.stdout.toString("utf8") : "",
+    stderr: result.stderr ? result.stderr.toString("utf8") : ""
+  };
+}
+function makeWav(file) {
+  const rate = 44100, seconds = 8, samples = rate * seconds;
+  const dataBytes = samples * 2;
+  const out = Buffer.alloc(44 + dataBytes);
+  out.write("RIFF", 0, "ascii");
+  out.writeUInt32LE(36 + dataBytes, 4);
+  out.write("WAVE", 8, "ascii");
+  out.write("fmt ", 12, "ascii");
+  out.writeUInt32LE(16, 16);
+  out.writeUInt16LE(1, 20);
+  out.writeUInt16LE(1, 22);
+  out.writeUInt32LE(rate, 24);
+  out.writeUInt32LE(rate * 2, 28);
+  out.writeUInt16LE(2, 32);
+  out.writeUInt16LE(16, 34);
+  out.write("data", 36, "ascii");
+  out.writeUInt32LE(dataBytes, 40);
+  for (let i = 0; i < samples; i++) {
+    const s = Math.sin(2 * Math.PI * 440 * i / rate) * 0.22;
+    out.writeInt16LE(Math.round(s * 32767), 44 + 2 * i);
+  }
+  fs.writeFileSync(file, out);
+}
+function summarizeOutput(dir, inputName) {
+  const expected = path.join(dir, inputName + ".txt");
+  const candidates = fs.existsSync(expected) ? [expected] :
+    fs.readdirSync(dir).filter(x => /\.txt$/i.test(x) && x !== "payload.txt")
+      .map(x => path.join(dir, x));
+  if (!candidates.length) return { exists: false };
+  const file = candidates[0], data = fs.readFileSync(file);
+  const printable = data.length ? data.filter(x => x === 9 || x === 10 || x === 13 || (x >= 32 && x <= 126)).length / data.length : 0;
+  return {
+    exists: true, filename: path.basename(file), bytes: data.length,
+    sha256: sha256(data), printableRatio: Number(printable.toFixed(4)),
+    first64Hex: data.subarray(0, 64).toString("hex"),
+    utf8Preview: data.length <= 4096 ? data.toString("utf8").slice(0, 1000) : null
+  };
+}
+
+(async () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), "lp2-mp3stego-"));
+  const stage7 = await download(STAGE7_URL);
+  const signed = await download(STAGE7_SIGNED_URL);
+  assert.equal(stage7.length, 6651873, "Stage7 original byte length");
+  assert.equal(gitBlobSha1(stage7), STAGE7_BLOB, "Stage7 original Git blob identity");
+  assert.equal(signed.length, 13526359, "signed Stage7 source length");
+  assert.equal(gitBlobSha1(signed), STAGE7_SIGNED_BLOB, "signed Stage7 source Git blob identity");
+  const signedDecoded = parseSignedHex(signed);
+  assert.deepEqual(signedDecoded, stage7, "signed original hex body must reproduce index.mp3 byte-for-byte");
+  fs.writeFileSync(path.join(root, "stage7.mp3"), stage7);
+
+  const sourceDir = path.join(root, "MP3Stego");
+  execFileSync("git", ["clone", "--no-checkout", MP3STEGO_REPO, sourceDir], { stdio: "pipe" });
+  execFileSync("git", ["-C", sourceDir, "fetch", "--depth=1", "origin", MP3STEGO_COMMIT], { stdio: "pipe" });
+  execFileSync("git", ["-C", sourceDir, "checkout", "--detach", "FETCH_HEAD"], { stdio: "pipe" });
+  const checkedOut = execFileSync("git", ["-C", sourceDir, "rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  assert.equal(checkedOut, MP3STEGO_COMMIT, "pinned MP3Stego source commit");
+
+  const vswhere = path.join(process.env["ProgramFiles(x86)"] || "C:\\Program Files (x86)",
+    "Microsoft Visual Studio", "Installer", "vswhere.exe");
+  let msbuild = null;
+  if (fs.existsSync(vswhere)) {
+    const found = execFileSync(vswhere, [
+      "-latest", "-products", "*", "-requires", "Microsoft.Component.MSBuild",
+      "-find", "MSBuild\\**\\Bin\\MSBuild.exe"
+    ], { encoding: "utf8" }).trim().split(/\r?\n/).filter(Boolean);
+    msbuild = found[0] || null;
+  }
+  if (!msbuild) {
+    const found = spawnSync("where.exe", ["msbuild"], { encoding: "utf8" });
+    if (found.status === 0) msbuild = found.stdout.trim().split(/\r?\n/)[0];
+  }
+  assert.ok(msbuild, "Visual Studio MSBuild must be present on windows-latest");
+  const solution = path.join(sourceDir, "MP3Stego", "MP3Stego.sln");
+  const build = run(msbuild, [
+    solution, "/m", "/p:Configuration=Release", "/p:Platform=Win32",
+    "/p:PlatformToolset=v143", "/v:minimal"
+  ], path.join(sourceDir, "MP3Stego"), 600000);
+  assert.equal(build.status, 0, "MP3Stego build failed: " + build.stdout + "\n" + build.stderr);
+  const decoder = locateExe(sourceDir, "Decode.exe");
+  const encoder = locateExe(sourceDir, "Encode.exe");
+  assert.ok(decoder, "built Decode.exe");
+  assert.ok(encoder, "built Encode.exe");
+
+  const controlDir = path.join(root, "positive-control");
+  fs.mkdirSync(controlDir);
+  const wav = path.join(controlDir, "control.wav");
+  const payload = "MP3STEGO_POSITIVE_CONTROL_33011033\n";
+  const payloadPath = path.join(controlDir, "payload.txt");
+  const encoded = path.join(controlDir, "control_stego.mp3");
+  makeWav(wav);
+  fs.writeFileSync(payloadPath, payload, "ascii");
+  const encodeRun = run(encoder, ["-E", payloadPath, "-P", PASSWORD, wav, encoded], controlDir);
+  assert.equal(encodeRun.status, 0, "positive-control encode failed: " + encodeRun.stdout + "\n" + encodeRun.stderr);
+  assert.ok(fs.existsSync(encoded), "positive-control MP3 created");
+  const decodeControl = run(decoder, ["-X", "-P", PASSWORD, "control_stego.mp3"], controlDir);
+  const positive = summarizeOutput(controlDir, "control_stego.mp3");
+  assert.ok(positive.exists, "positive-control decode output exists: " + decodeControl.stdout + decodeControl.stderr);
+  assert.equal(fs.readFileSync(path.join(controlDir, positive.filename)).toString("ascii"), payload,
+    "MP3Stego positive control must recover exact payload");
+
+  const targetDir = path.join(root, "stage7-target");
+  fs.mkdirSync(targetDir);
+  fs.writeFileSync(path.join(targetDir, "stage7.mp3"), stage7);
+  const targetRun = run(decoder, ["-X", "-P", PASSWORD, "stage7.mp3"], targetDir);
+  const target = summarizeOutput(targetDir, "stage7.mp3");
+
+  console.log(JSON.stringify({
+    source: {
+      url: STAGE7_URL, gitBlobSha1: gitBlobSha1(stage7), bytes: stage7.length,
+      sha256: sha256(stage7), signedHexBlobSha1: gitBlobSha1(signed),
+      signedHexBytes: signed.length, signedHexRoundTrip: true,
+      mp3: inspectMp3(stage7)
+    },
+    decoder: {
+      repository: MP3STEGO_REPO, commit: checkedOut, msbuild,
+      positiveControl: {
+        encodeStatus: encodeRun.status, decodeStatus: decodeControl.status,
+        output: positive, exactRecovery: true
+      }
+    },
+    originalStage7: {
+      password: PASSWORD, decodeStatus: targetRun.status,
+      stdout: targetRun.stdout.slice(-4000), stderr: targetRun.stderr.slice(-4000),
+      output: target
+    },
+    interpretation: target.exists
+      ? "Decoder produced an output under the fixed historical password; inspect bytes and plaintext before classifying it as an additional payload."
+      : "No MP3Stego output file was recovered from the original Stage7 MP3 under the fixed historical OpenPuff password. This does not exclude other passwords or other steganography."
+  }, null, 2));
+})().catch(err => {
+  console.error(err && err.stack ? err.stack : String(err));
+  process.exitCode = 1;
+});
