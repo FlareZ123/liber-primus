@@ -839,5 +839,1045 @@
     "full": 11,
     "wholeBook": 65
   },
-  "keyspace": 500246412961
+  "keyspace": 500246412961,
+  "body": {
+    "bodyOffset": 9,
+    "nativeRuneBounds": [
+      {
+        "section": "0_welcome",
+        "fit": {
+          "windows": 539,
+          "min": 31,
+          "max": 42,
+          "minStart": 229
+        },
+        "full": {
+          "windows": 463,
+          "min": 43,
+          "max": 52,
+          "minStart": 215
+        }
+      },
+      {
+        "section": "0_koan_1",
+        "fit": {
+          "windows": 972,
+          "min": 35,
+          "max": 42,
+          "minStart": 602
+        },
+        "full": {
+          "windows": 896,
+          "min": 48,
+          "max": 55,
+          "minStart": 512
+        }
+      },
+      {
+        "section": "0_loss_of_divinity",
+        "fit": {
+          "windows": 893,
+          "min": 31,
+          "max": 41,
+          "minStart": 13
+        },
+        "full": {
+          "windows": 817,
+          "min": 43,
+          "max": 54,
+          "minStart": 816
+        }
+      },
+      {
+        "section": "jpg107-167",
+        "fit": {
+          "windows": 271,
+          "min": 38,
+          "max": 42,
+          "minStart": 264
+        },
+        "full": {
+          "windows": 195,
+          "min": 51,
+          "max": 56,
+          "minStart": 70
+        }
+      }
+    ],
+    "nativeRunePlants": [
+      {
+        "section": "0_welcome",
+        "start": 154,
+        "trueSpaces": 46,
+        "fit": {
+          "maxPairs": 35,
+          "maximizers": 1,
+          "key": [
+            11,
+            11,
+            13,
+            20,
+            22,
+            26,
+            22,
+            10
+          ],
+          "independentEdgeBound": 37
+        },
+        "exactKey": true,
+        "trueKey": [
+          11,
+          11,
+          13,
+          20,
+          22,
+          26,
+          22,
+          10
+        ],
+        "fitSpacePairs": 35,
+        "wholeSpaces": 46,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "T IS A NECESSARY ONE ALONG THE WAY YOU WILL FIND AN END TO ALL STRUGGLE AND SUFFERNG YOUR INNOCENCE YOUR ILLUSIANS YOUR CERTAINTY AND YOUR REALITY ULTIMATELY YOU WILL DISCOUER AN END TO SELF IT IS THROUGH THIS PILGRIMAGE THAT WE SHAPE OURSELUES AND OUR REALITIES"
+      },
+      {
+        "section": "0_koan_1",
+        "start": 299,
+        "trueSpaces": 52,
+        "fit": {
+          "maxPairs": 39,
+          "maximizers": 1,
+          "key": [
+            18,
+            1,
+            3,
+            22,
+            20,
+            25,
+            18,
+            17
+          ],
+          "independentEdgeBound": 39
+        },
+        "exactKey": true,
+        "trueKey": [
+          18,
+          1,
+          3,
+          22,
+          20,
+          25,
+          18,
+          17
+        ],
+        "fitSpacePairs": 39,
+        "wholeSpaces": 52,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "SHES TO STUDY HERE HE ASCED AGAIN THE MAN THOUGHT FOR A MOMENT AND REPLIED I AM A PROFESSOR THAT IS WHAT YOU DO NOT WHAT YOU ARE REPLIED THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE CONFUSED THE MAN THOUGHT SOME MORE FINALLY HE ANSWERED I AM A HUMAN "
+      },
+      {
+        "section": "0_loss_of_divinity",
+        "start": 272,
+        "trueSpaces": 52,
+        "fit": {
+          "maxPairs": 38,
+          "maximizers": 1,
+          "key": [
+            2,
+            26,
+            6,
+            0,
+            18,
+            11,
+            7,
+            15
+          ],
+          "independentEdgeBound": 38
+        },
+        "exactKey": true,
+        "trueKey": [
+          2,
+          26,
+          6,
+          0,
+          18,
+          11,
+          7,
+          15
+        ],
+        "fitSpacePairs": 38,
+        "wholeSpaces": 52,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "AUE WHAT WE HAUE NOW BY LUCC AND WE WILL NOT BE STRONG ENOUGH LATER TO OBTAIN WHAT WE NEED MOST THNGS ARE NOT WORTH CONSUMNG PRESERUATIAN WE PRESERUE THNGS BECAUSE WE BELIEUE WE ARE WEAC IF WE LOSE THEM WE WILL NOT BE STRONG ENOUGH TO GAIN THEM AGAIN THIS IS TH"
+      },
+      {
+        "section": "jpg107-167",
+        "start": 64,
+        "trueSpaces": 53,
+        "fit": {
+          "maxPairs": 40,
+          "maximizers": 1,
+          "key": [
+            9,
+            12,
+            23,
+            20,
+            2,
+            16,
+            3,
+            9
+          ],
+          "independentEdgeBound": 42
+        },
+        "exactKey": true,
+        "trueKey": [
+          9,
+          12,
+          23,
+          20,
+          2,
+          16,
+          3,
+          9
+        ],
+        "fitSpacePairs": 40,
+        "wholeSpaces": 53,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "S THE UOICE OF THE CIRCUMFERENCE HE SAID WHEN ASCED BY A STUDENT TO EXPLAIN WHAT THAT MEANT THE MASTER SAID IT IS A UOICE INSIDE YOUR HEAD I DON T HAUE A UOICE IN MY HEAD THOUGHT THE STUDENT AND HE RAISED HIS HAND TO TELL THE MASTER THE MASTER STOPPED THE ST"
+      }
+    ],
+    "fit": 223,
+    "hold": 76,
+    "total": 299,
+    "keyspace": 500246412961,
+    "relaxedArbitraryPhaseBijections": {
+      "fit": 10,
+      "full": 11,
+      "wholeBook": 65
+    },
+    "alphabet": [
+      "F",
+      "U",
+      "TH",
+      "O",
+      "R",
+      "C",
+      "G",
+      "W",
+      "H",
+      "N",
+      "I",
+      "J",
+      "EO",
+      "P",
+      "X",
+      "S",
+      "T",
+      "B",
+      "E",
+      "M",
+      "L",
+      "NG",
+      "OE",
+      "D",
+      "A",
+      "AE",
+      "Y",
+      "IA",
+      "EA"
+    ],
+    "controlSeed": "0x27313301",
+    "toyExactChecks": 30,
+    "nativeBounds": [
+      {
+        "name": "LP1 solved normalized",
+        "encodedLength": 4792,
+        "fit": {
+          "windows": 3173,
+          "min": 31,
+          "max": 42,
+          "minStart": 507
+        },
+        "full": {
+          "windows": 3129,
+          "min": 42,
+          "max": 56,
+          "minStart": 2681
+        },
+        "fitAnyBoundary": {
+          "windows": 4570,
+          "min": 30,
+          "max": 42,
+          "minStart": 2700
+        },
+        "fullAnyBoundary": {
+          "windows": 4494,
+          "min": 42,
+          "max": 56,
+          "minStart": 506
+        }
+      },
+      {
+        "name": "Emerson Essays",
+        "encodedLength": 480602,
+        "fit": {
+          "windows": 337040,
+          "min": 26,
+          "max": 46,
+          "minStart": 477512
+        },
+        "full": {
+          "windows": 336973,
+          "min": 37,
+          "max": 60,
+          "minStart": 471323
+        },
+        "fitAnyBoundary": {
+          "windows": 480380,
+          "min": 26,
+          "max": 46,
+          "minStart": 461672
+        },
+        "fullAnyBoundary": {
+          "windows": 480304,
+          "min": 36,
+          "max": 60,
+          "minStart": 477511
+        }
+      },
+      {
+        "name": "Gibran Prophet",
+        "encodedLength": 94599,
+        "fit": {
+          "windows": 65651,
+          "min": 26,
+          "max": 45,
+          "minStart": 90446
+        },
+        "full": {
+          "windows": 65506,
+          "min": 36,
+          "max": 59,
+          "minStart": 91455
+        },
+        "fitAnyBoundary": {
+          "windows": 94377,
+          "min": 26,
+          "max": 45,
+          "minStart": 90381
+        },
+        "fullAnyBoundary": {
+          "windows": 94301,
+          "min": 36,
+          "max": 59,
+          "minStart": 91454
+        }
+      },
+      {
+        "name": "Shakespeare",
+        "encodedLength": 329733,
+        "fit": {
+          "windows": 227864,
+          "min": 30,
+          "max": 46,
+          "minStart": 67412
+        },
+        "full": {
+          "windows": 227942,
+          "min": 41,
+          "max": 60,
+          "minStart": 175112
+        },
+        "fitAnyBoundary": {
+          "windows": 329511,
+          "min": 30,
+          "max": 46,
+          "minStart": 67405
+        },
+        "fullAnyBoundary": {
+          "windows": 329435,
+          "min": 41,
+          "max": 60,
+          "minStart": 175111
+        }
+      }
+    ],
+    "plants": [
+      {
+        "donor": "LP1 solved normalized",
+        "start": 100,
+        "trueSpaces": 50,
+        "fit": {
+          "maxPairs": 35,
+          "maximizers": 1,
+          "key": [
+            15,
+            26,
+            8,
+            27,
+            12,
+            4,
+            12,
+            13
+          ],
+          "independentEdgeBound": 35
+        },
+        "exactKey": true,
+        "trueKey": [
+          15,
+          26,
+          8,
+          27,
+          12,
+          4,
+          12,
+          13
+        ],
+        "fitSpacePairs": 35,
+        "wholeSpaces": 50,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "GE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT OR CHANGE THIS BOOC OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THINGS IT IS NOT AN EASY TRIP BUT FOR THOS"
+      },
+      {
+        "donor": "Emerson Essays",
+        "start": 2000,
+        "trueSpaces": 48,
+        "fit": {
+          "maxPairs": 37,
+          "maximizers": 1,
+          "key": [
+            27,
+            28,
+            7,
+            16,
+            6,
+            13,
+            24,
+            27
+          ],
+          "independentEdgeBound": 39
+        },
+        "exactKey": true,
+        "trueKey": [
+          27,
+          28,
+          7,
+          16,
+          6,
+          13,
+          24,
+          27
+        ],
+        "fitSpacePairs": 37,
+        "wholeSpaces": 48,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "LAW IN TURN IS MADE BY CIRCUMSTANCES PREDOMINANT AND THE LIMITS OF NATURE GIUE POWER TO BUT ONE AT A TIME A MAN IS THE WHOLE ENCYCLOPAEDIA OF FACTS THE CREATION OF A THOUSAND FORESTS IS IN ONE ACORN AND EGYPT GREECE ROME GAUL BRITAIN AMERICA LIE FOLDED ALREAD"
+      },
+      {
+        "donor": "Gibran Prophet",
+        "start": 700,
+        "trueSpaces": 42,
+        "fit": {
+          "maxPairs": 32,
+          "maximizers": 1,
+          "key": [
+            1,
+            18,
+            25,
+            25,
+            14,
+            15,
+            5,
+            9
+          ],
+          "independentEdgeBound": 32
+        },
+        "exactKey": true,
+        "trueKey": [
+          1,
+          18,
+          25,
+          25,
+          14,
+          15,
+          5,
+          9
+        ],
+        "fitSpacePairs": 32,
+        "wholeSpaces": 42,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "OF THIS PROJECT GUTENBERG EBOOC THE PROPHET PRODUCED BY DAUID WIDGER FROM PAGE IMAGES GENEROUSLY PROUIDED BY THE INTERNET ARCHIUE THE PROPHET BY CAHLIL GIBRAN NEW YORC ALFRED A CNOPF THE TWELUE ILLUSTRATIONS IN THIS UOLUME ARE REPRODUCED FROM ORIGINAL DRAWINGS BY "
+      },
+      {
+        "donor": "Shakespeare",
+        "start": 8000,
+        "trueSpaces": 46,
+        "fit": {
+          "maxPairs": 34,
+          "maximizers": 1,
+          "key": [
+            4,
+            13,
+            9,
+            15,
+            27,
+            3,
+            19,
+            0
+          ],
+          "independentEdgeBound": 35
+        },
+        "exactKey": true,
+        "trueKey": [
+          4,
+          13,
+          9,
+          15,
+          27,
+          3,
+          19,
+          0
+        ],
+        "fitSpacePairs": 34,
+        "wholeSpaces": 46,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "IUS MARCIUS THANCS WHAT S THE MATTER YOU DISSENTIOUS ROGUES THAT RUBBING THE POOR ITCH OF YOUR OPINION MACE YOURSELUES SCABS FIRST CITISEN WE HAUE EUER YOUR GOOD WORD MARCIUS HE THAT WILL GIUE GOOD WORDS TO THEE WILL FLATTER BENEATH ABHORRING WHAT WOULD YOU HAUE "
+      },
+      {
+        "donor": "LP1 solved normalized",
+        "start": 851,
+        "trueSpaces": 46,
+        "fit": {
+          "maxPairs": 35,
+          "maximizers": 1,
+          "key": [
+            3,
+            6,
+            17,
+            10,
+            1,
+            6,
+            5,
+            21
+          ],
+          "independentEdgeBound": 37
+        },
+        "exactKey": true,
+        "trueKey": [
+          3,
+          6,
+          17,
+          10,
+          1,
+          6,
+          5,
+          21
+        ],
+        "fitSpacePairs": 35,
+        "wholeSpaces": 46,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "MAY EMERGE WISDOM YOU ARE A BEING UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE IS HOLY FOR ALL THAT LIUES IS HOLY AN INSTRUCTION COMMAND YOUR OWN SELF WISDOM CONTINUED YOU ARE A BEING UNTO YOURSELF YOU ARE A LAW UNTO YOURSELF EACH INTELLIGENCE"
+      },
+      {
+        "donor": "Emerson Essays",
+        "start": 10000,
+        "trueSpaces": 51,
+        "fit": {
+          "maxPairs": 37,
+          "maximizers": 1,
+          "key": [
+            28,
+            25,
+            9,
+            7,
+            19,
+            27,
+            22,
+            16
+          ],
+          "independentEdgeBound": 37
+        },
+        "exactKey": true,
+        "trueKey": [
+          28,
+          25,
+          9,
+          7,
+          19,
+          27,
+          22,
+          16
+        ],
+        "fitSpacePairs": 37,
+        "wholeSpaces": 51,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "D WILD ORNAMENTS GRAUE AND GAY I WILL NOT MACE MORE ACCOUNT OF THEM I BELIEUE IN ETERNITY I CAN FIND GREECE ASIA ITALY SPAIN AND THE ISLANDS THE GENIUS AND CREATIUE PRINCIPLE OF EACH AND OF ALL ERAS IN MY OWN MIND WE ARE ALWAYS COMING UP WITH THE EMPHATIC F"
+      },
+      {
+        "donor": "Gibran Prophet",
+        "start": 2002,
+        "trueSpaces": 54,
+        "fit": {
+          "maxPairs": 41,
+          "maximizers": 1,
+          "key": [
+            27,
+            27,
+            22,
+            16,
+            5,
+            17,
+            2,
+            22
+          ],
+          "independentEdgeBound": 44
+        },
+        "exactKey": true,
+        "trueKey": [
+          27,
+          27,
+          22,
+          16,
+          5,
+          17,
+          2,
+          22
+        ],
+        "fitSpacePairs": 41,
+        "wholeSpaces": 54,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "IS OWN DAY HAD WAITED TWELUE YEARS IN THE CITY OF ORPHALESE FOR HIS SHIP THAT WAS TO RETURN AND BEAR HIM BACC TO THE ISLE OF HIS BIRTH AND IN THE TWELFTH YEAR ON THE SEUENTH DAY OF IELOOL THE MONTH OF REAPING HE CLIMBED THE HILL WITHOUT THE CITY WALLS AND LOOCED "
+      },
+      {
+        "donor": "Shakespeare",
+        "start": 19000,
+        "trueSpaces": 50,
+        "fit": {
+          "maxPairs": 37,
+          "maximizers": 1,
+          "key": [
+            27,
+            18,
+            20,
+            9,
+            21,
+            24,
+            2,
+            10
+          ],
+          "independentEdgeBound": 37
+        },
+        "exactKey": true,
+        "trueKey": [
+          27,
+          18,
+          20,
+          9,
+          21,
+          24,
+          2,
+          10
+        ],
+        "fitSpacePairs": 37,
+        "wholeSpaces": 50,
+        "wholeGrammarErrors": [],
+        "heldoutCorrect": 76,
+        "heldoutBoundariesCorrect": true,
+        "replay": true,
+        "display": "I LOOCED UPON HIM O WEDNESDAY HALF AN HOUR TOGETHER HAS SUCH A CONFIRMED COUNTENANCE I SAW HIM RUN AFTER A GILDED BUTTERFLY AND WHEN HE CAUGHT IT HE LET IT GO AGAIN AND AFTER IT AGAIN AND OUER AND OUER HE COMES AND AGAIN CATCHED IT AGAIN OR WHETHER HI"
+      }
+    ],
+    "pads": [
+      {
+        "i": 0,
+        "fit": {
+          "maxPairs": 7,
+          "maximizers": 584,
+          "key": [
+            1,
+            15,
+            3,
+            23,
+            18,
+            12,
+            10,
+            7
+          ],
+          "independentEdgeBound": 11
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 7,
+        "wholeSpaces": 7,
+        "wholeGrammarErrors": [
+          5,
+          91,
+          138,
+          174,
+          248,
+          279,
+          282
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "FUNPSAGEADP RAEUOEEAUNGHTUIDSYCMOEYYATHAESDAEIAEAEPTHAECARM PFSTHWTJFLMGCDWLMOEXI MDBYAEHBXBGTHUHCDEWLBONGLCLEAONIBEABU RE CMTW OOEAEWLAGUEABOLABIFMJCIXYTDOPMATWWTHHJCTRUWLIOEAUTOYXMIABYDDIINERYYEAEWPWLINGSPOTHFJIADNGTHRJJUJPFLWIIJIAAE NGAETEAETHILYIAIMSOEMBNFOHJBYTXJESNOAEIALOTHNFUAEJGTHLNURNGWPJATHGEMIAUXAESAWODINTHIPAWCHO"
+      },
+      {
+        "i": 1,
+        "fit": {
+          "maxPairs": 8,
+          "maximizers": 188,
+          "key": [
+            2,
+            11,
+            6,
+            21,
+            26,
+            19,
+            0,
+            0
+          ],
+          "independentEdgeBound": 11
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 8,
+        "wholeSpaces": 8,
+        "wholeGrammarErrors": [
+          146,
+          230,
+          238
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "ITHWW AEDPNM XYNG OYYOEHNGESFHMWSYXAEGDBRNAWBBGIADIAOTXTMPROEAHYW YTHOEAXEWMIPUNGTXTIGIOEIANGNWAWOEGMTHTHSSACOE JDLIAUHTHAEIAMSXDXMNEOMAELPTHEAXEJFTXPGJNFH OETINOEXWIACSPFSMX TMOWXEIIAFWUEUAEEAONCNGHMLDSTHNGSXXHEAMTHDTHDNRDWTHSNGDBXOTHIAREAHH NGSAEWAERPRDPERIAEGTHMLYXNOEOIAJSIADDTYDEAOIUNTRISOAEIAUAIAELGHFATHTOEXEAOTODOPTBSBDUJTHHULOEGNNETYCTI"
+      },
+      {
+        "i": 2,
+        "fit": {
+          "maxPairs": 8,
+          "maximizers": 3,
+          "key": [
+            7,
+            28,
+            11,
+            15,
+            14,
+            23,
+            24,
+            13
+          ],
+          "independentEdgeBound": 11
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 8,
+        "wholeSpaces": 8,
+        "wholeGrammarErrors": [
+          32,
+          49,
+          53,
+          100,
+          248,
+          282,
+          289
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "WAYUNGARCXAT LNGPINGUIARELYTWHOEAEJIAAGYRMUEYIEAI IAEAIXETHLTHCENGM IAXLSHWIA RTHEUUJNGIDJGTJOETFHGRGSSDLACLTHWSHOEANGEANGU OEJHIBEWCGYXCYTHMLWL WNGBHNGTHEAGURMOUCBITNOEAEIAANEJBPAEGOPAAEOSUAMUAITICCOIMPNG SIAAOBOENG EANGMIAGIODEAFUCSHTHERGJGIWOHPLWYBORDNTXHIAEOUUYFNBUDIOEMOOEAEAEMUBDSRTOROETDXPEAEAJNGNTHITNNLBERWYIIAONGRCNGTHTPX"
+      },
+      {
+        "i": 3,
+        "fit": {
+          "maxPairs": 8,
+          "maximizers": 11,
+          "key": [
+            10,
+            10,
+            14,
+            14,
+            24,
+            10,
+            3,
+            14
+          ],
+          "independentEdgeBound": 13
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 8,
+        "wholeSpaces": 8,
+        "wholeGrammarErrors": [
+          17,
+          25,
+          67,
+          73,
+          112,
+          144,
+          156,
+          220,
+          239,
+          258
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "NFIACGIAIRNGRYT PHPAELTHCOEPNGOEMAEGELMEGE FLOEAEIAEAYLPTHPLOHSG EAYGCJTUEJAIATDBTEAHEDGIAIAEEAAEEAIBNEAIAIOEAUOCUNG EHHUFIEXFTHNTHSEAWARHGOETXIEEAIWTITUOEFTHIAYBMOEOERIADHMIANGTHAEGOPEOPXMUTNWNXUUIUTNPIAANJN IOEOGGPPOEXETHLEUGR OEHBFP OIAN LREAGOJAEASIGEHOIUPDUBJGEJPLNYXEAPAEBIAOENGPTHPSBMWNGXCTPPOEHFUJBNGHCREPMOSPCNGSAENODCBJA"
+      },
+      {
+        "i": 4,
+        "fit": {
+          "maxPairs": 7,
+          "maximizers": 180,
+          "key": [
+            10,
+            11,
+            7,
+            2,
+            8,
+            18,
+            13,
+            7
+          ],
+          "independentEdgeBound": 10
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 6,
+        "wholeSpaces": 6,
+        "wholeGrammarErrors": [
+          30,
+          63,
+          82,
+          124,
+          138,
+          207,
+          231,
+          297
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "LFHDAPIAAEJXXDYTHWRWOEYFFAEAEGNNG SXTYDFAELJDXOEWNGTCLNGIAPLTCIAJTFXSLDNGGAEIYELRFI TYFOEBRAETHCHIAWBNRSBOFGOEXAEEOFGGSPOTHBUAETHPMNAAEBREPGRTNGLARD UUGTUEIAJSHHBBUTHBNGOEEAJLI EATHNG IAB XAEXUEAUGULHWSDRNNDAEFWGLNTAEUTOEBJCNGTHTFSAERUUOTHWHEAODSIANIAGOETFAESUATIIADOEBTMJLGXRIAFHNGTOCORUSXBCYEBWSCWTHPAFEAEJDDTHIAOUWAEIHOXSCAEJNHJPYY"
+      },
+      {
+        "i": 5,
+        "fit": {
+          "maxPairs": 8,
+          "maximizers": 1,
+          "key": [
+            9,
+            20,
+            21,
+            14,
+            4,
+            7,
+            7,
+            8
+          ],
+          "independentEdgeBound": 9
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 7,
+        "wholeSpaces": 7,
+        "wholeGrammarErrors": [
+          33,
+          59,
+          178,
+          224,
+          231,
+          241,
+          244,
+          284,
+          288
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "INJGCXOEIAIYMXBAAERRLOEIEFGEIAWNGXD IAAETUAEOBHNGBNAOY AENGOTHIIIAMUPPIDH DOEBNOEATTWNTHIJRNGXMLIAITYYYSCMUAMGJIPUAPTTHUEOFDTHIADFWGIAHRDLO TMP TFYOEXIWTIGNEAOSESSPOGAETHNNGWCTBNGYIAMLJFEAYSPGONGLUYTOENGO RNGM ATHPUNEDTHBCILAEGBJWHNGSWSUUAXPWTHYEXAEWGIAPENBAYTHCEITTHAIALTHTTCEARAAEJTHEAMBTNRBNHTHYOEMWTTHHBFBUOENXEAIFTHEOXWDBPAETHT"
+      },
+      {
+        "i": 6,
+        "fit": {
+          "maxPairs": 8,
+          "maximizers": 5,
+          "key": [
+            10,
+            3,
+            12,
+            18,
+            8,
+            28,
+            0,
+            3
+          ],
+          "independentEdgeBound": 11
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 8,
+        "wholeSpaces": 8,
+        "wholeGrammarErrors": [
+          41,
+          72,
+          104,
+          148,
+          151,
+          163,
+          204,
+          259,
+          292
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "LEHRF AE WEAXLUPEAAEHNGXLPPOEYESTRFTAERFITDUBIRO  WNGBNGDATHBITHCINOTHHNGLLGNGIYAAFAEMSSW NGDUTIATOEIESXHEEBJAEBDAESSXLIWM NMXBTNIAYAXOIAJTAHIHGBG TGNXAESDEAOISDI BITHWAAEHBTAEOIAIFIYNNGJFOECXJAETUEAEAFIAIAXOEPWNGYIBACAECFJABSEAMRXUUXPWONGALLYSXRNTHLLEAMOOEXHPJUAPAETHSPXMYMNGOEWFDRRDNGSJURJDOHTHJBDCWMOESMBRFITLDLAAEUTEOED"
+      },
+      {
+        "i": 7,
+        "fit": {
+          "maxPairs": 9,
+          "maximizers": 4,
+          "key": [
+            10,
+            20,
+            27,
+            1,
+            13,
+            25,
+            0,
+            8
+          ],
+          "independentEdgeBound": 12
+        },
+        "exactKey": null,
+        "trueKey": null,
+        "fitSpacePairs": 9,
+        "wholeSpaces": 9,
+        "wholeGrammarErrors": [
+          7,
+          75,
+          120,
+          125,
+          138,
+          173,
+          222,
+          232,
+          240,
+          252,
+          275
+        ],
+        "heldoutCorrect": null,
+        "heldoutBoundariesCorrect": null,
+        "replay": true,
+        "display": "YEAFUOEWXAEIOONGLIAIAWCMURIAPEAOEIIAPDTEAOAEHJIOESNGTBO THDAE OEXGW THTHOEPNUFTHEAXNAE OEXRTHPNGNG NGTEHNGFTUDIASAENFBNIJEATHCNGMNGTHUIAAELNGNNGFOEIAEGSMYLNGATHTHEAOUBDASLNNGGEAREANGMETHULNGL  HGOYHMOERYF XSXWBNBTIAREAFSIABJGHDNOE EAJFNGEIAAJIAHETHWEAAYCAXEERHNGJXPUOEJUSOMNGRYNEARCXEOESEAECXXMBDJBCNGUTHMWHMHOEAWDIYBCYXLAJICUAEISSFTHSNGRGJPY"
+      }
+    ],
+    "original": {
+      "fit": {
+        "maxPairs": 8,
+        "maximizers": 8,
+        "key": [
+          22,
+          12,
+          5,
+          10,
+          8,
+          6,
+          23,
+          15
+        ],
+        "independentEdgeBound": 10
+      },
+      "exactKey": null,
+      "trueKey": null,
+      "fitSpacePairs": 8,
+      "wholeSpaces": 8,
+      "wholeGrammarErrors": [
+        10,
+        23,
+        64,
+        100,
+        182,
+        185,
+        240
+      ],
+      "heldoutCorrect": null,
+      "heldoutBoundariesCorrect": null,
+      "replay": true,
+      "display": "CJHJOEUURDJDNGPFSIAFSCMYIAMHAIPBWXAEGOAEBPAEOEREYOEAEIENPEATHDGW UOEYBIASAEFJWAENG YMPNIARJOEICGTTJXUNGT YUGTOE RTFJSONONEATOOYSNGCOOOYCLOANCSEAWUFAEWEACICJAEUAETGSLIGSNNAEO FNGNYTHOIANGWOAEBOEAUNNGOWNGAPAE OXLW YEATHOEAEDXYRAEEAEWPN NUNTHPEAEFOGOWCYWJLROEFUPDMGCFLEAIADPWTHCNOEEAMOEEAHWNWBRIAWCOTHYGAPAEIAURIANAFMMYHWAEEAMGIAXAGBBSAGC"
+    },
+    "fullCapacity": {
+      "maxPairs": 8,
+      "maximizers": 113,
+      "key": [
+        3,
+        12,
+        5,
+        1,
+        11,
+        5,
+        14,
+        21
+      ],
+      "independentEdgeBound": 11
+    },
+    "wholeBookCapacity": {
+      "maxPairs": 48,
+      "maximizers": 2,
+      "key": [
+        7,
+        18,
+        10,
+        19,
+        0,
+        25,
+        2,
+        10
+      ],
+      "independentEdgeBound": 65
+    },
+    "wholeBookLength": 12956
+  },
+  "bodySourceBlob": {
+    "path": "resources/external/relikd-solved-gp29-native-v1.json",
+    "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
 }
