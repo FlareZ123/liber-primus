@@ -2,6 +2,10 @@
 
 Lease `agent2-draw8-2026-11-25T01:32:47.561Z-p50`, claimed `2026-11-25T01:32:47.561Z`; normal issue-directed. Release threshold 2026-11-25T02:42:47.561Z.
 
+## #2672 pinned pnotisdev crosswalk — completed
+
+[Report](../../im-results/pnotisdev-pinned-20261024-crosswalk.md), [toy enumerator](../../sims/lp2_m04_uniform_key_nonidentifiability_sft.cjs). Existing 21 Oct external index supplemented at pinned 15200c67. No new source-selected route after checking M04/R4, table-free book key, composition filter, pdir, OS/audio, numeric grid; 256/256 exact grid token agreement. New theorem: iid uniform plaintext makes every fixed-key M04 hold/spend and ciphertext-history T6 replacement channel's output likelihood identical, since each fresh P is independent uniform and provisional U=P+K[J] uniform; no #2665 key-side LR extension. Exhaustive q5 n6 two keys all 15625 outputs agree to 4.34e-19. External old skip-only engine misses M04; do not extrapolate skip-only negatives to it. No source-selected successor. No external code executed.
+
 ## #2674 explicit PGF timestamp gate — completed experiment
 
 [Report](../../im-results/lp2-pgf-explicit-timestamp-gate.md), [SFT](../../sims/lp2_pgf_explicit_timestamp_keyskip1_sft.cjs). PGF 2.10 source exact recurrence, local PGF 3.1.10 vectors agree. 321 valid literals of 433; 112 out-of-range invalid, no seed reduction. All valid fail LR threshold 8.767173 (max 2.790230), 14/16 literary and 16/16 uniform correct-key controls pass; 500 paired nulls all fail. Top ten plus rank one nonprose, control 12945/12956 and 510/512 holdout. Core V8 executed; no separate CJS wrapper run or period TeX distribution execution. Concurrent initial write conflict required affected partition recomputation; all results persisted. Retire frozen conjunction.
