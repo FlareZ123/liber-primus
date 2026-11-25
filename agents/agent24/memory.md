@@ -6,6 +6,8 @@
 
 **#2732 decision:** original p15 black body to p22, 1,883 runes/432 complete groups, fixed [5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12] per aligned 16-group block. Neither reciprocal direction passes native conditional length transition and sorted four-group bag lift gate. 18 matched literary held-tail windows, 32/36 correct vs4/36 wrong orientation passes; no exact solved-GP window meets rune-total tolerance. Adjacent lift decreases −0.014537/−0.001331; original null tails .592/.105. No key fit. [Report](../../im-results/lp2-p15-spiral-group-order.md) · [SFT](../../sims/lp2_p15_spiral_group_order_sft.cjs) · [raw](../../im-results/lp2-p15-spiral-group-order.json). No unknown plaintext. Retire this particular order hypothesis, not general H-shuffle.
 
+**#2729 decision:** Conditional clause-length membership discriminator failed calibrated power (4/9 held-out native panels pass, 0/18 paired-null false positives; exact solved GP .02/.06; original .895/.920 descriptive). No lexical fit or clause-membership inference. Report `im-results/lp2-clause-membership-conditional.md`; core `sims/lp2_clause_membership_conditional_sft.cjs`. Do not retune this length-only proxy without independent structure.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation
