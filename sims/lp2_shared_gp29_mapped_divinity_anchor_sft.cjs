@@ -62,6 +62,58 @@ function experiment(raw,config={}) {
  function encode(w,pi,start){const ip=[];pi.forEach((v,i)=>ip[v]=i);let j=start;return w.map(p=>{if(p===0)return 0;let c=ip[(pi[p]+pi[K[j]])%29];j=(j+1)%8;return c})}
  function decode(c,pi){const ip=[];pi.forEach((v,i)=>ip[v]=i);const found=new Map();for(let start=0;start<8;start++){function walk(i,j,w){if(i===c.length){if(dict.has(key(w))){check(encode(w,pi,start).join()===c.join(),"replay");found.set(key(w),w)}return}if(c[i]===0)walk(i+1,j,[...w,0]);let p=ip[mod(pi[c[i]]-pi[K[j]])];if(p!==0)walk(i+1,(j+1)%8,[...w,p])}walk(0,start,[])}return [...found.values()]}
  function pair(A,B,first=false){let tested=0,passed=[],ds={};outer:for(const a of A)for(const bb of B){tested++;const s=apply(a.s,bb.e);if(!s)continue;passed.push({s,a,bb});ds[s.d]=(ds[s.d]||0)+1;if(first)break outer;}return {tested,passed,ds}}
+
+ /** Affine hyperplane filtering: a single proposed edge cannot force two coordinates equal. */
+ function filterState(s){
+  const {a,d}=s,forbidden=new Set(),cache=new Int32Array(29*29).fill(-1);
+  function signature(row){let j=0;while(j<d&&!row[j])j++;if(j===d)return row[d]?null:"";const z=inv[row[j]],out=[];for(let k=0;k<=d;k++)out.push(row[k]*z%29);return String.fromCharCode(...out)}
+  const row=new Uint8Array(d+1);
+  for(let x=0;x<29;x++)for(let y=x+1;y<29;y++){let u=x*W,v=y*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]);row[d]=mod(a[u+L]-a[v+L]);const sig=signature(row);if(sig)forbidden.add(sig)}
+  function mask(c,k){const ci=c*29+k;if(cache[ci]>=0)return cache[ci];let bits=0;for(let p=1;p<29;p++){if(c===p||c===k)continue;let u=c*W,v=p*W,w=k*W;for(let j=0;j<d;j++)row[j]=mod(a[u+j]-a[v+j]-a[w+j]);row[d]=mod(a[u+L]-a[v+L]-a[w+L]);const sig=signature(row);if(sig!==null&&!forbidden.has(sig))bits|=1<<p}return cache[ci]=bits}
+  return e=>e.every(([c,p,k])=>(mask(c,k)&(1<<p))!==0);
+ }
+ /** Search each anchored affine space, grant two additional arbitrary OOV long groups. */
+ function robustSearch(cipher,anchor,config){
+  const other=anchor===56?49:56, allLong=cipher.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=8).sort((a,b)=>b.l-a.l||a.i-b.i).map(x=>x.i);
+  const rest=allLong.filter(i=>i!==anchor&&i!==other);
+  const cache=new Map();function get(i){if(!cache.has(i)){const m=new Map();for(const o of options(cipher[i])){const k=[...new Set(o.e.map(x=>x.join(",")))].sort().join(";");if(!m.has(k))m.set(k,o)}cache.set(i,[...m.values()])}return cache.get(i)}
+  const A=get(anchor),begin=config.start??0,end=Math.min(config.end??A.length,A.length);
+  for(const i of rest)get(i);
+  const maxFilter=config.maxFilter??50000000,maxJoins=config.maxJoins??500000,maxNodes=config.maxNodes??100000,maxEnum=config.maxEnum??3000000;
+  let nodes=0,joins=0,filters=0,enumNodes=0,enumerated=0,cap=null,completed=begin,maxLong=0,maxAll=0,accepted=0,best=[],leaves=0;
+  const seenMaps=new Set();
+  function score(q){const id=q.join();if(seenMaps.has(id))return;seenMaps.add(id);enumerated++;
+   const long=allLong.filter(i=>decode(cipher[i],q).length).length;maxLong=Math.max(maxLong,long);
+   if(long<7)return;
+   const decoded=cipher.map(c=>decode(c,q)),coverage=decoded.filter(x=>x.length).length;
+   if(coverage>maxAll){maxAll=coverage;best=[]}
+   if(coverage===maxAll&&best.length<5)best.push({pi:q,coverage,long,words:decoded.map((v,i)=>({i,words:v.slice(0,5).map(show),total:v.length})).filter(x=>x.total)});
+   if(coverage>=63)accepted++;
+  }
+  function enumerate(s){
+   const {a,d}=s,rows=Array.from({length:d},()=>[]),params=new Uint8Array(d);let used=0;
+   for(let x=0;x<29;x++){let off=x*W,j=d-1;while(j>=0&&!a[off+j])j--;if(j<0){const bit=1<<a[off+L];if(used&bit)return;used|=bit}else rows[j].push(off)}
+   function visit(j,mask){if(cap)return;if(++enumNodes>maxEnum){cap="enumeration";return}
+    if(j===d){score(evaluate(s,params));return}
+    for(let v=0;v<29;v++){if(mask&(1<<v))continue;params[j]=v;let n=mask,ok=true;for(const off of rows[j]){let x=a[off+L];for(let k=0;k<=j;k++)x+=params[k]*a[off+k];const bit=1<<(x%29);if(n&bit){ok=false;break}n|=bit}if(ok)visit(j+1,n);if(cap)return}
+   }visit(0,used);
+  }
+  function visit(s,remaining,budget){
+   if(cap)return;if(++nodes>maxNodes){cap="nodes";return}
+   if(s.d<=3||remaining.length<=budget){leaves++;enumerate(s);return}
+   const f=filterState(s);let pick=-1,domain=null;
+   for(const i of remaining){let d=[];for(const o of get(i)){if(++filters>maxFilter){cap="filter";return}if(f(o.e)){d.push(o);if(domain&&d.length>=domain.length)break}}
+    if(domain===null||d.length<domain.length){pick=i;domain=d;if(!d.length)break}}
+   const next=remaining.filter(i=>i!==pick);
+   const dedup=new Set();
+   for(const o of domain){if(++joins>maxJoins){cap="joins";return}const t=apply(s,o.e);if(!t)continue;
+    const id=t.vars.join(",")+";"+String.fromCharCode(...t.a);if(dedup.has(id))continue;dedup.add(id);visit(t,next,budget);if(cap)return;
+   }
+   if(budget>0)visit(s,next,budget-1);
+  }
+  for(let i=begin;i<end&&!cap;i++){visit(A[i].s,rest,2);if(!cap)completed=i+1}
+  return {anchor,forcedOtherOOV:other,anchorOptions:A.length,range:[begin,end],completedThrough:completed,complete:completed===end,cap,nodes,joins,filters,enumNodes,enumerated,leaves,maxLong,maxAll,accepted,best,domains:Object.fromEntries([anchor,...rest].map(i=>[i,get(i).length]))};
+ }
  function rng(seed){let s=seed;return()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return s>>>0}}
  function plant(text,seed){
   const rnd=rng(seed),types=Array.from({length:40},()=>new Map());
@@ -91,6 +143,7 @@ function experiment(raw,config={}) {
   }
   return out;
  }
+ if(config.robust!==undefined)return robustSearch(C,config.robust,config);
  const original=summarize(C,null,null);
  const plants=donors.map((d,i)=>{const p=plant(d,[3301,20141125][i]);return {seed:[3301,20141125][i],longTypeCounts:[p.types[11],p.types[13]],...summarize(p.cipher,p.truth,p.pi)}});
  const long=C.map((c,i)=>({i,l:c.length})).filter(x=>x.l>=8).sort((a,b)=>b.l-a.l||a.i-b.i);
@@ -101,4 +154,5 @@ function experiment(raw,config={}) {
  return {dict:dict.size,native:pool.length,model:"pi(DIVINITY), pi(F)=0, pi(D)=1, independent group starts, literal F hold",original,plants,long,pairs,disjointContradictions:used.size/2};
 }
 const raw=inputs.map(x=>{const b=fs.readFileSync(path.resolve(__dirname,'..',x.path));const sha=crypto.createHash('sha1').update(`blob ${b.length}\0`).update(b).digest('hex');if(sha!==x.sha)throw Error('input changed: '+x.path);return b.toString('utf8')});
-console.log(JSON.stringify(experiment(raw),null,2));
+const config=process.argv[2]==="--robust"?{robust:Number(process.argv[3]),start:Number(process.argv[4]||0),end:process.argv[5]===undefined?undefined:Number(process.argv[5])}:{};
+console.log(JSON.stringify(experiment(raw,config),null,2));
