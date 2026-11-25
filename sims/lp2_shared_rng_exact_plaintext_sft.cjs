@@ -56,3 +56,26 @@ function oracle(C,seed,schedule,policy,s,L){
  let mass=-Infinity,best=-Infinity;for(const q of paths){mass=logadd(mass,q.score);best=Math.max(best,q.score)}return {count:BigInt(paths.length),mass,best}
 }
 module.exports={train,encode,decode,oracle,schedules,policies};
+
+if(require.main===module){
+ const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict"),{mtFloats}=require("./lp2_shared_rng_rejection_marginal_sft.cjs");
+ const read=f=>fs.readFileSync(path.join(__dirname,"..",f),"utf8").replace(/\r\n/g,"\n");
+ const gp=JSON.parse(read("resources/liber-primus/lp2-corpus.json")),ref=read("resources/liber-primus/lp1-plaintext-reference.txt");
+ const p57=gp.pages.find(x=>x.page===57).indices,p56=encode(ref.split("### 56\n")[1].split("### 57\n")[0].replace(/^[0-9a-f]+$/gm,""),gp.translit);
+ assert.equal(p56.length,85);assert.equal(p57.length,95);
+ const primes=[];for(let i=2;primes.length<85;i++)if(!primes.some(p=>p*p<=i&&i%p===0))primes.push(i);
+ let j=0;assert.deepEqual(p56.map(p=>p===0?0:(p+primes[j++]-1)%29),gp.pages.find(x=>x.page===56).indices);
+ const training=["gibran_prophet_58585.txt","emerson_essays_2944.txt"].map(f=>encode(read("resources/control/"+f),gp.translit)),L=train(training);
+ const P=encode(read("resources/control/shakespeare_first300k.txt"),gp.translit).slice(10000,22956);
+ let checks=0;const rows=[];
+ for(const schedule of schedules)for(const policy of policies){
+  for(let k=0;k<16;k++){const seed=0x304140+k,plain=Array.from(mtFloats(seed,10),x=>Math.floor(x*29)),s=[0,.81288,1][k%3],E=machine(seed,10,schedule).plant(plain,s,policy),a=decode(E.C,seed,schedule,policy,s,L),b=oracle(E.C,seed,schedule,policy,s,L);assert.equal(a.count,b.count.toString());assert(Math.abs(a.mass-b.mass)<1e-8&&Math.abs(a.best-b.best)<1e-8);checks++}
+  for(const [name,plain] of [["p56",p56],["p57",p57],["Shakespeare",P]]){
+   const seed=0x49280311,s=.81288,E=machine(seed,plain.length,schedule).plant(plain,s,policy),d=decode(E.C,seed,schedule,policy,s,L),split=Math.floor(plain.length*.75),f=decode(E.C,seed,schedule,policy,s,L,{freeze:split,posterior:false});
+   const accuracy=(q,start=0)=>q.complete?q.plain.slice(start).filter((v,i)=>v===plain[start+i]).length:0;
+   const k=BigInt(d.count),shift=Math.max(0,k.toString(2).length-50);
+   rows.push({schedule,policy,name,n:plain.length,correct:accuracy(d),forced:d.possible.filter(x=>x===1).length,logCount:Math.log2(Number(k>>BigInt(shift)))+shift,exactCount:d.count,mapPost:d.logMAPPosterior,entropy:d.totalMarginalEntropyBits,maxStates:d.maxStates,hold:f.complete?accuracy(f,split):null,holdN:plain.length-split,freezeComplete:f.complete});
+  }
+ }
+ console.log(JSON.stringify({checks,training:training.map(x=>x.length),rows},null,2));
+}
