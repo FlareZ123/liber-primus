@@ -7,7 +7,7 @@ The solved final LP2 text asks the reader to shed their own circumferences and f
 Sources:
 - Bibliotheca Augustana, edition index and II: https://www.tha.de/~harsch/Chronologia/Lspost12/LiberXXIVphilosophorum/phi_2400.html and https://www.tha.de/~harsch/Chronologia/Lspost12/LiberXXIVphilosophorum/phi_2402.html
 - Manuscript and edition context: https://www.bphv.eu/en/content/liber-viginti-quattuor-philosophorum
-- Latin XVIII wording (quot): https://www.mdpi.com/2409-9287/1/2/162 ; alternative quod: https://www.alchemy-texts.com/book/the-book-of-the-XXIV-philosophers-liber-XXIV-philosophorum/
+- Latin XVIII wording (quot): https://www.mdpi.com/2409-9287/1/2/162 ; alternative quod is reported in the search-indexed Latin quotation at https://repositorio.unb.br/bitstream/10482/45466/1/2022_DanilodeCarvalhoeFrabetti.pdf (not a verified historical edition; included as a spelling sensitivity)
 - A 2012 Vinzent blog listing also surfaced, but access failed; the date of online availability of the Augustana transcription is not established before LP2.
 The two English candidates are our literal renderings, not claims to reproduce a particular pre-2014 English edition. Only II and XVIII were tested; the entire work's commentary is not a tested corpus.
 
