@@ -53,6 +53,6 @@ function run(raw) {
    if(truth<0||!same(transform(C,key,orient,mode,true),P))throw Error("plant excluded");
   }
  }
- return {lexicon:types.size,original:{n:729,groups:O.length,rawScore:score(target),results},plants};
+ const terminalStart=12657;const T=layout(W).filter(w=>w.start>=terminalStart).map(w=>({w:w.w,start:w.start-terminalStart}));const tc=tape.slice(terminalStart);if(T[0].w.length!==8||tc.length!==299||T.at(-1).start+T.at(-1).w.length!==299)throw Error("terminal scope");const terminal=[];for(const mode of ["encMultiplier","decMultiplier"]){const a=solve(tc,T,"LE",mode,223);delete a.ranked;delete a.best.P;if(a.best8)delete a.best8.P;terminal.push(a);}return {terminal,lexicon:types.size,original:{n:729,groups:O.length,rawScore:score(target),results},plants};
 }
 console.log(JSON.stringify(run(files.map(p=>fs.readFileSync(p,"utf8"))),null,2));
