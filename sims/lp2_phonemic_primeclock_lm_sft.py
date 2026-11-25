@@ -267,29 +267,54 @@ else:
         parts = line.split()
         if len(parts) == 2 and parts[1].isdigit():
             frequencies[parts[0].lower()] = int(parts[1])
-    lexicon = collections.defaultdict(list)
+
+    # First-pronunciation CMU lexicon, with no frequency restriction for the
+    # exact reachability test. Frequency is used only to rank enumerated paths.
+    lexicon_all = collections.defaultdict(list)
+    lexicon_weighted = collections.defaultdict(list)
     for spelling, variants in mod.pronunciations.items():
-        if not re.fullmatch(r"[a-z]+", spelling) or spelling not in frequencies:
+        if not re.fullmatch(r"[a-z]+", spelling):
             continue
         phones = [re.sub(r"[012]", "", phone) for phone in variants[0]]
         classes = tuple(mod.to_gp[mod.MERGE.get(phone, phone)] for phone in phones)
-        if 1 <= len(classes) <= 20:
-            lexicon[classes].append((spelling, frequencies[spelling]))
-    n = len(best_plain)
+        if 1 <= len(classes) <= 30:
+            lexicon_all[classes].append(spelling)
+            if spelling in frequencies:
+                lexicon_weighted[classes].append((spelling, frequencies[spelling]))
+    max_word_length = max(map(len, lexicon_all), default=0)
+
+    reachable = [False] * (n + 1)
+    reachable[0] = True
+    for start in range(n):
+        if not reachable[start]:
+            continue
+        for width in range(1, min(max_word_length, n - start) + 1):
+            if tuple(best_plain[start:start + width]) in lexicon_all:
+                reachable[start + width] = True
+
     dp = [[] for _ in range(n + 1)]
     dp[0] = [(0.0, ())]
     for start in range(n):
         if not dp[start]:
             continue
-        for width in range(1, min(20, n - start) + 1):
-            candidates = lexicon.get(tuple(best_plain[start:start + width]), ())
+        for width in range(1, min(max_word_length, n - start) + 1):
+            candidates = lexicon_weighted.get(tuple(best_plain[start:start + width]), ())
             for spelling, frequency in candidates:
                 weight = math.log1p(frequency) - 2.0
                 for score, words in dp[start]:
                     dp[start + width].append((score + weight, words + (spelling,)))
-        for stop in range(start + 1, min(n, start + 20) + 1):
+        for stop in range(start + 1, min(n, start + max_word_length) + 1):
             if len(dp[stop]) > 20:
                 dp[stop] = sorted(dp[stop], key=lambda item: item[0], reverse=True)[:20]
+
+    output["original_p54_p55"]["lexicon_inverse"] = {
+        "cmudict_first_pronunciation_words": sum(len(words) for words in lexicon_all.values()),
+        "distinct_phone_class_sequences": len(lexicon_all),
+        "max_word_phone_length": max_word_length,
+        "wordfreq_supported_words": sum(len(words) for words in lexicon_weighted.values()),
+        "exact_full_tape_segmentation_exists": reachable[n],
+        "furthest_reachable_symbol": max(i for i, value in enumerate(reachable) if value),
+    }
     output["original_p54_p55"]["top_lexicon_segmentations"] = [
         {"score": score, "words": list(words)}
         for score, words in sorted(dp[n], key=lambda item: item[0], reverse=True)[:10]
