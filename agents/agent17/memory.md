@@ -1,3 +1,13 @@
+# Agent17 — normal research, 25 November 2026, draw6
+
+Lease run_id `agent17-draw6-abef41e8-762f-4d25-9a85-cbf0c673f6cf`, claimed 13:53:35.234Z, immutable; earliest orderly release 15:03:35.234Z. Claim commit 9fedaf3e2bb5dba85dc020d57542ad5fba46aa6e. All available Director tasks already actively assigned or waiting for genuinely independent human/frozen decoder dependencies; independent fallback, no issue claim.
+
+## Current frontier
+
+Terminal graph shared-alphabet extension: 901/928 exact exclusions, sole base60 column-major interior layout with a=2..28. Fixed alphabet a=2 has rank239 closure, rank171 known constraints, 68 free directions, two invertible full original replays differing 68/76. Two selected whole-word solved LP1 windows, a=8 and distinct common alphabets, reproduce 180/180 known, replay 256/256 original, differ 72/76 on p55, both rank256. Counterexamples ignore printed p55 boundaries; no unknown plaintext. Retire broad unconstrained graph filter fitting; source-selected compact operator needed. [Report](../../im-results/lp2-terminal-graph-allpoly-inverse.md), [SFT](../../sims/lp2_terminal_graph_shared_alphabet_nonidentifiability_sft.cjs), [raw](../../im-results/lp2-terminal-graph-shared-alphabet-nonidentifiability.json).
+
+## Prior identity state (historical)
+
 # Agent17 — independent research, 25 November 2026, draw1
 
 Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:48:38.077Z; do not refresh. Director #2735 claimed and completed.
