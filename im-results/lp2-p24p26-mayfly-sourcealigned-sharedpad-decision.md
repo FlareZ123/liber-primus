@@ -138,6 +138,25 @@ The frozen 3/4 shared-positive and 4/4 independent-negative sign gate passes bot
 | 128 | 0.725682, 5.772469, -5.618858, 0.907400 | -0.392222, -4.597190, -7.194474, -3.961344 | -2.215792 | +1.818191 |
 | 264 | 4.619196, 0.873174, 15.815947, 15.936083 | -4.222596, -9.354378, -7.754644, -7.117176 | -2.876062 | +0.803666 |
 
-The full-length complete-word alignment has modestly positive marginal support (exp(0.803666)=2.23 relative likelihood) under this particular first-order model, weaker than its 128-rune result. It is not a decoded text, and it does not justify accepting a reused pad, tuning the alignments, or claiming a universal exclusion: one full-length positive control is similarly weak. The prefix and full-length calculations have different terminal constraints and skip caps, so their difference is not a strict conditional held-out logLR. The five-gram MAP recovery failures remain important. The literal-F exact marginal is untested. Preserve 3/2/1 as a weak unresolved source-motivated lead rather than promote it or spend another parameter sweep.
+The full-length complete-word alignment has modestly positive marginal support (exp(0.803666)=2.23 relative likelihood) under this particular first-order model, weaker than its 128-rune result. It is not a decoded text, and it does not justify accepting a reused pad, tuning the alignments, or claiming a universal exclusion: one full-length positive control is similarly weak. The prefix and full-length calculations have different terminal constraints and skip caps, so their difference is not a strict conditional held-out logLR. The five-gram MAP recovery failures remain important. The separate literal-F exact marginal below fails its positive calibration. Preserve 3/2/1 as a weak unresolved source-motivated lead rather than promote it or spend another parameter sweep.
 
 [Input preparation](../sims/lp2_mayfly_shared_keyskip1_bigram_prepare.cjs) · [C++ exact DP](../sims/lp2_mayfly_shared_keyskip1_exact_bigram.cpp) · [raw outputs](lp2-mayfly-shared-keyskip1-exact-bigram.txt). Compile with g++ -O3 -std=c++17; pipe the Node preparation output into the executable (add --full for 264 runes). Input FNV32 hashes are 6ecc5bce and b7cd3918. Executed locally in Linux g++, full-length controls in batches because the single-process command timed out; original batches ran only after the complete calibration passed. No CI claim. The compression is transferable to other independently source-selected shared-pad hypotheses with this collision rule.
+
+### Exact literal-F plus retry marginal: failed positive calibration
+
+The exact shared-previous-key compression also works when literal plaintext F is transparent. Before each consuming key tick, independently enumerate every possible leading ciphertext-zero literal hold; each such hold contributes 29 times the transition probability to F, resets the last plaintext history to F, and consumes no key. Pending non-F plaintext forbids a hold. A non-F consuming event uses the ordinary emission/rejection transition and re-establishes the previous-key compression. Terminal literal holds are integrated without paying for an unused key. The matched independent null is a per-tape Markov DP over physical position, last plaintext and net clock deficit; direct emit has factor P(p|last) times the repeat acceptance factor, and reject/retry adds s/29 times P(p|last).
+
+Unlike the fixed cumulative-retry cap above, this marginal has a finite **net deficit cap** t-i_j <= ceil(N/16) (minimum possible deficit is minus the number of visible F symbols encountered). This includes all feasible latent hold paths inside the clock bound but permits more total rejects when compensated by holds. It is an explicitly different model; do not compare its absolute likelihood directly to the ordinary-F model.
+
+Three two-rune tapes [0,0], [4,0], [0,9] exercise multiple literal and consuming zero alternatives, actual collisions and terminal holds. An explicit plaintext/pending-state recursive enumeration matches the compressed result 3.5099918769149. The four same source-disjoint 128-rune native shared-pad plants (literal F and independent retry coins, true retries [2,3,4], [3,4,3], [3,3,5], [5,7,7]) produce:
+
+| Plant | log common/uniform | log independent/uniform | logLR |
+|---|---:|---:|---:|
+| 0 | 7.162899 | 9.636169 | -2.473270 |
+| 1 | 10.541418 | 12.078124 | -1.536707 |
+| 2 | 7.167040 | 9.441413 | -2.274372 |
+| 3 | 5.894791 | 6.388281 | -0.493491 |
+
+Zero of four positives pass the required three-positive sign gate. Stop before scoring nulls or originals; this is an inadequate discriminator under the first-order model, not evidence against literal-F reuse. No further tuning on this branch.
+
+[Input preparation](../sims/lp2_mayfly_shared_keyskip1_fhold_bigram_prepare.cjs) · [C++ exact DP](../sims/lp2_mayfly_shared_keyskip1_exact_fhold_bigram.cpp). N=128 input FNV32 23526c1f. Executed locally with g++ -O3 -std=c++17, separate positive-control batches; no CI claim. The earlier sentence that the literal-F exact marginal was untested is superseded by this completed positive-only calibration.
