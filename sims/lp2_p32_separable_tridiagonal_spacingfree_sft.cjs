@@ -39,5 +39,5 @@ function experiment(raw,which="original",from=0,to=757) {
  function complete(z){if(enc(z.P,z.A,z.B).some((x,i)=>x!==C[i]))throw Error("winner replay");return{...z,meanPrefix:z.prefix/1024/preN,meanHoldout:z.holdout/1024/tailN,meanFull:z.full/1024/(NN-2),plaintext:z.P.map(x=>c.translit[x]).join(" "),correct:truth?z.P.filter((x,i)=>x===truth.P[i]).length:null,keyCorrect:truth?z.A.join(",")===truth.A.join(",")&&z.B.join(",")===truth.B.join(","):null}}
  return{which,from,to,maps:(to-from)*keys.length*28,CUT,trainingRunes:models.map(m=>m.tot),truth,models:Object.fromEntries(result.map((r,i)=>[names[i],{...r,prefix:complete(r.prefix),full:complete(r.full)}]))};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8')),process.argv[2]||'original',Number(process.argv[3]||0),Number(process.argv[4]||757)),null,2));
+if(require.main===module){const raw=files.map(f=>fs.readFileSync(path.resolve(__dirname,'..',f),'utf8'));const which=process.argv[2]||'all';for(const c of (which==='all'?['original','modern','oldEnglish']:[which])){const t=Date.now(),r=experiment(raw,c,Number(process.argv[3]||0),Number(process.argv[4]||757));console.log('RESULT_JSON '+JSON.stringify({...r,elapsedMs:Date.now()-t}));}}
 module.exports={experiment};
