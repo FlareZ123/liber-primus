@@ -1,0 +1,39 @@
+#include <array>
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+#include <omp.h>
+using namespace std;
+constexpr int DIM=5;
+constexpr int Q=832, K=812, NEG=-1000000000;
+struct Edge{int end,holds;array<int,DIM> c;};
+struct Hit{int score;array<int,DIM> r;int a,b;};
+int mod(int x){x%=29;return x<0?x+29:x;}
+int inv(int x){for(int a=1;a<29;a++)if(a*x%29==1)return a;return 0;}
+int rank29(vector<array<int,DIM>> a){int r=0;for(int j=0;j<DIM;j++){int k=r;while(k<(int)a.size()&&!a[k][j])k++;if(k==(int)a.size())continue;swap(a[r],a[k]);int v=inv(a[r][j]);for(int l=j;l<DIM;l++)a[r][l]=a[r][l]*v%29;for(int i=r+1;i<(int)a.size();i++){int v=a[i][j];for(int l=j;l<DIM;l++)a[i][l]=mod(a[i][l]-v*a[r][l]);}r++;}return r;}
+void edges_rec(const vector<int>& C,int p,int n,int h,array<int,DIM>&a,vector<Edge>&out){if(n==DIM){out.push_back({p,h,a});return;}if(p==(int)C.size())return;if(C[p]==0&&n>0)edges_rec(C,p+1,n,h+1,a,out);a[n]=C[p];edges_rec(C,p+1,n+1,h,a,out);}
+int main(int argc,char**argv){if(argc!=3){cerr<<"usage holdhill tape logweights\n";return 1;}ifstream f(argv[1]),g(argv[2]);string s;f>>s;vector<int>C;for(char c:s)C.push_back(c<='9'?c-'0':c-'a'+10);int N=C.size(),lp[29];const vector<int> cuts={0,197,467,740,1005};if(N!=cuts.back())return 2;for(int &v:lp)g>>v;int bestlp=*max_element(lp,lp+29),hf=lp[0];vector<vector<Edge>> edges(N);int ec=0;for(int i=0;i<N;i++){array<int,DIM>a{};edges_rec(C,i,0,0,a,edges[i]);int end=*upper_bound(cuts.begin(),cuts.end(),i);auto &e=edges[i];e.erase(remove_if(e.begin(),e.end(),[&](auto x){return x.end>end;}),e.end());ec+=e.size();}
+ vector<int> suffix(N+1);for(int z=0;z+1<(int)cuts.size();z++){int n=0;for(int i=cuts[z+1]-1;i>=cuts[z];i--){n+=C[i]!=0;suffix[i]=n;}}
+ vector<array<int,DIM>> rows;for(int j=0;j<DIM;j++){int limit=1;for(int k=j+1;k<DIM;k++)limit*=29;for(int z=0;z<limit;z++){array<int,DIM>a{};a[j]=1;int u=z;for(int k=j+1;k<DIM;k++){a[k]=u%29;u/=29;}rows.push_back(a);}}
+ alignas(64) int w[29][Q];for(int x=0;x<29;x++)for(int q=0;q<Q;q++){int v=q<K?((q/29+1)*x+q%29)%29:0;w[x][q]=v?DIM*lp[v]:NEG;}
+ vector<Hit> hits(rows.size());
+ #pragma omp parallel
+ {vector<int>d(size_t(N+1)*Q);
+ #pragma omp for schedule(static)
+ for(int ri=0;ri<(int)rows.size();ri++){auto r=rows[ri];array<int,Q> total{};int bs=NEG,bq=0;for(int pg=0;pg+1<(int)cuts.size();pg++){int start=cuts[pg],end=cuts[pg+1];fill(d.begin()+size_t(start)*Q,d.begin()+size_t(end+1)*Q,NEG);for(int i=start;i<start+DIM&&i<=end;i++)fill(d.begin()+size_t(i)*Q,d.begin()+size_t(i+1)*Q,(i-start)*bestlp);array<int,Q> mx;mx.fill(NEG);
+  for(int i=start;i<=end;i++){auto *src=d.data()+size_t(i)*Q;if(i==end||suffix[i]<DIM){int tail=(end-i)*bestlp;for(int q=0;q<K;q++)mx[q]=max(mx[q],src[q]+tail);}if(i==end)break;
+   if(C[i]==0){auto *dst=src+Q;for(int q=0;q<Q;q++)dst[q]=max(dst[q],src[q]+hf);}
+   for(const auto &e:edges[i]){int x=0;for(int j=0;j<DIM;j++)x+=r[j]*e.c[j];x%=29;int hs=e.holds*hf;auto *dst=d.data()+size_t(e.end)*Q;auto *wt=w[x];for(int q=0;q<Q;q++)dst[q]=max(dst[q],src[q]+wt[q]+hs);}
+  }
+  for(int q=0;q<K;q++)total[q]=max(NEG,total[q]+mx[q]);}
+  for(int q=0;q<K;q++)if(total[q]>bs){bs=total[q];bq=q;}
+  hits[ri]={bs,r,bq/29+1,bq%29};
+ }
+ }
+ sort(hits.begin(),hits.end(),[](auto&a,auto&b){return a.score>b.score;});vector<Hit> chosen;vector<array<int,DIM>> basis;for(auto h:hits){if(h.score<=NEG)break;auto z=basis;z.push_back(h.r);if(rank29(z)>(int)basis.size()){basis.push_back(h.r);chosen.push_back(h);if(chosen.size()==DIM)break;}}
+ long long sum=0;for(auto h:chosen)sum+=h.score;cout<<"{\"n\":"<<N<<",\"edges\":"<<ec<<",\"directions\":"<<rows.size()<<",\"affineRows\":"<<rows.size()*K<<",\"rank\":"<<chosen.size()<<",\"upperScore\":";cout.precision(15);cout<<double(sum)/(DIM*N*10000LL)<<",\"chosen\":[";auto emit=[](Hit h){cout<<"{\"score\":"<<h.score<<",\"r\":["<<h.r[0]<<","<<h.r[1]<<","<<h.r[2]<<","<<h.r[3]<<","<<h.r[4]<<"],\"a\":"<<h.a<<",\"b\":"<<h.b<<"}";};for(int i=0;i<(int)chosen.size();i++){if(i)cout<<",";emit(chosen[i]);}cout<<"],\"top\":[";for(int i=0;i<10;i++){if(i)cout<<",";emit(hits[i]);}cout<<"]}\n";
+}
