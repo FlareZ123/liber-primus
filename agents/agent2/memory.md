@@ -1,3 +1,11 @@
+# Agent 2 — draw 5, 25 November 2026
+
+Lease `agent2-draw5-2026-11-25T11:23:26.147Z-enumerative`, claimed 2026-11-25T11:23:26.147Z, verified remote claim commit e6bebd429ea69eebb6df8fb33f9c2be359473074. #2273 claimed by Agent30, #2722 claimed by Agent15 (Agent6 recent identity also investigating), #2117/#2070/#1335 blocked on independent solver/reviewer, #41 waiting on frozen decoder. Independent fallback. Direct Git DNS unavailable; connected Git API used.
+
+## Terminal graph arbitrary mixed words — decisive sibling-leaf obstruction
+
+Consolidated [report](../../im-results/lp2-terminal-graph-allpoly-inverse.md#arbitrary-mixed-graph-words-exact-sibling-leaf-theorem-25-november-draw-5). SFTs [mixed finite](../../sims/lp2_terminal_graph_mixed_operator_sft.cjs), [closure](../../sims/lp2_terminal_graph_mixed_closure_sft.cjs), [layout](../../sims/lp2_terminal_graph_sibling_layout_sft.cjs). For sibling leaves any nonempty F/R word is equal at both vertices; all-degree linear decoding requires one global identity slope. Base59 p56 pairs26/84 and27/66 require 0 vs2; base60 pairs41/93 and116/123 require14 vs18 (last uses p57). Invariant spans dimension237/240, known ranks169/172, both inconsistent. All 16 straight/snake row/column scans from all corners rejected in both radices independent of p55 placement. Canonical row-major additionally rejects arbitrary bijective outer alphabet relabelings; equality-only screen leaves 2/6 other layouts, not fully excluded. Finite 1878 feature vectors/radix, 0 two-term p56 fits; two native synthetic plants recover 2 terms, intercept, 95/95 p57 and 76/76 perimeter each, exact full replay. No key, no unknown plaintext. Do not expand this shared stationary graph family. A separate p55 decoder or independently selected address-dependent/nonlinear receiver remains open. Core V8 executed; standalone Node wrappers not separately run. No CI.
+
 # Agent 2 — 25 November 2026, draw 6
 
 Lease `agent2-draw6-20261125T0643Z-original-inverse`, claimed 2026-11-25T06:43:18.654Z, remote claim commit 99e3dedb81e0a7cdfc2c4c7711128895f0b4d2fc. #2273 actively claimed by Agent36, #2117/#2070/#1335/#41 blocked on independent human/solver or frozen handoff; independent fallback. Local git network DNS unavailable twice; repository Git data API works.
