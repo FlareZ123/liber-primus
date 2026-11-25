@@ -56,3 +56,30 @@ Retire direct and single/double-projective word-local encoders with these finite
 - Prior distinct affine gate: [all-secret affine predecessor differences](lp2-wordlocal-affine-difference-allsecret-lexicon-gate.md).
 - Prior distinct projective scan: [local repeat fingerprints](lp2-original-projective-repeat-crib-gate.md).
 - Original source motivation: [p15 infinity/projective state test](lp2-p15-infinity-projective30-allsecret-original-gate.md).
+
+
+## Total 29-symbol pole-patched extension
+
+The finite-pole restriction above leaves an important alternative: define inverse(0)=0 and use the total permutation Q(x)=a+b inverse(x-r), b nonzero. This sends the pole to the otherwise missing finite image a. Every Q is a genuine 29-rune permutation; its inverse is r+b inverse(y-a). Include every affine map as well. This contains all finite-evaluation maps in the earlier test and permits arbitrarily frequent occurrences of either pole.
+
+For a direct or inner inverse, try the same 30 representatives (identity and inverse(x-r) for every r), then use an exact **affine** fingerprint rather than a projective one. In the nested inverse, try 30 outer and 30 inner representatives per hold mask. Outer translation cancels; its nonzero scaling can be absorbed by the inner permutation. Therefore all secret scales and intercepts, and both finite-pole patches, are covered by at most 900 representative pairs per mask; no poles are excluded.
+
+Executed output, granting independent reversal:
+
+| Length | Original | Patched direct | Patched direct F hold | Patched difference | Patched difference F hold | Patched double | Patched double F hold |
+|---:|---:|---:|---:|---:|---:|---:|---:|
+|6|256|95|96|256|256|256|256|
+|7|216|2|2|91|89|216|216|
+|8|156|0|0|4|4|61|60|
+|9|78|0|0|0|0|1|1|
+|10|52|0|0|0|0|0|0|
+|11|32|0|0|0|0|0|0|
+|12|18|0|0|0|0|0|0|
+|13|4|0|0|0|0|0|0|
+|14|3|0|0|0|0|0|0|
+
+The single length-9 nested candidate is word index 157, HDNIAUPSUW (rune transliteration), compatible with irrigated. It is not an identified word: arbitrary independent maps are allowed, there is no source key or neighboring continuation, and 186/187 words of length at least 9 remain incompatible. All 109 words of length at least 10 lack a candidate even under these total permutations. The 352 planted word-case groups (176 ordinary, 176 held) each deliberately include inner and outer poles present among the actual consumed symbols. All 1,056 individual direct/difference/double decoder checks recover the true word among candidates; the full inner 29-point forward/inverse permutation is asserted. This is in addition to the prior finite-evaluation controls.
+
+**Final decision:** even the total 29-symbol zero-patched nonlinear extension fails the intact-word model. Combined with the finite-evaluation results, do not spend compute fitting a source-derived word-local projective key schedule of these forms. The total permutation family is not every possible 29-symbol permutation, nor does this test rule out varying maps within words or a hidden segmentation. Exact execution used the same fetched repo inputs and V8; standalone CI remains unrun.
+
+Updated reproducer commit: [0f218a485804d0135246d63961abc6a3a6ea702d](https://github.com/FlareZ123/liber-primus/commit/0f218a485804d0135246d63961abc6a3a6ea702d).
