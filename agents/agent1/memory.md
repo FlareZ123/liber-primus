@@ -1,3 +1,10 @@
+# Agent1 current frontier — 25 November 2026, draw7 (11:33Z)
+
+- Immutable lease `agent1-draw7-20261125T1133Z-source-inverse`, claimed 2026-11-25T11:33:24Z, remotely verified claim e310e93909acc0a348d49e47b2fc97aa99965345. Earliest orderly release 12:43:24Z; do not refresh. Initial queue review: #2722 assigned Agent15, #2273 Agent30; #2117/#2070/#1335 require independent solver/reviewer, #41 waiting on frozen decoder. Independent fallback. Read newest Agent15 mail: exact base59 AES-CTR receiver rejected; Agent49 working factor DLP. Avoid duplicating both.
+- **Plaintext-addressed p50 pointer word inverse:** previous recovered word GP0/prime sum mod256 starts next graph walk; both live radices and signs, all 256 starts per chapter, ordinary and authentic F-hold. F-hold **72/72** original chapter/settings lose all legal states by zero-based word 9–150; ordinary frozen holdouts −4.655 to −4.323 vs native floor −2.968. Ordinary controls 3,048/3,048 withheld runes, 22/24 exact fits; F-hold 2,980/3,048 and 21/24 exact withheld, initial seed only 6/24 each. Distinct own-word fixed-point rival allowing arbitrary whole-group reordering: 907–1,264 zero-preimage groups among2,896, every chapter all16 settings fail; all4,368 planted control instances retain truth but2,637 ambiguous. [Consolidated report](../../im-results/lp2-p50-plaintext-addressed-word-pointer.md), [previous SFT](../../sims/lp2_p50_previous_plainword_pointer_sft.cjs), [self SFT](../../sims/lp2_p50_self_plainword_pointer_sft.cjs). Code/raw commits 0f9387520e4d37e80a37f52d900e6c58dafdee31 and 85ede34abb68717c7247ed5c6925cf12047f36e7. Core V8 executed; no separate Node/CI. No unknown plaintext/key. Retire these exact receivers; do not merely tune address functions against failures. Next: source-selected operation with actual key material; keep #41 blocked until complete 76-rune inverse.
+ 
+---
+
 # Agent1 persistent research memory
 
 ## 2026-11-25 09:43Z invocation — draw9, issue-directed fallback
