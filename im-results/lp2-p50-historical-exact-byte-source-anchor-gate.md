@@ -1,6 +1,6 @@
-# Historical 2012–2014 byte carriers do not directly contain a printed p50 table row
+# Historical 2012–2014 byte carriers, including the complete 2013 ISO, do not directly contain a printed p50 table anchor
 
-**Classification (11 November 2026, Agent47): source-grounded bounded negative, no unknown LP2 plaintext, key or cryptographic operation recovered.** Director [Issue #411](https://github.com/FlareZ123/liber-primus/issues/411) requested a direct exact-byte relation between a finite historical puzzle corpus and the original pp49–51 32×8 numerical table. This report closes its literal-byte branch. [Reproducer](../sims/lp2_p50_original_historical_byte_anchor_sft.cjs) and [successful source-original manual CI run 43119415968](https://github.com/FlareZ123/liber-primus/actions/runs/43119415968).
+**Classification (11 November 2026, Agent47; extended 25 November 2026, Agent8): source-grounded bounded negative, no unknown LP2 plaintext, key or cryptographic operation recovered.** The local-anchor gate now also covers the complete hash-verified 136,398,848-byte CicadaOS ISO and both base59/base60 numeral readings. Director [Issue #411](https://github.com/FlareZ123/liber-primus/issues/411) requested a direct exact-byte relation between a finite historical puzzle corpus and the original pp49–51 32×8 numerical table. This report closes its literal-byte branch. [Reproducer](../sims/lp2_p50_original_historical_byte_anchor_sft.cjs) and [successful source-original manual CI run 43119415968](https://github.com/FlareZ123/liber-primus/actions/runs/43119415968).
 
 ## Human-solvable hypothesis and decisive prediction
 
@@ -30,8 +30,24 @@ These are intentional source-family choices. The first two LP1 JPEGs and other o
 
 Node.js 22 ran the entire test successfully in [Actions run 43119415968](https://github.com/FlareZ123/liber-primus/actions/runs/43119415968), from repository commit `e10796e81fbb622ec11eb16e7e13e39d5903e0c3`, with no uncaught exception. The script requires no external dependencies.
 
+## Complete 2013 ISO: local anchors under both radix readings (25 November, Agent8)
+
+The [prior ISO direct/stride study](lp2-2013-cicadaos-direct-grid-tape-gate.md) excluded complete 256-cell matches under five mask contracts, but a partial exact row reused in an otherwise differently generated table could still identify a source offset. The [raw ISO replay](pklmx-2013-onion-continuation-gate.md#original-iso-acquisition-and-raw-phone-stage-replay-director-2807-25-november-2026) now independently establishes the original source hash and actual phone-stage offsets. Extend the local-anchor test to the *whole* ISO (not only DATA/560.13), without mounting or running its contents. No original instruction selects this source for LP2; the direct equality of a long fragment would be the new source evidence.
+
+Freeze the same eight natural row/column, straight/snake, forward/reverse traversals as the original 35-object local-anchor test, for each of the two candidate printed numeral alphabets (base60 and lowercase-f-deleted base59). The 16 tapes supply 512 anchor occurrences, deduplicated to **256 distinct exact eight-byte needles**. Scan every byte-aligned start in the entire source, including across ISO extent boundaries. Extend every hit in both directions and require 24 untouched forward bytes for a 32-byte candidate. A planted exact 32-byte original-table prefix at offset37 passes this check. No language scorer, source offset guessing, or unknown mask enters.
+
+| Input / result | Observed |
+| --- | --- |
+| Entire original ISO | 136,398,848 bytes |
+| Independently verified SHA256 | `784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f` |
+| Distinct eight-byte anchors | 256 |
+| Original exact matches | **0** |
+| Planted 32-byte anchor / withheld continuation | 32/32 / 24/24 |
+
+[Standalone SFT](../sims/lp2_2013_iso_local_table_anchor_sft.cjs), commit `3fa6cda8c141e344eb7e32ca8f7791c6999b76c7`; [successful Windows Node22 manual run 45693205325](https://github.com/FlareZ123/liber-primus/actions/runs/45693205325), job 139483767023, checkout `8faf38373e74cfda5781605d045e7e220e4e2e31`. The CI logs explicitly contain the control, original source hash and empty originalHits array. This tests partial literal reuse, unlike the complete-table mask/stride tests; neither establishes a key or instruction.
+
 ## Cryptanalytic decision
 
-**Reject literal reuse of a full printed eight-byte row as a contiguous historical-file substring**, across the specified eight natural table readings and the frozen 35 source objects. Consequently these source files do not furnish a direct p50 row anchor, source offset or recovered GP plaintext under that mechanism. Earlier direct GP29 source-pad and whole-byte identity tests are distinct and remain negative.
+**Reject literal reuse of a full printed eight-byte row as a contiguous historical-file substring**, across the specified eight natural table readings and the frozen 35 source objects, plus both radices on the complete 2013 ISO. Consequently these source files do not furnish a direct p50 row anchor, source offset or recovered GP plaintext under that mechanism. Earlier direct GP29 source-pad and whole-byte identity tests are distinct and remain negative.
 
 The test does **not** exclude a source-generated pseudorandom key, a noncontiguous sampling rule supplied by a missing instruction, an unarchived historical source, KDF/encryption, byte-substitutions, transforms with unknown parameters, or a distinct radix reading of the printed table. It cannot establish the origin of the table and is not a universal cryptanalytic impossibility claim. A productive successor requires a new *independent source clue* selecting both a transform and its consumer; blind additional source/file-offset sweeps do not follow from the absence of a literal match.
