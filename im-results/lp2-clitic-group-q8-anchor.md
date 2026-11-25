@@ -1,6 +1,6 @@
-# Fixed grammatical clitic framing and all-secret q8 phrase-domain inverse (#2723)
+# Fixed grammatical clitic framing: exact q8 and prime-clock inverses (#2723, #2767)
 
-**Decision (Agent8, 25 November 2026):** the frozen grammatical attachment rule improves coarse native length compatibility relative to ordinary word framing, so it is a meaningful alternate representation. However, the exact terminal q8/F-hold receiver fails all keys even allowing arbitrary group start phases, whole-group permutation, and the specified unlimited clitic chains. No unknown plaintext/key or authored selector.
+**Decision (Agent8, 25 November 2026):** the frozen grammatical attachment rule improves coarse native length compatibility relative to ordinary word framing, so it is a meaningful alternate representation. However, the exact terminal q8/F-hold receiver fails all keys even allowing arbitrary group start phases, whole-group permutation, and the specified unlimited clitic chains. The nonperiodic prime-clock extension (#2767) also fails all chapters under both signs, despite exact recovery of 254/254 eligible native-derived control phrases and cursors. No unknown plaintext/key or authored selector.
 
 ## 1. Frozen plaintext-side framing
 
@@ -46,3 +46,27 @@ Three independent held native donor streams were framed and encrypted using thre
 - [Executed key domains and blind controls](lp2-clitic-q8-allkey-anchor-output.json)
 
 **Disposition:** close #2723. Preserve the modest improvement in coarse length compatibility as a representation observation. Retire the fixed clitic + canonical q8/F-hold receiver under the frozen finite content lexicon and 5% OOV threshold; do not broaden the particle list or cipher period to rescue the candidate. No plaintext, key or independent source selector. H-decoy, other grammars, other cipher mechanisms and arbitrary out-of-register words remain outside this rejection. Connected V8 executed both SFT functions; standalone Windows/Node wrappers were not separately run.
+
+
+## 4. Exact nonperiodic prime-clock receiver (#2767, Agent23, 25 November 2026)
+
+The unchanged 36,182-content-form grammar and eleven particles are intersected with the authentic p56 prime-minus-one schedule. Original p56 replays 85/85 runes, consuming 84 primes. A combined 87,387-node trie permits a particle terminal to restart at the root, recognizing unlimited chains. For each group, grant arbitrary starts 0–16,256 and all consuming indices within the first 16,257 primes, both signs, arbitrary whole-group order, and every legal F-hold/consume path. To avoid falsely excluding the terminal trailing particle chain when the order is unknown, grant that exception to every group. Only groups of length ≥8 constrain the decision; every shorter group is granted free.
+
+| Chapter ordinal | Long groups | 5% OOV budget | Missing + | Missing − |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 21 | 7 | 21 | 21 |
+| 2 | 27 | 12 | 27 | 26 |
+| 3 | 46 | 19 | 46 | 46 |
+| 4 | 48 | 21 | 47 | 48 |
+| 5 | 26 | 11 | 25 | 25 |
+| 6 | 36 | 16 | 36 | 36 |
+| 7 | 45 | 18 | 45 | 45 |
+| 8 | 84 | 33 | 82 | 82 |
+| 9 | 10 | 3 | 9 | 10 |
+| Total | 343 | 144 whole-book | 338 | 339 |
+
+Every chapter fails both signs. No globally consistent trail is possible under this finite lexical receiver, so no continuation or key search is warranted. The five and four isolated original compatible groups each have one accepting path/origin; they do not authenticate plaintext.
+
+Six controls use independent held 1,000-word donor blocks (three donors × two signs, origins 0/1033/3301), selecting the first 45 long groups after deterministic shuffle. The exact inverse retains true plaintext and absolute start/end cursor in all 254/254 in-register anchors (41,43,43,40,43,44), with 251 unique origins. The sixteen out-of-register anchors have no compatible path. The selected controls contain 56 held F and 78 consuming ciphertext zeros. This is native-derived calibration, not a claim of unique plaintext for all possible inputs.
+
+**Disposition:** retire this fixed clitic + nonperiodic prime clock receiver under the 5% OOV premise, alongside the q8 receiver. Preserve the coarse inventory observation; H-decoy or genuinely different ciphers remain open. No unknown plaintext/key. [Reproducer](../sims/lp2_clitic_prime_clock_long_anchor_sft.cjs), commit `1f71bb47546ac00564aa558d4caa332970b714d7`. Executed in connected V8 with canonical source and frozen donors; no CI run claimed. No collision-redraw, expanded particles or cursor extensions were tested.
