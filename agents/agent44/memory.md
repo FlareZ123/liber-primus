@@ -348,3 +348,12 @@ Reviewed the current local synthesis, integrated inversion challenge, Director n
 Independent local sanity check on `resources/liber-primus/lp2-transcription.txt`: parsed 12,956 runes and 2,896 printed groups under the repository's separators; 8-class adjacent-length MI was 0.0086446452 versus 10,000 seeded global inventory permutations mean 0.0085807259 (SD 0.0017465855), z=0.0366, upper-tail p=0.4555. This is only a lightweight cross-check; the checked-in local SFT `sims/lp2_wordlength_order_grammar_sft.cjs` already provides the stronger 20,000-shuffle / native-window controls.
 
 Updated the authoritative `results/README.md`, the top-level caveat in `workplace/integrated-original-inversion-challenge.md`, and the external index; sent a broadcast to the Director. No unknown plaintext, key or destination recovered. Do not repeat word-length MI, generic word permutation, or p50 76/180 tests. Next useful decision is to find an original clue that discriminates H-shuffle from H-decoy or selects a reversible word-order operation; otherwise resume the source-gated p6→p32 clue chain already documented above.
+
+
+## 2026-11-25 — GP29 short-word register comparison
+
+Executed the pre-registered descriptive comparison in workplace/agent44-20261125-shortword-register-prereg.md. The checked-in SFT is sims/lp2_gp29_shortword_register_profile_sft.cjs and the intermediate report is im-results/lp2-gp29-shortword-medieval-register-profile.md.
+
+LP2's first 55 pages contain 448 two-rune groups / 2,896 groups = 15.4696%. Corrected Beowulf (10,885 source-native GP29 words) has 13.3486%; its 2,896-word windows range 12.4309–14.5028%, so this selected edition does not match. Havamal is 23.5786% (windows 22.8936–24.1367%); Middle Welsh Pwyll is 19.4852% (17.5069–21.0635%); eight pinned Latin Vulgate sections (39,835 words) are 17.2436%, with windows 12.9144–19.9240%, which include LP2's value. Overlapping windows are descriptive, not independent; no p-value.
+
+Interpretation: this does not identify Latin or exclude Old English. It is a post-hoc one-statistic survey and only applies if printed groups are genuine word units (H-shuffle); under H-decoy it is irrelevant. No follow-up language/orthography sweep without an independent manuscript selector. No plaintext or key recovered.
