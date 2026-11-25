@@ -1,0 +1,611 @@
+{
+  "dict": 38938,
+  "native": 740,
+  "model": "pi(DIVINITY), pi(F)=0, pi(D)=1, independent group starts, literal F hold",
+  "original": {
+    "anchors": [
+      56,
+      49
+    ],
+    "words": null,
+    "plain": null,
+    "domains": [
+      285,
+      174
+    ],
+    "tested": 49590,
+    "passed": 0,
+    "remainingDimensions": {},
+    "trueLocal": null,
+    "trueJoint": null
+  },
+  "plants": [
+    {
+      "seed": 3301,
+      "longTypeCounts": [
+        21,
+        4
+      ],
+      "anchors": [
+        56,
+        49
+      ],
+      "words": [
+        "illustrations",
+        "inconstancy"
+      ],
+      "plain": [
+        "ILLUSTRATIONS",
+        "INCONSTANCY"
+      ],
+      "domains": [
+        11,
+        1541
+      ],
+      "tested": 16951,
+      "passed": 1,
+      "remainingDimensions": {
+        "11": 1
+      },
+      "trueLocal": [
+        true,
+        true
+      ],
+      "trueJoint": 1,
+      "extra": [
+        {
+          "group": 60,
+          "length": 7,
+          "domain": 30091,
+          "trials": 30091,
+          "states": 10,
+          "truthSpaces": 1
+        },
+        {
+          "group": 61,
+          "length": 7,
+          "domain": 14932,
+          "trials": 149320,
+          "states": 1,
+          "truthSpaces": 1
+        }
+      ],
+      "permutationEnumeration": {
+        "visits": 30,
+        "complete": 2,
+        "capped": false,
+        "bestTrain": 15,
+        "totalTrain": 15,
+        "winners": 1,
+        "plantedMapEnumerated": true,
+        "plantedWinner": true,
+        "holdout": [
+          {
+            "isTruth": true,
+            "supported": 49,
+            "true": 49,
+            "uniqueTrue": 36
+          }
+        ]
+      }
+    },
+    {
+      "seed": 20141125,
+      "longTypeCounts": [
+        345,
+        76
+      ],
+      "anchors": [
+        56,
+        49
+      ],
+      "words": [
+        "acquaintances",
+        "significant"
+      ],
+      "plain": [
+        "ACCWAINTANCES",
+        "SIGNIFICANT"
+      ],
+      "domains": [
+        5,
+        3094
+      ],
+      "tested": 15470,
+      "passed": 19,
+      "remainingDimensions": {
+        "4": 2,
+        "5": 2,
+        "6": 11,
+        "7": 3,
+        "9": 1
+      },
+      "trueLocal": [
+        true,
+        true
+      ],
+      "trueJoint": 1,
+      "extra": [
+        {
+          "group": 60,
+          "length": 7,
+          "domain": 21646,
+          "trials": 411274,
+          "states": 3,
+          "truthSpaces": 1
+        },
+        {
+          "group": 61,
+          "length": 7,
+          "domain": 26499,
+          "trials": 79497,
+          "states": 2,
+          "truthSpaces": 1
+        },
+        {
+          "group": 53,
+          "length": 6,
+          "domain": 36946,
+          "trials": 36946,
+          "states": 1,
+          "truthSpaces": 1
+        }
+      ],
+      "permutationEnumeration": {
+        "visits": 901,
+        "complete": 2,
+        "capped": false,
+        "bestTrain": 15,
+        "totalTrain": 15,
+        "winners": 1,
+        "plantedMapEnumerated": true,
+        "plantedWinner": true,
+        "holdout": [
+          {
+            "isTruth": true,
+            "supported": 49,
+            "true": 49,
+            "uniqueTrue": 37
+          }
+        ]
+      }
+    }
+  ],
+  "long": [
+    {
+      "i": 56,
+      "l": 13
+    },
+    {
+      "i": 49,
+      "l": 11
+    },
+    {
+      "i": 14,
+      "l": 10
+    },
+    {
+      "i": 47,
+      "l": 10
+    },
+    {
+      "i": 1,
+      "l": 8
+    },
+    {
+      "i": 2,
+      "l": 8
+    },
+    {
+      "i": 15,
+      "l": 8
+    },
+    {
+      "i": 18,
+      "l": 8
+    },
+    {
+      "i": 36,
+      "l": 8
+    },
+    {
+      "i": 39,
+      "l": 8
+    }
+  ],
+  "pairs": [
+    {
+      "i": 14,
+      "j": 47,
+      "lengths": [
+        10,
+        10
+      ],
+      "domains": [
+        6994,
+        4370
+      ],
+      "tested": 579,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 1,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        11181
+      ],
+      "tested": 11,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 2,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        20619
+      ],
+      "tested": 380,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 15,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        17244
+      ],
+      "tested": 188,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 18,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        17415
+      ],
+      "tested": 3,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 36,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        21200
+      ],
+      "tested": 54,
+      "affineCompatible": true
+    },
+    {
+      "i": 14,
+      "j": 39,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        6994,
+        12002
+      ],
+      "tested": 31,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 1,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        11181
+      ],
+      "tested": 6268,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 2,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        20619
+      ],
+      "tested": 1858,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 15,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        17244
+      ],
+      "tested": 2676,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 18,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        17415
+      ],
+      "tested": 12,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 36,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        21200
+      ],
+      "tested": 1936,
+      "affineCompatible": true
+    },
+    {
+      "i": 47,
+      "j": 39,
+      "lengths": [
+        10,
+        8
+      ],
+      "domains": [
+        4370,
+        12002
+      ],
+      "tested": 26,
+      "affineCompatible": true
+    },
+    {
+      "i": 1,
+      "j": 2,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        11181,
+        20619
+      ],
+      "tested": 8492,
+      "affineCompatible": true
+    },
+    {
+      "i": 1,
+      "j": 15,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        11181,
+        17244
+      ],
+      "tested": 21,
+      "affineCompatible": true
+    },
+    {
+      "i": 1,
+      "j": 18,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        11181,
+        17415
+      ],
+      "tested": 187,
+      "affineCompatible": true
+    },
+    {
+      "i": 1,
+      "j": 36,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        11181,
+        21200
+      ],
+      "tested": 44,
+      "affineCompatible": true
+    },
+    {
+      "i": 1,
+      "j": 39,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        11181,
+        12002
+      ],
+      "tested": 29,
+      "affineCompatible": true
+    },
+    {
+      "i": 2,
+      "j": 15,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        20619,
+        17244
+      ],
+      "tested": 37,
+      "affineCompatible": true
+    },
+    {
+      "i": 2,
+      "j": 18,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        20619,
+        17415
+      ],
+      "tested": 169,
+      "affineCompatible": true
+    },
+    {
+      "i": 2,
+      "j": 36,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        20619,
+        21200
+      ],
+      "tested": 16,
+      "affineCompatible": true
+    },
+    {
+      "i": 2,
+      "j": 39,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        20619,
+        12002
+      ],
+      "tested": 19,
+      "affineCompatible": true
+    },
+    {
+      "i": 15,
+      "j": 18,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        17244,
+        17415
+      ],
+      "tested": 18,
+      "affineCompatible": true
+    },
+    {
+      "i": 15,
+      "j": 36,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        17244,
+        21200
+      ],
+      "tested": 281,
+      "affineCompatible": true
+    },
+    {
+      "i": 15,
+      "j": 39,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        17244,
+        12002
+      ],
+      "tested": 23,
+      "affineCompatible": true
+    },
+    {
+      "i": 18,
+      "j": 36,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        17415,
+        21200
+      ],
+      "tested": 28,
+      "affineCompatible": true
+    },
+    {
+      "i": 18,
+      "j": 39,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        17415,
+        12002
+      ],
+      "tested": 167,
+      "affineCompatible": true
+    },
+    {
+      "i": 36,
+      "j": 39,
+      "lengths": [
+        8,
+        8
+      ],
+      "domains": [
+        21200,
+        12002
+      ],
+      "tested": 87,
+      "affineCompatible": true
+    }
+  ],
+  "disjointContradictions": 1
+}
