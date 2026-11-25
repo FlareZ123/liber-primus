@@ -160,3 +160,22 @@ For input bit b, let M_{i,b} be the 256-bit field word with bit 0 of each byte e
 All **4,838,400** exact relations have full rank already on the fixed high-128-bit projection. No original assignment admits even a nonzero linear byte map, much less an invertible one. Positive: seven authentic-field synthetic monic quintic shares, after an invertible triangular byte-XOR/bit rotation plus a5 offset, give rank63; the unique nonzero linear inverse is recovered by tracking row dependencies. It reverses the encoding on all 256 possible byte values modulo a constant-byte gauge. Applying it to the eighth withheld share recovers all 32 bytes after accounting for that gauge. The constant itself is not identifiable from polynomial consistency, and was supplied from the plant for this last exact comparison. The first seven shares alone suffice to recover the linear part. Thus this is a usable unknown-representation key inverse, not a heuristic byte-score test.
 
 [Native C++ exact solver](../sims/lp2_ssss_byte_affine.cpp) (commit 79ccf3467f7338c98363244c6c911979dda3e78a) · [canonical input driver](../sims/lp2_ssss_byte_affine_sft.py) (e0897584e6cb5d6faf8995e45b57f1217a94596e). Compiled and ran with GCC C++17 locally on the exactly reconstructed fetched token arrays; first invocation completed seven cases before its time limit, final case was separately run with the enhanced positive-control recovery. No CI claim. Do not attempt a larger arbitrary nonlinear byte codebook without a source selector: polynomial parity constraints alone do not select such an encoding. This closes the complete common affine byte transport plus the prior scalar/mask family under these eight packings, not all nonlinear encodings or other share arrangements. No original key or plaintext recovered.
+
+### Arbitrary invertible XOR mixing across eight whole shares
+
+Agent17 also tested a separate packing ambiguity: let the eight source words be z_j and the candidate decoded words y_i = a·Σ_j A_ij z_j + m(x_i), where A is any invertible 8×8 binary matrix, a is any nonzero field scalar and m has degree ≤5. This covers arbitrary whole-share XOR basis changes, including permutation, without assuming an arbitrary byte map simultaneously. The source does not independently select such a mixing.
+
+For any seven chosen historical IDs, pad the cleared Vandermonde weight vector w by a zero at the omitted eighth position. Degree-six consistency requires Σ_j z_j (Σ_i w_i A_ij)=0. Put W=span_GF2{w_i}. If the product map W^8 → GF(2^256), (t_1,…,t_8)↦Σ_j z_j t_j, is injective, the relation forces w^T A=0, contradicting invertibility. Field multiplication by a and the low-degree polynomial term do not change this necessity. Since output ordering is absorbed into A, only the 120 unordered seven-ID sets need be considered for each source packing.
+
+All eight previously defined radix/layout/byte-order packings give precisely the same full product-space ranks:
+
+| dim W | ID subsets per packing | product rank |
+|---:|---:|---:|
+| 2 | 2 | 16 |
+| 3 | 2 | 24 |
+| 5 | 24 | 40 |
+| 6 | 92 | 48 |
+
+Thus all **960/960** cases are injective, excluding every invertible binary share mixing. This is an exact all-matrix result, independent of language or guessed key. A synthetic monic quintic with eight IDs 1–8 and hidden XOR mixing has product rank23 rather than24 on the first seven. Joining the two overlapping seven-share equations gives a nine-dimensional binary nullspace, containing the actual inverse. Exhausting its 511 nonzero vectors gives **128 invertible matrices**, each exactly replaying both degree constraints: even the planted receiver is nonidentifiable absent a further selector. No unique hidden key is claimed for this control. Source input and calculation ran locally using the exact reconstructed token arrays; no CI claim. [Reproducer](../sims/lp2_ssss_share_xor_mixing.py) (850d7e29cf43580fa40e8dd4cab5f8a91e5b559d).
+
+This distinct extension retires whole-share XOR basis changes under the eight source packings. It does not cover simultaneous arbitrary byte-affine and share mixing, independently varying field-linear share combinations, or arbitrary bit permutations. Further expansion of an unauthenticated historical share hypothesis is unwarranted unless a first-party clue supplies a precise new operation.
