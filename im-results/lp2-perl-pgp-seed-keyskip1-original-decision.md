@@ -1,0 +1,36 @@
+# Perl 5.14.2 / L8 PGP seeds / GP29 keyskip1: full original-cipher decision
+
+**Director #2667 — bounded negative.** All 433 distinct source-ranked L8 seed values, reduced to their POSIX low 32 bits, were evaluated on the continuous 12,956 original LP2 runes. No candidate recovers plaintext or a key, and no candidate survives the predeclared prefix skip threshold or joint prefix/holdout language gate. Do not enlarge this source conjunction without a new clue.
+
+## Fixed mechanism and source
+
+Perl 5.14.2 [pp.c](https://github.com/Perl/perl5/blob/v5.14.2/pp.c#L3151-L3175) multiplies the supplied NV by Drand01 and passes the unsigned srand argument to seedDrand01. The same tag's [representative Unix configuration](https://github.com/Perl/perl5/blob/v5.14.2/Porting/config.sh#L897-L934) selects drand48/srand48 with 48 random bits. This does not establish that Cicada used Perl, or that every historical build used that backend. The frozen source is offset zero, continuous, sign minus, int(rand(29)). State starts at (uint32(seed)<<16)|0x330e, then s=(0x5deece66d*s+11) mod 2^48; output floor(29*s/2^48). Multiplication by 29 fits exactly into a 53-bit double. The local libc srand48/drand48 and installed Perl's Perl_drand48 implementation both match the exact output for seed 0x12345678:
+`20,1,0,4,11,2,3,7,28,21,11,15,4,28,3,28`.
+The frozen L8 [source](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round18/L8-provenance/TIMESTAMP-SEED-CANDIDATES.json) Git blob SHA-1 is 49d32c4b5edb4355d97ce8025279e9e0bb63825f; compact [ranked seed snapshot](agent50-2667-pgp-seeds.json) Git blob SHA-1 55d8323e473e454cdedaa61fd70f08fc18d23396. 112 original integers exceed uint32; all 433 low32 values remain distinct. Original GP29 corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165.
+
+## Instrument, pre-registration, and control
+
+[Executable CJS](../sims/lp2_perl_pgp_keyskip1_sft.cjs), [pre-original decision rule](agent50-2667-preregister.md). Continuous max-one-skip inverse: for accepted key index j, P_i=C_i-K_j mod29. A skipped draw j-1 is allowed exactly if P_i+K_(j-1)=C_(i-1) mod29. No use of printed group or word order. Beam width 64; merged equal (accepted draw index, previous plaintext rune, current plaintext rune) states; smoothed GP29 trigram likelihood trained on Gibran and Emerson, greedily tokenized after removing punctuation. Fixed rank by cumulative log-probability, normalized per rune. Final 512 runes are excluded from selection of the winning prefix path. All reported holdout scores use continuation only from that fixed prefix state. This is a separately calibrated GP-rune model rather than the external transliterated-character quadgram beam (maxskip3, width400).
+
+The full independent Shakespeare plant (not trained on Shakespeare) recovers **12,952/12,956 (99.9691%)**, exactly 384/384 skips, prefix −2.428903, holdout −2.567371 nats/rune, exact forward replay. A second plant built by repeating the 2,979 authentic solved-native runes (source blob 1b064ef6d85819b7d96adaff31a82d1ec551598f), seed 0x99aabbcc, filter RNG 0x27182818, recovers 12,951/12,956 and 512/512 reserved runes, 368/368 skips, prefix −2.427663, holdout −2.447500. Its repeated source is a register control, not independent natural full-book prose. Both plants cap rejection at one draw. No power claim for uncapped geometric retry or non-English registers.
+
+## Original decision
+
+500 independently generated distinct wrong seeds were scored on the same original ciphertext and heldout split; fixed generator, model, beam, and alignment. 433 source candidates and 500 nulls each process all 12,956 runes, **12,087,948** aggregate rune positions before beam expansions. Raw scores: [null 0–99](agent50-2667-null-0-100.json), [100–199](agent50-2667-null-100-200.json), [200–299](agent50-2667-null-200-300.json), [300–399](agent50-2667-null-300-400.json), [400–499](agent50-2667-null-400-500.json); [rank 1–100](agent50-2667-candidates-0-100.json), [101–200](agent50-2667-candidates-100-200.json), [201–300](agent50-2667-candidates-200-300.json), [301–400](agent50-2667-candidates-300-400.json), [401–433](agent50-2667-candidates-400-433.json).
+
+| Metric | Null mean ± sample SD | Null maximum | Candidate maximum | Planted Shakespeare |
+|---|---:|---:|---:|---:|
+| Prefix skips | 267.252 ±29.208 | 346 | 361 | 370 |
+| Full skips | 277.618 ±29.562 | 363 | 374 | 384 |
+| Prefix nats/rune | −5.809272 ±.012765 | −5.772613 | −5.772462 | −2.428903 |
+| Heldout nats/rune | −5.895784 ±.109756 | −5.624612 | −5.551401 | −2.567371 |
+
+The pre-original one-sided approximate Gaussian Bonferroni threshold mu+3.69sd is 375.030751 prefix skips (integer >=376); zero candidates cross. The corresponding full descriptive bar is 386.702284 (>=387), also zero candidates. Neither true-key control clears the prefix count threshold: **skip-only power is inadequate at 433 trials**. 500 controls do not support distribution-free 0.05/433 tail estimation; the stated Gaussian threshold is conditional on that approximation. The language criterion is vastly better separated for the calibrated native-GP register: zero candidates exceed both observed null maxima; zero approach even −3.5 nats/rune on either part. This is a bounded decoder decision, not an exact all-language impossibility.
+
+Leading prefix rank392 (raw 20130112204639, uint32 3895455583) has prefix −5.772462, holdout −5.914163, full skips319. Top skip rank246 (1362286800) has 374 full skips but prefix −5.816301 and holdout −5.786262. Top holdout rank6 (1325965524) has prefix −5.791332. Top historical seed rank1 (1325734783) has prefix −5.805958, holdout −5.707687, skips256. [Four exact original inverse paths and complete rune/draw vectors](agent50-2667-leading-paths.json) all replay every original ciphertext rune; none contains coherent 200-rune text. Forward replay alone is non-discriminating: the zero-skip inverse exists for every seed.
+
+## Correct the upstream interpretation
+
+The L2 skip statistic is **language-conditioned**, not language-independent: its [fastbeam implementation](https://github.com/Dukotah/cicada3301/blob/0335ecf3f0d47c0dc6ecd953bcc729bce6ccad46/liber-primus/analysis/round18/L2-filter-leak/fastbeam.py) extracts the pointer of the maximum cumulative language-score path. The path's inferred skip count changes when the language model or beam changes. Indeed an arbitrary key always admits the no-skip path; under uniform plaintext a likelihood that penalizes rejections would prefer zero skips, so the claimed separation is not an intrinsic key-only statistic. A candidate with 374 full skips is an actual example of a spurious close match to the external predicted 373.6.
+
+**Disposition:** retire this exact source-ranked Perl GP29 conjunction under the calibrated capped-one-skip, spacing-free native-GP decoder. No unknown plaintext/key or authenticated evidence of Perl use. Do not generalize to other generators, offsets, reducers, signs, unrestricted retry, or plaintext registers. Seek independent source selection rather than increasing timestamp sweep volume. The cross-agent relevance is that inferred skip count should never be treated as a second independent statistical channel.
