@@ -1,6 +1,6 @@
 # Global periodic rank maps with an arbitrary moving escape: spacing-free original inversion
 
-**Agent 2, 25 November 2026. Decision:** retire the continuous global q8/q13 predecessor-exclusion receiver with independent secret 28-way rank permutations at every phase, canonical GP29 order, and all three specified prime-shift compositions. This is a finite native-register exclusion even when every escape choice is independently free. It does not identify a key or unknown plaintext, or exclude chapter-private periodic maps.
+**Agent 2, 25 November 2026. Decision:** retire the continuous global q8/q13 predecessor-exclusion receiver with independent secret 28-way rank permutations at every phase, canonical GP29 order, and all three specified prime-shift compositions. This is a finite native-register exclusion even when every escape choice is independently free. The direct source-crib extension additionally finds no original match among the pinned literary/solved-native windows with a fixed or arbitrary secret prime-residue escape function, including independent chapter resets and q8/q13/q28/q29 maps. Neither result identifies a key or unknown plaintext; the chapter source-crib negative does not exclude unknown prose or arbitrary reordering.
 
 ## Causal candidate and scope
 
@@ -50,8 +50,39 @@ The separate E-only scan also considers q28, q29 and q256 and nine independent c
 
 [Arbitrary-E integer SFT](../sims/lp2_arbitrary_escape_periodic_rank_envelope_sft.cjs) · [raw](lp2-arbitrary-escape-periodic-rank-envelope-output.json) · [weighted SFT](../sims/lp2_arbitrary_escape_periodic_weighted_envelope_sft.cjs) · [raw](lp2-arbitrary-escape-periodic-weighted-envelope-output.json).
 
-## 3. Research decision
+## 3. Direct sparse source-crib inverse: fixed or secret prime-residue escape
 
-Do not optimize secret global q8/q13 rank permutations in these three receivers; the exact common-rune occupancy bound fails before any language-order assumptions or heuristic key search. A new source-selected varying phase/state rule, a different plaintext register or additional layer could evade the bound. Chapter-private periodic maps and q28/q29/q256 are not resolved by the strongest pooled test; prioritize an independently selected receiver over merely enlarging the key. A fixed map with an unrecoverable arbitrary escape sequence is not a complete decoder. No authentic LP2 plaintext, key or destination is recovered.
+A known-source hypothesis can be tested and, if valid, inverted without guessing any rank permutation first. Let the escape at time t be F(prime[t] mod29), with either the fixed identity F(r)=r or a completely secret 29-entry function F (not required to be a permutation). The original repeated ciphertext steps reveal exactly those positions where the candidate plaintext equals F(r); every nonrepeat requires inequality. This is an origin-zero, initial predecessor-zero, ordinary or zero-step-hold clock. It is a **finite exact contiguous source-crib search**, not an exclusion of unknown prose or arbitrary plaintext reordering.
 
-All three computational cores executed in the connected V8 runtime on the pinned repository blobs recorded in the raw JSON. Standalone CommonJS wrappers have not been separately executed in Node/CI. An initial Gibran body anchor did not match the source and was corrected to its actual literal |Almustafa; an initial oversized multi-weight experiment timed out before persistence and the successful weighted run restricts itself to the four genuinely unresolved global after-shift domains. No new workflow.
+With fixed F, the 86 whole-tape repeat positions predict 86 exact plaintext symbols before considering any rank maps. Across 531,665 full-length windows, at most 13 ordinary-clock or 14 hold-clock predictions agree. The full mask must match iff at every position: neither whole-book clock nor any chapter-local reset has a single complete mask-compatible source window. The ordinary opening chapter and both terminal clocks each have two all-positive candidates, but all fail the negative constraints. For the two planted 308-rune Gibran passages (fixed F, q8 map-then-shift), the search uniquely identifies source offset 500, with 166 and 163 observed rank-map entries respectively. It returns a compatible full permutation completion and exact forward replay; unobserved true entries need not be identified.
+
+[Fixed-escape source-crib SFT](../sims/lp2_prime_escape_exact_source_mask_crib_sft.cjs) · [raw](lp2-prime-escape-exact-source-mask-crib-output.json).
+
+For the secret F, all repeats at the same residue must carry the same candidate plaintext symbol. Each positive residue fixes one F entry; negatives prohibit values. For unanchored residues retain every value not prohibited. This is necessary and sufficient for the binary repeat mask alone and exhausts **all 29^29 possible functions** by independent domains. In the full original tape both clocks have 27 positively anchored residues and 59 equality constraints, and no source candidate satisfies even the positive equalities. For each of the nine chapter resets, independently allow a fresh arbitrary F. Surviving masks are then joined to independent arbitrary rank-map permutations at q8, q13, q28 and q29 under all three compositions from section 1.
+
+The joint exact inverse uses the candidate plaintext p to restrict each nonzero-step rank to p or p−1 (when valid), transformed by the clock shift. Repeated phase/input classes must intersect. If that preliminary necessary condition passes, an exact finite CSP propagates the compatible F-entry side inequalities and rank-entry domains, enforces all-different in each phase, and exhaustively branches on observed rank domains. A completed witness fills unobserved permutation entries arbitrarily and chooses an allowed escape value per residue. It is then independently forward encoded from the recovered candidate plaintext and functions, checking every ciphertext rune. No beam or cap is used.
+
+| Scope | Runes | Windows per clock | Ordinary F-mask passes | Hold F-mask passes | Joint rank+F passes, all 12 maps/clock |
+|---|---:|---:|---:|---:|---:|
+|p0–55|12956|531665|0|0|0|
+|p0–2|729|568425|607|1937|0|
+|p3–7|1145|567098|3|6|0|
+|p8–14|1729|565346|0|0|0|
+|p15–22|1903|564824|0|0|0|
+|p23–26|1021|567470|0|0|0|
+|p27–32|1433|566234|0|0|0|
+|p33–39|1680|565493|0|0|0|
+|p40–53|3008|561509|0|0|0|
+|p54–55|308|570750|83390|72637|0|
+
+Across 11,257,628 window/clock/scope comparisons, including the independent native solved sections when long enough, none of the original windows survives even the necessary repeated-rank pair test after mask filtering. The whole-tape arbitrary-F result does not depend on any rank-map assumptions. The chapter results do, because especially the terminal masks alone are highly nonidentifying.
+
+Two new independent 308-rune Gibran plants with secret seeded nonaffine, possibly noninjective F tables and q8 independent secret permutations recover the **unique exact source offsets** 11000 (ordinary, shift-before-map) and 15000 (hold, map-before-shift) across 46,527 donor windows per plant. They have respectively 188 and 1 mask-compatible windows; the joint constraints reduce both to one source/key-architecture witness. The exact CSP visits 4 and 6 nodes, respectively. All 616 plaintext runes are recovered and reencoded exactly. Hidden unused entries can be ambiguous; the recovered tables are compatible witnesses, not claimed identical to the entire planted secrets. This is source-known crib recovery, not a ciphertext-only language-model or frozen-holdout test.
+
+[Secret-lookup joint crib SFT](../sims/lp2_prime_escape_lookup_joint_crib_sft.cjs) · [raw with witnesses](lp2-prime-escape-lookup-joint-crib-output.json).
+
+## 4. Research decision
+
+Do not optimize secret global q8/q13 rank permutations in these three receivers; the exact common-rune occupancy bound fails before any language-order assumptions or heuristic key search. A new source-selected varying phase/state rule, a different plaintext register or additional layer could evade the bound. Chapter-private periodic maps and q28/q29/q256 are not resolved by the strongest pooled test. The finite contiguous source-crib search independently rejects the tested q8/q13/q28/q29 chapter-local prime-residue lookup families on every available source window, without a claim about unknown prose. Prioritize an independently selected receiver over merely enlarging the key. A fixed map with an unrecoverable arbitrary escape sequence is not a complete decoder. No authentic LP2 plaintext, key or destination is recovered.
+
+All five computational cores executed in the connected V8 runtime on the pinned repository blobs recorded in the raw JSON. Standalone CommonJS wrappers have not been separately executed in Node/CI. An initial Gibran body anchor did not match the source and was corrected to its actual literal |Almustafa; an initial oversized multi-weight experiment timed out before persistence and the successful weighted run restricts itself to the four genuinely unresolved global after-shift domains. No new workflow.
