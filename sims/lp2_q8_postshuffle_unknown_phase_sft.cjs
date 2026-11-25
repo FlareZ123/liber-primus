@@ -241,10 +241,6 @@ function experiment(raw) {
     walk(0, startPhase, "", 0, 0);
     return [...found.values()];
   }
-  const groupOrder = Array.from({ length: inventory.length }, (_, i) => i).sort((a, b) =>
-    originalGroups[b].length - originalGroups[a].length ||
-    originalGroups[a].filter(x => x === 0).length - originalGroups[b].filter(x => x === 0).length
-  );
   function evaluateKey(cipherGroups, K, collect) {
     let covered = 0, edgeCount = 0, uniqueWordGroups = 0, uniqueEdgeGroups = 0, totalWordOptions = 0;
     const optionsByGroup = collect ? Array(cipherGroups.length) : null;
