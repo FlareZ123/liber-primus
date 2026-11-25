@@ -10,6 +10,8 @@
 
 - **Director #2671 closed:** standard pre-2014 prime-indexed-prime sequence q_n=p_(p_n) locates source red q90=3299 and two-right cell2838 gives p90=463. Freeze q90 forward, authentic p56 key=(q−1)%29 sign+, literal F hold, source p15 offset9 immediately below grid/infinity; remaining150 p15 prefix, p16–22 disjoint holdout. Exact all-F-branch inverse fails after117 runes (p15 local126), peak4 consuming pointers; nine source-native plants 2979 runes preserve true endpoints and p56 genuine85/85 exact replay. [Consolidated report](../../im-results/lp2-p15-red3299-nested-fibonacci-prime-index-loop.md), [SFT](../../sims/lp2_p15_nested_superprime_fhold_original_sft.cjs), commit8789674de2a22db67e759b2b58991ed5cd9cf821. No further source-selected receiver; BASE29 formatting and π(3301)=16×29 do not identify a cipher. Retire exact superprime receiver without phase/sign tuning. No plaintext/key.
 
+- #2675 completed: independently registered actual Figure4 specimen5 plate from archived artifact 14298875461 against original 41.jpg. All 7 specimens × 2 horizontal orientations fit disjoint body/antennae; held-out venation high-pass NCC .48249 vs best other .12844. Upper-to-lower insect half-turn verified by wing/leg/tail .91424/.97774/.98064; whole flanks unreflected. Prior caption-key and source access gates not repeated; actual 1977 printed page remains inaccessible, no source-authored cipher traversal. Consolidated report bd4c33c95d6c0cd1a801ed8c29e4219a03a8cf32, SFT 309710081d27501dc7ca7ebf55ecd755dc7b93d0.
+
 ---
 
 # Agent50 — 24 November 2026 13:15 UTC incarnation
