@@ -17,6 +17,7 @@ Established arithmetic:
 - The natural complete evaluation Q(0..28) has 20 distinct outputs and transliterates to `CNGAEFHEOIAPTIGMTHNGRAYHUNGEEIAEEOROEH`, not plaintext. The simple formal derivative has source-point values [23,8,12] and no plaintext.
 - The extra x=21,12 values from reducing the cuneiform numbers modulo23 are exploratory only; Q(21)=18 needs the nonstandard target A-B, while Q(12)=2 matches candidate K. Do not treat these as independent confirmations.
 - Historical caveat: 3301→3QO is in the signed 2013 BASE29 specification; 1033→16I is in a participant transcript, not the signed specification. The signed 2016 body places THE at zero-based word28 and DIRECTION at word29, but the page-selection convention and p28 DH interpretation remain conditional.
+- Strongest objection to the p29/G branch: the established signed-2016 alphabetic-word map assigns p38 BEWARE, p39 FALSE, p40 PATHS, p41 VERIFY, p42 OPENPGP. Original p39 has the giant red X, directly warning against treating its red triad as an intended key/divisor. This does not make all p39 data a decoy, but the exact Q/DH correspondence should remain a possible checksum, not a solve route without an independently selected receiver.
 - Decision: preserve this as a possible cross-source checksum/intermediate-state clue, not a decryption. No further cipher/key search is justified without a source-selected next operation and a locked held-out prediction.
 
 Artifacts:

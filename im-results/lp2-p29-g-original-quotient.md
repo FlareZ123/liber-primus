@@ -89,6 +89,8 @@ It has only 20 distinct outputs and transliterates to `CNGAEFHEOIAPTIGMTHNGRAYHU
 
 For completeness, reducing 1033 and 3301 modulo the p28 DH prime 23 gives exploratory inputs 21 and 12, for which `Q(21)=18` and `Q(12)=2`. The latter equals the candidate DH shared secret; the former requires interpreting 18 as `A−B (mod 29)`. These cross-modulus points are not part of the core result: the polynomial is over GF(29), the source does not prescribe feeding mod-23 residues into it, and `A−B` is not an independently selected DH output. Do not count them as further confirmations.
 
+**Source-based caution from the signed 2016 page map:** under the alphabetic-word-only convention used in `im-results/lp2-signed2016-beware-false-paths-page-map.md`, signed words 38–42 select p38–p42 as `BEWARE / FALSE / PATHS / VERIFY / OPENPGP`. The original p39 image has the enormous red X, so p39 is specifically selected by `FALSE`. This is a direct reason to distrust the assumption that the p39 red triad is an intended cipher key/divisor. It does not prove that all p39 information is a decoy; the page-map report explicitly preserves source-selected uses of p39. It does, however, lower the priority of the G→Q branch absent an independently selected receiver or held-out prediction.
+
 **Decision:** retain the three-point match as a possible cross-source checksum or intermediate-state clue. The full function readout and direct derivative do not recover text. Do not launch further key/cipher searches from this relation until an independent source selects a next operation and a held-out prediction. The runnable SFT emits and asserts the complete quotient-function and derivative vectors.
 
 ## Decision and reproducibility
