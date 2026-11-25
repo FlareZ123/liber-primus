@@ -52,8 +52,8 @@ for(let d=0;d<donors.length;d++){
  const retained=held.filter((x,i)=>hold[i].has(id(x.P))).length;
  const inReg=held.filter(x=>dict.has(id(x.P))).length;
  assert(retained===inReg,"true word missing");
- const unrelated=fit.map(x=>encode(x.P,Array.from({length:8},()=>R()%32),R()%8).C),nullRes=infer(unrelated,3);
- controls.push({d,start:selected.start,K,fitOOV:fit.filter(x=>!dict.has(id(x.P))).length,heldOOV:held.length-inReg,heldRunes:held.reduce((s,x)=>s+x.P.length,0),heldUniqueRunes:held.reduce((s,x,i)=>s+(hold[i].size===1&&hold[i].has(id(x.P))?x.P.length:0),0),heldRetained:retained,heldUnique:exact,fit:res,null:nullRes});
+ let nullRes, nullDraws=0; do {const unrelated=fit.map(x=>encode(x.P,Array.from({length:8},()=>R()%32),R()%8).C);nullRes=infer(unrelated,3);nullDraws++;} while(nullRes.status==='insufficient anchors'&&nullDraws<64);
+ controls.push({d,start:selected.start,K,fitOOV:fit.filter(x=>!dict.has(id(x.P))).length,heldOOV:held.length-inReg,heldRunes:held.reduce((s,x)=>s+x.P.length,0),heldUniqueRunes:held.reduce((s,x,i)=>s+(hold[i].size===1&&hold[i].has(id(x.P))?x.P.length:0),0),heldRetained:retained,heldUnique:exact,fit:res,null:nullRes,nullDraws});
 }
 const calibrated=controls.every(x=>x.fit.accepted.length===1&&x.heldUnique>=12&&x.null.status==="complete"&&!x.null.accepted.length);
 if(!calibrated)return {dictionary:dict.size,controls,calibrated};
