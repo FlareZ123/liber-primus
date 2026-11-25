@@ -172,35 +172,80 @@ def state_summary(records):
             "state_counts":{str(k):int(v) for k,v in sorted(counts.items())},
             "entropy_bits":float(entropy)}
 
-def repeated_word_agreement(words,records):
-    state_by_coord={r["coord"]:int(r["state"]) for r in records}
-    groups=defaultdict(list)
-    for w in words:
-        if w["gap_count"]<2: continue
-        states=[state_by_coord.get(c) for c in w["coords"]]
-        if any(v is None for v in states): continue
-        groups[w["word_key"]].append(states)
-    obs_total=exp_total=0.0; comparisons=0; detail=[]
-    for key,occ in groups.items():
-        if len(occ)<2: continue
-        width=min(len(s) for s in occ); obs_num=0; exp_num=0.0; denom=0
-        for pos in range(width):
-            vals=[s[pos] for s in occ]; n=len(vals); cnt=Counter(vals)
-            pairs=n*(n-1)//2
-            if not pairs: continue
-            obs_num+=sum(v*(v-1)//2 for v in cnt.values())
-            exp_num+=pairs*sum((v/n)**2 for v in cnt.values())
-            denom+=pairs
-        if denom:
-            obs=obs_num/denom; exp=exp_num/denom
-            obs_total+=obs*denom; exp_total+=exp*denom; comparisons+=denom
-            detail.append({"word_runes":key,"occurrences":len(occ),"gap_length":width,
-                           "observed_agreement":float(obs),"expected_from_marginals":float(exp),
-                           "excess":float(obs-exp)})
-    detail.sort(key=lambda x:(x["excess"],x["occurrences"]),reverse=True)
-    return {"repeated_word_types":len(detail),"pairwise_position_comparisons":comparisons,
-            "observed_agreement":obs_total/comparisons if comparisons else None,
-            "expected_agreement":exp_total/comparisons if comparisons else None,"top":detail[:12]}
+def repeated_word_agreement(words, records, permutations=500):
+    state_by_coord = {r["coord"]: int(r["state"]) for r in records}
+    groups = defaultdict(list)
+    for word in words:
+        if word["gap_count"] < 2:
+            continue
+        states = [state_by_coord.get(coord) for coord in word["coords"]]
+        if any(value is None for value in states):
+            continue
+        groups[word["word_key"]].append(word["coords"])
+
+    repeated = {key: occ for key, occ in groups.items() if len(occ) >= 2}
+    if not repeated:
+        return {"repeated_word_types": 0, "pairwise_position_comparisons": 0,
+                "observed_agreement": None, "null_mean": None,
+                "null_95pct": None, "permutation_p": None, "top": []}
+
+    def agreement(state_map):
+        numerator = 0
+        denominator = 0
+        per_word = []
+        for key, occurrences in repeated.items():
+            width = min(len(coords) for coords in occurrences)
+            word_num = 0
+            word_den = 0
+            for pos in range(width):
+                vals = [state_map.get(coords[pos]) for coords in occurrences]
+                if any(value is None for value in vals):
+                    continue
+                n = len(vals)
+                pairs = n * (n - 1) // 2
+                if not pairs:
+                    continue
+                counts = Counter(vals)
+                matches = sum(v * (v - 1) // 2 for v in counts.values())
+                numerator += matches
+                denominator += pairs
+                word_num += matches
+                word_den += pairs
+            if word_den:
+                per_word.append({"word_runes": key, "occurrences": len(occurrences),
+                                 "gap_length": width, "agreement": word_num / word_den})
+        return (numerator / denominator if denominator else None,
+                denominator, per_word)
+
+    observed, comparisons, per_word = agreement(state_by_coord)
+    pair_records = defaultdict(list)
+    for record in records:
+        pair_records[record["pair"]].append(record)
+    rng = np.random.default_rng(20261125)
+    null_values = []
+    for _ in range(permutations):
+        shuffled_map = {}
+        for pair, pair_rows in pair_records.items():
+            shuffled_states = rng.permutation([int(row["state"]) for row in pair_rows])
+            for row, state in zip(pair_rows, shuffled_states):
+                shuffled_map[row["coord"]] = int(state)
+        value, _, _ = agreement(shuffled_map)
+        if value is not None:
+            null_values.append(value)
+    null_array = np.asarray(null_values, dtype=float)
+    p_value = ((1 + int(np.sum(null_array >= observed))) /
+               (1 + len(null_array))) if len(null_array) else None
+    per_word.sort(key=lambda item: (item["agreement"], item["occurrences"]), reverse=True)
+    return {
+        "repeated_word_types": len(repeated),
+        "pairwise_position_comparisons": int(comparisons),
+        "observed_agreement": float(observed) if observed is not None else None,
+        "null_mean": float(np.mean(null_array)) if len(null_array) else None,
+        "null_95pct": float(np.quantile(null_array, 0.95)) if len(null_array) else None,
+        "permutation_p": float(p_value) if p_value is not None else None,
+        "permutations": len(null_array),
+        "top": per_word[:12],
+    }
 
 def threshold_state_map(page,threshold,model):
     records,_,meta=extract_page(page,threshold)
