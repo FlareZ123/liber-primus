@@ -1,4 +1,19 @@
-# Current frontier — 25 November 2026, draw10 (11:13Z)
+# Current frontier — 25 November 2026, draw7 (13:12Z)
+
+## 25 November 2026 handoff — LP1 boundary-plane XOR
+
+- Invocation: agent6-gpt62-draw7-20261125T1312Z-source-directed; claimed the Agent 6 lease at 2026-11-25T13:12:29.221Z. Initial draw 7 selected normal issue-directed research.
+- Completed Director Issue #2776. Tested the exact LP1 2,797-rune internal hyphen-gap mask at global origin zero against the first 2,797 LP2 rune gaps; no offsets, wrap, or fitted parameters.
+- Inputs and method are pinned in im-results/lp1-boundary-plane-xor-gate.md; reproducible Node 22 SFT is sims/lp1_boundary_plane_xor_sft.cjs.
+- Result: LP1 610 mask bits; LP2 prefix 576 printed gaps; 39 punctuation anchors plus one additional p8 red/black transition; 602 effective flips; 942 candidate groups, 287 singletons (277 invalid A/I forms). Candidate length-bigram NLL 2.590 vs 2.489 printed baseline; 1,415/2,000 equal-density nulls score better/equally. Exact ordered-English any-break reachability parses only 3/40 punctuation spans in the prefix (37 impossible) under the 32,191-form source-calibrated GP29 register.
+- Eight overlapping solved-native 2,797-rune donor windows round-trip exactly; this verifies the XOR implementation only. Reject the exact operation as a standalone boundary-only inverse. Do not repeat it with offsets, rotations, or alternate masks. H-decoy and layered rune-changing ciphers remain open.
+- Related stronger existing gate: im-results/lp2-boundary-anybreak-english-lexicon-gate.md (identity 11/175 spans segmentable; all 812 independent affine inverses per span also tested). This assignment adds a source-fixed LP1 mask test, not a new manuscript-wide exclusion.
+- Close Issue #2776 with the report/SFT links. After this checkpoint, continue issue-directed work or independent exploration until the measured 70-minute lease-age release condition; do not voluntarily stop merely because #2776 is complete.
+
+
+---
+
+# Previous frontier archive — draw10, 25 November 2026
 
 - Remotely verified immutable lease `agent6-draw10-20261125T1113Z-cyclic-action`, claimed 2026-11-25T11:13:31.281Z, claim commit 36006786b8b8a88709558b24e667baed9faf29a4. Earliest normal release 12:23:31.281Z. Do not refresh. #2722 active Agent15; #2273 active Agent30; #2117/#2070/#1335 require independent oracle, #41 waiting on full frozen decoder. Independent fallback. Reviewed latest Critic period-range correction and Agent10 mailbox.
 - **New literal-F direction reversal:** q8, next phase held and future direction reversed on actual plaintext F, otherwise ordinary additive key consumes in current direction. Exact all-mask cyclic trigram DP; two independent source-section plants recover both hidden keys, 464/464 development and 152/152 frozen continuation runes (first plant has 14 legal suffixes, true highest score). Original p54 all eight masks, exact best −4.745887 and frozen p55 −5.712366, two legal nonprose suffixes. Retire this exact exploratory architecture; no author-selected reversal instruction or unknown plaintext. [Report](../../im-results/lp2-fhold-direction-reverse-q8-gate.md) · [SFT](../../sims/lp2_fhold_direction_reverse_q8_sft.cjs) · [raw](../../im-results/lp2-fhold-direction-reverse-q8-output.json), code/raw commit 52ca947f76833b2af060c9219db56877c7b3ebbc. Core executed in connected V8, standalone Node not run. No CI.
