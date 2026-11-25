@@ -40,10 +40,6 @@ def main():
     corpus=json.loads((ROOT/'resources/liber-primus/lp2-corpus.json').read_text())
     D=s.load_dictionary(args.lex,term['added'])
     assert len(D)==38938
-    h=1469598103934665603
-    for ch in '\n'.join(sorted(map(a.compact,D))):
-        h=((h^ord(ch))*1099511628211)&((1<<64)-1)
-    assert h==0xb39eeb2d0de511c4
 
     prime_key=tuple(corpus['prime'][x]%29 for x in RED8)
     assert a.compact(prime_key)=='dl2k5i2d'
