@@ -31,7 +31,7 @@ For any deterministic f(L), equality of the input literal Latin word L implies e
 |EOE|ᛖᛟ: 1381; ᛇᛖ: 2889|
 |EO|ᛇ: 2073; ᛖᚩ: 2418,2838|
 
-Minimum mistakes = sum over classes (class count - largest spelling multiplicity) = 8. EOE even has equal rune lengths. A renderer incorporating position, punctuation, adjacent words, or an independent state/key may evade this bound, but it requires a separately identified state and is not established by solved plaintext. No source-derived non-greedy rule was found. Do not proceed to arbitrary pre-rune key searches under this impossible stationary model.
+Minimum mistakes = sum over classes (class count - largest spelling multiplicity) = 8. EOE even has equal rune lengths. A renderer incorporating position, punctuation, adjacent words, or an independent state/key may evade this bound, but it requires a separately identified state and is not established by solved plaintext. No source-derived non-greedy rule was found. Do not proceed to arbitrary pre-rune key searches under this impossible stationary model; the hidden-boundary stationary Latin substitution case is separately retired by the exact tail-count gate below.
 
 ## Reproduction
 
@@ -73,6 +73,43 @@ Even a fully non-greedy stationary word-local renderer cannot rescue the source-
 
 The lower bound is tight for an unconstrained oracle over the documented alias strings: choose ING for standalone ᛝ, INGIA for ᛝᛡ, and IOEO for ᛡᛇ, with canonical expansions elsewhere. This removes the three other literal collision classes without inducing any new class. Majority rendering for the remaining four gives exactly four errors. This assignment is a feasibility certificate selected from the ciphertext, not an authored spelling rule. No alias or non-greedy choice can eliminate the four forced classes under the independent per-rune expansion contract. A position/context/key-dependent renderer, a new spelling alphabet, or a cipher operating directly on rune symbols is not ruled out.
 
-**Decision:** the independently authored Latin witness exists and confirms a standard alias-aware representation of the known passage, but the intended source-selected stationary pre-rune cipher branch still fails on original ciphertext. Do not launch another joint Latin-layer key search assuming that word-local rendering is sufficient. Reopen only if an independent source identifies a context/state-dependent segmentation operation or another complete Latin witness with such a rule. No unknown plaintext or key recovered.
+**Decision:** the independently authored Latin witness exists and confirms a standard alias-aware representation of the known passage, but the intended source-selected stationary pre-rune cipher branch still fails on original ciphertext. Do not launch another joint Latin-layer key search assuming that word-local rendering is sufficient. Reopen only if an independent source identifies a context/state-dependent segmentation operation or another complete Latin witness with such a rule. Relocating boundaries alone does not rescue a stationary Latin letter substitution: see the exact tail-count gate below. No unknown plaintext or key recovered.
 
 **Reproduction:** from repository root, run `node sims/lp2_latin_alias_witness_sft.cjs`. The algorithm and original-input results were executed in the connected JS runtime; the standalone wrapper is supplied for independent rerun. The source chart was directly inspected, and the original p57 JPEG (archive 74.jpg) visually checked against the corrected canonical text.
+
+## Hidden-boundary Latin substitution: exact all-key tail-count inverse gate (25 November)
+
+**Decision:** relocating word boundaries alone cannot rescue a stationary Latin substitution followed by the chart spelling relation, even with arbitrary independent aliases and within-chapter transposition. All nine original chapters violate the finite ordinary-Latin prose envelope. This is a conditional all-key negative, not unknown plaintext recovery.
+
+For a Latin tape x let T_k(x) be the sum of its k smallest letter counts, including zero counts among all 26 letters. Any fixed Latin permutation and any position permutation preserve T_k. Even a noninjective stationary letter map cannot increase it, since merging counts makes the histogram more concentrated (majorization).
+
+For each possible k-element subset S of ciphertext letters, independently choose every rune's Latin expansion to minimize the count of letters in S. Use chart C/K, S/Z, NG/ING, IA/IO, witness-selected U/V; additionally grant C/K/Q and every adjacent C,W pair the alternative QU, even across hidden boundaries. The CW pairs are disjoint. For token multiplicities n_r compute
+
+    L(S) = sum_r n_r * min_{a in aliases(r)} count_of_letters_in_S(a)
+
+The minimum of T_k over every expansion is exactly min_{|S|=k} L(S), by exchanging finite minima. Variable-letter interactions are restricted to CKQUVW, SZ, AO; other letters are independent (NG/ING only adds optional I; IA/IO has fixed I). Enumerate all subsets of each component, at most 64, and combine the minimum costs by cardinality using exact min-plus convolution. All 26 sizes are solved jointly; there is no key or segmentation search. Three toy fixtures agree with direct exhaustive subset enumeration for all 26 sizes.
+
+Each permissible expansion length lies between Nmin and Nmax. A reference window of length in that interval is contained in an Nmax window if the reference is sufficiently long. Adding counts cannot decrease T_k, so the maximum over every Nmax window is a conservative upper bound for all shorter allowed windows. Compare against pinned Gibran/Emerson/Shakespeare texts (50,902/325,164/229,448 letters after removing Gutenberg markers where present and non-A–Z characters), plus the 3,275-letter editorial solved Latin reference where long enough (remove markup and numeral/hash lines). All separators are ignored. The latter is a regression comparator, not an independent author Latin witness.
+
+| Physical scope | Latin length interval | k | Minimum original T_k | Maximum reference T_k | Excess |
+|---|---:|---:|---:|---:|---:|
+| p0–2 | 905–934 | 9 | 106 | 86 | 20 |
+| p3–7 | 1447–1489 | 9 | 155 | 135 | 20 |
+| p8–14 | 2159–2217 | 10 | 309 | 249 | 60 |
+| p15–22 | 2387–2456 | 9 | 284 | 210 | 74 |
+| p23–26 | 1258–1295 | 9 | 145 | 121 | 24 |
+| p27–32 | 1775–1824 | 12 | 367 | 306 | 61 |
+| p33–39 | 2075–2132 | 11 | 371 | 296 | 75 |
+| p40–53 | 3747–3849 | 11 | 654 | 504 | 150 |
+| p54–55 | 378–389 | 10 | 51 | 50 | 1 |
+| p0–55 | 16131–16585 | 11 | 3009 | 2082 | 927 |
+
+The SFT asserts the original 12,956-rune count and uses the pre-existing chapter partition. Each chapter fails independently, so unrelated chapter keys do not help. The k values maximize the exact margin; no postselection significance claim. Terminal margin one is sensitive to extending the reference. Granting all 13 actual CW pairs the QU option reduces whole-book k=11 minimum from 3,022 to 3,009; Gibran/Emerson/Shakespeare maxima are 1,709/1,862/2,082.
+
+One changed letter alters T_k by at most one. A fixed stationary map supplemented by exceptions must change at least the listed excess number of positions, e.g. 927 for a shared book-wide map (5.6% of maximum expanded length). This assumes fixed length and the stated finite prose register; insertions/deletions or changing-state homophones need separate analysis.
+
+Four 900-letter source-derived controls use separately seeded arbitrary Latin permutations and the chart renderer: all 104 tail predicates admit their true counts, exact supplied-key inverse and forward spelling replay pass. These are mechanical controls with known keys/spellings, not blind key recovery. The deliberately liberal expansion relation contains greedy rendering, so its failure applies to that narrower renderer too.
+
+Retire this stationary Latin receiver with hidden boundaries, not all polyalphabetic or contextual Latin ciphers, alternate registers, or H-decoy. No first-party instruction selects the speculative Latin cipher layer; no unknown plaintext or authentic key recovered. The historical p57 checksum inversion remains a positive representation control.
+
+**Reproduction:** [SFT](../sims/lp2_latin_alias_stationary_tail_sft.cjs) · [all 26 tails and input blob IDs](lp2-latin-alias-stationary-tail-output.json). Core executed in connected V8 over exact pinned repository inputs, standalone Node wrapper not separately executed. [Code/raw commit](https://github.com/FlareZ123/liber-primus/commit/373237fb7ef8fa59b2ea84ce4f721f457dcec527).
