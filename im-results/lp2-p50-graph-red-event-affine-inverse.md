@@ -49,3 +49,14 @@ Retire this particular common affine graph equation, both radices, with marker b
 - Input blobs: table 2550eae357442912220e05dc51147523a61dd75a; ink annotations 0614aca67969a14ae006e0c1ae6aee6dcd8136e6; corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165. Every red event rune is checked against the corpus at its physical offset.
 
 All three computational cores were actually executed in the connected V8 runtime; standalone CJS launch on Windows and CI were not performed. No new CI workflow is needed.
+
+
+## Arbitrary nonlinear successor lookup: disjoint lexical conflicts
+
+For the same fixed source graph and event order, generalize to `C_i = a P_i + h(P_f(i)) mod 29`, with arbitrary nonlinear h and every nonzero a. Relax the common h to independent secret shifts per successor vertex; merge only provably equal target values (all marker boundaries, and equal known solved-heading runes). Thus any full nonlinear solution must satisfy the relaxed equal-shift constraints. For each of 42 fully red complete printed groups, form all 32,124-register dictionary candidates of its length, calculate the required shift at every target, and eliminate internal inconsistencies. Enforce exact unary shared-shift intersections and multi-shift pair joins. A failed propagation is a certificate of infeasibility; extract a deletion-minimal conflict and remove all its words, repeating to obtain disjoint conflicts.
+
+All 28 slopes per radix fail with zero OOV words. The **minimum certified disjoint-conflict count over all slopes is three for base59 and two for base60**; these are lower bounds, not exact minimum OOV counts. The base60 within-word constraint alone excludes word index22 for every slope. For base59 slope1, the five disjoint cores are [29,36], [27,30,32,38,40,41], [22,23,25], [19,21], [10,13,20,39]. For base60 slope1, three disjoint cores are [22], [19,41], [1,3,14,18,24,25,36,38]. All 42 group coordinates and every slope's cores are in the raw JSON. Four polynomial-lookup controls with a=7 or19 retain their planted dictionary-shaped words under both graph radices; this is a retention control, not a unique nonlinear recovery. The plants reuse the same lexical register and synthetic text fixture. No claim about genuine unknown plaintext follows.
+
+This excludes an arbitrary shared nonlinear successor cipher **conditional on the stated lexical word preservation** with at most two OOV red words (base59) or one (base60). It does not exclude nonlinear mechanisms with additional OOV words or no printed-word preservation. Since the original manuscript does not identify this graph as a cipher operator, do not tune nonlinear lookups to compensate for the conflicts without independent new evidence.
+
+Reproducer: [CJS SFT](../sims/lp2_p50_graph_red_event_nonlinear_core_sft.cjs), [all slope conflict cores](lp2-p50-graph-red-event-nonlinear-core-output.json). Actual V8 execution, no standalone Windows CI claim.
