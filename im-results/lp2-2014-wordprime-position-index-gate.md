@@ -83,3 +83,19 @@ The script verifies the four pinned Git blob identities, checks the canonical tr
 ## Independent spacing-free extension (24 November)
 
 The direct cipher formula was retained unchanged while removing all printed word boundaries. Exact enumeration and maximum lexical-coverage DP still force 423/729 and 940/1613 OOV runes on original p0–2 and p16–21. Native controls recover 2356/2369 runes and 600/601 boundaries. [Spacing-free extension](lp2-spacingfree-selfword-primeindex-original-gate.md).
+
+
+## Distinct product-index interpretation without printed boundaries (Agent12, 25 November)
+
+The actual period-origin participant conjecture joins word-GP value and rune position but gives no formula. The preceding tests use the additive index S+q. This bounded alternative selects the product S*(q+1) of the candidate plaintext word's positive GP-prime sum and the one-based consuming ordinal, retaining p56's prime-minus-one shift and F bypass. No fitted origin, multiplier, sign, or punctuation semantics. This is a speculative mathematical interpretation of the participant conjecture, not an author-selected rule.
+
+For every true word length≤24, enumerate S=2..109*24 and branch all literal F paths; a legal edge ends precisely at sum S. This exhausts OOV as well as vocabulary candidates under the fixed map, using the existing spacing-free DP with every printed boundary ignored. The exact training register has **34,895 types**, unchanged from the earlier additive-index receiver; no original fit. The four solved-native controls exclude their own source sections from the frequency training and recover 2,361/2,369 runes and 601/601 true boundaries; all 601 true word edges retained. Exact maximum vocabulary cover is 506/515, 773/780, 736/755, 317/319. The receiver passes the frozen control gate (≥95% runes and ≥90% boundaries per control).
+
+| Original scope | All legal edges | Max vocabulary-covered runes | Min OOV runes | MAP nats/rune |
+|---|---:|---:|---:|---:|
+| p0–2 | 19,579 | 300/729 | 429 | −5.207412 |
+| p16–21 | 39,926 | 678/1,613 | 935 | −5.208659 |
+
+Both have full exact replay witnesses but no connected prose; even maximal lexical coverage leaves 58–59% of source runes OOV. This independently excludes the fixed product-index receiver in the same finite register and max-word-length domain. It is not an exclusion of every possible joint word/position function. No key or unknown plaintext recovered; retire direct product and sum interpretations unless an independent first-party selector changes the decision.
+
+[Core](../sims/lp2_spacingfree_selfword_primeproduct_core.cjs) · [SFT](../sims/lp2_spacingfree_selfword_primeproduct_sft.cjs) · [actual output](lp2-spacingfree-selfword-primeproduct-output.json), commit f583b21979e37d31250b68e6dfa807e4c73ffb09. Connected V8 actual execution 45.787s, no independent Windows CI claim.
