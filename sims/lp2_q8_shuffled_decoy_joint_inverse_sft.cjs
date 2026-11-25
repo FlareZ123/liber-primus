@@ -112,7 +112,7 @@ function experiment(raw,config={}){
    words=shuffle(words,R);
   }
   const P=words.flat(),C=encode(P,K),printed=mode==="shuffle"?words.map(w=>w.length):shuffle(actual?inventory:originalLengths,R);
-  return {name:"donor"+d+"-pair"+k+"-"+mode+(actual?"-actual":""),P,C,printed,K,mode};
+  return {name:"donor"+d+"-pair"+k+"-"+mode+(actual?"-actual":""),P,C,printed,K,mode,trueLengths:words.map(w=>w.length)};
  }
  const welcome=gold.sections.find(x=>x.name===authenticNames[0]),koan=gold.sections.find(x=>x.name===authenticNames[1]),wk=[23,10,1,10,9,10,16,26],kk=[0,10,4,0,1,19,0,18,4,18,9,0,18];
  const wC=extract(raw[2].split("%").slice(1,3).join("%")),kC=extract(raw[2].split("$")[5]);
@@ -130,8 +130,11 @@ function experiment(raw,config={}){
   for(const [name,pass] of methods){const score=pool.map(x=>({key:x.key,fit:pass(a,x.key,left,null,false)})).sort((x,y)=>y.fit.ll-x.fit.ll);const win=score[0];if(!win||!win.fit.end){results[name]=null;continue;}
    const h=pass(b,win.key,right,win.fit.end,true),pre=pass(a,win.key,left,null,true);
    if(!h.P||!pre.P){results[name]=null;continue;}
+   const truthBounds=new Set();let pos=0;for(const l of item.trueLengths||[]){pos+=l;if(pos>split&&pos<C.length)truthBounds.add(pos);}
+   const predBounds=new Set();pos=split;for(const w of h.words||[]){pos+=w.length;if(pos<C.length)predBounds.add(pos);}
+   const overlap=[...predBounds].filter(x=>truthBounds.has(x)).length,boundaryF1=h.words&&item.trueLengths?2*overlap/Math.max(1,predBounds.size+truthBounds.size):null;
    const held=h.P,accuracy=P?held.reduce((n,x,i)=>n+(x===P[split+i]),0)/held.length:null,keyExact=K?win.key.join()===K.join():null;
-   results[name]={key:win.key,keyExact,train:win.fit.ll/split,heldout:h.ll/b.length,heldoutAccuracy:accuracy,fitAccuracy:P?pre.P.reduce((n,x,i)=>n+(x===P[i]),0)/split:null,heldoutPhase:h.initialPhase,holdEndPhase:h.endPhase,heldoutText:h.words?h.words.map(w=>w.map(x=>gp.translit[x]).join("")).join(" "):held.map(x=>gp.translit[x]).join(""),heldoutRunes:held,fitRunes:pre.P,fitPhase:pre.initialPhase};
+   results[name]={key:win.key,keyExact,train:win.fit.ll/split,heldout:h.ll/b.length,heldoutAccuracy:accuracy,boundaryF1,fitAccuracy:P?pre.P.reduce((n,x,i)=>n+(x===P[i]),0)/split:null,heldoutPhase:h.initialPhase,holdEndPhase:h.endPhase,heldoutText:h.words?h.words.map(w=>w.map(x=>gp.translit[x]).join("")).join(" "):held.map(x=>gp.translit[x]).join(""),heldoutRunes:held,fitRunes:pre.P,fitPhase:pre.initialPhase};
   }
   // A common key selected by the free segmentation model; compare probabilities
   // of the printed segmentation versus all segmentations of the heldout tape.
@@ -144,14 +147,14 @@ function experiment(raw,config={}){
  const cases=[];
  for(const name of config.cases||["welcome","koan-shuffle","koan-decoy","dev-shuffle","dev-decoy"]){
   let item;
-  if(name==="welcome")item={name,mode:"native",C:wC,P:extract(welcome.source_text),printed:wWords.map(w=>w.length),K:wk};
-  else if(name==="koan-shuffle"||name==="koan-decoy"){const R=rng(0x2683),K=Array.from({length:T},()=>Math.floor(R()*Q)),words=name.endsWith("shuffle")?shuffle(kWords,R):kWords;const P=words.flat();item={name,mode:name.split("-")[1],P,C:encode(P,K),K,printed:name.endsWith("shuffle")?words.map(w=>w.length):shuffle(kWords.map(w=>w.length),R)};}
+  if(name==="welcome")item={name,mode:"native",C:wC,P:extract(welcome.source_text),printed:wWords.map(w=>w.length),K:wk,trueLengths:runeWords(welcome.source_text,/[^\u16a0-\u16ff]/u).map(w=>w.length)};
+  else if(name==="koan-shuffle"||name==="koan-decoy"){const R=rng(0x2683),K=Array.from({length:T},()=>Math.floor(R()*Q)),words=name.endsWith("shuffle")?shuffle(kWords,R):kWords;const P=words.flat();item={name,mode:name.split("-")[1],P,C:encode(P,K),K,trueLengths:words.map(w=>w.length),printed:name.endsWith("shuffle")?words.map(w=>w.length):shuffle(kWords.map(w=>w.length),R)};}
   else if(name.startsWith("null")){const i=Number(name.slice(4)),q=control(i%3,i+1,"decoy",false),R=rng(0x9f268300+i),pad=Array.from({length:q.P.length},()=>Math.floor(R()*Q));item={...q,name,mode:"null",K:null,C:encode(q.P,pad)};}
   else if(name==="original")item={name,C:target,printed:inventory,mode:"unknown"};
   else{const [tag,mode]=name.split("-");const i=tag==="dev"?0:Number(tag.replace("fresh",""));item=control(tag==="fresh3"?2:i%3,i,mode,tag==="fresh3");item.name=name;}
   cases.push(recover(item));
  }
- return {training:{types:counts.size,tokens:total,anchors:anchors.length,EPS,maxLength:L,donorBodyRunes:donors.map(x=>x.flat().length)},authentic:{welcome:wC.length,koan:kC.length},inventory:inventory.reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{}),cases};
+ return {frozenGate:{shuffleGapMax:.25,decoyGapMin:1,heldoutScoreMin:-2.6,heldoutRuneAccuracyMin:.95,requireExactKey:true,requireAllSixFresh:true,requireZeroNullPasses:true},training:{types:counts.size,tokens:total,anchors:anchors.length,EPS,maxLength:L,donorBodyRunes:donors.map(x=>x.flat().length)},authentic:{welcome:wC.length,koan:kC.length},inventory:inventory.reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{}),cases};
 }
 if(require.main===module){const args=process.argv.slice(2);console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),args.length?{cases:args}:{}),null,2));}
 module.exports={experiment};
