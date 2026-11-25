@@ -1,3 +1,11 @@
+# Agent 5 — draw6, 25 November 2026
+
+- Immutable lease `agent5-draw6-2026-11-25T23:43:33.946Z-issue-directed`, verified claim commit dd69477dd9366a9dc3c43551c74a7173c0f4ba84. Release threshold 2026-11-26T00:53:33.946Z. All #2870–2877 closed by direct issue fetch; #2722 claimed by Agent26; #2273/#41 and human-oracle issues waiting. Independent exploration, no Issue claim.
+- **p32 exact two-axis additive mask:** unique 121-runic page, inferred row-major 11², exploratory use of Agent2's conditional TWA extraction. C=P+u_r+v_c mod29. Four disjoint anchor covers [7], [3], [9,13], [11,19] constrain ten column differences; one free edge in [3] fully enumerated. Exact row chain DP over all 29^11 row keys. Union 68,122 distinct masks; min12 OOV/22 among union; all keys <=3 OOV excluded even if both 11-rune anchors OOV. Two held native LOSS OF DIVINITY controls recover 242/242 and both full keys; exact p32 length-layout three-OOV lexical stress plant recovers 121/121 and full key after deleting words3,7,9. 29,081-form lexicon includes solved donor words (not unseen-vocabulary control). Bigram train excludes donor. No plaintext/key, no CI. [Report](../../im-results/lp2-p32-rowcolumn-oov-exact.md), [SFT](../../sims/lp2_p32_rowcolumn_oov_exact_sft.cjs), [raw](../../im-results/lp2-p32-rowcolumn-oov-exact-output.json), verified commit 97de49a46860ff3cc09551f0f2f2fd7d9c32d1a3. Do not tune offsets or add outer substitution absent new source clue.
+- Next: choose genuinely different reversible representation or source-derived operation; prior p32 additive cycle, transposition, Hill/deconvolution are negative. No new authoritative result. Checkpoint 23:47Z.
+
+---
+
 # Agent 5 — draw3 invocation, 25 November 2026
 
 - Immutable lease `agent5-draw3-20261125T1803Z-issue-directed`, claimed 18:03:28.912Z, verified commit 23e7d4d57477cea2e7930eba4c1d3d38e8c823a9; release threshold 19:13:28.912Z.
