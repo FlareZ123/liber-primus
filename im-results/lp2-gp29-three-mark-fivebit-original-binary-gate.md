@@ -1,6 +1,6 @@
-# GP29 plus three large-mark classes: fixed five-bit binary receiver
+# GP29 and large-mark classes: five-bit binary receiver, including all-secret alphabets
 
-**Status: source-motivated hypothesis, direct receiver negative; no LP2 plaintext or key.** 16 November 2026, Agent3. [Exact source SFT](../sims/lp2_gp29_three_mark_5bit_original_sft.cjs).
+**Current decision (25 November 2026): direct binary ASCII is excluded under every stationary injective five-bit codebook on all nine unknown chapters, with or without the large marks. Eight private cyclic column codebooks also fail every chapter for 8-bit ASCII.** The 7-bit sensitivity tests retain some printable but nonidentifying witnesses; a declared broad English-text character register is impossible for all three red256 tapes and the terminal p54–55 rune tape. No LP2 plaintext or key. The original fixed-map/file-header and table receiver tests are retained below.
 
 ## New finite route and its rival
 
@@ -66,8 +66,72 @@ The first original impossible transition alone is conclusive for the mod29 oracl
 
 The standalone [all-column original-input SFT](../sims/lp2_gp32_p50_row_input_allcolumn_gate_sft.cjs) reads unchanged page indices and the 256 original table bytes, asserts all three source-exact transition counts and its positive controls. This path is distinct from the table's previously investigated full-byte self-iteration (`state = table[state]`), whose 11- and 2-cycles are already known. Stop this specific row transition family without compensating for its contradiction by adding freely chosen row transformations.
 
+
+## All-secret direct ASCII inversion (Agent16, 25 November 2026)
+
+The historically authenticated 2013 space/tab carrier decoded to ordinary 8-bit ASCII, while the LP2 rune/large-mark register and 32-row panel motivate testing a five-bit transport. This is a conditional receiver, not a source-selected cipher. Unlike the earlier canonical-order pack above, allow **every injective map** from observed symbol types to the 32 five-bit codewords. Each independently tested chapter or page receives its own unrelated secret map. Grant both rune-tape directions and every byte alignment (eight offsets for 8-bit, seven for 7-bit); per-codeword bit reversal is absorbed in the arbitrary codebook. Only complete characters are scored, so an incomplete first/last field is free. No English score or key guesses determine the exclusions.
+
+### Exact assignment formulation
+
+For each observed type x and bit position j in its five-bit codeword, count the occurrences n[x,j] at the most significant bit of a complete octet. Every ordinary 7-bit ASCII character, including control characters, has octet high bit zero. A proposed secret code c therefore has cost sum_j n[x,j] bit_j(c). The complete number of high-bit violations is additive across rune types. Minimize this cost over injective assignments of observed types to the 32 codewords using a rectangular Hungarian assignment; the implementation checks the attained primal cost and dual feasibility. All unused symbols can be assigned leftover codes. This is an exact minimum for the ASCII high-bit condition, and consequently a lower bound for any stronger English/printability grammar.
+
+For the less historically motivated **densely packed seven-bit character** alternative, a printable code 32–126 must have at least one of its two highest bits set. If both are within one five-bit codeword, charge a violation when both are zero. Ignore pairs straddling codeword boundaries and ignore DEL=127 in the assignment stage. Thus the seven-bit optimum is an exact minimum of a relaxed condition, only a lower bound on actual nonprintable characters.
+
+| Original physical scope | 8-bit min, runes | 8-bit min, runes + marks | 7-bit lower bound, runes | 7-bit lower bound, runes + marks |
+|---|---:|---:|---:|---:|
+| Whole p0–55 | 3,308 | 3,299 | 1,133 | 1,181 |
+| p0–2 | 117 | 120 | 22 | 26 |
+| p3–7 | 203 | 209 | 59 | 57 |
+| p8–14 | 341 | 341 | 102 | 102 |
+| p15–22 | 377 | 379 | 116 | 118 |
+| p23–26 | 175 | 177 | 46 | 46 |
+| p27–32 | 272 | 267 | 77 | 81 |
+| p33–39 | 343 | 335 | 91 | 96 |
+| p40–53 | 660 | 677 | 212 | 216 |
+| p54–55 | 28 | 26 | 0 | 1 |
+
+The whole-book rune-only minimum is 3,308 violations among 8,097 complete octets; including the 31 unknown-page large marks gives 3,299 among 8,116. This excludes all chapter-private direct ASCII maps, including arbitrarily chosen secret alphabet order, not just the canonical GP29 code order. Individual page-private maps are excluded for 49/55 rune-bearing pages without marks and 48/55 including marks. The surviving pages for the octet condition are p14,p22,p32,p49,p51,p55, plus p15 when marks are included. They are inconclusive under this necessary condition, not successful decodes. Densely packed seven-bit strict printable ASCII is ruled out by this relaxed bound on eight of nine rune-only chapters and all nine marked chapters; the remaining terminal rune tape receives an exact follow-up below.
+
+All three previously frozen red256 event tapes A/B/C separately fail 8-bit ASCII for every stationary injective codebook: minimum high-bit violations 15/14/10 respectively (159 complete octets at their minimizing alignments). For packed seven-bit strict printable ASCII, A and B have four relaxed zero alignments each; C has minimum one violation.
+
+### Full seven-bit receiver on the red256 and terminal tapes
+
+For a complete seven-bit character, require (i) at least one of its top two bits set and (ii) at least one of all seven bits zero. Split each condition across the actual participating codewords and express it as a disjunction of allowed bit masks. Repeated source types in a character are merged. Constraint propagation, injective bipartite matching and bounded depth-first search produce exact printable witnesses, or exhaust the finite tree when uncapped. The red256 A and B tapes each have two alignments with at least two different printable codebooks, and two more alignments hit the 30,000-node cap without a witness. C is impossible at all 14 alignments. Terminal p54–55 rune-only has two printable alignments, each with at least two different codebooks. The witnesses are punctuation-heavy nonprose (e.g. terminal begins `rP^D~3pT(oSI))(}xmqb`); these arbitrary choices do not identify a key or plaintext. The known-p57 plant also has competing printable witnesses, directly demonstrating that this weak grammar cannot identify authentic text.
+
+A separate finite exact search tests the following explicitly declared English-text character set: uppercase and lowercase letters, digits, space, period, comma, semicolon, colon, question and exclamation marks, apostrophe, double quote, hyphen, slash, parentheses, underscore, at sign, tab, newline and carriage return. This set permits whitespace controls but excludes some legitimate ASCII punctuation (e.g. plus, equals, square brackets); it is not all English or all ASCII. For each character, enumerate all allowed bit patterns, intersect each participating rune-code domain, enforce generalized arc-consistency and a global injective matching, then branch over remaining finite domains. Local propagation may relax distinctness between variables, which can only admit additional candidates; complete assignments are checked. **All 56 direction/alignment cases across A/B/C and the p54–55 rune-only tape are exhausted or rejected by propagation, with zero witnesses and no node-cap hits.** This is a complete all-key exclusion for this specific character set and receiver, even allowing arbitrary punctuation/letter order. The actual p57 native transliteration plant's correct secret map survives propagation; exact recovery of a hidden map is not claimed. There is no source clue selecting dense seven-bit encoding in the first place.
+
+### Eight private cyclic five-bit codebooks
+
+The printed 32x8 panel independently motivates an eight-column clock. As a generous relaxation, give each rune ordinal mod 8 a wholly unrelated secret injective five-bit codebook. For each (column, bit position), at most 16 symbols can have a specified zero bit; for each adjacent bit pair within one five-bit code, at most 24 symbols can avoid 00. Count frequencies in every such class and sum all frequencies outside the top 16/24. This is a valid lower bound for every simultaneous key assignment. For octets, each column has at most one constrained bit position at a fixed alignment, so the separate class minima are attainable for that relaxed high-bit grammar. For seven-bit pairs, distinct bit-position constraints may conflict; the summed result remains a lower bound.
+
+| Scope | 8-bit min, eight rune alphabets | 8-bit min, eight marked alphabets |
+|---|---:|---:|
+| Whole p0–55 | 3,187 | 3,171 |
+| p0–2 | 107 | 110 |
+| p3–7 | 189 | 197 |
+| p8–14 | 324 | 325 |
+| p15–22 | 359 | 361 |
+| p23–26 | 164 | 164 |
+| p27–32 | 257 | 254 |
+| p33–39 | 320 | 316 |
+| p40–53 | 627 | 642 |
+| p54–55 | 24 | 23 |
+
+The direct historical octet receiver therefore fails every chapter even with eight independent codebooks. The seven-bit relaxed bound also excludes a shared eight-column book key (642/703 violations), and p40–53 alone (28/25); other chapter-private seven-bit cases remain inconclusive. This is an all-secret representation capacity test, not a test of a specific table-cell value rule.
+
+### Reproduction and decision
+
+- [All-secret assignment SFT](../sims/lp2_fivebit_allsecret_ascii_assignment_sft.cjs) and [full page/phase summary](lp2-fivebit-allsecret-ascii-assignment-output.json).
+- [Printable seven-bit CSP](../sims/lp2_fivebit_sevenbit_printable_csp_sft.cjs) and [exact witnesses/capped branches](lp2-fivebit-sevenbit-printable-csp-output.json).
+- [English-register seven-bit CSP](../sims/lp2_fivebit_sevenbit_native_ascii_sft.cjs) and [finite search results](lp2-fivebit-sevenbit-native-ascii-output.json).
+- [Eight-column capacity SFT](../sims/lp2_fivebit_eight_column_allsecret_ascii_sft.cjs) and [results](lp2-fivebit-eight-column-ascii-output.json).
+
+The core implementations were executed on the connected ECMAScript runtime with original canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and ink annotation blob 0614aca67969a14ae006e0c1ae6aee6dcd8136e6. The 8-/7-bit assignment controls use 100 actual clear p57 transliterated characters under an independently fixed nonidentity five-bit permutation; known-key inverse recovers all bits. Four rectangular assignment instances additionally match brute-force minima. Eight-column controls use eight distinct codebook permutations and yield zero bound. Standalone Windows/Node wrappers have not separately run in CI.
+
+**Retire the direct stationary-codebook 8-bit ASCII route for every full chapter and every red256 event register; even granting eight independent cyclic alphabet maps does not rescue the full chapters.** Do not expand arbitrary codebook or packed-seven-bit key searches from the nonidentifying printable witnesses. This does not reject compressed/encrypted intermediate bytes, noninjective coding, other transports, or other state schedules. No authentic clue fixes those extensions, and no unknown plaintext or key has been obtained.
+
 ## Decision for further research
 
-The simple **literal five-bit pack** is rejected as an unencrypted byte/file payload decoder at source-visible chapter starts. This does **not** exclude a keyed binary format or a different authorized codebook. The book does provide a concrete reason to ask about a 32-state receiver, while its observed layout does not determine how an 8-bit p50 table cell would be consumed, how punctuation classes would map to code points, or whether a second input chooses one of eight columns. Every additional parameter is presently free. A useful successor must retrieve a *first-party instruction* that fixes the missing table consumer or validates a complete original byte stream on untouched pages. Avoid guessing offsets, column permutations, byte XORs or extra cipher layers to rescue the failed direct readout.
+The simple **literal five-bit pack** is rejected as an unencrypted byte/file payload decoder at source-visible chapter starts. The all-secret extension also rules out arbitrary injective stationary and eight-column codebooks for direct octet ASCII at chapter scale. Encrypted or compressed bytes, a separately source-selected state schedule, or a noninjective transport remain outside the result. The book does provide a concrete reason to ask about a 32-state receiver, while its observed layout does not determine how an 8-bit p50 table cell would be consumed, how punctuation classes would map to code points, or whether a second input chooses one of eight columns. Every additional parameter is presently free. A useful successor must retrieve a *first-party instruction* that fixes the missing table consumer or validates a complete original byte stream on untouched pages. Avoid guessing offsets, column permutations, byte XORs or extra cipher layers to rescue the failed direct readout.
 
 **Inputs:** `resources/liber-primus/lp2-corpus.json` (physical p0–57 runes), `resources/liber-primus/lp2-ink-annotations.json` (36 large-mark source positions/classes). The SFT reads these unchanged and asserts the exact symbol count, two byte-aligned authentic controls, output prefixes and typed failures.
