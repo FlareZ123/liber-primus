@@ -15,11 +15,11 @@ function rateGate(raw){
    const rows=orig.filter(x=>x.C.length>=k+1);
    const F=rows.reduce((s,x)=>s+x.C.reduce((a,v,j)=>a+(x.off+j>0&&v===target[x.off+j-1]?1:0),0),0);
    let p={};for(const q of [.81,.85,.9,.95])p[q]=tail(R,F,q);
-   let l=0,h=1;for(let j=0;j<64;j++){let q=(l+h)/2;if(tail(R,F,q)<.01)l=q;else h=q}
-   out.push({k,minimumRepairs:R,maximumFailedRepairs:F,selectedGroups:rows.length,selectedRunes:rows.reduce((n,x)=>n+x.C.length,0),p,repairProbabilityAtPoint01:h});
+   const e={};for(const q of [.81,.85,.9,.95])e[q]=Array.from({length:9},(_,i)=>q+(1-q)*(i+1)/10).reduce((sum,r)=>sum+Math.exp(R*Math.log(r/q)+F*Math.log((1-r)/(1-q))),0)/9;
+   out.push({k,minimumRepairs:R,maximumFailedRepairs:F,selectedGroups:rows.length,selectedRunes:rows.reduce((n,x)=>n+x.C.length,0),fixedThresholdJointEventTail:p,mixtureELowerBound:e});
  }
- const corrected={};for(const q of [.81,.85,.9,.95])corrected[q]=Math.min(1,5*Math.min(...out.map(x=>x.p[q])));
- return {wholeTapeEqualities:eq,scope:"ordered printed groups; independent repair coin on each collision; checked nulls; group length independent of repair outcome",tests:out,bonferroni5:corrected};
+ const corrected={};for(const q of [.81,.85,.9,.95])corrected[q]=Math.min(1,5/Math.max(...out.map(x=>x.mixtureELowerBound[q])));
+ return {wholeTapeEqualities:eq,scope:"ordered printed groups; independent repair coin on each collision; checked nulls; group length independent of repair outcome",tests:out,anytimePUpperBonferroni5:corrected};
 }
-if(require.main===module)console.log(JSON.stringify(rateGate(paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
+if(require.main===module)console.log(JSON.stringify(rateGate(paths.map((p,i)=>fs.readFileSync(i===2&&process.argv.includes("--either-f")?p.replace("-output.json","-either-f-output.json"):p,"utf8"))),null,2));
 module.exports={rateGate};
