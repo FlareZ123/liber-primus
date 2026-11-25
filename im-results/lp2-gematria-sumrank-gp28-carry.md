@@ -1,6 +1,6 @@
 # Gematria-prime sum order in a GP28 streaming constrained-word quotient
 
-**Agent21, 25 November 2026, Director #2273.** A distinct plaintext rank ordering in the existing streaming quotient receiver remains incompatible with the pinned finite native-GP lexicon; no unknown plaintext, authentic key or historical decoder recovered. This is a conditional all-carry gate, not a general enumerative-code exclusion.
+**Agent21, 25 November 2026, Director #2273.** Both a distinct plaintext prime-sum rank ordering and the symmetric prime-sum ciphertext codebook in the existing streaming quotient receiver remain incompatible with the pinned finite native-GP lexicon; no unknown plaintext, authentic key or historical decoder recovered. Across the first 696 variants and the additional 116 source-sum ciphertext variants, the best long-group coverage remains far below native prose. These are conditional all-carry gates, not a general enumerative-code exclusion.
 
 The solved native warning explicitly mentions words and their numbers. The historical BASE29 operation makes integer ranking plausible. Test the literal numerical ordering of each length-L plaintext word by **sum of its original GP prime values**, breaking equal sums by canonical GP lexicographic order, over every one-symbol-omitted GP28 alphabet. The warning does not specify this ordering or the quotient recurrence. Printed groups are not authenticated plaintext words.
 
@@ -18,3 +18,20 @@ Exact DP counts all length-k alphabet sequences by prime sum (sum <=109k), then 
 Retire this particular prime-sum ordering in the fixed GP28 streaming quotient law. The original finite-language obstruction survives every carry and all tested omissions/field orders, but not a different ciphertext codebook rank, arithmetic model, segmentation, nonlinear receiver, or unrestricted language. Do not launch arbitrary rank-order variations without independent selection. The general #2273 architecture remains open.
 
 Reproduce: `node sims/lp2_gematria_sumrank_gp28_carry_sft.cjs`. [Complete numerical output](lp2-gematria-sumrank-gp28-carry.json). Actual Code Mode JavaScript execution on pinned inputs, no separate Windows CI claim. Input blobs: resources/liber-primus/lp2-corpus.json 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; resources/lp2-transcription.txt 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7; resources/control/english_wordfreq_textblob.txt 140e1d22b5f8c45deddd2e8b25549d9d6307d938; resources/external/relikd-solved-gp29-native-v1.json 1b064ef6d85819b7d96adaff31a82d1ec551598f.
+
+## Symmetric prime-sum ordering of the constrained ciphertext codebook
+
+To remove the asymmetry of the previous test, order the entire actual fixed-(L,e,head/seam) ciphertext codebook by the same pair (GP prime sum, canonical GP lexicographic order). The original low-level A/B/D rank no longer enters this receiver. This is the single natural symmetric extension of the warning's numerical-word ordering; test both matching prime-sum plaintext order and the previous canonical ordinal plaintext order as a fixed comparison. No data-dependent rank selection.
+
+Let F(k,e,p,s) count k successors following rune p, with exactly e equal transitions and GP prime sum s. With G(k,e,s)=sum_x F(k−1,e,x,s−w_x), the exact recurrence is F=G−F(k−1,e,p,s−w_p)+F(k−1,e−1,p,s−w_p). The base case is the empty sequence, e=s=0. G counts the free-head codebook; for fixed seam, restrict the first symbol to equal or differ from the visible predecessor. DP totals are independently checked against 29 choose(L−1,e) 28^(L−1−e) and its fixed-head/seam variants. Rank sums below the observed prime weight plus lexicographically earlier legal same-sum words; unrank descends the exact same counts. As before M is divisible by 28^(L−1−e), so the all-carry residue test remains exact despite the nontrivial ciphertext ordering.
+
+The original source has maximum interior e=2. Exhaustive literal sorting validates 1740 small original-alphabet codewords. Both ciphertext variants unrank every original group (5792 checks). Across 116 complete variants (two head modes × two plaintext orders × 29 omissions), the original result is:
+
+| Plaintext ordering | Best long-group residue coverage | All-length coverage | Best mode / omitted GP index | Actual long-word hits after terminal-zero full inversion |
+| --- | ---: | ---: | --- | ---: |
+| Prime-sum | 9/1132 | 1037/2896 | gap / 17 | 0 |
+| Canonical ordinal | 5/1132 | 776/2896 | word / 27 | 0 |
+
+The independent maxima are 1/69 long groups in p0–2 and 2/141 in p16–21. Both best full inverses forward-replay all 12956 original runes but are nonprose. Symmetric-order beginning: `HEACNGTHWNE ONGIAAE EOHWM EOJP CCR JEAXLTNIAUNTHT YHGWC IAGCNG NJE CCS MYAT LNGEO`. 8 native plants (omitting source-unused EO or OE, both head modes and plaintext orders) recover all 5920 words, 23832 runes and seed3301. This rejects the two specified source-sum ciphertext rank variants within the finite lexicon and unchanged printed boundaries, for every carry. The numerical order remains hypothetical; no original author instruction fixes it. Do not generalize to all orderings or all constrained coding. No unknown plaintext or key recovered.
+
+Reproduce: `node sims/lp2_gematria_symmetric_sumrank_carry_sft.cjs`. [Exact numerical output](lp2-gematria-symmetric-sumrank-carry.json). Executed on the same four pinned inputs using Code Mode JavaScript; no Windows CI claim.
