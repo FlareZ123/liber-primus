@@ -1,0 +1,349 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    }
+  ],
+  "method": "all legal inner-permutation prime-clock paths; exact shared monoalphabetic dictionary join on six longest intact original groups",
+  "lexiconForms": 29081,
+  "authenticReplay": 85,
+  "originals": [
+    {
+      "f": 54,
+      "l": 55,
+      "skip": 0,
+      "length": 308,
+      "b": 0,
+      "anchors": [
+        {
+          "start": 255,
+          "len": 13
+        },
+        {
+          "start": 222,
+          "len": 11
+        },
+        {
+          "start": 60,
+          "len": 10
+        },
+        {
+          "start": 210,
+          "len": 10
+        },
+        {
+          "start": 1,
+          "len": 8
+        },
+        {
+          "start": 9,
+          "len": 8
+        }
+      ],
+      "models": 47,
+      "originModels": 111,
+      "paths": 251,
+      "uniqueAnchorStates": 209,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 10
+    },
+    {
+      "f": 54,
+      "l": 55,
+      "skip": 9,
+      "length": 299,
+      "b": 0,
+      "anchors": [
+        {
+          "start": 246,
+          "len": 13
+        },
+        {
+          "start": 213,
+          "len": 11
+        },
+        {
+          "start": 51,
+          "len": 10
+        },
+        {
+          "start": 201,
+          "len": 10
+        },
+        {
+          "start": 0,
+          "len": 8
+        },
+        {
+          "start": 61,
+          "len": 8
+        }
+      ],
+      "models": 50,
+      "originModels": 140,
+      "paths": 306,
+      "uniqueAnchorStates": 258,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 10
+    },
+    {
+      "f": 0,
+      "l": 2,
+      "skip": 0,
+      "length": 729,
+      "b": 2,
+      "anchors": [
+        {
+          "start": 23,
+          "len": 11
+        },
+        {
+          "start": 62,
+          "len": 11
+        },
+        {
+          "start": 397,
+          "len": 10
+        },
+        {
+          "start": 575,
+          "len": 10
+        },
+        {
+          "start": 668,
+          "len": 10
+        },
+        {
+          "start": 708,
+          "len": 10
+        }
+      ],
+      "models": 3,
+      "originModels": 7,
+      "paths": 338,
+      "uniqueAnchorStates": 7,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 6
+    },
+    {
+      "f": 0,
+      "l": 2,
+      "skip": 13,
+      "length": 716,
+      "b": 2,
+      "anchors": [
+        {
+          "start": 10,
+          "len": 11
+        },
+        {
+          "start": 49,
+          "len": 11
+        },
+        {
+          "start": 384,
+          "len": 10
+        },
+        {
+          "start": 562,
+          "len": 10
+        },
+        {
+          "start": 655,
+          "len": 10
+        },
+        {
+          "start": 695,
+          "len": 10
+        }
+      ],
+      "models": 3,
+      "originModels": 11,
+      "paths": 1186,
+      "uniqueAnchorStates": 11,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 8
+    },
+    {
+      "f": 0,
+      "l": 2,
+      "skip": 0,
+      "length": 729,
+      "b": 0,
+      "anchors": [
+        {
+          "start": 23,
+          "len": 11
+        },
+        {
+          "start": 62,
+          "len": 11
+        },
+        {
+          "start": 397,
+          "len": 10
+        },
+        {
+          "start": 575,
+          "len": 10
+        },
+        {
+          "start": 668,
+          "len": 10
+        },
+        {
+          "start": 708,
+          "len": 10
+        }
+      ],
+      "models": 18,
+      "originModels": 69,
+      "paths": 32215,
+      "uniqueAnchorStates": 136,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 12
+    },
+    {
+      "f": 0,
+      "l": 2,
+      "skip": 13,
+      "length": 716,
+      "b": 0,
+      "anchors": [
+        {
+          "start": 10,
+          "len": 11
+        },
+        {
+          "start": 49,
+          "len": 11
+        },
+        {
+          "start": 384,
+          "len": 10
+        },
+        {
+          "start": 562,
+          "len": 10
+        },
+        {
+          "start": 655,
+          "len": 10
+        },
+        {
+          "start": 695,
+          "len": 10
+        }
+      ],
+      "models": 19,
+      "originModels": 69,
+      "paths": 22514,
+      "uniqueAnchorStates": 144,
+      "maxIndividuallyLexical": 6,
+      "allSixLexicalPaths": 0,
+      "bestJoint": null,
+      "joinNodes": 12
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "b": 0,
+      "sign": 1,
+      "start": 137,
+      "length": 515,
+      "markerImage": 7,
+      "trueJoin": true,
+      "firstJoinAssigned": 17,
+      "firstJoinCorrect": 17,
+      "anchors": [
+        {
+          "start": 447,
+          "len": 12
+        },
+        {
+          "start": 215,
+          "len": 10
+        },
+        {
+          "start": 264,
+          "len": 10
+        },
+        {
+          "start": 487,
+          "len": 10
+        },
+        {
+          "start": 104,
+          "len": 9
+        },
+        {
+          "start": 168,
+          "len": 9
+        }
+      ],
+      "replay": 515
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "b": 2,
+      "sign": -1,
+      "start": 911,
+      "length": 755,
+      "markerImage": 28,
+      "trueJoin": true,
+      "firstJoinAssigned": 15,
+      "firstJoinCorrect": 15,
+      "anchors": [
+        {
+          "start": 18,
+          "len": 13
+        },
+        {
+          "start": 284,
+          "len": 11
+        },
+        {
+          "start": 565,
+          "len": 11
+        },
+        {
+          "start": 78,
+          "len": 10
+        },
+        {
+          "start": 555,
+          "len": 10
+        },
+        {
+          "start": 717,
+          "len": 10
+        }
+      ],
+      "replay": 755
+    }
+  ]
+}
