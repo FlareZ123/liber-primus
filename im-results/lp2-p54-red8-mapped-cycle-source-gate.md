@@ -40,3 +40,20 @@ For the both-in-vocabulary reference search, use sims/lp2_shared_gp29_mapped_red
 Calibration verifies unique gauge-normalized permutations and independently replays every decoded candidate. Per-group arbitrary phase means this does not establish continuous-stream phase or a full page plaintext.
 
 General unknown q8 remains open; this red-heading constraint is far stronger than an unspecified shift vector.
+
+## Fixed published numeric interpretation (complete)
+
+The same eight visible glyph indices can instead directly supply shifts k=[19,21,23,27,2,14,10,19], without mapping the key through pi. This removes the scale gauge: only pi(F)=0 is fixed. Each edge now fixes a numeric coordinate difference. A weighted component solver keeps exact relative coordinates and 29-bit occupancy masks; merging components rotates a mask and checks overlap, while same-component edges must agree exactly. At completion exhaust every compatible translation of remaining components, fixing the component containing F so pi(F)=0. The dictionary pruning and OOV branching are identical to the mapped receiver. No caps.
+
+Both independent blind p54-only controls recover their exact permutations (unique qualifying map, 47/47 training support). Every one of the 17 withheld true words belongs to its decoded domain (12 and 11 uniquely correct). Original p54-only strict search exhausts 6343 anchors, no complete permutation. All four original <=3 OOV branches complete:
+
+| Required anchor | Prior omitted | Options exhausted | complete permutations |
+|---:|---|---:|---:|
+| 56 | none | 810 | 0 |
+| 49 | 56 | 305 | 0 |
+| 47 | 56,49 | 6343 | 0 |
+| 14 | 56,49,47 | 11062 | 0 |
+
+Every valid solution with at most three OOV body groups must include at least one of these four anchors. Thus no permutation supports >=61/64 original body groups under this fixed numeric heading key. This is a finite exclusion of that source-selected subcase, not an arbitrary-q8 theorem.
+
+[Native receiver](../sims/lp2_shared_gp29_numeric_red8_exact.cpp) · [raw results](lp2-p54-red8-numeric-cycle-results.json). The preparation script also generates numeric8 controls with the same donor words, hidden permutation, and independent starts. Compile as above, naming binary numeric8. Invoke numeric8 with the two *-numeric8.txt inputs and arguments 49 47 - 0 0 100000 2, then original.txt with 49 47 - 0 0 100000 2, and with 66 56 - 3 0 100000 2, 66 49 56 3 0 100000 2, 66 47 56,49 3 0 100000 2, 66 14 56,49,47 3 0 100000 2. Evaluate control winners with the preparation script arguments NAME RESULT_JSON numeric8.

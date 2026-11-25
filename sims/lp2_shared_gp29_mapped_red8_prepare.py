@@ -73,25 +73,28 @@ def prepare():
     Path('original.txt').write_text('\n'.join(enc(w) for w in original)+'\n')
     for i,name in enumerate(('gibran','emerson')):
         p=data['plants'][i];truth=read_words(p['truth']);pi=read_words(p['pi'])[0]
-        scale=pow(pi[K[0]],-1,N);pi=tuple(x*scale%N for x in pi)
-        key=tuple(pi[x] for x in K)
         rng=random.Random([3301,20141125][i]^0x54)
         starts=[rng.randrange(Q) for w in truth]
-        cipher=[encode(w,pi,key,j) for w,j in zip(truth,starts)]
-        Path(name+'-red8.txt').write_text('\n'.join(enc(w) for w in cipher)+'\n')
-        Path(name+'-red8-truth.json').write_text(json.dumps({'pi':pi,'k':key,'truth':[enc(w) for w in truth],'starts':starts})+'\n')
-def evaluate(name,result_path):
+        scale=pow(pi[K[0]],-1,N)
+        mapped=tuple(x*scale%N for x in pi)
+        for label,coords,key in [('red8',mapped,tuple(mapped[x] for x in K)),('numeric8',pi,K)]:
+            cipher=[encode(w,coords,key,j) for w,j in zip(truth,starts)]
+            stem=name+'-'+label
+            Path(stem+'.txt').write_text('\n'.join(enc(w) for w in cipher)+'\n')
+            Path(stem+'-truth.json').write_text(json.dumps({'pi':coords,'k':key,'truth':[enc(w) for w in truth],'starts':starts})+'\n')
+        Path(name+'-unknown8.txt').write_text(p['cipher'].replace(' ','\n')+'\n')
+def evaluate(name,result_path,label='red8'):
     _,words,_,_=load()
     result=json.loads(Path(result_path).read_text())
-    truth=json.loads(Path(name+'-red8-truth.json').read_text())
-    c=read_words(Path(name+'-red8.txt').read_text())
+    truth=json.loads(Path(name+'-'+label+'-truth.json').read_text())
+    c=read_words(Path(name+'-'+label+'.txt').read_text())
     for candidate in result['winners']:
         pi=read_words(candidate)[0]
-        key=tuple(pi[x] for x in K)
+        key=tuple(pi[x] for x in K) if label=='red8' else K
         dom=[decode(x,pi,key,words) for x in c]
         p=read_words(' '.join(truth['truth']))
         print(json.dumps({'case':name,'pi_exact':list(pi)==truth['pi'],'train_supported':sum(bool(x) for x in dom[2:49]),'holdout_truth':sum(w in d for w,d in zip(p[49:],dom[49:])),'holdout_unique_truth':sum(d=={w} for w,d in zip(p[49:],dom[49:]))}))
 if __name__=='__main__':
     import sys
     if len(sys.argv)==1:prepare()
-    else:evaluate(sys.argv[1],sys.argv[2])
+    else:evaluate(*sys.argv[1:])
