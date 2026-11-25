@@ -152,6 +152,215 @@
         "max": 62,
         "matches": 0
       }
+    ],
+    "byChapter": [
+      {
+        "lo": 0,
+        "hi": 2,
+        "n": 729,
+        "f": 34,
+        "windows": [
+          {
+            "min": 5,
+            "max": 33,
+            "matches": 0
+          },
+          {
+            "min": 4,
+            "max": 40,
+            "matches": 362
+          },
+          {
+            "min": 4,
+            "max": 31,
+            "matches": 0
+          }
+        ]
+      },
+      {
+        "lo": 3,
+        "hi": 7,
+        "n": 1145,
+        "f": 26,
+        "windows": [
+          {
+            "min": 12,
+            "max": 47,
+            "matches": 3048
+          },
+          {
+            "min": 12,
+            "max": 58,
+            "matches": 18681
+          },
+          {
+            "min": 7,
+            "max": 42,
+            "matches": 10328
+          }
+        ]
+      },
+      {
+        "lo": 8,
+        "hi": 14,
+        "n": 1729,
+        "f": 66,
+        "windows": [
+          {
+            "min": 23,
+            "max": 68,
+            "matches": 43
+          },
+          {
+            "min": 22,
+            "max": 73,
+            "matches": 288
+          },
+          {
+            "min": 14,
+            "max": 62,
+            "matches": 0
+          }
+        ]
+      },
+      {
+        "lo": 15,
+        "hi": 22,
+        "n": 1903,
+        "f": 72,
+        "windows": [
+          {
+            "min": 27,
+            "max": 73,
+            "matches": 93
+          },
+          {
+            "min": 26,
+            "max": 80,
+            "matches": 251
+          },
+          {
+            "min": 18,
+            "max": 66,
+            "matches": 0
+          }
+        ]
+      },
+      {
+        "lo": 23,
+        "hi": 26,
+        "n": 1021,
+        "f": 37,
+        "windows": [
+          {
+            "min": 10,
+            "max": 45,
+            "matches": 786
+          },
+          {
+            "min": 9,
+            "max": 52,
+            "matches": 5835
+          },
+          {
+            "min": 6,
+            "max": 40,
+            "matches": 556
+          }
+        ]
+      },
+      {
+        "lo": 27,
+        "hi": 32,
+        "n": 1433,
+        "f": 52,
+        "windows": [
+          {
+            "min": 17,
+            "max": 55,
+            "matches": 868
+          },
+          {
+            "min": 17,
+            "max": 65,
+            "matches": 3307
+          },
+          {
+            "min": 10,
+            "max": 54,
+            "matches": 77
+          }
+        ]
+      },
+      {
+        "lo": 33,
+        "hi": 39,
+        "n": 1680,
+        "f": 40,
+        "windows": [
+          {
+            "min": 22,
+            "max": 66,
+            "matches": 1846
+          },
+          {
+            "min": 21,
+            "max": 71,
+            "matches": 15412
+          },
+          {
+            "min": 13,
+            "max": 60,
+            "matches": 8085
+          }
+        ]
+      },
+      {
+        "lo": 40,
+        "hi": 53,
+        "n": 3008,
+        "f": 125,
+        "windows": [
+          {
+            "min": 46,
+            "max": 108,
+            "matches": 0
+          },
+          {
+            "min": 48,
+            "max": 117,
+            "matches": 0
+          },
+          {
+            "min": 33,
+            "max": 95,
+            "matches": 0
+          }
+        ]
+      },
+      {
+        "lo": 54,
+        "hi": 55,
+        "n": 308,
+        "f": 6,
+        "windows": [
+          {
+            "min": 0,
+            "max": 19,
+            "matches": 7806
+          },
+          {
+            "min": 0,
+            "max": 22,
+            "matches": 36210
+          },
+          {
+            "min": 0,
+            "max": 19,
+            "matches": 33391
+          }
+        ]
+      }
     ]
   }
 }
