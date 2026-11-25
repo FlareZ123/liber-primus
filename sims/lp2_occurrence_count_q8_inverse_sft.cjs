@@ -15,7 +15,7 @@ function experiment(raw){
  const byLen=new Map();for(const w of dict.values()){if(!byLen.has(w.length))byLen.set(w.length,[]);byLen.get(w.length).push(w)}
  const extract=t=>[...t].filter(c=>ix.has(c)).map(c=>ix.get(c));
  const pages=g.pages.filter(p=>p.page<56),source=runeWords(raw[1],/[-.&$]/u),flat=source.flat();assert(id(flat.slice(0,12956))===id(pages.flatMap(p=>p.indices)),"source mismatch");
- const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]],cuts=ranges.map(([a])=>pages.filter(p=>p.page<a).reduce((s,p)=>s+p.indices.length,0)).concat(12956);
+ const ranges=["p0–2","p3–7","p8–p15 opening 9","p15 after opening 9–p22","p23–26","p27–32","p33–39","p40–53","p54–55"]; const cuts=[0,729,1874,3612,5506,6527,7960,9640,12648,12956];
  const chapters=ranges.map(()=>[]);let cursor=0,h=0;for(const w of source){if(cursor>=12956)break;while(cursor===cuts[h+1])h++;assert(cursor+w.length<=cuts[h+1],"chapter boundary clipped");chapters[h].push(w);cursor+=w.length}assert(chapters.flat().length===2896,"group total "+chapters.flat().length);
  function phases(C){const count=Array(29).fill(0),J=[];let j=0;for(const c of C){J.push(j);j=++count[c]%8}return J}
  function enc(P,K,mode="occ",R){const count=Array(29).fill(0),C=[],J=[];let j=0;for(let i=0;i<P.length;i++){J.push(j);const c=mod(P[i]+(mode==="pad"?R()%29:K[j]));C.push(c);j=mode==="digit"?(j+1)%8:++count[c]%8}return {C,J}}
@@ -42,6 +42,8 @@ function experiment(raw){
  function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0}}
  const original=chapters.map(w=>w.flat()),originalStats=clockStats(original);
  const originalLex=chapters.map((w,i)=>({range:ranges[i],...projection(w,original[i],phases(original[i]))}));
+ function eFloor(N){return donors.map(d=>{const P=d.flat(),e=g.translit.indexOf("E");let n=P.slice(0,N).filter(x=>x===e).length,min=n;for(let i=N;i<P.length;i++){n+=Number(P[i]===e)-Number(P[i-N]===e);min=Math.min(n,min)}return {windows:P.length-N+1,min}})}
+ const wholeE=eFloor(12956),chapterE=original.map((C,i)=>({range:ranges[i],Emax:clockStats([C]).Emax,donors:eFloor(C.length)}));
  const controlStats=[],controls=[];
  for(let d=0;d<donors.length;d++){const donor=donors[d],P=donor.flat(),R=rng(0x33012746+d*13);for(let k=0;k<8;k++){const K=Array.from({length:8},()=>R()%29),start=R()%(P.length-12956+1),p=P.slice(start,start+12956),pts=cuts.slice(0,-1).map((a,i)=>p.slice(a,cuts[i+1]));const row={d,k,K,start};for(const mode of ["occ","digit","pad"]){const ct=pts.map(t=>enc(t,K,mode,R).C),s=clockStats(ct);row[mode]={rep:s.rep,samePhase:s.samePhase,samePhaseRep:s.samePhaseRep,maxLL:s.maxLL,Emax:s.Emax,decodedRepeatBounds:s.decodedRepeatBounds,recKey:same(K,s.key)};if(mode==="occ"){assert(ct.every((c,i)=>same(dec(c,K),pts[i])&&same(enc(dec(c,K),K).C,c)),"occ round trip");const decodedRep=pts.reduce((z,t)=>z+t.slice(1).filter((c,i)=>c===t[i]).length,0);assert(decodedRep>=s.decodedRepeatBounds[0]&&decodedRep<=s.decodedRepeatBounds[1],"repeat bound excludes true key");row[mode].nativeRep=decodedRep;}}controlStats.push(row)}
  const test=donor.slice(Math.floor(donor.length*.8)),pWords=test.slice(0,Math.min(650,test.length)),p=pWords.flat(),K=Array.from({length:8},()=>R()%29),{C,J}=enc(p,K);assert(same(J,phases(C)),"phase mismatch");const n=Math.floor(p.length*.75),fit=clockStats([C.slice(0,n)]),guess=fit.key,decoded=dec(C,guess);const lex=projection(pWords,C,J),oov=pWords.filter(w=>!dict.has(id(w))).length;assert(lex.minOOV<=oov,"lexical bound false rejection");controls.push({d,n:p.length,fit:n,heldout:p.length-n,K,guess,keyCorrect:same(K,guess),correct:decoded.slice(n).filter((v,i)=>v===p[n+i]).length,oov,lex});
@@ -51,7 +53,7 @@ function experiment(raw){
  const wC=extract(raw[7].split("%").slice(1,3).join("%")),kC=extract(raw[7].split("$")[5]);const keyword=(P,K)=>{let j=0;return P.map(p=>p===0?0:mod(p+K[j++%K.length]))};
  const wP=extract(gold.sections.find(s=>s.name==="0_welcome").source_text),kP=extract(gold.sections.find(s=>s.name==="jpg107-167").source_text);
  assert(same(keyword(wP,[23,10,1,10,9,10,16,26]),wC),"WELCOME replay");assert(same(keyword(kP,[0,10,4,0,1,19,0,18,4,18,9,0,18]),kC),"KOAN replay");
- return {baseTypes,broadTypes:dict.size,cuts,sourceReplays:[C56.length,wC.length,kC.length],originalStats,originalLex,controlStats,controls};
+ return {baseTypes,broadTypes:dict.size,cuts,wholeE,chapterE,sourceReplays:[C56.length,wC.length,kC.length],originalStats,originalLex,controlStats,controls};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/english_wordfreq_textblob.txt","resources/transcriptions/lp1_wulfic_canonical.txt"];
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
