@@ -1,0 +1,22 @@
+# p33–39 modulus3301 pair-power receiver: fixed inverse and all-exponent obstruction
+
+Agent9, 2026-11-25; Director [#2823](https://github.com/FlareZ123/liber-primus/issues/2823).
+
+## Source and frozen receiver
+The original cuneiform motif reads 1033/3301, repeated unchanged on p34–39. The historical signed 2013 protocol establishes BASE29 and a modular DH operation, but neither binds 1033 to an exponent nor 3301 to this LP2 field; the previous typed-state source gate is [here](lp2-p33-39-cuneiform-base29-key-gate.md). #2243's numbered passage tests and fixed additive BASE29 consumers are distinct. The pair-power operation is an exploratory interpretation of visible operands.
+
+Use the original 1680-rune chapter, removing only physically red spans [7960,7970), [8051,8059), [9519,9522) in global rune coordinates. The resulting black-body tape has 1659 runes, 373 complete groups, and 829 consecutive ordered pairs plus one final singleton. Keep source carries, including the p33 intra-page red-heading seam (81/115 black runes) and p33→p34 cross-page word. Pair continuously across seams; final singleton passes literally (explicit exploratory convention). P33 black196 is the development region; p34–39 black1463 is the fixed continuation. The pair framing is MSB-first rank x=29a+b, not inferred from decoded outputs.
+
+In the prime field F3301, exponent 1033 is a unit modulo3300, inverse exponent 1297. Iterate x→x^1033 until rank lies in 0..840; reverse by cycle-walking exponent1297. Zero remains zero. This induced permutation is bijective on all 841 ranks, with 76 fixed points and cycle counts by length 1–11: [76,41,32,20,32,21,15,6,3,3,1]. Maximum forward/inverse walk20. Entire permutation verified.
+
+## Native controls and original fixed inverse
+36 independent seeded length-matched native-register word sequences, 12 per Gibran/Shakespeare/Emerson donor tail, with dictionary fallback where necessary, each invert 1659/1659. These are sampled words, not continuous natural prose. Native cipher statistics: 47–76 adjacent equals (23–48 within pair, 19–38 across pairs); 3–16 within-word lag5 equals; ordered pair-collision counts3358–4930. The original has 12 adjacent equals (4 within/8 across), 13 lag5 equalities in261 opportunities, and only910 ordered pair collisions. The lag5 count by itself is within the plant range. Fixed inverse produces no prose, scores −3.430538/−3.409642 nats/rune on p33 / frozen continuation, versus native control ranges −3.1764..−2.9200 and −3.0745..−2.9157. Entire original re-encodes exactly (1659/1659); this is automatic for wrong bijections.
+
+## All-unit-exponent rejection without exponent fitting
+Every unit exponent modulo3300 preserves multiplicative order in F3301, and iteration/cycle-walking preserves the same order. Treat rank zero as its own class. The fixed rank domain contains 33 such classes (including zero). For every original printed group, consider only complete globally aligned pairs wholly inside it; ignore boundary-spanning pairs and the final singleton. Precompute the exact tuple of pair orders for all same-length native words in the frozen 35,944-form register and compare to the ciphertext tuple. This is a necessary condition for **every** unit exponent and even grants arbitrary independent permutations within each order class, with no shared key requirement.
+
+333/373 words contain at least one complete internal pair. **48 words have no compatible order-signature dictionary form.** With a 5% whole-chapter OOV allowance (18 of 373), every possible unit exponent fails, even under the stronger within-order arbitrary-bijection relaxation. All 36 length-matched native controls retain every word under this necessary gate. No plaintext ranking or unknown exponent sweep follows. Pair collision counts are also invariant under any fixed rank bijection, so the original collision gap cannot be repaired by another exponent; that observation is empirical relative to the finite controls.
+
+Retire the exact fixed pair-power receiver and its all-unit-exponent extension under intact groups, frozen black-body framing, canonical ranks and 5% lexicon OOV. This is not an all-register or all-segmentation theorem; no unknown plaintext or authentic key. No added modulus, offset or round search.
+
+[SFT](../sims/lp2_p33_mod3301_pair_power_sft.cjs) · [Full executed output and pinned input blobs](lp2-p33-mod3301-pair-power-output.json). Executed in connected V8; no separate Node CI run.
