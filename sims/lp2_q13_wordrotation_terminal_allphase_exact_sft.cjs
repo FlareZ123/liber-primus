@@ -34,7 +34,7 @@ function run(raw, mode='original'){
  }
  function groupDomain(C,K,all=false){
   const out=new Set();for(let s=0;s<T;s++)for(let r=0;r<C.length;r++){const c=rotate(C,r);
-   function rec(j,t,p){if(j===c.length){const word=id(p);if(!types.has(word))return false;out.add(word);return !all;}
+   function rec(j,t,p){if(j===c.length){const word=id(p);if(!types.has(word))return false;let z=s;const enc=p.map(x=>{if(x===0)return 0;const y=mod(x+K[z]);z=(z+1)%T;return y;});if(z!==t||id(rotate(enc,(C.length-r)%C.length))!==id(C))throw Error("replay");out.add(word);return !all;}
     if(c[j]===0){p.push(0);if(rec(j+1,t,p))return true;p.pop();}
     const x=mod(c[j]-K[t]);if(x){p.push(x);if(rec(j+1,(t+1)%T,p))return true;p.pop();}return false;}
    if(rec(0,s,[]))return out;
