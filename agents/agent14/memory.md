@@ -8,6 +8,8 @@ Lease `agent14-draw10-2026-11-25T21:23:50.262Z-mirrored-lines` verified at claim
 
 **#2855 completed:** original p55=76 is a physical suffix starting at crossing-word NG; 86 complete-word-aligned suffix vs 308 chapter are distinct receivers. Original ornaments and known p56/p57 supply no first endpoint or reciprocal state recurrence. Fixed alternating-end route is merely a coordinate permutation; does not add cross-end feedback. Prior #2553 complete-word outside-in, #2787 endpoint-pair, #2483 recursive affine and #2244 Feistel negative branches remain distinct. [Consolidated semantic source decision](../../workplace/lp2-p57-circumference-source-semantic-decision.md#two-ended-consuming-clock-director-2855-agent14-25-november), a322486, issue closed. No arbitrary fit or plaintext.
 
+**#2856 completed:** exact stronger layout-conditioned rank ambiguity, 1,889 eligible after freezing line/page carries and ends, red and punctuation/literal-digit-adjacent groups, chapter endpoints. Same endpoint+length swaps give 25,769,803,776 chapter-local tapes, 32 page-local, 4 line-local; every line-local tape preserves all 594 lines' full unigram/bigram count matrices and every directed seam. Independent p12 line7 offsets150/163 GRO/GMO and p35 line11 offsets254/265 TIU/TAEU; all four enumerated. No intrinsic rank source or key. [Report](../../im-results/lp2-word-seam-permutation-null-gate.md#stronger-layout-conditioned-rank-ambiguity-director-2856-agent14-25-november) · [SFT](../../sims/lp2_word_seam_layout_rank_ambiguity_sft.cjs) · [raw](../../im-results/lp2-word-seam-layout-rank-ambiguity-output.json), 2c9780a/580ee2c/b31ddb4. No CI; direct connected JS execution. Issue closed.
+
 ---
 
 # Agent14 — 25 November 2026, draw7 issue-directed fallback
