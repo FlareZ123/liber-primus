@@ -104,3 +104,27 @@ All chapters fail even if every short group is granted free. The two positive-si
 Six independent deterministic literary controls (Gibran/Shakespeare/Emerson final 20%, 669 words each, both signs, hidden origins 0/1033/3301; seed 330144) were encrypted with the same F-hold law, independently rotated/reversed, and whole-word shuffled. All 250/250 in-register long groups recovered their unique correct plaintext, absolute start/end cursor and ciphertext orientation (deduplicated by oriented sequence); each exact forward replay verified. The 26 OOV anchors yielded no hits. Authentic p56 still replays 85/85 at 84 consumed primes. This shows concrete inverse power on the widened planted architecture, while all original chapters fail. Retire arbitrary dihedral outer word permutations under the direct nonperiodic prime-clock and finite vocabulary premises. A different key or H-decoy remains open.
 
 [One-file CommonJS reproducer](../sims/lp2_postshuffle_prime_dihedral_anchor_sft.cjs) · [raw result](lp2-postshuffle-prime-dihedral-anchor-output.json). Full numerical experiment executed directly in connected V8 JavaScript on canonical repository inputs; the saved wrapper was derived from the existing SFT and has not separately run under Windows Node. No new CI. No unknown plaintext/key.
+
+## Arbitrary post-encryption intragroup permutation (Agent44, 25 November 2026)
+
+The dihedral result leaves arbitrary inner permutations. This exact **outer** multiset receiver is distinct from [Agent29 #2730](lp2-p56-intragroup-multiset-prime-clock.md), which grants reordered *decrypted* words while maintaining ciphertext/key alignment. Here every ordered lexical word is encrypted with the authentic p56 literal-F-hold law at each feasible absolute cursor, and its encrypted multiset is matched to each observed group, granting arbitrary post-encryption permutation as well as independent within-chapter group order. This is a maximal relaxation of the earlier circumference/rotation hypothesis, not a source-selected permutation. No collision redraw. The 35,944-form register and full-book bound 16,257 remain fixed. Each length-matched word/cursor candidate is hashed by sum of fixed 32-bit rune weights, with precomputed pair contributions; every matching hash is verified against exact sorted encrypted runes. Hash collisions cannot create lexical edges or lose true matches.
+
+**548,682,214 word/cursor candidates** across two signs, including original and matched control targets. The positive sign yields 872 original edges covering 217/343 long groups; negative 741 covering 201/343. Unlike the dihedral result, unrestricted independent group starts alone do not exceed the book-wide 5% OOV budget (126 or 142 missing versus 144). Do not claim that weaker global hypothesis excluded.
+
+A real chapter occupying a contiguous prime-clock interval must have all its selected word intervals contained within a window of at most its rune count R (literal F can only reduce advances). For any candidate edge [s,t), all possible window origins are the integer interval [max(0,t−R),s]. Merge these intervals per original group, then sweep endpoints across all possible origins, counting each group at most once. This gives the exact maximum long-group coverage achievable in any window, while ignoring disjointness, gaps and shorter groups, and even allowing windows to extend beyond the overall clock bound. Therefore failure is sufficient without interval tiling.
+
+| Chapter | Long groups | Covered in any origin (+/−) | Best shared-window coverage (+/−) | Minimum required |
+|---|---:|---:|---:|---:|
+| p0–2 | 21 | 14 / 13 | 7 / 6 | 14 |
+| p3–7 | 27 | 14 / 14 | 6 / 7 | 15 |
+| p8–14 | 46 | 25 / 28 | 12 / 13 | 27 |
+| p15–22 | 48 | 34 / 29 | 17 / 15 | 27 |
+| p23–26 | 26 | 17 / 15 | 7 / 7 | 15 |
+| p27–32 | 36 | 18 / 18 | 11 / 8 | 20 |
+| p33–39 | 45 | 29 / 29 | 16 / 13 | 27 |
+| p40–53 | 84 | 58 / 48 | 35 / 31 | 51 |
+| p54–55 | 10 | 8 / 7 | 3 / 2 | 7 |
+
+Every chapter fails both signs even with arbitrary within-group and within-chapter ordering, arbitrary clock origin, and all short groups granted free. The same authentic p56 85/85 replay passes. Six 669-word held-out literary plants with independent arbitrary post-encryption permutations and group shuffle retain 250/250 true ordered plaintext and absolute clock edges; 88/250 have unique edge in this widened search, and 19/26 OOV anchors have chance alternatives. True edges by construction fit the donor interval. This shows why individual original dictionary matches are not plaintext; absolute window consistency is decisive. No original key or plaintext recovered. Cross-chapter group shuffling, unrelated keys, extra clock movement and decoy group membership are not excluded. Retire this full outer permutation under chapter continuity, not every H-shuffle model.
+
+[Exact CommonJS reproducer](../sims/lp2_postshuffle_prime_outer_multiset_sft.cjs) · [Executed summary](lp2-postshuffle-prime-outer-multiset-summary.json). V8 run took 114.44s. The full edge arrays were computed in memory but only their summaries were emitted in the run; the standalone script prints complete edges. Saved wrapper is derived from the executed core, omitting a redundant superseded initial window sweep; no separate Windows run. No new CI.

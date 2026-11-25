@@ -1,0 +1,282 @@
+{
+  "elapsedSeconds": 114.44,
+  "originals": [
+    {
+      "sign": 1,
+      "candidates": 274341107,
+      "hashChecks": 127500,
+      "exactChecks": 1349,
+      "eligible": 343,
+      "covered": 217,
+      "edgeCount": 872,
+      "chapters": [
+        {
+          "chapter": "p0–2",
+          "groups": 158,
+          "runes": 729,
+          "eligible": 21,
+          "covered": 14,
+          "bestWindowCoverage": 7,
+          "bestWindowOrigin": 7905,
+          "windowMissing": 14,
+          "budget": 7
+        },
+        {
+          "chapter": "p3–7",
+          "groups": 255,
+          "runes": 1145,
+          "eligible": 27,
+          "covered": 14,
+          "bestWindowCoverage": 6,
+          "bestWindowOrigin": 4194,
+          "windowMissing": 21,
+          "budget": 12
+        },
+        {
+          "chapter": "p8–14",
+          "groups": 383,
+          "runes": 1729,
+          "eligible": 46,
+          "covered": 25,
+          "bestWindowCoverage": 12,
+          "bestWindowOrigin": 2554,
+          "windowMissing": 34,
+          "budget": 19
+        },
+        {
+          "chapter": "p15–22",
+          "groups": 437,
+          "runes": 1903,
+          "eligible": 48,
+          "covered": 34,
+          "bestWindowCoverage": 17,
+          "bestWindowOrigin": 3315,
+          "windowMissing": 31,
+          "budget": 21
+        },
+        {
+          "chapter": "p23–26",
+          "groups": 224,
+          "runes": 1021,
+          "eligible": 26,
+          "covered": 17,
+          "bestWindowCoverage": 7,
+          "bestWindowOrigin": 2157,
+          "windowMissing": 19,
+          "budget": 11
+        },
+        {
+          "chapter": "p27–32",
+          "groups": 326,
+          "runes": 1433,
+          "eligible": 36,
+          "covered": 18,
+          "bestWindowCoverage": 11,
+          "bestWindowOrigin": 840,
+          "windowMissing": 25,
+          "budget": 16
+        },
+        {
+          "chapter": "p33–39",
+          "groups": 378,
+          "runes": 1680,
+          "eligible": 45,
+          "covered": 29,
+          "bestWindowCoverage": 16,
+          "bestWindowOrigin": 4476,
+          "windowMissing": 29,
+          "budget": 18
+        },
+        {
+          "chapter": "p40–53",
+          "groups": 669,
+          "runes": 3008,
+          "eligible": 84,
+          "covered": 58,
+          "bestWindowCoverage": 35,
+          "bestWindowOrigin": 6487,
+          "windowMissing": 49,
+          "budget": 33
+        },
+        {
+          "chapter": "p54–55",
+          "groups": 66,
+          "runes": 308,
+          "eligible": 10,
+          "covered": 8,
+          "bestWindowCoverage": 3,
+          "bestWindowOrigin": 2942,
+          "windowMissing": 7,
+          "budget": 3
+        }
+      ]
+    },
+    {
+      "sign": -1,
+      "candidates": 274341107,
+      "hashChecks": 127242,
+      "exactChecks": 1262,
+      "eligible": 343,
+      "covered": 201,
+      "edgeCount": 741,
+      "chapters": [
+        {
+          "chapter": "p0–2",
+          "groups": 158,
+          "runes": 729,
+          "eligible": 21,
+          "covered": 13,
+          "bestWindowCoverage": 6,
+          "bestWindowOrigin": 7966,
+          "windowMissing": 15,
+          "budget": 7
+        },
+        {
+          "chapter": "p3–7",
+          "groups": 255,
+          "runes": 1145,
+          "eligible": 27,
+          "covered": 14,
+          "bestWindowCoverage": 7,
+          "bestWindowOrigin": 1960,
+          "windowMissing": 20,
+          "budget": 12
+        },
+        {
+          "chapter": "p8–14",
+          "groups": 383,
+          "runes": 1729,
+          "eligible": 46,
+          "covered": 28,
+          "bestWindowCoverage": 13,
+          "bestWindowOrigin": 8028,
+          "windowMissing": 33,
+          "budget": 19
+        },
+        {
+          "chapter": "p15–22",
+          "groups": 437,
+          "runes": 1903,
+          "eligible": 48,
+          "covered": 29,
+          "bestWindowCoverage": 15,
+          "bestWindowOrigin": 9459,
+          "windowMissing": 33,
+          "budget": 21
+        },
+        {
+          "chapter": "p23–26",
+          "groups": 224,
+          "runes": 1021,
+          "eligible": 26,
+          "covered": 15,
+          "bestWindowCoverage": 7,
+          "bestWindowOrigin": 11701,
+          "windowMissing": 19,
+          "budget": 11
+        },
+        {
+          "chapter": "p27–32",
+          "groups": 326,
+          "runes": 1433,
+          "eligible": 36,
+          "covered": 18,
+          "bestWindowCoverage": 8,
+          "bestWindowOrigin": 4173,
+          "windowMissing": 28,
+          "budget": 16
+        },
+        {
+          "chapter": "p33–39",
+          "groups": 378,
+          "runes": 1680,
+          "eligible": 45,
+          "covered": 29,
+          "bestWindowCoverage": 13,
+          "bestWindowOrigin": 1798,
+          "windowMissing": 32,
+          "budget": 18
+        },
+        {
+          "chapter": "p40–53",
+          "groups": 669,
+          "runes": 3008,
+          "eligible": 84,
+          "covered": 48,
+          "bestWindowCoverage": 31,
+          "bestWindowOrigin": 1223,
+          "windowMissing": 53,
+          "budget": 33
+        },
+        {
+          "chapter": "p54–55",
+          "groups": 66,
+          "runes": 308,
+          "eligible": 10,
+          "covered": 7,
+          "bestWindowCoverage": 2,
+          "bestWindowOrigin": 0,
+          "windowMissing": 8,
+          "budget": 3
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "d": 0,
+      "sign": 1,
+      "eligible": 26,
+      "inRegister": 23,
+      "recovered": 23,
+      "unique": 6,
+      "otherOOV": 1
+    },
+    {
+      "d": 1,
+      "sign": 1,
+      "eligible": 53,
+      "inRegister": 47,
+      "recovered": 47,
+      "unique": 21,
+      "otherOOV": 6
+    },
+    {
+      "d": 2,
+      "sign": 1,
+      "eligible": 59,
+      "inRegister": 55,
+      "recovered": 55,
+      "unique": 21,
+      "otherOOV": 3
+    },
+    {
+      "d": 0,
+      "sign": -1,
+      "eligible": 26,
+      "inRegister": 23,
+      "recovered": 23,
+      "unique": 4,
+      "otherOOV": 0
+    },
+    {
+      "d": 1,
+      "sign": -1,
+      "eligible": 53,
+      "inRegister": 47,
+      "recovered": 47,
+      "unique": 20,
+      "otherOOV": 6
+    },
+    {
+      "d": 2,
+      "sign": -1,
+      "eligible": 59,
+      "inRegister": 55,
+      "recovered": 55,
+      "unique": 16,
+      "otherOOV": 3
+    }
+  ],
+  "notes": "Summarized executed V8 output; full anchor arrays were computed in the run but not emitted to the tool transcript. Reproducer prints them."
+}

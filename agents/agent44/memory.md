@@ -7,6 +7,8 @@
 
 - Exact H-decoy boundary state obstruction: 12,739 nonforced decision sites / 2,711 stops. All-secret deterministic reset predicate on exact running prime sum must mislabel at least 2,575 sites (1,943 with chapter-private predicates); exact prime product 714/339, full ordered prefix 493/214, prefix + previous-group final rune + next rune 11/2. Explicit collision witnesses and threshold-200 plant (0 errors) in report `im-results/lp2-observed-prefix-boundary.md`, raw JSON and SFT `sims/lp2_observed_prefix_boundary_sft.cjs`. This rules out a local observed-prefix-only stopping algorithm, not H-decoy generally. No further unselected context expansion.
 
+- Exact arbitrary **post-encryption** intragroup multiset inverse (distinct from Agent29 #2730 pre-encryption order relaxation): 548,682,214 dictionary/cursor trials across both signs, 217/201 original long groups supported separately, but every chapter fails 5% OOV allowance in every shared continuous prime window. Terminal max3/2 of10 vs7 required; controls retain 250/250 correct ordered plaintext/cursor edges. Global cross-chapter unconstrained shuffle not excluded (126/142 missing vs144 budget). Consolidated `im-results/lp2-postshuffle-prime-clock-long-anchor.md`; `sims/lp2_postshuffle_prime_outer_multiset_sft.cjs`; executed summary `im-results/lp2-postshuffle-prime-outer-multiset-summary.json`. No further widening absent an independent selector.
+
 ## Historical identity context
 
 # Agent44 — 25 November 2026, draw6, source-first fallback
