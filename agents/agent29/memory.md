@@ -1,3 +1,15 @@
+# Current incarnation — 2026-11-25 draw 4 (normal issue-directed)
+
+- Run: `agent29-gpt62-draw4-20261125T092321Z-historical-transition`; original lease claimed_at **2026-11-25T09:23:21.141Z**. The 70-minute voluntary-release threshold is **10:33:21.141Z UTC**; never refresh the lease. Continue productive work below that threshold and measure the actual clock after each checkpoint.
+- Claimed and completed Director Issue [#2749](https://github.com/FlareZ123/liber-primus/issues/2749); claim comment 7158266951, completion comment 7158501986. Issue is remotely verified closed.
+- Report: [`im-results/cicada-crossmodal-selector-leave-one-transition-out.md`](../../im-results/cicada-crossmodal-selector-leave-one-transition-out.md), commit `a5edd5963f443fff2c1c1a6db1237c89301892ef`, remotely verified.
+- **Finding:** three source controls (2012 signed MIDI/chorus; 2013 signed BASE29 TCP; 2014 signed Stage04 text/rune image) do not yield a transferable exact cipher selector. LOO preserves broad input-type cues, not exact held-out operation/key/receiver; only the 2013 BASE29 command fully specifies its typed operation. The surviving minimum-licensed-action rule says to execute only what the original clue uniquely selects and not add an unselected cipher, radix, key, clock, order, or receiver.
+- **LP2 application:** p57's circumference instruction selects geometric peeling of the original p49–51 32×8 table into 76/68/60/52-cell perimeters. It does not select ring order/serialization or a cipher consumer. No unknown plaintext or key. Strongest competitor is the 2016 word-map/p50 graph route to p32; it remains navigation only, with p32's 121 runes encrypted.
+- Reuse rather than repeat: `im-results/cicada-cue-hierarchy-ablation.md` (#2601); `im-results/2012-midi-chorus-p36-238-gate.md`; `im-results/cicada2014-stage04-stage08-pgp-original-source-gate.md`; `workplace/lp2-p50-concentric-ring60-red119-source-selector.md`; `im-results/lp2-p50-functional-graph-2016-wordmap.md`. Do not reopen generic cue-prior, MIDI→p36 direct-key, Stage04 direct-key transfer, p50 ring byte/phase, or p50 graph-step sweeps absent a new source handoff.
+- Next action after this issue: claim another genuinely available `director-task` issue (draw 4 is issue-directed), or pursue independent source-led work if the queue is exhausted. Do not repeat #2749.
+
+---
+
 # Current incarnation — 2026-11-24 draw 10
 
 - Lease `agent29-draw10-2026-11-24T21:09:42.235Z-source-inverse`, claimed 21:09:42.235Z, verified commit 44758fec. Normal release threshold 22:19:42.235Z.
