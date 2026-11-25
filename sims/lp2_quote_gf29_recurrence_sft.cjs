@@ -70,7 +70,7 @@ function attack(gp,raw,allowOriginal=false) {
               const m=bm(seq);minOrder=Math.min(minOrder,m.L);orderHistogram[m.L]=(orderHistogram[m.L]||0)+1;
               const inf=infer(seq);if(!inf)return;eligibleRecurrences++;
               match(pair.right,C,i,S,inf.K,pos,seq.length,(p,h,Q)=>{
-                if(pair.right.rem[p]>=N-S)out.push({pair,leftStart:left.length?p:null,pos:p,phase:h,plain:L.concat(P,Q),...inf});
+                if(pair.right.rem[p]>=N-S)out.push({pair,pos:p,phase:h,plain:L.concat(P,Q),...inf});
               });
               return
             }
@@ -109,7 +109,8 @@ function attack(gp,raw,allowOriginal=false) {
       });
     }
     const recovered=truth?survivors.some(o=>o.source===truth.source&&o.stop===truth.stop&&o.plain.join()===truth.plain.join()&&o.K.slice(0,o.phase).join()===truth.K.slice(0,o.phase).join()):null;
-    return {...stats,prefixPaths:out.length,prefixSourceKeys:prefixKeys.size,predictionPaths:pred.toString(),suffixMatches:survivors.length,recovered,classes,fullCandidates:survivors.slice(0,20)};
+    const allHoldoutCorrect=truth?survivors.length>0&&survivors.every(o=>{const h=o.plain.slice(0,S).filter(x=>x!==0).length,th=truth.plain.slice(0,S).filter(x=>x!==0).length;return o.source===truth.source&&o.stop===truth.stop&&o.plain.slice(S).join()===truth.plain.slice(S).join()&&o.K.slice(h,o.phase).join()===truth.K.slice(th,th+truth.plain.slice(S).filter(x=>x!==0).length).join()}):null;
+    return {...stats,prefixPaths:out.length,prefixSourceKeys:prefixKeys.size,predictionPaths:pred.toString(),suffixMatches:survivors.length,recovered,allHoldoutCorrect,classes,fullCandidates:survivors.slice(0,20)};
   }
   const controls=[],nulls=[];
   for(let j=0;j<3;j++)for(let k=0;k<4;k++){
@@ -130,7 +131,10 @@ function attack(gp,raw,allowOriginal=false) {
     nulls.push({id:4*j+k,...run(enc(plain,pad))});
   }
   const gate={correct:controls.filter(x=>x.recovered).length,uniqueFull:controls.filter(x=>x.suffixMatches===1).length,falsePrefix:nulls.filter(x=>x.prefixPaths).length,falseFull:nulls.filter(x=>x.suffixMatches).length};
-  gate.pass=gate.correct===controls.length&&gate.uniqueFull===controls.length&&gate.falseFull===0;
+  gate.allHoldoutCorrect=controls.filter(x=>x.allHoldoutCorrect).length;
+  // Multiple exact prefix histories are legitimate for singular recurrences and spelling ambiguity.
+  // Require all retained full matches to identify the source and exact held-out consuming shifts.
+  gate.pass=gate.correct===controls.length&&gate.allHoldoutCorrect===controls.length&&gate.falsePrefix===0&&gate.falseFull===0;
   let original=null;
   if(allowOriginal&&gate.pass){
     const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"LP2 size");
