@@ -31,9 +31,34 @@ function experiment(A,B) {
    let states=new Map([[initialH*30+initialPrev+1,{s:0,p:[],h:initialH,last:initialPrev}]]);
    for(let i=start;i<end;i++){let next=new Map();for(const st of states.values()){const h=st.h,last=st.last,v=c[i],k=primes[o+i-h];function add(x,hh){const s=st.s+(last<0? -Math.log(29):lp[last][x]),id=hh*30+x+1;const prior=next.get(id);if(!prior||s>prior.s)next.set(id,{s,p:[...st.p,x],h:hh,last:x})}if(v===0)add(0,h+1);if(v!==k)add(mod(v-k),h)}states=next;if(!states.size)return null}return [...states.values()].reduce((a,b)=>a.s>b.s?a:b);
  }
- let ranked=null;
- if(alive.length>0&&alive.length<=2000){let win=null;for(const k of alive){let c=variants[k.vi].map.map(i=>original[i]);let d=decode(c,k.o,0,cut);if(d&&(!win||d.s>win.d.s))win={...k,d,c}}if(win){let suffix=decode(win.c,win.o,cut,N,win.d.h,win.d.last);ranked={order:variants[win.vi].order,turn:variants[win.vi].turn,origin:win.o,prefixScore:win.d.s/cut,heldoutScore:suffix?suffix.s/(N-cut):null,heldoutLength:suffix?suffix.p.length:0,prefix:win.d.p.slice(0,70).map(x=>A.translit[x]).join(" "),heldout:suffix?suffix.p.slice(0,70).map(x=>A.translit[x]).join(" "):null,exactReplay:suffix?same(enc([...win.d.p,...suffix.p],win.o),win.c):false}}}
- return {n:N,cut,variants:variants.length,origins:maxOrigin+1,total:variants.length*(maxOrigin+1),original:{prefix,full,max,best,origin0,raw},plants,p56:p56.length,ranked};
+ // Exact two-lane MAP score. At fixed hold count h, the previous
+ // plaintext is either literal F (H) or the uniquely consumed rune (C).
+ function fastScore(c,o,end=cut) {
+   let H=new Float64Array(64),C=new Float64Array(64),HH=new Float64Array(64),CC=new Float64Array(64);
+   H.fill(-Infinity);C.fill(-Infinity);let z=0,v=c[0],k=primes[o],s=-Math.log(29);
+   if(v===0){H[1]=s;z=1}if(v!==k)C[0]=s;
+   for(let i=1;i<end;i++){
+     v=c[i];const z2=z+(v===0?1:0);HH.fill(-Infinity,0,z2+1);CC.fill(-Infinity,0,z2+1);
+     for(let h=0;h<=z;h++){
+       const h0=H[h],c0=C[h];if(h0===-Infinity&&c0===-Infinity)continue;
+       const last=c0===-Infinity?0:mod(c[i-1]-primes[o+i-1-h]);
+       k=primes[o+i-h];
+       if(v===0)HH[h+1]=Math.max(h0+lp[0][0],c0+lp[last][0]);
+       if(v!==k){const x=mod(v-k);CC[h]=Math.max(h0+lp[0][x],c0+lp[last][x])}
+     }
+     [H,HH]=[HH,H];[C,CC]=[CC,C];z=z2;
+   }
+   let best=-Infinity;for(let h=0;h<=z;h++)best=Math.max(best,H[h],C[h]);return best;
+ }
+ function rankPrefix(tape,candidates) {
+   const cc=variants.map(v=>v.map.map(i=>tape[i]));
+   const top=[];for(const k of candidates){const c=cc[k.vi],score=fastScore(c,k.o);if(!Number.isFinite(score))throw Error("prefix reach and MAP disagree");if(top.length<10||score>top[top.length-1].score){top.push({...k,score});top.sort((a,b)=>b.score-a.score||a.vi-b.vi||a.o-b.o);if(top.length>10)top.pop()}}
+   return top.map(k=>{const c=cc[k.vi],d=decode(c,k.o,0,cut);assert(Math.abs(d.s-k.score)<1e-8,"two-lane exact MAP check");const suffix=decode(c,k.o,cut,N,d.h,d.last);const p=suffix?[...d.p,...suffix.p]:null;return {vi:k.vi,order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,prefixScore:d.s/cut,prefixH:d.h,prefixLast:d.last,heldoutScore:suffix?suffix.s/(N-cut):null,heldoutLength:suffix?suffix.p.length:0,prefix:d.p.slice(0,70).map(x=>A.translit[x]).join(" "),heldout:suffix?suffix.p.slice(0,70).map(x=>A.translit[x]).join(" "):null,exactReplay:p?same(enc(p,k.o),c):false,plaintext:p}});
+ }
+ const ranked=rankPrefix(original,alive);
+ const sourceZero=alive.filter(k=>k.o===0&&k.n===N).map(k=>({order:variants[k.vi].order,turn:variants[k.vi].turn,origin:k.o,score:fastScore(variants[k.vi].map.map(i=>original[i]),k.o,N)/N,readout:decode(variants[k.vi].map.map(i=>original[i]),k.o).p.map(x=>A.translit[x]).join(" ")}));
+ const reference=plants.map((p,j)=>{const x=nt.slice(p.start,p.start+N);let s=-Math.log(29);for(let i=1;i<x.length;i++)s+=lp[x[i-1]][x[i]];return {start:p.start,mean:s/x.length}});
+ return {n:N,cut,variants:variants.length,origins:maxOrigin+1,total:variants.length*(maxOrigin+1),original:{prefix,full,max,best,origin0,raw},plants,p56:p56.length,ranked,sourceZero,reference};
 }
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
