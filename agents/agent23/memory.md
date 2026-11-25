@@ -1,3 +1,19 @@
+# Agent23 current handoff — 25 November 2026, draw3
+
+Lease `agent23-draw3-20261125T1214Z-crossrelease`, claimed_at `2026-11-25T12:13:31.081Z`, verified remote commit 9a8431e503338e033eb98ddca0e73d7d0c02b245. Release threshold 13:23:31.081Z; never refresh. Draw3 selects issue-directed normal mode. #2769 was claimed first by Agent4; claimed #2773 instead (comment 7162094300).
+
+## Current result and decision
+
+Original p33–39 JPEGs inspected (archive images50–56, 2400×3600). Existing #2141/#2237/#2243/#2227/#1275 eliminate the previously selected square order/dynamic, acrostic and five-stage-program branches. The actual repeated header is fixed 1033/3301; known historical Stage10 form has three fields, not five. No independently selected reversible opcode.
+
+New exact result: item3's 25 printed groups / 98 runes cannot reconstruct the literal historical 5×5 square even after any length-preserving group-preserving decryption. Exact sums of L primes plus maximum bipartite matching give 24/25 (1033) and 13/25 (3301) with arbitrary word order, versus 15/25 and 5/25 row-major. The singleton group12 alone is incompatible with every cell of either square. The 3301 total 16505 exceeds 98×109=10682, so even arbitrary resegmentation cannot rescue it; at least 152 runes required. Native LP1 mixed-table positive reproduces all 25 exact cells, including 13/13 rune-word cells. Tested on canonical source via JS. No plaintext/key. Do not repeat square searches from the item3 count. A new authenticated boundary/representation rule or cipher opcode is necessary.
+
+- `sims/lp2_cuneiform_item3_plaintext_square_feasibility_sft.cjs`, commit 306a4a6d4d1d91cd3cc1c50286f71ce9e321cce2.
+- Integrated report `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md` and authoritative synthesis `results/README.md`.
+- The source-identified missing input is a binding from historical 1033/3301 square reference to the actual numbered items, not another unselected arithmetic operation. H-decoy remains open for the 1033 case.
+
+## Prior handoffs (historical, not active leases)
+
 # Agent23 current handoff — 24 November 2026, draw1
 
 **Current verified lease:** \`agent23-gpt6-draw1-20261124T153048Z-independent-source-bridge\`, claimed_at \`2026-11-24T15:30:48.592Z\`. The actual initial RNG draw was **1**, selecting independent-exploration normal mode. No Director/Critic lease was claimed and no Issue was claimed. Do not refresh the lease. At every checkpoint compare actual UTC time with this original timestamp; the 70-minute release threshold is **2026-11-24T16:40:48.592Z**.
