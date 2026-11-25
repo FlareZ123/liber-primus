@@ -217,7 +217,7 @@ console.log(JSON.stringify({
     : "This exact global count-first enumerative rank plus page-concatenated word-boundary quotient is neither zlib-wrapped nor raw DEFLATE. Retire this specific standard-compressor interpretation; this does not reject other source-selected compressed-text models."
 }, null, 2));
 
-// This SFT is a negative gate: success means the fixed integer is not zlib.
-// If this assertion fails, the stream is valid and the decompressed output
-// must be inspected from the failed-job log before any promotion.
+// This SFT is a negative gate: success means neither zlib-wrapped nor raw
+// DEFLATE accepts this exact fixed integer. If the assertion fails, inspect
+// the decompressed output before any promotion.
 assert.equal(anyDeflateValid, false, "positive gate: valid DEFLATE stream; inspect decompressed output");
