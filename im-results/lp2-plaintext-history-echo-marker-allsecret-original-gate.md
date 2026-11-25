@@ -62,3 +62,22 @@ An additional stronger direct inverse replaces the arbitrary per-position key by
 Both context orders have zero whole-book positive-mask candidates; seven interior chapters reject all order-1 masks, and p40–53 rejects every order-2 mask. Short regions are intrinsically ambiguous at the mask level, especially p54–55. The stationary-row gate is more selective, but no authentic key or unknown plaintext is recovered. Four 1,800-rune native-source plants (two history orders, independently varying or context-stationary rank rotations) validate the declared inverse and retain their actual source offsets; unique offsets where the raw counts establish uniqueness. Positive plants are known-source searches, not blind recovery of arbitrary prose or unused table entries.
 
 [Exact SFT](../sims/lp2_plainhistory_arbitrary_marker_crib_sft.cjs) · [full raw counts](lp2-plainhistory-arbitrary-marker-crib-output.json). The exact pure functions were executed in connected V8 using the pinned repository sources; the Node wrapper has not been independently executed. The author never authenticates these history functions or confirms a literal donor passage. Retire this finite direct source-crib route; do not add larger history orders merely to fit the observed repeat mask. An actual source-selected state/key or recoverable intermediate plaintext remains necessary.
+
+### Source-calibrated spelling follow-through
+
+The legacy donor spelling misses two explicitly attested GP contractions. Retaining the pinned sources, the SFT's `--calibrated` variant recognizes ING=21 and IO=27 before greedy tokenization, matching the calibration established by `sims/lp2_native_gp_source_orthography_sft.cjs`. Donor lengths: Gibran 62492, Emerson 321327, Shakespeare 217106. Both orders have zero positive-only full-book matches across 562060 windows per order. All stationary chapter matches remain zero. Accepted mask-only counts:
+
+| Region | Windows/order | Order 1 | Order 2 |
+|---|---:|---:|---:|
+| full | 562060 | 0 | 0 |
+| p0-2 | 598741 | 177 | 64245 |
+| p3-7 | 597493 | 0 | 7892 |
+| p8-14 | 595741 | 0 | 143 |
+| p15-22 | 595219 | 0 | 35 |
+| p23-26 | 597865 | 0 | 376 |
+| p27-32 | 596629 | 0 | 17 |
+| p33-39 | 595888 | 0 | 14 |
+| p40-53 | 591904 | 0 | 0 |
+| p54-55 | 600004 | 13940 | 235864 |
+
+Four planted key-law cases on two underlying source passages again uniquely locate their exact offsets, with exact known-key inverse and both stationary plants surviving. This extends the finite source-crib exclusion to both spellings, not arbitrary English. The V8 core ran on pinned inputs; the CLI wrapper was not separately executed. Reproduce: `node sims/lp2_plainhistory_arbitrary_marker_crib_sft.cjs --calibrated`.
