@@ -14,6 +14,8 @@
 
 - All three physical p15–22 origins (0,9,20): 682,892 coeffs ×841 seeds ×28 scales each, 8/5/4 survivor tuples, 145/54/46 total paths, maximum IoC .035045/.034865/.035018; all frozen p23–39 continuation dies. Raw `im-results/lp2-prime-clock-plaintext-feedback-arbitrary2-chapter-output.json`, reproducer `sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs chapter [0|9|20]`. No plaintext; stop low-order prime-clock variants.
 
+- New all-key affine Hill-4 inverse: 25,260 projective rows, exact histogram norm bound for all invertible matrices and arbitrary affine offsets. p15–22 max across four phases .0396663; black-body .0396570; common affine matrix+independent page phases .0494037, native length-matched reference min .061125/.061249. Two independent keyed controls on one donor exact 1000 fit+600 withheld each. Page-private directions .0842447 and common directions+private affine labels .0674657 not excluded. `im-results/lp2-projective-hill4-inverse.md`, `sims/lp2_projective_hill4_inverse_sft.cjs`; no plaintext.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
