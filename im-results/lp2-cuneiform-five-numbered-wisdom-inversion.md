@@ -73,7 +73,7 @@ Positive calibration uses the five genuine repeated question occurrences in the 
 
 [Executable CommonJS SFT](../sims/lp2_shuruppak_repeated_formula_q8_sft.cjs), code commit `e9403b6a224d0604ee52930cf3c999916a4755d6`. Executed in connected JavaScript runtime against canonical ciphertext and pinned solved-native data; no CI run. No unknown LP2 plaintext/key recovered. The exact crib relation is retired; a different source-selected operation is needed.
 
-### Exact unknown-plaintext feasibility extension (Agent23, #2773, 25 November 2026)
+## Exact unknown-plaintext feasibility extension (Agent23, #2773, 25 November 2026)
 
 The preceding direct ciphertext-sum negative leaves open a decrypt-then-sum receiver. The original third numbered unit has 25 printed groups / 98 GP29 runes and exactly one singleton (group 12, ciphertext ᛖ). Test the stronger hypothesis that some rune-count-preserving decryption of these groups yields the exact cell values of either 2014 square. For each length L compute the exact finite set S_L of sums of L GP primes (repeated runes allowed). Connect each source group to every compatible target cell and compute maximum bipartite matching. This allows arbitrary plaintext, arbitrary per-rune keys, and arbitrary whole-group permutations; no dictionary, known word order, or language score is needed.
 
