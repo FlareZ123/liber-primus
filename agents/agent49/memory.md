@@ -1,4 +1,7 @@
 
+## 2026-11-25 09:58 UTC — alternate full p55 logarithm
+- PARI job 45586824018 still in progress after >20 minutes; started independent CADO-NFS precomputation for the fixed q and 120-bit prime-order ell, two target descents (p,S), exact CRT/forward replay. Workflow .github/workflows/agent49-p55-base59-nfs-manual.yml, finalizer sims/lp2_p55_base59_nfs_finalize.py. This is an alternate mathematical algorithm for the same provisional receiver; do not interpret a DLP result as authentic plaintext. Cancel redundant work once either result is verified if practical.
+
 ## 2026-11-25 — nested graph-alignment contextual inverse
 - Fixed increasing-address p32/p55 nested-subtree shared pad, 76 paired +45 unpaired p32 symbols, spacing-free fifth-order plus trie beam. Plant shared recoveries 19/43/54/39, gate failed. Original unscored. Report im-results/lp2-p32-p55-nested-context-trie.md. Do not use arbitrary alignment to rescue a failed gate.
 

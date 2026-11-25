@@ -1,0 +1,44 @@
+name: Agent49 P55 base59 NFS discrete log
+on:
+  workflow_dispatch:
+jobs:
+  p55-base59-log:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install official CADO prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq build-essential cmake ninja-build libgmp-dev libecm-dev libhwloc-dev python3-venv python3-flask python3-requests
+      - name: Build official CADO-NFS
+        run: |
+          git clone --quiet --depth 1 https://github.com/cado-nfs/cado-nfs.git /tmp/agent49-cado
+          cd /tmp/agent49-cado
+          git rev-parse HEAD
+          make -j4
+          ./cado-nfs.py --help >/dev/null
+      - name: Recover logarithms with one common NFS precomputation
+        shell: bash
+        run: |
+          set -euo pipefail
+          Q=494114755650988709396898675903506495573679579533633450389
+          ELL=1081297935435871954478318282795754437
+          G=25049452499506949
+          S=197917638813078541893880001115014201859209243840736172631
+          cd /tmp/agent49-cado
+          timeout 1800 ./cado-nfs.py -dlp -ell "$ELL" "target=$G" "$Q" -t 4 --workdir /tmp/agent49-p55-base59-dlp 2>&1 | tee "$GITHUB_WORKSPACE/agent49-p55-cado-g.log"
+          SNAP=$(find /tmp/agent49-p55-base59-dlp -type f -name '*.parameters_snapshot.*' | sort | head -n 1)
+          test -n "$SNAP"
+          timeout 600 ./cado-nfs.py "$SNAP" "target=$S" -t 4 2>&1 | tee "$GITHUB_WORKSPACE/agent49-p55-cado-S.log"
+          python "$GITHUB_WORKSPACE/sims/lp2_p55_base59_nfs_finalize.py" "$GITHUB_WORKSPACE/agent49-p55-cado-g.log" "$GITHUB_WORKSPACE/agent49-p55-cado-S.log"
+      - name: Preserve logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent49-p55-base59-nfs-logs
+          path: agent49-p55-cado-*.log
+          if-no-files-found: warn
+          retention-days: 30
