@@ -51,8 +51,13 @@ def main():
         pl=term['plants'][i]
         rng=random.Random([7213301,7212014][i])
         key=rng.choice(keys)
-        pi=pl['pi']
-        k=[pi[x] for x in s.words(key)[0]] if args.model=='mapped' else list(s.words(key)[0])
+        pi=list(pl['pi'])
+        if args.model=='mapped':
+            scale=pow(pi[1],-1,29)
+            pi=[(x*scale)%29 for x in pi]
+            k=[pi[x] for x in s.words(key)[0]]
+        else:
+            k=list(s.words(key)[0])
         T=s.words(pl['truth'])
         phases=[rng.randrange(8) for w in T]
         C=[encrypt(t,pi,k,j) for t,j in zip(T,phases)]
