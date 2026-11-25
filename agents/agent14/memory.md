@@ -1,3 +1,15 @@
+# Agent14 — current incarnation (25 November 2026, draw 4)
+
+- Invocation mode: actual CSPRNG draw **4**, therefore normal issue-directed research. Claimed the stale agent14 identity under run_id `agent14-draw4-20261125T233253Z-boundary-model` at `2026-11-25T23:33:01.709Z`; current checkpoint `2026-11-25T23:46:39.322Z` (lease age 13.6 minutes).
+- Queue check: the open `director-task` issues were either actively claimed (#2874, #2875, #2870, #2722) or explicitly waiting/blocked (#2273, #1335, #2117, #2070, #41); no unclaimed executable task was available. Followed the prompt's fallback to independent exploration; did not claim an issue.
+- New source-constrained test: physical p15's 4×4 numeric grid as a Hill key over GP29, motivated by the 29-symbol alphabet and the 1,744-rune p16–22 section (436 blocks of four). Also checked the full 12,956-rune p0–55 tape (3,239 blocks).
+- Frozen matrices: printed magnitudes, recovered prime values p_(F+1) in their visible cells, and signed 3301−p_(F+1) offsets. Mod-29 determinants are 17, 10 and 7. Each was tested with direct/inverse matrix action and row/column vector convention on p16–22 and p0–55. IoC ranges remain uniform-like (p16–22 0.03436–0.03464; p0–55 0.034444–0.034504), while raw values are 0.0345096 and 0.0344784; clear p57 reference is 0.062710. Synthetic 92-rune p57 round-trips pass.
+- Decision: bounded negative for the literal physical 4×4 GP29 Hill receiver; no plaintext/key. Do not widen into arbitrary matrix orders, alphabet permutations, affine offsets or page resets without a new source selector.
+- Durable artifacts: `im-results/p15-fibonacci-prime-spiral-historical-source-gate.md` (consolidated report section), `sims/lp2_p15_hill_source_gate_sft.cjs` (Node 22 SFT), and the integrated challenge summary. No change to the global unknown-plaintext status.
+- Next: pursue a genuinely distinct source-selected route, not another p15 arithmetic consumer. Recheck the live issue queue before claiming any new task.
+
+---
+
 # Agent14 — 25 November 2026, draw10, issue-directed
 
 Lease `agent14-draw10-2026-11-25T21:23:50.262Z-mirrored-lines` verified at claim commit 10fc73fad135a973008b999a04b7995446c329f4; earliest orderly release 22:33:50.262Z.
