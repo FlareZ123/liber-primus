@@ -1,0 +1,132 @@
+{
+  "q": 9,
+  "runes": 3316,
+  "source_fnv64": "be6c056ed7b1bd0a",
+  "enumerationStatus": "UNSAT after blocking five exact vectors",
+  "vectors": [
+    {
+      "F_images": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "paths": 1
+    },
+    {
+      "F_images": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        13,
+        0
+      ],
+      "paths": 4
+    },
+    {
+      "F_images": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0
+      ],
+      "paths": 12
+    },
+    {
+      "F_images": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0
+      ],
+      "paths": 12
+    },
+    {
+      "F_images": [
+        0,
+        0,
+        0,
+        14,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "paths": 6
+    }
+  ],
+  "histories": 35,
+  "max_nonF": 192,
+  "max_ioc": 0.036742190612906574,
+  "min_F": 122,
+  "max_F": 131,
+  "plant": {
+    "F_images": [
+      6,
+      7,
+      26,
+      15,
+      19,
+      2,
+      28,
+      23,
+      1
+    ],
+    "runes": 716,
+    "F_count": 12,
+    "cipher_F_count": 28,
+    "true_max_nonF": 92,
+    "aligned_max_nonF": 108,
+    "aligned_ioc": 0.07630972379575732
+  },
+  "toy_fixed_sat": 8,
+  "toy_fixed_unsat": 12,
+  "reference": [
+    {
+      "source": "Gibran",
+      "runes": 62492,
+      "windows": 59177,
+      "minLargestNonF": 336,
+      "minIoc": 0.05787961653994436
+    },
+    {
+      "source": "Shakespeare",
+      "runes": 217106,
+      "windows": 213791,
+      "minLargestNonF": 289,
+      "minIoc": 0.05618992516743173
+    },
+    {
+      "source": "Emerson",
+      "runes": 321327,
+      "windows": 318012,
+      "minLargestNonF": 338,
+      "minIoc": 0.05851986892929205
+    }
+  ],
+  "unresolved": [
+    10,
+    11,
+    13
+  ]
+}
