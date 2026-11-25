@@ -1,4 +1,7 @@
 
+## 2026-11-25 — signed p32 path24 rank receiver
+- Four fixed path-rank transpositions, both prime/F-hold layer orders/signs, all 3302 origins; 52832 candidate settings. Calibration failed. Original unscored. Report im-results/lp2-p32-signedpath24-rank-prime.md.
+
 ## 2026-11-25 09:59 UTC — direct factor consumers
 - Both complete factor BASE29 cyclic keys rejected by authentic F-hold reachability across all chapters. p alone has a single nonprose p55 all-consuming path. Historical e65537, width50 BASE29 chapter blocks: 7/9 chapters include invalid residues, no valid v1.5 encryption framing, no chapter length multiple50. Consolidated im-results/lp2-p55-base59-quotient-factor.md, SFT sims/lp2_p55_base59_factor_consumers_sft.cjs.
 - Alternate CADO full DLP dispatch 45590527878; PARI 45586824018 still in progress. No authenticated key or unknown plaintext.
