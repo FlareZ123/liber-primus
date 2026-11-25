@@ -95,11 +95,11 @@ struct Search{
   for(auto [i,j]:best.entries){if(found||timed)return;if((++edges&4095)==0&&stop())return;Graph x=a;if(!extend(x,b.opts[i],j,key))continue;auto sig=x.sig();if(!seen.insert(sig).second)continue;dfs(x,rem,budget,level+1);}
   if(budget>0)dfs(a,rem,budget-1,level+1);
  }
- void run(int seconds){start=Clock::now();end=start+chrono::seconds(seconds);vector<Graph> seeds;unordered_set<string> seen;
+ void run(int seconds,size_t resume=0){start=Clock::now();end=start+chrono::seconds(seconds);vector<Graph> seeds;unordered_set<string> seen;
   for(const auto&o:carry.opts)for(int j=0;j<Q;j++){Graph a;if(extend(a,o,j,key)&&seen.insert(a.sig()).second)seeds.push_back(a);}
   sort(seeds.begin(),seeds.end(),[](const Graph&a,const Graph&b){if(a.comps!=b.comps)return a.comps<b.comps;return a.sig()<b.sig();});seedTotal=seeds.size();
   cout<<"carry seeds "<<seedTotal<<" / words "<<carry.opts.size()<<" group options";for(int i:order)cout<<" "<<i<<":"<<g[i].opts.size();cout<<endl;
-  for(const auto&a:seeds){if(stop())break;dfs(a,order,3,0);if(!timed&&!found)seedDone++;if(seedDone&&seedDone%20==0)cout<<"progress "<<seedDone<<"/"<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<endl;}
+  require(resume<=seeds.size(),"resume seed index");seedDone=resume;for(size_t i=resume;i<seeds.size();i++){const auto&a=seeds[i];if(stop())break;dfs(a,order,3,0);if(!timed&&!found)seedDone++;if(seedDone&&seedDone%20==0)cout<<"progress "<<seedDone<<"/"<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<endl;}
   cout<<"search found="<<found<<" timed="<<timed<<" seedDone="<<seedDone<<" seedTotal="<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<" packingClipped="<<packingClipped<<" residual="<<residual<<" oov="<<answerOov<<" seconds="<<chrono::duration<double>(Clock::now()-start).count()<<endl;
   if(found){cout<<"pi";for(int x:answer)cout<<" "<<x;cout<<endl;}
  }
@@ -110,10 +110,10 @@ Fixture plant(const vector<string>& train,const vector<string>&hold,const Key&k,
  x.truthCarry=choose(11);x.carry=encode(x.truthCarry,x.pi,k,rng()%8);x.prefix=x.carry.substr(0,10);
  for(const auto&c:hold){auto w=choose(c.size());x.truthHold.push_back(w);x.hold.push_back(encode(w,x.pi,k,rng()%8));}
  return x;}
-bool control(const vector<string>&train,const vector<string>&hold,const Key&k,unsigned seed){
+bool control(const vector<string>&train,const vector<string>&hold,const Key&k,unsigned seed,size_t resume=0,int seconds=180){
  auto p=plant(train,hold,k,seed);auto m=maps(p.pi,k);require(support(p.prefix,m,prefixDict),"planted prefix rejected");for(const auto&c:p.train)require(support(c,m,dict),"plant word rejected");
  // Check graph compatibility of the true action on all synthetic groups.
- Search s(k,p.train,p.prefix);s.run(180);if(!s.found){cout<<"CONTROL "<<seed<<" failed no key"<<endl;return false;}
+ Search s(k,p.train,p.prefix);s.run(seconds,resume);if(!s.found){cout<<"CONTROL "<<seed<<" failed no key"<<endl;return false;}
  auto got=maps(s.answer,k);int hit=0,unique=0;auto d=decode(p.carry,got,dict);hit+=d.count(p.truthCarry);unique+=d.size()==1&&d.count(p.truthCarry);
  for(size_t i=0;i<p.hold.size();i++){d=decode(p.hold[i],got,dict);hit+=d.count(p.truthHold[i]);unique+=d.size()==1&&d.count(p.truthHold[i]);}
  bool exact=sameAction(p.pi,s.answer,k),pass=exact&&s.answerOov==0&&hit==17&&unique>=8;
