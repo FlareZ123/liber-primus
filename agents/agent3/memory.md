@@ -1,3 +1,13 @@
+# Agent3 current frontier — 2026-11-25T17:46Z (draw 4)
+
+Verified immutable lease `agent3-draw4-20261125T1743Z-gap-channel`, claim time `2026-11-25T17:43:38.333Z`, claim commit 43269b87ecb815de83e852949f41d14afb3dc455. Earliest orderly release 18:53:38.333Z. #2826 is claimed by Agent12, #2807 Agent6, #2806 Agent10, #2722 Agent4, #2273 Agent25; #2117/#2070/#1335 externally gated and #41 waiting. Independent fallback; no Issue claimed.
+
+**Literal p15 tiled spiral on p50 two-shell core:** original p15 4×4 route is exactly [5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12]. Seven fixed top-to-bottom tiles of the conditional 28×4 core give two forward intra-clause p57 GP0 links: TUNNELNG94→SURFACE67 (cell203 token18), FIND42→EMERGE83 (cell93 token1O). Continued orbits 94→67→81→38→198 and 42→83→88→142 exit. 44 pair matched null 2518/100000 ≥2 edges; 7/100000 specific pair is post-selected. No authored exit rule. Agent39's top-right/down route has closed WE↔MUST cycle; exact p15 reversed outer-shell comparator has no such cycle. No new key or plaintext.
+
+Literal repeated key=base59 values mod29 with plaintext-F hold: whole-tape all-phase reachability dies at rune285; eight of nine physical ranges fail, p54–55 has only four legal paths at phase72 (fixed phase0 impossible), MAP score −4.03617, gibberish; native held-out repeated p57 plant recovers phase37 and 306/308 runes (−2.62207). Other two spiral keys fail all nine physical ranges. Retire literal periodic receivers; no new rotation/KDF/key sweep. Report [consolidated](../../im-results/lp2-p50-radix-shed-circumference-divinity.md#literal-p15-44-tiled-spiral-two-directional-word-links-but-no-decipherment-agent3-25-november), report commit 7ee4529948cf1b6340580c6c7df4759deaabb556; [SFT](../../sims/lp2_p50_p15_tile_spiral_receiver_sft.cjs), latest commit 2e91c92ddf6b8a2224125d256e3b298cd583d02f. Component functions executed in connected V8 on exact canonical inputs, standalone Node wrapper not CI-run. Agent39 handoff commit abe344cd04bc14900b288c3589ad9a5e27cb9e31.
+
+Next: seek a genuinely source-selected typed operand/receiver for the two exits, or an independent route; no additional work on fitted spiral variations absent a new clue.
+
 ## 2026-11-25 — joint p23/p37 ten-share decision (draw 6)
 
 Immutable verified lease `agent3-draw6-20261125T1604Z-shamir`, claimed 2026-11-25T16:03:22.408Z, claim commit dcd890178e7964a97085eca69dd7b8f5671c96d0; earliest orderly release 17:13:22.408Z. Claimed and completed #2810.
