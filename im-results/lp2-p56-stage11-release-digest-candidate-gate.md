@@ -1,6 +1,6 @@
 # LP2 typed-section graph: Stage11 and the p56 digest candidate
 
-**Decision, 24 November 2026:** no first-party source currently establishes an executable, internal LP2 producer→consumer edge between physical page sections. The manuscript does contain an explicit external dependency on p56: a page in the deep web is said to hash to a printed 128-hex-character value. The algorithm, exact page locator, and byte serialization remain unspecified. I tested one concrete, previously untested preserved candidate for that edge—the authentic 2014 Stage11 index and its 58 original page JPEGs—under SHA-512 and Whirlpool. None matches. This rejects that candidate set under those two functions; it does not solve or invalidate the wider p56 instruction.
+**Decision, 24 November 2026; exact-image hash extension, 25 November 2026:** no first-party source establishes an executable internal LP2 producer→consumer edge between physical page sections. The manuscript does contain an explicit external dependency on p56: a page in the deep web is said to hash to a printed 128-hex-character value. The algorithm, exact page locator and byte serialization remain unspecified. The authentic 2014 Stage11 index and its 58 LP2 JPEGs have no SHA-512 or Whirlpool match. A new exact-byte Node 22 SFT additionally checks all 75 complete-set JPEGs (17 LP1 plus 58 LP2) under SHA-512, SHA3-512 and BLAKE2b-512: 0/225 matches. For the source-selected LP2 subset this adds 116 SHA3/BLAKE2b comparisons beyond the prior SHA-512/Whirlpool gate; the 17 LP1 images are a broader control. This excludes these preserved objects under these named functions, not the wider p56 instruction.
 
 ## Source-grounded graph
 
@@ -24,9 +24,10 @@ The Stage10→Stage11 transition is a genuine historical multi-stage protocol be
 - Stage11 index: 1,640 bytes; Git blob SHA-1 303db130705f0ef9be2a738f4336d5cfcebde80c.
 - Its SHA-512: 83e50c118edb70dc34c9c760e332830a066b82006ebbbdcc7347b818d1961a571f32ef5a3717e98e282754d4a004dc0f7f0d99fb3824bb1b281a947c7ba70a31.
 - Its Whirlpool: 4e0f749b92b1d465fbe598de7446d9c8867d244ab1af1a93132b3dfcde8dbf47bfbc2c51259d8144dfc8f598d622537792d89d7e0017767fc33bf1ad64d847b8.
-- All 58 original LP2 page JPEGs were checked under both functions: **0/58 exact matches**. The p55 source-byte control is SHA-256 a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba, matching the existing original-p55 audit.
+- All 58 original LP2 page JPEGs were checked under SHA-512 and Whirlpool: **0/58 exact matches**. The p55 source-byte control is SHA-256 a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba, matching the existing original-p55 audit.
+- **25 November extension:** a standalone Node 22 SFT reads every original complete-set JPEG 00.jpg–74.jpg (52,248,065 bytes total) and hashes the raw file bytes under SHA-512, SHA3-512 and BLAKE2b-512: **0/225 matches**. The source-selected LP2 set is 17.jpg–74.jpg (58 images; logical pages 0–57); this adds **0/116** SHA3/BLAKE2b matches beyond the earlier SHA-512/Whirlpool gate. The 17 earlier LP1 images 00.jpg–16.jpg are included as a broader control (0/51). No trimming, image decoding, pixel serialization, concatenation or other canonicalization was tried. Complete-set image 73.jpg is LP2 p56 (389,813 bytes; SHA-512 611efc01dcaa5402a8f913a23e6846c13fc8d2298fb13cd740fe214b95f513019c527c42fe5e2bbb461d7c476222684bba87cbc19459bfc9bb3762e93f39d29e); 74.jpg is p57 (318,076 bytes; SHA-512 8efd1a0b4a52204387c1c61008c3df56405efbb5d39a6cfd3b6aec874ed7e91e33abcb55ba05dc921ba672f113332d18cbaea6f0b794b25c5193e250f9dc36c4).
 
-The reproducible test is sims/lp2_p56_stage11_release_digest_gate.py. It verifies the Stage11 Git blob and p55 source-byte control before reporting the candidate result.
+The original Stage11 test is sims/lp2_p56_stage11_release_digest_gate.py. The extension is sims/lp2_p56_full_image_hash_sft.cjs; it ran successfully under Node 22 in [workflow run 45585041937](https://github.com/FlareZ123/liber-primus/actions/runs/45585041937).
 
 ## Candidate internal edges and the independent-chapter rival
 
@@ -36,7 +37,7 @@ The rival interpretation is that LP2 is an ordered manuscript whose individual p
 
 ## Decision and exact missing dependency
 
-- Reject **p56 → the preserved Stage11 index / its 58 page JPEGs** under the frozen SHA-512 and Whirlpool test.
+- Reject **p56 → the preserved Stage11 index / its 58 page JPEGs** under SHA-512 and Whirlpool, and the raw 75-image archive under SHA-512, SHA3-512 and BLAKE2b-512.
 - Retain **p56 → an unknown deep-web page** as an explicit but incomplete external edge.
 - Do not promote **p57 → p53/p55** from semantic/visual cross-reference to a cipher handoff without a source-fixed operand and receiver.
 - No internal LP2 typed dependency edge currently meets the required standard.
@@ -49,4 +50,4 @@ From the repository root (requires Python 3 and OpenSSL with the legacy Whirlpoo
 
     python sims/lp2_p56_stage11_release_digest_gate.py --lp2-dir resources/liber-primus --index resources/historical/stage11-2014-index.html
 
-This is an intermediate negative and does not change results/README.md: no unknown LP2 plaintext, key, complete mechanism, or destination has been recovered.
+This is an intermediate negative: no unknown LP2 plaintext, key, complete mechanism, or destination has been recovered.
