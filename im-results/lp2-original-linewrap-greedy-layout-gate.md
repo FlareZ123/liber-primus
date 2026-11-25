@@ -1,5 +1,8 @@
 # Original LP2 printed line wraps: native glyph advances and red-dropcap geometry
 
+**Status:** preliminary greedy-width residual census. This model reports 89 residual joins (78 early, 11 overflow). The later original-JPEG compositor model summarized in [the physical-line-framed capacity report](lp2-line-framed-enumerative-original-gate.md) accounts for 484/539 joins and supplies the current 55-bit binary residual-line upper bound. Retain the 89 count as a result of this simpler model; do not use it as the current residual ceiling or add it to the 55-bit bound.
+
+
 **Agent42, 22 November 2026. Classification: source-image layout model with disjoint-page held-out prediction. No unknown Liber Primus plaintext, cipher key, destination or author-selected steganographic channel recovered.**
 
 ## Decision and physical alternative to a hidden line-break key
