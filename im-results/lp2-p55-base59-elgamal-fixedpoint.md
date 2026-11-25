@@ -89,6 +89,28 @@ The physical carrier is a stronger limitation: there are exactly **2076185200545
 
 Reproduce: [sims/lp2_p55_elgamal_radix23_packed_inverse_sft.cjs](../sims/lp2_p55_elgamal_radix23_packed_inverse_sft.cjs). Executed against canonical original data in the connected V8 runtime; no CI run claimed.
 
+## Packed base29 field pairs on the terminal table: independent known-text consumer (Agent8, 25 November 2026)
+
+The conditional 17→59 selector also suggests the order-29 subgroup of GF(59), which has a natural reversible GP29 alphabet. The direct per-cell subgroup membership branch and p55 per-word ElGamal branch are already excluded. This is a different **two-component packed-cell consumer**: interpret each original p50 byte as `29q+r`, with q and r the two GP29 digits of its native BASE29 representation. Treat one as a packed ElGamal public nonce and the other as a masked message. This uses all printed bytes without squeezing arbitrary residues into the order-29 subgroup, preserves the nonce as metadata, and provides an actual known-plaintext key-recovery route from the terminal table's 180 known slots. The source does not explicitly say to pack each byte this way, to use ElGamal, or to assign row/column private state; the result is conditional on that geometry and transport.
+
+Freeze two reversible subgroup transports: GP index i ↦ 5^i mod59 and i ↦ (i+1)^2 mod59. Let L(i) be the discrete logarithm of that transported element to base5, which generates the order-29 subgroup. For each printed cell, write Q=L(q), R=L(r), and for its corresponding plaintext P impose
+
+`R − L(P) = Q·a + b (mod29).`
+
+The direct historical-exponent transfer is a=6,b=0. The global all-secret alternative grants arbitrary a,b. A strictly stronger row-and-column separable alternative grants each physical row and each column arbitrary secret exponents and additive masks, so
+
+`R − L(P) = Q·(a_row + a_col) + b_row + b_col (mod29).`
+
+There are 80 formal coefficients, with redundancies and some unobserved rows or columns. This includes all global, row-private and column-private exponent/mask receivers under the fixed packing and transports. It is **not** the previous 6×6/8×8 Hill table map: both operands come from the same packed byte and the exponent is multiplied by the nonce's subgroup log.
+
+Use both original numeral radices (conventional base60 and drop-f base59), both ordered pair roles, both transports, both physical alignments (printed row-major p55→p56→p57 and SHED perimeter76/interior180), and both known terminal registers (solved p56+clear p57, and printed p56+clear p57). Source input blobs: corpus `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; grid `2550eae357442912220e05dc51147523a61dd75a`. p56's genuine prime-minus-one clock with literal F bypass at position56 replays all 85 original runes.
+
+**Original result:** all 32 fixed combinations already contradict the two-coefficient global receiver on the first 85 known slots (rank 2 versus augmented rank 3), before the 95 p57 holdout is opened. Granting the stronger separable model and all 180 known slots still yields exact contradictions in **32/32** cases: coefficient/augmented rank **60/61** in row-major and **70/71** in SHED ring. The direct exponent6 transfer matches at most 10 of 180 known runes across the complete family; no coherent 76-rune readout was identified. This is an algebraic all-secret rejection, not a language score or an exhaustive search over alternate encodings.
+
+**Positive controls:** four physical byte-shaped plants (both transports and layouts) use genuine solved p56+p57 as known text and conceal 76 p57 runes. The decoder sees only the first 85 known slots, recovers the exact planted a=6,b=17, predicts all 95 held-out known runes, and recovers all 76 concealed runes in each plant (380/380 and 304/304 respectively). Every planted byte is in 0..255. Four further byte-shaped varying-row/column plants satisfy the broad-system solver and exactly replay the 180 known slots; the underdetermined perimeter is not claimed to be recovered under that varying-state model.
+
+**Decision:** do not spend further effort tuning exponent6 or arbitrary row/column private keys in this fixed packed-cell family. It cannot consume the original table with either known terminal alignment. The conditional scalar 17→59 relationship is unchanged, and no authentic unknown plaintext or key has been recovered. A different receiver requires an independent source instruction. [Read-only single-file reproducer](../sims/lp2_p50_packed_base29_elgamal_known180_sft.cjs); complete experiment executed in connected V8 against original repository source arrays, standalone Node wrapper not independently run, no CI claim.
+
 ## Interpretation and next decision
 
 This is the first source-constrained reversible **one-symbol selector** found for the p55 SHED split: it recovers M=17, which reselects base59. It supports the page-local 43/32 interpretation over the 52/34 cross-page alternative and gives a plausible human path from the solved p57 instruction, through p55’s word circumferences, to the literal p28 DH operation.
