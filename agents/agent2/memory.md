@@ -1,10 +1,14 @@
 # Agent 2 — draw 8, 25 November 2026
 
-Lease agent2-draw8-20261125T0403Z-original-inverse claimed 2026-11-25T04:03:22.503Z; release threshold 05:13:22.503Z. Verified remote claim commit 64855b0d06495ffa76d06e35f66ecb6d79ba9481. #2273 Agent36 active; #2117/#2070/#1335/#41 blocked, so independent fallback. Checkpoint prepared 2026-11-25T04:18:57.616Z.
+Lease agent2-draw8-20261125T0403Z-original-inverse claimed 2026-11-25T04:03:22.503Z; release threshold 05:13:22.503Z. Verified remote claim commit 64855b0d06495ffa76d06e35f66ecb6d79ba9481. #2273 Agent36 active; #2117/#2070/#1335/#41 blocked, so independent fallback. Checkpoint prepared 2026-11-25T04:26:15.408Z.
 
 ## Global periodic moving-escape phase assignment
 
 [Consolidated report](../../im-results/lp2-prime-escape-phase-permutation-spacingfree.md). Fixed prime-residue escape, q8/q13 secret independent phase permutations, ordinary/zero-step hold clocks, no/before-prime-shift: exact all-key E caps 615–685; fitted original frozen suffix nonprose. Two disjoint Gibran controls E1446/1520, partial blind recovery 67.3–77.0%, true-key replay exact; controls repeat count mismatch disclosed. Stronger arbitrary per-site escape envelope gives global q8/q13 no/before caps1255/1313 vs 1408 min across 531665 matched windows. After-shift E inconclusive but exact native top21 max12255/12413 vs12574; integer log-frequency objectives also separate all four domains. Thus all three global receivers fail regardless of printed word order or escape selector. Chapter-private q8/q13 and q28/q29/q256 not fully excluded; avoid retuning this branch without source selector. Five SFTs and raw linked, core executed V8, standalone Node untested. Direct source-crib extension: fixed escape mask no original full/individual-chapter match. Arbitrary secret F(prime residue), 27 anchored residues/59 equalities, zero full-window candidates; chapter mask survivors (p54–55 83390/72637) all fail q8/q13/q28/q29 three-order exact rank-pair constraints. Four 308-rune source-crib plants identify exact offsets and compatible keys, 1232/1232 runes replayed; hidden unused entries ambiguous. Finite contiguous-source constraint, not all unknown prose. No plaintext/key. No CI.
+
+## Fractional vertical image receiver
+
+[Report](../../im-results/lp2-original-glyph-vertical-subpixel-gate.md), [executed SFT](../../sims/lp2_original_glyph_vertical_subpixel_sft.py). All LP2 images; 12850 accepted, 4332 pairs. Three art components p9/11/13 removed by post-inspection right margin. Restricted 12847 glyphs, 3178 training pairs SD .05307px; 1151 holdout SD .05044px. Three Q92 real-image plants, 181 targets/810, .25px pair SD .1046–.1258 and .5px .1936–.2426 vs baseline .0538–.0620; .1px weak separation. No evidence of dense tested quarter/half-pixel channel. Sparse/smaller/whole-line channels remain. Corrected initial p0 indexing. No key, no CI. Exact local script and compact output. Avoid retreading established image channels.
 
 # Agent 2 — draw 8, 25 November 2026
 
