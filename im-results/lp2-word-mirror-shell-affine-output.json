@@ -1,0 +1,174 @@
+{
+  "wordCount": 2896,
+  "runeCount": 12956,
+  "sourceCut": 9640,
+  "inputLengths": [
+    160891,
+    17466,
+    300000,
+    90965,
+    439075
+  ],
+  "pairCount": 5753,
+  "untouchedCenters": 1450,
+  "contexts": [
+    "global",
+    "depth",
+    "length×depth",
+    "chapter×depth",
+    "chapter×length×depth"
+  ],
+  "original": {
+    "key": [
+      [
+        9,
+        7,
+        14
+      ],
+      [
+        13,
+        4,
+        4
+      ]
+    ],
+    "fitScore": -4.927990503390103,
+    "holdoutScore": -5.084509579172947,
+    "fitPairs": 4275,
+    "holdoutPairs": 1478,
+    "collision": [
+      19690,
+      6824,
+      1173,
+      958,
+      156
+    ]
+  },
+  "planted": [
+    {
+      "hiddenInverse": [
+        [
+          3,
+          7,
+          12
+        ],
+        [
+          8,
+          5,
+          6
+        ]
+      ],
+      "recovered": [
+        [
+          3,
+          7,
+          12
+        ],
+        [
+          8,
+          5,
+          6
+        ]
+      ],
+      "fitScore": -2.683424068070768,
+      "holdoutScore": -2.690166202061516,
+      "correctHoldoutPairs": 1478,
+      "totalHoldoutPairs": 1478,
+      "collision": [
+        107882,
+        71985,
+        48072,
+        9745,
+        6446
+      ]
+    },
+    {
+      "hiddenInverse": [
+        [
+          11,
+          2,
+          23
+        ],
+        [
+          9,
+          17,
+          1
+        ]
+      ],
+      "recovered": [
+        [
+          11,
+          2,
+          23
+        ],
+        [
+          9,
+          17,
+          1
+        ]
+      ],
+      "fitScore": -2.6922806897533818,
+      "holdoutScore": -2.681107012241813,
+      "correctHoldoutPairs": 1478,
+      "totalHoldoutPairs": 1478,
+      "collision": [
+        96982,
+        59575,
+        35389,
+        8332,
+        4969
+      ]
+    }
+  ],
+  "resamples": [
+    {
+      "draws": 128,
+      "min": [
+        100412,
+        65259,
+        42889,
+        9301,
+        6245
+      ],
+      "max": [
+        113379,
+        76379,
+        53265,
+        10716,
+        7629
+      ],
+      "atOrBelow": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "draws": 128,
+      "min": [
+        94670,
+        57337,
+        31795,
+        7900,
+        4536
+      ],
+      "max": [
+        104520,
+        66149,
+        41197,
+        9478,
+        6071
+      ],
+      "atOrBelow": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "preview": "RXMAENAPAE IEELT RIYX DJC YNOE SRTHMWSIAEOMON OEMGNGP XIAFP LBG LJD NHRA YDT THNAETHTHG MYSOEBUAENGGYB XY FY XOE XAEA UJPXFRP GLNGAN JPDMSUEE AEJ EAFCU OF RUO",
+  "modelRefPairs": 95543
+}

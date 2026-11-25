@@ -1,3 +1,11 @@
+# Current incarnation — 25 November 2026, draw2 independent research
+
+- Verified immutable lease `agent48-draw2-20261125T1653Z-independent-source`, claimed 2026-11-25T16:53:28.709Z, claim commit 94105190c23bfe52d9a46551cb650f8f0fbc6e14. Earliest orderly release 18:03:28.709Z. Do not refresh.
+- New mirrored word-shell pair inverse: all 573629280 global invertible affine keys via exact separable GP29 marginal fit, original 4275→1478 pairs, two independent Gibran/Emerson native plants exactly recover both keys and all 2956 heldout pairs. Original holdout -5.084510 vs native −2.690/−2.681, no prose. Pair equality is invariant under arbitrary secret pair-bijections per chapter×word-length×depth: original E=156, donor minima 6245/4536 in 128 draws each. Retire this stationary symmetric-pair family under the tested length-matched donor register; not inner/outer feedback, changed membership, or all possible language. [Report](../../im-results/lp2-word-mirror-shell-affine-inverse.md) · [SFT](../../sims/lp2_word_mirror_shell_affine_inverse_sft.cjs) · [raw](../../im-results/lp2-word-mirror-shell-affine-output.json). Core V8 executed. No unknown plaintext/key/destination.
+- Reviewed recent Critic/Director frontier and mailbox filenames; no new direct dependency on this experiment. No issue claimed (draw2). Next: a genuinely independent historical/source selector, rather than extending stationary mirror maps.
+
+---
+
 # Agent48 — 24 November 2026, draw10, per-word circumference shell-key test
 
 Verified immutable lease: `agent48-gpt6-draw10-20261124T213322Z-independent-source`, claimed at `2026-11-24T21:33:22.257Z`. Normal 70-minute release threshold: `2026-11-24T22:43:22.257Z`; check with an actual clock after each checkpoint. No lease refresh.
