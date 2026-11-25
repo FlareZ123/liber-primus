@@ -1,0 +1,387 @@
+{
+  "regimes": [
+    {
+      "lag": [
+        1,
+        2
+      ],
+      "reset": false,
+      "single": [
+        255,
+        457,
+        641,
+        814,
+        977
+      ],
+      "dual": [
+        278,
+        493,
+        688,
+        870,
+        1035
+      ]
+    },
+    {
+      "lag": [
+        1,
+        2
+      ],
+      "reset": true,
+      "single": [
+        275,
+        481,
+        668,
+        838,
+        1000
+      ],
+      "dual": [
+        301,
+        515,
+        712,
+        889,
+        1059
+      ]
+    },
+    {
+      "lag": [
+        5,
+        6
+      ],
+      "reset": false,
+      "single": [
+        256,
+        462,
+        649,
+        818,
+        982
+      ],
+      "dual": [
+        284,
+        499,
+        691,
+        867,
+        1034
+      ]
+    },
+    {
+      "lag": [
+        5,
+        6
+      ],
+      "reset": true,
+      "single": [
+        324,
+        528,
+        711,
+        883,
+        1043
+      ],
+      "dual": [
+        351,
+        563,
+        752,
+        927,
+        1090
+      ]
+    }
+  ],
+  "long": [
+    {
+      "q": 76,
+      "cap": [
+        1334,
+        2247,
+        3052,
+        3799,
+        4495
+      ]
+    },
+    {
+      "q": 180,
+      "cap": [
+        1938,
+        3108,
+        4120,
+        5000,
+        5814
+      ]
+    },
+    {
+      "q": 256,
+      "cap": [
+        2295,
+        3615,
+        4733,
+        5716,
+        6588
+      ]
+    }
+  ],
+  "joint": [
+    {
+      "q": 8,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 8,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 0
+        }
+      ]
+    },
+    {
+      "q": 29,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 31239
+        }
+      ]
+    },
+    {
+      "q": 29,
+      "lag": [
+        1,
+        2
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 1675
+        },
+        {
+          "windows": 59485,
+          "pass": 1449
+        },
+        {
+          "windows": 214099,
+          "pass": 63877
+        }
+      ]
+    },
+    {
+      "q": 29,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": false,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 0
+        },
+        {
+          "windows": 59485,
+          "pass": 0
+        },
+        {
+          "windows": 214099,
+          "pass": 25865
+        }
+      ]
+    },
+    {
+      "q": 29,
+      "lag": [
+        5,
+        6
+      ],
+      "reset": true,
+      "controls": [
+        {
+          "windows": 318320,
+          "pass": 127073
+        },
+        {
+          "windows": 59485,
+          "pass": 37960
+        },
+        {
+          "windows": 214099,
+          "pass": 180503
+        }
+      ]
+    }
+  ],
+  "n": 3008
+}
