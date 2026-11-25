@@ -45,19 +45,19 @@ function experiment(raw){
   }
   const order=[...fitRows].sort((a,b)=>b.len-a.len||a.start-b.start);
   const survivors=[],failHistogram=Array(order.length+1).fill(0);
-  let bestOOV=Infinity,bestKey=null;
-  for(const k of candidates.values()){let bad=0,used=0;for(const w of order){const p=[];for(let j=0;j<w.len;j++){const i=w.start+j;p.push(f(c[i],k[i%8]^(i?c[i-1]:0)));}used++;if(!types.has(id(p))&&++bad>budget)break;}failHistogram[used]++;if(bad<bestOOV){bestOOV=bad;bestKey=k;}if(bad<=budget)survivors.push({key:k,bad});}
-  return {anchors:stats,candidates:candidates.size,survivors,bestOOV,bestKey,failHistogram};
+  let bestOOVLowerBound=Infinity,bestKey=null;
+  for(const k of candidates.values()){let bad=0,used=0;for(const w of order){const p=[];for(let j=0;j<w.len;j++){const i=w.start+j;p.push(f(c[i],k[i%8]^(i?c[i-1]:0)));}used++;if(!types.has(id(p))&&++bad>budget)break;}failHistogram[used]++;if(bad<bestOOVLowerBound){bestOOVLowerBound=bad;bestKey=k;}if(bad<=budget)survivors.push({key:k,bad});}
+  return {anchors:stats,candidates:candidates.size,survivors,bestOOVLowerBound,bestKey,failHistogram};
  }
  function evaluate(c,k,truth=null){const p=decode(c,k);check(same(encode(p,k),c),"exact continuous replay");const words=withheld.map(w=>({start:w.start,len:w.len,word:id(p.slice(w.start,w.start+w.len)),covered:types.has(id(p.slice(w.start,w.start+w.len)))}));return {withheldCovered:words.filter(w=>w.covered).length,withheldWords:words,withheldCorrect:truth?p.slice(213).filter((x,i)=>x===truth[213+i]).length:null,fullCorrect:truth?p.filter((x,i)=>x===truth[i]).length:null,plain:p};}
  let seed=2818;function R(){seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed;}
  const controls=[];
  for(let d=0;d<3;d++){
   const tail=donors[d].slice(Math.floor(donors[d].length*.8)),pool=new Map();for(const w of tail)if(types.has(id(w))){if(!pool.has(w.length))pool.set(w.length,[]);pool.get(w.length).push(w);}
-  const p=rows.flatMap(w=>{const a=pool.get(w.len);return a?.length?a[R()%a.length]:byLen.get(w.len)[R()%byLen.get(w.len).length];});
+  let fallbackWords=0;const p=rows.flatMap(w=>{const a=pool.get(w.len);if(a?.length)return a[R()%a.length];fallbackWords++;return byLen.get(w.len)[R()%byLen.get(w.len).length];});
   const key=Array.from({length:8},()=>R()%29),c=encode(p,key);check(same(decode(c,key),p),"planted direct replay");
   const fits=fit(c),valid=fits.survivors.filter(x=>same(x.key,key)),evaluated=fits.survivors.map(x=>({...x,...evaluate(c,x.key,p)}));
-  controls.push({donor:d,key,fit:fits,exactKeyCount:valid.length,evaluated,fixedPointUses:c.filter((v,i)=>((p[i]^(key[i%8]^(i?c[i-1]:0)))>=29)).length});
+  controls.push({donor:d,fallbackWords,key,fit:fits,exactKeyCount:valid.length,evaluated,fixedPointUses:c.filter((v,i)=>((p[i]^(key[i%8]^(i?c[i-1]:0)))>=29)).length});
  }
  const calibration=controls.every(x=>x.exactKeyCount===1&&x.fit.survivors.length===1&&x.evaluated[0].fullCorrect===299);
  const original=calibration?fit(ct):null;
