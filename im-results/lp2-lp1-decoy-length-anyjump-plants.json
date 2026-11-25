@@ -1,0 +1,551 @@
+{
+  "scope": "plants",
+  "dict": 35944,
+  "longWords": 16920,
+  "nodes": 61741,
+  "originalChapters": [
+    {
+      "ch": 0,
+      "n": 729,
+      "groups": 158,
+      "long": 21
+    },
+    {
+      "ch": 1,
+      "n": 1145,
+      "groups": 255,
+      "long": 27
+    },
+    {
+      "ch": 2,
+      "n": 1729,
+      "groups": 383,
+      "long": 46
+    },
+    {
+      "ch": 3,
+      "n": 1903,
+      "groups": 437,
+      "long": 48
+    },
+    {
+      "ch": 4,
+      "n": 1021,
+      "groups": 224,
+      "long": 26
+    },
+    {
+      "ch": 5,
+      "n": 1433,
+      "groups": 326,
+      "long": 36
+    },
+    {
+      "ch": 6,
+      "n": 1680,
+      "groups": 378,
+      "long": 45
+    },
+    {
+      "ch": 7,
+      "n": 3008,
+      "groups": 669,
+      "long": 84
+    },
+    {
+      "ch": 8,
+      "n": 308,
+      "groups": 66,
+      "long": 10
+    }
+  ],
+  "plants": [
+    {
+      "d": 0,
+      "name": "corrected",
+      "encoding": "index",
+      "sign": 1,
+      "n": 730,
+      "groups": 195,
+      "eligible": 9,
+      "correct": 9,
+      "rejected": 24,
+      "holds": 13,
+      "bound": {
+        "n": 195,
+        "need": 10,
+        "byLen": {
+          "8": 5,
+          "9": 4,
+          "11": 1
+        },
+        "cap": {
+          "8": 5,
+          "9": 4,
+          "10": 1,
+          "11": 1
+        },
+        "byLength": 10,
+        "interval": 9,
+        "upper": 9,
+        "minOOV": 1,
+        "budget": 9,
+        "excluded": false
+      },
+      "matches": [
+        {
+          "start": 5,
+          "end": 14,
+          "word": "XSPFSJXSX",
+          "origin": 569,
+          "cursor": 577
+        },
+        {
+          "start": 44,
+          "end": 52,
+          "word": "ADUUDHSX",
+          "origin": 1780,
+          "cursor": 1787
+        },
+        {
+          "start": 140,
+          "end": 149,
+          "word": "DENIYUSPS",
+          "origin": 597,
+          "cursor": 606
+        },
+        {
+          "start": 201,
+          "end": 209,
+          "word": "HYJXSESE",
+          "origin": 234,
+          "cursor": 242
+        },
+        {
+          "start": 201,
+          "end": 210,
+          "word": "HYJXSESEP",
+          "origin": 234,
+          "cursor": 243
+        },
+        {
+          "start": 221,
+          "end": 229,
+          "word": "UDJSUKSE",
+          "origin": 533,
+          "cursor": 541
+        },
+        {
+          "start": 347,
+          "end": 355,
+          "word": "QSJYF\\BP",
+          "origin": 2159,
+          "cursor": 2167
+        },
+        {
+          "start": 386,
+          "end": 394,
+          "word": "ABUUJSPP",
+          "origin": 287,
+          "cursor": 295
+        },
+        {
+          "start": 427,
+          "end": 436,
+          "word": "PFYQQSESX",
+          "origin": 1543,
+          "cursor": 1552
+        },
+        {
+          "start": 707,
+          "end": 717,
+          "word": "BJXSEPQYJX",
+          "origin": 930,
+          "cursor": 940
+        },
+        {
+          "start": 707,
+          "end": 718,
+          "word": "BJXSEPQYJXV",
+          "origin": 930,
+          "cursor": 941
+        }
+      ],
+      "visits": 4981791
+    },
+    {
+      "d": 1,
+      "name": "corrected",
+      "encoding": "prime",
+      "sign": -1,
+      "n": 731,
+      "groups": 186,
+      "eligible": 11,
+      "correct": 11,
+      "rejected": 23,
+      "holds": 0,
+      "bound": {
+        "n": 186,
+        "need": 14,
+        "byLen": {
+          "8": 6,
+          "9": 5,
+          "10": 1,
+          "11": 2
+        },
+        "cap": {
+          "8": 5,
+          "9": 5,
+          "10": 2,
+          "11": 1
+        },
+        "byLength": 12,
+        "interval": 11,
+        "upper": 11,
+        "minOOV": 3,
+        "budget": 9,
+        "excluded": false
+      },
+      "matches": [
+        {
+          "start": 65,
+          "end": 76,
+          "word": "ESPSTRUYJFS",
+          "origin": 31,
+          "cursor": 41
+        },
+        {
+          "start": 67,
+          "end": 76,
+          "word": "PSTRUYJFS",
+          "origin": 33,
+          "cursor": 41
+        },
+        {
+          "start": 110,
+          "end": 119,
+          "word": "UKJ]TSJQP",
+          "origin": 1676,
+          "cursor": 1685
+        },
+        {
+          "start": 159,
+          "end": 168,
+          "word": "JDRUSJSPP",
+          "origin": 1186,
+          "cursor": 1195
+        },
+        {
+          "start": 189,
+          "end": 198,
+          "word": "BKFQDEKSP",
+          "origin": 2386,
+          "cursor": 2395
+        },
+        {
+          "start": 200,
+          "end": 208,
+          "word": "PFDQUYJX",
+          "origin": 1824,
+          "cursor": 1832
+        },
+        {
+          "start": 258,
+          "end": 266,
+          "word": "IBTKUKQ[",
+          "origin": 1028,
+          "cursor": 1037
+        },
+        {
+          "start": 307,
+          "end": 315,
+          "word": "PUKGIQU[",
+          "origin": 823,
+          "cursor": 831
+        },
+        {
+          "start": 324,
+          "end": 333,
+          "word": "XKPFDBEPS",
+          "origin": 2388,
+          "cursor": 2397
+        },
+        {
+          "start": 324,
+          "end": 334,
+          "word": "XKPFDBEPSP",
+          "origin": 2388,
+          "cursor": 2398
+        },
+        {
+          "start": 426,
+          "end": 436,
+          "word": "GUDBFSPQSE",
+          "origin": 941,
+          "cursor": 951
+        },
+        {
+          "start": 449,
+          "end": 457,
+          "word": "RBFFVIYT",
+          "origin": 471,
+          "cursor": 479
+        },
+        {
+          "start": 662,
+          "end": 670,
+          "word": "ESFDEXSE",
+          "origin": 1878,
+          "cursor": 1886
+        }
+      ],
+      "visits": 5051730
+    },
+    {
+      "d": 2,
+      "name": "printed",
+      "encoding": "prime",
+      "sign": 1,
+      "n": 734,
+      "groups": 180,
+      "eligible": 21,
+      "correct": 21,
+      "rejected": 23,
+      "holds": 13,
+      "bound": {
+        "n": 180,
+        "need": 23,
+        "byLen": {
+          "8": 4,
+          "9": 7,
+          "10": 12
+        },
+        "cap": {
+          "8": 8,
+          "9": 12,
+          "10": 10
+        },
+        "byLength": 21,
+        "interval": 22,
+        "upper": 21,
+        "minOOV": 2,
+        "budget": 9,
+        "excluded": false
+      },
+      "matches": [
+        {
+          "start": 12,
+          "end": 21,
+          "word": "QBERBUSJQ",
+          "origin": 1714,
+          "cursor": 1722
+        },
+        {
+          "start": 64,
+          "end": 72,
+          "word": "KJQSESPQ",
+          "origin": 927,
+          "cursor": 935
+        },
+        {
+          "start": 88,
+          "end": 97,
+          "word": "UKTKQYQ\\J",
+          "origin": 384,
+          "cursor": 393
+        },
+        {
+          "start": 88,
+          "end": 98,
+          "word": "UKTKQYQ\\JP",
+          "origin": 384,
+          "cursor": 394
+        },
+        {
+          "start": 89,
+          "end": 97,
+          "word": "KTKQYQ\\J",
+          "origin": 385,
+          "cursor": 393
+        },
+        {
+          "start": 109,
+          "end": 118,
+          "word": "UKTKQYQ\\J",
+          "origin": 916,
+          "cursor": 925
+        },
+        {
+          "start": 110,
+          "end": 118,
+          "word": "KTKQYQ\\J",
+          "origin": 917,
+          "cursor": 925
+        },
+        {
+          "start": 147,
+          "end": 156,
+          "word": "UKTKQYQ\\J",
+          "origin": 2506,
+          "cursor": 2515
+        },
+        {
+          "start": 147,
+          "end": 157,
+          "word": "UKTKQYQ\\JP",
+          "origin": 2506,
+          "cursor": 2516
+        },
+        {
+          "start": 148,
+          "end": 156,
+          "word": "KTKQYQ\\J",
+          "origin": 2507,
+          "cursor": 2515
+        },
+        {
+          "start": 191,
+          "end": 201,
+          "word": "SJQSENEKPS",
+          "origin": 339,
+          "cursor": 349
+        },
+        {
+          "start": 206,
+          "end": 215,
+          "word": "FJDHUSXGS",
+          "origin": 510,
+          "cursor": 519
+        },
+        {
+          "start": 225,
+          "end": 233,
+          "word": "KJAKJKQS",
+          "origin": 410,
+          "cursor": 416
+        },
+        {
+          "start": 225,
+          "end": 235,
+          "word": "KJAKJKQSU[",
+          "origin": 410,
+          "cursor": 418
+        },
+        {
+          "start": 244,
+          "end": 254,
+          "word": "YQQEYFQKBS",
+          "origin": 2433,
+          "cursor": 2444
+        },
+        {
+          "start": 264,
+          "end": 273,
+          "word": "[SPQSEXY[",
+          "origin": 1113,
+          "cursor": 1122
+        },
+        {
+          "start": 386,
+          "end": 395,
+          "word": "ESFDJFKUS",
+          "origin": 1532,
+          "cursor": 1541
+        },
+        {
+          "start": 409,
+          "end": 419,
+          "word": "XKPFDEXYJQ",
+          "origin": 166,
+          "cursor": 176
+        },
+        {
+          "start": 426,
+          "end": 435,
+          "word": "SONESPP\\J",
+          "origin": 2662,
+          "cursor": 2670
+        },
+        {
+          "start": 426,
+          "end": 436,
+          "word": "SONESPP\\JP",
+          "origin": 2662,
+          "cursor": 2671
+        },
+        {
+          "start": 444,
+          "end": 453,
+          "word": "YEKPQDQUS",
+          "origin": 162,
+          "cursor": 171
+        },
+        {
+          "start": 464,
+          "end": 472,
+          "word": "ESFFDJSX",
+          "origin": 304,
+          "cursor": 312
+        },
+        {
+          "start": 474,
+          "end": 484,
+          "word": "ESPNSFQKBS",
+          "origin": 2617,
+          "cursor": 2627
+        },
+        {
+          "start": 518,
+          "end": 527,
+          "word": "YEKPQDQUS",
+          "origin": 1256,
+          "cursor": 1265
+        },
+        {
+          "start": 567,
+          "end": 577,
+          "word": "XKPFDEXYJQ",
+          "origin": 2194,
+          "cursor": 2203
+        },
+        {
+          "start": 587,
+          "end": 596,
+          "word": "ESFDJFKUS",
+          "origin": 947,
+          "cursor": 956
+        },
+        {
+          "start": 587,
+          "end": 597,
+          "word": "ESFDJFKUSX",
+          "origin": 947,
+          "cursor": 957
+        },
+        {
+          "start": 613,
+          "end": 621,
+          "word": "SOQESTSP",
+          "origin": 2383,
+          "cursor": 2391
+        },
+        {
+          "start": 626,
+          "end": 635,
+          "word": "NEKJFKNUS",
+          "origin": 2408,
+          "cursor": 2417
+        },
+        {
+          "start": 663,
+          "end": 671,
+          "word": "NESFUBXS",
+          "origin": 937,
+          "cursor": 946
+        }
+      ],
+      "visits": 5061481
+    }
+  ],
+  "originals": []
+}
