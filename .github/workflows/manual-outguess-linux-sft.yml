@@ -1,0 +1,76 @@
+name: Manual OutGuess 0.2.1 LP2 original-image SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  outguess-linux:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Check out Liber Primus originals and SFT
+        uses: actions/checkout@v4
+      - name: Check out pinned OutGuess 0.2.1 source
+        uses: actions/checkout@v4
+        with:
+          repository: resurrecting-open-source-projects/outguess
+          ref: 26fe8df0d693cf229d33f5bccd2757b344dfdbf3
+          path: external/outguess
+          persist-credentials: false
+      - name: Install Linux build and image-control tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential ghostscript imagemagick
+          python3 -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Build OutGuess 0.2.1 without compiler optimization
+        working-directory: external/outguess
+        env:
+          CFLAGS: -O0 -g
+        run: |
+          ./configure
+          make -j2
+          test -x ./outguess
+          ./outguess 2>&1 | head -n 2 || true
+      - name: Make a 400-DPI Ghostscript control JPEG with the original ICC profile
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from PIL import Image
+          im = Image.open("resources/liber-primus/17.jpg")
+          profile = im.info.get("icc_profile")
+          if not profile:
+              raise SystemExit("Original page ICC profile missing")
+          open("${RUNNER_TEMP}/lp2.icc", "wb").write(profile)
+          PY
+          cat > "${RUNNER_TEMP}/control.ps" <<'PS'
+          %!PS-Adobe-3.0
+          << /PageSize [432 648] >> setpagedevice
+          /Helvetica findfont 11 scalefont setfont
+          40 600 moveto (CONTROL PAGE - NO EMBEDDED MESSAGE) show
+          40 570 moveto (Same 6 by 9 inch page size and 400 DPI render.) show
+          40 540 moveto (The page margins are intentionally left blank.) show
+          40 510 moveto (This is a tool-artifact control, not puzzle source.) show
+          showpage
+          PS
+          gs -q -dNOPAUSE -dBATCH -sDEVICE=jpeg -r400 -sOutputFile="${RUNNER_TEMP}/control-gs.jpg" "${RUNNER_TEMP}/control.ps"
+          convert "${RUNNER_TEMP}/control-gs.jpg" -units PixelsPerInch -density 400x400 -profile "${RUNNER_TEMP}/lp2.icc" -sampling-factor 2x2,1x1,1x1 -quality 92 "${RUNNER_TEMP}/control.jpg"
+          identify -format '%wx%h %x %y %[colorspace]\n' "${RUNNER_TEMP}/control.jpg"
+      - name: Run default-key extraction on all 75 originals and candidate keys on LP2 false-positive pages
+        run: |
+          python3 sims/lp2_outguess_linux_source_gate.py \
+            --binary external/outguess/outguess \
+            --root resources/liber-primus \
+            --control "${RUNNER_TEMP}/control.jpg" \
+            --output "${RUNNER_TEMP}/lp2-outguess-report.json"
+      - name: Upload complete reproducible extraction report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-outguess-021-original-image-sft
+          path: ${{ runner.temp }}/lp2-outguess-report.json
+          if-no-files-found: ignore
+          retention-days: 14
