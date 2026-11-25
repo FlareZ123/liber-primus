@@ -47,7 +47,23 @@ function experiment(gp,native){
   return {zeros:m.z,maskPrunes:m.prunes,beamFinal:m.ranked.length,trueMaskRank:truth?m.ranked.findIndex(x=>x.s.mask===truemask)+1:null,oracleKey:oracle?eq(oracle.key,key):null,oracleAcc:oracle?acc(oracle.plain,truth):null,fitScore:best?.score,fitKey:best?.key,fitMask:best?.mask,trueMask:truemask,keyExact:truth?eq(best?.key,key):null,fitAcc:truth?acc(best?.plain,truth):null,heldAcc:truth?acc(h?.p,truth.slice(FIT)):null,heldScore:h?.score,heldExists:!!h,plain:best?best.plain.concat(h?.p||[]).map(x=>gp.translit[x]).join(" "):null}
  }
  const controls=[];for(let i=0;i<names.length;i++){const p=sections.find(s=>s.name===names[i]).p.slice(0,LEN),key=keys[i],c=enc(p,key);const out=attack(c,p,key);delete out.plain;controls.push({name:names[i],key,...out})}
- return {params:{B,M,FIT,LEN,train:sections.filter(s=>!names.includes(s.name)).map(s=>s.name)},controls};
+ // Frozen control thresholds: worst genuine per-rune fit and held-out scores.
+ const gate={fit:Math.min(...controls.map(x=>x.fitScore/FIT)),held:Math.min(...controls.map(x=>x.heldScore/(LEN-FIT)))};
+ const passes=x=>!!x.heldExists&&x.fitScore/FIT>=gate.fit&&x.heldScore/(LEN-FIT)>=gate.held;
+ const nulls=[];
+ for(let i=0;i<names.length;i++){
+  const truth=sections.find(s=>s.name===names[i]).p.slice(0,LEN);
+  let state=[3301,1033,201405][i]>>>0;
+  function draw(){let v;do{state=(Math.imul(1664525,state)+1013904223)>>>0;v=state>>>8}while(v>=Math.floor(16777216/N)*N);return v%N}
+  const c=truth.map(v=>v?draw():0),out=attack(c,null,null);delete out.plain;nulls.push({name:names[i],passed:passes(out),...out});
+ }
+ let original=null;
+ if(controls.every(x=>x.keyExact&&x.fitAcc===FIT&&x.heldAcc===LEN-FIT)&&nulls.every(x=>!x.passed)){
+  const c=gp.pages.slice(54,56).flatMap(x=>x.indices);
+  if(c.length!==LEN||gp.pages[54].indices.length!==FIT)throw Error("page split");
+  original=attack(c,null,null);original.passed=passes(original);
+ }
+ return {params:{B,M,FIT,LEN,train:sections.filter(s=>!names.includes(s.name)).map(s=>s.name)},gate,controls,nulls,original};
 }
 const read=p=>JSON.parse(fs.readFileSync(path.resolve(__dirname,'..',p),'utf8'));
 console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
