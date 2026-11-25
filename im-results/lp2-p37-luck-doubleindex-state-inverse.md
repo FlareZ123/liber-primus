@@ -1,6 +1,6 @@
 # P37 double-index receiver yields a strong local `LUCK` plaintext candidate
 
-**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word. The conditional ring-compass convergence supplies no independent operand for this double-index or key-transition rule (see [#2795 endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795)). The 25 November continuation tests reject direct continuous and word-reset q4 extensions, stationary mixed plaintext/ciphertext feedback, and all 19,488 common-affine/permuted H4 block-shell transitions (including the complete joint language envelope); the local candidate is not an established page cipher.
+**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word. The conditional ring-compass convergence supplies no independent operand for this double-index or key-transition rule (see [#2795 endpoint audit](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md#conditional-endpoint-dependency-and-receiver-state-audit-agent10-25-november-2026-2795)). The 25 November continuation tests reject direct continuous and word-reset q4 extensions, stationary mixed plaintext/ciphertext feedback, and all 19,488 common-affine/permuted H4 block-shell transitions (including the complete joint language envelope); the local candidate is not an established page cipher. The fixed p31 helper extraction also fails as a general four-rune receiver under signed ordinals and direct/wrapped plaintext-GP0 self-addressing.
 
 ## Result
 
@@ -353,3 +353,34 @@ The ordinary right-only winner is (a,b,perm)=(4,15,[2,1,0,3]); the transparent-F
 Three source-native donor windows (WARNING, WELCOME, KOAN) with distinct planted rules and initial shells, each tested with both clocks, recover **6/6 exact rules**, 234/234 fitted and 330/330 frozen withheld runes. The donor-excluded joint scores range from -2.735543 to -2.191410. These are six mechanical hidden-rule controls over three source passages, not six independent literary populations. Exact full forward replay is asserted for every returned complete winner. Because the full original joint maximum is already poor and the independent fit winners fail their holdout, retire the declared common-affine/permuted-shell family. This is a finite-model language decision, not a theorem about all possible plaintext or independent-coordinate/general matrix transitions. No authenticated key, further original plaintext, or new source selector follows. Do not introduce arbitrary additional coefficients merely to rescue this crib.
 
 [Standalone CommonJS SFT](../sims/lp2_p37_h4_affine_permuted_shell_sft.cjs) · [Complete compact results](lp2-p37-h4-affine-permuted-shell.json). Executed the same core in connected V8 on canonical data; no separate Node/Windows CI claimed. Commits a459b1f2 and 58462adb preserve the final code and raw envelope.
+
+## Uniform p31 helper-page shell: exact source-ordinal and self-address inverse (Agent1, 25 November 2026)
+
+The original p31 helper construction is more source-constrained than an arbitrary evolving key. Test whether its **same extraction rule** supplies keys for other complete four-rune words without mining new page-specific features. For each physical LP2 page h having at least seven nonempty transcription lines with runes on lines0 and6, set
+
+```
+S(h) = [19, chunks(0)-chunks(6), runes(0)-runes(6), chunks(0)] mod29
+K(h) = H4^-1(S(h))
+P = C - K(h) mod29
+```
+
+Use the exact chunk and line conventions of the prior p31 SFT. There are 48 eligible helper pages; p31 reproduces S=[19,0,2,5]. Consider two explicit address selectors:
+- Signed ordinal: the canonical within-page printed-word ordinal i selects authenticated 2016 word i (0..42); that word's unreduced GP0 is the helper page h. Undefined ordinals/pages remain undefined.
+- Self-address: the recovered word's own GP0 selects h. Enumerate every eligible helper page, retain only exact fixed-point plaintexts with GP0(P)=h. As a generous separate alternative, permit the full 58-page modular address GP0(P) mod58=h. No fitted address offsets or helper features.
+
+All 509 canonical complete original four-rune words, including 13 on p37 and five in item3, were tested. The native dictionary contains 64 distinct four-rune words (131 occurrences) from the nine canonical solved sections.
+
+| Receiver | All 509 | p37 (13) | item3 (5) |
+|---|---:|---:|---:|
+| Signed ordinal: defined / native-word match | 182 / 2 | 6 / 2 | 3 / 1 |
+| Direct self-address: zero preimages | 334 | 7 | 3 |
+| Wrapped self-address: zero preimages | 207 | 4 | 1 |
+| Direct or wrapped self-address: at least one native-word preimage | 1 | 1 | 1 |
+
+The direct self-address inverse has 140 words with one preimage, 33 with two and two with three. The wrapped variant has 208 words with one, 74 with two, 18 with three and two with five. Both retain the fitted LUCK anchor and no other native-dictionary word. Native forward-encoding controls: direct addresses are defined for 71/131 occurrences, wrapped for 93/131; all 71 and 93 true plaintexts are retained, 52 and 63 unique respectively. These are exact mechanical controls; neither address rule is total even on the solved native register.
+
+The separate signed-ordinal rule produces one additional isolated native-dictionary hit, p37 word15 at offset71: source word15 WORDS has GP0=52, selecting helper p52; [5,24,4,17] decodes to WHEN. It is outside item3. This one-word candidate is not independently authenticated, is surrounded by other nonprose four-rune outputs, and does not satisfy the self-address rule. Do not claim recovered plaintext or promote it to a crib merely because it is lexical.
+
+**Decision:** retire this precise uniform p31 helper extraction as a general four-rune receiver: hundreds of exact zero-preimage original words under either self-address variant, incomplete ordinal coverage and no coherent continuation. A selective navigation use or genuinely different source-defined helper operation remains possible. Neither the original LUCK fit nor WHEN establishes a complete cipher. This is a new exact inverse test of a frozen helper-page *operation*, distinct from the prior retrospective two-rune helper links that use different operations on their selected pages.
+
+[SFT](../sims/lp2_p37_uniform_helper_shell_sft.cjs) · [Complete original candidate/preimage results](lp2-p37-uniform-helper-shell.json). Core executed in connected V8, no separate CI claimed. Code/raw commits 474f513f and 9bc6eac7.
