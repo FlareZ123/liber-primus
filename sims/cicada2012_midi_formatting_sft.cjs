@@ -32,6 +32,28 @@ async function main(){
  const raw=read("resources/historical/cicada2012-midi-email.asc").replace(/\r/g,"").split("Let the Chorus be your guide to the depths :")[1].split("Good luck.")[0].trim();
  const letters=[...raw.matchAll(/[a-z]/gi)],text=letters.map(x=>x[0]).join("").toLowerCase();
  assert.equal(text.length,238);assert.equal(decode(t[2],"abcdefghijklmnoprstuvwy"),text.repeat(3));
+ // Learn the rectangular alphabet from the visible signed chorus alone.
+ const first=t[2].off.slice(0,238),unique=a=>[...new Set(a)].sort((a,b)=>a-b);
+ const pitches=unique(first.map(e=>e.pitch)),durations=unique(first.map(e=>e.delta));
+ assert.deepEqual(pitches,[43,44,46,48,49,51,53,55]);
+ assert.deepEqual(durations,[24,96,192,384]);
+ const gridDecode=(events,octave)=>events.map(e=>{
+  const c=pitches.indexOf(e.pitch-octave),r=durations.indexOf(e.delta);
+  assert.ok(c>=0&&r>=0&&8*r+c<26);
+  return String.fromCharCode(97+8*r+c);
+ }).join("");
+ assert.equal(gridDecode(first,0),text);
+ assert.equal(gridDecode(t[2].off.slice(238),0),text.repeat(2));
+ // One-octave higher: independent physical track, no fitted alphabet gaps.
+ const track1=gridDecode(t[1].off,12);
+ assert.equal(crypto.createHash("sha256").update(track1).digest("hex"),"8647147926d83ceb2ca73233121a35e5d9e8bbbbbbd8c709e747fb5ba8022d2f");
+ const unseen=[...track1].filter(c=>!text.includes(c));
+ assert.equal(unseen.length,5);
+ assert.deepEqual([...new Set(unseen)].sort(),["q","x","z"]);
+ for(const [events,plain,octave] of [[t[1].off,track1,12],[t[2].off,text.repeat(3),0]]){
+  events.forEach((e,i)=>{const n=plain.charCodeAt(i)-97;assert.equal(e.pitch,pitches[n%8]+octave);assert.equal(e.delta,durations[Math.floor(n/8)])});
+ }
+ console.log(JSON.stringify({chorusPitchDurationGrid:{pitches,durations,heldoutTrack1:track1.length,unseenLetters:unseen.join(""),roundTrip:1272}},null,2));
  const gap=letters.map((m,i)=>{if(!i)return 0;const s=raw.slice(letters[i-1].index+1,m.index);return s.length?24+96*(s.match(/,/g)||[]).length+192*(s.match(/\./g)||[]).length+384*(s.match(/\n/g)||[]).length:0});
  const diff=t[2].on.flatMap((e,i)=>e.delta===gap[i%238]?[]:[[i,gap[i%238],e.delta]]);
  assert.deepEqual(diff,[[3,24,0],[238,0,576],[476,0,576]]);
