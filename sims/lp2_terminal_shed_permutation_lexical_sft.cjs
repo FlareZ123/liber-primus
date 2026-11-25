@@ -11,7 +11,7 @@ const INPUTS=[
   "resources/control/english_wordfreq_textblob.txt"
 ];
 const SEEDS=[[4,15,28,12,23,18,6],[19,9,8,6,12,24,10],[20,8,26,12,9,25,14],[15,12,2,18,4,27,20],[4,28,9,1,13,6,14],[2,25,22,6,18,3,15],[25,5,17,9,28,26,20],[21,27,16,12,1,24,14],[18,1,28,9,4,6,23],[7,22,23,2,11,1,18],[15,11,16,8,25,7,17],[11,26,18,24,28,8,6],[2,9,23,21,22,16,24],[28,1,8,24,12,23,3],[5,6,11,25,24,12,22],[12,9,7,23,1,15,6],[4,19,24,6,25,5,7],[27,3,16,2,4,12,9],[2,25,12,22,11,21,16],[15,10,3,25,28,22,20],[8,10,23,17,14,11,22],[2,12,15,14,1,23,11],[28,10,1,18,22,2,13],[8,20,21,6,2,10,25],[16,1,18,20,12,10,3],[16,17,26,20,15,5,7],[24,26,2,16,3,17,13],[7,15,13,23,17,20,24],[13,9,16,26,1,22,8]];
-function experiment(raw,seeds){
+function experiment(raw,seeds,kernelOnly=false){
  const C=JSON.parse(raw[0]),G=JSON.parse(raw[1]),T=raw[2],gold=JSON.parse(raw[3]),mod=x=>(x%29+29)%29,id=x=>x.join(",");
  const assert=(x,m)=>{if(!x)throw Error(m)}, inv=x=>{for(let i=1;i<29;i++)if(mod(i*x)===1)return i;throw Error("noninvertible")};
  const ix=new Map(C.runes.map((x,i)=>[x,i])),tokens=C.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
@@ -44,6 +44,7 @@ function experiment(raw,seeds){
  const set=new Set(h.filter((_,i)=>i!==12&&i!==22));assert(set.size===27,"seed not distinct");const missing=Array.from({length:29},(_,i)=>i).filter(x=>!set.has(x));for(const x of missing){const v=h.slice();v[22]=x;const row=coeff[11];v[12]=mod(row[1]+row.slice(2).reduce((s,x,j)=>s+x*v[21+j],0));assert(new Set(v).size===29&&eq.every(a=>mod(a.slice(0,29).reduce((s,x,i)=>s+x*v[i],0))===a[29]),"invalid H");Hs.push(v)}}
  assert(Hs.length===58&&new Set(Hs.map(id)).size===58,"bijection count");
  const L=deps.map(v=>{const a=new Int32Array(76+Hs.length);a.set(v.slice(0,76));for(const [h,H] of Hs.entries()){let s=0;for(let i=0;i<256;i++)s+=v[i]*H[orig[i]];for(let i=76;i<256;i++)s-=v[i]*known[i-76];a[76+h]=mod(s)}return a});
+ if(kernelOnly)return {L,orig,known,rows,deps,Hs,basis,cols,donors:raw.slice(4,7).map(native),translit:C.translit,vocab,spans};
  function checks(indices){let keep=new Set(indices),res=rref(L,Array.from({length:76},(_,i)=>i).filter(i=>!keep.has(i)));return res.m.slice(res.rank)}
  const inds=s=>Array.from({length:s.end-s.start},(_,i)=>s.start+i);
  const groupRows=spans.map(s=>checks(inds(s))),byLen=new Map();for(const w of vocab.values()){if(!byLen.has(w.length))byLen.set(w.length,[]);byLen.get(w.length).push(w)}
@@ -81,5 +82,5 @@ function experiment(raw,seeds){
  const hist=(vals)=>vals.reduce((o,v)=>(o[v]=(o[v]||0)+1,o),{});
  return{coeff,controls,trellis:{cosets,profile,maxActive:Math.max(...profile),forcedLR,forcedRL},source:{vocab:vocab.size,groups:spans.map((s,i)=>({...s,checks:groupRows[i].length,vocab:s.carry?null:byLen.get(s.end-s.start).length})),crossPairs:cross.length,knownDependencies:knowDeps.length,targetDependencies:deps.length},summary:{permutations:Hs.length,singleOOV:hist(results.map(x=>x.bad.length)),combinedOOV:hist(results.map(x=>x.minimumOOV)),minOOV:Math.min(...results.map(x=>x.minimumOOV)),longAnchorSurvivors:results.filter(x=>x.counts[7]>0).length,best:results.filter(x=>x.minimumOOV===Math.min(...results.map(y=>y.minimumOOV))).map(x=>({H:x.H,counts:x.counts,bad:x.bad,edges:x.edges,uniqueLocal:x.uniqueLocal}))},results};
 }
-const raw=INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
-console.log(JSON.stringify(experiment(raw,SEEDS),null,2));
+module.exports={INPUTS,SEEDS,experiment};
+if(require.main===module){const raw=INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));console.log(JSON.stringify(experiment(raw,SEEDS),null,2));}
