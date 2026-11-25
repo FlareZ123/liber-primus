@@ -1,0 +1,319 @@
+{
+  "width": 64,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "pilots": [
+    {
+      "key": [
+        477,
+        210,
+        477,
+        609,
+        355,
+        493,
+        645,
+        158,
+        540,
+        810,
+        242,
+        139,
+        761,
+        623,
+        129,
+        137,
+        651,
+        327,
+        804,
+        24,
+        375,
+        372,
+        674,
+        765,
+        12,
+        653,
+        603,
+        526,
+        183
+      ],
+      "initial": [
+        477,
+        210,
+        449,
+        609,
+        355,
+        493,
+        533,
+        158,
+        540,
+        782,
+        214,
+        475,
+        649,
+        623,
+        129,
+        137,
+        651,
+        327,
+        804,
+        723,
+        375,
+        316,
+        680,
+        765,
+        599,
+        597,
+        603,
+        498,
+        183
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 1.0614149129305428,
+          "improved": 12,
+          "evals": 3221
+        },
+        {
+          "sweep": 2,
+          "score": 1.0732842221335028,
+          "improved": 2,
+          "evals": 6441
+        },
+        {
+          "sweep": 3,
+          "score": 1.0733884448483155,
+          "improved": 1,
+          "evals": 9661
+        },
+        {
+          "sweep": 4,
+          "score": 1.0733884448483155,
+          "improved": 0,
+          "evals": 12881
+        }
+      ],
+      "details": [
+        {
+          "name": "mixture-0",
+          "score": 1.0733884448483155,
+          "em": [],
+          "history": [
+            {
+              "sweep": 1,
+              "score": 1.0614149129305428,
+              "improved": 12,
+              "evals": 3221
+            },
+            {
+              "sweep": 2,
+              "score": 1.0732842221335028,
+              "improved": 2,
+              "evals": 6441
+            },
+            {
+              "sweep": 3,
+              "score": 1.0733884448483155,
+              "improved": 1,
+              "evals": 9661
+            },
+            {
+              "sweep": 4,
+              "score": 1.0733884448483155,
+              "improved": 0,
+              "evals": 12881
+            }
+          ]
+        }
+      ],
+      "pair": [],
+      "mix": [
+        {
+          "K": [
+            477,
+            210,
+            449,
+            609,
+            355,
+            493,
+            533,
+            158,
+            540,
+            782,
+            214,
+            475,
+            649,
+            623,
+            129,
+            137,
+            651,
+            327,
+            804,
+            723,
+            375,
+            316,
+            680,
+            765,
+            599,
+            597,
+            603,
+            498,
+            183
+          ],
+          "history": [
+            {
+              "iteration": 1,
+              "ll": -3.3502959689492804,
+              "rows": 0,
+              "maxMass": 0.005653273878416664,
+              "truthMass": 0.002692060444673851
+            },
+            {
+              "iteration": 6,
+              "ll": -3.3310473611522733,
+              "rows": 0,
+              "maxMass": 0.009040949595609131,
+              "truthMass": 0.0034691170608523313
+            },
+            {
+              "iteration": 11,
+              "ll": -3.3213811842138803,
+              "rows": 0,
+              "maxMass": 0.012823710866051335,
+              "truthMass": 0.004287782883400091
+            },
+            {
+              "iteration": 16,
+              "ll": -3.3150004051929125,
+              "rows": 1,
+              "maxMass": 0.016669315590737227,
+              "truthMass": 0.005290134611720885
+            },
+            {
+              "iteration": 21,
+              "ll": -3.309054299848604,
+              "rows": 2,
+              "maxMass": 0.02096967969780457,
+              "truthMass": 0.00680579657519444
+            },
+            {
+              "iteration": 26,
+              "ll": -3.3008677292054287,
+              "rows": 3,
+              "maxMass": 0.02725176867070956,
+              "truthMass": 0.009697269143725342
+            },
+            {
+              "iteration": 31,
+              "ll": -3.2834363540152496,
+              "rows": 5,
+              "maxMass": 0.05099578395478205,
+              "truthMass": 0.021594495832159114
+            },
+            {
+              "iteration": 36,
+              "ll": -2.9793526247427122,
+              "rows": 11,
+              "maxMass": 0.25721626785819235,
+              "truthMass": 0.1742794626396711
+            },
+            {
+              "iteration": 41,
+              "ll": -2.6067258764184413,
+              "rows": 15,
+              "maxMass": 0.6213389447260327,
+              "truthMass": 0.4136518415909177
+            },
+            {
+              "iteration": 46,
+              "ll": -2.592493984604424,
+              "rows": 16,
+              "maxMass": 0.7837123722625274,
+              "truthMass": 0.5240081848207686
+            },
+            {
+              "iteration": 51,
+              "ll": -2.589106001371118,
+              "rows": 17,
+              "maxMass": 0.8725159332016021,
+              "truthMass": 0.5717026326153459
+            },
+            {
+              "iteration": 56,
+              "ll": -2.586810433421031,
+              "rows": 17,
+              "maxMass": 0.9086619965052981,
+              "truthMass": 0.5898193239085499
+            },
+            {
+              "iteration": 60,
+              "ll": -2.58526754301367,
+              "rows": 17,
+              "maxMass": 0.916783925978204,
+              "truthMass": 0.5917233340603831
+            }
+          ]
+        }
+      ],
+      "truth": [
+        477,
+        238,
+        477,
+        609,
+        355,
+        493,
+        617,
+        158,
+        540,
+        782,
+        242,
+        279,
+        509,
+        595,
+        129,
+        137,
+        651,
+        327,
+        804,
+        24,
+        375,
+        316,
+        303,
+        765,
+        12,
+        10,
+        603,
+        554,
+        183
+      ],
+      "train": {
+        "n": 10317,
+        "repeats": 69,
+        "gain": 1.073388444848313,
+        "correct": 10281,
+        "usedRows": 29,
+        "keyRows": 19,
+        "preview": [
+          "ANDCOUNTRYORPRODUCEAMODELINWHICHTHEEDUCATIANTHERELIGIANTHEPOLITICSUSAGESANDARTSOFHIST",
+          "DTHEDORMANTTASTEWECARUEANDPAINTORWEBEHOLDWHATISCARUEDANDPAINTEDASSTUDENTSOFTHEMYST"
+        ]
+      },
+      "held": {
+        "n": 2630,
+        "repeats": 19,
+        "gain": 0.829511913447072,
+        "correct": 2500,
+        "usedRows": 27,
+        "keyRows": 19,
+        "preview": [
+          "RANDCOMPACTERLANDSCAPETHANTHEHORISONFIGURESNATURESECLECTICISMANDWHATISHISSPEECHHIS",
+          "ASANEPICHASDONEBEFOREADOGOEJTJEAFSXXTHYYIGNGEOEUHYHBCCRAGACDJFTYIOECMAEJDISAREALITYNOTLE"
+        ]
+      },
+      "trace": []
+    }
+  ],
+  "original": null
+}
