@@ -102,6 +102,12 @@ Unrestricted independent share corrections instead have M=I, leaving five field 
 
 **Research decision:** no independently selected LP2 mask or correction map is established by the historical verification step. Do not launch a mask sweep. Apply the rank/consistency gate only when a separate original artifact fixes the correction family and its parameters' interpretation. No new original-input search was performed for this extension.
 
+## Ten-share extension obstruction (#2804)
+
+A 2013-style five-of-ten completion of the eight unmodified columns is **mathematically impossible**, independently of the contents, serialization, or identifier order of the proposed two extra shares. Restrict any valid hypothetical ten-point monic quintic to the first six complete column values. Their distinct identifiers lie in 01..10, so they must be among the 151,200 assignments already exhausted above. The necessary leading coefficient must be 1 for that restriction; zero assignments satisfy it. Contradiction. The same argument applies to the consecutive 32-byte chunk serialization and the textbook degree-four alternative. The obstruction is hereditary under adding any number of points within the historical identifier set, with no assumptions on the extra payloads. No further interpolation, hash, or serialization search is needed.
+
+Physical p49 and p51 are also not independent flanking share objects: their 80 and 72 printed numeric cells are already components of the 256-byte table, and the surrounding rune lines supply no selected 32-byte share encoding. A source-selected transformation that actually changes the eight original field values would be a different hypothesis; arbitrary polynomial masks of degree ≤4 remain excluded above. The conclusion is conditional on the tested radix60 byte representation and exact historical field, threshold, and IDs. No new census or key search was conducted.
+
 ## Decision
 
 **Retire both the original eight vertical 32-byte table columns and eight consecutive row-major 32-byte chunks as shares of any single secret under Cicada's original 2013 `ssss` field and identifiers 01..10.** No secret fitting, AES brute force, LP2 rune cipher or extra digest tests are justified on the false extracted constant.

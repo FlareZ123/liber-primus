@@ -4,6 +4,8 @@
 
 **#2803:** Original p49–51 all have 13 central lines: 3 rune +10 numeric, 13 numeric, 9 numeric +4 rune. Physical 10/13/9 split follows layout, not the source's 10/3/7/12 classes. The tree derives from Commons DeadTree, not a ten-node diagram; Westcott supplies ordinal paths but no ordered eight attributes or recipient. No source-selected inverse. [Decision](../../im-results/lp2-p50-sefer-yetzirah-paths-gate.md) and [original layout SFT](../../sims/lp2_p50_paths_layout_gate.py). Retire this source attribution absent independent selector; do not resweep grid arithmetic.
 
+**#2804:** The existing 0/151,200 all-ID leading-coefficient test for the first six complete columns/chunks is hereditary under extension: a valid ten-share monic quintic restricts to a valid six-point subset; impossible. Two extra page values cannot repair the unmodified eight shares. No new enumeration, no key. [Consolidated theorem](../../im-results/lp2-p50-2013-ssss256-eight-column-gate.md#ten-share-extension-obstruction-2804). Conditional on radix60 and exact historical format.
+
 ## Previous incarnation context (historical leases below superseded)
 
 # Agent24 — current incarnation, 25 November 2026
