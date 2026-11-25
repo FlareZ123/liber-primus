@@ -6,6 +6,56 @@
   "controls": [
     {
       "packing": null,
+      "oneLowLoss": [
+        [
+          29,
+          5
+        ],
+        [
+          39,
+          7
+        ],
+        [
+          58,
+          10
+        ],
+        [
+          76,
+          13
+        ],
+        [
+          90,
+          15
+        ],
+        [
+          128,
+          22
+        ],
+        [
+          138,
+          23
+        ],
+        [
+          150,
+          25
+        ],
+        [
+          170,
+          29
+        ],
+        [
+          180,
+          30
+        ],
+        [
+          188,
+          32
+        ],
+        [
+          256,
+          43
+        ]
+      ],
       "groups": 70,
       "eligible": 69,
       "budget": 0,
@@ -50,7 +100,16 @@
             "multi3": 0,
             "extra4": 2,
             "edges": 5,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 14,
+              "endpointVertices": 14,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 14
+              }
+            }
           }
         },
         {
@@ -83,7 +142,16 @@
             "multi3": 0,
             "extra4": 2,
             "edges": 0,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 14,
+              "endpointVertices": 14,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 14
+              }
+            }
           }
         },
         {
@@ -116,7 +184,16 @@
             "multi3": 0,
             "extra4": 2,
             "edges": 0,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 2,
+              "endpointVertices": 2,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 2
+              }
+            }
           }
         }
       ],
@@ -192,6 +269,56 @@
     },
     {
       "packing": null,
+      "oneLowLoss": [
+        [
+          29,
+          4
+        ],
+        [
+          39,
+          5
+        ],
+        [
+          58,
+          8
+        ],
+        [
+          76,
+          10
+        ],
+        [
+          90,
+          12
+        ],
+        [
+          128,
+          16
+        ],
+        [
+          138,
+          18
+        ],
+        [
+          150,
+          19
+        ],
+        [
+          170,
+          22
+        ],
+        [
+          180,
+          23
+        ],
+        [
+          188,
+          24
+        ],
+        [
+          256,
+          32
+        ]
+      ],
       "groups": 70,
       "eligible": 68,
       "budget": 0,
@@ -235,7 +362,16 @@
             "multi3": 0,
             "extra4": 0,
             "edges": 8,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 11,
+              "endpointVertices": 13,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 11
+              }
+            }
           }
         },
         {
@@ -268,7 +404,16 @@
             "multi3": 0,
             "extra4": 0,
             "edges": 0,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 11,
+              "endpointVertices": 11,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 11
+              }
+            }
           }
         }
       ],
@@ -344,6 +489,56 @@
     },
     {
       "packing": null,
+      "oneLowLoss": [
+        [
+          29,
+          5
+        ],
+        [
+          39,
+          7
+        ],
+        [
+          58,
+          10
+        ],
+        [
+          76,
+          13
+        ],
+        [
+          90,
+          15
+        ],
+        [
+          128,
+          22
+        ],
+        [
+          138,
+          23
+        ],
+        [
+          150,
+          25
+        ],
+        [
+          170,
+          29
+        ],
+        [
+          180,
+          30
+        ],
+        [
+          188,
+          32
+        ],
+        [
+          256,
+          43
+        ]
+      ],
       "groups": 70,
       "eligible": 64,
       "budget": 0,
@@ -388,7 +583,16 @@
             "multi3": 0,
             "extra4": 1,
             "edges": 8,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 7,
+              "endpointVertices": 9,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 7
+              }
+            }
           }
         },
         {
@@ -421,7 +625,16 @@
             "multi3": 0,
             "extra4": 1,
             "edges": 0,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 7,
+              "endpointVertices": 7,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 7
+              }
+            }
           }
         },
         {
@@ -454,7 +667,16 @@
             "multi3": 0,
             "extra4": 1,
             "edges": 0,
-            "cyclicComponentVertices": 0
+            "cyclicComponentVertices": 0,
+            "oneLow": {
+              "high3Components": 1,
+              "endpointVertices": 1,
+              "directedEdges": 0,
+              "maxComponent": 1,
+              "histogram": {
+                "1": 1
+              }
+            }
           }
         }
       ],
@@ -981,6 +1203,56 @@
       ],
       "states": 287
     },
+    "oneLowLoss": [
+      [
+        29,
+        2
+      ],
+      [
+        39,
+        3
+      ],
+      [
+        58,
+        4
+      ],
+      [
+        76,
+        6
+      ],
+      [
+        90,
+        6
+      ],
+      [
+        128,
+        9
+      ],
+      [
+        138,
+        10
+      ],
+      [
+        150,
+        10
+      ],
+      [
+        170,
+        12
+      ],
+      [
+        180,
+        12
+      ],
+      [
+        188,
+        13
+      ],
+      [
+        256,
+        18
+      ]
+    ],
     "groups": 2896,
     "eligible": 514,
     "budget": 144,
@@ -1025,7 +1297,17 @@
           "multi3": 0,
           "extra4": 25,
           "edges": 3778,
-          "cyclicComponentVertices": 0
+          "cyclicComponentVertices": 0,
+          "oneLow": {
+            "high3Components": 2659,
+            "endpointVertices": 2761,
+            "directedEdges": 10,
+            "maxComponent": 2,
+            "histogram": {
+              "1": 2639,
+              "2": 10
+            }
+          }
         }
       },
       {
@@ -1058,7 +1340,17 @@
           "multi3": 0,
           "extra4": 25,
           "edges": 0,
-          "cyclicComponentVertices": 0
+          "cyclicComponentVertices": 0,
+          "oneLow": {
+            "high3Components": 2659,
+            "endpointVertices": 2659,
+            "directedEdges": 9,
+            "maxComponent": 2,
+            "histogram": {
+              "1": 2641,
+              "2": 9
+            }
+          }
         }
       },
       {
@@ -1091,16 +1383,25 @@
           "multi3": 0,
           "extra4": 25,
           "edges": 0,
-          "cyclicComponentVertices": 0
+          "cyclicComponentVertices": 0,
+          "oneLow": {
+            "high3Components": 25,
+            "endpointVertices": 25,
+            "directedEdges": 0,
+            "maxComponent": 1,
+            "histogram": {
+              "1": 25
+            }
+          }
         }
       }
     ],
     "period": 76,
     "unconstrainedSupport": 253,
     "overlapSupport": 215,
-    "gapGraphSupport": 168,
+    "gapGraphSupport": 162,
     "minPeriodOld": 138,
-    "minPeriod": 177,
+    "minPeriod": 184,
     "selected": [
       [
         29,
@@ -1110,57 +1411,57 @@
       [
         39,
         116,
-        93
+        91
       ],
       [
         58,
         170,
-        132
+        128
       ],
       [
         76,
         215,
-        168
+        162
       ],
       [
         90,
         250,
-        196
+        190
       ],
       [
         128,
         345,
-        272
+        263
       ],
       [
         138,
         370,
-        292
+        282
       ],
       [
         150,
         400,
-        316
+        306
       ],
       [
         170,
         450,
-        356
+        344
       ],
       [
         180,
         475,
-        376
+        364
       ],
       [
         188,
         495,
-        392
+        379
       ],
       [
         256,
         665,
-        528
+        510
       ]
     ],
     "confirmed": 0

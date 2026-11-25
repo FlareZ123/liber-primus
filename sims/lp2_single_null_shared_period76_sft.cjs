@@ -43,7 +43,26 @@ function sharedPrefixGate(raw,k=6,q=76){
   let multi3=0,extra4=0;const h3=new Map;
   for(let i=0;i<N;i++)if(weights[i]>=3){const z=root(i);h3.set(z,(h3.get(z)||0)+1);extra4+=Math.max(0,weights[i]-3)}
   for(const x of h3.values())multi3+=x-1;
-  return {maxPath,multi3,extra4,edges:to.length,cyclicComponentVertices};
+
+  // Components with exactly one >=3-support vertex represent all possible
+  // high runs around that vertex. A one-low-gap transition between two
+  // such runs requires a d=2 overlap between some vertices of their
+  // components. Grant every component vertex as an endpoint, regardless
+  // of direction. The resulting weak components bound chains of good gaps.
+  let oneLow=null;
+  if(k>=3&&multi3===0&&h3.size){
+   const roots=[...h3.keys()],idx=new Map(roots.map((z,i)=>[z,i]));
+   const aParent=Int32Array.from(roots,(_,i)=>i),aSz=new Uint32Array(roots.length).fill(1);
+   function ar(i){while(aParent[i]!==i){aParent[i]=aParent[aParent[i]];i=aParent[i]}return i}
+   function aj(i,j){i=ar(i);j=ar(j);if(i===j)return;if(aSz[i]<aSz[j])[i,j]=[j,i];aParent[j]=i;aSz[i]+=aSz[j]}
+   const div=29**2,over=29**(k-2),prefix=new Map,vertices=[];
+   for(let i=0;i<N;i++){let c=idx.get(root(i));if(c===undefined)continue;vertices.push([H[i],c]);const v=Math.floor(H[i]/div);if(!prefix.has(v))prefix.set(v,new Set);prefix.get(v).add(c)}
+   const edgeSet=new Set;
+   for(const [v,c] of vertices)for(const d of prefix.get(v%over)||[]){if(c===d)continue;edgeSet.add(c*roots.length+d);aj(c,d)}
+   let histogram={};for(let i=0;i<roots.length;i++)if(ar(i)===i)histogram[aSz[i]]=(histogram[aSz[i]]||0)+1;
+   oneLow={high3Components:roots.length,endpointVertices:vertices.length,directedEdges:edgeSet.size,maxComponent:Math.max(...aSz),histogram};
+  }
+  return {maxPath,multi3,extra4,edges:to.length,cyclicComponentVertices,oneLow};
  }
  function gate(rows,budget,truth){
   const eligible=rows.filter(w=>w.filter(v=>v!==0).length>=k+1);
@@ -101,9 +120,26 @@ function sharedPrefixGate(raw,k=6,q=76){
   }
   if(G2)for(let p=G2.maxPath+1;p<=256;p++)bounds[p-1]=Math.min(bounds[p-1],2*p+G2.multi3+G2.extra4);
   if(packing&&G2&&G2.multi3===0)for(let p=G2.maxPath+1;p<=256;p++)bounds[p-1]=Math.min(bounds[p-1],2*p+packing.maximumDisjoint);
+
+  // Let m be the number of unselected/low positions, t the number of
+  // selected >=3 windows, e=m-t. Every high run has length <=L and
+  // at most one t, so m>=ceil(q/(L+1)). A bad gap between successive
+  // t-runs costs >=1 extra low position; all-good chains have at
+  // most M distinct t vertices. Thus t<=M*max(1,e), including t=0.
+  // Coverage<=2q+gain-e. This is a necessary bound, not a candidate.
+  let oneLowBound=null;
+  if(G2&&G2.multi3===0&&G2.oneLow){
+   const L=G2.maxPath,M=G2.oneLow.maxComponent,gain=packing?packing.maximumDisjoint:G2.extra4;
+   oneLowBound=[];
+   for(let p=1;p<=256;p++){
+    let e=0;if(p>L){const minLow=Math.ceil(p/(L+1));while(e+M*Math.max(1,e)<minLow)e++;
+     bounds[p-1]=Math.min(bounds[p-1],2*p+gain-e)}
+    oneLowBound.push(e);
+   }
+  }
   const required=Math.max(0,eligible.length-budget);let plain=0,left=q;for(let t=histogram.length-1;t>=1&&left>0;t--){const c=Math.min(left,histogram[t]||0);plain+=t*c;left-=c}
   function minP(b){let i=b.findIndex(x=>x>=required);return i<0?">256":i+1}
-  return {packing,groups:rows.length,eligible:eligible.length,budget,required,candidatePairs:used,distinct,histogram,edgeReport,period:q,unconstrainedSupport:plain,overlapSupport:old[q-1],gapGraphSupport:bounds[q-1],minPeriodOld:minP(old),minPeriod:minP(bounds),selected:[29,39,58,76,90,128,138,150,170,180,188,256].map(p=>[p,old[p-1],bounds[p-1]]),confirmed};
+  return {packing,oneLowLoss:oneLowBound&&[29,39,58,76,90,128,138,150,170,180,188,256].map(p=>[p,oneLowBound[p-1]]),groups:rows.length,eligible:eligible.length,budget,required,candidatePairs:used,distinct,histogram,edgeReport,period:q,unconstrainedSupport:plain,overlapSupport:old[q-1],gapGraphSupport:bounds[q-1],minPeriodOld:minP(old),minPeriod:minP(bounds),selected:[29,39,58,76,90,128,138,150,170,180,188,256].map(p=>[p,old[p-1],bounds[p-1]]),confirmed};
  }
  const examples=orig.filter(w=>w.filter(v=>v!==0).length>=k+1),check=[...examples.filter(w=>w.slice(0,k).includes(0)).slice(0,3),...examples.filter(w=>!w.includes(0)).slice(0,3)];
  for(const C of check){const a=cands(C),b=cands(C,true);assert(a.size===b.size&&[...a].every(x=>b.has(x)),"projection mismatch")}
