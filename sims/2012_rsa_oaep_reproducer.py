@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Reproduce two 2012 Cicada RSA-email plaintexts using Crypt::RSA 1.99 semantics.
+"""Reproduce three 2012 Cicada RSA-email plaintexts using Crypt::RSA 1.99 semantics.
 
 Inputs are the archived unknown.pem and another_unknown.pem payloads from
-neuroretransmit/cicada@b13600373d3400d75ec4208198019f3d92a304dd.
-The script uses the corresponding private-key/factor files from that archive.
-It does not verify the PGP signatures or recover the original onion /NUM token.
+neuroretransmit/cicada@b13600373d3400d75ec4208198019f3d92a304dd, plus the
+locally preserved valid-participant message. The valid-participant factors are
+from the 2021 Connor Tumbleson account and are independently checked against
+its local ciphertext. The script does not verify PGP signatures or recover the
+original onion /NUM path token.
 
 Compatibility detail: Crypt::RSA::ES::OAEP 1.99 uses an encoded-message length
 of k-1 (no leading Y octet), and its DataFormat::mgf1 increments its 4-byte
@@ -19,6 +21,18 @@ import zlib
 E = 65537
 
 CASES = {
+    "valid_participant": {
+        "n": 7880891639791153779530258464649693928733411681581577103690292822333198036864739065916344030512697162068582555837,
+        "p": 98007492061325958997349177934627388613835953553459586261,
+        "q": 80411114232571782218163489375797613948878398942588985417,
+        "d": 1569005354121870496465598515069854341190951253007553330978638887991924873469295111805703343102894368121824775193,
+        "armor": """eJwBzQAy/zEwADE4OABDeXBoZXJ0ZXh0Ca4y//uzl/HvFoP9Klf53nEFH0T4c+ui5de8+vqGOnZc
+9DlrsWQe+xxVaPaYgKAD9Wn9VWQ6A5o254r5pa4hkDIY5RRmVfqOm88HJpGdbGGTckyEwJapCLDT
+tHzZWAZ0FIVj6fH2whErHoVmZ82zQJ64OLtzr1gYk+2kIZuqtLclV9RDhs6j7meTaod2BDrF26tY
+d33awv0txxrgXRhd/FDFVtKb0K84cQs2xtO/9A0yLs5GEK2xpG2yM4AeWWft
+=I1r6Wtzf/29vTggAK+ELEA==""",
+        "expected": "33521494043430258676",
+    },
     "unknown": {
         "n": 5871616005012744251113781121559847071824350263409014769234326809362840408459053493071501259089516974751495136587,
         "p": 60433831317304952107829089528525748126297857797792813661,

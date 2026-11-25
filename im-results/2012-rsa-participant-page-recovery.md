@@ -2,9 +2,9 @@
 
 ## Finding
 
-One additional participant-specific one-time RSA message has been recovered as a **provenance-qualified mirror**, and its encrypted response number is independently reproducible. The original onion `/NUM` path token and original server-response bytes have **not** been recovered. The mirrored copy's PGP signature is not verified, so this report does not claim cryptographic authentication of that copy.
+Three distinct participant-specific one-time RSA messages are now represented in the repository, and all three encrypted response numbers are reproducible. The original onion /NUM path token and original server-response bytes have **not** been recovered. The archive README identifies the quaetrix0@gmail.com / valid-participant copy as the only one of its three page copies with a valid PGP signature; this invocation has not independently re-verified that signature. The unknown and another_unknown copies have redactions and their signatures do not verify.
 
-The primary message's RSA plaintext is **`29201928111913239376`**. A second, independently keyed archived message decrypts to **`25121996842107342310`**, matching the subsequent onion URL reported in a 2021 participant-style account and the transition to the MIDI stage.
+The recovered RSA response numbers are **33521494043430258676** (valid-participant mirror), **29201928111913239376** (unknown), and **25121996842107342310** (another_unknown). These are numbers to enter at the same onion URL after decrypting the displayed RSA challenge; they are not the initial emailed /NUM path token.
 
 ## Provenance of the primary message
 
@@ -15,7 +15,7 @@ The public archive is pinned at [neuroretransmit/cicada commit `b13600373d3400d7
 - The archive file `2012/008-rsa-emails/unknown.asc` has Git blob SHA-1 **`0e69b063b379a8ccdd8a96815de318bcf65a1247`**. It contains the one-time warning, RSA public modulus, compressed ciphertext and a signature packet naming Cicada key ID `7A35090F`.
 - Its extracted ciphertext file `unknown.pem` has Git blob SHA-1 **`087ed31790eb8931d0255efd34e137ad13163b35`**. The source manifest itself has Git blob SHA-1 `6214cb83329eed3166930536504d581ce862bd63`.
 
-**Authentication limitation:** the archive README identifies `quaetrix0@gmail.com.asc` as the only one of its three page copies with a valid PGP signature; the `unknown` and `another_unknown` copies have redactions and their signatures do not verify. The `unknown.asc` signature packet names key ID `7A35090F`, but this is not equivalent to a successful signature verification. The forum and dated Pastebin mirror support provenance; they do not make the copy byte-identical to the original onion response.
+**Authentication limitation:** the archive README identifies the `quaetrix0@gmail.com.asc` / valid-participant copy as the only one of its three page copies with a valid PGP signature; the `unknown` and `another_unknown` copies have redactions and their signatures do not verify. The valid-participant file is preserved locally as `resources/external/2012-sq6wmgv2zcsrix6t-valid-participant-rsa-message.asc` (blob SHA-1 `30a45f2149bf46fd99d156d24b7132f8e0f207b3`). The same signed challenge is reproduced in the [12 April 2021 account by Connor Tumbleson](https://connortumbleson.com/2021/04/12/the-cicada-3301-mystery-puzzle-1-extra/), which supplies its factors and reports plaintext `33521494043430258676`. The other two message copies' signature packets name key ID `7A35090F`, but that is not equivalent to successful signature verification. None of these mirrors is a byte-preserving capture of the original onion HTTP response.
 
 ## Reproducible RSA interpretation
 
@@ -28,6 +28,19 @@ The archived `unknown.pem` is a zlib-compressed serialization with header `10\0 
 
 This matches the archive README's recorded plaintext. The message says to return to the same URL and enter the decrypted number. Thus `29201928111913239376` is the **RSA response**, not the emailed `/NUM` path token.
 
+### Third valid-participant sample
+
+The separately preserved valid-participant-rsa-message.asc uses modulus
+
+7880891639791153779530258464649693928733411681581577103690292822333198036864739065916344030512697162068582555837
+
+with exponent 65537. The 2021 account gives the two factors
+
+- 98007492061325958997349177934627388613835953553459586261
+- 80411114232571782218163489375797613948878398942588985417
+
+The local reproducer now independently applies the same Crypt::RSA 1.99 OAEP decoder to the preserved 188-byte ciphertext (four 47-byte blocks) and recovers **33521494043430258676**. This agrees with the secondary account. The factors are secondary-source inputs; the ciphertext itself is preserved locally. The initial emailed /NUM token remains unknown.
+
 ### Why standard OAEP fails
 
 The message specifies `Crypt::RSA::ES::OAEP`, version **1.99**. The archived Perl implementation has two relevant behaviors:
@@ -39,7 +52,7 @@ The source is pinned at [gitpan/Crypt-RSA commit `257f59d25d2d4adec3ef7e439e89b0
 
 The reproducer implements this exact module-specific behavior using only the Python standard library. Replacing its MGF1 with standards-compliant counter progression does not recover the valid OAEP delimiter in these blocks.
 
-## Independent second-message cross-check
+## Independent archived-message cross-checks
 
 The archive's separate `another_unknown.pem` ciphertext (Git blob SHA-1 **`49e290f2e80502c525f931b35c01232b7ee9bcf4`**) uses a different modulus, factors and private exponent. The same independent decoder recovers **`25121996842107342310`**.
 
@@ -49,16 +62,15 @@ The 11 June 2021 [participant-style account](https://saumitrasapre.medium.com/th
 
 Recovered:
 
-- one participant-specific RSA message copy with a contemporaneous forum/Pastebin provenance chain and a Wayback capture timestamp;
-- the archived ciphertext and private-key/factor material;
-- the reproducible response **`29201928111913239376`**;
-- a second independent RSA plaintext **`25121996842107342310`** that matches the reported subsequent URL and MIDI transition.
+- three distinct participant-specific RSA challenge copies: the contemporaneous/provenance-qualified unknown and another_unknown archive records, plus the valid-participant mirror;
+- reproducible RSA response numbers **33521494043430258676**, **29201928111913239376**, and **25121996842107342310**;
+- the signed congratulations instructions (resources/external/2012-sq6wmgv2zcsrix6t-congratulations.asc) and the signed second-chance/MIDI message (resources/historical/cicada2012-song-is-your-own-path.asc).
 
 Still missing:
 
-- the initial email from the puzzle sender containing the participant's unique numeric `/NUM` path token, or a server/request log mapping that token to the one-time response;
+- the initial email from the puzzle sender containing the participant's unique numeric /NUM path token, or a server/request log mapping that token to the one-time response;
 - a byte-preserving capture of the original onion HTTP response;
-- a valid PGP verification of the `unknown.asc` copy.
+- independent local GPG re-verification of the valid-participant mirror. The archive README identifies it as the valid signature copy; the other two message copies do not verify.
 
 The Wayback timestamp above is for the Pastebin mirror, **not** the original onion URL. The missing record is specifically the initial per-recipient email with the path number (or an equivalent server log); the RSA plaintext is not that number. No public source found in this bounded task supplies it. Do not brute-force or guess the token.
 
@@ -75,8 +87,9 @@ python3 sims/2012_rsa_oaep_reproducer.py
 Expected output:
 
 ```text
+valid_participant: 33521494043430258676
 unknown: 29201928111913239376
 another_unknown: 25121996842107342310
 ```
 
-The script asserts both factorizations and private-exponent relations, validates the compressed payload framing, decodes all four OAEP blocks per message, and checks both recovered plaintexts against the archive/secondary-source values. It does **not** verify PGP signatures or claim to recover either original `/NUM` token.
+The script asserts all three factorizations and private-exponent relations, validates each compressed payload framing, decodes all four OAEP blocks per message, and checks the recovered plaintexts against the archived/secondary-source values. It does **not** verify PGP signatures or claim to recover the original emailed /NUM path token.
