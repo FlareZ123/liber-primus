@@ -137,7 +137,7 @@ const results = sections.map((cipher, col) => {
     repeats_to_F: decoded.repeats,
     ordinary_key_advances: decoded.ordinary,
     key_sha256: crypto.createHash('sha256').update(keys[col]).digest('hex'),
-    plaintext: decoded.plain,
+    plain: decoded.plain,
   };
 });
 const plain = results.flatMap(r => r.plain.slice(1));
