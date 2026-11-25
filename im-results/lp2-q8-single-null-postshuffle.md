@@ -89,6 +89,33 @@ The first full-book attempt timed out, with no result. A sparse high-support imp
 
 Executed in connected V8: `node sims/lp2_single_null_overlap_period_capacity_sft.cjs` ([raw output](lp2-single-null-overlap-period-capacity-output.json)); no standalone CI.
 
+## Whole-book shared-key exclusion through period 183
+
+Require **one common cyclic additive key** across all 2,896 printed groups, independently selected group phases, arbitrary group permutation, zero or one arbitrary non-consuming inserted ciphertext null per group, either consuming or transparent plaintext F, and the same fixed 35,944-form GP29 register. Allow 144 arbitrary OOV groups globally. Of 514 groups with at least seven nonzero observed runes, at least 370 must have a lexical inverse. After any allowed deletion there are at least six consuming positions.
+
+Enumerate the first six consuming key digits for all compatible group/deletion/word length/F histories. There are 18,011,225 distinct group/tuple incidences, 17,741,100 distinct tuples: support histogram 1:17,473,659; 2:264,782; 3:2,634; 4:25; higher:0. The initial sum-of-supports upper bound at q76 is 253; cyclic overlap reduces it to 215 and requires period at least 138.
+
+**High-run graph.** Choose one occurrence of each distinct supported six-window in any cyclic key (repeated occurrences cannot increase the supported-group union). Define H as tuples supported by ≥2 groups and T as those supported by ≥3. The graph on 267,441 H vertices joins distinct tuples on exact suffix-five/prefix-five overlap. It has 3,778 directed edges, no cycles, maximum directed path four vertices, and at most one T vertex per weak component. For q>4, H runs therefore have length ≤4 and contain at most one T. Let m count non-H positions, t count selected T, u count selected support-four tuples. Then m≥ceil(q/5), m≥t, and total weight is at most 2q−(m−t)+u. Unselected repeats may be given zero weight; counting them as one is conservative.
+
+**Distinct group packing.** Inverse-check all 25 support-four tuples' original group sets (each size four). Their overlap graph has 12 conflict edges; exact maximum disjoint packing is 16, with explicit witness in raw output. For any selected family S its union contributes at most |union S|−3|S| above the weight-three baseline. Removing an overlapping set removes at most three unique groups, so cannot decrease the surplus; the surplus is therefore at most 16 even if all other groups are granted disjoint support. Bound: 2q+16−(m−t).
+
+**One-low-gap graph.** Grant every vertex of an H weak component containing one T as a possible endpoint. Connect distinct such components when any endpoints have suffix-four/prefix-four compatibility, as required for two T-containing H runs separated by exactly one non-H position and no intervening H-only run. This relaxed graph has 2,659 component vertices, 2,761 possible endpoints, ten directed connections, and largest weak component size two (2,639 singleton vertices and ten pairs). Write e=m−t. At most e transitions between successive T-containing runs can be bad: any bad transition requires at least two non-H positions or an intervening H-only run, hence at least one extra non-H position beyond one per T run. Good chains contain at most two distinct T vertices, so t≤2 max(1,e), valid also when t=0. Thus e+2 max(1,e)≥ceil(q/5). Take the minimum of earlier overlap/run bounds and 2q+16−e_min, checking q=1..256:
+
+| Period | Final upper bound on eligible groups covered | Required |
+|---:|---:|---:|
+| 76 | 162 | 370 |
+| 128 | 263 | 370 |
+| 170 | 344 | 370 |
+| 180 | 364 | 370 |
+| 188 | 379 | 370 |
+| 256 | 510 | 370 |
+
+**All periods through 183 are excluded under this model; q184 is the first to survive this necessary condition.** At q76 at least 352 of 514 anchors are outside the receiver, requiring ≥208 further affected groups beyond the OOV allowance; at q180 at least 150 are outside, requiring ≥6 additional affected groups. No actual key is nominated at q184 or higher.
+
+Three independent q76 plants from held Gibran/Shakespeare/Emerson word pools, 70 groups per plant with independent random phases and optional nulls, retain all eligible true prefixes (69/68/64); their final bounds pass. These are vocabulary-assisted long-anchor controls, not whole-key or contiguous-prose recovery. Six direct optimized-versus-full prefix enumeration checks pass. Run `node sims/lp2_single_null_shared_period76_sft.cjs` ([raw output](lp2-single-null-shared-period76-output.json)). Connected V8 actually executed; standalone Windows CI has not run. The source incidences, packing witness, graph sizes and controls are preserved in the code/raw output.
+
+This does not exclude private chapter keys, alternate segmentation, additional substitution repairs, extra/consuming nulls, arbitrary spelling/register, or all periodic keys. It differs from the no-null q≥188 result. No unknown plaintext, key or continuation recovered.
+
 ## Disposition and reproducibility
 
 Retire the exact one-null insertion-only q8 shared additive receiver under this finite vocabulary and intact group membership, including arbitrary post-encryption group shuffle and independent group phases. The repair-capacity extension additionally rejects the narrowly specified probabilistic repair receiver at q=.81, but does not rule out T6 substitution repairs in general, more nulls, consuming inserted key steps, periods surviving the new necessary bound, H-decoy, or different spelling/register. Do not interpret the 113 unique control words as unique reconstruction of the remaining groups or use this result to infer the historical model. No source-selected mechanism or original language candidate passed.
