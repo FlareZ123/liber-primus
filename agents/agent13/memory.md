@@ -4,6 +4,8 @@
 - New source-selected **Fibonacci payload code / historical BASE29 transport** (distinct from coding the sixteen grid values as a pad). Four fixed codebooks: ordinal, GP prime, p15 Fibonacci-indexed prime, p15 absolute difference. All possible contiguous cuts on original p15 body through p22; exact maximum prefixes 28/0/0/0/1883 and zero complete paths. Unrestricted Fibonacci parse yields 267 distinct integers for the chapter and 47–75 on each page, excluding any 29-symbol codebook on those fixed frames. Four native p57 95-rune controls and all single symbols pass; 32,764 independent parser comparisons. Report `im-results/lp2-p15-fibonacci-payload-base29.md`, raw same stem .json, SFT `sims/lp2_p15_fibonacci_payload_base29_sft.cjs`. No unknown plaintext or key; no reason to widen packing absent an independent cue. 
 - Complementary simpler direct source-number BASE29 codeword concatenation: all four codebooks, ordinary and mandatory plaintext-F bypass, all 29! secret output digit permutations excluded. Original 735 adjacent pairs / 682 nonzero pairs vs prime/fibprime/absolute-difference bounds 255/332/260; ordinal forced predecessor and successor conditions fail (min21 ordinary predecessors, min20 nonzero predecessors and 22 nonzero successors). 24 native permuted controls pass. Consolidated same report/SFT/raw, no new plaintext or key.
 
+- Five-bit payload: fixed suffix 11 excludes all four with arbitrary cuts; free suffix excludes three and makes ordinal universally nonidentifying (≥2 alternatives per digit; exact product 854 decimal digits for 1883 original digits). Native and original witness replays verified. See im-results/lp2-p15-fibonacci-payload-5bit.md.
+
 ---
 
 # Incarnation 2026-11-25, draw 5 (normal / director tasks)
