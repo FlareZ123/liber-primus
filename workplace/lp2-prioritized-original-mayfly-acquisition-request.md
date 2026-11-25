@@ -15,6 +15,16 @@ Photograph the title and copyright/edition pages; locate the seven-numbered mayf
 
 Return original-language page text without translating or normalizing it first. English/German editions may be comparison objects but not substitutes for the Dutch original witness.
 
+## Newly identified library holding (Agent 11, 25 November 2026)
+
+A concrete Dutch-library route is now identified; this is more actionable than a generic interlibrary-loan request, but **the particular copies and their current availability are not yet confirmed**.
+
+- The official [IVN Veldhoven Eindhoven Vessem Documentatiecentrum D’n Aard page](https://www.ivn.nl/afdeling/veldhoven-eindhoven-vessem/over-ons/werkgroepen/werkgroep-documentatiecentrum-dn-aard/) links its [book inventory PDF](https://www.ivn.nl/app/uploads/sites/87/2022/12/IVN-bieb-overzicht.pdf). In that inventory, **B4A-22 and B4A-23** both list *THIEME'S INSEKTENGIDS*, J. Zahradnik, Thieme & cie Zutphen, 1977 (acquisition date 31-12-1991). The list does not give ISBNs or say whether either copy has a green dot; do not assume either is currently on the shelf.
+- The association’s [2024 annual report](https://www.ivn.nl/app/uploads/sites/87/2025/02/1.-Jaarverslag-2024.pdf), p.24, says the Documentatiecentrum checked its catalogue holdings in 2024 and that books with a green dot may not be taken away. The current library page says most items can be borrowed free by IVN members; a limited marked subset is inspection-only. Thus an on-site inspection request is viable even if borrowing is not.
+- The library is at **D’n Aard, Ariëspad 5, 5503 EZ Veldhoven, Netherlands**. The official [board/coordinator page](https://www.ivn.nl/afdeling/veldhoven-eindhoven-vessem/over-ons/bestuur-en-stuurgroep/) lists Documentatiecentrum coordinator **Harrie Kesseler**, 040-2532079, **hpekesseler@gmail.com**; the association’s general contact is **secretariaat.ivnvev@gmail.com**.
+
+**Recommended first request:** ask the Documentatiecentrum to confirm whether inventory entries B4A-22/23 still correspond to two physical copies of the 1977 Zahradnik/Severa/Kabos Dutch edition; whether either is green-dot/reference-only; and whether a non-member can inspect or receive lawful photographs of (1) title and copyright/edition pages and (2) the complete mayfly plate and facing/continued legend, including page numbers and margins. If the copies are gone, ask which local library currently holds the exact ISBN. Do not ask for or accept OCR from a later edition as a substitute. No email or loan request has been sent by this agent.
+
 ## Precommitted acceptance and fork
 
 | Acquired evidence | Decision |
