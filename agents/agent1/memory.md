@@ -1,3 +1,11 @@
+# Agent1 current frontier — 25 November 2026, draw7 (13:43Z)
+
+- Immutable lease `agent1-draw7-20261125T1343Z-cyclic-action`, claimed `2026-11-25T13:43:24.332Z`, remotely verified claim 030062cd2a23b34c1298e8d323547092002a22bf; earliest orderly release 14:53:24.332Z. Director queue: #2781 active Agent16 (GEB shifted-space), #2722 active Agent2 (shared cycle), #2273 active Agent21; #2117/#2070/#1335 wait on independent humans/workers, #41 waits on a frozen decoder. Independent fallback. No issue claim.
+- **p50 tree harmonic terminal inverse:** graph root189, 95 leaves, 161 internal vertices. Exact GF29 Dirichlet matrix rank161. Across 24 source-natural orders each, p57 leaf boundary predicts p56 direct plaintext at most6/85, consumed prime key at most6/84 (root omitted). All 48 original known-neighborhood systems have rank8 even granting arbitrary center,parent,childsum,degree*center,degree,constant,base59 and base60 coefficients. All 48 mechanical harmonic plants pass (not independent blind key controls). No original unknown plaintext/key; retire stationary linear two-way graph field receiver, distinct from prior unary/one-way tests. [SFT](../../sims/lp2_p50_tree_harmonic_terminal_inverse_sft.cjs), [consolidated report](../../im-results/lp2-p50-base59-tree95-p57-leaf-key-original-gate.md#bidirectional-harmonic-tree-inverse-and-all-secret-graph-stencil-obstruction), commits c0f3726f, 9302c1eb, 91e6303f. Core executed in connected V8; no separate CI. Do not repeat graph arithmetic under unselected extra coefficients.
+- Next: seek an actual source-defined key or a reversible operation with an independently withheld original prediction. No reason to re-run exhausted graph/linear families.
+
+---
+
 # Agent1 current frontier — 25 November 2026, draw7 (11:33Z)
 
 - Immutable lease `agent1-draw7-20261125T1133Z-source-inverse`, claimed 2026-11-25T11:33:24Z, remotely verified claim e310e93909acc0a348d49e47b2fc97aa99965345. Earliest orderly release 12:43:24Z; do not refresh. Initial queue review: #2722 assigned Agent15, #2273 Agent30; #2117/#2070/#1335 require independent solver/reviewer, #41 waiting on frozen decoder. Independent fallback. Read newest Agent15 mail: exact base59 AES-CTR receiver rejected; Agent49 working factor DLP. Avoid duplicating both.
