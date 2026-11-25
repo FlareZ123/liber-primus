@@ -1,0 +1,2002 @@
+{
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "dictionary": [
+    0,
+    25,
+    186,
+    773,
+    2298,
+    4144,
+    5884,
+    6505,
+    5954,
+    4798,
+    3425,
+    2212,
+    1239,
+    620,
+    266
+  ],
+  "native": 740,
+  "chapterGroups": [
+    158,
+    255,
+    383,
+    437,
+    224,
+    326,
+    378,
+    669,
+    66
+  ],
+  "models": [
+    {
+      "feedback": false,
+      "source": {
+        "groups": 815,
+        "hits": 76,
+        "runes": 6180,
+        "hitRunes": 673,
+        "identity": 0
+      },
+      "zeroAll": 200,
+      "zeroLong": 0,
+      "lengths": [
+        {
+          "L": 6,
+          "groups": 256,
+          "hits": 18,
+          "runes": 1536,
+          "hitRunes": 108,
+          "identity": 0
+        },
+        {
+          "L": 7,
+          "groups": 216,
+          "hits": 11,
+          "runes": 1512,
+          "hitRunes": 77,
+          "identity": 0
+        },
+        {
+          "L": 8,
+          "groups": 156,
+          "hits": 9,
+          "runes": 1248,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 9,
+          "groups": 78,
+          "hits": 8,
+          "runes": 702,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 10,
+          "groups": 52,
+          "hits": 9,
+          "runes": 520,
+          "hitRunes": 90,
+          "identity": 0
+        },
+        {
+          "L": 11,
+          "groups": 32,
+          "hits": 8,
+          "runes": 352,
+          "hitRunes": 88,
+          "identity": 0
+        },
+        {
+          "L": 12,
+          "groups": 18,
+          "hits": 6,
+          "runes": 216,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 13,
+          "groups": 4,
+          "hits": 4,
+          "runes": 52,
+          "hitRunes": 52,
+          "identity": 0
+        },
+        {
+          "L": 14,
+          "groups": 3,
+          "hits": 3,
+          "runes": 42,
+          "hitRunes": 42,
+          "identity": 0
+        }
+      ],
+      "strata": [
+        {
+          "chapter": 0,
+          "L": 6,
+          "n": 18,
+          "identity": 0,
+          "best": 2,
+          "k": "61063674",
+          "tiesEnumerated": 8,
+          "identityTiePossible": false,
+          "candidateKeys": 105904
+        },
+        {
+          "chapter": 0,
+          "L": 7,
+          "n": 17,
+          "identity": 0,
+          "best": 1,
+          "k": "868926",
+          "tiesEnumerated": 110585,
+          "identityTiePossible": false,
+          "candidateKeys": 110585
+        },
+        {
+          "chapter": 0,
+          "L": 8,
+          "n": 9,
+          "identity": 0,
+          "best": 1,
+          "k": "3398270",
+          "tiesEnumerated": 53586,
+          "identityTiePossible": false,
+          "candidateKeys": 53586
+        },
+        {
+          "chapter": 0,
+          "L": 9,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "1252924205",
+          "tiesEnumerated": 28788,
+          "identityTiePossible": false,
+          "candidateKeys": 28788
+        },
+        {
+          "chapter": 0,
+          "L": 10,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "283035133038",
+          "tiesEnumerated": 13700,
+          "identityTiePossible": false,
+          "candidateKeys": 13700
+        },
+        {
+          "chapter": 0,
+          "L": 11,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "16630939550",
+          "tiesEnumerated": 4424,
+          "identityTiePossible": false,
+          "candidateKeys": 4424
+        },
+        {
+          "chapter": 1,
+          "L": 6,
+          "n": 32,
+          "identity": 0,
+          "best": 2,
+          "k": "9386651",
+          "tiesEnumerated": 38,
+          "identityTiePossible": false,
+          "candidateKeys": 188250
+        },
+        {
+          "chapter": 1,
+          "L": 7,
+          "n": 18,
+          "identity": 0,
+          "best": 1,
+          "k": "95180",
+          "tiesEnumerated": 117090,
+          "identityTiePossible": false,
+          "candidateKeys": 117090
+        },
+        {
+          "chapter": 1,
+          "L": 8,
+          "n": 11,
+          "identity": 0,
+          "best": 1,
+          "k": "15199224",
+          "tiesEnumerated": 65494,
+          "identityTiePossible": false,
+          "candidateKeys": 65494
+        },
+        {
+          "chapter": 1,
+          "L": 9,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "9211219545",
+          "tiesEnumerated": 28788,
+          "identityTiePossible": false,
+          "candidateKeys": 28788
+        },
+        {
+          "chapter": 1,
+          "L": 10,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "24037363694",
+          "tiesEnumerated": 17125,
+          "identityTiePossible": false,
+          "candidateKeys": 17125
+        },
+        {
+          "chapter": 1,
+          "L": 11,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "6256022322038",
+          "tiesEnumerated": 4424,
+          "identityTiePossible": false,
+          "candidateKeys": 4424
+        },
+        {
+          "chapter": 1,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "369700130340262",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 2,
+          "L": 6,
+          "n": 35,
+          "identity": 0,
+          "best": 2,
+          "k": "117313",
+          "tiesEnumerated": 32,
+          "identityTiePossible": false,
+          "candidateKeys": 205908
+        },
+        {
+          "chapter": 2,
+          "L": 7,
+          "n": 26,
+          "identity": 0,
+          "best": 2,
+          "k": "1197476891",
+          "tiesEnumerated": 4,
+          "identityTiePossible": false,
+          "candidateKeys": 169126
+        },
+        {
+          "chapter": 2,
+          "L": 8,
+          "n": 16,
+          "identity": 0,
+          "best": 1,
+          "k": "40608604",
+          "tiesEnumerated": 95264,
+          "identityTiePossible": false,
+          "candidateKeys": 95264
+        },
+        {
+          "chapter": 2,
+          "L": 9,
+          "n": 14,
+          "identity": 0,
+          "best": 1,
+          "k": "1159908718",
+          "tiesEnumerated": 67172,
+          "identityTiePossible": false,
+          "candidateKeys": 67172
+        },
+        {
+          "chapter": 2,
+          "L": 10,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "39608413111",
+          "tiesEnumerated": 13700,
+          "identityTiePossible": false,
+          "candidateKeys": 13700
+        },
+        {
+          "chapter": 2,
+          "L": 11,
+          "n": 7,
+          "identity": 0,
+          "best": 1,
+          "k": "635437577036",
+          "tiesEnumerated": 15484,
+          "identityTiePossible": false,
+          "candidateKeys": 15484
+        },
+        {
+          "chapter": 2,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "205694046507403",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 2,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "304348215269312119",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 2,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "2219468367508927531",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 3,
+          "L": 6,
+          "n": 37,
+          "identity": 0,
+          "best": 2,
+          "k": "18460218",
+          "tiesEnumerated": 34,
+          "identityTiePossible": false,
+          "candidateKeys": 217674
+        },
+        {
+          "chapter": 3,
+          "L": 7,
+          "n": 32,
+          "identity": 0,
+          "best": 1,
+          "k": "100238",
+          "tiesEnumerated": 208160,
+          "identityTiePossible": false,
+          "candidateKeys": 208160
+        },
+        {
+          "chapter": 3,
+          "L": 8,
+          "n": 28,
+          "identity": 0,
+          "best": 1,
+          "k": "729544",
+          "tiesEnumerated": 166712,
+          "identityTiePossible": false,
+          "candidateKeys": 166712
+        },
+        {
+          "chapter": 3,
+          "L": 9,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "13181",
+          "tiesEnumerated": 23990,
+          "identityTiePossible": false,
+          "candidateKeys": 23990
+        },
+        {
+          "chapter": 3,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "64535896688",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 3,
+          "L": 11,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "539240194392",
+          "tiesEnumerated": 8848,
+          "identityTiePossible": false,
+          "candidateKeys": 8848
+        },
+        {
+          "chapter": 3,
+          "L": 12,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "416613094938044",
+          "tiesEnumerated": 4956,
+          "identityTiePossible": false,
+          "candidateKeys": 4956
+        },
+        {
+          "chapter": 3,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "7016921455395535",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 4,
+          "L": 6,
+          "n": 19,
+          "identity": 0,
+          "best": 2,
+          "k": "35289415",
+          "tiesEnumerated": 8,
+          "identityTiePossible": false,
+          "candidateKeys": 111788
+        },
+        {
+          "chapter": 4,
+          "L": 7,
+          "n": 23,
+          "identity": 0,
+          "best": 1,
+          "k": "90882",
+          "tiesEnumerated": 149615,
+          "identityTiePossible": false,
+          "candidateKeys": 149615
+        },
+        {
+          "chapter": 4,
+          "L": 8,
+          "n": 12,
+          "identity": 0,
+          "best": 1,
+          "k": "3584164",
+          "tiesEnumerated": 71448,
+          "identityTiePossible": false,
+          "candidateKeys": 71448
+        },
+        {
+          "chapter": 4,
+          "L": 9,
+          "n": 7,
+          "identity": 0,
+          "best": 1,
+          "k": "361462953",
+          "tiesEnumerated": 33586,
+          "identityTiePossible": false,
+          "candidateKeys": 33586
+        },
+        {
+          "chapter": 4,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "22146216276",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 4,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "37039316618942201332",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 5,
+          "L": 6,
+          "n": 23,
+          "identity": 0,
+          "best": 2,
+          "k": "199928275",
+          "tiesEnumerated": 10,
+          "identityTiePossible": false,
+          "candidateKeys": 135322
+        },
+        {
+          "chapter": 5,
+          "L": 7,
+          "n": 24,
+          "identity": 0,
+          "best": 1,
+          "k": "361130",
+          "tiesEnumerated": 156120,
+          "identityTiePossible": false,
+          "candidateKeys": 156120
+        },
+        {
+          "chapter": 5,
+          "L": 8,
+          "n": 13,
+          "identity": 0,
+          "best": 1,
+          "k": "2775815",
+          "tiesEnumerated": 77402,
+          "identityTiePossible": false,
+          "candidateKeys": 77402
+        },
+        {
+          "chapter": 5,
+          "L": 9,
+          "n": 9,
+          "identity": 0,
+          "best": 1,
+          "k": "1617576562",
+          "tiesEnumerated": 43182,
+          "identityTiePossible": false,
+          "candidateKeys": 43182
+        },
+        {
+          "chapter": 5,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "271363938628",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 5,
+          "L": 11,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "1909852869",
+          "tiesEnumerated": 11060,
+          "identityTiePossible": false,
+          "candidateKeys": 11060
+        },
+        {
+          "chapter": 5,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "1020915631027715",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 6,
+          "L": 6,
+          "n": 31,
+          "identity": 0,
+          "best": 2,
+          "k": "4836279",
+          "tiesEnumerated": 26,
+          "identityTiePossible": false,
+          "candidateKeys": 182378
+        },
+        {
+          "chapter": 6,
+          "L": 7,
+          "n": 26,
+          "identity": 0,
+          "best": 2,
+          "k": "4051592513",
+          "tiesEnumerated": 4,
+          "identityTiePossible": false,
+          "candidateKeys": 169126
+        },
+        {
+          "chapter": 6,
+          "L": 8,
+          "n": 19,
+          "identity": 0,
+          "best": 1,
+          "k": "12573359",
+          "tiesEnumerated": 113126,
+          "identityTiePossible": false,
+          "candidateKeys": 113126
+        },
+        {
+          "chapter": 6,
+          "L": 9,
+          "n": 13,
+          "identity": 0,
+          "best": 1,
+          "k": "848549905",
+          "tiesEnumerated": 62374,
+          "identityTiePossible": false,
+          "candidateKeys": 62374
+        },
+        {
+          "chapter": 6,
+          "L": 10,
+          "n": 8,
+          "identity": 0,
+          "best": 1,
+          "k": "241553790089",
+          "tiesEnumerated": 27400,
+          "identityTiePossible": false,
+          "candidateKeys": 27400
+        },
+        {
+          "chapter": 6,
+          "L": 11,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "70551902910448",
+          "tiesEnumerated": 6636,
+          "identityTiePossible": false,
+          "candidateKeys": 6636
+        },
+        {
+          "chapter": 6,
+          "L": 12,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "372339891491421",
+          "tiesEnumerated": 2478,
+          "identityTiePossible": false,
+          "candidateKeys": 2478
+        },
+        {
+          "chapter": 7,
+          "L": 6,
+          "n": 53,
+          "identity": 0,
+          "best": 2,
+          "k": "14454788",
+          "tiesEnumerated": 66,
+          "identityTiePossible": false,
+          "candidateKeys": 311786
+        },
+        {
+          "chapter": 7,
+          "L": 7,
+          "n": 47,
+          "identity": 0,
+          "best": 1,
+          "k": "39400",
+          "tiesEnumerated": 305735,
+          "identityTiePossible": false,
+          "candidateKeys": 305735
+        },
+        {
+          "chapter": 7,
+          "L": 8,
+          "n": 42,
+          "identity": 0,
+          "best": 1,
+          "k": "275670",
+          "tiesEnumerated": 250068,
+          "identityTiePossible": false,
+          "candidateKeys": 250068
+        },
+        {
+          "chapter": 7,
+          "L": 9,
+          "n": 18,
+          "identity": 0,
+          "best": 1,
+          "k": "152624271",
+          "tiesEnumerated": 86364,
+          "identityTiePossible": false,
+          "candidateKeys": 86364
+        },
+        {
+          "chapter": 7,
+          "L": 10,
+          "n": 11,
+          "identity": 0,
+          "best": 1,
+          "k": "5789884920",
+          "tiesEnumerated": 37675,
+          "identityTiePossible": false,
+          "candidateKeys": 37675
+        },
+        {
+          "chapter": 7,
+          "L": 11,
+          "n": 8,
+          "identity": 0,
+          "best": 1,
+          "k": "2574930837246",
+          "tiesEnumerated": 17696,
+          "identityTiePossible": false,
+          "candidateKeys": 17696
+        },
+        {
+          "chapter": 7,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "108267805997993",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 7,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "5982881055143039",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 7,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "1596411728982116909",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 8,
+          "L": 6,
+          "n": 8,
+          "identity": 0,
+          "best": 2,
+          "k": "190191998",
+          "tiesEnumerated": 2,
+          "identityTiePossible": false,
+          "candidateKeys": 47070
+        },
+        {
+          "chapter": 8,
+          "L": 7,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "1100298",
+          "tiesEnumerated": 19515,
+          "identityTiePossible": false,
+          "candidateKeys": 19515
+        },
+        {
+          "chapter": 8,
+          "L": 8,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "22309771",
+          "tiesEnumerated": 35724,
+          "identityTiePossible": false,
+          "candidateKeys": 35724
+        },
+        {
+          "chapter": 8,
+          "L": 10,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "1036107926241",
+          "tiesEnumerated": 6850,
+          "identityTiePossible": false,
+          "candidateKeys": 6850
+        },
+        {
+          "chapter": 8,
+          "L": 11,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "5689770407214",
+          "tiesEnumerated": 2212,
+          "identityTiePossible": false,
+          "candidateKeys": 2212
+        },
+        {
+          "chapter": 8,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "24080742671913683",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        }
+      ]
+    },
+    {
+      "feedback": true,
+      "source": {
+        "groups": 815,
+        "hits": 78,
+        "runes": 6180,
+        "hitRunes": 687,
+        "identity": 0
+      },
+      "zeroAll": 195,
+      "zeroLong": 0,
+      "lengths": [
+        {
+          "L": 6,
+          "groups": 256,
+          "hits": 18,
+          "runes": 1536,
+          "hitRunes": 108,
+          "identity": 0
+        },
+        {
+          "L": 7,
+          "groups": 216,
+          "hits": 13,
+          "runes": 1512,
+          "hitRunes": 91,
+          "identity": 0
+        },
+        {
+          "L": 8,
+          "groups": 156,
+          "hits": 9,
+          "runes": 1248,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 9,
+          "groups": 78,
+          "hits": 8,
+          "runes": 702,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 10,
+          "groups": 52,
+          "hits": 9,
+          "runes": 520,
+          "hitRunes": 90,
+          "identity": 0
+        },
+        {
+          "L": 11,
+          "groups": 32,
+          "hits": 8,
+          "runes": 352,
+          "hitRunes": 88,
+          "identity": 0
+        },
+        {
+          "L": 12,
+          "groups": 18,
+          "hits": 6,
+          "runes": 216,
+          "hitRunes": 72,
+          "identity": 0
+        },
+        {
+          "L": 13,
+          "groups": 4,
+          "hits": 4,
+          "runes": 52,
+          "hitRunes": 52,
+          "identity": 0
+        },
+        {
+          "L": 14,
+          "groups": 3,
+          "hits": 3,
+          "runes": 42,
+          "hitRunes": 42,
+          "identity": 0
+        }
+      ],
+      "strata": [
+        {
+          "chapter": 0,
+          "L": 6,
+          "n": 18,
+          "identity": 0,
+          "best": 2,
+          "k": "69787691",
+          "tiesEnumerated": 6,
+          "identityTiePossible": false,
+          "candidateKeys": 105906
+        },
+        {
+          "chapter": 0,
+          "L": 7,
+          "n": 17,
+          "identity": 0,
+          "best": 1,
+          "k": "848685",
+          "tiesEnumerated": 110585,
+          "identityTiePossible": false,
+          "candidateKeys": 110585
+        },
+        {
+          "chapter": 0,
+          "L": 8,
+          "n": 9,
+          "identity": 0,
+          "best": 1,
+          "k": "3398270",
+          "tiesEnumerated": 53586,
+          "identityTiePossible": false,
+          "candidateKeys": 53586
+        },
+        {
+          "chapter": 0,
+          "L": 9,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "1252924194",
+          "tiesEnumerated": 28788,
+          "identityTiePossible": false,
+          "candidateKeys": 28788
+        },
+        {
+          "chapter": 0,
+          "L": 10,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "283035133602",
+          "tiesEnumerated": 13700,
+          "identityTiePossible": false,
+          "candidateKeys": 13700
+        },
+        {
+          "chapter": 0,
+          "L": 11,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "16630936956",
+          "tiesEnumerated": 4424,
+          "identityTiePossible": false,
+          "candidateKeys": 4424
+        },
+        {
+          "chapter": 1,
+          "L": 6,
+          "n": 32,
+          "identity": 0,
+          "best": 2,
+          "k": "60182641",
+          "tiesEnumerated": 22,
+          "identityTiePossible": false,
+          "candidateKeys": 188266
+        },
+        {
+          "chapter": 1,
+          "L": 7,
+          "n": 18,
+          "identity": 0,
+          "best": 1,
+          "k": "94830",
+          "tiesEnumerated": 117090,
+          "identityTiePossible": false,
+          "candidateKeys": 117090
+        },
+        {
+          "chapter": 1,
+          "L": 8,
+          "n": 11,
+          "identity": 0,
+          "best": 1,
+          "k": "15071419",
+          "tiesEnumerated": 65494,
+          "identityTiePossible": false,
+          "candidateKeys": 65494
+        },
+        {
+          "chapter": 1,
+          "L": 9,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "9211219532",
+          "tiesEnumerated": 28788,
+          "identityTiePossible": false,
+          "candidateKeys": 28788
+        },
+        {
+          "chapter": 1,
+          "L": 10,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "24037397582",
+          "tiesEnumerated": 17125,
+          "identityTiePossible": false,
+          "candidateKeys": 17125
+        },
+        {
+          "chapter": 1,
+          "L": 11,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "6256087920113",
+          "tiesEnumerated": 4424,
+          "identityTiePossible": false,
+          "candidateKeys": 4424
+        },
+        {
+          "chapter": 1,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "369700130340650",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 2,
+          "L": 6,
+          "n": 35,
+          "identity": 0,
+          "best": 2,
+          "k": "79729856",
+          "tiesEnumerated": 14,
+          "identityTiePossible": false,
+          "candidateKeys": 205926
+        },
+        {
+          "chapter": 2,
+          "L": 7,
+          "n": 26,
+          "identity": 0,
+          "best": 1,
+          "k": "272247",
+          "tiesEnumerated": 169130,
+          "identityTiePossible": false,
+          "candidateKeys": 169130
+        },
+        {
+          "chapter": 2,
+          "L": 8,
+          "n": 16,
+          "identity": 0,
+          "best": 1,
+          "k": "69316678",
+          "tiesEnumerated": 95264,
+          "identityTiePossible": false,
+          "candidateKeys": 95264
+        },
+        {
+          "chapter": 2,
+          "L": 9,
+          "n": 14,
+          "identity": 0,
+          "best": 1,
+          "k": "1160214598",
+          "tiesEnumerated": 67172,
+          "identityTiePossible": false,
+          "candidateKeys": 67172
+        },
+        {
+          "chapter": 2,
+          "L": 10,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "39609489393",
+          "tiesEnumerated": 13700,
+          "identityTiePossible": false,
+          "candidateKeys": 13700
+        },
+        {
+          "chapter": 2,
+          "L": 11,
+          "n": 7,
+          "identity": 0,
+          "best": 1,
+          "k": "634855940380",
+          "tiesEnumerated": 15484,
+          "identityTiePossible": false,
+          "candidateKeys": 15484
+        },
+        {
+          "chapter": 2,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "205694541481333",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 2,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "300759452390688944",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 2,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "2219468372140531151",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 3,
+          "L": 6,
+          "n": 37,
+          "identity": 0,
+          "best": 2,
+          "k": "38241714",
+          "tiesEnumerated": 30,
+          "identityTiePossible": false,
+          "candidateKeys": 217678
+        },
+        {
+          "chapter": 3,
+          "L": 7,
+          "n": 32,
+          "identity": 0,
+          "best": 2,
+          "k": "9178109842",
+          "tiesEnumerated": 4,
+          "identityTiePossible": false,
+          "candidateKeys": 208156
+        },
+        {
+          "chapter": 3,
+          "L": 8,
+          "n": 28,
+          "identity": 0,
+          "best": 1,
+          "k": "729548",
+          "tiesEnumerated": 166712,
+          "identityTiePossible": false,
+          "candidateKeys": 166712
+        },
+        {
+          "chapter": 3,
+          "L": 9,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "14205",
+          "tiesEnumerated": 23990,
+          "identityTiePossible": false,
+          "candidateKeys": 23990
+        },
+        {
+          "chapter": 3,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "64535916747",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 3,
+          "L": 11,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "539240180277",
+          "tiesEnumerated": 8848,
+          "identityTiePossible": false,
+          "candidateKeys": 8848
+        },
+        {
+          "chapter": 3,
+          "L": 12,
+          "n": 4,
+          "identity": 0,
+          "best": 1,
+          "k": "416613094938058",
+          "tiesEnumerated": 4956,
+          "identityTiePossible": false,
+          "candidateKeys": 4956
+        },
+        {
+          "chapter": 3,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "7016921194370925",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 4,
+          "L": 6,
+          "n": 19,
+          "identity": 0,
+          "best": 2,
+          "k": "166358499",
+          "tiesEnumerated": 4,
+          "identityTiePossible": false,
+          "candidateKeys": 111792
+        },
+        {
+          "chapter": 4,
+          "L": 7,
+          "n": 23,
+          "identity": 0,
+          "best": 2,
+          "k": "12658186667",
+          "tiesEnumerated": 2,
+          "identityTiePossible": false,
+          "candidateKeys": 149613
+        },
+        {
+          "chapter": 4,
+          "L": 8,
+          "n": 12,
+          "identity": 0,
+          "best": 1,
+          "k": "3618023",
+          "tiesEnumerated": 71448,
+          "identityTiePossible": false,
+          "candidateKeys": 71448
+        },
+        {
+          "chapter": 4,
+          "L": 9,
+          "n": 7,
+          "identity": 0,
+          "best": 1,
+          "k": "361439882",
+          "tiesEnumerated": 33586,
+          "identityTiePossible": false,
+          "candidateKeys": 33586
+        },
+        {
+          "chapter": 4,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "22146216690",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 4,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "37039316627438404673",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 5,
+          "L": 6,
+          "n": 23,
+          "identity": 0,
+          "best": 2,
+          "k": "9881866",
+          "tiesEnumerated": 14,
+          "identityTiePossible": false,
+          "candidateKeys": 135318
+        },
+        {
+          "chapter": 5,
+          "L": 7,
+          "n": 24,
+          "identity": 0,
+          "best": 2,
+          "k": "1887817810",
+          "tiesEnumerated": 2,
+          "identityTiePossible": false,
+          "candidateKeys": 156118
+        },
+        {
+          "chapter": 5,
+          "L": 8,
+          "n": 13,
+          "identity": 0,
+          "best": 1,
+          "k": "1555538",
+          "tiesEnumerated": 77402,
+          "identityTiePossible": false,
+          "candidateKeys": 77402
+        },
+        {
+          "chapter": 5,
+          "L": 9,
+          "n": 9,
+          "identity": 0,
+          "best": 1,
+          "k": "1112786866",
+          "tiesEnumerated": 43182,
+          "identityTiePossible": false,
+          "candidateKeys": 43182
+        },
+        {
+          "chapter": 5,
+          "L": 10,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "271363457896",
+          "tiesEnumerated": 20550,
+          "identityTiePossible": false,
+          "candidateKeys": 20550
+        },
+        {
+          "chapter": 5,
+          "L": 11,
+          "n": 5,
+          "identity": 0,
+          "best": 1,
+          "k": "1909852828",
+          "tiesEnumerated": 11060,
+          "identityTiePossible": false,
+          "candidateKeys": 11060
+        },
+        {
+          "chapter": 5,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "1020915631006142",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 6,
+          "L": 6,
+          "n": 31,
+          "identity": 0,
+          "best": 2,
+          "k": "1471511",
+          "tiesEnumerated": 18,
+          "identityTiePossible": false,
+          "candidateKeys": 182386
+        },
+        {
+          "chapter": 6,
+          "L": 7,
+          "n": 26,
+          "identity": 0,
+          "best": 2,
+          "k": "2174970836",
+          "tiesEnumerated": 4,
+          "identityTiePossible": false,
+          "candidateKeys": 169126
+        },
+        {
+          "chapter": 6,
+          "L": 8,
+          "n": 19,
+          "identity": 0,
+          "best": 1,
+          "k": "24225207",
+          "tiesEnumerated": 113126,
+          "identityTiePossible": false,
+          "candidateKeys": 113126
+        },
+        {
+          "chapter": 6,
+          "L": 9,
+          "n": 13,
+          "identity": 0,
+          "best": 1,
+          "k": "109700368",
+          "tiesEnumerated": 62374,
+          "identityTiePossible": false,
+          "candidateKeys": 62374
+        },
+        {
+          "chapter": 6,
+          "L": 10,
+          "n": 8,
+          "identity": 0,
+          "best": 1,
+          "k": "241541676559",
+          "tiesEnumerated": 27400,
+          "identityTiePossible": false,
+          "candidateKeys": 27400
+        },
+        {
+          "chapter": 6,
+          "L": 11,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "70551902909192",
+          "tiesEnumerated": 6636,
+          "identityTiePossible": false,
+          "candidateKeys": 6636
+        },
+        {
+          "chapter": 6,
+          "L": 12,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "372339341586099",
+          "tiesEnumerated": 2478,
+          "identityTiePossible": false,
+          "candidateKeys": 2478
+        },
+        {
+          "chapter": 7,
+          "L": 6,
+          "n": 53,
+          "identity": 0,
+          "best": 2,
+          "k": "15929119",
+          "tiesEnumerated": 70,
+          "identityTiePossible": false,
+          "candidateKeys": 311782
+        },
+        {
+          "chapter": 7,
+          "L": 7,
+          "n": 47,
+          "identity": 0,
+          "best": 1,
+          "k": "38936",
+          "tiesEnumerated": 305735,
+          "identityTiePossible": false,
+          "candidateKeys": 305735
+        },
+        {
+          "chapter": 7,
+          "L": 8,
+          "n": 42,
+          "identity": 0,
+          "best": 1,
+          "k": "276292",
+          "tiesEnumerated": 250068,
+          "identityTiePossible": false,
+          "candidateKeys": 250068
+        },
+        {
+          "chapter": 7,
+          "L": 9,
+          "n": 18,
+          "identity": 0,
+          "best": 1,
+          "k": "152600838",
+          "tiesEnumerated": 86364,
+          "identityTiePossible": false,
+          "candidateKeys": 86364
+        },
+        {
+          "chapter": 7,
+          "L": 10,
+          "n": 11,
+          "identity": 0,
+          "best": 1,
+          "k": "5789885149",
+          "tiesEnumerated": 37675,
+          "identityTiePossible": false,
+          "candidateKeys": 37675
+        },
+        {
+          "chapter": 7,
+          "L": 11,
+          "n": 8,
+          "identity": 0,
+          "best": 1,
+          "k": "2574930534355",
+          "tiesEnumerated": 17696,
+          "identityTiePossible": false,
+          "candidateKeys": 17696
+        },
+        {
+          "chapter": 7,
+          "L": 12,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "108267805997321",
+          "tiesEnumerated": 3717,
+          "identityTiePossible": false,
+          "candidateKeys": 3717
+        },
+        {
+          "chapter": 7,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "5982881062517438",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        },
+        {
+          "chapter": 7,
+          "L": 14,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "1596411728981926276",
+          "tiesEnumerated": 266,
+          "identityTiePossible": false,
+          "candidateKeys": 266
+        },
+        {
+          "chapter": 8,
+          "L": 6,
+          "n": 8,
+          "identity": 0,
+          "best": 2,
+          "k": "20145149",
+          "tiesEnumerated": 8,
+          "identityTiePossible": false,
+          "candidateKeys": 47064
+        },
+        {
+          "chapter": 8,
+          "L": 7,
+          "n": 3,
+          "identity": 0,
+          "best": 1,
+          "k": "5951657",
+          "tiesEnumerated": 19515,
+          "identityTiePossible": false,
+          "candidateKeys": 19515
+        },
+        {
+          "chapter": 8,
+          "L": 8,
+          "n": 6,
+          "identity": 0,
+          "best": 1,
+          "k": "22236807",
+          "tiesEnumerated": 35724,
+          "identityTiePossible": false,
+          "candidateKeys": 35724
+        },
+        {
+          "chapter": 8,
+          "L": 10,
+          "n": 2,
+          "identity": 0,
+          "best": 1,
+          "k": "1036107926301",
+          "tiesEnumerated": 6850,
+          "identityTiePossible": false,
+          "candidateKeys": 6850
+        },
+        {
+          "chapter": 8,
+          "L": 11,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "5689770407701",
+          "tiesEnumerated": 2212,
+          "identityTiePossible": false,
+          "candidateKeys": 2212
+        },
+        {
+          "chapter": 8,
+          "L": 13,
+          "n": 1,
+          "identity": 0,
+          "best": 1,
+          "k": "24080742671913500",
+          "tiesEnumerated": 620,
+          "identityTiePossible": false,
+          "candidateKeys": 620
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "feedback": false,
+      "detail": [
+        {
+          "L": 6,
+          "plant": "531372523",
+          "train": 43,
+          "held": 22,
+          "changed": 65,
+          "trainExact": 43,
+          "heldExact": 22,
+          "fit": {
+            "n": 43,
+            "identity": 0,
+            "best": 43,
+            "k": "531372523",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 140895
+          }
+        },
+        {
+          "L": 7,
+          "plant": "14692175462",
+          "train": 31,
+          "held": 16,
+          "changed": 47,
+          "trainExact": 31,
+          "heldExact": 16,
+          "fit": {
+            "n": 31,
+            "identity": 0,
+            "best": 31,
+            "k": "14692175462",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 162294
+          }
+        },
+        {
+          "L": 8,
+          "plant": "397456736872",
+          "train": 16,
+          "held": 9,
+          "changed": 23,
+          "trainExact": 16,
+          "heldExact": 9,
+          "fit": {
+            "n": 16,
+            "identity": 2,
+            "best": 16,
+            "k": "397456736872",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 65429
+          }
+        },
+        {
+          "L": 9,
+          "plant": "3215787352734",
+          "train": 10,
+          "held": 6,
+          "changed": 16,
+          "trainExact": 10,
+          "heldExact": 6,
+          "fit": {
+            "n": 10,
+            "identity": 0,
+            "best": 10,
+            "k": "3215787352734",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 43138
+          }
+        },
+        {
+          "L": 10,
+          "plant": "310583344651690",
+          "train": 6,
+          "held": 3,
+          "changed": 3,
+          "trainExact": 6,
+          "heldExact": 3,
+          "fit": {
+            "n": 6,
+            "identity": 4,
+            "best": 6,
+            "k": "310583344651690",
+            "tiesEnumerated": 2,
+            "identityTiePossible": false,
+            "candidateKeys": 6848
+          }
+        },
+        {
+          "L": 11,
+          "plant": "13863088717972441",
+          "train": 2,
+          "held": 2,
+          "changed": 3,
+          "trainExact": 1,
+          "heldExact": 0,
+          "fit": {
+            "n": 2,
+            "identity": 1,
+            "best": 2,
+            "k": "11877452325441124",
+            "tiesEnumerated": 1190,
+            "identityTiePossible": false,
+            "candidateKeys": 2212
+          }
+        },
+        {
+          "L": 12,
+          "plant": "94712237058890315",
+          "train": 1,
+          "held": 1,
+          "changed": 2,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "2038193047507652",
+            "tiesEnumerated": 1239,
+            "identityTiePossible": false,
+            "candidateKeys": 1239
+          }
+        },
+        {
+          "L": 13,
+          "plant": "3408842891319342339",
+          "train": 1,
+          "held": 1,
+          "changed": 2,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "103316963581731935",
+            "tiesEnumerated": 620,
+            "identityTiePossible": false,
+            "candidateKeys": 620
+          }
+        },
+        {
+          "L": 14,
+          "plant": "15858963648523627092",
+          "train": 1,
+          "held": 0,
+          "changed": 1,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "12697066902131981380",
+            "tiesEnumerated": 266,
+            "identityTiePossible": false,
+            "candidateKeys": 266
+          }
+        }
+      ],
+      "train": 111,
+      "trainExact": 107,
+      "held": 60,
+      "heldExact": 56,
+      "identifiable": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    {
+      "feedback": true,
+      "detail": [
+        {
+          "L": 6,
+          "plant": "52091865",
+          "train": 43,
+          "held": 22,
+          "changed": 63,
+          "trainExact": 43,
+          "heldExact": 22,
+          "fit": {
+            "n": 43,
+            "identity": 1,
+            "best": 43,
+            "k": "52091865",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 140895
+          }
+        },
+        {
+          "L": 7,
+          "plant": "7998856590",
+          "train": 31,
+          "held": 16,
+          "changed": 46,
+          "trainExact": 31,
+          "heldExact": 16,
+          "fit": {
+            "n": 31,
+            "identity": 1,
+            "best": 31,
+            "k": "7998856590",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 162294
+          }
+        },
+        {
+          "L": 8,
+          "plant": "224114538774",
+          "train": 16,
+          "held": 9,
+          "changed": 24,
+          "trainExact": 16,
+          "heldExact": 9,
+          "fit": {
+            "n": 16,
+            "identity": 1,
+            "best": 16,
+            "k": "224114538774",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 71371
+          }
+        },
+        {
+          "L": 9,
+          "plant": "14316023301896",
+          "train": 10,
+          "held": 6,
+          "changed": 13,
+          "trainExact": 10,
+          "heldExact": 6,
+          "fit": {
+            "n": 10,
+            "identity": 3,
+            "best": 10,
+            "k": "14316023301896",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 28768
+          }
+        },
+        {
+          "L": 10,
+          "plant": "239030376012176",
+          "train": 6,
+          "held": 3,
+          "changed": 9,
+          "trainExact": 6,
+          "heldExact": 3,
+          "fit": {
+            "n": 6,
+            "identity": 0,
+            "best": 6,
+            "k": "239030376012176",
+            "tiesEnumerated": 1,
+            "identityTiePossible": false,
+            "candidateKeys": 17111
+          }
+        },
+        {
+          "L": 11,
+          "plant": "13984802857082643",
+          "train": 2,
+          "held": 2,
+          "changed": 3,
+          "trainExact": 1,
+          "heldExact": 0,
+          "fit": {
+            "n": 2,
+            "identity": 1,
+            "best": 2,
+            "k": "11823023047860771",
+            "tiesEnumerated": 1170,
+            "identityTiePossible": false,
+            "candidateKeys": 2212
+          }
+        },
+        {
+          "L": 12,
+          "plant": "52518329697497419",
+          "train": 1,
+          "held": 1,
+          "changed": 2,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "1011721882193605",
+            "tiesEnumerated": 1239,
+            "identityTiePossible": false,
+            "candidateKeys": 1239
+          }
+        },
+        {
+          "L": 13,
+          "plant": "6972144343294930643",
+          "train": 1,
+          "held": 1,
+          "changed": 2,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "160104302298988579",
+            "tiesEnumerated": 620,
+            "identityTiePossible": false,
+            "candidateKeys": 620
+          }
+        },
+        {
+          "L": 14,
+          "plant": "4950149736280009635",
+          "train": 1,
+          "held": 0,
+          "changed": 1,
+          "trainExact": 0,
+          "heldExact": 0,
+          "fit": {
+            "n": 1,
+            "identity": 0,
+            "best": 1,
+            "k": "2923160032672611688",
+            "tiesEnumerated": 266,
+            "identityTiePossible": false,
+            "candidateKeys": 266
+          }
+        }
+      ],
+      "train": 111,
+      "trainExact": 107,
+      "held": 60,
+      "heldExact": 56,
+      "identifiable": [
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    }
+  ]
+}
