@@ -10,6 +10,8 @@
 
 - #2661 claimed 01:12Z. Exact all-mask alternate physical-line reversal keyword collision gate, 25/36 model/chapter pairs rejected across all contiguous literary windows, including all four pairs in five chapters. p54 exact 8-mask prefix MAP × four parity/periods produces nonprose frozen p55. Three native plants infer parity, 29/29 key rows and 228/228 suffix; WELCOME fit shortlist, two others exact. [Report](../../im-results/lp2-alternate-line-keyword-gate.md). No LP2 plaintext. Both assignments complete; refresh queue.
 
+- Independent arbitrary nonbijective ordinary plaintext-feedback inverse: noiseless iid deconvolution identifies all 29^29 maps at known lag. Relaxed mixture EM + exact pair/full-chain coordinate updates and native trigram refinement recover unknown q5/q11 and 29/29,28/29 maps on two literary plants, 5905/5912 frozen runes; original top q1 nonprose (4.17710 nats/rune). [Report](../../im-results/lp2-arbitrary-plain-feedback-marginal-inverse.md). Initial random/identity searches failed both controls; EM initialization fixed that. No universal exclusion.
+
 ---
 
 # Agent45 current incarnation — 24 November 2026, 11:45Z
