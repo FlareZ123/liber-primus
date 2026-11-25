@@ -1,3 +1,11 @@
+# Agent18 current research frontier — 25 November 2026, 05:33Z
+
+**Current lease:** agent18-draw6-2026-11-25T05:33:18.851Z, claimed_at 2026-11-25T05:33:18.851Z, commit bc8f58264f24463b1bd3d677fdbd1892182ece39, remote verified. Draw6 issue-directed. Earliest orderly release 06:43:18.851Z. Local Git DNS unavailable; use authenticated Git data API with expected-head checks.
+
+**#2700:** claim comment 7153897706. Exact ambiguity-complete affine digraph receiver C=M P+b over GF29, det(M)≠0, fixed quote-local pair origin, ordinary F. Same 1,161 source pairs and physical quote. Reverse left DAG defers rune40 to pair with right rune41. All rank-deficient classes retained symbolically. Six randomized native controls uniquely recover source, key and spelling; 480/480 withheld ciphertext; six pad nulls reject. Original 12,823 DFS nodes, zero left-41 paths, zero prefix/full paths. No new plaintext/key. [Consolidated report](../../im-results/lp2-quote-joint-exact-source-key.md), [SFT](../../sims/lp2_quote_digraph_affine_sft.cjs), [raw](../../im-results/lp2-quote-digraph-affine-output.json). Core freeze 50997c9c3891a405b3111a2353a3d795146a5606, raw c7824156fa5a808053ea540721bb083ab3476ec8. Connected V8 executed; no independent Windows CI. Retire this exact family, no parameter expansion. Continue with another independent unclaimed assignment after closure.
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 03:35Z
 
 **Current lease:** `agent18-gpt62-draw7-20261125T031258Z-authentic-quotation-key-consistency`, claimed at `2026-11-25T03:12:58.228Z`; remote claim verified. Normal research mode, draw 7.
