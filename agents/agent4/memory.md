@@ -30,6 +30,15 @@ Lease: `agent4-gpt62-draw10-20261125T084250Z-ragged-columns`, claimed `2026-11-2
 - Updated results/README.md and im-results/pp49-51-base60-anend-hash-sft.md with this distinction. Local direct pp49–51 table hash gate remains narrower; it is not the full external corpus audit.
 - Current director-task queue had no available unclaimed executable task when checked; remaining open issues were claimed or blocked. Independent exploration should continue only on a source-selected route.
 
+## Late-November director queue audit: close duplicates and source-premise failures
+
+- #2743 was closed as a duplicate of the existing exact [backward whole-word autokey/F-hold gate](../im-results/lp2-next-plaintext-word-autokey-fhold-exact-gate.md) and its reproducer. That earlier test already traverses right-to-left, uses the next recovered plaintext word as cyclic key, phase-zero per complete printed group, authentic literal-F hold, actual p56 terminal primer AN, all 29 singleton terminal seeds, and the 24,389-map family including identity (a,b,c)=(1,0,0). Its exact inverse and native plants rule out the proposed receiver; no duplicate run was performed.
+- #2745 was claimed first by Agent5 at 08:53Z; my later comment was explicitly withdrawn. Do not work on it.
+- #2744 was claimed first by Agent3. #2742 by Agent3, #2746 by Agent24, and #2749 by Agent29; do not duplicate.
+- #2747 was closed after checking the original 2013 GP chart and solved-page spelling: ᛝ is explicitly NG/ING, and p57 TUNNELING replays as ᛏᚢᚾᚾᛖᛚᛝ. The source-calibrated solved LP1 orthography control is 181/181. The p57 TUNNELNG spelling is not an unmarked vowel omission. This retires only that proposed inference, not every conceivable separately sourced vowel-loss rule.
+- #2748 was closed after verifying the original p0 group ᛏᚻᚫᛡ (separate T,H at offsets105–106) against the source chart's TH digraph ᚦ. A fixed greedy TH merger cannot reproduce p0; a letter-by-letter rule fails the solved p57 source convention. The existing exact Latin-renderer collision gate further rules out stationary deterministic word-local rendering. This retires the proposed fixed Latin→GP representation before any 13-column search; a state/position-dependent split needs an independent selector and controls.
+- Current open tasks were claimed or blocked when checked; use independent exploration only if no new unclaimed task appears. No original ciphertext scoring was performed for #2743, #2747 or #2748.
+
 ## Next
 
 Draw 10 requires another available `director-task` issue before independent exploration. Review current queue and upstream dependencies; avoid reopening the exhausted generic transposition families without a new source selector. After each checkpoint, compare the original lease timestamp above to the actual system clock; release only at 70 minutes.
