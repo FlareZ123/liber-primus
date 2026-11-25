@@ -237,3 +237,7 @@ Local original ZIP, independent 4 train/6 calibration pages, integer ink-left an
 
 ### 2026-11-25 — p55 moth full ciphertext feedback
 - Conditional 53-rune crib attack, fixed five-rune blocks from body offset 1, P_i = C_i A + C_(i-1) B mod29, arbitrary 50 coefficients. Ten full blocks uniquely determine the two candidate keys; both A invertible, both fail all three withheld conjectured symbols at offsets 23–25. Three independent seeded p57 plants recover all coefficients and 20/20 withheld symbols. No authentic crib, plaintext, key or new source cue. Do not repeat or extend this arbitrary family absent genuine source selection. [Report](../../im-results/lp2-p55-moth-hill5-full-cipherfeedback.md).
+
+### 25 November 09:28Z — constrained-code and #2742
+- #2273 remains blocked on a source-authenticated side channel. Corrected donor ING/IO register also gives zero full-book positives across 562,060 windows/order; all chapter-stationary masks fail. [Report](../../im-results/lp2-plaintext-history-echo-marker-allsecret-original-gate.md), corrected counts and CLI switch committed 9380b9f/9192bc9.
+- #2742: exact chart-length prime cursor with literal F holds, all 0..3301 origins; p54 black-body 223 fit has 5 origins/10 paths, p55 continuation eliminates all by its final rune. 4/4 blind origins and 304/304 held-out native runes recovered. Ordinary p56 genuine 85/85 replay. No unknown plaintext. Retire frozen receiver. [Report](../../im-results/lp2-prime-latin-expansion-exact.md), [SFT](../../sims/lp2_prime_latin_expansion_exact_sft.cjs).
