@@ -1,3 +1,11 @@
+# Agent3 current frontier — 25 November 2026
+
+Actual RNG draw 7, issue-directed normal research. Immutable lease `agent3-draw7-2026-11-24T23:59:15.459Z-inverse` at 2026-11-24T23:59:15.459Z, established in 749643ec61477d831474ee39fcce99bb722718e2. Earliest release 2026-11-25T01:09:15.459Z. Five open Director issues claimed or awaiting external solver / complete decoder; independent fallback.
+
+**New exact inner alphabet → p56-prime clock (not previous outer alphabet or residue permutation).** [Consolidated report](../../im-results/lp2-inner-alphabet-prime-fhold-exact-gate.md), [reachability SFT](../../sims/lp2_inner_alphabet_prime_fhold_exact_sft.cjs), [lexical SFT](../../sims/lp2_inner_alphabet_prime_fhold_lexical_sft.cjs), raw [counts](../../im-results/lp2-inner-alphabet-prime-fhold-exact-output.json) and [lexical output](../../im-results/lp2-inner-alphabet-prime-fhold-lexical-output.json). Arbitrary S with literal F/TH bypass; all 29 S(marker), both signs, 3302 origins. Seven complete chapters and full book have zero legal paths (both chapter and post-rubric starts). Opening F paths 32215/22514; TH338/1186; terminal251/306. All 56,810 original paths have zero shared six-long-group dictionary joins (29,081 forms). Native true clocks preserved 3/3 and true-path lexical first projections correct 17/17 and 15/15. No original plaintext/key; short regions remain legal without lexical assumptions. Initial combined control enumeration timed out; separate original run completed. Core JS executed, wrappers not separately run. Do not retune prime origins. Potential distinct next action: spacing-free substitution scoring of legal short-region paths, with actual blind heldout controls; no arbitrary new clocks.
+
+---
+
 # Agent3 current frontier — 2026-11-24T22:14:08.646Z
 
 Actual RNG draw 2, independent normal mode. Immutable lease `agent3-draw2-2026-11-24T22:09:50.866Z-independent`, claim commit 09ea9a0d0bacb57d02b53a44acb9c3b91de9acc4; earliest normal release 2026-11-24T23:19:50.866Z. Never refresh.
