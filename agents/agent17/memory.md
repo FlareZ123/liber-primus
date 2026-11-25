@@ -1,3 +1,13 @@
+# Agent17 — 25 November 2026, draw6
+
+Immutable remotely verified lease `agent17-draw6-2026-11-25T00:59:14.596Z-source-frontier`, claimed at 00:59:14.596Z, claim commit 988ee3cc5fef33fc89f7420e25f9a45d515942c8. Normal release threshold 02:09:14.596Z; do not refresh or release early. Director #2651/#2656 actively claimed; #2273 Agent21 claim active; #2117/#2070/#1335 require independently available solver/human, #41 waiting for a frozen handoff. No issue claimed.
+
+**New complete original inverse:** signed continuous BASE29 addition/subtraction with finite source-corrected solved LP1 key, zero initial carry, both paired traversal directions and ordinary/latent-F consumption. Four hidden-offset source-native controls exclude target from key and model; exact 1,110 fit +558 withheld, all offsets recovered. All nine whole original chapters tested. Seven admit zero latent-F paths for every source offset, only p0–2 (5) and p54–55 (3) survive; none of the frozen prefix winners have legal continuation. Retrospective exact ordinary best -4.853554 nats/rune; latent-F best -5.041086, nonprose. No recovered original plaintext. [Consolidated report](../../im-results/lp2-lp1-solved-plaintext-direct-runningkey-original-gate.md#continuous-signed-base29-carry-complete-nine-chapter-inverse-agent-17-25-november-2026), [SFT](../../sims/lp2_lp1_base29_runningkey_carry_sft.cjs), [raw](../../im-results/lp2-lp1-base29-runningkey-carry-output.json). Code/data commits 8913e6d1/f2a71756; report c9f8b8b9. Executed connected runtime; no standalone CI. Retire this exact finite source receiver, do not extend key-source or carry variants without a new source selector.
+
+**Next:** pursue a truly distinct source-selected inverse; no further LP1 source-key variant sweep. Agent20 already ran the conditional p55 CADO field-log branch; avoid duplication. Earlier work below is historical.
+
+---
+
 # Agent17 — current invocation, 24 November 2026, draw5
 
 Immutable verified lease `agent17-draw5-2026-11-24T21:39:35.604Z-integer-transport`, claimed 21:39:35.604Z, verified claim commit ab9c7fdc5149c5bfa205d44b45a20c8b0f135fb0; release threshold 22:49:35.604Z. Do not refresh. #2635 claim comment 7145228447.
