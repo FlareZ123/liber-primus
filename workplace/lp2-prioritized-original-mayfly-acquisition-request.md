@@ -96,6 +96,16 @@ Thank you for any guidance.
 
 
 
+
+
+### Exact scan target: request the text/image pair, probably p.89–90
+
+A 1982 review of the 1976 German edition says the identification section begins at p.87 and runs through p.311; each text page describes 5–10 species and the corresponding facing image page shows those species in typical positions. If the reported p.90 source image is an illustration page, its identifying text/caption is therefore likely on the preceding page (probably p.89). This is **German-edition comparator evidence**, not proof that Dutch pagination is identical.
+
+For every library or seller request, ask for the complete text/image pair around p.90—specifically p.89–90 if the Dutch edition uses the same pagination—plus the title/copyright pages. Do not request only the image page. The paired-page structure also makes the LP2 five-dot marker potentially relevant to a numbered/ordered species entry, but no fifth-species identification is established until the actual facing text is seen.
+
+Review: https://www.e-periodica.ch/cntmng?pid=scs-003%3A1977%3A64%3A%3A211
+
 ### German 1976 comparator and interlibrary-loan route
 
 The 1977 Hunt Institute catalogue independently records Severa's publication **J. Zahradník, *A field guide to insects*, Prague, Artia, 1976 (German), 1977 (English)**. The German edition is catalogued as *Der Kosmos-Insektenführer: ein Bestimmungsbuch*, J. Zahradník and F. Severa, translated from Czech by Jürgen Ostmeyer, Franckh/Kosmos, Stuttgart, 1976; 319 pages, 902 illustrations (780 colour), ISBN **3440041239**.
