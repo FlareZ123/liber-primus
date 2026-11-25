@@ -28,6 +28,9 @@ jobs:
       - name: Prepare the bundled JPEG-6b configuration
         working-directory: external/outguess/jpeg-6b-steg
         run: ln -sf jconfig.cfg jconfig.h
+      - name: Guard invalid OutGuess length headers against iterator division by zero
+        working-directory: external/outguess
+        run: patch -p1 < ../../sims/patches/outguess-0.2.1-safe-capacity.patch
       - name: Build OutGuess 0.2.1 without compiler optimization
         working-directory: external/outguess
         env:
@@ -54,9 +57,9 @@ jobs:
           cat > "${RUNNER_TEMP}/control.ps" <<'PS'
           %!PS-Adobe-3.0
           << /PageSize [432 648] >> setpagedevice
-          /Courier findfont 5 scalefont setfont
+          /Courier findfont 2.5 scalefont setfont
           40 620 moveto
-          0 1 99 { pop (0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789) show 0 -5 rmoveto } for
+          0 1 149 { pop (0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ) show 0 -4 rmoveto } for
           showpage
           PS
           gs -q -dNOPAUSE -dBATCH -sDEVICE=jpeg -r400 -sOutputFile="${RUNNER_TEMP}/control-gs.jpg" "${RUNNER_TEMP}/control.ps"
