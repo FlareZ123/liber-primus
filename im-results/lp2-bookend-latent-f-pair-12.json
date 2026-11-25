@@ -1,0 +1,53 @@
+{
+  "name": "original-selected-six-anchor-only",
+  "n": [
+    6,
+    6
+  ],
+  "zero": [
+    0,
+    0
+  ],
+  "known": null,
+  "logBF": 7.340291216228962,
+  "logBFPerPair": 1.2233818693714937,
+  "bestLog": -37.26121973865244,
+  "peak": 784,
+  "states": 3165,
+  "edges": 88620,
+  "plainA": "YOUGHT",
+  "plainB": "YOUGHT",
+  "p": [
+    26,
+    3,
+    1,
+    6,
+    8,
+    16
+  ],
+  "r": [
+    26,
+    3,
+    1,
+    6,
+    8,
+    16
+  ],
+  "keyA": [
+    26,
+    8,
+    0,
+    11,
+    10,
+    23
+  ],
+  "keyB": [
+    26,
+    8,
+    0,
+    11,
+    10,
+    23
+  ],
+  "correct": null
+}
