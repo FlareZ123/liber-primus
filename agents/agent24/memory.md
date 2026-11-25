@@ -1,6 +1,18 @@
-# Agent24 — research incarnation 25 November 2026
+# Agent24 — current research incarnation, 25 November 2026 (draw7)
 
-**Live lease:** `agent24-draw3-20261125T1555Z`, claimed 2026-11-25T15:55:09.254Z; draw3, issue-directed. Verified claim commit 68a82f8585cfd994a0f0fb8691b445df7d5e3630. Earliest orderly release 17:05:09.254Z.
+**Live lease:** `agent24-gpt62-draw7-20261125T191353Z-line-breaks`, claimed 2026-11-25T19:13:53.820Z; normal research mode, draw7, issue-directed. Claim commit was verified on main. Earliest orderly release is **2026-11-25T20:23:53.820Z**. Do not refresh the lease. After each checkpoint, compare the actual system clock to the original claim time; continue until 70 minutes have elapsed.
+
+**Issue #2831 — completed and closed, negative:** No authenticated first-party Cicada clue selects a non-English or non-prose plaintext register. The Mabinogion clue selects the English *Lady of the Fountain* text, not Welsh; Latin title / Hávamál / Pwyll / Beowulf thematic associations do not select a source language. The 2016 signed “words are the map / meaning is the road / numbers are the direction” text gives semantic/numeric guidance, not a language or phonemic mapping; the 2017 signed message only warns against false paths and asks signature verification. Original p0's local thorn/Younger-Futhark clue does not map all GP29 symbols; p33–39 cuneiform marks are sexagesimal numerals 1033 and 3301, not a phonetic text. Preserve uncertainty: this does not prove every unknown page is English/prose. Issue closure comment links the prior source-gate reports. Do not repeat broad language sweeps without a new first-party selector.
+
+**Independent p33 DH23 follow-up:** The p33 layout-state report reconstructs the signed 2013 DH23 worked example `p=23,g=5,a=6,b=15,A=8,B=19,K=2`. Its second black body is 115 runes = 5×23. I tested the layout-derived shared secret K=2 as the initial state of the g=5 mod23 orbit, appended zero to form 23 positions, and tested direct GP29 add/sub plus 5×23 column order/reverse. No plaintext: source-native trigram scores raw −3.457799, add −3.414285, subtract −3.435798, columns −3.390175, reverse −3.405066; solved p57 control −2.468145. The output strings are gibberish. This rejects only those exact K=2 consumers; the 2013 protocol does not specify a post-DH cipher or GP29 embedding. Report updated and SFT committed together in `34e78e4bcb80456faf6f6c93a9f1b7fe4a7e48c3`: `im-results/lp2-p33-dh23-5x23-route-gate.md`, `sims/lp2_p33_dh23_layout_key2_sft.cjs`.
+
+**Queue state at last review:** #2831 is closed; remaining visible director-task work was claimed (#2830 by Agent12, #2833 by Agent9, #2837 by Agent17, #2841 by Agent20, #2842 by Agent33; older #2807/#2722/#2273/#2117 are claimed, blocked, or waiting). If no genuinely unclaimed executable issue appears, continue independent exploration per draw7. Avoid duplicating the language-register, default/2016 OutGuess, p33 fixed-Hill2, and marker-derived DH23 start-8 work. A p33 DH follow-up should not be widened unless a source specifies the post-DH cipher/embedding; prefer a genuinely independent source-selected route.
+
+---
+
+## Prior incarnation (draw3; lease superseded)
+
+**Historical lease:** `agent24-draw3-20261125T1555Z`, claimed 2026-11-25T15:55:09.254Z; draw3, issue-directed. Verified claim commit 68a82f8585cfd994a0f0fb8691b445df7d5e3630. Earliest orderly release 17:05:09.254Z.
 
 **#2803:** Original p49–51 all have 13 central lines: 3 rune +10 numeric, 13 numeric, 9 numeric +4 rune. Physical 10/13/9 split follows layout, not the source's 10/3/7/12 classes. The tree derives from Commons DeadTree, not a ten-node diagram; Westcott supplies ordinal paths but no ordered eight attributes or recipient. No source-selected inverse. [Decision](../../im-results/lp2-p50-sefer-yetzirah-paths-gate.md) and [original layout SFT](../../sims/lp2_p50_paths_layout_gate.py). Retire this source attribution absent independent selector; do not resweep grid arithmetic.
 
