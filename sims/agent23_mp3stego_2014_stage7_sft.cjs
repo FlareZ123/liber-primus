@@ -28,7 +28,6 @@ const INSTAR_BLOB = "7e2bd299fbc7b96283219cf15e2904641daf631f";
 const INSTAR_SHA256 = "83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460";
 const MP3STEGO_REPO = "https://github.com/Charleswyt/MP3Stego.git";
 const MP3STEGO_COMMIT = "9818638a1203853efdfa631006b96acca43efc58";
-const PASSWORD = "33011033";
 
 function sha256(buf) {
   return crypto.createHash("sha256").update(buf).digest("hex");
@@ -127,29 +126,6 @@ function run(exe, args, cwd, timeout = 600000) {
     stderr: result.stderr ? result.stderr.toString("utf8") : ""
   };
 }
-function makeWav(file) {
-  const rate = 44100, seconds = 8, samples = rate * seconds;
-  const dataBytes = samples * 2;
-  const out = Buffer.alloc(44 + dataBytes);
-  out.write("RIFF", 0, "ascii");
-  out.writeUInt32LE(36 + dataBytes, 4);
-  out.write("WAVE", 8, "ascii");
-  out.write("fmt ", 12, "ascii");
-  out.writeUInt32LE(16, 16);
-  out.writeUInt16LE(1, 20);
-  out.writeUInt16LE(1, 22);
-  out.writeUInt32LE(rate, 24);
-  out.writeUInt32LE(rate * 2, 28);
-  out.writeUInt16LE(2, 32);
-  out.writeUInt16LE(16, 34);
-  out.write("data", 36, "ascii");
-  out.writeUInt32LE(dataBytes, 40);
-  for (let i = 0; i < samples; i++) {
-    const s = Math.sin(2 * Math.PI * 440 * i / rate) * 0.22;
-    out.writeInt16LE(Math.round(s * 32767), 44 + 2 * i);
-  }
-  fs.writeFileSync(file, out);
-}
 function summarizeOutput(dir, inputName) {
   const expected = path.join(dir, inputName + ".txt");
   const candidates = fs.existsSync(expected) ? [expected] :
@@ -200,33 +176,30 @@ function summarizeOutput(dir, inputName) {
     if (found.status === 0) msbuild = found.stdout.trim().split(/\r?\n/)[0];
   }
   assert.ok(msbuild, "Visual Studio MSBuild must be present on windows-latest");
-  const solution = path.join(sourceDir, "MP3Stego", "MP3Stego.sln");
+  const decoderProject = path.join(sourceDir, "MP3Stego", "Decoder", "Decode.vcxproj");
   const build = run(msbuild, [
-    solution, "/m", "/p:Configuration=Release", "/p:Platform=Win32",
+    decoderProject, "/m", "/p:Configuration=Release", "/p:Platform=Win32",
     "/p:PlatformToolset=v143", "/v:minimal"
-  ], path.join(sourceDir, "MP3Stego"), 600000);
-  assert.equal(build.status, 0, "MP3Stego build failed: " + build.stdout + "\n" + build.stderr);
+  ], path.join(sourceDir, "MP3Stego", "Decoder"), 600000);
+  assert.equal(build.status, 0, "MP3Stego decoder build failed: " + build.stdout + "\n" + build.stderr);
   const decoder = locateExe(sourceDir, "Decode.exe");
-  const encoder = locateExe(sourceDir, "Encode.exe");
   assert.ok(decoder, "built Decode.exe");
-  assert.ok(encoder, "built Encode.exe");
 
+  const sampleMp3 = fs.readFileSync(path.join(sourceDir, "MP3Stego", "Encoder", "stego.mp3"));
+  const sampleExpected = fs.readFileSync(path.join(sourceDir, "MP3Stego", "Encoder", "Release", "hidden_text.txt"));
+  const samplePasswordBytes = fs.readFileSync(path.join(sourceDir, "MP3Stego", "Encoder", "Release", "msg.txt"));
+  const samplePassword = samplePasswordBytes.toString("ascii").trim();
+  assert.equal(gitBlobSha1(sampleMp3), "e17ee74b532bf72c668093f6a3ac3adb27ce7212", "MP3Stego sample MP3 identity");
+  assert.equal(gitBlobSha1(sampleExpected), "4f886bcff121e85eb82fc03841c756a755d5e19c", "MP3Stego sample plaintext identity");
+  assert.equal(gitBlobSha1(samplePasswordBytes), "790be1ca56e82d6a297f325ed4eef67f06a77740", "MP3Stego sample password identity");
   const controlDir = path.join(root, "positive-control");
   fs.mkdirSync(controlDir);
-  const wav = path.join(controlDir, "control.wav");
-  const payload = "MP3STEGO_POSITIVE_CONTROL_33011033\n";
-  const payloadPath = path.join(controlDir, "payload.txt");
-  const encoded = path.join(controlDir, "control_stego.mp3");
-  makeWav(wav);
-  fs.writeFileSync(payloadPath, payload, "ascii");
-  const encodeRun = run(encoder, ["-E", payloadPath, "-P", PASSWORD, wav, encoded], controlDir);
-  assert.equal(encodeRun.status, 0, "positive-control encode failed: " + encodeRun.stdout + "\n" + encodeRun.stderr);
-  assert.ok(fs.existsSync(encoded), "positive-control MP3 created");
-  const decodeControl = run(decoder, ["-X", "-P", PASSWORD, "control_stego.mp3"], controlDir);
-  const positive = summarizeOutput(controlDir, "control_stego.mp3");
-  assert.ok(positive.exists, "positive-control decode output exists: " + decodeControl.stdout + decodeControl.stderr);
-  assert.equal(fs.readFileSync(path.join(controlDir, positive.filename)).toString("ascii"), payload,
-    "MP3Stego positive control must recover exact payload");
+  fs.writeFileSync(path.join(controlDir, "sample.mp3"), sampleMp3);
+  const decodeControl = run(decoder, ["-X", "-P", samplePassword, "sample.mp3"], controlDir);
+  const positive = summarizeOutput(controlDir, "sample.mp3");
+  assert.ok(positive.exists, "MP3Stego sample positive-control output exists: " + decodeControl.stdout + decodeControl.stderr);
+  assert.deepEqual(fs.readFileSync(path.join(controlDir, positive.filename)), sampleExpected,
+    "MP3Stego decoder must recover the repository's known sample plaintext exactly");
 
   const instar = await download(INSTAR_URL);
   assert.equal(instar.length, 4010732, "2013 761.MP3 original byte length");
@@ -266,7 +239,8 @@ function summarizeOutput(dir, inputName) {
     decoder: {
       repository: MP3STEGO_REPO, commit: checkedOut, msbuild,
       positiveControl: {
-        encodeStatus: encodeRun.status, decodeStatus: decodeControl.status,
+        buildStatus: build.status, decodeStatus: decodeControl.status,
+        samplePassword: samplePassword, sampleMp3Bytes: sampleMp3.length,
         output: positive, exactRecovery: true
       }
     },
