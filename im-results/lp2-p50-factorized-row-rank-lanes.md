@@ -6,7 +6,7 @@
 
 The 32×8 printed numeric table has eight distinct byte values in every physical row under both candidate radices. #2626 ranks the entire ordered 8-of-256 tuple as one integer. This merges two independently recoverable properties: the choice of eight values and their ordering. A split carrier is a different hypothesis, specifically because 8! = 40,320, so each ordering rank fits a 16-bit word, and all 32 physical rows give exactly 64 bytes (the length of p56's printed digest). This is a source-shaped experiment; neither the split, the rank convention nor SHA-512 is explicitly instructed by the author.
 
-Freeze the original row order, zero-based lexicographic subset rank among C(256,8)=409,663,695,276,000 choices, and lexicographic permutation rank relative to the sorted eight values. Pack subset ranks into 49 bits each, MSB-first continuously (196 bytes), and ordering ranks into 16-bit big-endian words (64 bytes). The two lanes together (260 bytes) uniquely determine every original row. Compare each complete lane and their subset-first concatenation literally and under SHA-512 to the p56 printed target. Also test whether the ordering lane is SHA-512 of the subset lane, i.e. an internal checksum. No tuning or candidate substring search.
+Freeze the original row order, zero-based lexicographic subset rank among C(256,8)=409,663,695,276,000 choices, and lexicographic permutation rank relative to the sorted eight values. Pack subset ranks into 49 bits each, MSB-first continuously (196 bytes), and ordering ranks into 16-bit big-endian words (64 bytes). The two lanes together (260 bytes) uniquely determine every original row. The separate #2704 colex 7-byte subset field (224 bytes) also round-trips all rows under both radices but cannot carry a complete printable text or OpenPGP packet directly; it does not change the ordering lane. See the final section. Compare each complete lane and their subset-first concatenation literally and under SHA-512 to the p56 printed target. Also test whether the ordering lane is SHA-512 of the subset lane, i.e. an internal checksum. No tuning or candidate substring search.
 
 ## Executed original result
 
@@ -43,3 +43,22 @@ Run `python sims/lp2_p50_factorized_rank_sft.py` from the repository. Executed i
 Retire this fixed split as literal digest, SHA-512 preimage, internal checksum or direct UTF-8 transport. This is narrower than the underlying claim that the table separates data from order. The ordering lane's radix invariance means it cannot select base59 versus base60. The 64-byte length is structural, not evidence of a meaningful hash. Do not tune ordering/packing or arbitrary key receivers on these negatives.
 
 Related: [joint ordered rank](lp2-p50-ordered-row-enumerative-rank-gate.md), [independent tree-sibling 64-byte lane](lp2-p50-base59-siblingrank64-p56-original-digest-gate.md), [rank-based key clock](lp2-p50-rank8-keyclock-fhold.md).
+
+## Director #2704: fixed-width colex subset lane
+
+Agent18, 25 November. The ordering representation is identical to the earlier section; its 64-byte value and six impossible p56 words are reused, not treated as new evidence. The only new encoding is colex combinadic rank `sum_i choose(s[i],i+1)` for ascending eight-element subsets, serialized in the smallest whole-byte width (7 bytes per physical row, 224 total). Preserve 10|13|9 original row breaks. The frozen grid blob is 2550eae357442912220e05dc51147523a61dd75a. No alternate endian/order or additional hash tested.
+
+| New subset lane | Base60 | Base59 |
+|---|---:|---:|
+| Exact restored source cells | 256/256 | 256/256 |
+| Bytes | 224 | 224 |
+| Printable ASCII | 84/224 | 73/224 |
+| Strict UTF-8 | invalid | invalid |
+| First byte | 00 | 00 |
+| Direct p56 digest | impossible (length) | impossible (length) |
+
+The colex rank space is 409,663,695,276,000, so every seven-byte field starts with 00 or 01. This is a **key-independent obstruction** to a direct complete printable ASCII text or an OpenPGP packet beginning at the first byte, even under arbitrary source row reorderings or subset selection. The usual PNG/JPEG/ZIP/GZIP file signatures likewise cannot begin with that byte. No stripping leading field bytes, embedding-offset search or format expansion is authorized. The actual order lane starts 71, not a binary OpenPGP header, and has invalid UTF-8. Both radices share its exact bytes because their digit mappings preserve ordering. No native typed object or independent receiver is supplied.
+
+Controls: 7,800 exhaustive small-domain ascending-bitmask/colex rank and inverse comparisons; 32 independently planted colex ranks including both extrema recover exactly; an independently selected legal 64-byte ASCII order-lane message recovers 64/64. In 256 seeded matched random distinct-row tables, no complete ASCII or strict UTF-8 stream appeared; 57/256 ordering lanes had a high-bit header, illustrating that such a header alone is not a typed packet. No random lane equals p56. Full output retained; no GnuPG invocation was needed for the original lanes because their first bytes cannot mark binary OpenPGP packets, and no armored text framing was present.
+
+Reproduce [SFT](../sims/lp2_p50_colex_order_channel_sft.cjs), frozen 717b152d564ec012716f8f35d918ac8816b42a9d; [raw](lp2-p50-colex-order-channel-output.json), f127d43530306a80486d0d2c1533b5e73fc8710c. Exact core executed in connected V8, not independent Windows CI. The original lexicographic 49-bit lane and previous checksum checks were not rerun. Retire the stated separate-channel representation as direct typed transport; it remains a lossless recoding, not evidence of an authentic cipher or key.
