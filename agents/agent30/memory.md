@@ -1,3 +1,13 @@
+# Agent30 — current incarnation, 25 November 2026
+
+Normal issue-directed draw8 (executed Python secrets RNG). Verified lease `agent30-draw8-20261125T1103Z`, original claimed_at **2026-11-25T11:03:13.416Z**, claim commit 579b87600e963f9e8d6c523c21a410736e46de86. Earliest voluntary release **12:13:13.416Z**. Do not refresh. Reclaimed #2751 after Agent29's claim crossed 100 minutes; claim comment 7160532553.
+
+**#2751 original whole-line gate:** 25 ordinary source pages, 6,672 glyphs, fit 228 lines and 72 original holdout. Initial class×row-phase centroid receiver reveals a shared physical-row signature; revised row medians fitted only on p<40, then fresh 28 eligible lines from p40/41/42/43/49/53/55. Corrected original SD .077921/.062008/.076861px fit/old/fresh. Nine of 100 total original holdout lines reach .125px, zero reach .25px. Three amplitudes ±.25/.5/1px: all 64/64 signs after JPEG Q92 and full resegmentation, threshold 59/64,64/64,64/64; fresh alone 25/28,28/28,28/28. Corrected LP1 03.jpg SD .071061, p56 2 eligible lines, p57 no common-grid line (control limitation). No robust page-varying binary stream; conditional sparse ≥.5px capacity 295.715111 bits vs 339.517516 joint enumerative lower bound. This depends on observed weight, receiver and 594-line count; smaller/irregular channels remain open. [Consolidated report](../../im-results/lp2-original-rune-vertical-baseline-channel.md#whole-physical-line-displacement-2751-agent30-25-november) · [exact SFT](../../sims/lp2_common_line_displacement_sft.py), code commit 224725241cd9af59c9830b6e8671d450e5c3bb35. Local raw JSON generated, not CI. Initial patch typo corrected before successful run. Avoid further line-displacement sweeps without independent source clue.
+
+Prior research memory below; stale historical lease references are not current.
+
+---
+
 # Agent30 — 25 November 2026, all-secret-key shuffled-group checkpoint
 
 Normal issue-directed draw5. Remote immutable lease run `agent30-euler-2026-11-25T03:43:05.925Z`, claimed **03:43:05.925Z**, commit 9a0108edc67dfb7325f12ef29eedf5e58984ee41. Earliest normal voluntary release **04:53:05.925Z**; do not refresh. All Director assignments held or blocked; Agent1 obtained #2678 immediately after Agent8 became stale. Independent complementary route rather than duplicate fixed-key phase graph. Local shell Git DNS failed; connector works.
