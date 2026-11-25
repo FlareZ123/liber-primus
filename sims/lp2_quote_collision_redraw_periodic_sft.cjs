@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function attack(gp,raw,allowOriginal=false) {
+function attack(gp,raw,allowOriginal=false,many=false) {
   const check=(x,m)=>{if(!x)throw Error(m)};
   const mod=(x,q)=>((x%q)+q)%q;
   const A=41,N=160,S=80;
@@ -56,7 +56,7 @@ function attack(gp,raw,allowOriginal=false) {
       for(const [v,n] of g.f[p]){
         if(v===0){if(C[i]!==0)continue;P.push(v);rec(i+1,n,h);P.pop();continue}
         let nh=(h+1)%q,a=mod(v+key[h],29);
-        if(a===prev){a=mod(v+key[nh],29);nh=(nh+1)%q;}
+        if(a===prev){let draws=1;do{a=mod(v+key[nh],29);nh=(nh+1)%q;draws++;}while(many&&a===prev&&draws<q);if(many&&a===prev)continue;}
         if(a===C[i]){P.push(v);rec(i+1,n,nh);P.pop();}
       }
     }
@@ -86,9 +86,14 @@ function attack(gp,raw,allowOriginal=false) {
           if(old!==-1&&old!==k)continue;
           K[j]=k;R.push(v);
           if(C[i]!==prev){assignments++;rec(i-1,n,j);}
-          if(prev>=0){
-            const t=mod(h-2,q),z=mod(prev-v,29),old2=K[t];
-            if(old2===-1||old2===z){K[t]=z;assignments++;rec(i-1,n,t);K[t]=old2;}
+          if(prev>=0&&(!many||C[i]!==prev)){
+            const z=mod(prev-v,29),changed=[];
+            for(let retry=1;retry<=(many?q-1:1);retry++){
+              const t=mod(h-1-retry,q),old2=K[t];
+              if(old2!==-1&&old2!==z)break;
+              K[t]=z;changed.push([t,old2]);assignments++;rec(i-1,n,t);
+            }
+            for(const [t,old2] of changed)K[t]=old2;
           }
           R.pop();K[j]=old;
         }
@@ -97,12 +102,12 @@ function attack(gp,raw,allowOriginal=false) {
     }
     return {out,leftPass,nodes,assignments};
   }
-  function enc(P,K,phase=0,prev=-1){const C=[];let skips=0,holds=0,used=0;for(const v of P){
+  function enc(P,K,phase=0,prev=-1){const C=[];let skips=0,holds=0,used=0,maxSkips=0;for(const v of P){
     if(v===0){C.push(0);prev=0;holds++;continue;}
     let a=mod(v+K[phase++%K.length],29);used++;
-    if(a===prev){a=mod(v+K[phase++%K.length],29);used++;skips++;}
+    if(a===prev){let local=0;do{a=mod(v+K[phase++%K.length],29);used++;skips++;local++;}while(many&&a===prev&&local<K.length-1);if(many&&a===prev)throw Error('all-cycle collision');maxSkips=Math.max(maxSkips,local);}
     C.push(a);prev=a;
-  }return {C,used,skips,holds,phase:phase%K.length,prev};}
+  }return {C,used,skips,holds,maxSkips,phase:phase%K.length,prev};}
   function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296}}
   function spelling(g,random){
     const out=[];let p=0;const splits=[];
@@ -132,18 +137,18 @@ function attack(gp,raw,allowOriginal=false) {
   }
   const controls=[],nulls=[];
   for(let j=0;j<3;j++)for(let k=0;k<2;k++){
-    const random=rng((0x25c01115^Math.imul(2*j+k+1,0x9e3779b9))>>>0);
+    const random=rng(((many?0x25c02225:0x25c01115)^Math.imul(2*j+k+1,0x9e3779b9))>>>0);
     const pool=pairs.filter(p=>p.source===names[j]);let pair,L,R,plain,q,key,prev0,left,all;
     for(let tries=0;tries<2000;tries++){
       pair=pool[Math.floor(random()*pool.length)];L=spelling(pair.left,random);R=spelling(pair.right,random);
       if(L.out.length<A||R.out.length<N-A)continue;
       plain=L.out.slice(-A).concat(R.out.slice(0,N-A));q=k?13:8;
-      key=Array.from({length:q},()=>Math.floor(random()*29));prev0=k?Math.floor(random()*29):-1;
+      key=Array.from({length:q},()=>Math.floor(random()*29));if(many)key[1]=key[0];prev0=k?Math.floor(random()*29):-1;
       left=enc(plain.slice(0,A),key,0,prev0);all=enc(plain,key,0,prev0);
-      if(left.skips>0&&all.skips>left.skips&&all.holds>0&&(L.splits.some(i=>i>=L.out.length-A)||R.splits.some(i=>i<N-A)))break;
+      if(left.skips>0&&all.skips>left.skips&&all.holds>0&&(!many||all.maxSkips>=2)&&(L.splits.some(i=>i>=L.out.length-A)||R.splits.some(i=>i<N-A)))break;
     }
-    check(left.skips>0&&all.skips>left.skips&&all.holds>0,"plant redraw coverage");
-    const rotated=key.slice(left.phase).concat(key.slice(0,left.phase));const truth={source:pair.source,stop:pair.stop,q,key:rotated,plain,prev0,skips:all.skips,holds:all.holds,leftSkips:left.skips};
+    check(left.skips>0&&all.skips>left.skips&&all.holds>0&&(!many||all.maxSkips>=2),"plant redraw coverage");
+    const rotated=key.slice(left.phase).concat(key.slice(0,left.phase));const truth={source:pair.source,stop:pair.stop,q,key:rotated,plain,prev0,skips:all.skips,holds:all.holds,leftSkips:left.skips,maxSkips:all.maxSkips};
     const result=run(all.C,prev0,truth);controls.push({id:j*2+k,truth,...result});
     const pad=Array.from({length:2*N+10},()=>Math.floor(random()*29));nulls.push({id:j*2+k,...run(enc(plain,pad,0,prev0).C,prev0)});
   }
@@ -155,8 +160,8 @@ function attack(gp,raw,allowOriginal=false) {
     const C=U.slice(10279,10439);check(C.length===N,"quote size");
     original={continuousPredecessor:U[10278],continuous:run(C,U[10278]),quoteReset:run(C,-1)};
   }
-  return {method:{prefix:S,stop:A,total:N,sources:names,pairs:pairs.length,periods:[8,13],phase:"key position 0 at internal stop, reverse before stop; strict one collision redraw, mandatory F hold"},gate,controls,nulls,original};
+  return {method:{prefix:S,stop:A,total:N,sources:names,pairs:pairs.length,periods:[8,13],phase:"key position 0 at internal stop, reverse before stop; "+(many?"unlimited":"strict one")+" collision redraw, mandatory F hold"},gate,controls,nulls,original};
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt"];
 const data=files.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
-console.log(JSON.stringify(attack(JSON.parse(data[0]),data.slice(1),process.argv.includes('--original')),null,2));
+console.log(JSON.stringify(attack(JSON.parse(data[0]),data.slice(1),process.argv.includes('--original'),process.argv.includes('--unlimited')),null,2));
