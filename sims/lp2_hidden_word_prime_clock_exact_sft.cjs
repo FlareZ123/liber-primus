@@ -19,7 +19,7 @@ function experiment(co,src,lex){
  const pass=controls.every(v=>v.knownExact&&v.prediction?.correct===N&&v.prediction.heldout===N-B&&v.prediction.boundariesExact);
  let seed=0x2689a024;function rand(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}const pads=Array.from({length:16},()=>{const c=Array.from({length:N},()=>rand()%A);return pred(c,null)});
  const C=co.pages.filter(p=>p.page>=54&&p.page<=55).flatMap(p=>p.indices);check(C.length===N,"original size");const original=pass?pred(C,null):null;
- return {forms:forms.size,trieNodes:nodes.length,split:[B,N-B],model:"fixed native/English trie word unigram with exact prefix marginal, no OOV",controls,pads,pass,original,classification:pass?"calibrated original finite lexicon gate":"control gate failed; original not scored"};
+ return {forms:forms.size,trieNodes:nodes.length,split:[B,N-B],model:"fixed native/English trie word unigram with exact Viterbi prefix score, no OOV",controls,pads,pass,original,classification:pass?"calibrated original finite lexicon gate":"control gate failed; original not scored"};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 const inputs=paths.map(p=>fs.readFileSync(p,'utf8'));console.log(JSON.stringify(experiment(JSON.parse(inputs[0]),JSON.parse(inputs[1]),inputs[2]),null,2));

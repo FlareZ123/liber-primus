@@ -5,7 +5,7 @@
     232,
     76
   ],
-  "model": "fixed native/English trie word unigram with exact prefix marginal, no OOV",
+  "model": "fixed native/English trie word unigram with exact Viterbi prefix score, no OOV",
   "controls": [
     {
       "name": "0_koan_1",
