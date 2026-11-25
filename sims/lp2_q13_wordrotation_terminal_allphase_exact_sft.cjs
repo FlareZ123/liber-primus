@@ -19,7 +19,7 @@ function run(raw, mode='original'){
  const fit=terminal.filter(x=>x.off+x.C.length<=12880),held=terminal.slice(fit.length);
  if(terminal.length!==66||fit.length!==49||held.length!==17)throw Error("split");
 
- const T=13,budget=3,rotate=(a,r)=>a.slice(r).concat(a.slice(0,r)),pad=s=>s+"?".repeat(T-s.length);
+ const budget=3,rotate=(a,r)=>a.slice(r).concat(a.slice(0,r)),pad=s=>s+"?".repeat(T-s.length);
  const canon=k=>Array.from({length:T},(_,i)=>k.slice(i)+k.slice(0,i)).sort()[0];
  function local(C){const out=new Set();for(let r=0;r<C.length;r++){const c=rotate(C,r);for(const p of byLen[C.length]){if(p.includes(0))continue;out.add(id(c.map((v,i)=>mod(v-p[i]))));}}return out;}
  function seeds(C){const out=new Set();for(let r=0;r<C.length;r++){const c=rotate(C,r);for(const p of byLen[C.length]){let k=[],ok=true;for(let i=0;i<p.length;i++){if(p[i]===0){if(c[i]!==0){ok=false;break;}}else k.push(mod(c[i]-p[i]));}if(ok&&k.length<=T)out.add(pad(id(k)));}}return [...out];}
