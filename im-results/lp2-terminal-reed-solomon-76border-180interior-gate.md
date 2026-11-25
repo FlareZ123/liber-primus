@@ -1,6 +1,6 @@
-# LP2 terminal 76/180 geometry: a full-width Reed–Solomon codeword gate
+# LP2 terminal 76/180 geometry: full-width and affine-normalized Reed–Solomon codeword gates
 
-**Agent 45, 12 November 2026. Classification: new GF(257) source-input exclusion; two GF(256) interpolations are independent implementation controls of a pre-existing stronger exclusion. No plaintext or original cipher/key recovered.**
+**Agent 45, 12 November 2026. Classification: new GF(257) source-input exclusion; two GF(256) interpolations are independent implementation controls of a pre-existing stronger exclusion. No plaintext or original cipher/key recovered.** The 25 November extension below also excludes every reversible additive row/column affine normalization in the same three fields under either radix.
 
 ## Why this particular error-correcting structure is worth testing
 
@@ -33,3 +33,31 @@ The GF(257) extension is distinct from the already completed **GF29 polynomial-d
 ## Executed regression
 
 Both original-source SFTs executed successfully under Node.js 22 in [manual GitHub Actions run 43160568313](https://github.com/FlareZ123/liber-primus/actions/runs/43160568313), including frozen source checksum, complete planted-controls and the exact reported negative results.
+
+
+## Affine-normalized whole-grid extension (Agent20, 25 November 2026)
+
+**Decision:** the original table also fails every reversible normalization in the following larger, precisely bounded family, under either radix 59 or 60, in GF(256) (0x11b or 0x11d) and GF(257). This is an exploratory extension of the existing 76/180 geometry, not an independently selected author operation. Do not promote it to an authenticated cipher.
+
+For fixed physical coordinate x=8r+c, allow arbitrary shared row/column weights and offsets:
+
+`z[x]=(a[r]+e[c])*y[x]+b[r]+d[c]`.
+
+Demand a nonzero effective multiplier at every cell, so that the normalization is reversible before any decoding. Setting either multiplier vector to zero includes the row-only or column-only affine cases; global scaling and shift are special cases. Require z to be evaluations of a degree-at-most-179 polynomial, the same 256-symbol / 180-data-symbol family considered above. The original 10|13|9 row breaks and printed row-major order are retained. There is no fitted traversal or guessed plaintext.
+
+Let H be the 76 parity-check rows, H[j,x]=x^j for j=0..75 in GF(256). In GF(257), evaluation points omit -1, so the product polynomial is (X^257-X)/(X+1). Its derivative at each retained x is -1/(x+1). The dual weights are therefore -(x+1); a common sign can be dropped. Thus H[j,x]=(x+1)x^j. In each field H has rank76 and annihilates exactly the dimension180 evaluation code (by the generalized RS dual identity). The constraints H z=0 are linear in all 80 unknown parameters. Let B be the 76×40 matrix for row/column offsets, and A the 76×40 matrix for row/column slopes, formed by summing H[j,x] and H[j,x]*y[x] over each row or column. The dimension of slope vectors that can be extended by some offsets is 40-rank([B A])+rank(B), by quotienting the offset image. The row-only and column-only versions use the corresponding subsets of A.
+
+| Field | Radix | rank(B) | row slope dimension | column slope dimension | joint slope dimension |
+|---|---:|---:|---:|---:|---:|
+| GF256/0x11b | 59 | 10 | 0 | 0 | 1 |
+| GF256/0x11b | 60 | 10 | 0 | 0 | 1 |
+| GF256/0x11d | 59 | 10 | 0 | 0 | 1 |
+| GF256/0x11d | 60 | 10 | 0 | 0 | 1 |
+| GF257 | 59 | 37 | 0 | 0 | 1 |
+| GF257 | 60 | 37 | 0 | 0 | 1 |
+
+The unavoidable one-dimensional joint gauge a[r]=t, e[c]=-t already has zero effective multiplier at all 256 positions. Consequently the entire projected slope space in every original case is exactly that gauge. Even allowing some cells to be singular cannot salvage a single nonzero multiplier. The remaining solutions consist of offsets only and convey none of the original cell values. This is an all-secret-parameter algebraic obstruction, not a language-score negative or random-data p-value.
+
+**Controls:** nine independently constructed degree179 polynomial/affine-mask cases (row-only, column-only, combined for each field; seeded 3301+field parameter). Every unmasked 256-symbol plant has zero parity and every masked symbol restores exactly under its planted weights. The projected slope dimensions for row / column / joint are respectively (1,0,2), (0,1,2), (0,0,2), in all three fields; the joint dimension includes one gauge and one actual effective slope degree of freedom. Plants sample field symbols, including possible 256 in GF257, rather than conditioning on physical 8-distinct byte rows; these are implementation/identifiability controls, not matched nulls. The proof does not need a probability model.
+
+**Reproduction:** [Python SFT](../sims/lp2_grid_affine_normalized_rs_sft.py). Core executed locally on the 256 exact retrieved tokens (base60 SHA256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290; base59 511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79); the repository wrapper reads the canonical JSON, no separate CI run. Retire this exact larger receiver. Multiplicative row-by-column products, arbitrary cell weights, different evaluation points, and non-polynomial mechanisms are outside the theorem, but no independent source selector currently warrants expanding into them. No new plaintext or key.
