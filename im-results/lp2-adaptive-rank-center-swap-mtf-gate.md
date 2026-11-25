@@ -2,7 +2,7 @@
 
 ## Decision
 
-Neither an adaptive fixed-slot swap nor move-to-front/back rank encoding explains the original LP2 manuscript under the finite native-GP prose comparison register. The source-visible prompt for the center branch is the solved p57 PARABLE's “find your center”; changing a mutable alphabet is an exploratory implementation of that language, **not an authenticated opcode**. This is independent of periodic additive-key and stationary ciphertext-row attacks: the complete alphabet is a mutable state, updated on every consuming rune. No unknown plaintext, authentic key, or continuation was recovered.
+Neither an adaptive fixed-slot swap nor fixed-destination remove/insert rank encoding explains the original LP2 manuscript under the finite native-GP prose comparison register. The source-visible prompt for the center branch is the solved p57 PARABLE's “find your center”; changing a mutable alphabet is an exploratory implementation of that language, **not an authenticated opcode**. This is independent of periodic additive-key and stationary ciphertext-row attacks: the complete alphabet is a mutable state, updated on every consuming rune. No unknown plaintext, authentic key, or continuation was recovered.
 
 The important contribution is a key-independent exact reduction. There is no need to search 29! alphabets or rank-label permutations for these direct architectures.
 
@@ -49,4 +49,31 @@ All 29×29 destination-label/F-slot pairs were exhaustively processed on the ful
 
 Input blobs: corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; solved native 1b064ef6d85819b7d96adaff31a82d1ec551598f; Gibran df260a07d56bf5998d40a6360b6132c35c252d10; Shakespeare 94c677ad9dd50771c6670e0c4e4dad9052b46d85; Emerson a92be8ba5b3511a003a22ba31523c14397aaa83a.
 
-Retire direct MTF/MTB and fixed-slot swaps at these scopes rather than optimizing hidden alphabet keys. This does not exclude move-to-interior (a different operation from swapping), a time-varying destination, an extra independent cipher layer, non-native registers, or unknown transposition. No source-selected rule for these remaining variants is supplied by this experiment. The p57 wording has not been shown to uniquely nominate an adaptive rank operation.
+## Move-to-interior: exact carrier factorization and all-destination bound
+
+The strongest remaining direct variant removes the selected token and **inserts** it at a fixed position d, instead of swapping it with d. This covers true move-to-center (d=14) and every fixed destination d=0..28, including the edge cases. The finite-register decision also rejects this family with both clocks, both traversal directions, and arbitrary independently private initial alphabets, rank labels and destinations in each frame.
+
+**Factorization.** Give each initial slot a carrier identity, fixed to its initial side (left, center or right). At a consuming access to a token x, find its carrier a. If a is noncentral, output its depth in that side and move a to the front of that side's carrier queue. Exchange the plaintext token attached to a with the token attached to the center carrier. This is exactly the remove/insert update, including when x was already centered. Thus the carrier accessed sequence is determined by plaintext history via consecutive-token swaps, independently of side assignment and rank order. For unknown initial center, ignore the first active event and choose the first plaintext token as center: the remaining carrier sequence differs only by a fixed renaming. Center events have depth zero; omit them from the noncentral stream.
+
+Let n be the number of recurrent noncentral carrier accesses in that suffix. Define W_ab as the number of recurrence intervals of carrier a containing carrier b at least once. For a partition S of the 28 noncentral carriers into sides of size d and 28−d, the total distance of recurrent selected positions from center is exactly
+
+    n + sum_{a,b on same side} W_ab.
+
+The term follows from ordinary MTF recurrence rank on each side separately. Initial side orders do not affect recurrent depths. Reflect the alphabet if necessary to assume d<=14. Let e_ab=W_ab+W_ba, and T_a(k) be the sum of the k largest e_ab over other carriers b. A vertex on the smaller side contributes at most T_a(d−1) incident within-side weight; on the larger side at most T_a(27−d). Sum these row bounds and divide by two. To maximize the relaxed total, choose the d vertices with smallest loss T_a(27−d)−T_a(d−1). Grant first occurrences at most their side depth, filling the larger side's capacity first, plus one unconstrained first active event. This is a sound upper bound for every partition, not a fitted partition.
+
+The independent ciphertext lower bound uses the exact donor F count (when applicable) to remove that many physical zero glyphs, rejecting if there are too few zeros. Since the previously selected token always occupies d, the count of the center's rank label, minus its first-active-event indicator, must equal adjacent plaintext repeats in the active donor tape. Enumerate every possible center label and first-active glyph consistent with the leading-zero run. For each candidate, remove the center label from the active histogram and pair remaining counts in descending order with nonzero distances in ascending order (rearrangement inequality). This minimizes possible ciphertext distance sum over all rank-label permutations.
+
+**Refinement.** A side of d carrier identities must also consume exactly the total number of ciphertext labels assigned to those d rank slots. Its suffix carrier frequency sum must lie between the sum of the d smallest active noncenter glyph counts minus one and the sum of the d largest counts. The one-event allowance accounts for the ignored first event. For the few surviving windows, an exact cardinality-and-frequency knapsack minimizes the above row-loss sum under this necessary interval, separately for every center label and destination. This remains an optimistic bound; no partition or plaintext is inferred from matching the bound.
+
+| Reset | Ordinary forward/reverse | Transparent-F forward/reverse | Final survivors |
+|---|---|---|---:|
+| Continuous | center count 18/17; coarse distance 0/0 | center count 27/27; coarse distance 0/0 | 0 |
+| Chapter | center count 2/3; coarse distance 1/1 | center count 1/0; coarse distance 1/0 | 0 |
+| Page | center count 0/0 | center count 0/0 | 0 |
+
+Each cell compares 349 fixed native literary windows. In the continuous cases that pass center counts, the minimum positive distance gap over all destinations is 9,136.5 ordinary and 6,169 held-F. The ordinary chapter survivor is Shakespeare GP29 offset153805 in both directions; refined minimum distance gaps are 182 on p15–22 and 546.5 on p40–53, even with a private destination per chapter. The held-F forward survivor is Shakespeare offset114949; refined minimum gap493.5 on p40–53. Thus all fixed destinations, not just the central slot, are rejected against this finite register. The canonical move-to-center inverse on actual continuous ciphertext has IoC0.0344793273 and nonprose (head S H E O W M IA F M AE H B N R IA EO ...); it re-encrypts exactly.
+
+[Standalone carrier/knapsack SFT](../sims/lp2_adaptive_move_fixed_destination_carrier_gate_sft.cjs), commit b0e924548cbd9278408ed491d9643807e90eed7c. The experiment function was executed against connected sources before committing. All 522 native plants (nine solved texts ×29 destinations ×2 clocks; 172,782 rune replays) pass the direct inverse, exact carrier factorization, and both bounds; all 261 transparent-F plants deliberately exercise consuming ciphertext zero. Their supplied masks are for known-key replay only. No unknown plaintext or authentic key recovered.
+
+**Disposition:** retire direct fixed-destination remove/insert and fixed-slot swap architectures, including MTF/MTB, rather than optimizing rank keys. This does not exclude a time-varying destination, an extra independent cipher layer, non-native registers, or unknown transposition; no source-selected rule for these remaining variants was supplied.
+
