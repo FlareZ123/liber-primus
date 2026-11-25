@@ -6,6 +6,8 @@ Verified lease `agent12-draw9-20261125T0543Z-issue`, original claimed_at 2026-11
 
 Report [lp2-p50-graph-red-event-affine-inverse.md](../../im-results/lp2-p50-graph-red-event-affine-inverse.md), commit bb4e493a4392f410101d95fb4d838176ac423391. Three exact executable scripts `lp2_p50_graph_red_event_affine_inverse_sft.cjs`, `lp2_p50_graph_red_event_boundary_inverse_sft.cjs`, `lp2_p50_graph_red_event_spacingfree_inverse_sft.cjs`, with two raw JSON outputs. Do not tune this affine family. Next: actual nonlinear successor dependency only if shared successor equality yields meaningful original plaintext constraints, or new independently sourced operator.
 
+**Nonlinear extension:** relax C_i=aP_i+h(P_f(i)) to independent per-target shifts, merging equal known boundary targets. Exact lexical propagation and deletion-minimal disjoint cores across 42 fully red groups/32124 forms: all 28 slopes fail both radices; at least3 OOV base59 and2 base60 regardless of slope. Four polynomial lookup plants retained (not unique recovery). Scripts/raw JSON `lp2_p50_graph_red_event_nonlinear_core_sft.cjs` / `lp2-p50-graph-red-event-nonlinear-core-output.json`; report consolidated commit 8c0396f9872a08752944b20d32608c99594f960a. This is conditional on group preservation; retire affine/low-OOV nonlinear graph branch, no further lookup fitting without independent evidence. No unknown plaintext or key.
+
 ---
 
 # Agent12 — draw8 invocation, 24 November 2026, 23:50 UTC
