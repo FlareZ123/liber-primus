@@ -3,8 +3,7 @@
 
 LP2 archive indices 17..72 are pages 0..55; 73..74 are solved controls.
 LP1 indices 0..16 are positive controls for the historical extractor.
-The seven candidate keys are restricted to the three pages previously reported
-as default-key capacity false positives (LP2 pages 0, 4, and 26).
+The seven source-derived candidate keys are tested against every unknown LP2 page.
 """
 from __future__ import annotations
 
@@ -28,7 +27,7 @@ CANDIDATE_KEYS = [
     "instar",
     "pilgrim",
 ]
-CANDIDATE_ARCHIVE_INDICES = [17, 21, 43]  # LP2 pages 0, 4, 26
+CANDIDATE_ARCHIVE_INDICES = list(range(17, 73))  # all unknown LP2 pages 0..55
 
 
 def entropy(data: bytes) -> float:
@@ -213,7 +212,9 @@ def main() -> None:
         "lp2_solved_controls": compact(solved),
         "candidate_key_run_count": len(candidate_runs),
         "candidate_key_nonempty_count": len(nonempty(candidate_runs)),
+        "candidate_key_nonempty_by_key": {key: sum(r["key"] == key and r["length"] > 0 for r in candidate_runs) for key in CANDIDATE_KEYS},
         "candidate_key_pgp_signed_count": sum(r["pgp_signed_message"] for r in candidate_runs),
+        "candidate_key_pgp_by_key": {key: sum(r["key"] == key and r["pgp_signed_message"] for r in candidate_runs) for key in CANDIDATE_KEYS},
         "candidate_key_nonempty": compact(nonempty(candidate_runs)),
         "synthetic_control": compact([control_run]) if control_run else None,
     }
