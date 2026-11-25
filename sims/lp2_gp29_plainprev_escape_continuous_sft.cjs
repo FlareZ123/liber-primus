@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',chapterBeam=false,randomStarts=1,emSteps=4,emSchedule=[.8,.5,.2,.05],useEM=true,pairStarts=4,pairSweeps=8,pairOnly=false,annealSteps=150000,annealStarts=2,annealT0=25,annealT1=.25}={}){
+function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',chapterBeam=false,mixture=false,mixtureIterations=60,mixtureStarts=1,randomStarts=1,emSteps=4,emSchedule=[.8,.5,.2,.05],useEM=true,pairStarts=4,pairSweeps=8,pairOnly=false,annealSteps=150000,annealStarts=2,annealT0=25,annealT1=.25}={}){
  const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
  const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
@@ -94,6 +94,37 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
   let exact=0;const Z=new Float64Array(A*A);for(let q=0;q<A;q++)for(let d=0;d<A;d++){const p=rows[bestK[q]][d],v=rowProb[p][bestK[p]],w=U[q]*rowProb[q][bestK[q]][d];for(let e=0;e<A;e++)Z[d*A+e]+=w*v[e];}for(let i=0;i<Z.length;i++)exact+=counts[i]*Math.log(Z[i]);assert(Math.abs(exact-best)<1e-5,"anneal score");
   return {K:bestK,score:best/N,trace};
  }
+
+ function mixtureFit(frames,truth,iterations=60,prior=.002,sharpen=1.15){
+  const W=Array.from({length:A},(_,q)=>Float64Array.from({length:812},(_,k)=>{const e=Math.floor(k/28);return Math.exp(-Math.abs(B[q*A+e]-.00664)*100)*(.1+rng()/4294967296)}));
+  const norm=a=>{const n=sum(a);for(let i=0;i<a.length;i++)a[i]/=n};for(const w of W)norm(w);
+  const N=sum(frames.map(f=>f.d.length)),history=[];
+  for(let iter=0;iter<iterations;iter++){
+   const R=new Float64Array(A*A*A),M=new Float64Array(A*A*A),C=new Float64Array(A*A*A);
+   for(let q=0;q<A;q++)for(let k=0;k<812;k++){const w=W[q][k],row=rows[k];for(let d=0;d<A;d++)R[(d*A+q)*A+row[d]]+=w}
+   for(let d=0;d<A;d++)for(let q=0;q<A;q++)for(let p=0;p<A;p++)M[(d*A+q)*A+p]=B[q*A+p]*R[(d*A+q)*A+p];
+   let ll=0;
+   for(const f of frames){
+    const d=f.d,alpha=new Float64Array((d.length+1)*A),scale=new Float64Array(d.length);alpha[0]=1;
+    for(let i=0;i<d.length;i++){
+     const off=i*A,nxt=off+A,base=d[i]*A*A;
+     for(let q=0;q<A;q++){const a=alpha[off+q],b=base+q*A;if(!a)continue;for(let p=0;p<A;p++)alpha[nxt+p]+=a*(i?M[b+p]:U[p]*R[b+p]);}
+     let z=0;for(let p=0;p<A;p++)z+=alpha[nxt+p];assert(z>0,"scale");ll+=Math.log(z);scale[i]=z;for(let p=0;p<A;p++)alpha[nxt+p]/=z;
+    }
+    let beta=new Float64Array(A).fill(1),tmp=new Float64Array(A);
+    for(let i=d.length-1;i>=0;i--){const base=d[i]*A*A,off=i*A,sc=scale[i];for(let q=0;q<A;q++){const b=base+q*A,a=alpha[off+q];let z=0;for(let p=0;p<A;p++){const v=(i?M[b+p]:U[p]*R[b+p])*beta[p]/sc;z+=v;C[b+p]+=a*v}tmp[q]=z;}const t=beta;beta=tmp;tmp=t;}
+   }
+   for(let i=0;i<C.length;i++)C[i]=R[i]?C[i]/R[i]:0;
+   let maxMass=0,truthMass=0;const K=[];
+   for(let q=0;q<A;q++){
+    const w=W[q];let best=0;for(let k=0;k<812;k++){const row=rows[k];let v=0;for(let d=0;d<A;d++)v+=C[(d*A+q)*A+row[d]];w[k]=Math.pow(w[k]*v+prior/812,iter>=iterations/2?sharpen:1);if(w[k]>w[best])best=k}norm(w);K.push(best);maxMass+=w[best];if(truth)truthMass+=w[truth[q]];
+   }
+   if(iter%5===0||iter===iterations-1)history.push({iteration:iter+1,ll:ll/N,rows:truth?K.filter((k,q)=>k===truth[q]).length:null,maxMass:maxMass/A,truthMass:truth?truthMass/A:null});
+  }
+  const K=W.map(w=>{let k=0;for(let i=1;i<w.length;i++)if(w[i]>w[k])k=i;return k});
+  return {K,history};
+ }
+
  function softEM(frames,initial,schedule,steps){
   const K=initial.slice(),history=[],H=A*A*A;
   function expectation(eps){
@@ -128,18 +159,19 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,parts:f.parts,P,d:encode(P,K)}})}
  function evaluate(frames,truth){
-  const tr=frames.filter(isTrain),r=solve(chapterBeam?tr:chunks(tr),width,truth);
-  const starts=[{name:chapterBeam?"chapter-F-initializer":"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];
-  let pair=[];for(let i=0;i<pairStarts;i++){const x=pairFit(tr,Array.from({length:A},()=>rng()%812),pairSweeps);pair.push({name:"pair-"+i,K:x.K,score:x.score,history:x.history,truthScore:truth?x.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);
+  const tr=frames.filter(isTrain),r=mixture?{K:null,trace:[]}:solve(chapterBeam?tr:chunks(tr),width,truth);
+  const mix=mixture?Array.from({length:mixtureStarts},()=>mixtureFit(tr,truth,mixtureIterations)):[];
+  const starts=mixture?mix.map((m,i)=>({name:'mixture-'+i,K:m.K})): [{name:chapterBeam?"chapter-F-initializer":"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];
+  let pair=[];for(let i=0;i<(mixture?0:pairStarts);i++){const x=pairFit(tr,Array.from({length:A},()=>rng()%812),pairSweeps);pair.push({name:"pair-"+i,K:x.K,score:x.score,history:x.history,truthScore:truth?x.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);
   if(pair.length&&annealStarts){const base=pair[0];for(let j=0;j<annealStarts;j++){const a=pairAnneal(tr,j===0?base.K:Array.from({length:A},()=>rng()%812),annealSteps,annealT0,annealT1);const b=pairFit(tr,a.K,pairSweeps);pair.push({name:'anneal-'+j,K:b.K,score:b.score,history:b.history,anneal:a.trace,truthScore:truth?b.evalKey(truth):null});}pair.sort((a,b)=>b.score-a.score);}
   if(pair.length)starts.push(pair[0]);
   if(pairOnly)return {truth,pair:pair.map(x=>({...x,keyRows:truth?x.K.filter((k,i)=>k===truth[i]).length:null}))};
-  let opt=null,initial=null,details=[];for(const st of starts){const em=useEM?softEM(tr,st.K,emSchedule,emSteps):{K:st.K,history:[]};const t=refine(tr,em.K,{sweeps:refineSweeps,wide});details.push({name:st.name,score:t.score,em:em.history,history:t.history});if(!opt||t.score>opt.score){opt=t;initial=st.K;}}r.K=opt.K;
+  let opt=null,initial=null,details=[];for(const st of starts){const em=useEM&&!mixture?softEM(tr,st.K,emSchedule,emSteps):{K:st.K,history:[]};const t=refine(tr,em.K,{sweeps:refineSweeps,wide});details.push({name:st.name,score:t.score,em:em.history,history:t.history});if(!opt||t.score>opt.score){opt=t;initial=st.K;}}r.K=opt.K;
   function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:truth?used.size:null,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
-  return {key:r.K,initial,refinement:opt.history,details,pair,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
+  return {key:r.K,initial,refinement:opt.history,details,pair,mix,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
  }
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
  return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?evaluate(original,null):null};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv.includes('--chapter-beam')?{width:256,count:1,chapterBeam:true,pairStarts:0,annealStarts:0,randomStarts:0,useEM:false,refineSweeps:12}:process.argv.includes('--pair-only')?{width:64,count:1,pairOnly:true,pairStarts:6,annealStarts:2,annealSteps:180000,annealT0:20,annealT1:.2}:{width:64,count:1,originalTest:false,pairStarts:0,annealStarts:0,randomStarts:1,useEM:false}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv.includes('--mixture')?{width:64,count:3,mixture:true,originalTest:process.argv.includes('--original')}:process.argv.includes('--chapter-beam')?{width:256,count:1,chapterBeam:true,pairStarts:0,annealStarts:0,randomStarts:0,useEM:false,refineSweeps:12}:process.argv.includes('--pair-only')?{width:64,count:1,pairOnly:true,pairStarts:6,annealStarts:2,annealSteps:180000,annealT0:20,annealT1:.2}:{width:64,count:1,originalTest:false,pairStarts:0,annealStarts:0,randomStarts:1,useEM:false}),null,2));
 module.exports={experiment,INPUTS};
