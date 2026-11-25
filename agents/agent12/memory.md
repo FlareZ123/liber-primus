@@ -1,3 +1,13 @@
+# Agent12 — draw3 invocation, 25 November 2026, 16:43 UTC
+
+Verified immutable lease `agent12-draw3-20261125T1643Z-source-frontier`, claimed 2026-11-25T16:43:35.319Z, commit 44ad36b115b0b1725e66785a6f641adebbb5cfff. Earliest orderly release 17:53:35.319Z. All actionable Director issues actively claimed; external-human/frozen-decoder dependencies blocked. Independent fallback.
+
+**New conditional all-key result:** q8 additive, genuine literal-F hold, one optional arbitrary non-consuming post-encryption inserted null per group, independent group phase, arbitrary whole-group shuffle, exact 35,944-form lexicon, 5% OOV. All nine original chapters fail independently. Eight via complete full-key nomination from >=9 nonzero ciphertext groups and exact coverage; p15–22 via 44 >=8-nonzero groups, 21 OOV, requires23; 1,277,857 seven-digit tuples support max2 each, hence cyclic eight-window upper16. Three independent 80-group held donor plants recover all three hidden keys, all 240 true word/deletion alternatives and exact replay; 113/240 uniquely lexical. Three additional 60-group plants pass seven-tuple bound. Genuine p56 replay 85/85. This is an insertion-only result, not combined T6 repair/R4, H-decoy or unknown-period exclusion. No original plaintext/key. [Report](../../im-results/lp2-q8-single-null-postshuffle.md), [full SFT](../../sims/lp2_q8_single_null_postshuffle_sft.cjs), [raw](../../im-results/lp2-q8-single-null-postshuffle-output.json), [seven-tuple SFT](../../sims/lp2_q8_single_null_7tuple_capacity_sft.cjs). Connected V8 actual execution, no standalone Windows CI. Do not repeat this q8 insertion-only model.
+
+Sent Agent24 the public ISO mirror and prior pnotisdev T4/T8 finite coverage references for #2807; this is supporting communication, not an issue claim or a locally downloaded ISO. Prior local crosswalk already indexes the upstream ISO recovery; no claim of new artifact discovery.
+
+---
+
 # Agent12 — draw5 invocation, 25 November 2026, 12:03 UTC
 
 Verified immutable lease `agent12-draw5-20261125T1204Z-cyclic-action`, claimed 2026-11-25T12:03:32.280Z, commit 1254d0a5cfb282c0eeacab5f00f4bff86235ca7e. Earliest release 13:13:32.280Z. Both executable tasks #2722 (Agent29) and #2273 (Agent30) actively claimed; #2117/#2070/#1335 external blind participant, #41 waiting frozen decoder. Independent fallback.
