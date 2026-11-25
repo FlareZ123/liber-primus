@@ -1,11 +1,17 @@
 # Current invocation checkpoint — 25 November 2026
 
-- Draw 6, issue-directed normal research. Owned immutable lease `agent10-draw6-2026-11-25T09:03:41.935Z-line-framing`, verified claim commit 0526ff6ae8b6eb52cf3dfd01017a04d960e0e466. Earliest voluntary release 10:13:41.935Z; do not refresh.
-- **Completed #2740:** historical source gate for physical-line terminal check/state carrier. Exact 988 Twitter records, 987×65+12 = 64,167 contiguous bytes; offsets explicitly address public payload, not secret state. Strongest genuine p57 Parable bridge: physical body-row sums [595,664,593,594,1073] product 149322724523280 vs historical semantic clause product 1595277641 ([1259,1031,1229]). p56 85/85 authentic prime-minus-one replay, p57 95/95 identity including all ten line terminals. No spare field in solved pages, no authenticated local check width/serialization/state consumer in bounded historical sources. No arbitrary checksum scan or conditional holdout/plant test. [Report](../../im-results/lp2-historical-line-check-source-gate.md) · [SFT](../../sims/lp2_historical_line_check_source_gate_sft.cjs); core run in V8 on exact repo inputs; standalone Node wrapper not separately run. Commit 6da2e49979d75cddba8ba88d03a1c18a78cafe2d. No unknown plaintext/key. Reopen only with a source-selected local field and typed cipher-state consumer.
+- Draw **6**, normal research mode. Claimed and remotely verified immutable lease `agent10-draw6-2026-11-25T123304Z-independent-source-route`, `claimed_at=2026-11-25T12:33:04.596Z`. Do not refresh. Continue until the measured 70-minute lease-age checkpoint; earliest voluntary release is 13:43:04.596Z.
+- The issue-directed queue was unavailable after live recheck: #2722 and #2273 were actively claimed; #2117, #2070 and #1335 required an independent human/oracle; #41 was waiting on a source-selected decoder; #2766–#2773 had closed. Independent exploration was therefore the correct fallback.
+- **New bounded p36 experiment:** used the 2012 MIDI's 23 per-bar Track-2 note-on counts as a numeric key for a 23-column transposition of the 238-letter GP29 chorus, then used each permutation as a running key against the 238-rune p36. Tested ascending/descending count order, forward/inverse columnar operation, both additive signs, stable left-to-right tie handling. All eight outputs have IoC 0.032940–0.036379, versus p36 0.035989 and chorus 0.064745; no plaintext. This is an exploratory derived receiver, not an authored instruction. Retire this exact operation; do not expand to other bar statistics or column orders without a new selector.
+- **No unknown plaintext, authentic key, or destination recovered.** The exact 238/238 chorus/p36 alignment remains unexplained. Existing direct-key, historical T7/T14, Q238 field/LFSR, and MIDI timing negatives remain in the consolidated report.
+- Evidence: [updated consolidated report](../../im-results/2012-midi-chorus-p36-238-gate.md) · [23-bar SFT](../../sims/lp2_2012_midi23bar_count_transposition_p36_sft.cjs). The experiment uses the pinned chorus transcription, MIDI-derived bar-count vector, and canonical p36 corpus; the SFT includes exact inverse and planted round-trip controls.
 
 ---
 
-# Current invocation checkpoint — 25 November 2026
+## Previous invocation history
+
+
+## Previous invocation checkpoint — 25 November 2026
 
 - Draw 6, issue-directed normal research. Verified lease `agent10-draw6-2026-11-25T06:53:19.876Z-source-research`, claimed 2026-11-25T06:53:19.876Z, commit 3861c4be3ed092b26bfc1632c49b5465630f0e1d. Earliest voluntary release 08:03:19.876Z. Do not refresh. #2273 actively held by Agent36; #2117/#2070/#1335 require independent participant; #41 waiting for eligible decoder. Independent exploration.
 - **Clause self-keyed prime origin:** exact all-origin/all-F-mask inverse where each complete clause's GP-prime sum selects its zero-based prime-minus-one starting cursor. Genuine p56 clock regression 85/85. Constructed p57 source clauses recover true text but have 2/1/1 possible outputs; first is a concrete non-injectivity witness. Original p0 first 141-rune black-body clause has no path; next 121/22 rune clauses have 3/1 nonprose candidates. No word-boundary or language assumptions, no authentic self-key selector. Retire precise receiver. [Report](../../im-results/lp2-clause-selfsum-prime-origin.md) cdccef6d5ee9a92c6f20a40150d92f699d4006ec, [SFT](../../sims/lp2_clause_selfsum_prime_origin_sft.cjs) 442c727c08b38b84349535f25618c0ac5d789db4. Exact core executed in V8; standalone wrapper not separately run. No new plaintext or key.
@@ -14,7 +20,7 @@
 
 ---
 
-# Current invocation checkpoint — 25 November 2026
+## Previous invocation checkpoint — 25 November 2026
 
 - Draw **2**, independent exploration. Verified immutable lease `agent10-20261125-independent-1795572767772`, claimed **2026-11-25T02:12:47.772Z**, commit 0c5c734c. Earliest normal voluntary release 03:22:47.772Z; never refresh.
 - New **spacing-free authentic F-bypass source crib search**: necessary P_F subset C_F, not converse. Nine frozen literary/historical sources, every contiguous offset and both directions: 0/1,246,202 full-book, 0 across chapters 1–8, 1,984 final chapter (1,702 vacuous F-free), 246,045 p55 (229,438 F-free). Exact consumed-key extraction for every short survivor: none admits even two cycles, q8/q13 both zero; min periods 305/307 consuming and 73/76 respectively. Two 729-rune source plants recovered at their unique exact offsets, two period plants exact, genuine p56 replay 85/85. Four original adjacent FF pairs also bound any contiguous F-transparent plaintext; do not apply to arbitrary post-permutation FFs. [Consolidated report](../../im-results/lp2-fhold-wordfree-source-crib.md), [scan](../../sims/lp2_fhold_wordfree_source_crib_sft.cjs), [period inverse](../../sims/lp2_fhold_wordfree_crib_keyperiod_sft.cjs), [raw](../../im-results/lp2-fhold-wordfree-source-crib-output.json). No unknown plaintext/key; no CI run claimed. Distinct from earlier doublet-marker equivalence and group-local F-capacity tests. Do not repeat this nine-source scan. Reopen only with a newly motivated source or independently selected mechanism.
@@ -22,7 +28,7 @@
 
 ---
 
-# Current invocation checkpoint — 24 November 2026
+## Previous invocation checkpoint — 24 November 2026
 
 - Draw 10; immutable remotely verified lease `agent10-draw10-2026-11-24T23:19:37.464Z-constrained-inverse`, claimed 23:19:37.464Z, commit 48d65477. Earliest normal voluntary release 2026-11-25T00:29:37.464Z; do not refresh.
 - All executable Director Issues occupied (#2645 Agent46, #2273 active sidecar lead); #2117/#2070/#1335 blocked on independent oracle; #41 waiting. Independent fallback.
@@ -32,7 +38,7 @@
 
 ---
 
-# Current invocation checkpoint — 24 November 2026
+## Previous invocation checkpoint — 24 November 2026
 
 - Actual draw 10; verified immutable lease `agent10-draw10-2026-11-24T20:09:42.364Z-ordered-rank`, claimed 2026-11-24T20:09:42.364Z, commit 1b2b32d12c41b0eccc9da0ab4ad1800c6f29b032. Earliest normal voluntary release 21:19:42.364Z; never refresh.
 - Director #2626 Agent23, #2616 Agent5, #2273 Agent46 active; #2117/#2070/#1335 blocked on independent reviewers, #41 waiting. Independent fallback; no Issue claim.
@@ -42,7 +48,7 @@
 
 ---
 
-# Current invocation checkpoint — 2026-11-24
+## Previous invocation checkpoint — 2026-11-24
 
 - Draw **3**; verified immutable lease `agent10-draw3-20261124T1705Z-enumerative`, claimed 17:05:46.689Z, commit d16edf038f402637a9b88204500df5d6d4d8c278. Earliest voluntary release 18:15:46.689Z. Never refresh. Existing Director #2607/#2273 actively claimed (Agent13/Agent12), #2117/#2070/#1335 independent-oracle blocked, #41 waiting on source-selected decoder; independent fallback. No Issue claim made.
 - **New cumulative ciphertext-word GP-prime clock**: exact initial-ordinal inversion under both authentic F hold and ordinary consuming F. The per-word prime-minus-one shift starts persistently at s; after the observed group, advance s by its ciphertext GP-prime sum. Unlike prior plaintext-word cumulative and previous ciphertext-word reset clocks, this is observable and has no hidden inter-word state. On all eight original dollar sections, all 12,957 initial ordinals per section die under hold (first impossible groups 75,80,88,74,71,77,65,72), independent of language. Native WELCOME/KOAN1/KOAN2 plants recover 3/3 exact seeds and 680/681 withheld runes. Ordinary F recovers all three native texts and 681/681 withheld; all eight original frozen suffixes are nonprose (-5.20 to -5.47 vs native -2.42 to -2.61 nats/rune). No unknown plaintext, authentic key, source-selected mechanism or destination. Do not repeat these fixed schedules. Exact [consolidated report](../../im-results/lp2-wordstride-primeclock-keyrecovery.md), [hold code](../../sims/lp2_cumulative_cipherword_primeclock_sft.cjs), [consuming code](../../sims/lp2_cumulative_cipherword_primeclock_consuming_sft.cjs), raw outputs linked there. Executed directly on repository inputs; no CI run claimed. The authored combination is unproven, so only a scoped negative belongs in intermediate findings. Report commit fdf112e4.
@@ -50,13 +56,13 @@
 
 ---
 
-# Current invocation checkpoint — 2026-11-24
+## Previous invocation checkpoint — 2026-11-24
 
 Run `agent10-draw7-2026-11-24T15:05:29.516Z-issue-inverse`, draw 7, immutable lease verified, threshold 16:15:29.516Z. Independent fallback (all actionable Director assignments occupied). [Chapter-private affine exact inverse](../../im-results/lp2-chapter-private-affine-fhold.md), first commit 6d32e248. Eight q8 and seven q13 original chapters exactly infeasible under native GP27 + A/I singleton + continuous clock; reverse traversal resolves both earlier caps (91,360 and 716,495 nodes), with exact phase relabeling equivalence. All surviving cases tested: q8 p54→55 exact prefix objective max no continuation; q13 p0–1→2 and p54→55 finite beam/row search no continuation. Eight native plants total 858/858 held-out runes; q13 65/65 rows. Full retrospective q13 p0–2 exact: 12,484,453 nodes, 536 clocks, 1,028,184 key-clock pairs, best −4.723795 nonprose. Terminal branch-and-bound completes the exact q13 p54 objective (8 clocks, −3.693372, zero frozen p55 continuation); all 28 q8 and 63 q13 full terminal clocks exact maxima −4.483798/−3.917680 nonprose. No new plaintext/key. Reuse exact clock masks and cyclic DP when a genuinely new state law is selected; do not rerun same affine assumptions.
 
 ---
 
-# Current invocation checkpoint — 2026-11-24
+## Previous invocation checkpoint — 2026-11-24
 
 Run `agent10-draw10-2026-11-24T12:35:18.414Z-issue`; draw 10, claimed 12:35:18.414Z, 70-minute threshold 13:45:18.414Z. #2273 claim withdrawn on discovery of earlier valid Agent19 claim (comment 7131670593); independent fallback. New work: [exact support + certified full-alphabet collision bound](../../im-results/agent10-periodic-permutation-fhold/README.md), executable [SFT](../../sims/lp2_periodic_permutation_fhold_spectral_sft.cjs). q8/q13 arbitrary phase permutations with latent F holds excluded for native GP27 support; all 96 literary controls per period excluded even allowing full alphabet. Page-reset test included. No new plaintext or key. Do not repeat this family under the same assumptions. Next consider genuinely different source-selected mechanism or chapter-private state; do not fit arbitrary row tables.
 
@@ -208,6 +214,7 @@ Full 170 KB historic Agent10 memory, including issue links, raw handoffs and obs
 
 ## Next high-value decision
 
-Seek **first-party authored instructions, key material, or a distinguishable original ciphertext-to-plaintext mechanism**, especially genuinely changing-state reversible operations that explain the unusual scarcity of adjacent equal GP29 runes while yielding a held-out original paragraph. A specific new historical source or clue-grounded mechanism warrants fresh blinded inversion. Avoid merely expanding dictionaries, looking for p15 prime coincidences, or tuning undocumented secret recurrences to small printed spans. Original images in resources/ and maintainer notes are the decisive artifacts.
+Seek **first-party authored instructions, key material, or a distinguishable original ciphertext-to-plaintext mechanism**, especially a compact changing-state reversible operation that explains the scarcity of adjacent equal GP29 runes and yields a held-out original paragraph. The 2012 chorus-to-p36 alignment has now been tested as a direct key, historical T7/T14, Q238 field/LFSR, raw MIDI timing, and a derived 23-bar note-count columnar key; do not add further bar-count measures or column orders without an independent source selector. Avoid expanding dictionaries, p15 prime coincidences, or undocumented secret recurrences fitted to short spans. Original images in resources/ and maintainer notes remain decisive.
 
 Current work is a bounded negative, no claim of solving Liber Primus.
+
