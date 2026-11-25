@@ -8,7 +8,7 @@ The primary source is `resources/liber-primus/44.jpg`, 2400×3600 pixels, SHA-25
 
 Another reproducible source audit found **15 actual enclosed white faces** when 200-pixel compartments are retained, including the small triangular face at centroid (1231,839). A 500-pixel post-hoc threshold drops that real region and gives fourteen. Neither count implies an authored key. See [fifteenth-face original-image test](lp2-p27-fifteenth-wing-face-source-gate.md) and [current wing synthesis](../workplace/lp2-p27-wing-venation-source-route.md). The concrete human solve-path question was whether an *exact dated illustration* carries a label sequence, caption, or operation independently selecting what to do with the p27 ciphertext.
 
-## New distinct Tettigarcta source lead (21 November 2026; not yet registered)
+## Distinct Tettigarcta source lead (21 November 2026; registered and rejected 22 November)
 
 An independently identified, subsequently image-rejected candidate is **J. W. Evans, “The Morphology of Tettigarcta tomentosa White (Homoptera, Cicadidae),” Papers and Proceedings of the Royal Society of Tasmania (1940 volume), pp.35–49; published 1941**. The paper's printed p.41 contains **Fig.12, “Tettigarcta tomentosa. Forewing.”** The figure labels Sc, R + Sc, and NL. Its accompanying text describes the subcostal vein joining the upper radial-sector branch up to the nodal line, the radial sector dividing before that line, all four median branches, a third anal vein, and the nodal line extending across the wing. [Original paper PDF](https://eprints.utas.edu.au/13273/1/1940-evans-morphology.pdf).
 
@@ -40,9 +40,9 @@ These are analysis labels, not author-printed numbers. The independent [15-face 
 
 ### Completed Evans Fig.12 test and stop rule
 
-The authenticated 1940-volume image was downloaded and rendered in the original-source SFT linked above. It fails the already frozen native image match with two inliers on the correct p41 drawing; six other original page/region controls also fail. **Retire Evans Fig.12 as the literal source illustration and reject any face-order claim based on its Sc/R+Sc/NL labels.** No affine rescaling, source crop, or page selection meets the >=30-inlier full-wing criterion; the authentic p27 similarity plant passes. An independently identifiable nonaffine redrawing would be a different, separately sourced hypothesis. A pure permutation of fifteen faces remains insufficient by itself because it preserves the GP29 symbol histogram and cannot generate sustained English plaintext.
+The authenticated 1940-volume image was downloaded and rendered in the original-source SFT linked above. It fails the already frozen native image match with two inliers on the correct p41 drawing; eight other original page/region controls also fail. **Retire Evans Fig.12 as the literal source illustration and reject any face-order claim based on its Sc/R+Sc/NL labels.** No affine rescaling, source crop, or page selection meets the >=30-inlier full-wing criterion; the authentic p27 similarity plant passes. An independently identifiable nonaffine redrawing would be a different, separately sourced hypothesis. A pure permutation of fifteen faces remains insufficient by itself because it preserves the GP29 symbol histogram and cannot generate sustained English plaintext.
 
-**Status:** unverified source lead; no source-authored fifteen-face order, cryptographic operation, key, or LP2 plaintext recovered.
+**Status:** exact Evans Fig.12 parent rejected; no source-authored fifteen-face order, cryptographic operation, key, or LP2 plaintext recovered.
 
 ## Five dated original plate sources, native-pixel registration
 

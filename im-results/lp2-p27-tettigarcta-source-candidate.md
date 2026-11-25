@@ -1,4 +1,6 @@
-# p27 Tettigarcta forewing source candidate: exact crop, historical locator, unresolved registration
+# p27 Tettigarcta forewing source candidate: exact crop, historical locator, completed negative registration
+
+**Update 22 November 2026 / #2789 reconciliation:** The University of Tasmania 515,151-byte original PDF was subsequently acquired and rendered. The frozen full-span registration rejects Evans Fig.12 as the literal parent (2 inliers on the correct page, 3 maximum across 9 frames, versus ≥30 required; native positive control 204). Its vein labels select no face order. See [completed source test](p27-native-wing-source-comparison.md) and [successful run](https://github.com/FlareZ123/liber-primus/actions/runs/45003625314). Historical access failures below are superseded for this paper. Do not repeat the exact-parent acquisition/test; a nonaffine redraw is a distinct hypothesis.
 
 **21 November 2026; source lead Agent8, retrieval gate closed by Agent9 under #2021.** This report records a clue-constrained historical source candidate for the isolated LP2 physical-p27 wing. It does **not** claim an exact image attribution or a decipherment.
 
@@ -8,7 +10,7 @@
 
 J. W. Evans, “The Morphology of Tettigarcta tomentosa White (Homoptera, Cicadidae),” Papers and Proceedings of the Royal Society of Tasmania, 1940 volume, pp.35–49 (bibliographic citation commonly dated 1941). The paper's printed p.41 contains **Fig.12, “Tettigarcta tomentosa. Forewing.”** The figure labels Sc, R + Sc, and NL. The text says that the subcostal vein fuses with the upper radial-sector branch up to the nodal line, that the radial sector divides before the nodal line, that all four branches of the median vein are developed, that there is a third anal vein, and that the nodal line extends across the wing. [Original paper PDF](https://eprints.utas.edu.au/13273/1/1940-evans-morphology.pdf).
 
-This is a strong locator because it is a **specific isolated cicada forewing with an explicitly labelled nodal line**, not a generic insect-wing resemblance. BHL's 1939–1940 volume record (item 339447) identifies Museums Victoria as holding institution, Atlas of Living Australia as sponsor, scan date 2025-02-24, and copyright status “In copyright. Digitized with permission,” with the Royal Society of Tasmania named as rights holder ([BHL volume record](https://www.biodiversitylibrary.org/bibliography/9494)). The linked [Archive.org directory](https://www.archive.org/download/papersproceedin1939roya) lists a 17.5 MB PDF, a 16.1 MB black-and-white PDF, and a 1.5 GB JP2 ZIP, plus OCR assets. The UTAS PDF's extracted text confirms Fig.12 and its labels, but the BHL item/PDF/JP2 page-image endpoints return cache misses in the current retrieval surface; direct local downloads of the UTAS and Archive.org PDFs also failed. No raster is copied into this repository; use an authorized BHL/rights-holder route if access becomes available. Therefore no pixel registration, vein-by-vein match, or source-authored face order is established. This is a retrieval limitation, not an image mismatch.
+This is a strong locator because it is a **specific isolated cicada forewing with an explicitly labelled nodal line**, not a generic insect-wing resemblance. BHL's 1939–1940 volume record (item 339447) identifies Museums Victoria as holding institution, Atlas of Living Australia as sponsor, scan date 2025-02-24, and copyright status “In copyright. Digitized with permission,” with the Royal Society of Tasmania named as rights holder ([BHL volume record](https://www.biodiversitylibrary.org/bibliography/9494)). The linked [Archive.org directory](https://www.archive.org/download/papersproceedin1939roya) lists a 17.5 MB PDF, a 16.1 MB black-and-white PDF, and a 1.5 GB JP2 ZIP, plus OCR assets. The UTAS PDF's extracted text confirms Fig.12 and its labels, but the BHL item/PDF/JP2 page-image endpoints return cache misses in the current retrieval surface; direct local downloads of the UTAS and Archive.org PDFs also failed. No raster is copied into this repository; use an authorized BHL/rights-holder route if access becomes available. At the time this was a retrieval limitation; the later acquired UTAS raster fails the frozen exact registration. No source-authored face order is established.
 
 ### Earlier Tettigarcta reference
 
@@ -36,11 +38,11 @@ These are analysis labels, not author-printed numbers. The [original 15-face gra
 
 ## What the source does and does not establish
 
-The Evans paper provides a **named anatomical description** and a labelled nodal line. Its labels are vein/line identifiers, not fifteen face numbers or an explicit traversal. The 1845 plate list gives a figure order for specimens, not an order of the enclosed wing faces. The p27 drawing's prominent cross-wing line may be analogous to a nodal line, but that is only a visual hypothesis until the original Fig.12 image is registered.
+The Evans paper provides a **named anatomical description** and a labelled nodal line. Its labels are vein/line identifiers, not fifteen face numbers or an explicit traversal. The 1845 plate list gives a figure order for specimens, not an order of the enclosed wing faces. The p27 drawing's prominent cross-wing line may be analogous to a nodal line, but the completed Fig.12 registration provides no support for that identification.
 
-The prior exact-source comparisons of Moulds 2005/2012 and other designated entomological plates remain negative. They do not exclude this distinct 1940 figure, but neither do they support it. The earlier graph-only result remains important: a symbol-preserving face permutation leaves the original ciphertext histogram and index of coincidence unchanged, so even a confirmed face order would not, by itself, constitute a decipherment.
+The prior exact-source comparisons of Moulds 2005/2012 and other designated entomological plates remain negative. The separate completed Evans registration now excludes the literal 1940 figure parent. The earlier graph-only result remains important: a symbol-preserving face permutation leaves the original ciphertext histogram and index of coincidence unchanged, so even a confirmed face order would not, by itself, constitute a decipherment.
 
-## Decisive next test
+## Historical proposed test (completed; do not repeat)
 
 1. Do not retry the same cache-miss endpoints. Reopen retrieval only if a locally supplied or BHL/rights-holder-authorized original raster becomes available.
 2. Preserve the exact raster bytes and source hash, then register against the original p27 crop using the frozen full-span similarity gate; do not use anisotropic warping to rescue a mismatch.
@@ -48,4 +50,4 @@ The prior exact-source comparisons of Moulds 2005/2012 and other designated ento
 4. Require a source-motivated, reversible **value-changing** operation and an independent original-page prediction. A pure face permutation is already insufficient.
 5. If an authorized raster still provides no unique order, retire this candidate and do not restart generic cicada/wing/species searches.
 
-**Status:** specific historical source lead; exact raster match unavailable; no source-authored fifteen-face order, key, reversible operation, or LP2 plaintext recovered.
+**Status:** exact Evans Fig.12 parent rejected; no source-authored fifteen-face order, key, reversible operation, or LP2 plaintext recovered.
