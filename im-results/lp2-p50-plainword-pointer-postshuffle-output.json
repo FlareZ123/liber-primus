@@ -1,0 +1,4215 @@
+{
+  "sources": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/liber-primus/lp2-grid-256.json",
+      "sha": "2550eae357442912220e05dc51147523a61dd75a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    }
+  ],
+  "vocab": 35944,
+  "results": [
+    {
+      "radix": 59,
+      "sign": 1,
+      "hold": false,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 77,
+          "uniqueWord": 8,
+          "edges": 3271,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                2,
+                11,
+                6,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 114,
+          "uniqueWord": 23,
+          "edges": 4575,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 174,
+          "uniqueWord": 30,
+          "edges": 7079,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                21,
+                10,
+                16,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 203,
+          "uniqueWord": 30,
+          "edges": 9917,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 115,
+          "uniqueWord": 13,
+          "edges": 3716,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 142,
+          "uniqueWord": 21,
+          "edges": 6841,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 174,
+          "uniqueWord": 25,
+          "edges": 6864,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 319,
+          "uniqueWord": 44,
+          "edges": 10807,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                28,
+                3,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 36,
+          "uniqueWord": 1,
+          "edges": 1225,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 27
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 25
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "sign": 1,
+      "hold": true,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 76,
+          "uniqueWord": 9,
+          "edges": 3614,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                2,
+                11,
+                6,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 116,
+          "uniqueWord": 21,
+          "edges": 4380,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 175,
+          "uniqueWord": 30,
+          "edges": 6806,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                21,
+                10,
+                16,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 204,
+          "uniqueWord": 28,
+          "edges": 9794,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 116,
+          "uniqueWord": 13,
+          "edges": 3688,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 143,
+          "uniqueWord": 20,
+          "edges": 6782,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 174,
+          "uniqueWord": 27,
+          "edges": 6704,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 324,
+          "uniqueWord": 41,
+          "edges": 10729,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                28,
+                3,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 37,
+          "uniqueWord": 0,
+          "edges": 1164,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 25
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 34
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 24
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "sign": -1,
+      "hold": false,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 82,
+          "uniqueWord": 6,
+          "edges": 3292,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                2,
+                11,
+                6,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 116,
+          "uniqueWord": 17,
+          "edges": 4617,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 174,
+          "uniqueWord": 29,
+          "edges": 7033,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 186,
+          "uniqueWord": 39,
+          "edges": 9856,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 109,
+          "uniqueWord": 15,
+          "edges": 3703,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 149,
+          "uniqueWord": 19,
+          "edges": 6751,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 178,
+          "uniqueWord": 25,
+          "edges": 6816,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 310,
+          "uniqueWord": 43,
+          "edges": 10821,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                28,
+                3,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 35,
+          "uniqueWord": 4,
+          "edges": 1289,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 43
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 27
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 35
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 29
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "sign": -1,
+      "hold": true,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 81,
+          "uniqueWord": 8,
+          "edges": 3604,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                2,
+                11,
+                6,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 116,
+          "uniqueWord": 17,
+          "edges": 4397,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 175,
+          "uniqueWord": 26,
+          "edges": 6787,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 185,
+          "uniqueWord": 39,
+          "edges": 9729,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 108,
+          "uniqueWord": 18,
+          "edges": 3668,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 150,
+          "uniqueWord": 17,
+          "edges": 6728,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 179,
+          "uniqueWord": 23,
+          "edges": 6651,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 314,
+          "uniqueWord": 42,
+          "edges": 10752,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                28,
+                3,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 35,
+          "uniqueWord": 4,
+          "edges": 1232,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 42
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 27
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 35
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 32
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "sign": 1,
+      "hold": false,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 77,
+          "uniqueWord": 7,
+          "edges": 3309,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                9,
+                25,
+                6,
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 117,
+          "uniqueWord": 21,
+          "edges": 4554,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 182,
+          "uniqueWord": 26,
+          "edges": 7015,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 201,
+          "uniqueWord": 26,
+          "edges": 9898,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                0,
+                1,
+                20,
+                19
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 115,
+          "uniqueWord": 14,
+          "edges": 3682,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 148,
+          "uniqueWord": 18,
+          "edges": 6869,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 181,
+          "uniqueWord": 21,
+          "edges": 6827,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 302,
+          "uniqueWord": 52,
+          "edges": 10803,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 33,
+          "uniqueWord": 4,
+          "edges": 1303,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 36
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 32
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 28
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "sign": 1,
+      "hold": true,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 77,
+          "uniqueWord": 7,
+          "edges": 3618,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                9,
+                25,
+                6,
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 119,
+          "uniqueWord": 20,
+          "edges": 4364,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 182,
+          "uniqueWord": 25,
+          "edges": 6774,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 200,
+          "uniqueWord": 27,
+          "edges": 9767,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                10,
+                1,
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 116,
+          "uniqueWord": 13,
+          "edges": 3631,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 148,
+          "uniqueWord": 19,
+          "edges": 6852,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 180,
+          "uniqueWord": 22,
+          "edges": 6644,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 308,
+          "uniqueWord": 47,
+          "edges": 10707,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 33,
+          "uniqueWord": 4,
+          "edges": 1232,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 37
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 30
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 32
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 39
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 27
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "sign": -1,
+      "hold": false,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 76,
+          "uniqueWord": 8,
+          "edges": 3251,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 117,
+          "uniqueWord": 21,
+          "edges": 4509,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 176,
+          "uniqueWord": 25,
+          "edges": 7004,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                4,
+                23,
+                7,
+                16,
+                11,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 210,
+          "uniqueWord": 21,
+          "edges": 9847,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 110,
+          "uniqueWord": 18,
+          "edges": 3671,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 144,
+          "uniqueWord": 29,
+          "edges": 6835,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 10,
+              "C": [
+                4,
+                19,
+                20,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 174,
+          "uniqueWord": 24,
+          "edges": 6908,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 313,
+          "uniqueWord": 53,
+          "edges": 10845,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                19,
+                24,
+                5,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 34,
+          "uniqueWord": 4,
+          "edges": 1293,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 32
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 36
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 36
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 31
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "sign": -1,
+      "hold": true,
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "groups": 158,
+          "missing": 77,
+          "uniqueWord": 7,
+          "edges": 3558,
+          "longN": 21,
+          "longMissing": 21,
+          "budget": 7,
+          "noExamples": [
+            {
+              "index": 0,
+              "C": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "C": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "groups": 255,
+          "missing": 118,
+          "uniqueWord": 21,
+          "edges": 4316,
+          "longN": 27,
+          "longMissing": 27,
+          "budget": 12,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "groups": 383,
+          "missing": 177,
+          "uniqueWord": 22,
+          "edges": 6771,
+          "longN": 46,
+          "longMissing": 46,
+          "budget": 19,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 5,
+              "C": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 11,
+              "C": [
+                4,
+                23,
+                7,
+                16,
+                11,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "groups": 437,
+          "missing": 213,
+          "uniqueWord": 16,
+          "edges": 9755,
+          "longN": 48,
+          "longMissing": 48,
+          "budget": 21,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "groups": 224,
+          "missing": 112,
+          "uniqueWord": 16,
+          "edges": 3624,
+          "longN": 26,
+          "longMissing": 26,
+          "budget": 11,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "groups": 326,
+          "missing": 145,
+          "uniqueWord": 29,
+          "edges": 6789,
+          "longN": 36,
+          "longMissing": 36,
+          "budget": 16,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 10,
+              "C": [
+                4,
+                19,
+                20,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "groups": 378,
+          "missing": 177,
+          "uniqueWord": 23,
+          "edges": 6742,
+          "longN": 45,
+          "longMissing": 45,
+          "budget": 18,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "C": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "groups": 669,
+          "missing": 318,
+          "uniqueWord": 50,
+          "edges": 10748,
+          "longN": 84,
+          "longMissing": 84,
+          "budget": 33,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "C": [
+                19,
+                24,
+                5,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "groups": 66,
+          "missing": 35,
+          "uniqueWord": 3,
+          "edges": 1233,
+          "longN": 10,
+          "longMissing": 10,
+          "budget": 3,
+          "noExamples": [
+            {
+              "index": 1,
+              "C": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "C": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "C": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "controls": [
+        {
+          "weight": "GP0",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "GP0",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 37
+        },
+        {
+          "weight": "GP0",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 33
+        },
+        {
+          "weight": "prime",
+          "di": 0,
+          "start": 10057,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 1,
+          "uniqueWord": 37
+        },
+        {
+          "weight": "prime",
+          "di": 1,
+          "start": 44325,
+          "groups": 100,
+          "inVocab": 99,
+          "trueEdges": 99,
+          "missing": 0,
+          "uniqueWord": 38
+        },
+        {
+          "weight": "prime",
+          "di": 2,
+          "start": 59892,
+          "groups": 100,
+          "inVocab": 100,
+          "trueEdges": 100,
+          "missing": 0,
+          "uniqueWord": 32
+        }
+      ]
+    }
+  ]
+}
