@@ -149,6 +149,23 @@ The true pair's ranks are 2 and 0 respectively. Selecting high-rank partial join
 
 [Projection module](../sims/lp2_shared_gp29_unknown_q8_projection.cjs) · [raw diagnostic](lp2-shared-gp29-unknown-q8-projection.json). Run `node sims/lp2_shared_gp29_unknown_q8_anneal_sft.cjs 50000 1 4 0 project 100000` on pinned inputs. The core executed in connected V8; standalone runner not independently executed.
 
+## Unknown q8: blind affine-space receiver with long anchors (Agent5)
+
+Rather than guessing the rank coordinates by local moves or projecting onto shifts alone, maintain every alphabet coordinate and shift as an affine linear form over GF(29). Normalize pi(F)=0, pi(U)=1, and sum pi=0 (necessary for a permutation); fix the first assigned group's phase to zero, which quotients global rotation. Each ordinary edge adds pi(c)-pi(p)-k_j=0; literal F holds add no edge. Substitution eliminates one free parameter. Reject forced equality of distinct coordinates or forced period four; reject any candidate edge whose affine hyperplane coincides with a forbidden alphabet-coordinate collision. Exact comparison follows hashing, so hash collision does not imply rejection. When residual dimension <=2, enumerate all field assignments, enforce permutation and primitive q8, and decode every training group under all phases and F branches. Track unresolved residual dimensions explicitly. A word-domain prefilter uses only necessary same-phase injectivity and fixed-point constraints.
+
+For blind calibration, use all 24 p40–53 length>=10 group lengths (261 runes) as a discovery profile, with the first 40 shorter-group lengths in physical order withheld; independent Gibran and Emerson donors, xorshift32 seeds 7213301 and 7212014, random hidden permutation and primitive q8. The solver receives only encrypted discovery groups and the same 38,938-form dictionary. Sorted compact dictionary FNV64 b39eeb2d0de511c4 agrees between repository construction and local TextBlob + 28 native additions.
+
+| Plant | Exact effective action | True training words | True withheld words included | Unique withheld words |
+|---|---:|---:|---:|---:|
+| Gibran | yes | 24/24 | 40/40 | 33/40 |
+| Emerson | yes | 24/24 | 40/40 | 31/40 |
+
+Stop at the first all-training-supported key; this is not a uniqueness enumeration, but the recovered effective actions match the hidden ones up to global phase rotation. The native AVX2 run takes 0.071/0.006 s after preprocessing. On the original 24 long groups (physical p40–53), the exact all-in-register search exhausts 131/131 first-anchor options, 2,221 states, 14,615 extensions, no candidate key, no residual leaves and no timeout. **Conditional exclusion only:** the full chapter has 669 groups and allows 33 OOV under a 5% rule, enough to omit all 24 selected anchors. This does not reject the chapter model with that allowance.
+
+The exact QF_BV SMT receiver on the terminal p54-only 49-group training profile supports both planted keys in oracle mode, but both blind searches time out at 90 seconds. The longer-anchor success is not terminal-profile calibration; do not infer a p54 key or look at p55 as training. The terminal affine search remains in progress.
+
+[Native affine solver](../sims/lp2_shared_gp29_q8_affine.cpp) · [Python runner](../sims/lp2_shared_gp29_q8_affine_sft.py) · [long fixtures](lp2-shared-gp29-q8-affine-long-fixtures.json) · [long raw results](lp2-shared-gp29-q8-affine-long-output.json) · [SMT receiver](../sims/lp2_shared_gp29_q8_smt.py) · [terminal fixtures](lp2-shared-gp29-q8-smt-fixtures.json) · [SMT raw results](lp2-shared-gp29-q8-smt-output.json). Local native runs used equivalent generated inputs, not a full repo checkout.
+
 ## Current conclusion
 
 **Established**
@@ -159,6 +176,7 @@ The true pair's ranks are 2 and 0 respectively. Selecting high-rank partial join
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
 - The corrected mapped `pi(DIVINITY)` subcase is fully excluded with up to three arbitrary OOV groups: four exhaustive branches with 285, 174, 4,370 and 6,994 anchor options all fail. Two blind literary controls recover the exact planted map and 98/98 withheld truth words. This excludes only the fixed mapped historical keyword, not the general unknown q8 action.
+- The unknown-q8 affine receiver recovers both long-anchor blind effective actions and 80/80 withheld words; original p40–53 24-long-anchor all-in-register subcase is excluded, but the chapter-wide 5% OOV model and terminal profile remain open.
 - Two blind unknown-q8 annealing pilots (ordinary and dictionary-conditioned neighbourhood) recover neither planted action nor any withheld true word. This is a search failure, not a finite original-model exclusion.
 
 ## Next discriminating work
