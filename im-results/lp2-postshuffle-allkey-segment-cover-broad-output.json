@@ -266,6 +266,7 @@
       "miss": 3,
       "budget": 33,
       "requiredPeriod": 7,
+      "graph": null,
       "periodBoundary": [
         55,
         24
@@ -610,6 +611,7 @@
       "miss": 3,
       "budget": 33,
       "requiredPeriod": 11,
+      "graph": null,
       "periodBoundary": [
         39,
         22
@@ -879,6 +881,7 @@
       "miss": 6,
       "budget": 33,
       "requiredPeriod": 7,
+      "graph": null,
       "periodBoundary": [
         49,
         20
@@ -1223,6 +1226,7 @@
       "miss": 5,
       "budget": 33,
       "requiredPeriod": 10,
+      "graph": null,
       "periodBoundary": [
         40,
         25
@@ -1492,6 +1496,7 @@
       "miss": 7,
       "budget": 33,
       "requiredPeriod": 7,
+      "graph": null,
       "periodBoundary": [
         52,
         26
@@ -1836,12 +1841,78 @@
       "miss": 4,
       "budget": 33,
       "requiredPeriod": 11,
+      "graph": null,
       "periodBoundary": [
         40,
         23
       ]
     }
   ],
+  "graphControl": {
+    "K": [
+      22,
+      28,
+      3,
+      5,
+      16,
+      11,
+      26,
+      19,
+      28,
+      5,
+      14,
+      22,
+      18
+    ],
+    "correct": {
+      "K": [
+        11,
+        26,
+        19,
+        28,
+        5,
+        14,
+        22,
+        18,
+        22,
+        28,
+        3,
+        5,
+        16
+      ],
+      "covered": 26
+    },
+    "graph": {
+      "groups": 26,
+      "n": 26,
+      "maxSupport": 2,
+      "doubleEdges": 230,
+      "nodes": 384,
+      "maxPath": 12,
+      "paths12": 14,
+      "closedPaths": 13,
+      "candidates": [
+        {
+          "K": [
+            11,
+            26,
+            19,
+            28,
+            5,
+            14,
+            22,
+            18,
+            22,
+            28,
+            3,
+            5,
+            16
+          ],
+          "covered": 26
+        }
+      ]
+    }
+  },
   "originals": [
     {
       "a": 0,
@@ -2094,6 +2165,7 @@
       "miss": 43,
       "budget": 7,
       "requiredPeriod": 27,
+      "graph": null,
       "periodBoundary": [
         8,
         7
@@ -2420,6 +2492,7 @@
       "miss": 31,
       "budget": 7,
       "requiredPeriod": 27,
+      "graph": null,
       "periodBoundary": [
         8,
         7
@@ -2676,6 +2749,7 @@
       "miss": 90,
       "budget": 12,
       "requiredPeriod": 32,
+      "graph": null,
       "periodBoundary": [
         14,
         12
@@ -3002,6 +3076,7 @@
       "miss": 60,
       "budget": 12,
       "requiredPeriod": 32,
+      "graph": null,
       "periodBoundary": [
         14,
         12
@@ -3258,6 +3333,7 @@
       "miss": 141,
       "budget": 19,
       "requiredPeriod": 39,
+      "graph": null,
       "periodBoundary": [
         20,
         19
@@ -3584,6 +3660,7 @@
       "miss": 111,
       "budget": 19,
       "requiredPeriod": 39,
+      "graph": null,
       "periodBoundary": [
         20,
         19
@@ -3840,6 +3917,7 @@
       "miss": 160,
       "budget": 21,
       "requiredPeriod": 43,
+      "graph": null,
       "periodBoundary": [
         22,
         21
@@ -4166,6 +4244,7 @@
       "miss": 129,
       "budget": 21,
       "requiredPeriod": 43,
+      "graph": null,
       "periodBoundary": [
         22,
         21
@@ -4422,6 +4501,7 @@
       "miss": 74,
       "budget": 11,
       "requiredPeriod": 31,
+      "graph": null,
       "periodBoundary": [
         13,
         11
@@ -4748,6 +4828,7 @@
       "miss": 49,
       "budget": 11,
       "requiredPeriod": 31,
+      "graph": null,
       "periodBoundary": [
         13,
         11
@@ -5004,6 +5085,7 @@
       "miss": 117,
       "budget": 16,
       "requiredPeriod": 37,
+      "graph": null,
       "periodBoundary": [
         18,
         16
@@ -5330,6 +5412,7 @@
       "miss": 87,
       "budget": 16,
       "requiredPeriod": 37,
+      "graph": null,
       "periodBoundary": [
         18,
         16
@@ -5586,6 +5669,7 @@
       "miss": 150,
       "budget": 18,
       "requiredPeriod": 43,
+      "graph": null,
       "periodBoundary": [
         19,
         17
@@ -5912,6 +5996,7 @@
       "miss": 120,
       "budget": 18,
       "requiredPeriod": 43,
+      "graph": null,
       "periodBoundary": [
         19,
         17
@@ -6168,6 +6253,7 @@
       "miss": 285,
       "budget": 33,
       "requiredPeriod": 62,
+      "graph": null,
       "periodBoundary": [
         35,
         32
@@ -6494,6 +6580,7 @@
       "miss": 237,
       "budget": 33,
       "requiredPeriod": 62,
+      "graph": null,
       "periodBoundary": [
         35,
         32
@@ -6750,6 +6837,17 @@
       "miss": 12,
       "budget": 3,
       "requiredPeriod": 13,
+      "graph": {
+        "groups": 66,
+        "n": 28,
+        "maxSupport": 2,
+        "doubleEdges": 265,
+        "nodes": 265,
+        "maxPath": 1,
+        "paths12": 0,
+        "closedPaths": 0,
+        "candidates": []
+      },
       "periodBoundary": [
         4,
         2
@@ -7076,6 +7174,17 @@
       "miss": 2,
       "budget": 3,
       "requiredPeriod": 13,
+      "graph": {
+        "groups": 66,
+        "n": 28,
+        "maxSupport": 2,
+        "doubleEdges": 265,
+        "nodes": 265,
+        "maxPath": 1,
+        "paths12": 0,
+        "closedPaths": 0,
+        "candidates": []
+      },
       "periodBoundary": [
         4,
         2
