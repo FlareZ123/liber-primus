@@ -110,6 +110,28 @@ Copied floral artwork is not counted as an independent event. Even the 275-bit e
 
 **Result:** red/special colour and mark choices alone cannot supply the required information under this model. Word-boundary positions could supply it in principle.
 
+### Position-aware ink geometry refinement (Agent21, 24 November 2026)
+
+The earlier 275-bit ink ceiling gives all 213 red runes independent red/black choices. The source annotation instead records 16 contiguous red spans (213 runes) and 31 large marks. There are 30 distinct large-mark offsets: 28 are exactly at a red-span endpoint or page end, leaving only two independently placed interior marks (p36 offset99 of238 runes; p38 offset186 of228). Thus the 31 marks do not provide 30 independent position choices in the source-structured layout.
+
+For page p, let L be its rune count, R its total red-rune count and S its number of red spans. The number of non-overlapping placements of S ordered spans with fixed lengths, allowing touching, is C(L−R+S,S). If span lengths may also vary while preserving R and S, multiply by C(R−1,S−1). Summing the page-local log capacities gives 118.748733 bits with fixed lengths and 131.254049 bits with variable lengths. The two independent mark positions add log2(239)+log2(229)=15.740071 bits. Even retaining the prior deliberately generous allowance of two independent size/colour bits for each of the 31 marks adds only 62 bits. The resulting structured ink ceilings are 196.488804 and 208.994119 bits.
+
+| Capacity component | Fixed span lengths | Variable span lengths |
+| --- | ---: | ---: |
+| Red-span placement | 118.748733 | 131.254049 |
+| Independent large-mark positions | 15.740071 | 15.740071 |
+| Four-state allowance for 31 marks | 62.000000 | 62.000000 |
+| **Structured ink total** | **196.488804** | **208.994119** |
+| + pooled fine punctuation labels | 274.054206 | 286.559521 |
+| Remaining deficit to global 325.450254 bits | **51.396048** | **38.890733** |
+| + all 55 residual-line bits, independently | 329.054206 | 341.559521 |
+| Surplus if all 55 line bits are independent | 3.603952 | 16.109267 |
+
+The global deficit and 77.565402-bit pooled fine-label value are read from [Agent6's exact punctuation-capacity data](lp2-no-repeat-punctuation-identity-capacity.json). The 55-bit allowance comes from the separate [original line-break compositor audit](lp2-linebreak-binary-sidecar-pagecapacity-gate.md). These sums deliberately grant every channel independent capacity, even where their physical locations may overlap.
+
+**Decision:** geometry-aware ink placement plus pooled fine punctuation labels is still 38.89–51.40 bits short. The combination crosses only if all 55 residual-line bits are independently available, and then by just 3.60–16.11 bits. This is a narrow conditional survival, not evidence that the residuals were intentionally encoded. The source-image compositor explains 484/539 printed joins; the remaining 55 are a bounded physical residual, not an authenticated key. The mark/ink branch therefore does not yet yield a source-selected exception map or plaintext. Reproduce with [the geometry-capacity SFT](../sims/lp2_no_repeat_ink_geometry_capacity_sft.py) and its [machine-readable result](lp2-no-repeat-ink-geometry-capacity.json).
+
+
 ## Punctuation-identity carrier with fixed coarse boundaries (Agent6, 24 November 2026)
 
 **Decision:** punctuation variants cannot supply the missing bits of a universal page-quota GP29 constrained code if the coarse word/stop positions and per-page fine-label counts are retained. This removes a distinct type-only carrier, even when punctuation labels themselves need not be recovered. The unrestricted placement channel remains viable in cardinality; no source-selected inverse or unknown plaintext results.
@@ -231,9 +253,9 @@ Both original ranges have visibly nonlinguistic outputs and ordinary shuffle-ran
 - The tested physical-line-framed exact-repeat rank is **rejected** under both natural line-start conventions: it yields no long dictionary plaintext and needs 662–711 bits for universal GP29 recovery, versus at most 55 bits in the simple residual-line-end model.
 - The tested repeat-delimited variable-length predecessor-excluded radix inverse is **rejected** on both independent original regions, despite exact rune-tape replay and 834/834 solved-native plant recovery; length variation alone does not select a cipher.
 - A blanket claim that every 29-to-28 no-repeat encoder is impossible is still **not** supported. The printed word-boundary position space has enough combinatorial capacity to carry missing information in principle.
-- Red/special marks alone are insufficient, even under generous independence assumptions.
+- Red/special marks alone are insufficient. Geometry-aware ink plus pooled fine punctuation labels remains 38.89–51.40 bits short of the global deficit; only granting all 55 residual-line bits independently barely crosses, and no source-selected line readout exists.
 - No explicit, historically motivated, reversible plaintext-to-word-boundary mapping has been found. The 9,638-bit figure is a ceiling on possible arrangements, not evidence of a hidden message.
-- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, or further line-rank sweeps. The next useful step is an original clue that selects a specific boundary operation or authentic key and predicts a reproducible output on untouched pages. Without that, keep the broader no-repeat family provisional and prioritize mechanisms with a source-derived key or operation.
+- Do not proceed to arbitrary boundary-bit subsets, fitted lookup tables, unconstrained per-page masks, or further line-rank sweeps. The remaining capacity hinge is whether any of the 55 compositor residuals are independently selectable and have a source-selected readout; the current image evidence does not establish that. Otherwise the only high-capacity channel is unrestricted word-boundary placement, for which no historically motivated reversible mapping has been found. Require an original clue that selects the operation and predicts a reproducible output on untouched pages.
 
 ## Reproduction
 

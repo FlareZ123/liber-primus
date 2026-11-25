@@ -1,0 +1,58 @@
+{
+  "classification": "conditional capacity upper bound; not a decoder",
+  "source_files": [
+    "resources/liber-primus/lp2-corpus.json",
+    "resources/liber-primus/lp2-ink-annotations.json",
+    "im-results/lp2-no-repeat-punctuation-identity-capacity.json",
+    "im-results/lp2-linebreak-binary-sidecar-pagecapacity-gate.md"
+  ],
+  "scope": {
+    "unknown_pages": 55,
+    "pages_with_ink": 22,
+    "pages_with_red_spans": 13,
+    "red_spans": 16,
+    "red_runes": 213,
+    "large_marks": 31,
+    "unique_large_mark_positions": 30,
+    "mark_positions_attached_to_span_endpoint_or_page_end": 28,
+    "independent_interior_mark_positions": [
+      {
+        "page": 36,
+        "offset": 99,
+        "runes": 238
+      },
+      {
+        "page": 38,
+        "offset": 186,
+        "runes": 228
+      }
+    ]
+  },
+  "capacity_bits": {
+    "red_span_placement_fixed_lengths": 118.74873335137019,
+    "red_span_placement_variable_lengths": 131.25404870750646,
+    "independent_mark_positions": 15.740070596077693,
+    "four_state_per_large_mark_allowance": 62,
+    "structured_ink_fixed_lengths": 196.48880394744788,
+    "structured_ink_variable_lengths": 208.99411930358414,
+    "pooled_fine_punctuation_labels": 77.5654017499942,
+    "global_at_most_86_codebook_deficit": 325.4502541839829,
+    "fixed_lengths_ink_plus_fine_labels": 274.05420569744206,
+    "variable_lengths_ink_plus_fine_labels": 286.55952105357835,
+    "fixed_lengths_plus_all_55_line_residual_bits": 329.05420569744206,
+    "variable_lengths_plus_all_55_line_residual_bits": 341.55952105357835,
+    "shortfall_without_line_bits_fixed_lengths": 51.39604848654085,
+    "shortfall_without_line_bits_variable_lengths": 38.890733130404556,
+    "surplus_if_all_line_bits_independent_fixed_lengths": 3.603951513459151,
+    "surplus_if_all_line_bits_independent_variable_lengths": 16.109266869595444
+  },
+  "assumptions": [
+    "Red spans remain on their original pages, ordered and non-overlapping; touching is allowed.",
+    "Fixed-length model preserves each span length; variable-length model preserves per-page span count and total red-rune count only.",
+    "Only two unique large-mark positions are treated as independently movable; the other 28 are tied to span endpoints or page ends.",
+    "Every large mark is generously allowed four independent size/colour states.",
+    "Pooled fine punctuation labels and all 55 residual-line bits are added independently, even where physical channels may overlap.",
+    "The 55 residual-line bits are an optional upper bound, not an authenticated or source-selected cipher channel."
+  ],
+  "decision": "Structured ink geometry plus pooled fine punctuation labels remains below the global deficit. It crosses only if all 55 residual-line bits are independently available; no source-selected readout or plaintext is established."
+}
