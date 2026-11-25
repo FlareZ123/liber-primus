@@ -1,0 +1,220 @@
+{
+  "definition": "ordinary chapter-local periodic BASE29 integer addition, most-significant first, no F bypass",
+  "book": {
+    "n": 12956,
+    "cutE": 634,
+    "cutRare": 686,
+    "pairE": 600,
+    "pairRare": 704,
+    "minE": 1397,
+    "maxRare": 83,
+    "windows": 1129739
+  },
+  "chapterPrivate": {
+    "cutE": 973,
+    "cutRare": 370,
+    "pairE": 888,
+    "pairRare": 429
+  },
+  "results": [
+    {
+      "region": [
+        0,
+        2
+      ],
+      "n": 729,
+      "cutE": 68,
+      "cutRare": 12,
+      "pairE": 63,
+      "pairRare": 17,
+      "minE": 48,
+      "maxRare": 10,
+      "windows": 1203101
+    },
+    {
+      "region": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "cutE": 90,
+      "cutRare": 25,
+      "pairE": 82,
+      "pairRare": 31,
+      "minE": 81,
+      "maxRare": 13,
+      "windows": 1200605
+    },
+    {
+      "region": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "cutE": 122,
+      "cutRare": 51,
+      "pairE": 115,
+      "pairRare": 58,
+      "minE": 129,
+      "maxRare": 16,
+      "windows": 1197101
+    },
+    {
+      "region": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "cutE": 138,
+      "cutRare": 56,
+      "pairE": 127,
+      "pairRare": 68,
+      "minE": 147,
+      "maxRare": 18,
+      "windows": 1196057
+    },
+    {
+      "region": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "cutE": 88,
+      "cutRare": 22,
+      "pairE": 80,
+      "pairRare": 27,
+      "minE": 74,
+      "maxRare": 12,
+      "windows": 1201349
+    },
+    {
+      "region": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "cutE": 109,
+      "cutRare": 37,
+      "pairE": 98,
+      "pairRare": 43,
+      "minE": 110,
+      "maxRare": 14,
+      "windows": 1198877
+    },
+    {
+      "region": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "cutE": 116,
+      "cutRare": 52,
+      "pairE": 107,
+      "pairRare": 59,
+      "minE": 127,
+      "maxRare": 16,
+      "windows": 1197395
+    },
+    {
+      "region": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "cutE": 201,
+      "cutRare": 115,
+      "pairE": 181,
+      "pairRare": 126,
+      "minE": 251,
+      "maxRare": 27,
+      "windows": 1189427
+    },
+    {
+      "region": [
+        54,
+        55
+      ],
+      "n": 308,
+      "cutE": 41,
+      "cutRare": 0,
+      "pairE": 35,
+      "pairRare": 0,
+      "minE": 13,
+      "maxRare": 9,
+      "windows": 1205627
+    }
+  ],
+  "terminalBody": {
+    "n": 299,
+    "cutE": 41,
+    "cutRare": 0,
+    "pairE": 35,
+    "pairRare": 0,
+    "minE": 11,
+    "maxRare": 9,
+    "windows": 1205681
+  },
+  "exhaustiveToyCases": 108,
+  "plants": [
+    {
+      "source": 0,
+      "n": 729,
+      "actualE": 82,
+      "actualRare": 2,
+      "cutE": 107,
+      "cutRare": 0,
+      "pairE": 93,
+      "pairRare": 0
+    },
+    {
+      "source": 1,
+      "n": 729,
+      "actualE": 81,
+      "actualRare": 1,
+      "cutE": 95,
+      "cutRare": 0,
+      "pairE": 88,
+      "pairRare": 0
+    },
+    {
+      "source": 2,
+      "n": 729,
+      "actualE": 89,
+      "actualRare": 1,
+      "cutE": 107,
+      "cutRare": 0,
+      "pairE": 94,
+      "pairRare": 0
+    },
+    {
+      "source": 3,
+      "n": 729,
+      "actualE": 87,
+      "actualRare": 1,
+      "cutE": 104,
+      "cutRare": 0,
+      "pairE": 95,
+      "pairRare": 0
+    },
+    {
+      "source": 4,
+      "n": 729,
+      "actualE": 90,
+      "actualRare": 0,
+      "cutE": 109,
+      "cutRare": 0,
+      "pairE": 101,
+      "pairRare": 0
+    },
+    {
+      "source": 5,
+      "n": 729,
+      "actualE": 96,
+      "actualRare": 0,
+      "cutE": 111,
+      "cutRare": 0,
+      "pairE": 104,
+      "pairRare": 0
+    }
+  ]
+}
