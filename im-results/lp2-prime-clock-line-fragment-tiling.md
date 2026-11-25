@@ -30,6 +30,25 @@ Retain the 16 highest scoring distinct (start,end) intervals per line, each with
 
 This is an exact search only within the top-16 interval domain, not exhaustive over all paths. The original pilot lines are noncontiguous in source order; no global 22-line tiling is justified, and the score failure gives no reason to fit the full 594-line tiling. Retire this bounded receiver without extending sign/origin ranges or adding line permutations absent an independently selected clue. Other key streams, intraline rearrangements, extra clock advances and non-native registers remain open.
 
+## Collision-redraw extension: same lines, fixed q=.81
+
+A more permissive line-local variant addresses the LP2 equality suppression. After a non-F plaintext rune produces the preceding ciphertext rune, independently reject it with probability .81 and advance the prime cursor; repeat until accepted. Literal plaintext F bypasses the mechanism and does not advance the cursor. Reset the previous-ciphertext state at each line boundary but continue the cursor. The rejection probability is a hypothesis motivated by the observed low equality rate and prior skip-model studies, not source-authenticated. The inverse enumerates every legal skip history for each origin 0..29219 (29,220 fixed origins), rather than fitting q or maximizing over skip probability. Each rejected key output must be equal to the previous ciphertext, and all retained edges forward replay with their recorded rejection counts. Consecutive equal prime residues have maximum run length two in the scanned tape. No arbitrary skip branch. Same native training, held-out windows, line lengths and original sample as above; new fixed xorshift seed 0x81c3301.
+
+| Tape | Mean best nats/rune (joint path) | Mean marginal log-LR/rune | Exact independent line starts + plaintext |
+|---|---:|---:|---:|
+| Native 1033 | -2.905125 | 0.057951 | 18/22 |
+| Native 1033 shuffled null | -3.504385 | -0.521142 | — |
+| Native 3301 | -2.621361 | 0.340135 | 20/22 |
+| Native 3301 shuffled null | -3.498873 | -0.516532 | — |
+| Original | -3.493233 | -0.506421 | — |
+| Original matched null | -3.531153 | -0.545880 | — |
+
+Both controls used 12 planted redraws. All 44 true starts rank in the top five; all 44 true intervals retained. Top-16 joint reconstruction: native 1033 has 4 complete tilings, correct line order, 22/22 intervals and 554/554 runes; native 3301 has 16 complete tilings, correct line order, 21/22 intervals and 553/554 runes. Matched nulls have no complete tiling. Original best line remains -3.322493 nats/rune and reads ECEJMBEEHNGUEMHEWAYEFOTTER; no meaningful plaintext. The weak original-minus-shuffle gain (.037919 nats/rune on the best-path score) does not approach the native gains or identify a key.
+
+This is a pilot negative for the stated line-local collision model and fixed origin range, not a universal claim about rejection processes, cross-line predecessors, or arbitrary source keys. No full original tiling on the noncontiguous sample. Do not expand merely to chase fragments. The constructive interval method is applicable to other independent source keys.
+
+Run `node sims/lp2_prime_clock_line_collision_sft.cjs` from root to reproduce the full outputs. The core ran in the connected ECMAScript runtime (47.69 seconds). A transient GitHub write failure prevented the initial raw-output persistence; the measured summary is recorded here and the same experiment code is committed. No standalone Node/CI execution is claimed.
+
 ## Reproduction
 
 Run `node sims/lp2_prime_clock_line_fragment_tiling_sft.cjs` from the repository root. The core ran in the connected ECMAScript runtime on the pinned input blobs; a standalone Node or CI run is not claimed. [Raw output](lp2-prime-clock-line-fragment-tiling.json). Source blob SHAs: `resources/liber-primus/lp2-corpus.json` `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; `resources/transcriptions/lp2-image-corrected.txt` `f7b534a33edeb212d427329798438325307463d7`; `resources/external/relikd-solved-gp29-native-v1.json` `1b064ef6d85819b7d96adaff31a82d1ec551598f`.
