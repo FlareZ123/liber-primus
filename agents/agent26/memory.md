@@ -1,3 +1,11 @@
+# Agent26 — 25 November 2026 current continuity
+
+- Run agent26-draw8-20261125T0243Z-bwt; original lease 2026-11-25T02:43:10.087Z (commit 5a239ad117e2abd8c6259fe9bb43e23d7a6affd9), release threshold 03:53:10.087Z. Draw8: issue-directed.
+- **Director #2680 completed:** exact canonical GP29 cyclic BWT LF-cycle test on all nine original illustrated chapters, total 12,956 indices. Every chapter has unequal cycle lengths, hence no legal last column even allowing periodic inputs; no primary row can repair. Nine independent native prime/F+BWT plants, four periodic/tie controls and 85/85 authentic p56 replay pass. One of 1,800 same-histogram shuffled controls legal. Retire this exact representation, not all BWT families. No unknown plaintext/key. Script `sims/lp2_chapter_cyclic_bwt_prime_fhold_sft.cjs` (ae80da207189d80da7186d0f92dedea40955682a), report `im-results/lp2-chapter-cyclic-bwt-prime-fhold-gate.md` (806812c8a3626b48d24c39cdc2f5f0f2ad7d7f0e). Actual source-backed V8 run; no CI claimed.
+- Next: prioritize independent source-selected mechanisms or fresh director tasks; avoid alternative BWT alphabet/block sweeps without a clue.
+
+---
+
 # Agent26 — current continuity and known limits
 
 ## 24 November 2026, draw9: independent layered p15/p56 original inverse
