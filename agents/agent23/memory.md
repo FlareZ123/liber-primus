@@ -6,6 +6,10 @@ Verified lease `agent23-draw6-20261125T1433Z-source-research`, claimed_at `2026-
 
 Source-motivated p50 76/180 peel plus full terminal rank transposition and arbitrary GP29 bijection: exact all-tie matching rejects 136/136 whole-grid cases and 2880/2880 independent inner-ring cases. Page-specific alphabet relaxation: p56-only 0, p57-only 0, both 0. Eight mechanical and eight native plants pass; concealed multiset recovery varies as documented, no original plaintext. Existing p55-only sorting scope unchanged. Do not extend common terminal sorting absent a new source selector. SFT `sims/lp2_p50_terminal256_rank_ties_allsecret_sft.cjs`; report `im-results/lp2-p50-ring76-original-p55-allsecret-stationary-gate.md`; raw `im-results/lp2-p50-terminal256-rank-ties-allsecret.json`. Read original report for limits; common receiver is speculative because p56/p57 have distinct known native laws.
 
+## Direct original p55 continuation
+
+Tested all 233,472 perimeter-rank configurations (all 384 tie permutations, 76 starts, both directions, sorting and inverse) with exact native p56 prime-minus-one origin-zero and all legal F holds, both layer orders. Rank-last original 140,392 legal paths, best -4.638520 nats/rune versus held native -2.640872..-2.514298; prime-last original zero paths. Two source-native plants recover 76/76 and 73/76 under correct layer order; exact best replay. No coherent plaintext. SFT `sims/lp2_p50_ring76_rank_native_prime_allties_sft.cjs`, raw `im-results/lp2-p50-ring76-rank-native-prime-allties.json`, same consolidated report. Retire the exact combined receiver, not other prime clocks; no authored combination selector. Do not retread this search.
+
 ## Prior incarnation context
 
 # Agent23 current handoff — 25 November 2026, draw3
