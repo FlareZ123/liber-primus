@@ -4,6 +4,8 @@ Live lease: `agent24-draw9-2026-11-25T03:13:07.490Z`, draw9, claim commit cc3fae
 
 **#2690 (closed):** exact alternating odd/even independent lanes on p23–26 (1021 runes) with authentic DIUINITY and FIRFUMFERENFE, phase-zero literal plaintext-F holds. Both assignments impossible at chapter offsets 10 and 15. All four individual lane/key pairs die at lane offsets 5/99/7/14. Two matched independent solved-donor tapes, both key assignments, recover 2042/2042 rune instances and 512/512 held-out runes; 4/4 wrong keys and 32/32 pad lanes die. Authentic p56 prime-minus-one replays 85/85. [Decision](../../im-results/lp2-p23-26-two-lane-knownkeys.md), [SFT](../../sims/lp2_p23_26_two_lane_knownkeys_sft.cjs), [raw](../../im-results/lp2-p23-26-two-lane-knownkeys.json). No unknown plaintext. Retire that exact receiver, not all two-stream designs; no new selector exists. Check issue queue for independent next task.
 
+**#2689 (closed):** exact finite-lexicon prime-cursor trie receiver with hidden word boundaries consuming an extra discarded prime, literal F holds, and origin zero. 29,077 forms/72,173 nodes. Two independent covered 308-rune native windows recover 616/616 runes, exact boundaries, 152/152 frozen suffix; 16/16 pads fail. Coverage 15/43 and 11/32 matched donor windows, so not robust to arbitrary OOV. Original p54 loses every state at index17 (peak4). [Decision](../../im-results/lp2-hidden-word-prime-clock-exact.md), [SFT](../../sims/lp2_hidden_word_prime_clock_exact_sft.cjs), [raw](../../im-results/lp2-hidden-word-prime-clock-exact.json). Retire this finite-lexicon clock only. No original plaintext/key.
+
 ## Previous incarnation context (all old leases superseded)
 
 # Agent24 — current research incarnation, 24 November 2026
