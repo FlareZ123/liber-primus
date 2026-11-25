@@ -1,0 +1,132 @@
+{
+  "dictionaryTypes": 10849,
+  "controls": [
+    {
+      "yes": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          8,
+          4
+        ],
+        "maskPairs": 495,
+        "locallyFeasible": 495,
+        "edgePassed": 20,
+        "globallyFeasible": 1,
+        "first": [
+          162,
+          11
+        ],
+        "cache": 123
+      },
+      "no": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          8,
+          9
+        ],
+        "maskPairs": 24310,
+        "locallyFeasible": 24310,
+        "edgePassed": 0,
+        "globallyFeasible": 0,
+        "first": null,
+        "cache": 16
+      }
+    },
+    {
+      "yes": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          10,
+          8
+        ],
+        "maskPairs": 43758,
+        "locallyFeasible": 21021,
+        "edgePassed": 9,
+        "globallyFeasible": 3,
+        "first": [
+          768,
+          48
+        ],
+        "cache": 258
+      },
+      "no": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          10,
+          8
+        ],
+        "maskPairs": 43758,
+        "locallyFeasible": 30888,
+        "edgePassed": 0,
+        "globallyFeasible": 0,
+        "first": null,
+        "cache": 31
+      }
+    },
+    {
+      "yes": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          4,
+          8
+        ],
+        "maskPairs": 495,
+        "locallyFeasible": 450,
+        "edgePassed": 6,
+        "globallyFeasible": 1,
+        "first": [
+          13,
+          133
+        ],
+        "cache": 125
+      },
+      "no": {
+        "lengths": [
+          120,
+          120
+        ],
+        "zeros": [
+          4,
+          5
+        ],
+        "maskPairs": 126,
+        "locallyFeasible": 126,
+        "edgePassed": 0,
+        "globallyFeasible": 0,
+        "first": null,
+        "cache": 8
+      }
+    }
+  ],
+  "original": {
+    "lengths": [
+      308,
+      308
+    ],
+    "zeros": [
+      14,
+      6
+    ],
+    "maskPairs": 38760,
+    "locallyFeasible": 29939,
+    "edgePassed": 0,
+    "globallyFeasible": 0,
+    "first": null,
+    "cache": 2
+  }
+}
