@@ -1,0 +1,8064 @@
+{
+  "results": [
+    {
+      "lo": 0,
+      "hi": 55,
+      "N": 12956,
+      "hold": false,
+      "repeats": 86,
+      "anchoredResidues": 27,
+      "positiveEqualities": 59,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 33879,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 293635,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 204151,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 0,
+      "hi": 55,
+      "N": 12956,
+      "hold": true,
+      "repeats": 86,
+      "anchoredResidues": 27,
+      "positiveEqualities": 59,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 33879,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 293635,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 204151,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 0,
+      "hi": 2,
+      "N": 729,
+      "hold": false,
+      "repeats": 4,
+      "anchoredResidues": 3,
+      "positiveEqualities": 1,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46106,
+          "positivePass": 2824,
+          "maskPass": 46,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305862,
+          "positivePass": 18688,
+          "maskPass": 312,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216378,
+          "positivePass": 13211,
+          "maskPass": 249,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native3",
+          "W": 52,
+          "positivePass": 4,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native4",
+          "W": 27,
+          "positivePass": 1,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 0,
+      "hi": 2,
+      "N": 729,
+      "hold": true,
+      "repeats": 4,
+      "anchoredResidues": 4,
+      "positiveEqualities": 0,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46106,
+          "positivePass": 46106,
+          "maskPass": 149,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305862,
+          "positivePass": 305862,
+          "maskPass": 1029,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216378,
+          "positivePass": 216378,
+          "maskPass": 759,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native3",
+          "W": 52,
+          "positivePass": 52,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native4",
+          "W": 27,
+          "positivePass": 27,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 3,
+      "hi": 7,
+      "N": 1145,
+      "hold": false,
+      "repeats": 6,
+      "anchoredResidues": 5,
+      "positiveEqualities": 1,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45690,
+          "positivePass": 2792,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305446,
+          "positivePass": 19190,
+          "maskPass": 3,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215962,
+          "positivePass": 13237,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 3,
+      "hi": 7,
+      "N": 1145,
+      "hold": true,
+      "repeats": 6,
+      "anchoredResidues": 6,
+      "positiveEqualities": 0,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45690,
+          "positivePass": 45690,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305446,
+          "positivePass": 305446,
+          "maskPass": 4,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215962,
+          "positivePass": 215962,
+          "maskPass": 2,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 8,
+      "hi": 14,
+      "N": 1729,
+      "hold": false,
+      "repeats": 9,
+      "anchoredResidues": 7,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45106,
+          "positivePass": 158,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304862,
+          "positivePass": 1193,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215378,
+          "positivePass": 787,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 8,
+      "hi": 14,
+      "N": 1729,
+      "hold": true,
+      "repeats": 9,
+      "anchoredResidues": 6,
+      "positiveEqualities": 3,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45106,
+          "positivePass": 12,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304862,
+          "positivePass": 75,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215378,
+          "positivePass": 46,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 15,
+      "hi": 22,
+      "N": 1903,
+      "hold": false,
+      "repeats": 11,
+      "anchoredResidues": 9,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 44932,
+          "positivePass": 178,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304688,
+          "positivePass": 1247,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215204,
+          "positivePass": 764,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 15,
+      "hi": 22,
+      "N": 1903,
+      "hold": true,
+      "repeats": 11,
+      "anchoredResidues": 8,
+      "positiveEqualities": 3,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 44932,
+          "positivePass": 14,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304688,
+          "positivePass": 58,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215204,
+          "positivePass": 33,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 23,
+      "hi": 26,
+      "N": 1021,
+      "hold": false,
+      "repeats": 11,
+      "anchoredResidues": 10,
+      "positiveEqualities": 1,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45814,
+          "positivePass": 2799,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305570,
+          "positivePass": 19199,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216086,
+          "positivePass": 13566,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 23,
+      "hi": 26,
+      "N": 1021,
+      "hold": true,
+      "repeats": 11,
+      "anchoredResidues": 9,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45814,
+          "positivePass": 158,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305570,
+          "positivePass": 1145,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216086,
+          "positivePass": 806,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 27,
+      "hi": 32,
+      "N": 1433,
+      "hold": false,
+      "repeats": 13,
+      "anchoredResidues": 11,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45402,
+          "positivePass": 146,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305158,
+          "positivePass": 1235,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215674,
+          "positivePass": 827,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 27,
+      "hi": 32,
+      "N": 1433,
+      "hold": true,
+      "repeats": 13,
+      "anchoredResidues": 11,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45402,
+          "positivePass": 190,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 305158,
+          "positivePass": 1465,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215674,
+          "positivePass": 977,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 33,
+      "hi": 39,
+      "N": 1680,
+      "hold": false,
+      "repeats": 12,
+      "anchoredResidues": 11,
+      "positiveEqualities": 1,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45155,
+          "positivePass": 2684,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304911,
+          "positivePass": 18904,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215427,
+          "positivePass": 12789,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 33,
+      "hi": 39,
+      "N": 1680,
+      "hold": true,
+      "repeats": 12,
+      "anchoredResidues": 10,
+      "positiveEqualities": 2,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 45155,
+          "positivePass": 186,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 304911,
+          "positivePass": 1184,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 215427,
+          "positivePass": 756,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 40,
+      "hi": 53,
+      "N": 3008,
+      "hold": false,
+      "repeats": 19,
+      "anchoredResidues": 16,
+      "positiveEqualities": 3,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 43827,
+          "positivePass": 9,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 303583,
+          "positivePass": 70,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 214099,
+          "positivePass": 49,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 40,
+      "hi": 53,
+      "N": 3008,
+      "hold": true,
+      "repeats": 19,
+      "anchoredResidues": 13,
+      "positiveEqualities": 6,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 43827,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 303583,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 214099,
+          "positivePass": 0,
+          "maskPass": 0,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 54,
+      "hi": 55,
+      "N": 308,
+      "hold": false,
+      "repeats": 3,
+      "anchoredResidues": 3,
+      "positiveEqualities": 0,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46527,
+          "positivePass": 46527,
+          "maskPass": 6798,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 306283,
+          "positivePass": 306283,
+          "maskPass": 44151,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216799,
+          "positivePass": 216799,
+          "maskPass": 32269,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native1",
+          "W": 208,
+          "positivePass": 208,
+          "maskPass": 33,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native3",
+          "W": 473,
+          "positivePass": 473,
+          "maskPass": 53,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native4",
+          "W": 448,
+          "positivePass": 448,
+          "maskPass": 84,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native5",
+          "W": 12,
+          "positivePass": 12,
+          "maskPass": 2,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    },
+    {
+      "lo": 54,
+      "hi": 55,
+      "N": 308,
+      "hold": true,
+      "repeats": 3,
+      "anchoredResidues": 3,
+      "positiveEqualities": 0,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46527,
+          "positivePass": 46527,
+          "maskPass": 5935,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Emerson",
+          "W": 306283,
+          "positivePass": 306283,
+          "maskPass": 38602,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "Shakespeare",
+          "W": 216799,
+          "positivePass": 216799,
+          "maskPass": 27971,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native1",
+          "W": 208,
+          "positivePass": 208,
+          "maskPass": 30,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native3",
+          "W": 473,
+          "positivePass": 473,
+          "maskPass": 39,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native4",
+          "W": 448,
+          "positivePass": 448,
+          "maskPass": 59,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        },
+        {
+          "name": "native5",
+          "W": 12,
+          "positivePass": 12,
+          "maskPass": 1,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": []
+    }
+  ],
+  "plants": [
+    {
+      "hold": false,
+      "N": 308,
+      "at": 11000,
+      "q": 8,
+      "order": "before",
+      "F": [
+        27,
+        2,
+        25,
+        9,
+        9,
+        13,
+        6,
+        22,
+        17,
+        28,
+        21,
+        5,
+        4,
+        10,
+        6,
+        5,
+        21,
+        19,
+        1,
+        8,
+        2,
+        0,
+        26,
+        23,
+        11,
+        22,
+        5,
+        4,
+        26
+      ],
+      "K": [
+        [
+          25,
+          15,
+          20,
+          10,
+          1,
+          9,
+          7,
+          16,
+          17,
+          13,
+          24,
+          2,
+          18,
+          27,
+          0,
+          26,
+          5,
+          8,
+          6,
+          23,
+          14,
+          11,
+          4,
+          19,
+          22,
+          12,
+          21,
+          3
+        ],
+        [
+          19,
+          17,
+          25,
+          23,
+          7,
+          21,
+          2,
+          0,
+          8,
+          10,
+          12,
+          6,
+          26,
+          5,
+          11,
+          1,
+          24,
+          22,
+          18,
+          3,
+          15,
+          14,
+          13,
+          9,
+          16,
+          27,
+          4,
+          20
+        ],
+        [
+          27,
+          10,
+          3,
+          14,
+          24,
+          20,
+          0,
+          7,
+          19,
+          17,
+          9,
+          22,
+          18,
+          1,
+          2,
+          21,
+          13,
+          11,
+          15,
+          23,
+          8,
+          4,
+          12,
+          5,
+          16,
+          6,
+          25,
+          26
+        ],
+        [
+          4,
+          13,
+          15,
+          18,
+          11,
+          7,
+          3,
+          1,
+          17,
+          8,
+          19,
+          2,
+          0,
+          5,
+          14,
+          23,
+          16,
+          25,
+          10,
+          20,
+          12,
+          6,
+          27,
+          21,
+          24,
+          22,
+          9,
+          26
+        ],
+        [
+          8,
+          21,
+          6,
+          27,
+          4,
+          2,
+          11,
+          15,
+          10,
+          3,
+          16,
+          20,
+          17,
+          13,
+          5,
+          23,
+          18,
+          22,
+          0,
+          24,
+          25,
+          9,
+          19,
+          26,
+          12,
+          14,
+          1,
+          7
+        ],
+        [
+          6,
+          19,
+          18,
+          20,
+          8,
+          0,
+          1,
+          9,
+          22,
+          5,
+          14,
+          12,
+          3,
+          27,
+          7,
+          4,
+          16,
+          25,
+          13,
+          24,
+          15,
+          23,
+          17,
+          21,
+          26,
+          10,
+          11,
+          2
+        ],
+        [
+          3,
+          24,
+          8,
+          21,
+          2,
+          22,
+          10,
+          18,
+          4,
+          1,
+          13,
+          20,
+          17,
+          11,
+          9,
+          16,
+          25,
+          23,
+          19,
+          27,
+          6,
+          7,
+          15,
+          0,
+          5,
+          12,
+          26,
+          14
+        ],
+        [
+          1,
+          12,
+          26,
+          2,
+          18,
+          14,
+          4,
+          16,
+          0,
+          13,
+          19,
+          23,
+          25,
+          21,
+          20,
+          6,
+          15,
+          8,
+          3,
+          9,
+          10,
+          11,
+          27,
+          22,
+          7,
+          5,
+          17,
+          24
+        ]
+      ],
+      "repeats": 9,
+      "anchoredResidues": 9,
+      "positiveEqualities": 0,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46527,
+          "positivePass": 46527,
+          "maskPass": 188,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 1,
+              "jointPass": 1
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": [
+        {
+          "name": "Gibran",
+          "at": 11000,
+          "q": 8,
+          "order": "before",
+          "F": [
+            17,
+            2,
+            25,
+            9,
+            6,
+            11,
+            6,
+            19,
+            17,
+            24,
+            18,
+            3,
+            4,
+            10,
+            4,
+            5,
+            20,
+            17,
+            1,
+            8,
+            2,
+            0,
+            25,
+            23,
+            11,
+            22,
+            5,
+            4,
+            25
+          ],
+          "K": [
+            [
+              25,
+              15,
+              20,
+              10,
+              1,
+              9,
+              7,
+              5,
+              17,
+              11,
+              12,
+              2,
+              18,
+              27,
+              0,
+              13,
+              16,
+              8,
+              6,
+              23,
+              14,
+              19,
+              4,
+              21,
+              22,
+              24,
+              26,
+              3
+            ],
+            [
+              19,
+              17,
+              25,
+              23,
+              7,
+              21,
+              0,
+              2,
+              8,
+              10,
+              6,
+              11,
+              12,
+              5,
+              20,
+              1,
+              22,
+              24,
+              18,
+              3,
+              15,
+              14,
+              13,
+              9,
+              16,
+              27,
+              4,
+              26
+            ],
+            [
+              5,
+              10,
+              3,
+              14,
+              6,
+              11,
+              0,
+              7,
+              19,
+              17,
+              9,
+              22,
+              18,
+              1,
+              2,
+              12,
+              13,
+              20,
+              15,
+              23,
+              8,
+              4,
+              21,
+              24,
+              16,
+              27,
+              25,
+              26
+            ],
+            [
+              4,
+              6,
+              15,
+              11,
+              12,
+              7,
+              3,
+              1,
+              17,
+              8,
+              19,
+              2,
+              0,
+              5,
+              14,
+              23,
+              16,
+              25,
+              10,
+              20,
+              13,
+              18,
+              21,
+              22,
+              24,
+              26,
+              9,
+              27
+            ],
+            [
+              8,
+              21,
+              6,
+              27,
+              4,
+              2,
+              0,
+              15,
+              10,
+              3,
+              16,
+              5,
+              17,
+              9,
+              11,
+              23,
+              18,
+              12,
+              13,
+              24,
+              25,
+              20,
+              19,
+              22,
+              26,
+              14,
+              1,
+              7
+            ],
+            [
+              0,
+              19,
+              18,
+              2,
+              8,
+              6,
+              1,
+              9,
+              22,
+              5,
+              14,
+              10,
+              3,
+              11,
+              7,
+              4,
+              16,
+              25,
+              12,
+              24,
+              15,
+              23,
+              17,
+              13,
+              20,
+              21,
+              26,
+              27
+            ],
+            [
+              3,
+              5,
+              8,
+              13,
+              2,
+              22,
+              10,
+              18,
+              4,
+              1,
+              20,
+              21,
+              17,
+              11,
+              9,
+              16,
+              25,
+              23,
+              19,
+              24,
+              6,
+              7,
+              15,
+              0,
+              26,
+              12,
+              27,
+              14
+            ],
+            [
+              1,
+              3,
+              6,
+              2,
+              7,
+              14,
+              4,
+              16,
+              0,
+              11,
+              12,
+              23,
+              13,
+              18,
+              20,
+              19,
+              15,
+              8,
+              21,
+              9,
+              10,
+              25,
+              26,
+              22,
+              27,
+              5,
+              17,
+              24
+            ]
+          ],
+          "nodes": 4,
+          "observedEntries": 149,
+          "escapeDomains": [
+            536739840,
+            4,
+            33554432,
+            512,
+            960,
+            30720,
+            64,
+            7864320,
+            131072,
+            520093696,
+            66846720,
+            120,
+            16,
+            31744,
+            112,
+            32,
+            133169152,
+            917504,
+            2,
+            768,
+            4,
+            1,
+            503316480,
+            8388608,
+            30720,
+            62914560,
+            32,
+            16,
+            503316480
+          ],
+          "plaintext": "E S I N M A J E S T Y A N D P R O U D S U B M I S S IA N T O W A R D S TH E I N F I N I T E W H E N Y O U W O R C Y O U A R E A F L U T E TH R O U G H W H O S E H EA R T TH E W H I S P E R NG O F TH E H O U R S T U R N S T O M U S I C W H I C H O F Y O U W O U L D B E A R E E D D U M B A N D S I L E N T W H E N A L L E L S E S NG S T O G E TH E R I N U N I S O N A L W A Y S Y O U H A U E B E E N T O L D TH A T W O R C I S A C U R S E A N D L A B O U R A M I S F O R T U N E B U T I S A Y T O Y O U TH A T W H E N Y O U W O R C Y O U F U L F I L A P A R T O F EA R TH S F U R TH E S T D R EA M A S S I G N E D T O Y O U W H E N"
+        }
+      ],
+      "trueCandidate": {
+        "name": "Gibran",
+        "at": 11000,
+        "q": 8,
+        "order": "before",
+        "F": [
+          17,
+          2,
+          25,
+          9,
+          6,
+          11,
+          6,
+          19,
+          17,
+          24,
+          18,
+          3,
+          4,
+          10,
+          4,
+          5,
+          20,
+          17,
+          1,
+          8,
+          2,
+          0,
+          25,
+          23,
+          11,
+          22,
+          5,
+          4,
+          25
+        ],
+        "K": [
+          [
+            25,
+            15,
+            20,
+            10,
+            1,
+            9,
+            7,
+            5,
+            17,
+            11,
+            12,
+            2,
+            18,
+            27,
+            0,
+            13,
+            16,
+            8,
+            6,
+            23,
+            14,
+            19,
+            4,
+            21,
+            22,
+            24,
+            26,
+            3
+          ],
+          [
+            19,
+            17,
+            25,
+            23,
+            7,
+            21,
+            0,
+            2,
+            8,
+            10,
+            6,
+            11,
+            12,
+            5,
+            20,
+            1,
+            22,
+            24,
+            18,
+            3,
+            15,
+            14,
+            13,
+            9,
+            16,
+            27,
+            4,
+            26
+          ],
+          [
+            5,
+            10,
+            3,
+            14,
+            6,
+            11,
+            0,
+            7,
+            19,
+            17,
+            9,
+            22,
+            18,
+            1,
+            2,
+            12,
+            13,
+            20,
+            15,
+            23,
+            8,
+            4,
+            21,
+            24,
+            16,
+            27,
+            25,
+            26
+          ],
+          [
+            4,
+            6,
+            15,
+            11,
+            12,
+            7,
+            3,
+            1,
+            17,
+            8,
+            19,
+            2,
+            0,
+            5,
+            14,
+            23,
+            16,
+            25,
+            10,
+            20,
+            13,
+            18,
+            21,
+            22,
+            24,
+            26,
+            9,
+            27
+          ],
+          [
+            8,
+            21,
+            6,
+            27,
+            4,
+            2,
+            0,
+            15,
+            10,
+            3,
+            16,
+            5,
+            17,
+            9,
+            11,
+            23,
+            18,
+            12,
+            13,
+            24,
+            25,
+            20,
+            19,
+            22,
+            26,
+            14,
+            1,
+            7
+          ],
+          [
+            0,
+            19,
+            18,
+            2,
+            8,
+            6,
+            1,
+            9,
+            22,
+            5,
+            14,
+            10,
+            3,
+            11,
+            7,
+            4,
+            16,
+            25,
+            12,
+            24,
+            15,
+            23,
+            17,
+            13,
+            20,
+            21,
+            26,
+            27
+          ],
+          [
+            3,
+            5,
+            8,
+            13,
+            2,
+            22,
+            10,
+            18,
+            4,
+            1,
+            20,
+            21,
+            17,
+            11,
+            9,
+            16,
+            25,
+            23,
+            19,
+            24,
+            6,
+            7,
+            15,
+            0,
+            26,
+            12,
+            27,
+            14
+          ],
+          [
+            1,
+            3,
+            6,
+            2,
+            7,
+            14,
+            4,
+            16,
+            0,
+            11,
+            12,
+            23,
+            13,
+            18,
+            20,
+            19,
+            15,
+            8,
+            21,
+            9,
+            10,
+            25,
+            26,
+            22,
+            27,
+            5,
+            17,
+            24
+          ]
+        ],
+        "nodes": 4,
+        "observedEntries": 149,
+        "escapeDomains": [
+          536739840,
+          4,
+          33554432,
+          512,
+          960,
+          30720,
+          64,
+          7864320,
+          131072,
+          520093696,
+          66846720,
+          120,
+          16,
+          31744,
+          112,
+          32,
+          133169152,
+          917504,
+          2,
+          768,
+          4,
+          1,
+          503316480,
+          8388608,
+          30720,
+          62914560,
+          32,
+          16,
+          503316480
+        ],
+        "plaintext": "E S I N M A J E S T Y A N D P R O U D S U B M I S S IA N T O W A R D S TH E I N F I N I T E W H E N Y O U W O R C Y O U A R E A F L U T E TH R O U G H W H O S E H EA R T TH E W H I S P E R NG O F TH E H O U R S T U R N S T O M U S I C W H I C H O F Y O U W O U L D B E A R E E D D U M B A N D S I L E N T W H E N A L L E L S E S NG S T O G E TH E R I N U N I S O N A L W A Y S Y O U H A U E B E E N T O L D TH A T W O R C I S A C U R S E A N D L A B O U R A M I S F O R T U N E B U T I S A Y T O Y O U TH A T W H E N Y O U W O R C Y O U F U L F I L A P A R T O F EA R TH S F U R TH E S T D R EA M A S S I G N E D T O Y O U W H E N"
+      }
+    },
+    {
+      "hold": true,
+      "N": 308,
+      "at": 15000,
+      "q": 8,
+      "order": "after",
+      "F": [
+        13,
+        1,
+        23,
+        4,
+        10,
+        21,
+        24,
+        2,
+        4,
+        2,
+        5,
+        5,
+        24,
+        7,
+        28,
+        24,
+        6,
+        21,
+        21,
+        0,
+        14,
+        8,
+        5,
+        3,
+        19,
+        4,
+        11,
+        13,
+        9
+      ],
+      "K": [
+        [
+          9,
+          27,
+          15,
+          21,
+          11,
+          24,
+          18,
+          16,
+          7,
+          20,
+          26,
+          1,
+          10,
+          3,
+          12,
+          8,
+          25,
+          14,
+          23,
+          13,
+          2,
+          0,
+          17,
+          6,
+          5,
+          19,
+          22,
+          4
+        ],
+        [
+          7,
+          12,
+          9,
+          24,
+          4,
+          3,
+          1,
+          13,
+          27,
+          16,
+          10,
+          22,
+          2,
+          15,
+          6,
+          25,
+          23,
+          14,
+          0,
+          21,
+          5,
+          8,
+          19,
+          17,
+          18,
+          26,
+          20,
+          11
+        ],
+        [
+          22,
+          8,
+          1,
+          13,
+          10,
+          4,
+          18,
+          0,
+          21,
+          24,
+          16,
+          25,
+          26,
+          9,
+          27,
+          5,
+          3,
+          12,
+          7,
+          17,
+          23,
+          19,
+          6,
+          14,
+          20,
+          2,
+          15,
+          11
+        ],
+        [
+          13,
+          9,
+          22,
+          21,
+          25,
+          10,
+          6,
+          3,
+          18,
+          4,
+          19,
+          5,
+          23,
+          2,
+          16,
+          12,
+          15,
+          1,
+          20,
+          8,
+          7,
+          26,
+          27,
+          14,
+          0,
+          17,
+          11,
+          24
+        ],
+        [
+          9,
+          4,
+          22,
+          8,
+          2,
+          25,
+          5,
+          6,
+          20,
+          27,
+          3,
+          7,
+          18,
+          0,
+          21,
+          13,
+          15,
+          14,
+          19,
+          12,
+          24,
+          1,
+          11,
+          26,
+          23,
+          16,
+          10,
+          17
+        ],
+        [
+          11,
+          16,
+          3,
+          20,
+          1,
+          8,
+          17,
+          19,
+          15,
+          9,
+          6,
+          5,
+          21,
+          14,
+          22,
+          23,
+          26,
+          13,
+          25,
+          10,
+          7,
+          0,
+          2,
+          18,
+          24,
+          27,
+          12,
+          4
+        ],
+        [
+          22,
+          1,
+          18,
+          11,
+          14,
+          2,
+          12,
+          21,
+          25,
+          7,
+          13,
+          20,
+          19,
+          4,
+          9,
+          17,
+          8,
+          15,
+          6,
+          24,
+          26,
+          16,
+          0,
+          3,
+          27,
+          5,
+          23,
+          10
+        ],
+        [
+          4,
+          21,
+          18,
+          3,
+          2,
+          15,
+          9,
+          8,
+          24,
+          19,
+          25,
+          22,
+          6,
+          17,
+          20,
+          11,
+          26,
+          1,
+          12,
+          5,
+          0,
+          7,
+          10,
+          27,
+          13,
+          16,
+          23,
+          14
+        ]
+      ],
+      "repeats": 14,
+      "anchoredResidues": 11,
+      "positiveEqualities": 3,
+      "reports": [
+        {
+          "name": "Gibran",
+          "W": 46527,
+          "positivePass": 7,
+          "maskPass": 1,
+          "counts": [
+            {
+              "q": 8,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 8,
+              "order": "after",
+              "pairPass": 1,
+              "jointPass": 1
+            },
+            {
+              "q": 13,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 13,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 28,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "none",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "before",
+              "pairPass": 0,
+              "jointPass": 0
+            },
+            {
+              "q": 29,
+              "order": "after",
+              "pairPass": 0,
+              "jointPass": 0
+            }
+          ]
+        }
+      ],
+      "fits": [
+        {
+          "name": "Gibran",
+          "at": 15000,
+          "q": 8,
+          "order": "after",
+          "F": [
+            0,
+            1,
+            23,
+            4,
+            10,
+            20,
+            24,
+            2,
+            4,
+            0,
+            3,
+            5,
+            24,
+            7,
+            21,
+            24,
+            4,
+            21,
+            20,
+            0,
+            11,
+            6,
+            5,
+            3,
+            19,
+            2,
+            10,
+            10,
+            6
+          ],
+          "K": [
+            [
+              6,
+              9,
+              15,
+              21,
+              11,
+              24,
+              18,
+              16,
+              7,
+              12,
+              20,
+              1,
+              10,
+              3,
+              23,
+              8,
+              25,
+              14,
+              26,
+              13,
+              2,
+              0,
+              17,
+              27,
+              5,
+              19,
+              22,
+              4
+            ],
+            [
+              7,
+              12,
+              9,
+              2,
+              4,
+              3,
+              1,
+              13,
+              27,
+              16,
+              10,
+              5,
+              6,
+              15,
+              8,
+              25,
+              23,
+              11,
+              0,
+              21,
+              14,
+              22,
+              19,
+              17,
+              18,
+              26,
+              20,
+              24
+            ],
+            [
+              22,
+              3,
+              1,
+              13,
+              4,
+              7,
+              18,
+              0,
+              21,
+              24,
+              16,
+              25,
+              26,
+              9,
+              8,
+              5,
+              10,
+              12,
+              15,
+              17,
+              23,
+              19,
+              6,
+              14,
+              20,
+              2,
+              27,
+              11
+            ],
+            [
+              13,
+              9,
+              22,
+              0,
+              25,
+              10,
+              2,
+              3,
+              18,
+              4,
+              19,
+              5,
+              23,
+              6,
+              8,
+              11,
+              15,
+              1,
+              20,
+              12,
+              7,
+              26,
+              27,
+              14,
+              16,
+              17,
+              21,
+              24
+            ],
+            [
+              1,
+              2,
+              22,
+              7,
+              4,
+              25,
+              5,
+              6,
+              20,
+              27,
+              3,
+              8,
+              18,
+              0,
+              21,
+              13,
+              9,
+              14,
+              19,
+              12,
+              24,
+              15,
+              11,
+              23,
+              26,
+              16,
+              10,
+              17
+            ],
+            [
+              11,
+              16,
+              3,
+              0,
+              1,
+              2,
+              8,
+              19,
+              15,
+              9,
+              6,
+              5,
+              21,
+              14,
+              22,
+              23,
+              26,
+              13,
+              25,
+              10,
+              7,
+              17,
+              20,
+              18,
+              24,
+              27,
+              12,
+              4
+            ],
+            [
+              8,
+              1,
+              18,
+              11,
+              14,
+              2,
+              12,
+              21,
+              25,
+              7,
+              13,
+              16,
+              19,
+              4,
+              9,
+              17,
+              20,
+              15,
+              6,
+              24,
+              26,
+              22,
+              0,
+              3,
+              27,
+              5,
+              23,
+              10
+            ],
+            [
+              4,
+              21,
+              18,
+              3,
+              2,
+              15,
+              9,
+              8,
+              24,
+              19,
+              1,
+              10,
+              6,
+              17,
+              20,
+              11,
+              26,
+              12,
+              14,
+              5,
+              0,
+              7,
+              22,
+              27,
+              13,
+              16,
+              23,
+              25
+            ]
+          ],
+          "nodes": 6,
+          "observedEntries": 163,
+          "escapeDomains": [
+            65535,
+            2,
+            8388608,
+            16,
+            31744,
+            15728640,
+            16777216,
+            4,
+            16,
+            7,
+            8,
+            480,
+            16777216,
+            128,
+            534773760,
+            16777216,
+            496,
+            6291456,
+            15728640,
+            3,
+            30720,
+            960,
+            32,
+            8,
+            524288,
+            28,
+            31744,
+            31744,
+            8128
+          ],
+          "plaintext": "L TH Y TH NG TH A T E N T E R S TH E H O U S E A G U E S T A N D TH E N B E C O M E S A H O S T A N D TH E N A M A S T E R A Y A N D I T B E C O M E S A T A M E R A N D W I TH H O O C A N D S C O U R G E M A C E S P U P P E T S O F Y O U R L A R G E R D E S I R E S TH O U G H I T S H A N D S A R E S I L C E N I T S H EA R T I S O F I R O N I T L U L L S Y O U T O S L E E P O N L Y T O S T A N D B Y Y O U R B E D A N D J E E R A T TH E D I G N I T Y O F TH E F L E S H I T M A C E S M O C C O F Y O U R S O U N D S E N S E S A N D L A Y S TH E M I N TH I S T L E D O W N L I C E F R A G I L E U E S S E L S U E R I L Y TH E L U"
+        }
+      ],
+      "trueCandidate": {
+        "name": "Gibran",
+        "at": 15000,
+        "q": 8,
+        "order": "after",
+        "F": [
+          0,
+          1,
+          23,
+          4,
+          10,
+          20,
+          24,
+          2,
+          4,
+          0,
+          3,
+          5,
+          24,
+          7,
+          21,
+          24,
+          4,
+          21,
+          20,
+          0,
+          11,
+          6,
+          5,
+          3,
+          19,
+          2,
+          10,
+          10,
+          6
+        ],
+        "K": [
+          [
+            6,
+            9,
+            15,
+            21,
+            11,
+            24,
+            18,
+            16,
+            7,
+            12,
+            20,
+            1,
+            10,
+            3,
+            23,
+            8,
+            25,
+            14,
+            26,
+            13,
+            2,
+            0,
+            17,
+            27,
+            5,
+            19,
+            22,
+            4
+          ],
+          [
+            7,
+            12,
+            9,
+            2,
+            4,
+            3,
+            1,
+            13,
+            27,
+            16,
+            10,
+            5,
+            6,
+            15,
+            8,
+            25,
+            23,
+            11,
+            0,
+            21,
+            14,
+            22,
+            19,
+            17,
+            18,
+            26,
+            20,
+            24
+          ],
+          [
+            22,
+            3,
+            1,
+            13,
+            4,
+            7,
+            18,
+            0,
+            21,
+            24,
+            16,
+            25,
+            26,
+            9,
+            8,
+            5,
+            10,
+            12,
+            15,
+            17,
+            23,
+            19,
+            6,
+            14,
+            20,
+            2,
+            27,
+            11
+          ],
+          [
+            13,
+            9,
+            22,
+            0,
+            25,
+            10,
+            2,
+            3,
+            18,
+            4,
+            19,
+            5,
+            23,
+            6,
+            8,
+            11,
+            15,
+            1,
+            20,
+            12,
+            7,
+            26,
+            27,
+            14,
+            16,
+            17,
+            21,
+            24
+          ],
+          [
+            1,
+            2,
+            22,
+            7,
+            4,
+            25,
+            5,
+            6,
+            20,
+            27,
+            3,
+            8,
+            18,
+            0,
+            21,
+            13,
+            9,
+            14,
+            19,
+            12,
+            24,
+            15,
+            11,
+            23,
+            26,
+            16,
+            10,
+            17
+          ],
+          [
+            11,
+            16,
+            3,
+            0,
+            1,
+            2,
+            8,
+            19,
+            15,
+            9,
+            6,
+            5,
+            21,
+            14,
+            22,
+            23,
+            26,
+            13,
+            25,
+            10,
+            7,
+            17,
+            20,
+            18,
+            24,
+            27,
+            12,
+            4
+          ],
+          [
+            8,
+            1,
+            18,
+            11,
+            14,
+            2,
+            12,
+            21,
+            25,
+            7,
+            13,
+            16,
+            19,
+            4,
+            9,
+            17,
+            20,
+            15,
+            6,
+            24,
+            26,
+            22,
+            0,
+            3,
+            27,
+            5,
+            23,
+            10
+          ],
+          [
+            4,
+            21,
+            18,
+            3,
+            2,
+            15,
+            9,
+            8,
+            24,
+            19,
+            1,
+            10,
+            6,
+            17,
+            20,
+            11,
+            26,
+            12,
+            14,
+            5,
+            0,
+            7,
+            22,
+            27,
+            13,
+            16,
+            23,
+            25
+          ]
+        ],
+        "nodes": 6,
+        "observedEntries": 163,
+        "escapeDomains": [
+          65535,
+          2,
+          8388608,
+          16,
+          31744,
+          15728640,
+          16777216,
+          4,
+          16,
+          7,
+          8,
+          480,
+          16777216,
+          128,
+          534773760,
+          16777216,
+          496,
+          6291456,
+          15728640,
+          3,
+          30720,
+          960,
+          32,
+          8,
+          524288,
+          28,
+          31744,
+          31744,
+          8128
+        ],
+        "plaintext": "L TH Y TH NG TH A T E N T E R S TH E H O U S E A G U E S T A N D TH E N B E C O M E S A H O S T A N D TH E N A M A S T E R A Y A N D I T B E C O M E S A T A M E R A N D W I TH H O O C A N D S C O U R G E M A C E S P U P P E T S O F Y O U R L A R G E R D E S I R E S TH O U G H I T S H A N D S A R E S I L C E N I T S H EA R T I S O F I R O N I T L U L L S Y O U T O S L E E P O N L Y T O S T A N D B Y Y O U R B E D A N D J E E R A T TH E D I G N I T Y O F TH E F L E S H I T M A C E S M O C C O F Y O U R S O U N D S E N S E S A N D L A Y S TH E M I N TH I S T L E D O W N L I C E F R A G I L E U E S S E L S U E R I L Y TH E L U"
+      }
+    }
+  ],
+  "donors": [
+    {
+      "name": "Gibran",
+      "N": 46834
+    },
+    {
+      "name": "Emerson",
+      "N": 306590
+    },
+    {
+      "name": "Shakespeare",
+      "N": 217106
+    },
+    {
+      "name": "native0",
+      "N": 184
+    },
+    {
+      "name": "native1",
+      "N": 515
+    },
+    {
+      "name": "native2",
+      "N": 157
+    },
+    {
+      "name": "native3",
+      "N": 780
+    },
+    {
+      "name": "native4",
+      "N": 755
+    },
+    {
+      "name": "native5",
+      "N": 319
+    },
+    {
+      "name": "native6",
+      "N": 89
+    },
+    {
+      "name": "native7",
+      "N": 85
+    },
+    {
+      "name": "native8",
+      "N": 95
+    }
+  ],
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ]
+}
