@@ -28,11 +28,17 @@ function run(raw){
  }
  function bound(anchors,nWords){
   const all=[];for(const C of anchors)for(const k of domains(C))all.push(k);
-  const a=Float64Array.from(all);a.sort();const hist=new Map();let distinct=0;for(let i=0;i<a.length;){let j=i+1;while(j<a.length&&a[j]===a[i])j++;const s=j-i;hist.set(s,(hist.get(s)||0)+1);distinct++;i=j;}
+  const a=Float64Array.from(all);a.sort();const hist=new Map(),double=[];let distinct=0;for(let i=0;i<a.length;){let j=i+1;while(j<a.length&&a[j]===a[i])j++;const s=j-i;if(s>=2)double.push(a[i]);hist.set(s,(hist.get(s)||0)+1);distinct++;i=j;}
   const top=[];for(const [s,n] of [...hist.entries()].sort((a,b)=>b[0]-a[0])){const count=Math.min(n,period-top.length);for(let i=0;i<count;i++)top.push(s);}
   if(top.length!==Math.min(period,distinct))throw Error("top count");
   const upper=top.reduce((a,b)=>a+b,0),budget=Math.floor(nWords*.05),need=anchors.length-budget;
-  return {anchors:anchors.length,nWords,budget,need,upper,top,distinct,events:a.length,excluded:upper<need};
+  // Two consecutive seven-symbol cyclic windows necessarily share six symbols.
+  // If no two multi-supported tuples overlap by six, at most floor(q/2)
+  // phases can receive multiplicity >1. This includes the wraparound edge.
+  const pow=29**(L-1),byPrefix=new Map();for(const t of double){const p=Math.floor(t/29);byPrefix.set(p,(byPrefix.get(p)||0)+1);}
+  let edges=0;for(const t of double)edges+=byPrefix.get(t%pow)||0;
+  const maxSupport=top[0]||0,overlapUpper=edges===0?Math.min(upper,period+Math.floor(period/2)*Math.max(0,maxSupport-1)):upper;
+  return {anchors:anchors.length,nWords,budget,need,upper,overlapUpper,multiSupported:double.length,overlapEdges:edges,top,distinct,events:a.length,excluded:overlapUpper<need};
  }
  const bounds=[0,3,8,15,23,27,33,40,54,56].map(p=>gp.pages.filter(x=>x.page<p).reduce((s,x)=>s+x.indices.length,0));let pos=0;const records=words.map(C=>{let r={pos,C};pos+=C.length;return r});
  const chapters=bounds.slice(0,-1).map((x,i)=>{const w=records.filter(r=>r.pos>=x&&r.pos+r.C.length<=bounds[i+1]);const anchors=w.filter(r=>r.C.length>=L&&!r.C.includes(0)).map(r=>r.C);return {i,w,anchors};});
@@ -42,7 +48,7 @@ function run(raw){
  for(const seed of [48130,48131,48132]){
   const c=chapters[7],R=rng(seed),K=Array.from({length:period},()=>R()%29),enc=[];
   for(const C of c.anchors){let found=false;for(let tries=0;tries<100000;tries++){const p=pool[C.length][R()%pool[C.length].length],s=R()%period;if(!p)throw Error("no donor");const z=p.map((x,j)=>mod(x+K[(s+j)%period]));if(z.includes(0))continue;const r=R()%z.length,rot=rotate(z,r);let k=0;for(let j=0;j<L;j++)k=k*29+K[(s+j)%period];if(!domains(rot).has(k))throw Error("true edge missing");const replay=rotate(rot,(z.length-r)%z.length).map((x,j)=>mod(x-K[(s+j)%period]));if(id(replay)!==id(p))throw Error("control replay");enc.push(rot);found=true;break;}if(!found)throw Error("plant failed");}
-  for(let i=enc.length-1;i>0;i--){const j=R()%(i+1);[enc[i],enc[j]]=[enc[j],enc[i]];}const r=bound(enc,c.w.length);if(r.upper<enc.length)throw Error("false bound");output.controls.push({seed,key:K,exactSupported:enc.length,...r});
+  for(let i=enc.length-1;i>0;i--){const j=R()%(i+1);[enc[i],enc[j]]=[enc[j],enc[i]];}const r=bound(enc,c.w.length);if(r.overlapUpper<enc.length)throw Error("false bound");output.controls.push({seed,key:K,exactSupported:enc.length,...r});
  }
  return output;
 }
