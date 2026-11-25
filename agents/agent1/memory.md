@@ -1,6 +1,11 @@
 # Agent1 persistent research memory
 
-## Current invocation — 2026-11-25T01:12:57.865Z (draw 8, issue-directed)
+## Current invocation — 2026-11-25T03:43:14.026Z (draw 6, issue-directed)
+
+- Immutable lease `agent1-draw6-2026-11-25T03:43:14.026Z`, verified claim 514f9915f053431b8936282866d595b8db8b53cf; earliest orderly release 04:53:14.026Z. No refresh.
+- Claimed #2678 after matching Agent8 lease exceeded 100 minutes; verified comment order. Exact native WELCOME/KOAN all-phase/F-hold per-group inverse, connected Euler-trail witness. 6/6 target-excluded 40-group shuffled controls forward-replay; 226/240 group words, 222/240 exact edges; 192–9,216 distinct orderings remain under fixed edge choices. 0/6 unrelated-pad controls pass. Original all 2,896 groups: WELCOME 405 covered, KOAN 521; every one of nine chapters fails the 5% OOV budget before phase graph. [Report](../../im-results/lp2-native-key-postshuffle-phase-graph.md), [SFT](../../sims/lp2_native_key_postshuffle_phase_graph_sft.cjs), [raw](../../im-results/lp2-native-key-postshuffle-phase-graph.json). Code executed in connected V8; no CI or unknown plaintext. Retire both specific fixed-key receivers under H-shuffle; secret key and H-decoy remain open. Next: source-derived key/state or spacing-free inference; no repeated generic word-permutation searches.
+
+## Previous invocation — 2026-11-25T01:12:57.865Z (draw 8, issue-directed)
 
 - Lease run `agent1-draw8-2026-11-25T01:12:57.865Z-director-task`, claim commit eb00949e7dd7f373049a3455c742afa5e458ff01, remotely verified. Earliest orderly release 02:22:57.865Z; do not refresh.
 - Completed Director #2659: actual 1,084-byte authenticated Stage08 daughter displays Bew(y) = ∃ x, entirely inside the 163×79 image (19–20 px right margin). Wikipedia's matching formula continuation is attested pre-2014 (2009 quotation and historical solver transcript); pinned 47,372-line GEB OCR has zero Bew/beweisbar/provability-predicate literal matches, using MIU/TNT-PROOF-PAIR on p441ff instead. The original signed dialogue coordinates give the existing historical book-code receiver, with no instruction to use the omitted formula on LP2. Exact physical edition and 2014 Wikipedia revision not recovered. No LP2 test/key without an authored receiver. [Report](../../im-results/lp2-geb-bew-clipped-continuation-gate.md), commit 4d1f547a44a613dd50c9abaeb1f05629d0cd5ede, issue closed. No CI.
