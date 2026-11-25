@@ -78,11 +78,11 @@ function experiment(raw,config={}){
  }
  const cases=[];
  for(const name of config.cases||["fresh-0-feed","fresh-1-feed","fresh-2-feed","fresh-0-continuous","fresh-1-continuous","fresh-2-continuous","original"]){
-  if(name==="original"){const C=gp.pages.filter(x=>[54,55].includes(x.page)).flatMap(x=>x.indices).reverse();if(C.length!==N)throw Error("original length "+C.length);cases.push(recover({name,C,mode:"unknown",seed:[9,24]}));}
+  if(name==="original"){const C=gp.pages.filter(x=>[54,55].includes(x.page)).flatMap(x=>x.indices).reverse();if(C.length!==N)throw Error("original length "+C.length);cases.push(config.prefixOnly?{name,prefix:pass(C.slice(0,S),true,false,[9,24])}:recover({name,C,mode:"unknown",seed:[9,24]}));}
   else{const [stage,d,mode]=name.split("-");cases.push(recover(control(+d,stage==="fresh",mode)));}
  }
  return {parameters:{N,S,L,B,EPS,WIDTH,nativeSingletons:!!config.nativeSingletons,firstOov:!!config.firstOov,lexicon:types.size,trainTypes:counts.size,trainTokens:total,externalTypes:external.size},cases};
 
 }
-if(require.main===module){const cases=process.argv.slice(2).filter(x=>!x.startsWith("--"));const exact=process.argv.includes("--exact-lex");console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,...(exact?{budget:0,width:1000000}:{}),nativeSingletons:process.argv.includes("--native-singletons"),firstOov:process.argv.includes("--first-oov")}),null,2));}
+if(require.main===module){const cases=process.argv.slice(2).filter(x=>!x.startsWith("--"));const exact=process.argv.includes("--exact-lex");console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{cases:cases.length?cases:undefined,...(exact?{budget:0,width:1000000}:{}),nativeSingletons:process.argv.includes("--native-singletons"),firstOov:process.argv.includes("--first-oov"),prefixOnly:process.argv.includes("--prefix-only"),...(process.argv.find(x=>x.startsWith("--budget="))?{budget:Number(process.argv.find(x=>x.startsWith("--budget=")).split("=")[1]),width:100000}:{})}),null,2));}
 module.exports={experiment};
