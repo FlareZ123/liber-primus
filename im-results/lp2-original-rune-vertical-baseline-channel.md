@@ -1,6 +1,6 @@
 # LP2 original vertical rune baselines: source-image and planted controls
 
-**Current decision (Agent6, 15 November 2026; Agent47, 17 November 2026):** The ordinary source JPEGs do not exhibit a dense, whole-source-pixel glyph-local vertical-shift key channel or a dense, page-varying common-line displacement channel on the measured fixed grid. The original seven-page baseline finding now has a distinct twenty-five-page, same-rune/same-line test with an independently planted JPEG positive. Neither test decrypts unknown original GP29 ciphertext, supplies a source-selected key, or finds a hidden message.
+**Current decision (Agent6, 15 November 2026; Agent47, 17 November 2026; Agent30, 25 November 2026):** The ordinary source JPEGs do not exhibit a dense, whole-source-pixel glyph-local vertical-shift key channel or a dense, page-varying common-line displacement channel on the measured fixed grid. The original seven-page baseline finding now has a distinct twenty-five-page, same-rune/same-line test with an independently planted JPEG positive. Neither test decrypts unknown original GP29 ciphertext, supplies a source-selected key, or finds a hidden message.
 
 ## Human-visible clue and receiver
 
@@ -36,13 +36,13 @@ The initial 72 lines on p44/45/46/47/48/52 have residual SD .179537 px (developm
 
 **Second receiver and fresh holdout:** after seeing the first split, subtract a twelve-entry row-specific median fitted only on the original 228 development lines. This is an explicitly post-first-holdout amendment, not a preregistered result on those 72 lines. Then test a previously unused group: every remaining p40–55 line on this fixed grid with ≥8 confidently classified full-height glyphs, selected by count/geometry only, never by displacement. This gives 28 lines on p40/41/42/43/49/53/55. No row offset or threshold is retuned on them.
 
-| Scope | Lines | Residual SD (px) | Median absolute (px) | |residual| ≥.125 px | ≥.25 px |
+| Scope | Lines | Residual SD (px) | Median absolute (px) | Absolute residual ≥.125 px | ≥.25 px |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | Fit | 228 | .077921 | .045534 | 20 | 2 |
 | First holdout (retrospective corrected) | 72 | .062008 | .030121 | 5 | 0 |
 | Fresh holdout | 28 | .076861 | .038577 | 4 | 0 |
 
-The complete eligible LP1 source page 03.jpg (12 lines) gives corrected residual SD .071061 px; p56's first two source-grid lines give +.141713/+ .140757 px. Other LP1/control lines often have a different paragraph/grid layout, so their raw fixed-grid numbers are diagnostic only. Solved p57 has no eligible lines on this fixed origin; no absolute p57 control is claimed. This limitation also applies to irregular unknown-page sections outside the measured grid.
+The complete eligible LP1 source page 03.jpg (12 lines) gives corrected residual SD .071061 px; p56's first two source-grid lines give +.141713/+.140757 px. Other LP1/control lines often have a different paragraph/grid layout, so their raw fixed-grid numbers are diagnostic only. Solved p57 has no eligible lines on this fixed origin; no absolute p57 control is claimed. This limitation also applies to irregular unknown-page sections outside the measured grid.
 
 **Rendered controls:** translate entire horizontal image strips with independent known signs using OpenCV bilinear raster interpolation, then JPEG Q92 encode/decode. Redetect glyphs and labels from the resulting pixels, not from the planted bit assignments. Test 36 lines on three ordinary holdout pages and 28 further lines on the fresh seven-page set at each amplitude. All 64/64 signs are recovered at each amplitude; threshold |residual| ≥ half amplitude in the correct direction gives 59/64 at ±.25, 64/64 at ±.5 and 64/64 at ±1. The fresh-only threshold counts are 25/28, 28/28, 28/28. The corresponding original fresh counts (ignoring sign) are 4/28, 0/28, 0/28. For the combined 100 original lines they are 9/100, 0/100, 0/100. In 10,000 bootstrap jitter nulls (corrected training residuals + independent Gaussian jitter), the 95% range of quarter-amplitude threshold occupancy is .09–.24 for σ=.05px, .36–.55 for σ=.15, .54–.73 for σ=.25, .72–.88 for σ=.5. These are simulated continuous residual nulls, not new original scans. No stable binary state or error-corrected message is justified; no arbitrary sign readout was fed to a cipher.
 
