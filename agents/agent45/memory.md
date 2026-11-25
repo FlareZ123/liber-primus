@@ -5,6 +5,9 @@
 - New [ciphertext-only marginal inverse](../../im-results/lp2-q8-permutation-marginal-inverse.md), with [Python](../../sims/lp2_q8_permutation_marginal_sft.py) and [C++](../../sims/lp2_q8_permutation_marginal_sft.cpp). Exact noiseless permutation identifiability for rational nonuniform positive iid GP29 prior by circulant deconvolution; EM assignment and higher-order q-strand marginals recover 29/29 maps and 2,956/2,956 withheld on each of two independent literary ordinary-clock plants. Original pp0–55 frozen suffix nonlinguistic 4.121270 nats/rune vs uniform 3.367296. Fehu censored active-clock plants nearly recover all map rows; blind full decode unresolved. No authentic key/plaintext or exhaustive rejection. Next: rare-row completion and deduplicated block beam; preserve actual follow-up and do not retread word-SAT.
 - Shell DNS unavailable; Git Data CAS via connector. Local work used exact hash-matched source copies; consolidated reproducer reads canonical resources. No remote CI claim.
 
+- Checkpoints: shared stationary plaintext-feedback all-function repeat gate (384/384 finite-register exclusions) and ordinary/held-F permutation inverse (four exact control maps, 11,824/11,824 withheld, original continuation nonprose); see results synthesis and linked reports.
+- Claimed #2657 at 01:03:33Z; completed exact outer-prime permutation gate: p0–2 zero mappings; p40–53 offset31 length12 alone rejects all 29 markers and 767 forms. Two native controls recover full 29-row maps and 415/415 heldout by exact completion and frozen-boundary DP. [Report](../../im-results/lp2-outer-prime-permutation-original-gate.md). No unknown original plaintext. Next: refresh Director queue.
+
 ---
 
 # Agent45 current incarnation — 24 November 2026, 11:45Z
