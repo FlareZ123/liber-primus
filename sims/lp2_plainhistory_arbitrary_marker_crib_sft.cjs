@@ -1,0 +1,23 @@
+'use strict';
+// Agent3, Director #2273: exact arbitrary plaintext-history marker and stationary differential row crib inverse.
+// Run in Node22 from the repository. All unobserved entries remain free. No printed word alignment.
+const fs=require('node:fs');
+const path=require('node:path');
+const crypto=require('node:crypto');
+const root=path.resolve(__dirname,'..');
+const paths=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt"];
+function nativeGP(t,ordered){const out=[];for(const s of t.toUpperCase().match(/[A-Z]+/g)||[]){const w=s.replace(/QU/g,'CW').replace(/V/g,'U').replace(/K/g,'C').replace(/Z/g,'S');for(let i=0;i<w.length;){const z=ordered.find(x=>w.startsWith(x.s,i));if(!z)throw Error("unknown "+w.slice(i));out.push(z.i);i+=z.s.length}}return Uint8Array.from(out)}
+
+function scan(p,c,order){const n=c.length,marks=[],nonmarks=[];const delta=new Uint8Array(n);for(let i=order;i<n;i++){delta[i]=(c[i]-c[i-1]+29)%29;(delta[i]===0?marks:nonmarks).push(i)}const context=new Uint16Array(p.length);for(let i=order;i<p.length;i++)context[i]=order===1?p[i-1]:29*p[i-2]+p[i-1];const size=29**order,seen=new Int32Array(size),value=new Uint8Array(size),ft=new Int32Array(size*29),it=new Int32Array(size*29),fv=new Uint8Array(size*29),iv=new Uint8Array(size*29),banned=new Int32Array(size);let positive=0,accepted=0,first=-1,stationary=0,firstStationary=-1;const starts=p.length-n+1;
+for(let offset=0;offset<starts;offset++){const stamp=offset+1;let ok=true;for(const i of marks){const j=i+offset,k=context[j],v=p[j];if(seen[k]===stamp&&value[k]!==v){ok=false;break}seen[k]=stamp;value[k]=v}if(!ok)continue;positive++;for(const i of nonmarks){const j=i+offset,k=context[j];if(seen[k]===stamp&&value[k]===p[j]){ok=false;break}}if(!ok)continue;banned.fill(0);for(const i of nonmarks){const j=i+offset,k=context[j];if(seen[k]!==stamp){banned[k]|=1<<p[j];if(banned[k]===(1<<29)-1){ok=false;break}}}if(!ok)continue;accepted++;if(first<0)first=offset;
+for(let i=order;i<n;i++){const j=i+offset,k=context[j]*29,v=p[j],d=delta[i];if((ft[k+v]===stamp&&fv[k+v]!==d)||(it[k+d]===stamp&&iv[k+d]!==v)){ok=false;break}ft[k+v]=stamp;fv[k+v]=d;it[k+d]=stamp;iv[k+d]=v}if(ok){stationary++;if(firstStationary<0)firstStationary=offset}
+}return {n,marks:marks.length,starts,positive,accepted,first,stationary,firstStationary}}
+
+function run(C,inputs){const ordered=C.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);const donors=inputs.map(x=>({...x,p:nativeGP(x.content,ordered)}));const chapters=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]].map(([lo,hi])=>({name:`p${lo}-${hi}`,c:C.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices)}));const full={name:"full",c:chapters.flatMap(x=>x.c)};if(full.c.length!==12956||full.c.filter((x,i)=>i&&x===full.c[i-1]).length!==86)throw Error("source mismatch");
+const output={donors:donors.map(({name,p,sha})=>({name,length:p.length,sha})),scans:[],plants:[]};
+for(const order of [1,2])for(const d of donors){for(const ch of [full,...chapters])output.scans.push({source:d.name,order,region:ch.name,...scan(d.p,ch.c,order)})}
+for(const order of [1,2]){const d=donors[order-1],at=1234,n=1800,p=Array.from(d.p.slice(at,at+n)),f=Array.from({length:29**order},(_,i)=>(17*i+7)%29);for(const varying of [true,false]){const c=p.slice(0,order);for(let i=order;i<n;i++){const ctx=order===1?p[i-1]:29*p[i-2]+p[i-1],e=f[ctx],v=p[i],k=varying?(11*i+3)%28:(11*ctx+3)%28;c.push(v===e?c[i-1]:(c[i-1]+1+(v-Number(v>e)+k)%28)%29)}const inv=c.slice(0,order);for(let i=order;i<n;i++){const ctx=order===1?inv[i-1]:29*inv[i-2]+inv[i-1],e=f[ctx],k=varying?(11*i+3)%28:(11*ctx+3)%28,d=(c[i]-c[i-1]+29)%29,r=(d-1-k+28)%28;inv.push(d===0?e:r+Number(r>=e))}if(p.some((x,i)=>x!==inv[i]))throw Error("plant inverse");const s=scan(d.p,c,order);const exact=scan(d.p.slice(at,at+n),c,order);if(exact.accepted!==1||(!varying&&exact.stationary!==1))throw Error("plant dropped");output.plants.push({order,varying,source:d.name,trueOffset:at,recovered:n,...s})}}
+return output}
+const files=paths.map(name=>{const bytes=fs.readFileSync(path.join(root,name));return {name,content:bytes.toString('utf8'),sha:crypto.createHash('sha1').update(`blob ${bytes.length}\0`).update(bytes).digest('hex')};});
+const output=run(JSON.parse(files[0].content),files.slice(1));output.corpus=files[0].sha;
+console.log(JSON.stringify(output,null,2));

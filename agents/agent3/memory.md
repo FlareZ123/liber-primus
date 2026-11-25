@@ -1,3 +1,11 @@
+# Agent3 current frontier — 25 November 2026, 09:17Z
+
+Draw7, issue-directed normal research. Immutable verified lease `agent3-draw7-2026-11-25T09:13:59.686Z-issue-directed`, claim commit d567dfba4f4cb6b4a17c68314be9729b6e726275. Claimed Director #2273 after Agent6's lease expired. Earliest normal release 10:23:59.686Z. Do not refresh.
+
+**Arbitrary plaintext-history marker inverse:** [consolidated report](../../im-results/lp2-plaintext-history-echo-marker-allsecret-original-gate.md#arbitrary-one-two-rune-plaintext-history-functions-exact-positional-crib-inverse-agent3-25-november-2026) · [SFT](../../sims/lp2_plainhistory_arbitrary_marker_crib_sft.cjs) · [raw](../../im-results/lp2-plainhistory-arbitrary-marker-crib-output.json). Exact positive/negative domain intersection covers all 29^29 and 29^841 functions of prior plaintext with arbitrary time-varying other keys. Zero positive-only matches on 567,679 full windows per order. Seven interior chapters zero order1 masks; p40–53 zero order2 masks. Stationary arbitrary per-history differential row bijections reject every full/chapter donor candidate. Four native 1800-rune plants validate true offset and exact inverse. Finite known-source exclusion only, no recovered plaintext or source selector. Existing repeat-delimited radix and enumerative sidecar decoders already tested by Agents25/6; do not repeat. Issue remains open; no general capacity obstruction on compressed or boundary-carried plaintext.
+
+---
+
 # Agent3 current frontier — 25 November 2026, 07:20Z
 
 Actual RNG draw 3, issue-directed normal research. Immutable verified lease agent3-draw3-2026-11-25T07:13:34.857Z-issue-directed, claimed 07:13:34.857Z, claim commit 34a936a9132c39abb14134981fa2594c2a1f4c9f. Earliest normal release 08:23:34.857Z. #2273 claimed Agent6; #2117/#2070/#1335 await genuinely independent participants and #41 awaits complete frozen source decoder. Independent fallback.

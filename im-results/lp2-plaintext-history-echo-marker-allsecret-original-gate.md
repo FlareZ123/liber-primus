@@ -36,3 +36,29 @@ Software positives: exact original **12,956/12,956 forward re-encryption** for a
 **Retire these six precise, plaintext-previous-rune-controlled marker ciphers** as direct decoders to the tested ordinary GP-native literary register. Every unspecified secret 28-symbol rank key, even independent at each rune, is already covered because repeat positions are key-invariant. This is more decisive than fitting yet another long pad. But neither the manuscript nor an authenticated earlier Cicada message specifies that echoes encode `f(P_{i−1})`, so the construction is a falsifiable model, not an authenticated intended operation.
 
 Alternative registers, genuine source-restricted plaintext, additional hidden-state updates, different treatment of word boundaries, or variable-length coding are **not** excluded. No unknown LP2 plaintext, historical key or next address has been recovered. Future work needs an independently source-selected different transport rather than more tuned f's or arbitrary key phases.
+
+
+## Arbitrary one-/two-rune plaintext-history functions: exact positional crib inverse (Agent3, 25 November 2026)
+
+**Decision:** the six fixed functions above are not the limit of the event information. Grant any function F of one or two preceding plaintext runes, with any time-varying secret rank key. In all 567,679 full-manuscript-length windows of the same three frozen literary registers, there is not even a single candidate satisfying the positive repeat constraints for either context order. This excludes every one of 29^29 or 29^841 stationary marker functions in that finite known-source hypothesis. It is not an all-prose exclusion.
+
+Given proposed plaintext P and observed differential D_i, let h_i be the last one or two plaintext symbols. For D_i=0 require F(h_i)=P_i; otherwise require F(h_i)≠P_i. Intersect the domains independently. A positive observation fixes its context's entry; negative observations eliminate values; an unanchored context must retain at least one value. This condition is necessary and sufficient for the repeat mask alone, because arbitrary per-position rank rotations can always encode every remaining nonzero difference. No printed word boundary is used. At the first one/two symbols of each region grant arbitrary initialization. The tested text normalization is identical to the older six-function test, including Gutenberg boilerplate; the two earlier reports use different donor trimming, so their counts must not be equated.
+
+An additional stronger direct inverse replaces the arbitrary per-position key by an entirely arbitrary stationary bijection per plaintext-history context: P_i↔D_i must be a partial bijection in every observed context. Repeated plaintext and repeated differential both constrain the same row. Complete each partial row to a permutation to obtain an exact lossless cipher, with F(h) as its inverse image of zero. This tests (29!)^29 or (29!)^841 codebooks, including arbitrary nonlinear rank order. No enumeration of complete keys is needed. Even when each visual chapter is rekeyed and matched to independently chosen donor windows, none of the stationary codebook scans produce an original source candidate.
+
+| Physical region | Donor windows (per order) | Any order-1 F | Any order-2 F | Stationary rows, order1/2 |
+|---|---:|---:|---:|---:|
+| full | 567679 | 0 | 0 | 0/0 |
+| p0-2 | 604360 | 149 | 63306 | 0/0 |
+| p3-7 | 603112 | 0 | 7565 | 0/0 |
+| p8-14 | 601360 | 0 | 144 | 0/0 |
+| p15-22 | 600838 | 0 | 25 | 0/0 |
+| p23-26 | 603484 | 0 | 292 | 0/0 |
+| p27-32 | 602248 | 0 | 13 | 0/0 |
+| p33-39 | 601507 | 0 | 18 | 0/0 |
+| p40-53 | 597523 | 0 | 0 | 0/0 |
+| p54-55 | 605623 | 13208 | 235190 | 0/0 |
+
+Both context orders have zero whole-book positive-mask candidates; seven interior chapters reject all order-1 masks, and p40–53 rejects every order-2 mask. Short regions are intrinsically ambiguous at the mask level, especially p54–55. The stationary-row gate is more selective, but no authentic key or unknown plaintext is recovered. Four 1,800-rune native-source plants (two history orders, independently varying or context-stationary rank rotations) validate the declared inverse and retain their actual source offsets; unique offsets where the raw counts establish uniqueness. Positive plants are known-source searches, not blind recovery of arbitrary prose or unused table entries.
+
+[Exact SFT](../sims/lp2_plainhistory_arbitrary_marker_crib_sft.cjs) · [full raw counts](lp2-plainhistory-arbitrary-marker-crib-output.json). The exact pure functions were executed in connected V8 using the pinned repository sources; the Node wrapper has not been independently executed. The author never authenticates these history functions or confirms a literal donor passage. Retire this finite direct source-crib route; do not add larger history orders merely to fit the observed repeat mask. An actual source-selected state/key or recoverable intermediate plaintext remains necessary.
