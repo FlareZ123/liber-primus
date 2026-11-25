@@ -50,8 +50,12 @@ function run() {
 
   // Historical source parameters: Onion7 HTML title=133 and div id=331.
   const html = read("resources/cicada2014-onion7-index.html");
-  const a = Number(html.match(/<title>\\s*(\\d+)\\s*<\\/title>/i)?.[1]);
-  const c = Number(html.match(/<div id="(\\d+)"/i)?.[1]);
+  const titleStart = html.indexOf("<title>") + "<title>".length;
+  const titleEnd = html.indexOf("</title>", titleStart);
+  const a = Number(html.slice(titleStart, titleEnd).trim());
+  const divStart = html.indexOf('<div id="') + '<div id="'.length;
+  const divEnd = html.indexOf('"', divStart);
+  const c = Number(html.slice(divStart, divEnd));
   assert.deepEqual([a,c], [133,331]);
 
   // The source-derived 13-token PRNG payload documented in the carrier report.
