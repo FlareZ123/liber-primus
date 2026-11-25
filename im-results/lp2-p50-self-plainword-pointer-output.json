@@ -1,0 +1,6714 @@
+{
+  "sources": [
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-grid-256.json",
+      "sha": "2550eae357442912220e05dc51147523a61dd75a"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "results": [
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 22,
+          "ambiguous": 23,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 82,
+          "ambiguous": 126,
+          "max": 5
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 11,
+          "ambiguous": 9,
+          "max": 4
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 53,
+          "unique": 71,
+          "ambiguous": 34,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 81,
+          "unique": 114,
+          "ambiguous": 60,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                20,
+                11
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 106,
+          "unique": 175,
+          "ambiguous": 102,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                24,
+                8,
+                22,
+                4,
+                21,
+                1,
+                18,
+                4
+              ]
+            },
+            {
+              "index": 23,
+              "cipher": [
+                15,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 150,
+          "unique": 186,
+          "ambiguous": 101,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                26,
+                28,
+                20,
+                24,
+                14
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                1,
+                6,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 86,
+          "unique": 76,
+          "ambiguous": 62,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                6,
+                28,
+                17,
+                1,
+                26,
+                8,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 95,
+          "unique": 154,
+          "ambiguous": 77,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                0
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                25,
+                13,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 101,
+          "unique": 168,
+          "ambiguous": 109,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                12,
+                22
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 218,
+          "unique": 279,
+          "ambiguous": 172,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                23,
+                5
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                10,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 17,
+          "unique": 33,
+          "ambiguous": 16,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                0,
+                26,
+                1,
+                16,
+                11
+              ]
+            },
+            {
+              "index": 24,
+              "cipher": [
+                16,
+                21,
+                10
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 20,
+          "ambiguous": 25,
+          "max": 6
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 91,
+          "ambiguous": 117,
+          "max": 4
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 11,
+          "ambiguous": 9,
+          "max": 7
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 53,
+          "unique": 64,
+          "ambiguous": 41,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                13,
+                17,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 92,
+          "unique": 103,
+          "ambiguous": 60,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                20,
+                11
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 121,
+          "unique": 161,
+          "ambiguous": 101,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 15,
+              "cipher": [
+                13,
+                21,
+                1,
+                13
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                24,
+                8,
+                22,
+                4,
+                21,
+                1,
+                18,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 157,
+          "unique": 173,
+          "ambiguous": 107,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                26,
+                28,
+                20,
+                24,
+                14
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                1,
+                6,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 91,
+          "unique": 69,
+          "ambiguous": 64,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 105,
+          "unique": 134,
+          "ambiguous": 87,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                25,
+                13,
+                2
+              ]
+            },
+            {
+              "index": 16,
+              "cipher": [
+                0,
+                17,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 114,
+          "unique": 161,
+          "ambiguous": 103,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                12,
+                22
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 234,
+          "unique": 264,
+          "ambiguous": 171,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                23,
+                5
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                10,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 24,
+          "unique": 27,
+          "ambiguous": 15,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                16,
+                24,
+                21
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                25,
+                13,
+                25,
+                6,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 18,
+          "ambiguous": 27,
+          "max": 29
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 70,
+          "ambiguous": 138,
+          "max": 29
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 8,
+          "ambiguous": 12,
+          "max": 4
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 57,
+          "unique": 64,
+          "ambiguous": 37,
+          "max": 29,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                11,
+                22
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                9,
+                25,
+                6,
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 81,
+          "unique": 101,
+          "ambiguous": 73,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                20,
+                11
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 143,
+          "unique": 145,
+          "ambiguous": 95,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                21,
+                10,
+                16,
+                3
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 167,
+          "unique": 153,
+          "ambiguous": 117,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                1,
+                6,
+                14,
+                12,
+                13,
+                14
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                9,
+                24,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 94,
+          "unique": 72,
+          "ambiguous": 58,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                1,
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                8,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 134,
+          "unique": 127,
+          "ambiguous": 65,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 157,
+          "unique": 135,
+          "ambiguous": 86,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                1,
+                11,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 261,
+          "unique": 259,
+          "ambiguous": 149,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 7,
+              "cipher": [
+                23,
+                5
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                16,
+                4,
+                22,
+                6,
+                28,
+                9,
+                25,
+                17,
+                1,
+                18,
+                17,
+                1
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                2,
+                0,
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 21,
+          "unique": 29,
+          "ambiguous": 16,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                25,
+                13,
+                25,
+                6,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 22,
+          "ambiguous": 23,
+          "max": 29
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 85,
+          "ambiguous": 123,
+          "max": 85
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 10,
+          "ambiguous": 10,
+          "max": 4
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 63,
+          "unique": 56,
+          "ambiguous": 39,
+          "max": 29,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                9,
+                25,
+                6,
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 85,
+          "unique": 109,
+          "ambiguous": 61,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                20,
+                11
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 144,
+          "unique": 141,
+          "ambiguous": 98,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 176,
+          "unique": 148,
+          "ambiguous": 113,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                1,
+                6,
+                14,
+                12,
+                13,
+                14
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                9,
+                24,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 103,
+          "unique": 67,
+          "ambiguous": 54,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                1,
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                8,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 138,
+          "unique": 119,
+          "ambiguous": 69,
+          "max": 9,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 169,
+          "unique": 123,
+          "ambiguous": 86,
+          "max": 8,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                1,
+                11,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 275,
+          "unique": 242,
+          "ambiguous": 152,
+          "max": 9,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                23,
+                5
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                16,
+                4,
+                22,
+                6,
+                28,
+                9,
+                25,
+                17,
+                1,
+                18,
+                17,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 27,
+          "unique": 28,
+          "ambiguous": 11,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                25,
+                13,
+                25,
+                6,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 15,
+          "ambiguous": 30,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 70,
+          "ambiguous": 138,
+          "max": 5
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 7,
+          "ambiguous": 13,
+          "max": 6
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 57,
+          "unique": 66,
+          "ambiguous": 35,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                15,
+                8,
+                18,
+                3,
+                6,
+                19,
+                27,
+                0
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                11,
+                22
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 88,
+          "unique": 88,
+          "ambiguous": 79,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 139,
+          "unique": 142,
+          "ambiguous": 102,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                11,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 157,
+          "unique": 161,
+          "ambiguous": 119,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                22,
+                25,
+                11,
+                0,
+                25
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                16,
+                10,
+                17,
+                12,
+                5,
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 82,
+          "unique": 88,
+          "ambiguous": 54,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 129,
+          "unique": 109,
+          "ambiguous": 88,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                25,
+                13,
+                2
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 159,
+          "unique": 128,
+          "ambiguous": 91,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                1,
+                11,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 240,
+          "unique": 231,
+          "ambiguous": 198,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 12,
+              "cipher": [
+                22,
+                14,
+                15,
+                17
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                7,
+                11,
+                17,
+                26,
+                19,
+                1,
+                28
+              ]
+            },
+            {
+              "index": 15,
+              "cipher": [
+                19,
+                18,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 19,
+          "unique": 25,
+          "ambiguous": 22,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            },
+            {
+              "index": 15,
+              "cipher": [
+                3,
+                11,
+                27,
+                28,
+                10,
+                20,
+                6,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 15,
+          "ambiguous": 30,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 65,
+          "ambiguous": 143,
+          "max": 7
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 5,
+          "ambiguous": 15,
+          "max": 15
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 54,
+          "unique": 61,
+          "ambiguous": 43,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                8,
+                17,
+                9,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 93,
+          "unique": 89,
+          "ambiguous": 73,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 142,
+          "unique": 133,
+          "ambiguous": 108,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                11,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 162,
+          "unique": 162,
+          "ambiguous": 113,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                22,
+                25,
+                11,
+                0,
+                25
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                16,
+                10,
+                17,
+                12,
+                5,
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 88,
+          "unique": 81,
+          "ambiguous": 55,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                28,
+                6,
+                15,
+                25,
+                13,
+                7,
+                19,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 134,
+          "unique": 108,
+          "ambiguous": 84,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                25,
+                13,
+                2
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                17,
+                6,
+                26,
+                19,
+                28,
+                17,
+                25
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 160,
+          "unique": 135,
+          "ambiguous": 83,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                1,
+                11,
+                8
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 242,
+          "unique": 221,
+          "ambiguous": 206,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 12,
+              "cipher": [
+                22,
+                14,
+                15,
+                17
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                7,
+                11,
+                17,
+                26,
+                19,
+                1,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 25,
+          "unique": 21,
+          "ambiguous": 20,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            },
+            {
+              "index": 15,
+              "cipher": [
+                3,
+                11,
+                27,
+                28,
+                10,
+                20,
+                6,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 18,
+          "ambiguous": 27,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 87,
+          "ambiguous": 121,
+          "max": 4
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 9,
+          "ambiguous": 11,
+          "max": 4
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 68,
+          "unique": 57,
+          "ambiguous": 33,
+          "max": 3,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                11,
+                22
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 97,
+          "unique": 91,
+          "ambiguous": 67,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 130,
+          "unique": 143,
+          "ambiguous": 110,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                9,
+                16
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 152,
+          "unique": 170,
+          "ambiguous": 115,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                10,
+                1,
+                10,
+                1
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                22,
+                14,
+                27,
+                2,
+                8,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 75,
+          "unique": 87,
+          "ambiguous": 62,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                23,
+                2,
+                18,
+                4,
+                12,
+                5
+              ]
+            },
+            {
+              "index": 20,
+              "cipher": [
+                1,
+                3,
+                6
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 133,
+          "unique": 105,
+          "ambiguous": 88,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                23,
+                11,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 147,
+          "unique": 136,
+          "ambiguous": 95,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                23,
+                12
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 243,
+          "unique": 254,
+          "ambiguous": 172,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                19,
+                24,
+                5,
+                18
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 31,
+          "unique": 22,
+          "ambiguous": 13,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                16,
+                24,
+                21
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "weight": "prime",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 18,
+          "ambiguous": 27,
+          "max": 5
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 83,
+          "ambiguous": 125,
+          "max": 20
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 10,
+          "ambiguous": 10,
+          "max": 5
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 68,
+          "unique": 55,
+          "ambiguous": 35,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                9,
+                25,
+                6,
+                10,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 101,
+          "unique": 91,
+          "ambiguous": 63,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 147,
+          "unique": 121,
+          "ambiguous": 115,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                9,
+                16
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 157,
+          "unique": 158,
+          "ambiguous": 122,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                10,
+                1,
+                10,
+                1
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                22,
+                14,
+                27,
+                2,
+                8,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 83,
+          "unique": 85,
+          "ambiguous": 56,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                1,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                23,
+                2,
+                18,
+                4,
+                12,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 141,
+          "unique": 92,
+          "ambiguous": 93,
+          "max": 9,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 157,
+          "unique": 131,
+          "ambiguous": 90,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                23,
+                12
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 257,
+          "unique": 246,
+          "ambiguous": 166,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                19,
+                24,
+                5,
+                18
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                23,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 31,
+          "unique": 23,
+          "ambiguous": 12,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                16,
+                24,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 21,
+          "ambiguous": 24,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 114,
+          "ambiguous": 94,
+          "max": 4
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 11,
+          "ambiguous": 9,
+          "max": 3
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 56,
+          "unique": 60,
+          "ambiguous": 42,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                13,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                17,
+                23,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 91,
+          "unique": 94,
+          "ambiguous": 70,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 14,
+              "cipher": [
+                10,
+                20,
+                15
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 131,
+          "unique": 139,
+          "ambiguous": 113,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                13,
+                4,
+                26
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                4,
+                23,
+                7,
+                16,
+                11,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 142,
+          "unique": 193,
+          "ambiguous": 102,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                0,
+                1,
+                20,
+                19
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                26,
+                17
+              ]
+            },
+            {
+              "index": 19,
+              "cipher": [
+                19,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 88,
+          "unique": 84,
+          "ambiguous": 52,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                8,
+                10
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                21,
+                7,
+                1,
+                4,
+                15
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                3,
+                27,
+                0,
+                27,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 112,
+          "unique": 129,
+          "ambiguous": 85,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 137,
+          "unique": 136,
+          "ambiguous": 105,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 213,
+          "unique": 252,
+          "ambiguous": 204,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 18,
+          "unique": 22,
+          "ambiguous": 26,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                0,
+                26,
+                1,
+                16,
+                11
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                14,
+                24,
+                5,
+                7,
+                27
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 18,
+          "ambiguous": 27,
+          "max": 4
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 113,
+          "ambiguous": 95,
+          "max": 7
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 8,
+          "ambiguous": 12,
+          "max": 4
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 55,
+          "unique": 58,
+          "ambiguous": 45,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                13,
+                17,
+                9
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                12,
+                11,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 104,
+          "unique": 93,
+          "ambiguous": 58,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                27,
+                28,
+                27,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 135,
+          "unique": 143,
+          "ambiguous": 105,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                13,
+                4,
+                26
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                4,
+                23,
+                7,
+                16,
+                11,
+                2
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 160,
+          "unique": 172,
+          "ambiguous": 105,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                26,
+                17
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 89,
+          "unique": 87,
+          "ambiguous": 48,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                8,
+                10
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                21,
+                7,
+                1,
+                4,
+                15
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                1,
+                7,
+                4,
+                16
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 127,
+          "unique": 122,
+          "ambiguous": 77,
+          "max": 12,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                15,
+                5,
+                13
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 143,
+          "unique": 143,
+          "ambiguous": 92,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                25,
+                22
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                27,
+                21,
+                7,
+                8,
+                15,
+                0,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 221,
+          "unique": 241,
+          "ambiguous": 207,
+          "max": 8,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 19,
+          "unique": 25,
+          "ambiguous": 22,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                2,
+                11,
+                28,
+                18,
+                5,
+                9,
+                28
+              ]
+            },
+            {
+              "index": 17,
+              "cipher": [
+                14,
+                24,
+                5,
+                7,
+                27
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 17,
+          "ambiguous": 28,
+          "max": 29
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 61,
+          "ambiguous": 147,
+          "max": 29
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 9,
+          "ambiguous": 11,
+          "max": 6
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 67,
+          "unique": 55,
+          "ambiguous": 36,
+          "max": 29,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                17,
+                23,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 107,
+          "unique": 84,
+          "ambiguous": 64,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 158,
+          "unique": 117,
+          "ambiguous": 108,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 190,
+          "unique": 153,
+          "ambiguous": 94,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                9,
+                16,
+                0,
+                21
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 95,
+          "unique": 69,
+          "ambiguous": 60,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                1,
+                24
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                12,
+                11,
+                12
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                6,
+                28,
+                17,
+                1,
+                26,
+                8,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 145,
+          "unique": 114,
+          "ambiguous": 67,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 146,
+          "unique": 143,
+          "ambiguous": 89,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                14,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 287,
+          "unique": 205,
+          "ambiguous": 177,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                0,
+                9,
+                19
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                20,
+                10,
+                16,
+                2,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 29,
+          "unique": 18,
+          "ambiguous": 19,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                16,
+                24,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "GP0",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 17,
+          "ambiguous": 28,
+          "max": 29
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 42,
+          "ambiguous": 166,
+          "max": 85
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 4,
+          "ambiguous": 16,
+          "max": 6
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 69,
+          "unique": 54,
+          "ambiguous": 35,
+          "max": 29,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                15,
+                26,
+                18,
+                21,
+                5
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                2,
+                11,
+                6,
+                25
+              ]
+            },
+            {
+              "index": 11,
+              "cipher": [
+                17,
+                23,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 113,
+          "unique": 77,
+          "ambiguous": 65,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                15,
+                13,
+                4,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                9,
+                24,
+                6,
+                12,
+                21,
+                9
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 164,
+          "unique": 108,
+          "ambiguous": 111,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                14,
+                10,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 200,
+          "unique": 147,
+          "ambiguous": 90,
+          "max": 8,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                20,
+                1,
+                21,
+                9
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                10,
+                1,
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 99,
+          "unique": 69,
+          "ambiguous": 56,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                1,
+                24
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                12,
+                11,
+                12
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                6,
+                28,
+                17,
+                1,
+                26,
+                8,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 143,
+          "unique": 106,
+          "ambiguous": 77,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                17,
+                0
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 157,
+          "unique": 141,
+          "ambiguous": 80,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                26,
+                28,
+                9,
+                2,
+                25,
+                4
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                27,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 287,
+          "unique": 208,
+          "ambiguous": 174,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                19,
+                24,
+                5,
+                18
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                16,
+                4,
+                22,
+                6,
+                28,
+                9,
+                25,
+                17,
+                1,
+                18,
+                17,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 32,
+          "unique": 17,
+          "ambiguous": 17,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                16,
+                24,
+                21
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": 1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 14,
+          "ambiguous": 31,
+          "max": 6
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 88,
+          "ambiguous": 120,
+          "max": 5
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 5,
+          "ambiguous": 15,
+          "max": 5
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 54,
+          "unique": 65,
+          "ambiguous": 39,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                8,
+                17,
+                9,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 80,
+          "unique": 94,
+          "ambiguous": 81,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                7,
+                0,
+                26,
+                9,
+                17,
+                28,
+                27
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 146,
+          "unique": 135,
+          "ambiguous": 102,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                13,
+                4,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 162,
+          "unique": 155,
+          "ambiguous": 120,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                10,
+                1,
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 72,
+          "unique": 86,
+          "ambiguous": 66,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 5,
+              "cipher": [
+                12,
+                11,
+                12
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                3,
+                27,
+                0,
+                27,
+                28
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                23,
+                22,
+                2,
+                19,
+                5,
+                9,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 129,
+          "unique": 117,
+          "ambiguous": 80,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                23,
+                11,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 150,
+          "unique": 133,
+          "ambiguous": 95,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 12,
+              "cipher": [
+                10,
+                7,
+                16
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                3,
+                1,
+                9,
+                7,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 19,
+              "cipher": [
+                8,
+                7
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 269,
+          "unique": 245,
+          "ambiguous": 155,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 21,
+          "unique": 26,
+          "ambiguous": 19,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                18,
+                3
+              ]
+            },
+            {
+              "index": 9,
+              "cipher": [
+                16,
+                7,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": 1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 16,
+          "ambiguous": 29,
+          "max": 5
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 81,
+          "ambiguous": 127,
+          "max": 5
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 3,
+          "ambiguous": 17,
+          "max": 13
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 54,
+          "unique": 63,
+          "ambiguous": 41,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                8,
+                17,
+                9,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 88,
+          "unique": 92,
+          "ambiguous": 75,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                19,
+                26,
+                8,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 152,
+          "unique": 121,
+          "ambiguous": 110,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                1,
+                14,
+                19,
+                5,
+                2,
+                13,
+                3,
+                17
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                28,
+                14
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                13,
+                4,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 165,
+          "unique": 153,
+          "ambiguous": 119,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                5,
+                1
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                10,
+                1,
+                10,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 77,
+          "unique": 89,
+          "ambiguous": 58,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 5,
+              "cipher": [
+                12,
+                11,
+                12
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                8,
+                10
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                23,
+                22,
+                2,
+                19,
+                5,
+                9,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 130,
+          "unique": 120,
+          "ambiguous": 76,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                23,
+                11,
+                1
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                17,
+                18,
+                10
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 165,
+          "unique": 116,
+          "ambiguous": 97,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                12,
+                22
+              ]
+            },
+            {
+              "index": 12,
+              "cipher": [
+                10,
+                7,
+                16
+              ]
+            },
+            {
+              "index": 13,
+              "cipher": [
+                3,
+                1,
+                9,
+                7,
+                19,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 270,
+          "unique": 236,
+          "ambiguous": 163,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                26,
+                6,
+                23,
+                25,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 25,
+          "unique": 27,
+          "ambiguous": 14,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                27,
+                23,
+                13,
+                21,
+                1,
+                7,
+                24,
+                19
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                25,
+                13,
+                25,
+                6,
+                3
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                18,
+                3
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": -1,
+      "hold": false,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 19,
+          "ambiguous": 26,
+          "max": 7
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 84,
+          "ambiguous": 124,
+          "max": 4
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 9,
+          "ambiguous": 11,
+          "max": 3
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 57,
+          "unique": 55,
+          "ambiguous": 46,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                11,
+                22
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                8,
+                17,
+                9,
+                27
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 92,
+          "unique": 95,
+          "ambiguous": 68,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 131,
+          "unique": 142,
+          "ambiguous": 110,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 10,
+              "cipher": [
+                12,
+                25
+              ]
+            },
+            {
+              "index": 16,
+              "cipher": [
+                3,
+                2,
+                14
+              ]
+            },
+            {
+              "index": 18,
+              "cipher": [
+                26,
+                20,
+                14,
+                20
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 169,
+          "unique": 152,
+          "ambiguous": 116,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                26,
+                28,
+                20,
+                24,
+                14
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                9,
+                24,
+                5
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 83,
+          "unique": 76,
+          "ambiguous": 65,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 112,
+          "unique": 119,
+          "ambiguous": 95,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 141,
+          "unique": 132,
+          "ambiguous": 105,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                16,
+                18,
+                22,
+                28,
+                24,
+                27,
+                15,
+                6
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                14,
+                19
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 223,
+          "unique": 262,
+          "ambiguous": 184,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 33,
+          "unique": 19,
+          "ambiguous": 14,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "radix": 60,
+      "weight": "prime",
+      "sign": -1,
+      "hold": true,
+      "controls": [
+        {
+          "name": "0_warning",
+          "words": 45,
+          "unique": 16,
+          "ambiguous": 29,
+          "max": 6
+        },
+        {
+          "name": "0_koan_1",
+          "words": 208,
+          "unique": 100,
+          "ambiguous": 108,
+          "max": 5
+        },
+        {
+          "name": "p57_parable",
+          "words": 20,
+          "unique": 9,
+          "ambiguous": 11,
+          "max": 12
+        }
+      ],
+      "original": [
+        {
+          "range": [
+            0,
+            2
+          ],
+          "words": 158,
+          "zero": 56,
+          "unique": 58,
+          "ambiguous": 44,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 3,
+              "cipher": [
+                0,
+                11,
+                22
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                3,
+                9,
+                2
+              ]
+            },
+            {
+              "index": 5,
+              "cipher": [
+                9,
+                18,
+                7,
+                17,
+                24,
+                15,
+                22,
+                12,
+                10,
+                21,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            3,
+            7
+          ],
+          "words": 255,
+          "zero": 95,
+          "unique": 100,
+          "ambiguous": 60,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                12,
+                8,
+                21,
+                5,
+                2,
+                16,
+                25,
+                11,
+                16,
+                14,
+                8
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                16,
+                1,
+                22
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                3,
+                17,
+                4,
+                9,
+                20,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            8,
+            14
+          ],
+          "words": 383,
+          "zero": 138,
+          "unique": 147,
+          "ambiguous": 98,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 5,
+              "cipher": [
+                3,
+                5,
+                28,
+                19,
+                21,
+                6,
+                14,
+                20,
+                1
+              ]
+            },
+            {
+              "index": 10,
+              "cipher": [
+                12,
+                25
+              ]
+            },
+            {
+              "index": 15,
+              "cipher": [
+                13,
+                21,
+                1,
+                13
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            15,
+            22
+          ],
+          "words": 437,
+          "zero": 171,
+          "unique": 143,
+          "ambiguous": 123,
+          "max": 7,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                24,
+                28,
+                26,
+                22,
+                24
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                1,
+                6,
+                14,
+                12,
+                13,
+                14
+              ]
+            },
+            {
+              "index": 8,
+              "cipher": [
+                26,
+                28,
+                20,
+                24,
+                14
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            23,
+            26
+          ],
+          "words": 224,
+          "zero": 87,
+          "unique": 67,
+          "ambiguous": 70,
+          "max": 4,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                7,
+                21,
+                6,
+                14,
+                23,
+                6
+              ]
+            },
+            {
+              "index": 2,
+              "cipher": [
+                10,
+                17,
+                10
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                16,
+                17,
+                10,
+                26
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            27,
+            32
+          ],
+          "words": 326,
+          "zero": 114,
+          "unique": 120,
+          "ambiguous": 92,
+          "max": 10,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                19,
+                13,
+                26
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                20,
+                15,
+                3,
+                24,
+                25,
+                8,
+                20,
+                18,
+                12,
+                10,
+                19,
+                20
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                9,
+                8,
+                6,
+                1,
+                27,
+                8,
+                1
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            33,
+            39
+          ],
+          "words": 378,
+          "zero": 158,
+          "unique": 127,
+          "ambiguous": 93,
+          "max": 6,
+          "zeroExamples": [
+            {
+              "index": 1,
+              "cipher": [
+                14,
+                5,
+                0,
+                10,
+                24,
+                7,
+                8,
+                6
+              ]
+            },
+            {
+              "index": 6,
+              "cipher": [
+                7,
+                14,
+                19
+              ]
+            },
+            {
+              "index": 7,
+              "cipher": [
+                26,
+                23,
+                17,
+                16,
+                4
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            40,
+            53
+          ],
+          "words": 669,
+          "zero": 229,
+          "unique": 244,
+          "ambiguous": 196,
+          "max": 5,
+          "zeroExamples": [
+            {
+              "index": 2,
+              "cipher": [
+                24,
+                13,
+                14,
+                26,
+                8
+              ]
+            },
+            {
+              "index": 3,
+              "cipher": [
+                12,
+                28,
+                3,
+                18
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                16,
+                21,
+                28
+              ]
+            }
+          ]
+        },
+        {
+          "range": [
+            54,
+            55
+          ],
+          "words": 66,
+          "zero": 38,
+          "unique": 17,
+          "ambiguous": 11,
+          "max": 3,
+          "zeroExamples": [
+            {
+              "index": 0,
+              "cipher": [
+                24
+              ]
+            },
+            {
+              "index": 1,
+              "cipher": [
+                19,
+                21,
+                23,
+                27,
+                2,
+                14,
+                10,
+                19
+              ]
+            },
+            {
+              "index": 4,
+              "cipher": [
+                21,
+                2,
+                27,
+                7,
+                15,
+                8
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
