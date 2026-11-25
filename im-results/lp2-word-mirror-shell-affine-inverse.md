@@ -35,3 +35,20 @@ An arbitrary secret bijection on 841 ordered pairs preserves every pair equality
 Zero of 256 reference samples meet or fall below the original in any of these contexts. This is an exact key-independent invariant but its language inference is empirical and register-conditional. The samples preserve lengths, not syntax; high-length strata can reuse scarce words. This is not an all-English theorem. Arbitrary whole-word reordering within a context leaves the invariant unchanged. Independent per-word or per-pair mappings, stateful inner/outer coupling, hidden membership, or other language registers remain possible. Do not tune additional affine rows or arbitrary static pair maps absent an independent selector.
 
 [Read-only CJS SFT](../sims/lp2_word_mirror_shell_affine_inverse_sft.cjs) · [Executed result](lp2-word-mirror-shell-affine-output.json). Core JS executed in the connected V8 runtime; standalone Node wrapper not separately run. No CI added.
+
+## Causal center-out feedback extension: initial central block and seed cardinality
+
+The PARABLE's “find the divinity within and emerge” motivates a genuinely different hypothesis: first emit a central block and use its recovered value to drive arbitrary later outer-shell feedback. The earlier stationary pair theorem cannot constrain arbitrary later feedback. But the initial central prefix has not seen any outer glyph: if its only prior state is the source chapter and printed word length, the same plaintext prefix must produce the same ciphertext prefix. Test the center singleton for odd lengths ≥3, center pair for even lengths ≥4, and the next whole shell (width3 for odd lengths≥5, width4 for even lengths≥6). These minima exclude the short words where the test would collapse into whole-word substitution. Every context uses source chapter of word start × exact word length; neither word order nor lexical adjacency is required.
+
+More generally grant at most S distinct unknown initial seeds per context, each with any deterministic prefix emitter (even noninjective). If a plaintext prefix occurs n times, at least (S−r)q(q−1)/2 + rq(q+1)/2 of its occurrence pairs share a seed, where q=floor(n/S), r=n mod S. All such pairs must collide in ciphertext. Sum this lower bound over each prefix in each context, and compare with the actual original collision count of that context. The smallest S passing every context is a necessary lower bound, not a construction or sufficiency result. This calculation grants adversarial best seed assignments and never estimates a secret key.
+
+| Central width / minimum word length | Eligible original words | Original E | Gibran E range | Emerson E range | Necessary seed count range Gibran / Emerson |
+|---|---:|---:|---:|---:|---:|
+| 1/3 | 1367 | 1649 | 6107–7288 | 5128–6240 | 4–8 / 4–7 |
+| 2/4 | 998 | 38 | 651–1192 | 401–564 | 7–18 / 4–9 |
+| 3/5 | 647 | 1 | 127–256 | 65–162 | 5–13 / 4–12 |
+| 4/6 | 485 | 0 | 37–77 | 16–60 | 3–7 / 2–7 |
+
+The separate 128 draws per donor use exact original word lengths and seed 0x48c3a01. 96 constructed context/seed controls confirm the lower bound never exceeds the actual granted seed count; stationary translation controls preserve equality exactly. These are finite native-register checks and use sampling with replacement, not proof about every English text. The theorem itself is exact. It applies to any deterministic center-out receiver whose initial prefix depends only on the plaintext central prefix and a fixed seed; additional exterior input, cross-word state, variable membership, or a different plaintext register is not excluded. The high seed-count requirement is conditional on the donor samples and does not supply those seeds. Do not use this to justify arbitrary high-state searches; it asks a future source hypothesis to identify occurrence-specific initial state before investing in its inner/outer feedback rule.
+
+[Separate causal-prefix SFT](../sims/lp2_centerout_prefix_seed_bound_sft.cjs) · [Executed output](lp2-centerout-prefix-seed-bound-output.json). Core JS executed in connected V8; Node wrapper not separately run.

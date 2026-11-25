@@ -1,0 +1,162 @@
+{
+  "seed": "0x48c3a01",
+  "samplesPerDonor": 128,
+  "contexts": [
+    {
+      "width": 1,
+      "min": 3,
+      "eligibleWords": 1367,
+      "contextCount": 47,
+      "originalCollisions": 1649,
+      "gibran": {
+        "min": 6107,
+        "max": 7288,
+        "atOrBelow": 0,
+        "minState": 4,
+        "maxState": 8,
+        "states": {
+          "4": 11,
+          "5": 100,
+          "6": 13,
+          "7": 3,
+          "8": 1
+        }
+      },
+      "emerson": {
+        "min": 5128,
+        "max": 6240,
+        "atOrBelow": 0,
+        "minState": 4,
+        "maxState": 7,
+        "states": {
+          "4": 97,
+          "5": 26,
+          "6": 4,
+          "7": 1
+        }
+      }
+    },
+    {
+      "width": 2,
+      "min": 4,
+      "eligibleWords": 998,
+      "contextCount": 45,
+      "originalCollisions": 38,
+      "gibran": {
+        "min": 651,
+        "max": 1192,
+        "atOrBelow": 0,
+        "minState": 7,
+        "maxState": 18,
+        "states": {
+          "7": 1,
+          "8": 4,
+          "9": 15,
+          "10": 21,
+          "11": 14,
+          "12": 23,
+          "13": 15,
+          "14": 18,
+          "15": 8,
+          "16": 6,
+          "17": 2,
+          "18": 1
+        }
+      },
+      "emerson": {
+        "min": 401,
+        "max": 564,
+        "atOrBelow": 0,
+        "minState": 4,
+        "maxState": 9,
+        "states": {
+          "4": 21,
+          "5": 68,
+          "6": 25,
+          "7": 9,
+          "8": 4,
+          "9": 1
+        }
+      }
+    },
+    {
+      "width": 3,
+      "min": 5,
+      "eligibleWords": 647,
+      "contextCount": 38,
+      "originalCollisions": 1,
+      "gibran": {
+        "min": 127,
+        "max": 256,
+        "atOrBelow": 0,
+        "minState": 5,
+        "maxState": 13,
+        "states": {
+          "5": 16,
+          "6": 33,
+          "7": 37,
+          "8": 27,
+          "9": 11,
+          "10": 2,
+          "12": 1,
+          "13": 1
+        }
+      },
+      "emerson": {
+        "min": 65,
+        "max": 162,
+        "atOrBelow": 0,
+        "minState": 4,
+        "maxState": 12,
+        "states": {
+          "4": 12,
+          "5": 25,
+          "6": 34,
+          "7": 27,
+          "8": 10,
+          "9": 13,
+          "10": 3,
+          "11": 3,
+          "12": 1
+        }
+      }
+    },
+    {
+      "width": 4,
+      "min": 6,
+      "eligibleWords": 485,
+      "contextCount": 36,
+      "originalCollisions": 0,
+      "gibran": {
+        "min": 37,
+        "max": 77,
+        "atOrBelow": 0,
+        "minState": 3,
+        "maxState": 7,
+        "states": {
+          "3": 47,
+          "4": 57,
+          "5": 22,
+          "6": 1,
+          "7": 1
+        }
+      },
+      "emerson": {
+        "min": 16,
+        "max": 60,
+        "atOrBelow": 0,
+        "minState": 2,
+        "maxState": 7,
+        "states": {
+          "2": 6,
+          "3": 62,
+          "4": 39,
+          "5": 14,
+          "6": 6,
+          "7": 1
+        }
+      }
+    }
+  ],
+  "positiveChecks": 96
+}
