@@ -944,5 +944,819 @@
     "score": -4.308994291517972,
     "text": "UERRNGXBMDEAYSSJNCOAEHUWSYECREPPRIEALLOGHPOEXAENYOEPUEMWADIUNGPBNGMRHEAOLSPBYYNGJMAWAETHU",
     "exactReplay": true
+  },
+  "keyword": {
+    "literal": "DIUINITY",
+    "indices": [
+      23,
+      10,
+      1,
+      10,
+      9,
+      10,
+      16,
+      26
+    ],
+    "original": {
+      "ordinary": {
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 5,
+          "iv": 14
+        },
+        "fit": -4.5426714507028025,
+        "hold": -4.9965215268450605,
+        "readout": "WCCXNIALPCHTTHNGSJWJJTHFCALAEIFWANUDINHLEOMPEOLAHMMEAYAEEOPEATUNGAEPNSHBULDPUJIAUBFIFEFDUIENGBIAGEASIAEAYRTHSIEAXTAAEDGPNGWXGWJLFUBWOPHICHERHIYIARAGALDFCSIWAALJEOLLUPNGBESCIRETEOTHRUDOSPOJADNFTITICGGSOUUALNIGHYUMBONGTHIAHIDIIAITHOIXBACLLANEOJEOEJTNWUJMIAJULYTUWLTHYIWGHTHCBHOATHOJPSCIAFNGNIDLSTXYJMTLOEBNGEOHTHTIAIGMLXCEAEEAHITHPEABUUFTHNGNEILUFEAOEAEEOAENGEAJSTHSNGXEA",
+        "exactReplay": true
+      },
+      "fhold": {
+        "tested": 928,
+        "prefixFeasible": 1,
+        "fullFeasible": 0,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 4,
+          "iv": 19
+        },
+        "fit": -5.119211410461877,
+        "hold": null,
+        "reason": "prefix winner has no legal suffix"
+      }
+    },
+    "pageLocal": {
+      "ordinary": {
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 2,
+          "iv": 13
+        },
+        "fit": -4.340078304751774,
+        "hold": null,
+        "readout": "HRIPLIILDIONGNEOEAGTNGIIALUCXTHJNGYETHPIAHEALSFDPWPSTIAPIDSUMLBJAETHAEEHEOCHLUWIANGSTHGRGRHEAEA",
+        "exactReplay": true
+      },
+      "fhold": {
+        "tested": 928,
+        "prefixFeasible": 294,
+        "fullFeasible": 294,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 3,
+          "iv": 14
+        },
+        "fit": -4.378889664127692,
+        "hold": null,
+        "readout": "AESSDCOEOPRJLIRHSOTDSBIEAOIXTNIIIUTHAEAEUSCCAGOFCBUHBNHBTHOOENWPIAUDIAENGPPLATEWCEACTYD",
+        "exactReplay": true
+      }
+    },
+    "controls": [
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 28
+        },
+        "fit": -2.6850283822746657,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "fit": -2.689946765488339,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 13
+        },
+        "fit": -2.6850283822746657,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "fit": -2.689946765488339,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 20
+        },
+        "fit": -2.923413875973066,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "fit": -2.9283947214963617,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 24
+        },
+        "fit": -2.923413875973066,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "fit": -2.9283947214963617,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 15
+        },
+        "fit": -2.5390241832121774,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 19
+        },
+        "fit": -2.5390241832121774,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 27
+        },
+        "fit": -2.584405348520234,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "fit": -2.5972156639584827,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 22
+        },
+        "fit": -2.584405348520234,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 928,
+        "fullFeasible": 928,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "fit": -2.5972156639584827,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 593,
+        "fullFeasible": 496,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 28
+        },
+        "fit": -2.6788545852298054,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 164,
+        "fullFeasible": 39,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "fit": -2.689946765488339,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 81,
+        "fullFeasible": 67,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 2,
+          "iv": 13
+        },
+        "fit": -2.6850283822746657,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.772273052606286,
+        "donor": "0_warning",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "correctHold": 46,
+        "holdLength": 46,
+        "tested": 928,
+        "prefixFeasible": 211,
+        "fullFeasible": 192,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 2,
+          "iv": 8
+        },
+        "fit": -2.689946765488339,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.186817558082558,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 35,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 250,
+        "fullFeasible": 181,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 20
+        },
+        "fit": -2.923413875973066,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 250,
+        "fullFeasible": 237,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "fit": -2.9283947214963617,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 406,
+        "fullFeasible": 377,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 5,
+          "iv": 24
+        },
+        "fit": -2.923413875973066,
+        "exactReplay": true
+      },
+      {
+        "hold": -3.271397746261708,
+        "donor": "0_wisdom",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "correctHold": 40,
+        "holdLength": 40,
+        "tested": 928,
+        "prefixFeasible": 269,
+        "fullFeasible": 141,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 5,
+          "iv": 19
+        },
+        "fit": -2.9283947214963617,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 429,
+        "fullFeasible": 401,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 15
+        },
+        "fit": -2.5390241832121774,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 181,
+        "fullFeasible": 104,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 584,
+        "fullFeasible": 527,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 3,
+          "iv": 19
+        },
+        "fit": -2.5390241832121774,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.4168169709505496,
+        "donor": "p56_an_end",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "correctHold": 22,
+        "holdLength": 22,
+        "tested": 928,
+        "prefixFeasible": 316,
+        "fullFeasible": 144,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 3,
+          "iv": 13
+        },
+        "fit": -2.552512224174675,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 282,
+        "fullFeasible": 270,
+        "selected": {
+          "kind": "exponential",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 27
+        },
+        "fit": -2.584405348520234,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 603,
+        "fullFeasible": 586,
+        "selected": {
+          "kind": "exponential",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "fit": -2.5972156639584827,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 431,
+        "fullFeasible": 381,
+        "selected": {
+          "kind": "square",
+          "mode": "previous",
+          "phase": 7,
+          "iv": 22
+        },
+        "fit": -2.584405348520234,
+        "exactReplay": true
+      },
+      {
+        "hold": -2.003014516703349,
+        "donor": "p57_parable",
+        "planted": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "correctHold": 24,
+        "holdLength": 24,
+        "tested": 928,
+        "prefixFeasible": 460,
+        "fullFeasible": 434,
+        "selected": {
+          "kind": "square",
+          "mode": "product",
+          "phase": 7,
+          "iv": 2
+        },
+        "fit": -2.5972156639584827,
+        "exactReplay": true
+      }
+    ]
   }
 }
