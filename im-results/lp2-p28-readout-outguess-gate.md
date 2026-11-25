@@ -1,6 +1,6 @@
 # P28 READ OUT / HERE OutGuess gate
 
-**Agent16, 19 November 2026. Classification: bounded negative result. The recovered p28 instructions READ OUT and HERE do not produce a recognizable OutGuess payload from the original p28 JPEG under the default historical retrieval or the small source-native key family charged here. Do not continue blind OutGuess password hunting.**
+**Consolidated classification (Agent16, 19 Nov; Agent3, 25 Nov 2026): bounded negative.** The default retrieval, the 16 p28 phrase keys, and the independently derived decimal DH shared-secret candidate `2` yield no recognizable OutGuess payload from the original p28 JPEG. This does not authenticate OutGuess as the intended receiver or exclude other hidden-payload systems. Do not continue blind password hunting.
 
 ## Motivation
 
@@ -122,25 +122,37 @@ HERE
 
 The byte streams are consistent with wrong-key random extraction: entropy is approximately 7.97–8.00 bits/byte and printable fractions approximately 0.38.
 
+## Independent DH-derived K=2 probe (Agent3, 25 November 2026)
+
+### Hypothesis and limits
+
+The p57→p28 navigation reconstruction and the p7 red-word packet give a conditional DH23 state `p=23, g=5, a=6, b=15, A=8, B=19, K=2`. Physical p28 also yields the candidate instruction **READ OUT** and the local checkpoint **HERE**. A direct decimal serialization of the shared secret, `2`, is therefore a small, falsifiable candidate OutGuess passphrase for p28. This is an exploratory receiver test only: the existing protocol audit says the DH result is DATA 2 and supplies no KDF, byte/rune serialization, cipher, MAC, or OutGuess selector. The test does not authenticate the DH interpretation as an OutGuess instruction.
+
+### Exact original input and calibrated controls
+
+- Carrier: `resources/liber-primus/45.jpg` (physical p28), SHA-256 `318bb587f4dcab11b4db7ba3b8bb13b7913ca79bb409e1c987595503a22e0522`.
+- Tool: OutGuess 0.4 from `resurrecting-open-source-projects/outguess` tag `0.4`, built with the same compatibility definitions used by the earlier p28 gate.
+- Known-key positive: the existing keyed-probe script embeds and exactly recovers a 47-byte marker using key `79` on original `17.jpg`; SHA-256 of the recovered message is `762005b411d8e83b361f8196c5240016465dec12029800e74d46ab0413c44ecb`.
+- Authentic default-retrieval controls: original LP1 scans `00.jpg` and `08.jpg` pass the script's known-content checks.
+- Same-key synthetic no-payload control: the deterministic synthetic JPEG, tested with key `2`, returns a header-consistent 159-byte stream (seed `64913`, SHA-256 `1a7d45d2a20f92eecd0ebfb6992302704be44c056e2e45584d49529fbf365a12`) but no recognized payload. Thus a successful extraction status and internally consistent header/length are not authentication.
+
+### Original p28 result
+
+With the exact decimal key `2`, OutGuess returned status 0 and a header-consistent 6,411-byte stream: seed `48343`, declared length `6411`, SHA-256 `5b204eb7e5e1d075f2dc81afcb020424e6bde26ab23ee67283dd6dfe52bd5d0b`. Shannon entropy is `7.969202` bits/byte and printable fraction `0.392294`. The configured classifier found no PGP, ZIP, GZIP, PNG, or near-fully-printable payload (`recognisable=0`). The first 32 bytes are `d7bc0b19a876aeb7180315ef876f3492ec561f534196add37bbabd643c608110`; the last 32 are `7efe0eb5719ac98775ab4bba096971875936fc8b1e70d85f39dfb2454d88e33a`.
+
+The output is high-entropy and non-textual, consistent with wrong-key OutGuess extraction. The header is not positive evidence: the separate all-58-image OutGuess study proves the encrypted four-byte header `ff ff ff ff` is source-forced under every password, and the same-key synthetic no-payload control produces a plausible length as well. No plaintext, file, key confirmation, or continuation destination was recovered. This is a bounded negative for the exact `OutGuess -k "2" -r 45.jpg` candidate, not a proof that p28 contains no steganography or that no other receiver exists.
+
 ## Decision
 
-Retire p28 OutGuess as the next intended operation under the tested source-native interpretation.
+Retire the exact p28 OutGuess candidates tested here: default retrieval, the 16 phrase-derived keys, and decimal DH shared-secret key `2`. Do not broaden this into a blind password search.
 
 The evidence supports a simpler local reading of READ OUT: it already has a direct manuscript consequence by selecting the **outer** H pair at the p28 page start, yielding HERE, while the independently recovered FOURTH D; H instruction selects the fourth D and produces GCD.
 
-Do not broaden this negative into “no steganography exists in p28.” OutGuess 0.4 is only one historical tool, the original p28 JPEG uses a color space that its old encoder cannot round-trip, and an unknown externally supplied key could in principle exist. The relevant research decision is narrower: the recovered source route supplies no evidence for spending more compute on unconstrained OutGuess keys.
+Do not broaden these negatives into “no steganography exists in p28.” OutGuess 0.4 is one historical tool, the original p28 JPEG cannot be round-tripped by this old encoder, and an unknown external key or different receiver remains logically possible. The DH23 tuple is structural/protocol context; the available source does not select OutGuess or define a key-derivation/serialization layer. The relevant decision is narrower: the exact `K=2` passphrase produces no recognizable payload, and there is no causal basis for further OutGuess password variants.
 
 ## Reproduction
 
-Workflow:
+- Earlier phrase-key gate: `.github/workflows/agent16-p28-outguess.yml` (OutGuess 0.4; upstream known-key positive).
+- DH `K=2` gate: `.github/workflows/agent3-p28-dh-k2-outguess-manual.yml` and `sims/outguess_lp2_keyed_probe.cjs`.
+- DH `K=2` Actions run: [45629435944](https://github.com/FlareZ123/liber-primus/actions/runs/45629435944), job `139258375593` (PASS; raw candidate and summary artifact `agent3-p28-dh-k2-outguess`).
 
-~~~text
-.github/workflows/agent16-p28-outguess.yml
-~~~
-
-Calibrated PASS:
-
-~~~text
-GitHub Actions run 44455074851
-job 135328022305
-~~~
