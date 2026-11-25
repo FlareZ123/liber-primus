@@ -38,7 +38,7 @@ The original page's second body is not printed as a regular 5×23 rectangle. Its
 
 ## Consumers tested
 
-The source-fixed 23-symbol orbit is:
+The marker-prime-derived 23-symbol orbit used in the original test is:
 
 \`\`\`
 8,17,16,11,9,22,18,21,13,19,3,15,6,7,12,14,1,5,2,10,4,20,0
@@ -91,6 +91,36 @@ p33 M / NG
 Reject the tested direct GP29 DH-orbit stream and the 5×23 column-route consumers for p33 body2. Do not broaden this into arbitrary DH phases, recurrences, row resets, or fitted affine routes. The weakest assumptions remain the projection of marker prime values to DH public shares, reuse of the worked-example p/g on LP2, and the inferred 5×23 arrangement.
 
 No unknown plaintext, authentic LP2 key, or general encryption mechanism has been recovered. This belongs in \`im-results/\`, not \`results/\`; \`results/README.md\` remains unchanged.
+
+
+## Follow-up: layout-derived DH shared key K=2 as the 23-state seed (25 November 2026)
+
+The separate [p33 layout-state register](lp2-p33-dh-layout-state-register.md) reconstructs the exact worked DH23 tuple in the authenticated 2013 TCP challenge: \`p=23, g=5, a=6, b=15, A=8, B=19, K=2\`. This is a source-motivated candidate, not proof that Cicada assigned the tuple as an LP2 key. The earlier route above used a different start, 8, derived from the prime values of the visible M/NG markers. The layout-derived shared secret supplies a distinct, more direct start value, so I tested it once rather than widening the prior search.
+
+The p33 second black body is exactly **115 runes = 5×23**, with 28 printed words and fixed offsets \`[99,214)\` on the original page. Freeze the 2013 DH parameters and generate a 23-position sequence by starting at the shared value \`K=2\`, repeatedly multiplying by \`g=5 mod23\` for the 22 nonzero residues, then appending zero as the 23rd value. Repeat that sequence five times. The appended-zero convention is the same explicit completion used by the earlier DH23 route; it is not specified by the signed protocol.
+
+Test only these fixed consumers:
+- direct GP29 additive and subtractive streams, \`P_i = C_i ± k_i (mod29)\`, preserving the original 28 word boundaries;
+- a 5×23 row-major reshape, reading columns top-to-bottom in the frozen orbit order, and the exact reverse traversal.
+
+The executable uses the shared source-native GP29 trigram model (\`lp1_source_native_trigram_model.cjs\`), whose independent p57 positive control is \`−2.468144714244746\`. Results:
+
+| Readout | Mean source-native GP29 trigram score |
+|---|---:|
+| Raw 115-rune body | −3.457799030308 |
+| Add K=2 orbit | −3.414285324681 |
+| Subtract K=2 orbit | −3.435797428764 |
+| 5×23 columns in orbit order | −3.390174621125 |
+| Reverse column traversal | −3.405065970388 |
+
+The small score changes do not produce text. The word-preserving outputs are:
+
+- Add: \`AEIOUECE PLJYWJD THYMP INGFOE GTIOY MJ FIO BEAING INGB INGWUEO MY M AEAEAEREOUUTHJ IPLOIONDF SEORG FHPG THRINGLXLINGEO GTIIJ THWLPY UR XXHT YJ OETCE BTHT SRMHINGSIO WII OWLDEA B\`
+- Subtract: \`INGWOEWEP IIOOEJFIOY OELEU WCD RGIOOE EAO EJ EOAEEA OTH XDRO PAE W JUYTHTHUYJO EAYSFCLHOE THSAF EAAEEAJ OTHJLIFPWT UPBINGAE ADDRL FING FMNX TJ EAEYW UYP OESRUHEE UNIO EEOINGINGE B\`
+
+The column readouts are likewise nonlinguistic; their full strings are emitted by the SFT. This rejects the exact **K=2, g=5 orbit → GP29 add/sub or 5×23 column** consumers on p33 body2. It does not reject all DH-derived key use: the 2013 challenge specifies the key agreement, not a post-DH cipher or GP29 embedding, and the p33 layout-state interpretation remains a retrospective source correspondence. No unknown plaintext or authentic LP2 key was recovered.
+
+Reproducer: [\`sims/lp2_p33_dh23_layout_key2_sft.cjs\`](../sims/lp2_p33_dh23_layout_key2_sft.cjs).
 
 ## Reproduction
 
