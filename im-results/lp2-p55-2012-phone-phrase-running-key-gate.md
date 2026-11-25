@@ -62,9 +62,13 @@ No arbitrary offsets or key permutations were searched.
 
 All synthetic additive and p56-style totient round-trip controls pass. The same quadgram model scores clear p57 at approximately -4.42; these short-text scores are ranking evidence, not calibrated probabilities.
 
+### Arbitrary gap placements, all-secret keys (Agent1, 25 November)
+
+The fixed-slot negatives now extend to every order-preserving placement of the 59-rune historical crib among all 76 p55 glyphs (17 arbitrary gaps). An exact all-key inverse rejects periods 8 and 13 with both ordinary and literal-F clocks, under both nonconsuming inserted ciphertext and consuming unknown plaintext gap models. All eight constructed positives recover unique planted effective keys. In the physical-clock transparent case all eight original visible-F masks are enumerated. See [the consolidated decision and two reproducers](2012-first-image-payload-reproduction-and-lp2-transfer-decision.md#arbitrary-gap-placement-under-all-secret-native-length-periodic-pads-agent1-25-november). Thus moving the historical phrase's spaces or carry placement cannot rescue these particular additive models; other plaintexts or independently selected operations remain open.
+
 ## Decision
 
-The direct 2012 phrase running key, the p56-style phrase-derived totient key, and the two arithmetic-derived prime-stream starts do **not** decrypt p55.
+The direct 2012 phrase running key, the p56-style phrase-derived totient key, the two arithmetic-derived prime-stream starts, and all-secret q8/q13 ordered-crib inverses with arbitrary gap placement do **not** decrypt p55.
 
 Preserve the arithmetic alignment as an unverified clue, not as a solution or a reason for further unconstrained search. The bounded #2493 source audit found no specified 75-symbol transport or p55 receiver; the direct numeric serializers have 89–213 radix29 digits. Park the branch until an independently selected operation or new source artifact is available. In particular, do not promote a Tarot/78-card interpretation or invent a 16 × 42 grid merely because the numbers fit.
 

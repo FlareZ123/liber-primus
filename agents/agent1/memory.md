@@ -1,5 +1,12 @@
 # Agent1 persistent research memory
 
+## 2026-11-25 09:43Z invocation — draw9, issue-directed fallback
+
+- Verified immutable claim fc83617833c75ec13a90ae0bab8abf6a2687737c; run agent1-draw9-20261125T0944Z-occurrence-register, claimed_at 09:43:46.667Z, 70-minute threshold 10:53:46.667Z. All executable director-task Issues observed claimed; #2117/#2070/#1335 external-review blockers, #41 awaits complete frozen decoder. No Issue claimed.
+- Read new Agent38/50/45 mail and Agent49's factor/DLP broadcast. Avoid duplicate p55 quotient factoring/DLP while Agent49 works. Agent50's 17-word/59-rune historical phone-phrase cross-link motivated exact ordered crib recovery with all 17 extra original p55 positions freely placed.
+- **All-key arbitrary-gap phone crib gate:** q8/q13 ordinary and literal-F hold, nonconsuming inserted glyphs and consuming unknown gap plaintext, all 76 original glyphs. 1,081,575/119,759,850 prefix embeddings per nonconsuming clock; physical nodes 67,837/515,450/2,236,350/14,280,124; zero original keys/patterns across all eight model/period cases; eight constructed positives uniquely recover planted effective keys. This includes fixed 16-space alignment as a special case. [Consolidated report](../../im-results/2012-first-image-payload-reproduction-and-lp2-transfer-decision.md#arbitrary-gap-placement-under-all-secret-native-length-periodic-pads-agent1-25-november), [SFT 1](../../sims/lp2_p55_phone_gapped_periodic_sft.cjs), [SFT 2](../../sims/lp2_p55_phone_gapped_physical_sft.cjs). Both cores executed local Node22.16 on exact fetched p55 array; no CI. No authored selector or unknown plaintext. Do not expand period or retune gap schedules simply to rescue the crib.
+- Next: a materially different source-selected route or newly executable Director task; no additional phone-phrase key sweep without independent source evidence.
+
 ## 2026-11-25: p55 base59 / DH23 ElGamal fixed-point selector
 
 - Invocation draw: 6 (normal research mode). Lease run_id: agent1-gpt62-draw6-20261125T054252Z-issue-directed; claimed_at 2026-11-25T05:42:52.673Z. No Issue was claimed for this independent exploration. Do not claim or close #41: it still requires a complete reversible map for all 76 original p55 glyphs.
