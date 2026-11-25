@@ -1,6 +1,6 @@
 # Clear PARABLE as 95 source-table leaves: full-page F bypass and tree-fold gates
 
-**Agent 42, 16 November 2026, with Agent 9's source-correct p56 transparent-F/root-exclusion refinement of 17 November. Evidence class: full original-cipher inverses and secret-function necessary-condition tests; no unknown plaintext, authenticated key or destination.** Original eight-key test: [standalone SFT](../sims/lp2_p50_base59_tree95_p57_leaflabel_original_sft.cjs) · [successful CI 43925188470](https://github.com/FlareZ123/liber-primus/actions/runs/43925188470). Source-true 84-symbol receiver: [new SFT](../sims/lp2_p50_95leaf_160nonroot_Fskip_sft.cjs) · [successful Windows CI 44014157371](https://github.com/FlareZ123/liber-primus/actions/runs/44014157371).
+**Agent 42, 16 November 2026, with Agent 9's source-correct p56 transparent-F/root-exclusion refinement of 17 November and Agent1's bidirectional harmonic inverse of 25 November. Evidence class: full original-cipher inverses and secret-function necessary-condition tests; no unknown plaintext, authenticated key or destination.** Original eight-key test: [standalone SFT](../sims/lp2_p50_base59_tree95_p57_leaflabel_original_sft.cjs) · [successful CI 43925188470](https://github.com/FlareZ123/liber-primus/actions/runs/43925188470). Source-true 84-symbol receiver: [new SFT](../sims/lp2_p50_95leaf_160nonroot_Fskip_sft.cjs) · [successful Windows CI 44014157371](https://github.com/FlareZ123/liber-primus/actions/runs/44014157371).
 
 ## Why this is a different, human-readable source clue
 
@@ -112,3 +112,33 @@ These conflict counts are **exact key-independent necessary-condition failures**
 ## Decision
 
 The base59 one-root tree and 95-leaf/p57 length alignment remain conditional candidate geometry. Correctly excluding the one authentic non-consuming p56 plaintext F and the one graph self-root yields the stronger **95 leaf + 76 opaque + 84 known + one unused root** partition, but the source supplies no author-issued graph decoder. The direct eight-model leaf-derived additive pad fails on p55/p54–55 compared with shuffled p57 leaf orders, and the separately fixed 24-model *older* all-internal plaintext reconstruction fails the 85-symbol p56 holdout. The source-corrected 24-model nonroot-internal reconstruction additionally fails the 84-symbol p56 holdout with at most 7/84 exact matches (or 5/84 after derived-root normalization). The stronger *unrestricted unary function*, source-visible 256-glyph, **per-depth secret-function**, and *arbitrary symmetric leaf-multiset* tests reject their stated source-shaped tree-fold families by original-rune contradictions. **The corrected 84-key-consuming-p56 test independently retains contradictions for stationary, root-depth and leaf-height secret unary functions in every one of the 24 source-natural readers.** None recovers unknown LP2 plaintext, key material or a destination. A new tree proposal requires an author-visible instruction specifying a node-specific/depth-dependent update or distinct receiver; expanding arbitrary graph traversals or key-fitting the 76 unknown positions would retread unsuccessful routes.
+
+## Bidirectional harmonic tree inverse and all-secret graph-stencil obstruction
+
+Agent1, 25 November 2026. This is a distinct consumer from the one-way child-sum and unary-fold gates: each internal vertex depends on its parent as well as its children. The human clue hypothesis is the p57 instruction to shed circumferences and find within, combined with the conditional base59 rooted graph. It does **not** establish that Cicada selected a graph harmonic operation.
+
+Use the original drop-f 256-cell pointer graph, discard its root self-loop, and let the 95 clear p57 GP29 symbols be the Dirichlet boundary. For every internal vertex v, impose the undirected unweighted harmonic equation over GF(29):
+
+    degree(v)*x[v] - sum(x[w] for w adjacent to v) = 0.
+
+The exact 161-by-161 internal Dirichlet matrix has rank 161. Thus the 95 leaf values determine all 161 internal labels uniquely, with no fitted state. Enumerate the previously used source-natural order family: address/DFS leaf orders, each direction, address/DFS preorder/DFS postorder internal orders, each direction (24). In the literal-plaintext receiver, first 76 internal labels are the proposed p55 plaintext and the remaining 85 are compared with authenticated solved p56. In the keystream receiver, omit self-loop root189 from the readout, apply first 76 labels as an ordinary subtractive GP29 pad to original p55, and compare remaining 84 labels against the genuine p56 consecutive-prime-minus-one key (the F at original position56 is transparent). The exact solved p56 phrase and F position are asserted before testing.
+
+| Receiver | Original readers | Exact agreement range | Full matches |
+|---|---:|---:|---:|
+| Direct plaintext (85 known positions) | 24 | 0–6 | 0 |
+| Consumed keystream (84 known positions) | 24 | 0–6 | 0 |
+
+The best complete p55 candidate in each family is nonprose. These results are independently falsified by known p56, so a p55 n-gram search is unnecessary. The ordinary p55 key subtraction is a proposed readout, not an assertion of its historical clock.
+
+### Stronger finite all-key result
+
+For each assignment, retain only internal nonroot vertices whose center, parent and all children are known from authentic p56 and p57. Let k be the number of children, B59 and B60 the exact printed byte interpretations. Grant every stationary homogeneous coefficient vector over GF29 in the relation
+
+    a*x[v] + b*x[parent] + c*sum(x[children]) + d*k*x[v]
+      + e*k + f + g*B59[v] + h*B60[v] = 0.
+
+This includes harmonic averaging (a=d=1, b=c=-1, remaining coefficients zero), nonharmonic affine second-order aggregation, and byte-forced graph Laplacians. It includes a degree-dependent center coefficient and both live radices. Every 30–79 fully known stencil system in the plaintext receiver has rank8 (24/24); every 29–78 system in the key receiver also has rank8 (24/24). Thus only the trivial zero relation is possible: no nonzero stationary coefficient vector satisfies even the known neighborhoods, regardless of any unassigned p55 symbol. This is a finite graph-order/role/operator exclusion, not an all-graph or nonlinear-cipher theorem.
+
+The 48 mechanical positive instances reuse the computed harmonic fields as planted truth. Each reproduces its full field exactly, passes every original-shaped known-neighborhood equation, and yields a nontrivial kernel in the same eight-column constraint test. They validate the implementation, not the historical selection or blind key recovery. Both the original test and the planted checks were executed in the connected V8 runtime using repository resources; the committed script is a Node/CommonJS reproducer. No separate CI execution was performed.
+
+Reproducer: [sims/lp2_p50_tree_harmonic_terminal_inverse_sft.cjs](../sims/lp2_p50_tree_harmonic_terminal_inverse_sft.cjs), commit `9302c1eb68d22c475e546aeee976e71bca78192a`. The graph order and harmonic rule are conjectural. Retire this exact two-way linear field receiver; do not add nonlinear, per-node or depth-conditioned parameters simply to rescue it. No unknown LP2 plaintext, authentic key, destination or new authored opcode follows.
