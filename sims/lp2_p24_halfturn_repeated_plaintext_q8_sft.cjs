@@ -2,8 +2,8 @@
 
 /*
  * Source-frozen test of the p24 upper/lower half-turn repeated-plaintext
- * hypothesis under two independent period-8 additive GP29 keys and the
- * authentic transparent-plaintext-F clock.
+ * hypothesis under independent period-8 additive keys and global affine
+ * GP29 substitutions, both with the authentic transparent-plaintext-F clock.
  *
  * Run from the repository root:
  *   node sims/lp2_p24_halfturn_repeated_plaintext_q8_sft.cjs
@@ -320,6 +320,35 @@ const negative = enumerateSamePlaintextQ8(
 );
 assert.equal(negative.validConfigurations, 0);
 
+
+function inv29(a){for(let x=1;x<29;x++)if(mod29(a*x)===1)return x;throw new Error("no inverse");}
+function encAffine(p,a,b){assert.ok(a>0&&a<29);return p.map(x=>x===0?0:mod29(a*x+b));}
+function enumAffine(x,y){
+ const common=[];for(let i=0;i<x.length;i++)if(x[i]===0&&y[i]===0)common.push(i);
+ const valid=[];let tested=0;
+ for(let mask=0;mask<(1<<common.length);mask++){
+  const held=common.filter((_,j)=>mask&(1<<j)),hs=new Set(held);
+  for(let alpha=1;alpha<29;alpha++)for(let beta=0;beta<29;beta++){
+   tested++;let ok=true;const distinct=new Set();
+   for(let i=0;i<x.length;i++){if(hs.has(i))continue;if(mod29(alpha*x[i]+beta)!==y[i]){ok=false;break;}distinct.add(x[i]);}
+   if(ok&&29-distinct.size>0)valid.push({heldPositions:held,alpha,beta,interceptDomain:29-distinct.size,distinctAValues:distinct.size});
+  }
+ }
+ return {commonFPositions:common,holdMaskCount:1<<common.length,tested,validConfigurations:valid.length,valid};
+}
+const firstPairAlpha=mod29(mod29(reversedSecondHalf[8]-reversedSecondHalf[0])*inv29(mod29(firstHalf[8]-firstHalf[0])));
+const firstPairBeta=mod29(reversedSecondHalf[0]-firstPairAlpha*firstHalf[0]);
+assert.deepEqual([firstPairAlpha,firstPairBeta],[26,21]);
+const affineOriginal=enumAffine(firstHalf,reversedSecondHalf);
+assert.deepEqual(affineOriginal.commonFPositions,[108]);
+assert.equal(affineOriginal.tested,1624);
+assert.equal(affineOriginal.validConfigurations,0);
+const affinePos=enumAffine(encAffine(positivePlain,3,7),encAffine(positivePlain,11,19));
+assert.equal(affinePos.validConfigurations,1);
+assert.deepEqual(affinePos.valid[0],{heldPositions:trueHoldPositions,alpha:23,beta:3,interceptDomain:1,distinctAValues:28});
+const affineNeg=enumAffine(encAffine(negativePlainA,3,7),encAffine(negativePlainB,11,19));
+assert.equal(affineNeg.validConfigurations,0);
+
 console.log(JSON.stringify({
   source: {
     page: 24,
@@ -364,5 +393,10 @@ console.log(JSON.stringify({
       survivingConfigurations: negative.validConfigurations,
     },
   },
-  decision: "reject identical 135-rune p24 half plaintext under independent period-8 additive GP29 keys with transparent plaintext-F holds",
+  globalAffine: {
+    original: {commonFPositions:affineOriginal.commonFPositions,holdMasks:affineOriginal.holdMaskCount,tested:affineOriginal.tested,valid:affineOriginal.validConfigurations,candidateFromOffsets0And8:{alpha:firstPairAlpha,beta:firstPairBeta}},
+    positive: {keys:[{a:3,b:7},{a:11,b:19}],relation:{alpha:23,beta:3},tested:affinePos.tested,valid:affinePos.validConfigurations,holdMask:affinePos.valid[0].heldPositions},
+    negative: {tested:affineNeg.tested,valid:affineNeg.validConfigurations}
+  },
+  decision: "reject identical p24 half plaintext under independent q8 additive keys and independent global affine GP29 substitutions with transparent plaintext-F holds",
 }, null, 2));

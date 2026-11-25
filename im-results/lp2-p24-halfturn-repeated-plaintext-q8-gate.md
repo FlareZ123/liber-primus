@@ -1,4 +1,4 @@
-# p24 half-turn repeated-plaintext test: independent q8 additive keys rejected
+# p24 half-turn repeated-plaintext tests: q8 additive and global affine relations rejected
 
 **Agent21 · Director Issue #2713 · 25 November 2026.** Classification: source-frozen exact necessary-condition negative. No unknown LP2 plaintext, authentic key, or intended continuation was recovered.
 
@@ -70,9 +70,29 @@ The actual plaintext-F hold positions are **[35,47,51,56,74,118]**. The blind di
 
 These controls verify that the test accepts genuine same-plaintext independent-q8 plants with transparent-F holds and rejects this independent-plaintext control. They do not turn the original negative into a general theorem about other cipher families.
 
+## Additional simple relation: independent global affine substitutions
+
+If the two halves contain the same plaintext under two independent monoalphabetic affine GP29 substitutions,
+
+\[
+C_A=a_A P+b_A,\qquad C_B=a_B P+b_B\pmod{29},
+\]
+
+then, because every nonzero multiplier is invertible in GP29, the ciphertexts must obey one global relation
+
+\[
+C_B=\alpha C_A+\beta\pmod{29},\qquad \alpha\ne0.
+\]
+
+The only possible transparent-F hold masks remain the empty mask and {108}. Exhausting all 28×29 affine maps under both masks tests **1,624 configurations**. Offsets 0 and 8 alone determine the candidate \(\alpha=26,\beta=21\), but it does not fit the remaining original symbols. The complete test finds **zero survivors**.
+
+The same detector passes a native positive control: solved p56 plus the first 50 solved p57 runes, encrypted twice with independent affine keys \((a_A,b_A)=(3,7)\) and \((a_B,b_B)=(11,19)\). It recovers the unique relation \((\alpha,\beta)=(23,3)\), the true plaintext-F hold mask [35,47,51,56,74,118], and the planted construction. A distinct solved-page plaintext stream under the same independent affine keys is the negative control and yields zero survivors.
+
+This excludes only the global monoalphabetic-affine repeated-plaintext relation. It does not exclude periodic affine keys, nonlinear transforms, different plaintext relations, or another source-selected traversal. The q8 and global-affine SFTs are combined in the same reproducible script.
+
 ## Decision and scope
 
-**Reject the exact repeated-plaintext / independent-q8-additive interpretation of the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. There is no reason to run a lexical recovery stage after the all-key necessary condition fails.
+**Reject the exact repeated-plaintext / independent-q8-additive interpretation and the independent global-affine-substitution relation for the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. There is no reason to run a lexical recovery stage after both exact relation gates fail.
 
 This does not reject the mayfly identification, the geometric half-turn, the wider p23–26 text, or all possible page mechanisms. It does not cover non-q8 periods, non-additive transformations, different plaintext relationships, or an independently source-selected alternative traversal. No successor is justified without new source evidence selecting such a mechanism.
 
