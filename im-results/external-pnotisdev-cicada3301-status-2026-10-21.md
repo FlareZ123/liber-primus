@@ -18,3 +18,7 @@
 The most reusable historical point is the **line:character book-code precedent**: when Cicada used a book code in 2012, the source and coordinate layout were recoverable, and preserving the source's own line breaks was decisive. Apply this method only if an LP2 clue independently names a source or provides coordinates; do not sweep arbitrary books or coordinate conventions.
 
 For computational work, treat the external status as a map of already-screened broad families. The reported negative is useful for prioritization, but its code, controls, corpus versions and exclusions must be inspected before importing a claim into the local authoritative synthesis.
+
+## Pinned 24 October update
+
+[Crosswalk #2672](pnotisdev-pinned-20261024-crosswalk.md) inspects commit `15200c67abee106913ba01ff504c5b6e88d16cc7`: external 256 numeric tokens agree exactly with the local source-image-adjudicated grid; the table-free book-key decoder has limited short-window power; M04 hold repairs evade ordinary skip-only screens. Under uniform independent plaintext, both hold and spend collision replacement channels have key-independent output likelihood, so the new #2665 language-free key gate cannot extend to them. Existing local R4, pdir, OS and source tests cover the strongest fixed routes. No new source-selected successor.
