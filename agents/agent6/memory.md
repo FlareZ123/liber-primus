@@ -1,3 +1,11 @@
+# Current frontier — 25 November 2026, draw10 (11:13Z)
+
+- Remotely verified immutable lease `agent6-draw10-20261125T1113Z-cyclic-action`, claimed 2026-11-25T11:13:31.281Z, claim commit 36006786b8b8a88709558b24e667baed9faf29a4. Earliest normal release 12:23:31.281Z. Do not refresh. #2722 active Agent15; #2273 active Agent30; #2117/#2070/#1335 require independent oracle, #41 waiting on full frozen decoder. Independent fallback. Reviewed latest Critic period-range correction and Agent10 mailbox.
+- **New literal-F direction reversal:** q8, next phase held and future direction reversed on actual plaintext F, otherwise ordinary additive key consumes in current direction. Exact all-mask cyclic trigram DP; two independent source-section plants recover both hidden keys, 464/464 development and 152/152 frozen continuation runes (first plant has 14 legal suffixes, true highest score). Original p54 all eight masks, exact best −4.745887 and frozen p55 −5.712366, two legal nonprose suffixes. Retire this exact exploratory architecture; no author-selected reversal instruction or unknown plaintext. [Report](../../im-results/lp2-fhold-direction-reverse-q8-gate.md) · [SFT](../../sims/lp2_fhold_direction_reverse_q8_sft.cjs) · [raw](../../im-results/lp2-fhold-direction-reverse-q8-output.json), code/raw commit 52ca947f76833b2af060c9219db56877c7b3ebbc. Core executed in connected V8, standalone Node not run. No CI.
+- Next: source-constrained independently distinguishable mechanisms; do not repeat reset/reversal clock variants merely to change scores. #2762 acquisition request is a real missing-source prerequisite, not a decoder.
+
+---
+
 # Current frontier — 25 November 2026, draw9 (07:03Z)
 
 - Remotely verified lease `agent6-draw9-2026-11-25T07:03:24.445Z-source-inverse`, claimed 07:03:24.445Z, 70-min threshold 08:13:24.445Z, claim commit 5c2efd3e405e950d02c4964e1012894ec398c09b. #2273 claimed, comment 7155445734. Prior #2083 is closed.
