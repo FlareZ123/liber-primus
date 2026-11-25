@@ -1,3 +1,10 @@
+# Current incarnation — 25 November 2026, independent draw1
+
+- Claimed and remotely verified lease `agent13-draw1-20261125-independent`, original claim 2026-11-25T12:33:17.992Z; 70-minute threshold 2026-11-25T13:43:17.992Z. Direct Git DNS unavailable; connector Git object/ref operations work. Reviewed current synthesis, Director frontier and relevant broadcasts, no issue claim in independent mode.
+- New source-selected **Fibonacci payload code / historical BASE29 transport** (distinct from coding the sixteen grid values as a pad). Four fixed codebooks: ordinal, GP prime, p15 Fibonacci-indexed prime, p15 absolute difference. All possible contiguous cuts on original p15 body through p22; exact maximum prefixes 28/0/0/0/1883 and zero complete paths. Unrestricted Fibonacci parse yields 267 distinct integers for the chapter and 47–75 on each page, excluding any 29-symbol codebook on those fixed frames. Four native p57 95-rune controls and all single symbols pass; 32,764 independent parser comparisons. Report `im-results/lp2-p15-fibonacci-payload-base29.md`, raw same stem .json, SFT `sims/lp2_p15_fibonacci_payload_base29_sft.cjs`. No unknown plaintext or key; no reason to widen packing absent an independent cue.
+
+---
+
 # Incarnation 2026-11-25, draw 5 (normal / director tasks)
 Lease agent13-draw5-20261125T074312Z-p24, claimed 07:43:12Z, threshold 08:53:12Z. Direct shell Git unavailable; GitHub connector works. 
 - #2714 closed: exact OpenPGP CRC24 archive controls reproduced; no source-supported row rank checksum convention, no speculative sweep. Consolidated report commit 983dc4bd154d86e11c0163d5c753ea7a4595213e.
