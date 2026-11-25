@@ -1,0 +1,107 @@
+{
+  "wholeTapeEqualities": 86,
+  "scope": "ordered printed groups; independent repair coin on each collision; checked nulls; group length independent of repair outcome",
+  "tests": [
+    {
+      "k": 3,
+      "minimumRepairs": 0,
+      "maximumFailedRepairs": 66,
+      "selectedGroups": 1645,
+      "selectedRunes": 9817,
+      "fixedThresholdJointEventTail": {
+        "0.81": 1,
+        "0.85": 1,
+        "0.9": 1,
+        "0.95": 1
+      },
+      "mixtureELowerBound": {
+        "0.81": 0.00010615630500871419,
+        "0.85": 0.00010615630500871419,
+        "0.9": 0.00010615630500871419,
+        "0.95": 0.00010615630500871504
+      }
+    },
+    {
+      "k": 4,
+      "minimumRepairs": 152,
+      "maximumFailedRepairs": 49,
+      "selectedGroups": 1132,
+      "selectedRunes": 7765,
+      "fixedThresholdJointEventTail": {
+        "0.81": 0.9763271089710763,
+        "0.85": 0.9998272567869931,
+        "0.9": 0.9999999988972491,
+        "0.95": 0.9999999999999996
+      },
+      "mixtureELowerBound": {
+        "0.81": 0.023783747391477542,
+        "0.85": 0.009480370909486908,
+        "0.9": 0.0034688851717973096,
+        "0.95": 0.0014228415742610153
+      }
+    },
+    {
+      "k": 5,
+      "minimumRepairs": 325,
+      "maximumFailedRepairs": 37,
+      "selectedGroups": 815,
+      "selectedRunes": 6180,
+      "fixedThresholdJointEventTail": {
+        "0.81": 0.000003586542213036802,
+        "0.85": 0.004984736231683747,
+        "0.9": 0.5986391471243582,
+        "0.95": 0.9999832246967809
+      },
+      "mixtureELowerBound": {
+        "0.81": 8499.443802407464,
+        "0.85": 10.519191697355119,
+        "0.9": 0.1279688093826353,
+        "0.95": 0.013307885179951136
+      }
+    },
+    {
+      "k": 6,
+      "minimumRepairs": 215,
+      "maximumFailedRepairs": 28,
+      "selectedGroups": 559,
+      "selectedRunes": 4644,
+      "fixedThresholdJointEventTail": {
+        "0.81": 0.0011675033308592084,
+        "0.85": 0.07304087194237519,
+        "0.9": 0.8170919889382118,
+        "0.95": 0.9999847784713066
+      },
+      "mixtureELowerBound": {
+        "0.81": 43.53013086193183,
+        "0.85": 1.1517151638478056,
+        "0.9": 0.09352316617926164,
+        "0.95": 0.02017248397630246
+      }
+    },
+    {
+      "k": 7,
+      "minimumRepairs": 39,
+      "maximumFailedRepairs": 21,
+      "selectedGroups": 343,
+      "selectedRunes": 3132,
+      "fixedThresholdJointEventTail": {
+        "0.81": 0.9989792040455319,
+        "0.85": 0.9999692346150406,
+        "0.9": 0.9999999684650401,
+        "0.95": 0.9999999999999477
+      },
+      "mixtureELowerBound": {
+        "0.81": 0.03712124210507203,
+        "0.85": 0.028515763757616344,
+        "0.9": 0.02135876596041389,
+        "0.95": 0.016581421698831436
+      }
+    }
+  ],
+  "anytimePUpperBonferroni5": {
+    "0.81": 0.0005882737878193573,
+    "0.85": 0.4753216923746308,
+    "0.9": 1,
+    "0.95": 1
+  }
+}
