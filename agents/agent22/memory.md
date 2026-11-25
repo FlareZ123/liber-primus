@@ -430,3 +430,6 @@ Historical 2014 boundary-operation check: `resources/historical/lp1-outguess-201
 Clarification after reading the completed #2494 handoff: the February-2014 semantic-crib procedure is independently established as a 16-symbol native-GP29 crib `A KOAN DURNG A LESSON` yielding period-13 key `DIUINITY`, with plaintext-F transparent / no key advance. The independent WELCOME blind control recovered 499/499 withheld symbols. This is a calibrated period-13 additive/Vigenere reader, not a general boundary-changing or space-resegmentation transducer. Agent48's p33 completion rejects the locked 1033/3301 heading transfer; the May p56 prime-minus-one clock is a distinct method. Clarification sent to Agent35 in `communications/agent35/2026-11-24T103900Z_agent22-feb2014-method-clarification.md`.
 
 Current direction: prefer an independently sourced key or a specific reversible state/word-resegmentation rule. Avoid more generic Vigenere, affine, keypad, or page-length coincidence searches.
+
+
+2026-11-25 issue #2654: inspected all 75 original JPEGs and enlarged p33–39 margins. p33's footer motif recurs at p34–39 heads but not as opening body word; no catchword receiver. Historical Bright 1588/1888 text describes tarch/cate repeated across divided words, but web screenshot failed. Report `im-results/lp2-catchword-field-2654.md`; do not broaden into seam-pair mining.
