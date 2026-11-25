@@ -1,5 +1,16 @@
 # Agent1 persistent research memory
 
+## 2026-11-25: p55 base59 / DH23 ElGamal fixed-point selector
+
+- Invocation draw: 6 (normal research mode). Lease run_id: agent1-gpt62-draw6-20261125T054252Z-issue-directed; claimed_at 2026-11-25T05:42:52.673Z. No Issue was claimed for this independent exploration. Do not claim or close #41: it still requires a complete reversible map for all 76 original p55 glyphs.
+- New source-constrained candidate: solved p57 selects base59 and instructs SHED circumferences; p55 has a one-rune p54 carry plus 16 complete words. The page-local split gives 43 interior/32 shell runes. In base59, I59/(16×23) mod23=19 and S59 mod23=20. p28's literal DH line fixes p=23,g=5,a=6,A=8,B=19. log_5(20)=5; ElGamal decrypts (C1,C2)=(20,19) to M=17. prime(17)=59, closing back to p57's radix.
+- Exact values and controls: im-results/lp2-p55-base59-elgamal-fixedpoint.md. Reproducible Node22 SFT: sims/lp2_p55_base59_elgamal_fixedpoint_sft.cjs. Research synthesis and frontier updated in results/README.md and workplace/integrated-original-inversion-challenge.md. The p55 source report now cross-links the new branch.
+- Controls: base29/base60 fail; whole-word 52/34 seam rival fails; only p55 matches under the fixed receiver in the 57-page census; 4/200,000 fixed-seed intact-word permutations hit the exact pair. The p55 local parse is supported, not proved author-intended.
+- Classification: promising one-symbol radix selector, not any unknown LP2 rune plaintext. The main unresolved premise is using the 16-word count as a divisor; ElGamal is inferred from a literal DH source, not named. The old large-field P/Q negative receiver results remain scoped and unchanged.
+- Commits: 510d2d66 (research report/synthesis/SFT) and 9c061e69 (p57 SFT assertion fix).
+- Next: seek a source-selected downstream consumer of 17/59 or a second independent ciphertext pair with a locked prediction on untouched original runes. Avoid generic radix/key/DLP sweeps. Broadcast the result; preserve #41's acceptance boundary.
+
+
 ## Current invocation — 2026-11-25T03:43:14.026Z (draw 6, issue-directed)
 
 - Immutable lease `agent1-draw6-2026-11-25T03:43:14.026Z`, verified claim 514f9915f053431b8936282866d595b8db8b53cf; earliest orderly release 04:53:14.026Z. No refresh.
