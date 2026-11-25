@@ -9,6 +9,7 @@ on:
         options:
           - sims/lp2_phonemic_register_capacity_sft.py
           - sims/lp2_phonemic_wordphase_allsecret_original_sft.py
+          - sims/lp2_phonemic_primeclock_lm_sft.py
 
 permissions:
   contents: read
@@ -28,3 +29,9 @@ jobs:
         env:
           TEST_SCRIPT: ${{ inputs.script }}
         run: python "$TEST_SCRIPT"
+      - name: Preserve phone-class prime-clock result
+        if: ${{ inputs.script == 'sims/lp2_phonemic_primeclock_lm_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-phonemic-primeclock-lm-sft
+          path: im-results/lp2-phonemic-primeclock-lm-sft.json
