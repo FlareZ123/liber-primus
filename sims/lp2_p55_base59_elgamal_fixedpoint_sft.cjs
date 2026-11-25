@@ -106,25 +106,39 @@ assert.equal(rival.inside.length, 52); assert.equal(rival.shell.length, 34);
 assert.equal(val(rival.inside, 59) % (17n * p), 239n);
 assert.equal(val(rival.shell, 59) % p, 17n);
 
-// Same fixed receiver over every rune-bearing page; only p55 matches.
-const matches = [];
+// Same complete-local-word rule at every page: remove both edge carries.
+const clean = s => s.replace(/[\s/]/gu, '');
+const carries = pages.slice(0, -1).map((s, i) => IX.has(clean(s).at(-1)) && IX.has(clean(pages[i + 1])[0]));
+assert.equal(carries.filter(Boolean).length, 32);
+const matches = [], divisible = [], fixedPoints = [];
 for (let i = 0; i < pages.length; i++) {
   const physical = i <= 49 ? i : i + 1;
   let pageWords = words(pages[i]);
-  if (physical === 55) pageWords = pageWords.slice(1);
+  if (carries[i - 1]) pageWords = pageWords.slice(1);
+  if (carries[i]) pageWords = pageWords.slice(0, -1);
   if (!pageWords.length) continue;
   const data = split(pageWords);
   if (!data.inside.length) continue;
   const N = val(data.inside, 59), E = val(data.shell, 59), count = BigInt(pageWords.length);
   if (N % (count * p)) continue;
   const c2 = N / (count * p) % p, c1 = E % p;
+  divisible.push(physical);
   let m;
   try { const eph = dlog(c1, g, p); m = c2 * inv(modpow(A, eph, p), p) % p; } catch (_) { continue; }
+  if (m === 17n) fixedPoints.push(physical);
   if (c1 === 20n && c2 === 19n && m === 17n && nthPrime(Number(m)) === 59) matches.push(physical);
 }
 assert.deepEqual(matches, [55]);
+assert.deepEqual(divisible, [55]);
+assert.deepEqual(fixedPoints, [55]);
 
-// Matched null: 200,000 permutations of intact words, fixed seed, exact pair only.
+// Matched null: count nested acceptance criteria, not just the observed exact pair.
+const fixedPairs = new Map(Array.from({length: 22}, (_, j) => {
+  const k = BigInt(j);
+  return [modpow(g, k, p), 17n * modpow(A, k, p) % p];
+}));
+assert.equal(fixedPairs.size, 22);
+assert.deepEqual([...fixedPairs].filter(([, y]) => y === B).map(([x]) => x), [20n, 3n]);
 function mulberry32(seed) {
   let state = seed >>> 0;
   return function () {
@@ -136,7 +150,7 @@ function mulberry32(seed) {
   };
 }
 const random = mulberry32(0x3301A855), trials = 200000;
-let hits = 0;
+let hits = 0, divHits = 0, validHits = 0, fpHits = 0, fpBHits = 0;
 for (let t = 0; t < trials; t++) {
   const order = Array.from({ length: 16 }, (_, i) => i);
   for (let i = 15; i > 0; i--) {
@@ -145,14 +159,22 @@ for (let t = 0; t < trials; t++) {
   }
   const data = split(order.map(i => ws[i]));
   const N = val(data.inside, 59), E = val(data.shell, 59);
-  if (N % (16n * p) === 0n && E % p === C1 && N / (16n * p) % p === C2) hits++;
+  if (N % (16n * p) !== 0n) continue;
+  divHits++;
+  const c1 = E % p, c2 = N / (16n * p) % p;
+  if (c1 !== 0n) validHits++;
+  if (fixedPairs.get(c1) === c2) {
+    fpHits++;
+    if (c2 === B) fpBHits++;
+  }
+  if (c1 === C1 && c2 === C2) hits++;
 }
-assert.equal(hits, 4);
+assert.deepEqual([divHits, validHits, fpHits, fpBHits, hits], [1105, 1060, 50, 8, 4]);
 
 console.log(JSON.stringify({
   p55: { words: 16, interior: 43, shell: 32 },
   base59: { interior: I59.toString(), shell: S59.toString(), normalizedInterior: (I59 / (16n * p)).toString() },
   elgamal: { p: 23, g: 5, a: 6, A: 8, k: Number(k), C1: Number(C1), C2: Number(C2), shared: Number(shared), plaintext: Number(M), seventeenthPrime: 59 },
-  controls: { base29: 'fail', base60: 'fail', wholeWord52_34: 'fail', familyMatches: matches },
-  matchedWordPermutationNull: { seed: '0x3301A855', trials, exactPairHits: hits }
+  controls: { base29: 'fail', base60: 'fail', wholeWord52_34: 'fail', familyMatches: matches, divisiblePages: divisible, fixedPointPages: fixedPoints },
+  matchedWordPermutationNull: { seed: '0x3301A855', trials, divisible: divHits, nonzeroC1: validHits, radixFixedPoint: fpHits, fixedPointAndB: fpBHits, exactPairHits: hits }
 }, null, 2));
