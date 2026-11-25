@@ -1,0 +1,164 @@
+{
+  "subsetSpace": "409663695276000",
+  "subsetWidthBytes": 7,
+  "orderSpace": 40320,
+  "orderWidthBytes": 2,
+  "colexOracleCases": 7800,
+  "controls": {
+    "textPlant": {
+      "bytes": 64,
+      "hex": "544849532049532041204649584544204c454e4754482054455354204d45535341474520464f5220544845204f52444552204348414e4e454c204f46204c5032",
+      "printableASCII": 64,
+      "completeASCII": true,
+      "strictUTF8": true,
+      "openPGPHeader": false,
+      "directP56": false,
+      "firstByte": 84
+    },
+    "subsetRankPlant": 32,
+    "nulls": {
+      "trials": 256,
+      "subsetASCII": 0,
+      "subsetUTF8": 0,
+      "subsetPGPHeader": 0,
+      "orderASCII": 0,
+      "orderUTF8": 0,
+      "orderPGPHeader": 57,
+      "orderDirectP56": 0
+    }
+  },
+  "radices": {
+    "59": {
+      "roundtripCells": 256,
+      "subset": {
+        "bytes": 224,
+        "hex": "00b2b56db72cad010d4bb1b29acc00303ca484f77e002970855ae0a4002734776a5a1100893cbc5784b6012a2700b25e2e0134fec4a60378013f585645f89800372216729b93002fa4face592d00ab5fdb98d00300868e44e22cf2005b4c3f5e150600f5d01a79e09a00aefd34a70cda002f0984ba211100e9b59ffb50de00eec389a84248011fb6418b186601165a9cd8d700013a400b3dda8200a28646776e850020325d0ea541000fbe250ccb1500413f910dae7c011768e3170f8d005e02fa6fd4f201059c82779e2700b955a00f7ac5004f45d11314f30088b67f9aac59",
+        "printableASCII": 73,
+        "completeASCII": false,
+        "strictUTF8": false,
+        "openPGPHeader": false,
+        "directP56": false,
+        "firstByte": 0
+      },
+      "ordering": {
+        "bytes": 64,
+        "hex": "71bc256273603aab7029439589db94434c4b6808545b728f82726bbc2f4839d89b4e079321ec51ad6f3786af91455a3b0d4f56e521c361d62b1423ca58092e5d",
+        "printableASCII": 38,
+        "completeASCII": false,
+        "strictUTF8": false,
+        "openPGPHeader": false,
+        "directP56": false,
+        "firstByte": 113
+      },
+      "subsetHighBytes": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "pageRowBreaks": [
+        10,
+        13,
+        9
+      ]
+    },
+    "60": {
+      "roundtripCells": 256,
+      "subset": {
+        "bytes": 224,
+        "hex": "00cd1dba0792740132f872b20ef000367c2b3848ae002eed63ac1da5002c6c8b5af37e009e31b11324db01534e5a6affd3015f6e31fddb35016b01f0db6adf003e2a36fe89fa0035d5523afd6500c4b8c5360d45009b344686b42a0066317bc6b7950118996ed9a9c300c8e361cdb777003529b29a8ccb010b0dde1ebcde0110a73ff5fee501479be18c9422013d1ff2f3c55c01655dabb1243d00bad4c4c31c7600249ad5953a77001217f1f624d200496250ad7033013e4ed98f213600692a53a8ee91012a599f5a577300d4958ac9df470058e836d58f48009d9e283f1149",
+        "printableASCII": 84,
+        "completeASCII": false,
+        "strictUTF8": false,
+        "openPGPHeader": false,
+        "directP56": false,
+        "firstByte": 0
+      },
+      "ordering": {
+        "bytes": 64,
+        "hex": "71bc256273603aab7029439589db94434c4b6808545b728f82726bbc2f4839d89b4e079321ec51ad6f3786af91455a3b0d4f56e521c361d62b1423ca58092e5d",
+        "printableASCII": 38,
+        "completeASCII": false,
+        "strictUTF8": false,
+        "openPGPHeader": false,
+        "directP56": false,
+        "firstByte": 113
+      },
+      "subsetHighBytes": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "pageRowBreaks": [
+        10,
+        13,
+        9
+      ]
+    }
+  },
+  "invalidTargetWords": [
+    2,
+    14,
+    20,
+    28,
+    29,
+    31
+  ]
+}
