@@ -1,0 +1,339 @@
+{
+  "method": {
+    "F": [
+      1,
+      2,
+      3,
+      5,
+      8,
+      13,
+      21,
+      34,
+      55,
+      89,
+      144,
+      233,
+      377,
+      610,
+      987
+    ],
+    "L": 139,
+    "H": 200,
+    "training": [
+      173684,
+      245432,
+      37467
+    ],
+    "order": 2,
+    "zeroMaskCap": 12
+  },
+  "controls": [
+    {
+      "id": 0,
+      "j": 0,
+      "start": 212133,
+      "z": 7,
+      "feasibleMasks": 128,
+      "fit": true,
+      "trueKey": [
+        3,
+        15,
+        9,
+        2,
+        2,
+        10,
+        3,
+        10
+      ],
+      "key": [
+        3,
+        15,
+        9,
+        2,
+        2,
+        10,
+        3,
+        10
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -365.65180955350684,
+      "runnerMaskScore": -395.7222377770091,
+      "maxWork": 7938,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 4,
+      "heldoutDepth": 200,
+      "heldoutScore": -518.8999570901723,
+      "trueHeldoutF": 4,
+      "trueHeldoutConsumingZero": 5
+    },
+    {
+      "id": 1,
+      "j": 0,
+      "start": 177626,
+      "z": 6,
+      "feasibleMasks": 64,
+      "fit": true,
+      "trueKey": [
+        0,
+        2,
+        17,
+        8,
+        8,
+        9,
+        18,
+        19
+      ],
+      "key": [
+        0,
+        2,
+        17,
+        8,
+        8,
+        9,
+        18,
+        19
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -363.06102421979887,
+      "runnerMaskScore": -369.1046012420462,
+      "maxWork": 9196,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 20,
+      "heldoutDepth": 200,
+      "heldoutScore": -527.5167559663996,
+      "trueHeldoutF": 7,
+      "trueHeldoutConsumingZero": 3
+    },
+    {
+      "id": 2,
+      "j": 1,
+      "start": 261185,
+      "z": 6,
+      "feasibleMasks": 64,
+      "fit": true,
+      "trueKey": [
+        26,
+        12,
+        1,
+        10,
+        25,
+        11,
+        5,
+        22
+      ],
+      "key": [
+        26,
+        12,
+        1,
+        10,
+        25,
+        11,
+        5,
+        22
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -382.67056196486203,
+      "runnerMaskScore": -385.148872848434,
+      "maxWork": 8379,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 14,
+      "heldoutDepth": 200,
+      "heldoutScore": -513.6253747778983,
+      "trueHeldoutF": 7,
+      "trueHeldoutConsumingZero": 4
+    },
+    {
+      "id": 3,
+      "j": 1,
+      "start": 302955,
+      "z": 10,
+      "feasibleMasks": 1024,
+      "fit": true,
+      "trueKey": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        22,
+        8
+      ],
+      "key": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        22,
+        8
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -367.2751493889099,
+      "runnerMaskScore": -369.956375891422,
+      "maxWork": 8000,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 2,
+      "heldoutDepth": 200,
+      "heldoutScore": -523.4188965456699,
+      "trueHeldoutF": 2,
+      "trueHeldoutConsumingZero": 4
+    },
+    {
+      "id": 4,
+      "j": 2,
+      "start": 41368,
+      "z": 7,
+      "feasibleMasks": 128,
+      "fit": true,
+      "trueKey": [
+        7,
+        0,
+        21,
+        12,
+        10,
+        3,
+        22,
+        9
+      ],
+      "key": [
+        7,
+        0,
+        21,
+        12,
+        10,
+        3,
+        22,
+        9
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -361.85614634697004,
+      "runnerMaskScore": -392.6120571536593,
+      "maxWork": 8000,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 618,
+      "heldoutDepth": 200,
+      "heldoutScore": -521.122943117082,
+      "trueHeldoutF": 7,
+      "trueHeldoutConsumingZero": 7
+    },
+    {
+      "id": 5,
+      "j": 2,
+      "start": 40700,
+      "z": 7,
+      "feasibleMasks": 128,
+      "fit": true,
+      "trueKey": [
+        18,
+        10,
+        20,
+        6,
+        26,
+        6,
+        15,
+        15
+      ],
+      "key": [
+        18,
+        10,
+        20,
+        6,
+        26,
+        6,
+        15,
+        15
+      ],
+      "exactKey": true,
+      "prefixCorrect": 139,
+      "prefixScore": -364.12192106033467,
+      "runnerMaskScore": -395.2510480479243,
+      "maxWork": 8820,
+      "heldoutCorrect": 200,
+      "heldoutPaths": 24,
+      "heldoutDepth": 200,
+      "heldoutScore": -531.3093892230744,
+      "trueHeldoutF": 7,
+      "trueHeldoutConsumingZero": 5
+    }
+  ],
+  "gate": {
+    "exactKeys": 6,
+    "exactHeldout": 6,
+    "heldoutAtLeast95": 6,
+    "pass": true
+  },
+  "control3Partitions": [
+    {
+      "lo": 0,
+      "hi": 256,
+      "mask": 143,
+      "key": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        22,
+        8
+      ],
+      "prefixScore": -405.1569129274794
+    },
+    {
+      "lo": 256,
+      "hi": 512,
+      "mask": 399,
+      "key": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        7,
+        8
+      ],
+      "prefixScore": -379.96578118089076
+    },
+    {
+      "lo": 512,
+      "hi": 768,
+      "mask": 655,
+      "key": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        22,
+        8
+      ],
+      "prefixScore": -394.760355092144
+    },
+    {
+      "lo": 768,
+      "hi": 1024,
+      "mask": 911,
+      "key": [
+        9,
+        12,
+        12,
+        16,
+        27,
+        25,
+        22,
+        8
+      ],
+      "prefixScore": -367.2751493889099
+    }
+  ],
+  "notes": "Actual connected V8 runs; six controls executed in batches because control3's 1024 masks exceed one comfortable execution. Part winners compared by prefix score only; suffix evaluated only for global winning part. Summary transcribed from run outputs, original not yet scored."
+}
