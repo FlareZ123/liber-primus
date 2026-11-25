@@ -28,9 +28,16 @@ function experiment(raw) {
  function bound(groups,periods,truth,K){const strata=Array.from({length:9},()=>({n:0,counts:new Map()})),all=Array.from({length:9},()=>({n:0,counts:new Map()}));let checks=0;
  const segments=K?Array.from({length:9},(_,m)=>new Set(K.map((_,s)=>Array.from({length:m},(_,j)=>K[(s+j)%K.length]).reduce((a,b)=>29*a+b,0)))):null;
  for(let i=0;i<groups.length;i++){const c=groups[i],{start,len}=span(c);if(len<2)continue;for(let m=2;m<=len;m++){const opts=options(c,start,m);for(const cell of [all[m],...(m===len?[strata[m]]:[])]){cell.n++;for(const k of opts)cell.counts.set(k,(cell.counts.get(k)||0)+1)}if(truth&&vocab.has(id(truth[i]))){const k=code(c,truth[i],start,m);if(!opts.has(k)||!segments[m].has(k))throw Error("true segment missing");checks++}}}
+ const sorted=cell=>{const s=[...cell.counts.values()].sort((a,b)=>b-a);const prefix=[0];for(const v of s)prefix.push(prefix[prefix.length-1]+v);return {n:cell.n,prefix}};
+ const S=strata.slice(2).map(sorted),A=all.slice(2).map(sorted),uncovered=(x,q)=>Math.max(0,x.n-x.prefix[Math.min(q,x.prefix.length-1)]);
+ const minMissing=q=>Math.max(S.reduce((a,x)=>a+uncovered(x,q),0),...A.map(x=>uncovered(x,q)));
+ const maxQ=Math.max(...S.concat(A).map(x=>x.prefix.length-1));
+ const budget=Math.floor(groups.length*.05);let requiredPeriod=null;
+ if(minMissing(maxQ)<=budget){let lo=0,hi=maxQ;while(lo<hi){const mid=Math.floor((lo+hi)/2);if(minMissing(mid)<=budget)hi=mid;else lo=mid+1}requiredPeriod=lo;}
+ if(K&&requiredPeriod!==null&&requiredPeriod>K.length)throw Error("period lower bound rejects true key");
  return periods.map(q=>{const summarize=cell=>{const top=[...cell.counts.values()].sort((a,b)=>b-a).slice(0,q),upper=Math.min(cell.n,top.reduce((a,b)=>a+b,0));return {n:cell.n,top,upper,miss:cell.n-upper,distinct:cell.counts.size}};
  const strat=strata.slice(2).map((x,i)=>({m:i+2,...summarize(x)})),threshold=all.slice(2).map((x,i)=>({m:i+2,...summarize(x)}));
- return {groups:groups.length,q,checks,strat,threshold,miss:Math.max(strat.reduce((a,b)=>a+b.miss,0),...threshold.map(x=>x.miss)),budget:Math.floor(groups.length*.05)}});
+ return {groups:groups.length,q,checks,strat,threshold,miss:Math.max(strat.reduce((a,b)=>a+b.miss,0),...threshold.map(x=>x.miss)),budget,requiredPeriod,periodBoundary:requiredPeriod===null?null:[requiredPeriod?minMissing(requiredPeriod-1):null,minMissing(requiredPeriod)]}});
  }
  function encrypt(words,K){let phase=0;return words.map(w=>w.map(p=>{if(!p)return 0;const c=mod(p+K[phase]);phase=(phase+1)%K.length;return c}))}
  function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return x>>>0}}
