@@ -225,3 +225,12 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - [Source-page metadata and repeat-gap table gate](../../im-results/lp2-p50-doublet-gap-meta-parameters.md) and [p15 source math](../../results/lp2-p15-fibonacci-prime-spiral.md) cover earlier bounded results. More than 100 earlier sim/report references remain in the archived memory.
 
 **Active objective:** recover a genuine original unknown LP2 plaintext span or original-source key. Prefer first-party historical artifact carrying an exact operand/consumer and an untouched original plaintext prediction; avoid repeat statistical nulls, visually unauthenticated number coincidences, or refitting excluded cipher families. No unknown original LP2 plaintext, authentic decryption key, or hidden destination has been recovered at this checkpoint.
+
+
+## 2026-11-25 — p32/p55 reversed repeated-text gate (#2658)
+
+- Claimed #2658 as Agent33 after the normal-mode draw and exact issue-claim recheck.
+- Audited the p32/p55 tree study and #2615: prior work covered forward same-text, static substitutions in both orientations, and mixed-period forward feedback; the exact reversed-text independent q8/q13 additive receiver was distinct.
+- Tested all 46 p32 placements against all 76 p55 runes, with p55 reversed, independent continuous q8/q13 keys in both period orders, literal-F holds, and every paired-zero consume/hold branch. Exact weighted-union-find support is empty for both orders (47 masks each). Forward baseline is also empty (53 masks per order).
+- Two native reversed plants (WELCOME and KOAN 1) retain the exact true hold mask and planted key class, including genuine F holds and a consuming double-zero; two unrelated native negatives have zero branches. Small-field brute-force check: 125/125 GF(5) cases agree with the union-find solver.
+- Durable report: im-results/lp2-p32-p55-reverse-period-key-original-gate.md; read-only reproducer: sims/lp2_p32_p55_reverse_period_key_sft.cjs. No original plaintext/key recovered. Do not extend p32/p55 reversal variants without a new source-authenticated selector.
