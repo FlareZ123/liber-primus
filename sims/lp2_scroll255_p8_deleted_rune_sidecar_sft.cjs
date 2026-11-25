@@ -30,10 +30,51 @@ function experiment(raw){
  const taken=new Set;for(const p of incompatible)if(p.every(i=>!taken.has(i))){pairs.push(p);for(const i of p)taken.add(i)}}
  return {supported:ws.length-unsupported.length,unsupported,byLength,anchors:anchors.map(r=>({i:r.i,domain:r.domain.length})),incompatible,pairs,minOOV:unsupported.length+pairs.length}}
  const original=[gate(words,side,false,true),gate(words,side,true,true)];
+
+ // Maximum independent set in the exact pair-incompatibility graph.
+ function independent(g){
+  const ids=g.anchors.map(a=>a.i),adj=ids.map(()=>0n);
+  for(const [a,b] of g.incompatible){const i=ids.indexOf(a),j=ids.indexOf(b);adj[i]|=1n<<BigInt(j);adj[j]|=1n<<BigInt(i)}
+  const count=n=>{let k=0;while(n){n&=n-1n;k++}return k},memo=new Map;
+  function rec(mask){if(!mask)return 0n;if(memo.has(mask))return memo.get(mask);let k=-1,d=-1;for(let i=0;i<ids.length;i++)if(mask&(1n<<BigInt(i))){const n=count(adj[i]&mask);if(n>d){k=i;d=n}}if(!d)return mask;const bit=1n<<BigInt(k),a=rec(mask&~bit),b=bit|rec(mask&~bit&~adj[k]);const best=count(a)>count(b)?a:b;memo.set(mask,best);return best}
+  const best=rec((1n<<BigInt(ids.length))-1n),witness=ids.filter((_,i)=>best&(1n<<BigInt(i)));
+  check(g.incompatible.every(([a,b])=>!witness.includes(a)||!witness.includes(b)),'independent witness');
+  return {maximum:witness.length,witness,states:memo.size,minOOV:g.unsupported.length+ids.length-witness.length};
+ }
+ // Exact original inverse for the two historical Vigenere keys, with
+ // arbitrary insertion position in each printed group and either clock.
+ function additive(ws,ys,key,held){
+  const q=key.length,mod=x=>(x%29+29)%29;let dp=Array(q).fill(0),independent=0,legalGroups=0;
+  for(let i=0;i<ws.length;i++){
+   const M=Array.from({length:q},()=>Array(q).fill(-1));for(let j=0;j<=ws[i].length;j++){
+    const c=insert(ws[i],j,ys[i]);for(let start=0;start<q;start++){
+     let p=[];function rec(k,t){if(k===c.length){const v=Number(lex.has(id(p)));M[start][t]=Math.max(M[start][t],v);return}
+      const x=c[k];if(held&&x===0){p.push(0);rec(k+1,t);p.pop()}
+      const z=mod(x-key[t]);if(!held||z!==0){p.push(z);rec(k+1,(t+1)%q);p.pop()}
+     }rec(0,start);
+    }
+   }
+   const best=Math.max(...M.flat());if(best>=0)legalGroups++;if(best===1)independent++;
+   const next=Array(q).fill(-Infinity);for(let s=0;s<q;s++)for(let t=0;t<q;t++)if(M[s][t]>=0)next[t]=Math.max(next[t],dp[s]+M[s][t]);dp=next;
+  }
+  const score=Math.max(...dp);return {independent,legalGroups,continuous:Number.isFinite(score)?score:null};
+ }
+ const historical=[];
+ for(const name of ['DIUINITY','FIRFUMFERENFE'])for(const sign of [1,-1])for(const held of [false,true]){
+  const key=greedy(name).map(x=>sign*x);check(key.length===(name==='DIUINITY'?8:13),'historical key length');historical.push({name,sign,held,...additive(words,side,key,held)});
+ }
+ const additiveControls=[];
+ for(const name of ['DIUINITY','FIRFUMFERENFE'])for(const held of [false,true]){
+  const key=greedy(name);let clock=0;const p=donors[1].slice(Math.floor(donors[1].length*.8)).filter(w=>lex.has(id(w))&&w.length>=2).slice(0,255),ws=[],ys=[];
+  for(let i=0;i<p.length;i++){const c=p[i].map(x=>held&&x===0?0:(x+key[clock++%key.length])%29);const j=(i*17+5)%c.length;ws.push(remove(c,j));ys.push(c[j])}
+  const result=additive(ws,ys,key,held);check(result.continuous===p.length&&result.independent===p.length,'continuous additive control');additiveControls.push({name,held,n:p.length,...result});
+ }
+
+ for(const g of original)g.independentSet=independent(g);
  let seed=0x3301255;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}function perm(){let a=Array.from({length:29},(_,i)=>i);for(let j=28;j>0;j--){let k=rng()%(j+1);[a[j],a[k]]=[a[k],a[j]]}return a}
  const controls=[];for(let d=0;d<donors.length;d++){const pool=Array.from({length:maxLen+1},()=>[]);for(const p of donors[d].slice(Math.floor(donors[d].length*.8)))if(p.length<=maxLen&&lex.has(id(p)))pool[p.length].push(p);
  const p=words.flatMap(w=>{const a=pool[w.length+1];return a.length?[a[rng()%a.length]]:[]});const enc=perm(),encSide=perm(),ws=[],ys=[],ys2=[];let shared=0,separate=0;for(const q of p){const j=rng()%q.length,w=remove(q,j).map(x=>enc[x]),y=enc[q[j]],z=encSide[q[j]];ws.push(w);ys.push(y);ys2.push(z);if(domains(w,y,false).some(r=>r.m.every((v,k)=>v<0||enc[v]===k)))shared++;if(domains(w,z,true).some(r=>r.removed===q[j]&&r.m.every((v,k)=>v<0||enc[v]===k)))separate++}check(shared===p.length&&separate===p.length,'plant true key retained');const repWords=[],repY=[],repY2=[];for(const q of p){const j=rng()%q.length;repWords.push(q.map(x=>enc[x]));repY.push(enc[q[j]]);repY2.push(encSide[q[j]])}const r1=repeatGate(repWords,repY),r2=repeatGate(repWords,repY2);check(r1.same===p.length&&r2.arbitraryBijection.score===p.length,'repeat control');controls.push({d,n:p.length,shared,separate,repeatShared:r1.same,repeatSeparate:r2.arbitraryBijection.score})}
- return {lex:lex.size,words:words.length,side:side.length,maxLen,repeat:repeatGate(words,side),original,controls};
+ return {lex:lex.size,words:words.length,side:side.length,maxLen,repeat:repeatGate(words,side),original,controls,historical,additiveControls};
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-transcription.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
 if(require.main===module)console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'))),null,2));
