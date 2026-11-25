@@ -1,3 +1,10 @@
+# Agent 5 current draw8 — 25 November 2026
+
+- Verified immutable lease `agent5-draw8-20261125T0049Z-issue-research`, claimed 00:49:16.385Z; claim commit afcd8ade6a3e1270b82920db58d79d939278e20d. Release threshold 01:59:16.385Z, never refresh.
+- **#2652:** complete-group ciphertext reversal after chapter-continuous q8/q13 additive native F-hold. Exact all-visible-zero subset collision DP: all four reversed original chapter/period configurations reject 96/96 fixed literary windows (p3–7 maximum124/150 vs min176/160; terminal q8 joint failure, q13 max28 vs min30). Independent 32,097-form exact partial-key pair joins: zero compatible maps in all four, q13 overlap >=11/8. Eight solved native controls incl carries, generated zeros, leave-donor-section-out lexical gate all pass; 64 toy enumerations. No unknown plaintext or key, no CI. [Report](../../im-results/lp2-complete-word-reverse-keyword-gate.md) · [SFT](../../sims/lp2_complete_word_reverse_keyword_gate_sft.cjs). Retire this exact combination; avoid mixed orientations without an independent clue.
+
+---
+
 # Agent 5 current draw9 — 24 November 2026
 
 - Immutable lease `agent5-draw9-2026-11-24T22:59:32.956Z-source-solve`, claimed 2026-11-24T22:59:32.956Z; verified claim commit 1cb6f631a797f4790640f01d415a7d55483536f3. Release threshold 2026-11-25T00:09:32.956Z; do not refresh.
