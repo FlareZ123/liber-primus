@@ -1,0 +1,185 @@
+{
+  "p56Replay": 85,
+  "originalLength": 1744,
+  "originalPrefix": 864,
+  "origRows": [
+    {
+      "lane": 1,
+      "legalPrefix": 59,
+      "states": 0,
+      "peak": 2,
+      "end": []
+    },
+    {
+      "lane": 2,
+      "legalPrefix": 3,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 3,
+      "legalPrefix": 15,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 4,
+      "legalPrefix": 27,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 5,
+      "legalPrefix": 5,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 6,
+      "legalPrefix": 34,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 7,
+      "legalPrefix": 31,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 8,
+      "legalPrefix": 0,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 9,
+      "legalPrefix": 115,
+      "states": 0,
+      "peak": 2,
+      "end": []
+    },
+    {
+      "lane": 10,
+      "legalPrefix": 150,
+      "states": 0,
+      "peak": 3,
+      "end": []
+    },
+    {
+      "lane": 11,
+      "legalPrefix": 13,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 12,
+      "legalPrefix": 10,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 13,
+      "legalPrefix": 23,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 14,
+      "legalPrefix": 2,
+      "states": 0,
+      "peak": 1,
+      "end": []
+    },
+    {
+      "lane": 15,
+      "legalPrefix": 81,
+      "states": 0,
+      "peak": 2,
+      "end": []
+    },
+    {
+      "lane": 16,
+      "legalPrefix": 116,
+      "states": 0,
+      "peak": 3,
+      "end": []
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "lane": 3,
+      "fit": 450,
+      "held": 330,
+      "visibleZeros": 49,
+      "trueF": 13,
+      "surviving": [
+        3
+      ],
+      "winner": 3,
+      "fitHits": 450,
+      "heldHits": 330,
+      "replay": true,
+      "ranked": [
+        {
+          "lane": 3,
+          "score": -2.3102875751954977
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "lane": 11,
+      "fit": 450,
+      "held": 305,
+      "visibleZeros": 40,
+      "trueF": 8,
+      "surviving": [
+        11
+      ],
+      "winner": 11,
+      "fitHits": 450,
+      "heldHits": 305,
+      "replay": true,
+      "ranked": [
+        {
+          "lane": 11,
+          "score": -2.8515570664165035
+        }
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "lane": 16,
+      "fit": 360,
+      "held": 155,
+      "visibleZeros": 29,
+      "trueF": 11,
+      "surviving": [
+        16
+      ],
+      "winner": 16,
+      "fitHits": 360,
+      "heldHits": 155,
+      "replay": true,
+      "ranked": [
+        {
+          "lane": 16,
+          "score": -2.68347473093879
+        }
+      ]
+    }
+  ],
+  "continuation": []
+}
