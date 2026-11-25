@@ -24,7 +24,7 @@ jobs:
           SFT: ${{ inputs.sft }}
           SFT_OUTPUT: ${{ runner.temp }}/source-test-output.json
         run: |
-          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_-]+\\.cpp$ ]]; then
+          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_-]+\.cpp$ ]]; then
             echo 'Select a flat sims/*.cpp file with safe path characters' >&2
             exit 2
           fi
