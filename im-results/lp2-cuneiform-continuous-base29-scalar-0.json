@@ -1,0 +1,158 @@
+{
+  "name": "control-0",
+  "N": 1680,
+  "len": [
+    214,
+    261,
+    271,
+    238,
+    228,
+    228,
+    240
+  ],
+  "truth": {
+    "msb": true,
+    "a": 1033,
+    "op": "divide"
+  },
+  "correct": 1680,
+  "fitCorrect": 1205,
+  "holdCorrect": 475,
+  "msb": true,
+  "range": {
+    "fitStart": 475,
+    "fitEnd": 1680,
+    "holdStart": 0,
+    "holdEnd": 475
+  },
+  "searched": 47098,
+  "top": [
+    {
+      "a": 1033,
+      "op": "divide",
+      "fit": 0.9886534211086808,
+      "carry": 644
+    },
+    {
+      "a": 8650,
+      "op": "multiply",
+      "fit": -1.6355578012796232,
+      "carry": 5708
+    },
+    {
+      "a": 2142,
+      "op": "divide",
+      "fit": -1.6722819983655426,
+      "carry": 1395
+    },
+    {
+      "a": 9431,
+      "op": "multiply",
+      "fit": -1.6732506343124716,
+      "carry": 6223
+    },
+    {
+      "a": 19882,
+      "op": "multiply",
+      "fit": -1.6814178421482306,
+      "carry": 13120
+    },
+    {
+      "a": 191,
+      "op": "multiply",
+      "fit": -1.6815417743385532,
+      "carry": 126
+    },
+    {
+      "a": 18509,
+      "op": "divide",
+      "fit": -1.6843475748530192,
+      "carry": 2514
+    },
+    {
+      "a": 14716,
+      "op": "multiply",
+      "fit": -1.6878079185289538,
+      "carry": 9711
+    }
+  ],
+  "win": {
+    "a": 1033,
+    "op": "divide",
+    "fit": 0.9886534211086808,
+    "carry": 644,
+    "hold": 0.9802571207265758,
+    "fitN": 1205,
+    "holdN": 475,
+    "fitPreview": "ETHANADOSENPERSONSWHOREADANDUNDERSTANDPLATONEUERENOUGHTOPAYFORANEDITIANOFHISWORCSYETTOEUERYGE",
+    "holdPreview": "ICTUPONEUERYBOOCARENOTTHEPARTIALANDNOISYREADERSOFTHEHOURWHENITAPPEARSBUTACOURTASOFANGELSAPUBLICN"
+  },
+  "fixed": [
+    {
+      "a": 1033,
+      "op": "divide",
+      "fit": 0.9886534211086808,
+      "carry": 644,
+      "hold": 0.9802571207265758,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "ETHANADOSENPERSONSWHOREADANDUNDERSTANDPLATONEUERENOUGHTOPAYFORANEDITIANOFHISWORCSYETTOEUERYGE",
+      "holdPreview": "ICTUPONEUERYBOOCARENOTTHEPARTIALANDNOISYREADERSOFTHEHOURWHENITAPPEARSBUTACOURTASOFANGELSAPUBLICN"
+    },
+    {
+      "a": 3301,
+      "op": "divide",
+      "fit": -1.930416766013468,
+      "carry": 228,
+      "hold": -2.076172442325015,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "THFWEOHCWOEGOEEIDDEOAOCUUOEEACNGRPEAEYEASIANTHJHGNGAWNEAABMTHTHOXGTJLDIREOISEOANROIAEACMDAWGYGNGEACJTHSIPBEAOEMSYTX",
+      "holdPreview": "DGOWIANGAEUHXITHOEHPUTHSSCTHXXYAIMEOIEAUHIAEOFCDBCRWMHYBEOEATHIAOMUTGURHPAFRJHETHETREOEOEAONBPAOEMYMEAIAIAXYAECNOJ"
+    },
+    {
+      "a": 3409933,
+      "op": "divide",
+      "fit": -2.124839264195051,
+      "carry": 2370346,
+      "hold": -1.8913783560490265,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "LRBSGBSEAPNYGTHEAREOCCLJYWUNEONSIAEASRWLNXXNJSPDFTEAGNGPUMEOTIEATHOEAEEEAESJAFCDXJDXHWTCMELCXAETHXWWAOEBDY",
+      "holdPreview": "LGAFCOOEAXJTHREACCALPTMGFHSYTURYDDIJPIARWYEOTAEEOFCOYEEANSNGAOJRJUTHCTHGNHDUYEOBEAEASSCSEIAYIAJNAXNGJNXIAFIF"
+    },
+    {
+      "a": 1033,
+      "op": "multiply",
+      "fit": -1.9573326931978716,
+      "carry": 681,
+      "hold": -1.8890846586843506,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "LSBGRJAYOEOEUNGDAEHTGMIYUAXEAHGJOXOIAOEIAEIAYHSWHFLPDNGULHOEXEAAEBEEABUGPAEOAITOTAMEOCNGWFTHENIAOEAIABWMAEOEFSTGP",
+      "holdPreview": "ONGJOEOEFLYHDANGXGNGXOEARTHGATYANDUCJLTETENNGSNGIOEWBUBEOIAOEUIDCTOSAPEWFOCIYHHONFOESAEECEOWUCTIALDEOTOERNUBEO"
+    },
+    {
+      "a": 3301,
+      "op": "multiply",
+      "fit": -2.046205887518161,
+      "carry": 2178,
+      "hold": -1.9357424456737309,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "EOXTHMSUWTDSAEAEGRTOTNGGAEIAUAEWJPLDOFGREIAINGAGTNGSNGTRLFTHEOAOHDERATHEOGJIIARXLABGIATATHEOOEANEOEACXLLGULNGYTHJL",
+      "holdPreview": "THJBNGAENGBOPWPMMTHEAERLMWYIADPEYEIPNGDPNGWPMXONGDHLEAEOEATHUNNGMOEFEUGJTHAEIIFHYEOYAEEGOEBDEANBBOCBTMBLGOEIRBHM"
+    },
+    {
+      "a": 3409933,
+      "op": "multiply",
+      "fit": -2.0633741515855792,
+      "carry": 2250318,
+      "hold": -2.067458517671113,
+      "fitN": 1205,
+      "holdN": 475,
+      "fitPreview": "NGEAGWAYEAADTHXTHNHNEOFXTOEUEBEOMBOEEAOTEONGOEEOSEAPEAHJIOEAELUSFFUIAMEABOUAEWHLWTHTHETHTHBEOXAERNEEASTHRCOGAAONTHTHETB",
+      "holdPreview": "XEEOMUUDRWRGWUJEOCIAAETHSPHBUHAELUTHAAERCGRFRHEEEANGIHYAEAEBGHAEORMPIIJGXTIAPFPBYXXTFTHCCTPNGLUFSJNGCOANGGSU"
+    }
+  ]
+}
