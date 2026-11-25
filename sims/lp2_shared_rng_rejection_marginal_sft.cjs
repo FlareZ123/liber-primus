@@ -171,14 +171,67 @@ function reachInterval(C,seed,lo=.72,hi=.882){
 }
 function intervalScore(C,R){return R.map(x=>({...x,...reachInterval(C,x.seed)}))}
 
+
+/** Paired-draw implementation of the same source-motivated filter:
+ * one key draw and one coin draw per *trial*, including noncolliding trials.
+ * Equivalent to a paired stream of (key,coin). Both evaluation orders are
+ * fixed before scoring: key-first or coin-first. No offsets/resets/seed
+ * expansion. Both differ materially from drawing a coin only on collision.
+ */
+function pairedPlant(P,seed,s=S,coinFirst=false){
+ let U=mtFloats(seed,2*(P.length+CAP+2)),j=0,prev=-1,rejects=0;const C=[];
+ function draw(k){if(k>=U.length)U=mtFloats(seed,Math.max(k+1,2*U.length));return U[k]}
+ for(const p of P){let c;
+   do{const k=Math.floor(29*draw(2*j+Number(coinFirst))),coin=draw(2*j+Number(!coinFirst));j++;c=(p+k)%29;if(c!==prev||coin>=s)break;rejects++}while(true);
+   C.push(c);prev=c;
+ }return {C,rejects};
+}
+function pairedInterval(C,seed,coinFirst=false,lo=.72,hi=.882){
+ let U=mtFloats(seed,2*(C.length+64)),extensions=0,maxStates=1,maxIntervals=1,maxDrift=0;
+ function draw(j){if(j>=U.length){U=mtFloats(seed,Math.max(j+1,2*U.length));extensions++}return U[j]}
+ const key=j=>Math.floor(29*draw(2*j+Number(coinFirst))),coin=j=>draw(2*j+Number(!coinFirst));
+ let states=new Map([[1,[[lo,hi]]]]);
+ for(let i=1;i<C.length;i++){
+   const c=C[i],prev=C[i-1],next=new Map();
+   function add(j,R,a,b){let T=next.get(j);for(const x of R){const l=Math.max(x[0],a),h=Math.min(x[1],b);if(l<h){if(!T){T=[];next.set(j,T)}T.push([l,h])}}}
+   for(const [j,R] of states){
+     if(c!==prev)add(j+1,R,lo,hi);
+     const p=(prev+29-key(j))%29;let k=j,floor=lo;
+     while(floor<hi){
+       const emit=(p+key(k))%29,u=coin(k);k++;
+       if(emit!==prev){if(emit===c)add(k,R,floor,hi);break}
+       if(c===prev&&u>floor)add(k,R,floor,Math.min(hi,u));
+       floor=Math.max(floor,u);
+     }
+   }
+   if(!next.size)return {complete:false,firstDead:i,maxStates,maxIntervals,maxDrift,extensions};
+   let count=0;for(const [j,R] of next){const a=mergeIntervals(R);next.set(j,a);count+=a.length;maxDrift=Math.max(maxDrift,j-i-1)}
+   maxStates=Math.max(maxStates,next.size);maxIntervals=Math.max(maxIntervals,count);states=next;
+ }
+ return {complete:true,firstDead:null,intervals:mergeIntervals([...states.values()].flat()),finalStates:states.size,maxStates,maxIntervals,maxDrift,extensions};
+}
+function pairedScore(C,R){return R.flatMap(x=>[false,true].map(coinFirst=>({...x,coinFirst,...pairedInterval(C,x.seed,coinFirst)})))}
+function intervalControls(C,P){
+ const inside=(a,x)=>a.complete&&a.intervals.some(([l,h])=>l<x&&x<=h);let checks=0;
+ for(let i=0;i<32;i++){const seed=0x49453122+i,U=mtFloats(seed,64),p=Array.from(mtFloats(seed^0x2883,12),v=>Math.floor(29*v)),E=plant(p,U,.8),a=reachInterval(E.C,seed),points=[.882,...Array.from(U).filter(x=>x>.72&&x<.882)].sort((x,y)=>x-y);let last=.72;for(const x of points){for(const q of [x,(x+last)/2]){if(inside(a,q)!==reach(E.C,seed,q).complete)throw Error("interval mismatch");checks++}last=x}}
+ const controls=[];for(let i=0;i<16;i++){const seed=0x6e420025+i,s=.725+i*(.15/15),U=mtFloats(seed,C.length+CAP+2),p=P.slice(500*i,500*i+C.length),E=plant(p,U,s),a=reachInterval(E.C,seed);if(!inside(a,s))throw Error("lost planted threshold");controls.push({seed,s,trueExtra:E.extra,repeats:E.repeats,...a})}
+ return {checks,controls};
+}
+function pairedControls(C,P){
+ const controls=[];
+ for(let i=0;i<16;i++){const seed=0x6f831416+i,s=.725+i*(.15/15),p=P.slice(500*i,500*i+C.length);
+ for(const coinFirst of [false,true]){const E=pairedPlant(p,seed,s,coinFirst),a=pairedInterval(E.C,seed,coinFirst);if(!a.complete||!a.intervals.some(([l,h])=>l<s&&s<=h))throw Error("lost paired plant");controls.push({seed,s,coinFirst,trueRejects:E.rejects,...a})}}
+ return controls;
+}
+
 function rows(prior){return prior.rows.flatMap(x=>[{rank:x.rank,seed:x.seed,variant:"literal"},...(x.seed>4294967295?[{rank:x.rank,seed:x.seed>>>0,variant:"low32"}]:[])])}
 function score(C,R){return R.map(x=>({...x,...marginal(C,mtFloats(x.seed,C.length+CAP+2))}))}
-module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,reach,reachScore,reachInterval,intervalScore,S,CAP};
+module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,reach,reachScore,reachInterval,intervalScore,pairedPlant,pairedInterval,pairedScore,intervalControls,pairedControls,S,CAP};
 if(require.main===module){
  const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8");
  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json")),prior=JSON.parse(read("im-results/lp2-r18-skipcount-feasibility-output.json")),C=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
  const {convert}=require("./lp2_perl_pgp_keyskip1_sft.cjs");
  const [group="control",start="0",end="545"]=process.argv.slice(2);
- const result=group==="control"?controls(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):(group.startsWith("interval")?intervalScore:group.startsWith("reach")?reachScore:score)(C,(group.endsWith("candidate")?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
+ const result=group.endsWith("control")?(group==="pairedcontrol"?pairedControls:group==="intervalcontrol"?intervalControls:controls)(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):(group.startsWith("paired")?pairedScore:group.startsWith("interval")?intervalScore:group.startsWith("reach")?reachScore:score)(C,(group.endsWith("candidate")?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
  console.log(JSON.stringify(result,null,2));
 }
