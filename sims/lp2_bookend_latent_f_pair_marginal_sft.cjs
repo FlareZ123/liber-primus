@@ -12,39 +12,32 @@ function experiment(inputs,caseIndex){
  const total=uni.reduce((a,b)=>a+b,0),u=Array.from(uni,x=>(x+.5)/(total+.5*Q)),bb=new Float64Array(Q*Q),prob=new Float64Array(B*B*Q),logs=new Float64Array(B*B*Q);
  for(let x=0;x<Q;x++){let k=0;for(let y=0;y<Q;y++)k+=bi[x*Q+y];for(let y=0;y<Q;y++)bb[x*Q+y]=(bi[x*Q+y]+16*u[y])/(k+16)}
  for(let x=0;x<B;x++)for(let y=0;y<B;y++){let k=0;if(x<Q&&y<Q)for(let z=0;z<Q;z++)k+=tri[(x*Q+y)*Q+z];let check=0;for(let z=0;z<Q;z++){let p=y===Q?u[z]:x===Q?bb[y*Q+z]:(tri[(x*Q+y)*Q+z]+32*bb[y*Q+z])/(k+32);let i=(x*B+y)*Q+z;prob[i]=p;logs[i]=Math.log(p);check+=p}assert(Math.abs(check-1)<1e-10,"LM normalization")}
- const logadd=(a,b)=>a===-Infinity?b:b===-Infinity?a:Math.max(a,b)+Math.log1p(Math.exp(-Math.abs(a-b)));
- function masks(y,known){let out=[new Uint8Array(y.length)];for(let i=0;i<y.length;i++)if(y[i]===0&&!(i===0&&known!==null&&known!==0)){out=out.concat(out.map(m=>{let k=m.slice();k[i]=1;return k}));}return out}
- const idx=(a,b,c,d)=>((a*B+b)*B+c)*B+d, init=idx(Q,Q,Q,Q);
- let f=new Float64Array(S),v=new Float64Array(S),nf=new Float64Array(S),nv=new Float64Array(S),stamp=new Int32Array(S),prev=new Int32Array(S),time=0;
- function events(y,z,m,k){let i=0,j=0,e=[];while(i<y.length||j<z.length){while(i<y.length&&m[i])e.push([i++,-1,0]);while(j<z.length&&k[j])e.push([-1,j++,1]);if(i<y.length&&j<z.length)e.push([i++,j++,2]);else if(i<y.length)e.push([i++,-1,3]);else if(j<z.length)e.push([-1,j++,4]);}return e}
- function joint(y,z,m,k,known,trace=false){
-  let ids=[init];f[init]=1;v[init]=0;let evi=0,max=1;const ev=events(y,z,m,k),hist=[];
-  for(const [i,j,kind] of ev){const t=++time,ni=[],delta=kind===2?mod(z[j]-y[i]):0,ka=i===0&&known!==null?known:-1;
-   function put(s,weight,val,old){if(stamp[s]!==t){stamp[s]=t;ni.push(s);nf[s]=weight;nv[s]=val;prev[s]=old}else{nf[s]+=weight;if(val>nv[s]){nv[s]=val;prev[s]=old}}}
-   for(let q=0;q<ids.length;q++){
-    const s=ids[q],d=s%B,cc=Math.floor(s/B)%B,b=Math.floor(s/B**2)%B,a=Math.floor(s/B**3),ab=(a*B+b)*Q,cd=(cc*B+d)*Q,fs=f[s],vs=v[s];
-    if(kind===0){if(ka<0||ka===0)put(idx(b,0,cc,d),fs*prob[ab],vs+logs[ab],q)}
-    else if(kind===1)put(idx(a,b,d,0),fs*prob[cd],vs+logs[cd],q);
-    else if(kind===2){for(let p=1;p<Q;p++){if(ka>=0&&ka!==p)continue;let r=mod(p+delta);if(r)put(idx(b,p,d,r),fs*prob[ab+p]*prob[cd+r]/Q,vs+logs[ab+p]+logs[cd+r]-Math.log(Q),q)}}
-    else if(kind===3){for(let p=1;p<Q;p++)if(ka<0||ka===p)put(idx(b,p,cc,d),fs*prob[ab+p]/Q,vs+logs[ab+p]-Math.log(Q),q)}
-    else{for(let r=1;r<Q;r++)put(idx(a,b,d,r),fs*prob[cd+r]/Q,vs+logs[cd+r]-Math.log(Q),q)}
+ // Each edge chooses the complete runs of literal-F holds immediately before the next
+ // consuming event(s). This is a unique canonical decomposition of every mask pair.
+ const idx=(a,b,c,d)=>((a*B+b)*B+c)*B+d, init=idx(Q,Q,Q,Q), LQ=Math.log(Q);
+ function joint(y,z,known){
+   const H=y.length+1,W=z.length+1,cells=Array(H*W);cells[0]=new Map([[init,[1,0,-1,-1,0,0,-1,-1]]]);let count=0,peak=0,edges=0;
+   const holds=(t,i,a,b,lock)=>{const out=[[i,a,b,1,0]];let w=1,l=0;while(i<t.length&&t[i]===0&&!(i===0&&lock!==null&&lock!==0)){let q=(a*B+b)*Q;w*=Q*prob[q];l+=LQ+logs[q];i++;a=b;b=0;out.push([i,a,b,w,l]);}return out;};
+   for(let i=0;i<H;i++)for(let j=0;j<W;j++){const at=i*W+j,m=cells[at];if(!m||at===H*W-1)continue;peak=Math.max(peak,m.size);count+=m.size;
+     for(const [s,e] of m){const d=s%B,cc=Math.floor(s/B)%B,b=Math.floor(s/B**2)%B,a=Math.floor(s/B**3),A=holds(y,i,a,b,known),Z=holds(z,j,cc,d,null);
+       for(const [ii,aa,bb,wa,la] of A)for(const [jj,cc,dd,wb,lb] of Z){const ha=ii-i,hb=jj-j,ex=ii<y.length,ez=jj<z.length,dest=(ii+(ex?1:0))*W+jj+(ez?1:0),n=cells[dest]||(cells[dest]=new Map()),pbase=(aa*B+bb)*Q,rbase=(cc*B+dd)*Q,weight=e[0]*wa*wb,val=e[1]+la+lb,ka=ii===0&&known!==null?known:-1;
+         function put(ns,w,v,p,q){edges++;const old=n.get(ns);if(old){old[0]+=w;if(v>old[1]){old[1]=v;old[2]=at;old[3]=s;old[4]=ha;old[5]=hb;old[6]=p;old[7]=q;}}else n.set(ns,[w,v,at,s,ha,hb,p,q]);}
+         if(ex&&ez){const delta=mod(z[jj]-y[ii]);for(let p=1;p<Q;p++){if(ka>=0&&ka!==p)continue;const q=mod(p+delta);if(q)put(idx(bb,p,dd,q),weight*Q*prob[pbase+p]*prob[rbase+q],val+LQ+logs[pbase+p]+logs[rbase+q],p,q);}}
+         else if(ex){for(let p=1;p<Q;p++)if(ka<0||ka===p)put(idx(bb,p,cc,dd),weight*prob[pbase+p],val+logs[pbase+p],p,-1);}
+         else if(ez){for(let q=1;q<Q;q++)put(idx(aa,bb,dd,q),weight*prob[rbase+q],val+logs[rbase+q],-1,q);}
+         else put(idx(aa,bb,cc,dd),weight,val,-1,-1);
+       }
+     }
    }
-   if(!ni.length)return {evi:-Infinity,best:-Infinity};
-   let sum=0;for(const s of ni)sum+=nf[s];assert(sum>0,"mass");evi+=Math.log(sum);for(const s of ni)nf[s]/=sum;
-   if(trace)hist.push({ids:Int32Array.from(ni),prev:Int32Array.from(ni,s=>prev[s])});
-   [f,nf]=[nf,f];[v,nv]=[nv,v];ids=ni;max=Math.max(max,ids.length);
-  }
-  let q=0;for(let k=1;k<ids.length;k++)if(v[ids[k]]>v[ids[q]])q=k;const best=v[ids[q]],out={evi,best,max};
-  if(trace){const p=Array(y.length),r=Array(z.length);for(let t=ev.length-1;t>=0;t--){const [i,j]=ev[t],h=hist[t],s=h.ids[q];if(i>=0)p[i]=Math.floor(s/B**2)%B;if(j>=0)r[j]=s%B;q=h.prev[q]}const kp=p.flatMap((x,i)=>x?[mod(y[i]-x)]:[]),kr=r.flatMap((x,i)=>x?[mod(z[i]-x)]:[]);assert(kp.slice(0,Math.min(kp.length,kr.length)).every((x,i)=>x===kr[i]),"shared suffix replay");assert(p.every((x,i)=>x?true:y[i]===0)&&r.every((x,i)=>x?true:z[i]===0),"F replay");Object.assign(out,{p:p.reverse(),r:r.reverse(),keyA:kp.reverse(),keyB:kr.reverse()});}
-  return out;
+   const last=H*W-1,m=cells[last];assert(m&&m.size,"no final state");let sum=0,best=-Infinity,state=-1;for(const [s,e] of m){sum+=e[0];if(e[1]>best){best=e[1];state=s;}}assert(sum>0&&Number.isFinite(sum),"final mass");
+   let at=last,p=Array(y.length),r=Array(z.length);while(at!==0){const e=cells[at].get(state),[,,prev,ps,ha,hb,pa,pb]=e,i=Math.floor(prev/W),j=prev%W;for(let k=0;k<ha;k++)p[i+k]=0;for(let k=0;k<hb;k++)r[j+k]=0;if(pa>=0)p[i+ha]=pa;if(pb>=0)r[j+hb]=pb;at=prev;state=ps;}
+   assert(p.filter(Number.isInteger).length===y.length&&r.filter(Number.isInteger).length===z.length,"trace length");
+   const kp=p.flatMap((x,i)=>x?[mod(y[i]-x)]:[]),kr=r.flatMap((x,i)=>x?[mod(z[i]-x)]:[]);assert(kp.slice(0,Math.min(kp.length,kr.length)).every((x,i)=>x===kr[i]),"shared suffix replay");assert(p.every((x,i)=>x?true:y[i]===0)&&r.every((x,i)=>x?true:z[i]===0),"F replay");
+   return {evi:Math.log(sum)-(y.length+z.length)*LQ,best:best-(y.length+z.length)*LQ,peak,count,edges,p:p.reverse(),r:r.reverse(),keyA:kp.reverse(),keyB:kr.reverse()};
  }
  function nullEvidence(y,known){let f=new Float64Array(B*B),nf=new Float64Array(B*B),e=0;f[Q*B+Q]=1;
  for(let i=0;i<y.length;i++){let c=y[i];nf.fill(0);for(let s=0;s<f.length;s++){const fs=f[s];if(!fs)continue;let b=s%B,base=s*Q;for(let p=0;p<Q;p++){if(i===0&&known!==null&&p!==known)continue;if(!p&&c!==0)continue;nf[b*B+p]+=fs*prob[base+p]/(p?Q:1);}}let z=nf.reduce((a,b)=>a+b,0);assert(z>0,"null");e+=Math.log(z);for(let j=0;j<nf.length;j++)nf[j]/=z;[f,nf]=[nf,f];}return e;}
- function solve(a,b,known=null,truthA=null,truthB=null){const y=a.slice().reverse(),z=b.slice().reverse(),ma=masks(y,known),mb=masks(z,null);let best=-Infinity,ev=-Infinity,pair=null,max=0,count=0;
-  for(const m of ma)for(const k of mb){const r=joint(y,z,m,k,known);count++;ev=logadd(ev,r.evi);if(r.best>best){best=r.best;pair=[m,k]}max=Math.max(max,r.max||0);}
-  const rr=joint(y,z,...pair,known,true);assert(Math.abs(rr.best-best)<1e-8,"replay score");const n0=nullEvidence(y,known)+nullEvidence(z,null);
-  const render=p=>p.map(x=>c.translit[x]).join("");return {n:[a.length,b.length],zero:[a.filter(x=>!x).length,b.filter(x=>!x).length],known,maskPairs:count,logBF:ev-n0,logBFPerPair:(ev-n0)/Math.min(a.length,b.length),bestLog:best,max,plainA:render(rr.p),plainB:render(rr.r),p:rr.p,r:rr.r,keyA:rr.keyA,keyB:rr.keyB,correct:truthA?[rr.p.filter((x,i)=>x===truthA[i]).length,rr.r.filter((x,i)=>x===truthB[i]).length]:null};
- }
+ function solve(a,b,known=null,truthA=null,truthB=null){const y=a.slice().reverse(),z=b.slice().reverse(),rr=joint(y,z,known),n0=nullEvidence(y,known)+nullEvidence(z,null),render=p=>p.map(x=>c.translit[x]).join("");return {n:[a.length,b.length],zero:[a.filter(x=>!x).length,b.filter(x=>!x).length],known,logBF:rr.evi-n0,logBFPerPair:(rr.evi-n0)/Math.min(a.length,b.length),bestLog:rr.best,peak:rr.peak,states:rr.count,edges:rr.edges,plainA:render(rr.p),plainB:render(rr.r),p:rr.p,r:rr.r,keyA:rr.keyA,keyB:rr.keyB,correct:truthA?[rr.p.filter((x,i)=>x===truthA[i]).length,rr.r.filter((x,i)=>x===truthB[i]).length]:null};}
  let seed=0x28F57027;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)%n}
  function plant(a,b,share,known){let ka=Array.from({length:a.filter(x=>x).length},()=>rand(Q)),kb=Array.from({length:b.filter(x=>x).length},()=>rand(Q));if(share)for(let i=1;i<=Math.min(ka.length,kb.length);i++)kb[kb.length-i]=ka[ka.length-i];const enc=(p,k)=>{let j=0;return p.map(x=>x?mod(x+k[j++]):0)};return [enc(a,ka),enc(b,kb)]}
  const p55=c.pages[55].indices,ch=c.pages.slice(27,33).flatMap(p=>p.indices),p27=ch.slice(-42).concat(ch.slice(0,34));assert(p55.length===76&&p27.length===76&&String(p55.slice(-6))===String(p27.slice(-6)),"bookend");
