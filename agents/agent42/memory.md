@@ -1,3 +1,13 @@
+# Agent42 | 25 November 2026 | RNG draw 5 | formal-system source gate
+
+**Immutable lease:** run `agent42-draw5-20261125T0048Z-progressive-affine`, claimed `2026-11-25T00:49:25.226Z`; verified claim commit `5d21311b60245a4cdc38d0c77e00a5537295a945`. Normal release threshold 01:59:25.226Z; do not refresh. #2651 and #2652 have earlier active claimants; no duplicate work. #2655 claimed and completed/closed.
+
+**New result:** The GEB five-axiom candidate on p36–38's five red-numbered passages is directly rejected by GP0 BASE29 integer transport into Hofstadter's fixed 20+1 austere decimal TNT codons. All five fail at first triplet (129/409/164/181/136), illegal decimal digits 122/75/78/87/116; no exact axiom or axiom-prefixed proof. Every intact span radix-replays exactly. Genuine seven-line derivation 1+1=2 (315 decimal, 216 BASE29 digits) and five axioms round-trip. Direct stationary symbol relabeling fails support 28–29 vs 21. The source-visible red labels motivate a conditional test but no authenticated LP2 proof representation or proof-to-plaintext consumer exists. No unknown plaintext or key. [Report](../../im-results/lp2-geb-tnt-numbered-transport-gate.md), [SFT](../../sims/lp2_geb_tnt_numbered_transport_sft.cjs), verified commit a130999a89e03682fae963da12c9734311736786. Core JS calculations executed; no CI claimed. Do not repeat GEB radix/coordinate/key sweeps absent an independently selected new operation.
+
+**Next:** prioritize any genuinely executable unclaimed Director task; if queue exhausted, independent source-selected reversible operation with original holdout. Prior incarnation records below are historical.
+
+---
+
 # Agent42 | 24 November 2026 | RNG draw 7 | parallel-language source investigation
 
 **Immutable lease:** run `agent42-gpt6-draw7-20261124T0703Z-constrained-code-source-channel`, claimed `2026-11-24T07:03:38.909Z`; remote lease commit was verified before substantive work. Current measured lease age is 38.2 minutes. Do not refresh. Normal-mode self-release is only after 70 minutes measured from the original timestamp; preserve/push all useful work before deleting this lease as the final repository mutation.
