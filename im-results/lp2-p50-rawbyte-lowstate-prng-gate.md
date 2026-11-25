@@ -21,7 +21,7 @@ A positive would be an exact generator and initial-state witness that reproduces
 | Generator and output register | Test against the original 256-cell source | Row-major | Column-major |
 |---|---|---:|---:|
 | **32-bit linear xorshift**: all three shifts `a,b,c∈[1,31]`, both left-right-left and right-left-right XOR-shift orders, either lowest or highest eight bits from every updated 32-bit state | For each model, form 32 GF(2) basis-state output vectors, projected to the first eight observed output bytes (64 bits). Existence of any compatible *unknown 32-bit initial state* requires that 64-bit observed vector lie in their linear span; test **119,164** models per reading order | **0** models fit first 8 bytes | **0** models fit first 8 bytes |
-| **glibc `random()&255`**, 31-state additive recurrence with taps 3 and 31 and low-bit-discarded 31-bit outputs | Every index `i≥31` must have `(b[i]−b[i−3]−b[i−31]) mod256 ∈ {0,1}`. The possible carry of one accounts for the discarded internal low bit. This is **seed-independent** | **4/225** compatible recurrences | **2/225** compatible recurrences |
+| **glibc `random()&255`**, 31-state additive recurrence with taps 3 and 31 and low-bit-discarded 31-bit outputs | Every index `i≥31` must have `(b[i]−b[i−3]−b[i−31]) mod256 ∈ {0,1}`. The carry is the AND of the two discarded low bits. This is **seed- and state-independent** | **4/225 positions match; 221/225 violate** | **2/225 positions match; 223/225 violate** |
 | **One direct, arbitrary-parameter 8-bit LCG** `b[i]=(a·b[i−1]+c) mod256` | Exhaustively test all 256×256 possible pairs `(a,c)` against all 255 original transitions | **0** full-sequence pairs | **0** full-sequence pairs |
 | **Five historical-style 32-bit LCG formulas**, including MSVC, ANSI C, Numerical Recipes, Borland and Delphi multipliers/increments | For each of six fixed contiguous 8-bit output windows at shifts `0,8,15,16,23,24`, enumerate **every one of 2²⁴ possible initial 32-bit states conditioned on observed first byte** and require an exact match of the first **16** table bytes; 5×6×2 = 60 models and **1,006,632,960** candidate states | **0/30** model/window matches | **0/30** model/window matches |
 
@@ -29,22 +29,35 @@ For the 32-bit LCG enumeration, a 16-bit or 8-bit state is *not* assumed: for an
 
 **Do not generalize the glibc invariant** to glibc's higher-byte outputs or to other state generators. It applies exactly to `random()&255`, including any 31-word warmup and seed: recurrence propagates after its state ring is initialized. The 31/3 condition does not hold for a truncated *higher* byte with just one carry; other projections would require a different gate.
 
+### Exact seed-free TYPE_3 state decision (25 November 2026)
+
+The earlier `glibc31Matches` routine counts **positions** satisfying the local necessary condition; it does not count candidate recurrence models. The previous table wording “compatible recurrences” was incorrect and is corrected above. For state words `X[n] = X[n−3] + X[n−31] mod 2^32`, the low byte of glibc `random()` is `B[n]=(X[n]>>1) mod256`; therefore `(B[n]−B[n−3]−B[n−31]) mod256` must be 0 or 1 at **every** one of the 225 positions. The carry is exactly `(X[n−3] mod 2) AND (X[n−31] mod 2)`.
+
+| Original reading | Positions satisfying the necessary condition | Violations | First checked delta at n=31 |
+|---|---:|---:|---:|
+| Base60 row-major | 4/225 | **221** | 36 |
+| Base60 column-major | 2/225 | **223** | 98 |
+| Base59 row-major | 3/225 | **222** | 39 |
+| Base59 column-major | 2/225 | **223** | 100 |
+
+The first recurrence check already fails in all four readings. Thus **no hidden TYPE_3 state and no seed can realize any of these four original sequences**; state recovery and continuation prediction are unnecessary. The focused [seed-free glibc SFT](../sims/lp2_p50_glibc31_full_state_sft.cjs) re-reads the original 256 tokens, checks both fixed radix interpretations and both fixed physical orders, and validates the condition on six actual source-reproducing TYPE_3 streams (seeds 0, 1, `0x3301`, `0x12345678`, `0x80000000`, `0xffffffff`). All six positive streams satisfy 225/225 positions. The implementation's six known vectors/96 draws match Debian glibc 2.41; the exact glibc 2.15 source is pinned in the SFT.
+
 ## Independent radix59 numeral interpretation
 
 The conventional radix60-to-byte interpretation is historically **unconfirmed**. To prevent a negative that depends entirely on one contested encoding, a separate [original-token radix59 SFT](../sims/lp2_p50_radix59_weakstate_prng_sft.cjs) reads all **256 original paired numeral tokens** from `resources/liber-primus/lp2-grid-256.json`, removes lowercase `f` from the printed 60-character alphabet, and interprets each token as `59×index(first)+index(second)`. No token uses `f`; **all 256** alternative values are again valid bytes, with 161 distinct values. The first eight are `C8 E3 A4 B7 60 E9 7C B4` hex (200,227,164,183,96,233,124,180), versus the conventional radix60 opening `CB E7 A7 BA 61 ED 7E B7`.
 
 With the same two original, clue-visible reading orders, the independent radix59 input produces:
 
-| Original alternative source reading | Xorshift 32-bit models passing first eight bytes /119,164 | glibc31/3 sum-or-carry pairs /225 | Arbitrary 8-bit full-length LCG pairs |
+| Original alternative source reading | Xorshift 32-bit models passing first eight bytes /119,164 | glibc31/3 local positions satisfying carry condition /225 | Arbitrary 8-bit full-length LCG pairs |
 |---|---:|---:|---:|
-| Radix59, printed rows | **0** | **3** | **0** |
-| Radix59, vertical columns | **0** | **2** | **0** |
+| Radix59, printed rows | **0** | **3 match / 222 violate** | **0** |
+| Radix59, vertical columns | **0** | **2 match / 223 violate** | **0** |
 
 The additional **238,328** exact xorshift model checks therefore do not rescue the straightforward *consecutive 32-bit xorshift byte stream* even if the historical alphabet omits lowercase f. The alternative generator tests are source-conditional, with the same exact output-register assumptions and positive controls as the primary source SFT. The **1,006,632,960-state five-generator LCG32 exhaustion above is specifically radix60 only**; this supplementary radix59 gate does not extend that high-window LCG claim, only the first three generator families in the table. No original LP2 ciphertext/plaintext was consulted in choosing the alphabet.
 
 ## Executed reproducibility
 
-- [CommonJS original-table exact gate](../sims/lp2_p50_weakstate_prng_source_sft.cjs) reads the shared 256-byte source, asserts original source shape/first row, runs all 238,328 xorshift parameter/output/orientation cells and both finite seed-independent recurrence checks. The GF(2) test accepts a separately seeded 32-bit planted xorshift stream, rejects an impossible target, and validates the glibc additive output rule using a planted 256-output 31-state recurrence. The 8-bit LCG positive has a nontrivial affine planted stream.
+- [CommonJS original-table exact gate](../sims/lp2_p50_weakstate_prng_source_sft.cjs) reads the shared 256-byte source, asserts original source shape/first row, runs all 238,328 xorshift parameter/output/orientation cells and the finite recurrence checks. The GF(2) test accepts a separately seeded 32-bit planted xorshift stream and rejects an impossible target; the 8-bit LCG positive has a nontrivial affine planted stream. The focused [glibc31/3 SFT](../sims/lp2_p50_glibc31_full_state_sft.cjs) independently validates the exact TYPE_3 low-byte recurrence on six source-reproducing seeded streams and rejects all four original radix/order readings.
 - [C++17 full 32-bit LCG initial-state enumerator](../sims/lp2_p50_lcg32_fullseed_source_sft.cpp) independently rereads the source `byte_rows`, checks the first original bytes, and covers all **2²⁴** compatible initial states for each of 60 declared models. Every output-window enumeration is validated by a planted 32-bit state, and the 16-byte target must match exactly (no approximate score). The source-constrained local optimized C++ run reached all 60 cases with zero matches.
 - [Windows Node.js 22 original-source passing CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43755633640) confirms execution of the CommonJS gate in the shared repository. The portable C++17 program also compiled and passed locally under GCC 14 with strict warnings.
 

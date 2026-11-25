@@ -139,7 +139,7 @@ function main() {
     const xs = xorshiftGate(bytes);
     const gr = glibc31Matches(bytes);
     const lc = lcg8CandidateCount(bytes);
-    console.log(`${orientation}: xorshift=${xs.tests} full-parameter GF(2) seed-existence tests, surviving=${xs.hits.length}; glibc(3,31) compatible=${gr}/225; LCG raw-low8 full-sequence pairs=${lc}`);
+    console.log(`${orientation}: xorshift=${xs.tests} full-parameter GF(2) seed-existence tests, surviving=${xs.hits.length}; glibc(3,31) local positions matching=${gr}/225, violations=${225-gr}; LCG raw-low8 full-sequence pairs=${lc}`);
     assert.equal(xs.tests, 119164);
     assert.deepEqual(xs.hits, []);
     assert.equal(gr, orientation === 'row' ? 4 : 2);

@@ -36,7 +36,7 @@ function main(){
  for(const orientation of /** @type {('row'|'column')[]} */ (['row','column'])){
    const b=ordered(rows,orientation);
    const xs=xorshiftGate(b),gl=glibc31Matches(b),lc=lcg8CandidateCount(b);
-   console.log(`radix59 ${orientation}: xorshift ${xs.tests} cases, hits=${xs.hits.length}; glibc31/3 compatible=${gl}/225; low8 LCG full-pairs=${lc}`);
+   console.log(`radix59 ${orientation}: xorshift ${xs.tests} cases, hits=${xs.hits.length}; glibc31/3 local positions matching=${gl}/225, violations=${225-gl}; low8 LCG full-pairs=${lc}`);
    assert.equal(xs.tests,119164);
    assert.deepEqual(xs.hits,[]);
    assert.equal(gl,orientation==='row'?3:2);
