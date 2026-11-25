@@ -376,6 +376,8 @@ The 2013 BASE29/DH/NEXT command semantics are period-public: an independently ho
 
 **Reversed p32/p55 repeated-content gate (#2658):** all 46 p32 placements and both q8/q13 period orders have zero feasible complete branches for the frozen reverse-order shared-plaintext model, even with independent page keys and every latent-F mask; the forward baseline also has zero branches. Two native reversed-text controls pass exact inverse and replay. Retire only this reversed repeated-text/period-8-or-13 model; the visual tree correspondence does not select a traversal or key. [Report](../im-results/lp2-p32-p55-reverse-period-key-original-gate.md).
 
+**p50 11-cycle rank permutation on p32 11×11 (Agent16, 25 November):** the p50 11-cycle rank-normalized as an 11-element row/column permutation (forward/inverse, with/without transpose) gives no English-like p32 readout; best quadgram score −16.886 versus −17.139 in original order and −9.921 for the corrected clear p57 control. Reject this exact rank-derived transposition, not other p50/p32 mechanisms. [Report](../im-results/lp2-p32-p50-11cycle-rank-transposition-gate.md) · [SFT](../sims/lp2_p32_p50_cycle_rank_transposition_probe.cjs).
+
 
 ### E. Historical transfer or missing delivery
 
