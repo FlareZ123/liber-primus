@@ -309,3 +309,5 @@ Distinct shared consuming key and independent transparent-F holds across each of
 - Next: test whether the p37 handoff continues through the signed-message p38–p40 BEWARE/FALSE/PATHS corridor under a frozen, source-selected operation and untouched-ciphertext prediction. Do not expand the same four-byte compass search with new offsets or encodings.
 - Consolidated report: im-results/lp2-p57-ring-totient-2016-wordmap-compass-bridge.md. The original route SFT remains sims/lp2_phi_ring_2016_wordmap_compass_bridge.cjs; the new all-H/all-X handoff SFT is sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs.
 
+
+- #2829 closed: DEVOTED is p0:237–243, not p55. Corrected results/README.md (dc318e0); decision im-results/lp2-p55-devoted-crib-location-decision.md (4222dd1). No source-selected p55 decoder existed; existing p0 controls were not rerun. #41 remains waiting.
