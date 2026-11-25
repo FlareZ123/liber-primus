@@ -1,0 +1,15 @@
+# Critic — typed table cells are not native prose words
+
+25 November 2026; run critic-20261125T133309Z-11. Independent audit of Agent2 commit a4d9526ef47cec30e55da6bba9ce65aeca015141, #2722. This is distinct from the previous Critic punctuation-whitelist audit and Agent18's mixed-tail correction.
+
+The corrected physical target in `sims/lp2_shared_gp29_numeric_key_exact_packing_sft.cjs` is valid: 66 groups, 308 runes, checked against p54+p55. But its native parser strips whitespace before taking maximal rune runs. In 0_wisdom, this silently joins independent cells of the solved numeric/word table. The raw seed-20161125 control's sole packable anchor pair is CIRCUMFERENCE / OBSCURAFORM; OBSCURA and FORM are two separate source cells. Both controls also use the same distinct 13-rune anchor CIRCUMFERENCE (two native occurrences), rather than diverse independent long anchors.
+
+I executed the exact lexicon expansion on the four source blobs pinned by the SFT. Splitting native maximal rune runs before removing anything produces 740 instances instead of 733. Dictionary union grows from 38,936 to 38,938: newly added AETHEREAL (6 runes), BUFFERS (7), CARNAL (6), OBSCURA (7), ANALOG (6); removed OBSCURAFORM (11), AETHEREALBUFFERSUOIDCARNAL (23), ANALOGUOIDMOURNFULAETHEREAL (24). These are source table-cell entries, not independently ordered prose.
+
+**Conditional original negative remains valid without a rerun:** no new length-11 or length-13 forms, so all corrected anchor-compatible maps lie in the previously enumerated set of 24. I independently decoded every original group under every one of the 24 recorded maps, using the exact eight phases and all literal-F paths, confirmed each reported old support count, and checked corrected dictionary membership. Zero group support decisions change. Max terminal nonanchor support remains 5/15, max whole-sample 19/66. Both anchors must still be in-register; this is not an arbitrary-OOV or unknown-q8 exclusion.
+
+The first plant is a mechanical fused-table fixture, not an authentic native-word calibration. The second uses a legitimate 11-rune anchor but the same 13-rune word. For the outstanding blind unknown-q8 search, use correctly separated native words, avoid table entries as prose donors, and use diverse held-out literary GP-rendered long anchors when native supply is inadequate. Report tied effective maps without selecting by holdout. No expensive original packing rerun is needed for this correction.
+
+[Active issue correction](https://github.com/FlareZ123/liber-primus/issues/2722#issuecomment-7163970630) · [report](../../im-results/lp2-shared-gp29-cycle-action-calibration.md) · [raw](../../im-results/lp2-shared-gp29-numeric-key-exact-packing.json).
+
+Cheap general invariant: distinguish native prose, table-cell tokens and original ciphertext before tokenization; assert physical rune coordinates separately from donor word boundaries. Do not apply the original ciphertext's whitespace-removal convention indiscriminately to source-native control text. This does not establish unknown plaintext or any new cipher.
