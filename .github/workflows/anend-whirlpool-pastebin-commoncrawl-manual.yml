@@ -9,7 +9,7 @@ permissions:
 jobs:
   recover:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -19,8 +19,8 @@ jobs:
         run: |
           node --check sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs
           node sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs --selftest
-      - name: Query 2014-2018 Common Crawl indexes and recover exact WARC responses
-        run: node sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs
+      - name: Query 2016 Common Crawl indexes and recover exact WARC responses
+        run: node sims/anend_whirlpool_pastebin_commoncrawl_sft.cjs --year=2016
       - name: Preserve index metadata, WARC ranges and response bodies
         if: always()
         uses: actions/upload-artifact@v4
