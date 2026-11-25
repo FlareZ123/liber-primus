@@ -54,6 +54,34 @@ function sharedPrefixGate(raw,k=6,q=76){
   }
   const v=arr.subarray(0,used);v.sort();let histogram=[],heavy=[],distinct=0;
   for(let i=0;i<used;){let j=i+1;while(j<used&&v[j]===v[i])j++;const s=j-i;histogram[s]=(histogram[s]||0)+1;distinct++;if(s>=2)heavy.push([v[i],s]);i=j}
+
+  // Invert just the rare four-supported key prefixes against exact
+  // original group prefixes, rather than repeat the full candidate table.
+  let packing=null;
+  if(!truth&&histogram.length===5){
+   const high4=heavy.filter(x=>x[1]===4).map(x=>x[0]),prefixSets=new Map;
+   function pset(n,L){const key=n*32+L;if(!prefixSets.has(key))prefixSets.set(key,new Set(bylen[n].map(w=>w.slice(0,L))));return prefixSets.get(key)}
+   function keyDigits(u){const K=Array(k);for(let j=k-1;j>=0;j--){K[j]=u%29;u=Math.floor(u/29)}return K}
+   function supports(C,K){
+    for(const D of [C,...C.map((_,i)=>C.slice(0,i).concat(C.slice(i+1)))]){
+     if(D.length>24||D.length<k)continue;let P=[];
+     function visit(j,h){if(h===k)return pset(D.length,j).has(id(P.slice(0,j)));if(j===D.length)return false;
+      if(D[j]===0){P[j]=0;if(visit(j+1,h))return true}
+      P[j]=mod(D[j]-K[h]);return visit(j+1,h+1)
+     }if(visit(0,0))return true;
+    }return false;
+   }
+   const list=high4.map(u=>{const K=keyDigits(u),groups=[];for(let i=0;i<eligible.length;i++)if(supports(eligible[i],K))groups.push(rows.indexOf(eligible[i]));assert(groups.length===4,"four-support replay");return {u,K,groups}});
+   const N=list.length;assert(N<=30,"bitset support");
+   const adj=list.map((x,i)=>list.reduce((m,y,j)=>i!==j&&x.groups.some(g=>y.groups.includes(g))?m|(1<<j):m,0));
+   const memo=new Map;
+   function pop(x){let n=0;while(x){x&=x-1;n++}return n}
+   function mis(mask){if(!mask)return 0;if(memo.has(mask))return memo.get(mask);let i0=-1,deg=-1;for(let i=0;i<N;i++)if(mask&(1<<i)){const d=pop(mask&adj[i]);if(d>deg){deg=d;i0=i}}
+    if(!deg)return mask;let a=mis(mask&~(1<<i0)),b=mis(mask&~(1<<i0)&~adj[i0])|(1<<i0),best=pop(a)>=pop(b)?a:b;memo.set(mask,best);return best;
+   }
+   const witness=mis((1<<N)-1),selected=list.filter((_,i)=>witness&(1<<i));assert(new Set(selected.flatMap(x=>x.groups)).size===4*selected.length,"packing witness");
+   packing={count:N,conflictEdges:adj.reduce((a,x)=>a+pop(x),0)/2,maximumDisjoint:selected.length,witness:selected.map(x=>x.u),list,states:memo.size};
+  }
   const old=[],bounds=[];for(let p=1;p<=256;p++){old.push(Math.min(p,distinct));bounds.push(Math.min(p,distinct))}
   const edgeReport=[];let G2;
   for(let t=2;t<histogram.length;t++){
@@ -72,9 +100,10 @@ function sharedPrefixGate(raw,k=6,q=76){
    edgeReport.push({t,tuples:H.length,edges,graph:G});
   }
   if(G2)for(let p=G2.maxPath+1;p<=256;p++)bounds[p-1]=Math.min(bounds[p-1],2*p+G2.multi3+G2.extra4);
+  if(packing&&G2&&G2.multi3===0)for(let p=G2.maxPath+1;p<=256;p++)bounds[p-1]=Math.min(bounds[p-1],2*p+packing.maximumDisjoint);
   const required=Math.max(0,eligible.length-budget);let plain=0,left=q;for(let t=histogram.length-1;t>=1&&left>0;t--){const c=Math.min(left,histogram[t]||0);plain+=t*c;left-=c}
   function minP(b){let i=b.findIndex(x=>x>=required);return i<0?">256":i+1}
-  return {groups:rows.length,eligible:eligible.length,budget,required,candidatePairs:used,distinct,histogram,edgeReport,period:q,unconstrainedSupport:plain,overlapSupport:old[q-1],gapGraphSupport:bounds[q-1],minPeriodOld:minP(old),minPeriod:minP(bounds),selected:[29,39,58,76,90,128,138,150,170,180,188,256].map(p=>[p,old[p-1],bounds[p-1]]),confirmed};
+  return {packing,groups:rows.length,eligible:eligible.length,budget,required,candidatePairs:used,distinct,histogram,edgeReport,period:q,unconstrainedSupport:plain,overlapSupport:old[q-1],gapGraphSupport:bounds[q-1],minPeriodOld:minP(old),minPeriod:minP(bounds),selected:[29,39,58,76,90,128,138,150,170,180,188,256].map(p=>[p,old[p-1],bounds[p-1]]),confirmed};
  }
  const examples=orig.filter(w=>w.filter(v=>v!==0).length>=k+1),check=[...examples.filter(w=>w.slice(0,k).includes(0)).slice(0,3),...examples.filter(w=>!w.includes(0)).slice(0,3)];
  for(const C of check){const a=cands(C),b=cands(C,true);assert(a.size===b.size&&[...a].every(x=>b.has(x)),"projection mismatch")}
