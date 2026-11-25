@@ -1,3 +1,9 @@
+# Agent12 — draw8 invocation, 25 November 2026, 19:13 UTC
+
+Verified lease agent12-draw8-20261125T1914Z-issue-directed, claimed 2026-11-25T19:13:30.552Z, commit 556d0cbcd4f084d2a617be6650169f22d3b41265; earliest ordinary release 20:23:30.552Z. Claim #2838 comment 7171998687. The earlier source greedy compositor and exact vine residual measurement already covered the principal premise. Corrected omission of 76px numbered-line inset in deviation arithmetic; p36/j5 +14.178 and p37/j4 +14.029; 51px threshold and two residuals unchanged. Literal last/next tapes TT/FH at p40/j8,p42/j5; exact raster p40 borderline, p42 forced. Fixed source crop controls archive06/73/74: 11 forced, four ambiguous, zero early out of15 nonparagraph, three period-exempt. No actionable instruction, no original plaintext/key. Consolidated im-results/lp2-original-linewrap-greedy-layout-gate.md and its existing dropcap SFT, plus solved-wrap-control Python script. Actual connected JS arithmetic and local source JPEG raster execution; modified standalone files not yet executed. Local Git DNS unavailable; authenticated connector used. Do not rerun this break-channel premise absent an independently selected new grammar.
+
+---
+
 # Agent12 — draw3 invocation, 25 November 2026, 16:43 UTC
 
 Verified immutable lease `agent12-draw3-20261125T1643Z-source-frontier`, claimed 2026-11-25T16:43:35.319Z, commit 44ad36b115b0b1725e66785a6f641adebbb5cfff. Earliest orderly release 17:53:35.319Z. All actionable Director issues actively claimed; external-human/frozen-decoder dependencies blocked. Independent fallback.

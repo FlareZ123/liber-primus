@@ -12,6 +12,8 @@
  * This is an original-layout control, NOT a decoded LP2 cipher.
  */
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const { parseOriginal, fit, classify } = require('./lp2_original_linewrap_greedy_geometry_sft.cjs');
 
 /** @typedef {{page:number,firstLine:number,width:number}} RedCap */
@@ -123,7 +125,7 @@ function main() {
   assert.deepEqual(r.imageRedCapLines,
     {forced: 31, early: 6, overflow: 2, total: 39, earlyParagraphs: 0});
 
-  // Exact shortfall of the residual 39 original nonparagraph early joins.
+  // Exact shortfall of the residual 29 original nonparagraph early joins.
   // This is a geometric diagnostic, not a key extraction channel.
   const residualSlack = source.breaks
     .filter(b => b.ending !== '.' && classifyWithOriginalDropcap(b, model) === 'early')
@@ -144,7 +146,8 @@ function main() {
   // Freeze a source-early normal-line tolerance, then test later pages.
   // The only exclusions are source-visible paragraph-ending short lines.
   const normal = source.breaks.map(b => {
-    const l = b.base + redCapMargin(b) + b.dashes * model.dash + b.stops * model.stop;
+    const l = b.base + redCapMargin(b) + (b.numericPrefix ? NUMBER_INSET : 0) +
+      b.dashes * model.dash + b.stops * model.stop;
     const kind = classifyWithOriginalDropcap(b, model);
     const shortfall = kind === 'early' ? model.W - l - b.nextWidth :
       kind === 'overflow' ? l - model.W : 0;
@@ -165,6 +168,31 @@ function main() {
   assert.deepEqual(heldoutExceptions, [[40, 8], [42, 5]]);
   assert.ok(Math.max(...heldoutNormal.map(b => b.shortfall)) < 73);
 
+  // Literal source endpoint ledger for all non-forced joins (#2838).
+  // This does not tune thresholds or select a key by output.
+  const alphabet = [...'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ'];
+  const names = 'F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA'.split(' ');
+  const original = fs.readFileSync(path.join(__dirname, '..', 'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+  const pages = original.split('%').slice(0, 55).map(rec =>
+    rec.split('/').map(row => [...row].filter(c => alphabet.includes(c))).filter(row => row.length));
+  const residualLedger = source.breaks.filter(b => classifyWithOriginalDropcap(b, model) !== 'forced').map(b => {
+    const page = pages[b.page < 50 ? b.page : b.page - 1];
+    const last = page[b.line].at(-1), next = page[b.line + 1][0];
+    const kind = classifyWithOriginalDropcap(b, model);
+    const end = b.base + redCapMargin(b) + (b.numericPrefix ? NUMBER_INSET : 0) +
+      b.dashes * model.dash + b.stops * model.stop;
+    const deviation = kind === 'early' ? model.W - end - b.nextWidth : end - model.W;
+    assert.ok(deviation >= -1e-9);
+    return {page:b.page, line:b.line, kind, paragraph:kind === 'early' && b.ending === '.',
+      deviation, last, next, lastGP:names[alphabet.indexOf(last)], nextGP:names[alphabet.indexOf(next)]};
+  });
+  assert.equal(residualLedger.length, 55);
+  const literal = residualLedger.filter(b => !b.paragraph && b.deviation > trainingTolerance);
+  assert.deepEqual(literal.map(b => b.lastGP), ['T','T']);
+  assert.deepEqual(literal.map(b => b.nextGP), ['F','H']);
+  assert.ok(Math.abs(residualLedger.find(b => b.page === 36 && b.line === 5).deviation - 14.178) < .001);
+  assert.ok(Math.abs(residualLedger.find(b => b.page === 37 && b.line === 4).deviation - 14.029) < .001);
+
   const sensitivity = [0, 8, 12, 16, 24].map(gap => {
     const result = compare(source.breaks, model, gap, CAP_LINES);
     return { gap, all: result.imageAll, withheld: result.imageHoldoutWithinWord };
@@ -175,7 +203,7 @@ function main() {
     redConnectedComponents: RED_CAPS,
     model, gap: GAP, heightLines: CAP_LINES, numberedPrefixInset: NUMBER_INSET, observations: r,
     sensitivity, normalLineTolerance: { trainingTolerance, maxTrainingMiss, train: trainNormal.length,
-      heldout: heldoutNormal.length, heldoutInTolerance: heldoutInTolerance.length, heldoutExceptions }, residualShortfall: { median: residualSlack[14], ...residualCounts }, conclusion: 'Source-correct red initials and five original red numerals explain 34 more joins; ciphertext remains undeciphered.'
+      heldout: heldoutNormal.length, heldoutInTolerance: heldoutInTolerance.length, heldoutExceptions }, residualLedger, literalResidualTapes: {last:literal.map(b=>b.last).join(''), next:literal.map(b=>b.next).join('')}, residualShortfall: { median: residualSlack[14], ...residualCounts }, conclusion: 'Source-correct red initials and five original red numerals explain 34 more joins; ciphertext remains undeciphered.'
   }, null, 2));
 }
 
