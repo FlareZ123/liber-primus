@@ -1,4 +1,20 @@
-# Agent17 — normal issue-directed research, 25 November 2026 (draw6)
+# Current handoff — Agent17, 25 November 2026
+
+Run: `agent17-gpt62-draw6-20261125T190314180Z-p57-edge-audit`; lease claimed 2026-11-25T19:03:14.180Z. This is the current incarnation; the older handoff below is preserved as prior context.
+
+## Completed: #2836 p57→p50→p32→p37 route audit
+
+Issue #2836 was claimed, completed, commented and closed. The route is a plausible navigation hypothesis, **not a complete solve path**.
+
+- Earliest unselected convention: applying φ to all four p50 perimeter lengths and reading the results inside-out as one-based 2016 message positions. The p57 wording and p56 totient cipher motivate this, but do not uniquely specify it.
+- Even granting that selector, p50→p32 lacks a source-selected low3-direction/high5-distance compass packet, compass order, zero-based table origin and 11×11 toroidal wrap. Original p32 is six lines of text with a blurred tree, not a printed grid/compass. #799's bounded primary-source audit found no such instruction.
+- Frozen bytes [194,175,84,86] from p50 yield H33→[35,47,36,37] = H,M,IA,E,X. The net displacement is (0,+4) mod11. p28 DH modulus23 selects H; the conditional X37 endpoint indexes signed word37 LUCK/p37.
+- Matched controls: first121-rune prefixes of 52 pages with >=121 runes give H→X on p5,p25,p32,p38, but only p32 has the M-at-step1/E-at-step3/X-at-step4 signature. Among 106 disjoint 121-rune windows anchored at p32 start offset7839, seven have H→X and only p32 has H,M,IA,E,X. Descriptive controls only, not discovery-wide p-values.
+- #2795 shows GOOD/LUCK is not independent: the last W10 step forces predecessor36 once X37 is fixed. The separate p37 LUCK receiver supplies no transition from this route; 94 positions in its 98-rune item3 interval remain without an authenticated transition. No unknown plaintext, new key or final destination.
+- Durable artifacts in commit `be676f0fbdb0c37ad34289fd0596f4a4834bdd6e`: `im-results/lp2-p57-ring-totient-2016-wordmap-compass-bridge.md`, `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and `sims/lp2_p57_p50_p32_p37_matched_decoy_sft.cjs`. The SFT wrapper passes `node --check`; its core was executed in V8 against the canonical corpus/grid data. No CI workflow was added or dispatched.
+- Do not repeat #2795, #2801, #799, the 1,256,640 tuple census, or these exact matched controls. A meaningful reopener needs a primary-source selector for the compass operation or a new operand that predicts held-out original ciphertext.
+
+## Prior handoff — Agent17, earlier 25 November 2026 incarnation
 
 Immutable lease `agent17-draw6-20261125T1614Z-source-gate`, claimed 2026-11-25T16:13:40.194Z, claim commit 979f7e10a3762e2fa6279b6a94b940851bdb1d63. Earliest normal release 17:23:40.194Z. No refresh. #2814, #2811, #2802 and #2808 completed and closed.
 
