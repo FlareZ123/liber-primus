@@ -2,6 +2,34 @@
 
 **Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the historical three-share XOR primitive, a direct reversible GF(29) analog, and a fixed-coordinate Shamir fourth-share interpretation all fail their distinct original-input tests. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
 
+## Four simultaneous unknown plaintexts under a reused GP29 pad (Agent9, 25 November)
+
+This is a new constructive recovery model, distinct from the three-share combination tests. The four previously frozen 76-rune layouts give three candidate p27 ciphertext tapes and one original p55 tape. If these represent four plaintexts encrypted with the same arbitrary 76-rune additive key (ordinary consuming clock), the per-position differences constrain all four simultaneously. Neither pad reuse nor the ciphertext-share role is authenticated. The physical marker and exact 3×76 count select the tested alignments; no offset, permutation or slope is optimized.
+
+For four tapes j, plaintext P[j,i]=(C[j,i]-K[i]) mod29, with all 29^76 keys allowed. A source-excluded native-GP character model pools the first 67% of Shakespeare, Gibran and Emerson (145,461 + 41,869 + 215,289 training runes), using interpolated unigram through tetragram probabilities with pseudo-counts .05,1,4,10. Printed word boundaries are ignored. Viterbi over the previous three key digits (29^3 states) maximizes the four-tape tetragram log likelihood exactly, considering all 29 successors per state. Separate direct scoring and complete 304/304 ciphertext replay check every traceback.
+
+Four disjoint held-out natural quadruples use independently planted common random keys. A frozen mismatched-alignment negative rotates the four lanes by 0,13,26,39 runes. The same exact inverse scores controls and original layouts.
+
+| Control | Exact key digits / 76 | Exact combined plaintext / 304 | Mean log likelihood | Wrong-alignment mean |
+|---|---:|---:|---:|---:|
+| 1 | 76 | 304 | -1.964211 | -2.912736 |
+| 2 | 75 | 300 | -2.029858 | -3.009702 |
+| 3 | 76 | 304 | -1.901042 | -2.979014 |
+| 4 | 76 | 304 | -2.176127 | -2.884324 |
+
+303/304 key digits and 1,212/1,216 held-out plaintext runes recovered, considerably stronger than the earlier two-message tests.
+
+| Original layout | Exact maximum mean log likelihood | Rotated counterpart |
+|---|---:|---:|
+| Marker-contiguous | -2.971213 | -2.956714 |
+| Marker-interleaved | -2.928882 | -2.904339 |
+| Row outer trim | -2.991278 | -2.907086 |
+| Triple outer trim | -2.948268 | -2.878979 |
+
+All four original scores fall below every positive control and below their own frozen rotated negative. No output yields four coherent passages; even the best p55 candidate is nonprose. The exact replay is a mathematical invariant, not evidence of a key. Retire the stated ordinary four-way shared additive pad on these frozen layouts for native English. This is a calibrated finite-model negative, not an all-language theorem. A historically genuine literal-F nonconsuming clock is distinct: the two marker layouts each contain 14 visible Fs (16,384 joint masks), the two trim layouts each contain 13 (8,192 masks). Do not tune ordinary rotations or score thresholds.
+
+[Read-only SFT](../sims/lp2_p27_p55_four_tape_shared_pad_sft.cjs) · [raw controls](lp2-p27-p55-four-tape-pad-controls.json) · [raw original and rotated outputs](lp2-p27-p55-four-tape-pad-original.json). Core executed in Code Mode against corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and donor blobs 94c677ad9dd50771c6670e0c4e4dad9052b46d85, df260a07d56bf5998d40a6360b6132c35c252d10, a92be8ba5b3511a003a22ba31523c14397aaa83a. No CI execution claimed.
+
 ## Complete normalized three-share pad inversion, ordinary and F-transparent (Agent14, 25 November)
 
 The direct arbitrary affine fourth-share gate above rejects p55 itself as a fixed affine combination of p27 lanes. A distinct receiver is that three p27 tapes reconstruct a **key** which is then subtracted from the original p55 ciphertext. Earlier tests used fixed abscissas or sums; this inverse exhausts all normalized, nonzero GF29 weights, a superset of all nondegenerate three-share Lagrange interpolation weights with target distinct from the share coordinates.
