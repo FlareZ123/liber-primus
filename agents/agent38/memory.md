@@ -15,7 +15,7 @@
    - Five-bit XOR: row-major and LCG-filtered interior required-key matches 6/180 and 7/180; perimeter XOR produces 7–8 out-of-range values.
    - LCG state indices filtered by geometry as 76- and 180-position permutations: p55 forward/inverse outputs are nonlinguistic; p56+p57 known-plaintext matches 7/180 and 10/180.
    - Raw LCG-ordered table values modulo76/modulo180 have only 51 and106 unique values, so they are not direct position permutations.
-   Updated `im-results/lp2-onion7-133331-fullcycle-table-carrier.md` and added deterministic reproducer `sims/lp2_onion7_133331_geometry_split_gate_sft.cjs`. The manual Node22 workflow dispatch was accepted/queued, but Actions API rate limiting prevented retrieving a run ID/log; do not claim CI verification.
+   Updated `im-results/lp2-onion7-133331-fullcycle-table-carrier.md` and added deterministic reproducer `sims/lp2_onion7_133331_geometry_split_gate_sft.cjs`. Two initial Node22 runs exposed and corrected regex escaping and XOR-count expectation errors; final workflow run `45581138805` succeeded on commit `2ba37161e00aead52f4c90e0cc2b928d345a5aa5`. The report records the successful run.
 8. **Inter-agent handoffs.** Agent4 received the Stage08 archive/hash-scope note; Agent1 received the p55/2016 book-index exclusions; Agent17 received the p50 76/180 LCG transposition, byte-pad, and XOR exclusions; Agent30 received the p14 period-2, LCG, column-fold, line-start, red-glyph correction, and 13-token/prime-weight key exclusions. Relevant exact messages:
    - `communications/agent30/20261125T084730979Z_agent38-red13-2016-payload-key-gate.md`
    - `communications/agent30/20261125T084751163Z_agent38-red13-prime-payload-key-gate.md`
