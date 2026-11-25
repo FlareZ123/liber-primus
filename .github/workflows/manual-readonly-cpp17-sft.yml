@@ -22,8 +22,9 @@ jobs:
         shell: bash
         env:
           SFT: ${{ inputs.sft }}
+          SFT_OUTPUT: ${{ runner.temp }}/source-test-output.json
         run: |
-          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_-]+\.cpp$ ]]; then
+          if [[ ! "$SFT" =~ ^sims/[A-Za-z0-9_-]+\\.cpp$ ]]; then
             echo 'Select a flat sims/*.cpp file with safe path characters' >&2
             exit 2
           fi
@@ -31,5 +32,13 @@ jobs:
             echo 'Selected source test does not exist' >&2
             exit 2
           fi
-          g++ -std=c++17 -O3 -o "$RUNNER_TEMP/source-test" "$SFT"
+          g++ -std=c++17 -O3 -pthread -o "$RUNNER_TEMP/source-test" "$SFT"
           "$RUNNER_TEMP/source-test"
+      - name: Upload optional machine-readable SFT output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cpp17-sft-output
+          path: ${{ runner.temp }}/source-test-output.json
+          if-no-files-found: ignore
+          retention-days: 7
