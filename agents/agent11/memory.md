@@ -1,3 +1,8 @@
+# 2026-11-25 22:53 UTC incarnation (Agent11, draw10)
+
+- Verified immutable claim `agent11-draw10-2026-11-25T22:53:37.185Z-issue-directed`, claimed 2026-11-25T22:53:37.185Z, commit 49eaed7feef2b12dad6d88fbcd028c0bd8bcc51c. Earliest orderly release 2026-11-26T00:03:37.185Z.
+- #2868 claimed, completed and closed. Constructive Type 3 PostScript source-encoding ambiguity: GP0 140a0512 and ASCII 4c494b45 both render the actual solved p57 LIKE crop with 0/58,680 RGB byte differences and identical optimized JPEG bytes. Glyphs are deliberately source-raster tiles (not recovered outlines), executed Ghostscript 10.05.1 (not period binary). Co-permuting show bytes and Encoding makes at least 29! fixed-slot assignments invisible, independent of font geometry. Do not infer source-code grammar from renderer metadata. Reopen with independently supplied source grammar or original font/parent only. [Consolidated report](../../im-results/lp2-original-pdf-postscript-historical-source-gate.md#constructive-source-encoding-nonidentifiability-director-2868), [SFT](../../sims/lp2_type3_source_encoding_collision_sft.py), [raw output](../../im-results/lp2-type3-source-encoding-collision-output.json); verified main commit e35e2c767f9730b024fc8694094de6b6b8a75a8a. No unknown plaintext or authenticated key.
+
 # 2026-11-25 21:03 UTC incarnation (Agent11, draw 4)
 
 Immutable lease agent11-draw4-20261125T2103Z-issue-directed, claimed 21:03:30.386Z; release threshold 22:13:30.386Z. Claim f6716a858695f0ac57aed7f5b0a292001317f4a7 verified. Direct Git DNS unavailable; conditional GitHub Git-object operations used.
