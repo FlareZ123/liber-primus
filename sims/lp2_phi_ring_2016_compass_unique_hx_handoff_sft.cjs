@@ -93,11 +93,13 @@ assert.deepEqual(indexableX, [37]);
 const dirs = [[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]];
 const dirNames = ["N","NE","E","SE","S","SW","W","NW"];
 const mod = (n,m) => ((n % m) + m) % m;
-function walk(startIndex, bytes) {
+function walk(startIndex, bytes, bitOrder = "low3") {
   let row = Math.floor(startIndex / 11), col = startIndex % 11;
   const steps = [];
   for (const byte of bytes) {
-    const d = byte & 7, distance = byte >> 3;
+    // The 32x8 p50 table suggests a 3+5-bit move code. Test both bit orders.
+    const d = bitOrder === "low3" ? byte & 7 : byte >> 5;
+    const distance = bitOrder === "low3" ? byte >> 3 : byte & 31;
     const [dr,dc] = dirs[d];
     row = mod(row + dr * distance, 11);
     col = mod(col + dc * distance, 11);
@@ -117,9 +119,19 @@ const base59Audit = hPositions.map(startIndex => {
   const route = walk(startIndex, base59Bytes);
   return {startIndex, finalIndex:route.finalIndex, finalRune:route.finalRune};
 });
+const high3Audit = hPositions.map(startIndex => {
+  const route = walk(startIndex, base60Bytes, "high3");
+  return {startIndex, finalIndex:route.finalIndex, finalRune:route.finalRune};
+});
 assert.deepEqual(base60Audit.map(x => x.finalIndex), [15,27,37,67,83]);
 assert.deepEqual(base59Audit.map(x => x.finalIndex), [98,99,120,29,34]);
+assert.deepEqual(high3Audit.map(x => x.finalIndex), [58,70,80,110,5]);
 const base60Hits = base60Audit.filter(x => xPositions.includes(x.finalIndex));
+const high3Hits = high3Audit.filter(x => xPositions.includes(x.finalIndex));
+const indexableX = xPositions.filter(i => i >= 0 && i < words.length);
+const indexableHigh3Hits = high3Hits.filter(x => indexableX.includes(x.finalIndex));
+assert.deepEqual(high3Hits, [{startIndex:23,finalIndex:70,finalRune:"X"}]);
+assert.deepEqual(indexableHigh3Hits, []);
 const base59Hits = base59Audit.filter(x => xPositions.includes(x.finalIndex));
 assert.deepEqual(base60Hits, [{startIndex:33,finalIndex:37,finalRune:"X"}]);
 assert.deepEqual(base59Hits, []);
@@ -127,6 +139,8 @@ assert.deepEqual(base59Hits, []);
 const route = walk(base60Hits[0].startIndex, base60Bytes);
 assert.deepEqual(route.steps.map(x => x.index), [35,47,36,37]);
 assert.deepEqual(route.steps.map(x => x.rune), ["M","IA","E","X"]);
+assert.deepEqual(route.steps.slice(-2).map(x => x.index), [36,37]);
+assert.deepEqual([words[36].toLowerCase(),words[37].toLowerCase()], ["good","luck"]);
 const base59Route = walk(33, base59Bytes);
 assert.equal(base59Route.finalIndex, 120);
 assert.equal(base59Route.finalRune, "EO");
@@ -152,9 +166,13 @@ process.stdout.write(JSON.stringify({
   hPositions, xPositions,
   base60FinalCells: base60Audit,
   base59FinalCells: base59Audit,
+  high3DirectionLow5DistanceFinalCells: high3Audit,
   uniqueBase60HX: base60Hits,
   base59HX: base59Hits,
+  high3XHits: high3Hits,
+  indexableHigh3XHits: indexableHigh3Hits,
   selectedRoute: route.steps,
-  p37Handoff: {cell:37,wordIndex:37,word:words[37],page:37},
+  terminalSignedWords: [words[36],words[37]],
+  p37Handoff: {cell:37,wordIndex:37,word:words[37],page:37,terminalWords:[words[36],words[37]]},
   base59Route: base59Route.steps
 }, null, 2) + "\n");

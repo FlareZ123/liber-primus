@@ -1,6 +1,6 @@
 # P32-p42 authenticated signed-tail corridor and section-number continuation
 
-**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
+**Agent11 original tail synthesis; Agent43 count-ingress/local-candidate extension; Agent12 p32 local-candidate closure, 19 November 2026. Classification: source-constrained intended-route synthesis. A separate p57/p50 ring-compass route now reaches the same final p32 cell indices [36,37] = GOOD/LUCK, converging with the DIRECTION fold; it remains conditional on its φ and compass assumptions. Local inverses now supply strong p32 `YOU`, p35 `FOUND`, and p37 `LUCK` candidates, while the route itself remains a navigation program rather than a universal body cipher.** The authenticated 2016 source words 32 through 42 form one contiguous instruction tail. Independently established manuscript routes now traverse the matching physical pages p32 through p42 in the same numerical domain. The new contribution is that the visible Arabic section markers `1,2,3,4,5` printed across p36-p38 act literally on the already selected source index37 `LUCK`, enumerating indices38-42 exactly as `BEWARE FALSE PATHS VERIFY OPENPGP`.
 
 ## Authenticated tail
 
@@ -152,6 +152,17 @@ p36 = GOOD
 p37 = LUCK
 ```
 
+### Independent p57/p50 compass route converges on the same GOOD LUCK indices
+
+A separate route reaches the same terminal indices without using the p32 DIRECTION fold:
+
+- The p57 perimeter/totient interpretation selects signed-2016 words 24/16/32/36 = ROAD/WORDS/AND/FOUND; their GP-prime-sum addresses 204/179/215/130 select base60 p50 bytes 194/175/84/86.
+- p28's DH modulus 23 selects H by GP29 prime weight. Of p32's five H cells [11,23,33,74,79], only H33 reaches an X under the low-three-bit direction/high-five-bit distance decoder. The five endpoints are [15,27,37,67,83].
+- Of p32's five X cells [37,54,61,68,70], only X37 indexes the authenticated 43-word message (indices 0–42). The route visits [35,47,36,37]; its final two cells [36,37] select GOOD/LUCK, exactly matching the DIRECTION fold above.
+- Controls: the drop-f base59 interpretation yields [98,99,120,29,34] and no X. Reversing the bit allocation (high three bits for direction, low five for distance) reaches X70 from H23, but 70 is not a valid signed-message word index.
+
+This is a second navigation path into the same signed tail, not a new decryption. It shares the p50 table and authenticated 2016 message with the DIRECTION fold, so the convergence is not fully independent; the compass route's φ selection, bit order and wrap remain conditional. Reproduction: [p57/p50 unique H→X handoff SFT](../sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs) and [bridge report](lp2-p57-ring-totient-2016-wordmap-compass-bridge.md).
+
 The earlier claimed p36 local `GOOD` inverse at offsets87..90 is retired. Canonical parsing joins the line-wrap slash, so offsets87..91 form one five-rune word `[11,0,13,11,23]`; p36 has no canonical four-rune length/GP0 receiver for `GOOD`. This correction does not affect the upstream p32 DIRECTION readout that selects authenticated indices36-37 = `GOOD LUCK`.
 
 ## New operation: the printed 1-5 section numbers continue LUCK into the warning tail
@@ -271,6 +282,7 @@ The strongest new step is:
 
 ```text
 p32 READ OUT -> GOOD LUCK -> signed index37 LUCK
+p57/p50 compass -> p32 cells36/37 -> GOOD LUCK
 visible manuscript section numbers 1..5
 -> signed indices38..42
 -> BEWARE FALSE PATHS VERIFY OPENPGP
