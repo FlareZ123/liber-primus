@@ -43,9 +43,32 @@ All four blind plants recover the exact 17 coefficients, all 7,008 fit runes and
 
 The literal source-weighted **transparent-F** receiver independently fails exact reachability at zero-based black-body offset59 (p15 local79). This is before the end of p15; no language score, hold-mask cap, or secret optimization enters that failure. A constructed source-weighted transparent-F control remains legal, although the receiver has many latent histories. The authentic p56 85-rune forward encryption is also reproduced by the exact p56 consecutive-prime-minus-one schedule.
 
+## Independent latent-F key recovery (same invocation)
+
+The unknown-weight transparent-F model requires joint key and clock recovery. The two stages below avoid relying on a known plaintext anchor or printed segmentation.
+
+**Carry-class observation.** For successive consuming indices j−1,j, the Zeckendorf bits change by setting the highest changed bit k and clearing a fixed alternating pattern of lower bits. There are exactly 16 distinct difference classes across the 1,883-rune span, one per Fibonacci place. For arbitrary coefficients, the shift difference d_k is constant within class k. In particular d_0=a_1, d_1=a_2−a_1. This provides an independent handle on the low coefficients without knowing the intercept or higher weights.
+
+**Marginal clock proposal.** Each visible ciphertext zero can be either a literal F hold or a consuming zero. Between visible zeros, all glyphs consume. For every consecutive nonzero pair inside a zero-free segment, score its ciphertext difference minus d_k with the native adjacent-non-F difference distribution. Marginalize all possible hold histories exactly using a triangular HMM over the count h of prior holds, with segment-local emission tables indexed by consuming index i−h. Use native F frequency to set the prior probability of a visible zero being a hold (0.389599). Beam width8 over the six most frequent carry classes. This is a proposal model: it ignores pair evidence crossing zeros and does not yet enforce forbidden consuming plaintext F. It recovered the first two carry shifts in the top candidate for all four independently keyed fresh Emerson controls, although later carry shifts and full hold paths were not reliably recovered at this stage.
+
+**Joint key/clock inverse.** Freeze the first two carry shifts from the top HMM candidate and derive a_1,a_2. Introduce each remaining unknown coefficient only when its Fibonacci place is first consumed; at that position its bit is the only set bit, and every one of 29 values is proposed. Maintain at most 8,192 states after each physical symbol, deduplicated by key prefix, held count and last-two hold flags. The exact legal transitions are literal F holds or consuming nonzero plaintext; score with the same target-excluded GP trigram model as above. The intercept is enumerated over all 29 values. Exact fixed-key Viterbi re-evaluates the eight best surviving distinct full keys on the prefix and selects the winner. Freeze its consuming cursor and plaintext context before decoding p22. No original holdout input selects a key.
+
+| Fresh transparent-F control | Fit log-LR | Withheld log-LR | Key recovery | Fit plaintext | Withheld plaintext |
+|---|---:|---:|---:|---:|---:|
+| Emerson 0 | +0.899395 | +1.013202 | 17/17 | 1752/1752 | 131/131 |
+| Emerson 1 | +0.973353 | +1.021492 | 17/17 | 1752/1752 | 131/131 |
+| Emerson 2 | +0.928022 | +0.793205 | 17/17 | 1752/1752 | 127/131 |
+| Emerson 3 | +0.885057 | +0.970237 | 17/17 | 1752/1752 | 131/131 |
+
+Thus 68/68 new hidden key coefficients, 7,008/7,008 development runes and 520/524 frozen continuation runes are recovered with exact forward replay. The four holdout errors on control2 arise from ambiguous latent F decoding under the fixed trigram objective; do not claim exact full plaintext on every control.
+
+**Original:** the marginal HMM selects low carry shifts [17,25]. Its top proposal's Viterbi difference-only score is 2.6143 nats over the prefix (best-row score of the four plants 20.3326–50.8656; different zero counts prevent treating this alone as an all-key theorem). The joint inverse exhausts the *retained beam* at zero-based black-body offset1424, before p22 or the final coefficient can be reached. At offset1399 only four retained states remain, best score −2273.1376 nats. No original full key or plaintext is nominated. The result is a calibrated finite receiver failure, not exhaustive rejection of every unknown coefficient pair or every pruned state.
+
+Reproduction: [HMM SFT](../sims/lp2_p15_zeckendorf_latent_f_hmm_sft.cjs) (969a8026), [HMM raw](lp2-p15-zeckendorf-latent-f-hmm.json) (1c845374), [joint beam SFT](../sims/lp2_p15_zeckendorf_latent_f_beam_sft.cjs) (10a11a95), [joint beam raw](lp2-p15-zeckendorf-latent-f-beam.json) (9345898f). HMM raw rows expose their Viterbi scores (the trace return's value replaces the marginal value); ordering is by marginal likelihood, not by that displayed Viterbi score. Both stages executed on actual repository inputs in connected V8; standalone Windows CI not independently run.
+
 ## Decision and scope
 
-Retire the fixed source-interpolated key under both clocks, and this calibrated ordinary-clock blind receiver. The ordinary blind optimization is heuristic and does not constitute an exhaustive all-key proof. It also does not establish an exclusion of unknown coefficients with a latent F clock, position origins other than zero, different representations, or H-decoy generally. There is no independent source rule selecting Zeckendorf interpolation. Do not tune the literal weights or change phase after observing failure. A distinct unknown-weight latent-clock attack is justified only if it demonstrates reliable independent recovery.
+Retire the fixed source-interpolated key under both clocks, and this calibrated ordinary-clock blind receiver. The ordinary blind optimization is heuristic and does not constitute an exhaustive all-key proof. The separate latent-F receiver also fails with the HMM-selected low shifts and fixed-width key beam. Neither finite receiver establishes an all-key exclusion, nor excludes position origins other than zero, different representations, collision redraw, or H-decoy generally. There is no independent source rule selecting Zeckendorf interpolation. Do not tune the literal weights or change phase after observing failure. Do not widen the pruned low-shift or coefficient search merely to rescue this model; a further route requires independent new evidence or a genuinely different receiver addressing another established ciphertext property.
 
 ## Reproduction
 
