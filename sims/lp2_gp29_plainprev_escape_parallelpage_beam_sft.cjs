@@ -1,0 +1,47 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
+function experiment(raw,{width=24,count=1,originalTest=false}={}){
+ const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
+ function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
+ const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
+ for(const p of train)for(let i=0;i<p.length;i++){U0[p[i]]++;if(i)B0[p[i-1]*A+p[i]]++;if(i>1)T0[(p[i-2]*A+p[i-1])*A+p[i]]++;}
+ const U=U0.map(x=>x/sum(U0)),B=new Float64Array(A*A),T=new Float64Array(A*A*A);for(let q=0;q<A;q++){const n=sum(B0.subarray(q*A,(q+1)*A));for(let p=0;p<A;p++)B[q*A+p]=(B0[q*A+p]+8*U[p])/(n+8);}
+ for(let a=0;a<A;a++)for(let q=0;q<A;q++){const j=(a*A+q)*A,n=sum(T0.subarray(j,j+A));for(let p=0;p<A;p++)T[j+p]=(T0[j+p]+12*B[q*A+p])/(n+12);}
+ const L1=U.map(x=>Math.log(A*x)),L2=B.map(x=>Math.log(A*x)),L3=T.map(x=>Math.log(A*x));
+ const pow=Array(28).fill(1);for(let j=1;j<28;j++)pow[j]=pow[j-1]*15%29;assert(new Set(pow).size===28,"root15");const log=new Int8Array(29).fill(-1);for(let j=0;j<28;j++)log[pow[j]]=j;
+ const rows=Array.from({length:812},(_,k)=>{const E=Math.floor(k/28),s=k%28;return Uint8Array.from({length:29},(_,d)=>{if(!d)return E;const r=mod(log[d]-s,28);return r+(r>=E)})});
+ const inv=rows.map(row=>{const a=new Uint8Array(29);row.forEach((p,d)=>a[p]=d);assert(new Set(a).size===29,"row permutation");return a});
+ const original=gp.pages.filter(p=>p.page<=55&&p.indices.length).map(p=>({page:p.page,iv:p.indices[0],d:p.indices.slice(1).map((c,j)=>mod(c-p.indices[j]))}));
+ const isTrain=f=>!(f.page<=2||f.page>=15&&f.page<=22);
+ assert(original.length===55&&sum(original.map(f=>f.d.length))===12901,"frame geometry");
+ function decode(d,K){let q=0;const P=[];for(const v of d){q=rows[K[q]][v];P.push(q);}return P}
+ function encode(P,K){let q=0;return P.map(p=>{const d=inv[K[q]][p];q=p;return d})}
+ function score(P){let s=0;for(let j=0;j<P.length;j++)s+=j===0?L1[P[j]]:j===1?L2[P[j-1]*A+P[j]]:L3[(P[j-2]*A+P[j-1])*A+P[j]];return s}
+ function solve(frames,width,truth){
+  const F=frames.map(f=>f.d),N=F.length;
+  let beam=[{K:new Int16Array(A).fill(-1),pos:new Uint16Array(N),q:new Uint8Array(N),prev:new Uint8Array(N),s:0,n:0}],trace=[];
+  for(let round=0;round<A;round++){
+   let next=[];
+   for(const old of beam){const occ=new Uint16Array(A);for(let i=0;i<N;i++)if(old.pos[i]<F[i].length)occ[old.q[i]]++;let z=0;for(let q=1;q<A;q++)if(occ[q]>occ[z])z=q;if(!occ[z]){next.push(old);continue;}assert(old.K[z]<0,"frontier");
+    for(let k=0;k<812;k++){const K=old.K.slice();K[z]=k;const pos=old.pos.slice(),q=old.q.slice(),prev=old.prev.slice();let s=old.s,n=old.n;
+     for(let i=0;i<N;i++){const d=F[i];let j=pos[i],b=q[i],a=prev[i];while(j<d.length&&K[b]>=0){const p=rows[K[b]][d[j]];s+=j===0?L1[p]:j===1?L2[b*A+p]:L3[(a*A+b)*A+p];j++;n++;a=b;b=p;}pos[i]=j;q[i]=b;prev[i]=a}
+     next.push({K,pos,q,prev,s,n})
+    }
+   }
+   next.sort((a,b)=>b.s-a.s);beam=next.slice(0,width);const best=beam[0];const matching=truth?beam.filter(x=>x.K.every((k,i)=>k<0||k===truth[i])).length:null;trace.push({round:round+1,best:best.s,n:best.n,matching});if(beam.every(x=>x.n===sum(F.map(f=>f.length))))break;
+  }
+  return {K:Array.from(beam[0].K).map(k=>Math.max(0,k)),trace}
+ }
+ let seed=0x15a3301;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}
+ function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
+ function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,P,d:encode(P,K)}})}
+ function evaluate(frames,K,truth){const r=solve(frames.filter(isTrain),width,truth);
+  function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:used.size,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
+  return {key:r.K,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
+ }
+ const pilots=[];for(let i=0;i<count;i++){const K=key();pilots.push(evaluate(plant(donors[i%3],K),K))}
+ return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?evaluate(original,null):null};
+}
+if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{width:24,count:3,originalTest:true}),null,2));
+module.exports={experiment,INPUTS};
