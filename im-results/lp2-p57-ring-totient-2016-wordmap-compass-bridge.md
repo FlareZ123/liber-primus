@@ -53,7 +53,7 @@ The p32 runes at indices 33–37 spell **HOMEX**. Thus this four-step route star
 - A naive page-local split of the four φ-selected LP2 pages gives 196 word tokens (14²), but the canonical full-book word parser assigns page-boundary continuations to their preceding pages: only **193 words start** on those four pages. The 14×14 coincidence is therefore a segmentation artifact and is not used.
 - The selected page numbers [36,32,16,24] are valid LP2 pages; their original images show, respectively, a cuneiform header, the tree, text without an illustration, and a mirrored insect-like illustration. These visual observations are not inputs to the route.
 - The prior p50_outer76_totient_p55.md test applied φ to the *76 perimeter byte values* as an additive key for p55 and encountered the source zero (φ(0) undefined). This investigation is distinct: it applies φ to the four **perimeter counts** to select message-word positions; it does not use φ(byte) or decrypt p55.
-- The route combines individually motivated pieces, but the complete chain is not explicitly stated by one source. In particular, “φ of each ring length”, inside-out order, GP-prime-sum-as-zero-based-table-address, and reuse of the existing p32 compass origin are still interpretive links.
+- The p32 target and H/X origin now have cross-source constraints (see the 25 November audit below); the complete operation is still not stated by one source. The remaining interpretive links are φ of each ring length, inside-out order, GP-prime-sum-as-zero-based-table-address, the low-three-bit direction/high-five-bit distance split, and modulo-11 wrap.
 
 ## Rejected source-specific astronomical overlay (separate from the ring route)
 
@@ -95,20 +95,37 @@ The fixed base59 rival instead gives:
 | 3 | 83 | SE / 10 | 9 | W |
 | 4 | 85 | SW / 10 | 120 | EO |
 
-Thus the same four source-selected words, addresses, start and compass rule reach the p32 **X/cell37** marker under base60, but end at **EO/cell120** under base59. This is a discriminating negative for the global base59 compass serialization and additional support for base60 in this receiver. It does not prove the entire p50 alphabet/serialization from one route: the p32 11×11 arrangement, H origin and compass interpretation remain provisional, and the p22 dual-radix perimeter hypothesis is a separate local claim. Do not infer arbitrary per-cell radix switching from this result.
+Thus the same four source-selected words, addresses, start and compass rule reach the p32 **X/cell37** marker under base60, but end at **EO/cell120** under base59. This is a discriminating negative for the global base59 compass serialization and additional support for base60 in this receiver. The p32 11×11 target is independently selected by the signed 2016 EPIPHANY/DEVOTED values; the new all-H audit derives H33 as the unique origin reaching the only X whose cell index is valid in the 43-word message. The compass bit split and modulo-11 wrap remain provisional, and the p22 dual-radix perimeter hypothesis is a separate local claim. Do not infer arbitrary per-cell radix switching from this result.
 
 The original p50 grid resource stores the base60 alphabet `0-9A-Z a-x`; the 2013 ALL AROUND selector independently favors base60. The new holdout is consistent with those source constraints. The base59-only `CIRCUMFERENCES/EMERGE` hits in the p22 square report should remain conditional and should not be used as evidence for a global base59 p50 decoder.
 
 Reproduction: `node sims/lp2_phi_ring_2016_wordmap_compass_bridge.cjs`. The SFT now asserts both paths and their distinct endpoints.
 
+## Source-constrained H→X selection and p37 handoff (Agent9, 25 November 2026)
+
+The four-move route's origin and endpoint can now be selected rather than supplied.
+
+- The literal p28 Diffie–Hellman modulus is **23**. In GP29, H has prime weight **23**. The p32 121-rune grid contains H at zero-based cells **[11, 23, 33, 74, 79]**.
+- The p32 grid contains X at **[37, 54, 61, 68, 70]**. The authenticated 2016 message has 43 alphabetic words, so its valid zero-based word indices are 0–42; only X at cell **37** is a valid message-word index. The word at zero-based index 37 is **LUCK**, and the independent signed-message page map selects physical p37. This is an index handoff, not a prime-weight equality: X's GP29 prime weight is **47**, not 43.
+- The 2016 message independently selects the p32 map: GP0(EPIPHANY)=121, exactly the p32 rune count; GP0(DEVOTED)=102 addresses p50 cell 102, token **0W**, whose base60 value is 32. See the [p32 signed-source selector](lp2-tree121-signed2016-source-gate.md).
+- Apply the same four fixed base60 moves to every H occurrence. The five final cells are **[15, 27, 37, 67, 83]**; only H at cell **33** reaches any X, namely X at cell **37**. Under the same four addresses and compass rule with the drop-f base59 rival, the five final cells are **[98, 99, 120, 29, 34]**; none is X. Thus H33 is the unique H origin reaching the uniquely indexable X, conditional on the selected four moves and compass decoder.
+- The resulting **p32 cell37 → 2016 word37 LUCK → p37** handoff aligns with the existing [p37 LUCK candidate](lp2-p37-luck-doubleindex-state-inverse.md). That local candidate uses a direct-DH-state key shell and a double-index receiver; it is **not** a 17-state ring. The handoff does not independently validate the p37 cipher or establish p37 plaintext.
+
+This narrows the start and endpoint choices, but it does not prove the complete operation. In particular, the φ-of-perimeter selector, inside-out order, zero-based p50 addressing, byte-to-compass split and modulo-11 wrap remain interpretive. The route is still navigation evidence, not a decryption or final destination. Reproducer: [unique H→X and p37 handoff SFT](../sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs).
+
 ## Decision
 
-This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and signed 2016 word map to the p32 H→X marker. The same fixed route fails under the drop-f base59 rival, favoring the stored base60 interpretation for this compass consumer. The full chain remains provisional because its p32 grid/origin and compass semantics are not all explicitly source-stated. It does not recover unknown-page plaintext, an authentic cipher key, or the intended final destination. The next useful work is independent source support for the p32 grid/origin and investigation of what the X endpoint signifies—not additional unconstrained transformations of the same four bytes.
+This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and authenticated 2016 word map to the p32 H→X marker. The 25 November source-selector audit now derives the H origin and X endpoint conditionally: p28's DH modulus 23 selects H; only H33 reaches X37 under the fixed base60 moves; X37 is the only p32 X that indexes the 43-word 2016 message, where word37 is LUCK and selects p37. The same route under the drop-f base59 rival reaches no X.
+
+The bridge remains provisional. The source material does not yet establish φ of each ring length, inside-out order, zero-based p50 addressing, the byte bit split, or toroidal wrap as one complete operation. The p37 LUCK receiver is itself a provisional local candidate; the navigation handoff is not independent validation of its cipher. No unknown-page plaintext, authentic key, or final destination has been recovered.
+
+The next useful decision is whether the p37 handoff continues through the signed-message warning corridor p38–p40 (BEWARE / FALSE / PATHS) under a frozen, source-selected operation with an untouched-ciphertext prediction. Do not expand the same four-byte compass search with new offsets or encodings.
 
 ## Reproduction
 
 Run from the repository root:
 
     node sims/lp2_phi_ring_2016_wordmap_compass_bridge.cjs
+    node sims/lp2_phi_ring_2016_compass_unique_hx_handoff_sft.cjs
 
 The script verifies the source alignment, ring arithmetic, 43-word parsing, selected GP encodings, table bytes, both compass routes, one-based-address negative control, and the exhaustive 35-word four-tuple control.
