@@ -1,0 +1,299 @@
+{
+  "scope": "7",
+  "dict": 35944,
+  "longWords": 16920,
+  "nodes": 61741,
+  "originalChapters": [
+    {
+      "ch": 0,
+      "n": 729,
+      "groups": 158,
+      "long": 21
+    },
+    {
+      "ch": 1,
+      "n": 1145,
+      "groups": 255,
+      "long": 27
+    },
+    {
+      "ch": 2,
+      "n": 1729,
+      "groups": 383,
+      "long": 46
+    },
+    {
+      "ch": 3,
+      "n": 1903,
+      "groups": 437,
+      "long": 48
+    },
+    {
+      "ch": 4,
+      "n": 1021,
+      "groups": 224,
+      "long": 26
+    },
+    {
+      "ch": 5,
+      "n": 1433,
+      "groups": 326,
+      "long": 36
+    },
+    {
+      "ch": 6,
+      "n": 1680,
+      "groups": 378,
+      "long": 45
+    },
+    {
+      "ch": 7,
+      "n": 3008,
+      "groups": 669,
+      "long": 84
+    },
+    {
+      "ch": 8,
+      "n": 308,
+      "groups": 66,
+      "long": 10
+    }
+  ],
+  "plants": [],
+  "originals": [
+    {
+      "ch": 7,
+      "name": "corrected",
+      "encoding": "index",
+      "sign": 1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20540442
+    },
+    {
+      "ch": 7,
+      "name": "corrected",
+      "encoding": "index",
+      "sign": -1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20562943
+    },
+    {
+      "ch": 7,
+      "name": "corrected",
+      "encoding": "prime",
+      "sign": 1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20562138
+    },
+    {
+      "ch": 7,
+      "name": "corrected",
+      "encoding": "prime",
+      "sign": -1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20555883
+    },
+    {
+      "ch": 7,
+      "name": "printed",
+      "encoding": "index",
+      "sign": 1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20549334
+    },
+    {
+      "ch": 7,
+      "name": "printed",
+      "encoding": "index",
+      "sign": -1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {
+          "8": 1
+        },
+        "byLength": 1,
+        "interval": 1,
+        "upper": 1,
+        "minOOV": 83,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [
+        {
+          "start": 2742,
+          "end": 2750,
+          "word": "FIYAAVU[",
+          "origin": 664,
+          "cursor": 670
+        }
+      ],
+      "visits": 20573609
+    },
+    {
+      "ch": 7,
+      "name": "printed",
+      "encoding": "prime",
+      "sign": 1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20575372
+    },
+    {
+      "ch": 7,
+      "name": "printed",
+      "encoding": "prime",
+      "sign": -1,
+      "bound": {
+        "n": 669,
+        "need": 84,
+        "byLen": {
+          "8": 42,
+          "9": 18,
+          "10": 11,
+          "11": 8,
+          "12": 3,
+          "13": 1,
+          "14": 1
+        },
+        "cap": {},
+        "byLength": 0,
+        "interval": 0,
+        "upper": 0,
+        "minOOV": 84,
+        "budget": 33,
+        "excluded": true
+      },
+      "matches": [],
+      "visits": 20557958
+    }
+  ]
+}
