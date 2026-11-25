@@ -9,12 +9,15 @@ from ortools.sat.python import cp_model
 import lp2_shared_gp29_q8_smt as s
 import lp2_shared_gp29_q8_affine_sft as a
 
-def model(C,D,mode):
+def model(C,D,mode,gauge='rank1'):
     m=cp_model.CpModel()
     rank=[m.new_int_var(0,28,f'pi{i}') for i in range(29)]
     k=[m.new_int_var(0,28,f'k{j}') for j in range(8)]
     m.add_all_different(rank)
-    m.add(rank[0]==0); m.add(rank[1]==1); m.add(sum(rank)==406)
+    m.add(rank[0]==0); m.add(sum(rank)==406)
+    if gauge=='rank1': m.add(rank[1]==1)
+    elif gauge=='k0': m.add(k[0]==1)
+    else: raise ValueError(gauge)
     neq=[]
     for j in range(4):
         b=m.new_bool_var(f'nonperiod4_{j}')
@@ -39,7 +42,7 @@ def model(C,D,mode):
     anchor=max(range(len(C)),key=lambda g:(0 not in C[g],len(C[g]),-g))
     for g,c in enumerate(C):
         phase=m.new_int_var(0,7,f'phase{g}_0')
-        if g==anchor: m.add(phase==0)
+        if gauge=='rank1' and g==anchor: m.add(phase==0)
         words=[w for w in by[len(c)] if s.candidate(w,c)]
         ps=[]
         for i,x in enumerate(c):
@@ -77,6 +80,7 @@ def main():
     ap.add_argument('--plant',type=int,choices=[0,1],default=0)
     ap.add_argument('--profile',choices=['terminal','long'],default='terminal')
     ap.add_argument('--mode',choices=['direct','maps'],default='maps')
+    ap.add_argument('--gauge',choices=['rank1','k0'],default='rank1')
     ap.add_argument('--seconds',type=int,default=900)
     ap.add_argument('--workers',type=int,default=2)
     ap.add_argument('--oracle',action='store_true')
@@ -88,15 +92,22 @@ def main():
     pl=f['plants'][args.plant]
     T=s.words(pl['truth']); C=s.words(pl['cipher'])
     assert all(t in s.decode(c,pl['pi'],pl['k'],D) for t,c in zip(T,C))
-    m,rank,k=model(C[:n],D,args.mode)
+    m,rank,k=model(C[:n],D,args.mode,args.gauge)
     if args.oracle:
-        scale=pow(pl['pi'][1],-1,29)
-        pp=[scale*x%29 for x in pl['pi']]
-        kk=[scale*x%29 for x in pl['k']]
-        anchor=max(range(n),key=lambda g:(0 not in C[g],len(C[g]),-g))
-        start=pl['phases'][anchor]
+        if args.gauge=='rank1':
+            scale=pow(pl['pi'][1],-1,29)
+            pp=[scale*x%29 for x in pl['pi']]
+            kk=[scale*x%29 for x in pl['k']]
+            anchor=max(range(n),key=lambda g:(0 not in C[g],len(C[g]),-g))
+            start=pl['phases'][anchor]
+            kk=kk[start:]+kk[:start]
+        else:
+            start=next(j for j,x in enumerate(pl['k']) if x%29)
+            scale=pow(pl['k'][start],-1,29)
+            pp=[scale*x%29 for x in pl['pi']]
+            kk=[scale*pl['k'][(j+start)%8]%29 for j in range(8)]
         for x,v in zip(rank,pp): m.add(x==v)
-        for x,v in zip(k,kk[start:]+kk[:start]): m.add(x==v)
+        for x,v in zip(k,kk): m.add(x==v)
     err=m.validate()
     if err: raise ValueError(err)
     solver=cp_model.CpSolver()
@@ -107,7 +118,7 @@ def main():
     status=solver.solve(m)
     out={'status':solver.status_name(status),'wall_time':solver.wall_time,
          'branches':solver.num_branches,'conflicts':solver.num_conflicts,
-         'mode':args.mode,'plant':args.plant,'profile':args.profile,'oracle':args.oracle}
+         'mode':args.mode,'gauge':args.gauge,'plant':args.plant,'profile':args.profile,'oracle':args.oracle}
     if status in (cp_model.OPTIMAL,cp_model.FEASIBLE):
         pi=[solver.value(x) for x in rank]; shifts=[solver.value(x) for x in k]
         decoded=[s.decode(c,pi,shifts,D) for c in C]
