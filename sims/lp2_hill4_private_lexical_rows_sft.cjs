@@ -22,27 +22,26 @@ function rowSearch(S,target,phase,budget){
   const m=new Uint8Array(29**pos.length),orbits=new Map();let k=0;for(const v of (S.dict.get(b-a)||new Map()).values()){const arr=pos.map(p=>v[p]),z=keyOf(arr);if(!m[z]){m[z]=1;k++;const o=norm(arr);if(!orbits.has(o.key))orbits.set(o.key,[]);orbits.get(o.key).push([o.d,o.b])}}
   const idx=pos.map(p=>Math.floor((a+p-phase)/4));out.push({word:w,idx,m,orbits,prob:k/m.length,cache:new Map()})
  }return out.sort((a,b)=>a.prob-b.prob)});
- const affine=Array.from({length:812},(_,i)=>{let a=1+Math.floor(i/29),b=i%29;return Uint8Array.from({length:29},(_,x)=>(a*x+b)%29)});
- const output=Array.from({length:4},()=>[]),counts=Array.from({length:4},()=>Array(budget+1).fill(0)),v=new Uint8Array(n),seen=new Int32Array(812),candidates=new Uint16Array(812);let stamp=0;
+ const output=Array.from({length:4},()=>[]),counts=Array.from({length:4},()=>Array(budget+1).fill(0)),v=new Uint8Array(n),W=26,states=new Uint32Array(W*(budget+1)),tmp=new Uint32Array(W*(budget+1));
+ const mod32=812%32,tail=(2**mod32-1)>>>0;
  function options(d){const x=d.idx.map(i=>v[i]),key=keyOf(x);let cached=d.cache.get(key);if(cached)return cached;
-  const o=norm(x),arr=d.orbits.get(o.key)||[],q=[];
-  if(o.d===0){for(const [dy,y]of arr)if(dy===0)for(let a=1;a<29;a++)q.push((a-1)*29+mod(y-a*o.b))}
-  else for(const [dy,y]of arr)if(dy!==0){const a=dy*inv[o.d]%29;q.push((a-1)*29+mod(y-a*o.b))}
-  cached=Uint16Array.from(q);d.cache.set(key,cached);return cached
+  const o=norm(x),arr=d.orbits.get(o.key)||[],q=new Uint32Array(W);
+  function set(a,b){let j=(a-1)*29+b;q[j>>>5]|=1<<(j&31)}
+  if(o.d===0){for(const [dy,y]of arr)if(dy===0)for(let a=1;a<29;a++)set(a,mod(y-a*o.b))}
+  else for(const [dy,y]of arr)if(dy!==0){const a=dy*inv[o.d]%29;set(a,mod(y-a*o.b))}
+  d.cache.set(key,q);return q
  }
  const time=Date.now();
  for(let j=0;j<4;j++)for(let z=0;z<29**(3-j);z++){
   let u=z,a=[0,0,0,0];a[j]=1;for(let k=j+1;k<4;k++){a[k]=u%29;u=Math.floor(u/29)}
   const [x,y,w,t]=a;for(let i=0;i<n;i++){const p=phase+4*i;v[i]=(x*C[p]+y*C[p+1]+w*C[p+2]+t*C[p+3])%29}
   for(let lane=0;lane<4;lane++){
-   const ds=masks[lane];let size=0;stamp++;
-   if(ds.length<=budget){for(let q=0;q<812;q++)candidates[size++]=q}
-   else for(let k=0;k<=budget;k++)for(const q of options(ds[k]))if(seen[q]!==stamp){seen[q]=stamp;candidates[size++]=q}
-   for(let ci=0;ci<size;ci++){
-    const q=candidates[ci],aff=affine[q];let misses=0;
-    for(const d of ds){const p=d.idx;let key=aff[v[p[0]]];for(let i=1;i<p.length;i++)key=key*29+aff[v[p[i]]];if(!d.m[key]&&++misses>budget)break}
-    if(misses<=budget){const scale=1+Math.floor(q/29),b=q%29;counts[lane][misses]++;output[lane].push({a:a.map(x=>x*scale%29),b,misses})}
+   const ds=masks[lane];states.fill(0);states.fill(0xffffffff,0,W);states[W-1]=tail;
+   for(const d of ds){const q=options(d);let any=0;
+    for(let k=0;k<=budget;k++)for(let p=0;p<W;p++){let ix=k*W+p;tmp[ix]=(states[ix]&q[p])|(k?(states[ix-W]&~q[p]):0);any|=tmp[ix]}
+    if(!any){states.fill(0);break}states.set(tmp)
    }
+   for(let misses=0;misses<=budget;misses++)for(let p=0;p<W;p++){let bits=states[misses*W+p];while(bits){let one=bits&-bits,q=p*32+31-Math.clz32(one);bits=(bits^one)>>>0;const scale=1+Math.floor(q/29),b=q%29;counts[lane][misses]++;output[lane].push({a:a.map(x=>x*scale%29),b,misses})}}
   }
  }
  return{phase,budget,n,spans,counts,output,elapsed:(Date.now()-time)/1000,mostSelective:masks.map(m=>m.slice(0,8).map(x=>[x.idx.length,x.prob]))};
