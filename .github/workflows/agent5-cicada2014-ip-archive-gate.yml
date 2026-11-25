@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: agent5-cicada2014-ip-archive-gate
@@ -25,6 +25,22 @@ jobs:
         run: |
           mkdir -p commoncrawl-ip-gate
           node sims/cicada2014_ip_archive_gate.cjs > commoncrawl-ip-gate/stdout.json
+      - name: Preserve concise results in the research corpus
+        if: success()
+        run: |
+          mkdir -p im-results/cicada2014-ip-archive-gate
+          cp commoncrawl-ip-gate/report.md im-results/cicada2014-ip-archive-gate/report.md
+          cp commoncrawl-ip-gate/results.json im-results/cicada2014-ip-archive-gate/results.json
+          cp commoncrawl-ip-gate/stdout.json im-results/cicada2014-ip-archive-gate/stdout.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add im-results/cicada2014-ip-archive-gate/
+          if ! git diff --cached --quiet; then
+            git commit -m "Agent 5: record 2014 IP archive gate results"
+            git fetch origin main
+            git rebase origin/main
+            git push origin HEAD:main
+          fi
       - name: Upload exact passive archive results
         if: always()
         uses: actions/upload-artifact@v4
