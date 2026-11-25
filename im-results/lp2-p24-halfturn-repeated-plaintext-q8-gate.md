@@ -70,6 +70,16 @@ The actual plaintext-F hold positions are **[35,47,51,56,74,118]**. The blind di
 
 These controls verify that the test accepts genuine same-plaintext independent-q8 plants with transparent-F holds and rejects this independent-plaintext control. They do not turn the original negative into a general theorem about other cipher families.
 
+## Stronger necessary condition: any global monoalphabetic substitution pair
+
+The affine search above is a special case of a simpler bound. If both halves encode the same plaintext under any two deterministic global monoalphabetic substitutions \(\sigma_A,\sigma_B\), each plaintext rune \(p\) produces one fixed ordered ciphertext pair \((\sigma_A(p),\sigma_B(p))\). There are only 29 possible plaintext runes, so the aligned streams can contain **at most 29 distinct ordered symbol pairs**, regardless of key values, affine structure, or the transparent-F convention.
+
+The original p24 halves contain **126 distinct ordered pairs** across 135 aligned positions. This alone rules out every common-plaintext pair of global monoalphabetic encoders. A supplementary transparent-F/permutation consistency check also finds **52 mapping conflicts**: a nonzero A symbol repeatedly pairs with different B symbols, and vice versa. The test does not rely on language scoring or fitted keys.
+
+Calibration: the positive solved-p56/p57 control encrypted under independent affine keys has 29 distinct pairs and zero mapping conflicts, so it passes. A deterministic seed-3301 shuffle of the same native plaintext, encrypted under the second key, has 27 distinct pairs but 53 mapping conflicts, so the supplementary consistency check rejects it. The pair-count bound is necessary, not sufficient; the original's 126-pair contradiction is decisive.
+
+The exhaustive 1,624-map affine test above is retained as an independent subcase cross-check. These results exclude **global monoalphabetic** repeated-plaintext encodings only; they do not exclude position-dependent or polyalphabetic transforms, nonlinear relations, or another source-selected traversal.
+
 ## Additional simple relation: independent global affine substitutions
 
 If the two halves contain the same plaintext under two independent monoalphabetic affine GP29 substitutions,

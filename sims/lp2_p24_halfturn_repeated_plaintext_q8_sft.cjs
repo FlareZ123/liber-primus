@@ -349,6 +349,43 @@ assert.deepEqual(affinePos.valid[0],{heldPositions:trueHoldPositions,alpha:23,be
 const affineNeg=enumAffine(encAffine(negativePlainA,3,7),encAffine(negativePlainB,11,19));
 assert.equal(affineNeg.validConfigurations,0);
 
+
+function monoalphabeticPairRelation(x,y){
+ const from=Array.from({length:29},()=>new Set()),to=Array.from({length:29},()=>new Set());
+ for(let i=0;i<x.length;i++){from[x[i]].add(y[i]);to[y[i]].add(x[i]);}
+ let nonzeroAConflicts=0,nonzeroBConflicts=0;
+ for(let a=1;a<29;a++)if(from[a].size>1)nonzeroAConflicts++;
+ for(let b=1;b<29;b++)if(to[b].size>1)nonzeroBConflicts++;
+ const fromF=[...from[0]],toF=[...to[0]];
+ const fAConflict=fromF.filter(v=>v!==0).length>1;
+ const fBConflict=toF.filter(v=>v!==0).length>1;
+ const distinctPairs=new Set(x.map((v,i)=>v+","+y[i])).size;
+ const mappingViolations=nonzeroAConflicts+nonzeroBConflicts+(fAConflict?1:0)+(fBConflict?1:0);
+ return {valid:distinctPairs<=29&&mappingViolations===0,distinctPairs,maxDistinctPairs:29,nonzeroAConflicts,nonzeroBConflicts,fAConflict,fBConflict,mappingViolations,fromF,toF};
+}
+function deterministicShuffle(values,seed=3301){
+ const out=values.slice();let state=seed>>>0;
+ for(let i=out.length-1;i>0;i--){
+  state=(Math.imul(state,1664525)+1013904223)>>>0;
+  const j=state%(i+1);[out[i],out[j]]=[out[j],out[i]];
+ }
+ return out;
+}
+const monoOriginal=monoalphabeticPairRelation(firstHalf,reversedSecondHalf);
+assert.equal(monoOriginal.distinctPairs,126);
+assert.ok(monoOriginal.distinctPairs>29);
+assert.equal(monoOriginal.mappingViolations,52);
+assert.equal(monoOriginal.valid,false);
+const monoPositive=monoalphabeticPairRelation(positiveAffineA,positiveAffineB);
+assert.equal(monoPositive.distinctPairs,29);
+assert.equal(monoPositive.mappingViolations,0);
+assert.equal(monoPositive.valid,true);
+const shuffledPositivePlain=deterministicShuffle(positivePlain,3301);
+const monoNegative=monoalphabeticPairRelation(positiveAffineA,encAffine(shuffledPositivePlain,11,19));
+assert.equal(monoNegative.distinctPairs,27);
+assert.equal(monoNegative.mappingViolations,53);
+assert.equal(monoNegative.valid,false);
+
 console.log(JSON.stringify({
   source: {
     page: 24,
@@ -392,6 +429,11 @@ console.log(JSON.stringify({
       configurationsTested: negative.attempted,
       survivingConfigurations: negative.validConfigurations,
     },
+  },
+  monoalphabeticRelation: {
+    original: {distinctOrderedPairs:monoOriginal.distinctPairs,maximumPossible:29,mappingViolations:monoOriginal.mappingViolations,valid:monoOriginal.valid},
+    positive: {source:"same solved p56/p57 plaintext under independent affine keys",distinctOrderedPairs:monoPositive.distinctPairs,mappingViolations:monoPositive.mappingViolations,valid:monoPositive.valid},
+    negative: {source:"deterministic shuffle of positive plaintext, seed 3301",distinctOrderedPairs:monoNegative.distinctPairs,mappingViolations:monoNegative.mappingViolations,valid:monoNegative.valid}
   },
   globalAffine: {
     original: {commonFPositions:affineOriginal.commonFPositions,holdMasks:affineOriginal.holdMaskCount,tested:affineOriginal.tested,valid:affineOriginal.validConfigurations,candidateFromOffsets0And8:{alpha:firstPairAlpha,beta:firstPairBeta}},
