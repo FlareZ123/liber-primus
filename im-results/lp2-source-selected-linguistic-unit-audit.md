@@ -18,6 +18,12 @@ The editor-normalized solved LP1 transcription is traceable to the original page
 
 The 2016 authenticated continuation is more direct: “Its words are the map, their meaning is the road, and their numbers are the direction.” This selects ordinary words and their numeric properties as relevant puzzle units. It does not select a larger packet or clitic grammar. The known p56/p57 plaintext controls also retain ordinary word boundaries.
 
+## Exact literary-unit candidate: the Anglo-Saxon Rune Poem
+
+The 1915 Dickins edition is a genuine exact literary source: its **29-stanza Anglo-Saxon Rune Poem** is ordered one stanza per rune, and its explicitly labelled “Anglo-Saxon (a) Runic Poem” sequence matches GP29 **29/29 in order**. This is already established as the source for the alphabet/order; see [the pinned source and key gate](lp2-anglo-saxon-rune-poem-source-gate.md) and [Dickins 1915](https://en.wikisource.org/wiki/Rune_poems#The_Anglo-Saxon_Rune_Poem).
+
+A stanza is an authentic multiword literary unit, but the source establishes **rune ↔ stanza order**, not that LP2 plaintext is segmented into stanza-sized packets or that a stanza's first word, word count, line count, or other feature is to be consumed as a cipher symbol. The only nearby extraction with an independent LP1 clue is the p56 heading “AN END”: taking the final letter of each stanza's final word as a period-29 key was already tested against the full original stream (both signs, Old English and Dickins English readings) and produced **0/1,132 long dictionary words**. The 29-stanza structure therefore strengthens the alphabet source selector, but supplies no new reversible plaintext tokenization. Sweeping other stanza features would be an unselected extraction search.
+
 ## 2014 source audit
 
 | Artifact | What it actually supplies | Linguistic-unit decision |
