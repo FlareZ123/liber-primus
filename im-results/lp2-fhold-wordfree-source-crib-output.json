@@ -1,0 +1,1965 @@
+{
+  "info": [
+    {
+      "name": "chapter1",
+      "length": 729,
+      "F": 34,
+      "FF": 0
+    },
+    {
+      "name": "chapter2",
+      "length": 1145,
+      "F": 26,
+      "FF": 0
+    },
+    {
+      "name": "chapter3",
+      "length": 1729,
+      "F": 66,
+      "FF": 1
+    },
+    {
+      "name": "chapter4",
+      "length": 1903,
+      "F": 72,
+      "FF": 0
+    },
+    {
+      "name": "chapter5",
+      "length": 1021,
+      "F": 37,
+      "FF": 0
+    },
+    {
+      "name": "chapter6",
+      "length": 1433,
+      "F": 52,
+      "FF": 2
+    },
+    {
+      "name": "chapter7",
+      "length": 1680,
+      "F": 40,
+      "FF": 1
+    },
+    {
+      "name": "chapter8",
+      "length": 3008,
+      "F": 125,
+      "FF": 0
+    },
+    {
+      "name": "chapter9",
+      "length": 308,
+      "F": 6,
+      "FF": 0
+    },
+    {
+      "name": "opening-black",
+      "length": 716,
+      "F": 33,
+      "FF": 0
+    },
+    {
+      "name": "p55",
+      "length": 76,
+      "F": 3,
+      "FF": 0
+    },
+    {
+      "name": "full",
+      "length": 12956,
+      "F": 458,
+      "FF": 4
+    }
+  ],
+  "totals": {
+    "chapter1": {
+      "tested": 1413498,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 746762
+    },
+    "chapter2": {
+      "tested": 1406010,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 540310
+    },
+    "chapter3": {
+      "tested": 1395498,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 732114
+    },
+    "chapter4": {
+      "tested": 1392366,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 301714
+    },
+    "chapter5": {
+      "tested": 1408242,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 594200
+    },
+    "chapter6": {
+      "tested": 1400826,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 1126938
+    },
+    "chapter7": {
+      "tested": 1396380,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 749640
+    },
+    "chapter8": {
+      "tested": 1372476,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 136708
+    },
+    "chapter9": {
+      "tested": 1421076,
+      "hits": 1984,
+      "zeroF": 1702,
+      "ffCompatible": 1063436
+    },
+    "opening-black": {
+      "tested": 1413732,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 754404
+    },
+    "p55": {
+      "tested": 1425252,
+      "hits": 246045,
+      "zeroF": 229438,
+      "ffCompatible": 1324306
+    },
+    "full": {
+      "tested": 1246202,
+      "hits": 0,
+      "zeroF": 0,
+      "ffCompatible": 54932
+    }
+  },
+  "plants": [
+    {
+      "off": 12345,
+      "F": 15,
+      "FF": 0,
+      "tested": 216378,
+      "hits": 1,
+      "zeroF": 0,
+      "first": 12345,
+      "minFF": 0,
+      "ffCompatible": 216375,
+      "unique": true
+    },
+    {
+      "off": 54321,
+      "F": 8,
+      "FF": 1,
+      "tested": 216378,
+      "hits": 1,
+      "zeroF": 0,
+      "first": 54321,
+      "minFF": 0,
+      "ffCompatible": 215809,
+      "unique": true
+    }
+  ],
+  "p56": {
+    "length": 85,
+    "F": 1,
+    "forwardReplay": true
+  },
+  "rows": [
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "length": 217106,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 216378,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 134360
+        },
+        "chapter2/forward": {
+          "tested": 215962,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 106978
+        },
+        "chapter3/forward": {
+          "tested": 215378,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 138554
+        },
+        "chapter4/forward": {
+          "tested": 215204,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 68083
+        },
+        "chapter5/forward": {
+          "tested": 216086,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 114542
+        },
+        "chapter6/forward": {
+          "tested": 215674,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 186289
+        },
+        "chapter7/forward": {
+          "tested": 215427,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 140752
+        },
+        "chapter8/forward": {
+          "tested": 214099,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 35950
+        },
+        "chapter9/forward": {
+          "tested": 216799,
+          "hits": 671,
+          "zeroF": 585,
+          "first": 8410,
+          "minFF": 0,
+          "ffCompatible": 173153
+        },
+        "opening-black/forward": {
+          "tested": 216391,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 135349
+        },
+        "p55/forward": {
+          "tested": 217031,
+          "hits": 49497,
+          "zeroF": 46590,
+          "first": 15,
+          "minFF": 0,
+          "ffCompatible": 204748
+        },
+        "full/forward": {
+          "tested": 204151,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 2,
+          "ffCompatible": 21598
+        },
+        "chapter1/reverse": {
+          "tested": 216378,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 134360
+        },
+        "chapter2/reverse": {
+          "tested": 215962,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 106978
+        },
+        "chapter3/reverse": {
+          "tested": 215378,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 138554
+        },
+        "chapter4/reverse": {
+          "tested": 215204,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 68083
+        },
+        "chapter5/reverse": {
+          "tested": 216086,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 114542
+        },
+        "chapter6/reverse": {
+          "tested": 215674,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 186289
+        },
+        "chapter7/reverse": {
+          "tested": 215427,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 140752
+        },
+        "chapter8/reverse": {
+          "tested": 214099,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 35950
+        },
+        "chapter9/reverse": {
+          "tested": 216799,
+          "hits": 663,
+          "zeroF": 585,
+          "first": 2806,
+          "minFF": 0,
+          "ffCompatible": 173153
+        },
+        "opening-black/reverse": {
+          "tested": 216391,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 135349
+        },
+        "p55/reverse": {
+          "tested": 217031,
+          "hits": 49510,
+          "zeroF": 46590,
+          "first": 3,
+          "minFF": 0,
+          "ffCompatible": 204748
+        },
+        "full/reverse": {
+          "tested": 204151,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 2,
+          "ffCompatible": 21598
+        }
+      }
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "length": 62492,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 61764,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 39611
+        },
+        "chapter2/forward": {
+          "tested": 61348,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31187
+        },
+        "chapter3/forward": {
+          "tested": 60764,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 41455
+        },
+        "chapter4/forward": {
+          "tested": 60590,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 18783
+        },
+        "chapter5/forward": {
+          "tested": 61472,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33457
+        },
+        "chapter6/forward": {
+          "tested": 61060,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 52968
+        },
+        "chapter7/forward": {
+          "tested": 60813,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 42092
+        },
+        "chapter8/forward": {
+          "tested": 59485,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 8008
+        },
+        "chapter9/forward": {
+          "tested": 62185,
+          "hits": 10,
+          "zeroF": 1,
+          "first": 14463,
+          "minFF": 0,
+          "ffCompatible": 51105
+        },
+        "opening-black/forward": {
+          "tested": 61777,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 39910
+        },
+        "p55/forward": {
+          "tested": 62417,
+          "hits": 9400,
+          "zeroF": 8714,
+          "first": 74,
+          "minFF": 0,
+          "ffCompatible": 59145
+        },
+        "full/forward": {
+          "tested": 49537,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 3,
+          "ffCompatible": 5868
+        },
+        "chapter1/reverse": {
+          "tested": 61764,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 39611
+        },
+        "chapter2/reverse": {
+          "tested": 61348,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31187
+        },
+        "chapter3/reverse": {
+          "tested": 60764,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 41455
+        },
+        "chapter4/reverse": {
+          "tested": 60590,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 18783
+        },
+        "chapter5/reverse": {
+          "tested": 61472,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33457
+        },
+        "chapter6/reverse": {
+          "tested": 61060,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 52968
+        },
+        "chapter7/reverse": {
+          "tested": 60813,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 42092
+        },
+        "chapter8/reverse": {
+          "tested": 59485,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 8008
+        },
+        "chapter9/reverse": {
+          "tested": 62185,
+          "hits": 7,
+          "zeroF": 1,
+          "first": 17782,
+          "minFF": 0,
+          "ffCompatible": 51105
+        },
+        "opening-black/reverse": {
+          "tested": 61777,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 39910
+        },
+        "p55/reverse": {
+          "tested": 62417,
+          "hits": 9394,
+          "zeroF": 8714,
+          "first": 0,
+          "minFF": 0,
+          "ffCompatible": 59145
+        },
+        "full/reverse": {
+          "tested": 49537,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 3,
+          "ffCompatible": 5868
+        }
+      }
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "length": 321327,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 320599,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 127966
+        },
+        "chapter2/forward": {
+          "tested": 320183,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 76399
+        },
+        "chapter3/forward": {
+          "tested": 319599,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 116587
+        },
+        "chapter4/forward": {
+          "tested": 319425,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 29187
+        },
+        "chapter5/forward": {
+          "tested": 320307,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 89231
+        },
+        "chapter6/forward": {
+          "tested": 319895,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 230760
+        },
+        "chapter7/forward": {
+          "tested": 319648,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 121333
+        },
+        "chapter8/forward": {
+          "tested": 318320,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 7509
+        },
+        "chapter9/forward": {
+          "tested": 321020,
+          "hits": 179,
+          "zeroF": 150,
+          "first": 7909,
+          "minFF": 0,
+          "ffCompatible": 215318
+        },
+        "opening-black/forward": {
+          "tested": 320612,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 129940
+        },
+        "p55/forward": {
+          "tested": 321252,
+          "hits": 43721,
+          "zeroF": 40398,
+          "first": 81,
+          "minFF": 0,
+          "ffCompatible": 291433
+        },
+        "full/forward": {
+          "tested": 308372,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 5,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 320599,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 127966
+        },
+        "chapter2/reverse": {
+          "tested": 320183,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 76399
+        },
+        "chapter3/reverse": {
+          "tested": 319599,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 116587
+        },
+        "chapter4/reverse": {
+          "tested": 319425,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 29187
+        },
+        "chapter5/reverse": {
+          "tested": 320307,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 89231
+        },
+        "chapter6/reverse": {
+          "tested": 319895,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 230760
+        },
+        "chapter7/reverse": {
+          "tested": 319648,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 121333
+        },
+        "chapter8/reverse": {
+          "tested": 318320,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 7509
+        },
+        "chapter9/reverse": {
+          "tested": 321020,
+          "hits": 176,
+          "zeroF": 150,
+          "first": 38122,
+          "minFF": 0,
+          "ffCompatible": 215318
+        },
+        "opening-black/reverse": {
+          "tested": 320612,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 129940
+        },
+        "p55/reverse": {
+          "tested": 321252,
+          "hits": 43756,
+          "zeroF": 40398,
+          "first": 0,
+          "minFF": 0,
+          "ffCompatible": 291433
+        },
+        "full/reverse": {
+          "tested": 308372,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 5,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/cicada2012-blake-marriage-gutenberg45315.txt",
+      "length": 33276,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 32548,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 20976
+        },
+        "chapter2/forward": {
+          "tested": 32132,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 16650
+        },
+        "chapter3/forward": {
+          "tested": 31548,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 17819
+        },
+        "chapter4/forward": {
+          "tested": 31374,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 11507
+        },
+        "chapter5/forward": {
+          "tested": 32256,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 17766
+        },
+        "chapter6/forward": {
+          "tested": 31844,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 26512
+        },
+        "chapter7/forward": {
+          "tested": 31597,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 18211
+        },
+        "chapter8/forward": {
+          "tested": 30269,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6108
+        },
+        "chapter9/forward": {
+          "tested": 32969,
+          "hits": 2,
+          "zeroF": 0,
+          "first": 6512,
+          "minFF": 0,
+          "ffCompatible": 26887
+        },
+        "opening-black/forward": {
+          "tested": 32561,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 21132
+        },
+        "p55/forward": {
+          "tested": 33201,
+          "hits": 4638,
+          "zeroF": 4276,
+          "first": 73,
+          "minFF": 0,
+          "ffCompatible": 31365
+        },
+        "full/forward": {
+          "tested": 20321,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 5,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 32548,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 20976
+        },
+        "chapter2/reverse": {
+          "tested": 32132,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 16650
+        },
+        "chapter3/reverse": {
+          "tested": 31548,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 17819
+        },
+        "chapter4/reverse": {
+          "tested": 31374,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 11507
+        },
+        "chapter5/reverse": {
+          "tested": 32256,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 17766
+        },
+        "chapter6/reverse": {
+          "tested": 31844,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 26512
+        },
+        "chapter7/reverse": {
+          "tested": 31597,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 18211
+        },
+        "chapter8/reverse": {
+          "tested": 30269,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6108
+        },
+        "chapter9/reverse": {
+          "tested": 32969,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 26887
+        },
+        "opening-black/reverse": {
+          "tested": 32561,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 21132
+        },
+        "p55/reverse": {
+          "tested": 33201,
+          "hits": 4641,
+          "zeroF": 4276,
+          "first": 0,
+          "minFF": 0,
+          "ffCompatible": 31365
+        },
+        "full/reverse": {
+          "tested": 20321,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 5,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/2013-book-of-law-I.txt",
+      "length": 6958,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 6230,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4664
+        },
+        "chapter2/forward": {
+          "tested": 5814,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3416
+        },
+        "chapter3/forward": {
+          "tested": 5230,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5120
+        },
+        "chapter4/forward": {
+          "tested": 5056,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1801
+        },
+        "chapter5/forward": {
+          "tested": 5938,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3788
+        },
+        "chapter6/forward": {
+          "tested": 5526,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5526
+        },
+        "chapter7/forward": {
+          "tested": 5279,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5169
+        },
+        "chapter8/forward": {
+          "tested": 3951,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 47
+        },
+        "chapter9/forward": {
+          "tested": 6651,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5927
+        },
+        "opening-black/forward": {
+          "tested": 6243,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4703
+        },
+        "p55/forward": {
+          "tested": 6883,
+          "hits": 929,
+          "zeroF": 860,
+          "first": 170,
+          "minFF": 0,
+          "ffCompatible": 6658
+        },
+        "full/forward": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 6230,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4664
+        },
+        "chapter2/reverse": {
+          "tested": 5814,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3416
+        },
+        "chapter3/reverse": {
+          "tested": 5230,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5120
+        },
+        "chapter4/reverse": {
+          "tested": 5056,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1801
+        },
+        "chapter5/reverse": {
+          "tested": 5938,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3788
+        },
+        "chapter6/reverse": {
+          "tested": 5526,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5526
+        },
+        "chapter7/reverse": {
+          "tested": 5279,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5169
+        },
+        "chapter8/reverse": {
+          "tested": 3951,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 47
+        },
+        "chapter9/reverse": {
+          "tested": 6651,
+          "hits": 1,
+          "zeroF": 0,
+          "first": 235,
+          "minFF": 0,
+          "ffCompatible": 5927
+        },
+        "opening-black/reverse": {
+          "tested": 6243,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4703
+        },
+        "p55/reverse": {
+          "tested": 6883,
+          "hits": 934,
+          "zeroF": 860,
+          "first": 129,
+          "minFF": 0,
+          "ffCompatible": 6658
+        },
+        "full/reverse": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/2013-book-of-law-II.txt",
+      "length": 7059,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 6331,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5372
+        },
+        "chapter2/forward": {
+          "tested": 5915,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4540
+        },
+        "chapter3/forward": {
+          "tested": 5331,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5331
+        },
+        "chapter4/forward": {
+          "tested": 5157,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3024
+        },
+        "chapter5/forward": {
+          "tested": 6039,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4788
+        },
+        "chapter6/forward": {
+          "tested": 5627,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5627
+        },
+        "chapter7/forward": {
+          "tested": 5380,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5380
+        },
+        "chapter8/forward": {
+          "tested": 4052,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1464
+        },
+        "chapter9/forward": {
+          "tested": 6752,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6214
+        },
+        "opening-black/forward": {
+          "tested": 6344,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5398
+        },
+        "p55/forward": {
+          "tested": 6984,
+          "hits": 702,
+          "zeroF": 636,
+          "first": 42,
+          "minFF": 0,
+          "ffCompatible": 6834
+        },
+        "full/forward": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 6331,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5372
+        },
+        "chapter2/reverse": {
+          "tested": 5915,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4540
+        },
+        "chapter3/reverse": {
+          "tested": 5331,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5331
+        },
+        "chapter4/reverse": {
+          "tested": 5157,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3024
+        },
+        "chapter5/reverse": {
+          "tested": 6039,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4788
+        },
+        "chapter6/reverse": {
+          "tested": 5627,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5627
+        },
+        "chapter7/reverse": {
+          "tested": 5380,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5380
+        },
+        "chapter8/reverse": {
+          "tested": 4052,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1464
+        },
+        "chapter9/reverse": {
+          "tested": 6752,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6214
+        },
+        "opening-black/reverse": {
+          "tested": 6344,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5398
+        },
+        "p55/reverse": {
+          "tested": 6984,
+          "hits": 701,
+          "zeroF": 636,
+          "first": 351,
+          "minFF": 0,
+          "ffCompatible": 6834
+        },
+        "full/reverse": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/2013-book-of-law-III.txt",
+      "length": 7484,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 6756,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6028
+        },
+        "chapter2/forward": {
+          "tested": 6340,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5196
+        },
+        "chapter3/forward": {
+          "tested": 5756,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5756
+        },
+        "chapter4/forward": {
+          "tested": 5582,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4163
+        },
+        "chapter5/forward": {
+          "tested": 6464,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5444
+        },
+        "chapter6/forward": {
+          "tested": 6052,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6052
+        },
+        "chapter7/forward": {
+          "tested": 5805,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5805
+        },
+        "chapter8/forward": {
+          "tested": 4477,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3058
+        },
+        "chapter9/forward": {
+          "tested": 7177,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6870
+        },
+        "opening-black/forward": {
+          "tested": 6769,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6054
+        },
+        "p55/forward": {
+          "tested": 7409,
+          "hits": 784,
+          "zeroF": 700,
+          "first": 5,
+          "minFF": 0,
+          "ffCompatible": 7334
+        },
+        "full/forward": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 6756,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6028
+        },
+        "chapter2/reverse": {
+          "tested": 6340,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5196
+        },
+        "chapter3/reverse": {
+          "tested": 5756,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5756
+        },
+        "chapter4/reverse": {
+          "tested": 5582,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 4163
+        },
+        "chapter5/reverse": {
+          "tested": 6464,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5444
+        },
+        "chapter6/reverse": {
+          "tested": 6052,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6052
+        },
+        "chapter7/reverse": {
+          "tested": 5805,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5805
+        },
+        "chapter8/reverse": {
+          "tested": 4477,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3058
+        },
+        "chapter9/reverse": {
+          "tested": 7177,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6870
+        },
+        "opening-black/reverse": {
+          "tested": 6769,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 6054
+        },
+        "p55/reverse": {
+          "tested": 7409,
+          "hits": 784,
+          "zeroF": 700,
+          "first": 28,
+          "minFF": 0,
+          "ffCompatible": 7334
+        },
+        "full/reverse": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/kjv-passion-gospels-2014.txt",
+      "length": 53675,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 52947,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31567
+        },
+        "chapter2/forward": {
+          "tested": 52531,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 23368
+        },
+        "chapter3/forward": {
+          "tested": 51947,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33239
+        },
+        "chapter4/forward": {
+          "tested": 51773,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 12646
+        },
+        "chapter5/forward": {
+          "tested": 52655,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 25539
+        },
+        "chapter6/forward": {
+          "tested": 52243,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 47243
+        },
+        "chapter7/forward": {
+          "tested": 51996,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33833
+        },
+        "chapter8/forward": {
+          "tested": 50668,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5652
+        },
+        "chapter9/forward": {
+          "tested": 53368,
+          "hits": 135,
+          "zeroF": 115,
+          "first": 1623,
+          "minFF": 0,
+          "ffCompatible": 42934
+        },
+        "opening-black/forward": {
+          "tested": 52960,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31866
+        },
+        "p55/forward": {
+          "tested": 53600,
+          "hits": 12601,
+          "zeroF": 11885,
+          "first": 15,
+          "minFF": 0,
+          "ffCompatible": 50862
+        },
+        "full/forward": {
+          "tested": 40720,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 7,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 52947,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31567
+        },
+        "chapter2/reverse": {
+          "tested": 52531,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 23368
+        },
+        "chapter3/reverse": {
+          "tested": 51947,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33239
+        },
+        "chapter4/reverse": {
+          "tested": 51773,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 12646
+        },
+        "chapter5/reverse": {
+          "tested": 52655,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 25539
+        },
+        "chapter6/reverse": {
+          "tested": 52243,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 47243
+        },
+        "chapter7/reverse": {
+          "tested": 51996,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 33833
+        },
+        "chapter8/reverse": {
+          "tested": 50668,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 5652
+        },
+        "chapter9/reverse": {
+          "tested": 53368,
+          "hits": 140,
+          "zeroF": 115,
+          "first": 3526,
+          "minFF": 0,
+          "ffCompatible": 42934
+        },
+        "opening-black/reverse": {
+          "tested": 52960,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 31866
+        },
+        "p55/reverse": {
+          "tested": 53600,
+          "hits": 12612,
+          "zeroF": 11885,
+          "first": 3,
+          "minFF": 0,
+          "ffCompatible": 50862
+        },
+        "full/reverse": {
+          "tested": 40720,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 7,
+          "ffCompatible": 0
+        }
+      }
+    },
+    {
+      "path": "resources/external/tennyson-lady-of-shalott-1842-gutenberg8601.txt",
+      "length": 3924,
+      "scopes": {
+        "chapter1/forward": {
+          "tested": 3196,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2837
+        },
+        "chapter2/forward": {
+          "tested": 2780,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2421
+        },
+        "chapter3/forward": {
+          "tested": 2196,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2196
+        },
+        "chapter4/forward": {
+          "tested": 2022,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1663
+        },
+        "chapter5/forward": {
+          "tested": 2904,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2545
+        },
+        "chapter6/forward": {
+          "tested": 2492,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2492
+        },
+        "chapter7/forward": {
+          "tested": 2245,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2245
+        },
+        "chapter8/forward": {
+          "tested": 917,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 558
+        },
+        "chapter9/forward": {
+          "tested": 3617,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3310
+        },
+        "opening-black/forward": {
+          "tested": 3209,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2850
+        },
+        "p55/forward": {
+          "tested": 3849,
+          "hits": 721,
+          "zeroF": 660,
+          "first": 60,
+          "minFF": 0,
+          "ffCompatible": 3774
+        },
+        "full/forward": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        },
+        "chapter1/reverse": {
+          "tested": 3196,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2837
+        },
+        "chapter2/reverse": {
+          "tested": 2780,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2421
+        },
+        "chapter3/reverse": {
+          "tested": 2196,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2196
+        },
+        "chapter4/reverse": {
+          "tested": 2022,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 1663
+        },
+        "chapter5/reverse": {
+          "tested": 2904,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2545
+        },
+        "chapter6/reverse": {
+          "tested": 2492,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2492
+        },
+        "chapter7/reverse": {
+          "tested": 2245,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2245
+        },
+        "chapter8/reverse": {
+          "tested": 917,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 558
+        },
+        "chapter9/reverse": {
+          "tested": 3617,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 3310
+        },
+        "opening-black/reverse": {
+          "tested": 3209,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": 0,
+          "ffCompatible": 2850
+        },
+        "p55/reverse": {
+          "tested": 3849,
+          "hits": 720,
+          "zeroF": 660,
+          "first": 18,
+          "minFF": 0,
+          "ffCompatible": 3774
+        },
+        "full/reverse": {
+          "tested": 0,
+          "hits": 0,
+          "zeroF": 0,
+          "first": -1,
+          "minFF": null,
+          "ffCompatible": 0
+        }
+      }
+    }
+  ]
+}
