@@ -1,0 +1,567 @@
+{
+  "model": "Unknown primitive q8 common GP29 cycle fixing F, arbitrary start phase, literal plaintext F hold; homogeneous affine necessary filter only, no all-different assignment claimed",
+  "source": {
+    "p54Start": 12648,
+    "seam": 12880,
+    "carryStart": 12870,
+    "carryEndExclusive": 12881,
+    "trainCompleteGroups": 47,
+    "trainCompleteRunes": 213,
+    "heldCompleteGroups": 16,
+    "heldCompleteRunes": 75,
+    "prefix": "63g2eis46q",
+    "knownStructuralLength": 11,
+    "actualSuffix": "l"
+  },
+  "dictionary11": 2244,
+  "prefixOptions": 96,
+  "actualSuffixOptions": 78,
+  "suffixSupport": {
+    "0": 84,
+    "1": 84,
+    "2": 84,
+    "3": 79,
+    "4": 83,
+    "5": 83,
+    "6": 82,
+    "7": 84,
+    "8": 84,
+    "9": 68,
+    "a": 82,
+    "b": 84,
+    "c": 84,
+    "d": 84,
+    "e": 84,
+    "f": 74,
+    "g": 5,
+    "h": 84,
+    "i": 74,
+    "j": 82,
+    "k": 82,
+    "l": 78,
+    "m": 84,
+    "n": 78,
+    "o": 83,
+    "p": 84,
+    "q": 62,
+    "r": 83,
+    "s": 84
+  },
+  "plants": [
+    {
+      "seed": 3301,
+      "word": "statistical",
+      "gp": "fgogafga5ok",
+      "cipher": "iegcp3fqca4",
+      "options": 1402,
+      "trueWordSuffixCount": 26,
+      "unionSuffixCount": 29
+    },
+    {
+      "seed": 1033,
+      "word": "decrepitude",
+      "gp": "ni54idag1ni",
+      "cipher": "m645bneclse",
+      "options": 1665,
+      "trueWordSuffixCount": 27,
+      "unionSuffixCount": 29
+    },
+    {
+      "seed": 2014,
+      "word": "unequivocal",
+      "gp": "19i57a135ok",
+      "cipher": "ljghfk98f5b",
+      "options": 1476,
+      "trueWordSuffixCount": 27,
+      "unionSuffixCount": 29
+    }
+  ],
+  "options": [
+    {
+      "word": "accommodate",
+      "gp": "o553jj3nogi",
+      "suffix": "0123456789abcdefhjklmnoprs"
+    },
+    {
+      "word": "anniversary",
+      "gp": "o99a1i4fo4q",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "appropriate",
+      "gp": "odd43d4aogi",
+      "suffix": "0123456789abcdefhjklmnoprs"
+    },
+    {
+      "word": "appropriating",
+      "gp": "odd43d4aogl",
+      "suffix": "0123456789abcdefhijkmnoprs"
+    },
+    {
+      "word": "approximate",
+      "gp": "odd43eajogi",
+      "suffix": "0123456789abcdefhjklmnoprs"
+    },
+    {
+      "word": "approximating",
+      "gp": "odd43eajogl",
+      "suffix": "0123456789abcdefhijkmnoprs"
+    },
+    {
+      "word": "archipelago",
+      "gp": "o458adiko63",
+      "suffix": "012456789abcdefhijklmnopqrs"
+    },
+    {
+      "word": "aristocracy",
+      "gp": "o4afg354o5q",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "aristocrats",
+      "gp": "o4afg354ogf",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "australians",
+      "gp": "o1fg4okao9f",
+      "suffix": "g"
+    },
+    {
+      "word": "awistocwacy",
+      "gp": "o7afg357o5q",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "cylindrical",
+      "gp": "5qka9n4a5ok",
+      "suffix": "g"
+    },
+    {
+      "word": "delightedly",
+      "gp": "nika68ginkq",
+      "suffix": "012456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "disregarded",
+      "gp": "naf4i6o4nin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "earnestness",
+      "gp": "io49ifg9iff",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "eclairaient",
+      "gp": "i5koa4oai9g",
+      "suffix": "0123456789abcdefhijlmnopqrs"
+    },
+    {
+      "word": "enchantress",
+      "gp": "i958o9g4iff",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "encyclopedia",
+      "gp": "i95q5k3dinr",
+      "suffix": "0123456789abcdefhijklmnopqs"
+    },
+    {
+      "word": "estrangement",
+      "gp": "ifg4oliji9g",
+      "suffix": "g"
+    },
+    {
+      "word": "excessively",
+      "gp": "ie5iffa1ikq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "exclusively",
+      "gp": "ie5k1fa1ikq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "exquisitely",
+      "gp": "ie57afagikq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "extensively",
+      "gp": "iegi9fa1ikq",
+      "suffix": "q"
+    },
+    {
+      "word": "imagination",
+      "gp": "ajo6a9oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "imaginative",
+      "gp": "ajo6a9oga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "immigration",
+      "gp": "ajja64oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "immortality",
+      "gp": "ajj34gokagq",
+      "suffix": "012456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "impartiality",
+      "gp": "ajdo4grkagq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "imperialism",
+      "gp": "ajdi4aokafj",
+      "suffix": "0123456789abcdefhiklmnopqrs"
+    },
+    {
+      "word": "impetuosity",
+      "gp": "ajdig13fagq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "implicating",
+      "gp": "ajdka5oga96",
+      "suffix": "012345789abcdefhijklmnopqrs"
+    },
+    {
+      "word": "implication",
+      "gp": "ajdka5oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "importation",
+      "gp": "ajd34goga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "importunity",
+      "gp": "ajd34g19agq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "inattention",
+      "gp": "a9oggi9ga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "inattentive",
+      "gp": "a9oggi9ga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "incendiaries",
+      "gp": "a95i9nr4aif",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "incendiarism",
+      "gp": "a95i9nr4afj",
+      "suffix": "0123456789abcdefhiklmnopqrs"
+    },
+    {
+      "word": "inclination",
+      "gp": "a95ka9oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "incredulity",
+      "gp": "a954in1kagq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "indemnities",
+      "gp": "a9nij9agaif",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "indigestion",
+      "gp": "a9na6ifga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "indignation",
+      "gp": "a9na69oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "indignities",
+      "gp": "a9na69agaif",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "indirection",
+      "gp": "a9na4i5ga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "ingratiating",
+      "gp": "al4ogaoga96",
+      "suffix": "012345789abcdefhijklmnopqrs"
+    },
+    {
+      "word": "ingratiatingly",
+      "gp": "l4ogaogalkq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "innervation",
+      "gp": "a99i41oga39",
+      "suffix": "g"
+    },
+    {
+      "word": "inoculation",
+      "gp": "a9351koga39",
+      "suffix": "01245678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "inoperative",
+      "gp": "a93di4oga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "inquisition",
+      "gp": "a957afaga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "inquisitive",
+      "gp": "a957afaga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "inscription",
+      "gp": "a9f54adga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "insensitive",
+      "gp": "a9fi9faga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "insincerity",
+      "gp": "a9fa95i4agq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "inspiration",
+      "gp": "a9fda4oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "instigation",
+      "gp": "a9fga6oga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "instinctive",
+      "gp": "a9fga95ga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "institution",
+      "gp": "a9fgag1ga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "instruction",
+      "gp": "a9fg415ga39",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "instructive",
+      "gp": "a9fg415ga1i",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "integration",
+      "gp": "a9gi64oga39",
+      "suffix": "9"
+    },
+    {
+      "word": "interaction",
+      "gp": "a9gi4o5ga39",
+      "suffix": "9"
+    },
+    {
+      "word": "interactive",
+      "gp": "a9gi4o5ga1i",
+      "suffix": "i"
+    },
+    {
+      "word": "interminglings",
+      "gp": "a9gi4jlkalf",
+      "suffix": "f"
+    },
+    {
+      "word": "inventories",
+      "gp": "a91i9g34aif",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "mesopotamia",
+      "gp": "jif3d3gojao",
+      "suffix": "0123456789abcdefhijklmnpqrs"
+    },
+    {
+      "word": "militarymen",
+      "gp": "jakago4qji9",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "netherlands",
+      "gp": "9ig8i4ko9nf",
+      "suffix": "f"
+    },
+    {
+      "word": "neurasthenia",
+      "gp": "9i14of2i9ao",
+      "suffix": "0123456789abcdefhijklmnpqrs"
+    },
+    {
+      "word": "obligations",
+      "gp": "3hka6oga39f",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "occupations",
+      "gp": "3551doga39f",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "osteosarcoma",
+      "gp": "3fgcfo453jo",
+      "suffix": "o"
+    },
+    {
+      "word": "overshadowing",
+      "gp": "31i4f8on37l",
+      "suffix": "0123456789abcdefhijkmnopqrs"
+    },
+    {
+      "word": "scrutinized",
+      "gp": "f541ga9afin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "scrutinizing",
+      "gp": "f541ga9afal",
+      "suffix": "0123456789abcdefhijkmnopqrs"
+    },
+    {
+      "word": "sedmoretzki",
+      "gp": "finj34igf5a",
+      "suffix": "0123456789bcdefhijklmnopqrs"
+    },
+    {
+      "word": "seminarists",
+      "gp": "fija9o4afgf",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "senselessly",
+      "gp": "fi9fikiffkq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "separatists",
+      "gp": "fido4ogafgf",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "shamelessly",
+      "gp": "f8ojikiffkq",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "specialised",
+      "gp": "fdi5aokafin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "specialists",
+      "gp": "fdi5aokafgf",
+      "suffix": "0123456789abcdehijklmnopqrs"
+    },
+    {
+      "word": "strenuously",
+      "gp": "fg4i9131fkq",
+      "suffix": "012456789abcdefhijlmnoprs"
+    },
+    {
+      "word": "sushchevski",
+      "gp": "f1f858i1f5a",
+      "suffix": "0123456789bcdefhijklmnopqrs"
+    },
+    {
+      "word": "sympathized",
+      "gp": "fqjdog8afin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "therapeutic",
+      "gp": "g8i4odi1ga5",
+      "suffix": "012346789abcdefhijklmnopqrs"
+    },
+    {
+      "word": "thermometer",
+      "gp": "g8i4j3jigi4",
+      "suffix": "012356789abcdefhijklmnopqrs"
+    },
+    {
+      "word": "transmitted",
+      "gp": "g4o9fjaggin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "transmitting",
+      "gp": "g4o9fjaggal",
+      "suffix": "0123456789abcdefhijkmnopqrs"
+    },
+    {
+      "word": "transported",
+      "gp": "g4o9fd34gin",
+      "suffix": "0123456789abcdefhijklmopqrs"
+    },
+    {
+      "word": "transportee",
+      "gp": "g4o9fd34gii",
+      "suffix": "0123456789abcdefhjklmnopqrs"
+    },
+    {
+      "word": "transporting",
+      "gp": "g4o9fd34gal",
+      "suffix": "0123456789abcdefhijkmnopqrs"
+    },
+    {
+      "word": "trustworthy",
+      "gp": "g41fg734g8q",
+      "suffix": "0123456789abcdefhijklmnoprs"
+    },
+    {
+      "word": "typewritten",
+      "gp": "gqdi74aggi9",
+      "suffix": "012345678abcdefhijklmnopqrs"
+    },
+    {
+      "word": "undervalued",
+      "gp": "19ni41ok1in",
+      "suffix": "g"
+    }
+  ],
+  "sourceShas": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
