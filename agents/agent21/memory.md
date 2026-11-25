@@ -1,3 +1,7 @@
+# Current invocation — 25 November 2026 (Agent21 draw10)
+
+Run `agent21-draw10-2026-11-25T12:43:23.399Z-source-route`, immutable claimed_at 12:43:23.399Z. #2273 claimed after Agent30 stale lease; #2083 closed. Tested a distinct GP28 prime-sum ordered streaming quotient receiver: all 696 omissions/field orders permit at most 9/1132 long original groups in the pinned 40,596-word lexicon regardless of carry. 58 native plants recover all 145272 runes; original winner exactly replays but is nonprose. Report: [prime-sum rank gate](../../im-results/lp2-gematria-sumrank-gp28-carry.md); SFT: [reproducer](../../sims/lp2_gematria_sumrank_gp28_carry_sft.cjs). This does not close #2273; no historical rank selector or plaintext found. Do not repeat lex/sum-order carry gates. Seek a genuinely different, source-selected architecture rather than further ad hoc order variants.
+
 # Current invocation — 25 November 2026 (Agent21, draw3)
 
 Run ID: agent21-gpt62-draw3-20261125T074234Z-source-selected; identity lease claimed at 2026-11-25T07:42:34.451Z and remotely verified. Director-task Issue #2713 was claimed and the exact bounded decision is complete.

@@ -1,0 +1,7094 @@
+{
+  "originalWords": 2896,
+  "originalRunes": 12956,
+  "lexicon": 40596,
+  "longWords": 1132,
+  "openingLong": 69,
+  "holdoutLong": 141,
+  "toy": 340,
+  "exactRankChecks": 18723,
+  "controls": 58,
+  "controlWords": 37446,
+  "controlRunes": 145272,
+  "variants": 696,
+  "winner": {
+    "omit": 22,
+    "mode": "gap",
+    "cyc": false,
+    "order": "DAB",
+    "all": 1061,
+    "long": 9,
+    "opening": 0,
+    "holdout": 1
+  },
+  "top": [
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1061,
+      "long": 9,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1061,
+      "long": 9,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1052,
+      "long": 8,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1084,
+      "long": 7,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1061,
+      "long": 7,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1052,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1052,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1050,
+      "long": 7,
+      "opening": 2,
+      "holdout": 2
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1049,
+      "long": 7,
+      "opening": 2,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1003,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    }
+  ],
+  "maxOpening": 2,
+  "maxHoldout": 3,
+  "initialBits": 0,
+  "preview": "EORFUXXAY LSIALS GTWNG MNN RFAE JTFNGDIATHCIARL SAWEAT WEIA MXP BRT AEUMNG MDP AEATMNB RRLGSXAEXSDEO OE OG SHF LAEP EAEAEMHWM RNGRFF",
+  "nativeLexHits": 0,
+  "originalReplay": 12956,
+  "results": [
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1061,
+      "long": 9,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1061,
+      "long": 9,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1052,
+      "long": 8,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1084,
+      "long": 7,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1061,
+      "long": 7,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1052,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1052,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1050,
+      "long": 7,
+      "opening": 2,
+      "holdout": 2
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1049,
+      "long": 7,
+      "opening": 2,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1003,
+      "long": 7,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1068,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1068,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1059,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1058,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1058,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1056,
+      "long": 6,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1048,
+      "long": 6,
+      "opening": 0,
+      "holdout": 3
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1047,
+      "long": 6,
+      "opening": 2,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1033,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1009,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 999,
+      "long": 6,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 989,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 989,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 972,
+      "long": 6,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1096,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1094,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1086,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1086,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1086,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1086,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1079,
+      "long": 5,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1066,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1060,
+      "long": 5,
+      "opening": 1,
+      "holdout": 2
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1059,
+      "long": 5,
+      "opening": 1,
+      "holdout": 2
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1058,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1058,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1058,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1057,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1055,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1055,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1048,
+      "long": 5,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1046,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1044,
+      "long": 5,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1044,
+      "long": 5,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1040,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1035,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1035,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1034,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1033,
+      "long": 5,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1033,
+      "long": 5,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1030,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1030,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1030,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1022,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1018,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1017,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1016,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1016,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1015,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1015,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1012,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1012,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1009,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1007,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1002,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1001,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1001,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1000,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1000,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1000,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 991,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 988,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 988,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 988,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 988,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 986,
+      "long": 5,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 971,
+      "long": 5,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1095,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1085,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1085,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1080,
+      "long": 4,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1078,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1078,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1078,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1078,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1071,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1067,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1065,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1063,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1063,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1057,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1057,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1057,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1057,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1055,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1054,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1054,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1054,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1054,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1053,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1053,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1053,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1052,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1052,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1052,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1052,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1048,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1048,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1047,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1045,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1045,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1045,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1045,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1044,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1042,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1041,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1041,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1041,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 22,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1041,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1039,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1034,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1032,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1032,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1032,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1032,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1032,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1031,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1031,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1030,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1030,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1030,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1030,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1028,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1027,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1026,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1026,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1025,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1021,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1020,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1020,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1020,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1020,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1020,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1020,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1018,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1018,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1018,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1018,
+      "long": 4,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1018,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1017,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1017,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1016,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1016,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1014,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1013,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1012,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1011,
+      "long": 4,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1006,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1006,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1003,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1003,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1003,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1003,
+      "long": 4,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1002,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 996,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 996,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 996,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 996,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 992,
+      "long": 4,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 992,
+      "long": 4,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 991,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 990,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 981,
+      "long": 4,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 971,
+      "long": 4,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 971,
+      "long": 4,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1077,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1076,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1071,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1071,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1071,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1071,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1066,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1065,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1060,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1059,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1059,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1058,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1058,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1058,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1058,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1058,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1057,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1055,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1055,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1055,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1055,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1052,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1051,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1051,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1051,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1051,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1051,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1050,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1050,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1049,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1048,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1046,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1046,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1045,
+      "long": 3,
+      "opening": 1,
+      "holdout": 2
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1044,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1044,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1044,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1042,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1038,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1038,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1037,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1036,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1034,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1033,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1027,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1026,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1026,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1026,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1026,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1026,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1025,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1025,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1024,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1022,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1022,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1021,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1020,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1020,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1020,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1020,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1020,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1019,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1019,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1019,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1019,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1019,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1019,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1019,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1019,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1018,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1018,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1018,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1018,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1017,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1016,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1016,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 2
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1015,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1014,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1014,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1014,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1014,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1014,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1013,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1013,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1013,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1012,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1012,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1011,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1010,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1010,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1010,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1010,
+      "long": 3,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1009,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1007,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1007,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1006,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1005,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1005,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1005,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1005,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1002,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1002,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1002,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1001,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1000,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1000,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1000,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1000,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1000,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1000,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 998,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 996,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 995,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 994,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 994,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 994,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 993,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 993,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 992,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 992,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 990,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 990,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 990,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 989,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 989,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 986,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 986,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 985,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 985,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 985,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 985,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 983,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 983,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 983,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 983,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 981,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 981,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 980,
+      "long": 3,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 977,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 976,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 971,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 970,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 966,
+      "long": 3,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 962,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 962,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 962,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 962,
+      "long": 3,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1076,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1076,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1075,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1075,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1075,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1070,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1070,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1070,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1069,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1069,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1069,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1069,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1062,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1062,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1062,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1062,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1061,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1061,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1060,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1059,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1059,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1059,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1059,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 27,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1058,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1057,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 12,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1057,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1055,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1055,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1054,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1054,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1054,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1054,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1051,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1049,
+      "long": 2,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1048,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1048,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1048,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1048,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1046,
+      "long": 2,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1046,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1046,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1045,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1045,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1044,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1044,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1044,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1044,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1043,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1043,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1043,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1043,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1043,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1041,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1040,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1038,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1038,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1038,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1038,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1037,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1037,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1037,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1035,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1033,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1032,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1027,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1027,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1026,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1025,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1024,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1023,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1023,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1021,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1021,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1020,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1019,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1019,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 14,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1018,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1017,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1017,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 19,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1016,
+      "long": 2,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1015,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1013,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1013,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1012,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1012,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1012,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1011,
+      "long": 2,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1010,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1010,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 13,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1010,
+      "long": 2,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1009,
+      "long": 2,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1009,
+      "long": 2,
+      "opening": 1,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1009,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1008,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1008,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1008,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1008,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1007,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1006,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1006,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1004,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1003,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1003,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1003,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1002,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1002,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1001,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1000,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1000,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 999,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 999,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 999,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 999,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 999,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 998,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 998,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 998,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 998,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 998,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 997,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 997,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 992,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 991,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 990,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 990,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 990,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 990,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 989,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 987,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 987,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 986,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 986,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 983,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 983,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 982,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 981,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 981,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 981,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 975,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 973,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 972,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 971,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 965,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 965,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 964,
+      "long": 2,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 957,
+      "long": 2,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1074,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1057,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1057,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1057,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1057,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1056,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1056,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1056,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1056,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1054,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1054,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1052,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1051,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1049,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1047,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1046,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 25,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1046,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1045,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1045,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1045,
+      "long": 1,
+      "opening": 1,
+      "holdout": 0
+    },
+    {
+      "omit": 7,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1044,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1044,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1043,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1043,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 22,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1043,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1041,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1037,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1036,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1036,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1036,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1036,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1036,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 0,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1035,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1035,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1035,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1031,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1029,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1028,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1027,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1027,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1027,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1027,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1027,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 0,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1024,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1023,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1023,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1022,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1022,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1022,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1022,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1020,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 28,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1020,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1018,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1016,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1014,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1011,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1010,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1009,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1007,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1007,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1007,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1007,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1004,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1002,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1002,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1000,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 996,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 9,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 995,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 995,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 995,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 16,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 994,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 991,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DBA",
+      "all": 991,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 981,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 980,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 3,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 978,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 973,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 972,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 971,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 971,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 968,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 965,
+      "long": 1,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 964,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 964,
+      "long": 1,
+      "opening": 0,
+      "holdout": 1
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1057,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "word",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1056,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1048,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 26,
+      "mode": "word",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1048,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "DBA",
+      "all": 1040,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 21,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1039,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 5,
+      "mode": "word",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1036,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1034,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 11,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1034,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1031,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 2,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 1031,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1023,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 1023,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 1020,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1014,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1014,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 1014,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 8,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 1014,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1004,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 1003,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 10,
+      "mode": "gap",
+      "cyc": false,
+      "order": "DAB",
+      "all": 1001,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 1001,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 17,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 1001,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 999,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 999,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 995,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 20,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 995,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 992,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 992,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 992,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 992,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "word",
+      "cyc": true,
+      "order": "ADB",
+      "all": 991,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ADB",
+      "all": 991,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 6,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 991,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 23,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BDA",
+      "all": 990,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "ABD",
+      "all": 982,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": true,
+      "order": "BAD",
+      "all": 982,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "ABD",
+      "all": 982,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BAD",
+      "all": 982,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 979,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 977,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "ABD",
+      "all": 973,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "BAD",
+      "all": 973,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ABD",
+      "all": 973,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "BAD",
+      "all": 973,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 972,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 15,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 972,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "DAB",
+      "all": 971,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 24,
+      "mode": "word",
+      "cyc": true,
+      "order": "BDA",
+      "all": 970,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 1,
+      "mode": "gap",
+      "cyc": true,
+      "order": "BDA",
+      "all": 966,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "word",
+      "cyc": false,
+      "order": "ADB",
+      "all": 958,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 18,
+      "mode": "gap",
+      "cyc": false,
+      "order": "ADB",
+      "all": 958,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DAB",
+      "all": 954,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    },
+    {
+      "omit": 4,
+      "mode": "gap",
+      "cyc": true,
+      "order": "DBA",
+      "all": 954,
+      "long": 0,
+      "opening": 0,
+      "holdout": 0
+    }
+  ]
+}
