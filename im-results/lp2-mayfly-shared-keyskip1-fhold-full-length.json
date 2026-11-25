@@ -1,0 +1,238 @@
+{
+  "config": {
+    "N": 264,
+    "B": 512,
+    "s": 0.81288,
+    "skipCap": 17,
+    "clock": "literal plaintext F bypass; physical predecessor; one retry",
+    "training": "first 80% of each donor, order 4 interpolated Dirichlet alpha 8"
+  },
+  "p57Control": 95,
+  "results": [
+    {
+      "q": 4,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        10,
+        8,
+        7
+      ],
+      "trueHold": [
+        14,
+        4,
+        4
+      ],
+      "trueScore": 257.6238897749095,
+      "score": -10.6628213862141,
+      "match": [
+        78,
+        79,
+        79
+      ],
+      "decodedSkip": [
+        11,
+        13,
+        16
+      ],
+      "decodedHold": [
+        7,
+        9,
+        4
+      ],
+      "explored": 5443328,
+      "retained": 141338,
+      "pass": false
+    },
+    {
+      "q": 5,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        6,
+        2,
+        4
+      ],
+      "trueHold": [
+        8,
+        5,
+        3
+      ],
+      "trueScore": 205.03085266053935,
+      "score": -40.13715240411855,
+      "match": [
+        93,
+        86,
+        94
+      ],
+      "decodedSkip": [
+        15,
+        11,
+        9
+      ],
+      "decodedHold": [
+        5,
+        2,
+        5
+      ],
+      "explored": 5221835,
+      "retained": 141850,
+      "pass": false
+    },
+    {
+      "q": 6,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        8,
+        10,
+        11
+      ],
+      "trueHold": [
+        9,
+        11,
+        13
+      ],
+      "trueScore": 243.00463293978882,
+      "score": 249.8651719778113,
+      "match": [
+        260,
+        257,
+        260
+      ],
+      "decodedSkip": [
+        8,
+        10,
+        11
+      ],
+      "decodedHold": [
+        9,
+        11,
+        13
+      ],
+      "explored": 5533716,
+      "retained": 137010,
+      "pass": true
+    },
+    {
+      "q": 7,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        5,
+        5,
+        9
+      ],
+      "trueHold": [
+        7,
+        11,
+        11
+      ],
+      "trueScore": 241.37628678216814,
+      "score": 115.55534031041694,
+      "match": [
+        162,
+        160,
+        165
+      ],
+      "decodedSkip": [
+        9,
+        8,
+        11
+      ],
+      "decodedHold": [
+        7,
+        10,
+        9
+      ],
+      "explored": 5633730,
+      "retained": 137243,
+      "pass": false
+    }
+  ],
+  "gate": false,
+  "nulls": [
+    {
+      "q": 0,
+      "score": -168.30028560857085,
+      "match": [
+        21,
+        20,
+        16
+      ],
+      "skip": [
+        9,
+        17,
+        13
+      ],
+      "holdCount": [
+        5,
+        5,
+        5
+      ],
+      "explored": 5327842
+    },
+    {
+      "q": 1,
+      "score": -164.01084625618225,
+      "match": [
+        15,
+        22,
+        28
+      ],
+      "skip": [
+        16,
+        17,
+        16
+      ],
+      "holdCount": [
+        7,
+        8,
+        7
+      ],
+      "explored": 5622058
+    },
+    {
+      "q": 2,
+      "score": -153.59282367315222,
+      "match": [
+        11,
+        12,
+        35
+      ],
+      "skip": [
+        12,
+        15,
+        12
+      ],
+      "holdCount": [
+        4,
+        3,
+        5
+      ],
+      "explored": 5430951
+    },
+    {
+      "q": 3,
+      "score": -178.56356097171314,
+      "match": [
+        11,
+        15,
+        19
+      ],
+      "skip": [
+        16,
+        10,
+        13
+      ],
+      "holdCount": [
+        4,
+        4,
+        4
+      ],
+      "explored": 5247417
+    }
+  ],
+  "original": [],
+  "cache": 133455
+}
