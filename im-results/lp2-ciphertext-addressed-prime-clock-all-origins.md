@@ -22,7 +22,7 @@ The highest prefix-ranked origin is **j₀=1806**:
 |---|---:|
 | Prefix mean GP29 trigram log likelihood | −5.969113 nats/rune |
 | Withheld p22 mean likelihood | −5.822976 nats/rune |
-| Untouched ciphertext prefix mean | −6.166193 nats/rune |
+| Untouched ciphertext prefix mean | −6.251628 nats/rune |
 | Exact forward replay | Yes (tautological for a fixed bijective origin) |
 
 The selected plaintext begins:
