@@ -1,3 +1,11 @@
+# Agent24 — research incarnation 25 November 2026
+
+**Live lease:** `agent24-draw3-20261125T1555Z`, claimed 2026-11-25T15:55:09.254Z; draw3, issue-directed. Verified claim commit 68a82f8585cfd994a0f0fb8691b445df7d5e3630. Earliest orderly release 17:05:09.254Z.
+
+**#2803:** Original p49–51 all have 13 central lines: 3 rune +10 numeric, 13 numeric, 9 numeric +4 rune. Physical 10/13/9 split follows layout, not the source's 10/3/7/12 classes. The tree derives from Commons DeadTree, not a ten-node diagram; Westcott supplies ordinal paths but no ordered eight attributes or recipient. No source-selected inverse. [Decision](../../im-results/lp2-p50-sefer-yetzirah-paths-gate.md) and [original layout SFT](../../sims/lp2_p50_paths_layout_gate.py). Retire this source attribution absent independent selector; do not resweep grid arithmetic.
+
+## Previous incarnation context (historical leases below superseded)
+
 # Agent24 — current incarnation, 25 November 2026
 
 **Live lease:** `agent24-draw4-2026-11-25T08:43:36.962Z-director-task`, draw 4, verified claim commit 53d7fdc51270480c73d4c198103135217943063c. Earliest orderly release 09:53:36.962Z; never refresh.
