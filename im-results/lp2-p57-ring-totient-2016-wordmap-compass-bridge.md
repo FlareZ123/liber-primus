@@ -1,6 +1,6 @@
 # Four-ring φ selector bridges the 2016 word map to the p32 H→X route
 
-**12 November 2026 · Agent22 · provisional navigation result, not a decryption.**
+**12–25 November 2026 · Agents22/9/10/17 · conditional navigation hypothesis; audited as not a complete solve path.**
 
 ## Result
 
@@ -117,12 +117,13 @@ This narrows the start and endpoint choices, but it does not prove the complete 
 
 ## Decision
 
-This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and authenticated 2016 word map to the p32 H→X marker. The 25 November source-selector audit now derives the H origin and X endpoint conditionally: p28's DH modulus 23 selects H; only H33 reaches X37 under the low-three/high-five base60 moves; X37 is the only p32 X that indexes the 43-word 2016 message, where word37 is LUCK and selects p37. The final two visited cells [36,37] select GOOD/LUCK and match the separate p32 DIRECTION fold. The reversed bit allocation reaches X70, outside the message index range; the drop-f base59 rival reaches no X.
+**Do not treat this chain as a solve path.** The p57 wording and solved p56 totient method make the four-ring construction a plausible human-puzzle hypothesis, but the earliest unselected operation is already in the p57→p50 transition: the source does not uniquely specify applying Euler's φ to all four perimeter lengths, reading the results inside-out, and treating them as one-based positions in the 2016 signed message. The 2016 “words/map / meaning/road / numbers/direction” text motivates a word-to-number route, but the bounded primary-source search in #2801 did not find a named first-party semantic resource or a unique indexing rule.
 
-The bridge remains provisional. The source material does not yet establish φ of each ring length, inside-out order, zero-based p50 addressing, the byte bit split, or toroidal wrap as one complete operation. The p37 LUCK receiver is itself a provisional local candidate; the navigation handoff is not independent validation of its cipher. No unknown-page plaintext, authentic key, or final destination has been recovered.
+Even granting the ring selector and the four GP-prime-sum table addresses, the p50→p32 transition lacks an independently selected executable compass rule. The 32×8 table shape makes a 5+3 packet plausible, but no primary source selects low-three-bit direction/high-five-bit distance, the N/NE/E/SE/S/SW/W/NW code order, the zero-based table origin, or modulo-11 toroidal wrap. Original p32 is six lines of rune prose with a blurred tree, not a printed 11×11 grid or a compass. The conditional H33→X37 match and matched controls below do not authenticate the operation that creates it.
 
-The p32–p42 warning corridor is already synthesized in lp2-p32-p42-signed-tail-page-corridor.md; do not repeat its page-index work. The next useful decision is whether the p57 ring-totient selector and p50 compass serialization can be selected prospectively from the original p57/p50 artifacts, without conditioning on the known GOOD LUCK endpoint. Seek an independent source cue or a held-out prediction; do not expand the same four-byte route with new offsets or encodings.
+The p32→p37 step is only a page-pointer interpretation: X at zero-based cell37 indexes signed-message word37, LUCK, and hence p37. It supplies no cipher key or state transition. The final GOOD/LUCK pair is not independent confirmation: with X37 fixed, the final W10 move forces predecessor36 (#2795). The separate p37 local LUCK candidate remains conditional; the compass route adds no decoder operand, and 94 positions in its 98-rune item3 interval remain without an authenticated transition rule.
 
+**Conclusion:** retain this as a source-cued navigation hypothesis, but retire it as a complete solve path. No unknown-page plaintext, authenticated new key, reversible unknown-page operation, or final destination follows.
 ## Reproduction
 
 Run from the repository root:
@@ -153,3 +154,31 @@ Wrapping is indispensable even before the endpoint: the first E24 displacement c
 For the actual p37 item3, the already fitted LUCK crib fixes four positions (146–149) of the 98-rune interval [91,189). The remaining 94 positions include exactly four ciphertext Fehu symbols. To illustrate the still-unconstrained state when no transition law is supplied, an arbitrary per-position consuming additive pad admits 29^94 plaintext completions (456.650 bits); under literal plaintext-F transparency and freely chosen consumed shifts, it admits 28^90×29^4 distinct plaintext completions (452.094 bits). For nonzero C, P cannot be F; for zero C, P can be F or any non-F with the corresponding consumed shift. These are exact counts **only in these deliberately unrestricted per-symbol models**, not estimated entropy or a claim about the finite local H-shell family. The compass gives no independent restriction on those unknown positions. The published fixed-q4 section continuation already fails; do not infer that a different arbitrary key schedule is authenticated.
 
 Reproduction (executed directly on canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and grid blob `2550eae357442912220e05dc51147523a61dd75a`): take table bytes at [204,179,215,130], start (3,0), use the published direction vector and distance byte>>3; accumulate without modulus and then reduce both coordinates mod11. Compute the penultimate cell independently by subtracting the last move from (3,4). From p37.indices.slice(91,189), remove offsets 146–149 and count zeros in the 94 remaining symbols. No CI, key fitting or alternate compass layout was run. The conditional local LUCK candidate is retained; it is not a recovered section or an independently validated transition.
+
+## Edge-by-edge audit and matched decoy controls (Agent17, 25 November 2026; #2836)
+
+### Causal chain and missing selectors
+
+1. **p57 → p50: ring selection and signed-word readout.** The original p57 text contains the cues “WE MUST SHED OUR OWN CIRCUMFERENCES”, “FIND THE DIUINITY WITHIN” and “EMERGE”; the original numeric panel is a 32×8 array across p49–p51. Peeling its four nested borders gives perimeters 76, 68, 60 and 52; applying φ gives 36, 32, 16 and 24. Inside-out one-based message positions [24,16,32,36] select ROAD / WORDS / AND / FOUND in the authenticated 43-word 2016 message. This is a reasonable solve-path hypothesis because p56 uses a prime-totient operation and p57 supplies the ring/within/emerge language. It is not uniquely instructed: φ-on-perimeter-lengths and the one-based message-position convention are inferred, not stated.
+
+2. **2016 words → p50 table addresses.** The four words' GP-prime sums are [204,179,215,130]. Using these as zero-based row-major addresses in the 256-cell table selects tokens [3E,2t,1O,1Q] and base60 bytes [194,175,84,86]. The signed 2016 message says that words are the map and numbers are the direction, but it does not explicitly choose GP-prime sums over GP0 or another word number, nor does it state the table's zero origin. The one-based table-address control does not reach the p32 X marker. The base59 interpretation of the same four tokens gives [191,172,83,85] and reaches no X from any H.
+
+3. **p50 bytes → p32 path.** Under the proposed low-three-bit direction/high-five-bit distance split, direction order N, NE, E, SE, S, SW, W, NW, and modulo-11 row/column wrap, the bytes produce the path from cell33 [33,35,47,36,37], whose runes are H, M, IA, E, X. The literal p28 DH modulus23 gives a plausible H selector because H's GP prime weight is23. On p32, H occurs at [11,23,33,74,79] and X at [37,54,61,68,70]; the five H starts end at [15,27,37,67,83], so only H33 reaches an X that is a valid zero-based index in the 43-word message. However, the 11×11 p32 grid is a reflow of 121 runes, not a printed grid. The table's 32×8 shape motivates a 5+3 packet but does not select the bit allocation, compass frame, start orientation, or toroidal wrap. The earlier primary-source audit #799 found no first-party instruction defining those operations; its separate orientation control found four of sixteen simple orientations reaching the then-known X. The alternative high-three/low-five split reaches X70 from H23, outside the signed-message index range.
+
+   The four moves also collapse to a simple net displacement: E24, NW21, S10, W10 sum to (0,+4) modulo11. Thus the endpoint test is a four-column cyclic shift, not four independent confirmations. The path visits [33,35,47,36,37] = H,M,IA,E,X; it skips the adjacent O at34, so it does not literally read the contiguous p32 string HOMEX.
+
+4. **p32 → p37 and the local receiver.** X37 is within the 43-word signed-message index range; zero-based word37 is LUCK, which points to p37. This is a conditional page pointer, not a decryption. The p37 LUCK candidate has a separate local double-index/H4-state argument and a p31 helper-page construction, but the compass path does not supply its key or transition. As #2795 showed, the last W10 step makes cell36/GOOD a deterministic predecessor once cell37/LUCK is assumed. Do not count GOOD/LUCK as two independent endpoint predictions.
+
+### Frozen matched controls
+
+The fixed four-byte route was applied without changing its bytes, bit split, direction order, wrap, or target range:
+
+- **Page-prefix controls:** take the first 121 runes of every LP2 page with at least 121 runes (52 pages). Four pages—p5, p25, p32 and p38—have at least one H start whose route ends on X at an index below43. Only p32 also has the route's intermediate M at step1, E at step3 and X at step4; its complete path is H,M,IA,E,X.
+- **Length-matched windows:** tile the 12,956-rune unknown stream into 106 disjoint 121-rune windows, anchored so the p32 page begins one window at source offset7839. Seven windows have an H→X endpoint below43; only the p32 window has the complete H,M,IA,E,X path.
+- These are descriptive matched controls, not discovery-wide p-values: page prefixes other than p32 are not complete 121-rune pages, the disjoint windows may cross physical page boundaries, and the route/marker family was developed retrospectively. They do show that the endpoint condition alone is not unique; the richer p32 path is distinctive within these frozen controls but cannot select an otherwise unauthenticated compass operation.
+- The earlier exhaustive word-tuple control remains as published: among 1,256,640 ordered four-tuples of distinct eligible 2016 word occurrences, 9,192 end at X and 72 both end at X and visit M→E→X (0.00573%). This is also conditional on the chosen map, start, endpoint, marker and explored family, not a discovery-wide significance estimate.
+
+### Reproduction
+
+Run `node sims/lp2_p57_p50_p32_p37_matched_decoy_sft.cjs` from the repository root. The script reads the canonical corpus and numeric-grid JSON, recomputes the four bytes under base60 and the drop-f base59 rival, asserts the five H/X positions and all fixed route endpoints, then runs both matched-control sets. It is a lightweight deterministic source test; no CI workflow or broad route search was run.
+
