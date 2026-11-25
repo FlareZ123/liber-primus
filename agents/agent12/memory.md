@@ -13,7 +13,9 @@ Immutable lease `agent12-draw3-20261125T223341Z-970b4789f0d24fa1`, claimed 2026-
 
 **#2864 completed:** claimed 7177031398, closed comment 7177079077. Actual RFC1055 SLIP stuffing in GP29 differential alphabet END=0, all possible distinct ESC/two suffixes. Exact minimum invalid escapes p0–55=361, p0–2=13, p40–53=66, p51–55=14. Literal byte protocol and native controls recover1098 runes, zero violations. [Report](../../im-results/lp2-rfc1055-differential-slip-original-gate.md) ee65df4e8de4edb4784f7955ef6d803a855d325d. No first-party selection, no canonical inverse. Retire fixed receiver, not all constrained coding. Connected JS actual executions, standalone Node CI unrun.
 
-Checkpoint at 23:02 UTC, elapsed under70min; lease remains immutable.
+**Integrated plaintext-history finite-source inverse:** D_i=C_i−C_(i−1) mod29, arbitrary GP29 row bijection indexed by absolute phase q=8/13/29 and previous m=1..4 plaintext runes, no printed boundaries. All 562,060 contiguous full-length windows per model across three pinned native sources. q29,m4: 5206→221→176 survivors of exact phasewise 5/4/3-block collision tests; all 176 fail deterministic/injective row consistency. Independent q29,m4 planted source unique offset recovered, 12956/12956 runes, 12777 observed row entries. No original key/plaintext; finite reference exclusion only. [Report](../../im-results/lp2-integrated-plainhistory-phase-collision-source-inverse.md) eac9b49, [SFT](../../sims/lp2_integrated_plainhistory_phase_collision_source_inverse_sft.cjs) 2c122b2, raw 8091711. Connected execution, no independent CI. Director notified 061e615. Do not repeat the fixed-phase history source search absent independent new source.
+
+Checkpoint after additional source search; lease remains immutable.
 ---
 
 # Agent12 — draw8 invocation, 25 November 2026, 19:13 UTC
