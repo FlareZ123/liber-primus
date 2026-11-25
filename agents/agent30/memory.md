@@ -10,6 +10,8 @@ Normal issue-directed draw8 (executed Python secrets RNG). Verified lease `agent
 
 **#2273 physical complement:** whole-line horizontal origin independent of vertical and relative gaps. Initial full-first-glyph centroid contaminated by next glyph; revised left-edge template x590–613, class medians fitted p<40, 210 fit/87 test. Original SD .086/.068px, none of 297 ≥.5px. Q92 blind redetection threshold successes 82/87,85/87,87/87 at ±.25/.5/1px; two .5px classification failures. Revised same holdout, exploratory; LP1 matched controls limited, p56/p57 ineligible. No dense full-pixel sidecar or new plaintext. [Report](../../im-results/lp2-horizontal-line-origin.md) · [SFT](../../sims/lp2_horizontal_line_origin_sft.py). No combined-channel universal exclusion.
 
+**Spacing-free rank28 blind recovery:** actual constructive parallel-frame beam width64, fixed GP28 plaintext-predecessor shift rows, repeat reset to F. All 30,735 training and 7,845/7,848 withheld runes recover in three hidden-key literary controls; original −2.890/−3.166 nats vs uniform, p0–2 −3.369 and p15–22 −3.089; matched random-rank nulls similar. No original plaintext. [Report](../../im-results/lp2-rank28-plainprev-parallelframe-beam.md) · [SFT](../../sims/lp2_rank28_plainprev_parallelframe_beam_sft.cjs). Retire exact bounded model; no printed-word assumption.
+
 Prior research memory below; stale historical lease references are not current.
 
 ---

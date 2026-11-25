@@ -15,6 +15,7 @@ const L1=U.map(x=>Math.log(A*x)),L2=B.map(x=>Math.log(A*x)),L3=T.map(x=>Math.log
 const rs=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
 const original=rs.flatMap(([lo,hi],chapter)=>{const a=gp.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices);const out=[];let d=[];for(let i=1;i<a.length;i++){let delta=(a[i]-a[i-1]+29)%29;if(!delta){out.push({chapter,d});d=[];}else d.push(delta-1);}out.push({chapter,d});return out;});assert(original.length===95&&sum(original.map(f=>f.d.length))===12861,"frame geometry");
 const isTrain=f=>f.chapter!==0&&f.chapter!==3;
+for(let c=0;c<rs.length;c++){const [lo,hi]=rs[c],P=gp.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices),F=original.filter(f=>f.chapter===c),C=[P[0]];for(let j=0;j<F.length;j++){if(j)C.push(C.at(-1));for(const r of F[j].d)C.push((C.at(-1)+r+1)%29);}assert(C.join()===P.join(),'complete source replay');}
 function decode(d,K){const P=[];let q=0;for(const r of d){assert(K[q]>=0,"unassigned held row");q=mod(r-K[q]);P.push(q);}return P;}
 function encode(P,K){let q=0;return P.map(p=>{const d=mod(p+K[q]);q=p;return d;});}
 function score(P){let s=0;for(let i=0;i<P.length;i++)s+=i===0?L1[P[i]]:i===1?L2[P[i-1]*A+P[i]]:L3[(P[i-2]*A+P[i-1])*A+P[i]];return s;}
@@ -34,10 +35,11 @@ for(let round=0;round<A;round++){
 let seed=33012811;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 function plant(donor,start,K){let pos=start;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor too short");return {chapter:f.chapter,P,d:encode(P,K)};});}
 function test(frames,K){const train=frames.filter(isTrain),held=frames.filter(f=>!isTrain(f));let res=solve(train,width);function evaluate(ff){let n=0,s=0,correct=0,rows=new Set();for(const f of ff){const P=decode(f.d,res.K);assert(encode(P,res.K).join()==f.d.join(),"replay");s+=score(P);n+=P.length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;rows.add(0);for(let i=0;i<f.P.length-1;i++)rows.add(f.P[i]);}}return {n,gain:s/n,correct:ff[0].P?correct:null,usedRows:rows.size,keyRows:K?Array.from(rows).filter(q=>K[q]===res.K[q]).length:null,preview:ff.slice(0,2).map(f=>decode(f.d,res.K).slice(0,80).map(p=>alphabet[p]).join(""))};}
- return {key:res.K,truth:K,train:evaluate(train),held:evaluate(held),trace:res.log};
+ return {key:res.K,truth:K,train:evaluate(train),held:evaluate(held),chapters:Array.from({length:9},(_,c)=>evaluate(frames.filter(f=>f.chapter===c))),trace:res.log};
 }
 const pilots=[];for(let i=0;i<count;i++){const K=Array.from({length:A},()=>rng()%A),d=donors[i%3],f=plant(d,d.length-16000,K);pilots.push(test(f,K));}
-return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?test(original,null):null};
+const nulls=originalTest?Array.from({length:3},()=>test(original.map(f=>({chapter:f.chapter,d:f.d.map(()=>rng()%A)})),null)):[];
+return {width,donorLengths:donors.map(d=>d.length),pilots,original:originalTest?test(original,null):null,nulls};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{width:64,count:3,originalTest:false}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{width:64,count:3,originalTest:true}),null,2));
 module.exports={experiment,INPUTS};
