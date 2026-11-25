@@ -1,0 +1,535 @@
+{
+  "key": [
+    19,
+    18,
+    9,
+    18,
+    19,
+    18,
+    9,
+    18,
+    16,
+    18,
+    5,
+    18,
+    20,
+    1,
+    13,
+    8,
+    24,
+    4,
+    15,
+    10,
+    9
+  ],
+  "keyRunes": "M E N E M E N E T E C E L U P H A R S I N",
+  "originalLength": 1680,
+  "controlLength": 1680,
+  "controlContainsF": true,
+  "tests": [
+    {
+      "sign": 1,
+      "start": 0,
+      "original": {
+        "deadAt": 77,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "952128000000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 1,
+      "original": {
+        "deadAt": 37,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "24094259481600"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 2,
+      "original": {
+        "deadAt": 125,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "32281286400"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 3,
+      "original": {
+        "deadAt": 125,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "528146841600"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 4,
+      "original": {
+        "deadAt": 125,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "14952787126200"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 5,
+      "original": {
+        "deadAt": 80,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "196223938560"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 6,
+      "original": {
+        "deadAt": 90,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "2502783360000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 7,
+      "original": {
+        "deadAt": 3,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "611895091200"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 8,
+      "original": {
+        "deadAt": 90,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "1541202204672"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 9,
+      "original": {
+        "deadAt": 90,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "183035787816960"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 10,
+      "original": {
+        "deadAt": 80,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "46305846720"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 11,
+      "original": {
+        "deadAt": 46,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "217979501508288000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 12,
+      "original": {
+        "deadAt": 46,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "6358208348160"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 13,
+      "original": {
+        "deadAt": 46,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "173449838592"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 14,
+      "original": {
+        "deadAt": 29,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "553291200000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 15,
+      "original": {
+        "deadAt": 80,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "142536412800000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 16,
+      "original": {
+        "deadAt": 80,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "1501031347200"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 17,
+      "original": {
+        "deadAt": 80,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "6885648000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 18,
+      "original": {
+        "deadAt": 29,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "75343359168000"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 19,
+      "original": {
+        "deadAt": 77,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "28466380800"
+      }
+    },
+    {
+      "sign": 1,
+      "start": 20,
+      "original": {
+        "deadAt": 77,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "3984828825600"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 0,
+      "original": {
+        "deadAt": 85,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "130314355776086527538407392000"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 1,
+      "original": {
+        "deadAt": 85,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "104654346471728322170880"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 2,
+      "original": {
+        "deadAt": 85,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "251881842443837740953477120"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 3,
+      "original": {
+        "deadAt": 85,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "21739269701706990987612240"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 4,
+      "original": {
+        "deadAt": 85,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "3575873204239252544409600"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 5,
+      "original": {
+        "deadAt": 136,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "569054214387102438973440"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 6,
+      "original": {
+        "deadAt": 136,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "954886851816184994651928072880128000"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 7,
+      "original": {
+        "deadAt": 136,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "1352013632775890463375360"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 8,
+      "original": {
+        "deadAt": 78,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "163419584639992007807450880"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 9,
+      "original": {
+        "deadAt": 78,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "602920892024262255640320000"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 10,
+      "original": {
+        "deadAt": 78,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "99599691689392744200314880"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 11,
+      "original": {
+        "deadAt": 78,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "1902054568546100484495360"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 12,
+      "original": {
+        "deadAt": 29,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "889877627224019193624480000"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 13,
+      "original": {
+        "deadAt": 3,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "157239644702530177440000"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 14,
+      "original": {
+        "deadAt": 25,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "20184798400386418136432640"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 15,
+      "original": {
+        "deadAt": 53,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "897369904672337859025778163936"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 16,
+      "original": {
+        "deadAt": 2,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "618167847885281697346560"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 17,
+      "original": {
+        "deadAt": 146,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "2396420492767268186948942940600"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 18,
+      "original": {
+        "deadAt": 146,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "67240488144665617367040"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 19,
+      "original": {
+        "deadAt": 146,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "2241330954749238717268005667200"
+      }
+    },
+    {
+      "sign": -1,
+      "start": 20,
+      "original": {
+        "deadAt": 137,
+        "paths": "0"
+      },
+      "control": {
+        "deadAt": null,
+        "paths": "97468618505516468421120"
+      }
+    }
+  ]
+}
