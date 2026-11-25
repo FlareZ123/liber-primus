@@ -1,0 +1,336 @@
+{
+  "index": 2,
+  "original": false,
+  "be": false,
+  "enc": true,
+  "A": 24389,
+  "sourceStart": 7960,
+  "sourceEnd": 9640,
+  "fitN": 9,
+  "holdN": 1,
+  "lexicon": 33386,
+  "toy": 4494,
+  "truth": {
+    "section": "0_koan_1",
+    "be": false,
+    "enc": true,
+    "key": 19837
+  },
+  "distinctFitKeys": 9,
+  "maxFit": 8,
+  "ties": 1,
+  "top10": [
+    [
+      19837,
+      8
+    ],
+    [
+      3638,
+      1
+    ],
+    [
+      13673,
+      1
+    ],
+    [
+      13970,
+      1
+    ],
+    [
+      19565,
+      1
+    ],
+    [
+      22152,
+      1
+    ],
+    [
+      22826,
+      1
+    ],
+    [
+      23849,
+      1
+    ],
+    [
+      23930,
+      1
+    ]
+  ],
+  "best": {
+    "a": 19837,
+    "fit": 8,
+    "hold": 1,
+    "detail": [
+      {
+        "source": 204,
+        "len": 11,
+        "fit": true,
+        "forms": 1886,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "UNREASONABLE",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 102,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 4,
+        "localKeys": 4,
+        "choices": 1,
+        "unique": "ANSWERED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 94,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 4,
+        "localKeys": 4,
+        "choices": 1,
+        "unique": "CONFUSED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 73,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "PROFESSOR",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 141,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 2,
+        "localKeys": 2,
+        "choices": 0,
+        "unique": null,
+        "truthLex": false,
+        "truthIncluded": false,
+        "truthUnique": false
+      },
+      {
+        "source": 140,
+        "len": 12,
+        "fit": true,
+        "forms": 1047,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "CONSCIAUSNESS",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 143,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "ARBITRARY",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 201,
+        "len": 10,
+        "fit": true,
+        "forms": 2911,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "INSTRUCTIAN",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 167,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "IRRITATED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 135,
+        "len": 9,
+        "fit": false,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "PROFESSOR",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      }
+    ]
+  },
+  "sourceKeys": null,
+  "truthReport": {
+    "a": 19837,
+    "fit": 8,
+    "hold": 1,
+    "detail": [
+      {
+        "source": 204,
+        "len": 11,
+        "fit": true,
+        "forms": 1886,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "UNREASONABLE",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 102,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 4,
+        "localKeys": 4,
+        "choices": 1,
+        "unique": "ANSWERED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 94,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 4,
+        "localKeys": 4,
+        "choices": 1,
+        "unique": "CONFUSED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 73,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "PROFESSOR",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 141,
+        "len": 8,
+        "fit": true,
+        "forms": 4980,
+        "allKeyPairs": 2,
+        "localKeys": 2,
+        "choices": 0,
+        "unique": null,
+        "truthLex": false,
+        "truthIncluded": false,
+        "truthUnique": false
+      },
+      {
+        "source": 140,
+        "len": 12,
+        "fit": true,
+        "forms": 1047,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "CONSCIAUSNESS",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 143,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "ARBITRARY",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 201,
+        "len": 10,
+        "fit": true,
+        "forms": 2911,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "INSTRUCTIAN",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 167,
+        "len": 9,
+        "fit": true,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "IRRITATED",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      },
+      {
+        "source": 135,
+        "len": 9,
+        "fit": false,
+        "forms": 4043,
+        "allKeyPairs": 1,
+        "localKeys": 1,
+        "choices": 1,
+        "unique": "PROFESSOR",
+        "truthLex": true,
+        "truthIncluded": true,
+        "truthUnique": true
+      }
+    ]
+  },
+  "truthRank": 1
+}
