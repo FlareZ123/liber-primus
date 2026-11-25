@@ -22,7 +22,11 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Historical DATA/560.13 download failed' }
           node sims/lp2_p0_56013_redraw_conditional_sft.cjs $source p0-56013-redraw-conditional.json
           if ($LASTEXITCODE -ne 0) { throw 'Conditional exact search failed' }
+          node sims/lp2_p0_56013_repair_conditional_sft.cjs $source p0-56013-repair-conditional.json
+          if ($LASTEXITCODE -ne 0) { throw 'Conditional repair search failed' }
       - uses: actions/upload-artifact@v4
         with:
           name: p0-56013-redraw-conditional
-          path: p0-56013-redraw-conditional.json
+          path: |
+            p0-56013-redraw-conditional.json
+            p0-56013-repair-conditional.json
