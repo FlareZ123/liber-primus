@@ -27,6 +27,26 @@ A concrete Dutch-library route is now identified; this is more actionable than a
 
 
 
+
+
+### Ready-to-send Dutch request (draft only; not sent)
+
+**Onderwerp:** Vraag over inventarisvermeldingen B4A-22/B4A-23 — *Thieme's insektengids* (1977)
+
+Geachte heer Kesseler,
+
+In het openbare overzicht van de bibliotheek van Documentatiecentrum D’n Aard zag ik de vermeldingen B4A-22 en B4A-23 voor *Thieme's insektengids* van J. Zahradnik (Thieme & cie, Zutphen, 1977). Kunt u bevestigen of deze exemplaren nog aanwezig zijn en of het inderdaad de Nederlandse editie betreft? Staat er bij één van de exemplaren een groene stip (alleen ter inzage)?
+
+Ik doe bronnenonderzoek naar een afbeelding van een eendagsvlieg (mayfly) die vermoedelijk in deze editie staat. Zou een niet-lid op afspraak de titelpagina, het colofon en de volledige afbeelding met de bijbehorende legenda op de tegenoverliggende pagina mogen inzien en eventueel enkele foto's maken? Ik heb slechts een beperkt aantal pagina's nodig; ik vraag niet om een digitale kopie van het volledige boek. De afbeelding wordt voorlopig met p.90 in verband gebracht, maar ik kan haar ook aan de hand van de afbeelding zelf identificeren.
+
+Als de boeken niet meer aanwezig zijn, weet u mogelijk welke bibliotheek in de regio nog een exemplaar heeft of of interbibliothecair leenverkeer mogelijk is?
+
+Hartelijk dank voor uw tijd.
+
+Met vriendelijke groet,
+[naam]
+
+
 ### Physical English comparator in Galway (backup, not a substitute for the Dutch edition)
 
 A current search result also surfaced a physical first-edition copy of the same illustrated work in Ireland:
