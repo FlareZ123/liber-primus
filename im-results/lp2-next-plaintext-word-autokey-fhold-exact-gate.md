@@ -1,6 +1,6 @@
 # Backward whole-word autokey: exact affine and prime-coordinate original inverse
 
-**24 November 2026 — no new LP2 plaintext or authentic key.** The continuous backward next-plaintext-word model with authentic transparent plaintext F is exactly excluded for every nonzero map in the 24,389-member GP29/prime-coordinate family below, even with a completely unknown terminal seed. Independent artwork-chapter parameters do not rescue seven of nine chapters. The two nontrivial terminal-chapter maps selected by the actual known p56 AN seed produce 24 legal but nonlinguistic complete inverses. No further unconstrained word-autokey variants are justified by these results.
+**24 November 2026 — no new LP2 plaintext or authentic key.** The continuous backward next-plaintext-word model with authentic transparent plaintext F is exactly excluded for every nonzero map in the 24,389-member GP29/prime-coordinate family below, even with a completely unknown terminal seed. Independent artwork-chapter parameters do not rescue seven of nine chapters. The two nontrivial terminal-chapter maps selected by the actual known p56 AN seed produce 24 legal but nonlinguistic complete inverses. A distinct, source-anchored reverse traversal with latent word boundaries is also negative in the 25 November extension below. No further unconstrained word-autokey variants are justified.
 
 ## Model and historical motivation
 
@@ -86,3 +86,29 @@ Every ordinary affine inverse needs at least 23 different one-rune plaintext typ
 Run from repository root: `node sims/lp2_backward_wordfed_affine_prime_allkey_sft.cjs`.
 
 **Decision:** retire this entire specified continuous backward family, including the authentic AN anchor, and its independently private artwork-chapter variants as a whole-book explanation. Preserve partial chapter legality survivors as explicitly nonprose rather than inferred keys. Arbitrary additional reset laws, altered printed segmentation, nonlinear state and independently authenticated key/operation remain outside the experiment. All 56 unknown LP2 pages remain unresolved.
+
+
+## Reverse traversal with latent boundaries and the known AN seed (Agent15, 25 November)
+
+**Decision:** the fixed reverse-traversal direct whole-word feedback receiver is not supported on original p54–55, even when the printed word separators are ignored. This is separate from the preceding backward traversal, which retained forward rune order inside each printed group. No authored clue specifies either receiver.
+
+Freeze the 308 original runes from physical p54 (232) and p55 (76), reverse the complete tape, and set the first key to the reversed known p56 opening AN, [9,24]. In traversal order, a plaintext word is itself read backwards. For each inferred word, reset key position to zero, emit literal F without consumption, and otherwise apply GP29 addition with the previous recovered traversal-word as the cyclic key. The first unknown word therefore uses NA. Word boundaries and F holds are latent; no ciphertext ordering, key or starting phase is fitted. This is the full reverse reading of a forward word-fed encoder, not the prior decreasing-group/forward-internal-order model.
+
+The receiver reuses the earlier marginal semi-Markov DP and scoring convention, reversing both source donor words and their word order. The pinned broad register has 35,800 forms, including all GP singletons; maximum word length 24, at most eight character-backoff word components, and 384 retained states per offset. An extension keeps only A/I/O/T as one-rune words (the actual solved-source census gives A=19,I=8,T=1; O is granted as an extra), and permits a backoff component even for the first word. All cases share the known two-rune NA seed. Three target-excluded literary GP29 controls come from the reversed held-out Gibran/Shakespeare/Emerson donor ends; these are constructed encryptions, not original Cicada ciphertext. Control windows are selected for exact 308-rune length and a lexical first word. The control first-word assumption remains a sampling limitation even when the extension allows first-word OOV. Compare the first 76 traversal runes (p55) and the next 232 (p54); the latter score is the incremental marginal log likelihood, not a distinct historically unseen page.
+
+| Register / case | p55-length prefix nats/rune | continuation nats/rune | Recovery |
+|---|---:|---:|---|
+| Broad, fixed NA, three true-law controls | −1.752 / −1.679 / −2.030 | −1.744 / −1.840 / −1.713 | 696/696 continuation runes and all continuation boundaries |
+| Broad, three mismatched continuous-key controls | −4.975 / −4.641 / no path | −6.759 / −6.858 / no path | 19/232, 11/232, no path |
+| Broad, original | −4.935 | −6.844 | Incoherent exact replay; eight backoff components |
+| A/I/O/T, initial OOV allowed, three true-law controls | −1.751 / −1.679 / −2.030 | −1.744 / −1.840 / −1.713 | 696/696 continuation runes and all continuation boundaries |
+| A/I/O/T, three mismatched continuous-key controls | −5.086 / −4.935 / no path | no path | maximum retained complete boundaries 119/125/0 |
+| A/I/O/T, original | −5.076 | no path | maximum retained complete boundary 109 |
+
+The broad lexical-only variant has 29 complete end states and zero clipping, but the best candidate is fragmented into implausible isolated letters and words. Its full marginal score is −2202.969 (−7.153 nats/rune). Exact replay checks the proposed law, not its truth.
+
+The strict lexical-only original path dies after six traversal runes, without clipping. A more useful **exact prefix OOV lower bound** grants arbitrary character-backoff components, including at the initial word, up to length24 and allows the p55/p54 seam to cut an incomplete word. With budgets 0/1/2, the last reachable complete word boundaries are 6/27/55, and no complete or partial path reaches 76. Budget3 first admits a path to 76 (24 complete end states, maximum 2,313 intermediate states). All four searches had zero clipping. Thus at least three backoff word components are necessary to explain even p55 in this finite grammar; this is not an unconditional language-independent contradiction. The strict full 308-rune budget8 beam dies at 109, but **it clipped** and is not an exact all-path exclusion. Exact zero-OOV calibration succeeds only on the control with no true OOV forms; the other two have 2 and 3 true OOVs, and the relaxed receiver recovers both.
+
+Reproduction: [SFT](../sims/lp2_reverse_latent_nextword_an_sft.cjs), [broad controls and original](lp2-reverse-latent-nextword-an-output.json), [strict controls and original](lp2-reverse-latent-nextword-an-native-singletons.json), [exact prefix OOV support](lp2-reverse-latent-nextword-an-prefix-oov.json). Core experiment executed against actual repository inputs in the connected JS runtime; no standalone Windows Node/CI execution claimed. From repository root use `node sims/lp2_reverse_latent_nextword_an_sft.cjs` for the broad model, add `--native-singletons --first-oov` for the strict model, or `original --native-singletons --first-oov --prefix-only --budget=3` for exact prefix support (verify clipping count zero).
+
+Retire this fixed known-AN reverse-direction receiver, under its calibrated native register and finite backoff assumptions. The art/parable does not select the AN key transfer, and different feedback functions, different terminal keys or clocks remain outside the test. Do not expand these variants merely to rescue the hypothesis.
