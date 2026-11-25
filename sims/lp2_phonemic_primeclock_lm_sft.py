@@ -282,6 +282,7 @@ else:
             if spelling in frequencies:
                 lexicon_weighted[classes].append((spelling, frequencies[spelling]))
     max_word_length = max(map(len, lexicon_all), default=0)
+    n = len(best_plain)
 
     reachable = [False] * (n + 1)
     reachable[0] = True
