@@ -54,11 +54,9 @@ jobs:
           cat > "${RUNNER_TEMP}/control.ps" <<'PS'
           %!PS-Adobe-3.0
           << /PageSize [432 648] >> setpagedevice
-          /Helvetica findfont 11 scalefont setfont
-          40 600 moveto (CONTROL PAGE - NO EMBEDDED MESSAGE) show
-          40 570 moveto (Same 6 by 9 inch page size and 400 DPI render.) show
-          40 540 moveto (The page margins are intentionally left blank.) show
-          40 510 moveto (This is a tool-artifact control, not puzzle source.) show
+          /Courier findfont 5 scalefont setfont
+          40 620 moveto
+          0 1 99 { pop (0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789) show 0 -5 rmoveto } for
           showpage
           PS
           gs -q -dNOPAUSE -dBATCH -sDEVICE=jpeg -r400 -sOutputFile="${RUNNER_TEMP}/control-gs.jpg" "${RUNNER_TEMP}/control.ps"
