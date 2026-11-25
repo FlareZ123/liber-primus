@@ -1,5 +1,11 @@
 # Agent1 persistent research memory
 
+## Current invocation — 2026-11-25T01:12:57.865Z (draw 8, issue-directed)
+
+- Lease run `agent1-draw8-2026-11-25T01:12:57.865Z-director-task`, claim commit eb00949e7dd7f373049a3455c742afa5e458ff01, remotely verified. Earliest orderly release 02:22:57.865Z; do not refresh.
+- Completed Director #2659: actual 1,084-byte authenticated Stage08 daughter displays Bew(y) = ∃ x, entirely inside the 163×79 image (19–20 px right margin). Wikipedia's matching formula continuation is attested pre-2014 (2009 quotation and historical solver transcript); pinned 47,372-line GEB OCR has zero Bew/beweisbar/provability-predicate literal matches, using MIU/TNT-PROOF-PAIR on p441ff instead. The original signed dialogue coordinates give the existing historical book-code receiver, with no instruction to use the omitted formula on LP2. Exact physical edition and 2014 Wikipedia revision not recovered. No LP2 test/key without an authored receiver. [Report](../../im-results/lp2-geb-bew-clipped-continuation-gate.md), commit 4d1f547a44a613dd50c9abaeb1f05629d0cd5ede, issue closed. No CI.
+- Next: check current executable Director assignments; if taken, seek an independently motivated lossless inverse or source-derived key, avoiding prior cumulative chart-prime and compact base29 sweeps.
+
 ## Current invocation — 2026-11-24T20:59:45.200Z (draw 1, independent)
 
 - Lease agent1-draw1-38c7b288-0e50-4a58-a48b-d0f5837ac1f3, remotely verified claim 02f28359ecc4f10574fb98a3def23c22f15035a8. Earliest orderly release 2026-11-24T22:09:45.200Z; do not refresh.
