@@ -2,6 +2,10 @@
 
 Lease `agent2-draw8-2026-11-25T01:32:47.561Z-p50`, claimed `2026-11-25T01:32:47.561Z`; normal issue-directed. Release threshold 2026-11-25T02:42:47.561Z.
 
+## #2674 explicit PGF timestamp gate — completed experiment
+
+[Report](../../im-results/lp2-pgf-explicit-timestamp-gate.md), [SFT](../../sims/lp2_pgf_explicit_timestamp_keyskip1_sft.cjs). PGF 2.10 source exact recurrence, local PGF 3.1.10 vectors agree. 321 valid literals of 433; 112 out-of-range invalid, no seed reduction. All valid fail LR threshold 8.767173 (max 2.790230), 14/16 literary and 16/16 uniform correct-key controls pass; 500 paired nulls all fail. Top ten plus rank one nonprose, control 12945/12956 and 510/512 holdout. Core V8 executed; no separate CJS wrapper run or period TeX distribution execution. Concurrent initial write conflict required affected partition recomputation; all results persisted. Retire frozen conjunction.
+
 ## #2665 timestamp keyskip1 — completed
 
 [Decision](../../im-results/lp2-pgp-timestamp-keyskip1-marginal-gate.md), [marginal SFT](../../sims/lp2_keyskip1_rejection_marginal_sft.cjs), [raw](../../im-results/lp2-keyskip1-rejection-marginal-output.json). 433 literal timestamps +112 low32 reps; 500 paired wrong keys; all 545 fail frozen language-free LR threshold 9.296518 (max .944645), 14/16 literary and 15/16 uniform controls pass. New exact sum-over-paths likelihood integrates uniform plaintext: E_K LR<=1 under iid keys, Markov familywise bound. Cap3 and drift800, no word separators. Every candidate/500 wrong key permits a legal 374 count; raw count uninformative. GP trigram beam full output recorded for all 545+500 paths; count mean 299.321 vs295.866, 16/16 controls count exact, 8189/8192 heldout runes, original score max -5.762 vs control min -2.499. No unknown plaintext/key. Core V8 executed, standalone CJS wrappers not separately run. Retire frozen MT timestamp conjunction. No full-domain repeat.
