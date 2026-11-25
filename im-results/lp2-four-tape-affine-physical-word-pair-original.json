@@ -1,0 +1,65 @@
+[
+  {
+    "layout": 0,
+    "ok": false,
+    "reason": "pair",
+    "a": 45,
+    "b": 59,
+    "logs": [
+      {
+        "pass": 0,
+        "a": 45,
+        "b": 59,
+        "columns": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        "pairProduct": 1813882,
+        "good": 0,
+        "before": 136405,
+        "after": 117875
+      }
+    ],
+    "tested": 1813882,
+    "elapsedMs": 2408
+  },
+  {
+    "layout": 2,
+    "ok": false,
+    "reason": "pair",
+    "a": 43,
+    "b": 60,
+    "logs": [
+      {
+        "pass": 0,
+        "a": 43,
+        "b": 60,
+        "columns": [
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32
+        ],
+        "pairProduct": 1815044,
+        "good": 0,
+        "before": 133844,
+        "after": 116282
+      }
+    ],
+    "tested": 1815044,
+    "elapsedMs": 2145
+  }
+]
