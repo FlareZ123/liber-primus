@@ -1,0 +1,86 @@
+[
+  {
+    "fitMarginalUnigramLLR": -0.18356201944833114,
+    "heldConditionalUnigramLLR": -0.38543796358276977,
+    "fitMAPBigramLLR": -0.47620557319085366,
+    "heldMAPBigramLLR": -1.625004503525838,
+    "meanTopPosterior": 0.6838596915933832
+  },
+  {
+    "fitMarginalUnigramLLR": -0.2005115871759846,
+    "heldConditionalUnigramLLR": -0.3596403277256369,
+    "fitMAPBigramLLR": -0.48389619022550523,
+    "heldMAPBigramLLR": -1.531670143968832,
+    "meanTopPosterior": 0.6550528733749734
+  },
+  {
+    "fitMarginalUnigramLLR": -0.18949293921213312,
+    "heldConditionalUnigramLLR": -0.4020146086867488,
+    "fitMAPBigramLLR": -0.4922629414804578,
+    "heldMAPBigramLLR": -1.704272278415805,
+    "meanTopPosterior": 0.6691284045078048
+  },
+  {
+    "fitMarginalUnigramLLR": -0.19483382286946518,
+    "heldConditionalUnigramLLR": -0.3594163461364874,
+    "fitMAPBigramLLR": -0.467159380049047,
+    "heldMAPBigramLLR": -1.6773607732328135,
+    "meanTopPosterior": 0.6301211558908002
+  },
+  {
+    "fitMarginalUnigramLLR": -0.1885653684270731,
+    "heldConditionalUnigramLLR": -0.37015004005492375,
+    "fitMAPBigramLLR": -0.47180735326030376,
+    "heldMAPBigramLLR": -1.6813116768079257,
+    "meanTopPosterior": 0.6874559563501509
+  },
+  {
+    "fitMarginalUnigramLLR": -0.19381212563720412,
+    "heldConditionalUnigramLLR": -0.34122663100808426,
+    "fitMAPBigramLLR": -0.4801568709620523,
+    "heldMAPBigramLLR": -1.6716558795230019,
+    "meanTopPosterior": 0.6452087707269418
+  },
+  {
+    "fitMarginalUnigramLLR": -0.19443581577799948,
+    "heldConditionalUnigramLLR": -0.36099774773332,
+    "fitMAPBigramLLR": -0.47858771862995075,
+    "heldMAPBigramLLR": -1.5763052292001913,
+    "meanTopPosterior": 0.6480812440952305
+  },
+  {
+    "fitMarginalUnigramLLR": -0.19477100560093594,
+    "heldConditionalUnigramLLR": -0.3737680490338872,
+    "fitMAPBigramLLR": -0.47776216687968187,
+    "heldMAPBigramLLR": -1.6981461678261334,
+    "meanTopPosterior": 0.6267182290196942
+  },
+  {
+    "fitMarginalUnigramLLR": -0.19461151197768728,
+    "heldConditionalUnigramLLR": -0.35790324566005105,
+    "fitMAPBigramLLR": -0.483555438622437,
+    "heldMAPBigramLLR": -1.6747864085857116,
+    "meanTopPosterior": 0.6656358437692547
+  },
+  {
+    "fitMarginalUnigramLLR": -0.18896867417575644,
+    "heldConditionalUnigramLLR": -0.39462403730475637,
+    "fitMAPBigramLLR": -0.47800803632884037,
+    "heldMAPBigramLLR": -1.7817295841708272,
+    "meanTopPosterior": 0.6552954044882668
+  },
+  {
+    "fitMarginalUnigramLLR": -0.1904150115803395,
+    "heldConditionalUnigramLLR": -0.3762139006309615,
+    "fitMAPBigramLLR": -0.4768461324684372,
+    "heldMAPBigramLLR": -1.7198402457441735,
+    "meanTopPosterior": 0.664127725533215
+  },
+  {
+    "fitMarginalUnigramLLR": -0.18441362513473636,
+    "heldConditionalUnigramLLR": -0.3856374658810943,
+    "fitMAPBigramLLR": -0.4737179116311161,
+    "heldMAPBigramLLR": -1.7402182055117383,
+    "meanTopPosterior": 0.6760695293840762
+  }
+]
