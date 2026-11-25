@@ -48,7 +48,13 @@ function run(gp, transcript, gold, dict){
    const trueActive=p.map((x,i)=>x?i:-1).filter(i=>i>=0);const alt=p.slice();alt[trueActive[0]]=alt[trueActive[0]]%28+1;const k2=k.slice();k2[0]=mod(c[trueActive[0]]-alt[trueActive[0]]);assert(encode(alt,k2).join()===c.join(),"primer ambiguity replay");
    controls.push({name,q,fitRunes:split,heldRunes:p.length-split,oov,fitStates:fit.states,fitPaths:fit.paths,fitProcessed:fit.processed,fitVisits:fit.visits,primer:fit.best?.primer,planted:k,primerExact:fit.best?.primer.join()===k.join(),fitHits:fit.best?.p.filter((x,i)=>x===p[i]).length??0,heldPaths:held?.paths,heldHits:held?.best?.p.filter((x,i)=>x===p[split+i]).length??0,replay,alternatePrimer:k2,alternateReplay:true});
  }}
- return {historicalVector:hist,originals,controls};
+ function lagWitnesses(c){const out=new Map();let positions=new Map();for(let i=0;i<c.length;i++){const x=c[i];if(!x){positions.clear();continue;}const list=positions.get(x)||[];for(const j of list){const q=i-j;if(q<=3301&&!out.has(q))out.set(q,[j,i,x]);}list.push(i);positions.set(x,list);}return out;}
+ function ranges(xs){const out=[];for(const x of xs.sort((a,b)=>a-b)){const last=out.at(-1);if(last&&x===last[1]+1)last[1]=x;else out.push([x,x]);}return out;}
+ const scopes=chapterStarts.slice(0,-1).map((a,j)=>{const b=chapterStarts[j+1]-1,c=gp.pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices);return {a,b,m:lagWitnesses(c)};});
+ const full=lagWitnesses(all),chapterUnion=new Set(scopes.flatMap(s=>[...s.m.keys()])),common=[...chapterUnion].filter(q=>scopes.every(s=>s.m.has(q)));
+ const pageScopes=gp.pages.filter(p=>p.page<=55).map(p=>({page:p.page,m:lagWitnesses(p.indices)})),pageUnion=new Set(pageScopes.flatMap(s=>[...s.m.keys()]));
+ const allLag={limit:3301,continuous:ranges([...full.keys()]),chapterShared:ranges([...chapterUnion]),everyChapter:ranges(common),pageShared:ranges([...pageUnion]),continuousWitnesses:Object.fromEntries(full),chapters:scopes.map(s=>({a:s.a,b:s.b,ranges:ranges([...s.m.keys()]),witnesses:Object.fromEntries(s.m)})),pages:pageScopes.map(s=>({page:s.page,witnesses:Object.fromEntries(s.m)}))};
+ return {historicalVector:hist,originals,controls,allLag};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt"];
 const raw=paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
