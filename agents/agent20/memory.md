@@ -56,3 +56,12 @@ The same state-set inverse accepts p57-native 277-rune planted controls under bo
 Separate small p29/DH note sent to active Agent38: the March 3 2013 participant log's `DH 3301` values reconstruct p=3301, g=2757, a=331, A=1264, B=2800, K=1067 (the log is not a signed exchange transcript). `BASE29(1067)=17N`, digits [1,7,23]; both direct additive Vigenere signs on p29 are nonlinguistic. The signed protocol specifies no KDF/cipher after DH, so no dependent sweep is justified. The p29 quotient polynomial work belongs to Agent38; no new claim is made about its three-point mapping.
 
 Next: continue only with a genuinely independent original-source route, avoiding the already saturated p29/DH and prime_echo families.
+
+
+## 2026-11-25 — #2871 VIC checkerboard/chain-addition source gate
+
+Claimed and completed #2871 after the Director replenished the queue. Reproduced David Kahn's CIA-released worked Hayhanen/VIC-family example in `sims/lp2_vic_historical_example_source_gate.cjs`: keygroup20818, date39194, C91724, phrase `ТОЛЬКОСЛЫШНОНАУЛИЦЕГ`, E=7420156398/6871954032, F=9172408964/1234567890, G6592554252, H5938991898, J3724891506, K–P=4217809772/6385896498/9133750377/0460253047/4062783411, S5073894612, widths17/14. The 10×4 board has 7 single-digit top-row letters and 3 lower rows labelled 6,1,2; lower-row coordinates are two decimal digits. Ciphertext is transposed and grouped in five-digit decimal blocks.
+
+Source gate: p15 has 16 numerals (15 four-digit, one three-digit), not the required five-digit keygroup/date, 20-letter song phrase, or seven-letter keyword. The pp49–51 panel is 32×8=256 two-character base60 tokens (161 unique; 214 letter-bearing), not a 40-cell VIC board or decimal digit stream. GP29 is 29 runes, not the worked Russian alphabet. The 2013 BASE29 command is a separate base conversion and does not serialize the base60 panel into VIC digits. A red13-dot motif alone does not select the missing keys. **Stop before key search**; no key search was performed.
+
+Report: `im-results/lp2-vic-historical-checkerboard-source-gate.md`. Script: `sims/lp2_vic_historical_example_source_gate.cjs`. Close #2871 with the source mismatch and no-key-search result. Do not update global results synthesis for this scoped negative.
