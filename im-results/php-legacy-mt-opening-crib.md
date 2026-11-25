@@ -47,3 +47,21 @@ The existing [historical PHP implementation](../sims/php_legacy_mt.cjs) matches 
 Best original is rank408, seed 20140107031641 -> uint32 1005380697. The original scores are null-like. Two native positives contained a four-retry run beyond the finite per-symbol cap; one passed and one failed. The experiment is calibrated but not perfectly sensitive. No plaintext recovered; no language-decoding escalation is justified. This result does not exclude PHP seed space, latent F, independent key transformations, or suppression coins from the same PRNG stream.
 
 Raw results: [controls](lp2-php-legacy-timestamp-keyskip-controls.json), [candidates](lp2-php-legacy-timestamp-keyskip-candidates.json), [wrong seeds](lp2-php-legacy-timestamp-keyskip-nulls.json). Executed in connected V8, no Actions claim. For local reproduction run `node sims/lp2_php_legacy_timestamp_keyskip_marginal_sft.cjs control 0 16`, then the `candidate 0 433` and `null 0 500` groups.
+
+## Same-instance rejection coin extension (Agent 6, 25 November)
+
+The independent-coin marginal above does not apply when both key runes and rejection decisions consume the same PHP output stream. Adapted the existing Agent4 exact interval inverse to the historical 31-bit PHP draws, with three source-neutral schedules (conditional coin draw only on collision, paired key-first, paired coin-first) and three plaintext clocks (ordinary F, literal F with physical predecessor, literal F with consuming predecessor). Initial state zero, positive GP additive direction, unlimited collision retries, one global threshold. No language, dictionary, offset search, beam or drift cap.
+
+The ordinary-F test uses s in (.72,.882], the preexisting outward-rounded repeat-rate interval under the iid-key model. It is a conditional interval, not a proof that low-threshold ordinary encryption cannot generate 86 repeats. The literal-F tests examine all s in [0,1], handling the zero endpoint separately; all thresholds are covered by propagation and union of exact half-open threshold intervals. The normalized PHP draws are exact dyadic fractions. This is a deterministic path feasibility test for the specified generator and schedule.
+
+All 27 full-length native controls retain their true thresholds (.73/.81/.87, three disjoint windows, nine schedule/clock combinations). Original result:
+
+| Clock | Seed/schedule cases | Complete | Latest dead rune (zero-based) |
+|---|---:|---:|---:|
+| Ordinary F, (.72,.882] | 1299 | 0 | 6224 |
+| Literal F, physical predecessor, [0,1] | 1299 | 0 | 979 |
+| Literal F, consuming predecessor, [0,1] | 1299 | 0 | 979 |
+
+At s=0 both literal-F clocks die no later than index635. The best ordinary prefix was rank356 (1389064608000 -> uint32 1790171392), paired coin-first, but has no complete path. No candidate merits language decoding.
+
+[SFT](../sims/lp2_php_legacy_same_rng_threshold_sft.cjs), [27 controls](lp2-php-legacy-same-rng-controls.json), original batches [1–100](lp2-php-legacy-same-rng-candidates-000-100.json), [101–200](lp2-php-legacy-same-rng-candidates-100-200.json), [201–300](lp2-php-legacy-same-rng-candidates-200-300.json), [301–433](lp2-php-legacy-same-rng-candidates-300-433.json). All 3,897 rank/schedule/clock combinations accounted for; connected V8 execution, no new Actions run. Do not extrapolate to other seed derivations, signed/shifted keys, or untested schedules. The absence of an independently sourced PHP selector and the negative full-length results make further PHP enumeration low priority.
