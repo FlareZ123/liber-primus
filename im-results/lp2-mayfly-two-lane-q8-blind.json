@@ -1,0 +1,318 @@
+{
+  "sourceBlobShas": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ],
+  "width": 2048,
+  "maskCount": 128,
+  "controls": [
+    {
+      "name": "plant-0",
+      "fit": 378,
+      "hold": 133,
+      "key": [
+        7,
+        26,
+        28,
+        10,
+        16,
+        25,
+        18,
+        1
+      ],
+      "trueKey": [
+        7,
+        26,
+        28,
+        10,
+        16,
+        25,
+        18,
+        1
+      ],
+      "exactKey": true,
+      "fitScore": -2.5259110242284684,
+      "holdScore": -2.5805877418413266,
+      "fitCorrect": 378,
+      "holdCorrect": 133,
+      "end": {
+        "j": 1,
+        "a": 24,
+        "b": 1
+      },
+      "legal": true,
+      "fitPlain": "RGREATCHARMSMISGUIDETHYOPPOSERSSWORDSBOLDGENTLEMANPROSPERITYBETHYPAGEMARCIUSTHYFRIENDNOLESSTHANTHOSESHEPLACETHHIGHESTSOFAREWELLLARTIUSTHOUWORTHIESTMARCIUSGOSOUNDTHYTRUMPETINTHEMARCETPLACECALLTHITHERALLTHEOFFICERSOTHETOWNWHERETHEYSHALLCNOWOURMINDAWAYCOMINIUSBREATHEYOUMYFRIENDSWELLFOUGHTWEARECOMEOFFLICEROMANSNEITHERFOOLISHINOURSTANDSNORCOWARDLYINRETIREBELIEUEMESIRSWESHALLBECHARGEDAGAINWHILESWEHAU",
+      "holdPlain": "ESTRUCCBYINTERIMSANDCONUEYNGGUSTSWEHAUEHEARDTHECHARGESOFOURFRIENDSYEROMANGODSLEADTHEIRSUCCESSESASWEWISHOUROWNTHATBOTHOURPOWERSWITHSMILNGFRONTS",
+      "search": {
+        "peak": 2048,
+        "dropped": 26624,
+        "retained": 2048,
+        "keys": 4
+      }
+    },
+    {
+      "name": "plant-1",
+      "fit": 378,
+      "hold": 132,
+      "key": [
+        3,
+        0,
+        1,
+        9,
+        11,
+        4,
+        11,
+        24
+      ],
+      "trueKey": [
+        3,
+        0,
+        1,
+        9,
+        11,
+        4,
+        11,
+        24
+      ],
+      "exactKey": true,
+      "fitScore": -2.5330338477502226,
+      "holdScore": -2.558482759262459,
+      "fitCorrect": 378,
+      "holdCorrect": 132,
+      "end": {
+        "j": 6,
+        "a": 13,
+        "b": 10
+      },
+      "legal": true,
+      "fitPlain": "URNTHEWHOLEHEADTHEMANNERSOFTHATPERIADAREPLAINANDFIERCETHEREUERENCEEXHIBITEDISFORPERSONALCWALITIESCOURAGEADDRESSSELFCOMMANDJUSTICESTRENGTHSWIFTNESSALOUDUOICEABROADCHESTLUXURYANDELEGANCEARENOTCNOWNASPARSEPOPULATIANANDWANTMACEEUERYMANHISOWNUALETCOOCBUTCHERANDSOLDIERANDTHEHABITOFSUPPLYNGHISOWNNEEDSEDUCATESTHEBODYTOWONDERFULPERFORMANCESSUCHARETHEAGAMEMNONANDDIAMEDOFHOMERANDNOTFARDIFFERENTISTHEPI",
+      "holdPlain": "CTUREXENOPHONGIUESOFHIMSELFANDHISCOMPATRIATSINTHERETREATOFTHETENTHOUSANDAFTERTHEARMYHADCROSSEDTHERIUERTELEBOASINARMENIATHEREFELLMUCHSNOWANDTHE",
+      "search": {
+        "peak": 2048,
+        "dropped": 36864,
+        "retained": 2048,
+        "keys": 4
+      }
+    }
+  ],
+  "oneControl": [
+    {
+      "name": "one-message-0",
+      "fit": 378,
+      "hold": 133,
+      "key": [
+        19,
+        15,
+        7,
+        6,
+        18,
+        0,
+        21,
+        6
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.06993921342069,
+      "holdScore": null,
+      "fitCorrect": 130,
+      "holdCorrect": null,
+      "end": {
+        "j": 7,
+        "a": 15,
+        "b": 20
+      },
+      "legal": false,
+      "fitPlain": "BOJUEYLESYNLTHULEAOEYJOESXFROEHARMIOMEYTGNCNGEIWMTEYMLIAERLGNGIAEATEELAECBLAEAERJRSSCEDPJUICYIFRTHEARAEELFMJAWROHTHBJHUAYTHMOCELHTTGNMLEOCLTHOLOTEHASARCRNGIUEFTHIBUEELSRCTMCRUTOAUHTLEARNMNIAEBAOMURPCBBULLNOANOELIGIAMRATHSTIETTHEOAEXEOPRRIABEWRLUECAETHEOYMMRPYASNGCRAREOELDOTHNGPMBFPAEAENTRNNTHISGFRNIADISLTHPUUIECRNGIUILUODAEHEWTHLACNCAEAERTORMEEMIOEMFHODIBRAWARMINETHJNGTHSRXOEOESNGLNNFMHSRAEEHTTHUNTEDOMYOFSEORBXFAEUFTNGALEAPPNGLDSL",
+      "holdPlain": null,
+      "search": {
+        "peak": 2048,
+        "dropped": 22528,
+        "retained": 2048,
+        "keys": 19
+      }
+    },
+    {
+      "name": "one-message-1",
+      "fit": 378,
+      "hold": 132,
+      "key": [
+        2,
+        20,
+        18,
+        15,
+        6,
+        13,
+        8,
+        18
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.207601705807406,
+      "holdScore": null,
+      "fitCorrect": 49,
+      "holdCorrect": null,
+      "end": {
+        "j": 7,
+        "a": 3,
+        "b": 15
+      },
+      "legal": false,
+      "fitPlain": "XAEXHINHNWEREAMRERNRAEDPTIAORPFGIASEARTMWNGNGWRNGSMEFNGWEOAEXRDCLEAEYTHFUTHACUHAXTJAEAETHIADYMLIAEHMLSWITWYAEEAMMDAHMIHTRAEOPJIATRUNDGOEPBECIAFSNGLPEAAUBONGIATHECURIAIAESBLNNNGGTHXPFOIROWAYRWACOMXOYETHOSHSCJUHMOMLYPSMNGRELNGCNEFEABEORSIALEAPAFSUNPLXBGEUUJWBRUWOMMMOXETHSHEAIAHMPHFSDRNGJBNGAWNTMDHEISHOECBGTIDHNNGISUWRNWGOEAEANBLCNGIBNTCSCNANGEAAFPLAMLBAEWGDOREBLISUCDEAAOTHNDMDPTRORNGEAPDIBUIUUOEAREDHNLAIRGPAESAEUEOBHOEYYPEFIAEFUGTHNGILDGBIAOS",
+      "holdPlain": null,
+      "search": {
+        "peak": 2048,
+        "dropped": 12288,
+        "retained": 2048,
+        "keys": 80
+      }
+    }
+  ],
+  "padControl": [
+    {
+      "name": "independent-pad-0",
+      "fit": 378,
+      "hold": 133,
+      "key": [
+        27,
+        13,
+        8,
+        4,
+        12,
+        22,
+        4,
+        17
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.404001211704327,
+      "holdScore": null,
+      "fitCorrect": 18,
+      "holdCorrect": null,
+      "end": {
+        "j": 0,
+        "a": 16,
+        "b": 25
+      },
+      "legal": false,
+      "fitPlain": "THIWHPPPMTYGATHELGMEMTEIAUCRCPOAONDDYJRJEJOCEOPNGONGWIAEOBOEWRDGRMLYDNAEACATHEHHEAOAPROFDHGLCXANUPHOENGOESSFGEOJIAWGIAWGEAERRYEOLUSHAEORJEOUJINBIEUNGTHMPCSACGTNGAEBEJTIAMHTERLXUAMNGDNRBBUSOTHEOLMRIAJEMTLPRAGPJEAUIAGENNOEEACHBWFWSMJIASIGNPSYENTHPCIGBSNTHEORYGHLHSIAROLARONGRYPEOUOTJTIAITYATPASFHJCIATAATHUDFEAGPICRATHBEENJBHFTNEXYIAEAGPWTHNGNJDCNFURATIHOSLIIARDEAIALIAFWTHNTAUPLTUMENGELAEJHTXFYHOHMJAFSIBIGEACADDUCIAXNRCLDYRACATLRGBIASAETAE",
+      "holdPlain": null,
+      "search": {
+        "peak": 2048,
+        "dropped": 10240,
+        "retained": 2048,
+        "keys": 77
+      }
+    },
+    {
+      "name": "independent-pad-1",
+      "fit": 378,
+      "hold": 132,
+      "key": [
+        9,
+        21,
+        0,
+        21,
+        22,
+        3,
+        24,
+        10
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.31445356029526,
+      "holdScore": -6.02914004065399,
+      "fitCorrect": 23,
+      "holdCorrect": 6,
+      "end": {
+        "j": 3,
+        "a": 20,
+        "b": 27
+      },
+      "legal": true,
+      "fitPlain": "UNTXITNYUNLYPEOGAETHNGOWGEBMJEAWREATYDHBNGNTHXYRYHOFAFEARTDASDTIAYLWMYDPIOEALGDSNYYSHLEALHNSISTYWMIASEOCYRACMNGWYTAEONGFOESSNGHCYNXPAEPWRGBALIFSHTHTHOWNGLXOXAIYEANYAUIIAOEWNGLTICFEALEAMBURPIAENEWLONBWONGCBOHINMCOPMSGXHNGXPEAPWUCJLFMMBOTHBGIANTHOEFTHCOMOENERIARXIUEEALOFRTHBYCFADITUAENMDATHNGPGRGOERTIANJEOSPCWPFEUMJTHEOYNGYBRDYJGYAEFONGCTNGDGIAFUONGRLSDEASTCNFUIYTNHISOEYUEAGANUOLGIAIABTNGITHIRYRPEYOROEDERTHBMAXHNGTHBNGJSTLFEAOELLFMSRIWPUTDILIA",
+      "holdPlain": "MIANGTHSMNFOEREUNAEIARIEAAYIELCOTHWMEODLWGNGTGMOEEOUMBSJUCMYYPNEOIANGFRWTEOANYTRNGTHTHMYLMNPWLTSREGNEOETIAOENBUMTTHNGIABENGAEEORGJJXNGYLYMOEIABYUNGWNGHOELPJCUAGLTAERGY",
+      "search": {
+        "peak": 2048,
+        "dropped": 26623,
+        "retained": 2048,
+        "keys": 51
+      }
+    }
+  ],
+  "gate": true,
+  "original": [
+    {
+      "name": "original-0",
+      "fit": 378,
+      "hold": 133,
+      "key": [
+        27,
+        12,
+        12,
+        16,
+        2,
+        15,
+        11,
+        2
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.428703425988317,
+      "holdScore": null,
+      "fitCorrect": null,
+      "holdCorrect": null,
+      "end": {
+        "j": 2,
+        "a": 20,
+        "b": 16
+      },
+      "legal": false,
+      "fitPlain": "OADWHACHUOUOIYYRMXXLTHBFBLNGYJTHINREAGOOIYDTHAEOGMLPCXURWLPUGBOGRAIEAACDGBAWSGIABLYTHDDOEAEMXSPJAWLSYEAEASIAUYEAWEEWTHNGTHFGRNGGNONGTYNGAAHOENNSNDBNGEORLMSEDLHTTOCWTHIXIMWUIFUEADICUJOGBUIMTJSOREASTHGTJUPIAIRNUXAFAXCLIABIACHASBAAGFUDMEDEORCTHARSGESPGCFPNGAEMAEPEOHUYGBAYLEAUIATNGDWNGDASICATDPRMEANIATTTXNOFIASWDNGTYGANITOWOEYUXTHIOEDOWMRJBJTHRUODPNGHUIACLTHOEINPTYATHUPEOCEADMRTHWOELDWBJBAEYEAYFHGOCCNTTHEUIHLGOEXUDOCEHXYNGTTHEAYPOENYGREOALT",
+      "holdPlain": null,
+      "search": {
+        "peak": 2048,
+        "dropped": 8192,
+        "retained": 2048,
+        "keys": 85
+      }
+    },
+    {
+      "name": "original-1",
+      "fit": 378,
+      "hold": 132,
+      "key": [
+        8,
+        15,
+        28,
+        14,
+        7,
+        26,
+        8,
+        14
+      ],
+      "trueKey": null,
+      "exactKey": null,
+      "fitScore": -5.441315365004183,
+      "holdScore": null,
+      "fitCorrect": null,
+      "holdCorrect": null,
+      "end": {
+        "j": 5,
+        "a": 2,
+        "b": 23
+      },
+      "legal": false,
+      "fitPlain": "TGSNGISNEOIAIHXRITHXOEOEOETHUMNDMSBYHOHEAUMTHYEASOWHIAGSNORYNGTHNGBUNBTEODFWMDBICRRXGAEIAPACOEPEONGJEAJAERSWEABEDEIPBEOIANDEDDEAMIILHUYTHJREAEACDXTHHIABASNGUTHAITMJSNGTEMEATSTHEUGJEHTHEAEPAYHOEEAEASWOEAFBSJTMSJUAEITLHGAPHEATHDNMPGEPNEADYRBHTOYEAIXWODYJEAIABTSYEHAWCYXHGNXHAETHTHWICYLEOMGIEGICERDIAEASUIAWEWTHLIAGDGGINEACNGRPLPPOUCMHYIEASNTNGRDUCHDPBREOXPJTIEOAEEOTHFIGAXLMWTHNGTHIISDIGOTHUTHSEOWGLLRETSYNGSFYAWOTITJISMONIAUPTNFUAGTHDOECPHICLYUCCSHHIAURYEATHD",
+      "holdPlain": null,
+      "search": {
+        "peak": 2048,
+        "dropped": 4096,
+        "retained": 2048,
+        "keys": 96
+      }
+    }
+  ]
+}
