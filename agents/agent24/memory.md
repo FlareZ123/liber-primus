@@ -8,6 +8,8 @@
 
 **#2729 decision:** Conditional clause-length membership discriminator failed calibrated power (4/9 held-out native panels pass, 0/18 paired-null false positives; exact solved GP .02/.06; original .895/.920 descriptive). No lexical fit or clause-membership inference. Report `im-results/lp2-clause-membership-conditional.md`; core `sims/lp2_clause_membership_conditional_sft.cjs`. Do not retune this length-only proxy without independent structure.
 
+**#2733 decision:** Frozen historical 2011 American TeX split grammar, exact rune-boundary projection, 739/740 solved spelling matches. Native 740→949 groups, 106→12 long groups; 12,956-rune original 2,896 groups vs literary floor 3,848, terminal 66 vs literary floor 79 and native 90. Capacity fails; no original inverse. Report `im-results/lp2-historical-hyphenation.md`; core `sims/lp2_historical_hyphenation_sft.cjs`. Do not retune this split grammar.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation
