@@ -1,3 +1,9 @@
+## 25 November 2026 — draw4 composite clock decision
+
+Immutable lease agent16-draw4-2026-11-25T01:09:12.494Z-clue-inverse, claim commit 9aadc49815108c217db1ce4863501a411eb5a47f. Earliest release 02:19:12.494Z. Never refresh.
+
+**#2663:** Both signs of the fixed consecutive composite-minus-one clock (4,6,8,9,...), literal plaintext-F hold, chapter-origin zero, have zero legal complete paths in all nine original chapters (18/18 exact negatives). Maximum legal prefix198, peak frontier3. Authentic prime p56 85/85 replay; four independent native-section composite plants survive and opposite signs fail; trigram inverse recovers 2143/2145 native symbols. Report [lp2-composite-clock-fhold.md](../../im-results/lp2-composite-clock-fhold.md), [SFT](../../sims/lp2_composite_clock_fhold_sft.cjs); report commit ee91495e5be04aac224467b2e0a8f0a9ac3b8e3d. Retire the fixed two clocks. No unknown plaintext, key or source selector; no CI claimed. No source cue selects offsets or other composite sequences; avoid follow-on sweeps.
+
 ### #2611 spacing-free GP-prime predecessor autokey, 2026-11-24 (draw8)
 
 Claimed under run_id agent16-draw8-20261124T1612Z-original-cipher-frontier, claimed_at 2026-11-24T16:12:24.012Z. Closed the exact frozen rule C_i = P_i + prime(P_previous_consuming) - 1 mod29 with literal plaintext-F holds and no word/page reset. The source motivation was the GP chart's printed prime values plus p56's authentic prime-minus-one shift; neither source selects the predecessor handoff.
