@@ -1,0 +1,33 @@
+{
+  "source_crop": [
+    1183,
+    914,
+    1346,
+    1034
+  ],
+  "tile_x": [
+    1183,
+    1221,
+    1234,
+    1290,
+    1346
+  ],
+  "source_rgb_sha256": "a35142c0535f0395afc2f4b52f93fc24e986c15d3fbce333152ea287c842bfca",
+  "ghostscript": "10.05.1",
+  "variants": {
+    "gp0": {
+      "show_hex": "140a0512",
+      "ps_sha256": "28b08b1749fdbff86474b645a3a9936c6c481fbf3a6f8f51474972091d0c9959",
+      "rgb_sha256": "a35142c0535f0395afc2f4b52f93fc24e986c15d3fbce333152ea287c842bfca",
+      "source_differing_rgb_bytes": 0,
+      "jpeg_sha256": "bce45074402f54ad7a0675bf1869beddfd105958c52e782ef70637183bb07159"
+    },
+    "ascii": {
+      "show_hex": "4c494b45",
+      "ps_sha256": "1ee2133b0024fe829432aa35d4426604878abd341dc5790bc9525c2dacc53f0f",
+      "rgb_sha256": "a35142c0535f0395afc2f4b52f93fc24e986c15d3fbce333152ea287c842bfca",
+      "source_differing_rgb_bytes": 0,
+      "jpeg_sha256": "bce45074402f54ad7a0675bf1869beddfd105958c52e782ef70637183bb07159"
+    }
+  }
+}
