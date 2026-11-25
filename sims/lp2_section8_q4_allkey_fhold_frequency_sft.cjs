@@ -44,6 +44,8 @@ function experiment(raw){
   const ordinary=Array.from({length:q},(_,j)=>{const h=new Int32Array(29);for(let i=j;i<C.length;i+=q)h[C[i]]++;return Math.max(...h)}).reduce((a,b)=>a+b,0);
   return {q,keys:n,viable,ordinary,bestE:best,keyE:key,Eholds:w.holds,maxNonF:anyNonF,keyNonF:anyKey,targetNonF:gp.translit[anyTarget],nonFholds:a.holds,maxF:f,witnessE:w.P,witnessNonF:a.P};
  }
+ function gate(C,q,limit=200000){const seg=[];let bad=new Int32Array(q),n=0;for(const c of C){if(!c){seg.push({bad,n,z:true});bad=new Int32Array(q);n=0}else{bad[n%q]|=1<<c;n++}}seg.push({bad,n,z:false});const K=new Int32Array(q).fill(-1);let nodes=0,leaves=0,tests=0,exhausted=true;const keys=[];const feasible=()=>{tests++;let states=1;for(const {bad,n,z} of seg){let next=0;for(let s=0;s<q;s++)if(states&(1<<s)){let ok=true;for(let t=0;t<Math.min(n,q);t++){const k=K[(s+t)%q];if(k>=0&&(bad[t]&(1<<k))){ok=false;break}}if(!ok)continue;const e=(s+n)%q;next|=1<<e;if(z&&K[e]!==0)next|=1<<((e+1)%q)}if(!next)return false;states=next}return true};const domains=Array.from({length:q},(_,i)=>{const a=[];for(let k=0;k<29;k++){K[i]=k;if(feasible())a.push(k)}K[i]=-1;return a});const order=domains.map((_,i)=>i).sort((a,b)=>domains[a].length-domains[b].length);function dfs(d){if(++nodes>limit){exhausted=false;return}if(d===q){leaves++;if(keys.length<10)keys.push([...K]);return}const i=order[d];for(const k of domains[i]){K[i]=k;if(feasible())dfs(d+1);if(!exhausted)break}K[i]=-1}dfs(0);return {q,domains:domains.map(x=>x.length),nodes,leaves,tests,keys,exhausted}}
+ const branch=Array.from({length:8},(_,i)=>gate(C,i+1));assert(branch.every(x=>x.exhausted&&x.leaves===1&&x.keys[0].every(k=>!k)),"partial-key exclusion failed");
  const originals=[1,2,3,4].map(q=>sweep(C,q));
  // Real authentic controls under actual known keys and actual hold masks.
  const wP=extract(gold.sections.find(s=>s.name==="0_welcome").source_text),kP=extract(gold.sections.find(s=>s.name==="jpg107-167").source_text),pP=extract(gold.sections.find(s=>s.name==="p56_an_end").source_text);
@@ -54,7 +56,7 @@ function experiment(raw){
  });
  // Independent exhaustive toy calibration: all 2^visible-zero masks, compare score.
  let checks=0;for(let i=0;i<20;i++){const c=Array.from({length:10},(_,j)=>(i*17+j*11+j*j)%7===0?0:(i*5+j*3)%29),K=Array.from({length:4},(_,j)=>(i*7+j*11)%29),zeros=c.map((v,j)=>v===0?j:-1).filter(j=>j>=0);for(const target of [0,E,2]){let max=-1;for(let mask=0;mask<2**zeros.length;mask++){let phase=0,n=0,ok=true;for(let j=0;j<c.length;j++){const hold=c[j]===0&&(mask&(1<<zeros.indexOf(j)));const p=hold?0:mod(c[j]-K[phase]);if(!hold){if(!p){ok=false;break}phase=(phase+1)%K.length}n+=Number(p===target)}if(ok)max=Math.max(max,n)}assert(max===score(prep(c,4),K,target),"toy mask mismatch");checks++}}
- return {section:[40,55],n:C.length,threshold:Math.ceil(C.length*349/2797),F:C.filter(c=>!c).length,originals,controls,checks};
+ return {section:[40,55],n:C.length,threshold:Math.ceil(C.length*349/2797),F:C.filter(c=>!c).length,originals,controls,checks,branch};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/transcriptions/lp1_wulfic_canonical.txt"];
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
