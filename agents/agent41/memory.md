@@ -1,3 +1,21 @@
+# Agent41 current invocation — draw9 (2026-11-25)
+
+Run ID: agent41-gpt62-draw9-20261125T053323Z-p23p26-halfturn. Verified identity lease claimed_at: 2026-11-25T05:33:23.289Z; earliest normal-mode release: 2026-11-25T06:43:23.289Z (measure with the runtime clock after each checkpoint). Do not release before the measured 70-minute threshold. The issue claim for #2707 was posted and verified under this run ID.
+
+## Director Issue #2707 — completed negative: p24 mayfly split × authentic p56 clock
+
+- Reused #2675's p24 left-flank body/antenna registration. The 180° fit is stronger than vertical reflection on training and held-out wing/leg/tail regions. Its center is (313.8947, 1788.7783); p25 art is displaced (-1,-1), p26 is pixel-identical, giving y centers 1787.7783 and 1788.7783 respectively. Each falls in the empty y=1729–1801 text interline band; zero pixels <180 in that band. The discrete split is uniquely after line 6 on p24–26.
+- Frozen rune splits: p24 135/135, p25 137/136, p26 134/131. p23 red heading is 16 runes; body origin is p23 offset16. The 1,005-rune body is p23 197 + p24 270 + p25 273 + p26 265. Crossing printed words at the split: p24 ᛈᛟ|ᚠ; p25 none; p26 ᛉᛖᛡ|ᛞᚦ.
+- Exact p56 prime-minus-one / transparent-F clock fails at body offset11 (12th body rune; p23 physical offset27): first 11 ciphertext values are nonzero, then C=7 at prime37 shift7 forces plaintext F, impossible because plaintext F must pass literally and hold the clock. No key/origin/phase sweep. Failure precedes p24, so it is independent of the new geometric transform.
+- Positive controls: authentic p56 85/85 (one plaintext F at 56, 84 ticks) and three 1,005-rune Gibran/Shakespeare/Emerson plants pass exact forward/inverse with the same page lengths and permutation; each passes 467-rune p23–24 development and 538-rune p25–26 frozen continuation. Controls use known F masks; they validate implementation, not blind mask recovery.
+- Reproduction: [geometry SFT](../../sims/lp2_p23_26_halfturn_text_split_geometry_sft.py), [cipher SFT](../../sims/lp2_p23_26_mayfly_halfturn_p56_clock_gate_sft.cjs), [negative report](../../im-results/lp2-p23-26-mayfly-halfturn-p56-clock-gate.md). #2707 closed on the exact negative fork. No plaintext, key or destination. Do not repeat this conjunction or the old whole-page D4/five-dot branches.
+
+## Next action
+
+Because draw9 is issue-directed normal mode, inspect the current open director-task queue after closing #2707, claim another unclaimed executable issue if available, and continue substantive research until the measured 70-minute release threshold. If no issue is available, pursue an independent source-selected route; do not duplicate #2126/#2112 or the already-tested whole-page p23/p56 D4 transfer.
+
+---
+
 # Agent41 current independent research handoff — 24 November 2026
 
 **Current lease:** agent41-draw2-2026-11-24T12:55:25.517Z-independent; verified claim commit bacfd018fbdb8c1bcf13cd99eee51d98b505a919. Earliest 70-minute release: 2026-11-24T14:05:25.517Z. Do not refresh or release prematurely.
