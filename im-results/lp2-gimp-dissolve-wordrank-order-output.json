@@ -1,0 +1,148 @@
+{
+  "sourceScores": {
+    "printed": -0.028640661587126217
+  },
+  "candidates": [
+    {
+      "scope": "global",
+      "direction": "rank",
+      "whole": -0.029369253623272404,
+      "firstHalf": -0.02956268969646776,
+      "secondHalf": -0.029234956886140622
+    },
+    {
+      "scope": "global",
+      "direction": "inverse-rank",
+      "whole": -0.030845759062246333,
+      "firstHalf": -0.027300925493863863,
+      "secondHalf": -0.03432718618177651
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "rank",
+      "whole": -0.031128230710418987,
+      "firstHalf": -0.03285751236039614,
+      "secondHalf": -0.029242489950355912
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "inverse-rank",
+      "whole": -0.026716519999679104,
+      "firstHalf": -0.033240650120658986,
+      "secondHalf": -0.02028877213586202
+    }
+  ],
+  "native": {
+    "min": 0.0010061398204671461,
+    "max": 0.03320773915218048,
+    "mean": 0.02136683105734584,
+    "n": 96
+  },
+  "null": {
+    "min": -0.039789535632527774,
+    "max": -0.015877563536021252,
+    "mean": -0.02651626915648417,
+    "n": 1000
+  },
+  "donorLengths": [
+    12572,
+    55407,
+    74866
+  ],
+  "control": [
+    {
+      "scope": "global",
+      "direction": "rank",
+      "restored": {
+        "min": 0.0010061398204671461,
+        "max": 0.03320773915218048,
+        "mean": 0.02136683105734584,
+        "n": 96
+      },
+      "scrambled": {
+        "min": -0.03186762802395849,
+        "max": -0.010688657381646122,
+        "mean": -0.02033550439803208,
+        "n": 96
+      },
+      "plantRecoveries": 96,
+      "restoredAboveScrambled": 96
+    },
+    {
+      "scope": "global",
+      "direction": "inverse-rank",
+      "restored": {
+        "min": 0.0010061398204671461,
+        "max": 0.03320773915218048,
+        "mean": 0.02136683105734584,
+        "n": 96
+      },
+      "scrambled": {
+        "min": -0.0306102689078638,
+        "max": -0.009178819686056359,
+        "mean": -0.020009883818329806,
+        "n": 96
+      },
+      "plantRecoveries": 96,
+      "restoredAboveScrambled": 96
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "rank",
+      "restored": {
+        "min": 0.0010061398204671461,
+        "max": 0.03320773915218048,
+        "mean": 0.02136683105734584,
+        "n": 96
+      },
+      "scrambled": {
+        "min": -0.0319292581922296,
+        "max": -0.00879749021705578,
+        "mean": -0.019567830346719033,
+        "n": 96
+      },
+      "plantRecoveries": 96,
+      "restoredAboveScrambled": 96
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "inverse-rank",
+      "restored": {
+        "min": 0.0010061398204671461,
+        "max": 0.03320773915218048,
+        "mean": 0.02136683105734584,
+        "n": 96
+      },
+      "scrambled": {
+        "min": -0.028251691212614498,
+        "max": -0.010896475988355376,
+        "mean": -0.019013928955015486,
+        "n": 96
+      },
+      "plantRecoveries": 96,
+      "restoredAboveScrambled": 96
+    }
+  ],
+  "candidateNullTail": [
+    {
+      "scope": "global",
+      "direction": "rank",
+      "p": 0.7962037962037962
+    },
+    {
+      "scope": "global",
+      "direction": "inverse-rank",
+      "p": 0.8931068931068931
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "rank",
+      "p": 0.9070929070929071
+    },
+    {
+      "scope": "chapter-reset",
+      "direction": "inverse-rank",
+      "p": 0.5194805194805194
+    }
+  ]
+}

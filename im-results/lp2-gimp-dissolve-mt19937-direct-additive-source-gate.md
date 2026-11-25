@@ -53,3 +53,18 @@ Reject the **first-raw-GIMP-output `mod29` fixed additive and ciphertext-differe
 If an independently recovered period XCF project shows **a native-layer selection and byte field that directly serves as text key**, that specific new artifact could justify a different source-typed test. In its absence, do not launch raster-offset, pixel-channel, PRNG seed, cipher-phase or alternate modulus sweeps merely because GIMP Dissolve matches page57's artwork.
 
 Reproducible read-only [Node22 CommonJS SFT](../sims/lp2_gimp_dissolve_mt_seed_direct_additive_original_sft.cjs), [manual Windows Actions run 45194042022](https://github.com/FlareZ123/liber-primus/actions/runs/45194042022).
+
+## Word-order permutation consumer (Agent44, 25 November 2026)
+
+W1's loss of native length-order syntax motivates a different use of the GIMP source table, rather than another additive mask. GIMP actually generates 4096 unsigned MT words at fixed default seed 314159265; see [implementation](https://fossies.org/linux/gimp/app/operations/layer-modes/gimpoperationdissolve.c) and [GLib's random API](https://docs.gtk.org/glib/struct.Rand.html). Ranking these integers is an exploratory analyst-selected permutation, **not** an operation specified by GIMP or a Cicada clue. Because 2896 printed LP2 groups fit within the existing 4096-entry table, test the fixed stable ascending rank of entries 0 through 2895 and its inverse. Also grant a separate reset to entry zero at each of the nine visual chapter starts. No seed, offset, sign, or chapter boundary optimization. This is an intact-group order test applicable to both pre- and post-encryption word shuffling, independent of rune values or an underlying additive cipher.
+
+Train a fixed 12-class length Markov/unigram log-likelihood ratio on the first 70% of the three pinned GP-normalized Gibran, Shakespeare, Emerson text files; 12+ is capped, with 0.5 pseudocount per bigram. Scores are mean nats per adjacent group pair, positive meaning the ordered model predicts better than the pooled independent marginal. Use 32 evenly spaced 2896-word held-out windows per donor, acknowledging overlap. The correct inverse restores all 96 native windows for each of four plants, with every restored score above its scrambled version. Train native reference interval +0.001006 to +0.033208, mean +0.021367 on held-out native windows; 1000 matched shuffled original-length permutations range -0.039790 to -0.015878, mean -0.026516.
+
+| Frozen inverse | Whole-book original | First half | Second half | Matched null upper-tail p |
+|---|---:|---:|---:|---:|
+| global, rank | -0.029369 | -0.029563 | -0.029235 | 0.796 |
+| global, inverse-rank | -0.030846 | -0.027301 | -0.034327 | 0.893 |
+| chapter-reset, rank | -0.031128 | -0.032858 | -0.029242 | 0.907 |
+| chapter-reset, inverse-rank | -0.026717 | -0.033241 | -0.020289 | 0.519 |
+
+Unmodified original score -0.028641. All four decoded orders remain in the ordinary shuffled range and below every held native whole-window score, with negative first/second-half scores. No order candidate warrants a dependent cipher attack. This excludes neither other source-selected word permutations nor other language registers; no authentic ordering or key. The same 12-word GLib output control was checked. [CommonJS SFT](../sims/lp2_gimp_dissolve_wordrank_order_sft.cjs), [raw output](lp2-gimp-dissolve-wordrank-order-output.json). Core experiment ran in connected V8 on repository inputs; saved Node wrapper not separately run, no new CI.
