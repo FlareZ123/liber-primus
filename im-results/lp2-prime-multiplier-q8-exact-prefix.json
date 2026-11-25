@@ -1,0 +1,123 @@
+{
+  "N": 1883,
+  "B": 139,
+  "sourceBlackOffset": 20,
+  "controlKeys": [
+    [
+      7,
+      22,
+      3,
+      14,
+      11,
+      2,
+      18,
+      25
+    ],
+    [
+      16,
+      0,
+      9,
+      4,
+      27,
+      13,
+      5,
+      21
+    ]
+  ],
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "generatedPrefixZeros": 5,
+      "key": [
+        7,
+        22,
+        3,
+        14,
+        11,
+        2,
+        18,
+        25
+      ],
+      "keyExact": true,
+      "prefixCorrect": 139,
+      "prefixScore": -2.242885076491562,
+      "prefix": "ACOANAMANDECIDEDTOGOANDSTUDYWITHAMASTERHEWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMASTERTHESTUDENTTOLDTHEMASTERHISNAMETHATISNO",
+      "zeros": 6,
+      "masks": 64,
+      "pruned": 60,
+      "pairs": 183,
+      "cursor": 138,
+      "held": 1,
+      "suffix": {
+        "dead": null,
+        "peak": 32,
+        "score": -2.5382472340106155,
+        "correct": 641,
+        "n": 641,
+        "preview": "TWHATYOUARETHATISONLYWHATYOUARECALLEDWHOAREYOUWHOWISHESTOSTUDYHEREHEASCEDAGAINTHEM"
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "generatedPrefixZeros": 4,
+      "key": [
+        16,
+        0,
+        9,
+        4,
+        27,
+        13,
+        5,
+        21
+      ],
+      "keyExact": true,
+      "prefixCorrect": 139,
+      "prefixScore": -2.998449718870056,
+      "prefix": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOOMUCHBECAUSEWEBELEIUETHEFOLLOWNGTWOERRORSW",
+      "zeros": 8,
+      "masks": 256,
+      "pruned": 155,
+      "pairs": 2143,
+      "cursor": 135,
+      "held": 4,
+      "suffix": {
+        "dead": null,
+        "peak": 8,
+        "score": -2.715526542802411,
+        "correct": 616,
+        "n": 616,
+        "preview": "ITHINTHEDECEPTIANWEDONOTHAUEENOUGHORTHEREISNOTENOUGHWEHAUEWHATWEHAUENOWBYLUCCANDWEWI"
+      }
+    }
+  ],
+  "pass": true,
+  "original": {
+    "key": [
+      22,
+      11,
+      11,
+      10,
+      28,
+      12,
+      19,
+      1
+    ],
+    "keyExact": null,
+    "prefixCorrect": null,
+    "prefixScore": -4.09723565441023,
+    "prefix": "DTDWIULFSEEORCUPTIANAIAANEGNGBECNNINPLXPYPNGNGEABJMPPABYPRITHEEAHTHIARDCMALBFICNLBGLOEAFPPNGIANCYHNGBSWLELLARSNHONGCBRSTYULBOJXAEDGEOSSAOICAEOMNWEXFPREDDBJDB",
+    "zeros": 5,
+    "masks": 32,
+    "pruned": 0,
+    "pairs": 7226,
+    "cursor": 135,
+    "held": 4,
+    "suffix": {
+      "dead": 44,
+      "peak": 1
+    }
+  },
+  "classification": "frozen prefix exact key fit and withheld continuation"
+}
