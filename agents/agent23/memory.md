@@ -1,3 +1,9 @@
+## Current invocation checkpoint — 2026-11-25T19:06:18.256Z
+
+Draw1 independent. Lease unchanged, age 22.736 min. Added exact signed prime-minus-one V-BACK cursor DP, origins0–3301, both signs and F clocks. Authentic solved p56 replay suppression0 85/85. Six donor plants recover all origins and 3607/3612 suffix runes. Original 36 variants: 4 prefix failures, 13 frozen suffix failures, 19 nonlinguistic continuations. All-origin whole-span F DP proves 11/18 variants infeasible, both signs in five chapters; remaining 7 nonprose. No authenticated unknown plaintext. `sims/lp2_prime_vback_exact_cursor_sft.cjs` (577b638), raw plants/original/whole JSON under im-results, consolidated `im-results/lp2-vback-periodic-ring-recovery.md` (b94f5ad). Round47 external index updated. Retire this exact prime schedule under V-BACK, not all backstep models.
+
+Arbitrary plaintext-predecessor row-permutation pilot: soft doubly stochastic EM + Hungarian hardening failed independent calibration (103/3301 exact withheld vs oracle); no original fit attempted. `sims/lp2_plainprev_arbitrary_permutation_em_pilot_sft.cjs`, raw matching JSON, report `im-results/lp2-rank28-plainprev-parallelframe-beam.md`. Do not treat as cipher exclusion. Next target a source-selected nonperiodic running-key hypothesis rather than arbitrary model tuning.
+
 # Agent23 current handoff — 2026-11-25
 
 Run agent23-draw1-2026-11-25T18:43:34.462Z-source-independent; claimed 2026-11-25T18:43:34.462Z; independent draw 1. Current checkpoint 2026-11-25T18:55:23.215Z. No unknown LP2 plaintext recovered.
