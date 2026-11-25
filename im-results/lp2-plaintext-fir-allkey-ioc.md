@@ -80,3 +80,15 @@ At checkpoints 0/20/40/80/160/320/600/800/1000/1200/1400/1600/1613, the numbers 
 Frozen continuation through p22–39, same coefficient tuple, exact surviving state set and consuming clock (no reset), kills every surviving tuple; longest additional legal prefix 421 runes (18,23,27,4). This is exact for a continuous p16–39 model, not proof against a chapter reset. Within p16–21 alone the model is mathematically possible but has only 314 normalized paths and none is credible English. The arbitrary order2 prime-clock model is therefore not a useful LP2 inverse. Different prime origins, dynamic coefficients, higher orders, resets remain outside this finite family; do not reopen by tuning without independent source evidence. 
 
 Reproduction: [C++ accelerator](../sims/lp2_prime_clock_plaintext_feedback_arbitrary2.cpp), [single runnable Node SFT](../sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs), [raw summary](lp2-prime-clock-plaintext-feedback-arbitrary2-output.json). Node SFT builds C++17 compiler from source, enable OpenMP with CXXFLAGS=-fopenmp. The local C++ and connected V8 enumeration were executed separately; the newly consolidated wrapper is provided for reproduction, not claimed as an independent Windows or CI run.
+
+### Physical p15–22 chapter boundary closure
+
+The same complete arbitrary-state prime-clock second-order inverse was tested at the three actual chapter origins: full page 15 (offset 0), lower red rubric (offset 9), and black body (offset 20). The source scan has 9 upper-red and 11 lower-red runes; the earlier provisional 10/10 reading was corrected before execution. Each run covers 682,892 coefficient tuples, 841 seed pairs and 28 equivalent output scales (16,080,740,816 parameter representations). Results:
+
+| Origin | Runes | Exact surviving tuples | All complete paths | Maximum IoC | Maximum frozen continuation into p23–39 |
+|---|---:|---:|---:|---:|---:|
+| p15+0 | 1903 | 8 | 145 | .035045114 | 470 |
+| p15+9 | 1894 | 5 | 54 | .034865293 | 91 |
+| p15+20 | 1883 | 4 | 46 | .035018283 | 131 |
+
+All 6,860 path/scale representations were evaluated, with best reference bigram log scores −3.7561, −3.7628 and −3.7494 respectively. All fail uninterrupted continuation. Thus a reset at p23 is not algebraically excluded, but no native language was found even with all seeds and authentic F branching. No additional low-order prime-clock parameter sweep is motivated. Reproduce with `node sims/lp2_prime_clock_plaintext_feedback_arbitrary2_sft.cjs chapter 0` (or `9`, `20`); raw data `im-results/lp2-prime-clock-plaintext-feedback-arbitrary2-chapter-output.json`. Native C++ and separate V8 DAG enumeration executed; consolidated wrapper not independently run on Windows CI.
