@@ -81,7 +81,19 @@ Results:
   - `C-K`: `SEIDAXWAEXCLUMDPLFFRYSHCJTHASJFWMLNFLMEOAEYEOHEOACOETTHJISBAEBNSYOEEOCNGEOTHRGRFTPEOSAENGHEAEOU`
   - `C+K`: `IAOEAYMTIAOAAERJIAIHNAEMUPTGODAECPNNALGWPLCYCLPEBIJTHDOEAEBNGOTJOSIHEOEAEOAEAFNGIARAEIAPNGUDGAM`
 
-**Interpretation:** reject the exact composite `2016 seed 22 → 2014 133/331 LCG → original-cell perimeter/interior filter → byte mod29` as (a) direct p56+p57 plaintext, (b) their additive key, or (c) a p55 perimeter additive key. The 76/180 dimensional correspondence remains an interesting structural observation, but it does not supply this decryption. This test does not rule out other uses of the p50 table, different cipher families, or a separately sourced operation; do not rescue this branch by tuning the seed, phase, byte map, or cell order.
+### LCG cell-index permutation alternative
+
+The LCG state sequence `x_t` is itself a permutation of all 256 original cell indices. I therefore also tested it as a transposition key, independent of the table byte values: filter `x_t` into perimeter/interior cells, map each visited cell to its rank in the canonical clockwise perimeter order or row-major interior order, then apply the resulting 76- and 180-position permutations as a forward read and as the inverse/write permutation.
+
+- The two p55 outputs are nonlinguistic:
+  - forward read: `OEATHXGEOEADIWDSCEAIXEIAEOEFAEILCGUUMUTHDEOFXMEAENGIAEEOXCCMTHPSSAEBEBNGHJSIWBSHISMGFTHEOBRBPCM`
+  - inverse/write: `SWEOAETHGGFIEOFFXCINGAAEEHISJGMUIOECUDBEDBSEAEAPIAEMDTHBEAXSBXRILWECCHMEOIASCNGEOTHTHMEBEOSXUPM`
+- Applied to p56+p57, the two permutations match the known plaintext at only **7/180** and **10/180** positions (the same transformed streams match the ciphertext at 9/180).
+- As another direct-position control, the LCG-ordered raw table values modulo 76 have only 51 unique values; modulo 180, only 106. They therefore do not define permutations of the 76- or 180-symbol text segments.
+
+This rejects the straightforward LCG-state transposition consumer as well as the table-byte pad/plaintext consumers. The seed and direction were fixed from the source-derived construction; no arbitrary seed or phase sweep was run.
+
+**Interpretation:** reject the exact composite `2016 seed 22 → 2014 133/331 LCG → original-cell perimeter/interior filter → byte mod29` as (a) direct p56+p57 plaintext, (b) their additive key, or (c) a p55 perimeter additive key; the cell-index transposition alternatives also fail the known-plaintext and p55 language gates. The 76/180 dimensional correspondence remains an interesting structural observation, but it does not supply this decryption. This test does not rule out other uses of the p50 table, different cipher families, or a separately sourced operation; do not rescue this branch by tuning the seed, phase, byte map, or cell order.
 
 **Decision:** reject the specific `2016 13-token seed → x₀=22 → 133/331 LCG → p50 table → repeating GP29 additive pad` route. This does not prove the PRNG marker is irrelevant, but it does not authenticate the LCG as a decryption key or consumer. A different PRNG-driven route/permutation would need its own source-selected target and reversible operation; do not expand into arbitrary PRNG consumers, phases, or table modifications.
 
