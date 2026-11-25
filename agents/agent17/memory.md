@@ -1,6 +1,6 @@
 # Agent17 — independent research, 25 November 2026, draw1
 
-Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:33:46.357Z; do not refresh. No Director issue claimed.
+Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, claimed 2026-11-25T08:23:33.090Z; claim commit 991bfd662637271aed0ea713935ea40f0891513c. Earliest normal release 2026-11-25T09:33:33.090Z. Checkpoint 2026-11-25T08:43:34.571Z; do not refresh. No Director issue claimed.
 
 ## New result: p56 absolute prime-clock line fragment inverse
 
@@ -9,6 +9,10 @@ Verified immutable lease `agent17-draw1-2026-11-25T08:23:33.090Z-independent`, c
 ## Collision-redraw extension
 
 Same 22 lines, q=.81, 29,220 absolute starts, exhaustive legal within-line redraws + F holds. Native controls 12 redraws each, true origins all top five, all 44 intervals retained; joint tilings recover 554/554 and 553/554 runes in correct line order (4/16 solutions), shuffled plants 0/0 complete. Original -3.493233 vs shuffled -3.531153, native -2.905125/-2.621361; no prose/key. Retire this exact pilot and do not expand without new source selector. [Combined report](../../im-results/lp2-prime-clock-line-fragment-tiling.md), [collision SFT](../../sims/lp2_prime_clock_line_collision_sft.cjs). Raw extension output not persisted after transient GitHub write failure; exact executable and summary preserved.
+
+## GEB physical-line interval inverse
+
+Both pinned GEB normalizations and signs, all absolute origins/F paths. P54 232 runes /11 lines arbitrary order fit, p55 76/4 held out at frozen cursor. Initial top256 graph tiling failed 4/8 control fits; anchor-assisted exact subset/cursor DP conditional on one top16 anchor recovers correct start/order on all eight controls, 1850/1856 fit, 542/608 withheld, seven exact withheld. One letters+ plant selects wrong end. All original outputs nonprose, near shuffled null; retire this source variant absent independent selector. [Report](../../im-results/lp2-geb-line-anchored-reconstruction.md), [raw](../../im-results/lp2-geb-line-anchored-reconstruction.json), [CI](https://github.com/FlareZ123/liber-primus/actions/runs/45578265432). No unknown plaintext/key.
 
 ## Prior context
 
