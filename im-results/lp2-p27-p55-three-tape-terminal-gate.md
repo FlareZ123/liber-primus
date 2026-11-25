@@ -30,6 +30,34 @@ All four original scores fall below every positive control and below their own f
 
 [Read-only SFT](../sims/lp2_p27_p55_four_tape_shared_pad_sft.cjs) · [raw controls](lp2-p27-p55-four-tape-pad-controls.json) · [raw original and rotated outputs](lp2-p27-p55-four-tape-pad-original.json). Core executed in Code Mode against corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and donor blobs 94c677ad9dd50771c6670e0c4e4dad9052b46d85, df260a07d56bf5998d40a6360b6132c35c252d10, a92be8ba5b3511a003a22ba31523c14397aaa83a. No CI execution claimed.
 
+### Shared pad with authentic latent plaintext-F holds (Agent9)
+
+The ordinary clock excludes a historically important operation: plaintext F may be emitted as literal ciphertext F without consuming a key digit. Extend the same four-tape model to independent unobserved hold histories in all four messages, shared **consuming** key, and arbitrary terminal consumed lengths. At each key step, each tape can emit any adjacent visible Fs as holds before consuming its next symbol; a consuming plaintext F is forbidden. Ciphertext F may consume if its recovered plaintext is not F. Each full message is exactly 76 physical runes, even if consuming cursors differ. This is the actual p56/LP1 F convention, applied here as a hypothetical transfer.
+
+The new read-only inverse uses a joint physical-cursor/last-three-plaintext-symbol state for each of the four tapes and explores every local hold/consume choice and all 29 key values at each step. Identical future states merge by maximum likelihood. A **fixed width-2048 beam** ranks partial paths by cumulative tetragram score plus 2.1 times number of emitted runes, allowing different physical progress; full paths are ranked by the unmodified summed likelihood. It is not a globally exact search over all key/hold combinations. Complete traceback verifies all four literal-F encoder replays, the consumed lengths, and direct likelihood.
+
+Four fresh planted keys encrypt held-out donor quadruples with genuine F holds. The donor starts are the fixed positions of the ordinary controls, advanced at most 249 runes to the first window containing F; no LP2 observations select them.
+
+| Control | Exact key digits / 75 | Exact plaintext / 304 | Exact hold tapes / 4 | Recovered mean |
+|---|---:|---:|---:|---:|
+| 1 | 75 | 304 | 4 | -1.964211 |
+| 2 | 75 | 303 | 3 | -2.065055 |
+| 3 | 74 | 302 | 4 | -1.894068 |
+| 4 | 72 | 293 | 3 | -2.164880 |
+
+296/300 key digits, 1,202/1,216 native plaintext runes and 14/16 complete hold tapes recovered. Some terminal ambiguities and language errors remain even on positives. The same fixed search runs the original layouts and their fixed 0/13/26/39 rotations:
+
+| Original layout | Best found mean | Rotated mean |
+|---|---:|---:|
+| Marker-contiguous | -2.871543 | -2.928393 |
+| Marker-interleaved | -2.822617 | -2.894039 |
+| Row outer trim | -2.920899 | -2.883260 |
+| Triple outer trim | -2.916202 | -2.920806 |
+
+No coherent four-message solution. All original scores remain substantially below even the weakest true shared-key plant (-2.164880). Three originals exceed their own rotated negative slightly; this is not the same strict ordering as the ordinary-clock test and is not independent evidence of key reuse. The exact forward replay of all 304 runes holds for the nonprose winners, as expected for this family. Retire the tested finite predictive receiver; no all-mask/global-optimality theorem is claimed. The combination of strong held-out recovery, original failure under both clocks, and earlier absence of source-selected common-pad relationship gives no justification for tuning beam width, alignment or alphabet without an independent clue.
+
+[SFT](../sims/lp2_p27_p55_four_tape_fhold_sft.cjs) · [complete raw controls and originals](lp2-p27-p55-four-tape-fhold-output.json). Executed directly in Code Mode on the same pinned corpus/donor blobs as ordinary recovery. No CI execution claimed.
+
 ## Complete normalized three-share pad inversion, ordinary and F-transparent (Agent14, 25 November)
 
 The direct arbitrary affine fourth-share gate above rejects p55 itself as a fixed affine combination of p27 lanes. A distinct receiver is that three p27 tapes reconstruct a **key** which is then subtracted from the original p55 ciphertext. Earlier tests used fixed abscissas or sums; this inverse exhausts all normalized, nonzero GF29 weights, a superset of all nondegenerate three-share Lagrange interpolation weights with target distinct from the share coordinates.
