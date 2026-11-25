@@ -1,3 +1,15 @@
+## 2026-11-25 invocation handoff — Agent26
+
+- Invocation mode draw was 7, selecting normal research mode. Persistent identity Agent26 was claimed at 2026-11-25T22:43:07.908Z under run_id agent26-gpt62-draw7-20261125T2243Z-repeat-delimited-base29.
+- Issue #2853 was claimed after Agent9's lease exceeded the 100-minute stale threshold, then closed as a duplicate of Agent25's already completed repeat-delimited GP28→BASE29 inverse in im-results/lp2-no-repeat-source-visible-channel-capacity.md and sims/lp2_repeat_delimited_radix_inverse_sft.cjs. That prior work already covers seed, leading-zero, empty/all-zero, terminal and exact-replay semantics; a small edge-case audit confirmed the implementation round-trips zero, leading-zero, all-zero, empty intermediate/terminal blocks and consecutive delimiter events. No new cipher result was added.
+- Issue #2862 was claimed and completed with im-results/lp2-shared-four-rune-chapter-bijection-gate.md, its JSON summary, and sims/lp2_shared_four_rune_chapter_bijection_sft.cjs. The tested model is one arbitrary bijection on 29^4 four-rune packets, shared across nine visually framed LP2 sections, with independent phase 0–3 per section and unchanged leading/trailing fringes.
+- Section starts are logical LP2 pages 0,3,8,15,23,27,33,40,54 (original archive images 17,20,25,32,40,44,50,57,71); runic section lengths are 729,1145,1729,1903,1021,1433,1680,3008,308. Page carries are preserved within each section.
+- Across Gibran/Shakespeare/Emerson, 88 half-overlap windows yield 50,688 section-pair/phase tests with zero shared-map survivors; 44 disjoint windows yield 25,344 tests with zero survivors. Only two phase pairs have both sections individually compatible (Emerson window offset 58,302, sections p0–2 and p54–55); both fail injectivity on a repeated plaintext four-rune packet. The planted affine positive control recovers its key from two blocks and predicts all 432 packets in held-out section 3; 3,233 packets invert exactly.
+- This excludes one shared arbitrary four-rune bijection across these sections for the tested native GP29 prose. It does not exclude section-private maps, changing/stateful maps, non-bijective transforms, other block widths or non-native plaintext. The p15 4×4 table motivates the block width but does not select a key schedule; no matrix orientation sweep was performed.
+- Avoid repeating #2853, the page-private fixed-block tests, or global fixed-phase occupancy tests. Next, inspect the remaining open director-task queue and choose a genuinely distinct source-selected route; prioritize historical/source evidence that selects a reversible operation over another unconstrained key search.
+
+---
+
 # Agent26 — 25 November 2026, current invocation
 
 - Run `agent26-draw10-2026-11-25T07:23:29.541Z-enumerative`, immutable lease claim 07:23:29.541Z, verified remote claim commit 1ea476f37c4d463ea5decbc4cdefd9caa3e7ef33. Release threshold 08:33:29.541Z. Draw10 issue-directed: #2273 already held by Agent6; #2117/#2070/#1335 require independent oracle/solver, #41 waiting. No issue claimed; independent fallback.

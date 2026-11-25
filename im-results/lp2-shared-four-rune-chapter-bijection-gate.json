@@ -1,0 +1,360 @@
+{
+  "tested_repository_head": "061e615cde8a80b1327e2e24cf98223eb7dd154e",
+  "input_blobs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "gibran": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "shakespeare": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "emerson": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "orthography_helper": "ad49a0507b801f9860f0294bbae2afa47d1cbc31",
+    "image_mapping_readme": "827470b58097b3b1280b63258eb666c5736371d1"
+  },
+  "chapters": [
+    {
+      "section": 1,
+      "pages": [
+        0,
+        2
+      ],
+      "images": [
+        17
+      ],
+      "runes": 729,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 2,
+      "pages": [
+        3,
+        7
+      ],
+      "images": [
+        20
+      ],
+      "runes": 1145,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 3,
+      "pages": [
+        8,
+        14
+      ],
+      "images": [
+        25
+      ],
+      "runes": 1729,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 4,
+      "pages": [
+        15,
+        22
+      ],
+      "images": [
+        32
+      ],
+      "runes": 1903,
+      "duplicate_pairs_by_phase": [
+        1,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "section": 5,
+      "pages": [
+        23,
+        26
+      ],
+      "images": [
+        40
+      ],
+      "runes": 1021,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 6,
+      "pages": [
+        27,
+        32
+      ],
+      "images": [
+        44
+      ],
+      "runes": 1433,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 7,
+      "pages": [
+        33,
+        39
+      ],
+      "images": [
+        50
+      ],
+      "runes": 1680,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "section": 8,
+      "pages": [
+        40,
+        53
+      ],
+      "images": [
+        57
+      ],
+      "runes": 3008,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "section": 9,
+      "pages": [
+        54,
+        55
+      ],
+      "images": [
+        71
+      ],
+      "runes": 308,
+      "duplicate_pairs_by_phase": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "half_overlap": {
+    "windows": {
+      "Gibran": 8,
+      "Shakespeare": 32,
+      "Emerson": 48
+    },
+    "pair_phase_tests": 50688,
+    "shared_map_survivors": 0,
+    "individually_compatible_section_phase_counts": {
+      "Gibran": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4
+      ],
+      "Shakespeare": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        46
+      ],
+      "Emerson": [
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        73
+      ]
+    },
+    "eligible_shared_pair_phase_tests": 2,
+    "eligible_shared_pair_survivors": 0
+  },
+  "disjoint": {
+    "windows": {
+      "Gibran": 4,
+      "Shakespeare": 16,
+      "Emerson": 24
+    },
+    "pair_phase_tests": 25344,
+    "shared_map_survivors": 0,
+    "individually_compatible_section_phase_counts": {
+      "Gibran": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3
+      ],
+      "Shakespeare": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        22
+      ],
+      "Emerson": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        41
+      ]
+    },
+    "eligible_shared_pair_phase_tests": 0,
+    "eligible_shared_pair_survivors": 0
+  },
+  "cross_chapter_certificates": [
+    {
+      "source": "Emerson",
+      "window_index": 9,
+      "window_start": 58302,
+      "chapters": [
+        1,
+        9
+      ],
+      "phases": [
+        2,
+        0
+      ],
+      "conflict": "reverse/injectivity",
+      "first": {
+        "cipher": 529022,
+        "runes": "NG L U R",
+        "plain": 256886,
+        "plain_runes": "I S P R",
+        "chapter": 1,
+        "packet": 55,
+        "global": 222
+      },
+      "second": {
+        "cipher": 698184,
+        "runes": "EA E C N",
+        "plain": 256886,
+        "plain_runes": "I S P R",
+        "chapter": 9,
+        "packet": 12,
+        "global": 12696
+      }
+    },
+    {
+      "source": "Emerson",
+      "window_index": 9,
+      "window_start": 58302,
+      "chapters": [
+        1,
+        9
+      ],
+      "phases": [
+        2,
+        3
+      ],
+      "conflict": "reverse/injectivity",
+      "first": {
+        "cipher": 257621,
+        "runes": "I T N X",
+        "plain": 413207,
+        "plain_runes": "T IA N S",
+        "chapter": 1,
+        "packet": 156,
+        "global": 626
+      },
+      "second": {
+        "cipher": 463082,
+        "runes": "E EA E I",
+        "plain": 413207,
+        "plain_runes": "T IA N S",
+        "chapter": 9,
+        "packet": 69,
+        "global": 12927
+      }
+    }
+  ],
+  "positive_plant": {
+    "modulus": 707281,
+    "map": "cipherBlock=(37*plainBlock+12345) mod 707281",
+    "inverse_a": 516124,
+    "phases": [
+      1,
+      3,
+      0,
+      2,
+      1,
+      2,
+      3,
+      0,
+      1
+    ],
+    "training_pairs": [
+      {
+        "x": 210343,
+        "y": 14945,
+        "position": 1
+      },
+      {
+        "x": 486113,
+        "y": 316501,
+        "position": 5
+      }
+    ],
+    "recovered": {
+      "a": 37,
+      "b": 12345
+    },
+    "transformed_blocks": 3233,
+    "heldout_section3_predictions": 432,
+    "exact_full_recovery": true
+  },
+  "decision": "No one shared four-rune bijection maps any pair of source-framed chapters to the tested native GP29 windows under independent chapter phases."
+}
