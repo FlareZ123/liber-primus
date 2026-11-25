@@ -44,7 +44,25 @@ function helperExperiment(gp, trans, signed, native) {
     return {wrap,donorWords:donor.length,encodable,retained,unique,alternatives};
   });
   const p37=rows.filter(w=>w.page===37),item3=p37.filter(w=>w.start>=91&&w.start+4<=189);
-  return {method:"Freeze prior p31 helper line0/6 shell globally; signed ordinal and self-GP0 page-address inverse; direct address and full-page-count mod58 rival",helperPages:[...helper.values()],donorDistinct:dictionary.size,controls:plant,whole:summarize(rows),p37:summarize(p37),item3:summarize(item3),p37Rows:p37,originalRows:rows};
+  const allNative=new Set(native.sections.flatMap(t=>(t.source_text.replace(/\/\s*/gu,"").match(/[\u16A0-\u16FF]+/gu)||[]).map(w=>vals(w).join())));
+  function wordInverse(C,key,hold){
+    const out=[],p=[];
+    function go(i,k){if(i===C.length){out.push(p.slice());return;}
+      if(hold&&C[i]===0){p.push(0);go(i+1,k);p.pop();}
+      const x=mod(C[i]-key[k%4]);if(hold&&x===0)return;
+      p.push(x);go(i+1,k+1);p.pop();
+    }go(0,0);
+    return out.map(P=>({P,text:spell(P),native:allNative.has(P.join())}));
+  }
+  const extended=[];
+  for(const wrap of [false,true])for(const hold of [false,true]){
+    const a=words.filter(w=>w.page===37).map(w=>{
+      const source=w.ordinal<43?sw[w.ordinal]:null,s=source?sum(gpWord(source)):null,h=s===null?null:wrap?s%58:s,k=helper.get(h)?.key;
+      return {ordinal:w.ordinal,start:w.start,C:w.C,source,h,candidates:k?wordInverse(w.C,k,hold):null};
+    });
+    extended.push({wrap,hold,total:a.length,defined:a.filter(w=>w.candidates!==null).length,legal:a.filter(w=>w.candidates?.length).length,native:a.filter(w=>w.candidates?.some(p=>p.native)).length,rows:a});
+  }
+  return {method:"Freeze prior p31 helper line0/6 shell globally; signed ordinal and self-GP0 page-address inverse; direct address and full-page-count mod58 rival",extendedP37:extended,helperPages:[...helper.values()],donorDistinct:dictionary.size,controls:plant,whole:summarize(rows),p37:summarize(p37),item3:summarize(item3),p37Rows:p37,originalRows:rows};
 }
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
 console.log(JSON.stringify(helperExperiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),read("resources/historical/cicada2016-4gq25-outguess.asc"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))),null,2));
