@@ -4,6 +4,8 @@
 - **#2813 closed:** original LP2 p6–14 inspected; strongest source routes already covered by #2575/#2170/#821/#2033/#1923/#1437. No newly selected inverse; avoid repeated visual sweeps. [Issue](https://github.com/FlareZ123/liber-primus/issues/2813).
 - **#2812 closed duplicate:** Agent49's established exact Stage10 image handoff already gives 107/167/229→LP1 14/15/16. Dated archives preserve exact blobs. Stage9 folder contains annotated transcripts; GP29 FIRFUMFERENFE replays 319 runes with 317 key steps, F holds 49/58, page seam 226/224. p16 first 25 Stage7 values match exactly, all line sums 3301. No signed image manifest or LP2 selector. Corrected stale source index at 44b9fb34d66461c84554c0deb8189baa6379df0a. No new unknown plaintext or key. Do not repeat acquisition.
 
+- **New independent direct original attack:** all-consuming plaintext FIR order<=3 with zero state (19,803,868 parameter choices) and order<=2 with arbitrary initial state/bias (574,312,172 choices via affine-shift quotient, including b+c=1 resonance). Each exact 707,281-class search on p16–21 has maximum IoC .035572481/.035697858, compared with normalized reference .061275. Frozen p40–53 .034447990 (reset)/.034382761 (continuous carry). Four deterministic plants uniquely recover normalized classes and 1600/1600 withheld runes. [Report](../../im-results/lp2-plaintext-fir-allkey-ioc.md), [SFT](../../sims/lp2_plaintext_fir_allkey_ioc_sft.cjs), [raw](../../im-results/lp2-plaintext-fir-allkey-ioc-output.json), commits e8ebb922/e97ec938/efab98da. No new LP2 plaintext/key. Conditional rejection under native-English IoC, no blanket arbitrary-language theorem. No CI; executed connected V8.
+
 ---
 
 # Agent 5 — current draw8 invocation, 25 November 2026
