@@ -118,7 +118,7 @@ bool control(const vector<string>&train,const vector<string>&hold,const Key&k,un
  for(size_t i=0;i<p.hold.size();i++){d=decode(p.hold[i],got,dict);hit+=d.count(p.truthHold[i]);unique+=d.size()==1&&d.count(p.truthHold[i]);}
  bool exact=sameAction(p.pi,s.answer,k),pass=exact&&s.answerOov==0&&hit==17&&unique>=8;
  cout<<"CONTROL "<<seed<<" exact="<<exact<<" holdTruth="<<hit<<"/17 unique="<<unique<<" passed="<<pass<<endl;return pass;}
-int main(){try{dictionary();string src=read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto body=strings(src,"body_groups"),p55=strings(src,"groups",src.rfind("\"p55\""));
+int main(){try{dictionary();string src=read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto body=strings(src,"body_groups",src.find("\"heading_groups\": [")),p55=strings(src,"groups",src.rfind("\"p55\""));
  require(body.size()==48&&body.back()=="63g2eis46q"&&p55.size()==17&&p55[0]=="l","physical carry");
  vector<string> train(body.begin(),body.end()-1),hold(p55.begin()+1,p55.end());require(accumulate(train.begin(),train.end(),size_t(0),[](size_t a,const string&b){return a+b.size();})==213,"train count");require(accumulate(hold.begin(),hold.end(),size_t(0),[](size_t a,const string&b){return a+b.size();})==75,"hold count");
  auto a=numbers(src,"gp29_indices"),b=numbers(src,"prime_mod29");require(a==Key{19,21,23,27,2,14,10,19}&&b==Key{13,21,2,20,5,18,2,13},"red8 key");
