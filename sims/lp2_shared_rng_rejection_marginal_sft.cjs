@@ -92,14 +92,46 @@ function controls(C,P){
  }
  return {tests,checks};
 }
+
+/** Exact causal seed reachability: no language prior, no drift cap.
+ * The MT tape grows on demand. For each cursor and nonrepeat target, the
+ * ordinary plaintext is unique, and the only other possible plaintext
+ * must make the first trial equal the previous ciphertext. That latter
+ * plaintext has exactly one deterministic collision-loop outcome.
+ * For repeat targets only the collision branch is possible.
+ */
+function reach(C,seed,s=S){
+ let U=mtFloats(seed,C.length+64),extensions=0,maxDrift=0,maxStates=1;
+ function draw(j){if(j>=U.length){U=mtFloats(seed,Math.max(j+1,2*U.length));extensions++}return U[j]}
+ let states=new Set([1]);
+ for(let i=1;i<C.length;i++){
+   const c=C[i],prev=C[i-1],next=new Set();
+   for(const j of states){
+     if(c!==prev)next.add(j+1);
+     const p=(prev+29-Math.floor(29*draw(j)))%29;
+     let k=j+1,emit=prev;
+     while(draw(k++)<s){
+       emit=(p+Math.floor(29*draw(k++)))%29;
+       if(emit!==prev)break;
+     }
+     if(emit===c)next.add(k);
+   }
+   if(next.size===0)return {complete:false,firstDead:i,maxDrift,maxStates,extensions};
+   states=next;maxStates=Math.max(maxStates,states.size);
+   for(const j of states)maxDrift=Math.max(maxDrift,j-i-1);
+ }
+ return {complete:true,firstDead:null,finalStates:states.size,maxDrift,maxStates,extensions};
+}
+function reachScore(C,R){return R.map(x=>({...x,...reach(C,x.seed)}))}
+
 function rows(prior){return prior.rows.flatMap(x=>[{rank:x.rank,seed:x.seed,variant:"literal"},...(x.seed>4294967295?[{rank:x.rank,seed:x.seed>>>0,variant:"low32"}]:[])])}
 function score(C,R){return R.map(x=>({...x,...marginal(C,mtFloats(x.seed,C.length+CAP+2))}))}
-module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,S,CAP};
+module.exports={mtFloats,marginal,plant,oracle,controls,rows,score,reach,reachScore,S,CAP};
 if(require.main===module){
  const fs=require("node:fs"),read=p=>fs.readFileSync(p,"utf8");
  const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json")),prior=JSON.parse(read("im-results/lp2-r18-skipcount-feasibility-output.json")),C=corpus.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
  const {convert}=require("./lp2_perl_pgp_keyskip1_sft.cjs");
  const [group="control",start="0",end="545"]=process.argv.slice(2);
- const result=group==="control"?controls(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):score(C,(group==="candidate"?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
+ const result=group==="control"?controls(C,convert(read("resources/control/shakespeare_first300k.txt"),corpus.translit)):(group.startsWith("reach")?reachScore:score)(C,(group.endsWith("candidate")?rows(prior):prior.nulls.map(({seed})=>({seed}))).slice(+start,+end));
  console.log(JSON.stringify(result,null,2));
 }
