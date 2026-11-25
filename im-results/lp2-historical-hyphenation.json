@@ -1,0 +1,402 @@
+{
+  "patternCount": 4938,
+  "exceptions": 14,
+  "checks": [
+    {
+      "w": "associate",
+      "breaks": [
+        2,
+        4
+      ]
+    },
+    {
+      "w": "table",
+      "breaks": [
+        2
+      ]
+    },
+    {
+      "w": "present",
+      "breaks": []
+    },
+    {
+      "w": "hyphenation",
+      "breaks": [
+        2,
+        6
+      ]
+    },
+    {
+      "w": "deterministic",
+      "breaks": [
+        2,
+        5,
+        8,
+        10
+      ]
+    }
+  ],
+  "original": {
+    "groups": 2896,
+    "runes": 12956,
+    "mean": 4.473756906077348,
+    "singletons": 83,
+    "short": 531,
+    "long": 559,
+    "max": 14,
+    "hist": {
+      "1": 83,
+      "2": 448,
+      "3": 720,
+      "4": 513,
+      "5": 317,
+      "6": 256,
+      "7": 216,
+      "8": 156,
+      "9": 78,
+      "10": 52,
+      "11": 32,
+      "12": 18,
+      "13": 4,
+      "14": 3
+    }
+  },
+  "terminal": {
+    "groups": 66,
+    "runes": 308,
+    "mean": 4.666666666666667,
+    "singletons": 2,
+    "short": 13,
+    "long": 13,
+    "max": 13,
+    "hist": {
+      "1": 2,
+      "2": 11,
+      "3": 14,
+      "4": 9,
+      "5": 9,
+      "6": 8,
+      "7": 3,
+      "8": 6,
+      "10": 2,
+      "11": 1,
+      "13": 1
+    }
+  },
+  "native": {
+    "words": 740,
+    "matched": 739,
+    "ambiguous": 0,
+    "splitWords": 158,
+    "blocked": 3,
+    "base": {
+      "groups": 740,
+      "runes": 2979,
+      "mean": 4.025675675675676,
+      "singletons": 28,
+      "short": 206,
+      "long": 106,
+      "max": 14,
+      "hist": {
+        "1": 28,
+        "2": 178,
+        "3": 175,
+        "4": 131,
+        "5": 57,
+        "6": 65,
+        "7": 47,
+        "8": 25,
+        "9": 16,
+        "10": 9,
+        "11": 4,
+        "12": 2,
+        "13": 2,
+        "14": 1
+      }
+    },
+    "split": {
+      "groups": 949,
+      "runes": 2979,
+      "mean": 3.1390937829293994,
+      "singletons": 44,
+      "short": 307,
+      "long": 12,
+      "max": 7,
+      "hist": {
+        "1": 44,
+        "2": 263,
+        "3": 332,
+        "4": 192,
+        "5": 75,
+        "6": 31,
+        "7": 12
+      }
+    },
+    "capacityTerminal": {
+      "windows": 2672,
+      "min": 91,
+      "max": 106,
+      "oneMin": 1,
+      "oneMax": 11,
+      "shortMin": 20,
+      "shortMax": 43,
+      "at": 913,
+      "conservativeMinGroups": 90,
+      "conservativeMinSingleton": 0,
+      "conservativeMinShort": 19
+    }
+  },
+  "donors": [
+    {
+      "name": "Gibran",
+      "words": 12572,
+      "splitWords": 1738,
+      "blocked": 21,
+      "base": {
+        "groups": 12572,
+        "runes": 47629,
+        "mean": 3.7884982500795417,
+        "singletons": 366,
+        "short": 3250,
+        "long": 1107,
+        "max": 15,
+        "hist": {
+          "1": 366,
+          "2": 2884,
+          "3": 3438,
+          "4": 2543,
+          "5": 1341,
+          "6": 893,
+          "7": 456,
+          "8": 328,
+          "9": 191,
+          "10": 64,
+          "11": 49,
+          "12": 17,
+          "13": 1,
+          "15": 1
+        }
+      },
+      "split": {
+        "groups": 14621,
+        "runes": 47629,
+        "mean": 3.2575747212912933,
+        "singletons": 611,
+        "short": 4241,
+        "long": 137,
+        "max": 9,
+        "hist": {
+          "1": 611,
+          "2": 3630,
+          "3": 4768,
+          "4": 3419,
+          "5": 1537,
+          "6": 519,
+          "7": 119,
+          "8": 16,
+          "9": 2
+        }
+      },
+      "capacityWhole": {
+        "windows": 34674,
+        "min": 3944,
+        "max": 4034,
+        "oneMin": 131,
+        "oneMax": 186,
+        "shortMin": 1062,
+        "shortMax": 1203,
+        "at": 13777,
+        "conservativeMinGroups": 3943,
+        "conservativeMinSingleton": 130,
+        "conservativeMinShort": 1061
+      },
+      "capacityTerminal": {
+        "windows": 47322,
+        "min": 85,
+        "max": 109,
+        "oneMin": 0,
+        "oneMax": 13,
+        "shortMin": 7,
+        "shortMax": 50,
+        "at": 31342,
+        "conservativeMinGroups": 84,
+        "conservativeMinSingleton": 0,
+        "conservativeMinShort": 6
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "words": 55407,
+      "splitWords": 9025,
+      "blocked": 379,
+      "base": {
+        "groups": 55407,
+        "runes": 217106,
+        "mean": 3.918385763531684,
+        "singletons": 3165,
+        "short": 14947,
+        "long": 6958,
+        "max": 14,
+        "hist": {
+          "1": 3165,
+          "2": 11782,
+          "3": 12989,
+          "4": 10649,
+          "5": 5832,
+          "6": 4032,
+          "7": 2981,
+          "8": 2328,
+          "9": 871,
+          "10": 533,
+          "11": 161,
+          "12": 62,
+          "13": 21,
+          "14": 1
+        }
+      },
+      "split": {
+        "groups": 66632,
+        "runes": 217106,
+        "mean": 3.2582843078400767,
+        "singletons": 4362,
+        "short": 20211,
+        "long": 1634,
+        "max": 10,
+        "hist": {
+          "1": 4362,
+          "2": 15849,
+          "3": 20972,
+          "4": 15253,
+          "5": 6471,
+          "6": 2091,
+          "7": 1070,
+          "8": 354,
+          "9": 205,
+          "10": 5
+        }
+      },
+      "capacityWhole": {
+        "windows": 204151,
+        "min": 3849,
+        "max": 4065,
+        "oneMin": 202,
+        "oneMax": 324,
+        "shortMin": 1034,
+        "shortMax": 1318,
+        "at": 117643,
+        "conservativeMinGroups": 3848,
+        "conservativeMinSingleton": 201,
+        "conservativeMinShort": 1033
+      },
+      "capacityTerminal": {
+        "windows": 216799,
+        "min": 80,
+        "max": 113,
+        "oneMin": 0,
+        "oneMax": 20,
+        "shortMin": 11,
+        "shortMax": 56,
+        "at": 112885,
+        "conservativeMinGroups": 79,
+        "conservativeMinSingleton": 0,
+        "conservativeMinShort": 10
+      }
+    },
+    {
+      "name": "Emerson",
+      "words": 74866,
+      "splitWords": 15927,
+      "blocked": 447,
+      "base": {
+        "groups": 74866,
+        "runes": 306851,
+        "mean": 4.098669623059867,
+        "singletons": 2245,
+        "short": 22529,
+        "long": 11656,
+        "max": 17,
+        "hist": {
+          "1": 2245,
+          "2": 20284,
+          "3": 16374,
+          "4": 10884,
+          "5": 7372,
+          "6": 6051,
+          "7": 4212,
+          "8": 2818,
+          "9": 2159,
+          "10": 1236,
+          "11": 676,
+          "12": 350,
+          "13": 138,
+          "14": 48,
+          "15": 13,
+          "16": 4,
+          "17": 2
+        }
+      },
+      "split": {
+        "groups": 97438,
+        "runes": 306851,
+        "mean": 3.149192306902851,
+        "singletons": 4166,
+        "short": 34238,
+        "long": 1276,
+        "max": 15,
+        "hist": {
+          "1": 4166,
+          "2": 30072,
+          "3": 30333,
+          "4": 19075,
+          "5": 9205,
+          "6": 3311,
+          "7": 937,
+          "8": 274,
+          "9": 56,
+          "10": 7,
+          "11": 1,
+          "15": 1
+        }
+      },
+      "capacityWhole": {
+        "windows": 293896,
+        "min": 4017,
+        "max": 4186,
+        "oneMin": 131,
+        "oneMax": 228,
+        "shortMin": 1281,
+        "shortMax": 1595,
+        "at": 192539,
+        "conservativeMinGroups": 4016,
+        "conservativeMinSingleton": 130,
+        "conservativeMinShort": 1280
+      },
+      "capacityTerminal": {
+        "windows": 306544,
+        "min": 82,
+        "max": 113,
+        "oneMin": 0,
+        "oneMax": 16,
+        "shortMin": 11,
+        "shortMax": 59,
+        "at": 295370,
+        "conservativeMinGroups": 81,
+        "conservativeMinSingleton": 0,
+        "conservativeMinShort": 10
+      }
+    }
+  ],
+  "capacityGateFails": true,
+  "method": "2-left/3-right Latin positions, retain only exact GP rune-boundary points, all permitted points, no inserted runes; native words matched to normalized solved Latin reference by rune-spelling alternatives, fixed frequency tie-break, unmatched canonical transliteration; conservative window counts deduct one right-edge partial group.",
+  "sourceBlobs": {
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/liber-primus/lp1-plaintext-reference.txt": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  },
+  "patternRevision": "ee22323218150388abdeb36184ad5861e3669b65",
+  "patternBlob": "53d376fc14e0622378d2c0797324ba423fa2b83b"
+}
