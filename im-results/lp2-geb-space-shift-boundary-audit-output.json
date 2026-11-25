@@ -1,0 +1,284 @@
+{
+  "source": {
+    "operation": "shift the reading frame / all word spaces one unit to the right",
+    "selector": "2014 first-party GEB book-code coordinate CBIA:3:7:2 selects the CBIA dialogue; the dialogue contains the one-unit frame-shift example",
+    "transcriptSha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "corpusSha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "inkSha": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6"
+  },
+  "scope": {
+    "physicalPages": "p0-p55; p50 is blank and omitted from the transcription",
+    "runeBearingPages": 55,
+    "runes": 12956,
+    "words": 2896,
+    "internalBoundaries": 2895,
+    "delimiters": {
+      "-": 2721,
+      ".": 174
+    },
+    "originalSingletons": 83,
+    "originalCrossPageWords": 32
+  },
+  "sourceExample": {
+    "input": "ONE WAR TWO EAR EWE",
+    "output": "O NEW ART WOE ARE WE",
+    "inverseExact": true,
+    "expected": "O NEW ART WOE ARE WE"
+  },
+  "canonicalAllBoundaryShift": {
+    "words": 2897,
+    "singletonCount": 84,
+    "firstLengths": [
+      1,
+      8,
+      5,
+      4,
+      3,
+      3,
+      11,
+      5
+    ],
+    "lastLengths": [
+      4,
+      2,
+      7,
+      7,
+      2,
+      6,
+      3,
+      2
+    ],
+    "crossPageWords": 46,
+    "wordCountPrime": true,
+    "thirteenDotHits": 0,
+    "redEdgeHits": 0,
+    "pageStartHits": 8
+  },
+  "literalHyphenSpaceShift": {
+    "words": 2890,
+    "singletonCount": 98,
+    "firstLengths": [
+      1,
+      8,
+      4,
+      5,
+      3,
+      3,
+      11,
+      5
+    ],
+    "lastLengths": [
+      4,
+      2,
+      7,
+      7,
+      2,
+      6,
+      3,
+      2
+    ],
+    "crossPageWords": 36,
+    "wordCountPrime": false,
+    "thirteenDotHits": 27,
+    "redEdgeHits": 31,
+    "pageStartHits": 18,
+    "shiftedExplicitSpaces": 2721,
+    "fixedPunctuationBoundaries": 174,
+    "coincidentBoundaryCount": 7
+  },
+  "originalFeature": {
+    "thirteenDotHits": 27,
+    "redEdgeHits": 31,
+    "pageStartHits": 22
+  },
+  "allOffsets": [
+    {
+      "k": 0,
+      "thirteenDotHits": 27,
+      "redEdgeHits": 32,
+      "pageStartHits": 23
+    },
+    {
+      "k": 1,
+      "thirteenDotHits": 0,
+      "redEdgeHits": 0,
+      "pageStartHits": 8
+    },
+    {
+      "k": 2,
+      "thirteenDotHits": 3,
+      "redEdgeHits": 4,
+      "pageStartHits": 6
+    },
+    {
+      "k": 3,
+      "thirteenDotHits": 8,
+      "redEdgeHits": 9,
+      "pageStartHits": 13
+    },
+    {
+      "k": 4,
+      "thirteenDotHits": 4,
+      "redEdgeHits": 5,
+      "pageStartHits": 11
+    },
+    {
+      "k": 5,
+      "thirteenDotHits": 7,
+      "redEdgeHits": 11,
+      "pageStartHits": 10
+    },
+    {
+      "k": 6,
+      "thirteenDotHits": 7,
+      "redEdgeHits": 6,
+      "pageStartHits": 13
+    },
+    {
+      "k": 7,
+      "thirteenDotHits": 3,
+      "redEdgeHits": 3,
+      "pageStartHits": 8
+    },
+    {
+      "k": 8,
+      "thirteenDotHits": 8,
+      "redEdgeHits": 11,
+      "pageStartHits": 13
+    },
+    {
+      "k": 9,
+      "thirteenDotHits": 11,
+      "redEdgeHits": 13,
+      "pageStartHits": 16
+    },
+    {
+      "k": 10,
+      "thirteenDotHits": 4,
+      "redEdgeHits": 4,
+      "pageStartHits": 14
+    },
+    {
+      "k": 11,
+      "thirteenDotHits": 6,
+      "redEdgeHits": 8,
+      "pageStartHits": 10
+    },
+    {
+      "k": 12,
+      "thirteenDotHits": 3,
+      "redEdgeHits": 5,
+      "pageStartHits": 13
+    },
+    {
+      "k": 13,
+      "thirteenDotHits": 4,
+      "redEdgeHits": 4,
+      "pageStartHits": 12
+    },
+    {
+      "k": 14,
+      "thirteenDotHits": 10,
+      "redEdgeHits": 12,
+      "pageStartHits": 14
+    },
+    {
+      "k": 15,
+      "thirteenDotHits": 6,
+      "redEdgeHits": 8,
+      "pageStartHits": 8
+    },
+    {
+      "k": 16,
+      "thirteenDotHits": 8,
+      "redEdgeHits": 8,
+      "pageStartHits": 7
+    },
+    {
+      "k": 17,
+      "thirteenDotHits": 9,
+      "redEdgeHits": 11,
+      "pageStartHits": 9
+    },
+    {
+      "k": 18,
+      "thirteenDotHits": 2,
+      "redEdgeHits": 2,
+      "pageStartHits": 13
+    },
+    {
+      "k": 19,
+      "thirteenDotHits": 6,
+      "redEdgeHits": 7,
+      "pageStartHits": 9
+    },
+    {
+      "k": 20,
+      "thirteenDotHits": 5,
+      "redEdgeHits": 7,
+      "pageStartHits": 9
+    },
+    {
+      "k": 21,
+      "thirteenDotHits": 3,
+      "redEdgeHits": 3,
+      "pageStartHits": 12
+    },
+    {
+      "k": 22,
+      "thirteenDotHits": 7,
+      "redEdgeHits": 9,
+      "pageStartHits": 12
+    },
+    {
+      "k": 23,
+      "thirteenDotHits": 7,
+      "redEdgeHits": 6,
+      "pageStartHits": 15
+    },
+    {
+      "k": 24,
+      "thirteenDotHits": 4,
+      "redEdgeHits": 5,
+      "pageStartHits": 14
+    },
+    {
+      "k": 25,
+      "thirteenDotHits": 9,
+      "redEdgeHits": 11,
+      "pageStartHits": 15
+    },
+    {
+      "k": 26,
+      "thirteenDotHits": 3,
+      "redEdgeHits": 5,
+      "pageStartHits": 16
+    },
+    {
+      "k": 27,
+      "thirteenDotHits": 7,
+      "redEdgeHits": 7,
+      "pageStartHits": 10
+    },
+    {
+      "k": 28,
+      "thirteenDotHits": 5,
+      "redEdgeHits": 6,
+      "pageStartHits": 10
+    }
+  ],
+  "solvedControls": {
+    "p56": {
+      "runes": 85,
+      "words": 25,
+      "shiftedWords": 26,
+      "inverseExact": true
+    },
+    "p57": {
+      "runes": 95,
+      "words": 20,
+      "shiftedWords": 21,
+      "inverseExact": true
+    }
+  }
+}
