@@ -1,0 +1,1090 @@
+{
+  "supp": 0.8074245939675174,
+  "train": [
+    217106,
+    306851
+  ],
+  "control": [
+    {
+      "q": 8,
+      "L": 729,
+      "at": 20029,
+      "key": [
+        27,
+        22,
+        3,
+        14,
+        11,
+        5,
+        3,
+        9
+      ],
+      "backsteps": 16,
+      "nominationRank": 1,
+      "nominated": 133,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.982605921529643,
+        "states": 25
+      },
+      "wrongLL": -6.301621461028415,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9784442441064842,
+        "states": 77
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9906284322248877,
+        "states": 12
+      },
+      "winnerKey": [
+        11,
+        5,
+        3,
+        9,
+        27,
+        22,
+        3,
+        14
+      ],
+      "heldJoint": -2.0081547897199106
+    },
+    {
+      "q": 8,
+      "L": 742,
+      "at": 33288,
+      "key": [
+        17,
+        16,
+        8,
+        17,
+        18,
+        6,
+        5,
+        11
+      ],
+      "backsteps": 22,
+      "nominationRank": 1,
+      "nominated": 137,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0619734153637306,
+        "states": 57
+      },
+      "wrongLL": -6.316451962484601,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.108477672028966,
+        "states": 90
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9767747771984223,
+        "states": 14
+      },
+      "winnerKey": [
+        11,
+        17,
+        16,
+        8,
+        17,
+        18,
+        6,
+        5
+      ],
+      "heldJoint": -1.9871442258012986
+    },
+    {
+      "q": 8,
+      "L": 755,
+      "at": 44072,
+      "key": [
+        23,
+        14,
+        8,
+        25,
+        25,
+        7,
+        19,
+        15
+      ],
+      "backsteps": 23,
+      "nominationRank": 2,
+      "nominated": 151,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0685827768961924,
+        "states": 40
+      },
+      "wrongLL": -6.396079460925777,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0525515866236175,
+        "states": 83
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.096564490826504,
+        "states": 20
+      },
+      "winnerKey": [
+        14,
+        8,
+        25,
+        25,
+        7,
+        19,
+        15,
+        23
+      ],
+      "heldJoint": -2.1035650380736444
+    },
+    {
+      "q": 8,
+      "L": 768,
+      "at": 46139,
+      "key": [
+        14,
+        25,
+        7,
+        4,
+        9,
+        23,
+        5,
+        5
+      ],
+      "backsteps": 13,
+      "nominationRank": 1,
+      "nominated": 129,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0878095205298806,
+        "states": 36
+      },
+      "wrongLL": -6.364849311603294,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0842032626361005,
+        "states": 85
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.093819950352852,
+        "states": 11
+      },
+      "winnerKey": [
+        14,
+        25,
+        7,
+        4,
+        9,
+        23,
+        5,
+        5
+      ],
+      "heldJoint": -2.102510540365436
+    },
+    {
+      "q": 8,
+      "L": 781,
+      "at": 41325,
+      "key": [
+        18,
+        0,
+        8,
+        18,
+        11,
+        4,
+        19,
+        3
+      ],
+      "backsteps": 18,
+      "nominationRank": 1,
+      "nominated": 150,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1027230862881616,
+        "states": 36
+      },
+      "wrongLL": -6.230177633168863,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.140786038585456,
+        "states": 89
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.042024690598125,
+        "states": 12
+      },
+      "winnerKey": [
+        0,
+        8,
+        18,
+        11,
+        4,
+        19,
+        3,
+        18
+      ],
+      "heldJoint": -2.0558125889567007
+    },
+    {
+      "q": 8,
+      "L": 794,
+      "at": 42070,
+      "key": [
+        24,
+        20,
+        26,
+        23,
+        7,
+        19,
+        2,
+        0
+      ],
+      "backsteps": 29,
+      "nominationRank": 1,
+      "nominated": 156,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9141360602161541,
+        "states": 39
+      },
+      "wrongLL": -6.436479561072483,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9066312530621425,
+        "states": 80
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9256083768847059,
+        "states": 14
+      },
+      "winnerKey": [
+        0,
+        24,
+        20,
+        26,
+        23,
+        7,
+        19,
+        2
+      ],
+      "heldJoint": -1.9324206574684406
+    },
+    {
+      "q": 8,
+      "L": 807,
+      "at": 32609,
+      "key": [
+        16,
+        1,
+        27,
+        10,
+        22,
+        10,
+        8,
+        7
+      ],
+      "backsteps": 27,
+      "nominationRank": 1,
+      "nominated": 139,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9609567844813056,
+        "states": 54
+      },
+      "wrongLL": -6.319367724616745,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9720936169826746,
+        "states": 94
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9446091404426002,
+        "states": 22
+      },
+      "winnerKey": [
+        1,
+        27,
+        10,
+        22,
+        10,
+        8,
+        7,
+        16
+      ],
+      "heldJoint": -1.9574964028470603
+    },
+    {
+      "q": 8,
+      "L": 820,
+      "at": 31574,
+      "key": [
+        23,
+        27,
+        3,
+        21,
+        3,
+        22,
+        18,
+        11
+      ],
+      "backsteps": 7,
+      "nominationRank": 1,
+      "nominated": 112,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0465610781823056,
+        "states": 48
+      },
+      "wrongLL": -6.410034012894968,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.124844233838861,
+        "states": 79
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9360436819612894,
+        "states": 31
+      },
+      "winnerKey": [
+        11,
+        23,
+        27,
+        3,
+        21,
+        3,
+        22,
+        18
+      ],
+      "heldJoint": -1.9415177204690435
+    },
+    {
+      "q": 8,
+      "L": 833,
+      "at": 23423,
+      "key": [
+        20,
+        4,
+        28,
+        19,
+        1,
+        26,
+        27,
+        5
+      ],
+      "backsteps": 31,
+      "nominationRank": 1,
+      "nominated": 141,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 0.9987995198079231,
+        "edit": 1,
+        "ll": -2.00796563881157,
+        "states": 56
+      },
+      "wrongLL": -6.327819543399222,
+      "prefix": {
+        "pos": 0.9979166666666667,
+        "edit": 1,
+        "ll": -2.041614467678501,
+        "states": 80
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.962210857349449,
+        "states": 22
+      },
+      "winnerKey": [
+        1,
+        26,
+        27,
+        5,
+        20,
+        4,
+        28,
+        19
+      ],
+      "heldJoint": -1.9753608460942558
+    },
+    {
+      "q": 8,
+      "L": 846,
+      "at": 22438,
+      "key": [
+        15,
+        14,
+        3,
+        22,
+        13,
+        2,
+        28,
+        12
+      ],
+      "backsteps": 30,
+      "nominationRank": 8,
+      "nominated": 155,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 0.9988179669030733,
+        "edit": 1,
+        "ll": -2.0573602780871503,
+        "states": 61
+      },
+      "wrongLL": -6.356464972148994,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0841078356651206,
+        "states": 84
+      },
+      "held": {
+        "pos": 0.9972677595628415,
+        "edit": 1,
+        "ll": -2.0222815140504604,
+        "states": 23
+      },
+      "winnerKey": [
+        12,
+        15,
+        14,
+        3,
+        22,
+        13,
+        2,
+        28
+      ],
+      "heldJoint": -2.0365429497269014
+    },
+    {
+      "q": 8,
+      "L": 859,
+      "at": 3484,
+      "key": [
+        28,
+        28,
+        19,
+        0,
+        12,
+        20,
+        6,
+        0
+      ],
+      "backsteps": 32,
+      "nominationRank": 1,
+      "nominated": 149,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0338983604815892,
+        "states": 61
+      },
+      "wrongLL": -6.425787843627981,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0294554228819455,
+        "states": 82
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.039525299921774,
+        "states": 22
+      },
+      "winnerKey": [
+        0,
+        12,
+        20,
+        6,
+        0,
+        28,
+        28,
+        19
+      ],
+      "heldJoint": -2.063683445708527
+    },
+    {
+      "q": 8,
+      "L": 872,
+      "at": 18958,
+      "key": [
+        0,
+        20,
+        28,
+        21,
+        13,
+        4,
+        12,
+        25
+      ],
+      "backsteps": 15,
+      "nominationRank": 1,
+      "nominated": 126,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.969527444096881,
+        "states": 50
+      },
+      "wrongLL": -6.344201116976376,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9640833094957517,
+        "states": 86
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9761937313635742,
+        "states": 21
+      },
+      "winnerKey": [
+        0,
+        20,
+        28,
+        21,
+        13,
+        4,
+        12,
+        25
+      ],
+      "heldJoint": -1.9878722227579364
+    },
+    {
+      "q": 13,
+      "L": 885,
+      "at": 10626,
+      "key": [
+        10,
+        15,
+        25,
+        20,
+        26,
+        3,
+        4,
+        0,
+        28,
+        23,
+        8,
+        2,
+        23
+      ],
+      "backsteps": 27,
+      "nominationRank": 2,
+      "nominated": 155,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0386239479329205,
+        "states": 55
+      },
+      "wrongLL": -6.496719616020487,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0626100970863894,
+        "states": 82
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0101959193065873,
+        "states": 22
+      },
+      "winnerKey": [
+        0,
+        28,
+        23,
+        8,
+        2,
+        23,
+        10,
+        15,
+        25,
+        20,
+        26,
+        3,
+        4
+      ],
+      "heldJoint": -2.035286012897943
+    },
+    {
+      "q": 13,
+      "L": 898,
+      "at": 27160,
+      "key": [
+        28,
+        13,
+        23,
+        27,
+        14,
+        18,
+        0,
+        7,
+        17,
+        28,
+        5,
+        22,
+        22
+      ],
+      "backsteps": 19,
+      "nominationRank": 1,
+      "nominated": 146,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9895628563112702,
+        "states": 74
+      },
+      "wrongLL": -6.360257616859879,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.007293823481697,
+        "states": 89
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9692019370725047,
+        "states": 37
+      },
+      "winnerKey": [
+        0,
+        7,
+        17,
+        28,
+        5,
+        22,
+        22,
+        28,
+        13,
+        23,
+        27,
+        14,
+        18
+      ],
+      "heldJoint": -1.9767249197390404
+    },
+    {
+      "q": 13,
+      "L": 911,
+      "at": 36284,
+      "key": [
+        14,
+        10,
+        27,
+        8,
+        11,
+        6,
+        20,
+        14,
+        26,
+        18,
+        16,
+        16,
+        13
+      ],
+      "backsteps": 27,
+      "nominationRank": 1,
+      "nominated": 153,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.105162095622013,
+        "states": 51
+      },
+      "wrongLL": -6.380894991937697,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.113518954941414,
+        "states": 73
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.09585515252849,
+        "states": 29
+      },
+      "winnerKey": [
+        10,
+        27,
+        8,
+        11,
+        6,
+        20,
+        14,
+        26,
+        18,
+        16,
+        16,
+        13,
+        14
+      ],
+      "heldJoint": -2.1084620923612203
+    },
+    {
+      "q": 13,
+      "L": 924,
+      "at": 38730,
+      "key": [
+        26,
+        13,
+        6,
+        16,
+        25,
+        10,
+        9,
+        17,
+        17,
+        13,
+        2,
+        20,
+        11
+      ],
+      "backsteps": 33,
+      "nominationRank": 2,
+      "nominated": 152,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.042730865837053,
+        "states": 53
+      },
+      "wrongLL": -6.428550503642416,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.038168780569984,
+        "states": 77
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.04766284990956,
+        "states": 32
+      },
+      "winnerKey": [
+        10,
+        9,
+        17,
+        17,
+        13,
+        2,
+        20,
+        11,
+        26,
+        13,
+        6,
+        16,
+        25
+      ],
+      "heldJoint": -2.0805221479300253
+    },
+    {
+      "q": 13,
+      "L": 937,
+      "at": 1821,
+      "key": [
+        0,
+        18,
+        23,
+        27,
+        19,
+        5,
+        19,
+        12,
+        14,
+        19,
+        28,
+        1,
+        19
+      ],
+      "backsteps": 18,
+      "nominationRank": 1,
+      "nominated": 143,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.1384956506482267,
+        "states": 30
+      },
+      "wrongLL": -6.327210292046695,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.138896945184556,
+        "states": 75
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.138074159669153,
+        "states": 20
+      },
+      "winnerKey": [
+        0,
+        18,
+        23,
+        27,
+        19,
+        5,
+        19,
+        12,
+        14,
+        19,
+        28,
+        1,
+        19
+      ],
+      "heldJoint": -2.1535683796915026
+    },
+    {
+      "q": 13,
+      "L": 950,
+      "at": 25334,
+      "key": [
+        14,
+        28,
+        17,
+        23,
+        5,
+        0,
+        2,
+        24,
+        11,
+        22,
+        18,
+        24,
+        20
+      ],
+      "backsteps": 20,
+      "nominationRank": 1,
+      "nominated": 155,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.952705239987306,
+        "states": 32
+      },
+      "wrongLL": -6.3157647663413226,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.037130525232983,
+        "states": 79
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.866483672076835,
+        "states": 18
+      },
+      "winnerKey": [
+        0,
+        2,
+        24,
+        11,
+        22,
+        18,
+        24,
+        20,
+        14,
+        28,
+        17,
+        23,
+        5
+      ],
+      "heldJoint": -1.8881038591076835
+    },
+    {
+      "q": 13,
+      "L": 963,
+      "at": 6660,
+      "key": [
+        6,
+        18,
+        10,
+        4,
+        12,
+        15,
+        8,
+        26,
+        6,
+        13,
+        0,
+        9,
+        12
+      ],
+      "backsteps": 32,
+      "nominationRank": 1,
+      "nominated": 155,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.054977721355207,
+        "states": 58
+      },
+      "wrongLL": -6.316802870429268,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.0367111719944995,
+        "states": 77
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -2.073130813887587,
+        "states": 30
+      },
+      "winnerKey": [
+        0,
+        9,
+        12,
+        6,
+        18,
+        10,
+        4,
+        12,
+        15,
+        8,
+        26,
+        6,
+        13
+      ],
+      "heldJoint": -2.102761549519948
+    },
+    {
+      "q": 13,
+      "L": 976,
+      "at": 8551,
+      "key": [
+        2,
+        27,
+        15,
+        3,
+        18,
+        12,
+        7,
+        22,
+        19,
+        26,
+        20,
+        17,
+        9
+      ],
+      "backsteps": 32,
+      "nominationRank": 2,
+      "nominated": 152,
+      "trueFit": 1,
+      "correctKey": true,
+      "known": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9235265288156422,
+        "states": 44
+      },
+      "wrongLL": -6.252927179622073,
+      "prefix": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.8854368743406376,
+        "states": 81
+      },
+      "held": {
+        "pos": 1,
+        "edit": 0,
+        "ll": -1.9603874847591993,
+        "states": 23
+      },
+      "winnerKey": [
+        12,
+        7,
+        22,
+        19,
+        26,
+        20,
+        17,
+        9,
+        2,
+        27,
+        15,
+        3,
+        18
+      ],
+      "heldJoint": -1.9743611346386578
+    }
+  ],
+  "method": "periodic known-key backstep beam; exact cyclic bigram maximization on 64/96 ordinary windows, top3 nominations per window, rank distinct cyclic keys by hits then score, top20 prefix fits; frozen key/cursor/context holdout"
+}
