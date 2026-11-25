@@ -1,0 +1,2709 @@
+{
+  "dictionarySize": 38938,
+  "key": [
+    23,
+    10,
+    1,
+    10,
+    9,
+    10,
+    16,
+    26
+  ],
+  "headingsExcluded": [
+    13,
+    9
+  ],
+  "controls": [
+    {
+      "name": "0_welcome",
+      "right": false,
+      "secret": [
+        3,
+        21,
+        24,
+        12,
+        14,
+        1,
+        2,
+        17
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 515,
+      "words": 124,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 8,
+        "peak": 63
+      }
+    },
+    {
+      "name": "0_welcome",
+      "right": true,
+      "secret": [
+        3,
+        21,
+        24,
+        12,
+        14,
+        1,
+        2,
+        17
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 515,
+      "words": 124,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 58,
+        "peak": 158
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "right": false,
+      "secret": [
+        16,
+        5,
+        8,
+        25,
+        27,
+        14,
+        15,
+        1
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 780,
+      "words": 208,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 15,
+        "peak": 30
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "right": true,
+      "secret": [
+        16,
+        5,
+        8,
+        25,
+        27,
+        14,
+        15,
+        1
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 780,
+      "words": 208,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 10,
+        "peak": 40
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "right": false,
+      "secret": [
+        0,
+        18,
+        21,
+        9,
+        11,
+        27,
+        28,
+        14
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 755,
+      "words": 181,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 4,
+        "peak": 308
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "right": true,
+      "secret": [
+        0,
+        18,
+        21,
+        9,
+        11,
+        27,
+        28,
+        14
+      ],
+      "ordinaryRecoveredKeys": 1,
+      "runes": 755,
+      "words": 181,
+      "fholdLowerOOV": 0,
+      "fholdReachability": {
+        "reachable": true,
+        "finalStates": 51,
+        "peak": 54
+      }
+    }
+  ],
+  "rows": [
+    {
+      "chapter": 0,
+      "right": false,
+      "ordinary": {
+        "words": 156,
+        "runes": 716,
+        "budget": 7,
+        "anchors": 20,
+        "empty": 2,
+        "distinctKeys": 49380,
+        "upper": 1,
+        "required": 13,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 156,
+        "budget": 7,
+        "single": 2,
+        "pair": 19,
+        "lowerOOV": 16,
+        "witness": [
+          [
+            3,
+            3
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            17,
+            18
+          ],
+          [
+            34,
+            35
+          ],
+          [
+            48,
+            49
+          ],
+          [
+            56,
+            57
+          ],
+          [
+            65,
+            66
+          ],
+          [
+            87,
+            88
+          ],
+          [
+            92,
+            93
+          ],
+          [
+            128,
+            129
+          ],
+          [
+            132,
+            133
+          ],
+          [
+            137,
+            138
+          ],
+          [
+            142,
+            143
+          ],
+          [
+            144,
+            145
+          ],
+          [
+            148,
+            149
+          ],
+          [
+            152,
+            153
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 13,
+        "preview": "UBAES MTHG SEOG FEOAIANXLGAWI XMHSM IAINM IAIAA THNGOE YDWT AEEAJ THLWLNU PEOWNTHCXGMNP BTH IJ YLF REOF IAEAYRJPTH SAENGHEO TEABYDEMX JE"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 19,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 1,
+      "right": false,
+      "ordinary": {
+        "words": 255,
+        "runes": 1145,
+        "budget": 12,
+        "anchors": 27,
+        "empty": 6,
+        "distinctKeys": 67302,
+        "upper": 1,
+        "required": 15,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 255,
+        "budget": 12,
+        "single": 6,
+        "pair": 21,
+        "lowerOOV": 19,
+        "witness": [
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            44,
+            45
+          ],
+          [
+            82,
+            83
+          ],
+          [
+            84,
+            85
+          ],
+          [
+            93,
+            94
+          ],
+          [
+            98,
+            99
+          ],
+          [
+            136,
+            137
+          ],
+          [
+            147,
+            148
+          ],
+          [
+            167,
+            167
+          ],
+          [
+            173,
+            174
+          ],
+          [
+            180,
+            181
+          ],
+          [
+            187,
+            188
+          ],
+          [
+            218,
+            218
+          ],
+          [
+            248,
+            248
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 11,
+        "preview": "YU LWAANGSTAMEANG NGGIA TDYS FJEXLIAOE NNEODEABIA AEIOTHOIH AUAEW THNGDEAEOO IHEYDEOTHNWYLH A NXMBSSAEJEA GY CWEOB JJN IAMOEOGXTHJ NOEEADHAE LLIA NOYEOEEA LOWF"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 25,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 2,
+      "right": false,
+      "ordinary": {
+        "words": 385,
+        "runes": 1738,
+        "budget": 19,
+        "anchors": 46,
+        "empty": 11,
+        "distinctKeys": 99120,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 385,
+        "budget": 19,
+        "single": 11,
+        "pair": 34,
+        "lowerOOV": 36,
+        "witness": [
+          [
+            28,
+            29
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            36,
+            37
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            42,
+            43
+          ],
+          [
+            47,
+            48
+          ],
+          [
+            60,
+            60
+          ],
+          [
+            92,
+            93
+          ],
+          [
+            99,
+            99
+          ],
+          [
+            100,
+            101
+          ],
+          [
+            106,
+            106
+          ],
+          [
+            145,
+            146
+          ],
+          [
+            156,
+            157
+          ],
+          [
+            165,
+            165
+          ],
+          [
+            167,
+            168
+          ],
+          [
+            175,
+            176
+          ],
+          [
+            177,
+            178
+          ],
+          [
+            192,
+            192
+          ],
+          [
+            199,
+            200
+          ],
+          [
+            204,
+            205
+          ],
+          [
+            213,
+            213
+          ],
+          [
+            215,
+            216
+          ],
+          [
+            217,
+            217
+          ],
+          [
+            218,
+            218
+          ],
+          [
+            224,
+            224
+          ],
+          [
+            233,
+            234
+          ],
+          [
+            235,
+            236
+          ],
+          [
+            237,
+            238
+          ],
+          [
+            282,
+            283
+          ],
+          [
+            286,
+            287
+          ],
+          [
+            306,
+            307
+          ],
+          [
+            313,
+            314
+          ],
+          [
+            334,
+            335
+          ],
+          [
+            341,
+            341
+          ],
+          [
+            375,
+            376
+          ],
+          [
+            379,
+            380
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 25,
+        "preview": "PTRN BIAOAENGTEAH GPP EOT AECE XFTPHOEIAAOE CYDC TFW NGIAEOE IAM AEE GTHNROEEO HGG MLTJNGIN BIAAE OFID COEY MXEOHNGIAAEW XEOOEOE THGX"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 25,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 3,
+      "right": false,
+      "ordinary": {
+        "words": 435,
+        "runes": 1894,
+        "budget": 21,
+        "anchors": 48,
+        "empty": 10,
+        "distinctKeys": 169967,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 435,
+        "budget": 21,
+        "single": 11,
+        "pair": 28,
+        "lowerOOV": 32,
+        "witness": [
+          [
+            10,
+            11
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            66,
+            67
+          ],
+          [
+            68,
+            69
+          ],
+          [
+            73,
+            73
+          ],
+          [
+            76,
+            76
+          ],
+          [
+            99,
+            100
+          ],
+          [
+            179,
+            180
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            195,
+            196
+          ],
+          [
+            220,
+            221
+          ],
+          [
+            240,
+            241
+          ],
+          [
+            243,
+            244
+          ],
+          [
+            248,
+            249
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            292,
+            293
+          ],
+          [
+            326,
+            327
+          ],
+          [
+            340,
+            341
+          ],
+          [
+            343,
+            344
+          ],
+          [
+            359,
+            359
+          ],
+          [
+            363,
+            363
+          ],
+          [
+            368,
+            368
+          ],
+          [
+            369,
+            369
+          ],
+          [
+            370,
+            371
+          ],
+          [
+            382,
+            383
+          ],
+          [
+            387,
+            388
+          ],
+          [
+            394,
+            395
+          ],
+          [
+            405,
+            405
+          ],
+          [
+            406,
+            407
+          ],
+          [
+            417,
+            417
+          ],
+          [
+            419,
+            419
+          ],
+          [
+            422,
+            422
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 36,
+        "preview": "MWJEA AEL GEOFOETH MTHXU LOEADD IACFOEXL RCFAN BDPRHR FLNG WTHU EOTNIASIELE AENGWXAEPD EPB XNGEOXD OENGLLCTHTHW GEO HAEOEA YO NGNG OEECDA"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 6,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 4,
+      "right": false,
+      "ordinary": {
+        "words": 224,
+        "runes": 1021,
+        "budget": 11,
+        "anchors": 26,
+        "empty": 2,
+        "distinctKeys": 73833,
+        "upper": 1,
+        "required": 15,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 224,
+        "budget": 11,
+        "single": 3,
+        "pair": 22,
+        "lowerOOV": 19,
+        "witness": [
+          [
+            15,
+            16
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            60,
+            61
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            93,
+            94
+          ],
+          [
+            103,
+            104
+          ],
+          [
+            107,
+            108
+          ],
+          [
+            120,
+            120
+          ],
+          [
+            121,
+            122
+          ],
+          [
+            123,
+            124
+          ],
+          [
+            126,
+            127
+          ],
+          [
+            157,
+            158
+          ],
+          [
+            160,
+            161
+          ],
+          [
+            176,
+            176
+          ],
+          [
+            180,
+            181
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            205,
+            206
+          ],
+          [
+            218,
+            219
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 15,
+        "preview": "WX LEOCRPN AEIC NGRPYB WTHISBDOEJ AAETH CXB NGRGDUGNG LPPIAJ MGDGS BEAJNGDOA ALOEOETH NGDLI GTSX DAAG THIAEOIAEA XOEBNWJLAA OIAJA JIAY IASCILEOH"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 552,
+        "peak": 62
+      }
+    },
+    {
+      "chapter": 5,
+      "right": false,
+      "ordinary": {
+        "words": 326,
+        "runes": 1433,
+        "budget": 16,
+        "anchors": 36,
+        "empty": 8,
+        "distinctKeys": 79840,
+        "upper": 1,
+        "required": 20,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 326,
+        "budget": 16,
+        "single": 8,
+        "pair": 27,
+        "lowerOOV": 28,
+        "witness": [
+          [
+            1,
+            1
+          ],
+          [
+            13,
+            14
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            43,
+            43
+          ],
+          [
+            44,
+            45
+          ],
+          [
+            46,
+            47
+          ],
+          [
+            69,
+            70
+          ],
+          [
+            76,
+            77
+          ],
+          [
+            87,
+            88
+          ],
+          [
+            97,
+            97
+          ],
+          [
+            123,
+            123
+          ],
+          [
+            174,
+            175
+          ],
+          [
+            176,
+            177
+          ],
+          [
+            191,
+            192
+          ],
+          [
+            212,
+            213
+          ],
+          [
+            232,
+            233
+          ],
+          [
+            240,
+            241
+          ],
+          [
+            255,
+            256
+          ],
+          [
+            262,
+            263
+          ],
+          [
+            277,
+            278
+          ],
+          [
+            300,
+            301
+          ],
+          [
+            307,
+            307
+          ],
+          [
+            311,
+            311
+          ],
+          [
+            312,
+            313
+          ],
+          [
+            314,
+            315
+          ],
+          [
+            316,
+            317
+          ],
+          [
+            323,
+            324
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 25,
+        "preview": "NMAE CBDIASIAJTHOEXHE YBEOEA YMIAPOELR ET UPJ LIAG WP F XEOR YEAXNG OTHXMXEEA BEO WUNXLSOHN NYEF EON LIG EOSMNG HYHX NGTUELBSOIEOOS"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 109,
+        "peak": 4
+      }
+    },
+    {
+      "chapter": 6,
+      "right": false,
+      "ordinary": {
+        "words": 378,
+        "runes": 1680,
+        "budget": 18,
+        "anchors": 45,
+        "empty": 5,
+        "distinctKeys": 117041,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 378,
+        "budget": 18,
+        "single": 5,
+        "pair": 33,
+        "lowerOOV": 26,
+        "witness": [
+          [
+            3,
+            4
+          ],
+          [
+            37,
+            38
+          ],
+          [
+            40,
+            41
+          ],
+          [
+            62,
+            63
+          ],
+          [
+            108,
+            108
+          ],
+          [
+            114,
+            115
+          ],
+          [
+            124,
+            125
+          ],
+          [
+            126,
+            127
+          ],
+          [
+            133,
+            133
+          ],
+          [
+            146,
+            147
+          ],
+          [
+            150,
+            151
+          ],
+          [
+            157,
+            158
+          ],
+          [
+            163,
+            164
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            186,
+            187
+          ],
+          [
+            214,
+            214
+          ],
+          [
+            226,
+            227
+          ],
+          [
+            260,
+            261
+          ],
+          [
+            268,
+            269
+          ],
+          [
+            279,
+            280
+          ],
+          [
+            284,
+            284
+          ],
+          [
+            301,
+            302
+          ],
+          [
+            306,
+            306
+          ],
+          [
+            331,
+            332
+          ],
+          [
+            334,
+            335
+          ],
+          [
+            364,
+            365
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 28,
+        "preview": "FTH XELNXYJR OH NGEOWAEHGPEOIA XNGPAEEONG CGG SEW NGTHOIIA SOEU OEL YEASIABXC OEJU JMTH THMEOTHYU PFBANG JJANATHEOTH RO TTAE GM GO"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 0,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 7,
+      "right": false,
+      "ordinary": {
+        "words": 669,
+        "runes": 3008,
+        "budget": 33,
+        "anchors": 84,
+        "empty": 13,
+        "distinctKeys": 257025,
+        "upper": 1,
+        "required": 51,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 669,
+        "budget": 33,
+        "single": 13,
+        "pair": 49,
+        "lowerOOV": 52,
+        "witness": [
+          [
+            8,
+            8
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            32,
+            33
+          ],
+          [
+            69,
+            70
+          ],
+          [
+            73,
+            74
+          ],
+          [
+            111,
+            112
+          ],
+          [
+            118,
+            119
+          ],
+          [
+            123,
+            124
+          ],
+          [
+            129,
+            130
+          ],
+          [
+            136,
+            137
+          ],
+          [
+            147,
+            148
+          ],
+          [
+            152,
+            153
+          ],
+          [
+            172,
+            172
+          ],
+          [
+            175,
+            176
+          ],
+          [
+            180,
+            180
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            192,
+            193
+          ],
+          [
+            196,
+            196
+          ],
+          [
+            227,
+            227
+          ],
+          [
+            233,
+            233
+          ],
+          [
+            246,
+            247
+          ],
+          [
+            259,
+            260
+          ],
+          [
+            276,
+            277
+          ],
+          [
+            278,
+            279
+          ],
+          [
+            284,
+            285
+          ],
+          [
+            292,
+            293
+          ],
+          [
+            301,
+            302
+          ],
+          [
+            313,
+            314
+          ],
+          [
+            325,
+            326
+          ],
+          [
+            330,
+            331
+          ],
+          [
+            348,
+            349
+          ],
+          [
+            373,
+            373
+          ],
+          [
+            374,
+            375
+          ],
+          [
+            409,
+            409
+          ],
+          [
+            410,
+            411
+          ],
+          [
+            414,
+            415
+          ],
+          [
+            419,
+            419
+          ],
+          [
+            432,
+            433
+          ],
+          [
+            454,
+            455
+          ],
+          [
+            462,
+            462
+          ],
+          [
+            464,
+            465
+          ],
+          [
+            501,
+            502
+          ],
+          [
+            572,
+            573
+          ],
+          [
+            591,
+            591
+          ],
+          [
+            603,
+            604
+          ],
+          [
+            620,
+            620
+          ],
+          [
+            625,
+            626
+          ],
+          [
+            628,
+            629
+          ],
+          [
+            635,
+            636
+          ],
+          [
+            645,
+            646
+          ],
+          [
+            648,
+            649
+          ],
+          [
+            660,
+            660
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 36,
+        "preview": "MSE IYPSJ JDEAHJ UPOEM HIAB MYCNI THYYP YAE XXAERTHMSLBOETHI XAEY NGOEL AEO AEEUA GHYCDEOO AEPGBBIA TEOM TIAUAE TSR MBREOAIAAETHN PSGOI"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 94,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 8,
+      "right": false,
+      "ordinary": {
+        "words": 64,
+        "runes": 299,
+        "budget": 3,
+        "anchors": 9,
+        "empty": 2,
+        "distinctKeys": 30211,
+        "upper": 1,
+        "required": 6,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 64,
+        "budget": 3,
+        "single": 2,
+        "pair": 6,
+        "lowerOOV": 7,
+        "witness": [
+          [
+            11,
+            12
+          ],
+          [
+            34,
+            35
+          ],
+          [
+            36,
+            37
+          ],
+          [
+            45,
+            46
+          ],
+          [
+            47,
+            47
+          ],
+          [
+            54,
+            54
+          ],
+          [
+            58,
+            59
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 5,
+        "preview": "JXEOIALYXOE AEYN EABUOERJ XAE NGLAER CEAEA DEO AEEA GNGTHBEA XNRFGBOE CFX TYNGF ALJEOEAFIPJU HLTTFWAW BXA GRIAEOL PEAEEOGFHOE DIAAER EWG EFHNG"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 78,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 0,
+      "right": true,
+      "ordinary": {
+        "words": 156,
+        "runes": 716,
+        "budget": 7,
+        "anchors": 20,
+        "empty": 2,
+        "distinctKeys": 49527,
+        "upper": 1,
+        "required": 13,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 156,
+        "budget": 7,
+        "single": 2,
+        "pair": 22,
+        "lowerOOV": 17,
+        "witness": [
+          [
+            3,
+            3
+          ],
+          [
+            11,
+            11
+          ],
+          [
+            34,
+            35
+          ],
+          [
+            48,
+            49
+          ],
+          [
+            56,
+            57
+          ],
+          [
+            65,
+            66
+          ],
+          [
+            83,
+            84
+          ],
+          [
+            87,
+            88
+          ],
+          [
+            92,
+            93
+          ],
+          [
+            123,
+            124
+          ],
+          [
+            128,
+            129
+          ],
+          [
+            132,
+            133
+          ],
+          [
+            136,
+            137
+          ],
+          [
+            142,
+            143
+          ],
+          [
+            144,
+            145
+          ],
+          [
+            148,
+            149
+          ],
+          [
+            152,
+            153
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 12,
+        "preview": "NGUEOA PTHEO THEOM TIABROELUFIAMF MIAGGX THBJJ EAJJ ANGL PMSO YANG DAXMTT NGRFPDNAEOYLO PAE BR OEON HRG ROEAEIXRTH OESPAS NNGHEAGOJ FP"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 24,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 1,
+      "right": true,
+      "ordinary": {
+        "words": 255,
+        "runes": 1145,
+        "budget": 12,
+        "anchors": 27,
+        "empty": 6,
+        "distinctKeys": 67551,
+        "upper": 1,
+        "required": 15,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 255,
+        "budget": 12,
+        "single": 6,
+        "pair": 21,
+        "lowerOOV": 21,
+        "witness": [
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            9,
+            9
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            39,
+            40
+          ],
+          [
+            44,
+            45
+          ],
+          [
+            82,
+            83
+          ],
+          [
+            84,
+            85
+          ],
+          [
+            89,
+            90
+          ],
+          [
+            93,
+            94
+          ],
+          [
+            98,
+            99
+          ],
+          [
+            136,
+            137
+          ],
+          [
+            147,
+            148
+          ],
+          [
+            167,
+            167
+          ],
+          [
+            173,
+            174
+          ],
+          [
+            180,
+            181
+          ],
+          [
+            187,
+            188
+          ],
+          [
+            218,
+            218
+          ],
+          [
+            232,
+            233
+          ],
+          [
+            248,
+            248
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 11,
+        "preview": "IB MOEREOESSUMROE YFR OENFP PNLTEOAF WCXTUHE AUAEJEACEO THBLJ SOEORHH MSCAEXCIARJNGAP I WCEOUYLNGGR OENG XXTOE ETH LLEOPLCEAEO HOENBEA OEGG EAEOOTAJ XUEAAE"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 13,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 2,
+      "right": true,
+      "ordinary": {
+        "words": 385,
+        "runes": 1738,
+        "budget": 19,
+        "anchors": 46,
+        "empty": 11,
+        "distinctKeys": 99017,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 385,
+        "budget": 19,
+        "single": 11,
+        "pair": 35,
+        "lowerOOV": 36,
+        "witness": [
+          [
+            5,
+            6
+          ],
+          [
+            28,
+            29
+          ],
+          [
+            31,
+            31
+          ],
+          [
+            36,
+            37
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            42,
+            43
+          ],
+          [
+            47,
+            48
+          ],
+          [
+            60,
+            60
+          ],
+          [
+            80,
+            81
+          ],
+          [
+            93,
+            93
+          ],
+          [
+            99,
+            99
+          ],
+          [
+            105,
+            106
+          ],
+          [
+            145,
+            146
+          ],
+          [
+            156,
+            157
+          ],
+          [
+            165,
+            165
+          ],
+          [
+            167,
+            168
+          ],
+          [
+            175,
+            176
+          ],
+          [
+            192,
+            192
+          ],
+          [
+            199,
+            200
+          ],
+          [
+            213,
+            213
+          ],
+          [
+            215,
+            216
+          ],
+          [
+            217,
+            217
+          ],
+          [
+            218,
+            218
+          ],
+          [
+            224,
+            224
+          ],
+          [
+            233,
+            234
+          ],
+          [
+            235,
+            236
+          ],
+          [
+            237,
+            238
+          ],
+          [
+            282,
+            283
+          ],
+          [
+            286,
+            287
+          ],
+          [
+            306,
+            307
+          ],
+          [
+            313,
+            314
+          ],
+          [
+            334,
+            335
+          ],
+          [
+            341,
+            341
+          ],
+          [
+            361,
+            362
+          ],
+          [
+            375,
+            376
+          ],
+          [
+            379,
+            380
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 33,
+        "preview": "RFLE YXOEAOEYEOEA UTNG TNG TMIA IAWEOECXOEUX NNGTHI YEAX CEJTH RI SJ FEECNNG NGLF AEYFYCUY DEOS TLUT BGTH WTHGOIAITHTH LBTI AEETH"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 1,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 3,
+      "right": true,
+      "ordinary": {
+        "words": 435,
+        "runes": 1894,
+        "budget": 21,
+        "anchors": 48,
+        "empty": 10,
+        "distinctKeys": 169849,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 435,
+        "budget": 21,
+        "single": 11,
+        "pair": 26,
+        "lowerOOV": 32,
+        "witness": [
+          [
+            10,
+            11
+          ],
+          [
+            35,
+            35
+          ],
+          [
+            66,
+            67
+          ],
+          [
+            68,
+            69
+          ],
+          [
+            73,
+            73
+          ],
+          [
+            76,
+            76
+          ],
+          [
+            99,
+            100
+          ],
+          [
+            152,
+            153
+          ],
+          [
+            179,
+            180
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            195,
+            196
+          ],
+          [
+            220,
+            221
+          ],
+          [
+            240,
+            241
+          ],
+          [
+            243,
+            244
+          ],
+          [
+            249,
+            250
+          ],
+          [
+            258,
+            259
+          ],
+          [
+            292,
+            293
+          ],
+          [
+            326,
+            327
+          ],
+          [
+            343,
+            344
+          ],
+          [
+            359,
+            359
+          ],
+          [
+            363,
+            363
+          ],
+          [
+            368,
+            368
+          ],
+          [
+            369,
+            369
+          ],
+          [
+            370,
+            371
+          ],
+          [
+            382,
+            383
+          ],
+          [
+            387,
+            388
+          ],
+          [
+            394,
+            395
+          ],
+          [
+            405,
+            405
+          ],
+          [
+            406,
+            407
+          ],
+          [
+            417,
+            417
+          ],
+          [
+            419,
+            419
+          ],
+          [
+            422,
+            422
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 25,
+        "preview": "ILIAH ANG NJFOU INFG OEAHET GIAHOOAE DAERTHG YITHRTHY CEJ LRW WJRPGREADP OTEHNGAEA JAT WYMTHOE FTEBEAOXH NE PYJT MTH ES MXECH"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 6,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 4,
+      "right": true,
+      "ordinary": {
+        "words": 224,
+        "runes": 1021,
+        "budget": 11,
+        "anchors": 26,
+        "empty": 2,
+        "distinctKeys": 73497,
+        "upper": 1,
+        "required": 15,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 224,
+        "budget": 11,
+        "single": 3,
+        "pair": 23,
+        "lowerOOV": 19,
+        "witness": [
+          [
+            3,
+            4
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            20,
+            21
+          ],
+          [
+            38,
+            39
+          ],
+          [
+            60,
+            61
+          ],
+          [
+            63,
+            63
+          ],
+          [
+            93,
+            94
+          ],
+          [
+            103,
+            104
+          ],
+          [
+            107,
+            108
+          ],
+          [
+            120,
+            120
+          ],
+          [
+            121,
+            122
+          ],
+          [
+            123,
+            124
+          ],
+          [
+            126,
+            127
+          ],
+          [
+            157,
+            158
+          ],
+          [
+            159,
+            160
+          ],
+          [
+            176,
+            176
+          ],
+          [
+            184,
+            185
+          ],
+          [
+            205,
+            206
+          ],
+          [
+            218,
+            219
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 16,
+        "preview": "LU IJAEPXM YTM THCNGAEW YUDGYIDNG THXG GXT MYONFTHEO MWAAEO HHOSR MWEOEOOEGG TMGAEMEA ENGNY XBXB YYGM FMJJNGB THFGRJYWWTH XOAEH RPJ XRFOGEAG"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 31,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 5,
+      "right": true,
+      "ordinary": {
+        "words": 326,
+        "runes": 1433,
+        "budget": 16,
+        "anchors": 36,
+        "empty": 9,
+        "distinctKeys": 79944,
+        "upper": 1,
+        "required": 20,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 326,
+        "budget": 16,
+        "single": 9,
+        "pair": 24,
+        "lowerOOV": 26,
+        "witness": [
+          [
+            1,
+            1
+          ],
+          [
+            19,
+            19
+          ],
+          [
+            41,
+            41
+          ],
+          [
+            43,
+            43
+          ],
+          [
+            44,
+            45
+          ],
+          [
+            46,
+            47
+          ],
+          [
+            69,
+            70
+          ],
+          [
+            76,
+            77
+          ],
+          [
+            87,
+            88
+          ],
+          [
+            97,
+            97
+          ],
+          [
+            123,
+            123
+          ],
+          [
+            174,
+            175
+          ],
+          [
+            176,
+            177
+          ],
+          [
+            212,
+            213
+          ],
+          [
+            232,
+            232
+          ],
+          [
+            235,
+            236
+          ],
+          [
+            240,
+            241
+          ],
+          [
+            255,
+            256
+          ],
+          [
+            277,
+            278
+          ],
+          [
+            300,
+            301
+          ],
+          [
+            307,
+            307
+          ],
+          [
+            311,
+            311
+          ],
+          [
+            312,
+            313
+          ],
+          [
+            314,
+            315
+          ],
+          [
+            317,
+            318
+          ],
+          [
+            323,
+            324
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 26,
+        "preview": "EMT JTXCNEAIHSDNEO GIMM MEDNGJYL AED YFW IAFM FG P AEGC RNGUEA ECNGGOENGR OIA WTHDWEOAEUWY ARHTH JI NGLAE THTHAN WSWA JOTHFUUISJTHHO"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 30,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 6,
+      "right": true,
+      "ordinary": {
+        "words": 378,
+        "runes": 1680,
+        "budget": 18,
+        "anchors": 45,
+        "empty": 5,
+        "distinctKeys": 117025,
+        "upper": 1,
+        "required": 27,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 378,
+        "budget": 18,
+        "single": 5,
+        "pair": 37,
+        "lowerOOV": 27,
+        "witness": [
+          [
+            3,
+            4
+          ],
+          [
+            37,
+            38
+          ],
+          [
+            40,
+            41
+          ],
+          [
+            62,
+            63
+          ],
+          [
+            95,
+            96
+          ],
+          [
+            108,
+            108
+          ],
+          [
+            114,
+            115
+          ],
+          [
+            124,
+            125
+          ],
+          [
+            126,
+            127
+          ],
+          [
+            133,
+            133
+          ],
+          [
+            142,
+            143
+          ],
+          [
+            150,
+            151
+          ],
+          [
+            157,
+            158
+          ],
+          [
+            163,
+            164
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            186,
+            187
+          ],
+          [
+            205,
+            206
+          ],
+          [
+            214,
+            214
+          ],
+          [
+            226,
+            227
+          ],
+          [
+            260,
+            261
+          ],
+          [
+            268,
+            269
+          ],
+          [
+            279,
+            280
+          ],
+          [
+            284,
+            284
+          ],
+          [
+            301,
+            302
+          ],
+          [
+            306,
+            306
+          ],
+          [
+            338,
+            339
+          ],
+          [
+            364,
+            365
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 25,
+        "preview": "PE UHMFDIANGB EOEA EABUUUCMXD NIAHYGM GRL NGP LMIAWP NGCA EA OYTETHAG EPIA PLNG EOOGUGTH NUWDC SIERDWPE NR CRE FL RNG"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 3,
+        "peak": 1
+      }
+    },
+    {
+      "chapter": 7,
+      "right": true,
+      "ordinary": {
+        "words": 669,
+        "runes": 3008,
+        "budget": 33,
+        "anchors": 84,
+        "empty": 14,
+        "distinctKeys": 256677,
+        "upper": 1,
+        "required": 51,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 669,
+        "budget": 33,
+        "single": 14,
+        "pair": 50,
+        "lowerOOV": 50,
+        "witness": [
+          [
+            8,
+            8
+          ],
+          [
+            18,
+            19
+          ],
+          [
+            32,
+            33
+          ],
+          [
+            69,
+            70
+          ],
+          [
+            73,
+            74
+          ],
+          [
+            111,
+            112
+          ],
+          [
+            123,
+            124
+          ],
+          [
+            129,
+            130
+          ],
+          [
+            135,
+            136
+          ],
+          [
+            147,
+            148
+          ],
+          [
+            152,
+            153
+          ],
+          [
+            172,
+            172
+          ],
+          [
+            180,
+            180
+          ],
+          [
+            183,
+            184
+          ],
+          [
+            192,
+            193
+          ],
+          [
+            196,
+            196
+          ],
+          [
+            227,
+            227
+          ],
+          [
+            233,
+            233
+          ],
+          [
+            245,
+            246
+          ],
+          [
+            259,
+            260
+          ],
+          [
+            276,
+            277
+          ],
+          [
+            278,
+            279
+          ],
+          [
+            284,
+            285
+          ],
+          [
+            292,
+            293
+          ],
+          [
+            301,
+            302
+          ],
+          [
+            313,
+            314
+          ],
+          [
+            325,
+            326
+          ],
+          [
+            329,
+            330
+          ],
+          [
+            348,
+            349
+          ],
+          [
+            373,
+            373
+          ],
+          [
+            374,
+            375
+          ],
+          [
+            409,
+            409
+          ],
+          [
+            410,
+            411
+          ],
+          [
+            414,
+            415
+          ],
+          [
+            419,
+            419
+          ],
+          [
+            432,
+            433
+          ],
+          [
+            454,
+            455
+          ],
+          [
+            462,
+            462
+          ],
+          [
+            465,
+            465
+          ],
+          [
+            501,
+            502
+          ],
+          [
+            572,
+            573
+          ],
+          [
+            591,
+            591
+          ],
+          [
+            603,
+            604
+          ],
+          [
+            620,
+            620
+          ],
+          [
+            625,
+            626
+          ],
+          [
+            628,
+            629
+          ],
+          [
+            635,
+            636
+          ],
+          [
+            645,
+            646
+          ],
+          [
+            648,
+            649
+          ],
+          [
+            660,
+            660
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 27,
+        "preview": "EASN FAEPTNG HXEABA PWWE NGRX WOHAJ JIUY LI IATHTHAETHXTRHOX DAEIA RPM EOEA NTMD PNGEWSEEO EONGDPAENG GGEO EOMLF TUX SEHLHHNGBB NGNGITM"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 85,
+        "peak": 2
+      }
+    },
+    {
+      "chapter": 8,
+      "right": true,
+      "ordinary": {
+        "words": 64,
+        "runes": 299,
+        "budget": 3,
+        "anchors": 9,
+        "empty": 2,
+        "distinctKeys": 30211,
+        "upper": 1,
+        "required": 6,
+        "candidates": 0,
+        "best": null,
+        "survivors": [],
+        "exactExcluded": true
+      },
+      "fhold": {
+        "words": 64,
+        "budget": 3,
+        "single": 2,
+        "pair": 7,
+        "lowerOOV": 8,
+        "witness": [
+          [
+            11,
+            12
+          ],
+          [
+            15,
+            16
+          ],
+          [
+            34,
+            35
+          ],
+          [
+            36,
+            37
+          ],
+          [
+            45,
+            46
+          ],
+          [
+            47,
+            47
+          ],
+          [
+            54,
+            54
+          ],
+          [
+            58,
+            59
+          ]
+        ],
+        "exactExcluded": true
+      },
+      "fixedNativePrimerOrdinary": {
+        "matches": 4,
+        "preview": "UPOJWGSO IBI REAEORTHW FA EJNGDR MGF AJ IAAEEA CWATF THAUOEGXNG EADAE EOEFM AEAMEIAIAEACNGO WTHIJSXC THMU WHYOEOE EOATAERAEIAL AEXIAH GHA GADU"
+      },
+      "fixedNativePrimerFhold": {
+        "reachable": false,
+        "deadOffset": 18,
+        "peak": 1
+      }
+    }
+  ]
+}
