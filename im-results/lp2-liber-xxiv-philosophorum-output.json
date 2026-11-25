@@ -1,0 +1,715 @@
+{
+  "definitions": [
+    [
+      "II Latin",
+      "Deus est sphaera infinita cuius centrum est ubique circumferentia nusquam"
+    ],
+    [
+      "XVIII Latin quot",
+      "Deus est sphaera cuius tot sunt circumferentiae quot puncta"
+    ],
+    [
+      "XVIII Latin quod",
+      "Deus est sphaera cuius tot sunt circumferentiae quod puncta"
+    ],
+    [
+      "II English literal rendering",
+      "God is an infinite sphere whose centre is everywhere and circumference nowhere"
+    ],
+    [
+      "XVIII English literal rendering",
+      "God is a sphere with as many circumferences as points"
+    ]
+  ],
+  "rows": [
+    {
+      "label": "II Latin",
+      "q": 8,
+      "hold": false,
+      "spellings": 4,
+      "eligible": 4,
+      "cribMin": 62,
+      "cribMax": 64,
+      "hits": 0
+    },
+    {
+      "label": "II Latin",
+      "q": 8,
+      "hold": true,
+      "spellings": 4,
+      "eligible": 4,
+      "cribMin": 62,
+      "cribMax": 64,
+      "hits": 0
+    },
+    {
+      "label": "II Latin",
+      "q": 13,
+      "hold": false,
+      "spellings": 4,
+      "eligible": 4,
+      "cribMin": 62,
+      "cribMax": 64,
+      "hits": 0
+    },
+    {
+      "label": "II Latin",
+      "q": 13,
+      "hold": true,
+      "spellings": 4,
+      "eligible": 4,
+      "cribMin": 62,
+      "cribMax": 64,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 8,
+      "hold": false,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 8,
+      "hold": true,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 13,
+      "hold": false,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 13,
+      "hold": true,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 8,
+      "hold": false,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 8,
+      "hold": true,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 13,
+      "hold": false,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 13,
+      "hold": true,
+      "spellings": 6,
+      "eligible": 6,
+      "cribMin": 49,
+      "cribMax": 51,
+      "hits": 0
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 8,
+      "hold": false,
+      "spellings": 1,
+      "eligible": 1,
+      "cribMin": 67,
+      "cribMax": 67,
+      "hits": 0
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 8,
+      "hold": true,
+      "spellings": 1,
+      "eligible": 1,
+      "cribMin": 67,
+      "cribMax": 67,
+      "hits": 0
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 13,
+      "hold": false,
+      "spellings": 1,
+      "eligible": 1,
+      "cribMin": 67,
+      "cribMax": 67,
+      "hits": 0
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 13,
+      "hold": true,
+      "spellings": 1,
+      "eligible": 1,
+      "cribMin": 67,
+      "cribMax": 67,
+      "hits": 0
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 8,
+      "hold": false,
+      "spellings": 2,
+      "eligible": 2,
+      "cribMin": 43,
+      "cribMax": 44,
+      "hits": 0
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 8,
+      "hold": true,
+      "spellings": 2,
+      "eligible": 2,
+      "cribMin": 43,
+      "cribMax": 44,
+      "hits": 0
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 13,
+      "hold": false,
+      "spellings": 2,
+      "eligible": 2,
+      "cribMin": 43,
+      "cribMax": 44,
+      "hits": 0
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 13,
+      "hold": true,
+      "spellings": 2,
+      "eligible": 2,
+      "cribMin": 43,
+      "cribMax": 44,
+      "hits": 0
+    }
+  ],
+  "hits": [],
+  "controls": [
+    {
+      "label": "II Latin",
+      "q": 8,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "II Latin",
+      "q": 8,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "II Latin",
+      "q": 13,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "II Latin",
+      "q": 13,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 8,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 8,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 13,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quot",
+      "q": 13,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 8,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 8,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 13,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII Latin quod",
+      "q": 13,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 8,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 8,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 13,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "II English literal rendering",
+      "q": 13,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 8,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 8,
+      "hold": true,
+      "exact": true
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 13,
+      "hold": false,
+      "exact": true
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "q": 13,
+      "hold": true,
+      "exact": true
+    }
+  ],
+  "keytests": [
+    {
+      "label": "II Latin",
+      "spellings": 4,
+      "total": 8,
+      "best": {
+        "ioc": 0.03754385964912281,
+        "variant": 0,
+        "hold": false,
+        "sign": 1,
+        "plaintext": "IA W E A E F U EA G W B B M W S L IA X H A X EO EA T E EA EA C U NG E N W TH TH Y O X G B H OE EA O TH U W B N E NG TH AE Y EA H L O U T P H W O J I N R T EA W AE B N D NG"
+      },
+      "candidates": [
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWSLIAXHAXEOEATEEAEACUNGENWTHTHYOXGBHOEEAOTHUWBNENGTHAEYEAHLOUTPHWOJINRTEAWAEBNDNG",
+          "runes": "IA W E A E F U EA G W B B M W S L IA X H A X EO EA T E EA EA C U NG E N W TH TH Y O X G B H OE EA O TH U W B N E NG TH AE Y EA H L O U T P H W O J I N R T EA W AE B N D NG"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYGNIACYSBTHNENUFSHINGBNJNIAGTJHEWGPOENBMEEEAIOSTHEAINGOBDOEYEOEABJCDFIYXAEPEA",
+          "runes": "S X L AE AE U R F O D W A IA Y G N IA C Y S B TH N E N U F S H I NG B N J N IA G T J H E W G P OE N B M E E EA I O S TH EA I NG O B D OE Y EO EA B J C D F I Y X AE P EA"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWSLIAXHAXEOEATEEAEACUNGENWTHTHYOXGBHOEEAOTHUWBNENGTHAEYEALGJTYJLEOEATIAAUMIAHIAOEOEFG",
+          "runes": "IA W E A E F U EA G W B B M W S L IA X H A X EO EA T E EA EA C U NG E N W TH TH Y O X G B H OE EA O TH U W B N E NG TH AE Y EA L G J T Y J L EO EA T IA A U M IA H IA OE OE F G"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYGNIACYSBTHNENUFSHINGBNJNIAGTJHEWGPOENBMEEEAIOSTHTAPBWAEINGTDFAEHLUNANEOWX",
+          "runes": "S X L AE AE U R F O D W A IA Y G N IA C Y S B TH N E N U F S H I NG B N J N IA G T J H E W G P OE N B M E E EA I O S TH T A P B W AE I NG T D F AE H L U N A N EO W X"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEANGTFBSWEGTHOWIAXNNGIXUEOEOCAEEIAPOEGJEOIAHFJEAEAFGBCMCDGJTYJLEOEATIAAUMIAHIAOENGXS",
+          "runes": "IA W E A E F U EA G W T TH EA NG T F B S W E G TH O W IA X N NG I X U EO E O C AE E IA P OE G J EO IA H F J EA EA F G B C M C D G J T Y J L EO EA T IA A U M IA H IA OE NG X S"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEEOCFHRIANGAEEOCIAFSMEAEABNXIAIGEALOROLEOEETIPHEAWXADOEAEPAPBWAEINGTDFAEHLUNANPOEC",
+          "runes": "S X L AE AE U R F O D H I E EO C F H R IA NG AE EO C IA F S M EA EA B N X IA I G EA L O R O L E OE E T I P H EA W X A D OE AE P A P B W AE I NG T D F AE H L U N A N P OE C"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEANGTFBSWEGTHOWIAXNNGIXUEOEOCAEEIAPOEGJEOIAHFJEAEAFGBCMBNXYYADAEHRRPNGREEAIOCPDF",
+          "runes": "IA W E A E F U EA G W T TH EA NG T F B S W E G TH O W IA X N NG I X U EO E O C AE E IA P OE G J EO IA H F J EA EA F G B C M B N X Y Y A D AE H R R P NG R E EA I O C P D F"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEEOCFHRIANGAEEOCIAFSMEAEABNXIAIGEALOROLEOEETIPHEAWXADOEPIATIAWNPCAEJGXEACNGFWMYNGPL",
+          "runes": "S X L AE AE U R F O D H I E EO C F H R IA NG AE EO C IA F S M EA EA B N X IA I G EA L O R O L E OE E T I P H EA W X A D OE P IA T IA W N P C AE J G X EA C NG F W M Y NG P L"
+        }
+      ]
+    },
+    {
+      "label": "XVIII Latin quot",
+      "spellings": 6,
+      "total": 12,
+      "best": {
+        "ioc": 0.03859649122807018,
+        "variant": 1,
+        "hold": false,
+        "sign": -1,
+        "plaintext": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH R D E W L A AE G NG D S P R A S NG R R TH IA S I P R G B I F L L L U Y IA T E IA Y"
+      },
+      "candidates": [
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAPOAAICAENGJNDTHSEOAECFFFAETEILPEIDNNREAWHXTHBU",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA P O A A I C AE NG J N D TH S EO AE C F F F AE T E I L P E I D N N R EA W H X TH B U"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHROETHCAJEAEPIARCCFOWUWUEABSYILYFRJFGFIXBOMM",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH R OE TH C A J EA E P IA R C C F O W U W U EA B S Y I L Y F R J F G F I X B O M M"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAPTHHOEXNGEAROPEODTBPLYOEAYEDDYIAIAFIAFEMIALASTND",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA P TH H OE X NG EA R O P EO D T B P L Y O EA Y E D D Y IA IA F IA F E M IA L A S T N D"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHRDEWLAAEGNGDSPRASNGRRTHIASIPRGBIFLLLUYIATEIAY",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH R D E W L A AE G NG D S P R A S NG R R TH IA S I P R G B I F L L L U Y IA T E IA Y"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAAENHOEXNGEAROPEODTBPLYOEAYEDDYIAIAFIAFEMIALASTND",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA AE N H OE X NG EA R O P EO D T B P L Y O EA Y E D D Y IA IA F IA F E M IA L A S T N D"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHNGTEWLAAEGNGDSPRASNGRRTHIASIPRGBIFLLLUYIATEIAY",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH NG T E W L A AE G NG D S P R A S NG R R TH IA S I P R G B I F L L L U Y IA T E IA Y"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOCEANHOEXNGEAROPEODTBPLYOEAYEDOEJWBRENREJWAEFHTHC",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O C EA N H OE X NG EA R O P EO D T B P L Y O EA Y E D OE J W B R E N R E J W AE F H TH C"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGAEETEWLAAEGNGDSPRASNGRRTHIASIXMYIAGNJCNGBIYTHYCS",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G AE E T E W L A AE G NG D S P R A S NG R R TH IA S I X M Y IA G N J C NG B I Y TH Y C S"
+        },
+        {
+          "variant": 4,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOCIAOEGYUAJAEWTHRANGCEABFTHFEADGXLYNGAIAAOTHIAHINGUPF",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O C IA OE G Y U A J AE W TH R A NG C EA B F TH F EA D G X L Y NG A IA A O TH IA H I NG U P F"
+        },
+        {
+          "variant": 4,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGAEMOLORNGPXBCDEOEAWFAUCUAEIIAOEIWDSFAEGHUNEOIRDL",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G AE M O L O R NG P X B C D EO EA W F A U C U AE I IA OE I W D S F AE G H U N EO I R D L"
+        },
+        {
+          "variant": 5,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOBCOEGYUAJAEWTHRANGCEABFTHFEADGXLYNGAIAAOTHIAHINGUPF",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O B C OE G Y U A J AE W TH R A NG C EA B F TH F EA D G X L Y NG A IA A O TH IA H I NG U P F"
+        },
+        {
+          "variant": 5,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGPEOOLORNGPXBCDEOEAWFAUCUAEIIAOEIWDSFAEGHUNEOIRDL",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G P EO O L O R NG P X B C D EO EA W F A U C U AE I IA OE I W D S F AE G H U N EO I R D L"
+        }
+      ]
+    },
+    {
+      "label": "XVIII Latin quod",
+      "spellings": 6,
+      "total": 12,
+      "best": {
+        "ioc": 0.03859649122807018,
+        "variant": 1,
+        "hold": false,
+        "sign": 1,
+        "plaintext": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA P TH H OE X X EA R O P EO D T B P L Y O EA Y E D D Y IA IA F IA F E M IA L A S T N D"
+      },
+      "candidates": [
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAPOAAICENGJNDTHSEOAECFFFAETEILPEIDNNREAWHXTHBU",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA P O A A I C E NG J N D TH S EO AE C F F F AE T E I L P E I D N N R EA W H X TH B U"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHROETHCAJGEPIARCCFOWUWUEABSYILYFRJFGFIXBOMM",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH R OE TH C A J G E P IA R C C F O W U W U EA B S Y I L Y F R J F G F I X B O M M"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAPTHHOEXXEAROPEODTBPLYOEAYEDDYIAIAFIAFEMIALASTND",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA P TH H OE X X EA R O P EO D T B P L Y O EA Y E D D Y IA IA F IA F E M IA L A S T N D"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHRDEWLTHAEGNGDSPRASNGRRTHIASIPRGBIFLLLUYIATEIAY",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH R D E W L TH AE G NG D S P R A S NG R R TH IA S I P R G B I F L L L U Y IA T E IA Y"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWBBMWLEABDTHEIALETMPNFSAERDHOTDIEAAENHOEXXEAROPEODTBPLYOEAYEDDYIAIAFIAFEMIALASTND",
+          "runes": "IA W E A E F U EA G W B B M W L EA B D TH E IA L E T M P N F S AE R D H O T D I EA AE N H OE X X EA R O P EO D T B P L Y O EA Y E D D Y IA IA F IA F E M IA L A S T N D"
+        },
+        {
+          "variant": 2,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODWAIAYUUHAEONGRDMEHTMLDGGOHIAUEATHNGTEWLTHAEGNGDSPRASNGRRTHIASIPRGBIFLLLUYIATEIAY",
+          "runes": "S X L AE AE U R F O D W A IA Y U U H AE O NG R D M E H T M L D G G O H I A U EA TH NG T E W L TH AE G NG D S P R A S NG R R TH IA S I P R G B I F L L L U Y IA T E IA Y"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOCEANHOEXXEAROPEODTBPLYOEAYEDOEJWBRENREJWAEFHTHC",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O C EA N H OE X X EA R O P EO D T B P L Y O EA Y E D OE J W B R E N R E J W AE F H TH C"
+        },
+        {
+          "variant": 3,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGAEETEWLTHAEGNGDSPRASNGRRTHIASIXMYIAGNJCNGBIYTHYCS",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G AE E T E W L TH AE G NG D S P R A S NG R R TH IA S I X M Y IA G N J C NG B I Y TH Y C S"
+        },
+        {
+          "variant": 4,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOCIAOEGYDAJAEWTHRANGCEABFTHFEADGXLYNGAIAAOTHIAHINGUPF",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O C IA OE G Y D A J AE W TH R A NG C EA B F TH F EA D G X L Y NG A IA A O TH IA H I NG U P F"
+        },
+        {
+          "variant": 4,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGAEMOLOJNGPXBCDEOEAWFAUCUAEIIAOEIWDSFAEGHUNEOIRDL",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G AE M O L O J NG P X B C D EO EA W F A U C U AE I IA OE I W D S F AE G H U N EO I R D L"
+        },
+        {
+          "variant": 5,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "IAWEAEFUEAGWTTHEAYAMYNUTHXNGOHEOARGXFSPMBTHOOBCOEGYDAJAEWTHRANGCEABFTHFEADGXLYNGAIAAOTHIAHINGUPF",
+          "runes": "IA W E A E F U EA G W T TH EA Y A M Y N U TH X NG O H EO A R G X F S P M B TH O O B C OE G Y D A J AE W TH R A NG C EA B F TH F EA D G X L Y NG A IA A O TH IA H I NG U P F"
+        },
+        {
+          "variant": 5,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "SXLAEAEURFODHIEWYIEAIRHBOECYSCAXATHAPYAENNGGPEOOLOJNGPXBCDEOEAWFAUCUAEIIAOEIWDSFAEGHUNEOIRDL",
+          "runes": "S X L AE AE U R F O D H I E W Y I EA I R H B OE C Y S C A X A TH A P Y AE N NG G P EO O L O J NG P X B C D EO EA W F A U C U AE I IA OE I W D S F AE G H U N EO I R D L"
+        }
+      ]
+    },
+    {
+      "label": "II English literal rendering",
+      "spellings": 1,
+      "total": 5,
+      "best": {
+        "ioc": 0.03614035087719298,
+        "variant": 0,
+        "hold": false,
+        "sign": 1,
+        "plaintext": "S OE AE F NG L H R I S TH Y P S W X X T EA U EO F AE X P J N NG I X U A IA G TH J U J Y L C J P M B AE E P E X C C A G Y X Y O Y P N EO A X T A NG P TH L P AE G H H U"
+      },
+      "candidates": [
+        {
+          "variant": 0,
+          "hold": true,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIYAEASOESREXFPHAEDCAEJAETHSOSHINGBYTHGULRIAALFAEYTDWIAOEDLIMWCERTLJDRJAEEOWEADDLYCJOPM",
+          "runes": "IA EA P L OE I Y A EA S OE S R E X F P H AE D C AE J AE TH S O S H I NG B Y TH G U L R IA A L F AE Y T D W IA OE D L I M W C E R T L J D R J AE EO W EA D D L Y C J O P M"
+        },
+        {
+          "variant": 0,
+          "hold": true,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIYAEASOESREXSJOGNMXEOLXFOSHINGBYTHGULRIAALFAEYTDWIAOEDLIMWCERTLJDRJAEEOWEADDLYCJOPM",
+          "runes": "IA EA P L OE I Y A EA S OE S R E X S J O G N M X EO L X F O S H I NG B Y TH G U L R IA A L F AE Y T D W IA OE D L I M W C E R T L J D R J AE EO W EA D D L Y C J O P M"
+        },
+        {
+          "variant": 0,
+          "hold": true,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIYAEASOESREXSJOGNMXEOLXEMEAEABNTHEWNPHMLCNGENGYWXGDNOESWRGROERNGWLIAENUDOEAAEHHRYAEYEAM",
+          "runes": "IA EA P L OE I Y A EA S OE S R E X S J O G N M X EO L X E M EA EA B N TH E W N P H M L C NG E NG Y W X G D N OE S W R G R OE R NG W L IA E N U D O EA AE H H R Y AE Y EA M"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "SOEAEFNGLHRISTHYPSWXXTEAUEOFAEXPJNNGIXUAIAGTHJUJYLCJPMBAEEPEXCCAGYXYOYPNEOAXTANGPTHLPAEGHHU",
+          "runes": "S OE AE F NG L H R I S TH Y P S W X X T EA U EO F AE X P J N NG I X U A IA G TH J U J Y L C J P M B AE E P E X C C A G Y X Y O Y P N EO A X T A NG P TH L P AE G H H U"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIYAEASOESREXSJOGNMXEOLXEMEAEABNTHEWNPHMLCNGENGYWXGDNOESWRGROERNGWLIAENUDOEAAEHHRYAEYEAM",
+          "runes": "IA EA P L OE I Y A EA S OE S R E X S J O G N M X EO L X E M EA EA B N TH E W N P H M L C NG E NG Y W X G D N OE S W R G R OE R NG W L IA E N U D O EA AE H H R Y AE Y EA M"
+        }
+      ]
+    },
+    {
+      "label": "XVIII English literal rendering",
+      "spellings": 2,
+      "total": 5,
+      "best": {
+        "ioc": 0.039649122807017545,
+        "variant": 1,
+        "hold": false,
+        "sign": -1,
+        "plaintext": "IA EA P L OE I O IA IA R T A U EO IA A P X EO X IA EO X NG R U R I H C D OE P I G W C EA Y H OE T O X S EA OE R D R D X O I R AE AE X Y B H I J M I N X A G R D F C G IA S"
+      },
+      "candidates": [
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "SOEAEFNGLTHUJYHBTNGNNGONIAINGIEAWAAPLMEOUAEATTHYAFIAOLUOEGTHEHPDAOEGBJFHTHSDDFEOIAAETHCNUNOENGUEAXNG",
+          "runes": "S OE AE F NG L TH U J Y H B T NG N NG O N IA I NG I EA W A A P L M EO U A EA T TH Y A F I A O L U OE G TH E H P D A OE G B J F H TH S D D F EO IA AE TH C N U N OE NG U EA X NG"
+        },
+        {
+          "variant": 0,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIOIAIARTAUEOEOHOEIWFIRNIAOCSFMMNTHBYNIAXUWUDNRDEHGEAXPAEMOEAMWOEOEEIPUNGBXAESFNMAUUGOEEA",
+          "runes": "IA EA P L OE I O IA IA R T A U EO EO H OE I W F I R N IA O C S F M M N TH B Y N IA X U W U D N R D E H G EA X P AE M OE A M W OE OE E I P U NG B X AE S F N M A U U G OE EA"
+        },
+        {
+          "variant": 1,
+          "hold": true,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIOIAIARTAUEOIAAPXEOXIAEOXNGRURIHCDOEPIGWCEAYHOEFRDEHGEAXPAEMOEAMWOEOERYRCYTHTHRLDISPJMNGWM",
+          "runes": "IA EA P L OE I O IA IA R T A U EO IA A P X EO X IA EO X NG R U R I H C D OE P I G W C EA Y H OE F R D E H G EA X P AE M OE A M W OE OE R Y R C Y TH TH R L D I S P J M NG W M"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": 1,
+          "plaintext": "SOEAEFNGLTHUJYHBTNGDCEOCOEAERTHDPDEAAIUYTROOCBRTHLBRPTHTHNJTHOROYIAAETHYJCIWTEALOEAEFEGXRADOEYEANC",
+          "runes": "S OE AE F NG L TH U J Y H B T NG D C EO C OE AE R TH D P D EA A I U Y T R O O C B R TH L B R P TH TH N J TH O R O Y IA AE TH Y J C I W T EA L OE AE F E G X R A D OE Y EA N C"
+        },
+        {
+          "variant": 1,
+          "hold": false,
+          "sign": -1,
+          "plaintext": "IAEAPLOEIOIAIARTAUEOIAAPXEOXIAEOXNGRURIHCDOEPIGWCEAYHOETOXSEAOERDRDXOIRAEAEXYBHIJMINXAGRDFCGIAS",
+          "runes": "IA EA P L OE I O IA IA R T A U EO IA A P X EO X IA EO X NG R U R I H C D OE P I G W C EA Y H OE T O X S EA OE R D R D X O I R AE AE X Y B H I J M I N X A G R D F C G IA S"
+        }
+      ]
+    }
+  ]
+}
