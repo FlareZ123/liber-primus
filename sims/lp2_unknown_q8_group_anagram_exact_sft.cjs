@@ -120,10 +120,12 @@ function pairShift(db,rows,anchors,pair,shift,budget){
  return {pair,shift,prefixes,checks,hits,distinct:candidateSeen.size,anchorPass,survivors};
 }
 function run(raw,which,pairFrom=0,pairTo=6,shiftFrom=0,shiftTo=8){
- const db=build(raw),control=which==="original"?null:makeControl(db,Number(which)),rows=control?control.rows:db.terminal;
+ const db=build(raw),control=which==="original"?null:makeControl(db,Number(which)),full=control?control.rows:db.terminal;
+ // On planted controls, fit only complete p54 groups; exclude the carry group.
+ const rows=control?full.filter(x=>x.off+x.C.length<=12880):full;
  const anchors=rows.filter(x=>x.C.length===8&&!x.C.includes(0)).slice(0,6);
  assert.equal(anchors.length,6);
- const budget=Math.floor(.05*rows.length);assert.equal(budget,3);
+ const budget=Math.floor(.05*rows.length);assert(budget<=3);
  const results=[];
  for(let p=pairFrom;p<pairTo;p++)for(let s=shiftFrom;s<shiftTo;s++){
   const r=pairShift(db,rows,anchors,pairs[p],s,budget);results.push(r);
@@ -132,11 +134,20 @@ function run(raw,which,pairFrom=0,pairTo=6,shiftFrom=0,shiftTo=8){
  let plant=null;
  if(control){
   const truth=canonical(control.K),matched=candidates.some(x=>x.n===truth.n);
-  const all=rows.map(x=>domain(x.C,control.K,db.multisets,false));
-  const trueEdges=all.filter((D,i)=>D.some(e=>e.s===rows[i].s&&e.t===rows[i].t&&e.b===bag(rows[i].P))).length;
-  const ambiguous=all.filter(D=>new Set(D.flatMap(e=>e.words)).size>1).length;
+  const all=full.map(x=>domain(x.C,control.K,db.multisets,false));
+  const trueEdges=all.filter((D,i)=>D.some(e=>e.s===full[i].s&&e.t===full[i].t&&e.b===bag(full[i].P))).length;
   assert.equal(trueEdges,66);
-  plant={key:control.K,canon:truth,matched,trueEdges,ambiguous,holds:control.holds,consumingZero:control.consumingZero,anchorOffsets:anchors.map(x=>x.off)};
+  const ambiguous=all.filter(D=>new Set(D.flatMap(e=>e.words)).size>1).length;
+  const withheld=full.filter(x=>!rows.includes(x));
+  // Evaluate each frozen fit candidate on previously unused complete and carry groups.
+  const candidateTests=candidates.map(z=>{
+   const ds=full.map(x=>domain(x.C,z.K,db.multisets,false));
+   let phase=new Set([0,1,2,3,4,5,6,7]);
+   for(const D of ds)phase=new Set(D.filter(e=>phase.has(e.s)).map(e=>e.t));
+   const lexical=withheld.map(x=>domain(x.C,z.K,db.multisets,false));
+   return {n:z.n,holdCovered:lexical.filter(D=>D.length).length,holdTrueBags:lexical.filter((D,i)=>D.some(e=>e.b===bag(withheld[i].P))).length,holdUniqueWord:lexical.filter(D=>new Set(D.flatMap(e=>e.words)).size===1).length,continuous:phase.size>0};
+  });
+  plant={key:control.K,canon:truth,matched,trueEdges,ambiguous,holds:control.holds,consumingZero:control.consumingZero,anchorOffsets:anchors.map(x=>x.off),fitGroups:rows.length,withheldGroups:withheld.length,candidateTests};
  }
  return {which,types:db.types.size,bagTypes:db.multisets.size,anchors:anchors.map(x=>x.off),budget,results,candidates,plant};
 }
