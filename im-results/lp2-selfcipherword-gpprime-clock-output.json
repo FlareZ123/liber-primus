@@ -1,0 +1,198 @@
+{
+  "original": {
+    "groups": 2896,
+    "noInverse": 340,
+    "uniqueInverse": 2239,
+    "multipleInverse": 317,
+    "noLexicalInverse": 2752,
+    "first30": [
+      {
+        "n": 2,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 2,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 0,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 3,
+        "lex": []
+      },
+      {
+        "n": 0,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": [
+          "OFF"
+        ]
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 2,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 0,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 2,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      },
+      {
+        "n": 0,
+        "lex": []
+      },
+      {
+        "n": 1,
+        "lex": []
+      }
+    ]
+  },
+  "controls": [
+    {
+      "name": "0_warning",
+      "words": 45,
+      "none": 13,
+      "one": 23,
+      "many": 9
+    },
+    {
+      "name": "0_welcome",
+      "words": 124,
+      "none": 40,
+      "one": 48,
+      "many": 36
+    },
+    {
+      "name": "0_wisdom",
+      "words": 31,
+      "none": 4,
+      "one": 17,
+      "many": 10
+    },
+    {
+      "name": "0_koan_1",
+      "words": 208,
+      "none": 95,
+      "one": 63,
+      "many": 50
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "words": 181,
+      "none": 68,
+      "one": 60,
+      "many": 53
+    },
+    {
+      "name": "jpg107-167",
+      "words": 88,
+      "none": 34,
+      "one": 26,
+      "many": 28
+    },
+    {
+      "name": "jpg229",
+      "words": 18,
+      "none": 2,
+      "one": 7,
+      "many": 9
+    },
+    {
+      "name": "p56_an_end",
+      "words": 25,
+      "none": 8,
+      "one": 7,
+      "many": 10
+    },
+    {
+      "name": "p57_parable",
+      "words": 20,
+      "none": 5,
+      "one": 8,
+      "many": 7
+    }
+  ]
+}
