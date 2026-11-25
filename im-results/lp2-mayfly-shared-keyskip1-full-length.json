@@ -1,0 +1,177 @@
+{
+  "config": {
+    "N": 264,
+    "B": 512,
+    "s": 0.81288,
+    "skipCap": 17,
+    "training": "first 80% of each donor, order 4 interpolated Dirichlet alpha 8"
+  },
+  "p57Control": 95,
+  "results": [
+    {
+      "q": 4,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        6,
+        13,
+        9
+      ],
+      "trueScore": 231.72472742973648,
+      "score": 113.36338397290805,
+      "match": [
+        177,
+        173,
+        177
+      ],
+      "decodedSkip": [
+        9,
+        16,
+        12
+      ],
+      "explored": 5177646,
+      "retained": 142877,
+      "pass": false
+    },
+    {
+      "q": 5,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        12,
+        9,
+        11
+      ],
+      "trueScore": 163.8471628945976,
+      "score": 55.60271753337481,
+      "match": [
+        157,
+        164,
+        158
+      ],
+      "decodedSkip": [
+        15,
+        12,
+        15
+      ],
+      "explored": 5204467,
+      "retained": 142877,
+      "pass": false
+    },
+    {
+      "q": 6,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        8,
+        11,
+        6
+      ],
+      "trueScore": 208.45378557728787,
+      "score": 217.4068814354619,
+      "match": [
+        248,
+        253,
+        254
+      ],
+      "decodedSkip": [
+        9,
+        10,
+        7
+      ],
+      "explored": 5107028,
+      "retained": 140829,
+      "pass": true
+    },
+    {
+      "q": 7,
+      "N": 264,
+      "B": 512,
+      "trueSkip": [
+        9,
+        7,
+        7
+      ],
+      "trueScore": 201.83134036839274,
+      "score": 189.18572301307424,
+      "match": [
+        231,
+        230,
+        232
+      ],
+      "decodedSkip": [
+        9,
+        7,
+        7
+      ],
+      "explored": 5111217,
+      "retained": 140317,
+      "pass": true
+    }
+  ],
+  "gate": false,
+  "nulls": [
+    {
+      "q": 0,
+      "score": -156.28550916308205,
+      "match": [
+        15,
+        13,
+        14
+      ],
+      "skip": [
+        16,
+        11,
+        12
+      ],
+      "explored": 5187598
+    },
+    {
+      "q": 1,
+      "score": -176.81517299094511,
+      "match": [
+        13,
+        14,
+        21
+      ],
+      "skip": [
+        14,
+        17,
+        14
+      ],
+      "explored": 5135008
+    },
+    {
+      "q": 2,
+      "score": -177.40670443494005,
+      "match": [
+        16,
+        16,
+        13
+      ],
+      "skip": [
+        14,
+        10,
+        15
+      ],
+      "explored": 5150356
+    },
+    {
+      "q": 3,
+      "score": -184.08527429501834,
+      "match": [
+        12,
+        20,
+        10
+      ],
+      "skip": [
+        16,
+        15,
+        17
+      ],
+      "explored": 5113801
+    }
+  ],
+  "original": [],
+  "cache": 133577
+}
