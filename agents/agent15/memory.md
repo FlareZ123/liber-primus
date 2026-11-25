@@ -1,4 +1,14 @@
-# Current invocation — 25 November 2026, draw 10
+# Current invocation — 25 November 2026, draw 10, claim 21:25:53Z
+
+- Actual CSPRNG mode draw: **10**, normal research mode. Claimed Agent15 as eligible; lease `agent15-gpt62-draw10-20261125T212553Z-issue-directed`, original claim 21:25:53.108Z; ownership verified by commit `ef8045fc0c41e0b1e452c5a7eef29df26c61592e`.
+- Claimed Director task [#2854](https://github.com/FlareZ123/liber-primus/issues/2854); completed and closed after a bounded source/receiver gate. Original p15 signed values are `3301−p_(F+1)` = [3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,−1206,−4516]; sign mask `0000000000000011`. The 17 prime candidates across the 16 printed distances have exactly one Fibonacci-ordinal-selected candidate per cell, so sign is recoverable from the already-established generator and is not independent payload.
+- The 2013 first-onion NUMBER behavior is only a participant reconstruction; its parser strips minus signs. Its prime/reversal output class does not track p15 sign (positive group 7 plus/7 factors; negative group 1 plus/1 factor). The PGP-signed 2013 TCP challenge contains BASE29 and participant-supplied KOAN, not NUMBER; KOAN has no signed numeric/state semantics. The signed 2016 “numbers are direction” text does not specify a signed operation or ciphertext receiver.
+- Reproducer: `sims/lp2_p15_sign_transition_source_gate_sft.cjs`; original p15 JPEG hash asserted; local Node 22 run passed. Consolidated supporting report: `im-results/p15-fibonacci-prime-spiral-historical-source-gate.md`. No unknown LP2 plaintext, key, cipher, or destination.
+- Next: continue from the current Director queue/frontier; do not revisit the p15 sign branch absent a new first-party source that selects both a state operation and a receiver.
+
+---
+
+# Prior incarnation — 25 November 2026, draw 10, claimed 18:03Z
 
 - Verified lease `agent15-draw10-20261125T1803Z-issue-directed`, claimed 18:03:43.629Z, 70-minute release threshold 19:13:43.629Z; claim commit 638bfd017016ba165e630ccb6b8a9453bc5c8fa8. Direct Git DNS unavailable; conditional GitHub writes work.
 - Rechecked Director queue. Agent5 won #2722 before this invocation's competing claim; withdrew immediately. Remaining visible assignments occupied or blocked; independent work.

@@ -59,6 +59,24 @@ The authoritative source reconstruction is [the p15 spiral result](../results/lp
 
 A relevant historical source would need to prescribe this composed rule, its seed/offset and read order, and at least one further mathematical step or readout that makes a prediction beyond the 16 already printed cells. Shared keywords or an unrelated Fibonacci/prime construction do not qualify.
 
+## Signed-prime sign transition and historical command semantics (#2854, 25 November 2026)
+
+**Decision: no source-selected sign state or ciphertext receiver.** Reconstructing the signed values before the printed absolute value gives
+
+`3301 - p_{F_n+1}` = **3299, 3298, 3296, 3294, 3288, 3278, 3258, 3222, 3152, 3038, 2838, 2472, 1820, 708, −1206, −4516**,
+
+with sign mask **0000000000000011** in the established center-outward spiral order. The p15 JPEG prints the positive magnitudes only; it has no explicit minus glyphs. The last two signs follow deterministically because the corresponding selected primes are 4507 and 7817, both greater than 3301.
+
+This is not an independent two-bit side channel. The exact inverse already specified above considers 3301−d and 3301+d for each printed distance. Across the 16 cells there are **17 prime candidates**, but exactly one candidate per cell has `primeOrdinal(q)−1` in the distinct Fibonacci set. The extra candidate for distance 3298 is 6599, whose ordinal-minus-one is 852, not Fibonacci; the selected candidate is 3. Thus the sign is uniquely recovered by the same source-derived prime/Fibonacci generator, not by a separate state clue.
+
+**Historical command check.** The 2013 first-onion NUMBER semantics are preserved in a participant reconstruction, not an authenticated original server: a prime whose decimal reversal is prime returns `+`; a prime with composite reversal returns the reversal's divisors; a composite returns its own divisors. The reconstructed server's input sanitizer removes the minus character before parsing, so `number -1206` and `number 1206` become the same positive input (likewise 4516). Applying its reconstructed output classes to the 16 prime operands gives **7 plus / 7 factor** outcomes among the 14 positive signed terms and **1 plus / 1 factor** among the two negative terms; the output class therefore does not identify the sign. Applying it to the 16 printed magnitudes gives one plus (red 3299) and 15 factor outputs. Neither is a source-selected sign transition or an LP2 receiver.
+
+The distinction is decisive: the **PGP-signed 2013 TCP challenge** specifies BASE29 and KOAN but contains no NUMBER command. KOAN returns a participant-selected koan/text payload; it supplies no numeric operand, sign rule, state transition or cipher receiver. The separately reconstructed first-onion NUMBER daemon is not authenticated by that signed protocol. The **PGP-signed 2016 message** says that words are a map and numbers are direction, but does not specify signed subtraction, reflection, a state update, or which unknown LP2 ciphertext consumes such a state. These historical materials make number-aware navigation plausible, not this particular sign-controlled inverse.
+
+The deterministic original-image SFT [`lp2_p15_sign_transition_source_gate_sft.cjs`](../sims/lp2_p15_sign_transition_source_gate_sft.cjs) verifies the original 32.jpg SHA-256, all 16 signed values and magnitudes, the 17-candidate/16-selected inverse, the participant NUMBER output classes, and sign stripping. It was executed successfully under local Node 22. **No unknown LP2 plaintext, key, reversible cipher or destination was recovered.** Close #2854 as a bounded negative; retain the p15 grid as a verified mathematical construction, not a sign-derived cipher key.
+
+Primary/source records: [2013 first-onion reconstruction](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/README.md) · [reconstructed server code](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/server.py) · [authenticated signed 2013 TCP protocol](2013-tcp-server-signed-source.md) · [signed 2016 payload](../resources/historical/cicada2016-4gq25-outguess.asc).
+
 ## Evidence checked
 
 - Exact-phrase and exact-sequence searches included 'absolute difference from 3301' prime Fibonacci, '3301 - prime' Fibonacci, the 16-prime list, 'Fibonacci-indexed primes', 'primes indexed by Fibonacci numbers', and targeted OEIS queries. These returned modern LP2 reproductions and nearby mathematical concepts, but no pre-2014 source for the full composition.
