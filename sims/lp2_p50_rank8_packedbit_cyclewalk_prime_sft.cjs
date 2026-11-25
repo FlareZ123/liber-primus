@@ -16,7 +16,7 @@ function experiment(a,g,s){
  }
  function cw(x,block,ps){
   let n=0;
-  do{x=step(x,block,ps);n++;if(n>10000)throw Error("cycle-walk safety invariant");}while(x.some(v=>v>=29));
+  do{x=step(x,block,ps);n++;if(n>840)throw Error("cycle-walk order invariant");}while(x.some(v=>v>=29));
   return {x,n};
  }
  function transform(x,ps){
