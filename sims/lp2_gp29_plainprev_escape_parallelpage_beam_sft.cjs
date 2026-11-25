@@ -19,24 +19,31 @@ function experiment(raw,{width=24,count=1,originalTest=false}={}){
  function encode(P,K){let q=0;return P.map(p=>{const d=inv[K[q]][p];q=p;return d})}
  function score(P){let s=0;for(let j=0;j<P.length;j++)s+=j===0?L1[P[j]]:j===1?L2[P[j-1]*A+P[j]]:L3[(P[j-2]*A+P[j-1])*A+P[j]];return s}
  function solve(frames,width,truth){
-  const F=frames.map(f=>f.d),N=F.length;
-  let beam=[{K:new Int16Array(A).fill(-1),pos:new Uint16Array(N),q:new Uint8Array(N),prev:new Uint8Array(N),s:0,n:0}],trace=[];
-  for(let round=0;round<A;round++){
+  const F=frames.map(f=>f.d),N=F.length,total=sum(F.map(f=>f.length));
+  const makeDomain=ids=>{const force=new Int8Array(A).fill(-1);for(let d=0;d<A;d++){const v=rows[ids[0]][d];if(ids.every(k=>rows[k][d]===v))force[d]=v;}return {ids,force}};
+  const all=makeDomain(Array.from({length:812},(_,k)=>k));
+  let beam=[{D:Array(A).fill(all),pos:new Uint16Array(N),q:new Uint8Array(N),prev:new Uint8Array(N),s:0,n:0}],trace=[];
+  for(let round=0;round<29*29;round++){
    let next=[];
-   for(const old of beam){const occ=new Uint16Array(A);for(let i=0;i<N;i++)if(old.pos[i]<F[i].length)occ[old.q[i]]++;let z=0;for(let q=1;q<A;q++)if(occ[q]>occ[z])z=q;if(!occ[z]){next.push(old);continue;}assert(old.K[z]<0,"frontier");
-    for(let k=0;k<812;k++){const K=old.K.slice();K[z]=k;const pos=old.pos.slice(),q=old.q.slice(),prev=old.prev.slice();let s=old.s,n=old.n;
-     for(let i=0;i<N;i++){const d=F[i];let j=pos[i],b=q[i],a=prev[i];while(j<d.length&&K[b]>=0){const p=rows[K[b]][d[j]];s+=j===0?L1[p]:j===1?L2[b*A+p]:L3[(a*A+b)*A+p];j++;n++;a=b;b=p;}pos[i]=j;q[i]=b;prev[i]=a}
-     next.push({K,pos,q,prev,s,n})
+   for(const old of beam){const occ=new Uint16Array(A),ds=Array.from({length:A},()=>new Set());for(let i=0;i<N;i++)if(old.pos[i]<F[i].length){const q=old.q[i];occ[q]++;ds[q].add(F[i][old.pos[i]]);}
+    let z=0;for(let q=1;q<A;q++)if(occ[q]>occ[z])z=q;if(!occ[z]){next.push(old);continue;}
+    const digits=[...ds[z]].sort((a,b)=>a-b),groups=new Map();
+    for(const k of old.D[z].ids){const sig=String.fromCharCode(...digits.map(d=>65+rows[k][d]));const g=groups.get(sig);if(g)g.push(k);else groups.set(sig,[k]);}
+    assert(groups.size>1,"ambiguous frontier");
+    for(const ids of groups.values()){const D=old.D.slice();D[z]=makeDomain(ids);const pos=old.pos.slice(),q=old.q.slice(),prev=old.prev.slice();let s=old.s,n=old.n;
+     for(let i=0;i<N;i++){const d=F[i];let j=pos[i],b=q[i],a=prev[i];while(j<d.length){const p=D[b].force[d[j]];if(p<0)break;s+=j===0?L1[p]:j===1?L2[b*A+p]:L3[(a*A+b)*A+p];j++;n++;a=b;b=p;}pos[i]=j;q[i]=b;prev[i]=a}
+     next.push({D,pos,q,prev,s,n})
     }
    }
-   next.sort((a,b)=>b.s-a.s);beam=next.slice(0,width);const best=beam[0];const matching=truth?beam.filter(x=>x.K.every((k,i)=>k<0||k===truth[i])).length:null;trace.push({round:round+1,best:best.s,n:best.n,matching});if(beam.every(x=>x.n===sum(F.map(f=>f.length))))break;
+   next.sort((a,b)=>b.s-a.s);beam=next.slice(0,width);const best=beam[0];const matching=truth?beam.filter(x=>x.D.every((d,i)=>d.ids.includes(truth[i]))).length:null;trace.push({round:round+1,best:best.s,n:best.n,matching,domains:best.D.map(d=>d.ids.length)});if(beam.every(x=>x.n===total))break;
   }
-  return {K:Array.from(beam[0].K).map(k=>Math.max(0,k)),trace}
+  assert(beam[0].n===total,"incomplete beam");
+  return {K:beam[0].D.map(d=>d.ids[0]),trace}
  }
  let seed=0x15a3301;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,P,d:encode(P,K)}})}
- function evaluate(frames,K,truth){const r=solve(frames.filter(isTrain),width,truth);
+ function evaluate(frames,truth){const r=solve(frames.filter(isTrain),width,truth);
   function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:used.size,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
   return {key:r.K,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
  }
