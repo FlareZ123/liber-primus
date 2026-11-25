@@ -103,11 +103,11 @@ function experiment(raw,config={}){
  if(inventory.reduce((a,b)=>a+b,0)!==1680||Math.max(...inventory)>L)throw Error("original inventory");
  function window(words,off,N){let a=[],n=0;for(let i=off;i<words.length;i++){const w=words[i];if(n+w.length>N)break;a.push(w);n+=w.length;}if(n<N-24)throw Error("window");return a;}
  function control(d,k,mode,actual=false){
-  const W=donors[d],off=Math.floor(W.length*.84)+k*1100,R=rng(0x26830000+k*100+d),K=Array.from({length:T},()=>Math.floor(R()*Q));let words=window(W,off,1680);
+  const W=donors[d],off=actual?Math.floor(W.length*.91):Math.floor(W.length*.84)+k*1100,R=rng(0x26830000+k*100+d),K=Array.from({length:T},()=>Math.floor(R()*Q));let words=window(W,off,1680);
   if(actual){let j=off;for(;j<off+100;j++){words=window(W,j,1680);if(words.flat().length===1680)break;}if(words.flat().length!==1680)throw Error("exact native window");}
   const originalLengths=words.map(w=>w.length);
   if(mode==="shuffle"){
-   if(actual){const pool=Array.from({length:L+1},()=>[]);for(const w of W.slice(off+1200,off+6000))if(w.length<=L)pool[w.length].push(w);words=inventory.map(n=>{const a=pool[n];if(!a.length)throw Error("inventory donor length "+n);return a[Math.floor(R()*a.length)]});}
+   if(actual){const pool=Array.from({length:L+1},()=>[]);for(const w of W.slice(Math.floor(W.length*.96)))if(w.length<=L)pool[w.length].push(w);words=inventory.map(n=>{const a=pool[n];if(!a.length)throw Error("inventory donor length "+n);return a[Math.floor(R()*a.length)]});}
    words=shuffle(words,R);
   }
   const P=words.flat(),C=encode(P,K),printed=mode==="shuffle"?words.map(w=>w.length):shuffle(actual?inventory:originalLengths,R);
@@ -116,7 +116,7 @@ function experiment(raw,config={}){
  const welcome=gold.sections.find(x=>x.name===authenticNames[0]),koan=gold.sections.find(x=>x.name===authenticNames[1]),wk=[23,10,1,10,9,10,16,26],kk=[0,10,4,0,1,19,0,18,4,18,9,0,18];
  const wC=extract(raw[2].split("%").slice(1,3).join("%")),kC=extract(raw[2].split("$")[5]);
  if(encode(extract(welcome.source_text),wk).join()!==wC.join()||encode(extract(koan.source_text),kk).join()!==kC.join())throw Error("authentic replay");
- const wWords=runeWords(welcome.source_text,/[^\u16a0-\u16ff]/u),kWords=runeWords(koan.source_text,/[^\u16a0-\u16ff]/u);
+ const wWords=runeWords(raw[2].split("%").slice(1,3).join("%"),/[-.]/u),kWords=runeWords(koan.source_text,/[^\u16a0-\u16ff]/u);
  function recover(item){
   const {C,printed,P,K}=item;let split=0,num=0;while(num<printed.length-1&&split+printed[num]<=Math.floor(C.length*.65))split+=printed[num++];
   const a=C.slice(0,split),b=C.slice(split),left=printed.slice(0,num),right=printed.slice(num),proposed=propose(a);
@@ -145,8 +145,9 @@ function experiment(raw,config={}){
   let item;
   if(name==="welcome")item={name,mode:"native",C:wC,P:extract(welcome.source_text),printed:wWords.map(w=>w.length),K:wk};
   else if(name==="koan-shuffle"||name==="koan-decoy"){const R=rng(0x2683),K=Array.from({length:T},()=>Math.floor(R()*Q)),words=name.endsWith("shuffle")?shuffle(kWords,R):kWords;const P=words.flat();item={name,mode:name.split("-")[1],P,C:encode(P,K),K,printed:name.endsWith("shuffle")?words.map(w=>w.length):shuffle(kWords.map(w=>w.length),R)};}
+  else if(name.startsWith("null")){const i=Number(name.slice(4)),q=control(i%3,i+1,"decoy",false),R=rng(0x9f268300+i),pad=Array.from({length:q.P.length},()=>Math.floor(R()*Q));item={...q,name,mode:"null",K:null,C:encode(q.P,pad)};}
   else if(name==="original")item={name,C:target,printed:inventory,mode:"unknown"};
-  else{const [tag,mode]=name.split("-");const i=tag==="dev"?0:Number(tag.replace("fresh",""));item=control(i%3,i,mode,tag==="fresh3");item.name=name;}
+  else{const [tag,mode]=name.split("-");const i=tag==="dev"?0:Number(tag.replace("fresh",""));item=control(tag==="fresh3"?2:i%3,i,mode,tag==="fresh3");item.name=name;}
   cases.push(recover(item));
  }
  return {training:{types:counts.size,tokens:total,anchors:anchors.length,EPS,maxLength:L},authentic:{welcome:wC.length,koan:kC.length},inventory:inventory.reduce((a,n)=>(a[n]=(a[n]||0)+1,a),{}),cases};
