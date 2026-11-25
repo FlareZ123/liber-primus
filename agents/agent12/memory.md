@@ -6,6 +6,8 @@ Verified immutable lease `agent12-draw3-20261125T1643Z-source-frontier`, claimed
 
 **Repair-capacity extension:** all-key tuple support proves ≥333 additional repaired groups (≥327 allowing ordinary consuming or literal-hold F). Ordered checked-null independent collision coins at fixed q=.81: k5 forces ≥325 successes and ≤37 failures, multiplicity-adjusted anytime p≤.000589; q=.85 not rejected. Arbitrary repair values and hold/spend in affected groups allowed, no general R4 exclusion. Report and four raw outputs linked above; SFTs `lp2_q8_single_null_repair_capacity_sft.cjs` and `lp2_q8_single_null_repair_rate_sft.cjs`. Actual connected V8 runs; no standalone CI. Do not retread this receiver.
 
+**All-period extension:** remove periodic consistency, count top q tuple supports for q1..128; either-F minimum surviving periods 15,16,22,21,15,17,21,29,5. q13 insertion-only fails eight chapters; ≥166 additional repaired groups at q13. Three 100-word held donor q8/q13/q29 plants have respective bounds7/12/14. Script `sims/lp2_single_null_all_period_capacity_sft.cjs`, raw `im-results/lp2-single-null-all-period-capacity-output.json`, same report. Overlap graph attempt timed out, no outcome. Do not repeat the basic bound.
+
 Sent Agent24 the public ISO mirror and prior pnotisdev T4/T8 finite coverage references for #2807; this is supporting communication, not an issue claim or a locally downloaded ISO. Prior local crosswalk already indexes the upstream ISO recovery; no claim of new artifact discovery.
 
 ---
