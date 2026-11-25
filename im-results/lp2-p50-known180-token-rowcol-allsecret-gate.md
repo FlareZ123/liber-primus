@@ -1,6 +1,6 @@
 # Terminal 180-known-rune grid: token pads and ciphertext-alphabet inversion
 
-**Agent15, 13 November; Agent9, 25 November 2026. Exact original-input negative and identifiability result. No unknown p55 plaintext or key recovered.**
+**Agent15, 13 November; Agent9, 25 November 2026. Exact original-input classification, including complete SHED bijection enumeration and intact-word exclusion. No unknown p55 plaintext or key recovered.**
 
 ## Source selection and receiver
 
@@ -48,7 +48,9 @@ Eliminate F,R,S first, leaving only linear equations in H. Translation of H is a
 
 For row-major, enumerate the complete ordered, distinct, nonzero assignments to the five free entries, 28P5 = **11,793,600**. Determine every other entry from the reduced equations and require all 29 to be distinct. **Zero** permutations survive. This excludes every reversible fixed-cell decoder in model 4 for the row-major alignment. A nonlinear planted alphabet under the same physical geometry and actual native plaintext was recovered uniquely by the same complete enumeration.
 
-For SHED, the larger eight-dimensional permutation space was **not** exhaustively enumerated. It is unnecessary for the narrower identifiability conclusion below: even handing the decoder an externally selected valid H cannot identify the plaintext.
+For SHED, the eight-dimensional permutation space has now been **exhaustively classified** (Agent9, 25 November). In the source-derived RREF with H(0)=0 and sum(H)=0, the free slots are H(21) through H(28). H(22) occurs only in the H(12) equation, with coefficient −1. Assign the seven remaining distinct nonzero free values; all 27 other H entries are then determined. If those entries are distinct, the two missing residues must fill H(12),H(22), and the sum constraint makes both orders valid. This reduces the entire 28P8 domain to 28P7 = 5,967,561,600 conceptual assignments. The exact AVX512 lane-bitset enumeration visits all 11,793,600 five-slot prefixes, considers 261,565,200 sixth-slot assignments after an exact permanent-collision prune, and retains 29 seven-slot assignments, giving **58 normalized bijections** in 29 swap-pairs. A restricted seven-slot planted control recovers its true H and agrees exactly with independent scalar enumeration over all 7! × 28 assignments (two witnesses). All 58 original bijections are independently checked against the original 180 known-rune equations by the lexical SFT, which regenerates the RREF from source.
+
+Reproduce the executed native search on an AVX512/OpenMP-capable host with `g++ -O3 -march=native -fopenmp sims/lp2_terminal_shed_permutation_exact.cpp -o shed-exact` and `OMP_NUM_THREADS=4 ./shed-exact`. [Exact C++ enumerator](../sims/lp2_terminal_shed_permutation_exact.cpp) · [Source-derived lexical/reconstruction SFT](../sims/lp2_terminal_shed_permutation_lexical_sft.cjs) · [All 58 witnesses, regenerated coefficients, controls and results](lp2-terminal-shed-permutation-lexical-output.json). The enumeration was executed locally; the CJS core was executed in connected V8. No separate CI run is claimed.
 
 ### Exact p55 output-space obstruction
 
@@ -59,7 +61,17 @@ For every compatible key, the possible p55 outputs constitute an affine space un
 | Row-major | 47 / 0 | 41 / 0 |
 | SHED | 47 / 0 | 38 / 0 |
 
-In particular, **if** any SHED permutation is compatible, its fixed-alphabet fiber permits exactly 29^38 distinct p55 plaintext tapes. Each individual output coordinate can attain every GP29 value. This is a conditional exact count of algebraically attainable tapes, not a claim that they all contain English or that any valid H exists. A bijective ciphertext alphabet alone cannot turn this receiver into an identifiable p55 inverse; independently fixed pad entries or language constraints would be required.
+For SHED, each of the 58 compatible normalized permutations permits exactly 29^38 distinct p55 plaintext tapes. Each individual output coordinate can attain every GP29 value. The 38 independent parity-check syndromes on the exterior distinguish all 58 permutations, so their affine output cosets are pairwise disjoint: the entire normalized model permits exactly **58 × 29^38** distinct p55 tapes. This counts algebraically attainable tapes, not English candidates or an authenticated key.
+
+### Exact intact-word constraints for every SHED bijection
+
+Eliminate the token, row and column pads against the known180 and project the remaining linear relations onto the 76 original p55 positions. The 38 independent target constraints have row support sizes 2–5 in the elimination basis. For each complete printed group, eliminate every column outside it to obtain all internal linear conditions; repeat for each pair of complete groups to include cross-group constraints. The first p55 rune belongs to an 11-rune carried group and is left unrestricted. The other **16 complete groups** are matched to the pre-existing 35,944-form GP spelling register (same donor/register recipe as the [prime-clock long-anchor SFT](../sims/lp2_postshuffle_prime_clock_long_anchor_sft.cjs)). In particular, local zero-based positions 23–35 form a 13-rune group with four independent internal checks and 581 register candidates. **None of the 58 H values supports any of these 581 forms.**
+
+For each H, let every unsupported single group be OOV; among the remaining groups, connect two vertices whenever no pair of locally compatible words satisfies their complete two-group projection. Any fully compatible in-register subset must be an independent set in this graph. Exact minimum vertex cover gives an additional necessary OOV count, allowing arbitrary unknown spellings at every excluded group. Across all 58 H, the single-group lower bound is 1 for 51 and 2 for 7; the combined lower bound is **4 for 27 and 5 for 31**. Thus every H requires at least four of the 16 complete printed groups to fall outside this broad register. This is a lower bound, not a certificate that four substitutions suffice. Locally unique words under individual H are not recovered plaintext.
+
+Three constructed same-geometry lexical controls preserve all 180 original known ciphertext/plaintext pairs, solve an admissible pad, and encode fresh 76-rune targets using a compatible H. All retain all 16 true complete groups and all 53 nonredundant cross-group checks, with complete syndrome replay; one donor lacked a registered length-13 held-out form and used a register fallback. These are lexical necessity controls, not contiguous natural-language or full blind-key recovery controls.
+
+The exact linear trellis cut rank is at most five (rank of left and right check submatrices minus 38). This motivates a separate boundary-independent constrained-language decoder without using the printed word divisions. The four-OOV result excludes only the intact-word finite-register hypothesis, including arbitrary whole-group order if the printed groups remain the units. It does not exclude unusual spellings or H-decoy framing.
 
 ### Positive and negative controls
 
@@ -75,4 +87,4 @@ Reproduction: use the source and exact p56 reconstruction above; group known180 
 
 ## Decision
 
-Retire direct token pads and their arbitrary row/column/affine-ciphertext extensions in both frozen alignments. Retire the entire bijective-alphabet extension in row-major; SHED's bijective-alphabet existence remains untested, but its fixed-alphabet pad has a large exact nonidentifiability fiber. Additional arbitrary lookup flexibility is not an original-input prediction. Do not expand this into a generic permutation or language-model sweep without independent evidence fixing substantial pad state. The geometry remains real, its plaintext receiver is unselected, and issue #41's complete 76-rune inverse remains unmet.
+Retire direct token pads and their arbitrary row/column/affine-ciphertext extensions in both frozen alignments. Retire the entire bijective-alphabet extension in row-major and the SHED extension under the intact-word, broad-register hypothesis with fewer than four OOV complete groups. SHED has exactly 58 admissible H values and 58 disjoint 29^38 plaintext cosets; there is no individually fixed p55 rune. No further permutation search is warranted. A constrained, boundary-independent language decoder with native recovery controls is a distinct remaining test, not evidence for this receiver. The geometry remains real, its plaintext receiver is unselected, and issue #41's complete 76-rune inverse remains unmet.

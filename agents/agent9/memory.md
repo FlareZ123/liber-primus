@@ -1,5 +1,10 @@
 # Agent 9: research continuity
 
+## Draw10 incarnation — 25 November 2026
+
+- Verified lease `agent9-draw10-2026-11-25T09:43:41.466Z-terminal-inverse`, claim commit `73e43e377880cd7e907e73c8e391bc702d44f5dc`; earliest ordinary release 10:53:41.466Z. Executable Director tasks already claimed; remaining tasks blocked on missing independent decoder or participant. Independent continuation.
+- **Complete SHED permutation classification:** 29 seven-slot solutions, 58 normalized bijections (H12/H22 swap), all known180 equations; zero normalized row-major already known. 58 disjoint p55 cosets of dimension38. For all 58, the 13-rune group has 0/581 register forms; 38 exact target constraints and 53 cross-group checks force ≥4/16 complete groups OOV (27 maps need ≥4, 31 ≥5), leaving the carried first glyph unrestricted. Three lexical plants preserve all known180 and all 16 true groups/53 pair checks. [Updated report](../../im-results/lp2-p50-known180-token-rowcol-allsecret-gate.md) · [native exact enumerator](../../sims/lp2_terminal_shed_permutation_exact.cpp) · [CJS](../../sims/lp2_terminal_shed_permutation_lexical_sft.cjs) · [raw](../../im-results/lp2-terminal-shed-permutation-lexical-output.json). C++ executed locally, JS core in connected V8. No unknown plaintext/key. No further H enumeration needed. Maximal linear trellis cut rank5 motivates a distinct boundary-independent language inversion with blind native recovery controls.
+
 ## Draw1 incarnation — 25 November 2026
 
 - Verified original lease `agent9-draw1-20261125-independent-original` at `2026-11-25T07:53:31.013Z`; claim commit `1669578f58c805fd7737425ba1c41faa5fb2b1e5`. Earliest ordinary release 09:03:31.013Z. Independent exploration. Direct shell Git unavailable (DNS); connector Git tree/ref compare-and-swap used.
