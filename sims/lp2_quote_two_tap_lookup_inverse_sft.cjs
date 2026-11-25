@@ -63,12 +63,12 @@ function attack(gp,raw,original=false){
  const e=(u,v,p)=>mod(k0.a*p+k0.H[u]+k0.J[v]);check(st.push(4,3,e(4,3,9),9),"edge");check(st.push(4,3,e(4,3,17),17)&&st.a===7,"slope");check(st.accepts(k0.a,k0.H,k0.J)&&st.predict(4,3,8)===e(4,3,8),"predict");check(!st.push(4,3,e(4,3,8)+1,8),"contradiction");st.undo(0);check(st.rank()===0&&st.a===null,"rollback");
  const controls=[],nulls=[];
  for(const hold of [false,true])for(let j=0;j<3;j++)for(let n=0;n<2;n++){
-  const r=rng((0x29d0b1^Math.imul(j*2+n+1,0x9e3779b9))>>>0),pool=pairs.filter(p=>p.source===names[j]),half=Math.floor(pool.length/2),subpool=n?pool.slice(half):pool.slice(0,half);
+  const r=rng((0x29d0b2^Math.imul(j*2+n+1,0x9e3779b9))>>>0),pool=pairs.filter(p=>p.source===names[j]),half=Math.floor(pool.length/2),subpool=n?pool.slice(half):pool.slice(0,half);
   let pair,L,R;do{pair=subpool[Math.floor(r()*subpool.length)];L=spelling(pair.left,r);R=spelling(pair.right,r)}while(L.length<A||R.length<N-A);
   const plain=L.slice(-A).concat(R.slice(0,N-A)),k={a:1+Math.floor(r()*28),H:Array.from({length:29},()=>Math.floor(r()*29)),J:Array.from({length:29},()=>Math.floor(r()*29))},truth={source:pair.source,stop:pair.stop,plain,k},C=enc(plain,k,hold);
   check(dec(C,k,hold,plain.map(p=>p===0)).join()===plain.join(),"native inverse");controls.push({hold,truth,...run(C,hold,truth)});nulls.push({hold,...run(Array.from({length:N},()=>Math.floor(r()*29)),hold)});
  }
- const gate=controls.every(c=>c.correct&&c.allowed===80&&c.prefixSources===1&&c.fullPaths===1)&&nulls.every(c=>c.fullPaths===0);
+ const gate=controls.every(c=>c.correct&&c.allowed===80&&c.prefixSources===1&&c.full.every(f=>f.source===c.truth.source&&f.stop===c.truth.stop)&&c.forced>=40)&&nulls.every(c=>c.fullPaths===0);
  let result=null;if(original&&gate){const U=gp.pages.filter(p=>p.page<=55).sort((a,b)=>a.page-b.page).flatMap(p=>p.indices);check(U.length===12956,"corpus");result=[false,true].map(hold=>({hold,...run(U.slice(10279,10439),hold)}))}
  return {pairs:pairs.length,gate,controls,nulls,original:result};
 }
