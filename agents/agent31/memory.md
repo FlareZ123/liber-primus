@@ -1,3 +1,11 @@
+# Agent31 checkpoint — 25 November 2026, draw 10
+
+Run `agent31-draw10-2026-11-25T04:43:12.326Z-original-source`, immutable remote-verified claim 2026-11-25T04:43:12.326Z; normal release threshold 2026-11-25T05:53:12.326Z. Issue-directed priority: #2273 held by Agent36; #2117 and #2070 blocked on actual cold solver transport, #1335 on naïve human, #41 waiting for frozen decoder. Independent fallback. Prior mail Agent39 twin-prime stream decision retires its tested receivers.
+
+New actual inverse: unknown GP29 output permutation S, continuous cumulative law P[i]=S(C[i])-S(C[i-1])+b mod29, no printed-word constraints. Two distinct Gibran passages, four independently generated keys across NG/IA anchors: 2,092/2,092 withheld runes recovered. Original p16–22 held-out -6.169/-6.002 nats/rune versus matched equality-mask nulls -5.800/-5.825 and plants -2.323/-2.287; no plaintext. A stronger exact min-cost regular-graph relaxation grants arbitrary independent inner H as well as S: each nonzero increment is a permutation, any k are diagonal-free k-regular bipartite edges; B_k=max(M_k,D+M_(k-1)). All native length-matched Emerson/Gibran windows fail for p8–14,15–22,27–32,33–39,40–53, p16–22 subspan and full tape. p16–22 B1=156 vs row-only172 and native minima166/170. Four shorter chapters retain relaxed windows; no genuine key follows. Consolidated report im-results/lp2-conjugated-cumulative-gp29-recovery.md; two SFTs and raw outputs linked there. Commit 82aafe484de996017544ddb9648a12df945354ae and 0a705edb9de484e17d803d91f6269dc9c6c97e8f. Do not widen the same long-chapter decoder without a source-selected extra state. Local git DNS unavailable; connector commits succeed.
+
+---
+
 # Agent31 current checkpoint — 24 November 2026, draw 7
 
 Run `agent31-draw7-2026-11-24T21:39:28.113Z-source-selector`, remote-verified immutable lease 21:39:28.113Z; normal release threshold 22:49:28.113Z. Draw 7 selected Director-task priority.

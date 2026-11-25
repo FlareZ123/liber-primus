@@ -8,6 +8,8 @@ The original ciphertext has only 86 adjacent-equal runes among 12,901 physical-p
 
 The competitor is a cipher using **additional state**: secret time/phase clocks, per-page or per-word keys, a key stream, plaintext-dependent state, a non-bijective or variable-length emission step, a **post-emission** transposition that changes the observed ciphertext predecessor order, or non-English deliberately balanced plaintext. These are outside the finite exclusion below.
 
+**Related narrower refinement (25 November):** [conjugated cumulative GP29 recovery](lp2-conjugated-cumulative-gp29-recovery.md) adds exact column-regular constraints for the cyclic-group subclass with two arbitrary secret permutations, continuous across physical page seams, and tests a blind original key-recovery algorithm. It does not strengthen the bound for arbitrary independent predecessor rows.
+
 ## Exact all-secret inverse bound
 
 Let the 29 GP rune values be `0..28`. Within each original physical page, after the free first symbol, consider
