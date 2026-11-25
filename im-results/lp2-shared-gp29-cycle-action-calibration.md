@@ -1,6 +1,10 @@
 # Shared GP29 cycle-action calibration
 
-**Status: intermediate research; no LP2 plaintext recovered.**
+**Status: intermediate research; no LP2 plaintext recovered. The reported original-input test used a mixed solved/unsolved tail; it does not establish a p54–55 rejection.**
+
+## Input-selection correction — Agent18
+
+The original SFT used `.slice(-66)` on a 58-page transcription, producing global groups `[2875,2941)` and rune offsets `[12853,13136)`: 21 unsolved groups (103 runes), followed by 45 groups (180 runes) from p56–57. The true p54–55 sample is groups `[2830,2896)`, offsets `[12648,12956)`, 66 groups and 308 runes. Anchor 59 in the reported test is the clear p57 word CIRCUMFERENCES. The synthetic controls remain mechanical calibration on the mixed-tail length histogram. The direct and mapped DIVINITY experiments below are historical mixed-tail observations, not evidence about the intended terminal sample. See [issue correction](https://github.com/FlareZ123/liber-primus/issues/2722#issuecomment-7162484734).
 
 ## Question and exact model
 
@@ -24,13 +28,13 @@ This is not the same model as the existing nonlinear-common-cycle SFT. That impl
 - Native control text: `resources/external/relikd-solved-gp29-native-v1.json`
 - Lexicon: `resources/control/english_wordfreq_textblob.txt`
 
-The parsed p54–55 target consists of **66 groups and 283 rune positions**. The native control pool contains 733 words. The lexicon contains 29,157 Latin word forms, which expand to 38,936 distinct GP29 rune encodings after the repository's transliteration segmentation and native additions.
+The inadvertently selected mixed-tail sample consists of **66 groups and 283 rune positions**. The native control pool contains 733 words. The lexicon contains 29,157 Latin word forms, which expand to 38,936 distinct GP29 rune encodings after the repository's transliteration segmentation and native additions.
 
 The oracle solver uses exact row reduction over \(\mathbb F_{29}\). Its 35 variables are the 28 non-F alphabet coordinates and seven key entries after normalizing \(k_0=1\); the anchor word fixes the phase origin. This is an oracle-assisted calibration, not a blind key search.
 
 ## Positive controls: model identifiability with known plaintext
 
-Two deterministic native plants were generated with the exact p54–55 word-length histogram, shuffled word groups, arbitrary per-word phase starts, random \(\pi\), and primitive q8 keys.
+Two deterministic native plants were generated with the mixed-tail word-length histogram, shuffled word groups, arbitrary per-word phase starts, random \(\pi\), and primitive q8 keys.
 
 | Seed | Known-plaintext training | Blind dictionary holdout | Exact \(\pi\) and key | Training starts recovered uniquely | Holdout truth present | Holdout words unique |
 |---:|---:|---:|---|---:|---:|---:|
@@ -51,7 +55,7 @@ Two distinct interpretations were tested.
 
 ### 1. Published numeric values used directly as \(k_j\)
 
-For the three longest original groups (zero-based group indices 59, 4, and 11; lengths 14, 11, and 13), the exhaustive dictionary/start domains contained 2, 480, and 1,722 options. Only one 14/11 pair was linearly consistent, and **no 13-letter option extended that pair**. Thus direct numeric reuse of the LP1 key is rejected for this exact model and finite lexicon.
+For the three selected mixed-tail groups (zero-based group indices 59, 4, and 11; lengths 14, 11, and 13), the exhaustive dictionary/start domains contained 2, 480, and 1,722 options. Only one 14/11 pair was linearly consistent, and **no 13-letter option extended that pair**. Thus direct numeric reuse of the LP1 key is rejected only for these mixed-tail groups under this exact model and finite lexicon.
 
 This does not reject other q8 keys.
 
@@ -75,7 +79,7 @@ A separate local necessary-condition pass over all 66 groups found no group with
 **Established**
 - The strict shared-cycle algebra is recoverable with known-plaintext training on two independent native plants.
 - Blind dictionary holdout prediction is strong on those plants: 16/16 true words included, 13/16 and 12/16 unique.
-- Direct reuse of the published numeric `DIVINITY` key is incompatible with the three longest original groups under the stated finite lexicon.
+- Direct reuse of the published numeric `DIVINITY` key is incompatible with the selected mixed-tail anchors under the stated finite lexicon; the actual p54–55 test remains outstanding.
 
 **Not established**
 - No plaintext or key has been recovered for original p54–55.
