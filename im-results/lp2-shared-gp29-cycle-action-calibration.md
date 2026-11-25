@@ -60,7 +60,7 @@ These give three motivated, distinguishable key hypotheses:
 2. Prime-derived numeric shifts: \(k_j=\operatorname{prime}(K_j)\bmod29\).
 3. Alphabet-mapped shifts: \(k_j=\pi(K_j)\).
 
-The enlarged A is a separate visual marker; no offset or seed role has been established. None of these red-heading key interpretations has yet been tested on the corrected original body. The body must be used for fitting; p55 remains a genuine holdout.
+The enlarged A is a separate visual marker; no offset or seed role has been established. A cheap necessary prefilter on the corrected body now checks the implications shared by all three variants: every red8-derived shift is nonzero, and equal shift values must reuse the same phase map. Under this fixed-point/injectivity filter, all 47 complete p54 words and all 16 complete p55 words retain nonempty dictionary domains, and 69/93 carry-prefix candidates survive. This does not enforce the exact numeric exponents or a common 29-cycle, so it neither supports nor excludes any variant. The exact direct, prime-derived and alphabet-mapped shift models remain untested; p55 must remain held out from fitting.
 
 ## 4. Evidence that remains valid
 
