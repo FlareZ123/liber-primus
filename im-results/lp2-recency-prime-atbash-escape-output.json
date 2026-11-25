@@ -13651,5 +13651,39 @@
       21
     ],
     "replay": true
+  },
+  "privateAlphabet": {
+    "firstAccessCount": 29,
+    "lastFirst": 162,
+    "whole": {
+      "cap": 1174,
+      "o": 288,
+      "headRepeat": false,
+      "free": 115,
+      "top": [
+        550,
+        509
+      ]
+    },
+    "development": {
+      "cap": 118,
+      "o": 354,
+      "headRepeat": false,
+      "free": 33,
+      "top": [
+        47,
+        38
+      ]
+    },
+    "holdout": {
+      "cap": 293,
+      "o": 5,
+      "headRepeat": false,
+      "free": 18,
+      "top": [
+        143,
+        132
+      ]
+    }
   }
 }
