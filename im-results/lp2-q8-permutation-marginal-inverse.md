@@ -25,3 +25,20 @@ Reproducer [Python](../sims/lp2_q8_permutation_marginal_sft.py) and [C++](../sim
 ## Decision
 
 The ordinary model has a practical ciphertext-only inverse on workload-matched controls, but the frozen original test fails. The active-clock adaptation nearly identifies hidden map rows on literary plants but requires a robust rare-row completion and global hold-mask recovery before a negative or positive original decision. Do not repeat restricted word SAT or promote any fitted output to plaintext. No independently authenticated source rule chooses q8 permutation feedback.
+
+## Follow-up: blind rare-row completion and held-F inversion
+
+The censored active-chain estimator loses information from windows containing ciphertext F. A second composite likelihood integrates all possible hold/consume labels in each physical window of lengths 33,49,65,81, stride four, starting at physical index 32. For every candidate map, the probability of a mask is the product of q=8 stationary consumed-chain marginals times h^H(1-h)^(L-H); the exact sum over masks gives the window likelihood. Cache distinct strand strings. Optimize all single transpositions with at most 12 iterations per length and two EM updates for h. This improves hold plant 0 to 27/29 map entries but worsens hold plant 1 to 25/29, so retain both estimates.
+
+To recover rare rows without oracle selection, generate both base maps and all single swaps among the eight lowest-prior active rows (including Fehu's unused row): [0,12,22,25,11,14,27,28]. Evaluate each with a width-32 hold beam on the FIRST 10,000 ciphertext runes only. Each strand carries a distribution over its last consumed plaintext; deterministic consume update and literal-hold branches are exact conditional on the chosen mask. Process blocks of eight visible zeros, merging histories once all eight strand states are singletons and their last plaintexts plus phase agree. Select by best surviving prefix likelihood and recover primer via exact single-strand conditional likelihood. No suffix or true plaintext in selection. "No retained path" is beam failure, not UNSAT.
+
+A second decoder with the frozen selected key and primer uses queue plus last two physical plaintext runes as state; merge equal states by best score, width 2048. The native trigram prior has 10 pseudo-counts from the lower-order model at each backoff. Adapted variant weighs the 2,979 independent solved native runes by 5 and the predicted first-pass fit plaintext by 1. Re-decode prefix, freeze selected boundary state, then decode suffix. Forward replay was exact for every reported decode. The uncapped-in-principle DP with 100,000-state hard abort reached the cap (134,665 and 102,552 states), hence no exact optimality claim for the beam.
+
+| Plant | Candidate maps / surviving fit paths | Map matches | First fit matches / 10000 | Unadapted fit / heldout | Adapted fit / heldout |
+|---|---:|---:|---:|---:|---:|
+| 0 | 56 / 1 | 29/29 | 9996 | 10000 / 2954 | 10000 / 2956 |
+| 1 | 58 / 1 | 29/29 | 9972 | 9984 / 2956 | 9986 / 2956 |
+
+All withheld denominators 2,956. Both maps and primers match the planted values. The unused f(0) row follows from bijectivity; that value cannot be directly observed under literal holds. Fit error remaining in plant 1 reflects ambiguous physical hold labels even with exact key and primer. Adaptation uses predicted fit plaintext, never the reference. The original was not further fit after the independent [all-function repeat obstruction](lp2-stationary-plaintext-function-repeat-gate.md) excluded this family on the 96 comparison windows.
+
+Reproducer: first execute [base marginal fit](../sims/lp2_q8_permutation_marginal_sft.py) to emit fixtures, then [held-F extension](../sims/lp2_q8_hold_extension_sft.py) from the same working directory. Actual components ran locally with canonical hash-matched donor/control data. Integrated runner packages the executed component algorithm and parameters; the committed wrapper has not itself been run in CI.

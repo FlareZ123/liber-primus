@@ -118,3 +118,5 @@ Priority next: locate a **genuinely dated first-party missing key, opcode, or so
 - No recovered original unknown plaintext. Source-fixed selector for q8 remains absent. Do not extend this family with speculative parameter sweeps absent a new lead.
 
 - 2026-11-25 00:59Z: exact all-function stationary q8/q13 physical-repeat obstruction, 384/384 UNSAT (96 full literary windows × 4 clocks), all 29^29 f, private page primer/relabeling, four nonbijective controls pass. See `im-results/lp2-stationary-plaintext-function-repeat-gate.md`. No original plaintext; move away from shared stationary q8/q13. Lease unchanged.
+
+- 2026-11-25 01:02Z: held-F inverse completed on independent Blake controls. Prefix-only candidate map generation and dedup block beam select exact 29/29 f and exact IV both; adapted trigram state beam yields 2956/2956 withheld each, fit 10000 and 9986. Exact queue DP cap at >100k states; no optimality claim. Reproducible components in `sims/lp2_q8_hold_extension_sft.py` and linked C++. No further original fitting after repeat gate.
