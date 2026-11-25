@@ -1,0 +1,2436 @@
+{
+  "width": 64,
+  "targetZeros": 94,
+  "frames": 172,
+  "donorLengths": [
+    47629,
+    217106,
+    306851,
+    11686
+  ],
+  "pilots": [
+    {
+      "key": [
+        18,
+        17,
+        20,
+        15,
+        2,
+        6,
+        22,
+        10,
+        9,
+        17,
+        3,
+        6,
+        18,
+        2,
+        6,
+        18,
+        15,
+        22,
+        7,
+        17,
+        7,
+        17,
+        0,
+        2,
+        21,
+        0,
+        14,
+        20,
+        25
+      ],
+      "truth": [
+        18,
+        17,
+        20,
+        15,
+        2,
+        6,
+        22,
+        10,
+        9,
+        17,
+        3,
+        6,
+        18,
+        2,
+        6,
+        18,
+        15,
+        22,
+        7,
+        17,
+        7,
+        17,
+        13,
+        2,
+        21,
+        5,
+        14,
+        20,
+        25
+      ],
+      "train": {
+        "n": 10324,
+        "gain": 1.1328221235601896,
+        "correct": 10324,
+        "usedRows": 27,
+        "keyRows": 27,
+        "preview": [
+          "RWHATISPRAYERBUT",
+          "THEEXPANSIANOFYOURSELFINTOTHELIUNGETHERANDIFITISFORYOURCOMFORTTOPOURYOURDARCNESSINTOS"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": 1.1030672943105506,
+        "correct": 2630,
+        "usedRows": 28,
+        "keyRows": 27,
+        "preview": [
+          "IFTSEETHATYOUD",
+          "ONOTLIMPBEFORETHELAMEDEEMNGITCINDNESSYOUAREGOODINCOUNTLESSWAYSANDYOUARENOTEUILWHEN"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": 1.1662607282719635,
+          "correct": 729,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "IFTSEETHATYOUD",
+            "ONOTLIMPBEFORETHELAMEDEEMNGITCINDNESSYOUAREGOODINCOUNTLESSWAYSANDYOUARENOTEUILWHEN"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": 1.2009158673313185,
+          "correct": 1145,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "RWHATISPRAYERBUT",
+            "THEEXPANSIANOFYOURSELFINTOTHELIUNGETHERANDIFITISFORYOURCOMFORTTOPOURYOURDARCNESSINTOS"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": 1.1459307958242115,
+          "correct": 1729,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "BEFORETHEYAREBORNINUSTHOUARTOURNEEDANDINGI",
+            "UNGUSMOREOFTHYSELFTHOUGIUESTUSALLILLUSTRATIANTHENAHERMITWHOUISITEDTHECITYONCEAYEARCAMEF"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": 1.0788591948056268,
+          "correct": 1901,
+          "usedRows": 28,
+          "keyRows": 27,
+          "preview": [
+            "SNOTGOODG",
+            "OTOYOURFIEL"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": 1.1218575721228048,
+          "correct": 1021,
+          "usedRows": 24,
+          "keyRows": 24,
+          "preview": [
+            "IANANDTHATWHICHISN",
+            "EITHERDEEDNORREFLECTIANBUTAWONDERANDASURPRISEEUERSPRNGNGINTHESOULEUENWHILETHEHANDSHEWTH"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": 1.1076897252242608,
+          "correct": 1433,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "IMPLAYNGWITHYOURCHILD",
+            "RENANDLOOCINTOSPACEYOUSHALLSEEHIMWALCNGINTHECLOUDOUTSTRETCHNGHISARMSINTHELIGHTNNGANDD"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": 1.1288576447954033,
+          "correct": 1680,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "LESSHASTYA",
+            "MITHANTHEWINDYETIMUSTGOWEWANDERERSEUERSEECNGTHELONELIERWAYBEGINNODAYWHEREWEHAUEENDED"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": 1.1106814335287365,
+          "correct": 3008,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "EUASTANDINBEHOLDNGHIMTHATIBEHEL",
+            "DYOUANDLOUEDYOUFORWHATDISTANCESCANLOUEREACHTHATA"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": 1.1972273924237673,
+          "correct": 308,
+          "usedRows": 24,
+          "keyRows": 24,
+          "preview": [
+            "DOYOUHUNT",
+            "INTHESCYCOMEANDBEONEOFUSDESCENDANDAPPEASEYOURHUNGERWITHOURBREADANDCWENCHYOURTHIRSTWITHO"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": 69.40835186519432,
+          "n": 145,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": 81.78824516487404,
+          "n": 167,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": 93.25784158538069,
+          "n": 186,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": 121.05846670825672,
+          "n": 212,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": 138.00459356357433,
+          "n": 236,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": 148.84841451553365,
+          "n": 261,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": 200.13126760810337,
+          "n": 308,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": 233.4850546281264,
+          "n": 341,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": 271.7106702974197,
+          "n": 395,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": 360.23530649803905,
+          "n": 476,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": 464.710851515032,
+          "n": 572,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": 539.9180186359366,
+          "n": 659,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": 671.9306563938925,
+          "n": 756,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": 778.2415069761533,
+          "n": 856,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": 911.9894912783299,
+          "n": 972,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": 1154.0272034069565,
+          "n": 1199,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": 1450.0701180433111,
+          "n": 1465,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": 1881.4514646283624,
+          "n": 1859,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": 2329.1794483049466,
+          "n": 2281,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": 3237.009682105101,
+          "n": 3070,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": 4527.1540832869305,
+          "n": 4164,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": 6098.199476347376,
+          "n": 5561,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": 9402.896731034703,
+          "n": 8446,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": 10520.769537428378,
+          "n": 9339,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": 11118.299158939912,
+          "n": 9846,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": 11367.586237206806,
+          "n": 10048,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": 11695.255603635402,
+          "n": 10324,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": 11695.255603635402,
+          "n": 10324,
+          "keys": 27
+        },
+        {
+          "round": 29,
+          "best": 11695.255603635402,
+          "n": 10324,
+          "keys": 27
+        }
+      ]
+    },
+    {
+      "key": [
+        7,
+        18,
+        18,
+        4,
+        4,
+        17,
+        6,
+        8,
+        17,
+        18,
+        1,
+        0,
+        16,
+        7,
+        4,
+        2,
+        7,
+        24,
+        7,
+        15,
+        18,
+        15,
+        14,
+        4,
+        0,
+        14,
+        24,
+        20,
+        25
+      ],
+      "truth": [
+        7,
+        18,
+        18,
+        4,
+        4,
+        17,
+        6,
+        8,
+        17,
+        18,
+        1,
+        0,
+        16,
+        7,
+        4,
+        2,
+        7,
+        24,
+        7,
+        15,
+        18,
+        15,
+        14,
+        4,
+        0,
+        14,
+        24,
+        20,
+        25
+      ],
+      "train": {
+        "n": 10324,
+        "gain": 1.003405635124014,
+        "correct": 10324,
+        "usedRows": 29,
+        "keyRows": 29,
+        "preview": [
+          "ORSEREUOLUNGTHISWI",
+          "LLTEACHTHEEHOWTOCURSECWEENELISABETHMYWORDSAREDULLOCWICCENTHEMWITHTHINECWEENMARGARETTHYW"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": 0.9486035288776118,
+        "correct": 2632,
+        "usedRows": 26,
+        "keyRows": 26,
+        "preview": [
+          "OWNDWITHCAREFO",
+          "RONEBENGSUEDTOONETHATHUMBLYSUESFORONETHATSCORNDATMENOWSCORNDOFMEFORONEBENGFEARDOFALLN"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": 0.9341449682058421,
+          "correct": 729,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "OWNDWITHCAREFO",
+            "RONEBENGSUEDTOONETHATHUMBLYSUESFORONETHATSCORNDATMENOWSCORNDOFMEFORONEBENGFEARDOFALLN"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": 0.9673560675535203,
+          "correct": 1145,
+          "usedRows": 27,
+          "keyRows": 27,
+          "preview": [
+            "ORSEREUOLUNGTHISWI",
+            "LLTEACHTHEEHOWTOCURSECWEENELISABETHMYWORDSAREDULLOCWICCENTHEMWITHTHINECWEENMARGARETTHYW"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": 1.0302630578732683,
+          "correct": 1729,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "ORCARTTHOUMYSONCNGRICHARDIIIAYITHANCGODMYFA",
+            "THERANDYOURSELFDUCHESSOFYORCTHENPATIENTLYHEARMYIMPATIENCECNGRICHARDIIIMADAMIHAUEATOU"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": 0.9541423048785158,
+          "correct": 1903,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "HARDIIIYO",
+            "UHAUEADAUGH"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": 1.007125620815983,
+          "correct": 1021,
+          "usedRows": 24,
+          "keyRows": 24,
+          "preview": [
+            "WTHATFROMMYSOULIL",
+            "OUETHYDAUGHTERCWEENELISABETHMYDAUGHTERSMOTHERTHINCSITWITHHERSOULCNGRICHARDIIIWHATDOYOU"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": 1.073191183888976,
+          "correct": 1433,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "RSACEMADESTCWICCCON",
+            "UEYANCEWITHHERGOODAUNTANNECNGRICHARDIIICOMECOMEYOUMOCCMETHISISNOTTHEWAYTOWINOURDAUGH"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": 0.9858546905535222,
+          "correct": 1680,
+          "usedRows": 29,
+          "keyRows": 29,
+          "preview": [
+            "BASHFULYEAR",
+            "SWITHYOUREXPERIENCEPREPAREHEREARSTOHEARAWOOERSTALEPUTINHERTENDERHEARTTHEASPIRNGFLAMEOFG"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": 0.9829543243619233,
+          "correct": 3008,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "NOTHNGFORTHISISNOOATHTHEGEORGEPROFA",
+            "NEDHATHLOSTHISHOLYHONOURTHEGARTERBLEMISHDPAWNDHI"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": 0.9451024007534337,
+          "correct": 308,
+          "usedRows": 23,
+          "keyRows": 23,
+          "preview": [
+            "DPOSTBEFO",
+            "RECNGRICHARDIIIMYMINDISCHANGEDSIRMYMINDISCHANGEDHOWNOWWHATNEWSWITHYOUSTANLEYNONEGOOD"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": 55.588735947961304,
+          "n": 146,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": 75.6428059509735,
+          "n": 164,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": 86.89667503449988,
+          "n": 185,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": 93.5611603016236,
+          "n": 205,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": 113.61396467575165,
+          "n": 235,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": 147.12654723171292,
+          "n": 271,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": 179.06775354924162,
+          "n": 311,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": 206.09193778869454,
+          "n": 337,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": 225.6107704743408,
+          "n": 370,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": 260.32611458261727,
+          "n": 424,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": 285.6221955787545,
+          "n": 455,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": 349.60335616452556,
+          "n": 536,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": 431.4557005874257,
+          "n": 612,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": 515.5501649963419,
+          "n": 707,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": 615.0535159387053,
+          "n": 804,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": 806.8257379586823,
+          "n": 985,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": 1073.705188365029,
+          "n": 1224,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": 1302.5659770029104,
+          "n": 1450,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": 1839.022711760482,
+          "n": 1997,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": 2494.975943939673,
+          "n": 2654,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": 3553.1938099389185,
+          "n": 3625,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": 5874.471443820355,
+          "n": 5907,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": 8629.371947597238,
+          "n": 8661,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": 9321.451897422658,
+          "n": 9330,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": 9693.949985608218,
+          "n": 9653,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": 9996.507222206144,
+          "n": 9971,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": 10192.20907061916,
+          "n": 10155,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": 10335.853470966973,
+          "n": 10299,
+          "keys": 28
+        },
+        {
+          "round": 29,
+          "best": 10359.159777020302,
+          "n": 10324,
+          "keys": 29
+        }
+      ]
+    },
+    {
+      "key": [
+        8,
+        18,
+        22,
+        1,
+        17,
+        23,
+        12,
+        3,
+        9,
+        15,
+        26,
+        4,
+        19,
+        20,
+        9,
+        15,
+        4,
+        17,
+        18,
+        25,
+        18,
+        15,
+        27,
+        17,
+        26,
+        27,
+        22,
+        20,
+        25
+      ],
+      "truth": [
+        8,
+        18,
+        22,
+        1,
+        17,
+        23,
+        12,
+        3,
+        9,
+        15,
+        26,
+        4,
+        19,
+        20,
+        9,
+        15,
+        4,
+        17,
+        18,
+        25,
+        18,
+        15,
+        27,
+        17,
+        26,
+        27,
+        22,
+        20,
+        25
+      ],
+      "train": {
+        "n": 10324,
+        "gain": 1.0707443918477775,
+        "correct": 10324,
+        "usedRows": 29,
+        "keyRows": 29,
+        "preview": [
+          "NDCOUNTRYORPRODU",
+          "CEAMODELINWHICHTHEEDUCATIANTHERELIGIANTHEPOLITICSUSAGESANDARTSOFHISTIMESSHALLHAUENOSH"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": 1.0447352985121086,
+        "correct": 2632,
+        "usedRows": 27,
+        "keyRows": 27,
+        "preview": [
+          "RANDCOMPACTER",
+          "LANDSCAPETHANTHEHORISONFIGURESNATURESECLECTICISMANDWHATISHISSPEECHHISLOUEOFPAINTNGL"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": 1.1108866018108752,
+          "correct": 729,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "RANDCOMPACTER",
+            "LANDSCAPETHANTHEHORISONFIGURESNATURESECLECTICISMANDWHATISHISSPEECHHISLOUEOFPAINTNGL"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": 1.0600324400679608,
+          "correct": 1145,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "NDCOUNTRYORPRODU",
+            "CEAMODELINWHICHTHEEDUCATIANTHERELIGIANTHEPOLITICSUSAGESANDARTSOFHISTIMESSHALLHAUENOSH"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": 1.0813164954432677,
+          "correct": 1729,
+          "usedRows": 27,
+          "keyRows": 27,
+          "preview": [
+            "EDORMANTTASTEWECARUEANDPAINTORWEBEHOLDWH",
+            "ATISCARUEDANDPAINTEDASSTUDENTSOFTHEMYSTERYOFFORMTHEUIRTUEOFARTLIESINDETACHMENTINSE"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": 1.0193941003487874,
+          "correct": 1903,
+          "usedRows": 27,
+          "keyRows": 27,
+          "preview": [
+            "NEPICHASD",
+            "ONEBEFOREAD"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": 1.1080269220680918,
+          "correct": 1021,
+          "usedRows": 26,
+          "keyRows": 26,
+          "preview": [
+            "YPOCRITICALRUBBI",
+            "SHTHEREFERENCEOFALLPRODUCTIANATLASTTOANABORIGINALPOWEREXPLAINSTHETRAITSCOMMONTOALLW"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": 1.0858802917861305,
+          "correct": 1433,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "IANOFMORALNATUREOFPU",
+            "RITYLOUEANDHOPEBREATHESFROMTHEMALLTHATWHICHWECARRYTOTHEMTHESAMEWEBRNGBACCMOREFAIRLYILLU"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": 1.0403980960143153,
+          "correct": 1680,
+          "usedRows": 29,
+          "keyRows": 29,
+          "preview": [
+            "WILLSERUEA",
+            "SWELLASANYOTHERCONDITIANASTHESYMBOLOFATHOUGHTWHICHPOURSITSELFINDIFFERENTLYTHROUGHALLI"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": 1.074966304088499,
+          "correct": 3008,
+          "usedRows": 27,
+          "keyRows": 27,
+          "preview": [
+            "OWLEDGEOFPICTUREDEALERSHASITSU",
+            "ALUEBUTLISTENNOTTOTHEIRCRITICISMWHENYOURHEARTIST"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": 0.981501127837415,
+          "correct": 308,
+          "usedRows": 25,
+          "keyRows": 25,
+          "preview": [
+            "WEREFOUND",
+            "WORTHYTODECLAREITWOULDCARRYARTUPINTOTHECNGDOMOFNATUREANDDESTROYITSSEPARATEANDCONTRA"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": 65.46120941216697,
+          "n": 150,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": 70.65503978607741,
+          "n": 165,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": 72.25872454939591,
+          "n": 181,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": 86.18155122337994,
+          "n": 200,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": 118.06197306509209,
+          "n": 227,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": 142.02033250406606,
+          "n": 251,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": 180.19382377305183,
+          "n": 302,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": 210.0094547571846,
+          "n": 337,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": 265.46660250970314,
+          "n": 390,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": 293.87096520373416,
+          "n": 438,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": 328.50329162303285,
+          "n": 493,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": 422.7852779046489,
+          "n": 587,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": 569.4976956081022,
+          "n": 742,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": 762.908724791401,
+          "n": 906,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": 934.8325255246872,
+          "n": 1058,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": 1116.5487620801157,
+          "n": 1245,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": 1444.4627403674438,
+          "n": 1539,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": 1916.9259387066243,
+          "n": 1961,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": 2471.686115257676,
+          "n": 2499,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": 2914.598884999491,
+          "n": 2954,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": 3820.3840432251054,
+          "n": 3843,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": 5002.807606230453,
+          "n": 4897,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": 6392.6976825587235,
+          "n": 6149,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": 8791.184735913635,
+          "n": 8251,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": 10105.558910136919,
+          "n": 9444,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": 10413.780180933461,
+          "n": 9696,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": 10664.623348274377,
+          "n": 9926,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": 10758.226008567615,
+          "n": 10012,
+          "keys": 28
+        },
+        {
+          "round": 29,
+          "best": 11054.365101436451,
+          "n": 10324,
+          "keys": 29
+        }
+      ]
+    }
+  ],
+  "original": {
+    "key": [
+      26,
+      4,
+      26,
+      5,
+      8,
+      0,
+      26,
+      26,
+      17,
+      18,
+      4,
+      15,
+      12,
+      8,
+      6,
+      6,
+      16,
+      3,
+      28,
+      10,
+      27,
+      22,
+      14,
+      22,
+      19,
+      21,
+      21,
+      4,
+      12
+    ],
+    "truth": null,
+    "train": {
+      "n": 10324,
+      "gain": -3.014967962166576,
+      "correct": null,
+      "usedRows": 0,
+      "keyRows": null,
+      "preview": [
+        "DIAYRCPESOIUDURGA",
+        "EEAHXXGEEODTUDFFSTHXOEUNGAHOEASROEXGAEOETHHDSEARNGCEAWCEAEAIAEAEEOFDIRHTHWGIACEHMUTALYTHUDTHTMPEAAEAYGAEP"
+      ]
+    },
+    "held": {
+      "n": 2632,
+      "gain": -3.264097419071351,
+      "correct": null,
+      "usedRows": 0,
+      "keyRows": null,
+      "preview": [
+        "EDBJBIRDOEYFGT",
+        "CNGOEMUWPIAEHNGAEEHOTHOEPORFMFWATOEWNGOEMJBAEEAIOELMOENGYPUIAIBLBAPCPNTHHWAENGGXOHBDBCRIARWSFLPXXYF"
+      ]
+    },
+    "chapters": [
+      {
+        "n": 729,
+        "gain": -3.410808109029095,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "EDBJBIRDOEYFGT",
+          "CNGOEMUWPIAEHNGAEEHOTHOEPORFMFWATOEWNGOEMJBAEEAIOELMOENGYPUIAIBLBAPCPNTHHWAENGGXOHBDBCRIARWSFLPXXYF"
+        ]
+      },
+      {
+        "n": 1145,
+        "gain": -2.94323380146163,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "DIAYRCPESOIUDURGA",
+          "EEAHXXGEEODTUDFFSTHXOEUNGAHOEASROEXGAEOETHHDSEARNGCEAWCEAEAIAEAEEOFDIRHTHWGIACEHMUTALYTHUDTHTMPEAAEAYGAEP"
+        ]
+      },
+      {
+        "n": 1729,
+        "gain": -3.102203971620665,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "BOEMANGLWEIAWOEFPOTHSNITGNPSXAEOEDPTHDAEXIRIBLWNGNG",
+          "GMEOURJIACAULWTDHREFJNOELIYTOEIASOEIAGTIAWLJTHEDUMAESTYBLWFOEJDBRYYUELYMEALDEXWOEDFHPFJUEAJRJ"
+        ]
+      },
+      {
+        "n": 1903,
+        "gain": -3.207895583559425,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "OAEIAASIADOY",
+          "DBBXMSIBRCNG"
+        ]
+      },
+      {
+        "n": 1021,
+        "gain": -3.050251711804182,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "RSGBJOEAOEMYUIAFRXI",
+          "THICIPSGEOUAJNEOMSTTHTNOERTEAJBHFIAIADHWTHEOCSIAUCHEAOOBTFWIRIAOEIAAPETHPEAEOXWBTBWLBMXTHHUEOOBBJCXT"
+        ]
+      },
+      {
+        "n": 1433,
+        "gain": -3.1246100721379375,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "OENARTUBIAHAHGUCUAEOXTH",
+          "EOTJNHOEHEAFYAEIAEOEOEUFTAEAEYIJSHAEAHCNFJIAEEJEOEWSEOWWNGFAEWPAELMCNOMACWSAEFASFLTHCMPFAIDAWEAPIEATH"
+        ]
+      },
+      {
+        "n": 1680,
+        "gain": -3.0093915373453597,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "YYITHOEFSAH",
+          "SREARDJLIAEACLOEBWAETHJPTCBRYSLAEWLEAIAOEONGEOJFREATHUEEOTHYCNIADSNGMLYAWJEXIIGDFLELTRXMUHMESEOOEAEEG"
+        ]
+      },
+      {
+        "n": 3008,
+        "gain": -2.9290068670796043,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "ORTHICBEAFMHPROEARAEDCCWAFNYGOELEOU",
+          "YMUPINRTHMJIAPLSAHCPUOEOLJGRDYEODTGXNGEODIABSOEANENOEXU"
+        ]
+      },
+      {
+        "n": 308,
+        "gain": -3.034779875846251,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "IALRDJEPBG",
+          "UNGYTOENGACYTIAEEYBCOEBNGIAPRTHFMIIMRCLIAOEEONGOEITOEOXIFOENGUSNIDLJIAYBURTDPJTNGDHDBEOMEAUGGPTHCLDLEO"
+        ]
+      }
+    ],
+    "trace": [
+      {
+        "round": 1,
+        "best": -71.1862927853793,
+        "n": 144,
+        "keys": 1
+      },
+      {
+        "round": 2,
+        "best": -72.60446589481526,
+        "n": 155,
+        "keys": 2
+      },
+      {
+        "round": 3,
+        "best": -77.30169613570354,
+        "n": 164,
+        "keys": 3
+      },
+      {
+        "round": 4,
+        "best": -79.54485992750031,
+        "n": 183,
+        "keys": 4
+      },
+      {
+        "round": 5,
+        "best": -87.76892069633345,
+        "n": 194,
+        "keys": 5
+      },
+      {
+        "round": 6,
+        "best": -88.58231380419134,
+        "n": 203,
+        "keys": 6
+      },
+      {
+        "round": 7,
+        "best": -97.04514256681924,
+        "n": 216,
+        "keys": 7
+      },
+      {
+        "round": 8,
+        "best": -98.77667960142955,
+        "n": 224,
+        "keys": 8
+      },
+      {
+        "round": 9,
+        "best": -103.9878963355839,
+        "n": 240,
+        "keys": 9
+      },
+      {
+        "round": 10,
+        "best": -118.37599837604506,
+        "n": 255,
+        "keys": 10
+      },
+      {
+        "round": 11,
+        "best": -136.70825342801007,
+        "n": 268,
+        "keys": 11
+      },
+      {
+        "round": 12,
+        "best": -161.32586219090646,
+        "n": 284,
+        "keys": 12
+      },
+      {
+        "round": 13,
+        "best": -179.55213701297316,
+        "n": 305,
+        "keys": 13
+      },
+      {
+        "round": 14,
+        "best": -205.85614635776014,
+        "n": 329,
+        "keys": 14
+      },
+      {
+        "round": 15,
+        "best": -257.54728905326033,
+        "n": 350,
+        "keys": 15
+      },
+      {
+        "round": 16,
+        "best": -308.58837775491685,
+        "n": 382,
+        "keys": 16
+      },
+      {
+        "round": 17,
+        "best": -375.4147138013031,
+        "n": 417,
+        "keys": 17
+      },
+      {
+        "round": 18,
+        "best": -456.2356844657442,
+        "n": 446,
+        "keys": 18
+      },
+      {
+        "round": 19,
+        "best": -562.0775717947917,
+        "n": 483,
+        "keys": 19
+      },
+      {
+        "round": 20,
+        "best": -661.0791995979315,
+        "n": 521,
+        "keys": 20
+      },
+      {
+        "round": 21,
+        "best": -849.730981269584,
+        "n": 548,
+        "keys": 21
+      },
+      {
+        "round": 22,
+        "best": -1041.244811187125,
+        "n": 642,
+        "keys": 22
+      },
+      {
+        "round": 23,
+        "best": -1302.1346184087179,
+        "n": 701,
+        "keys": 23
+      },
+      {
+        "round": 24,
+        "best": -1647.8009527948095,
+        "n": 798,
+        "keys": 24
+      },
+      {
+        "round": 25,
+        "best": -2011.6926943728004,
+        "n": 918,
+        "keys": 25
+      },
+      {
+        "round": 26,
+        "best": -2972.992900182093,
+        "n": 1210,
+        "keys": 26
+      },
+      {
+        "round": 27,
+        "best": -4201.336355120466,
+        "n": 1669,
+        "keys": 27
+      },
+      {
+        "round": 28,
+        "best": -7469.726087521067,
+        "n": 2676,
+        "keys": 28
+      },
+      {
+        "round": 29,
+        "best": -31126.52924140775,
+        "n": 10324,
+        "keys": 29
+      }
+    ]
+  },
+  "nulls": [
+    {
+      "key": [
+        0,
+        28,
+        16,
+        23,
+        7,
+        7,
+        16,
+        15,
+        2,
+        18,
+        20,
+        4,
+        19,
+        24,
+        13,
+        11,
+        19,
+        5,
+        21,
+        13,
+        5,
+        6,
+        15,
+        0,
+        24,
+        11,
+        27,
+        26,
+        15
+      ],
+      "truth": null,
+      "train": {
+        "n": 10324,
+        "gain": -3.036053862098872,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "UDTHRGIAFGCCMTHIOYE",
+          "YRYIEYNTHIATUAEAPMGEOEAFUTEATHEOOYCEATBTYGDTTSAJWWTHEOYXUAEPTBSOTTHHERRTHOCNPYSLUSSWTHWTFRTMNGYAE"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": -3.1506481788009277,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "PLGEAFTJSOEBEOAW",
+          "EAXLYBYFTHUROEDCYAOGAEJTHDIFBFXOEHEALPPIIEAPHAEYTHMSEAAUAEOCTIAHEAILSRRJTHLPMSHXYEPEAOAEEOAAIAAGTHWA"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": -2.9433819731252187,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "PLGEAFTJSOEBEOAW",
+            "EAXLYBYFTHUROEDCYAOGAEJTHDIFBFXOEHEALPPIIEAPHAEYTHMSEAAUAEOCTIAHEAILSRRJTHLPMSHXYEPEAOAEEOAAIAAGTHWA"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": -2.8358007043146336,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "UDTHRGIAFGCCMTHIOYE",
+            "YRYIEYNTHIATUAEAPMGEOEAFUTEATHEOOYCEATBTYGDTTSAJWWTHEOYXUAEPTBSOTTHHERRTHOCNPYSLUSSWTHWTFRTMNGYAE"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": -2.9455418565840925,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "TNGIAAECGLUAESNGXJOECJTNMEOEAOTOBIAXIHGBCONGUAYTOEAE",
+            "TBGRTHEWMULISSIAPROENTHLYAEJHHNGFTDUMTUAJHPPDTIOEIABRWRXTMOOHLGJMXROELUEACPEOEOAEIAPUHHAEWONGCIAA"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": -3.2300475818159526,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "GEASWIAUUMEO",
+            "EACAEYXWGGIAEOEO"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": -3.091009044600805,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "THJMTEOASXENGSTHYOEEAG",
+            "MANGUPGNGJEOXHYATNXCNGUUOINGRTEAWUOGEBTWEEAARLLEFUDINGONDPNWANGAELDOPNGEANGAETHIUITNGIAEADRBCAEHMEOAE"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": -3.1661203650486844,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "ITEOPYYPMCOGNGRTAEOXJTH",
+            "EWSMIMCIBAECWNBIBRGJTHEEAEOTHAEEFTHUDDGLEOPENGRSJJSTLYNGGLNGGYBIASXNJORHRFBABWEAEOCISWOEBYBYWIS"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": -3.113736159846455,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "EUCIAOEIGBEOE",
+            "GOOWAYLOELBMGTHIAISMEEOXRCPTHCINFFGAEWYAPAYNUOTHGFLNNGJAEIERFMDFJBGICWHIWOEDROUHRXSOEOEDLCBD"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": -3.0497205919623216,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "ITBEXDYDBOOTHPWHRTHFOEHNSNGHBRGOG",
+            "NGUPOETJUIGLLBGHXJRJLRIALRUOEEAEAIAPIOBOEOEEUDFEIAWAETHIAT"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": -2.9440889253821956,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "WBPLTHRBRU",
+            "HBCREXDHOEAFNCWEOGIAENGFNGELSHJJRETHILIRBDEOEAENLEGAPNGAFOEAECSIANGDOEEOEOOMOEUSAEHFXDTHPOIACHOEIADAS"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": -48.12178317185327,
+          "n": 148,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": -56.87113736176323,
+          "n": 157,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": -55.99343600980387,
+          "n": 166,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": -57.939408956574745,
+          "n": 178,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": -61.46571355347422,
+          "n": 189,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": -66.20676915632667,
+          "n": 200,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": -71.62164847294068,
+          "n": 212,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": -81.01882190895094,
+          "n": 225,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": -84.51925839964808,
+          "n": 251,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": -106.65362091755969,
+          "n": 268,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": -126.6053058952424,
+          "n": 268,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": -144.86497782688548,
+          "n": 300,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": -168.4155649992808,
+          "n": 295,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": -210.3507201573759,
+          "n": 339,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": -265.3676078592362,
+          "n": 362,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": -331.1303739184716,
+          "n": 401,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": -385.4719650316108,
+          "n": 432,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": -469.9686862335825,
+          "n": 473,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": -574.9259693280412,
+          "n": 517,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": -718.9457904300568,
+          "n": 554,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": -881.7633082225582,
+          "n": 592,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": -1136.6312791898326,
+          "n": 697,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": -1418.8145984039882,
+          "n": 755,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": -1789.6637139304428,
+          "n": 858,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": -2211.9799722585913,
+          "n": 1002,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": -2804.1207340847373,
+          "n": 1194,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": -4151.941552940531,
+          "n": 1590,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": -7454.6032294841025,
+          "n": 2711,
+          "keys": 28
+        },
+        {
+          "round": 29,
+          "best": -31344.22007230884,
+          "n": 10324,
+          "keys": 29
+        }
+      ]
+    },
+    {
+      "key": [
+        18,
+        1,
+        28,
+        17,
+        23,
+        11,
+        11,
+        26,
+        25,
+        19,
+        28,
+        2,
+        8,
+        15,
+        15,
+        25,
+        16,
+        2,
+        14,
+        8,
+        3,
+        25,
+        25,
+        16,
+        14,
+        11,
+        10,
+        15,
+        18
+      ],
+      "truth": null,
+      "train": {
+        "n": 10324,
+        "gain": -2.9989995747277267,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "RHATHUEAULUTHPOECCHY",
+          "WNOIPBAENGRFGEIAMNGEOPNGUNGTHEAWEALDBIGAEHEAEOIAJBIANEAXDIAGLJHPDNGOENEAEOOERHAEGUEAAERFHUMDFPAMTSIANAEFRLG"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": -3.2123789093000155,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "JTLDMNGEOYMIAWANG",
+          "DATHIAHIFRRFLPXFPOWHOGTYXMTAEACRBANGYFPUUSWAHEAGJPAEITHTHTHFOAWYTOEEANGAAERJMOBMTHURHLONBGGNUA"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": -3.204227062201791,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "JTLDMNGEOYMIAWANG",
+            "DATHIAHIFRRFLPXFPOWHOGTYXMTAEACRBANGYFPUUSWAHEAGJPAEITHTHTHFOAWYTOEEANGAAERJMOBMTHURHLONBGGNUA"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": -3.0422745094805332,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "RHATHUEAULUTHPOECCHY",
+            "WNOIPBAENGRFGEIAMNGEOPNGUNGTHEAWEALDBIGAEHEAEOIAJBIANEAXDIAGLJHPDNGOENEAEOOERHAEGUEAAERFHUMDFPAMTSIANAEFRLG"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": -2.9405071948594763,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "EALWTHNXTHNGHTHDUSESWPANGOIPIPWTHXFEABLYIALELRBEAJ",
+            "ITISEAEMCILALBFIAWXFREOEOTFUOFSHBITHOEHWSTHBNGNGLOEBJNEDHOIACRAOIEOHSUAEEOOECATHEAPJEAIEOSRJTCYBLRY"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": -3.215501713574637,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "ANOPUJIAEY",
+            "LYLDXNONFFO"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": -3.0592959929145067,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "THWAENDEALOLWTATEEOM",
+            "OCSCPAEUXIAEOEAOETAERDEOFNGSEOYYGTHETEONGLRCPPBEAORIMDBIFYGDPLJFLIANYBYOLOOCRHAEIDLIAULSNGUBIAPAEAEO"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": -2.941014275122792,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "UEIDLOCAEOEOJDXBJPERN",
+            "AYSDRMEWIEBBPEIOFPTSIRHAOEEOSDNGERYBTHJTHIAXNGULMOIEOFYMEONGASNGOEASFENYTHEADATBDITNGOEPWDDLJYF"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": -3.076476319333794,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "ANOETHGUAHEU",
+            "YJAEIOETRXEODNHINGJPTHFJAAEYGIOBIIASGPXTTWUISBEAOEIAJDCHAELIGNDPOWFYLEAAEHBLTGXRNGEAIAHEOAEAFANGDEA"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": -2.945558031118114,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "INXUOCXWGWEJLMFJTHESLEOEASLTEAAFH",
+            "TJEOTTHYEOAFIIATIARULBAEIANOENGEJOEAYRJAEANGRCPAEMCIAXTHCEAUMAE"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": -3.3357042763671427,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "YBYUIAOERGIA",
+            "HNGXRTHMWTHIAEALOEEIATSDHTIAIAOSFOGFUMBMNGEAEICMCNGEOLCMWIWBLMYANTLTHXWYDGSHWFHDXEAMTHOETAMUXTEALIA"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": -73.10369740750345,
+          "n": 150,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": -75.40163084336552,
+          "n": 159,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": -81.84813126659695,
+          "n": 169,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": -82.68674175128523,
+          "n": 183,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": -93.10975336315003,
+          "n": 197,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": -100.63861248990052,
+          "n": 213,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": -104.64689417869097,
+          "n": 217,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": -107.4482485743738,
+          "n": 230,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": -132.2114165429021,
+          "n": 246,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": -151.33181450153992,
+          "n": 267,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": -169.6758391807003,
+          "n": 274,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": -193.26208584839546,
+          "n": 304,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": -209.4793961334055,
+          "n": 317,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": -247.80083327639574,
+          "n": 351,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": -288.8230263856727,
+          "n": 387,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": -346.4053017216232,
+          "n": 402,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": -416.6189429971018,
+          "n": 445,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": -492.29652773376597,
+          "n": 481,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": -586.3273087335803,
+          "n": 532,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": -737.3322480685681,
+          "n": 587,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": -889.8890964422746,
+          "n": 636,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": -1112.188769073545,
+          "n": 650,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": -1349.1261636635986,
+          "n": 752,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": -1667.73376009794,
+          "n": 849,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": -2048.1267848879293,
+          "n": 996,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": -2637.360093415783,
+          "n": 1155,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": -4118.013719019458,
+          "n": 1669,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": -7157.673704004145,
+          "n": 2601,
+          "keys": 28
+        },
+        {
+          "round": 29,
+          "best": -30961.671609489073,
+          "n": 10324,
+          "keys": 29
+        }
+      ]
+    },
+    {
+      "key": [
+        23,
+        13,
+        20,
+        24,
+        8,
+        18,
+        6,
+        1,
+        23,
+        22,
+        7,
+        5,
+        12,
+        11,
+        25,
+        23,
+        8,
+        14,
+        27,
+        20,
+        20,
+        25,
+        15,
+        4,
+        27,
+        19,
+        22,
+        13,
+        9
+      ],
+      "truth": null,
+      "train": {
+        "n": 10324,
+        "gain": -3.013424483822824,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "SEAOETCEAOEBPIEATALIB",
+          "OPUOOTHTHEYOEEAHFNGCNIBDYSNGNGAETGXSPNGHIAOAIELBRNCPAERBTWJMDGOENGFLOEOJWIBSYUMNGMOECXEAGTHNHFYG"
+        ]
+      },
+      "held": {
+        "n": 2632,
+        "gain": -3.174171626581029,
+        "correct": null,
+        "usedRows": 0,
+        "keyRows": null,
+        "preview": [
+          "SGOTHMOEUTPUGLD",
+          "PCLFEATMITAEMNGBXNGEAFAEEANGREWTHCTHOELLNJCGUWHAEXYBETEATHEOLFYMIADNGYJHIAAETNAEXUOENUCXEAROIAAEYYUBEOW"
+        ]
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "gain": -3.2475390239806754,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "SGOTHMOEUTPUGLD",
+            "PCLFEATMITAEMNGBXNGEAFAEEANGREWTHCTHOELLNJCGUWHAEXYBETEATHEOLFYMIADNGYJHIAAETNAEXUOENUCXEAROIAAEYYUBEOW"
+          ]
+        },
+        {
+          "n": 1145,
+          "gain": -2.9850914843246694,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "SEAOETCEAOEBPIEATALIB",
+            "OPUOOTHTHEYOEEAHFNGCNIBDYSNGNGAETGXSPNGHIAOAIELBRNCPAERBTWJMDGOENGFLOEOJWIBSYUMNGMOECXEAGTHNHFYG"
+          ]
+        },
+        {
+          "n": 1729,
+          "gain": -3.023700275340555,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "CEADMAEDIMANIASNGFAEDXITHLIWFPFTHOENPMRCXILNAEOAENG",
+            "OXFFNUDGEOAEHIAAEDEIAEATHOEITHTHUSXDAEIRXNMNGBIAATHNECOEGTOOWNOELOEDYLIALYIAGEANDOUDTHXTLWOEEONTEAXSBWNT"
+          ]
+        },
+        {
+          "n": 1903,
+          "gain": -3.1460660917915697,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "BAAPEOAGEG",
+            "AEOEHIASLIEATHIAE"
+          ]
+        },
+        {
+          "n": 1021,
+          "gain": -3.0954106087901594,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "LDOEMXCCOECLYYNGIAFR",
+            "CERYJTIAYIANTCNGPNGXJWBRGSESISCXREOOLRFASBAENGNRTHATHMYWEAIOEJIEAMBCDOOEIAPNGMNLJJEOWAETLHMLGIEL"
+          ]
+        },
+        {
+          "n": 1433,
+          "gain": -3.1333750956441984,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "OEGLTHJEOUEENGFYEOAFFYLD",
+            "MNTHJPCBIDDAEXPNGCIOEAPAPAFEAIAOFEAYFGGEOCACRXEOLEORBOELTHCLLTXNOGXUNGLTHAPPEAWSEOEEOMDFAETHSCREIAGTH"
+          ]
+        },
+        {
+          "n": 1680,
+          "gain": -3.076342962190595,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "CAINTTDEAWW",
+            "CTHOEHPADIAUEATSNLWOHHAEXOEOSBJFEFOESLPLOEEOXAEPEOTHBCUACNGNGUXAEMUWMTHMOAEEOUMPUUYWAEOWTHFTHXXIAJEAEU"
+          ]
+        },
+        {
+          "n": 3008,
+          "gain": -2.898200425753921,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "UBEYAIARAPYRTEOPIAEDEOAFYLTHEOOEYNEOE",
+            "EPWGOEHWRJSRIUYGRIEYNAMTHENEAHJNGCXSDBMUYTHAFAEAESIAYT"
+          ]
+        },
+        {
+          "n": 308,
+          "gain": -3.013321573345392,
+          "correct": null,
+          "usedRows": 0,
+          "keyRows": null,
+          "preview": [
+            "DCIPNGDEAEAL",
+            "THJYALNGTHOEWHOEAEMRRETHDUJJSSIANGEAPPWSEAEOETHAEBPUIAPHIAJEAEONMJMXOEBLSNGTHEOJBDDHTHBJIAIMYRFIAJLXNGLMEA"
+          ]
+        }
+      ],
+      "trace": [
+        {
+          "round": 1,
+          "best": -71.34548392937728,
+          "n": 144,
+          "keys": 1
+        },
+        {
+          "round": 2,
+          "best": -70.47101803789927,
+          "n": 153,
+          "keys": 2
+        },
+        {
+          "round": 3,
+          "best": -67.69270612866144,
+          "n": 164,
+          "keys": 3
+        },
+        {
+          "round": 4,
+          "best": -72.45564934948027,
+          "n": 176,
+          "keys": 4
+        },
+        {
+          "round": 5,
+          "best": -71.97664116299377,
+          "n": 189,
+          "keys": 5
+        },
+        {
+          "round": 6,
+          "best": -75.41657150514364,
+          "n": 200,
+          "keys": 6
+        },
+        {
+          "round": 7,
+          "best": -80.1748195658184,
+          "n": 214,
+          "keys": 7
+        },
+        {
+          "round": 8,
+          "best": -85.64850649302313,
+          "n": 227,
+          "keys": 8
+        },
+        {
+          "round": 9,
+          "best": -97.59218979537391,
+          "n": 247,
+          "keys": 9
+        },
+        {
+          "round": 10,
+          "best": -116.9253967135455,
+          "n": 251,
+          "keys": 10
+        },
+        {
+          "round": 11,
+          "best": -136.58284455624735,
+          "n": 267,
+          "keys": 11
+        },
+        {
+          "round": 12,
+          "best": -160.57327526766284,
+          "n": 288,
+          "keys": 12
+        },
+        {
+          "round": 13,
+          "best": -197.35114682436998,
+          "n": 303,
+          "keys": 13
+        },
+        {
+          "round": 14,
+          "best": -227.76777678864013,
+          "n": 342,
+          "keys": 14
+        },
+        {
+          "round": 15,
+          "best": -254.887438525797,
+          "n": 339,
+          "keys": 15
+        },
+        {
+          "round": 16,
+          "best": -304.4536047277667,
+          "n": 389,
+          "keys": 16
+        },
+        {
+          "round": 17,
+          "best": -354.236330626484,
+          "n": 420,
+          "keys": 17
+        },
+        {
+          "round": 18,
+          "best": -457.401974098505,
+          "n": 465,
+          "keys": 18
+        },
+        {
+          "round": 19,
+          "best": -566.0843124922025,
+          "n": 509,
+          "keys": 19
+        },
+        {
+          "round": 20,
+          "best": -697.80571085228,
+          "n": 547,
+          "keys": 20
+        },
+        {
+          "round": 21,
+          "best": -879.1933824137651,
+          "n": 630,
+          "keys": 21
+        },
+        {
+          "round": 22,
+          "best": -1092.362516242572,
+          "n": 682,
+          "keys": 22
+        },
+        {
+          "round": 23,
+          "best": -1409.9306808807248,
+          "n": 780,
+          "keys": 23
+        },
+        {
+          "round": 24,
+          "best": -1790.930025428882,
+          "n": 852,
+          "keys": 24
+        },
+        {
+          "round": 25,
+          "best": -2234.746617656643,
+          "n": 992,
+          "keys": 25
+        },
+        {
+          "round": 26,
+          "best": -3004.183343312529,
+          "n": 1277,
+          "keys": 26
+        },
+        {
+          "round": 27,
+          "best": -4301.557471727763,
+          "n": 1673,
+          "keys": 27
+        },
+        {
+          "round": 28,
+          "best": -7374.340911115134,
+          "n": 2745,
+          "keys": 28
+        },
+        {
+          "round": 29,
+          "best": -31110.594370986782,
+          "n": 10324,
+          "keys": 29
+        }
+      ]
+    }
+  ]
+}
