@@ -5,6 +5,8 @@
 
 - **Director #2790:** prior #2495 and May19 archive index already cover WELCOME key discovery and AN END. New exact comparison of L28282 historical broken output to ordinary consuming shift output: 176 matching Latin chars; first genuine mismatch rune48 (cipher F at 47 consumed -> O, at 48 held -> F). 116 native prefix replays; true holds48,74,84 versus consuming ciphertext F5,14,47. Historical 03:00 corrected output does not identify private bypass method; no pre-decryption selector or new receiver. [Consolidated decision](../../im-results/lp1-2014-warning-welcome-player-decision-tree.md). No unknown plaintext/key; do not rerun archive search or nine-source F crib tests.
 
+- **Native 2012 MIDI formatting recovery:** signed chorus gap=24+96*comma+192*period+384*LF for nonempty separator; exact711/714, mismatches3/238/476. Track1 payload start768, all49 subsequent entry gaps384, native50 entries/48 distinct. BIRD/WATCH split; legacy49 preserved. P33/7x7 count premise false. Corrected p36 all50 physical pieces including initial continuation, 238 runes: both signs nonprose IoC .03304613/.03318796, strict F impossible in 6/7 groups. Five p50 hits unchanged, ordinals9/11/15/17/43, old nulls derivative-only. [Report](../../im-results/2012-midi-native-formatting-50entry-source-correction.md) · [corrected list](../../resources/historical/cicada2012-midi-50-entries.txt). Original computation executed directly. No unknown plaintext/key, no new selector; do not tune timing or arbitrary list maps.
+
 ---
 
 # Current invocation checkpoint — 25 November 2026

@@ -1,5 +1,7 @@
 # 2012 MIDI 49-word list versus the 2014 7×7 square
 
+**25 November source correction:** [native MIDI formatting audit](2012-midi-native-formatting-50entry-source-correction.md) establishes that the signed Track-1 submission register has **50 entries / 48 distinct**. BIRD and WATCH have the same 384-tick delimiter as every other entry pair. The archived 49-token words.txt merged them; preserve it solely as a historical derivative. The genuine 50-entry payload cannot directly fill 49 square cells. The finite 49-to-49 dictionary test remains valid for the derivative; the original-source count premise is retired.
+
 **Classification: sample-specific source-exact 49-to-49 register obstruction, plus a bounded historical instruction check.** Director Issue #159. No unknown LP2 plaintext, historical cipher key, or authenticated 2012-to-2014 handoff was found.
 
 ## Independent original inputs
@@ -15,7 +17,7 @@ Suppose the proposed 49-to-49 transfer is a literal aligned dictionary **numeric
 
 The [standalone original-source SFT](../sims/cicada2012_midi_onion7_valueword_gate.cjs) performs the stronger exact count: for each of the square's **eight D4 rotations/reflections**, group cells by their numeric value and retain the most frequent assigned original word per group. Every orientation requires changing **25 of 49** word assignments to satisfy *any* deterministic value→word dictionary. The count includes the four occurrences of value7. A constructed true dictionary assigning one synthetic word to each of the 24 values yields **zero** mismatches, and a one-word corruption yields exactly **one**. This validates the necessary-condition test without searching keys.
 
-The shared number **49 = 7²** remains real and might still be a deliberately reused motif; the evidence does not independently select the 2012 list as a later cipher key. A purely position-indexed 49-entry key is mathematically possible, but the original 2012 instruction already assigns the words a different immediate purpose and no visible 2014 instruction restores them. Permuting, hashing or rekeying the list based only on the equality of lengths would introduce an unselected transformation.
+The number **49 = 7²** matches only the archive derivative; the genuine MIDI payload does not have 49 entries. A purely position-indexed 49-entry key is mathematically possible, but the original 2012 instruction already assigns the words a different immediate purpose and no visible 2014 instruction restores them. Permuting, hashing or rekeying the list based only on the equality of lengths would introduce an unselected transformation.
 
 ## Decision
 

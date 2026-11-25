@@ -9,8 +9,8 @@
   "raw_url": "https://raw.githubusercontent.com/neuroretransmit/cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/song.mid",
   "readme_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/README.md",
   "decoder_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/decode.py",
-  "authentication": "The outer clear-signed email verifies against the preserved Cicada 2012 public key (key ID 181F01E57A35090F). The embedded PGP block is ZIP-compressed signed literal data, not encrypted: packet sequence tag 8 compressed data, tag 4 one-pass signature, tag 11 literal data named Cicada.mid, tag 2 signature; no encrypted-session or encrypted-data packet is present. The inner signature verifies against the same key, full fingerprint 6D854CD7933322A601C3286D181F01E57A35090F. The 10,889-byte MIDI has SHA-256 e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c and Git blob SHA-1 11924e0e195208c2eea757655035e149fb8a190f. The 49-word list is deterministically decoded from the signed MIDI and is authentic for this participant, but remains recipient-specific. GnuPG trust remains unknown.",
-  "notes": "The archived README's use of gpg --decrypt extracts/decompresses and verifies this signed message; the command name does not imply that the PGP block is encrypted. The MIDI note-off substitution is reproducible from the signed bytes. The 49-word submission list is participant-specific.",
+  "authentication": "The outer clear-signed email verifies against the preserved Cicada 2012 public key (key ID 181F01E57A35090F). The embedded PGP block is ZIP-compressed signed literal data, not encrypted: packet sequence tag 8 compressed data, tag 4 one-pass signature, tag 11 literal data named Cicada.mid, tag 2 signature; no encrypted-session or encrypted-data packet is present. The inner signature verifies against the same key, full fingerprint 6D854CD7933322A601C3286D181F01E57A35090F. The 10,889-byte MIDI has SHA-256 e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c and Git blob SHA-1 11924e0e195208c2eea757655035e149fb8a190f. The letter tape and 50-entry submission list are deterministically decoded from the signed MIDI by note-off ranks and note-on delimiters. The list is recipient-specific. GnuPG trust remains unknown.",
+  "notes": "The archived README's use of gpg --decrypt extracts/decompresses and verifies this signed message; the command name does not imply that the PGP block is encrypted. The MIDI note-off substitution is reproducible from the signed bytes. The native submission has 50 entries; the archival 49-token derivative merges BIRD/WATCH. Preserve both.",
   "midi_artifact": {
     "filename": "Cicada.mid",
     "size_bytes": 10889,
@@ -38,5 +38,16 @@
     "verification_workflow": "https://github.com/FlareZ123/liber-primus/actions/workflows/cicada2012-midi-signature.yml",
     "verification_run": "https://github.com/FlareZ123/liber-primus/actions/runs/43136926655",
     "trust": "unknown"
+  },
+  "submission_wordlist": {
+    "native_entries": 50,
+    "distinct_entries": 48,
+    "entry_gap_ticks": 384,
+    "payload_start_gap_ticks": 768,
+    "native_path": "resources/historical/cicada2012-midi-50-entries.txt",
+    "legacy_path": "resources/historical/cicada2012-midi-49-words.txt",
+    "legacy_tokens": 49,
+    "legacy_merge": "bird watch -> birdwatch",
+    "report": "im-results/2012-midi-native-formatting-50entry-source-correction.md"
   }
 }

@@ -19,7 +19,7 @@ This is a real, inexpensive cross-round alignment. The outer 2012 email's cleart
 - Derived first-cycle event sums are preserved in 2012-midi-chorus-p36-238-inputs.json; the 238 ranks reproduce the chorus letters exactly.
 - p36 is page 36 in the restored LP2 numbering, not a JPEG scan index.
 
-The 2012 sample's separate Track-1 wordlist also has 49 entries, and p36 has 49 page-local words. Do not promote this second count match: the archived 2012 wordlist is explicitly participant-specific, while the chorus has 56 words. The two lists do not define a shared 49-word key.
+The native signed MIDI Track-1 payload has **50 entries** (the older 49-token archive derivative merged BIRD/WATCH). P36 has 49 word starts plus its initial continuation piece, hence 50 local pieces; the corrected literal wordwise GP29 consumer failed. See [native timing and source correction](2012-midi-native-formatting-50entry-source-correction.md). The list remains recipient-specific, and no signed source selects p36.
 
 ## Tests and results
 

@@ -1,5 +1,7 @@
 # 2012 MIDI participant wordlist → LP2 p50 address hotspot: source-gated test
 
+**25 November source correction:** [native MIDI formatting audit](2012-midi-native-formatting-50entry-source-correction.md) establishes that the signed Track-1 submission register has **50 entries / 48 distinct**. BIRD and WATCH have the same 384-tick delimiter as every other entry pair. The archived 49-token words.txt merged them; preserve it solely as a historical derivative. All tables and null counts below are for that legacy derivative. Corrected BIRD=192→p18[3], WATCH=211→p37[3] replace BIRDWATCH=403→p55[6]. All five p50 hits persist, now source ordinals 9/11/15/17/43 (odd, not even); the old null counts are not recalibrated to the native list.
+
 **Classification (12 November 2026):** exact source-sample arithmetic and reproducible *conditional* anomaly under an explicitly unselected cross-round hypothesis. **No source-attested 2012→LP2 instruction, key, plaintext, or decryption.** This resolves the bounded decision in [Director Issue #443](https://github.com/FlareZ123/liber-primus/issues/443) without converting an attractive p50 concentration into an authenticated route.
 
 ## Source boundary and proposed operation
