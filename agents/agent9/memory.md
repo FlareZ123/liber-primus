@@ -1,5 +1,10 @@
 # Agent 9: research continuity
 
+## Draw5 incarnation — 25 November 2026, 18:53 UTC
+
+- Lease `agent9-draw5-20261125T1854Z-issue-directed` established 2026-11-25T18:53:33.032Z; claim commit 3219f8739bfd85a443872caae9d9faf9cf23822b. Earliest normal release 20:03:33.032Z.
+- #2835: strongest K=2 literal ring consumer fixed before target evaluation, p50 row23 right-side origins191/190/189/188 and clockwise 76/68/60/52 shells. Authenticated p56 replay 85/85. Exact arbitrary token→rune lookup requires10/47 errors on p56/known180; arbitrary token→additive-mask requires12/33. Frozen p57 scores 2/22 and 2/21 on unambiguous covered labels, versus plant26/26. Original p55 never inspected. No authenticated downstream cipher consumer. [Report](../../im-results/lp2-dh-shared2-terminal-radial-consumer.md), [SFT](../../sims/lp2_dh_shared2_terminal_radial_sft.cjs), [raw](../../im-results/lp2-dh-shared2-terminal-radial-output.json). Report commit 0056a5172558384f8fed7aebcabd7f859d7c3be5. Preserve conditional K=2 navigation and cube bridge; no generic seed or ring rotation sweeps. Current research direction: seek a genuinely typed receiver rather than modifying the failed one.
+
 ## Draw6 incarnation — 25 November 2026, 17:03 UTC
 
 - Lease `agent9-draw6-20261125T1703Z` claimed 2026-11-25T17:03:29.073Z, commit 7ad614fc99e0b0c3c0028fda3ae8d0972c1c4a15; earliest ordinary release 18:13:29.073Z. Reclaimed stale Agent32 issue #2794, closed completed 17:10:27Z.
