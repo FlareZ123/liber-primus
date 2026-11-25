@@ -1,0 +1,32 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+function encode(gp,s){let out=[],tok=gp.translit.map((x,i)=>[x,i]).sort((a,b)=>b[0].length-a[0].length);for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){if(w.startsWith("ING",i)){out.push(21);i+=3;continue}if(w.startsWith("IO",i)){out.push(27);i+=2;continue}let t=tok.find(x=>w.startsWith(x[0],i));if(!t)throw Error(w);out.push(t[1]);i+=t[0].length}}return out}
+function attack(gp,docs){
+ const q=29,N=3008,fit=2105,K=8,mod=x=>(x+1624)%29,ix=(a,b,c)=>(a*29+b)*29+c;
+ let seed=330112;const rng=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296),rand=n=>Math.floor(rng()*n);
+ const shuffle=a=>{for(let i=a.length-1;i>0;i--){let j=rand(i+1);[a[i],a[j]]=[a[j],a[i]]}return a};
+ const perm=()=>shuffle(Array.from({length:29},(_,i)=>i));
+ function model(ds){let u=new Float64Array(29),bi=new Float64Array(841),tr=new Float64Array(24389);for(const d of ds)for(let i=0;i<d.length;i++){u[d[i]]++;if(i>=1)bi[d[i-1]*29+d[i]]++;if(i>=2)tr[ix(d[i-2],d[i-1],d[i])]++}let n=u.reduce((a,b)=>a+b,0)+14.5;const up=Array.from(u,x=>(x+.5)/n),bp=new Float64Array(841),tp=new Float64Array(24389);for(let a=0;a<29;a++){let bs=0;for(let b=0;b<29;b++)bs+=bi[a*29+b];for(let b=0;b<29;b++)bp[a*29+b]=(bi[a*29+b]+20*up[b])/(bs+20)}for(let a=0;a<29;a++)for(let b=0;b<29;b++){let s=0;for(let c=0;c<29;c++)s+=tr[ix(a,b,c)];for(let c=0;c<29;c++)tp[ix(a,b,c)]=Math.log((tr[ix(a,b,c)]+35*bp[b*29+c])/(s+35))}return{lp:up.map(Math.log),tp}}
+ function hung(w){const n=29,u=new Float64Array(n+1),v=new Float64Array(n+1),p=new Int16Array(n+1),way=new Int16Array(n+1);for(let i=1;i<=n;i++){p[0]=i;let j0=0,minv=new Float64Array(n+1).fill(Infinity),used=new Uint8Array(n+1);do{used[j0]=1;let i0=p[j0],delta=Infinity,j1=0;for(let j=1;j<=n;j++)if(!used[j]){let cur=-w[(i0-1)*n+j-1]-u[i0]-v[j];if(cur<minv[j]){minv[j]=cur;way[j]=j0}if(minv[j]<delta){delta=minv[j];j1=j}}for(let j=0;j<=n;j++){if(used[j]){u[p[j]]+=delta;v[j]-=delta}else minv[j]-=delta}j0=j1}while(p[j0]!==0);do{let j1=way[j0];p[j0]=p[j1];j0=j1}while(j0!==0)}let map=new Int16Array(n),score=0;for(let j=1;j<=n;j++){map[p[j]-1]=j-1;score+=w[(p[j]-1)*n+j-1]}return{map,score}}
+ function decode(c,key){const p=c.slice(0,2);for(let i=2;i<c.length;i++){const k=key[i%q];p.push(k.map[mod(c[i]-k.a*c[i-1]-k.b*c[i-2])])}return p}
+ function replay(c,key,p){for(let i=2;i<c.length;i++){const k=key[i%q],v=k.map.indexOf(p[i]);if(v<0||(v+k.a*c[i-1]+k.b*c[i-2])%29!==c[i])throw Error("replay")}}
+ function score(p,model,lo,hi){let s=0;for(let i=Math.max(4,lo);i<hi;i++)s+=model.tp[ix(p[i-2],p[i-1],p[i])];return s/(hi-Math.max(4,lo))}
+ function solve(c,m,truthKey=null,truth=null,restarts=4,sweeps=20){
+ const pos=Array.from({length:q},()=>[]);for(let i=2;i<fit;i++)pos[i%q].push(i);
+ const order=Array.from({length:29},(_,i)=>i).sort((a,b)=>m.lp[b]-m.lp[a]),cands=[];for(let t=0;t<q;t++){let list=[];for(let a=0;a<29;a++)for(let b=0;b<29;b++){let rs=Int16Array.from(pos[t],i=>mod(c[i]-a*c[i-1]-b*c[i-2])),h=new Uint16Array(29);for(const x of rs)h[x]++;let ord=Array.from({length:29},(_,i)=>i).sort((a,b)=>h[b]-h[a]),map=new Int16Array(29);for(let k=0;k<29;k++)map[ord[k]]=order[k];let s=0;for(let k=0;k<29;k++)s+=h[k]*m.lp[map[k]];list.push({a,b,rs,map,s})}list.sort((a,b)=>b.s-a.s);cands.push(list.slice(0,K))}
+ const initialKey=cands.map(x=>x[0]),initial=decode(c,initialKey);let best=null,logs=[];
+ for(let rep=0;rep<restarts;rep++){let key=cands.map(list=>{let x=list[0],map=Int16Array.from(x.map);if(rep){const ord=Array.from({length:29},(_,i)=>i).sort((a,b)=>m.lp[map[b]]-m.lp[map[a]]);for(let i=0;i<29;i+=4){let a=ord.slice(i,i+4),v=a.map(x=>map[x]);shuffle(v);a.forEach((x,j)=>map[x]=v[j])}}return{...x,map}}),p=decode(c,key).slice(0,fit);
+ let last=-Infinity,steps=0;
+ for(let it=0;it<sweeps;it++){for(const t of shuffle(Array.from({length:q},(_,i)=>i))){const ps=pos[t],context=new Float64Array(ps.length*29);for(let j=0;j<ps.length;j++){const i=ps[j];for(let v=0;v<29;v++){let s=0;if(i>=4)s+=m.tp[ix(p[i-2],p[i-1],v)];if(i>=3&&i+1<fit)s+=m.tp[ix(p[i-1],v,p[i+1])];if(i+2<fit)s+=m.tp[ix(v,p[i+1],p[i+2])];context[j*29+v]=s}}let win=null;for(const a of cands[t]){const w=new Float64Array(841);for(let j=0;j<ps.length;j++){let r=a.rs[j]*29,o=j*29;for(let v=0;v<29;v++)w[r+v]+=context[o+v]}// marginal prior only breaks zero-observation and exact ties
+ for(let r=0;r<29;r++)for(let v=0;v<29;v++)if(v===a.map[r])w[r*29+v]+=1e-9;
+ let h=hung(w);if(!win||h.score>win.score)win={...a,...h}}
+ key[t]=win;for(let j=0;j<ps.length;j++)p[ps[j]]=win.map[win.rs[j]]}
+ let s=score(p,m,4,fit);steps=it+1;if(s+1e-7<last)throw Error("coordinate objective");if(s-last<1e-8)break;last=s}
+ const out=decode(c,key);replay(c,key,out);const train=score(out,m,4,fit),held=score(out,m,fit,N),matches=truth?out.slice(fit).filter((x,i)=>x===truth[fit+i]).length:null,coef=truthKey?key.filter((x,i)=>x.a===truthKey[i].a&&x.b===truthKey[i].b).length:null;logs.push({train,held,matches,coef,steps});if(!best||train>best.train)best={train,held,matches,coef,key:key.map(x=>({a:x.a,b:x.b,map:Array.from(x.map)})),preview:out.slice(fit,fit+100).map(x=>gp.translit[x]).join("")}}
+ return{initial:{train:score(initial,m,4,fit),held:score(initial,m,fit,N),matches:truth?initial.slice(fit).filter((x,i)=>x===truth[fit+i]).length:null,coef:truthKey?initialKey.filter((x,i)=>x.a===truthKey[i].a&&x.b===truthKey[i].b).length:null},logs,best}
+ }
+ const out=[];for(let j=0;j<3;j++){const p=docs[j].slice(10000,10000+N),a=Array.from({length:q},()=>rand(29)),b=Array.from({length:q},()=>rand(29)),S=Array.from({length:q},perm),c=p.slice(0,2);for(let i=2;i<p.length;i++){let t=i%q;c.push((S[t][p[i]]+a[t]*c[i-1]+b[t]*c[i-2])%29)}const m=model(docs.filter((_,i)=>i!==j)),truth=a.map((x,i)=>({a:x,b:b[i]}));out.push({control:j,...solve(c,m,truth,p,4,20)})}
+ const original=gp.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices);const m=model(docs);const r=solve(original,m,null,null,4,20);
+ return{fit,N,K,controls:out,original:r}
+}
+const gp=JSON.parse(read('resources/liber-primus/lp2-corpus.json'));const docs=["resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"].map(p=>encode(gp,read(p)));console.log(JSON.stringify(attack(gp,docs),null,2));
