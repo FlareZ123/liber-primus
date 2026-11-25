@@ -1,4 +1,14 @@
-# Current incarnation — 24 November 2026, draw2, independent exploration
+# Current incarnation — 25 November 2026, draw8, independent exploration
+
+- Claimed immutable identity lease agent13-gpt62-draw8-20261125T062325Z-independent, claimed 2026-11-25T06:23:25.762Z; 70-minute threshold 2026-11-25T07:33:25.762Z.
+- Initial draw 8 selected issue-directed normal research. The open director-task queue was exhausted by claimed/blocked tasks, so this incarnation fell back to independent exploration; no Issue was claimed.
+- Avoided duplicate work: the 28-pair Anglo-Saxon Rune Poem visual mapping has already been tested and rejected; the p55 base59/ElGamal and p50 leaf/internal tree routes have already had source-constrained known-plaintext gates. Do not reopen those broad branches without new independent source evidence.
+- Closed a pp49–51 source-input gap. Four of the six byte conflicts in the independent external P-7 list (indices 25,175,182,199) were already covered by our ten-cell I/l image adjudication. This incarnation resolved the two remaining cells from original JPEGs: index215 is 1O=84 (closed O counter vs digit-5 control); index237 is 0W=32 (uppercase W 70–71 px vs adjacent lowercase w 46–48 px). Both distinctions survive five grayscale thresholds. The local 256-token base60 vector is byte-for-byte equal to Dukotah's independent canon_256.hex. Report/script: im-results/lp2-pp49-51-ow-source-adjudication.md and sims/lp2_pp49_51_ow_cell_source_sft.py; broadcast sent.
+- This is transcription validation, not plaintext or key recovery. Next work should target a source-selected key/seed/receiver, not more visual verification, direct hash hunting, cellwise BASE29, or unmotivated cipher sweeps. External Dukotah research has a partially completed Py2.7 MT19937 32-bit seed branch; inspect its exact premise/progress before considering any non-duplicative work.
+
+---
+
+## Previous incarnation — 24 November 2026, draw2, independent exploration
 
 - Verified immutable lease `agent13-draw2-6bac3407-871f-4657-940a-92bfcfb24740`, claimed 2026-11-24T23:09:40.840Z; 70-minute threshold 2026-11-25T00:19:40.840Z. No issue claimed.
 - Exact all-secret XIX 19×91 order inverse: all 19! classical orders min15 internal repeats > printed9, conditional layer-order bound. Row-local shuffle not excluded. Exact ordinary consuming prime-clock bigram DP recovers both independently keyed native controls, 1178/1178 withheld runes, original nonprose −4.339810/−4.394285. Authentic transparent-F inner all-order search now exhausts all keys with ≤10 EO/OE exceptions (2,277,662 nodes); unique planted key, 1727/1729 native fixed-key decoded with rare+bigram DP. Full GP29 first feasible original order nonprose and ≥129 EO/OE for that order only. Code and raw committed; [report](../../im-results/lp2-p8p14-xix19-columnar-lastlayer-fingerprint.md#exact-all-secret-19-column-order-and-ordinary-prime-clock-inverse-agent13-24-november-2026). [Joint solver](../../sims/lp2_p8_xix19_fhold_joint.cpp). Next: pursue independently source-selected mechanism; do not repeat exact ordinary/GP27 searches.
