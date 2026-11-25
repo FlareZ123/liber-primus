@@ -31,10 +31,33 @@ function experiment(grid,corpus,solved){
   let j=0;const plant=controls.map(p=>p===0?0:mod(p+key[j++%112]));
   const positive=legal(plant,key,[0]);if(positive.prefix!==controls.length)throw Error('control failed');
   const raw=whole.map((v,i)=>mod(v-key[i%112]));
-  const chapterStarts=[0,3,8,15,23,27,33,40,54];
-  const chapters=chapterStarts.map((p,i)=>{const cc=corpus.pages.filter(x=>x.page>=p&&x.page<(chapterStarts[i+1]??56)).flatMap(x=>x.indices);return {start:p,n:cc.length,allphase:legal(cc,key,Array.from({length:112},(_,i)=>i))}});
-  details.push({name,first16:order.slice(0,16),edges,WE:paths.find(x=>x.word==='WE'),MUST:paths.find(x=>x.word==='MUST'),paths,exitCount:allOrbits.filter(x=>x.exit).length,cycles:[...new Set(allOrbits.filter(x=>!x.exit).map(x=>x.cycle.slice().sort((a,b)=>a-b).join(',')))],key,positive,wholeFixed:legal(whole,key,[0]),wholeAllPhase:legal(whole,key,Array.from({length:112},(_,i)=>i)),ordinaryIoc:ioc(raw),ordinaryPrefix:raw.slice(0,50).map(x=>corpus.translit[x]).join(' '),chapters})
+  const physicalStarts=[0,3,8,15,23,27,33,40,54];
+  const physicalRanges=physicalStarts.map((p,i)=>{const cc=corpus.pages.filter(x=>x.page>=p&&x.page<(physicalStarts[i+1]??56)).flatMap(x=>x.indices);return {start:p,n:cc.length,allphase:legal(cc,key,Array.from({length:112},(_,i)=>i))}});
+  details.push({name,first16:order.slice(0,16),edges,WE:paths.find(x=>x.word==='WE'),MUST:paths.find(x=>x.word==='MUST'),paths,exitCount:allOrbits.filter(x=>x.exit).length,cycles:[...new Set(allOrbits.filter(x=>!x.exit).map(x=>x.cycle.slice().sort((a,b)=>a-b).join(',')))],key,positive,wholeFixed:legal(whole,key,[0]),wholeAllPhase:legal(whole,key,Array.from({length:112},(_,i)=>i)),ordinaryIoc:ioc(raw),ordinaryPrefix:raw.slice(0,50).map(x=>corpus.translit[x]).join(' '),physicalRanges})
  }
  return {words,details}
 }
 console.log(JSON.stringify(experiment(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
+
+function terminal(grid,corpus,solved){
+ const tokens=grid.pages.flatMap(p=>p.tokens),alpha=grid.alphabet.replace("f",""),tile=[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12];
+ const order=Array.from({length:7},(_,b)=>tile.map(i=>(2+4*b+(i>>2))*8+2+i%4)).flat();
+ const key=order.map(i=>(alpha.indexOf(tokens[i][0])*59+alpha.indexOf(tokens[i][1]))%29);
+ const seq=x=>[...x.source_text].map(r=>corpus.runes.indexOf(r)).filter(v=>v>=0);
+ const native=solved.sections.filter(x=>x.name!=="p57_parable").map(seq);
+ const unigram=Array(29).fill(1),bigram=Array.from({length:29},()=>Array(29).fill(0.5));
+ for(const p of native){p.forEach(x=>unigram[x]++);for(let i=1;i<p.length;i++)bigram[p[i-1]][p[i]]++}
+ const sum=a=>a.reduce((x,y)=>x+y,0);const u=unigram.map(x=>Math.log(x/sum(unigram))),b=bigram.map(a=>a.map(x=>Math.log(x/sum(a))));
+ const mod=x=>(x%29+29)%29;
+ function encrypt(p,start){let j=start;return p.map(x=>{if(x===0)return 0;const z=mod(x+key[j]);j=(j+1)%112;return z})}
+ function solve(cipher,starts){const best=[];let total=0n;for(const start of starts){let states=new Map([[start*30+29,{j:start,last:29,n:1n,score:0,p:[]}]]);
+ for(const v of cipher){const next=new Map();for(const st of states.values()){
+ const put=(p,j)=>{const id=j*30+p,score=st.score+(st.last===29?u[p]:b[st.last][p]),old=next.get(id);if(!old)next.set(id,{j,last:p,n:st.n,score,p:[...st.p,p]});else{old.n+=st.n;if(score>old.score){old.score=score;old.p=[...st.p,p]}}};
+ if(v===0)put(0,st.j);const p=mod(v-key[st.j]);if(p!==0)put(p,(st.j+1)%112);
+ }states=next;if(!states.size)break}
+ if(states.size){const n=[...states.values()].reduce((x,y)=>x+y.n,0n);total+=n;const top=[...states.values()].sort((x,y)=>y.score-x.score)[0];if(encrypt(top.p,start).some((v,i)=>v!==cipher[i])||top.p.length!==cipher.length)throw Error("replay");best.push({start,n:n.toString(),score:top.score/cipher.length,p:top.p})}}
+ best.sort((a,b)=>b.score-a.score);return {total:total.toString(),survivingStarts:best.map(x=>({start:x.start,n:x.n,score:x.score})),best:best[0]??null}}
+ const target=corpus.pages.filter(x=>x.page>=54&&x.page<56).flatMap(x=>x.indices);const p57=seq(solved.sections.find(x=>x.name==="p57_parable"));const control=Array.from({length:4},()=>p57).flat().slice(0,target.length);const ctl=solve(encrypt(control,37),Array.from({length:112},(_,i)=>i));const out=solve(target,Array.from({length:112},(_,i)=>i));const plain=out.best?.p.map(x=>corpus.translit[x]).join(" ");const correctness=ctl.best?.p.filter((x,i)=>x===control[i]).length;
+ return {targetLength:target.length,control:{total:ctl.total,survivingStarts:ctl.survivingStarts,bestCorrect:correctness,score:ctl.best?.score},target:{total:out.total,survivingStarts:out.survivingStarts,best:out.best&&{start:out.best.start,score:out.best.score,plain},fixedOriginLegal:out.survivingStarts.some(x=>x.start===0)},nativeScore:control.reduce((acc,p,i)=>acc+(i?b[control[i-1]][p]:u[p]),0)/control.length}
+}
+console.log(JSON.stringify(terminal(read('resources/liber-primus/lp2-grid-256.json'),read('resources/liber-primus/lp2-corpus.json'),read('resources/external/relikd-solved-gp29-native-v1.json')),null,2));
