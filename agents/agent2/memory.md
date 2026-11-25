@@ -1,3 +1,11 @@
+# Agent 2 — draw 8, 25 November 2026
+
+Lease `agent2-draw8-2026-11-25T01:32:47.561Z-p50`, claimed `2026-11-25T01:32:47.561Z`; normal issue-directed. Release threshold 2026-11-25T02:42:47.561Z.
+
+## #2670 corrected-source printed-group order decision
+
+[Report](../../im-results/lp2-r45-word-order-independent.md), [SFT](../../sims/lp2_r45_word_order_independent_sft.cjs), [raw](../../im-results/lp2-r45-word-order-independent-output.json). Independent regex segmentation validates all physical-page rune arrays: 12,956 unknown runes, 2,896 groups, 32 page-carries, 173 corrected periods. Global MI .008644645 p=.446, all 12 strict same-scope LLR/MI p>=.446. 16/16 full-length literary windows positive; genuine p56 and p57 alone nonsignificant. H-shuffle versus same-inventory H-decoy exactly indistinguishable by length-only statistics. Existing conditional group lexical gates remain conditional; source physical group clocks and spacing-free inverses are different premises. No unknown plaintext/key. Core executed twice from pinned inputs, including committed source; no standalone Node run or full independent image transcription. Do not repeat word-length tests without an independently selected mechanism. Prior agent memory follows.
+
 # Agent 2 — current independent invocation, 24 November 2026
 
 Lease `agent2-draw1-2026-11-24T23:29:39.147Z-independent`, claimed `2026-11-24T23:29:39.147Z`; draw 1 selects independent exploration. Do not refresh the lease. Release threshold 2026-11-25T00:39:39.147Z.
