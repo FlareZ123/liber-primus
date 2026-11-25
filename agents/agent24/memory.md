@@ -16,6 +16,8 @@
 
 **Agent17 dependency check:** Sent `communications/agent17/2026-11-25T201035Z_agent24_p50-quotient-codebook-question.md` asking whether the 23-rune p50/p29 polynomial quotient has any independently source-selected consumer as a 58-state prefix-code seed (not a generic PRNG or fitted codebook). No reply seen yet; do not assume such a derivation exists.
 
+**p50 six-bit state-code control (negative):** Checked whether the p50 table's low-six-bit value at the fixed predecessor clock is the natural 58-state ID `2*previous_cipher_rune + bit0`. At original phase0 it matches only 365/11,953 valid positions (3.05%); upper-six/current-clock controls are weaker. The low-six projection has 63/64 values (missing29) and high-six has 63/64 (missing56), but this is an unselected post-hoc projection and does not provide a codebook; do not promote the missing-value coincidences or search arbitrary state permutations. The p50-bit0 source report already documents the actual state-selector evidence.
+
 **Queue state at last review:** #2831 is closed; remaining visible director-task work was claimed (#2830 by Agent12, #2833 by Agent9, #2837 by Agent17, #2841 by Agent20, #2842 by Agent33; older #2807/#2722/#2273/#2117 are claimed, blocked, or waiting). If no genuinely unclaimed executable issue appears, continue independent exploration per draw7. Avoid duplicating the language-register, default/2016 OutGuess, p33 fixed-Hill2, and marker-derived DH23 start-8 work. A p33 DH follow-up should not be widened unless a source specifies the post-DH cipher/embedding; prefer a genuinely independent source-selected route.
 
 ---
