@@ -515,26 +515,47 @@ function solveFullPermutation(basis) {
   const pi = [0, ...values];
   return new Set(pi).size === 29 ? pi : null;
 }
-function findPermutationCompletions(basis) {
+function findPermutationCompletions(basis, maximumFree = 3) {
   const pivots = new Set(basis.map(row => row.pivot));
   const free = Array.from({ length: 28 }, (_, i) => i).filter(i => !pivots.has(i));
-  if (free.length > 2) return { assignments: 0, solutions: [] };
+  if (free.length > maximumFree) return { assignments: 0, solutions: [] };
+  const rows = basis.map(entry => ({
+    pivot: entry.pivot,
+    rhs: entry.row[28],
+    coefficients: free.map(column => entry.row[column])
+  }));
   const solutions = [];
   let assignments = 0;
-  const secondLimit = free.length > 1 ? 29 : 1;
-  for (let a = 0; a < 29; a++) {
-    for (let b = 0; b < secondLimit; b++) {
-      assignments++;
-      const values = new Array(28).fill(0);
-      if (free.length > 0) values[free[0]] = a;
-      if (free.length > 1) values[free[1]] = b;
-      for (const row of basis) {
-        let value = row.row[28];
-        for (const column of free) value = mod(value - row.row[column] * values[column]);
-        values[row.pivot] = value;
+  const values = new Uint8Array(28);
+  const used = new Uint8Array(29);
+  const freeCount = free.length;
+  const aLimit = 29, bLimit = freeCount > 1 ? 29 : 1, cLimit = freeCount > 2 ? 29 : 1;
+  for (let a = 0; a < aLimit; a++) {
+    for (let b = 0; b < bLimit; b++) {
+      for (let c = 0; c < cLimit; c++) {
+        assignments++;
+        used.fill(0);
+        used[0] = 1;
+        const freeValues = [a, b, c];
+        let valid = true;
+        for (let i = 0; i < freeCount; i++) {
+          const value = freeValues[i];
+          if (value === 0 || used[value]) { valid = false; break; }
+          used[value] = 1;
+          values[free[i]] = value;
+        }
+        if (!valid) continue;
+        for (const row of rows) {
+          let value = row.rhs;
+          for (let i = 0; i < freeCount; i++) {
+            value = mod(value - row.coefficients[i] * freeValues[i]);
+          }
+          if (used[value]) { valid = false; break; }
+          used[value] = 1;
+          values[row.pivot] = value;
+        }
+        if (valid) solutions.push([0, ...Array.from(values)]);
       }
-      const pi = [0, ...values];
-      if (new Set(pi).size === 29) solutions.push(pi);
     }
   }
   return { assignments, solutions };
@@ -552,12 +573,14 @@ function testMappedDivinity() {
   }
   let triples = 0, quads = 0, quintupleChecks = 0;
   let fullRank4 = 0, validPi4 = 0, fullRank5 = 0, validPi5 = 0;
-  let rank26CompletionStates = 0, completionAssignments = 0;
+  let rank25CompletionStates = 0, rank26CompletionStates = 0, completionAssignments = 0;
   let bestCoverage = 0, bestUnique = 0;
   const rank4 = {}, rank5 = {};
-  const fourStates = [];
+  const fourStates = new Map();
+  const rank5States = new Map();
   const completionSeen = new Set();
   const completionFindings = [];
+  const signature = basis => basis.map(row => row.pivot + ":" + row.row.join(",")).join("|");
   for (const pair of pairs) for (const d of D.out) {
     const merged = A.ops.combine(pair, d.basis);
     if (!merged) continue;
@@ -571,35 +594,41 @@ function testMappedDivinity() {
         fullRank4++;
         if (solveFullPermutation(next)) validPi4++;
       }
-      fourStates.push(next);
+      const sig = signature(next);
+      if (!fourStates.has(sig)) fourStates.set(sig, next);
     }
   }
-  for (const state of fourStates) {
+  for (const state of fourStates.values()) {
     for (const f of F.out) {
       const next = A.ops.combine(state, f.basis);
       if (!next) continue;
       quintupleChecks++;
       rank5[next.length] = (rank5[next.length] || 0) + 1;
       if (next.length === 28) fullRank5++;
-      if (next.length === 26) rank26CompletionStates++;
-      const completion = findPermutationCompletions(next);
-      completionAssignments += completion.assignments;
-      for (const pi of completion.solutions) {
-        const signature = pi.join(",");
-        if (completionSeen.has(signature)) continue;
-        completionSeen.add(signature);
-        validPi5++;
-        const key = divinity.map(symbol => pi[symbol]);
-        const decoded = CIPHER.map(cipher => decodeWithDictionary(cipher, pi, key));
-        const covered = decoded.filter(candidates => candidates.length > 0).length;
-        const unique = decoded.filter(candidates => candidates.length === 1).length;
-        if (covered > bestCoverage || (covered === bestCoverage && unique > bestUnique)) {
-          bestCoverage = covered;
-          bestUnique = unique;
-        }
-        if (completionFindings.length < 10) {
-          completionFindings.push({ pi, key, covered, unique, candidateCounts: decoded.map(candidates => candidates.length) });
-        }
+      const sig = signature(next);
+      if (!rank5States.has(sig)) rank5States.set(sig, next);
+    }
+  }
+  for (const next of rank5States.values()) {
+    if (next.length === 25) rank25CompletionStates++;
+    if (next.length === 26) rank26CompletionStates++;
+    const completion = findPermutationCompletions(next, 3);
+    completionAssignments += completion.assignments;
+    for (const pi of completion.solutions) {
+      const piSignature = pi.join(",");
+      if (completionSeen.has(piSignature)) continue;
+      completionSeen.add(piSignature);
+      validPi5++;
+      const key = divinity.map(symbol => pi[symbol]);
+      const decoded = CIPHER.map(cipher => decodeWithDictionary(cipher, pi, key));
+      const covered = decoded.filter(candidates => candidates.length > 0).length;
+      const unique = decoded.filter(candidates => candidates.length === 1).length;
+      if (covered > bestCoverage || (covered === bestCoverage && unique > bestUnique)) {
+        bestCoverage = covered;
+        bestUnique = unique;
+      }
+      if (completionFindings.length < 10) {
+        completionFindings.push({ pi, key, covered, unique, candidateCounts: decoded.map(candidates => candidates.length) });
       }
     }
   }
@@ -619,6 +648,9 @@ function testMappedDivinity() {
     rank5,
     fullRank5,
     validPi5,
+    uniqueFourStates: fourStates.size,
+    uniqueRank5States: rank5States.size,
+    rank25CompletionStates,
     rank26CompletionStates,
     completionAssignments,
     bestCoverage,
