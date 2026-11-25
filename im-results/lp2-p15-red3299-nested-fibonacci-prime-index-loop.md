@@ -44,7 +44,27 @@ This is an exact, reproducible **structural discovery** beyond the previously es
 
 **The source does not explicitly command this two-rightward traversal, application of `π` twice, or use of 90/463 as a rune-decoding key.** Its low arithmetic complexity is a reason to explore the route; it is not a discovery-adjusted statistical proof of deliberate design. Source-selected prime indices may explain *where* to look for a key or ciphertext but supply no authenticated *how* to transform GP29 runes into plaintext.
 
-A simple consumer has already been explored elsewhere: the authentic solved-p56 prime-totient cipher with all start indices0–463 and every plaintext-F skip history, on all nine original unknown LP2 chapters, yields no complete plaintext (see [complete all-464 inverses](lp2-prime-totient-all464-true-Fbranch-original-complete-inverses.md)). Thus choosing **463** as an unmodified prime-totient start is not a justified next experiment. The next material advance must specify a first-party extraction or receiver rule for the original 2838/90/463/3299 loop and independently predict a **second rune passage**; do not fit a new cipher to the upper p15 heading's proposed text.
+A simple consumer has already been explored elsewhere: the authentic solved-p56 prime-totient cipher with all start indices0–463 and every plaintext-F skip history, on all nine original unknown LP2 chapters, yields no complete plaintext (see [complete all-464 inverses](lp2-prime-totient-all464-true-Fbranch-original-complete-inverses.md)). Thus choosing **463** as an unmodified prime-totient start is not a justified next experiment. ## Direct source-local receiver decision — Agent50, 25 November, Director #2671
+
+The nested loop identifies the red prime as a **prime-indexed prime**, not merely a member of a twin pair:
+
+`q_n = p_(p_n), q_90 = p_463 = 3299`.
+
+The two-right original cell 2838 independently gives `p_90=3301−2838=463`. Prime-indexed primes are a standard period-appropriate sequence, explicitly defined in [Bayless, Klyve & Oliveira e Silva (2013)](https://math.colgate.edu/~integers/n43/n43.pdf); this independent mathematical definition does not prove the author intended the sequence. The original infinity mark below the grid motivates continuation, and the solved p56 consuming prime-minus-one receiver provides an authentic LP2 operation. Thus the most direct specific nested-index test uses the standard sequence from **q90 forward** (not the previous ordinary consecutive-prime sweep or the later twin-prime stream). This differs from the historical p15 Fibonacci index schedule and is a candidate operation, not a primary instruction.
+
+The [pre-original freeze](../workplace/p15-nested-superprime-receiver-freeze.md) and [SFT](../sims/lp2_p15_nested_superprime_fhold_original_sft.cjs) were committed before the target result. The exact fixed configuration is increasing n, GP29 indices, key (q_n−1) mod29, encryption sign+, literal plaintext F emits 0 and holds; no fitted phase, sign, or boundaries. Start at p15 local offset9, the red lower rubric immediately below the original infinity drawing. The remaining150 p15 runes form the prefix; p16–22 (1744 runes) are a disjoint heldout continuation. This is supported by source geography, not an assumed known heading plaintext.
+
+The first 16 q terms are
+
+`3299,3319,3407,3469,3517,3559,3593,3637,3733,3761,3911,3943,4027,4091,4133,4153`.
+
+The corresponding GP29 shifts are
+
+`21,12,13,17,7,20,25,11,20,19,24,27,24,1,14,5`.
+
+**Original result: 117/150 prefix runes feasible, zero paths at source p15 local index126** (receiver-relative zero-based index117). Exact dynamic programming over every F-hold history has peak four distinct consuming pointers and empty terminal set. No partial path can extend to the disjoint holdout, independent of language or word boundaries. The original 85-rune p56 authenticated ordinary prime receiver re-encrypts exactly with its 84 consumed shifts. All nine native solved-text controls, 2,979 runes total, retain the true consuming state under the new q90 stream; multiple possible terminal paths mean this is reachability calibration, not unique plaintext recovery.
+
+**Disposition:** retire this one source-motivated superprime/p56 receiver. No first-party instruction selects a different receiver or connects the nested ranks to original unknown plaintext. The known authentic BASE29 command is a positive-integer formatting operation, not a typed cipher interface for 90 or463; the equality `π(3301)=464=16×29` supplies a possible rectangular dimension but no source-selected cell mapping, phase, or transformation. Do not use it to tune another key search. The exact numerical identities survive; no unknown LP2 plaintext or authentic key does.
 
 ## Reproduce
 
