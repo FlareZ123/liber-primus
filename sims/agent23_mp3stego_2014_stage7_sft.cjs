@@ -220,7 +220,7 @@ function summarizeOutput(dir, inputName) {
   }
   const stage7Candidates = ["33011033", "3301", "Interconnectedness"]
     .map((password, i) => decodeCandidate("stage7", stage7, password, i));
-  const instarCandidates = ["3301", "The Instar Emergence", "Parable 1,595,277,641"]
+  const instarCandidates = ["3301", "The Instar Emergence", "761", "1595277641", "Parable 1,595,277,641"]
     .map((password, i) => decodeCandidate("761", instar, password, i));
   const allCandidates = stage7Candidates.concat(instarCandidates);
 
@@ -250,7 +250,7 @@ function summarizeOutput(dir, inputName) {
     },
     interpretation: allCandidates.some(x => x.output.exists && x.output.bytes > 0)
       ? "At least one source-selected password produced non-empty decoder output. Inspect its bytes and plaintext before classifying it as a payload."
-      : "No non-empty MP3Stego output was recovered from either original audio under the six source-selected passwords. This does not exclude an unlocated password or other steganography."
+      : "No non-empty MP3Stego output was recovered from either original audio under the eight source-selected passwords. This does not exclude an unlocated password or other steganography."
   }, null, 2));
 })().catch(err => {
   console.error(err && err.stack ? err.stack : String(err));
