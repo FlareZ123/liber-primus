@@ -1,0 +1,2599 @@
+{
+  "scope": {
+    "bound": 16257,
+    "cap": 16634,
+    "maxLen": 375,
+    "chapPages": [
+      0,
+      3,
+      8,
+      15,
+      23,
+      27,
+      33,
+      40,
+      54,
+      56
+    ],
+    "small": 137,
+    "large": 29,
+    "rows": 118
+  },
+  "p56": {
+    "runes": 85,
+    "consumed": 84,
+    "starts": 3787,
+    "exact": true
+  },
+  "summary": [
+    {
+      "sign": 1,
+      "total": 118,
+      "impossible": [],
+      "minimum": [
+        {
+          "start": 7153,
+          "end": 7447,
+          "length": 294,
+          "chapter": 27,
+          "F": 8,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 39,
+              "first": 23
+            },
+            {
+              "sign": -1,
+              "starts": 22,
+              "first": 921
+            }
+          ]
+        },
+        {
+          "start": 1685,
+          "end": 1828,
+          "length": 143,
+          "chapter": 3,
+          "F": 1,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 272,
+              "first": 47
+            },
+            {
+              "sign": -1,
+              "starts": 227,
+              "first": 449
+            }
+          ]
+        },
+        {
+          "start": 8190,
+          "end": 8328,
+          "length": 138,
+          "chapter": 33,
+          "F": 2,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 418,
+              "first": 25
+            },
+            {
+              "sign": -1,
+              "starts": 418,
+              "first": 90
+            }
+          ]
+        },
+        {
+          "start": 12399,
+          "end": 12522,
+          "length": 123,
+          "chapter": 40,
+          "F": 1,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 419,
+              "first": 13
+            },
+            {
+              "sign": -1,
+              "starts": 506,
+              "first": 31
+            }
+          ]
+        },
+        {
+          "start": 1111,
+          "end": 1294,
+          "length": 183,
+          "chapter": 3,
+          "F": 7,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 432,
+              "first": 123
+            },
+            {
+              "sign": -1,
+              "starts": 489,
+              "first": 4
+            }
+          ]
+        },
+        {
+          "start": 3232,
+          "end": 3487,
+          "length": 255,
+          "chapter": 8,
+          "F": 10,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 449,
+              "first": 41
+            },
+            {
+              "sign": -1,
+              "starts": 391,
+              "first": 91
+            }
+          ]
+        },
+        {
+          "start": 1914,
+          "end": 2008,
+          "length": 94,
+          "chapter": 8,
+          "F": 0,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 598,
+              "first": 31
+            },
+            {
+              "sign": -1,
+              "starts": 717,
+              "first": 13
+            }
+          ]
+        },
+        {
+          "start": 6183,
+          "end": 6339,
+          "length": 156,
+          "chapter": 23,
+          "F": 4,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 659,
+              "first": 45
+            },
+            {
+              "sign": -1,
+              "starts": 491,
+              "first": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "sign": -1,
+      "total": 118,
+      "impossible": [],
+      "minimum": [
+        {
+          "start": 7153,
+          "end": 7447,
+          "length": 294,
+          "chapter": 27,
+          "F": 8,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 39,
+              "first": 23
+            },
+            {
+              "sign": -1,
+              "starts": 22,
+              "first": 921
+            }
+          ]
+        },
+        {
+          "start": 1685,
+          "end": 1828,
+          "length": 143,
+          "chapter": 3,
+          "F": 1,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 272,
+              "first": 47
+            },
+            {
+              "sign": -1,
+              "starts": 227,
+              "first": 449
+            }
+          ]
+        },
+        {
+          "start": 3232,
+          "end": 3487,
+          "length": 255,
+          "chapter": 8,
+          "F": 10,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 449,
+              "first": 41
+            },
+            {
+              "sign": -1,
+              "starts": 391,
+              "first": 91
+            }
+          ]
+        },
+        {
+          "start": 8190,
+          "end": 8328,
+          "length": 138,
+          "chapter": 33,
+          "F": 2,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 418,
+              "first": 25
+            },
+            {
+              "sign": -1,
+              "starts": 418,
+              "first": 90
+            }
+          ]
+        },
+        {
+          "start": 1111,
+          "end": 1294,
+          "length": 183,
+          "chapter": 3,
+          "F": 7,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 432,
+              "first": 123
+            },
+            {
+              "sign": -1,
+              "starts": 489,
+              "first": 4
+            }
+          ]
+        },
+        {
+          "start": 6183,
+          "end": 6339,
+          "length": 156,
+          "chapter": 23,
+          "F": 4,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 659,
+              "first": 45
+            },
+            {
+              "sign": -1,
+              "starts": 491,
+              "first": 8
+            }
+          ]
+        },
+        {
+          "start": 12399,
+          "end": 12522,
+          "length": 123,
+          "chapter": 40,
+          "F": 1,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 419,
+              "first": 13
+            },
+            {
+              "sign": -1,
+              "starts": 506,
+              "first": 31
+            }
+          ]
+        },
+        {
+          "start": 9229,
+          "end": 9341,
+          "length": 112,
+          "chapter": 33,
+          "F": 1,
+          "results": [
+            {
+              "sign": 1,
+              "starts": 684,
+              "first": 4
+            },
+            {
+              "sign": -1,
+              "starts": 558,
+              "first": 45
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "start": 154,
+      "end": 275,
+      "length": 121,
+      "chapter": 0,
+      "F": 6,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3158,
+          "first": 6
+        },
+        {
+          "sign": -1,
+          "starts": 3350,
+          "first": 4
+        }
+      ]
+    },
+    {
+      "start": 275,
+      "end": 297,
+      "length": 22,
+      "chapter": 0,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8586,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 8763,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 297,
+      "end": 350,
+      "length": 53,
+      "chapter": 0,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8156,
+          "first": 9
+        },
+        {
+          "sign": -1,
+          "starts": 7418,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 350,
+      "end": 394,
+      "length": 44,
+      "chapter": 0,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5848,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 6044,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 394,
+      "end": 434,
+      "length": 40,
+      "chapter": 0,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9627,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 9174,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 434,
+      "end": 531,
+      "length": 97,
+      "chapter": 0,
+      "F": 6,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6255,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 5941,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 1025,
+      "end": 1046,
+      "length": 21,
+      "chapter": 3,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 11049,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 10609,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 1046,
+      "end": 1067,
+      "length": 21,
+      "chapter": 3,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10695,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 10007,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 1067,
+      "end": 1111,
+      "length": 44,
+      "chapter": 3,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3350,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 3243,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 1111,
+      "end": 1294,
+      "length": 183,
+      "chapter": 3,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 432,
+          "first": 123
+        },
+        {
+          "sign": -1,
+          "starts": 489,
+          "first": 4
+        }
+      ]
+    },
+    {
+      "start": 1659,
+      "end": 1685,
+      "length": 26,
+      "chapter": 3,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6270,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 6492,
+          "first": 4
+        }
+      ]
+    },
+    {
+      "start": 1685,
+      "end": 1828,
+      "length": 143,
+      "chapter": 3,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 272,
+          "first": 47
+        },
+        {
+          "sign": -1,
+          "starts": 227,
+          "first": 449
+        }
+      ]
+    },
+    {
+      "start": 1914,
+      "end": 2008,
+      "length": 94,
+      "chapter": 8,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 598,
+          "first": 31
+        },
+        {
+          "sign": -1,
+          "starts": 717,
+          "first": 13
+        }
+      ]
+    },
+    {
+      "start": 2008,
+      "end": 2094,
+      "length": 86,
+      "chapter": 8,
+      "F": 6,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4318,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 4329,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 2094,
+      "end": 2148,
+      "length": 54,
+      "chapter": 8,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3968,
+          "first": 5
+        },
+        {
+          "sign": -1,
+          "starts": 4017,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 2148,
+      "end": 2326,
+      "length": 178,
+      "chapter": 8,
+      "F": 8,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1815,
+          "first": 40
+        },
+        {
+          "sign": -1,
+          "starts": 1578,
+          "first": 80
+        }
+      ]
+    },
+    {
+      "start": 2326,
+      "end": 2437,
+      "length": 111,
+      "chapter": 8,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1895,
+          "first": 13
+        },
+        {
+          "sign": -1,
+          "starts": 2077,
+          "first": 11
+        }
+      ]
+    },
+    {
+      "start": 2437,
+      "end": 2503,
+      "length": 66,
+      "chapter": 8,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5117,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 5107,
+          "first": 5
+        }
+      ]
+    },
+    {
+      "start": 2503,
+      "end": 2571,
+      "length": 68,
+      "chapter": 8,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4306,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 4632,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 2571,
+      "end": 2578,
+      "length": 7,
+      "chapter": 8,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12561,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 12578,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 2578,
+      "end": 2666,
+      "length": 88,
+      "chapter": 8,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1138,
+          "first": 8
+        },
+        {
+          "sign": -1,
+          "starts": 1346,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 2666,
+      "end": 2690,
+      "length": 24,
+      "chapter": 8,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 11405,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 10829,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 2690,
+      "end": 2793,
+      "length": 103,
+      "chapter": 8,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5168,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 5799,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 2793,
+      "end": 2824,
+      "length": 31,
+      "chapter": 8,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5536,
+          "first": 8
+        },
+        {
+          "sign": -1,
+          "starts": 5566,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 2824,
+      "end": 2833,
+      "length": 9,
+      "chapter": 8,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 13145,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 13506,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 2945,
+      "end": 3003,
+      "length": 58,
+      "chapter": 8,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5181,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 5188,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3003,
+      "end": 3017,
+      "length": 14,
+      "chapter": 8,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12455,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 11808,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3017,
+      "end": 3038,
+      "length": 21,
+      "chapter": 8,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10322,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9819,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3038,
+      "end": 3144,
+      "length": 106,
+      "chapter": 8,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1964,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 2147,
+          "first": 23
+        }
+      ]
+    },
+    {
+      "start": 3144,
+      "end": 3187,
+      "length": 43,
+      "chapter": 8,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 7341,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 6775,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 3187,
+      "end": 3211,
+      "length": 24,
+      "chapter": 8,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10135,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9875,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3211,
+      "end": 3232,
+      "length": 21,
+      "chapter": 8,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9867,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 10375,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3232,
+      "end": 3487,
+      "length": 255,
+      "chapter": 8,
+      "F": 10,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 449,
+          "first": 41
+        },
+        {
+          "sign": -1,
+          "starts": 391,
+          "first": 91
+        }
+      ]
+    },
+    {
+      "start": 3487,
+      "end": 3494,
+      "length": 7,
+      "chapter": 8,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12751,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 12665,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 3494,
+      "end": 3558,
+      "length": 64,
+      "chapter": 8,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1924,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 1661,
+          "first": 7
+        }
+      ]
+    },
+    {
+      "start": 3849,
+      "end": 3884,
+      "length": 35,
+      "chapter": 15,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9117,
+          "first": 5
+        },
+        {
+          "sign": -1,
+          "starts": 8640,
+          "first": 5
+        }
+      ]
+    },
+    {
+      "start": 3884,
+      "end": 4007,
+      "length": 123,
+      "chapter": 15,
+      "F": 5,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1005,
+          "first": 10
+        },
+        {
+          "sign": -1,
+          "starts": 1075,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 4007,
+      "end": 4093,
+      "length": 86,
+      "chapter": 15,
+      "F": 5,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3059,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 3041,
+          "first": 15
+        }
+      ]
+    },
+    {
+      "start": 4093,
+      "end": 4134,
+      "length": 41,
+      "chapter": 15,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4420,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 4873,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 4134,
+      "end": 4148,
+      "length": 14,
+      "chapter": 15,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9774,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9833,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 4148,
+      "end": 4196,
+      "length": 48,
+      "chapter": 15,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3082,
+          "first": 8
+        },
+        {
+          "sign": -1,
+          "starts": 3080,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 4196,
+      "end": 4246,
+      "length": 50,
+      "chapter": 15,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4574,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 5008,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 4246,
+      "end": 4373,
+      "length": 127,
+      "chapter": 15,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5576,
+          "first": 15
+        },
+        {
+          "sign": -1,
+          "starts": 4575,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 4373,
+      "end": 4488,
+      "length": 115,
+      "chapter": 15,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1971,
+          "first": 29
+        },
+        {
+          "sign": -1,
+          "starts": 2169,
+          "first": 32
+        }
+      ]
+    },
+    {
+      "start": 4488,
+      "end": 4609,
+      "length": 121,
+      "chapter": 15,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6634,
+          "first": 6
+        },
+        {
+          "sign": -1,
+          "starts": 6584,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 4609,
+      "end": 4714,
+      "length": 105,
+      "chapter": 15,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1638,
+          "first": 3
+        },
+        {
+          "sign": -1,
+          "starts": 1247,
+          "first": 5
+        }
+      ]
+    },
+    {
+      "start": 4714,
+      "end": 4783,
+      "length": 69,
+      "chapter": 15,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8401,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 7871,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 5342,
+      "end": 5410,
+      "length": 68,
+      "chapter": 15,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5320,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 5497,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 5410,
+      "end": 5478,
+      "length": 68,
+      "chapter": 15,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4232,
+          "first": 3
+        },
+        {
+          "sign": -1,
+          "starts": 4109,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 5478,
+      "end": 5492,
+      "length": 14,
+      "chapter": 15,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9790,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 9743,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 5842,
+      "end": 5870,
+      "length": 28,
+      "chapter": 23,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10052,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 10608,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 5870,
+      "end": 5907,
+      "length": 37,
+      "chapter": 23,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12264,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 12236,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 5907,
+      "end": 6028,
+      "length": 121,
+      "chapter": 23,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 696,
+          "first": 11
+        },
+        {
+          "sign": -1,
+          "starts": 770,
+          "first": 11
+        }
+      ]
+    },
+    {
+      "start": 6028,
+      "end": 6183,
+      "length": 155,
+      "chapter": 23,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1603,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 1658,
+          "first": 28
+        }
+      ]
+    },
+    {
+      "start": 6183,
+      "end": 6339,
+      "length": 156,
+      "chapter": 23,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 659,
+          "first": 45
+        },
+        {
+          "sign": -1,
+          "starts": 491,
+          "first": 8
+        }
+      ]
+    },
+    {
+      "start": 6339,
+      "end": 6456,
+      "length": 117,
+      "chapter": 23,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 2417,
+          "first": 9
+        },
+        {
+          "sign": -1,
+          "starts": 2639,
+          "first": 27
+        }
+      ]
+    },
+    {
+      "start": 6693,
+      "end": 6874,
+      "length": 181,
+      "chapter": 27,
+      "F": 8,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1392,
+          "first": 78
+        },
+        {
+          "sign": -1,
+          "starts": 1270,
+          "first": 24
+        }
+      ]
+    },
+    {
+      "start": 6874,
+      "end": 6990,
+      "length": 116,
+      "chapter": 27,
+      "F": 8,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 7279,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 6741,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 6990,
+      "end": 6997,
+      "length": 7,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 13066,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 12979,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 6997,
+      "end": 7088,
+      "length": 91,
+      "chapter": 27,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1005,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 988,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 7088,
+      "end": 7106,
+      "length": 18,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8695,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 9301,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7106,
+      "end": 7142,
+      "length": 36,
+      "chapter": 27,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10146,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 10495,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7142,
+      "end": 7153,
+      "length": 11,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10931,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 10788,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7153,
+      "end": 7447,
+      "length": 294,
+      "chapter": 27,
+      "F": 8,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 39,
+          "first": 23
+        },
+        {
+          "sign": -1,
+          "starts": 22,
+          "first": 921
+        }
+      ]
+    },
+    {
+      "start": 7447,
+      "end": 7484,
+      "length": 37,
+      "chapter": 27,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8388,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 8950,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7484,
+      "end": 7509,
+      "length": 25,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6730,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 6711,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 7509,
+      "end": 7523,
+      "length": 14,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 10476,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9785,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 7523,
+      "end": 7539,
+      "length": 16,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9043,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9047,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7539,
+      "end": 7582,
+      "length": 43,
+      "chapter": 27,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5763,
+          "first": 8
+        },
+        {
+          "sign": -1,
+          "starts": 5886,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 7582,
+      "end": 7608,
+      "length": 26,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6508,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 6547,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7608,
+      "end": 7691,
+      "length": 83,
+      "chapter": 27,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 2193,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 1861,
+          "first": 41
+        }
+      ]
+    },
+    {
+      "start": 7691,
+      "end": 7699,
+      "length": 8,
+      "chapter": 27,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12063,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 12688,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7699,
+      "end": 7760,
+      "length": 61,
+      "chapter": 27,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8049,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 8109,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 7760,
+      "end": 7801,
+      "length": 41,
+      "chapter": 27,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9459,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9826,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 7801,
+      "end": 7872,
+      "length": 71,
+      "chapter": 27,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1402,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 1506,
+          "first": 10
+        }
+      ]
+    },
+    {
+      "start": 8184,
+      "end": 8190,
+      "length": 6,
+      "chapter": 33,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 13593,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 13533,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 8190,
+      "end": 8328,
+      "length": 138,
+      "chapter": 33,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 418,
+          "first": 25
+        },
+        {
+          "sign": -1,
+          "starts": 418,
+          "first": 90
+        }
+      ]
+    },
+    {
+      "start": 8328,
+      "end": 8385,
+      "length": 57,
+      "chapter": 33,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6207,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 6092,
+          "first": 4
+        }
+      ]
+    },
+    {
+      "start": 8385,
+      "end": 8423,
+      "length": 38,
+      "chapter": 33,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 7740,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 7888,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 8423,
+      "end": 8477,
+      "length": 54,
+      "chapter": 33,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5210,
+          "first": 3
+        },
+        {
+          "sign": -1,
+          "starts": 5386,
+          "first": 5
+        }
+      ]
+    },
+    {
+      "start": 8477,
+      "end": 8513,
+      "length": 36,
+      "chapter": 33,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4761,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 4308,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 9229,
+      "end": 9341,
+      "length": 112,
+      "chapter": 33,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 684,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 558,
+          "first": 45
+        }
+      ]
+    },
+    {
+      "start": 9669,
+      "end": 9715,
+      "length": 46,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5674,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 5842,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 9715,
+      "end": 9736,
+      "length": 21,
+      "chapter": 40,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8071,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 7516,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 9736,
+      "end": 9805,
+      "length": 69,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1401,
+          "first": 16
+        },
+        {
+          "sign": -1,
+          "starts": 1577,
+          "first": 12
+        }
+      ]
+    },
+    {
+      "start": 9805,
+      "end": 9869,
+      "length": 64,
+      "chapter": 40,
+      "F": 6,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9739,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9660,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 9869,
+      "end": 9884,
+      "length": 15,
+      "chapter": 40,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 9931,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 9312,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 9884,
+      "end": 9955,
+      "length": 71,
+      "chapter": 40,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5351,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 5134,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 9955,
+      "end": 10069,
+      "length": 114,
+      "chapter": 40,
+      "F": 5,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 2220,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 1960,
+          "first": 14
+        }
+      ]
+    },
+    {
+      "start": 10069,
+      "end": 10211,
+      "length": 142,
+      "chapter": 40,
+      "F": 5,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 986,
+          "first": 5
+        },
+        {
+          "sign": -1,
+          "starts": 989,
+          "first": 84
+        }
+      ]
+    },
+    {
+      "start": 10211,
+      "end": 10279,
+      "length": 68,
+      "chapter": 40,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5001,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 5217,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 10279,
+      "end": 10320,
+      "length": 41,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 7093,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 7015,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 10320,
+      "end": 10449,
+      "length": 129,
+      "chapter": 40,
+      "F": 9,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4439,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 4505,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 10449,
+      "end": 10473,
+      "length": 24,
+      "chapter": 40,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 13996,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 14219,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 10473,
+      "end": 10516,
+      "length": 43,
+      "chapter": 40,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6958,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 6747,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 10516,
+      "end": 10568,
+      "length": 52,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4688,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 4367,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 10568,
+      "end": 10599,
+      "length": 31,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8456,
+          "first": 3
+        },
+        {
+          "sign": -1,
+          "starts": 8230,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 10599,
+      "end": 10741,
+      "length": 142,
+      "chapter": 40,
+      "F": 8,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 2072,
+          "first": 2
+        },
+        {
+          "sign": -1,
+          "starts": 2260,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 10741,
+      "end": 10869,
+      "length": 128,
+      "chapter": 40,
+      "F": 7,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3316,
+          "first": 6
+        },
+        {
+          "sign": -1,
+          "starts": 3121,
+          "first": 15
+        }
+      ]
+    },
+    {
+      "start": 10869,
+      "end": 10973,
+      "length": 104,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1453,
+          "first": 13
+        },
+        {
+          "sign": -1,
+          "starts": 1485,
+          "first": 10
+        }
+      ]
+    },
+    {
+      "start": 10973,
+      "end": 11063,
+      "length": 90,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 2213,
+          "first": 26
+        },
+        {
+          "sign": -1,
+          "starts": 2569,
+          "first": 29
+        }
+      ]
+    },
+    {
+      "start": 11063,
+      "end": 11139,
+      "length": 76,
+      "chapter": 40,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4652,
+          "first": 6
+        },
+        {
+          "sign": -1,
+          "starts": 4479,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 11139,
+      "end": 11276,
+      "length": 137,
+      "chapter": 40,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 905,
+          "first": 11
+        },
+        {
+          "sign": -1,
+          "starts": 933,
+          "first": 40
+        }
+      ]
+    },
+    {
+      "start": 11276,
+      "end": 11296,
+      "length": 20,
+      "chapter": 40,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 7903,
+          "first": 3
+        },
+        {
+          "sign": -1,
+          "starts": 7946,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 11526,
+      "end": 11571,
+      "length": 45,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4458,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 4566,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11571,
+      "end": 11588,
+      "length": 17,
+      "chapter": 40,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 8786,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 8716,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11588,
+      "end": 11675,
+      "length": 87,
+      "chapter": 40,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 4343,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 4278,
+          "first": 3
+        }
+      ]
+    },
+    {
+      "start": 11675,
+      "end": 11783,
+      "length": 108,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 1044,
+          "first": 9
+        },
+        {
+          "sign": -1,
+          "starts": 1060,
+          "first": 6
+        }
+      ]
+    },
+    {
+      "start": 11783,
+      "end": 11793,
+      "length": 10,
+      "chapter": 40,
+      "F": 0,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 11316,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 11709,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11793,
+      "end": 11817,
+      "length": 24,
+      "chapter": 40,
+      "F": 3,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 14985,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 14587,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11817,
+      "end": 11829,
+      "length": 12,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 11976,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 11957,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11829,
+      "end": 11885,
+      "length": 56,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6763,
+          "first": 4
+        },
+        {
+          "sign": -1,
+          "starts": 6277,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 11885,
+      "end": 11941,
+      "length": 56,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 3329,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 3502,
+          "first": 2
+        }
+      ]
+    },
+    {
+      "start": 11941,
+      "end": 11976,
+      "length": 35,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 5799,
+          "first": 14
+        },
+        {
+          "sign": -1,
+          "starts": 5918,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 12284,
+      "end": 12370,
+      "length": 86,
+      "chapter": 40,
+      "F": 5,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6520,
+          "first": 1
+        },
+        {
+          "sign": -1,
+          "starts": 6890,
+          "first": 0
+        }
+      ]
+    },
+    {
+      "start": 12370,
+      "end": 12399,
+      "length": 29,
+      "chapter": 40,
+      "F": 2,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 12303,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 11748,
+          "first": 1
+        }
+      ]
+    },
+    {
+      "start": 12399,
+      "end": 12522,
+      "length": 123,
+      "chapter": 40,
+      "F": 1,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 419,
+          "first": 13
+        },
+        {
+          "sign": -1,
+          "starts": 506,
+          "first": 31
+        }
+      ]
+    },
+    {
+      "start": 12522,
+      "end": 12597,
+      "length": 75,
+      "chapter": 40,
+      "F": 4,
+      "results": [
+        {
+          "sign": 1,
+          "starts": 6335,
+          "first": 0
+        },
+        {
+          "sign": -1,
+          "starts": 6255,
+          "first": 8
+        }
+      ]
+    }
+  ],
+  "inputBlobShas": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-ink-annotations.json": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6",
+    "resources/liber-primus/lp2-punctuation-identity.json": "96409ec38f8fbbb19f8e47aaf48ff2bf1788a99e",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
