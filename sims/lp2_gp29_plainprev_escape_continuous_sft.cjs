@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
 const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',randomStarts=1}={}){
+function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refineSweeps=12,wide=false,scope='chapter',randomStarts=1,emSteps=4,emSchedule=[.8,.5,.2,.05],useEM=true}={}){
  const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
  const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
@@ -57,10 +57,40 @@ function experiment(raw,{width=64,count=3,startPlant=0,originalTest=false,refine
   }
   return {K,history,score:best/N};
  }
+ function softEM(frames,initial,schedule,steps){
+  const K=initial.slice(),history=[],H=A*A*A;
+  function expectation(eps){
+   const low=eps/A,high=1-eps,C=new Float64Array(H);let ll=0;
+   for(const f of frames){
+    const d=f.d,N=d.length,alpha=new Float64Array((N+1)*A),scales=new Float64Array(N);alpha[0]=1;
+    for(let i=0;i<N;i++){
+     const off=i*A,next=off+A,di=d[i],Bmat=i===0?null:B;
+     for(let q=0;q<A;q++){const a=alpha[off+q];if(a===0)continue;const t=q*A,m=rows[K[q]][di];for(let p=0;p<A;p++)alpha[next+p]+=a*(Bmat?Bmat[t+p]:U[p])*low;alpha[next+m]+=a*(Bmat?Bmat[t+m]:U[m])*high;}
+     let z=0;for(let p=0;p<A;p++)z+=alpha[next+p];assert(z>0,"zero scale");scales[i]=z;ll+=Math.log(z);for(let p=0;p<A;p++)alpha[next+p]/=z;
+    }
+    let beta=new Float64Array(A).fill(1),tmp=new Float64Array(A);
+    for(let i=N-1;i>=0;i--){
+     const di=d[i],scale=scales[i],off=i*A,Bmat=i===0?null:B;
+     for(let q=0;q<A;q++){const t=q*A,m=rows[K[q]][di],base=(q*A+di)*A,a=alpha[off+q];let z=0;
+      for(let p=0;p<A;p++){const v=(Bmat?Bmat[t+p]:U[p])*beta[p]*(low+(p===m?high:0))/scale;z+=v;C[base+p]+=a*v;}
+      tmp[q]=z;
+     }
+     const x=beta;beta=tmp;tmp=x;
+    }
+   }
+   return {ll,C};
+  }
+  for(const eps of schedule)for(let t=0;t<steps;t++){
+   const {ll,C}=expectation(eps);let changes=0;
+   for(let q=0;q<A;q++){const base=q*A*A;let best=-Infinity,winner=K[q];for(let k=0;k<812;k++){let v=0;const row=rows[k];for(let d=0;d<A;d++)v+=C[base+d*A+row[d]];if(v>best+1e-12){best=v;winner=k;}}if(winner!==K[q])changes++;K[q]=winner;}
+   history.push({eps,step:t+1,ll:ll/sum(frames.map(f=>f.d.length)),changes});if(!changes)break;
+  }
+  return {K,history};
+ }
  let seed=0x15a3301;function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0}
  function key(){return Array.from({length:A},(_,q)=>{const c=Array.from({length:A},(_,p)=>p).sort((a,b)=>Math.abs(B[q*A+a]-.00664)-Math.abs(B[q*A+b]-.00664));return 28*c[rng()%5]+rng()%28})}
  function plant(donor,K){let pos=donor.length-16000;return original.map(f=>{const P=donor.slice(pos,pos+f.d.length);pos+=P.length;assert(P.length===f.d.length,"donor length");return {page:f.page,iv:f.iv,parts:f.parts,P,d:encode(P,K)}})}
- function evaluate(frames,truth){const tr=frames.filter(isTrain),r=solve(chunks(tr),width,truth),starts=[{name:"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];let opt=null,initial=null,details=[];for(const st of starts){const t=refine(tr,st.K,{sweeps:refineSweeps,wide});details.push({name:st.name,score:t.score,history:t.history});if(!opt||t.score>opt.score){opt=t;initial=st.K;}}r.K=opt.K;
+ function evaluate(frames,truth){const tr=frames.filter(isTrain),r=solve(chunks(tr),width,truth),starts=[{name:"page-F-initializer",K:r.K.slice()},...Array.from({length:randomStarts},(_,i)=>({name:"random-"+i,K:Array.from({length:A},()=>rng()%812)}))];let opt=null,initial=null,details=[];for(const st of starts){const em=useEM?softEM(tr,st.K,emSchedule,emSteps):{K:st.K,history:[]};const t=refine(tr,em.K,{sweeps:refineSweeps,wide});details.push({name:st.name,score:t.score,em:em.history,history:t.history});if(!opt||t.score>opt.score){opt=t;initial=st.K;}}r.K=opt.K;
   function evalpart(F){let n=0,s=0,correct=0,repeats=0,used=new Set();for(const f of F){const P=decode(f.d,r.K);assert(encode(P,r.K).join()===f.d.join(),"replay");n+=P.length;s+=score(P);repeats+=f.d.filter(x=>!x).length;if(f.P){correct+=P.filter((p,i)=>p===f.P[i]).length;used.add(0);for(let i=0;i<f.P.length-1;i++)used.add(f.P[i]);}}return {n,repeats,gain:s/n,correct:F[0].P?correct:null,usedRows:truth?used.size:null,keyRows:truth?[...used].filter(q=>truth[q]===r.K[q]).length:null,preview:F.slice(0,2).map(f=>decode(f.d,r.K).slice(0,80).map(p=>alphabet[p]).join(""))}}
   return {key:r.K,initial,refinement:opt.history,details,truth,train:evalpart(frames.filter(isTrain)),held:evalpart(frames.filter(f=>!isTrain(f))),trace:r.trace}
  }
