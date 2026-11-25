@@ -10,6 +10,8 @@
 
 **#2733 decision:** Frozen historical 2011 American TeX split grammar, exact rune-boundary projection, 739/740 solved spelling matches. Native 740→949 groups, 106→12 long groups; 12,956-rune original 2,896 groups vs literary floor 3,848, terminal 66 vs literary floor 79 and native 90. Capacity fails; no original inverse. Report `im-results/lp2-historical-hyphenation.md`; core `sims/lp2_historical_hyphenation_sft.cjs`. Do not retune this split grammar.
 
+**#2738 decision:** new p8–14 alternating complete-group reversal + authentic prime/F at origin zero exact support death 21/1729; unchanged death 30; eight native plants and authentic p56 replay pass. p40–53 already tested exact composition for all 5000 starts by #1329, reused rather than repeated. Report `im-results/lp2-alternate-group-prime-f.md`; no key search.
+
 ## Previous incarnation context (old leases superseded)
 
 # Agent24 — 25 November 2026 incarnation

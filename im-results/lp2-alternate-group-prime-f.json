@@ -1,0 +1,243 @@
+{
+  "source": {
+    "runes": 12956,
+    "groups": 2896
+  },
+  "p56Auth": {
+    "runes": 85,
+    "replay": true,
+    "reach": {
+      "firstImpossible": null,
+      "reachablePrefix": 85,
+      "maxStates": 5,
+      "complete": true,
+      "endStates": [
+        81,
+        82,
+        83,
+        84,
+        85
+      ]
+    }
+  },
+  "plants": [
+    {
+      "name": "0_warning",
+      "runes": 184,
+      "groups": 45,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 184,
+        "maxStates": 6,
+        "complete": true,
+        "endStates": [
+          180,
+          181
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 141,
+        "reachablePrefix": 141,
+        "maxStates": 7,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "0_welcome",
+      "runes": 515,
+      "groups": 124,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 515,
+        "maxStates": 8,
+        "complete": true,
+        "endStates": [
+          503,
+          504,
+          505
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 12,
+        "reachablePrefix": 12,
+        "maxStates": 1,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "0_wisdom",
+      "runes": 157,
+      "groups": 31,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 157,
+        "maxStates": 4,
+        "complete": true,
+        "endStates": [
+          152,
+          153
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 8,
+        "reachablePrefix": 8,
+        "maxStates": 1,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "0_koan_1",
+      "runes": 780,
+      "groups": 208,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 780,
+        "maxStates": 11,
+        "complete": true,
+        "endStates": [
+          763,
+          764,
+          767,
+          768
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 222,
+        "reachablePrefix": 222,
+        "maxStates": 8,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "runes": 755,
+      "groups": 181,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 755,
+        "maxStates": 7,
+        "complete": true,
+        "endStates": [
+          743,
+          744,
+          745,
+          746,
+          747
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 193,
+        "reachablePrefix": 193,
+        "maxStates": 4,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "jpg107-167",
+      "runes": 319,
+      "groups": 88,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 319,
+        "maxStates": 5,
+        "complete": true,
+        "endStates": [
+          316,
+          317
+        ]
+      },
+      "wrong": {
+        "firstImpossible": 17,
+        "reachablePrefix": 17,
+        "maxStates": 1,
+        "complete": false
+      },
+      "replay": true
+    },
+    {
+      "name": "jpg229",
+      "runes": 89,
+      "groups": 18,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 89,
+        "maxStates": 3,
+        "complete": true,
+        "endStates": [
+          85,
+          87
+        ]
+      },
+      "wrong": {
+        "firstImpossible": null,
+        "reachablePrefix": 89,
+        "maxStates": 4,
+        "complete": true,
+        "endStates": [
+          85,
+          86,
+          87
+        ]
+      },
+      "replay": true
+    },
+    {
+      "name": "p57_parable",
+      "runes": 95,
+      "groups": 20,
+      "correct": {
+        "firstImpossible": null,
+        "reachablePrefix": 95,
+        "maxStates": 7,
+        "complete": true,
+        "endStates": [
+          91,
+          92
+        ]
+      },
+      "wrong": {
+        "firstImpossible": null,
+        "reachablePrefix": 95,
+        "maxStates": 7,
+        "complete": true,
+        "endStates": [
+          92
+        ]
+      },
+      "replay": true
+    }
+  ],
+  "p8_14": {
+    "runes": 1729,
+    "groups": 383,
+    "alternating": {
+      "firstImpossible": 21,
+      "reachablePrefix": 21,
+      "maxStates": 1,
+      "complete": false
+    },
+    "unchanged": {
+      "firstImpossible": 30,
+      "reachablePrefix": 30,
+      "maxStates": 1,
+      "complete": false
+    }
+  },
+  "p40_53": {
+    "reused": true,
+    "report": "im-results/lp2-word-reverse-prime-ftransparent-original-gate.md",
+    "prior": "chapter-local one-based even reversal, all 5000 origins including zero have no complete legal path; previous original report also includes both polarities"
+  },
+  "gatePass": false,
+  "sourceBlobs": {
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "im-results/lp2-word-reverse-prime-ftransparent-original-gate.md": "f50ea592fbcd35ba3c27c7d5b09b6080bf2c4b3f"
+  }
+}
