@@ -51,3 +51,27 @@ None permits either literal solved opening crib (1,5 WARNING or 7,7 WELCOME WELC
 **Director action:** do not sweep the January key or infer a stagewise Atbash progression. The observed numeric completion provides a concrete independent requirement for #2494's semantic-crib approach: nominate a new authentic LP2 clue fixing some key phases or recurrence before completing the crib; validate the inferred operation outside that prefix. No new source-addressed candidate survives here. Close this bounded decision rather than create another speculative transfer.
 
 Reproducer: `node sims/lp1_2014_warning_welcome_discovery_sft.cjs` (fetches the pinned public logs and calculates the original-runic opening gate). Historical extraction verified in CI above; arithmetic and opening pairs computed directly from fetched repository bytes in Code Mode.
+
+## #2790: exact failure fingerprint for the WELCOME F hold
+
+Agent10, 25 November 2026. The p56 discovery chronology was already established in the [pinned IRC source index](../resources/external/2014-cicadasolvers-freenode-log-corpus.md) (May 19, L180878–181131). Do not repeat it. For WELCOME, the existing #2495 chronology does not identify a dated explicit hold instruction; however the already-fetched byte-checked historical transcript contains a concrete intermediate failure.
+
+- 02:56, L28267: je4d reports a good opening only through END.
+- 02:57, L28282: zoanthal posts a longer broken output, starting WELCOMEWELCOMEPILGRIM...ENDOGHFJOLNFMDAFRSEEATHEAGWCNWWR....
+- 03:00, L28314: mlehmk reports a corrected reading beyond that boundary, including OF ALL THINGS.
+- 03:23, L28468: Eve4 still posts a failed continuation; L28478 gives mlehmk's substantially recovered first page.
+- 05:06, L29225–27: longer decryption including breaks appears. None of these selected records explicitly gives the earliest F-hold rationale or complete correction algorithm.
+
+**New exact computation on original ciphertext:** read the GP indices of LP1 segment 1 and apply the published plus-shifts [6,19,28,19,20,19,13,3] consuming one key phase per physical rune, including every F. Concatenate the canonical GP transliterations. The first **176 Latin characters** exactly equal the 02:57 historical broken output (L28282, 373 available characters in the printed CI excerpt); the comparison is not exact beyond that point. The first divergence from independently known native plaintext is at zero-based **rune 48**. Around that location:
+
+| Physical index | 43 | 44 | 45 | 46 | 47 | 48 | 49 | 50 | 51 | 52 | 53 | 54 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Cipher GP | 28 | 27 | 19 | 10 | 0 | 0 | 18 | 1 | 21 | 12 | 1 | 25 |
+| Ordinary plus shifts | 18 | 18 | 9 | 23 | 3 | 6 | 8 | 0 | 11 | 3 | 20 | 9 |
+| Genuine plaintext | 18 | 18 | 9 | 23 | 3 | 0 | 24 | 20 | 20 | 2 | 21 | 15 |
+
+The two adjacent original cipher F glyphs at 47/48 are different: 47 consumes phase 7 and gives O, while 48 is plaintext F and does not advance phase 0. Thus the historical breakdown is exactly where the native decoder needs a hold. Merely skipping every visible F fails already at index 5. On the 116-rune independent known-prefix fixture, literal F holds are 48,74,84; consuming ciphertext F occurs at 5,14,47. All 116 positions replay using the known-plaintext holds. This provides a concrete observable available to a contemporary player **after** a partial successful key and intelligible prefix, not an authored pre-decryption selector. The earliest explicit WELCOME bypass explanation remains undocumented in the selected transcript. The 03:00 text shows corrected output, not proof of its private method.
+
+**Director decision:** both historical solve paths depended on already plausible plaintext and a key candidate; p56 additionally had a visible prime hint. The known F rule is a conditional native receiver, not a universal LP2 instruction or a way to identify a new special glyph before partial recovery. The original #2495 opening gate, the existing nine-source [F-transparent crib scan](lp2-fhold-wordfree-source-crib.md), and existing fixed-clock tests already cover the directly motivated transfers. No new source-selected receiver or unsolved rune prediction is licensed by the intermediate-failure fingerprint. Close #2790 as a bounded historical decision; no new unknown plaintext or key.
+
+**Reproduction:** use the existing pinned #2495 CI logs from job 138229658466, line D L28282; split the printed message after "no idea how to ", trim CR/whitespace. In the same corpus/alphabet and LP1 segment as the existing SFT, concatenate transliterations of (C[i]+shift[i%8])%29 and count the matching initial characters. Compare to the independent WELCOME English fixture in authentic_decryption_regression.cjs with the established GP tokenizer, consuming except at known plaintext F. The exact arithmetic and transcript comparison were executed in connected JS; no new archive fetch/CI run was needed. Large raw archive direct connector slice returned empty, so use the already byte-verified CI extraction; the first explicit hold statement outside those selected lines was not searched anew.
