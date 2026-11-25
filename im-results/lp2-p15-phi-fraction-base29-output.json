@@ -1,0 +1,113 @@
+{
+  "length": 1883,
+  "digits": [
+    17,
+    26,
+    22,
+    6,
+    20,
+    6,
+    19,
+    20,
+    3,
+    8,
+    23,
+    15,
+    27,
+    27,
+    25,
+    3,
+    22,
+    16,
+    4,
+    15,
+    10,
+    18,
+    20,
+    27,
+    12,
+    7,
+    17,
+    21,
+    0,
+    17,
+    25,
+    15
+  ],
+  "ordinaryPhaseZeroIoC": 0.03428347940039607,
+  "holdPhaseZero": {
+    "ok": false,
+    "offset": 39,
+    "peak": 2
+  },
+  "holdGP29": {
+    "survivors": [],
+    "bestFailureOffset": 541,
+    "best": [
+      2659
+    ],
+    "peak": 6
+  },
+  "holdGP27": {
+    "survivors": [],
+    "bestFailureOffset": 82,
+    "best": [
+      339
+    ],
+    "peak": 3
+  },
+  "ordinaryGP27": {
+    "survivors": [],
+    "bestFailureOffset": 93,
+    "best": [
+      2324
+    ],
+    "peak": 1
+  },
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "hold": true,
+      "origin": 1033,
+      "origins": [
+        1033
+      ],
+      "trainingCorrect": 400,
+      "withheldCorrect": 380,
+      "withheldLength": 380
+    },
+    {
+      "name": "0_koan_1",
+      "hold": false,
+      "origin": 1033,
+      "origins": [
+        1033
+      ],
+      "trainingCorrect": 400,
+      "withheldCorrect": 380,
+      "withheldLength": 380
+    },
+    {
+      "name": "0_welcome",
+      "hold": true,
+      "origin": 3301,
+      "origins": [
+        3301
+      ],
+      "trainingCorrect": 400,
+      "withheldCorrect": 115,
+      "withheldLength": 115
+    },
+    {
+      "name": "0_welcome",
+      "hold": false,
+      "origin": 3301,
+      "origins": [
+        3301
+      ],
+      "trainingCorrect": 400,
+      "withheldCorrect": 115,
+      "withheldLength": 115
+    }
+  ]
+}
