@@ -1,10 +1,10 @@
 # Shared GP29 cycle-action calibration
 
-**Status: no Liber Primus plaintext or key recovered. The p54–55 calibration basis has been corrected; earlier terminal-profile results using the 49/222 + 17/86 fixture are withdrawn.** The strongest surviving result is the independently calibrated long-anchor receiver on p40–53. The red eight-rune p54 heading now supplies a concrete source-selected key candidate, but its numeric, prime-derived and alphabet-mapped interpretations have not yet been tested against the corrected body.
+**Status: no Liber Primus plaintext or key recovered. The p54–55 word-reset calibration basis is now corrected: the 48/17 JSON records physical fragments, not independent lexical words, and the earlier 49/222 + 17/86 fixture includes the red heading as body input. Both terminal profiles are withdrawn as evidence for the red-heading-key, per-word-reset model.** The strongest surviving result is the independently calibrated long-anchor receiver on p40–53. The red eight-rune p54 heading now supplies a concrete source-selected key candidate, but its numeric, prime-derived and alphabet-mapped interpretations have not yet been tested against the corrected body.
 
 ## 1. Corrected original input
 
-The previous terminal fixture did not preserve the physical page boundaries or the red/black boundary on p54.
+The legacy terminal fixture did not preserve the physical page boundaries or the red/black boundary on p54. The later 48/17 derived segmentation preserves physical fragments, but it still does not preserve the lexical carry as one word.
 
 The original corpus records p54 as 232 runes and p55 as 76 runes. Reconstructing p54 from the complete corpus sequence gives an exact 232-rune match when the legacy terminal string is completed with its omitted final group, `63g2eis46q`. The original image visually separates the red heading from the adjacent black text:
 
@@ -18,16 +18,17 @@ The raw hyphen transcription merges the red eight-rune heading with the first bl
 
 The corrected derived transcription is `resources/liber-primus/lp2-page-groups-54-55-derived.json`. It is explicitly labelled derived, records its source files and segmentation rationale, and is verified against the p54/p55 corpus rune sequences.
 
-| Segment | Groups | Runes | Use |
-|---|---:|---:|---|
-| p54 red heading | 2 | 9 | Source clue, not body training |
-| p54 body | 48 | 223 | Training |
-| p55 | 17 | 76 | Holdout only |
-| p54 body + p55 | 65 | 299 | Correct forward experiment |
+| View | Groups / runes | Correct use |
+|---|---:|---|
+| p54 red heading | 2 / 9 | Source clue, not body training |
+| p54 black-body physical fragments | 48 / 223 | Image segmentation; includes the 10-rune carry prefix |
+| p55 physical fragments | 17 / 76 | Image segmentation; includes the 1-rune carry suffix |
+| Word-reset p54 fit | 47 complete words / 213 runes + 10-rune carry prefix | Fit; prefix is constrained without revealing its final rune |
+| Word-reset holdout | 1-rune carry suffix + 16 complete p55 words / 75 runes | Score the full 11-rune carry and all 16 p55 words after freezing the action |
 
-The old `lp2-shared-gp29-q8-smt-fixtures.json` has 66 groups / 308 runes, but its first 49 training groups contain the two red heading groups and only 47 body groups (222 runes). Its 17-group holdout totals 86 runes; its first 11-rune group is the concatenation of p54's final 10-rune body group and p55's first one-rune group. It is retained as historical data but is not a valid terminal calibration. The corrected blind fixture is `im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json`, with a reproducible generator at `sims/lp2_shared_gp29_q8_terminal_fixture.py`.
+The legacy `lp2-shared-gp29-q8-smt-fixtures.json` has 66 groups / 308 runes: its 49 training groups include the two red heading groups, and its 17 holdout groups include the complete 11-rune carry plus 16 p55 words. It is not a red-heading-as-key body-only calibration. The later `lp2-shared-gp29-q8-terminal-corrected-fixtures.json` has 48 p54 and 17 p55 physical fragments; its synthetic carry prefix and suffix were encrypted as separate groups with separate starts. It is valid only for an explicitly physical-fragment-reset model, not the current per-word-reset model. The old CP-SAT run [45677161587](https://github.com/FlareZ123/liber-primus/actions/runs/45677161587) used that physical-fragment fixture and is therefore withdrawn as a word-reset calibration. Keep the fixture and generator as historical physical-fragment controls; do not reuse them for this model.
 
-Consequently, prior p54 claims based on 49/222 training groups or 17/86 holdout groups are not evidence about the physical p54 body. This includes the old terminal CP-SAT runs, terminal annealing/projection pilots, p54 fixed-source-pool fits, p54 keyed-alphabet results, and the red-heading-excluded 47-group results. The old numeric and mapped DIVINITY anchor exclusions also used an 11-rune cross-page seam as a plaintext word; those word-level contradictions and their dependent OOV branches are withdrawn. Earlier visual-chapter results not using p54/p55 are unaffected.
+Consequently, neither the 49/222 + 17/86 complete-word fixture nor the 48/17 physical-fragment fixture is evidence for the red-heading-as-key, per-word-reset p54–55 model. Withdraw the p54 terminal CP-SAT, annealing/projection, fixed-source-pool, keyed-alphabet and red-heading-excluded results that used either incorrect training/holdout interpretation. The old numeric and mapped DIVINITY exclusions also treated the red heading as body input; their dependent p54 OOV contradictions are not evidence against a red-heading key. Earlier visual-chapter results not using p54/p55 are unaffected.
 
 ## 2. Cipher model
 
@@ -37,7 +38,7 @@ The tested common-cycle hypothesis is
 C_i=\pi^{-1}\bigl(\pi(P_i)+k_{\phi_i}\pmod{29}\bigr),
 \]
 
-with one permutation \(\pi\) fixing F, a primitive period-eight shift vector, arbitrary per-word starting phases, and transparent plaintext F holds that do not advance the phase. This differs from the nonlinear-common-cycle SFT with eight independent phase permutations and a separate evolving outer permutation.
+with one permutation \(\pi\) fixing F, a primitive period-eight shift vector, arbitrary per-word starting phases, and transparent plaintext F holds that do not advance the phase. A page break does not reset a word's phase: the p54/p55 carry remains one 11-rune word. This differs from the nonlinear-common-cycle SFT with eight independent phase permutations and a separate evolving outer permutation.
 
 A useful exact representation is now implemented in `sims/lp2_shared_gp29_q8_cpsat_sft.py` as `--mode centralizer`. Choose a phase \(r\) with \(k_r\ne0\), rotate phase labels to put it at zero, and scale the alphabet coordinates so \(k_0=1\). The inverse phase maps are then powers of one 29-cycle \(g\). Conversely, every permutation commuting with a full 29-cycle is one of its powers: the centralizer of a 29-cycle is cyclic. Thus the common-cycle model can be represented exactly by one 29-cycle and seven commuting permutations, with primitive q8 enforced by requiring that at least one opposite pair \(f_j,f_{j+4}\) differs. This removes the explicit alphabet and shift variables. The implementation is not yet calibrated on the corrected profile.
 
@@ -84,9 +85,10 @@ The earlier fixed-keyword, mapped-DIVINITY, fixed keyed-alphabet and red-title t
 
 ## 5. Next discriminating experiments
 
-1. Run the direct, maps and centralizer CP-SAT representations on the corrected 48-group / 223-rune p54 body controls. First require exact oracle recovery; then require blind recovery of the hidden effective action and genuine p55 holdout prediction on both plants, with the same explicit OOV allowance.
-2. Test the three red-heading key interpretations separately on blind controls generated from the corrected 48/17 profile. For mapped shifts, normalize the hidden \(\pi\) and key together; do not leak the planted action or plaintext.
-3. Only after positive controls pass, fit the original p54 body with at most three omitted body groups. Decode p55 afterward, without using it to select the key, permutation, or word assignments.
-4. If the source-selected tests fail, retire those exact interpretations rather than expanding unconstrained keyword pools. Keep arbitrary-q8 work separate from the red8 hypotheses.
+1. Run blind controls on the exact word-reset profile: 47 complete p54 body words (213 runes), a 10-rune prefix of one 11-rune carry, then its held-out final rune plus 16 complete p55 words (75 runes). The carry must use one starting phase and continue across the physical page boundary. Require exact effective-action recovery, all training truth, and held-out truth on both plants before fitting the original.
+2. For the original prefix, use the 93 unique ten-rune prefixes from the 96 prefix-compatible length-11 dictionary forms as a necessary domain only; do not treat the final p55 rune as a separate word or phase reset.
+3. Only after both blind controls pass, fit the original 47 complete p54 words plus the carry prefix with at most three OOV complete words. Freeze the action, then score the full 11-rune carry and 16 complete p55 words. Report all candidate counts and action ambiguity; a feasible training fit alone is not a solution.
+4. Test the three red-heading key interpretations separately on the same corrected blind profile. For mapped shifts, normalize the hidden \\(\\pi\\) and key together; do not leak the planted action or plaintext.
+5. If controls fail, or the original fit has no independently predictive holdout, retire these exact interpretations rather than expanding unconstrained keyword pools. Keep arbitrary-q8 work separate from the red8 hypotheses.
 
-**Current conclusion:** the common-cycle mechanism remains a hypothesis, the p54 red eight-rune sequence is a source-derived candidate key, and no original plaintext or key has been recovered. The immediate priority is corrected-profile blind calibration followed by the red8 tests—not further searches on the superseded 49/222 terminal fixture.
+**Current conclusion:** the common-cycle mechanism remains a hypothesis, the p54 red eight-rune sequence is a source-derived candidate key, and no original plaintext or key has been recovered. The immediate priority is 47-word plus carry-prefix blind calibration followed by the red8 tests; no original p54 word-reset fit has yet been attempted.
