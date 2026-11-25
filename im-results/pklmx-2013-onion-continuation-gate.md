@@ -173,6 +173,44 @@ The screenshots show timers and, in a few images, selected options (for example,
 
 The next email specification in that README says to run a Tor-hidden TCP service and submit its onion address by an email deadline of 3 February 2013. The README explicitly says the email signature was removed; treat the service/deadline wrapper as leaked community material. The later TCP command protocol is separately preserved as a PGP-signed artifact in resources/external/2013-tcp-server-signed-source.md. The signed follow-up message “If you followed the rule but did not receive an email” is independently verified here; it tells recipients to email the organizers and make their GPG key accessible (signature time 2013-01-26 20:26:21 UTC). The later signed invitation asks three questions about privacy/anonymity, free information, and censorship. These are recruitment/selection stages, not an LP2 cipher layer.
 
+### p57 PARABLE versus the 19-question stage (Director #2805)
+
+**Decision: no source-selected one-to-one mapping.** Agent8 directly inspected all 19 archived JPEGs in the pinned [fourth-onion questions directory](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/007-fourth-onion/questions), the archive's README and signed no-email follow-up, the maintainer's original p57 image (ZIP member 74.jpg), and the canonical rune transcription. The exact source-native tokenization (literal GP chart renderings LICE, TUNNELNG, DIUINITY; normalized below) is:
+
+- LIKE THE INSTAR TUNNELING TO THE SURFACE (7 words, 30 runes)
+- WE MUST SHED OUR OWN CIRCUMFERENCES (6 words, 30 runes)
+- FIND THE DIVINITY WITHIN AND EMERGE (6 words, 28 runes)
+
+The question image inventory is 19, but neither the images nor the README establish that it is complete, the chronological delivery order, or an answer key. The README explicitly calls this private stage largely undocumented and leak-based. The numbered list above follows README order (case-insensitive filename sorting); Git tree order instead sorts uppercase ahead of lowercase, moving fFkoMPl and pAuyLPv. Neither order is selected by a first-party instruction. No screenshot displays a question ordinal, page/rune reference, or a PARABLE heading. Two display the same CGI endpoint; the visible timers are remaining time, not sequence indices.
+
+| README position | JPEG ID | Field structure | Subject |
+|---:|---|---|---|
+| 1 | 1ZND6M7 | 4 radio options | Two lake observers |
+| 2 | 4XAalwX | 8 radio options | Being versus doing |
+| 3 | 8MThJBS | 8 radio options | A not true |
+| 4 | 9lUH3e5 | 8 radio options | Liar sentence |
+| 5 | DVy7AQu | free text | Reality and Facebook News Feed |
+| 6 | F5eP2Ju | 8 radio options | Color perception |
+| 7 | fFkoMPl | 8 radio options | Observation changes object |
+| 8 | GzIwotK | free text | Model of addition |
+| 9 | HvxZwi1 | 8 radio options | Belief filtering sensations |
+| 10 | JduaCax | 8 radio options | Same river twice |
+| 11 | pAuyLPv | 8 radio options | Voice in head |
+| 12 | PWAalbD | 8 radio options | Studying after a test |
+| 13 | rrGRCxE | 8 radio options | Repeating decimal equals one |
+| 14 | UBF6D1h | 8 radio options | No truth |
+| 15 | UMdFAJH | free text | Shamir security principle |
+| 16 | x04ouOT | free text | Pronoun referent |
+| 17 | yhDfKUb | 8 radio options | All things true |
+| 18 | yu7uEET | 8 radio options | Grass/light/mind |
+| 19 | zSJim03 | free text | Function returning function returning 3301 |
+
+The three field types have multiplicities 1/13/5, not 7/6/6. No source-defined three-part partition is marked. All 13 eight-option screens repeat the same choices in the same order: True, False, Indeterminate, Meaningless, Self-Referential, Game Rule, Strange Loop, None of the Above. The three visibly selected buttons are in positions 4, 7 and 17 (Strange Loop, True, None of the Above); they are unsubmitted or participant selections, not authenticated correct answers. Five free-text fields are empty; the first four-option field is also unselected. Thus there is no complete determinate answer sequence. Distinctive PARABLE content words INSTAR, TUNNELING, SURFACE, SHED, CIRCUMFERENCES, DIVINITY and EMERGE do not occur in the displayed question text or option labels. Generic overlap (e.g. WITHIN in the lake prompt, MUST in the logic prompt, FIND/OUR in the belief prompt) provides no bijection; the three occurrences of THE alone require a further occurrence discriminator. The thematic resemblance (self-knowledge/perception) is real but underdetermined.
+
+**Important related source link:** the archived README records cookie names 167 and 761, each carrying a 64-hex-character value. 761 is the prime-Gematria title sum and historical MP3 filename; 167 is its decimal reversal and is also prime, as independently established in [the Parable arithmetic report](../results/2013-761-parable-prime-products.md). This strengthens the historical association between the audio and private stage, conditional on the unsigned cookie transcription. It is not a new authenticated key or mapping: the record supplies no cookie semantics, request/response capture, relation to the three clause sums, or operation assigning words to questions. No cookie values were used as candidate keys.
+
+The source therefore does not fix a direction, permutation, answer encoding, or LP2 target. No original unknown ciphertext was searched; there is no deterministic held-out prediction. Close the 19-word/19-question hypothesis rather than inventing answers or testing arbitrary orderings. The established audio prime-product bridge and the distinct historical recruitment branch remain intact. A future reconsideration requires an original ordered quiz transcript or an authenticated instruction explicitly connecting the PARABLE to the quiz.
+
 ### Reproduction and interpretation
 
 Run:
