@@ -1,0 +1,339 @@
+{
+  "pageCounts": [
+    213,
+    270,
+    273,
+    265
+  ],
+  "N": 1021,
+  "keys": [
+    [
+      23,
+      10,
+      1,
+      10,
+      9,
+      10,
+      16,
+      26
+    ],
+    [
+      0,
+      10,
+      4,
+      0,
+      1,
+      19,
+      0,
+      18,
+      4,
+      18,
+      9,
+      0,
+      18
+    ]
+  ],
+  "names": [
+    "DIUINITY",
+    "FIRFUMFERENFE"
+  ],
+  "p56Control": {
+    "n": 85,
+    "exact": true,
+    "held": 1
+  },
+  "donorNames": [
+    "0_koan_1",
+    "0_loss_of_divinity"
+  ],
+  "plants": [
+    {
+      "assignment": 0,
+      "lanes": [
+        {
+          "donor": "0_koan_1",
+          "key": "DIUINITY",
+          "generated": 15,
+          "held": 8,
+          "reach": {
+            "dead": null,
+            "phases": [
+              4,
+              5,
+              6,
+              7,
+              0,
+              1,
+              2
+            ],
+            "paths": "3888",
+            "peak": 7
+          },
+          "prediction": {
+            "cut": 383,
+            "legal": true,
+            "exact": 511,
+            "heldoutExact": 128,
+            "heldoutN": 128,
+            "prefixScore": -2.325221300157222,
+            "suffixScore": -2.416484550169483
+          },
+          "wrongKey": {
+            "dead": 2,
+            "c": 4,
+            "phases": [
+              2
+            ],
+            "keyValues": [
+              4
+            ],
+            "peak": 1
+          }
+        },
+        {
+          "donor": "0_loss_of_divinity",
+          "key": "FIRFUMFERENFE",
+          "generated": 7,
+          "held": 7,
+          "reach": {
+            "dead": null,
+            "phases": [
+              8,
+              9
+            ],
+            "paths": "60",
+            "peak": 4
+          },
+          "prediction": {
+            "cut": 382,
+            "legal": true,
+            "exact": 510,
+            "heldoutExact": 128,
+            "heldoutN": 128,
+            "prefixScore": -2.798223604766759,
+            "suffixScore": -2.7637200620462647
+          },
+          "wrongKey": {
+            "dead": 94,
+            "c": 1,
+            "phases": [
+              2
+            ],
+            "keyValues": [
+              1
+            ],
+            "peak": 3
+          }
+        }
+      ]
+    },
+    {
+      "assignment": 1,
+      "lanes": [
+        {
+          "donor": "0_koan_1",
+          "key": "FIRFUMFERENFE",
+          "generated": 4,
+          "held": 8,
+          "reach": {
+            "dead": null,
+            "phases": [
+              9,
+              11
+            ],
+            "paths": "3",
+            "peak": 3
+          },
+          "prediction": {
+            "cut": 383,
+            "legal": true,
+            "exact": 511,
+            "heldoutExact": 128,
+            "heldoutN": 128,
+            "prefixScore": -2.325221300157222,
+            "suffixScore": -2.416484550169483
+          },
+          "wrongKey": {
+            "dead": 29,
+            "c": 10,
+            "phases": [
+              5
+            ],
+            "keyValues": [
+              10
+            ],
+            "peak": 1
+          }
+        },
+        {
+          "donor": "0_loss_of_divinity",
+          "key": "DIUINITY",
+          "generated": 14,
+          "held": 7,
+          "reach": {
+            "dead": null,
+            "phases": [
+              5,
+              7
+            ],
+            "paths": "240",
+            "peak": 7
+          },
+          "prediction": {
+            "cut": 382,
+            "legal": true,
+            "exact": 510,
+            "heldoutExact": 128,
+            "heldoutN": 128,
+            "prefixScore": -2.798223604766759,
+            "suffixScore": -2.7637200620462647
+          },
+          "wrongKey": {
+            "dead": 28,
+            "c": 10,
+            "phases": [
+              1
+            ],
+            "keyValues": [
+              10
+            ],
+            "peak": 2
+          }
+        }
+      ]
+    }
+  ],
+  "pads": [
+    [
+      79,
+      31
+    ],
+    [
+      230,
+      57
+    ],
+    [
+      61,
+      2
+    ],
+    [
+      47,
+      3
+    ],
+    [
+      110,
+      12
+    ],
+    [
+      7,
+      0
+    ],
+    [
+      10,
+      236
+    ],
+    [
+      16,
+      37
+    ],
+    [
+      125,
+      21
+    ],
+    [
+      26,
+      54
+    ],
+    [
+      23,
+      221
+    ],
+    [
+      47,
+      61
+    ],
+    [
+      5,
+      49
+    ],
+    [
+      93,
+      148
+    ],
+    [
+      6,
+      20
+    ],
+    [
+      395,
+      69
+    ]
+  ],
+  "original": [
+    {
+      "lane": 0,
+      "key": "DIUINITY",
+      "n": 511,
+      "dead": 5,
+      "c": 10,
+      "phases": [
+        5
+      ],
+      "keyValues": [
+        10
+      ],
+      "peak": 1,
+      "chapterOffset": 10,
+      "physicalPage": 23
+    },
+    {
+      "lane": 0,
+      "key": "FIRFUMFERENFE",
+      "n": 511,
+      "dead": 99,
+      "c": 1,
+      "phases": [
+        4
+      ],
+      "keyValues": [
+        1
+      ],
+      "peak": 2,
+      "chapterOffset": 198,
+      "physicalPage": 23
+    },
+    {
+      "lane": 1,
+      "key": "DIUINITY",
+      "n": 510,
+      "dead": 7,
+      "c": 26,
+      "phases": [
+        7
+      ],
+      "keyValues": [
+        26
+      ],
+      "peak": 1,
+      "chapterOffset": 15,
+      "physicalPage": 23
+    },
+    {
+      "lane": 1,
+      "key": "FIRFUMFERENFE",
+      "n": 510,
+      "dead": 14,
+      "c": 10,
+      "phases": [
+        1
+      ],
+      "keyValues": [
+        10
+      ],
+      "peak": 1,
+      "chapterOffset": 29,
+      "physicalPage": 23
+    }
+  ],
+  "classification": "exact exclusion of the two frozen assignments; no original language scoring"
+}
