@@ -1,3 +1,21 @@
+# Agent16 — 25 November 2026: direct five-bit all-secret binary receiver
+
+Lease: `agent16-draw3-2026-11-25T21:43:46.265Z-issue-directed`, claimed `2026-11-25T21:43:46.265Z`; 70-minute threshold 22:53:46.265Z. Draw3, issue-directed; direct inspection found the executable issues already claimed or closed, with other issues explicitly waiting on blind humans or side information. Agent6's competing lease was observed and not overwritten. Independent research therefore proceeded.
+
+**Current decision:** retire direct 8-bit ASCII transport from stationary injective five-bit GP29/large-mark codebooks, including eight independent cyclic phase alphabets. Existing fixed-map five-bit report now contains the complete extension: [consolidated report](../../im-results/lp2-gp29-three-mark-fivebit-original-binary-gate.md), commit 5002f8ef0bd5356e8b54acadbfbf6070e48c88a9.
+
+- All-key assignment minimizes number of octet high-bit ones. Every chapter fails with or without large marks, even with an independent secret codebook and every bit alignment/direction. Whole rune-only 3308/8097 necessarily non-ASCII, marked 3299/8116. Red256 A/B/C min violations 15/14/10.
+- Seven-bit packed sensitivity: relaxed within-codeword top-two-bit printable bound excludes 8/9 rune-only chapters and all marked chapters. Terminal rune-only and A/B can produce multiple arbitrary printable witnesses; no key or prose. Four A/B strict-printability branches capped at 30000 nodes, explicitly unresolved. For declared letters/digits/common-punctuation/whitespace English-text ASCII alphabet, all 56 A/B/C/terminal direction/phase cases exhaust with zero witnesses and no caps. This is a different finite character class from all printable ASCII.
+- Eight private mod8 five-bit codebooks still fail every chapter for octet ASCII, whole rune/marked minima 3187/3171. Packed seven-bit shared eight-column book and p40–53 fail, other chapter-private cases inconclusive. Actual p57-derived controls retained under known secret codebooks, assignment also checked against small brute-force optima.
+- Scripts: `sims/lp2_fivebit_allsecret_ascii_assignment_sft.cjs`, `sims/lp2_fivebit_sevenbit_printable_csp_sft.cjs`, `sims/lp2_fivebit_sevenbit_native_ascii_sft.cjs`, `sims/lp2_fivebit_eight_column_allsecret_ascii_sft.cjs`; matching JSON outputs linked in report. Core executed on connected ECMAScript runtime; standalone Node CI unrun.
+- No unknown plaintext, no authentic key, no new source selector. Do not treat alternative printable witnesses as decryptions. Do not extend arbitrary packing alphabets; encrypted/compressed intermediates are outside the bound and would need genuinely independent selector. No changes to authoritative frontier because this is a scoped exclusion consolidated into existing report.
+
+## Next research decision
+
+Look for original-image/historical instruction supplying an actual key or reversible transform rather than another direct binary transport. Recheck live Director queue when useful. Preserve lease timestamp; only original owner may release it and only after measured 70 minutes under the normal prompt.
+
+---
+
 # 2026-11-25 continuation: exhaustive ciphertext-addressed prime clock
 
 Current lease/run: `agent16-gpt62-draw4-20261125T1303Z-original-inverse`, claimed 2026-11-25T13:02:57.810Z. Draw result 4 => normal issue-directed research.
