@@ -1,0 +1,369 @@
+{
+  "batch": 3,
+  "sources": [
+    {
+      "name": "Latin Vulgate corpus/io_1.txt",
+      "count": 6
+    },
+    {
+      "name": "Latin Vulgate corpus/io_2.txt",
+      "count": 6
+    },
+    {
+      "name": "Latin Vulgate corpus/act_1.txt",
+      "count": 8
+    },
+    {
+      "name": "Latin Vulgate corpus/act_2.txt",
+      "count": 8
+    },
+    {
+      "name": "Latin Vulgate corpus/rom_1.txt",
+      "count": 7
+    },
+    {
+      "name": "Latin Vulgate corpus/rom_2.txt",
+      "count": 7
+    },
+    {
+      "name": "Beowulf Old English",
+      "count": 166
+    }
+  ],
+  "controls": [
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [
+        {
+          "name": "Beowulf Old English",
+          "start": 1249,
+          "K": [
+            [
+              27,
+              8,
+              16,
+              22,
+              21,
+              12,
+              19,
+              5,
+              28
+            ],
+            [
+              28,
+              16,
+              10,
+              27,
+              10,
+              19,
+              6,
+              12,
+              6
+            ],
+            [
+              13,
+              5,
+              8,
+              25,
+              6,
+              9,
+              18,
+              17,
+              26
+            ],
+            [
+              0,
+              3,
+              20,
+              12,
+              1,
+              1,
+              9,
+              5,
+              13
+            ]
+          ],
+          "hold": true,
+          "phase": 2,
+          "prior": [
+            24,
+            22,
+            11,
+            0,
+            24,
+            4
+          ]
+        }
+      ],
+      "full": [
+        {
+          "name": "Beowulf Old English",
+          "start": 1249,
+          "K": [
+            [
+              27,
+              8,
+              16,
+              22,
+              21,
+              12,
+              19,
+              5,
+              28
+            ],
+            [
+              28,
+              16,
+              10,
+              27,
+              10,
+              19,
+              6,
+              12,
+              6
+            ],
+            [
+              13,
+              5,
+              8,
+              25,
+              6,
+              9,
+              18,
+              17,
+              26
+            ],
+            [
+              0,
+              3,
+              20,
+              12,
+              1,
+              1,
+              9,
+              5,
+              13
+            ]
+          ],
+          "hold": true,
+          "phase": 2,
+          "prior": [
+            24,
+            22,
+            11,
+            0,
+            24,
+            4
+          ],
+          "future": [
+            6
+          ]
+        }
+      ],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [
+        {
+          "name": "Beowulf Old English",
+          "start": 41531,
+          "K": [
+            [
+              9,
+              28,
+              28,
+              0,
+              13,
+              8,
+              4,
+              7,
+              18
+            ],
+            [
+              21,
+              13,
+              17,
+              27,
+              24,
+              4,
+              15,
+              13,
+              23
+            ],
+            [
+              2,
+              9,
+              14,
+              24,
+              26,
+              26,
+              4,
+              5,
+              28
+            ],
+            [
+              3,
+              4,
+              10,
+              5,
+              4,
+              22,
+              10,
+              11,
+              11
+            ]
+          ],
+          "hold": false,
+          "phase": 1,
+          "prior": [
+            28,
+            2,
+            13,
+            7,
+            15,
+            4,
+            22
+          ]
+        }
+      ],
+      "full": [
+        {
+          "name": "Beowulf Old English",
+          "start": 41531,
+          "K": [
+            [
+              9,
+              28,
+              28,
+              0,
+              13,
+              8,
+              4,
+              7,
+              18
+            ],
+            [
+              21,
+              13,
+              17,
+              27,
+              24,
+              4,
+              15,
+              13,
+              23
+            ],
+            [
+              2,
+              9,
+              14,
+              24,
+              26,
+              26,
+              4,
+              5,
+              28
+            ],
+            [
+              3,
+              4,
+              10,
+              5,
+              4,
+              22,
+              10,
+              11,
+              11
+            ]
+          ],
+          "hold": false,
+          "phase": 1,
+          "prior": [
+            28,
+            2,
+            13,
+            7,
+            15,
+            4,
+            22
+          ],
+          "future": [
+            12
+          ]
+        }
+      ],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    }
+  ],
+  "nulls": [
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    },
+    {
+      "prefix": [],
+      "full": [],
+      "blocked": 0
+    }
+  ]
+}
