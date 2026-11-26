@@ -90,16 +90,23 @@ P + K mod29 = [15,22,16,22,21,1,4] = C.
 
 The adjacent-word construction and candidate-derived residual produce the same numbered vector. This is a conditional structural match.
 
-## Ordering control
+## Ordering control and cross-page anchor
 
-Charge all **24** permutations of the four fields `{whole Hsum, prefix Hsum, carrier GP0, suffix Hsum}` over the same 1,080 cases. Only two field orders produce any ascending run:
+Charge all **24** permutations of the four fields {whole Hsum, prefix Hsum, carrier GP0, suffix Hsum} over the same 1,080 source-native cases. The original p0 ordering is:
 
-```text
-full > prefix > carrier > suffix : p0:237 DEVOTED -> [12,13,14,15]
-full > carrier > suffix > prefix : p35:110 TOTIENT -> [9,10,11,12]
-```
+    full > prefix > carrier > suffix : p0:237 DEVOTED -> [12,13,14,15]
 
-Only the first is the source-visible layout order above, and only it matches the independently selected p0 phrase. The p35/TOTIENT alternate remains a charged rival until independently selected.
+The separate all-receiver general-English control finds the p35:110 TOTIENT candidate under:
+
+    full > carrier > suffix > prefix : p35:110 TOTIENT -> [9,10,11,12]
+
+The signed 2016 message says that "their numbers are the direction." A plausible common rule is therefore to sort the four numeric fields in ascending order, rather than insist on one fixed field order. The p0 DEVOTED fields [12,13,14,15] are already ascending in the source-visible order. For p35 TOTIENT the fields are [full=9, prefix=12, carrier=10, suffix=11]; sorting them gives [9,10,11,12], selecting DEVOTED LIBER PRIMUS IS.
+
+A separate p39 receiver supplies an independent anchor. The p55 geometry report gives 43 interior runes and a 24-rune first line; their sum is 67. The only p39 physical 2|5 receiver begins at offset 67. Its five-rune suffix has H-sum 9, uniquely among the 15 physical 2|5 receivers. Under the same one-based 2016 message map, position 9 is DEVOTED. This independently recovered p39 word pointer matches the first word selected by the p35 TOTIENT packet. See [the held-out receiver and cross-page anchor report](lp2-2016-word-index-heldout-receiver-gate.md).
+
+The p35 page is also one of the repeated cuneiform-motif pages. The full-page audit finds copies on p33, p35, p38 and p39, all in the same visible orientation; the motif does not supply a visible reversal or directional arrow. The numeric sorting rule is motivated by the 2016 signed message, not by an assumed orientation of the motif.
+
+This changes the status of p35/TOTIENT from an unsupported permutation hit to a source-constrained cross-page candidate. It is still not verified plaintext: the p35 word depends on a candidate residual, and the p35 receiver offset has not been independently selected. In particular, the tempting p55 arithmetic 76+33+1=110 is exploratory only: the p55 framing report already counts the incoming carry inside the 33 exterior runes, so the extra +1 is not independently justified. The cleaner locator is p39 offset 67 = 43+24, but even that sum remains a hypothesis rather than an explicit instruction.
 
 ## Decision
 

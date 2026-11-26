@@ -218,7 +218,131 @@ const foundHoldouts = [
   ...residualProjection(x.cipher, 'FOUND')
 }));
 
+const p55Geometry = {
+  interior: 43,
+  exterior: 33,
+  total: 76,
+  firstLine: 24,
+  incomingCarry: 1
+};
+const motifPages = [33, 35, 38, 39];
+const p39Address = p55Geometry.interior + p55Geometry.firstLine;
+const p35Address = p55Geometry.total + p55Geometry.exterior + p55Geometry.incomingCarry;
+const p39Receiver = receivers.find(r => r.page === 39 && r.start === p39Address);
+const p35Receiver = receivers.find(r => r.page === 35 && r.start === 110);
+const p39SuffixHValues = receivers.map(r => ({
+  page: r.page,
+  start: r.start,
+  suffixH: hsum(r.values.slice(2))
+}));
+const p39SuffixH = p39Receiver ? hsum(p39Receiver.values.slice(2)) : null;
+const p39SuffixHMatches = p39SuffixHValues.filter(x => x.suffixH === p39SuffixH);
+
+function sortedFieldPacket(fields) {
+  const sorted = Object.entries(fields).sort((a, b) => a[1] - b[1]);
+  const positions = sorted.map(x => x[1]);
+  return {
+    sortedFields: sorted.map(([name, value]) => ({ name, value })),
+    positions,
+    oneBasedWords: positions.every(v => v >= 1 && v <= sourceWords.length)
+      ? positions.map(v => sourceWords[v - 1])
+      : null
+  };
+}
+
+let p35TotientPacket = null;
+if (p35Receiver) {
+  const plain = gpWord('TOTIENT');
+  const key = p35Receiver.values.map((v, i) => mod(v - plain[i]));
+  const fields = {
+    full: hsum(key),
+    prefix: hsum(key.slice(0, 2)),
+    carrier: gp0(p35Receiver.values),
+    suffix: hsum(key.slice(2))
+  };
+  p35TotientPacket = {
+    page: 35,
+    start: p35Receiver.start,
+    cipher: p35Receiver.values,
+    plaintextWord: 'TOTIENT',
+    plaintext: plain,
+    residualKey: key,
+    fields,
+    sorted: sortedFieldPacket(fields)
+  };
+}
+
+let p39CipherPacket = null;
+if (p39Receiver) {
+  const fields = {
+    full: hsum(p39Receiver.values),
+    prefix: hsum(p39Receiver.values.slice(0, 2)),
+    carrier: gp0(p39Receiver.values),
+    suffix: hsum(p39Receiver.values.slice(2))
+  };
+  p39CipherPacket = {
+    page: 39,
+    start: p39Receiver.start,
+    cipher: p39Receiver.values,
+    fields,
+    sorted: sortedFieldPacket(fields),
+    suffixH: hsum(p39Receiver.values.slice(2)),
+    suffixWord: sourceWords[hsum(p39Receiver.values.slice(2)) - 1],
+    suffixHUniqueAmong15: p39SuffixHMatches.length === 1,
+    suffixHMatches: p39SuffixHMatches
+  };
+}
+
+let p0DevotedSortedPacket = null;
+if (p0DevotedReceiver) {
+  const plain = gpWord('DEVOTED');
+  const key = p0DevotedReceiver.values.map((v, i) => mod(v - plain[i]));
+  const fields = {
+    full: hsum(key),
+    prefix: hsum(key.slice(0, 2)),
+    carrier: gp0(p0DevotedReceiver.values),
+    suffix: hsum(key.slice(2))
+  };
+  p0DevotedSortedPacket = {
+    page: 0,
+    start: p0DevotedReceiver.start,
+    plaintextWord: 'DEVOTED',
+    residualKey: key,
+    fields,
+    sorted: sortedFieldPacket(fields)
+  };
+}
+
+const p55GeometryCrossPageAnchor = {
+  geometry: p55Geometry,
+  cuneiformArithmetic: {
+    '1033': '43*24+1',
+    '3301': '43*76+33'
+  },
+  candidateOffsets: {
+    p39: {
+      formula: '43+24',
+      value: p39Address,
+      receiverFound: Boolean(p39Receiver)
+    },
+    p35: {
+      formula: '76+33+1',
+      value: p35Address,
+      receiverFound: Boolean(p35Receiver),
+      caveat: 'Exploratory only: the p55 source-framing report already includes the incoming carry in the 33 exterior count, so the extra +1 is not independently justified.'
+    }
+  },
+  motifPages,
+  motifPageReceivers: receivers.filter(r => motifPages.includes(r.page))
+    .map(r => ({ page: r.page, start: r.start, cipher: r.values })),
+  p39CipherPacket,
+  p35TotientPacket,
+  p0DevotedSortedPacket,
+  interpretation: 'The p39 suffix H-sum is candidate-independent and unique among the 15 physical 2|5 receivers. It points to 2016 word 9, DEVOTED. The p35 TOTIENT candidate has full H-sum 9; sorting its four numeric fields gives positions 9..12 and DEVOTED LIBER PRIMUS IS. This is a cross-page anchor, not a verified decryption.'
+};
+
 const output = {
+  p55GeometryCrossPageAnchor,
   sourceWordCount: sourceWords.length,
   sourceWords,
   physicalTwoFiveReceiverCount: receivers.length,
