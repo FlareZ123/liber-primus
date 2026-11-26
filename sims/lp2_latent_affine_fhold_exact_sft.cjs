@@ -70,6 +70,17 @@ function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,ass
  let dualControls=0;for(let t=0;t<160;t++){const N=6+rand(18),K=1+rand(N),ends=new Uint32Array(N+1);for(let i=1;i<=N;i++){ends[i]=1;for(let l=2;l<=Math.min(6,i);l++)if(rand(2))ends[i]|=1<<(l-1)}if(K*6<N)continue;const d=dual(ends,K,6),e=exact({starts:new Uint32Array(N),ends},K,6);assert(d.lb<=e,"invalid lower bound");dualControls++}
  const idx=make(vocab),S=scan(tape,idx,CAP),K=words.length,budget=Math.floor(K*.05),all=[];
 
+
+ if(options.oovLength){
+  const N=tape.length,all=new Uint32Array(N+1),four=new Uint32Array(N+1),palette=[2,4,6,7];
+  for(let i=1;i<=N;i++){for(let a=1;a<=28;a++)all[i]|=S.E[a][i];for(const a of palette)four[i]|=S.E[a][i]}
+  const result=[];
+  for(const [name,E] of [["all28",all],["four",four]]){
+   for(const cap of [8,10,12,14,16,18,20,24]){const d=dual(E,K,cap);let e=null;if(cap===14||cap===24)e=exact({starts:new Uint32Array(N),ends:E},K,cap);result.push({name,cap,...d,exact:e})}
+  }
+  return {result,runes:N,groups:K,budget,elapsedMs:Date.now()-started};
+ }
+
  if(options.fourWitness){
   const palette=[2,4,6,7],N=tape.length,W=N+1,ends=new Uint32Array(W),INF=30000;
   for(let i=1;i<=N;i++)for(const s of palette)ends[i]|=S.E[s][i];
@@ -199,5 +210,5 @@ function experiment(raw,options={}){
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
  return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{fourWitness:process.argv.includes("--four-witness"),slopeOnly:process.argv.includes("--four-witness")||process.argv.includes("--slope")||process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),smallSlope:process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),fourSlope:process.argv.includes("--four-slope")}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{oovLength:process.argv.includes("--oov-length"),fourWitness:process.argv.includes("--four-witness"),slopeOnly:process.argv.includes("--oov-length")||process.argv.includes("--four-witness")||process.argv.includes("--slope")||process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),smallSlope:process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),fourSlope:process.argv.includes("--four-slope")}),null,2));
 module.exports={experiment};
