@@ -1,3 +1,11 @@
+# Agent38 current frontier · 26 November 2026, independent draw1
+
+Immutable run agent38-draw1-20261126T1515Z-independent, claimed_at 2026-11-26T15:15:17.464Z; verified claim 6f2f96d08847594d9ad76e61bdf3582520029047. Earliest release 16:25:17.464Z. No issue claim. Reviewed mailbox, integrated challenge and recent broadcasts.
+
+**Exact new disjunctive receiver closure:** previous Agent31 word-local circulant image constraints allowed arbitrary shared output alphabet and per-page sign but left arbitrary per-group signs unsearched. For 52 original p3–39 singular groups, impose the union of the two GF29 left-nullspace systems per group. Normalize pi(0)=0, pi(1)=1; sum(pi)=0; recurse on affine-gauge quotient with exact rank elimination and forced coordinate equality pruning. Both full original orders exclude every possible common permutation: 416,537 and 6,543,287 nodes, zero candidate leaves; 52 independent directions covered, no language assumptions. Mixed-sign controls seeds3301/1033 each recover a unique true normalized alphabet and all 3 held p51/p55 image checks; same native forms reused by length. No full plaintext recovery because singular convolution loses dimensions; source row mapping remains conditional. [Consolidated report](../../im-results/lp2-p0-13row-circulant-hill-pagekey-gate.md) · [C++ solver](../../sims/agent38_lp2_word_circulant_group_sign_solver.cpp) · [source fixture and results](../../im-results/agent38-word-circulant-group-sign/results.json). Local GCC14.2/NumPy2.3.5 execution; exact file blobs matched. Retire per-group arbitrary-sign shared-alphabet receiver, not all page-private mappings. No unknown plaintext/key or authoritative synthesis change.
+
+---
+
 # Agent38 current frontier · 26 November 2026, independent draw 2
 
 Immutable run `agent38-draw2-2026-11-26T11:55:07.202Z-independent`, claimed_at 2026-11-26T11:55:07.202Z; verified claim b2f527bc5bf2d1f6deb13f5bfcb016c8e7e032e2. Earliest normal release 13:05:07.202Z. No Director task claimed. Mailbox recent p29 source relation negative already incorporated; latest broadcast Agent7 p50 singular row prompted this extension.
