@@ -128,14 +128,36 @@ A further conditional cross-carrier check uses the natural p3–p57 row mapping:
 
 The dimension-matched linear alternative `A(55×13) × B(13×8)`, with A the opening matrix and B the p50 13×8 base60-byte block, was also tested over moduli 23, 29, 60 and 256, with natural and dot-route inner orders. The mod-29/mod-23 products do not form language; the mod-256 products are not printable. Using the resulting 8-symbol mod-29/mod-23 rows as repeating Vigenère keys on the known p56/p57 controls also fails. The 13×8/55×13 dimension match is therefore not yet an executable receiver.
 
-The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, and title-keyed transposition receivers are not. This does not exclude a more complex matrix use, but there is currently no source-selected operation that turns the 55×13 payload into an executable key schedule. Do not continue enumerating grid routes without an independent cipher instruction. Reproduction: [13×55 matrix gate](../sims/lp2_p0_13x55_matrix_gate.cjs).
+
+### Direct 55×13 title-keyed columnar transposition (Agent11, 26 November)
+
+The exact 715-rune payload after the red title and first-black-TH sentinel was arranged as 55 rows × 13 columns. A contemporary solver could plausibly take the visible 13-rune red title as a standard columnar keyword; the independently fixed 13-dot title permutation supplies a second, bounded key candidate. The test fixes the GP29 alphabet order, stable duplicate handling, and the 55×13 rectangle, then checks each key in stable ascending and reversed-stable column order, with both forward and inverse columnar transforms. No offset, phase, key fitting, row reversal or additional cipher layer is introduced.
+
+| Key | Column order | Direction | Mean English log10/quadgram | Uncorrected upper-tail p vs 5,000 random orders | Unseen quadgrams |
+|---|---|---|---:|---:|---:|
+| Raw title | Stable ascending | Inverse | −7.598483 | 0.8536 | 0.6282 |
+| Raw title | Stable ascending | Forward | −7.468880 | 0.2575 | 0.5864 |
+| Raw title | Reverse stable sort | Inverse | −7.530637 | 0.4837 | 0.6023 |
+| Raw title | Reverse stable sort | Forward | −7.477150 | 0.5585 | 0.5910 |
+| Dot-routed title | Stable ascending | Inverse | −7.541521 | 0.5517 | 0.6090 |
+| Dot-routed title | Stable ascending | Forward | −7.487233 | 0.8770 | 0.5944 |
+| Dot-routed title | Reverse stable sort | Inverse | −7.678021 | 0.9910 | 0.6463 |
+| Dot-routed title | Reverse stable sort | Forward | **−7.463768** | **0.1208** | 0.5853 |
+
+Scoring expands the GP29 digraph runes into Latin letters and uses the pinned Duko English quadgram counts (79,495 observed grams; missing-gram floor 0.01). The native positive control is the first 715 GP29 tokens greedily mapped from the solved LP1 plaintext reference: mean score **−4.560423**; all four key/order encrypt→decrypt controls recover it exactly. The inverse random-order null has min/median/max −7.766897/−7.533525/−7.305297; the forward null has −7.510383/−7.475631/−7.441823. The best fixed candidate is the dot-routed title with reverse-stable column order and the forward transform; its score is not exceptional against the random-order family and remains far below the native positive control. Its first 100 expanded letters are `EINGPUGYFNMYTPEOXNGHFAWROEGGEAAEAEOHIAIALIXDPAESXHHEBNGIAHDUEOWGETSFEOPEYTHTHIATHWNMOEEORDROELMAEDEA`.
+
+The reproducible Node 22 SFT pins corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, quadgram blob `da56c2e11e004ad24454750dba8fbe2e19abbc71`, and LP1 plaintext-reference blob `8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d`; it also asserts exact source round-trips and the native positive control. [SFT](../sims/lp2_p0_13x55_columnar_transposition_sft.cjs) · [CI run 45867896964](https://github.com/FlareZ123/liber-primus/actions/runs/45867896964).
+
+**Decision:** retire this standard keyworded columnar transposition on the 55×13 payload under the raw and dot-routed title keys, both fixed column orientations and both transform directions. The best uncorrected random-order comparison is p=0.1208 before accounting for the eight tested variants. This does not exclude a different source-selected matrix operation, but the exact partition alone does not justify more transposition variants.
+
+The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, dimension-matched linear, and direct title-keyed columnar transposition receivers are negative. This does not exclude a different source-selected matrix use, but there is currently no source-selected operation that turns the 55×13 payload into an executable key schedule. Do not continue enumerating grid or transposition variants without an independent cipher instruction. Reproduction: [13×55 matrix gate](../sims/lp2_p0_13x55_matrix_gate.cjs) · [columnar transposition SFT](../sims/lp2_p0_13x55_columnar_transposition_sft.cjs).
 
 
 ## Decisive next tests
 
-1. Reopen an E-hold, branch-coordinate fractionation, or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, or OTP tests.
+1. Reopen an E-hold, branch-coordinate fractionation, or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, OTP, or direct keyworded columnar tests.
 2. Seek a second clean, variable branch-rune symbol or another original clue that independently selects the role of the two E markers or the TH sentinel.
 3. Do not use the visible first black TH glyph to choose the Younger Futhark row order and then count the resulting 55×13 divisibility as independent confirmation.
 4. Do not repeat the Cistercian/totient arithmetic, broad branch-count scans, or arbitrary grid routes. No receiver or plaintext has been recovered.
 
-**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers and the exact common-axis coordinate-fractionation receiver fail. A reversed Younger Futhark readout gives TH and exposes an exact 13+1+55×13 partition, but the resulting simple page-key, keyed-alphabet, OTP, and transposition receivers fail, and the order is not independently selected. Retain both as unresolved structural clues; no key, reversible receiver, or plaintext has been recovered.
+**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers and the exact common-axis coordinate-fractionation receiver fail. A reversed Younger Futhark readout gives TH and exposes an exact 13+1+55×13 partition, but the resulting simple page-key, keyed-alphabet, OTP, and direct title-keyed columnar receivers fail, and the order is not independently selected. Retain both as unresolved structural clues; no key, reversible receiver, or plaintext has been recovered.
