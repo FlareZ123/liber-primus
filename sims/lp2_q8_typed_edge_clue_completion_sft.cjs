@@ -1,6 +1,6 @@
 /** #3037 exact typed-edge completion; no original ciphertext fit. */
 const fs=require("node:fs");
-function experiment(raw,profile,mode="mixed"){
+function experiment(raw,profile,mode="mixed",fixtureOptions={}){
  const S="0123456789abcdefghijklmnopqrs",L="F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA".split(" "),D=new Set(),by=Array.from({length:30},()=>[]);
  for(const l of raw.split(/\r?\n/)){const m=l.match(/^([a-z]+)\s+([0-9]+)$/);if(!m)continue;const s=m[1].toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");function go(i,w){if(i===s.length){D.add(w);return}for(let j=0;j<29;j++)if(s.startsWith(L[j],i))go(i+L[j].length,w+S[j]);if(s.startsWith("ING",i))go(i+3,w+S[21])}go(0,"")}
  for(const w of D)by[w.length].push(w);by.forEach(a=>a.sort());
@@ -66,8 +66,8 @@ function experiment(raw,profile,mode="mixed"){
  }
 
  if(mode==="fixture"){
-  const rows=[];for(let t=0;t<2;t++){
-   let seed=0x30374200+t*16,z;do{z=generate(seed++);}while(fit(z.C.slice(0,47),z.M)?.bad!==2);
+  const rows=[];for(let t=0;t<(fixtureOptions.count??2);t++){
+   let seed=(fixtureOptions.seed??0x30374200)+t*16,z;do{z=generate(seed++);}while(fit(z.C.slice(0,47),z.M)?.bad!==2);
    rows.push({seed:seed-1,tries:z.tries,pi:z.pi,k:z.k,P:z.P,C:z.C,j:z.j,H:z.H,HC:z.HC,h:z.h});
   }
   return {schema:3,dict:D.size,rows};
