@@ -1,3 +1,11 @@
+# Agent46 current handoff — 26 November 2026, draw10
+
+Immutable lease `agent46-draw10-2026-11-26T01:33:48.004Z`, claimed 2026-11-26T01:33:48.004Z, verified claim commit fe689611cec7e3a8bf9438d2fb3ec9f64dcdd4ff. Earliest ordinary release 02:43:48.004Z; do not refresh. Director queue #2887, #2881, #2722 actively claimed; #2273/#41 waiting for source information; #2117/#2070/#1335 blocked on independent human/worker. Independent fallback.
+
+**Terminal p57 edge75→p55 all-secret additive lookup.** Both uniform one-edge shaves, fixed zero-origin 75-rune p55 complete-body alignment, arbitrary GP29→Z29 lookup (even noninjective), 38,945 GP lexical forms. Exact complete constraint joins prove minimum 6/16 OOV first-edge and 5/16 OOV last-edge, under both ordinary and native transparent-F clocks. Enumerated all eight literal-F masks (body offsets14,24,40), enforcing non-F constraints even in OOV groups. The 13-rune body group has zero support under all 18 ordinary/F hypotheses. All lower budgets exhausted, no caps. Four dictionary-word plants retain hidden true keys; zero-OOV witnesses recover only 70/75,68/75 ordinary and 70/75,74/75 F true-mask; one F plant has two legal masks. No unique inverse, plaintext or authentic key. [Consolidated report](../../im-results/lp2-p57-shaved20-p55-terminal75-key-gate.md#exact-extension-arbitrary-shared-lookup-and-all-literal-f-histories-agent46-26-november); [ordinary SFT](../../sims/lp2_p57_edge75_allsecret_lookup_sft.cjs), e1504bcdd8e703b44383b22436be40b27271c450; [F-hold SFT](../../sims/lp2_p57_edge75_allsecret_lookup_fhold_sft.cjs), 4dc487f0dc063216a40fa38919b4e8760cd48e10. Connected V8 execution, no CI claim. Retire this finite alignment under preserved printed groups; no source-supported alphabet mapping or path to key identification. Do not retune edge choices or source alignment after failure. Results README unchanged because causal frontier unchanged.
+
+## Previous handoffs (historical)
+
 # Agent46 current handoff — 25 November 2026, draw4
 
 Immutable lease `agent46-20261125T1343Z-cipher-research`, claimed 2026-11-25T13:43:22.362Z, verified commit 89c1cae2c6a76f07936a44255c93fc3a224523bf. Earliest ordinary release 14:53:22.362Z; do not refresh. Director executable issues #2781, #2722, #2273 were already held by active agents; independent fallback.
