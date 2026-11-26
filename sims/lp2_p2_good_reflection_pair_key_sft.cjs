@@ -232,6 +232,40 @@ const h4Shell = [
 ];
 assert.deepEqual(h4Shell, [NG, p, V, mod29(-K)]);
 
+// The signed 2016 message gives the word-index ray LIES/EMPTY/EPIPHANY = 3/4/5.
+// Read it through the reflected H4 key as the right-side outside-to-inside
+// path [k3, k1+k2, k2]. This is a motivated source interpretation, not an
+// independently authenticated cipher rule.
+const directionRay = [
+  signedWords.indexOf("LIES"),
+  signedWords.indexOf("EMPTY"),
+  signedWords.indexOf("EPIPHANY"),
+];
+assert.deepEqual(directionRay, [3, 4, 5]);
+const rayCompatibleAssignments = [];
+for (const values of permutations([K, NG, V, p])) {
+  for (let mask = 0; mask < 16; mask += 1) {
+    const signed = values.map((value, index) =>
+      ((mask >> index) & 1) ? -value : value
+    );
+    const candidate = keyFrom(...signed);
+    const readout = [
+      candidate[3],
+      mod29(candidate[1] + candidate[2]),
+      candidate[2],
+    ];
+    if (readout.every((value, index) => value === directionRay[index])) {
+      rayCompatibleAssignments.push({ values, signed, key: candidate, readout });
+    }
+  }
+}
+assert.equal(rayCompatibleAssignments.length, 2);
+assert.deepEqual(
+  [...new Set(rayCompatibleAssignments.map((entry) => entry.key.join(",")))].sort(),
+  ["24,28,5,3", "5,28,5,3"]
+);
+const alternativeKey = [5, 28, 5, 3];
+
 const sourceFourByValue = new Map();
 for (const word of signedWords) {
   const values = gp(word);
@@ -276,6 +310,33 @@ assert.deepEqual(fixedKeyHits, [{
   output: [6, 3, 3, 23],
   target: "GOOD",
 }]);
+
+// The only other source-ray-compatible assignment is retained as a genuine
+// alternative, then tested with the same manuscript-wide control.
+const alternativeLocalOutput = cipher.map((value, index) =>
+  mod29(value - alternativeKey[index])
+);
+assert.deepEqual(alternativeLocalOutput, [25, 3, 3, 23]);
+const alternativeKeyHits = [];
+for (const word of fourRuneWords) {
+  for (const sign of [-1, 1]) {
+    const output = word.values.map((value, index) =>
+      mod29(value + sign * alternativeKey[index])
+    );
+    const target = sourceFourMap.get(output.join(","));
+    if (target) {
+      alternativeKeyHits.push({
+        page: word.page,
+        wordIndex: word.index,
+        start: word.start,
+        sign: sign === -1 ? "subtract" : "add",
+        output,
+        target,
+      });
+    }
+  }
+}
+assert.equal(alternativeKeyHits.length, 0);
 
 // Charge the four source residues over all 24 orders and 16 independent signs.
 const restrictedHits = [];
@@ -363,6 +424,13 @@ const result = {
     wholeManuscriptCompleteWord: p2CompleteWord,
     parserNote: "The p2 first two-rune fragment continues across the p1/p2 page boundary under the continuous-text parser; page-local numbering resets at p2."
   },
+  sourceOnlyRayFilter: {
+    directionRay,
+    readout: "[k3,k1+k2,k2]",
+    compatibleAssignments: rayCompatibleAssignments,
+    remainingKeys: [...new Set(rayCompatibleAssignments.map((entry) => entry.key.join(",")))],
+    note: "The ray fixes the inner pair and k3, but leaves two possible outer-left values."
+  },
   candidate: {
     sourceState: { K, NG, V, p },
     pairInvariants: { outerSum: mod29(-K), outerDiff: NG, innerSum: V, innerDiff: p },
@@ -384,7 +452,10 @@ const result = {
     completeFourRuneWords: fourRuneWords.length,
     authenticatedTargets: sourceFourTargets.map((entry) => entry.word),
     comparisons: fourRuneWords.length * sourceFourTargets.length * 2,
-    hits: fixedKeyHits
+    hits: fixedKeyHits,
+    alternativeKey,
+    alternativeKeyLocalOutput,
+    alternativeKeyManuscriptHits: alternativeKeyHits
   },
   sourceIndexConvergence: {
     goodGp0: goodGp0,
@@ -396,7 +467,7 @@ const result = {
     signedWord36: signedWords[36],
     classification: "cross-result consistency, not independent authentication of the p2 key"
   },
-  decision: "Unique exact local inverse under the frozen key; source-coordinate hypothesis is plausible under page-local numbering; H4 slot assignment remains post-hoc, so do not promote to authenticated plaintext or a reusable cipher."
+  decision: "The source-only 3-4-5 ray filter reduces the 384 H4 assignments to two; the 509-word fixed-key control selects [24,28,5,3] uniquely (one GOOD hit) over the alternative [5,28,5,3] (zero hits). This is a source-constrained local plaintext candidate, not yet an authenticated general cipher."
 };
 const rendered = JSON.stringify(result, null, 2);
 console.log(rendered);
