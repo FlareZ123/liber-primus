@@ -4,6 +4,26 @@
 
 **Original-geometry decision (Agent38 / #186, extended by Agent10 / #1148 and Agent5 / #1290, 16 November 2026):** The pp3–7 original source has an upper and a lower scroll on **each** side of the horizontally typeset rune block. Both sides mirror one another. The upper and lower forms contain several coiled tips and free tails; none is distinguished as the first terminal or the direction of reading. The shapes do not touch the rune lines or specify a raster-to-glyph sampling rule. The repeated frame offers no source-selected start, handedness, scope, grid or traversal from which to freeze a spiral transposition. Source-only reconstruction therefore stops **before** a cipher test: choosing an arbitrary spiral would select a key after seeing the target. The 217/261/263/196/208 page rune totals also rule out assuming a single unchanged row/column grid merely because the frame is identical. An independently sourced instruction could still give the frame a cryptographic role. No unknown ciphertext or key was solved.
 
+## External construction-source decision (#2917, 26 November 2026)
+
+A period-authentic drawing or clip-art recipe was sought specifically for the p3–7 scrolls, not the p40–55 floral parent already investigated in #2234. Original scan 21.jpg (physical p4) was examined at full resolution and as a left-margin crop. Its discriminating form is two **separated** leafless strokes, each with two coiled tips, a branching junction and a free lower tail. The upper form has a short top coil and larger central coil; the lower form has a long S-like stem, large top coil and small lower lateral coil. Three isolated upper flecks are visible. The two dominant 8-connected black components in the fixed half-open rectangle x=[0,580), y=[650,2950), using Pillow L conversion, are as follows (inclusive y extents):
+
+| Gray threshold (strict less than) | Upper pixels / y range | Lower pixels / y range |
+| --- | --- | --- |
+| 80 | 16804 / 696–1555 | 21242 / 1572–2917 |
+| 100 | 17574 / 696–1555 | 22099 / 1572–2917 |
+| 128 | 18776 / 696–1556 | 23534 / 1572–2917 |
+| 160 | 20334 / 696–1556 | 25310 / 1572–2917 |
+| 190 | 22434 / 696–1558 | 28035 / 1570–2917 |
+
+Thus the visible two-part construction is robust to the threshold; it has no connected central crossing. The raw skeleton is sensitive to raster-edge spurs, so no numerical branch code is inferred.
+
+The strongest dated digital-stock comparator found was Nathan Eady's [Flourish Two, Vertical](https://openclipart.org/detail/89905/flourish-two-vertical-01) (2010 posting; [Clker mirror dated 13 November 2007](https://www.clker.com/clipart-1950.html)). Its [published image description](https://openclipart.org/pdf/89905) explicitly includes a pair of crossing diagonal lines, connected opposed spirals and two side curls; the LP2 upper/lower components are vertically disjoint and lack those crossing lines. The indexed [SVG dataset snippet](https://huggingface.co/datasets/nextnews/text_svg_compressed_not_cleaned/viewer/default/train?p=1) additionally exposes a long straight path in that named asset. This is a **whole-asset morphological mismatch**, not a byte-level registration or exclusion of arbitrary redrawing/cropping. Direct preview/PDF requests returned cache misses; no original comparator bytes were retrieved.
+
+A more relevant historical *construction* reference is D. R. Augsburg, [Drawing, Book III, pp.129–131, figures 95–99 and drill exercises](https://vintageinkwell.com/wp-content/uploads/2021/05/Augsburgs-Drawing-Book-III.pdf) (1902 copyright; the accessible [transcript](https://www.scribd.com/document/722016025/Augsburg-Drawing-3) identifies its 2016 digitization). It teaches ordinary scrolls built from curved strokes and distinguishes inward/outward branches, with exercises for reversing, verticalizing and doubling them. This is a period print analogue, not an exact LP2 artwork match; availability of this specific digital scan in 2014 is not established. The available figure descriptions do not identify the LP2 two separate unequal stems, three isolated flecks, or a uniquely chosen exercise. The PDF screenshots failed with cache misses and local direct retrieval failed DNS. Therefore the book is **not** a recovered parent or selected key source. It demonstrates why a branched/mirrored scroll alone can be conventional drawing practice.
+
+**Decision:** no inspectable exact dated parent or accompanying instruction fixing an original-rune operand, receiver or clock was recovered in this bounded search. Do not transfer figure numbers, exercise numbers, spiral direction or invented captions to the ciphertext. #2170's direct traversal negative and #2234's floral-parent negative remain intact. Reopen the external source route only on a distinctive exact asset (including the two disconnected stem outlines and flecks) or explicit period construction instructions selecting a reversible LP2 operation. No unknown plaintext or key; no new cipher search undertaken.
+
 ## Original images, crop contract and controls
 
 - Physical pp3–7 are the original archive JPEGs **20.jpg to 24.jpg**, all 2400×3600 RGB. The authentic solved-page layout controls use original **73.jpg (p56)** and **74.jpg (p57)**. All source JPEGs differ in whole-file SHA-256 and the p3–p7 text-body cropped pixels differ too: we are comparing distinct original pages.
