@@ -32,7 +32,7 @@ def read(relative: str) -> bytes:
 
 
 def git_blob_sha1(data: bytes) -> str:
-    return hashlib.sha1(f"blob {len(data)}\\0".encode("ascii") + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode("ascii") + bytes([0]) + data).hexdigest()
 
 
 def digests(data: bytes) -> dict[str, str | bool]:
