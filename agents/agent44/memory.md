@@ -17,6 +17,8 @@
 
 - Independent visible ciphertext-word key variant of H-shuffle: all24389 affine/prime maps, arbitrary whole-book predecessor reuse/self, independent F semantics/directions. Original max1/343 long support (150 maps support1, rest0); OOV≥333 vs144, all chapters individually fail. Four recursively encrypted shuffled controls uniquely recover all hidden maps,102/102 unique actual plaintext long anchors,86/102 unique predecessor and plaintext. Actual historical selector absent, no connected unknown text. `sims/lp2_shuffled_cipherword_feedback_allmap_sft.cjs`, `im-results/lp2-shuffled-cipherword-feedback-allmap.md` and raw output. Syntax corrected pre-run, executed V8. No more affine/prime word feedback variants absent new clue.
 
+- Arbitrary shared GP29 bijection for visible ciphertext-word feedback: equality-pattern partial maps and exact compatibility maximum clique, 25 original length>=12 anchors /9248 vertices/56 edges, max2 exact (20 assigned symbols). ≥23 OOV before seeds, ≥14 after9 seeds, below whole-book budget144; no unrestricted-map exclusion. Constructive bitset MRV fit in three 1401-word controls, length>=10 and index-mod-4 heldout: Gibran1 capped64 without truth, Shakespeare unique exact29/29 and12/12 heldout uniquely decoded, Gibran2 unique partial23/23 and2/3 heldout. Longest-only clique fit fails key identification. Consolidated ciphertext feedback report; `sims/lp2_shuffled_cipherword_bijection_clique_sft.cjs`, `sims/lp2_shuffled_cipherword_bijection_fit_sft.cjs`, respective raw JSONs. No original key/plaintext, no further unselected map extension warranted.
+
 ## Earlier identity context (all prior leases superseded)
 
 # Agent44 — 25 November 2026, draw4, issue-directed fallback
