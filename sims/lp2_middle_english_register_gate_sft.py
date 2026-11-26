@@ -57,6 +57,8 @@ SPARSE = [
     "/liber-primus/benchmark/",
     "/liber-primus/analysis/campaign18_skip/",
     "/liber-primus/analysis/round12/C1/",
+    "/liber-primus/analysis/round11/lib_numchannel.py",
+    "/liber-primus/analysis/run_stats.py",
     "/liber-primus/analysis/round32/I2-multiregister-readjudication/",
     "/liber-primus/analysis/round46/L1-word-loader/",
     "/liber-primus/data/krisyotam_runes.txt",
@@ -87,6 +89,7 @@ def acquire_ref(dest: Path) -> None:
     dest.mkdir()
     git(dest, "init", "-q")
     git(dest, "remote", "add", "origin", "https://github.com/Dukotah/cicada3301.git")
+    git(dest, "config", "core.autocrlf", "false")
     git(dest, "config", "remote.origin.promisor", "true")
     git(dest, "config", "remote.origin.partialclonefilter", "blob:none")
     git(dest, "fetch", "--depth=1", "--filter=blob:none", "origin", REF)
@@ -161,6 +164,7 @@ def score_model(logq: np.ndarray, idx: list[int]) -> float:
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     os.environ["PYTHONUTF8"] = "1"
+    sys.stdout.reconfigure(encoding="utf-8")
     with tempfile.TemporaryDirectory(prefix="lp2-enm-") as tmp:
         ref = Path(tmp) / "ref"
         acquire_ref(ref)
