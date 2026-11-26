@@ -1,0 +1,2172 @@
+{
+  "control1": {
+    "order": [
+      2,
+      10,
+      13,
+      7,
+      17,
+      5,
+      18,
+      8
+    ],
+    "topScores": [
+      {
+        "score": -30239.260993841635,
+        "matches": 2422,
+        "key": [
+          2,
+          10,
+          13,
+          7,
+          17,
+          5,
+          18,
+          8
+        ]
+      },
+      {
+        "score": -43523.49779107364,
+        "matches": 1226,
+        "key": [
+          2,
+          10,
+          13,
+          7,
+          5,
+          17,
+          18,
+          8
+        ]
+      },
+      {
+        "score": -43561.56518363624,
+        "matches": 1186,
+        "key": [
+          2,
+          10,
+          13,
+          17,
+          7,
+          5,
+          18,
+          8
+        ]
+      },
+      {
+        "score": -43736.62551349066,
+        "matches": 1219,
+        "key": [
+          2,
+          10,
+          13,
+          7,
+          17,
+          18,
+          5,
+          8
+        ]
+      },
+      {
+        "score": -44018.64995180852,
+        "matches": 1141,
+        "key": [
+          2,
+          10,
+          7,
+          13,
+          17,
+          5,
+          18,
+          8
+        ]
+      }
+    ],
+    "trueOrderRank": 1,
+    "exactPlainWords": 2348,
+    "exactPlainRunes": 9318,
+    "totalTruthRunes": 12956,
+    "matches": 2422,
+    "matchedRunes": 9448,
+    "matchLen3": 1892,
+    "matchLen5": 697,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "S",
+      "S",
+      "A",
+      "S",
+      "I",
+      "I",
+      "I",
+      "A",
+      "A",
+      "A",
+      "I",
+      "I",
+      "I",
+      "A",
+      "I",
+      "S",
+      "S",
+      "A",
+      "A",
+      "A",
+      "I",
+      "I",
+      "I",
+      "I",
+      "A",
+      "A",
+      "S",
+      "I",
+      "A",
+      "I",
+      "I",
+      "S",
+      "S",
+      "I",
+      "I",
+      "S",
+      "I",
+      "S",
+      "B",
+      "I",
+      "O",
+      "I",
+      "I",
+      "I",
+      "A",
+      "S",
+      "A",
+      "I",
+      "A",
+      "S",
+      "I",
+      "I",
+      "O",
+      "A",
+      "S",
+      "A",
+      "A",
+      "A",
+      "S",
+      "I",
+      "A",
+      "A",
+      "I",
+      "O",
+      "A",
+      "E",
+      "S",
+      "I",
+      "I",
+      "I",
+      "A",
+      "I",
+      "A",
+      "I",
+      "I",
+      "S",
+      "I",
+      "A",
+      "A",
+      "A",
+      "A",
+      "O",
+      "I",
+      "HE",
+      "ME",
+      "MY",
+      "SO",
+      "GO",
+      "TO",
+      "TO",
+      "IN",
+      "NO",
+      "TO",
+      "WE",
+      "OF",
+      "IT",
+      "BE",
+      "OF",
+      "IN",
+      "TO"
+    ],
+    "longMatches": [
+      {
+        "word": 1764,
+        "len": 5,
+        "p": "PROUD",
+        "choices": 1
+      },
+      {
+        "word": 1765,
+        "len": 5,
+        "p": "GIUES",
+        "choices": 1
+      },
+      {
+        "word": 1766,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1767,
+        "len": 5,
+        "p": "OFFER",
+        "choices": 1
+      },
+      {
+        "word": 1769,
+        "len": 5,
+        "p": "LOOCS",
+        "choices": 1
+      },
+      {
+        "word": 1770,
+        "len": 5,
+        "p": "SWELL",
+        "choices": 1
+      },
+      {
+        "word": 1771,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1772,
+        "len": 5,
+        "p": "SHALT",
+        "choices": 1
+      },
+      {
+        "word": 1773,
+        "len": 5,
+        "p": "PEOPLE",
+        "choices": 1
+      },
+      {
+        "word": 1774,
+        "len": 5,
+        "p": "GLASS",
+        "choices": 1
+      },
+      {
+        "word": 1775,
+        "len": 5,
+        "p": "WITHIN",
+        "choices": 1
+      },
+      {
+        "word": 1776,
+        "len": 5,
+        "p": "PLACE",
+        "choices": 1
+      },
+      {
+        "word": 1779,
+        "len": 5,
+        "p": "STEEP",
+        "choices": 1
+      },
+      {
+        "word": 1780,
+        "len": 5,
+        "p": "TOWER",
+        "choices": 1
+      },
+      {
+        "word": 1781,
+        "len": 5,
+        "p": "POINT",
+        "choices": 1
+      },
+      {
+        "word": 1782,
+        "len": 5,
+        "p": "PIECE",
+        "choices": 1
+      },
+      {
+        "word": 1784,
+        "len": 5,
+        "p": "AUOID",
+        "choices": 1
+      },
+      {
+        "word": 1785,
+        "len": 5,
+        "p": "HUNGRY",
+        "choices": 1
+      },
+      {
+        "word": 1787,
+        "len": 5,
+        "p": "MOTHER",
+        "choices": 1
+      },
+      {
+        "word": 1789,
+        "len": 5,
+        "p": "MOULD",
+        "choices": 1
+      },
+      {
+        "word": 1790,
+        "len": 5,
+        "p": "TASTE",
+        "choices": 1
+      },
+      {
+        "word": 1791,
+        "len": 5,
+        "p": "TITLE",
+        "choices": 1
+      },
+      {
+        "word": 1792,
+        "len": 5,
+        "p": "FATHER",
+        "choices": 1
+      },
+      {
+        "word": 1793,
+        "len": 5,
+        "p": "WHOSE",
+        "choices": 1
+      },
+      {
+        "word": 1794,
+        "len": 5,
+        "p": "WHITE",
+        "choices": 1
+      },
+      {
+        "word": 1795,
+        "len": 5,
+        "p": "THRONE",
+        "choices": 1
+      },
+      {
+        "word": 1796,
+        "len": 5,
+        "p": "DEADLY",
+        "choices": 1
+      },
+      {
+        "word": 1797,
+        "len": 5,
+        "p": "POWER",
+        "choices": 1
+      },
+      {
+        "word": 1798,
+        "len": 5,
+        "p": "GRACE",
+        "choices": 1
+      },
+      {
+        "word": 1799,
+        "len": 5,
+        "p": "CURSE",
+        "choices": 1
+      },
+      {
+        "word": 1800,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1803,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1804,
+        "len": 5,
+        "p": "HOUSE",
+        "choices": 1
+      },
+      {
+        "word": 1805,
+        "len": 5,
+        "p": "FAULT",
+        "choices": 1
+      },
+      {
+        "word": 1806,
+        "len": 5,
+        "p": "WOULD",
+        "choices": 1
+      },
+      {
+        "word": 1808,
+        "len": 5,
+        "p": "HANDS",
+        "choices": 1
+      },
+      {
+        "word": 1809,
+        "len": 5,
+        "p": "SWEET",
+        "choices": 1
+      },
+      {
+        "word": 1811,
+        "len": 5,
+        "p": "CAUSE",
+        "choices": 1
+      },
+      {
+        "word": 1812,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1813,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1814,
+        "len": 5,
+        "p": "SPARE",
+        "choices": 1
+      },
+      {
+        "word": 1815,
+        "len": 5,
+        "p": "MIGHT",
+        "choices": 1
+      },
+      {
+        "word": 1816,
+        "len": 5,
+        "p": "DRAWN",
+        "choices": 1
+      },
+      {
+        "word": 1817,
+        "len": 5,
+        "p": "GRACE",
+        "choices": 1
+      },
+      {
+        "word": 1818,
+        "len": 5,
+        "p": "MOTHER",
+        "choices": 1
+      },
+      {
+        "word": 1819,
+        "len": 5,
+        "p": "PEOPLE",
+        "choices": 1
+      },
+      {
+        "word": 1820,
+        "len": 5,
+        "p": "STAND",
+        "choices": 1
+      },
+      {
+        "word": 1823,
+        "len": 5,
+        "p": "ENEMY",
+        "choices": 1
+      },
+      {
+        "word": 1824,
+        "len": 5,
+        "p": "BENCH",
+        "choices": 1
+      },
+      {
+        "word": 1825,
+        "len": 5,
+        "p": "AGAIN",
+        "choices": 1
+      },
+      {
+        "word": 1826,
+        "len": 5,
+        "p": "CHILD",
+        "choices": 1
+      },
+      {
+        "word": 1827,
+        "len": 5,
+        "p": "SAUED",
+        "choices": 1
+      },
+      {
+        "word": 1828,
+        "len": 5,
+        "p": "STATE",
+        "choices": 1
+      },
+      {
+        "word": 1829,
+        "len": 5,
+        "p": "EUERY",
+        "choices": 1
+      },
+      {
+        "word": 1830,
+        "len": 5,
+        "p": "WOULD",
+        "choices": 1
+      },
+      {
+        "word": 1831,
+        "len": 5,
+        "p": "WITHIN",
+        "choices": 1
+      },
+      {
+        "word": 1832,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1833,
+        "len": 5,
+        "p": "FINDS",
+        "choices": 1
+      },
+      {
+        "word": 1834,
+        "len": 5,
+        "p": "TURNS",
+        "choices": 1
+      },
+      {
+        "word": 1835,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1836,
+        "len": 5,
+        "p": "OTHERS",
+        "choices": 1
+      },
+      {
+        "word": 1837,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1839,
+        "len": 5,
+        "p": "CALLS",
+        "choices": 1
+      },
+      {
+        "word": 1840,
+        "len": 5,
+        "p": "POWER",
+        "choices": 1
+      },
+      {
+        "word": 1841,
+        "len": 5,
+        "p": "NEEDS",
+        "choices": 1
+      },
+      {
+        "word": 1842,
+        "len": 5,
+        "p": "PEOPLE",
+        "choices": 1
+      },
+      {
+        "word": 1843,
+        "len": 5,
+        "p": "WOUND",
+        "choices": 1
+      },
+      {
+        "word": 1844,
+        "len": 5,
+        "p": "HENRY",
+        "choices": 1
+      },
+      {
+        "word": 1845,
+        "len": 5,
+        "p": "SPOIL",
+        "choices": 1
+      },
+      {
+        "word": 1846,
+        "len": 5,
+        "p": "RACES",
+        "choices": 1
+      },
+      {
+        "word": 1847,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1848,
+        "len": 5,
+        "p": "PEOPLE",
+        "choices": 1
+      },
+      {
+        "word": 1850,
+        "len": 5,
+        "p": "CAUSE",
+        "choices": 1
+      },
+      {
+        "word": 1852,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1853,
+        "len": 5,
+        "p": "RATHER",
+        "choices": 2
+      },
+      {
+        "word": 1854,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1855,
+        "len": 5,
+        "p": "STORY",
+        "choices": 1
+      },
+      {
+        "word": 1858,
+        "len": 5,
+        "p": "BREATHE",
+        "choices": 1
+      },
+      {
+        "word": 1859,
+        "len": 5,
+        "p": "GUARD",
+        "choices": 1
+      },
+      {
+        "word": 1860,
+        "len": 5,
+        "p": "SINCE",
+        "choices": 1
+      }
+    ]
+  },
+  "control2": {
+    "order": [
+      1,
+      11,
+      7,
+      3,
+      14,
+      12,
+      13,
+      22
+    ],
+    "topScores": [
+      {
+        "score": -29907.784708920717,
+        "matches": 2439,
+        "key": [
+          1,
+          11,
+          7,
+          3,
+          14,
+          12,
+          13,
+          22
+        ]
+      },
+      {
+        "score": -43637.90400583899,
+        "matches": 1214,
+        "key": [
+          1,
+          11,
+          7,
+          3,
+          12,
+          14,
+          13,
+          22
+        ]
+      },
+      {
+        "score": -43697.203160978184,
+        "matches": 1194,
+        "key": [
+          1,
+          11,
+          7,
+          3,
+          14,
+          13,
+          12,
+          22
+        ]
+      },
+      {
+        "score": -43801.2390511679,
+        "matches": 1200,
+        "key": [
+          1,
+          11,
+          7,
+          14,
+          3,
+          12,
+          13,
+          22
+        ]
+      },
+      {
+        "score": -43802.23729032142,
+        "matches": 1192,
+        "key": [
+          1,
+          11,
+          7,
+          3,
+          14,
+          12,
+          22,
+          13
+        ]
+      }
+    ],
+    "trueOrderRank": 1,
+    "exactPlainWords": 2359,
+    "exactPlainRunes": 9466,
+    "totalTruthRunes": 12956,
+    "matches": 2439,
+    "matchedRunes": 9595,
+    "matchLen3": 1910,
+    "matchLen5": 721,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "A",
+      "A",
+      "A",
+      "A",
+      "I",
+      "A",
+      "I",
+      "A",
+      "A",
+      "A",
+      "I",
+      "A",
+      "I",
+      "E",
+      "A",
+      "A",
+      "A",
+      "S",
+      "I",
+      "A",
+      "S",
+      "I",
+      "I",
+      "A",
+      "S",
+      "I",
+      "I",
+      "I",
+      "I",
+      "B",
+      "I",
+      "A",
+      "I",
+      "A",
+      "A",
+      "A",
+      "E",
+      "I",
+      "I",
+      "I",
+      "A",
+      "E",
+      "I",
+      "A",
+      "A",
+      "S",
+      "A",
+      "A",
+      "U",
+      "A",
+      "A",
+      "A",
+      "S",
+      "I",
+      "E",
+      "A",
+      "S",
+      "A",
+      "E",
+      "F",
+      "A",
+      "A",
+      "I",
+      "I",
+      "B",
+      "E",
+      "A",
+      "A",
+      "A",
+      "A",
+      "S",
+      "A",
+      "I",
+      "A",
+      "A",
+      "A",
+      "A",
+      "A",
+      "S",
+      "A",
+      "I",
+      "A",
+      "A",
+      "OF",
+      "DO",
+      "BE",
+      "SO",
+      "TO",
+      "SO",
+      "THE",
+      "THE",
+      "TO",
+      "GO",
+      "THE",
+      "IN",
+      "IF",
+      "IT",
+      "CNG",
+      "IT",
+      "MY"
+    ],
+    "longMatches": [
+      {
+        "word": 1764,
+        "len": 5,
+        "p": "WOULD",
+        "choices": 1
+      },
+      {
+        "word": 1765,
+        "len": 5,
+        "p": "DRINC",
+        "choices": 1
+      },
+      {
+        "word": 1766,
+        "len": 5,
+        "p": "HORSE",
+        "choices": 1
+      },
+      {
+        "word": 1767,
+        "len": 5,
+        "p": "POWER",
+        "choices": 1
+      },
+      {
+        "word": 1768,
+        "len": 5,
+        "p": "ENJOY",
+        "choices": 1
+      },
+      {
+        "word": 1769,
+        "len": 5,
+        "p": "PEOPLE",
+        "choices": 1
+      },
+      {
+        "word": 1770,
+        "len": 5,
+        "p": "LORDS",
+        "choices": 1
+      },
+      {
+        "word": 1771,
+        "len": 5,
+        "p": "THOUGH",
+        "choices": 1
+      },
+      {
+        "word": 1772,
+        "len": 5,
+        "p": "LORDS",
+        "choices": 1
+      },
+      {
+        "word": 1773,
+        "len": 5,
+        "p": "LARGE",
+        "choices": 1
+      },
+      {
+        "word": 1776,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1777,
+        "len": 5,
+        "p": "GIUEN",
+        "choices": 1
+      },
+      {
+        "word": 1778,
+        "len": 5,
+        "p": "NEUER",
+        "choices": 1
+      },
+      {
+        "word": 1779,
+        "len": 5,
+        "p": "ISSUE",
+        "choices": 1
+      },
+      {
+        "word": 1780,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1782,
+        "len": 5,
+        "p": "GROWTH",
+        "choices": 1
+      },
+      {
+        "word": 1783,
+        "len": 5,
+        "p": "NOBLE",
+        "choices": 1
+      },
+      {
+        "word": 1784,
+        "len": 5,
+        "p": "CNGDOM",
+        "choices": 1
+      },
+      {
+        "word": 1785,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1786,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1787,
+        "len": 5,
+        "p": "STAND",
+        "choices": 1
+      },
+      {
+        "word": 1788,
+        "len": 5,
+        "p": "TOWER",
+        "choices": 1
+      },
+      {
+        "word": 1790,
+        "len": 5,
+        "p": "POWER",
+        "choices": 1
+      },
+      {
+        "word": 1791,
+        "len": 5,
+        "p": "OTHERS",
+        "choices": 1
+      },
+      {
+        "word": 1792,
+        "len": 5,
+        "p": "BOUND",
+        "choices": 1
+      },
+      {
+        "word": 1793,
+        "len": 5,
+        "p": "HOUSE",
+        "choices": 1
+      },
+      {
+        "word": 1794,
+        "len": 5,
+        "p": "AFTER",
+        "choices": 1
+      },
+      {
+        "word": 1795,
+        "len": 5,
+        "p": "GRACE",
+        "choices": 1
+      },
+      {
+        "word": 1796,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1798,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1799,
+        "len": 5,
+        "p": "FATAL",
+        "choices": 1
+      },
+      {
+        "word": 1800,
+        "len": 5,
+        "p": "GRACE",
+        "choices": 1
+      },
+      {
+        "word": 1801,
+        "len": 5,
+        "p": "WOULD",
+        "choices": 1
+      },
+      {
+        "word": 1802,
+        "len": 5,
+        "p": "NOBLE",
+        "choices": 1
+      },
+      {
+        "word": 1803,
+        "len": 5,
+        "p": "ORDER",
+        "choices": 1
+      },
+      {
+        "word": 1804,
+        "len": 5,
+        "p": "YIELD",
+        "choices": 1
+      },
+      {
+        "word": 1805,
+        "len": 5,
+        "p": "THINCS",
+        "choices": 1
+      },
+      {
+        "word": 1806,
+        "len": 5,
+        "p": "POINT",
+        "choices": 1
+      },
+      {
+        "word": 1807,
+        "len": 5,
+        "p": "WOMAN",
+        "choices": 1
+      },
+      {
+        "word": 1809,
+        "len": 5,
+        "p": "FIRST",
+        "choices": 1
+      },
+      {
+        "word": 1810,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1811,
+        "len": 5,
+        "p": "BROOC",
+        "choices": 1
+      },
+      {
+        "word": 1812,
+        "len": 5,
+        "p": "UNITY",
+        "choices": 1
+      },
+      {
+        "word": 1813,
+        "len": 5,
+        "p": "NEUER",
+        "choices": 1
+      },
+      {
+        "word": 1815,
+        "len": 5,
+        "p": "AGAIN",
+        "choices": 1
+      },
+      {
+        "word": 1816,
+        "len": 5,
+        "p": "WORDS",
+        "choices": 1
+      },
+      {
+        "word": 1817,
+        "len": 5,
+        "p": "AGAIN",
+        "choices": 1
+      },
+      {
+        "word": 1818,
+        "len": 5,
+        "p": "GRIEF",
+        "choices": 1
+      },
+      {
+        "word": 1819,
+        "len": 5,
+        "p": "TIMES",
+        "choices": 1
+      },
+      {
+        "word": 1820,
+        "len": 5,
+        "p": "MIGHT",
+        "choices": 2
+      },
+      {
+        "word": 1821,
+        "len": 5,
+        "p": "SHALL",
+        "choices": 1
+      },
+      {
+        "word": 1822,
+        "len": 5,
+        "p": "NEUER",
+        "choices": 1
+      },
+      {
+        "word": 1823,
+        "len": 5,
+        "p": "MIGHT",
+        "choices": 1
+      },
+      {
+        "word": 1824,
+        "len": 5,
+        "p": "WHERE",
+        "choices": 1
+      },
+      {
+        "word": 1826,
+        "len": 5,
+        "p": "DOUBT",
+        "choices": 1
+      },
+      {
+        "word": 1827,
+        "len": 5,
+        "p": "CROWN",
+        "choices": 1
+      },
+      {
+        "word": 1828,
+        "len": 5,
+        "p": "HUNGER",
+        "choices": 1
+      },
+      {
+        "word": 1829,
+        "len": 5,
+        "p": "STAND",
+        "choices": 1
+      },
+      {
+        "word": 1831,
+        "len": 5,
+        "p": "EUERY",
+        "choices": 1
+      },
+      {
+        "word": 1832,
+        "len": 5,
+        "p": "HAPPY",
+        "choices": 1
+      },
+      {
+        "word": 1833,
+        "len": 5,
+        "p": "STATE",
+        "choices": 1
+      },
+      {
+        "word": 1834,
+        "len": 5,
+        "p": "TELLNG",
+        "choices": 1
+      },
+      {
+        "word": 1835,
+        "len": 5,
+        "p": "BLIND",
+        "choices": 1
+      },
+      {
+        "word": 1836,
+        "len": 5,
+        "p": "FAINT",
+        "choices": 1
+      },
+      {
+        "word": 1837,
+        "len": 5,
+        "p": "PLUCC",
+        "choices": 1
+      },
+      {
+        "word": 1838,
+        "len": 5,
+        "p": "SHALL",
+        "choices": 1
+      },
+      {
+        "word": 1839,
+        "len": 5,
+        "p": "SHALL",
+        "choices": 1
+      },
+      {
+        "word": 1840,
+        "len": 5,
+        "p": "TIMES",
+        "choices": 1
+      },
+      {
+        "word": 1841,
+        "len": 5,
+        "p": "SCORN",
+        "choices": 1
+      },
+      {
+        "word": 1842,
+        "len": 5,
+        "p": "BRAUE",
+        "choices": 1
+      },
+      {
+        "word": 1843,
+        "len": 5,
+        "p": "NIGHT",
+        "choices": 1
+      },
+      {
+        "word": 1845,
+        "len": 5,
+        "p": "OFFER",
+        "choices": 1
+      },
+      {
+        "word": 1846,
+        "len": 5,
+        "p": "CHILD",
+        "choices": 1
+      },
+      {
+        "word": 1847,
+        "len": 5,
+        "p": "FALSE",
+        "choices": 1
+      },
+      {
+        "word": 1848,
+        "len": 5,
+        "p": "GRAUE",
+        "choices": 1
+      },
+      {
+        "word": 1849,
+        "len": 5,
+        "p": "EUENT",
+        "choices": 1
+      },
+      {
+        "word": 1850,
+        "len": 5,
+        "p": "BLOOD",
+        "choices": 1
+      },
+      {
+        "word": 1851,
+        "len": 5,
+        "p": "SWEET",
+        "choices": 1
+      },
+      {
+        "word": 1852,
+        "len": 5,
+        "p": "WHICH",
+        "choices": 1
+      },
+      {
+        "word": 1853,
+        "len": 5,
+        "p": "PLUCC",
+        "choices": 1
+      }
+    ]
+  },
+  "original:independent:64": {
+    "order": [
+      1,
+      16,
+      18,
+      11,
+      6,
+      13,
+      23,
+      28
+    ],
+    "topScores": [
+      {
+        "score": -49389.318153648404,
+        "matches": 424,
+        "key": [
+          1,
+          16,
+          18,
+          11,
+          6,
+          13,
+          23,
+          28
+        ]
+      },
+      {
+        "score": -49406.38293319922,
+        "matches": 419,
+        "key": [
+          1,
+          18,
+          16,
+          11,
+          6,
+          13,
+          23,
+          28
+        ]
+      },
+      {
+        "score": -49411.60992734994,
+        "matches": 445,
+        "key": [
+          1,
+          6,
+          16,
+          23,
+          28,
+          13,
+          18,
+          11
+        ]
+      },
+      {
+        "score": -49411.761972264656,
+        "matches": 423,
+        "key": [
+          1,
+          16,
+          23,
+          28,
+          13,
+          18,
+          11,
+          6
+        ]
+      },
+      {
+        "score": -49411.867810943266,
+        "matches": 433,
+        "key": [
+          1,
+          16,
+          6,
+          11,
+          18,
+          13,
+          23,
+          28
+        ]
+      }
+    ],
+    "trueOrderRank": null,
+    "exactPlainWords": null,
+    "exactPlainRunes": null,
+    "totalTruthRunes": null,
+    "matches": 424,
+    "matchedRunes": 877,
+    "matchLen3": 102,
+    "matchLen5": 0,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "AS",
+      "IS",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "UE",
+      "?",
+      "?",
+      "?",
+      "WE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "GOD",
+      "S",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "BY",
+      "?",
+      "I",
+      "?",
+      "TEAR",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "AS",
+      "?",
+      "GO",
+      "?",
+      "?",
+      "?",
+      "AT",
+      "RE",
+      "?",
+      "BEG",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "A",
+      "WE",
+      "ON",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "HE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "IBN",
+      "?",
+      "?"
+    ],
+    "longMatches": []
+  },
+  "original:independent:256": {
+    "order": [
+      0,
+      13,
+      23,
+      16,
+      20,
+      10,
+      26,
+      7
+    ],
+    "topScores": [
+      {
+        "score": -49454.25955366883,
+        "matches": 433,
+        "key": [
+          0,
+          13,
+          23,
+          16,
+          20,
+          10,
+          26,
+          7
+        ]
+      },
+      {
+        "score": -49464.22828306134,
+        "matches": 429,
+        "key": [
+          0,
+          20,
+          23,
+          16,
+          13,
+          10,
+          26,
+          7
+        ]
+      },
+      {
+        "score": -49467.85795018913,
+        "matches": 426,
+        "key": [
+          0,
+          16,
+          10,
+          26,
+          20,
+          13,
+          23,
+          7
+        ]
+      },
+      {
+        "score": -49471.27958819551,
+        "matches": 430,
+        "key": [
+          0,
+          7,
+          10,
+          26,
+          20,
+          13,
+          23,
+          16
+        ]
+      },
+      {
+        "score": -49473.742709030295,
+        "matches": 421,
+        "key": [
+          0,
+          7,
+          16,
+          13,
+          10,
+          26,
+          20,
+          23
+        ]
+      }
+    ],
+    "trueOrderRank": null,
+    "exactPlainWords": null,
+    "exactPlainRunes": null,
+    "totalTruthRunes": null,
+    "matches": 433,
+    "matchedRunes": 903,
+    "matchLen3": 104,
+    "matchLen5": 2,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "TA",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "MY",
+      "?",
+      "?",
+      "?",
+      "THE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "E",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "SO",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "EN",
+      "?",
+      "S",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "UP",
+      "?",
+      "?",
+      "?",
+      "?",
+      "II",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "I",
+      "THE",
+      "DO",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "BE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?"
+    ],
+    "longMatches": [
+      {
+        "word": 296,
+        "len": 6,
+        "p": "STORED",
+        "choices": 1
+      },
+      {
+        "word": 2188,
+        "len": 5,
+        "p": "LATER",
+        "choices": 1
+      }
+    ]
+  },
+  "original:independent:1024": {
+    "order": [
+      1,
+      27,
+      15,
+      24,
+      18,
+      21,
+      12,
+      9
+    ],
+    "topScores": [
+      {
+        "score": -49476.28336743563,
+        "matches": 428,
+        "key": [
+          1,
+          27,
+          15,
+          24,
+          18,
+          21,
+          12,
+          9
+        ]
+      },
+      {
+        "score": -49482.86674249748,
+        "matches": 413,
+        "key": [
+          1,
+          12,
+          9,
+          18,
+          21,
+          24,
+          27,
+          15
+        ]
+      },
+      {
+        "score": -49485.78988333634,
+        "matches": 426,
+        "key": [
+          1,
+          9,
+          24,
+          27,
+          15,
+          18,
+          21,
+          12
+        ]
+      },
+      {
+        "score": -49488.74564809919,
+        "matches": 424,
+        "key": [
+          1,
+          15,
+          24,
+          18,
+          21,
+          12,
+          9,
+          27
+        ]
+      },
+      {
+        "score": -49488.792047847906,
+        "matches": 416,
+        "key": [
+          1,
+          18,
+          21,
+          12,
+          9,
+          27,
+          15,
+          24
+        ]
+      }
+    ],
+    "trueOrderRank": null,
+    "exactPlainWords": null,
+    "exactPlainRunes": null,
+    "totalTruthRunes": null,
+    "matches": 428,
+    "matchedRunes": 879,
+    "matchLen3": 102,
+    "matchLen5": 0,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "?",
+      "?",
+      "?",
+      "FOP",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "BY",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "TM",
+      "?",
+      "SNG",
+      "?",
+      "?",
+      "?",
+      "IN",
+      "ANY",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "DOTH",
+      "A",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "THY",
+      "?",
+      "?",
+      "TXT",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "O",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "IU",
+      "BE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "APE",
+      "?",
+      "THY",
+      "I",
+      "IN",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "AN",
+      "?",
+      "?",
+      "?",
+      "?",
+      "EACH",
+      "?",
+      "?",
+      "HOE"
+    ],
+    "longMatches": []
+  },
+  "original:independent:4096": {
+    "order": [
+      0,
+      27,
+      17,
+      15,
+      5,
+      22,
+      3,
+      10
+    ],
+    "topScores": [
+      {
+        "score": -49486.73509348718,
+        "matches": 419,
+        "key": [
+          0,
+          27,
+          17,
+          15,
+          5,
+          22,
+          3,
+          10
+        ]
+      },
+      {
+        "score": -49495.73216989101,
+        "matches": 414,
+        "key": [
+          0,
+          22,
+          17,
+          5,
+          10,
+          3,
+          27,
+          15
+        ]
+      },
+      {
+        "score": -49496.5432520272,
+        "matches": 421,
+        "key": [
+          0,
+          22,
+          17,
+          5,
+          27,
+          3,
+          10,
+          15
+        ]
+      },
+      {
+        "score": -49497.923475277006,
+        "matches": 423,
+        "key": [
+          0,
+          22,
+          17,
+          5,
+          10,
+          15,
+          3,
+          27
+        ]
+      },
+      {
+        "score": -49499.11262861863,
+        "matches": 408,
+        "key": [
+          0,
+          22,
+          17,
+          15,
+          5,
+          27,
+          3,
+          10
+        ]
+      }
+    ],
+    "trueOrderRank": null,
+    "exactPlainWords": null,
+    "exactPlainRunes": null,
+    "totalTruthRunes": null,
+    "matches": 419,
+    "matchedRunes": 866,
+    "matchLen3": 100,
+    "matchLen5": 1,
+    "totalLen3": 2365,
+    "totalLen5": 1132,
+    "groups": 2896,
+    "firstWords": [
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "PUT",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "AM",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "MR",
+      "?",
+      "DA",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "EGG",
+      "?",
+      "?",
+      "?",
+      "?",
+      "A",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "HE",
+      "?",
+      "I",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "AY",
+      "?",
+      "DE",
+      "?",
+      "?",
+      "EASY",
+      "?",
+      "THE",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "O",
+      "?",
+      "TA",
+      "BEG",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "?",
+      "FAN",
+      "?",
+      "?"
+    ],
+    "longMatches": [
+      {
+        "word": 1980,
+        "len": 5,
+        "p": "SIDES",
+        "choices": 1
+      }
+    ]
+  }
+}
