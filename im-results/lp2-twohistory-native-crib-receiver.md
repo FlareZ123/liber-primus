@@ -56,3 +56,41 @@ There are **7,456** original 650-rune intervals, of which **7,269** have a prefi
 Thus **no 650-rune or longer contiguous quote** from any of these four pinned registers can occur entirely within any original chapter under either stationary predecessor-row family and the stated native encoding. A longer exact quote would contain a 650-rune subinterval. This is not an exclusion of shorter quotations, new prose, nonlinear clocks, F holds or arbitrary row models with other plaintexts.
 
 [Embedded receiver](../sims/lp2_twohistory_embedded_source_receiver_sft.cjs) · [output](lp2-twohistory-embedded-source-output.json) · [unanchored receiver](../sims/lp2_twohistory_unanchored_source_receiver_sft.cjs) · [output](lp2-twohistory-unanchored-source-output.json). Both experiment cores executed in connected V8; no standalone Node or CI claim.
+
+## Short final chapter: exact cross-book posterior over arbitrary row completions
+
+The 588 compatible source offsets in p54–55 represent 581 distinct effective partial keys. Instead of claiming one of them from text appearance, use its 303 fixed inverse entries to predict **independent earlier ciphertext** under the additional hypothesis that a single stationary set of 841 arbitrary permutations is shared book-wide. This is an actual source-key selector conditional on that family.
+
+Fix a GP29 native-frequency prior from Gibran and Emerson with add-one smoothing. For each ciphertext row, let n_c count held-out successor c and K be the fixed inverse entries from a candidate tail. Under the explicit model of iid GP letters with frequencies f and uniformly random independent row permutations, the exact marginal likelihood is
+
+    L(row | K) = product_{c in K} f[K(c)]^n_c
+                 * mean_{bijections of remaining labels} product_{c not in K} f[P(c)]^n_c.
+
+Group unobserved ciphertext labels by equal count r. Assign remaining plaintext labels to count groups of sizes m_r using a coefficient DP, weighting assignment of label p to group r by f[p]^r. Zero-count slots are the implicit final group. Divide the coefficient by the multinomial number of partitions. This integrates **all** compatible row completions, not a frequency-ranked heuristic or independent redraw per ciphertext occurrence. A 24-completion direct sum regression agrees within 1e-10. The code uses weights 29*f for numerical scaling.
+
+Score p0–32 as discovery, and p33–53 as validation using the exact difference log L(p0–53 | K) − log L(p0–32 | K), subtracting the equivalent unconditional row marginal. This difference conditions the validation on discovery ciphertext while preserving shared unknown row entries. The score is exact only under its stated iid-letter/random-table prior; authentic natural-language dependencies and deterministic authored keys may differ.
+
+### Six matched-profile blind controls
+
+Each synthetic book has the exact original physical page lengths, one unknown shared random row table, Shakespeare prose in p0–53, and a literal independent donor excerpt in p54–55. Tail ciphertext is conditioned solely on the original low-information profile: one repeated triple and 50–76 different-successor pair constraints (original 63). No rank-based control selection. The receiver enumerates every source offset before scoring. Pre-fixed gate: at least 5/6 true keys in discovery top five and at least 4/6 true keys ranked first on combined evidence.
+
+| Source | Candidate partial keys | True discovery log BF | True conditional validation log BF | True total log BF | Frozen correct earlier runes |
+|---|---:|---:|---:|---:|---:|
+| Gibran 4,013 |1,277|25.125|27.276|52.400|281/281|
+| Shakespeare 38,000 |1,296|43.872|23.507|67.379|294/294|
+| Emerson 17,000 |1,356|48.164|19.447|67.611|303/303|
+| Blake 500 |1,094|42.914|30.664|73.579|307/307|
+| Gibran 20,000 |723|16.439|23.769|40.208|292/292|
+| Emerson 80,000 |591|59.938|14.616|74.554|297/297|
+
+True source/partial key ranks **1/1/1 for discovery, conditional validation and combined score on all six controls**, passing the gate. This actually recovers the complete planted tail source alignment and every observed tail inverse entry and predicts 281–307 previously unseen earlier runes per control; it does not recover full arbitrary tables.
+
+### Original: calibrated selector fails decisively
+
+Original p54–55: 601,698 candidate source offsets, 588 exact compatible offsets, 581 distinct partial keys. The strongest discovery candidate (Shakespeare offset 165,718) has log BF −15.084, validation −26.086, combined −41.170; it ranks 465th in validation and 12th combined. The strongest combined candidate (Shakespeare offset 109,927) has discovery −28.927, validation −4.892, combined −33.819, and ranks 73rd in discovery. **Even the maximum combined evidence is negative**; all six true controls are positive +40.208 to +74.554 and predict independent runes. Original frozen maps cover only 165 of 12,542 eligible earlier runes, with nine multi-rune runs, compared to 281–307 covered in controls. None of the short fragments establishes coherent source plaintext.
+
+The unconditional whole-pre-tail native-iid random-table model log likelihood relative to uniform-GP output is **−624.879** on original versus **+796.189 to +848.287** on the matched controls. This supplies a calibrated model failure, not an algebraic all-key exclusion for deterministic authored tables or arbitrary non-iid plaintext.
+
+**Decision:** no surviving short-tail source candidate supports a globally shared stationary arbitrary two-history decoder under this calibrated independent-evidence receiver. Retire this particular source reuse/shared-table branch; do not promote the best negative score or try arbitrary source offsets again. Chapter-private keys, other source material, different state laws and non-iid structures remain outside this test.
+
+[Exact posterior receiver](../sims/lp2_twohistory_tail_exact_row_posterior_sft.cjs) · [complete raw output, seeds, scores and partial prediction positions](lp2-twohistory-tail-exact-row-posterior-output.json). Code core executed in connected V8; standalone Node wrapper not separately run; no CI claim.
