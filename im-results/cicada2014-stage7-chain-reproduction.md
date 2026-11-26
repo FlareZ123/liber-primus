@@ -84,3 +84,36 @@ The failed Midas acquisition is retired. `https://mir.cr/05EYEMXF` redirects to 
 This closes the documented **2014 Stage 7 media-to-squares handoff**. The fifth-onion README says the extracted squares' use is unknown at that stage, but the subsequent sixth-onion outguess instructions and PGP clear-signed Stage8 form (signature block present; independent verification not completed in this invocation) resolve their role: submit the three squares plus a Tor hidden-service URL. The form specifies a CGI upload endpoint (`/cgi-bin/upload`, field `file`) and a GnuPG public key at `/key.asc`; the HTML form names the three square fields `53301`, `71033`, `51033`. The archive records three further LP pages after submission. This is a source-authenticated **submission receiver**, not a square-to-text decoder for LP2 p33.
 
 Nothing in this reproduction recovers unknown LP2 plaintext, selects an LP2 key schedule, identifies an LP2 reversible transform, or resolves the final Cicada destination. Keep the historical control separate from all LP2 cryptanalytic claims.
+
+## Direct Stage7 → Stage10 square-form match (#3001)
+
+The 99 entries are not an ungrouped sequence or eleven 3×3 blocks: the exact extracted 745-byte text (blob 0cff0a94f16a8603443619b6338def411c9f7bd5) already has three blank-line-separated matrices, of orders 5, 7, 5. Split on original blank lines, preserve row and column order, parse decimal integers, and sum every row, column, and both main diagonals. All 12, 16, and 12 sums respectively equal 3301, 1033, 1033. The three matches are uniquely typed by the actual [Stage10 form](../resources/historical/cicada2014-stage10-neuro-form.html), in source order: `53301`, `71033`, `51033`. No permutation or key search is needed. The original payload's three center entries are 809, 331, 91; all three matrices have 180-degree rotational symmetry. No new LP2 significance is claimed for those properties.
+
+Controls: for each matrix, seeded xorshift32 (initial state 0x33011033, carried across trials/matrices) drove 10,000 Fisher–Yates full-entry shuffles and 10,000 row-only shuffles (interleaved full then row per trial). All three full-entry controls yielded 0/10,000 exact magic hits; row-only hits were 168, 4, 174 respectively. The latter controls preserve existing row/column sums, so only the diagonal conditions discriminate. They are descriptive controls, not statistical attribution evidence. Original unmodified groups pass all conditions.
+
+The direct historical input triple was already established in #2017 and this report; #3001 resolves the newer mistaken 3×3 premise with the explicit dimension/sum check. The three values are source-selected form inputs, not a captured POST body or proof of server acceptance, and no LP2 plaintext/key or p56 hash preimage follows. Do not redo extraction or construct further square partitions. #2989 can now restrict any remaining inquiry to the exact submitted serialization and historical server response, distinct from the already recovered numeric matrices.
+
+Reproducer (Node.js, from repository root):
+
+```js
+const fs = require('node:fs');
+const squares = fs.readFileSync('resources/cicada2014-openpuff-magic-squares.txt','utf8')
+  .trim().split(/\\r?\\n\\s*\\r?\\n/).map(b => b.split(/\\r?\\n/).map(s => s.trim().split(/\\s+/).map(Number)));
+const sums = m => [...m.map(r => r.reduce((a,b) => a+b,0)),
+  ...m[0].map((_,i) => m.reduce((a,r) => a+r[i],0)),
+  m.reduce((a,r,i) => a+r[i],0), m.reduce((a,r,i) => a+r[m.length-1-i],0)];
+let seed = 0x33011033;
+const rand = () => { seed ^= seed<<13; seed ^= seed>>>17; seed ^= seed<<5; return (seed>>>0)/4294967296; };
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(rand()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; };
+for(const m of squares){
+  const n=m.length,s=sums(m); let whole=0,row=0;
+  for(let i=0;i<10000;i++){
+    const a=shuffle(m.flat());
+    whole+=Number(sums(Array.from({length:n},(_,j)=>a.slice(j*n,(j+1)*n))).every(x=>x===s[0]));
+    row+=Number(sums(shuffle(m)).every(x=>x===s[0]));
+  }
+  console.log({n,s,whole,row});
+}
+```
+
+Executed using the exact connector-returned source in V8; the filesystem read wrapper above is provided for local reproduction.
