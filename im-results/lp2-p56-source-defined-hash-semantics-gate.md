@@ -196,6 +196,25 @@ None of the ten exact objects or two quoted response strings matches the p56 tar
 
 The `Dukotah/cicada3301` CDX log (commit `4aba42eeafc7434cec49041d5095bc843e23e964`) covers the `sq6` and `cginizi` hosts. Separately, the broader [Phase 52 archive audit](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/work/log/phase52_an_end_archives.md) explicitly includes `eq6`: it harvested 528 URL strings from 1,333 text files, enumerated 34 v2 onion hosts, and queried 14 gateway forms per host (`.onion`, `.onion.to`, `.tor2web.org`, `.tor2web.io`, `.tor2web.fi`, `.onion.city`, `.onion.cab`, `.onion.link`, `.onion.ws`, `.onion.sh`, `.onion.nu`, `.onion.lt`, `.onion.direct`, and `.d2web.org`). The `eq6` row is **none**: no Wayback CDX captures. Its [query script](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/work/phase52/cdx_query.py) confirms the generated host/gateway queries. The same audit reports 124,017 digests over 3,739 candidate files and zero full-512 matches. It queried Wayback only; archive.today, Common Crawl and tor2web-era mirrors outside Wayback were not. This closes the bounded Wayback path for `eq6`; it does not recover the page or prove it was never accessed. A separate [R12.5 archive record](https://github.com/jaxonkuipers/cicada3301/blob/47f32a9e94061953ab25fdd5052996c27a86c002/corpus/records/R12.5/README.md) and [R12.6 record](https://github.com/jaxonkuipers/cicada3301/blob/47f32a9e94061953ab25fdd5052996c27a86c002/corpus/records/R12.6/README.md) likewise mark the participant page/recipient material as unavailable. These are independent archive-status observations, not proof that private participant copies or every non-Wayback archive are exhausted.
 
+### eq6 non-Wayback acquisition attempt (Agent50, 26 November 2026; #2955)
+
+A separate indexed GitHub exact-hostname search returned the previously known neuroretransmit and Phase52 records, wiki mirrors, and two additional source leads:
+
+- [Liberpedia's pinned Britannica replay](https://github.com/jelliottdev/jelliottdev.github.io/blob/a6771afd146c736fc0a58d67cfd8af7089e39515/reference/articles/britannica-book-code.txt) reproduces the mixed-case address from the historical clue, but explicitly does not establish historical service operation or provide any response. The associated exported coordinate trace is a book-code reconstruction, not a new page object.
+- [Optimisticninja archive](https://github.com/cicada-solvers/optimisticninja_cicada3301/blob/c895e6b3b43d06dd2071fdab12694f73c2805c12/2012/03.subreddit/05.two_book_codes/README.md) reproduces the address and labels it never used without presenting a dated access record. This does not prove it was never accessed.
+
+Public exact-hostname searches, including pre-2015, Reddit and Pastebin restrictions, produced no contemporaneous response body or access record in returned results. The [Dukotah community archive gap inventory](https://github.com/Dukotah/cicada3301/blob/master/corpus/C-community/GAPS-C.md) identifies missing 2012-era predecessor-channel logs, so absence from indexed search cannot exclude those logs.
+
+Two genuinely new non-Wayback archive channels were attempted, but **their query results were inaccessible**, not proven empty:
+
+| Channel | Exact query | Outcome |
+|---|---|---|
+| Common Crawl | `https://index.commoncrawl.org/CC-MAIN-2012-index?url=eq6emgv2ehsrix6t.onion&output=json&matchType=domain` | Web retrieval inaccessible; direct container DNS also failed |
+| Common Crawl | `https://index.commoncrawl.org/CC-MAIN-2014-52-index?url=eq6emgv2ehsrix6t.onion%2F%2A&output=json` | Web retrieval inaccessible |
+| Arquivo.pt | `https://arquivo.pt/textsearch?versionHistory=eq6emgv2ehsrix6t.onion` and `https://arquivo.pt/textsearch?q=eq6emgv2ehsrix6t&maxItems=10` | Web retrieval inaccessible; direct container DNS also failed |
+
+The [Common Crawl collection manifest](https://index.commoncrawl.org/collinfo.json) itself was retrievable. Its 2012 collection begins 27 January 2012; it therefore has no coverage of the earlier part of January, independently of any query result. Archive.today and other independent response collections remain untested. No live onion requests or speculative path/token queries were made. **No new source body was recovered, so no hash comparison is claimed.** Issue #2955 remains blocked on executable archive access or an independently dated participant response; the existing Wayback and CNR domains should not be repeated.
+
 The full exact-object gate passed in [workflow run 45345781624](https://github.com/FlareZ123/liber-primus/actions/runs/45345781624).
 
 ### SHA-512 and Whirlpool follow-up on preserved 2012 page objects and the enrollment screenshot (Agent1, 26 November 2026)
@@ -204,7 +223,7 @@ The three preserved page/source objects (the `sq6` root HTML, independent post-p
 
 The screenshot shows the enrollment form at `/cgi-bin/get_email`: create a new public email address, wait for the emailed number, then append that number to the onion host root. The displayed number `3894894230934209` is explicitly an example, **not** a recovered participant token. The screenshot is not the dynamic `/NUMBER` response or an original HTTP entity.
 
-The same source archive records the separate Britannica-derived `eq6emgv2ehsrix6t.onion` host as missing. The community history says it is long gone and whether anyone accessed it is unclear. It is a plausible historical candidate for the p56 handoff, but there is no surviving page object to hash and no evidence tying it to p56. The Phase 52 audit cited above includes `eq6` in its 14-gateway Wayback CDX sweep and found no captures; archive.today, Common Crawl and non-Wayback tor2web mirrors were not queried.
+The same source archive records the separate Britannica-derived `eq6emgv2ehsrix6t.onion` host as missing. The community history says it is long gone and whether anyone accessed it is unclear. It is a plausible historical candidate for the p56 handoff, but there is no surviving page object to hash and no evidence tying it to p56. The Phase 52 audit cited above includes `eq6` in its 14-gateway Wayback CDX sweep and found no captures; archive.today and non-Wayback tor2web mirrors remain untested; the subsequent Common Crawl and Arquivo.pt attempts documented above could not retrieve query results.
 
 The reproducible script is [`sims/lp2_p56_whirlpool_2012_onion_pages_sft.py`](../sims/lp2_p56_whirlpool_2012_onion_pages_sft.py); [workflow run 45800628837](https://github.com/FlareZ123/liber-primus/actions/runs/45800628837) completed successfully with OpenSSL 3.5.5 and a passing Whirlpool `abc` known-answer control. Raw results are preserved in [`lp2-p56-whirlpool-2012-onion-pages.json`](lp2-p56-whirlpool-2012-onion-pages.json).
 
