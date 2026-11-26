@@ -1,0 +1,1866 @@
+{
+  "scope": "exact cyclic-order inference for candidate DH pad multiset, intact complete printed groups, independent phase, ordinary or literal plaintext F hold",
+  "dictionaryCount": 33369,
+  "keys": 2520,
+  "source": {
+    "p28Line6": [
+      117,
+      140
+    ],
+    "groupCounts": [
+      47,
+      52,
+      68
+    ],
+    "excluded": "p27 heading, fitted core word, terminal fragment; p28 line6 and page endpoint groups; p29 fitted word30 and page endpoint groups"
+  },
+  "results": [
+    {
+      "sign": 1,
+      "hold": false,
+      "max": [
+        21,
+        17,
+        29
+      ],
+      "minOov": [
+        26,
+        35,
+        39
+      ],
+      "fitBest": 17,
+      "fitTies": 1,
+      "fitBestKey": [
+        0,
+        22,
+        2,
+        14,
+        5,
+        2,
+        15,
+        25
+      ],
+      "fitTopP29Range": [
+        23,
+        23
+      ],
+      "fitTopP27Range": [
+        12,
+        12
+      ],
+      "bestJoint": 57,
+      "keysWithin5pct": 0,
+      "firstKeyCandidateWords": [
+        [
+          {
+            "offset": 34,
+            "options": [
+              "FF",
+              "JA"
+            ]
+          },
+          {
+            "offset": 36,
+            "options": [
+              "B",
+              "H",
+              "J",
+              "L",
+              "P"
+            ]
+          },
+          {
+            "offset": 51,
+            "options": [
+              "AY"
+            ]
+          },
+          {
+            "offset": 66,
+            "options": [
+              "PA"
+            ]
+          },
+          {
+            "offset": 93,
+            "options": [
+              "CY",
+              "HA",
+              "SU"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "HA",
+              "IT",
+              "CW"
+            ]
+          },
+          {
+            "offset": 147,
+            "options": [
+              "BOTH",
+              "FOO"
+            ]
+          },
+          {
+            "offset": 152,
+            "options": [
+              "AD",
+              "EAT",
+              "NL"
+            ]
+          },
+          {
+            "offset": 154,
+            "options": [
+              "CUB"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "REU"
+            ]
+          },
+          {
+            "offset": 178,
+            "options": [
+              "MI"
+            ]
+          },
+          {
+            "offset": 218,
+            "options": [
+              "IU",
+              "MO",
+              "PE",
+              "SI",
+              "UIA"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 32,
+            "options": [
+              "G",
+              "NG",
+              "M",
+              "T",
+              "W"
+            ]
+          },
+          {
+            "offset": 38,
+            "options": [
+              "AU",
+              "US"
+            ]
+          },
+          {
+            "offset": 40,
+            "options": [
+              "OH"
+            ]
+          },
+          {
+            "offset": 42,
+            "options": [
+              "ASC"
+            ]
+          },
+          {
+            "offset": 140,
+            "options": [
+              "IL",
+              "MD"
+            ]
+          },
+          {
+            "offset": 151,
+            "options": [
+              "SWUNG"
+            ]
+          },
+          {
+            "offset": 161,
+            "options": [
+              "ES",
+              "JA",
+              "NO"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "F",
+              "I",
+              "M",
+              "OE",
+              "P",
+              "S"
+            ]
+          },
+          {
+            "offset": 164,
+            "options": [
+              "REP"
+            ]
+          },
+          {
+            "offset": 167,
+            "options": [
+              "MI",
+              "PA"
+            ]
+          },
+          {
+            "offset": 229,
+            "options": [
+              "E",
+              "G",
+              "J",
+              "N",
+              "S",
+              "Y"
+            ]
+          },
+          {
+            "offset": 233,
+            "options": [
+              "B",
+              "C",
+              "D",
+              "M",
+              "R",
+              "X"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "II",
+              "IN",
+              "TA",
+              "WOE",
+              "YEA"
+            ]
+          },
+          {
+            "offset": 243,
+            "options": [
+              "OFF"
+            ]
+          },
+          {
+            "offset": 246,
+            "options": [
+              "OX",
+              "PE",
+              "YEA"
+            ]
+          },
+          {
+            "offset": 248,
+            "options": [
+              "BA",
+              "LEO"
+            ]
+          },
+          {
+            "offset": 258,
+            "options": [
+              "WED"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 8,
+            "options": [
+              "HM",
+              "CNG",
+              "TT"
+            ]
+          },
+          {
+            "offset": 20,
+            "options": [
+              "AM",
+              "SG"
+            ]
+          },
+          {
+            "offset": 55,
+            "options": [
+              "FOI"
+            ]
+          },
+          {
+            "offset": 65,
+            "options": [
+              "EH",
+              "OC",
+              "PEA",
+              "TT",
+              "TS"
+            ]
+          },
+          {
+            "offset": 76,
+            "options": [
+              "SI"
+            ]
+          },
+          {
+            "offset": 85,
+            "options": [
+              "EH"
+            ]
+          },
+          {
+            "offset": 94,
+            "options": [
+              "FOE",
+              "LL"
+            ]
+          },
+          {
+            "offset": 102,
+            "options": [
+              "B",
+              "E",
+              "I",
+              "O",
+              "U",
+              "W"
+            ]
+          },
+          {
+            "offset": 106,
+            "options": [
+              "DI",
+              "OP"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "OIL"
+            ]
+          },
+          {
+            "offset": 131,
+            "options": [
+              "OCT"
+            ]
+          },
+          {
+            "offset": 146,
+            "options": [
+              "LEAC"
+            ]
+          },
+          {
+            "offset": 155,
+            "options": [
+              "B",
+              "C",
+              "D",
+              "M",
+              "R",
+              "X"
+            ]
+          },
+          {
+            "offset": 177,
+            "options": [
+              "BU",
+              "OR"
+            ]
+          },
+          {
+            "offset": 210,
+            "options": [
+              "NET"
+            ]
+          },
+          {
+            "offset": 217,
+            "options": [
+              "AU",
+              "THNG"
+            ]
+          },
+          {
+            "offset": 219,
+            "options": [
+              "PG"
+            ]
+          },
+          {
+            "offset": 230,
+            "options": [
+              "EG",
+              "ND"
+            ]
+          },
+          {
+            "offset": 232,
+            "options": [
+              "IL",
+              "LA",
+              "PE",
+              "UE"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "ATT"
+            ]
+          },
+          {
+            "offset": 237,
+            "options": [
+              "ID"
+            ]
+          },
+          {
+            "offset": 270,
+            "options": [
+              "ON",
+              "PO",
+              "TM"
+            ]
+          },
+          {
+            "offset": 272,
+            "options": [
+              "EM",
+              "TY"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "max": [
+        21,
+        17,
+        29
+      ],
+      "minOov": [
+        26,
+        35,
+        39
+      ],
+      "fitBest": 17,
+      "fitTies": 3,
+      "fitBestKey": [
+        0,
+        14,
+        5,
+        2,
+        15,
+        2,
+        25,
+        22
+      ],
+      "fitTopP29Range": [
+        19,
+        22
+      ],
+      "fitTopP27Range": [
+        14,
+        15
+      ],
+      "bestJoint": 58,
+      "keysWithin5pct": 0,
+      "firstKeyCandidateWords": [
+        [
+          {
+            "offset": 26,
+            "options": [
+              "OF"
+            ]
+          },
+          {
+            "offset": 34,
+            "options": [
+              "DR",
+              "IF",
+              "JA",
+              "OF"
+            ]
+          },
+          {
+            "offset": 36,
+            "options": [
+              "B",
+              "H",
+              "J",
+              "L",
+              "P"
+            ]
+          },
+          {
+            "offset": 51,
+            "options": [
+              "AY"
+            ]
+          },
+          {
+            "offset": 66,
+            "options": [
+              "BA",
+              "LB",
+              "PO"
+            ]
+          },
+          {
+            "offset": 91,
+            "options": [
+              "DR",
+              "TM"
+            ]
+          },
+          {
+            "offset": 93,
+            "options": [
+              "EAU",
+              "SA"
+            ]
+          },
+          {
+            "offset": 108,
+            "options": [
+              "GOES"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "CW"
+            ]
+          },
+          {
+            "offset": 144,
+            "options": [
+              "LUNG"
+            ]
+          },
+          {
+            "offset": 147,
+            "options": [
+              "BOTH"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "JEM"
+            ]
+          },
+          {
+            "offset": 178,
+            "options": [
+              "MI"
+            ]
+          },
+          {
+            "offset": 218,
+            "options": [
+              "IU",
+              "MI",
+              "SE",
+              "UIA"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 32,
+            "options": [
+              "G",
+              "NG",
+              "M",
+              "T",
+              "W"
+            ]
+          },
+          {
+            "offset": 38,
+            "options": [
+              "AM"
+            ]
+          },
+          {
+            "offset": 40,
+            "options": [
+              "OS",
+              "PG"
+            ]
+          },
+          {
+            "offset": 42,
+            "options": [
+              "ASC"
+            ]
+          },
+          {
+            "offset": 51,
+            "options": [
+              "BWNG"
+            ]
+          },
+          {
+            "offset": 140,
+            "options": [
+              "IL",
+              "MD",
+              "ND"
+            ]
+          },
+          {
+            "offset": 151,
+            "options": [
+              "SWUNG"
+            ]
+          },
+          {
+            "offset": 161,
+            "options": [
+              "SA"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "I",
+              "M",
+              "OE",
+              "P",
+              "S",
+              "U"
+            ]
+          },
+          {
+            "offset": 164,
+            "options": [
+              "FOR"
+            ]
+          },
+          {
+            "offset": 167,
+            "options": [
+              "MB",
+              "PA"
+            ]
+          },
+          {
+            "offset": 188,
+            "options": [
+              "FRNGED"
+            ]
+          },
+          {
+            "offset": 229,
+            "options": [
+              "E",
+              "G",
+              "J",
+              "N",
+              "S",
+              "Y"
+            ]
+          },
+          {
+            "offset": 233,
+            "options": [
+              "B",
+              "C",
+              "D",
+              "M",
+              "R",
+              "X"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "IN",
+              "MA",
+              "WOE"
+            ]
+          },
+          {
+            "offset": 246,
+            "options": [
+              "ONG",
+              "YE",
+              "YEA"
+            ]
+          },
+          {
+            "offset": 248,
+            "options": [
+              "BA",
+              "WA"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 8,
+            "options": [
+              "TT"
+            ]
+          },
+          {
+            "offset": 20,
+            "options": [
+              "SG"
+            ]
+          },
+          {
+            "offset": 65,
+            "options": [
+              "ET",
+              "PEA",
+              "TS"
+            ]
+          },
+          {
+            "offset": 76,
+            "options": [
+              "AM",
+              "ET",
+              "SI"
+            ]
+          },
+          {
+            "offset": 85,
+            "options": [
+              "EH",
+              "UI"
+            ]
+          },
+          {
+            "offset": 94,
+            "options": [
+              "DY",
+              "IL",
+              "LL"
+            ]
+          },
+          {
+            "offset": 102,
+            "options": [
+              "B",
+              "E",
+              "I",
+              "O",
+              "U",
+              "W"
+            ]
+          },
+          {
+            "offset": 106,
+            "options": [
+              "DI",
+              "OP"
+            ]
+          },
+          {
+            "offset": 131,
+            "options": [
+              "OCT"
+            ]
+          },
+          {
+            "offset": 155,
+            "options": [
+              "B",
+              "C",
+              "D",
+              "M",
+              "R",
+              "X"
+            ]
+          },
+          {
+            "offset": 177,
+            "options": [
+              "BA"
+            ]
+          },
+          {
+            "offset": 217,
+            "options": [
+              "AN",
+              "EAU"
+            ]
+          },
+          {
+            "offset": 219,
+            "options": [
+              "PG",
+              "THE"
+            ]
+          },
+          {
+            "offset": 230,
+            "options": [
+              "EH",
+              "NEO"
+            ]
+          },
+          {
+            "offset": 232,
+            "options": [
+              "LE",
+              "RA",
+              "UE"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "ATT",
+              "FEB",
+              "WEB"
+            ]
+          },
+          {
+            "offset": 237,
+            "options": [
+              "TS"
+            ]
+          },
+          {
+            "offset": 270,
+            "options": [
+              "EL",
+              "OO",
+              "PO",
+              "TM"
+            ]
+          },
+          {
+            "offset": 272,
+            "options": [
+              "TT",
+              "TY"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "max": [
+        19,
+        17,
+        26
+      ],
+      "minOov": [
+        28,
+        35,
+        42
+      ],
+      "fitBest": 17,
+      "fitTies": 2,
+      "fitBestKey": [
+        0,
+        5,
+        2,
+        15,
+        22,
+        25,
+        2,
+        14
+      ],
+      "fitTopP29Range": [
+        19,
+        21
+      ],
+      "fitTopP27Range": [
+        16,
+        16
+      ],
+      "bestJoint": 57,
+      "keysWithin5pct": 0,
+      "firstKeyCandidateWords": [
+        [
+          {
+            "offset": 26,
+            "options": [
+              "BC",
+              "MS"
+            ]
+          },
+          {
+            "offset": 28,
+            "options": [
+              "TWO"
+            ]
+          },
+          {
+            "offset": 34,
+            "options": [
+              "IF",
+              "JOE"
+            ]
+          },
+          {
+            "offset": 36,
+            "options": [
+              "E",
+              "G",
+              "N",
+              "P",
+              "S"
+            ]
+          },
+          {
+            "offset": 66,
+            "options": [
+              "EM",
+              "NM",
+              "SO"
+            ]
+          },
+          {
+            "offset": 91,
+            "options": [
+              "EM",
+              "THY"
+            ]
+          },
+          {
+            "offset": 93,
+            "options": [
+              "DOE",
+              "TM",
+              "YEA"
+            ]
+          },
+          {
+            "offset": 105,
+            "options": [
+              "FEU"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "AN",
+              "IX",
+              "OC"
+            ]
+          },
+          {
+            "offset": 133,
+            "options": [
+              "OHIO"
+            ]
+          },
+          {
+            "offset": 147,
+            "options": [
+              "ALI",
+              "SUM"
+            ]
+          },
+          {
+            "offset": 150,
+            "options": [
+              "FO",
+              "OM"
+            ]
+          },
+          {
+            "offset": 152,
+            "options": [
+              "FE",
+              "IN",
+              "LE"
+            ]
+          },
+          {
+            "offset": 154,
+            "options": [
+              "WNGS"
+            ]
+          },
+          {
+            "offset": 178,
+            "options": [
+              "DI",
+              "WE"
+            ]
+          },
+          {
+            "offset": 218,
+            "options": [
+              "BE",
+              "FO"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 32,
+            "options": [
+              "B",
+              "D",
+              "G",
+              "NG",
+              "W",
+              "X"
+            ]
+          },
+          {
+            "offset": 38,
+            "options": [
+              "EAU"
+            ]
+          },
+          {
+            "offset": 40,
+            "options": [
+              "AI",
+              "RI",
+              "XU"
+            ]
+          },
+          {
+            "offset": 42,
+            "options": [
+              "SIT"
+            ]
+          },
+          {
+            "offset": 51,
+            "options": [
+              "OOH"
+            ]
+          },
+          {
+            "offset": 140,
+            "options": [
+              "AU"
+            ]
+          },
+          {
+            "offset": 161,
+            "options": [
+              "JOE",
+              "PO",
+              "TM",
+              "WM"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "B",
+              "F",
+              "H",
+              "J",
+              "L",
+              "S"
+            ]
+          },
+          {
+            "offset": 164,
+            "options": [
+              "CLNG"
+            ]
+          },
+          {
+            "offset": 167,
+            "options": [
+              "BA",
+              "LEO",
+              "UO"
+            ]
+          },
+          {
+            "offset": 229,
+            "options": [
+              "J",
+              "P",
+              "R",
+              "T",
+              "W",
+              "Y"
+            ]
+          },
+          {
+            "offset": 233,
+            "options": [
+              "A",
+              "C",
+              "NG",
+              "M",
+              "R",
+              "S"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "BY",
+              "XI"
+            ]
+          },
+          {
+            "offset": 236,
+            "options": [
+              "DAD"
+            ]
+          },
+          {
+            "offset": 243,
+            "options": [
+              "WEAC"
+            ]
+          },
+          {
+            "offset": 246,
+            "options": [
+              "AT"
+            ]
+          },
+          {
+            "offset": 248,
+            "options": [
+              "HM"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 8,
+            "options": [
+              "SNG",
+              "UY"
+            ]
+          },
+          {
+            "offset": 17,
+            "options": [
+              "UII"
+            ]
+          },
+          {
+            "offset": 20,
+            "options": [
+              "BY",
+              "OX",
+              "THNG"
+            ]
+          },
+          {
+            "offset": 65,
+            "options": [
+              "DO",
+              "EG",
+              "OU",
+              "RD"
+            ]
+          },
+          {
+            "offset": 76,
+            "options": [
+              "LB"
+            ]
+          },
+          {
+            "offset": 85,
+            "options": [
+              "HI",
+              "NO"
+            ]
+          },
+          {
+            "offset": 94,
+            "options": [
+              "UA"
+            ]
+          },
+          {
+            "offset": 102,
+            "options": [
+              "B",
+              "C",
+              "E",
+              "H",
+              "O"
+            ]
+          },
+          {
+            "offset": 106,
+            "options": [
+              "IF",
+              "IU"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "WIE"
+            ]
+          },
+          {
+            "offset": 123,
+            "options": [
+              "EASE"
+            ]
+          },
+          {
+            "offset": 134,
+            "options": [
+              "PARR"
+            ]
+          },
+          {
+            "offset": 155,
+            "options": [
+              "A",
+              "C",
+              "NG",
+              "M",
+              "R",
+              "S"
+            ]
+          },
+          {
+            "offset": 177,
+            "options": [
+              "BY",
+              "EM"
+            ]
+          },
+          {
+            "offset": 217,
+            "options": [
+              "IT",
+              "ND"
+            ]
+          },
+          {
+            "offset": 219,
+            "options": [
+              "OP"
+            ]
+          },
+          {
+            "offset": 230,
+            "options": [
+              "TI"
+            ]
+          },
+          {
+            "offset": 232,
+            "options": [
+              "EAT",
+              "JOE",
+              "LL"
+            ]
+          },
+          {
+            "offset": 237,
+            "options": [
+              "HI"
+            ]
+          },
+          {
+            "offset": 270,
+            "options": [
+              "LL",
+              "OC",
+              "RIA"
+            ]
+          },
+          {
+            "offset": 272,
+            "options": [
+              "LY",
+              "XX"
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "max": [
+        19,
+        17,
+        27
+      ],
+      "minOov": [
+        28,
+        35,
+        41
+      ],
+      "fitBest": 17,
+      "fitTies": 5,
+      "fitBestKey": [
+        0,
+        5,
+        2,
+        15,
+        22,
+        25,
+        2,
+        14
+      ],
+      "fitTopP29Range": [
+        16,
+        22
+      ],
+      "fitTopP27Range": [
+        15,
+        17
+      ],
+      "bestJoint": 57,
+      "keysWithin5pct": 0,
+      "firstKeyCandidateWords": [
+        [
+          {
+            "offset": 26,
+            "options": [
+              "BC",
+              "IF",
+              "MS",
+              "OF"
+            ]
+          },
+          {
+            "offset": 28,
+            "options": [
+              "TWO"
+            ]
+          },
+          {
+            "offset": 34,
+            "options": [
+              "IF",
+              "JOE"
+            ]
+          },
+          {
+            "offset": 36,
+            "options": [
+              "E",
+              "G",
+              "N",
+              "P",
+              "S"
+            ]
+          },
+          {
+            "offset": 66,
+            "options": [
+              "EM",
+              "NM",
+              "SO"
+            ]
+          },
+          {
+            "offset": 91,
+            "options": [
+              "EM",
+              "THY"
+            ]
+          },
+          {
+            "offset": 93,
+            "options": [
+              "DOE",
+              "TM",
+              "YEA"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "AN",
+              "IX",
+              "OC"
+            ]
+          },
+          {
+            "offset": 133,
+            "options": [
+              "OHIO"
+            ]
+          },
+          {
+            "offset": 147,
+            "options": [
+              "ALI",
+              "SUM"
+            ]
+          },
+          {
+            "offset": 150,
+            "options": [
+              "OM"
+            ]
+          },
+          {
+            "offset": 152,
+            "options": [
+              "IN",
+              "LE"
+            ]
+          },
+          {
+            "offset": 154,
+            "options": [
+              "WNGS"
+            ]
+          },
+          {
+            "offset": 178,
+            "options": [
+              "DI",
+              "WE"
+            ]
+          },
+          {
+            "offset": 218,
+            "options": [
+              "BE"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 32,
+            "options": [
+              "B",
+              "D",
+              "G",
+              "NG",
+              "W",
+              "X"
+            ]
+          },
+          {
+            "offset": 38,
+            "options": [
+              "EAU"
+            ]
+          },
+          {
+            "offset": 40,
+            "options": [
+              "AI",
+              "RI",
+              "XU"
+            ]
+          },
+          {
+            "offset": 42,
+            "options": [
+              "FIT",
+              "SIT"
+            ]
+          },
+          {
+            "offset": 51,
+            "options": [
+              "OOH"
+            ]
+          },
+          {
+            "offset": 140,
+            "options": [
+              "AU"
+            ]
+          },
+          {
+            "offset": 161,
+            "options": [
+              "JOE",
+              "PO",
+              "TM",
+              "WM"
+            ]
+          },
+          {
+            "offset": 163,
+            "options": [
+              "B",
+              "H",
+              "J",
+              "L",
+              "S",
+              "U"
+            ]
+          },
+          {
+            "offset": 164,
+            "options": [
+              "CLNG",
+              "FLNG",
+              "FOG"
+            ]
+          },
+          {
+            "offset": 167,
+            "options": [
+              "BA",
+              "LEO",
+              "UO"
+            ]
+          },
+          {
+            "offset": 229,
+            "options": [
+              "J",
+              "P",
+              "R",
+              "T",
+              "W",
+              "Y"
+            ]
+          },
+          {
+            "offset": 233,
+            "options": [
+              "A",
+              "C",
+              "NG",
+              "M",
+              "R",
+              "S"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "BY",
+              "XI"
+            ]
+          },
+          {
+            "offset": 236,
+            "options": [
+              "DAD"
+            ]
+          },
+          {
+            "offset": 243,
+            "options": [
+              "WEAC"
+            ]
+          },
+          {
+            "offset": 246,
+            "options": [
+              "AT"
+            ]
+          },
+          {
+            "offset": 248,
+            "options": [
+              "HM"
+            ]
+          }
+        ],
+        [
+          {
+            "offset": 8,
+            "options": [
+              "SNG",
+              "UY"
+            ]
+          },
+          {
+            "offset": 17,
+            "options": [
+              "UII"
+            ]
+          },
+          {
+            "offset": 20,
+            "options": [
+              "BY",
+              "OX",
+              "THNG"
+            ]
+          },
+          {
+            "offset": 65,
+            "options": [
+              "DO",
+              "EG",
+              "OU",
+              "RD"
+            ]
+          },
+          {
+            "offset": 76,
+            "options": [
+              "LB"
+            ]
+          },
+          {
+            "offset": 85,
+            "options": [
+              "HI",
+              "NO"
+            ]
+          },
+          {
+            "offset": 94,
+            "options": [
+              "UA"
+            ]
+          },
+          {
+            "offset": 102,
+            "options": [
+              "B",
+              "C",
+              "E",
+              "H",
+              "O"
+            ]
+          },
+          {
+            "offset": 106,
+            "options": [
+              "IU"
+            ]
+          },
+          {
+            "offset": 120,
+            "options": [
+              "WIE"
+            ]
+          },
+          {
+            "offset": 123,
+            "options": [
+              "EASE"
+            ]
+          },
+          {
+            "offset": 134,
+            "options": [
+              "PARR"
+            ]
+          },
+          {
+            "offset": 155,
+            "options": [
+              "A",
+              "C",
+              "NG",
+              "M",
+              "R",
+              "S"
+            ]
+          },
+          {
+            "offset": 177,
+            "options": [
+              "BY",
+              "EM"
+            ]
+          },
+          {
+            "offset": 217,
+            "options": [
+              "IT",
+              "ND"
+            ]
+          },
+          {
+            "offset": 219,
+            "options": [
+              "OP"
+            ]
+          },
+          {
+            "offset": 230,
+            "options": [
+              "TI"
+            ]
+          },
+          {
+            "offset": 232,
+            "options": [
+              "EAT",
+              "JOE",
+              "LL"
+            ]
+          },
+          {
+            "offset": 234,
+            "options": [
+              "FEW"
+            ]
+          },
+          {
+            "offset": 237,
+            "options": [
+              "HI"
+            ]
+          },
+          {
+            "offset": 270,
+            "options": [
+              "LL",
+              "OC",
+              "RIA"
+            ]
+          },
+          {
+            "offset": 272,
+            "options": [
+              "LY",
+              "XX"
+            ]
+          }
+        ]
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "sign": 1,
+      "hold": false,
+      "planted": [
+        0,
+        2,
+        15,
+        14,
+        2,
+        25,
+        22,
+        5
+      ],
+      "selected": [
+        0,
+        2,
+        15,
+        14,
+        2,
+        25,
+        22,
+        5
+      ],
+      "fit": 60,
+      "fitWords": 60,
+      "ties": 1,
+      "heldoutTruth": 40,
+      "heldoutWords": 40,
+      "heldoutUnique": 32
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "planted": [
+        0,
+        15,
+        22,
+        5,
+        2,
+        25,
+        14,
+        2
+      ],
+      "selected": [
+        0,
+        15,
+        22,
+        5,
+        2,
+        25,
+        14,
+        2
+      ],
+      "fit": 60,
+      "fitWords": 60,
+      "ties": 1,
+      "heldoutTruth": 40,
+      "heldoutWords": 40,
+      "heldoutUnique": 31
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "planted": [
+        0,
+        22,
+        14,
+        5,
+        15,
+        2,
+        25,
+        2
+      ],
+      "selected": [
+        0,
+        22,
+        14,
+        5,
+        15,
+        2,
+        25,
+        2
+      ],
+      "fit": 60,
+      "fitWords": 60,
+      "ties": 1,
+      "heldoutTruth": 40,
+      "heldoutWords": 40,
+      "heldoutUnique": 33
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "planted": [
+        0,
+        5,
+        2,
+        2,
+        15,
+        25,
+        22,
+        14
+      ],
+      "selected": [
+        0,
+        5,
+        2,
+        2,
+        15,
+        25,
+        22,
+        14
+      ],
+      "fit": 60,
+      "fitWords": 60,
+      "ties": 1,
+      "heldoutTruth": 40,
+      "heldoutWords": 40,
+      "heldoutUnique": 28
+    }
+  ]
+}
