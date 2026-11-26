@@ -1,6 +1,6 @@
 /** #3037 exact typed-edge completion; no original ciphertext fit. */
 const fs=require("node:fs");
-function experiment(raw,profile){
+function experiment(raw,profile,mode="mixed"){
  const S="0123456789abcdefghijklmnopqrs",L="F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA".split(" "),D=new Set(),by=Array.from({length:30},()=>[]);
  for(const l of raw.split(/\r?\n/)){const m=l.match(/^([a-z]+)\s+([0-9]+)$/);if(!m)continue;const s=m[1].toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");function go(i,w){if(i===s.length){D.add(w);return}for(let j=0;j<29;j++)if(s.startsWith(L[j],i))go(i+L[j].length,w+S[j]);if(s.startsWith("ING",i))go(i+3,w+S[21])}go(0,"")}
  for(const w of D)by[w.length].push(w);by.forEach(a=>a.sort());
@@ -34,6 +34,43 @@ function experiment(raw,profile){
   function dfs(i,used){if(!complete)return;if(i===placements.length){if(candidates===limit){complete=false;return}candidates++;const z=fit(C,maps(pi,k));if(z===null)return;passing++;if(best===null||z.score>best+1e-9){best=z.score;ties=1;winners.length=0;winners.push(pi.slice())}else if(Math.abs(z.score-best)<=1e-9){ties++;if(winners.length<16)winners.push(pi.slice())}return}for(const {p,m} of placements[i])if(!(used&m)){for(const [a,x] of p)pi[a]=x;dfs(i+1,used|m);if(!complete)return}}
   dfs(0,mask);return {complete,components:comps.length+1,candidates,passing,best,ties,winners};
  }
+
+ // Only edges of one independently selected nonzero phase map are given;
+ // no key-shift coordinates other than the normalization k[0]=1 are supplied.
+ function cycleOnly(z,geo,m){
+  const succ=Array(29).fill(-1),pred=Array(29).fill(-1);
+  for(const [,x] of geo.slice(0,m)){const y=z.M[0][x];succ[x]=y;pred[y]=x}
+  const chains=[];for(let a=0;a<29;a++)if(pred[a]===-1){const q=[];for(let x=a;x!==-1;x=succ[x])q.push(x);chains.push(q)}
+  if(chains.reduce((a,b)=>a+b.length,0)!==29)throw Error("chain coverage");
+  const root=chains.splice(chains.findIndex(v=>v.includes(0)),1)[0];
+  const anchors=ord.filter(i=>z.C[i].length-Array.from(z.C[i]).filter(x=>x==="0").length>=8);
+  if(anchors.length<3)throw Error("insufficient complete-vector anchors");
+  const anchorWords=anchors.map(i=>({c:Array.from(z.C[i],x=>S.indexOf(x)),p:by[z.C[i].length].map(w=>Array.from(w,x=>S.indexOf(x)))}));
+  function canonical(k){const rotations=[];for(let j=0;j<8;j++)if(k[j]===1)rotations.push(k.slice(j).concat(k.slice(0,j)).map(x=>S[x]).join(""));return rotations.sort()[0]}
+  const truth=canonical(z.k);let alphabets=0,keyVectors=0,fullFits=0,passing=0,best=null,ties=0,winner=null;
+  function evaluate(cycle){
+   const q=cycle.indexOf(0),pi=Array(29);for(let i=0;i<29;i++)pi[cycle[(i+q)%29]]=i;alphabets++;
+   const count=new Map();
+   for(const {c,p} of anchorWords){const v=new Set();for(const w of p){
+    const k=[];let legal=true,n=0;for(let i=0;i<c.length;i++){if(w[i]===0){if(c[i]!==0){legal=false;break}continue}const d=mod(pi[c[i]]-pi[w[i]]);if(n>=8&&k[n%8]!==d){legal=false;break}k[n%8]=d;n++}
+    if(!legal||n<8||!k.includes(1)||[1,2,4].some(d=>k.every((x,i)=>x===k[i%d])))continue;
+    v.add(canonical(k));
+   }for(const k of v)count.set(k,(count.get(k)||0)+1)}
+   keyVectors+=count.size;
+   for(const [key,n] of count)if(n>=anchors.length-2){fullFits++;const k=Array.from(key,x=>S.indexOf(x)),r=fit(z.C.slice(0,47),maps(pi,k));if(!r)continue;passing++;if(best===null||r.score>best+1e-9){best=r.score;ties=1;winner={pi:pi.slice(),key}}else if(Math.abs(r.score-best)<=1e-9)ties++}
+  }
+  function permute(q,remaining){if(!remaining.length){evaluate(q);return}for(let i=0;i<remaining.length;i++)permute(q.concat(remaining[i]),remaining.slice(0,i).concat(remaining.slice(i+1)))}
+  permute(root,chains);
+  const exact=ties===1&&winner.key===truth&&winner.pi.join()===z.pi.join();
+  return {m,anchors,alphabets,keyVectors,fullFits,passing,best,ties,exact,held:exact?held(z,maps(winner.pi,Array.from(winner.key,x=>S.indexOf(x)))):null,winner};
+ }
+ if(mode==="cycle-only"){
+  const out=[];for(let t=0;t<4;t++){
+   const seed=0x30374100+t,gr=rng(0x3037e100+t),geo=shuffle(seq(28).map(x=>[0,x+1]),gr),z=generate(seed);
+   const results=[27,25,24,23].map(m=>cycleOnly(z,geo,m));out.push({seed,tries:z.tries,key:z.k,pi:z.pi,edges:geo.map(([j,x])=>[j,x,z.M[j][x]]),results});
+  }return {schema:2,dict:D.size,lens,hl,out};
+ }
+
  const out=[],budgets=[27,25,23,21,20];for(let t=0;t<4;t++){
   const seed=0x30374000+t,gr=rng(0x3037e000+t),structured=shuffle(seq(28).map(x=>[0,x+1]),gr),random=shuffle(seq(224).map(x=>[Math.floor(x/28),x%28+1]),gr);
   const z=generate(seed);const results=[];
@@ -45,5 +82,5 @@ function experiment(raw,profile){
  }
  return {schema:1,dict:D.size,lens,hl,budgets,out};
 }
-if(require.main===module) console.log(JSON.stringify(experiment(fs.readFileSync("resources/control/english_wordfreq_textblob.txt","utf8"),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-page-groups-54-55-derived.json","utf8"))),null,2));
+if(require.main===module) console.log(JSON.stringify(experiment(fs.readFileSync("resources/control/english_wordfreq_textblob.txt","utf8"),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-page-groups-54-55-derived.json","utf8")),process.argv[2]||"mixed"),null,2));
 module.exports={experiment};
