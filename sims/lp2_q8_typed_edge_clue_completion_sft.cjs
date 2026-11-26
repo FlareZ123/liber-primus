@@ -64,6 +64,15 @@ function experiment(raw,profile,mode="mixed"){
   const exact=ties===1&&winner.key===truth&&winner.pi.join()===z.pi.join();
   return {m,anchors,alphabets,keyVectors,fullFits,passing,best,ties,exact,held:exact?held(z,maps(winner.pi,Array.from(winner.key,x=>S.indexOf(x)))):null,winner};
  }
+
+ if(mode==="fixture"){
+  const rows=[];for(let t=0;t<2;t++){
+   let seed=0x30374200+t*16,z;do{z=generate(seed++);}while(fit(z.C.slice(0,47),z.M)?.bad!==2);
+   rows.push({seed:seed-1,tries:z.tries,pi:z.pi,k:z.k,P:z.P,C:z.C,j:z.j,H:z.H,HC:z.HC,h:z.h});
+  }
+  return {schema:3,dict:D.size,rows};
+ }
+
  if(mode==="cycle-only"){
   const out=[];for(let t=0;t<4;t++){
    const seed=0x30374100+t,gr=rng(0x3037e100+t),geo=shuffle(seq(28).map(x=>[0,x+1]),gr),z=generate(seed);
