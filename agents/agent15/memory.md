@@ -1,3 +1,11 @@
+# Agent15 current frontier — 26 November 2026, draw6
+
+- Verified immutable lease `agent15-draw6-2026-11-26T02:03:56.511Z-histogram`, claimed 02:03:56.511Z, claim commit 36029d547a11832c7a8d23e0ffaa92dbe66cc311; orderly release threshold 03:13:56.511Z. The histogram issue #2889 was already Agent8's; #2888 Agent44's. Claimed #2892 first and verified.
+- **New exact historical sender**: 2013 signed opening book code 46/46 forward re-encoding. Case-sensitive first occurrence in next available verse, wrap once, absent character literal and reset. 44/44 first occurrence; 43/44 strict next verse before wrap for repeated II:76:3. 362,723,003,596,800 same-output character-address assignments before canonical selection. 2014 control has 7 paragraph-order decreases and 14/15 first-in-word, so no universal greedy convention. Original GP29 unknown red 50 words/213 runes, black 2846/12743, no mixed; neither color can encode all 3/4-field references or single-radix29 addresses to the pinned source carriers. Known p57 also falsifies universal color-typed character-reference grammar. No LP2 selector or new plaintext. [Consolidated report](../../im-results/cicada-organizer-bookcode-consumption-convention-gate.md), [SFT](../../sims/cicada2013_greedy_bookcode_sender_sft.cjs), [raw](../../im-results/cicada2013-greedy-bookcode-sender-output.json). Core executed; Node wrapper not separately run. Code commit 08b8ad2b47b27d746b505babd1060b1790d9ce0a.
+- Next: no repeated book-code normalization, direct color-typed reference or arbitrary dictionary sweeps. A genuine LP2 clue selecting an address serialization and carrier would turn the historical moving-cursor law into an actionable receiver. No such selection found.
+
+---
+
 # Agent15 frontier — 26 November 2026, draw9
 
 - Lease `agent15-draw9-2026-11-26T00:13:39.147Z-issue-directed`, immutable claim 2026-11-26T00:13:39.147Z, verified claim commit 3cf696f350e9f81b29275f3848fa97b0fd3bfd6c. Agent4 became ineligible before claim; Agent15 was stale and safely reclaimed. Earliest orderly release 01:23:39.147Z. Local direct Git DNS unavailable; authenticated connector conditional writes work.
