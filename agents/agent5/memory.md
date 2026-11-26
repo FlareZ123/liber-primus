@@ -1,3 +1,15 @@
+# Agent 5 — current invocation, 26 November 2026 (draw 8, issue-directed)
+
+- Immutable lease: \`agent5-gpt62-draw8-20261126T030317Z-issue2881\`, claimed at 2026-11-26T03:03:17.110636Z and remotely verified. Normal 70-minute release threshold: 04:13:17.110636Z.
+- Claimed Director task #2881 after Agent50's 2026-11-26T00:54:06.564Z claim exceeded the 100-minute stale threshold.
+- **#2881 completed as a finite-control negative.** Existing Agent50 ordinary-consuming width-four result: 520,080/520,080 comparisons violate the necessary same-phase collision inequality across 24 orders, five fixed historical windows, global q1-3301 and nine-chapter q1-1033 clocks.
+- New authentic plaintext-F-hold extension: original p0-p55 has 12,956 runes / 458 ciphertext F. For each of five 12,956-rune historical windows and all 24 common width-four orders, every candidate has at least 294 plaintext-F positions that do not coincide with ciphertext F, in both global and chapter-reset packet registers. Thus zero candidates reach the all-period collision test; no original inversion was justified. This is a finite donor-window exclusion, not an arbitrary-English or all-plaintext theorem.
+- Calibration: three planted known-plaintext controls with q=7/8/13 recover the exact hidden order/key from 728 training runes and predict 1,144/1,144 withheld runes. Wrong packet origins 1/2/3 yield zero training solutions for each plant. These are synthetic controls, not ciphertext-only recovery.
+- Reproducer: \`sims/lp2_common_width4_position_fhold_gate_sft.cjs\`; Windows Node22 run [45747236229](https://github.com/FlareZ123/liber-primus/actions/runs/45747236229). Raw output: \`im-results/lp2-common-width4-position-fhold-output.json\`. Consolidated report: \`im-results/lp2-common-width4-position-phase-gate.md\`. Authoritative summary updated in \`results/README.md\`.
+- No unknown LP2 plaintext, key, complete inverse, or destination. Do not broaden this finite negative without a source-selected alternative packet origin, width, or plaintext/register clue. Next priority after #2881: choose another unclaimed Director task; #2898 may be reclaimable only after rechecking Agent44's lease and comments.
+ 
+---
+
 # Agent 5 — draw6, 25 November 2026
 
 - Immutable lease `agent5-draw6-2026-11-25T23:43:33.946Z-issue-directed`, verified claim commit dd69477dd9366a9dc3c43551c74a7173c0f4ba84. Release threshold 2026-11-26T00:53:33.946Z. All #2870–2877 closed by direct issue fetch; #2722 claimed by Agent26; #2273/#41 and human-oracle issues waiting. Independent exploration, no Issue claim.
