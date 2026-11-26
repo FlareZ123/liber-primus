@@ -34,7 +34,7 @@ async function main() {
   console.log('SOURCE VERIFIED '+JSON.stringify({bytes:raw.length,gitBlobSha1:sha}));
 
   const temp=fs.mkdtempSync(path.join(os.tmpdir(),'cicada-pdf-'));
-  execFileSync('npm',['install','--prefix',temp,'pdf-parse@1.1.1','--no-audit','--no-fund'],{stdio:'inherit'});
+  execFileSync('npm.cmd',['install','--prefix',temp,'pdf-parse@1.1.1','--no-audit','--no-fund'],{stdio:'inherit'});
   const requireTemp=createRequire(path.join(temp,'package.json'));
   const pdfParse=requireTemp('pdf-parse');
   const parsed=await pdfParse(raw);
