@@ -1,3 +1,11 @@
+# Agent22 — 26 November 2026, draw8
+
+Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2026-11-26T07:45:26.100Z; claim commit 237ddc0b50e7d3dbd81fe76f32947302ea5e05b6. Earliest orderly release 08:55:26.100Z. Direct Git DNS fails; connector compare-and-swap commits work.
+
+- #2935: exact fixed injective whole-word codebook multiplicity gate, allowing arbitrary whole-word reordering and unrestricted code lengths. Original 2896 groups/2731 types/2611 singleton types/M=5/E=230. Zero profile matches across 1437102 literary windows and 416 separate solved-record windows, plus 3773 concatenated solved-reference windows. All nine visual chapters independently fail; chapters 4 and 8 have entirely unique groups. All nine native plants pass both length-free and length-preserving tests. Even noninjective deterministic sender excluded by D/E monotonicity. At least 1583 excess distinct types and at least 15 codeword variants for a single plaintext word needed for a homophonic receiver on these full-book references. [Report](../../im-results/lp2-fixed-wholeword-multiplicity-gate.md), [SFT](../../sims/lp2_fixed_wholeword_multiplicity_sft.cjs), [raw](../../im-results/lp2-fixed-wholeword-multiplicity-output.json). Connected V8 executed; standalone Node/CI not claimed. No unknown plaintext/key. Next: seek a source-selected stateful reference grammar, not a static codebook; coordinate with #2932 rather than duplicate.
+
+---
+
 # Agent22 — 25 November 2026, draw3
 
 Lease `agent22-draw3-2026-11-25T14:43:26.094Z-independent-frontier`, original claim 14:43:26.094Z, commit bbc8c8734c6597f775343efe3071afda29b5672f. Director issues actively claimed or blocked; independent fallback. Earliest orderly release 15:53:26.094Z.

@@ -1,0 +1,2372 @@
+{
+  "source": {
+    "groups": 2896,
+    "runes": 12956,
+    "carries": 32
+  },
+  "exactControls": [
+    {
+      "name": "0_warning",
+      "n": 45,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "0_welcome",
+      "n": 124,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "0_wisdom",
+      "n": 31,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "0_koan_1",
+      "n": 208,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 181,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "jpg107-167",
+      "n": 88,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "jpg229",
+      "n": 18,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "p56_an_end",
+      "n": 25,
+      "free": 1,
+      "preserve": 1
+    },
+    {
+      "name": "p57_parable",
+      "n": 20,
+      "free": 1,
+      "preserve": 1
+    }
+  ],
+  "donors": [
+    {
+      "name": "0_warning",
+      "n": 45,
+      "max": 3,
+      "pairs": 9
+    },
+    {
+      "name": "0_welcome",
+      "n": 124,
+      "max": 6,
+      "pairs": 90
+    },
+    {
+      "name": "0_wisdom",
+      "n": 31,
+      "max": 2,
+      "pairs": 4
+    },
+    {
+      "name": "0_koan_1",
+      "n": 208,
+      "max": 13,
+      "pairs": 506
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 181,
+      "max": 16,
+      "pairs": 264
+    },
+    {
+      "name": "jpg107-167",
+      "n": 88,
+      "max": 13,
+      "pairs": 134
+    },
+    {
+      "name": "jpg229",
+      "n": 18,
+      "max": 2,
+      "pairs": 1
+    },
+    {
+      "name": "p56_an_end",
+      "n": 25,
+      "max": 2,
+      "pairs": 3
+    },
+    {
+      "name": "p57_parable",
+      "n": 20,
+      "max": 3,
+      "pairs": 3
+    },
+    {
+      "name": "solved-concatenated-descriptive",
+      "n": 740,
+      "max": 46,
+      "pairs": 3321
+    },
+    {
+      "name": "Emerson",
+      "n": 74712,
+      "max": 5134,
+      "pairs": 33632047
+    },
+    {
+      "name": "Gibran",
+      "n": 12542,
+      "max": 830,
+      "pairs": 1151913
+    },
+    {
+      "name": "Shakespeare",
+      "n": 54189,
+      "max": 1834,
+      "pairs": 9138415
+    },
+    {
+      "name": "Blake",
+      "n": 4580,
+      "max": 397,
+      "pairs": 139108
+    }
+  ],
+  "scopes": [
+    {
+      "name": "all",
+      "n": 2896,
+      "original": {
+        "distinct": 2731,
+        "singletons": 2611,
+        "max": 5,
+        "pairs": 230,
+        "multiplicity": {
+          "1": 2611,
+          "2": 90,
+          "3": 20,
+          "4": 5,
+          "5": 5
+        },
+        "lengthMultiplicity": {
+          "10:1": 52,
+          "11:1": 32,
+          "12:1": 18,
+          "13:1": 4,
+          "14:1": 3,
+          "1:1": 6,
+          "1:2": 3,
+          "1:3": 10,
+          "1:4": 4,
+          "1:5": 5,
+          "2:1": 271,
+          "2:2": 73,
+          "2:3": 9,
+          "2:4": 1,
+          "3:1": 689,
+          "3:2": 14,
+          "3:3": 1,
+          "4:1": 513,
+          "5:1": 317,
+          "6:1": 256,
+          "7:1": 216,
+          "8:1": 156,
+          "9:1": 78
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 71817,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              900,
+              1148
+            ],
+            "pairs": [
+              38095,
+              80149
+            ],
+            "singletons": [
+              614,
+              861
+            ],
+            "max": [
+              119,
+              300
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 9647,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              745,
+              819
+            ],
+            "pairs": [
+              52765,
+              79625
+            ],
+            "singletons": [
+              456,
+              524
+            ],
+            "max": [
+              156,
+              261
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 51294,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              764,
+              1011
+            ],
+            "pairs": [
+              22699,
+              34397
+            ],
+            "singletons": [
+              461,
+              715
+            ],
+            "max": [
+              72,
+              138
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 1685,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              966,
+              1009
+            ],
+            "pairs": [
+              46259,
+              63132
+            ],
+            "singletons": [
+              617,
+              671
+            ],
+            "max": [
+              200,
+              274
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter0",
+      "n": 158,
+      "original": {
+        "distinct": 156,
+        "singletons": 154,
+        "max": 2,
+        "pairs": 2,
+        "multiplicity": {
+          "1": 154,
+          "2": 2
+        },
+        "lengthMultiplicity": {
+          "10:1": 4,
+          "11:1": 2,
+          "1:1": 5,
+          "2:1": 24,
+          "2:2": 2,
+          "3:1": 36,
+          "4:1": 20,
+          "5:1": 13,
+          "6:1": 18,
+          "7:1": 17,
+          "8:1": 9,
+          "9:1": 6
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 51,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              53,
+              70
+            ],
+            "pairs": [
+              259,
+              385
+            ],
+            "singletons": [
+              26,
+              42
+            ],
+            "max": [
+              10,
+              12
+            ]
+          }
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 24,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              78,
+              83
+            ],
+            "pairs": [
+              210,
+              243
+            ],
+            "singletons": [
+              42,
+              51
+            ],
+            "max": [
+              14,
+              16
+            ]
+          }
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 583,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              53,
+              101
+            ],
+            "pairs": [
+              112,
+              385
+            ],
+            "singletons": [
+              26,
+              75
+            ],
+            "max": [
+              6,
+              18
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74555,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              74,
+              122
+            ],
+            "pairs": [
+              62,
+              643
+            ],
+            "singletons": [
+              44,
+              112
+            ],
+            "max": [
+              4,
+              28
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12385,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              66,
+              109
+            ],
+            "pairs": [
+              116,
+              606
+            ],
+            "singletons": [
+              36,
+              92
+            ],
+            "max": [
+              7,
+              30
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54032,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              66,
+              126
+            ],
+            "pairs": [
+              48,
+              244
+            ],
+            "singletons": [
+              26,
+              112
+            ],
+            "max": [
+              4,
+              19
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4423,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              78,
+              124
+            ],
+            "pairs": [
+              86,
+              797
+            ],
+            "singletons": [
+              52,
+              114
+            ],
+            "max": [
+              6,
+              36
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter1",
+      "n": 255,
+      "original": {
+        "distinct": 252,
+        "singletons": 249,
+        "max": 2,
+        "pairs": 3,
+        "multiplicity": {
+          "1": 249,
+          "2": 3
+        },
+        "lengthMultiplicity": {
+          "10:1": 5,
+          "11:1": 2,
+          "12:1": 3,
+          "1:1": 6,
+          "1:2": 1,
+          "2:1": 28,
+          "2:2": 2,
+          "3:1": 68,
+          "4:1": 49,
+          "5:1": 21,
+          "6:1": 32,
+          "7:1": 18,
+          "8:1": 11,
+          "9:1": 6
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 486,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              106,
+              134
+            ],
+            "pairs": [
+              371,
+              635
+            ],
+            "singletons": [
+              65,
+              90
+            ],
+            "max": [
+              12,
+              20
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74458,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              120,
+              180
+            ],
+            "pairs": [
+              165,
+              1251
+            ],
+            "singletons": [
+              75,
+              158
+            ],
+            "max": [
+              7,
+              39
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12288,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              105,
+              154
+            ],
+            "pairs": [
+              345,
+              1275
+            ],
+            "singletons": [
+              62,
+              126
+            ],
+            "max": [
+              11,
+              44
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53935,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              107,
+              180
+            ],
+            "pairs": [
+              139,
+              554
+            ],
+            "singletons": [
+              60,
+              150
+            ],
+            "max": [
+              6,
+              27
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4326,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              119,
+              178
+            ],
+            "pairs": [
+              270,
+              1400
+            ],
+            "singletons": [
+              80,
+              150
+            ],
+            "max": [
+              10,
+              48
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter2",
+      "n": 383,
+      "original": {
+        "distinct": 377,
+        "singletons": 373,
+        "max": 3,
+        "pairs": 8,
+        "multiplicity": {
+          "1": 373,
+          "2": 2,
+          "3": 2
+        },
+        "lengthMultiplicity": {
+          "10:1": 4,
+          "11:1": 7,
+          "12:1": 3,
+          "13:1": 1,
+          "14:1": 1,
+          "1:1": 8,
+          "1:3": 1,
+          "2:1": 49,
+          "2:2": 2,
+          "2:3": 1,
+          "3:1": 96,
+          "4:1": 73,
+          "5:1": 40,
+          "6:1": 35,
+          "7:1": 26,
+          "8:1": 16,
+          "9:1": 14
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 358,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              152,
+              183
+            ],
+            "pairs": [
+              864,
+              1085
+            ],
+            "singletons": [
+              88,
+              120
+            ],
+            "max": [
+              19,
+              27
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74330,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              170,
+              246
+            ],
+            "pairs": [
+              459,
+              2375
+            ],
+            "singletons": [
+              108,
+              212
+            ],
+            "max": [
+              13,
+              53
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12160,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              148,
+              204
+            ],
+            "pairs": [
+              812,
+              2288
+            ],
+            "singletons": [
+              92,
+              152
+            ],
+            "max": [
+              15,
+              57
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53807,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              160,
+              246
+            ],
+            "pairs": [
+              369,
+              1145
+            ],
+            "singletons": [
+              83,
+              202
+            ],
+            "max": [
+              8,
+              39
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4198,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              170,
+              245
+            ],
+            "pairs": [
+              608,
+              2617
+            ],
+            "singletons": [
+              113,
+              189
+            ],
+            "max": [
+              15,
+              64
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter3",
+      "n": 437,
+      "original": {
+        "distinct": 430,
+        "singletons": 423,
+        "max": 2,
+        "pairs": 7,
+        "multiplicity": {
+          "1": 423,
+          "2": 7
+        },
+        "lengthMultiplicity": {
+          "10:1": 6,
+          "11:1": 4,
+          "12:1": 4,
+          "13:1": 1,
+          "1:1": 6,
+          "1:2": 6,
+          "2:1": 72,
+          "2:2": 1,
+          "3:1": 104,
+          "4:1": 75,
+          "5:1": 49,
+          "6:1": 37,
+          "7:1": 32,
+          "8:1": 28,
+          "9:1": 5
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 304,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              168,
+              196
+            ],
+            "pairs": [
+              1141,
+              1423
+            ],
+            "singletons": [
+              98,
+              128
+            ],
+            "max": [
+              21,
+              29
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74276,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              190,
+              273
+            ],
+            "pairs": [
+              610,
+              3146
+            ],
+            "singletons": [
+              125,
+              236
+            ],
+            "max": [
+              14,
+              61
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12106,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              169,
+              228
+            ],
+            "pairs": [
+              1108,
+              2806
+            ],
+            "singletons": [
+              107,
+              168
+            ],
+            "max": [
+              20,
+              61
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53753,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              179,
+              272
+            ],
+            "pairs": [
+              488,
+              1406
+            ],
+            "singletons": [
+              96,
+              224
+            ],
+            "max": [
+              9,
+              41
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4144,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              195,
+              272
+            ],
+            "pairs": [
+              813,
+              3210
+            ],
+            "singletons": [
+              132,
+              207
+            ],
+            "max": [
+              18,
+              72
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter4",
+      "n": 224,
+      "original": {
+        "distinct": 224,
+        "singletons": 224,
+        "max": 1,
+        "pairs": 0,
+        "multiplicity": {
+          "1": 224
+        },
+        "lengthMultiplicity": {
+          "10:1": 6,
+          "14:1": 1,
+          "1:1": 5,
+          "2:1": 33,
+          "3:1": 53,
+          "4:1": 42,
+          "5:1": 23,
+          "6:1": 19,
+          "7:1": 23,
+          "8:1": 12,
+          "9:1": 7
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 517,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              89,
+              128
+            ],
+            "pairs": [
+              245,
+              554
+            ],
+            "singletons": [
+              51,
+              88
+            ],
+            "max": [
+              10,
+              19
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74489,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              104,
+              164
+            ],
+            "pairs": [
+              130,
+              1096
+            ],
+            "singletons": [
+              66,
+              150
+            ],
+            "max": [
+              6,
+              37
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12319,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              97,
+              142
+            ],
+            "pairs": [
+              255,
+              1077
+            ],
+            "singletons": [
+              59,
+              116
+            ],
+            "max": [
+              10,
+              41
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53966,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              95,
+              164
+            ],
+            "pairs": [
+              107,
+              437
+            ],
+            "singletons": [
+              54,
+              139
+            ],
+            "max": [
+              5,
+              25
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4357,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              109,
+              164
+            ],
+            "pairs": [
+              200,
+              1158
+            ],
+            "singletons": [
+              76,
+              144
+            ],
+            "max": [
+              8,
+              43
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter5",
+      "n": 326,
+      "original": {
+        "distinct": 320,
+        "singletons": 315,
+        "max": 3,
+        "pairs": 7,
+        "multiplicity": {
+          "1": 315,
+          "2": 4,
+          "3": 1
+        },
+        "lengthMultiplicity": {
+          "10:1": 6,
+          "11:1": 5,
+          "12:1": 3,
+          "1:1": 5,
+          "1:2": 2,
+          "1:3": 1,
+          "2:1": 49,
+          "2:2": 1,
+          "3:1": 81,
+          "3:2": 1,
+          "4:1": 57,
+          "5:1": 40,
+          "6:1": 23,
+          "7:1": 24,
+          "8:1": 13,
+          "9:1": 9
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 415,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              130,
+              157
+            ],
+            "pairs": [
+              625,
+              884
+            ],
+            "singletons": [
+              74,
+              103
+            ],
+            "max": [
+              16,
+              24
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74387,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              149,
+              216
+            ],
+            "pairs": [
+              301,
+              1795
+            ],
+            "singletons": [
+              95,
+              184
+            ],
+            "max": [
+              9,
+              48
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12217,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              134,
+              181
+            ],
+            "pairs": [
+              586,
+              1781
+            ],
+            "singletons": [
+              84,
+              142
+            ],
+            "max": [
+              13,
+              51
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53864,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              136,
+              220
+            ],
+            "pairs": [
+              257,
+              879
+            ],
+            "singletons": [
+              69,
+              181
+            ],
+            "max": [
+              7,
+              35
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4255,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              150,
+              214
+            ],
+            "pairs": [
+              449,
+              2105
+            ],
+            "singletons": [
+              105,
+              170
+            ],
+            "max": [
+              13,
+              58
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter6",
+      "n": 378,
+      "original": {
+        "distinct": 375,
+        "singletons": 372,
+        "max": 2,
+        "pairs": 3,
+        "multiplicity": {
+          "1": 372,
+          "2": 3
+        },
+        "lengthMultiplicity": {
+          "10:1": 8,
+          "11:1": 3,
+          "12:1": 2,
+          "1:1": 9,
+          "2:1": 56,
+          "2:2": 3,
+          "3:1": 96,
+          "4:1": 60,
+          "5:1": 49,
+          "6:1": 31,
+          "7:1": 26,
+          "8:1": 19,
+          "9:1": 13
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 363,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              150,
+              182
+            ],
+            "pairs": [
+              844,
+              1067
+            ],
+            "singletons": [
+              88,
+              119
+            ],
+            "max": [
+              18,
+              27
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74335,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              168,
+              243
+            ],
+            "pairs": [
+              447,
+              2342
+            ],
+            "singletons": [
+              108,
+              210
+            ],
+            "max": [
+              12,
+              53
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12165,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              148,
+              202
+            ],
+            "pairs": [
+              795,
+              2277
+            ],
+            "singletons": [
+              92,
+              151
+            ],
+            "max": [
+              15,
+              57
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53812,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              159,
+              244
+            ],
+            "pairs": [
+              359,
+              1130
+            ],
+            "singletons": [
+              81,
+              200
+            ],
+            "max": [
+              8,
+              39
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4203,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              169,
+              242
+            ],
+            "pairs": [
+              593,
+              2544
+            ],
+            "singletons": [
+              112,
+              188
+            ],
+            "max": [
+              15,
+              63
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter7",
+      "n": 669,
+      "original": {
+        "distinct": 662,
+        "singletons": 655,
+        "max": 2,
+        "pairs": 7,
+        "multiplicity": {
+          "1": 655,
+          "2": 7
+        },
+        "lengthMultiplicity": {
+          "10:1": 11,
+          "11:1": 8,
+          "12:1": 3,
+          "13:1": 1,
+          "14:1": 1,
+          "1:1": 9,
+          "1:2": 2,
+          "2:1": 95,
+          "2:2": 3,
+          "3:1": 166,
+          "3:2": 2,
+          "4:1": 128,
+          "5:1": 73,
+          "6:1": 53,
+          "7:1": 47,
+          "8:1": 42,
+          "9:1": 18
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 0
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 0
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 0
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 0
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 72,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              247,
+              255
+            ],
+            "pairs": [
+              2724,
+              2826
+            ],
+            "singletons": [
+              146,
+              155
+            ],
+            "max": [
+              39,
+              41
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74044,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              272,
+              382
+            ],
+            "pairs": [
+              1598,
+              6082
+            ],
+            "singletons": [
+              175,
+              312
+            ],
+            "max": [
+              24,
+              87
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 11874,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              241,
+              314
+            ],
+            "pairs": [
+              2682,
+              5843
+            ],
+            "singletons": [
+              150,
+              230
+            ],
+            "max": [
+              30,
+              84
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 53521,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              261,
+              371
+            ],
+            "pairs": [
+              1189,
+              2987
+            ],
+            "singletons": [
+              147,
+              291
+            ],
+            "max": [
+              16,
+              58
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 3912,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              295,
+              371
+            ],
+            "pairs": [
+              2044,
+              5902
+            ],
+            "singletons": [
+              191,
+              278
+            ],
+            "max": [
+              34,
+              95
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "chapter8",
+      "n": 66,
+      "original": {
+        "distinct": 66,
+        "singletons": 66,
+        "max": 1,
+        "pairs": 0,
+        "multiplicity": {
+          "1": 66
+        },
+        "lengthMultiplicity": {
+          "10:1": 2,
+          "11:1": 1,
+          "13:1": 1,
+          "1:1": 2,
+          "2:1": 11,
+          "3:1": 14,
+          "4:1": 9,
+          "5:1": 9,
+          "6:1": 8,
+          "7:1": 3,
+          "8:1": 6
+        }
+      },
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 59,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              44,
+              49
+            ],
+            "pairs": [
+              23,
+              32
+            ],
+            "singletons": [
+              30,
+              38
+            ],
+            "max": [
+              4,
+              4
+            ]
+          }
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 143,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              33,
+              50
+            ],
+            "pairs": [
+              25,
+              64
+            ],
+            "singletons": [
+              15,
+              41
+            ],
+            "max": [
+              3,
+              6
+            ]
+          }
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 116,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              37,
+              50
+            ],
+            "pairs": [
+              22,
+              83
+            ],
+            "singletons": [
+              22,
+              42
+            ],
+            "max": [
+              4,
+              12
+            ]
+          }
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 23,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              36,
+              39
+            ],
+            "pairs": [
+              53,
+              85
+            ],
+            "singletons": [
+              20,
+              28
+            ],
+            "max": [
+              7,
+              11
+            ]
+          }
+        },
+        {
+          "name": "jpg229",
+          "windows": 0
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 675,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              33,
+              55
+            ],
+            "pairs": [
+              15,
+              85
+            ],
+            "singletons": [
+              15,
+              49
+            ],
+            "max": [
+              3,
+              12
+            ]
+          }
+        },
+        {
+          "name": "Emerson",
+          "windows": 74647,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              32,
+              61
+            ],
+            "pairs": [
+              6,
+              185
+            ],
+            "singletons": [
+              16,
+              58
+            ],
+            "max": [
+              2,
+              17
+            ]
+          }
+        },
+        {
+          "name": "Gibran",
+          "windows": 12477,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              24,
+              57
+            ],
+            "pairs": [
+              11,
+              340
+            ],
+            "singletons": [
+              10,
+              50
+            ],
+            "max": [
+              2,
+              26
+            ]
+          }
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54124,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              26,
+              64
+            ],
+            "pairs": [
+              2,
+              114
+            ],
+            "singletons": [
+              7,
+              63
+            ],
+            "max": [
+              2,
+              11
+            ]
+          }
+        },
+        {
+          "name": "Blake",
+          "windows": 4515,
+          "free": 0,
+          "preserve": 0,
+          "firstFree": null,
+          "firstPreserve": null,
+          "maxAtMost": 0,
+          "pairAtMost": 0,
+          "range": {
+            "distinct": [
+              31,
+              58
+            ],
+            "pairs": [
+              9,
+              224
+            ],
+            "singletons": [
+              24,
+              54
+            ],
+            "max": [
+              3,
+              17
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "blobs": {
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/external/blake-marriage-1906-gutenberg45315.txt": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874"
+  }
+}
