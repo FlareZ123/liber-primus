@@ -81,9 +81,17 @@ The failed Midas acquisition is retired. `https://mir.cr/05EYEMXF` redirects to 
 
 ## Evidence boundary
 
-This closes the documented **2014 Stage 7 media-to-squares handoff**. The fifth-onion README says the extracted squares' use is unknown at that stage, but the subsequent sixth-onion outguess instructions and PGP clear-signed Stage8 form (signature block present; independent verification not completed in this invocation) resolve their role: submit the three squares plus a Tor hidden-service URL. The form specifies a CGI upload endpoint (`/cgi-bin/upload`, field `file`) and a GnuPG public key at `/key.asc`; the HTML form names the three square fields `53301`, `71033`, `51033`. The archive records three further LP pages after submission. This is a source-authenticated **submission receiver**, not a square-to-text decoder for LP2 p33.
+This closes the documented **2014 Stage 7 media-to-squares handoff**. The fifth-onion README says the extracted squares' use was unknown at that stage; the subsequent Stage10 form resolves their role as qualification inputs: paste the three matrices into the labelled textareas and submit them to `/cgi-bin/squares`, alongside a participant-controlled Tor URL. The separate instructions specify a CGI upload endpoint (`/cgi-bin/upload`, field `file`) and the participant's own GnuPG public key at `/key.asc`. The archive records three further LP pages after submission. This is a source-authenticated **submission receiver**, not a square-to-text decoder or key/index receiver for LP2 p33.
 
 Nothing in this reproduction recovers unknown LP2 plaintext, selects an LP2 key schedule, identifies an LP2 reversible transform, or resolves the final Cicada destination. Keep the historical control separate from all LP2 cryptanalytic claims.
+
+### LP2 key-selector gate (#3011): no selector found
+
+The exact 99-cell stream has a source-selected order only for Stage10 submission: the 745-byte Stage7 payload already separates it into 5×5, 7×7, 5×5 matrices, and the Stage10 form labels the corresponding fields 53301, 71033, 51033. Its form action is /cgi-bin/squares. The separate /cgi-bin/upload endpoint and /key.asc requirement concern the participant's own service and communication key. No first-party text instructs solvers to consume the 99 cells as an LP2 key or index stream.
+
+The fifth-onion README in the public reconstruction says the squares' use was “currently unknown”; the later Stage10 form supplies the human-visible next step—submit the three matrices. The examined 2012/2013 operations (book code, RSA/PGP, OutGuess, bytewise XOR, prime echo) do not select a magic-square cell-order receiver for LP2. The p33 sum correspondence is the separate #3005 investigation; this gate does not repeat it, and that arithmetic relation does not choose a reversible operation.
+
+**Decision:** no source-selected LP2 receiver exists in the examined first-party chain. Retire the 99-cell key/index hypothesis; preserve the matrices as Stage10 qualification inputs only. No arbitrary flattening, permutation, shift, modulo map or other LP2 transform was tested. No plaintext or key was recovered.
 
 ## Direct Stage7 → Stage10 square-form match (#3001)
 
