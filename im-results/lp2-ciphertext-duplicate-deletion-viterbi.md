@@ -110,3 +110,34 @@ On the genuine p56 ciphertext with deletion probability zero, the LP1-trained tr
 Both decoded paths re-encrypt and collapse exactly to source ciphertext, but are nonprose, substantially below planted LM scores −2.50 to −2.17. The fixed prime-start receiver does not produce a solution. No claim about arbitrary prime offsets, longer hidden-length budgets, or a different initial state. This directly checks a historically demonstrated nonperiodic key rather than sweeping further speculative periodic keys. No new evidence for this deletion channel.
 
 Reproducer: `node sims/lp2_duplicate_deletion_primeclock_sft.cjs`. Core run in connected V8; standalone wrapper unrun.
+
+
+## Exact unknown-prime-origin receiver with no deletion-length restriction (Agent14, 2026-11-26)
+
+Extend the preceding fixed-origin test, not its periodic-key branch. The source-authenticated prime-minus-one clock and plaintext-F hold remain unchanged. The candidate deletion mechanism is still hypothetical; the independently chosen origin interval is zero-based 0..3301 inclusive. Optimize over every initial origin and all hidden paths, with no assumed word boundaries and no deletion-count or relative prime-offset cap.
+
+The C++ solver merges all candidate starting origins into an exact Viterbi dynamic program keyed by absolute next-prime index and two preceding plaintext runes. Between retained symbols, consuming deletion edges advance that index; transparent F deletion is permitted only when the last retained ciphertext is F. At most two consecutive deleted F symbols need be considered: after two the trigram state is (F,F), and additional repetitions are negative-cost self-loops. The maximum over hidden histories can therefore be obtained by a single ascending index sweep per retained symbol. An origin label is retained for the winning path, then a second single-origin run recovers the plaintext and entire deletion mask. Every recovered path is re-encrypted and reduced to the unchanged original ciphertext.
+
+The initial finite index cap is used only to obtain an incumbent S. For N observed runes, R observed repeats, h deleted runes, maximum log LM transition M<0, and deletion probability d, every path's joint score is at most (N+h)M+h log(d)+R log(1-d). Consequently any path able to equal or beat S has h ≤ (S−NM−R log(1-d))/(M+log(d)). The ceiling of that bound gives a provably sufficient absolute next-prime limit 3301+N+H. Recompute the joint maximum over this larger domain. This removes the arbitrary 25% excess-length cap. Also run the strictly more permissive **free-channel** relaxation replacing both log(d) and log(1-d) by zero: it bounds the maximum joint score for every d in (0,1), and indeed any per-repeat deletion probability schedule. It is not a normalized stochastic model or an exact maximum marginal likelihood.
+
+The language model is the independent weighted TextBlob rune trigram from the [opening title exhaustive-model builder](../sims/lp2_p0_title_exhaustive_model.py), with float32 log-table SHA256 c89f79b93c817dc9d73450cb61f64b5630c3fce2c37b7bad500b30ab38a448ce. Its largest transition is −0.0162083. Six distinct prime origins and independently seeded deletion schedules on the same held-out 716-rune literary passage from Gibran establish recovery capability; five origins exact, one shifted by one prime index. They are six independent cipher plants, not six independent literary donors.
+
+| True origin | Recovered origin | Observed runes | True/inferred deletions | Rune edit distance | Joint nats/observed |
+|---:|---:|---:|---:|---:|---:|
+|0|0|702|14/14|5|−2.347869|
+|133|134|700|16/15|7|−2.357202|
+|174|174|700|16/18|5|−2.357902|
+|330|330|708|8/7|5|−2.329709|
+|1033|1033|702|14/14|4|−2.353741|
+|3301|3301|698|18/18|4|−2.361089|
+
+| Original scope | Channel | Best origin/end prime index | Hidden | Joint nats/observed | Score/decoded rune | Proven sufficient index cap |
+|---|---|---:|---:|---:|---:|---:|
+|p0 black + p1–2 (716)|d=.81|1634/2483|141|−4.659758|−3.893100|18639|
+|p0 black + p1–2 (716)|free upper bound|1634/2483|143|−4.608639|−3.841427|206888|
+|p54–55 (308)|d=.81|1604/1953|42|−4.674007|−4.113126|9909|
+|p54–55 (308)|free upper bound|2093/2468|72|−4.616787|−3.742028|91033|
+
+The opening's exact maximum begins CRISSALPNGDINHARWYTHNGNEAETELLEEMENGNOWETHNGEANTHLEOYNGLEBNOECAEFIMPOIREAF; the best terminal .81 path begins USOEATXEHUERNGDEAOTEADNGTIBNGSLIATOUTEIOECDRNNGUSOFTEODPLIASPPXXDOTJEAEDUB. These are nonprose; exact forward replay is not a proof of decipherment. The unusually weak optimum persists even when deletion is entirely unpenalized. No original key or plaintext recovered. This is a calibrated exact language-model negative covering 3302 possible initial prime indices, arbitrary run deletion and no boundaries, not a mathematical exclusion of every possible plaintext or origins beyond the stated interval. No new source selects the deletion law.
+
+Reproduction: compile [sims/lp2_prime_deletion_unknown_origin.cpp](../sims/lp2_prime_deletion_unknown_origin.cpp) with C++17/O3. Run the linked Python model builder to emit model.bin, original.txt (p0 black+p1–2), plant_plain.txt; construct terminal.txt by comma-joining canonical pages 54 and 55. Run the executable with model.bin, input text, original, 3301, .81 (or -1 for free channel). For plants use model.bin, plant_plain.txt, plant, 3301, .81, seed, plantOrigin, using seed=plantOrigin for the six rows. Actual locally compiled C++ tests completed, including the uncapped optima and exact replay; the repository model builder was not separately run against a checked-out repository, but the locally generated model was pinned by its binary hash and normalized source word rows.
