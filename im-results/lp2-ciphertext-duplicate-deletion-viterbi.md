@@ -61,3 +61,12 @@ Original fit is exactly the first 9,640 runes (p0–39), followed by independent
 Important next step if this receiver becomes source-supported: enumerate the finite Euler-cycle ambiguity of a recovered directed key-edge multiset before language scoring. It would repair the specific wrong-cycle control without changing the pair fit. It does not rescue the original's negative held-out pair likelihood because equivalent Euler cycles predict exactly the same pair distribution.
 
 Reproducer: `node sims/lp2_duplicate_deletion_pair_cycle_key_recovery_sft.cjs`. Actual V8 core executed on pinned repo inputs, including the original and all eight plants. Standalone Node wrapper not separately run. The decoder was factored into an exported reusable builder without changing its scoring or transition law.
+
+
+### Exact Euler ordering resolves the fourth blind split plant
+
+Enumerate every distinct directed Euler cycle of each recovered key-edge multiset, fixing the least vertex as a start and quotienting cyclic rotations. Select order by the deletion-aware Viterbi score on the **same prefix used for key fitting**, never the withheld block. This resolves the pair-statistic ambiguity without changing its predictive histogram. The four blind split controls now yield 4/4 exact key cycles; Euler counts 1, 1, 1, 2. Held-out edit counts 113/3467, 91/3488, 76/3496, 105/3427. The earlier wrong q13 cycle is retained as the initial pair-only witness, not silently reclassified.
+
+Original p0–39 fit/p40–55 holdout, ten highest prefix pair-ranked cycles per q: q8 10 Euler candidates including repeated multiset classes, best held-out LM -3.913683, best held-out pair gain -0.171636; q13 10 Euler candidates including repeated multiset classes, best held-out LM -3.879075, best held-out pair gain -0.099836. All prefix-selected Euler orders still decode to nonprose. These are calibrated algorithmic results, not a globally exhaustive key exclusion. No further unselected q8/q13 cycle search is justified.
+
+The updated key-recovery SFT now performs this exact Euler completion automatically; the original pair-only ordering is still output alongside the resolved key. Core executed in connected V8, standalone Node wrapper unrun.

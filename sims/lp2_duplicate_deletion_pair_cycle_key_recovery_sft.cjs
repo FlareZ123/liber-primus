@@ -15,6 +15,16 @@ function experiment(gp,raw,decode){
  const hist=c=>{const h=new Float64Array(841);for(let i=1;i<c.length;i++)if(c[i-1]&&c[i]&&c[i-1]!==c[i])h[c[i-1]*29+c[i]]++;return Float64Array.from(cells,([a,b])=>h[a*29+b]);};
  let seed=0x7d3301;function rnd(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)/2**32;}
  const canonical=k=>{let r=k.join(",");for(let i=1;i<k.length;i++){const x=k.slice(i).concat(k.slice(0,i)).join(",");if(x<r)r=x;}return r;};
+
+ function cycles(k){
+  const q=k.length,first=Math.min(...k),adj=Array.from({length:29},()=>new Map());
+  for(let i=0;i<q;i++){const a=k[i],b=k[(i+1)%q];adj[a].set(b,(adj[a].get(b)||0)+1);}
+  const results=new Map(),p=[first];
+  function visit(a,left){if(!left){if(a===first){const cycle=p.slice(0,-1);results.set(canonical(cycle),cycle);}return;}for(const [b,n] of adj[a])if(n>0){adj[a].set(b,n-1);p.push(b);visit(b,left-1);p.pop();adj[a].set(b,n);}}
+  visit(first,q);return [...results.values()];
+ }
+ function resolve(k,prefix){const cs=cycles(k);let best=null;for(const c of cs){const d=decode(prefix,c,.81);if(!best||d.v>best.fitV)best={key:c,fitV:d.v};}return {...best,eulerCycles:cs.length};}
+
  function fit(h,q,restarts){
   const N=h.reduce((a,b)=>a+b,0),Y=Float64Array.from(h,x=>x/N),T=new Float64Array(841);let yy=0;
   for(let j=0;j<D;j++)yy+=Y[j]*Y[j];
@@ -40,10 +50,10 @@ function experiment(gp,raw,decode){
  function pairCheck(c,k){const h=hist(c),N=h.reduce((a,b)=>a+b,0),m=new Float64Array(D);for(let i=0;i<k.length;i++){const v=kernels[k[i]*29+k[(i+1)%k.length]];for(let j=0;j<D;j++)m[j]+=v[j];}const sum=m.reduce((a,b)=>a+b,0);let ll=0,uniform=0;for(let j=0;j<D;j++){ll+=h[j]*Math.log(m[j]/sum+1e-20);uniform+=h[j]*Math.log(1/D);}return {N,gainPerPair:(ll-uniform)/N};}
  const results=[];for(const q of [8,13])for(const d of [1,2]){const p=donors[d].slice(Math.floor(donors[d].length*.6)+500,Math.floor(donors[d].length*.6)+500+12956);const k=Array.from({length:q},()=>Math.floor(rnd()*29));const {c}=plant(p,k);const f=fit(hist(c),q,64);results.push({q,d,n:p.length,retained:c.length,key:k,found:f.best,exact:canonical(k)===canonical(f.best),trueScore:f.scoreKey(k),score:f.score,residual:f.residual,topRank:f.top.findIndex(x=>canonical(x.k)===canonical(k)),unique:f.unique});}
  const split=[];const cut=9640;
- for(const q of [8,13])for(const d of [1,2]){const p=donors[d].slice(Math.floor(donors[d].length*.6)+18000,Math.floor(donors[d].length*.6)+18000+13400);const k=Array.from({length:q},()=>Math.floor(rnd()*29));const {c,retainedIndex}=plant(p,k);const f=fit(hist(c.slice(0,cut)),q,64),h=c.slice(cut);const r=decode(h,f.best,.81);const truth=p.slice(retainedIndex[cut],retainedIndex.at(-1)+1);split.push({q,d,key:k,found:f.best,exact:canonical(k)===canonical(f.best),fitResidual:f.residual,held:pairCheck(h,f.best),decode:{...r,p:undefined},truthN:truth.length,edit:edit(r.p,truth)});}
+ for(const q of [8,13])for(const d of [1,2]){const p=donors[d].slice(Math.floor(donors[d].length*.6)+18000,Math.floor(donors[d].length*.6)+18000+13400);const k=Array.from({length:q},()=>Math.floor(rnd()*29));const {c,retainedIndex}=plant(p,k);const f=fit(hist(c.slice(0,cut)),q,64),h=c.slice(cut);const resolved=resolve(f.best,c.slice(0,cut)),r=decode(h,resolved.key,.81);const truth=p.slice(retainedIndex[cut],retainedIndex.at(-1)+1);split.push({q,d,key:k,found:f.best,resolvedKey:resolved.key,eulerCycles:resolved.eulerCycles,exact:canonical(k)===canonical(resolved.key),fitResidual:f.residual,held:pairCheck(h,resolved.key),decode:{...r,p:undefined},truthN:truth.length,edit:edit(r.p,truth)});}
  function edit(a,b){let d=Uint32Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){const z=new Uint32Array(b.length+1);z[0]=i+1;for(let j=0;j<b.length;j++)z[j+1]=Math.min(d[j]+Number(a[i]!==b[j]),d[j+1]+1,z[j]+1);d=z;}return d[b.length];}
  const original=gp.pages.slice(0,56).flatMap(x=>x.indices),originalResults=[];
- for(const q of [8,13]){const f=fit(hist(original.slice(0,cut)),q,64),h=original.slice(cut);const candidates=f.top.map(x=>{const r=decode(h,x.k,.81);return {key:x.k,fit:x.v,held:pairCheck(h,x.k),decode:{...r,p:undefined}};});originalResults.push({q,fitResidual:f.residual,unique:f.unique,candidates});}
+ for(const q of [8,13]){const f=fit(hist(original.slice(0,cut)),q,64),h=original.slice(cut);const candidates=f.top.map(x=>{const resolved=resolve(x.k,original.slice(0,cut)),r=decode(h,resolved.key,.81);return {key:x.k,resolvedKey:resolved.key,eulerCycles:resolved.eulerCycles,prefixV:resolved.fitV,fit:x.v,held:pairCheck(h,resolved.key),decode:{...r,p:undefined}};});originalResults.push({q,fitResidual:f.residual,unique:f.unique,candidates});}
  return {trainPairs:n,donorLengths:donors.map(x=>x.length),controls:results,split,originalResults};
 }
 const gp=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));
