@@ -1,0 +1,427 @@
+{
+  "source_blobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "2550eae357442912220e05dc51147523a61dd75a",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ],
+  "row50": [
+    20,
+    11,
+    11,
+    5,
+    20,
+    7,
+    28,
+    23,
+    1,
+    23,
+    12,
+    28,
+    14
+  ],
+  "trainingRunes": 2296,
+  "original": [
+    {
+      "sign": -1,
+      "radix": 60,
+      "order": "row",
+      "means": [
+        20,
+        2,
+        13,
+        28,
+        0,
+        13,
+        5,
+        6
+      ],
+      "fixedScore": -59.040293383350615,
+      "mapScore": 2.869739928100878,
+      "logBF": -22.192079934636077,
+      "offsets": [
+        22,
+        12,
+        2,
+        6,
+        15,
+        26,
+        20,
+        28
+      ],
+      "fixedReadout": "C M J S F E O R Y G R E S N D R R X G Y W R P L R E E Y H I W C I IA P M NG Y Y J D NG T U AE IA AE U X G TH R O F I I G H Y IA F J W OE TH M G F O G N W TH IA X TH N M L R U IA OE X R IA I C B B S I EO IA T NG U L T EA N X EO OE",
+      "relaxedReadout": "IA TH P NG S S D O M E G A U G X O Y Y H O OE U R M Y U L O D W IA R O I S AE W D B I T R E W J A T F W E R I E Y U N EA L EA R S H IA NG A TH H G E O F G A I T H A T J O D I A L M A U R I F B T IA A W L D O E C A J O NG"
+    },
+    {
+      "sign": -1,
+      "radix": 60,
+      "order": "column",
+      "means": [
+        20,
+        2,
+        13,
+        28,
+        0,
+        13,
+        5,
+        6
+      ],
+      "fixedScore": -61.050460020566064,
+      "mapScore": 14.034294737559074,
+      "logBF": -11.354454348076132,
+      "offsets": [
+        22,
+        12,
+        2,
+        8,
+        9,
+        18,
+        8,
+        23
+      ],
+      "fixedReadout": "C Y R R I D X G TH TH U B U M G X E IA NG G H M IA IA B L J R G E P T TH Y G X OE S T S E Y Y M U R IA F TH X I EA F S W H NG AE O F O N R EO N E N R I Y IA F J G M IA IA X O D P W Y AE I W N L I T EO R R L C J U I OE W R C NG OE",
+      "relaxedReadout": "IA M Y Y O T W EA A A D I D TH E Y U I R E L TH I I F O P G H L S E R EA H T A B E D Y C C IA N EO G H I OE E W N A T B U C EO N EO E P NG E W IA OE EA S T E F A H T T O J TH NG S C R E S B EA E A L IA IA X EA C A R T U IA EA S T"
+    },
+    {
+      "sign": -1,
+      "radix": 59,
+      "order": "row",
+      "means": [
+        4,
+        22,
+        2,
+        15,
+        18,
+        9,
+        12,
+        6
+      ],
+      "fixedScore": -76.33163191163922,
+      "mapScore": 3.5699709223255183,
+      "logBF": -21.90057047406457,
+      "offsets": [
+        17,
+        11,
+        6,
+        7,
+        18,
+        10,
+        3,
+        24
+      ],
+      "fixedReadout": "E T O C S N H R D O IA EO G EA Y TH M NG T L S W Y F NG X IA F NG P U D P O C S D P S X T C A P H T D H EA X E B Y C C C G W U M D EO G S EA E OE IA J C R M J R EO H IA Y W EA EO EA N U TH H G EA U AE R EO IA T P A U EO O B U B T A",
+      "relaxedReadout": "G IA N EO R M J EA J X R M A N F Y W O OE IA R B F A N AE R W I D R E U X J OE EO D E N R T U L Y Y Y O T AE A A S S H F D E W Y EO OE N I T F EA C F S W X EA S E S T W I D F I S H L E N D E W I M T Y T M E D N A M IA M M"
+    },
+    {
+      "sign": -1,
+      "radix": 59,
+      "order": "column",
+      "means": [
+        4,
+        22,
+        2,
+        15,
+        18,
+        9,
+        12,
+        6
+      ],
+      "fixedScore": -60.91557890843203,
+      "mapScore": 1.4284917273278541,
+      "logBF": -22.91745691264423,
+      "offsets": [
+        0,
+        19,
+        15,
+        18,
+        3,
+        19,
+        3,
+        1
+      ],
+      "fixedReadout": "E D M NG P T EA G EA J EO U U T O NG X O C X W E R EA AE EO O IA T IA C A E U OE EO N R O C EO L F S P B M IA H U EO B S G S NG D H Y D J IA TH IA U N EA W P P T C EO C Y H T B H Y Y U S D C G R W G P T R TH F D X H C S M EA EA A A",
+      "relaxedReadout": "E D M NG P T EA G EA J EO U U G OE J R OE A R Y H D E S TH E P TH P L I R T H IA A M E D U N E R TH G H T Y M U G E N E A Y J F Y X U C U R EA E Y O O G A TH A T IA G W J F F R E Y H N W I N T M C O U A S N G T L F F AE AE"
+    },
+    {
+      "sign": 1,
+      "radix": 60,
+      "order": "row",
+      "means": [
+        20,
+        2,
+        13,
+        28,
+        0,
+        13,
+        5,
+        6
+      ],
+      "fixedScore": -58.27382925148689,
+      "mapScore": 13.89935366737751,
+      "logBF": -12.634364071870216,
+      "offsets": [
+        7,
+        7,
+        26,
+        21,
+        23,
+        27,
+        28,
+        20
+      ],
+      "fixedReadout": "NG TH G D A J O R TH F Y AE NG Y C A J TH E A I Y X L L X C AE A X N O J O EO F P L N M OE P D P L J G EA U J W AE M G N TH EA Y H N F I B T J P J O J E W R EO G R S E IA F F IA B W S E EO O TH I EO NG IA B C T H Y D NG S H EO AE G",
+      "relaxedReadout": "EA N O S E N TH A N W D B S A R S E N S T R A P J IA NG TH B E EO H D E I N NG W E H I F L L C X N C M H E R B P R H OE G R C U D H T W E L H A C T G A M P U W EO AE EA L C A R W EO I TH OE B M E M J O S EA R U E W TH I A Y"
+    },
+    {
+      "sign": 1,
+      "radix": 60,
+      "order": "column",
+      "means": [
+        20,
+        2,
+        13,
+        28,
+        0,
+        13,
+        5,
+        6
+      ],
+      "fixedScore": -70.18333321461593,
+      "mapScore": -9.48513308713024,
+      "logBF": -31.391053295466925,
+      "offsets": [
+        4,
+        1,
+        4,
+        5,
+        1,
+        6,
+        23,
+        20
+      ],
+      "fixedReadout": "NG TH J L J OE U EA J EO IA I Y TH F TH X O P J Y P G B EO D G Y E C EO D W H J R W NG NG D AE A AE F P AE N O S S IA S A NG I A P L M F J E E B H J Y Y X L J G I E IA EO C EO O C X N N G N B W F O T AE R A L O M EA TH T R F TH H G",
+      "relaxedReadout": "AE G S A S Y C O S T TH X U O U O S R X EO IA X W E P A I U OE N T IA J EO S H J AE AE EA U F U C E U X H L L O L AE OE J AE X NG L U EO M M E N B O O L Y B EO T A R E J E Y EA H O O F O J U D Y I M A S J D I M OE W A L OE EA Y"
+    },
+    {
+      "sign": 1,
+      "radix": 59,
+      "order": "row",
+      "means": [
+        4,
+        22,
+        2,
+        15,
+        18,
+        9,
+        12,
+        6
+      ],
+      "fixedScore": -59.02132832086813,
+      "mapScore": 2.858872847084707,
+      "logBF": -22.421725422913603,
+      "offsets": [
+        15,
+        1,
+        19,
+        23,
+        1,
+        23,
+        24,
+        3
+      ],
+      "fixedReadout": "L G N F N U NG R H AE E EA IA S EO G F P W TH EA EA C E I U C O P H J M EO N EA Y AE N Y I G IA H B OE T P N M M IA N E L X W D TH I P NG M W L U AE G O A I D U S C NG R F EO N S IA Y J NG OE P S S E O C I N F S S N N T U T A X Y",
+      "relaxedReadout": "G W EA D I A T W D Y H OE EA N W N S X Y AE F OE F NG AE TH A Y X TH G OE IA I E L Y O NG P NG EA IA J D I H EO C L B O M X N I N O F W OE P TH D T Y AE Y AE R E R U G J IA U G R E P IA U S D W I E R R A R I D I E A I G A B E N F"
+    },
+    {
+      "sign": 1,
+      "radix": 59,
+      "order": "column",
+      "means": [
+        4,
+        22,
+        2,
+        15,
+        18,
+        9,
+        12,
+        6
+      ],
+      "fixedScore": -53.24076482044121,
+      "mapScore": -6.9260670790315615,
+      "logBF": -29.103318892334837,
+      "offsets": [
+        15,
+        13,
+        14,
+        4,
+        9,
+        24,
+        19,
+        26
+      ],
+      "fixedReadout": "L H F I EO G M D U S IA E N G AE P U N IA M TH AE C Y O N N E W C EA H IA I G NG J C T F EA TH O Y B N P O R NG I U N IA EA P AE OE E NG A F OE N T U S EA H N T L M I EO P F A NG EO C J Y P X W D N S S X R G E M I N W L U S S S Y",
+      "relaxedReadout": "G D S AE IA NG C N T U P R A M N Y X OE J O S N E I T OE D O NG M P OE EO A L G AE M U R O G W U NG P B W H AE X C E W H OE C TH IA U R N TH E AE AE I D O R J S X C W H A M J TH A U T O R Y P EA C C R U O S T W G R B IA EO EO EO D"
+    }
+  ],
+  "controls": [
+    {
+      "sign": -1,
+      "order": "row",
+      "section": "0_warning",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 58.21060965945748,
+      "logBF": 31.275393838649986,
+      "trueScore": 58.21060965945752
+    },
+    {
+      "sign": -1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 64.00847396386614,
+      "logBF": 37.070114483881525,
+      "trueScore": 64.00847396386615
+    },
+    {
+      "sign": -1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 104,
+      "correct": 104,
+      "mapScore": 72.5778369641101,
+      "logBF": 45.63953897228518,
+      "trueScore": 72.5778369641101
+    },
+    {
+      "sign": -1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 208,
+      "correct": 104,
+      "mapScore": 78.59955802054434,
+      "logBF": 51.661801131406946,
+      "trueScore": 78.59955802054435
+    },
+    {
+      "sign": -1,
+      "order": "column",
+      "section": "0_warning",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 58.210609659457475,
+      "logBF": 31.304630106404414,
+      "trueScore": 58.21060965945752
+    },
+    {
+      "sign": -1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 64.00847396386614,
+      "logBF": 37.47706248673862,
+      "trueScore": 64.00847396386615
+    },
+    {
+      "sign": -1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 104,
+      "correct": 91,
+      "mapScore": 74.86915646242669,
+      "logBF": 48.03499367606081,
+      "trueScore": 72.5778369641101
+    },
+    {
+      "sign": -1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 208,
+      "correct": 91,
+      "mapScore": 78.66152457533742,
+      "logBF": 52.40209814363692,
+      "trueScore": 78.59955802054435
+    },
+    {
+      "sign": 1,
+      "order": "row",
+      "section": "0_warning",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 58.21060965945748,
+      "logBF": 31.275393838649986,
+      "trueScore": 58.21060965945752
+    },
+    {
+      "sign": 1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 64.00847396386614,
+      "logBF": 37.070114483881525,
+      "trueScore": 64.00847396386615
+    },
+    {
+      "sign": 1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 104,
+      "correct": 104,
+      "mapScore": 72.5778369641101,
+      "logBF": 45.63953897228518,
+      "trueScore": 72.5778369641101
+    },
+    {
+      "sign": 1,
+      "order": "row",
+      "section": "jpg107-167",
+      "start": 208,
+      "correct": 104,
+      "mapScore": 78.59955802054434,
+      "logBF": 51.661801131406946,
+      "trueScore": 78.59955802054435
+    },
+    {
+      "sign": 1,
+      "order": "column",
+      "section": "0_warning",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 58.210609659457475,
+      "logBF": 31.304630106404414,
+      "trueScore": 58.21060965945752
+    },
+    {
+      "sign": 1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 0,
+      "correct": 104,
+      "mapScore": 64.00847396386614,
+      "logBF": 37.47706248673862,
+      "trueScore": 64.00847396386615
+    },
+    {
+      "sign": 1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 104,
+      "correct": 91,
+      "mapScore": 74.86915646242669,
+      "logBF": 48.03499367606081,
+      "trueScore": 72.5778369641101
+    },
+    {
+      "sign": 1,
+      "order": "column",
+      "section": "jpg107-167",
+      "start": 208,
+      "correct": 91,
+      "mapScore": 78.66152457533742,
+      "logBF": 52.40209814363692,
+      "trueScore": 78.59955802054435
+    }
+  ]
+}
