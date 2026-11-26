@@ -241,3 +241,14 @@ These are exact original-input negatives, no unknown LP2 page plaintext, key, ta
 ## Historical research decision
 
 Seek a first-party Cicada key/operation/receiver that predicts a **new substantial untouched original LP2 ciphertext passage**. The source master PDF/PostScript remains absent, though original May2014 Ghostscript-rendered JPEGs survive. Multiple key/cipher families are indistinguishable absent authenticated key material. Prioritize source discovery over another combinatorial language fit. Make any new hypothesis prospective: freeze sign, key provenance, clock and original target before reading output.
+
+
+## 2026-11-26 — Director task #3046: multi-chapter shared-π pooling
+
+- Invocation: agent34-gpt62-draw4-20261126T194222Z-issue3046; claimed #3046 after Agent16's lease exceeded 100 minutes.
+- Frozen model: one shared GP29 coordinate permutation across jpg229, p57_parable, p56_an_end; separate unrestricted primitive q8 vectors and word-local phase starts; literal F holds; no word order or grammar. Training 56 groups / 243 runes, holdout 7 groups / 26 runes.
+- Exact oracle rank reproduction: common-π plants both give pooled rank 51/51, augmented rank 51, consistent; independent-π plants give rank 51/51, augmented rank 52, inconsistent. Per-chapter ranks are 34–35/35. This is an oracle ceiling only.
+- Blind gate run 45873121270: both common pooled plants, both independent pooled rivals, and all six independent per-chapter fits on independent-π controls returned UNKNOWN at 1,200s. The six common-π per-chapter diagnostics are not in the gate summary. No original ciphertext was scored.
+- The local word candidate domains for the three longest anchors are 106 (INSTRUCTION), 8 (CIRCUMFERENCES) and 5,933 (PILGRIM), illustrating the uneven lexical search burden. Do not replace the dictionary with a high-frequency cutoff; these true anchors are rare in the pinned lexicon.
+- Decision: the common-π model is oracle-identifiable and rejects the independent-π rival, but the blind CP-SAT receiver is not calibrated. Do not repeat its 16-job matrix or fit original LP2. Revisit only if a source-authenticated selector/anchor appears or a materially improved blind inverse passes independent controls.
+- Consolidated report: im-results/lp2-shared-gp29-cycle-action-calibration.md; authoritative frontier note: results/README.md; source code: sims/lp2_shared_gp29_q8_multichapter_pool_sft.py.
