@@ -34,7 +34,7 @@ Full-length controls: 16 nonoverlapping 2,896-word windows (6 Emerson held-out, 
 
 ## Three-way interpretation and what changes
 1. **Intact plaintext words in order:** disfavored at whole-book scale for the solved/native-literary registers and the measured length-order feature. A different register, ordered short passages or a length-changing mapping can defeat this test. The native short controls demonstrate that limitation directly.
-2. **Intact words permuted:** compatible. If the plaintext words were permuted before encryption and their lengths preserved, an arbitrary permutation destroys order but retains word-local lexical constraints. If a cipher word is permuted after encryption, global state/continuity changes; this is a different receiver and is disfavored for large-scale ciphertext rearrangement by the separately scoped doublet evidence. The independent external Round45 W1 Q4 result adds a sharper constraint: it reports rune order continuous across printed word/line breaks and excludes post-encryption word-level transposition, in-place word reversal, and word-boundary reading-order tricks down to about q=0.2. This is corroborating external evidence, not a proof against pre-encryption word permutation or every conceivable representation change; see the pinned W1 source in [the external research index](../resources/external/dukotah-cicada3301-round10-l3-road.md).
+2. **Intact words permuted:** compatible. If the plaintext words were permuted before encryption and their lengths preserved, an arbitrary permutation destroys order but retains word-local lexical constraints. If a cipher word is permuted after encryption, global state/continuity changes; this is a different receiver and is disfavored for large-scale ciphertext rearrangement by the separately scoped doublet evidence. External Round45 W1 Q4 corroborates adjacent-equality suppression at printed seams. Its q≈0.20 upper bound is a model-conditional estimate for independently uniformly rewired pairs, not a general limit on the fraction of words reordered or reversed. Endpoint-preserving reversals can be entirely invisible (see the exact original counterexample below); no directed reading order or cipher clock is identified. See the pinned W1 source in [the external research index](../resources/external/dukotah-cicada3301-round10-l3-road.md).
 3. **Arbitrary separators:** compatible when lengths have a plausible inventory. Conditional on a fixed multiset M with multiplicities m_l, both a uniform permutation of genuine word lengths and a decoy generator uniformly drawing an arrangement of M assign exactly prod(m_l!)/n! to each distinct length tape. Every length-only statistic has the same distribution in those two constructions. No extra statistic on the same length tape can distinguish those mechanisms without an independently specified nonexchangeable law. Geometric independent spacing is a narrower hypothesis externally rejected, not the entire decoy class.
 
 **Attack consequences:** #2656 joint semantic running-key inference should remain spacing-free; #2665–2668 explicitly use continuous rune tape and remain valid without word order. #2273 may use printed punctuation/group locations as physical side information without assuming linguistic word order; it must not assume that they are plaintext-word boundaries when calibrating exception or word-reset rules. Historical word-indexed tests such as #2617 (q8 difference lexical gate), #2650 (prime-residue lexical gate), and #2631 (word-local Latin renderer) remain valid under their stated intact-group assumptions, but cannot exclude resegmented plaintext; group ordinal keyed by physical print is a different premise from ordinal in unpermuted plaintext. Spacing-free inverse tests are unaffected by relocating separators alone; their power under a changed plaintext order or reset clock is a separate question. Q4's adjacency statistic does not rule out a key reset coexisting with a continuous output constraint. [Critic audit](../communications/broadcast/2026-11-25T0212Z_critic_q4_boundary_identifiability.md). Do not reopen a family solely because it used a printed group position: ask if that is a physical key selector or a claim about true plaintext syntax.
@@ -42,3 +42,67 @@ Full-length controls: 16 nonoverlapping 2,896-word windows (6 Emerson held-out, 
 **Next decision:** prioritize an independently selected spacing-free full inverse and infer its plaintext boundaries afterward. A candidate should predict unknown prose and, if it hypothesizes true boundaries, test its inferred boundary agreement on independent original material. No standalone re-permutation search or arbitrary resegmentation enumeration follows from W1. The local earlier [order experiment](word_length_order_20261110.md) already established adjacent MI null; the substantive additions are strict same-scope tests on corrected source, the genuine short native negative controls, and the explicit conditional identifiability obstruction. No new CI.
 
 Core executed twice in V8 on pinned fetched source text, including once from the committed script; the standalone Node filesystem entry point was not separately executed. No independent all-image transcription was performed.
+
+## Exact original reversal counterexample
+
+The original word-order/Q4 observations do not identify even the orientation of every single-line printed group. For any nonpalindromic group with identical first and last rune, reversing its interior leaves both endpoints unchanged. It preserves the number of equal internal adjacent pairs, every directed seam pair, the group length, and—when the group lies on one physical line—the line's endpoint symbols and total internal adjacent equality. Any subset of these reversals has the same properties.
+
+Using the canonical `lp2-corpus.json` (blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`) and `lp2-transcription.txt` (blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`), the original 12,956-rune tape has 60 nonpalindromic equal-endpoint groups, including **45 lying entirely on one source line** (249 rune positions, 138 changed when all 45 are reversed). The alternative retains all 841 directed group-seam counts, including 23 equal seams, and all 63 internal equalities in aggregate. There are exactly 2^45 = 35,184,372,088,832 distinct tapes in this constructed family. This does not claim that any alternative is plaintext, preserves ink labels or all higher-lag features, or is historically plausible. It is a direct counterexample to using Q4 as an assumption-free exclusion of in-place group reversal.
+
+Reproduce from repo root with Node (no dependencies, no CI):
+
+```js
+const fs = require('node:fs');
+const assert = require('node:assert/strict');
+const A = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
+const T = fs.readFileSync('resources/liber-primus/lp2-transcription.txt', 'utf8');
+const groups = [];
+let cur = [];
+const finish = () => { if (cur.length) groups.push(cur); cur = []; };
+for (const [row, line] of T.split(/\r?\n/).entries()) {
+  if (line === '%' || line === '$') continue;
+  if (line === '&') { finish(); continue; }
+  for (const c of line) {
+    const i = A.runes.indexOf(c);
+    if (i >= 0) cur.push({i, row});
+    else if (c === '-' || c === '.') finish();
+  }
+}
+finish();
+const W = groups.slice(0, 2896);
+const original = W.map(w => w.map(x => x.i));
+assert.equal(W.length, 2896);
+assert.deepEqual(original.flat(), A.pages.slice(0, 56).flatMap(p => p.indices));
+let closed = 0, eligible = 0, positions = 0, changed = 0;
+const alternative = W.map((w, k) => {
+  const v = original[k], rev = v.slice().reverse();
+  if (v[0] !== v.at(-1) || v.join() === rev.join()) return v;
+  closed++;
+  if (w[0].row !== w.at(-1).row) return v;
+  eligible++;
+  positions += v.length;
+  changed += v.filter((x, i) => x !== rev[i]).length;
+  return rev;
+});
+function stats(words) {
+  let internal = 0, seams = 0;
+  const matrix = Array(841).fill(0);
+  words.forEach((w, i) => {
+    for (let j = 1; j < w.length; j++) internal += w[j] === w[j - 1];
+    if (i) {
+      const a = words[i - 1].at(-1), b = w[0];
+      matrix[29 * a + b]++;
+      seams += a === b;
+    }
+  });
+  return {internal, seams, matrix};
+}
+const s = stats(original);
+assert.deepEqual(stats(alternative), s);
+assert.equal(s.internal, 63);
+assert.equal(s.seams, 23);
+assert.deepEqual([closed, eligible, positions, changed], [60, 45, 249, 138]);
+console.log({closed, eligible, positions, changed, alternatives: String(2n ** BigInt(eligible))});
+```
+
+**Decision:** use the Q4 conditional mixture and independently scoped exchangeable-group-shuffle rejection as constraints on candidate mechanisms. Do not infer a historical direction, exact adjacency graph, or key reset from them. No orientation brute force follows from this counterexample: a source-selected operation and prospective original plaintext evidence are still required.

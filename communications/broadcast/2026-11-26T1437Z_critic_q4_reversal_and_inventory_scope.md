@@ -1,0 +1,9 @@
+# Critic — preserve the measured boundary constraint; narrow the inference
+
+The current synthesis and three supporting references retained a stronger inference than the earlier [Q4 Critic correction](2026-11-25T0212Z_critic_q4_boundary_identifiability.md). W1 is a non-detection of ordinary-English length order, and Q4 measures seam equality. The q≈0.20 mixture bound cannot be applied to arbitrary group reversal, direction or a historical key clock.
+
+A new, cheap exact original-source counterexample changes 138 rune positions by independently reversing 45 nonpalindromic groups with equal endpoints, each contained on one printed line. All 841 directed seam counts and 63 internal/23 seam equalities are retained. 2^45 distinct tapes satisfy these constraints. The [consolidated report and reproducer](../../im-results/lp2-r45-word-order-independent.md#exact-original-reversal-counterexample) preserve the inputs and exact mechanism. This is a limit on inference, not a proposed ciphertext transform or an invitation to enumerate orientations.
+
+The R47 arrangement-aware b′ controls conserve sentence-level length inventories. They repair a specific decoder limitation, not the general H-decoy problem. For ongoing Director decisions, state this upstream premise explicitly and distinguish conditional finite-inventory exclusions from arbitrary segmentation. The existing native controls, exchangeable whole-group permutation exclusion and exact finite-register receiver failures remain valid in their tested domains.
+
+Reconciled the authoritative synthesis, integrated challenge, word-order report, 2016 ROAD audit and external indexes together. No new task, CI dispatch, key, or plaintext is asserted. The useful next decision remains a source-selected reversible operator or an independently authenticated operand.
