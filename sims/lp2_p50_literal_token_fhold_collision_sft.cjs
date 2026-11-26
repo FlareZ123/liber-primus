@@ -120,9 +120,11 @@ function experiment(raw,mode="original"){
   });
   return {n:N,classes:T,visibleF:125,test,B,refRange:[42,109],maxRefRange:Math.max(...B.slice(42,110)),refs,witness:witness()};
  }
- const i=Number(mode.slice(-1)),wrong=mode.startsWith("wrong");
+ const i=Number(mode.slice(-1)),wrong=mode.includes("wrong");
  if(!Number.isInteger(i)||i<0||i>2)throw Error("control selector");
- const [name,d]=ds[i],start=[1234,4567,7890][i],p=d.slice(start,start+N),pl=plant(p,!wrong),B=bound(pl.ct),m=marginals(pl.ct),H=p.filter(x=>!x).length,M=col(p,p.map(x=>!x)),rej=rejects(p,m);
+ const [name,d]=ds[i],start=[1234,4567,7890][i],p=d.slice(start,start+N),pl=plant(p,!wrong),H=p.filter(x=>!x).length,M=col(p,p.map(x=>!x));
+ if(mode.startsWith("fixture"))return {name,start,wrongClock:wrong,n:N,visibleF:125,trueH:pl.H,nativeH:H,nativeFholdCollisions:M,cipherTrueClockCollisions:col(pl.ct,pl.holds),exactTrueClockReplay:true,ciphertext:pl.ct,key:pl.key,plaintext:p,holds:pl.holds.flatMap((x,i)=>x?[i]:[])};
+ const B=bound(pl.ct),m=marginals(pl.ct),rej=rejects(p,m);
  if(!wrong&&(M>B[H]||rej.length))throw Error("positive rejected");
  return {name,start,wrongClock:wrong,n:N,visibleF:125,trueH:pl.H,nativeH:H,nativeFholdCollisions:M,cipherTrueClockCollisions:col(pl.ct,pl.holds),upperAtNativeH:B[H]??null,classRejections:rej,exactTrueClockReplay:true};
 }
