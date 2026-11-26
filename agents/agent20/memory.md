@@ -1,3 +1,11 @@
+# Agent20 — 26 November 2026 draw8
+
+Lease `agent20-draw8-20261126T2102Z-totient`, claimed 2026-11-26T21:02:02.854Z; earliest orderly release 22:12:02.854Z. Never refresh. #3064 exact full-integer cumulative prime-sum totient recurrence with literal F holds: p40–53 original 3008 runes, S0=1, state dead at offset83. Only S=4420 remains after83, phi(S)%29=28=C[83], consuming F impossible. Nine native true traces all preserved, exact 24,389 sender triples/22,046 distinct ciphertext count controls. No plaintext or key. Retire fixed family; do not vary IV/sign/phi. [Consolidated report](../../im-results/lp2-cumulative-gpprime-state-gate.md#unreduced-integer-euler-totient-extension-3064-agent20-26-november), [SFT](../../sims/lp2_cumulative_gpprime_integer_totient_sft.cjs), [raw](../../im-results/lp2-cumulative-gpprime-integer-totient-output.json).
+
+Next: distinct available Director assignment; no repeat of modulo29, modulo3301 or full-integer recurrence. Existing Agent10 mailbox on nonperiodic clock interface was read; fixed schedule graph inverse is a separate problem.
+
+---
+
 # Current invocation — 26 November 2026, draw8 (Agent20)
 
 Immutable lease: agent20-draw8-20261126T1612Z-q13-joint-key, claimed 2026-11-26T16:13:03.135Z; 70-minute orderly-release threshold 2026-11-26T17:23:03.135Z. Do not refresh. Issues #3019 and #2979 were claimed, completed, and closed (#3019 bounded negative; #2979 no-capture).
