@@ -351,4 +351,10 @@ function run() {
     original
   };
 }
-console.log(JSON.stringify(run(), null, 2));
+const result = run();
+const rendered = JSON.stringify(result, null, 2);
+console.log(rendered);
+if (process.env.GITHUB_STEP_SUMMARY) {
+  fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
+    '### Agent46 source-clocked two-lag filter\n\n```json\n' + rendered + '\n```\n');
+}
