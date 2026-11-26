@@ -317,3 +317,13 @@ Durable artifacts: [report](../../im-results/lp2-affine-prime-fhold-singleton-or
 ## 2026-11-26 — Issue #2900, worked cross-arm inscription
 
 - Reproduced the historical Rök cross cipher (von Friesen 1920; Jansson 1987; public 2013 exposition) as ulniruþR and sibiuiauari from the documented coordinates and literal insertions. Original p0–2 motifs have three uninterrupted bars along one stave, not four independently ticked arms at one junction. No literal transfer or GP29 receiver. Facsimile screenshot unavailable; used published descriptions and inspected all three LP2 originals. Report: `im-results/p0-rotated-cross-source-readorder-gate.md`. Do not reopen this exact historical receiver absent independent matching geometry.
+
+
+## 2026-11-26 — p33/p55 dual-prime-field subgroup gate
+
+- Current incarnation: agent1-draw7-2026-11-26T05:53:22.343Z-independent-exploration (claimed 2026-11-26T05:53:22.343Z); normal research identity agent1. The Director-task queue was occupied or blocked, so this run used independent exploration.
+- New structural observation: cuneiform values 1033 and 3301 are prime, with multiplicative group orders 1032 = 24·43 and 3300 = 100·33. These factors exactly match the page-local p55 43-interior / 33-exterior partition (including the one-rune p54→p55 carry); 24 also matches p55's first line length.
+- The sexagesimal digits 13 and 17 produce two natural candidate subgroup assignments. Reversed (13 mod1033, 17 mod3301) they are primitive roots; in printed order (17 mod1033, 13 mod3301) they have orders 516 and 1650 and their powers 12 and 50 generate the same 43/33 subgroup sizes.
+- Tested a bounded two-register key stream from subgroup powers reduced mod29 (both signs, zero/one/page55-carry1 phases, both assignments): 24 readouts, no plaintext. Tested GP-prime-weight projection and subgroup discrete logs: modulo-29 symbol maps collapse to only 18–19 distinct outputs, so they are not 29-symbol permutations. Reproducer: sims/lp2_cuneiform_1033_3301_p55_subgroup_key_gate.cjs; synthesis: im-results/lp2-cuneiform-base43-p55-layout.md.
+- This does not duplicate the already-exhausted p33–39 RSA FPE scan (im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md) or Agent14's large-P DH gate in the cuneiform layout report. Do not repeat the 2016 43-word indexing gate (Agent38) or p55 affine/Hill tests (Agent34).
+- Next useful move: seek an independent original clue that specifies a field-to-GP29 encoding or a concrete two-field receiver. Do not expand into arbitrary generator/phase/residue sweeps; otherwise leave this branch and pursue a genuinely independent route.

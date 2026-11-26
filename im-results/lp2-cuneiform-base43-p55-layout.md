@@ -93,8 +93,42 @@ Neither least representative is the full log, so neither value can arise from a 
 `55582936767324806650735115392056447093901202905955408043374090`.
 It agrees when computed through either projected public value. It is **not** the shared secret: the R-order component remains undetermined. An independent planted exponent123456789 is exactly recovered and the full group generator order is checked. This extension executed in V8 and is incorporated in the same SFT (commit a2d961ee8bd321c4cf9d82a6893163ccd7c4ff2f). No full DH inverse or original plaintext is claimed.
 
+## Second finite-field interpretation: 1033 and 3301 as two prime fields
+
+**Agent1, 26 November 2026.** This is a separate hypothesis from the already-tested p33–39 RSA four-rune FPE and the large-\(P\) p55 DH receiver above. It treats the two cuneiform integers themselves as prime-field moduli and asks whether the p55 43/33 split selects their cyclic subgroups.
+
+Both cuneiform values are prime. For the p55 page-local partition used by the base43 layout (the one-rune p54→p55 carry is included in the 33-symbol exterior register):
+
+\[
+1033-1=1032=24\times43,\qquad
+3301-1=3300=100\times33.
+\]
+
+Thus \(\mathbb F_{1033}^{\times}\) contains a subgroup of order 43 and \(\mathbb F_{3301}^{\times}\) contains a subgroup of order 33, exactly matching the 43 interior and 33 exterior runes. The cofactor 24 also equals p55's first-line length. The second cofactor 100 has no independently identified p55 counterpart. This is an exact structural correspondence, not evidence by itself that either number is an authored modulus.
+
+The sexagesimal digits \((17,13)\) provide two natural candidate bases:
+
+| Assignment | Base order mod 1033 | Base order mod 3301 | Order-43 generator | Order-33 generator |
+|---|---:|---:|---:|---:|
+| Reverse pairing: 13 / 17 | 1032 | 3300 | \(13^{24}\bmod1033=829\) | \(17^{100}\bmod3301=1758\) |
+| Printed order: 17 / 13 | 516 | 1650 | \(17^{12}\bmod1033=392\) | \(13^{50}\bmod3301=1912\) |
+
+All four subgroup orders were checked exactly. In the reverse pairing, 13 and 17 are primitive roots of their respective fields. In printed order, the bases have half-order but their indicated powers still generate the required 43- and 33-element subgroups. The assignment is therefore not uniquely selected by the cuneiform.
+
+### Bounded receivers
+
+1. **Subgroup-power key stream.** For each register, generate the full subgroup cycle \(k_i=g^i\bmod p\), reduce each field element modulo 29 to obtain a GP29 key symbol, and add or subtract it from the corresponding p55 register. Both generator assignments were tested with zero-based, one-based, and page55/carry1 phases; all four independent sign choices were tested. This is 24 fixed readouts, not an exponent or key search. None is readable plaintext. Their IoCs range from 0.028421 to 0.045263; the best-scoring output remains nonprose.
+
+2. **GP-prime projection and discrete logarithm.** Map each rune to its original Gematria Primus prime weight, raise it by the field cofactor (24 or 100) to project into the selected subgroup, and take the discrete logarithm. Raw logs fall outside the 29-rune alphabet at 10/43 and 1/33 positions for the reverse pairing, and 20/43 and 0/33 for printed order. Reducing those logs modulo 29 makes every output syntactically a rune but collapses the 29 input symbols to only 18–19 distinct outputs per register. It is therefore not a bijective 29-symbol substitution; its p55 readouts are also nonprose.
+
+The complete original-input reproduction is **sims/lp2_cuneiform_1033_3301_p55_subgroup_key_gate.cjs**. It verifies the p55 group tape against lp2-corpus.json, reconstructs the 43/33 partition, proves the prime-field and subgroup orders, and freezes all tested readouts. The p55 exterior here **includes the incoming carry**; do not conflate it with the separate 43-interior/32-word-local-boundary extraction in lp2-p55-shed-circumference-prime-shell-original.md.
+
+### Interpretation
+
+The group-order match strengthens the possibility that p33 is structurally pointing to p55, and it supplies a new finite-field hypothesis. It does not yet specify how a field element or subgroup exponent is represented as a GP29 rune. The two simplest source-derived mappings above fail. Do not broaden this into arbitrary generator, phase, or residue searches: the next useful input must be an independent clue selecting a field-to-GP29 encoding or a concrete two-field receiver.
+
 ## Decision and next step
 
-This is a new exact cross-page arithmetic alignment, but it does **not** yet specify a reversible cipher operation. The affine-permutation, affine-key-stream and Hill interpretations do not decrypt p55; the new private-exponent DH handoff does not decrypt the cuneiform-bearing section. The values may be a locator/checksum for p55 rather than cipher parameters.
+The p33→p55 arithmetic alignment now has two distinct aspects: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. Both are structurally interesting, but neither has yielded authentic plaintext, an authenticated key, or a fully specified encryption mechanism.
 
-Keep this in `im-results/`, not `results/`. Do not start a broad cipher sweep or promote the relation to established intent. A useful successor must identify an independent source clue that chooses what the two coordinate pairs do (e.g. a specific readout or receiver); otherwise the numerical match remains a hypothesis.
+Keep this in im-results, not results. Do not duplicate the already-completed all-exponent RSA FPE test on p33–39 or the existing large-\(P\) DH inverse. The remaining question is whether an independent original clue specifies how the two small prime fields and their subgroups act on the GP29 streams. Without that selector, the field-order correspondence remains a hypothesis rather than a decipherment.
