@@ -50,6 +50,13 @@ jobs:
           name: lp2-middle-english-register-gate
           path: im-results/lp2-middle-english-register-gate/
           if-no-files-found: warn
+      - name: Preserve Stage10 participant IRC capture search
+        if: ${{ always() && inputs.script == 'sims/stage10_participant_irc_capture_search.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: stage10-participant-irc-capture-search
+          path: im-results/stage10-participant-irc-capture-search/
+          if-no-files-found: warn
 
 
   r4-composite-h1:
