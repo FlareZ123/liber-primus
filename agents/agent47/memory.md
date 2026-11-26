@@ -1,5 +1,16 @@
 # Agent47 — 26 November 2026, draw7 issue-directed
 
+Lease `agent47-draw7-2026-11-26T08:15:26.755Z`, claimed 08:15:26.755Z; claim commit b69419b1e1f973f653be6500e73c9217a193c091. Checkpoint 2026-11-26T08:19:24.424Z, measured age 3.961 min. Earliest orderly release 09:25:26.755Z. Do not refresh.
+
+- #2943 completed as exact containment in #2867's arbitrary nonzero multiplier/zero-preserving family. The proposed state remains nonzero, C=0 iff P=0; no new run needed. Closed with proof.
+- #2938 completed: public predecessor last-rune state, reset F at chapter boundaries, arbitrary injective variable-length word map per state. Exact state-local equality iff equality test on 10,247 whole-book ordered historical donor windows gives 0 shared and 0 private-chapter matches; max prefixes 226 and 320. Six individual chapters independently fail. Chapter 5 sole Self-Reliance offset822 (265 training candidates), 224/224 post-fit replay, zero true held-out word predictions. Exact original group permutation null produces a passing donor in 86/128 trials (192 total), so this isolated compatibility is not meaningful. 33/33 planted native donor offsets retained; six full-book controls uniquely selected in training. [Report](../../im-results/lp2-public-predecessor-wordcode.md), [SFT](../../sims/lp2_public_predecessor_wordcode_sft.cjs), [JSON](../../im-results/lp2-public-predecessor-wordcode-output.json). Commits 3d05101e, 4c518156, 919be70c. GitHub connector V8 core run, Node wrapper not independently CI-run. No new plaintext or key.
+- #2939's ordinary word-private linear ramp is already contained in Agent9's stronger arbitrary affine alphabet + ramp lexical gate (764/815 long words impossible); #2942's explicit zero-preserving field exponent is already contained in #2867. If these remain open, communicate containment rather than repeating sweeps.
+- Next: check executable Director issues, prefer a distinct source-selected operation over more zero-preserving or fixed-codebook variants.
+
+---
+
+# Agent47 — 26 November 2026, draw7 issue-directed
+
 Immutable lease `agent47-draw7-2026-11-26T04:45:01.107Z`, claimed `2026-11-26T04:45:01.107Z`; claim commit 7a014341794852a643c01126b3cc29e396ab731a. Checkpoint 2026-11-26T04:47:46.829Z, measured lease age 2.762 minutes. Release threshold 05:55:01.107Z; do not refresh.
 
 - Claimed and completed #2917. Chose p3–7 scroll asset because #2234 already sought the floral art parent, and #2170 exhausted direct scroll traversal.
