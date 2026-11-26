@@ -62,7 +62,8 @@ size_t solve(FastSearch&s,int a,int b,const vector<Root>&rs,int seconds){
  cout<<"PHRASE SEARCH found="<<s.found<<" timed="<<s.timed<<" completed="<<done<<"/"<<rs.size()<<" nodes="<<nodes<<" joins="<<joins<<" perms="<<perms<<" OOV="<<s.answerOov<<endl;
  return done;
 }
-int main(){try{
+int main(int argc,char**argv){try{
+ int top=0,lo=0,hi=0;for(int i=1;i<argc;i++){string x=argv[i];if(i+1>=argc)throw runtime_error("missing argument");int n=stoi(argv[++i]);if(x=="--frequency-top")top=n;else if(x=="--first-start")lo=n;else if(x=="--first-end")hi=n;else throw runtime_error("unknown arg "+x);}
  aff::init();fixed::dictionary();exactMrvEnabled=true;
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");
  auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
@@ -70,9 +71,17 @@ int main(){try{
  int a=0;for(int i=1;i<46;i++)if(train[i].size()+train[i+1].size()>train[a].size()+train[a+1].size())a=i;int b=a+1;
  cout<<"PHRASE ANCHOR "<<a<<" "<<b<<" lengths="<<train[a].size()<<","<<train[b].size()<<endl;
  auto pool=phrases(train[a].size(),train[b].size());fixed::require(!pool.empty(),"empty phrase pool");
+ if(top){
+  // Same calibrated receiver, new disjoint frequency-ranked pair pool.
+  buildPrior7();auto ranked=[&](int len){auto v=fixed::by[len];stable_sort(v.begin(),v.end(),[](const string&a,const string&b){auto x=prior7(a,false),y=prior7(b,false);return x!=y?x>y:a<b;});v.resize(min<size_t>(top,v.size()));return v;};
+  auto x=ranked(train[a].size()),y=ranked(train[b].size());if(!hi)hi=x.size();fixed::require(0<=lo&&lo<hi&&hi<=int(x.size()),"rank range");map<Phrase,PhraseInfo> p;int skipped=0;
+  for(int i=lo;i<hi;i++)for(int j=0;j<int(y.size());j++){Phrase q{x[i],y[j]};if(pool.count(q)){skipped++;continue;}p.emplace(q,PhraseInfo{2*top-i-j,""});}
+  cout<<"FREQUENCY PAIRS top="<<top<<" first="<<lo<<":"<<hi<<" second="<<y.size()<<" skipped_literary="<<skipped<<" pairs="<<p.size()<<endl;
+  pool=move(p);
+ }
  // Hidden controls use one corpus pair chosen by a fixed seed, but the
  // receiver sees the entire phrase pool and never its planted pair.
- for(unsigned seed:{3301u,1033u}){
+ if(!top)for(unsigned seed:{3301u,1033u}){
   mt19937 rng(seed+99);fixed::Key k{};k[0]=1;k[4]=2;for(int j=1;j<Q;j++)if(j!=4)k[j]=rng()%N;
   vector<string> t(train.begin(),train.end()-1),h(held.begin()+1,held.end());auto p=fixed::plant(t,h,k,seed);
   auto it=pool.begin();advance(it,rng()%pool.size());p.truthTrain[a]=it->first.first;p.truthTrain[b]=it->first.second;
@@ -83,11 +92,12 @@ int main(){try{
   cout<<"PHRASE CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17"<<endl;
   if(!exact||tr!=47||hit!=17){cout<<"PHRASE ORIGINAL GATED OFF"<<endl;return 2;}
  }
- FastSearch s(train,3);auto rs=roots(s,a,b,pool);size_t done=solve(s,a,b,rs,300);
+ FastSearch s(train,3);auto rs=roots(s,a,b,pool);size_t done=solve(s,a,b,rs,top?1200:300);
  if(s.found){auto m=fixed::maps(s.answer,s.answerKey);cout<<"PHRASE ORIGINAL KEY";for(int x:s.answerKey)cout<<" "<<x;cout<<" pi";for(int x:s.answer)cout<<" "<<x;cout<<endl;
   for(int i=0;i<47;i++){auto w=fixed::decode(train[i],m,fixed::dict);cout<<"TRAIN "<<i;for(auto&x:w)cout<<" "<<x;cout<<endl;}
   held[0]=train.back()+held[0];for(int i=0;i<17;i++){auto w=fixed::decode(held[i],m,fixed::dict);cout<<"HOLD "<<i;for(auto&x:w)cout<<" "<<x;cout<<endl;}
  }
  cout<<"PHRASE ORIGINAL found="<<s.found<<" restricted_exhausted="<<(!s.timed&&!s.found&&done==rs.size())<<" universal_exhaustion=0"<<endl;
+ const char* output=getenv("SFT_OUTPUT");if(output&&*output){ofstream o(output);o<<"{\"mode\":\""<<(top?"frequency_pairs":"literary_pairs")<<"\",\"top\":"<<top<<",\"first_start\":"<<lo<<",\"first_end\":"<<hi<<",\"pairs\":"<<pool.size()<<",\"roots\":"<<rs.size()<<",\"completed\":"<<done<<",\"found\":"<<(s.found?"true":"false")<<",\"timed\":"<<(s.timed?"true":"false")<<",\"restricted_exhausted\":"<<(!s.timed&&!s.found&&done==rs.size()?"true":"false")<<"}"<<endl;}
  return 0;
 }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
