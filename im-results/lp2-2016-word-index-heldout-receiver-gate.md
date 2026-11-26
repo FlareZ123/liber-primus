@@ -136,6 +136,26 @@ The ordinary continuous transfer reencrypts all 967 runes but is nonprose; the h
 
 Reproducer: [sims/lp2_2016_totient_devoted_frozen_transfer_sft.cjs](../sims/lp2_2016_totient_devoted_frozen_transfer_sft.cjs), executed against the repository inputs in V8. Machine output: [lp2-2016-totient-devoted-frozen-transfer.json](lp2-2016-totient-devoted-frozen-transfer.json). No unknown LP2 plaintext, authentic key or destination was recovered.
 
+### Exact all-key decision: no period-seven key in the entire field family
+
+The rank count enables an exact inverse rather than another crib sweep. For each of the six assignments of residual field values (f,p,s) from {9,11,12}, set a=15p mod29, choose b,c freely, set d=f−2(a+b+c) and e=s−2(c+d) mod29. The first five key coordinates [a,b,c,d,e] are now fixed. The last two remain completely free. There are 6×841=5,046 such prefixes, each covering 841 complete keys, with disjoint full signatures.
+
+An exact seven-phase mask tracks all F-transparent paths. At ciphertext x, consuming transitions rotate the phase mask after removing every assigned phase j with k[j]=x (that would yield illegal consuming plaintext F). At x=0 also retain the original mask for literal F holds. Unassigned phases allow every consuming transition, strictly relaxing the exact model. Consequently an empty mask for a five-coordinate prefix excludes every one of its 841 completions. This is stronger than guessing TOTIENT or another word.
+
+| Original interval and clock | Five-coordinate prefixes tested | Surviving prefixes | Full keys possible |
+|---|---:|---:|---:|
+| p35:117→p39:119, 967 runes, phase0 | 5,046 | 0 | 0 |
+| Same 967 runes, all seven starting phases | 5,046 | 0 | 0 |
+| Full 1,460-rune cuneiform body, p33:99→p39:119, all seven starting phases | 5,046 | 0 | 0 |
+
+All 4,243,686 keys are excluded in each interval; no plaintext vocabulary, OOV budget or score enters this result. Positive native p57 control: 95 real clear runes, three F holds, exact field-compatible hidden key and nonzero starting phase4; all partial-key stages retain its path.
+
+The ordinary consuming alternative has an independent exact lexical bound. Among the 206 complete interior printed groups of the 967-rune continuation, 41 have length at least seven. Any dictionary word of matching GP29 length fixes every coordinate of a q7 additive cycle once its starting phase is specified. Check repeated residual coordinates for lengths>7, enumerate all matching words in the pinned TextBlob register, and retain only keys satisfying the same sorted field constraints. The union over these groups contains 18 keys under the continuous phase-zero clock and 117 under arbitrary independent word phases. **No key supports more than one of the 41 long groups in either model.** At least 40/41 are OOV for every key, including those absent from the union. A field-compatible ordinary positive plant recovers the planted key as a supporter of all 12 constructed native long groups. This is an exact finite-vocabulary bound, conditional on intact word membership; it does not exclude altered word lengths, arbitrary segmentation or a distinct state law.
+
+**Decision:** retire the entire direct periodic additive interpretation of the p35 H packet, not the underlying arithmetic observation or a possible nonperiodic source-selected operation. The H fields do not provide an authentic key or operation. Further work requires an independently specified lossless receiver, not more candidate words or phase permutations.
+
+Reproducer: [sims/lp2_2016_totient_hfield_allkey_sft.cjs](../sims/lp2_2016_totient_hfield_allkey_sft.cjs); [machine output](lp2-2016-totient-hfield-allkey.json). Executed directly against repository data in V8.
+
 ## Reproduction
 
 Run:
