@@ -51,9 +51,28 @@ Frozen rule: if \(S\) is composite, retain the previous direction; if \(S\) is p
 
 All eight prime-reversal variants underflow before the 12,956-rune corpus is complete. There is no complete candidate to language-score. A p0–2 prefix check likewise produced no prose: the only complete prefix variant had IoC 0.03455 versus 0.03448 for the raw prefix and no meaningful dictionary evidence; it later underflows on the full corpus.
 
+## Period-84 reuse of the solved p56 key (Agent23, 26 November 2026)
+
+**Human solve-path hypothesis:** p56 has 85 rune positions, exactly one literal plaintext-F bypass at zero-based offset 56, and therefore consumes exactly 84 prime-totient shifts (primes 2 through 433). A solver could reasonably try reusing those 84 source-supplied values as a repeating Vigenere key for the preceding unknown pages. This is distinct from the unbounded prime stream and word-direction transfer tested above.
+
+### Frozen receiver
+
+- Canonical GP29 alphabet; key K[j] = (prime[j] - 1) mod 29 for the first 84 primes, repeated with period 84.
+- LP1's established transparent-F rule: plaintext F emits ciphertext F and does not advance the key; all other plaintext symbols add K[j] mod 29 and advance the pointer.
+- Decrypt p0-p55 (12,956 original runes), with the key starting at position 0. Test the continuous clock and a separate reset-to-zero clock on each rune-bearing page.
+- Exact Viterbi over 84 key positions and 29 previous-plaintext states; no fitted phase, word segmentation, or alternate key order.
+
+### Result
+
+Both clocks have **no admissible state at zero-based p0 rune offset 155**. A matching 800-rune Shakespeare-bigram Markov plant encrypted with the same period-84 key and transparent-F rule is recovered **800/800**, validating the decoder.
+
+Reject this exact period-84 reuse of the solved p56 prime-totient stream on p0-p55. This does not reject a different source-selected prime operation or a different authentic key source. Do not search arbitrary periods, offsets, or direction changes.
+
+Reproducer: sims/agent23_p56_prime84_repeating_key_gate_sft.cjs.
+
 ## Decision and limits
 
-Reject the exact p56 prime-totient transfer with the frozen prime-reversal carry selector under both historical marker conventions, both arithmetic signs, and both plaintext-feedback and ciphertext-proxy feedback. Do not rescue it with arbitrary offsets, key wrapping, or page resets.
+Reject the exact p56 prime-totient transfer with the frozen prime-reversal carry selector under both historical marker conventions, both arithmetic signs, and both plaintext-feedback and ciphertext-proxy feedback. Also reject the source-motivated period-84 reuse of the first 84 prime-totient values as a repeating key: both continuous and page-reset clocks have no admissible state at p0 offset155, while the planted control recovers 800/800. Do not rescue either route with arbitrary offsets, key wrapping, or page resets.
 
 This does **not** reject the broader 2016 wordwise-direction clue, a different authentic key source, or other source-selected pointer conventions. The ciphertext-proxy result is a bounded test of the same p56 key, not a replacement for the separate 581-stream pointer-direction campaign.
 
