@@ -1,6 +1,6 @@
 # p32 two-half shared-pad inverse: literal donor, arbitrary pad, and period-11 key decisions
 
-**26 November 2026 — no recovered unknown plaintext or authentic key.** The finite literal-donor family has no matching prefix (Agent49); the unrestricted spacing-free shared-pad inverse has poor blind identifiability (Agent8). A distinct periodic specialization recovers hidden keys and genuinely withheld native runes in controls, but fails on the original p32 continuation; an all-key cyclic relaxation also bounds every period-11 key and relative shift below eight independent native controls. The directly invertible duplicate-text specialization and every shared invertible affine pair map, with or without the central rune as a public row operand, are nonprose. The latter controls recover all 18 hidden maps up to stream exchange and 540/540 held-out runes. The conditional TWA extraction and inferred square remain unconfirmed as author instructions.
+**26 November 2026 — no recovered unknown plaintext or authentic key.** The finite literal-donor family has no matching prefix (Agent49); the unrestricted spacing-free shared-pad inverse has poor blind identifiability (Agent8). A distinct periodic specialization recovers hidden keys and genuinely withheld native runes in controls, but fails on the original p32 continuation; an all-key cyclic relaxation also bounds every period-11 key and relative shift below eight independent native controls. The directly invertible duplicate-text specialization and every shared invertible affine pair map, with or without the central rune as a public row operand, are nonprose. The latter controls recover all 18 hidden maps up to stream exchange and 540/540 held-out runes. A physically interleaved continuous-plaintext specialization also fails, despite 8/8 exact ordered hidden keys and 240/240 withheld runes. The conditional TWA extraction and inferred square remain unconfirmed as author instructions.
 
 ## Source framing and hypotheses
 
@@ -92,8 +92,25 @@ Controls use fresh independent held Gibran and authentic solved GP29 text window
 
 [Constant affine SFT](../sims/lp2_p32_two_halves_affine_pair_sft.cjs) · [raw](lp2-p32-two-halves-affine-pair-output.json) · [public-center SFT](../sims/lp2_p32_two_halves_center_affine_sft.cjs) · [raw](lp2-p32-two-halves-center-affine-output.json).
 
+## 7. Exact physical-row continuous plaintext inverse (Agent8)
+
+The preceding affine-pair decision assumes two separately coherent streams. A distinct source-reading hypothesis places the recovered five left and five right symbols back into the inferred 11×11 physical row order, with the center treated as a public instruction strip and omitted from the 110-rune plaintext. In the mirrored orientation, the right recovered strip is reversed back to its physical order before reading. Use the same shared GL(2,29) inverse and constant translation, but score one continuous plaintext, including all row seams.
+
+**Exact coupled inverse:** for each of the 24,360 possible affine rows, precompute the three internal trigram terms per five-rune strip and the first/last two symbols. For any incoming strip starting x,y, upper-bound its two cross-seam terms by max over u,v of log p(x|u,v)+log p(y|v,x). The actual seam value is precomputed for all 29^4 endpoints. Each row's summed independent bound is admissible. Sort both candidate lists by these bounds; evaluate only pairs whose sum can beat the best complete score and whose two directions are independent. During evaluation replace each optimistic seam term with the actual one; each replacement is nonpositive, allowing early rejection. All 573,629,280 ordered invertible maps are therefore covered without enumerating every pair. The initial unigram and bigram are exact; the winning objective is directly rescored and checked against forward replay.
+
+Eight fresh contiguous held-out Gibran/native controls (four forward, four mirror) recover **8/8 exact ordered keys and 240/240 genuinely withheld runes**. True held means range −2.920604 to −2.150400. The original is fit on the first eight physical rows, with three rows withheld:
+
+| Orientation | Prefix fit | Frozen held | Exact full score maximum | Full-search partially pruned pairs |
+| --- | ---: | ---: | ---: | ---: |
+| Forward | −4.414120 | −7.907717 | −4.715188 | 11,142,130 |
+| Mirrored | −4.234821 | −6.377084 | −4.603726 | 4,734,406 |
+
+Both exact full maxima are incoherent; the apparent initial WHO in one fitted output is model-generated and not recovered plaintext. This removes the separate-stream reading assumption for the constant affine pair family. It does not test a center-dependent map under interleaving, nonlinear or dynamic transforms, or the original six-line layout without the inferred square.
+
+[Physical-row SFT](../sims/lp2_p32_row_interleaved_affine_sft.cjs) · [raw](lp2-p32-row-interleaved-affine-output.json).
+
 ## Research decision
 
-The literal-donor model is exactly negative within its library. The unconstrained joint language model cannot recover even genuine arbitrary pads. Imposing a period-11 shared key enables a strong predictive inverse but gives null-like original continuations and an all-key score bound below the independent native controls. The same-text duplicate and exact two-stream affine-pair models also fail, including the printed center as a public translation operand. There is no credible plaintext. Retire these specific two-half receivers absent independent source evidence selecting a different pad law or geometry; do not treat local words produced by the optimizer as decrypted fragments. A new source-selected key/receiver is more valuable than increasing a generic n-gram search.
+The literal-donor model is exactly negative within its library. The unconstrained joint language model cannot recover even genuine arbitrary pads. Imposing a period-11 shared key enables a strong predictive inverse but gives null-like original continuations and an all-key score bound below the independent native controls. The same-text duplicate and exact two-stream affine-pair models also fail, including the printed center as a public translation operand. Constant affine maps also fail when the two strips are rejoined into continuous physical-row prose. There is no credible plaintext. Retire these specific two-half receivers absent independent source evidence selecting a different pad law or geometry; do not treat local words produced by the optimizer as decrypted fragments. A new source-selected key/receiver is more valuable than increasing a generic n-gram search.
 
 All Agent8 experiment cores executed in connected JavaScript V8 on pinned repository inputs; the standalone Windows Node wrappers were not separately run. No new CI workflow. No change to the authoritative solution frontier.
