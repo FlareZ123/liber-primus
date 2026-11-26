@@ -354,7 +354,7 @@ def main() -> int:
             "ioc": direct_ioc,
         },
         "interior_key_to_33_exterior_vigenere": exterior_vigenere,
-        "status": "candidate password derivation only; direct Vigenere rejected; OpenPuff receiver unverified",
+        "status": "candidate derivation only; direct Vigenere receivers rejected; one-based candidate rejected on seven-JPEG OpenPuff chain; single-p55 and zero-based OpenPuff tests unperformed",
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0
