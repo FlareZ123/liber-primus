@@ -20,7 +20,7 @@ SWEEPS = ((18, 9, False), (24, 12, True), (12, 6, False))
 
 
 def profile_pair(server, sem, C, L, pair):
-    best = pair
+    best = server.ask(op="check", C=C, L=L, pair=pair)
     initial = sem.scores([best], len(C))[0]
     value = initial
     accepted = 0
