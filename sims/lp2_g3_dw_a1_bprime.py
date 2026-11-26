@@ -270,7 +270,7 @@ def main():
 
     add_duko_paths(Path(args.duko).resolve())
     A = load_modules()
-    W, G = A.L.W, A.L.G
+    W, G = A.W, A.G
     primes = list(A.gp.PRIMES)
     trans = list(A.sk.idx_to_trans)
     Q = A.H.Q
