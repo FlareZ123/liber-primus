@@ -4,7 +4,7 @@
 
 ## Human-solve-path hypothesis
 
-LP2 physical p15 is preserved as \`resources/liber-primus/32.jpg\` (the archive mapping is documented in \`resources/liber-primus/README.md\`). The original image presents a 4×4 numerical grid, a red 3299 cell, a Fibonacci-prime spiral, and a hand-drawn infinity mark.
+LP2 physical p15 is preserved as `resources/liber-primus/32.jpg` (the archive mapping is documented in `resources/liber-primus/README.md`). The original image presents a 4×4 numerical grid, a red 3299 cell, a Fibonacci-prime spiral, and a hand-drawn infinity mark.
 
 A technically literate solver who recognizes the 29-symbol Gematria Primus alphabet could reasonably try the displayed 4×4 object as a classical Hill-cipher key over GF(29). The infinity mark makes continuous application a plausible receiver, though it does not identify Hill cipher specifically. This test therefore asks a sharply bounded question: does the p15 grid, interpreted as a 4×4 matrix in either of its two natural numeric forms, directly invert the original LP2 rune stream?
 
@@ -102,13 +102,13 @@ A 1,744-rune source-native GP29 control was taken from the preserved solved-nati
 
 The source-derived prime matrix in printed row-major order, standard column-vector decryption, gives IoC 0.03446499 on p0–p55 and 0.03440367 on p16–p22. The literal displayed matrix and the spiral-reflow alternatives likewise remain near the original uniform-ciphertext statistic. No candidate produces an English-like GP29 distribution or a recognizable plaintext.
 
-The corrected standalone Node 22 SFT passed on Windows GitHub Actions: [run 45812953866](https://github.com/FlareZ123/liber-primus/actions/runs/45812953866). It uploads the full per-configuration JSON as the \`source-test-output\` artifact. The first runner attempt caught a manually transcribed p378 error; the final SFT computes the prime sequence directly and asserts the displayed-grid relation before testing any receiver.
+The corrected standalone Node 22 SFT passed on Windows GitHub Actions: [run 45812953866](https://github.com/FlareZ123/liber-primus/actions/runs/45812953866). It uploads the full per-configuration JSON as the `source-test-output` artifact. The first runner attempt caught a manually transcribed p378 error; the final SFT computes the prime sequence directly and asserts the displayed-grid relation before testing any receiver.
 
 Reproduce with:
 
-\`\`\`sh
+```sh
 node sims/lp2_p15_prime_matrix_hill4_sft.cjs
-\`\`\`
+```
 
 ## Decision
 
@@ -116,4 +116,4 @@ Reject the direct, one-layer Hill-4 receiver for these source-defined p15 matric
 
 This does **not** reject a layered cipher, a different independently sourced matrix operation, or a stateful use of the p15 material. No such extension is justified by this test alone. Do not continue with arbitrary matrices, offsets, or tuned block variants without a new source clue selecting them.
 
-This is an intermediate exclusion, not an established discovery; the overall authoritative synthesis in \`results/README.md\` is unchanged.
+This is an intermediate exclusion, not an established discovery; the overall authoritative synthesis in `results/README.md` is unchanged.
