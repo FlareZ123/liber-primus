@@ -44,7 +44,7 @@ def tlv(tag: int, payload: bytes) -> bytes:
 def der_integer(value: int) -> bytes:
     raw = value.to_bytes((value.bit_length() + 7) // 8, "big")
     if raw[0] & 0x80:
-        raw = b"\\x00" + raw
+        raw = b"\x00" + raw
     return tlv(0x02, raw)
 
 
@@ -61,7 +61,7 @@ def candidates() -> dict[str, bytes]:
     n_bytes = n.to_bytes((n.bit_length() + 7) // 8, "big")
     rsa_public_key = tlv(0x30, der_integer(n) + der_integer(EXPONENT))
     rsa_algorithm_identifier = bytes.fromhex("300d06092a864886f70d0101010500")
-    subject_public_key_info = tlv(0x30, rsa_algorithm_identifier + tlv(0x03, b"\\x00" + rsa_public_key))
+    subject_public_key_info = tlv(0x30, rsa_algorithm_identifier + tlv(0x03, b"\x00" + rsa_public_key))
     out = {
         "onion-host": HOST.encode("ascii"),
         "onion-host-bare": HOST.removesuffix(".onion").encode("ascii"),
@@ -116,7 +116,7 @@ def main() -> None:
         "candidates": checks,
         "scope": "Exact source-located host/URL/path/email, valid-participant RSA modulus serializations, three decrypted response numbers and their URL paths, plus the screenshot's explicitly labelled example number. Does not test missing initial /NUM token or successful response body.",
     }
-    rendered = json.dumps(result, indent=2) + "\\n"
+    rendered = json.dumps(result, indent=2) + "\n"
     if args.output:
         args.output.write_text(rendered, encoding="utf-8")
     print(f"candidates={len(checks)} hash_checks={2*len(checks)} matches={len(matches)}")
