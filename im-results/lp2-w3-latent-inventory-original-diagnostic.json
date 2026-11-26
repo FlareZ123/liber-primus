@@ -1,0 +1,122 @@
+{
+  "sourceBlobs": [
+    [
+      "resources/liber-primus/lp2-transcription.txt",
+      "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    ],
+    [
+      "resources/control/english_wordfreq_textblob.txt",
+      "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    ],
+    [
+      "resources/external/relikd-solved-gp29-native-v1.json",
+      "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ]
+  ],
+  "mode": "original-diagnostic",
+  "diagnosticCaveat": "Issue recovery criterion passed on 9/9 held-out plants. Stricter fresh score gate failed: 2/9 wrong-length controls crossed the unchanged 2.5 cutoff. Original scoring is diagnostic only.",
+  "lexicon": 33350,
+  "variants": [
+    [
+      -1,
+      false
+    ],
+    [
+      -1,
+      true
+    ],
+    [
+      1,
+      false
+    ],
+    [
+      1,
+      true
+    ]
+  ],
+  "rows": [],
+  "summary": {
+    "plants": 0,
+    "good": 0,
+    "maxGood": null,
+    "minNeg": null,
+    "negatives": 0,
+    "negativesExcluded": 0,
+    "gate": false,
+    "cutoff": 2.5
+  },
+  "original": [
+    {
+      "lo": 0,
+      "hi": 729,
+      "lower": 4.515791738307423,
+      "rows": [
+        {
+          "variant": 3,
+          "lower": 4.515791738307423,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 1,
+          "lower": 4.521735346125003,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 0,
+          "lower": 4.540266345536575,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 2,
+          "lower": 4.552697058023817,
+          "status": "relaxed-exclusion"
+        }
+      ],
+      "best": null,
+      "proven": false,
+      "excluded": true
+    },
+    {
+      "lo": 729,
+      "hi": 1428,
+      "lower": 4.428110387031219,
+      "rows": [
+        {
+          "variant": 3,
+          "lower": 4.428110387031219,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 1,
+          "lower": 4.437066893342729,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 0,
+          "lower": 4.44855416239736,
+          "status": "relaxed-exclusion"
+        },
+        {
+          "variant": 2,
+          "lower": 4.495517553397207,
+          "status": "relaxed-exclusion"
+        }
+      ],
+      "best": null,
+      "proven": false,
+      "excluded": true
+    }
+  ]
+}
