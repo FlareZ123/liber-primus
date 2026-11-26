@@ -1,6 +1,6 @@
 # Blind p27–p32 human cold-start packet
 
-<badge>Waiting for maintainer / human solver</badge>
+**Status: waiting for maintainer / human solver.**
 
 This packet is prepared but has **not** been shown to a human solver. Do not use an agent or language model as the oracle. The solver-facing ZIP contains six original full-resolution scans under neutral filenames, a neutral task brief, and only pre-1-May-2014 public Cicada context pointers.
 
