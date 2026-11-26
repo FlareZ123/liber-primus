@@ -28,3 +28,27 @@ All six controls recover all 1,458 runes and their exact 11-parameter keys. The 
 **Decision:** do not widen this separable additive model without an independent clue. No unknown LP2 plaintext, genuine key or destination recovered. The five-word/243-count correspondence does not select this operation.
 
 [Executable SFT](../sims/lp2_p8_ternary_additive_tensor_blind_sft.cjs) · [Full raw data](lp2-p8-ternary-additive-tensor-blind-output.json) · [Windows Node22 PASS run 45726918658](https://github.com/FlareZ123/liber-primus/actions/runs/45726918658) (head 651626f948a87297f40a2436ddb68c1f0cefd2bd).
+
+
+## Exhaustive all-key language-score upper bound (same invocation)
+
+To remove beam pruning from the negative, relax the three higher axes and the global shift to **27 completely independent arbitrary block shifts**, one per consecutive nine-rune block. Keep the two lower axes shared, with all four effective parameters unknown. The true full tensor key is a special case of this strictly larger family. Ignore the 52 trigrams crossing block boundaries; each has nonpositive log score, so the 189 retained trigrams upper-bound the full 241-trigram sum for every key.
+
+For each of **all 707,281 = 29^4** lower-axis keys, compute the exact maximum independently over all 29 shifts in each of 27 blocks. This covers 29^31 relaxed keys without explicitly enumerating the 29^27 shift combinations. Reconstruct and recompute the maximizing witness to check the score. The frozen language models and six controls are unchanged. All six plants recover their true four lower-axis parameters; independent block shifts occasionally overfit (225–243/243 plaintext recovery), exactly as expected from the relaxation.
+
+| Case | Exact maximum within-block mean | Upper bound on whole-page mean | True within-block mean (control only) |
+|---|---:|---:|---:|
+| modern0 | -2.313885 | -1.814623 | -2.315507 |
+| modern1 | -2.348602 | -1.841850 | -2.348602 |
+| modern2 | -2.216120 | -1.737953 | -2.216120 |
+| oldEnglish0 | -2.407728 | -1.888218 | -2.414905 |
+| oldEnglish1 | -2.330693 | -1.827805 | -2.330693 |
+| oldEnglish2 | -2.438564 | -1.912401 | -2.468631 |
+| original-modern | -3.287373 | -2.578064 | — |
+| original-oldEnglish | -3.151657 | -2.471631 | — |
+
+The strongest possible original score across **every** full tensor key is therefore at most -2.578064 (modern) or -2.471631 (OE) per whole-page trigram, below all matching control full-page scores from the first test. The modern gap is substantial; the OE whole-page bound beats the weakest control by only 0.006435. The within-block comparison has a considerably larger gap for both registers (all original relaxed maxima below all true within-block control scores).
+
+**Decision:** this is an exact upper bound on the stated score over the entire proposed cipher family, not merely a beam failure. Its linguistic interpretation remains conditional on the two trained models and finite control samples; it is not an impossibility proof for all real languages. No authenticated plaintext/key.
+
+[Exact exhaustive SFT](../sims/lp2_p8_ternary_additive_tensor_exact_bound_sft.cjs) · [Raw output](lp2-p8-ternary-additive-tensor-exact-bound-output.json) · [Windows Node22 PASS run 45727125472](https://github.com/FlareZ123/liber-primus/actions/runs/45727125472).
