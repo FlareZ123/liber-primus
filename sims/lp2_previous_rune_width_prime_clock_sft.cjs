@@ -30,7 +30,14 @@ function experiment(C,S){
   const chapter=C.pages.filter(x=>x.page>=40&&x.page<=53),c=chapter.flatMap(x=>x.indices),split=chapter.filter(x=>x.page<53).flatMap(x=>x.indices).length;
   const result=evaluate(c,split),dead=result.fullCount.dead;
   let deadPage=null,deadOffset=null;if(dead!==null){let i=dead-1;for(const page of chapter){if(i<page.indices.length){deadPage=page.page;deadOffset=i;break}i-=page.indices.length}}
-  const original={n:c.length,split,hold:c.length-split,deadPage,deadOffset,...result};
+  let live=new Map([[1,1n]]), certificate=null;
+  for(let i=0;i<c.length;i++){
+    const next=new Map();
+    for(const [key,n] of live){const t=Math.floor(key/3),w=key%3;for(const [,u,v] of step(c[i],t,w)){const k=u*3+v;next.set(k,(next.get(k)??0n)+n)}}
+    if(!next.size){certificate={runeIndex:i,cipher:c[i],entering:[...live].map(([k,n])=>({cursor:Math.floor(k/3),previousWidth:k%3,shift:shift[Math.floor(k/3)],paths:String(n)}))};break}
+    live=next;
+  }
+  const original={n:c.length,split,holdLength:c.length-split,deadPage,deadOffset,certificate,...result};
   return {width,control,p56Rival,original};
 }
 const root=path.resolve(__dirname,'..');
