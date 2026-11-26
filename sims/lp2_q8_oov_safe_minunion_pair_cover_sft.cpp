@@ -795,8 +795,8 @@ size_t rawAnchorOptions(const string&c,const vector<string>&words){
  return seen.size();
 }
 bool containsTrueAction(const Graph&g,const fixed::Perm&pi,const fixed::Key&k){
- fixed::Key params{};
- for(int i=0;i<g.k.d;i++)params[i]=k[g.k.vars[i]];
+ Vec params{};
+ for(int i=0;i<g.k.d;i++)params[i]=uint8_t(k[g.k.vars[i]]);
  if(g.k.evaluate(params)!=k)return false;
  for(int x=0;x<N;x++){
   int v=0;for(int j=0;j<Q;j++)v+=g.off[x][j]*k[j];v%=N;
@@ -875,10 +875,10 @@ int main(int argc,char**argv){try{
    size_t marginal=0;for(const auto&sig:anchorSigs[i])if(!unionSigs.count(sig))marginal++;
    bool better=best<0||marginal<bestMarginal;
    if(!better&&marginal==bestMarginal){
-    better=raw[i]<raw[best]||
-      (raw[i]==raw[best]&&(valid[i]<valid[best]||
-      (valid[i]==valid[best]&&(shape[i].size()>shape[best].size()||
-      (shape[i].size()==shape[best].size()&&i<best))));
+    if(raw[i]!=raw[best])better=raw[i]<raw[best];
+    else if(valid[i]!=valid[best])better=valid[i]<valid[best];
+    else if(shape[i].size()!=shape[best].size())better=shape[i].size()>shape[best].size();
+    else better=i<best;
    }
    if(better){best=i;bestMarginal=marginal;}
   }
