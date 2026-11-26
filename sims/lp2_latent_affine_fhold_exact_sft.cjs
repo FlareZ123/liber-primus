@@ -42,7 +42,7 @@ function witness(C,E,K,lens,cap,vocab,gp,sig,key,mod,inverse,encode,assert){
  assert(totalOov===cost,"trace cost");
  return {cost,groups:K,runes:N,hist,targetHist,changedLengthSlots:targetHist.reduce((s,v,l)=>s+Math.max(0,v-hist[l]),0),ambiguousLexicalGroups:ambiguous,log10DistinctPlaintexts:log10,heldFInWitness:held,candidateHist,example:segments.slice(0,25).map(z=>z.p.map(x=>gp.translit[x]).join("")).join(" "),segments};
 }
-function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact){
+function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact,options){
  const started=Date.now(),ALL=(1<<29)-2,CAP=24,M=4096;
  function delta(x,off,l,m=0){let base=-1;for(let i=0;i<l;i++)if(!(m&(1<<i))){const v=x[off+i];if(base<0)base=v;else if(v!==base)return mod(v-base)}return 0}
  function make(v){const ordinary=Array.from({length:25},()=>new Map()),hold=Array.from({length:25},()=>new Map());for(const s of v){const p=Array.from(s,c=>c.charCodeAt(0)-65),l=p.length,ss=sig(p,0,l),d=delta(p,0,l);ordinary[l].set(ss,(ordinary[l].get(ss)||0)|(1<<d));let m=0;for(let i=0;i<l;i++)if(p[i]===0)m|=1<<i;let group=hold[l].get(m);if(!group)hold[l].set(m,group=new Map());const hs=sig(p,0,l,m),hd=delta(p,0,l,m);group.set(hs,(group.get(hs)||0)|(1<<hd))}return {ordinary,hold}}
@@ -69,6 +69,19 @@ function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,ass
  // A finite dual certificate must never exceed exact minimum on random short interval DAGs.
  let dualControls=0;for(let t=0;t<160;t++){const N=6+rand(18),K=1+rand(N),ends=new Uint32Array(N+1);for(let i=1;i<=N;i++){ends[i]=1;for(let l=2;l<=Math.min(6,i);l++)if(rand(2))ends[i]|=1<<(l-1)}if(K*6<N)continue;const d=dual(ends,K,6),e=exact({starts:new Uint32Array(N),ends},K,6);assert(d.lb<=e,"invalid lower bound");dualControls++}
  const idx=make(vocab),S=scan(tape,idx,CAP),K=words.length,budget=Math.floor(K*.05),all=[];
+ if(options.smallSlope){
+ const ends=new Uint32Array(tape.length+1),pairs=[],triples=[];
+ function setEnds(slopes){for(let i=0;i<ends.length;i++){let x=0;for(const a of slopes)x|=S.E[a][i];ends[i]=x}}
+ function fixed(slopes,lambda){setEnds(slopes);const x=optimum(ends,lambda);return {slopes,lb:Math.max(0,Math.ceil((x.cost-lambda*K)/M)),...x}}
+ for(let a=1;a<29;a++)for(let b=a+1;b<29;b++)pairs.push(fixed([a,b],512));
+ pairs.sort((x,y)=>x.lb-y.lb);
+ for(let a=1;a<29;a++)for(let b=a+1;b<29;b++)for(let c=b+1;c<29;c++)triples.push(fixed([a,b,c],586));
+ triples.sort((x,y)=>x.lb-y.lb);
+ const candidateCount=triples.filter(x=>x.lb<=budget).length;
+ const candidates=[];let feasible=null;
+ for(const t of triples){if(t.lb>budget)break;setEnds(t.slopes);const d=dual(ends,K);const x={slopes:t.slopes,...d};if(d.lb<=budget){x.exact=exact({starts:new Uint32Array(tape.length),ends},K,CAP);if(x.exact<=budget)feasible=x}candidates.push(x);if(feasible)break}
+ return {vocab:vocab.size,runes:tape.length,groups:K,budget,pairs,pairMin:pairs[0],pairViable:pairs.filter(x=>x.lb<=budget).length,signPair:pairs.find(x=>x.slopes.join()==="1,28"),triples,triplesMin:triples[0],candidateCount,candidates,feasible,elapsedMs:Date.now()-started};
+ }
  for(let a=1;a<=28;a++)all.push({slope:a,...dual(S.E[a],K)});
  const best=Math.min(...all.map(x=>x.lb)),bestSlopes=all.filter(x=>x.lb===best).map(x=>x.slope);
  // Compute exact OOV only at slope 1 (independent prior baseline) and the most promising slope.
@@ -117,7 +130,7 @@ function experiment(raw,options={}){
  }}return{A,H,starts:Uint32Array.from(A,(x,i)=>x|H[i]),ends}}
  function encode(w,a,b,hold){return w.map(p=>hold&&p===0?0:mod(a*p+b))}
  let seed=0x48061126;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)%n}
- if(options.slopeOnly)return slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact);
+ if(options.slopeOnly)return slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact,options);
  const toy=new Set([[0],[1],[2],[0,1],[1,0],[2,0,2],[1,2,1],[0,0],[0,3,0,4],[2,4,3,4],[0,3,4,0]].map(key)),ti=makeIndex(toy),toyImages=[new Set(),new Set()];
  for(const s of toy){const p=Array.from(s,c=>c.charCodeAt(0)-65);for(let a=1;a<29;a++)for(let b=0;b<29;b++)for(let h=0;h<2;h++)toyImages[h].add(key(encode(p,a,b,h)))}
  let toyIntervals=0;
@@ -138,5 +151,5 @@ function experiment(raw,options={}){
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
  return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")||process.argv.includes("--small-slope"),smallSlope:process.argv.includes("--small-slope")}),null,2));
 module.exports={experiment};
