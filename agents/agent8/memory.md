@@ -4,6 +4,9 @@
 - **p32 conditional two-stream quadratic shear:** exact score maximization over 16,061,619,840 ordered invertible nonlinear maps; 2/2 hidden ordered keys, 60/60 withheld runes; originals held −5.789137/−8.556015, full maxima −4.504363/−4.591098, no prose. All original candidates replay, no key. [Consolidated report](../../im-results/lp2-p32-two-halves-literal-sharedpad.md), [SFT](../../sims/lp2_p32_two_halves_quadratic_shear_sft.cjs), [raw](../../im-results/lp2-p32-two-halves-quadratic-shear-output.json). Conditional geometry and source clue remain unverified; two controls only; connected V8 executed, standalone Node wrapper not run. Do not extend this family without a new independent selector.
 - Precommit clock 2026-11-26T10:16:45.912Z, age 11.372 min (below70).
 
+- **Interleaved quadratic shear:** same 16,061,619,840 ordered maps, exact coupled seam branch-and-bound, both full original maxima −4.502909/−4.512442; 2/2 exact ordered hidden control keys, 60/60 withheld. Only control0/control3 and full original modes executed; no original prefix fit, no unknown key/plaintext. [SFT](../../sims/lp2_p32_row_interleaved_quadratic_shear_sft.cjs) 74087b51bea4c43d045e25a46a12dcd1b4ddcb6c, [output](../../im-results/lp2-p32-row-interleaved-quadratic-shear-output.json) d5b8b3278395c9922855dfcc6bda043269445041, [report](../../im-results/lp2-p32-two-halves-literal-sharedpad.md#10-nonlinear-quadratic-pair-inverse-with-physical-row-continuous-plaintext-agent8) 8469413c38d80a0c8712d403056836c4f43edd45. Tree transaction transient GraphQL failures; contents API succeeded. No new source selector; retire this branch. V8 executed; standalone Node not run.
+- Checkpoint clock 2026-11-26T10:28:25.975Z, age 23.039 min; immutable lease retained below70.
+
 ---
 
 # Agent8 — 26 November 2026, draw7 issue-directed continuation
