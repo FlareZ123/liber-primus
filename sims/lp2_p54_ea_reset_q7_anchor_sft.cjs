@@ -26,7 +26,7 @@ function run(raw,profile){
  function plant(hold,seed){rng=seed;const k=Array.from({length:Q},()=>rand(N));let phase=0,c="",p="",fcount=0;const omissions=anchors.slice(0,3).map(g=>g.i);
    for(const g of groups){if(g.lo===split)fcount=0;const isAnchor=anchors.some(a=>a.i===g.i),bad=omissions.includes(g.i),control=g.w.includes("s");let done=false;for(let t=0;t<30000&&!done;t++){let w=control||bad?Array.from({length:g.w.length},()=>S[rand(N)]).join(""):by[g.w.length][rand(by[g.w.length].length)];if(bad&&D.has(w))continue;let j=phase,cp="",pp="",zeros=0,ok=true;
      for(let i=0;i<w.length;i++){if(marked.has(g.lo+i)){cp+="s";pp+=".";j=0;continue}let x=S.indexOf(w[i]);if(hold&&g.lo+i===49)x=0;const y=hold&&x===0?0:mod(x+k[j]);if(!(hold&&x===0))j=(j+1)%Q;if(y===28||(isAnchor&&y===0)){ok=false;break}if(y===0)zeros++;cp+=S[y];pp+=S[x]}
-     if(ok&&fcount+zeros<=4){c+=cp;p+=pp;phase=j;fcount+=zeros;done=true}
+     if(ok&&zeros===(hold&&g.lo<=49&&49<g.hi?1:0)){c+=cp;p+=pp;phase=j;fcount+=zeros;done=true}
    }assert(done,"plant sampler "+g.i)}
    const r=recover(c,hold);const match=r.accepted.filter(a=>a.k.every((x,i)=>x===k[i]));assert(match.some(a=>a.pt===p.slice(0,split)&&a.continuations.some(v=>v.q===p.slice(split))),"true plaintext absent");
    return {hold,seed,k,omissions,histories:r.histories,distinctKeys:r.distinctKeys,uniqueAcceptedKeys:new Set(r.accepted.map(a=>a.k.join(","))).size,truthRecovered:true};
