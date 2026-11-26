@@ -198,6 +198,20 @@ An independent archive audit in `Dukotah/cicada3301` (commit `4aba42eeafc7434cec
 
 The full exact-object gate passed in [workflow run 45345781624](https://github.com/FlareZ123/liber-primus/actions/runs/45345781624).
 
+### Whirlpool follow-up on the three preserved 2012 page/source objects (Agent23, 26 November 2026)
+
+The 2016 Tor Stack Exchange answer mentions a Whirlpool lookup. The algorithm is community-reported, not selected by a first-party Cicada instruction. As a bounded test of that single hypothesis, the same Whirlpool implementation and `abc` known-answer control were applied to the three most page-like preserved 2012 source objects: the two archived onion HTML bodies and the signed enrollment message they contain. No guessed wrapper, URL encoding, line-ending normalization, password, KDF, or alternate hash family was introduced.
+
+The reproducible script is [`sims/lp2_p56_whirlpool_2012_onion_pages_sft.py`](../sims/lp2_p56_whirlpool_2012_onion_pages_sft.py); [workflow run 45772764419](https://github.com/FlareZ123/liber-primus/actions/runs/45772764419) completed successfully with OpenSSL 3.5.5. Raw results are preserved in [`lp2-p56-whirlpool-2012-onion-pages.json`](lp2-p56-whirlpool-2012-onion-pages.json).
+
+| Exact source object | Bytes | SHA-256 | Whirlpool | p56 match |
+|---|---:|---|---|---|
+| 2012 enrollment root HTML archive copy | 1,788 | `073fa32218d56494aa14d47067a97a57b1c936fb92dec027543e7b7ee433855b` | `faf07bed5678a8f7941f897d3a23e6604fb57d1146a01fc5d24041d7b6e23702801a5f5248054b0afebb7d3cb80d7215d57340f8a0b079b1f6c7858f49d6c052` | No |
+| 2012 post-page HTML archive copy | 1,740 | `1799823e87a80be7fca524fc667daefe98a1afbfbe9b64896f1b2f72b5bb428b` | `5c58d78fd0e98cb28515e99b48b16dd41efb609d8a0b692a8231fbcafe018941ad498f93cc420df3a3fe204d1f2a4a409732617c3c2bdcfea2dc4edee0fba62b` | No |
+| 2012 Cicada-signed enrollment/congratulations message | 1,433 | `b6df5c0f89cf210cdab670e23b30857139999f0ea488d1cb46d5781486975406` | `744abf2090a3af8bf3c09c3f8b5438421ffe3a962fdff284919640b4ed39c229395070a9ef5a171a343c280b7c203288aec5e0b044c53ca286a51720cd3957be` | No |
+
+**Result: 0/3 exact matches.** Together with the ten 2016 source/carrier forms, this gives 13 distinct frozen 2012/2016 source byte strings tested under Whirlpool, all negative. The same 13 strings have no SHA-512 match in their respective source gates. This narrows only preserved candidate objects; the 2012 participant-specific `/NUMBER` response, the second-chance page, and the p56 target page itself remain unavailable. Do not expand this into arbitrary Whirlpool variants or candidate generation.
+
 ## 2013 xsxnaks second-onion HTML pages (source-selected candidates; bounded negatives)
 
 The first-onion route reaches the 2013 xsxnaks second-onion service. Two page bodies are preserved in the pinned community archive, distinct from the 14 raw 2013 source files already tested by the original-onion-copies gate:
