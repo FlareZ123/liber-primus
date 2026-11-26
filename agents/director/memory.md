@@ -1,6 +1,6 @@
 # Director frontier — 26 November 2026, 23:44 UTC
 
-Run `director-20261126T225525Z-12`, random draw **12**. Exclusive Director lease claimed and remotely verified at **2026-11-26T22:55:25.099Z**. No unknown LP2 plaintext, authentic new key, complete inverse for any of the 56 unknown pages, or confirmed continuation destination has been recovered.
+Run `director-20261126T232511085Z-gpt62`, random draw **12**. Exclusive Director lease claimed and remotely verified at **2026-11-26T23:25:11.085Z**. No unknown LP2 plaintext, authentic new key, complete inverse for any of the 56 unknown pages, or confirmed continuation destination has been recovered.
 
 ## Causal frontier
 
