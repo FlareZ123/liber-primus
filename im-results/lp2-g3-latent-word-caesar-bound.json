@@ -446,6 +446,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 71,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            58,
+            13,
+            10,
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 75,
+          "allowedOov": 3,
+          "maxRunes": 321,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 71,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            58,
+            13,
+            10,
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 75,
+          "allowedOov": 3,
+          "maxRunes": 351,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "SILENCE I SHALL RETURN THE MIST THAT DRIFTS AWAY AT DAWN LEAUNG BUT DEW IN THE FIELDS SHALL RISE AND GATHER INTO A CLOUD AND THEN FALL DOWN IN RAIN AND NOT UNLICE THE MIST HAUE I BEEN IN THE STILLNESS OF THE NIGHT I HAUE WALCED IN YOUR STREETS AND MY SPIRIT HAS ENTERED YOUR HOUSES AND YOUR HEART BEATS WERE IN MY HEART AND YOUR BREATH WAS UPON MY"
     },
     {
@@ -541,6 +607,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 71,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            60,
+            14,
+            8,
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 73,
+          "allowedOov": 3,
+          "maxRunes": 319,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 71,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            60,
+            14,
+            8,
+            4,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 73,
+          "allowedOov": 3,
+          "maxRunes": 349,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "SILENCE I SHALL RETURN THE MIST THAT DRIFTS AWAY AT DAWN LEAUNG BUT DEW IN THE FIELDS SHALL RISE AND GATHER INTO A CLOUD AND THEN FALL DOWN IN RAIN AND NOT UNLICE THE MIST HAUE I BEEN IN THE STILLNESS OF THE NIGHT I HAUE WALCED IN YOUR STREETS AND MY SPIRIT HAS ENTERED YOUR HOUSES AND YOUR HEART BEATS WERE IN MY HEART AND YOUR BREATH WAS UPON MY"
     },
     {
@@ -688,6 +820,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 58,
+          "N": 260,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            55,
+            15,
+            11,
+            9,
+            2,
+            2,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "maxGain": 102,
+          "allowedOov": 2,
+          "maxRunes": 298,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 58,
+          "N": 260,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            55,
+            15,
+            11,
+            9,
+            2,
+            2,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 102,
+          "allowedOov": 2,
+          "maxRunes": 318,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "DOTH WANT HER PROPER LIMBS HER FACE DEFACED WITH SCARS OF INFAMY HER ROYAL STOCC GRAFT WITH IGNOBLE PLANTS AND ALMOST SHOULDER D IN THE SWALLOWNG GULF OF BLIND FORGETFULNESS AND DARC OBLIUIAN WHICH TO RECURE WE HEARTILY SOLICIT YOUR GRACIAUS SELF TO TACE ON YOU THE CHARGE AND CNGLY GOUERNMENT OF THIS YOUR LAND NOT AS PROTECTOR"
     },
     {
@@ -835,6 +1033,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 58,
+          "N": 260,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            50,
+            15,
+            11,
+            9,
+            2,
+            2,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "maxGain": 101,
+          "allowedOov": 2,
+          "maxRunes": 297,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 58,
+          "N": 260,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            50,
+            15,
+            11,
+            9,
+            2,
+            2,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 101,
+          "allowedOov": 2,
+          "maxRunes": 317,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "DOTH WANT HER PROPER LIMBS HER FACE DEFACED WITH SCARS OF INFAMY HER ROYAL STOCC GRAFT WITH IGNOBLE PLANTS AND ALMOST SHOULDER D IN THE SWALLOWNG GULF OF BLIND FORGETFULNESS AND DARC OBLIUIAN WHICH TO RECURE WE HEARTILY SOLICIT YOUR GRACIAUS SELF TO TACE ON YOU THE CHARGE AND CNGLY GOUERNMENT OF THIS YOUR LAND NOT AS PROTECTOR"
     },
     {
@@ -954,6 +1218,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 67,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            56,
+            13,
+            9,
+            5,
+            4,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 86,
+          "allowedOov": 3,
+          "maxRunes": 320,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 67,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            56,
+            13,
+            9,
+            5,
+            4,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 86,
+          "allowedOov": 3,
+          "maxRunes": 350,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "OF MANCIND YET WAS THERE NEUER A YOUNG PHILOSOPHER WHOSE BREEDNG HAD FALLEN INTO THE CHRISTIAN CHURCH BY WHOM THAT BRAUE TEXT OF PAUL S WAS NOT SPECIALLY PRISED THEN SHALL ALSO THE SON BE SUBJECT UNTO HIM WHO PUT ALL THNGS UNDER HIM THAT GOD MAY BE ALL IN ALL LET THE CLAIMS AND UIRTUES OF PERSONS BE NEUER SO GREAT AND WELCOME THE INSTINCT OF"
     },
     {
@@ -1069,6 +1399,72 @@
           ]
         ]
       },
+      "freeBound": [
+        {
+          "cap": 14,
+          "K": 67,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            46,
+            14,
+            9,
+            5,
+            3,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 81,
+          "allowedOov": 3,
+          "maxRunes": 315,
+          "minOov": 0,
+          "excludes": false
+        },
+        {
+          "cap": 24,
+          "K": 67,
+          "N": 262,
+          "candidateCounts": [
+            0,
+            0,
+            0,
+            0,
+            46,
+            14,
+            9,
+            5,
+            3,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "maxGain": 81,
+          "allowedOov": 3,
+          "maxRunes": 345,
+          "minOov": 0,
+          "excludes": false
+        }
+      ],
       "recovered": "OF MANCIND YET WAS THERE NEUER A YOUNG PHILOSOPHER WHOSE BREEDNG HAD FALLEN INTO THE CHRISTIAN CHURCH BY WHOM THAT BRAUE TEXT OF PAUL S WAS NOT SPECIALLY PRISED THEN SHALL ALSO THE SON BE SUBJECT UNTO HIM WHO PUT ALL THNGS UNDER HIM THAT GOD MAY BE ALL IN ALL LET THE CLAIMS AND UIRTUES OF PERSONS BE NEUER SO GREAT AND WELCOME THE INSTINCT OF"
     }
   ],
@@ -1765,27 +2161,423 @@
     "controls": [
       {
         "donor": 0,
-        "src": "dw"
+        "src": "dw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 71,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              58,
+              13,
+              10,
+              4,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 75,
+            "allowedOov": 3,
+            "maxRunes": 321,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 71,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              58,
+              13,
+              10,
+              4,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 75,
+            "allowedOov": 3,
+            "maxRunes": 351,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       },
       {
         "donor": 0,
-        "src": "cw"
+        "src": "cw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 71,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              60,
+              14,
+              8,
+              4,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 73,
+            "allowedOov": 3,
+            "maxRunes": 319,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 71,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              60,
+              14,
+              8,
+              4,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 73,
+            "allowedOov": 3,
+            "maxRunes": 349,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       },
       {
         "donor": 1,
-        "src": "dw"
+        "src": "dw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 58,
+            "N": 260,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              55,
+              15,
+              11,
+              9,
+              2,
+              2,
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            "maxGain": 102,
+            "allowedOov": 2,
+            "maxRunes": 298,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 58,
+            "N": 260,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              55,
+              15,
+              11,
+              9,
+              2,
+              2,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 102,
+            "allowedOov": 2,
+            "maxRunes": 318,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       },
       {
         "donor": 1,
-        "src": "cw"
+        "src": "cw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 58,
+            "N": 260,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              50,
+              15,
+              11,
+              9,
+              2,
+              2,
+              1,
+              0,
+              0,
+              1,
+              0
+            ],
+            "maxGain": 101,
+            "allowedOov": 2,
+            "maxRunes": 297,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 58,
+            "N": 260,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              50,
+              15,
+              11,
+              9,
+              2,
+              2,
+              1,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 101,
+            "allowedOov": 2,
+            "maxRunes": 317,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       },
       {
         "donor": 2,
-        "src": "dw"
+        "src": "dw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 67,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              56,
+              13,
+              9,
+              5,
+              4,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 86,
+            "allowedOov": 3,
+            "maxRunes": 320,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 67,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              56,
+              13,
+              9,
+              5,
+              4,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 86,
+            "allowedOov": 3,
+            "maxRunes": 350,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       },
       {
         "donor": 2,
-        "src": "cw"
+        "src": "cw",
+        "bounds": [
+          {
+            "cap": 14,
+            "K": 67,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              46,
+              14,
+              9,
+              5,
+              3,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 81,
+            "allowedOov": 3,
+            "maxRunes": 315,
+            "minOov": 0,
+            "excludes": false
+          },
+          {
+            "cap": 24,
+            "K": 67,
+            "N": 262,
+            "candidateCounts": [
+              0,
+              0,
+              0,
+              0,
+              46,
+              14,
+              9,
+              5,
+              3,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "maxGain": 81,
+            "allowedOov": 3,
+            "maxRunes": 345,
+            "minOov": 0,
+            "excludes": false
+          }
+        ]
       }
     ]
   }
