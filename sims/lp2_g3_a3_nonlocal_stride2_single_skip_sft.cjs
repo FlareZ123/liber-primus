@@ -115,7 +115,13 @@ for(const cell of [{ch:"index",M:29,dk:"cb"},{ch:"index",M:28,dk:"self"}]){
  if(a.failed)continue;const b=solve(a.C,a.need,a.sgn,a.stride,cell),n=a.need;let e=0,ends=a.lens.map(l=>e+=l).filter(x=>x<=n),correct=b.P.filter((x,i)=>x===a.P[i]).length,F1=2*b.bounds.filter(x=>ends.includes(x)).length/(b.bounds.length+ends.length);
  controls.push({donor,start,correct,n,F1,skipCorrect:b.skips.every((s,i)=>s===a.skips[i]),skipPosition:a.skips.findIndex(x=>x>0),...b});
  }
- results.push({cell,attempts,controls});
+ const choices=[],originals=[];
+ if(controls.length&&controls.every(c=>c.correct/c.n>=.95&&c.F1>=.90&&c.skipCorrect)){
+ for(const sign of [-1,1])for(const stride of [1,2])choices.push({sign,stride,...solve(gp.pages[0].indices,80,sign,stride,cell)});
+ choices.sort((a,b)=>b.score-a.score);const {sign,stride}=choices[0];
+ for(let page=1;page<=5;page++)originals.push({page,sign,stride,...solve(gp.pages[page].indices,80,sign,stride,cell)});
+ }
+ results.push({cell,attempts,controls,choices,originals});
 }
 return {results,width:2000,onlyOneStride2Skip:true};
 }
