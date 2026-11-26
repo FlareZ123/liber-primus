@@ -47,7 +47,7 @@ The best GP29-length output begins:
 
 ## Cross-source 5×23 register hypothesis
 
-The same 29-word core tokenizes to **115 GP29 symbols**. The signed 2013 TCP/DH example independently supplies generator (g=5) and modulus (p=23), so (115=5\times23) suggests a 5×23 register. The locked, source-motivated interpretation tested here fills a 5×23 matrix row-major, orders its 23 columns by the multiplicative powers of 5 modulo23 (the 22 nonzero residues), appends the zero column, then reads each ordered column top-to-bottom. This produces a 115-symbol repeating key. The shared DH value 2 is covered by the full cyclic phase sweep.
+The same 29-word core tokenizes to **115 GP29 symbols**. The signed 2013 TCP/DH example independently supplies generator (g=5) and modulus (p=23), so (115=5\times23) suggests a 5×23 register. The locked, source-motivated interpretation tested here fills a 5×23 matrix row-major, orders its 23 columns by the multiplicative powers of 5 modulo23 (the 22 nonzero residues), appends the zero column, then reads each ordered column top-to-bottom. This produces a 115-symbol repeating key. The DH shared value 2 was not applied as an additional shift in this locked test; using it as a Caesar offset or other parameter would be a separate, unselected hypothesis.
 
 | 115-symbol receiver | All 230 sign/phase trials: min / median / mean | Best sign, phase | Best dictionary hits |
 |---|---:|---:|---:|
