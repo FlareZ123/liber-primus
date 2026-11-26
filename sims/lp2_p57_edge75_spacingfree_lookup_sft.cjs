@@ -1,6 +1,6 @@
 "use strict";
 /** Agent46: spacing-free shared additive lookup recovery, ordinary and plaintext-F bypass. Node.js 22, no dependencies. */
-function experiment(inputs, restarts=48, steps=5000){
+function experiment(inputs, restarts=48, steps=5000,mode="all"){
  const gp=JSON.parse(inputs[0]); const N=29,mod=x=>(x%N+N)%N, map=new Map(gp.translit.map((s,i)=>[s,i]));
  function encode(text){const words=text.toUpperCase().match(/[A-Z]+/g)||[],a=[];for(let w of words){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){if(w.slice(i,i+3)==="ING"){a.push(map.get("NG"));i+=3;continue;}const pair=w.slice(i,i+2);if(pair.length===2&&map.has(pair)){a.push(map.get(pair));i+=2;continue;}const x=map.get(w[i++]);if(x!==undefined)a.push(x);}}return a;}
  const train=inputs.slice(1,3).map(encode),cnt=Array.from({length:4},(_,i)=>new Uint32Array(N**(i+1)));
@@ -45,15 +45,17 @@ function experiment(inputs, restarts=48, steps=5000){
  if(c.length!==75||cursor!==95)throw Error("source shape");
  const sha=encode(inputs[3]),nat=encode(inputs[4]);const holdouts=[sha.slice(3000,3075),sha.slice(81000,81075),nat.slice(400,475),nat.slice(1800,1875)];
  const out={restarts,steps,training:train.map(x=>x.length),sides:[],fhold:[]};
- for(const side of ["first","last"]){const key=pw.flatMap(w=>side==="first"?w.slice(1):w.slice(0,-1));const original=attack(c,key),controls=[],nulls=[];
+ if(mode!=="fhold")for(const side of ["first","last"]){const key=pw.flatMap(w=>side==="first"?w.slice(1):w.slice(0,-1));const original=attack(c,key),controls=[],nulls=[];
   for(const p of holdouts){if(p.length!==75)throw Error("holdout too short");const k=Array.from({length:N},()=>ri(N)),enc=p.map((x,i)=>mod(x+k[key[i]])),a=attack(enc,key);controls.push({score:a.score,trueScore:score(p),true:render(p),plain:a.plain,recovery:p.filter((x,i)=>a.runes[i]===x).length,hit:a.hit,median:a.median});}
   for(let j=0;j<4;j++){const n=c.map(()=>ri(N)),a=attack(n,key);nulls.push({score:a.score,plain:a.plain,hit:a.hit});}
   out.sides.push({side,original,controls,nulls});
  }
- rng=0x4657c2a9;
+ let fOffset=100000;while(sha.slice(fOffset,fOffset+75).filter(x=>x===0).length<2)fOffset++;if(fOffset+75>sha.length)throw Error("no F-bearing passage");
+ out.fHoldoutOffsets=[{source:"Shakespeare",offset:fOffset},{source:"LP1 reference",offset:400}];
  for(const side of ["first","last"]){
+  rng=side==="first"?0x4657c2a9:0x4657c2aa;
   const key=pw.flatMap(w=>side==="first"?w.slice(1):w.slice(0,-1)),original=fAttack(c,key),controls=[];
-  for(const p of [holdouts[0],holdouts[3]]){const k=Array.from({length:N},()=>ri(N));let t=0;const enc=p.map(x=>x===0?0:mod(x+k[key[t++]])),a=fAttack(enc,key);
+  for(const p of [sha.slice(fOffset,fOffset+75),holdouts[2]]){if(p.filter(x=>x===0).length<2)throw Error("F-bearing control");const k=Array.from({length:N},()=>ri(N));let t=0;const enc=p.map(x=>x===0?0:mod(x+k[key[t++]])),a=fAttack(enc,key);
    controls.push({score:a.best.score,trueScore:score(p),true:render(p),plain:a.best.plain,recovery:p.filter((x,i)=>a.best.runes[i]===x).length,held:a.best.held,trueHeld:p.map((x,i)=>x===0?i:-1).filter(x=>x>=0),screened:a.screened,visibleF:a.visibleF,initialRank:a.initialRank});
   }
   out.fhold.push({side,original,controls});
