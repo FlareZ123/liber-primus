@@ -83,3 +83,39 @@ Only pursue the three-square/circumference connection if an original clue select
 - [Historical Gematria/Vigenère implementation](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/008-sixth-onion/gematriaprimus.py)
 - [Three magic squares](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2014/007-fifth-onion/magicsquares.txt)
 - [2026 book-code reconstruction](https://cicadanotebook.com/sessions/125)
+
+
+## Literal p49–51 four-field records: Director #2890 (26 November 2026)
+
+**Decision:** reject literal consecutive `dialogue:speech:word:letter` records in the printed 32×8 panel. No recovered operand. This is distinct from the seal-digit coordinate tests and running-key searches.
+
+Historical control: the archived 2014 fifth-onion README (blob `d9d09a57fe8a3a76604c8c3c5fa502e720055e91`) records the selected word at each of the fourteen coordinates. Independently indexing those words by the recorded one-based letter position gives 14/14 documented letters. The [23 November reconstruction](https://cicadanotebook.com/sessions/125.html) identifies the solver-linked PDF and counts only speaker labels at printed line starts, skipping introductory narration and indexing the words in the resulting speech; it reports 14/14, versus 11/14 for every speaker change. AMO is the dialogue *A Mu Offering*, not the opening essay. I replayed the selected-word indexing, **not** the full PDF speech/word extraction: the archived PDF bytes were unavailable in this runtime. Thus the full extraction is independently reported, not newly independently verified here.
+
+The fourteen literal title labels are `3PI LML ETOATS ...AF AMO CC CBIA CFAF SPR C[1] AWDV C[2] SC AOGS`. None has the form of an LP2 cell (two case-sensitive characters, first character 0–4). No historical numeric dialogue-index mapping was supplied.
+
+Source: original-image-adjudicated `resources/liber-primus/lp2-grid-256.json`, blob `2550eae357442912220e05dc51147523a61dd75a`. Consecutive groups of four within each physical row give:
+
+| Page | Four-cell records | Literal valid title labels |
+|---|---:|---:|
+| 49 | 20 | 0 |
+| 50 | 26 | 0 |
+| 51 | 18 | 0 |
+| Total | 64 | 0 |
+
+Even granting an unspecified title-label substitution, p51 row 6 columns 5–8 is `2O 00 1v 2t`. Its speech field is zero in **both** conventional positional interpretations (base60 and base59), whereas the historical scheme requires a positive one-based speech index. The other literal zero, p51 row 2 column 1, occupies a title field. Thus the speech-field failure does not require a decision about the ambiguous radix, the choice of edition, an upper bound on speech length, or any optimization over dialogue indices.
+
+Reproducer (Node, run from repository root; reads the original-adjudicated source):
+```js
+const g = require('./resources/liber-primus/lp2-grid-256.json');
+const labels = new Set('3PI LML ETOATS ...AF AMO CC CBIA CFAF SPR C[1] AWDV C[2] SC AOGS'.split(' '));
+for (const p of g.pages) {
+  const records = Array.from({length:p.tokens.length/4},
+    (_,i)=>p.tokens.slice(4*i,4*i+4));
+  console.log(p.page, records.length,
+    records.filter(r=>labels.has(r[0])).length,
+    records.flatMap((r,i)=>r[1]==='00'?
+      [{row:Math.floor(i/2)+1, column:2+4*(i%2),record:r}]:[]));
+}
+```
+
+The historical control replay and original record counts were executed in V8. Do not try offset/modulo remaps, alternate field orders or dialogue-number enumerations merely to make these records legal. Reopen only with an authentic independent instruction specifying the representation and addressing convention. No 64-character candidate is justified.
