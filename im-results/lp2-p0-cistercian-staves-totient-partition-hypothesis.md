@@ -87,7 +87,7 @@ The exhaustive count-vector search uses the pinned 38,910-form TextBlob GP29 reg
 | Every shared axis relabeling, ordinary | 60 | 96 | 1 |
 | Every shared axis relabeling, literal-F hold | 59 | 97 | 4 |
 
-Both shared-map optima have no supported group of length ≥8 (20 such original groups). Allowing a *different* row/column label map for every group instead supports all 156 groups (with and without F holds), so a changing-label model is not excluded by this invariant; the permissive construction also no longer identifies a key schedule. Neither red title group has a fixed-label lexical witness.
+The reported maximizing maps have no supported group of length ≥8 (20 such original groups). Allowing a *different* row/column label map for every group instead supports all 156 groups (with and without F holds), so a changing-label model is not excluded by this invariant; the permissive construction also no longer identifies a key schedule. Neither red title group has a fixed-label lexical witness.
 
 Two hidden-map plants of 70 actual solved-native groups each, using independent row/column permutations with only legal output cells, recover their exact unique common label maps (ordinary WELCOME, 60/70 mixed groups; F-hold KOAN, 58/70 mixed groups). The known planting inverses recover every original native glyph. These are in-register calibration plants, not independent evidence of vocabulary coverage or a unique original plaintext under arbitrary position permutations.
 
