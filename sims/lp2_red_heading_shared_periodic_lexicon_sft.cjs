@@ -11,6 +11,7 @@ const assert = require('node:assert/strict');
 const corpus = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json', 'utf8'));
 const ink = JSON.parse(fs.readFileSync('resources/liber-primus/lp2-ink-annotations.json', 'utf8'));
 const lexicon = fs.readFileSync('resources/control/english_wordfreq_textblob.txt', 'utf8');
+const latinVulgate = fs.readFileSync('resources/control/latin-vulgate-gp-wholewords.txt', 'utf8');
 const HEADS = [
   [0, 0, [8, 5]], [3, 0, [2, 11, 3]], [8, 0, [4, 8]],
   [15, 9, [4, 2, 5]], [23, 0, [2, 6, 3, 5]],
@@ -149,6 +150,26 @@ function equalityPattern(values) {
 }
 const originalP27Pattern = equalityPattern(long12.cipher);
 assert.equal(originalP27Pattern, '0,1,2,3,4,5,0,6,7,8,9,0');
+const latinWords = latinVulgate.split(/\r?\n/)
+  .map(line => line.trim()).filter(line => line && !line.startsWith('#'));
+const gpByteAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latin12 = latinWords
+  .filter(word => word.length === 12 && [...word].every(ch => gpByteAlphabet.includes(ch)))
+  .map(word => [...word].map(ch => gpByteAlphabet.indexOf(ch)));
+assert.equal(latinWords.length, 39835);
+assert.equal(latin12.length, 453);
+const latinPatternMatches = latin12.filter(values =>
+  equalityPattern(values) === originalP27Pattern);
+assert.equal(latinPatternMatches.length, 0,
+  'p27 source-long heading word has no Latin Vulgate GP-word monoalphabetic image');
+const latinPlant = latin12[0];
+const latinPermutation = Array.from({length:29}, (_, index) => (7 + 11*index) % 29);
+assert.equal(new Set(latinPermutation).size, 29);
+const latinPlantedCipher = latinPlant.map(value => latinPermutation[value]);
+assert.equal(equalityPattern(latinPlantedCipher), equalityPattern(latinPlant));
+assert.ok(latin12.some(values =>
+  equalityPattern(values) === equalityPattern(latinPlantedCipher)),
+  'a planted Latin Vulgate 12-rune word must survive pattern lookup');
 for (const useIng of [false, true]) {
   const pool = poolFor(useIng);
   const samePattern = pool.get(12).filter(item =>
@@ -209,5 +230,9 @@ console.log(JSON.stringify({
   positiveControls: '12/12 native plants admitted keys; 2/2 arbitrary secret monoalphabet plants found',
   p27Pattern: originalP27Pattern,
   p27MonoalphabeticEnglishLexiconMatches: 0,
+  latinVulgateWords: latinWords.length,
+  latinVulgate12RuneWords: latin12.length,
+  p27MonoalphabeticLatinVulgateMatches: latinPatternMatches.length,
+  latinVulgatePositivePatternControl: true,
   exactCertificates: summary,
 }, null, 2));
