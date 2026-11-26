@@ -69,11 +69,11 @@ Their transliteration is I–TH–C–EA–F–X–I–M–U–C–P–H–NG–
 
 **A25S0EAJ15D8LKDCIA6E6FC22I5BI**
 
-**Index-origin ambiguity:** a second plausible convention numbers positions from the stripped interior (starting at 1) while retaining the original word length n as the gcd modulus. It also yields 29 symbols, but a different candidate:
+**Index-origin ambiguity:** a second plausible convention uses zero-based indices in the original word: the interior indices j=1..n-2 are tested against the original word length n. This ordinary array-index convention also yields 29 symbols, but a different candidate:
 
 **JCRS0EAJ15D8LKF8IA6E6FC22ISBI**
 
-The standard totient reading of positions in the original word favors the first candidate: φ(n) counts original one-based positions, and removing the first/last leaves the coprime positions 2..n-1. But neither p5 nor p57 explicitly fixes the indexing origin, so the 29-symbol count does not prove uniqueness. Using the interior length n-2 itself as the modulus yields 30 selected runes, not 29, and therefore loses the GP29 length match.
+The standard mathematical totient reading favors the first candidate: φ(n) counts positive one-based positions in the original word, and removing the first/last leaves the coprime positions 2..n-1. The second is the corresponding ordinary zero-based array-index interpretation. Neither p5 nor p57 explicitly fixes the indexing origin, so the 29-symbol count does not prove uniqueness. Using the interior length n-2 itself as the modulus yields 30 selected runes, not 29, and therefore loses the GP29 length match.
 
 This is a per-symbol digit mapping, not one BASE29 conversion of a single large integer. The signed 2013 TCP-server challenge authenticates the BASE29 command and the example 3301 → 3QO; the complete digit alphabet is reconstructed from a contemporaneous participant CODE witness, so its use here is source-adjacent rather than fully specified by the signed text. See resources/external/2013-tcp-server-signed-source.md and results/2013-original-gp29-source-map.md.
 

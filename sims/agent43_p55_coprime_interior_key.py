@@ -107,18 +107,20 @@ def main() -> int:
         selected_positions.append(positions_for_word)
         per_word_counts.append(len(positions_for_word))
 
-    # Alternative indexing origin: number positions from the stripped interior
-    # while retaining the original word length as the totient modulus.
-    alternate_selected_indices: list[int] = []
+    # Zero-based original-word indexing: interior array indices 1..n-2,
+    # while retaining original word length n as the totient modulus.
+    zero_based_selected_indices: list[int] = []
     interior_modulus_indices: list[int] = []
     for word in words:
         n = len(word)
         for interior_position in range(1, n - 1):
             rune = word[interior_position]
             if math.gcd(interior_position, n) == 1:
-                alternate_selected_indices.append(gp_index[rune])
+                zero_based_selected_indices.append(gp_index[rune])
             if n > 2 and math.gcd(interior_position, n - 2) == 1:
                 interior_modulus_indices.append(gp_index[rune])
+    if len(zero_based_selected_indices) != 29 or len(interior_modulus_indices) != 30:
+        raise SystemExit("index-origin alternatives must yield 29 and 30 selected runes")
 
     totients = [
         sum(1 for i in range(1, n + 1) if math.gcd(i, n) == 1)
@@ -141,7 +143,7 @@ def main() -> int:
         raise SystemExit("base29 alphabet must contain exactly 29 symbols")
     # One BASE29 digit per GP29 symbol; this is not a single large-integer conversion.
     password = "".join(BASE29[i] for i in selected_indices)
-    alternate_password = "".join(BASE29[i] for i in alternate_selected_indices)
+    zero_based_password = "".join(BASE29[i] for i in zero_based_selected_indices)
 
     # Test the simplest source-familiar Vigenere consumer on p55 itself:
     # subtract the repeated GP29 key and leave literal F runes transparent.
@@ -209,14 +211,14 @@ def main() -> int:
             key_cursor += 1
         return decoded, key_cursor
 
-    alternate_direct, alternate_direct_cursor = decode_with_key(
-        page55["indices"], alternate_selected_indices, -1
+    zero_based_direct, zero_based_direct_cursor = decode_with_key(
+        page55["indices"], zero_based_selected_indices, -1
     )
-    alternate_exterior_minus, alternate_exterior_minus_cursor = decode_with_key(
-        exterior_indices, alternate_selected_indices, -1
+    zero_based_exterior_minus, zero_based_exterior_minus_cursor = decode_with_key(
+        exterior_indices, zero_based_selected_indices, -1
     )
-    alternate_exterior_plus, alternate_exterior_plus_cursor = decode_with_key(
-        exterior_indices, alternate_selected_indices, 1
+    zero_based_exterior_plus, zero_based_exterior_plus_cursor = decode_with_key(
+        exterior_indices, zero_based_selected_indices, 1
     )
 
     exterior_minus, exterior_minus_cursor = decode_exterior(-1)
@@ -260,24 +262,24 @@ def main() -> int:
         "excluded_interior_gp29_indices": excluded_indices,
         "base29_alphabet": BASE29,
         "candidate_password": password,
-        "alternate_index_origin_gp29_indices": alternate_selected_indices,
-        "alternate_index_origin_candidate_password": alternate_password,
+        "zero_based_original_word_gp29_indices": zero_based_selected_indices,
+        "zero_based_original_word_candidate_password": zero_based_password,
         "interior_length_modulus_selected_count": len(interior_modulus_indices),
-        "alternate_direct_p55_vigenere_subtract_f_transparent": {
-            "plaintext": "".join(translit[value] for value in alternate_direct),
-            "key_symbols_consumed": alternate_direct_cursor,
-            "ioc": index_of_coincidence(alternate_direct),
+        "zero_based_direct_p55_vigenere_subtract_f_transparent": {
+            "plaintext": "".join(translit[value] for value in zero_based_direct),
+            "key_symbols_consumed": zero_based_direct_cursor,
+            "ioc": index_of_coincidence(zero_based_direct),
         },
-        "alternate_interior_key_to_33_exterior_vigenere": {
+        "zero_based_interior_key_to_33_exterior_vigenere": {
             "minus": {
-                "plaintext": "".join(translit[value] for value in alternate_exterior_minus),
-                "key_symbols_consumed": alternate_exterior_minus_cursor,
-                "ioc": index_of_coincidence(alternate_exterior_minus),
+                "plaintext": "".join(translit[value] for value in zero_based_exterior_minus),
+                "key_symbols_consumed": zero_based_exterior_minus_cursor,
+                "ioc": index_of_coincidence(zero_based_exterior_minus),
             },
             "plus": {
-                "plaintext": "".join(translit[value] for value in alternate_exterior_plus),
-                "key_symbols_consumed": alternate_exterior_plus_cursor,
-                "ioc": index_of_coincidence(alternate_exterior_plus),
+                "plaintext": "".join(translit[value] for value in zero_based_exterior_plus),
+                "key_symbols_consumed": zero_based_exterior_plus_cursor,
+                "ioc": index_of_coincidence(zero_based_exterior_plus),
             },
         },
         "direct_p55_vigenere_subtract_f_transparent": {
