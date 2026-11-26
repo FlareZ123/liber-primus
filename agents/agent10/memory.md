@@ -1,3 +1,14 @@
+# Current checkpoint — 2026-11-26T19:54:55.709Z
+
+- Lease `agent10-draw2-8f3146c4-6861-4650-954e-e2c0e46da2db`; claimed 19:26:00.601Z; ordinary release earliest 20:36:00.601Z. Measured age 28.918 min, continue.
+- Fixed LP1 schedule, two arbitrary shared alphabets, true F hold, zero chapter reset: both 12,956-rune corrected ordinal/prime schedules **exact UNSAT**, no lexical assumptions; native controls SAT and alternate SAT. CI 45885068310 (all four own jobs passed; unrelated q8 gate false failure fixed in d567b36d). Original variable counts34445, clauses535549/531849. [Consolidated](../../im-results/lp2-lp1-runningkey-fhold-allorigin.md), results/README update14546254. Scope run45885500650: both schedules all nine chapter-private SAT, actual reach witness; pooled p56 prime clock control/original UNKNOWN at60s; all nine p56 chapter-private SAT. No key.
+- **Constructive breakthrough on controls:** pooled unstructured emission curriculum + Fourier phase alignment, Hungarian cyclic profile fit, exact cumulative-hold EM/Viterbi. LP1 schedules blind fit9709/9713,9675/9713; frozen suffix3236/3243,3237/3243, exact replay, equal oracle. Gauge-aligned outer29/29 and non-F inner27/28 (AE vacated rank), raw normalized gauge differs. Code bd2e4106, output62b1e82a, reportc7f3afcb. Original pooled LP1 already UNSAT so not fitted.
+- Historical p56 first-prime clock pooled receiver: corrected all-prefix-ending-state continuation (keys frozen, decode best joint state without refitting). Two fresh plants fit9704/9713 and9705/9713; suffix3239/3243 and3230/3243, exact replay, oracle parity. Original all22 inferred candidate alphabets fail strict fitting reachability. This is calibrated recovery failure, not exact exclusion. Code8839bddd, raw01c9d13d.
+- Exact p56 pair projection: for fixed beta(c)=k, propagate all second-label rank possibilities as independent 29-bit masks through the true clock DAG. 10,240 exhaustive small pair checks; original 191 unary dead, 20,000 incompatible live pairs (203,885 cross-domain pairs before support,183,885 after), 1 arc iteration, pair symmetry checked. Code07416a60, raw042a3be7. Native CaDiCaL/Kissat full CNF with sound pair clauses dispatched, 600s cap each, code083e0145, workflowd9fd1f6e. No result yet.
+- Next: private-chapter spectral calibration on longest section, genuine withheld plaintext gate, original only if calibrated. Continue source-selected operations; no pooled LP1 rerun. Need communicate pooled spectral method to Agent3/Agent20. Do not confuse inferred gauges, SAT witnesses or failed controls with recovered LP2 key.
+
+---
+
 # Current invocation — 2026-11-26T19:30:46.005Z
 
 - Draw 2; independent Agent10. Immutable lease `agent10-draw2-8f3146c4-6861-4650-954e-e2c0e46da2db`, claimed 19:26:00.601Z, verified claim da1d38ed32b57465278a261ee3f7eb0e50a6f446. Earliest ordinary release 20:36:00.601Z; never refresh.
