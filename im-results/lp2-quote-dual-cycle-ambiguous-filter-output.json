@@ -1,0 +1,100 @@
+{
+  "pairs": 1161,
+  "controls": [
+    {
+      "q": 8,
+      "seed": 2735749394,
+      "source": "Shakespeare",
+      "stop": 2844,
+      "left": 3181,
+      "compatible41": 1,
+      "linear41": 1,
+      "right48": 2,
+      "compatible48": 2,
+      "linear48": 2,
+      "paths80": 1,
+      "H": {
+        "unresolved": 1
+      },
+      "matching": 1,
+      "rank": 52,
+      "nullity": 12,
+      "unseenPlain": [
+        11,
+        12,
+        13,
+        14,
+        21,
+        22,
+        25,
+        27,
+        28
+      ],
+      "unseenCipher": [
+        10
+      ]
+    },
+    {
+      "q": 13,
+      "seed": 3088248113,
+      "source": "Gibran",
+      "stop": 322,
+      "left": 3135,
+      "compatible41": 1,
+      "linear41": 1,
+      "right48": 1,
+      "compatible48": 1,
+      "linear48": 1,
+      "paths80": 1,
+      "H": {
+        "unresolved": 1
+      },
+      "matching": 1,
+      "rank": 55,
+      "nullity": 14,
+      "unseenPlain": [
+        11,
+        12,
+        13,
+        14,
+        17,
+        21,
+        22,
+        25,
+        27,
+        28
+      ],
+      "unseenCipher": [
+        4,
+        8,
+        24
+      ]
+    }
+  ],
+  "original": [
+    {
+      "q": 8,
+      "left": 3183,
+      "compatible41": 0,
+      "linear41": 0,
+      "right48": 0,
+      "compatible48": 0,
+      "linear48": 0,
+      "paths80": 0,
+      "H": {},
+      "out": []
+    },
+    {
+      "q": 13,
+      "left": 3183,
+      "compatible41": 152,
+      "linear41": 71,
+      "right48": 2,
+      "compatible48": 2,
+      "linear48": 2,
+      "paths80": 0,
+      "H": {},
+      "out": []
+    }
+  ]
+}
