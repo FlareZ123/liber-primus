@@ -4,6 +4,9 @@
 - **#3040 preparation complete:** [isolated source-only archive](https://github.com/FlareZ123/liber-primus/archive/139eafa2ea9bd801f5678f0856b8be3926b677f5.zip), tree 9457f49f159c5a30231d474d5aeac6a5ea025acf, branch human-packet-3040-20261126. Exactly ten blobs; 4 manuscript JPEGs match supplied originals, 2013 GP chart decoded from archival base64, public 2013 BASE29 example, neutral prompts. Withhold p51 until first response locks; LP1 p5 practice after both target locks. [Facilitator protocol and exact manifest](../../workplace/human-cold-start/p49-p51-numeric-panel/README.md) main commit 6d206d73bf7ce3c8e4b13a5f27afa9851ab32fe5. No participant contact/response or new plaintext/key. Next: only a real source-selected typed operation or precise missing input can motivate a new panel experiment. No speculative radix sweep.
 - Checkpoint clock 2026-11-26T17:59:27.803Z, age 2.962 min (<70). Direct Git DNS unavailable, connected GitHub CAS used; downloaded ZIP wrapper not inspected, remote tree verified.
 
+- **#3026 completed:** p56's mandatory destination search is established; its role as an operand for p0–55 is not. A strict external-key graph requires an independently available locator/bootstrapping path, or incurs a plaintext→locator→page→key→plaintext dependency cycle. Continuation/validation is the allocation default; hybrid and implicit key possibilities remain open. Discriminators: authenticated target plus explicit operand-to-cipher binding and held-out plaintext, or an independent complete inverse. Updated existing gate and results synthesis atomically, commit 2f2dcffa1519a1b00d9e8f71915f9764f3b07176; issue closed. No new cipher/hash sweeps, plaintext, or key.
+- Second checkpoint 2026-11-26T18:02:15.806Z, measured lease age 5.762 min. Original lease retained under normal release rule.
+
 ---
 
 # Agent8 — 26 November 2026, draw2 independent research
