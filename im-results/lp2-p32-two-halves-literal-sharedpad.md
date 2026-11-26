@@ -1,27 +1,63 @@
-# p32: exact two-half literal passage shared-pad recovery
+# p32 two-half shared-pad inverse: literal donor, arbitrary pad, and period-11 key decisions
 
-Agent 49, 26 November 2026. **No prefix survives. No plaintext/key recovery.**
+**26 November 2026 — no recovered unknown plaintext or authentic key.** The finite literal-donor family has no matching prefix (Agent49); the unrestricted spacing-free shared-pad inverse has poor blind identifiability (Agent8). A distinct periodic specialization recovers hidden keys and genuinely withheld native runes in controls, but fails on the original p32 continuation. The conditional TWA extraction and inferred square remain unconfirmed as author instructions.
 
-## Hypothesis and scope
+## Source framing and hypotheses
 
-The 121 runes of p32 admit an 11×11 row-major reflow (not the printed six-line layout). Its central-column TWA extraction has provisionally been interpreted as Old English "two". This motivates a distinct direct two-stream consumer: leave the central eleven runes alone, read the five left columns row-major, and read the five right columns row-major in either forward or mirror order. Neither TWA nor a shared-pad mechanism is authenticated. This differs from the earlier p32/p55 shared-pad tests and the p32 HOME→BUDS diagonal Hill4 consumer.
+Physical p32 (archive image 49.jpg) prints six text lines above a blurred tree, not a square. Its 121 runes permit a conditional row-major 11×11 reflow. The [Stage10 prime-ordinal extraction](lp2-grid-byte-pointer-11cycle.md#prime-ordinals-as-p32-rune-positions-twa-agent2-25-november-2026) selects TWA in the central column, conditionally interpreted as Old English “two.” Neither this nor the 11-node p50 orbit establishes a cipher. Retain the central eleven runes unchanged (transliteration UOETWAWAIABNJ); extract 55 symbols from each of the five left and five right columns, in row-major order. On the right test the ordinary or per-row mirrored order. Define
 
-For a left and right ciphertext stream of 55 runes each, grant a completely arbitrary GP29 pad K, independent shift b, and sign s∈{−1,+1}:
-C_L=P_L+K; C_R=P_R+sK+b (mod29). Hence D=C_R−sC_L=P_R−sP_L+b. Consecutive differences eliminate b. Index exact ten-increment prefixes of every 55-rune window in the source library. For each possible left source window, directly join the computed right increment prefix, solve b from position 0, test the remaining prefix through position 31, then predict all 23 withheld pairs. Every successful solution recovers the 55 pad digits and replays both ciphertexts exactly. No dictionary/language scoring, key sampling, or assumed word boundaries.
+`C_L[i]=P_L[i]+K[i]; C_R[i]=P_R[i]+s*K[i]+b (mod29)`, with `s=±1`.
 
-Source library: 9 source-native solved GP29 sections, corrected native Beowulf profile, historically linked Self-Reliance and three Liber AL chapters, and Gibran's Prophet fixture. English transliteration greedily uses the canonical GP table per alphabetic word, with QU→CW, V→U, K/Q→C, Z→S. Gibran fixture includes its packaged Gutenberg paratext. Contiguous windows never span different source records. Finite source scope, not a claim that LP2 quotes these works.
+The four orientation/sign combinations are fixed. All receivers are conditional on this geometry, ordinary consuming GP29 symbols (no F skips), the two streams and the shared-key relationship. No original printed word boundary is required. The central column is not decrypted or used as a fitted crib.
 
-## Actual inverse
+## 1. Literal-source exact inverse (Agent49)
 
-176,508 distinct indexed source placements; 31,155,074,064 ordered pairs per orientation/sign configuration. Ten-increment index reduces the exact join to a scan rather than enumerating all pairs. 8 blind planted controls recover the true plaintext pair, b and all 55 pad digits, then exactly reproduce every withheld pair (184/184). Four controls have two source-pair records rather than a unique prefix; both records survive the holdout. Control uniqueness is therefore not claimed.
+For an arbitrary 55-rune pad and independent constant relative shift b, D=C_R−s*C_L=P_R−s*P_L+b. Consecutive differences eliminate b. Index exact ten-increment prefixes of every 55-rune window in the source library. For each possible left source window, join the computed right increment prefix, solve b from position 0, test through position 31, then predict all 23 withheld pairs. Each surviving pair determines all 55 pad digits.
 
-| Original orientation | Pad sign | Prefix survivors | Full survivors |
+The library comprises nine solved GP29 sections, corrected native Beowulf, historically linked Self-Reliance and three Liber AL chapters, and Gibran's Prophet fixture (including packaged paratext). English transliteration greedily uses the canonical GP table per alphabetic word, with QU→CW, V→U, K/Q→C, Z→S. Windows never cross source records. There are 176,508 indexed placements and 31,155,074,064 ordered pairs per orientation/sign.
+
+All eight blind source-pair plants retain the true pair, b and all 55 pad digits, and replay every withheld pair (184/184). Four controls have two source-pair records rather than unique prefixes. **All four original orientation/sign settings have zero matching 32-pair prefixes and zero full survivors.** This excludes only literal reuse of the frozen library under the stated geometry and cipher.
+
+[SFT](../sims/lp2_p32_two_halves_literal_sharedpad_sft.cjs) · [raw results and inputs](lp2-p32-two-halves-literal-sharedpad.json).
+
+## 2. Arbitrary pad, unseen plaintext: exact joint trigram inverse (Agent8)
+
+Train an interpolated native-GP29 unigram/bigram/trigram model on Shakespeare (218,800 runes) and Emerson (324,630 runes), normalizing as above. Use add-one unigram smoothing and interpolation strength10 for both higher orders. For each fixed b, the right plaintext is a deterministic function of the left rune at each position: P_R[i]=D[i]+s*P_L[i]−b. Viterbi over 29² previous-left-rune states, with 29 transitions and summed left/right trigram scores, gives the global maximum for that score. Enumerate all 29 b values. Every candidate yields a concrete pad and exact forward replay. Separately select b from the first32 pairs; the remaining text is still decoded jointly and the full score is **not** a genuine frozen-key holdout.
+
+Eight blind 55-pair plants from held-out Gibran and authentic solved sections give only **1/8** exact full-MAP b recoveries; the best full-MAP plaintext recovery is **22/110** runes. Selecting b on the first32 pairs gives **2/8** correct b values and at most30/110 correct runes. Eight independent uniform ciphertext-pair nulls overlap the positive scores.
+
+| Input | Exact optimized mean joint log score per rune |
+|---|---:|
+| Eight genuine shared-pad plants | −1.916816 to −1.876550 |
+| Eight independent uniform ciphertext pairs | −1.925786 to −1.867210 |
+| Original row-forward, s=+1 | −1.899347 |
+| Original row-forward, s=−1 | −1.928379 |
+| Original row-mirror, s=+1 | −1.903695 |
+| Original row-mirror, s=−1 | −1.909056 |
+
+This score does not identify plaintext or even discriminate the planted family in these controls. For example, the original row-forward s=−1 optimizer begins `ANDCONATIMETHINGTHATIS...` / `INGHISEDFORTWHICHOURE...`; these are model-generated fragments, **not recovered plaintext**. All four exact original optima and their pads are preserved as counterexamples to language-score-only interpretation. The control failure does not exclude arbitrary shared pads or unseen prose. It shows that a new independent constraint is needed to justify an actual inverse.
+
+[SFT](../sims/lp2_p32_two_halves_joint_trigram_sft.cjs) · [raw exact candidates and controls](lp2-p32-two-halves-joint-trigram-output.json).
+
+## 3. Constructive q11 key recovery with actual withheld continuation (Agent8)
+
+A narrower hypothesis uses the two 55-rune streams as five complete repetitions of a shared period-11 key, consistent with the inferred square's dimension. This is an exploratory restriction, not a source-selected key. Use `K[i]=k[i mod11]`. For each phase, retain the 12 highest combined-unigram key candidates. Precompute the summed trigram factor for each cyclic triple of key digits. Enumerate the first two phase labels; conditional max-sum dynamic programming with exact closing factors optimizes all 12^11 retained-domain keys. This avoids unconstrained coordinate descent. The score agrees with direct rescoring; all candidates re-encrypt exactly. The pruning makes this a finite calibrated receiver, **not** an all-29-values-per-phase exclusion.
+
+Fit only the first44 pairs, freeze the complete 11-digit key, and apply it to the final11 pairs (22 withheld runes). No withheld ciphertext contributes to key ranking. The separate full-page run uses all55 pairs and is diagnostic only. First test b=0; then enumerate all29 relative shifts b and select key and shift by the same prefix-only score.
+
+| Control/target | Exact key recoveries | Withheld rune matches | Held-out mean log score |
 |---|---:|---:|---:|
-| Forward right | +1 | 0 | 0 |
-| Forward right | −1 | 0 | 0 |
-| Mirror right | +1 | 0 | 0 |
-| Mirror right | −1 | 0 | 0 |
+| b=0: eight held-out Gibran/native plants | 8/8 | 176/176 | −3.076207 to −1.937234 |
+| b=0: four original configurations | no authenticated key | unknown | −7.821105 to −6.294398 |
+| Unknown b: four independent plants | 3/4 full keys, 4/4 b | 86/88 | −3.129247 to −2.076046 |
+| Unknown b: four original configurations | no authenticated key | unknown | −7.308409 to −5.557684 |
 
-No key or plaintext is recovered. Retire this particular literal-source shared-pad interpretation of the two half-squares; it cannot exclude novel prose, other source passages or reflows, nonadditive ciphers, or an authentic alternative reading of TWA.
+For the one imperfect unknown-b plant, the true key digit is outside the retained unary top12 in exactly one phase; 10/11 key digits and 20/22 withheld runes are recovered. This is a real receiver limitation, not a cipher ambiguity claim. All original held scores are substantially below the weakest control in their respective experiment. Full-page b=0 original means are −4.069943 to −3.897164; no output is coherent prose. The best unknown-b frozen continuation uses row-forward s=+1, b=8 and key [11,1,17,12,24,4,28,28,28,4,28]; its text is nonprose and withheld score −5.557684. Its exact reencryption does not authenticate the key.
 
-[SFT](../sims/lp2_p32_two_halves_literal_sharedpad_sft.cjs); [raw results and input blobs](lp2-p32-two-halves-literal-sharedpad.json). Executed core on connected JavaScript runtime, not an independent Windows Node CI run.
+[b=0 cyclic SFT](../sims/lp2_p32_two_halves_period11_inverse_sft.cjs) · [raw](lp2-p32-two-halves-period11-output.json) · [unknown-b cyclic SFT](../sims/lp2_p32_two_halves_period11_shift_inverse_sft.cjs) · [raw](lp2-p32-two-halves-period11-shift-output.json).
+
+## Research decision
+
+The literal-donor model is exactly negative within its library. The unconstrained joint language model cannot recover even genuine arbitrary pads. Imposing a period-11 shared key enables a strong predictive inverse but gives null-like original continuations, with no credible plaintext. Retire these specific two-half receivers absent independent source evidence selecting a different pad law or geometry; do not treat local words produced by the optimizer as decrypted fragments. A new source-selected key/receiver is more valuable than increasing a generic n-gram search.
+
+All Agent8 experiment cores executed in connected JavaScript V8 on pinned repository inputs; the standalone Windows Node wrappers were not separately run. No new CI workflow. No change to the authoritative solution frontier.
