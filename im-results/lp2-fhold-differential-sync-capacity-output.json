@@ -1,0 +1,1609 @@
+{
+  "files": [
+    "resources/liber-primus/lp2-corpus.json",
+    "resources/control/gibran_prophet_58585.txt",
+    "resources/control/shakespeare_first300k.txt",
+    "resources/control/emerson_essays_2944.txt",
+    "resources/control/blake_song_of_liberty_train.txt"
+  ],
+  "pins": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "c8d8afda002f2585ce64a959c26c20d24a5c990b"
+  ],
+  "n": 4,
+  "reference_lengths": [
+    47629,
+    217106,
+    306851,
+    2001
+  ],
+  "controls": [
+    {
+      "m": 1,
+      "source": 0,
+      "plaintext": {
+        "pairs": 9886,
+        "windows": 11175
+      },
+      "ciphertext": {
+        "pairs": 11250,
+        "windows": 12681
+      },
+      "heldF": 318
+    },
+    {
+      "m": 1,
+      "source": 1,
+      "plaintext": {
+        "pairs": 7706,
+        "windows": 11375
+      },
+      "ciphertext": {
+        "pairs": 8447,
+        "windows": 12681
+      },
+      "heldF": 274
+    },
+    {
+      "m": 1,
+      "source": 2,
+      "plaintext": {
+        "pairs": 5260,
+        "windows": 11018
+      },
+      "ciphertext": {
+        "pairs": 5942,
+        "windows": 12681
+      },
+      "heldF": 359
+    },
+    {
+      "m": 2,
+      "source": 0,
+      "plaintext": {
+        "pairs": 4347,
+        "windows": 10846
+      },
+      "ciphertext": {
+        "pairs": 4774,
+        "windows": 12626
+      },
+      "heldF": 318
+    },
+    {
+      "m": 2,
+      "source": 1,
+      "plaintext": {
+        "pairs": 4204,
+        "windows": 11075
+      },
+      "ciphertext": {
+        "pairs": 4629,
+        "windows": 12626
+      },
+      "heldF": 274
+    },
+    {
+      "m": 2,
+      "source": 2,
+      "plaintext": {
+        "pairs": 2308,
+        "windows": 10664
+      },
+      "ciphertext": {
+        "pairs": 2669,
+        "windows": 12626
+      },
+      "heldF": 359
+    },
+    {
+      "m": 3,
+      "source": 0,
+      "plaintext": {
+        "pairs": 2198,
+        "windows": 10523
+      },
+      "ciphertext": {
+        "pairs": 2491,
+        "windows": 12571
+      },
+      "heldF": 318
+    },
+    {
+      "m": 3,
+      "source": 1,
+      "plaintext": {
+        "pairs": 2326,
+        "windows": 10787
+      },
+      "ciphertext": {
+        "pairs": 2617,
+        "windows": 12571
+      },
+      "heldF": 274
+    },
+    {
+      "m": 3,
+      "source": 2,
+      "plaintext": {
+        "pairs": 1018,
+        "windows": 10319
+      },
+      "ciphertext": {
+        "pairs": 1237,
+        "windows": 12571
+      },
+      "heldF": 359
+    },
+    {
+      "m": 4,
+      "source": 0,
+      "plaintext": {
+        "pairs": 1181,
+        "windows": 10208
+      },
+      "ciphertext": {
+        "pairs": 1401,
+        "windows": 12516
+      },
+      "heldF": 318
+    },
+    {
+      "m": 4,
+      "source": 1,
+      "plaintext": {
+        "pairs": 983,
+        "windows": 10503
+      },
+      "ciphertext": {
+        "pairs": 1216,
+        "windows": 12516
+      },
+      "heldF": 274
+    },
+    {
+      "m": 4,
+      "source": 2,
+      "plaintext": {
+        "pairs": 458,
+        "windows": 9980
+      },
+      "ciphertext": {
+        "pairs": 637,
+        "windows": 12516
+      },
+      "heldF": 359
+    }
+  ],
+  "results": [
+    {
+      "m": 1,
+      "scope": "all",
+      "transitions": 12901,
+      "capacity": {
+        "pairs": 99,
+        "windows": 12681
+      },
+      "privateCapacity": 1,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 34729,
+          "min": 8147,
+          "max": 11880,
+          "best": 34081,
+          "passing": 0,
+          "minPrivate": 530,
+          "minBad": 45,
+          "bestBad": 83,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 204206,
+          "min": 5324,
+          "max": 35021,
+          "best": 100855,
+          "passing": 0,
+          "minPrivate": 192,
+          "minBad": 30,
+          "bestBad": 174317,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 293951,
+          "min": 3256,
+          "max": 7665,
+          "best": 198814,
+          "passing": 0,
+          "minPrivate": 139,
+          "minBad": 32,
+          "bestBad": 24344,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p0-2",
+      "transitions": 726,
+      "capacity": {
+        "pairs": 0,
+        "windows": 714
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 46904,
+          "min": 9,
+          "max": 439,
+          "best": 10311,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 172,
+          "privatePassing": 15,
+          "sumCapPassing": 15
+        },
+        {
+          "starts": 216381,
+          "min": 3,
+          "max": 741,
+          "best": 37239,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 2046,
+          "privatePassing": 1047,
+          "sumCapPassing": 1047
+        },
+        {
+          "starts": 306126,
+          "min": 1,
+          "max": 178,
+          "best": 82319,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 2090,
+          "privatePassing": 1542,
+          "sumCapPassing": 1542
+        },
+        {
+          "starts": 1276,
+          "min": 9,
+          "max": 106,
+          "best": 1139,
+          "passing": 0,
+          "minPrivate": 4,
+          "minBad": 1,
+          "bestBad": 319,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p3-7",
+      "transitions": 1140,
+      "capacity": {
+        "pairs": 0,
+        "windows": 1120
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 46490,
+          "min": 46,
+          "max": 686,
+          "best": 104,
+          "passing": 0,
+          "minPrivate": 5,
+          "minBad": 2,
+          "bestBad": 48,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 215967,
+          "min": 13,
+          "max": 1600,
+          "best": 36825,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 37208,
+          "privatePassing": 90,
+          "sumCapPassing": 90
+        },
+        {
+          "starts": 305712,
+          "min": 9,
+          "max": 330,
+          "best": 288401,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 279152,
+          "privatePassing": 13,
+          "sumCapPassing": 13
+        },
+        {
+          "starts": 862,
+          "min": 56,
+          "max": 138,
+          "best": 182,
+          "passing": 0,
+          "minPrivate": 8,
+          "minBad": 2,
+          "bestBad": 132,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p8-14",
+      "transitions": 1722,
+      "capacity": {
+        "pairs": 2,
+        "windows": 1694
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 45908,
+          "min": 117,
+          "max": 855,
+          "best": 43429,
+          "passing": 0,
+          "minPrivate": 25,
+          "minBad": 4,
+          "bestBad": 4,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 215385,
+          "min": 38,
+          "max": 2638,
+          "best": 111176,
+          "passing": 0,
+          "minPrivate": 4,
+          "minBad": 2,
+          "bestBad": 36631,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 305130,
+          "min": 35,
+          "max": 649,
+          "best": 288225,
+          "passing": 0,
+          "minPrivate": 2,
+          "minBad": 2,
+          "bestBad": 49488,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 280,
+          "min": 120,
+          "max": 197,
+          "best": 182,
+          "passing": 0,
+          "minPrivate": 27,
+          "minBad": 4,
+          "bestBad": 263,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p15-22",
+      "transitions": 1895,
+      "capacity": {
+        "pairs": 5,
+        "windows": 1863
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 45735,
+          "min": 157,
+          "max": 911,
+          "best": 43215,
+          "passing": 0,
+          "minPrivate": 25,
+          "minBad": 4,
+          "bestBad": 14,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 215212,
+          "min": 51,
+          "max": 2911,
+          "best": 111006,
+          "passing": 0,
+          "minPrivate": 4,
+          "minBad": 2,
+          "bestBad": 36721,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 304957,
+          "min": 48,
+          "max": 669,
+          "best": 287893,
+          "passing": 0,
+          "minPrivate": 5,
+          "minBad": 2,
+          "bestBad": 49578,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 107,
+          "min": 182,
+          "max": 223,
+          "best": 99,
+          "passing": 0,
+          "minPrivate": 29,
+          "minBad": 5,
+          "bestBad": 85,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p23-26",
+      "transitions": 1017,
+      "capacity": {
+        "pairs": 0,
+        "windows": 1001
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 46613,
+          "min": 31,
+          "max": 678,
+          "best": 1436,
+          "passing": 0,
+          "minPrivate": 6,
+          "minBad": 1,
+          "bestBad": 219,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 216090,
+          "min": 9,
+          "max": 1325,
+          "best": 111413,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 37193,
+          "privatePassing": 92,
+          "sumCapPassing": 92
+        },
+        {
+          "starts": 305835,
+          "min": 7,
+          "max": 281,
+          "best": 63115,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 5507,
+          "privatePassing": 34,
+          "sumCapPassing": 34
+        },
+        {
+          "starts": 985,
+          "min": 42,
+          "max": 119,
+          "best": 363,
+          "passing": 0,
+          "minPrivate": 8,
+          "minBad": 1,
+          "bestBad": 845,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p27-32",
+      "transitions": 1427,
+      "capacity": {
+        "pairs": 0,
+        "windows": 1403
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 46203,
+          "min": 88,
+          "max": 734,
+          "best": 42930,
+          "passing": 0,
+          "minPrivate": 18,
+          "minBad": 2,
+          "bestBad": 198,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 215680,
+          "min": 23,
+          "max": 2188,
+          "best": 111243,
+          "passing": 0,
+          "minPrivate": 1,
+          "minBad": 1,
+          "bestBad": 36907,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 305425,
+          "min": 19,
+          "max": 489,
+          "best": 288327,
+          "passing": 0,
+          "minPrivate": 1,
+          "minBad": 1,
+          "bestBad": 49764,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 575,
+          "min": 79,
+          "max": 174,
+          "best": 344,
+          "passing": 0,
+          "minPrivate": 13,
+          "minBad": 3,
+          "bestBad": 539,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p33-39",
+      "transitions": 1673,
+      "capacity": {
+        "pairs": 2,
+        "windows": 1645
+      },
+      "privateCapacity": 1,
+      "pageCaps": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 45957,
+          "min": 112,
+          "max": 831,
+          "best": 43470,
+          "passing": 0,
+          "minPrivate": 19,
+          "minBad": 3,
+          "bestBad": 228,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 215434,
+          "min": 35,
+          "max": 2604,
+          "best": 111146,
+          "passing": 0,
+          "minPrivate": 3,
+          "minBad": 1,
+          "bestBad": 37203,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 305179,
+          "min": 31,
+          "max": 647,
+          "best": 288237,
+          "passing": 0,
+          "minPrivate": 3,
+          "minBad": 1,
+          "bestBad": 140240,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 329,
+          "min": 112,
+          "max": 194,
+          "best": 177,
+          "passing": 0,
+          "minPrivate": 14,
+          "minBad": 4,
+          "bestBad": 132,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p40-53",
+      "transitions": 2995,
+      "capacity": {
+        "pairs": 2,
+        "windows": 2943
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 44635,
+          "min": 411,
+          "max": 1386,
+          "best": 42245,
+          "passing": 0,
+          "minPrivate": 65,
+          "minBad": 8,
+          "bestBad": 207,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 214112,
+          "min": 265,
+          "max": 5262,
+          "best": 184333,
+          "passing": 0,
+          "minPrivate": 9,
+          "minBad": 4,
+          "bestBad": 35547,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 303857,
+          "min": 167,
+          "max": 1115,
+          "best": 199702,
+          "passing": 0,
+          "minPrivate": 16,
+          "minBad": 5,
+          "bestBad": 26483,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 1,
+      "scope": "p54-55",
+      "transitions": 306,
+      "capacity": {
+        "pairs": 1,
+        "windows": 298
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 47324,
+          "min": 0,
+          "max": 124,
+          "best": 4,
+          "passing": 956,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 4,
+          "privatePassing": 1364,
+          "sumCapPassing": 1364
+        },
+        {
+          "starts": 216801,
+          "min": 0,
+          "max": 215,
+          "best": 2044,
+          "passing": 25610,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 437,
+          "privatePassing": 28163,
+          "sumCapPassing": 28163
+        },
+        {
+          "starts": 306546,
+          "min": 0,
+          "max": 122,
+          "best": 792,
+          "passing": 42020,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 792,
+          "privatePassing": 40238,
+          "sumCapPassing": 40238
+        },
+        {
+          "starts": 1696,
+          "min": 0,
+          "max": 59,
+          "best": 574,
+          "passing": 308,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 574,
+          "privatePassing": 262,
+          "sumCapPassing": 262
+        }
+      ]
+    },
+    {
+      "m": 2,
+      "scope": "all",
+      "transitions": 12901,
+      "capacity": {
+        "pairs": 98,
+        "windows": 12626
+      },
+      "privateCapacity": 1,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 34729,
+          "min": 3311,
+          "max": 5947,
+          "best": 34565,
+          "passing": 0,
+          "minPrivate": 292,
+          "minBad": 38,
+          "bestBad": 8578,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 204206,
+          "min": 2421,
+          "max": 28620,
+          "best": 100280,
+          "passing": 0,
+          "minPrivate": 109,
+          "minBad": 21,
+          "bestBad": 176652,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 293951,
+          "min": 1226,
+          "max": 3739,
+          "best": 29286,
+          "passing": 0,
+          "minPrivate": 64,
+          "minBad": 17,
+          "bestBad": 207698,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 2,
+      "scope": "p40-53",
+      "transitions": 2995,
+      "capacity": {
+        "pairs": 2,
+        "windows": 2930
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 44635,
+          "min": 160,
+          "max": 899,
+          "best": 41700,
+          "passing": 0,
+          "minPrivate": 31,
+          "minBad": 5,
+          "bestBad": 207,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 214112,
+          "min": 99,
+          "max": 4344,
+          "best": 184332,
+          "passing": 0,
+          "minPrivate": 1,
+          "minBad": 1,
+          "bestBad": 184380,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 303857,
+          "min": 55,
+          "max": 791,
+          "best": 36059,
+          "passing": 0,
+          "minPrivate": 3,
+          "minBad": 2,
+          "bestBad": 35733,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 2,
+      "scope": "p54-55",
+      "transitions": 306,
+      "capacity": {
+        "pairs": 1,
+        "windows": 296
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 47324,
+          "min": 0,
+          "max": 93,
+          "best": 3,
+          "passing": 4767,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 3,
+          "privatePassing": 5261,
+          "sumCapPassing": 5261
+        },
+        {
+          "starts": 216801,
+          "min": 0,
+          "max": 184,
+          "best": 412,
+          "passing": 54284,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 412,
+          "privatePassing": 58300,
+          "sumCapPassing": 58300
+        },
+        {
+          "starts": 306546,
+          "min": 0,
+          "max": 103,
+          "best": 791,
+          "passing": 116496,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 791,
+          "privatePassing": 100933,
+          "sumCapPassing": 100933
+        },
+        {
+          "starts": 1696,
+          "min": 0,
+          "max": 47,
+          "best": 490,
+          "passing": 520,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 490,
+          "privatePassing": 511,
+          "sumCapPassing": 511
+        }
+      ]
+    },
+    {
+      "m": 3,
+      "scope": "all",
+      "transitions": 12901,
+      "capacity": {
+        "pairs": 97,
+        "windows": 12571
+      },
+      "privateCapacity": 1,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 34729,
+          "min": 1624,
+          "max": 3461,
+          "best": 34565,
+          "passing": 0,
+          "minPrivate": 177,
+          "minBad": 26,
+          "bestBad": 10509,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 204206,
+          "min": 1290,
+          "max": 23832,
+          "best": 99983,
+          "passing": 0,
+          "minPrivate": 65,
+          "minBad": 10,
+          "bestBad": 174783,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 293951,
+          "min": 417,
+          "max": 2156,
+          "best": 56178,
+          "passing": 0,
+          "minPrivate": 26,
+          "minBad": 11,
+          "bestBad": 141787,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 3,
+      "scope": "p40-53",
+      "transitions": 2995,
+      "capacity": {
+        "pairs": 2,
+        "windows": 2917
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 44635,
+          "min": 70,
+          "max": 569,
+          "best": 1596,
+          "passing": 0,
+          "minPrivate": 17,
+          "minBad": 4,
+          "bestBad": 227,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 214112,
+          "min": 45,
+          "max": 3498,
+          "best": 101272,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 184379,
+          "privatePassing": 52,
+          "sumCapPassing": 52
+        },
+        {
+          "starts": 303857,
+          "min": 10,
+          "max": 573,
+          "best": 58407,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 13630,
+          "privatePassing": 163,
+          "sumCapPassing": 163
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 3,
+      "scope": "p54-55",
+      "transitions": 306,
+      "capacity": {
+        "pairs": 1,
+        "windows": 294
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 47324,
+          "min": 0,
+          "max": 74,
+          "best": 2,
+          "passing": 10864,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 2,
+          "privatePassing": 11890,
+          "sumCapPassing": 11890
+        },
+        {
+          "starts": 216801,
+          "min": 0,
+          "max": 157,
+          "best": 411,
+          "passing": 80035,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 411,
+          "privatePassing": 83635,
+          "sumCapPassing": 83635
+        },
+        {
+          "starts": 306546,
+          "min": 0,
+          "max": 85,
+          "best": 111,
+          "passing": 175187,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 111,
+          "privatePassing": 164702,
+          "sumCapPassing": 164702
+        },
+        {
+          "starts": 1696,
+          "min": 0,
+          "max": 39,
+          "best": 328,
+          "passing": 977,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 328,
+          "privatePassing": 917,
+          "sumCapPassing": 917
+        }
+      ]
+    },
+    {
+      "m": 4,
+      "scope": "all",
+      "transitions": 12901,
+      "capacity": {
+        "pairs": 97,
+        "windows": 12516
+      },
+      "privateCapacity": 1,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 34729,
+          "min": 806,
+          "max": 2060,
+          "best": 33813,
+          "passing": 0,
+          "minPrivate": 99,
+          "minBad": 22,
+          "bestBad": 10506,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 204206,
+          "min": 643,
+          "max": 19438,
+          "best": 10091,
+          "passing": 0,
+          "minPrivate": 22,
+          "minBad": 8,
+          "bestBad": 173992,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 293951,
+          "min": 169,
+          "max": 1376,
+          "best": 56178,
+          "passing": 0,
+          "minPrivate": 8,
+          "minBad": 3,
+          "bestBad": 28097,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 4,
+      "scope": "p40-53",
+      "transitions": 2995,
+      "capacity": {
+        "pairs": 2,
+        "windows": 2904
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 44635,
+          "min": 34,
+          "max": 405,
+          "best": 1595,
+          "passing": 0,
+          "minPrivate": 8,
+          "minBad": 2,
+          "bestBad": 41162,
+          "privatePassing": 0,
+          "sumCapPassing": 0
+        },
+        {
+          "starts": 214112,
+          "min": 20,
+          "max": 2721,
+          "best": 101269,
+          "passing": 0,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 14421,
+          "privatePassing": 127,
+          "sumCapPassing": 127
+        },
+        {
+          "starts": 303857,
+          "min": 2,
+          "max": 401,
+          "best": 58406,
+          "passing": 5,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 5097,
+          "privatePassing": 3674,
+          "sumCapPassing": 3674
+        },
+        {
+          "starts": 0
+        }
+      ]
+    },
+    {
+      "m": 4,
+      "scope": "p54-55",
+      "transitions": 306,
+      "capacity": {
+        "pairs": 1,
+        "windows": 292
+      },
+      "privateCapacity": 0,
+      "pageCaps": [
+        0,
+        0
+      ],
+      "refs": [
+        {
+          "starts": 47324,
+          "min": 0,
+          "max": 66,
+          "best": 1,
+          "passing": 19250,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 1,
+          "privatePassing": 18239,
+          "sumCapPassing": 18239
+        },
+        {
+          "starts": 216801,
+          "min": 0,
+          "max": 132,
+          "best": 323,
+          "passing": 111184,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 323,
+          "privatePassing": 111277,
+          "sumCapPassing": 111277
+        },
+        {
+          "starts": 306546,
+          "min": 0,
+          "max": 74,
+          "best": 29,
+          "passing": 215007,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 0,
+          "privatePassing": 205849,
+          "sumCapPassing": 205849
+        },
+        {
+          "starts": 1696,
+          "min": 0,
+          "max": 31,
+          "best": 327,
+          "passing": 1102,
+          "minPrivate": 0,
+          "minBad": 0,
+          "bestBad": 327,
+          "privatePassing": 1152,
+          "sumCapPassing": 1152
+        }
+      ]
+    }
+  ]
+}
