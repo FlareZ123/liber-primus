@@ -137,3 +137,19 @@ combined GP29 index key = [1, 6, 5, 2, 28, 26]
 Applying (P=C\pm K\pmod{29}) with this six-symbol repeating key to the first 6 pages, first 16 pages, and all 56 unresolved pages produces no readable plaintext. Global continuous and per-page resets are also random-like (full-stream IoC approximately 0.03447–0.03452; entropy approximately 4.8557–4.8567 bits/rune).
 
 **Decision:** the direct φ-to-base-29 repeating additive key is not supported. Do not repeat it or expand it into unconstrained phase/key searches. The Cistercian/totient lead, if real, more likely selects a structural grouping, coordinate system, or transposition than this simple Vigenère-like key.
+
+## Stronger section-address consequence: the common totient divisor is 60
+
+The two candidate values give φ(1133)=1020 and φ(3311)=2520. Their greatest common divisor is:
+
+```text
+gcd(1020, 2520) = 60
+1020 / 60 = 17
+2520 / 60 = 42
+```
+
+Interpreting 17 as the **one-based first page** and 42 as the **length** gives pages 17–58 one-based, i.e. LP2 indices 16–57 zero-based. This exactly identifies the final 42-page section. The other two lengths are φ(7)=6 and φ(11)=10, so the first 16 pages precede it. Thus the two Cistercian candidates plus the LP1 p5 totient instruction conditionally encode both the final-section start and its length, not merely a sum of three totients.
+
+The shared divisor 60 is also a possible source-derived sexagesimal invariant. This is relevant to the older p0/base-60 discussion, but it does **not** validate that report's unsourced page/word address formula or the unresolved p50 radix. Do not revive those address searches without a separate source selecting the exact indexing grammar.
+
+This is a stronger structural prediction than “6+10+42 happens to sum to 58”: the two totients normalize by their common divisor to the exact start/length pair (17,42). It remains conditional on the visual Cistercian reading and the natural, but still interpretive, choice to read the quotients as a one-based page start and section length.
