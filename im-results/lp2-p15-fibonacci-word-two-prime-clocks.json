@@ -1,0 +1,304 @@
+{
+  "inputs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "donor": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "p56Replay": 85,
+  "maskPrefix": "0100101001001010010100100101001001010010",
+  "targetLength": 1883,
+  "fit": 1752,
+  "hold": 131,
+  "railLengths": [
+    1164,
+    719
+  ],
+  "fitRailLengths": [
+    1083,
+    669
+  ],
+  "maxLag": 3,
+  "original": [
+    [
+      {
+        "sign": 1,
+        "survivors": [],
+        "maxDead": 370,
+        "maxOrigins": [
+          2953,
+          2954,
+          2955
+        ],
+        "zeroOrigin": {
+          "dead": 23,
+          "ends": []
+        }
+      },
+      {
+        "sign": -1,
+        "survivors": [],
+        "maxDead": 445,
+        "maxOrigins": [
+          2093,
+          2094,
+          2095
+        ],
+        "zeroOrigin": {
+          "dead": 12,
+          "ends": []
+        }
+      }
+    ],
+    [
+      {
+        "sign": 1,
+        "survivors": [],
+        "maxDead": 678,
+        "maxOrigins": [
+          2938,
+          2939
+        ],
+        "zeroOrigin": {
+          "dead": 0,
+          "ends": []
+        }
+      },
+      {
+        "sign": -1,
+        "survivors": [],
+        "maxDead": 628,
+        "maxOrigins": [
+          570,
+          571
+        ],
+        "zeroOrigin": {
+          "dead": 12,
+          "ends": []
+        }
+      }
+    ]
+  ],
+  "prefix": [
+    [
+      {
+        "sign": 1,
+        "survivors": [],
+        "maxDead": 370,
+        "maxOrigins": [
+          2953,
+          2954,
+          2955
+        ],
+        "zeroOrigin": {
+          "dead": 23,
+          "ends": []
+        }
+      },
+      {
+        "sign": -1,
+        "survivors": [],
+        "maxDead": 445,
+        "maxOrigins": [
+          2093,
+          2094,
+          2095
+        ],
+        "zeroOrigin": {
+          "dead": 12,
+          "ends": []
+        }
+      }
+    ],
+    [
+      {
+        "sign": 1,
+        "survivors": [
+          2938,
+          2939
+        ],
+        "maxDead": 669,
+        "maxOrigins": [
+          2938,
+          2939
+        ],
+        "zeroOrigin": {
+          "dead": 0,
+          "ends": []
+        }
+      },
+      {
+        "sign": -1,
+        "survivors": [],
+        "maxDead": 628,
+        "maxOrigins": [
+          570,
+          571
+        ],
+        "zeroOrigin": {
+          "dead": 12,
+          "ends": []
+        }
+      }
+    ]
+  ],
+  "controls": [
+    {
+      "ids": [
+        1,
+        3,
+        4
+      ],
+      "o": [
+        0,
+        0
+      ],
+      "s": 1,
+      "trueRetained": [
+        true,
+        true
+      ],
+      "trueEnd": [
+        true,
+        true
+      ],
+      "allRailCounts": [
+        [
+          3,
+          0
+        ],
+        [
+          211,
+          233
+        ]
+      ],
+      "fitCounts": [
+        [
+          3,
+          0
+        ],
+        [
+          347,
+          360
+        ]
+      ],
+      "selectedSign": 1,
+      "selectedOrigins": [
+        0,
+        0
+      ],
+      "fitScore": -3.0875831023136273,
+      "holdLegal": [
+        true,
+        true
+      ],
+      "fitMatch": 1747,
+      "holdMatch": 131,
+      "replay": true
+    },
+    {
+      "ids": [
+        3,
+        4,
+        1
+      ],
+      "o": [
+        17,
+        113
+      ],
+      "s": 1,
+      "trueRetained": [
+        true,
+        true
+      ],
+      "trueEnd": [
+        true,
+        true
+      ],
+      "allRailCounts": [
+        [
+          2,
+          0
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "fitCounts": [
+        [
+          2,
+          0
+        ],
+        [
+          16,
+          9
+        ]
+      ],
+      "selectedSign": 1,
+      "selectedOrigins": [
+        17,
+        113
+      ],
+      "fitScore": -3.0888723256123742,
+      "holdLegal": [
+        true,
+        true
+      ],
+      "fitMatch": 1748,
+      "holdMatch": 131,
+      "replay": true
+    },
+    {
+      "ids": [
+        4,
+        1,
+        3
+      ],
+      "o": [
+        3299,
+        3301
+      ],
+      "s": -1,
+      "trueRetained": [
+        true,
+        true
+      ],
+      "trueEnd": [
+        true,
+        true
+      ],
+      "allRailCounts": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "fitCounts": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "selectedSign": -1,
+      "selectedOrigins": [
+        3299,
+        3301
+      ],
+      "fitScore": -3.0570226112549146,
+      "holdLegal": [
+        true,
+        true
+      ],
+      "fitMatch": 1739,
+      "holdMatch": 131,
+      "replay": true
+    }
+  ]
+}

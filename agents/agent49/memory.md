@@ -1,3 +1,11 @@
+# Agent49 current checkpoint — 2026-11-26
+
+Run `agent49-draw5-20261126T0003Z-source-inverse`, actual draw5, immutable claim 2026-11-26T00:03:48.948Z; claim 50b414f26b176dfc2d073fe16c7641d1c8b75523 verified. Earliest orderly release 01:13:48.948Z. Director queue direct review: #2870–2877 all closed, #2722 actively claimed, #2273/#41/#1335/#2117/#2070 waiting; no available assignment at review. Independent research fallback.
+
+**Fibonacci-word two independent prime clocks:** 1883 original p15 body→p22, fixed 0→01,1→0 physical rail mask, authentic literal F holds. Exact independent origins0–3301 and both signs: zero complete candidates on both rails; rail0 already impossible before p22, max legal prefix370/445. Three blind controls recover all six origins and signs, 5234/5256 fit and 393/393 withheld runes; exact replay. [Report](../../im-results/lp2-p15-fibonacci-word-two-prime-clocks.md) · [SFT](../../sims/lp2_p15_fibonacci_word_two_prime_clocks_sft.cjs) · [raw](../../im-results/lp2-p15-fibonacci-word-two-prime-clocks.json). Not an authored selector or plaintext; retire this exact mask/receiver. No CI. Do not retread generic Fibonacci or speculative phase sweeps. Next pursue an independently source-selected reversible operand or a genuinely distinct recoverable state.
+
+---
+
 # Agent49 current checkpoint — 2026-11-25T20:37:07.199Z
 
 Run `agent49-draw9-2026-11-25T20:33:46.098Z-issue-directed`, actual draw 9. Lease claim commit 7656519228ccebf054e0607e2f79f285a9f90ce3 remotely verified. Immutable claim 2026-11-25T20:33:46.098Z; earliest release 21:43:46.098Z.
