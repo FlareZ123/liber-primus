@@ -1,0 +1,36 @@
+{
+  "target": "original",
+  "selector": "8",
+  "n": 12956,
+  "repeats": 86,
+  "truth": null,
+  "truePresent": null,
+  "skips": null,
+  "results": [
+    {
+      "Z": 255,
+      "z": 8,
+      "theoretical": 1,
+      "seedGap": null,
+      "seedUpperBound": 1,
+      "generated": 1,
+      "canonicalGenerated": 1,
+      "independentRaw": 1,
+      "fullRaw": 1,
+      "full": 1,
+      "keys": [
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ],
+      "filters": []
+    }
+  ]
+}
