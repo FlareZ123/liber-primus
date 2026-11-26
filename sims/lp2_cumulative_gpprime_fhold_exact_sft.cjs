@@ -19,7 +19,7 @@ function experiment(inputs){
  const branch=edges(0,1);assert(branch.length===2&&branch[0][0]===0&&branch[1][0]===28,"F collision");
  assert(edges(1,1).length===0,"nonzero C equal to state is impossible");
  assert(encode([0],1,true).c[0]===0&&encode([0],1,false).c[0]===1,"distinct F semantics");
- // All-path dynamic count and Boolean reachability against complete 4-symbol sender enumeration.
+ // All-path dynamic count and Boolean reachability against complete 3-symbol sender enumeration.
  let exhaustive=0;for(const s of [0,1,7]){const m=new Map();for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let d=0;d<29;d++){const c=encode([a,b,d],s).c.join(",");m.set(c,(m.get(c)??0)+1)}for(const [k,n] of m){const c=k.split(",").map(Number);assert(exactCount(c,s)===BigInt(n),"count regression");exhaustive++}}
  const positives=[],alternatives=[];
  for(const sec of sections)for(const s of [0,7,19]){
