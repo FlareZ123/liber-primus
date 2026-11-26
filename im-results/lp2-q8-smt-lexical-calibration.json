@@ -1,0 +1,107 @@
+{
+  "seed": 1506977336,
+  "profile": {
+    "fit_groups": 47,
+    "fit_runes": 213,
+    "actual_miss": [
+      12,
+      43
+    ],
+    "old_prefix_support": false,
+    "held_local_groups": 16,
+    "held_carry_runes": 11
+  },
+  "register": {
+    "forms": 38910,
+    "local_textblob_sha256": "eade91558167fe09a481abf59e176af8643ad78678cc53dd5aeaf2a8b30fa332",
+    "identity_note": "Repository byte identity not established; count and matched-plant omission pattern agree."
+  },
+  "runs": [
+    {
+      "model": "shared MDD",
+      "pinned": true,
+      "status": "sat",
+      "seconds": 11.272162754000021,
+      "exact_action": true,
+      "held": 16,
+      "carry": true,
+      "edges": 174863,
+      "bytes": 10090614
+    },
+    {
+      "model": "shared MDD",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 61.685009546,
+      "edges": 174863,
+      "bytes": 10082809
+    },
+    {
+      "model": "lazy shared",
+      "pinned": true,
+      "status": "sat",
+      "seconds": 2.221892031999971,
+      "iterations": 7,
+      "clauses": 258,
+      "best_selected": 44,
+      "actual_support": 45,
+      "exact_action": true,
+      "held": 16,
+      "carry": true
+    },
+    {
+      "model": "lazy shared",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 90.150786659,
+      "iterations": 25,
+      "clauses": 2002,
+      "best_selected": 8
+    },
+    {
+      "model": "lazy direct",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 90.15932555200004,
+      "iterations": 28,
+      "clauses": 2198,
+      "best_selected": 9
+    },
+    {
+      "model": "lazy pair projection",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 91.024439904,
+      "iterations": 1,
+      "clauses": 0,
+      "best_selected": 0
+    },
+    {
+      "model": "hybrid six eager groups",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 121.08684462,
+      "iterations": 1,
+      "clauses": 0,
+      "best_selected": 0
+    },
+    {
+      "model": "one-hot Boolean",
+      "pinned": false,
+      "status": "unknown",
+      "seconds": 180.292221622,
+      "iterations": 43,
+      "clauses": 3445,
+      "best_selected": 9,
+      "variables": 21892,
+      "assertions": 415920
+    }
+  ],
+  "iid_uniform_union_bound_log10": {
+    "B3": -53.75517657240229,
+    "B11": -7.7187,
+    "B12": -3.9371,
+    "B13": -0.4137
+  },
+  "original_run": false
+}
