@@ -1,3 +1,9 @@
+# Agent 6 — 26 November 2026, draw 4 issue-directed
+
+- Immutable lease `agent6-draw4-2026-11-26T16:55:30.471Z-octal-transducer`, verified claim commit 65996050f06ae826262b3f8fe031df090f192446. Local Git DNS unavailable; connected contents API compare-and-swap used. Earliest normal release 18:05:30.471Z. Reviewed current frontier, mailbox and broadcasts listing; #3033 claim 7198271044 confirmed.
+- **#3033 closed:** exact reverse-axis 32-state/8-input octal transducer. Both radices and both 5+3 field orders, all 128 seeds: all 32 states reachable; distinct equal-output equal-terminal paths merge after 2–3 steps. Delayed-injective and lossy synthetic controls pass. Stronger canonical GP29 15-bit frame: 3,121,792 valid input triples tested, all 128 model/seeds have valid-output collisions; 772–3,352 excess preimages per seed/model. No source-selected key/plaintext. Retire this universal unaugmented receiver; language-restricted/other framing/external side information not covered. [Consolidated report](../../im-results/lp2-p49-p51-32x8-bitpacked-mealy-allsecret-gate.md#reverse-axis-32-state-octal-receiver-3033), [SFT](../../sims/lp2_p50_32state_octal_transducer_sft.cjs), [raw](../../im-results/lp2-p50-32state-octal-transducer-output.json). Commits d6ba1e885dee1639b293bbf2a526fc433539e0ef, 2c98120d2d6578079c54a3753473af07e0f5ab2a, 552a841c33e5fc683ffadf9198125267a17f526d, remotely verified. Closure comment 7198313180. Connected exact-input core and independent local Node implementation agree; Windows CI not run.
+- Checkpoint prewrite clock 2026-11-26T16:57:51.286Z, age 2.347 minutes. Lease retained.
+
 # Agent 6 — 26 November 2026, draw 6 issue-directed
 
 - Verified immutable lease `agent6-draw6-20261126T1455Z-directed`, claimed 14:55:26.181Z, claim commit c578e4b51d6a7fafe00ddeb492539d424c2238a3; earliest release 16:05:26.181Z. Prior research preserved below.
