@@ -96,7 +96,7 @@ def candidates() -> dict[str, bytes]:
                        and not line.startswith(b"Version:")
                        and not line.startswith(b"="))
     signature_packet = base64.b64decode(sig_b64)
-    signature_no_version = b"\\n".join([sig_lines[0]] + sig_lines[3:-2] + [sig_lines[-1]]) + b"\\n"
+    signature_no_version = b"\n".join([sig_lines[0]] + sig_lines[3:-2] + [sig_lines[-1]]) + b"\n"
     out.update({
         "signature-armor-exact": signature_armor,
         "signature-armor-no-version": signature_no_version,
