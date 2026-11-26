@@ -35,13 +35,24 @@ These are bounded public-source checks, not proof that no private email attachme
 
 ## p56 and LP2 relevance
 
-No source-authenticated 2014 participant /key.asc bytes were recovered. Therefore there is no legitimate target file from which to report an OpenPGP fingerprint or SHA-512, and no p56 digest comparison can be performed. The 2022 and 2024 example keys, and Cicada's own signing key, must not be substituted to manufacture a hash result.
+No source-authenticated 2014 participant /key.asc bytes or Stage10-specific public PGP-encrypted reply were recovered. Therefore there is no legitimate target file from which to report an OpenPGP fingerprint or SHA-512, and no p56 digest comparison can be performed. The 2022 and 2024 example keys, and Cicada's own signing key, must not be substituted to manufacture a hash result.
 
 The Stage10 response reproduced in resources/external/2014-stage10-post-square-response.html is a cleartext PGP-signed message, not an encrypted PGP message. It names the next Cicada onion and does not expose a recipient-key fingerprint. The first-person account's stated purpose for /key.asc is encrypted communication specifically to the participant. No evidence links the participant's key to the common LP2 ciphertext, p56 digest, or a shared decryption operation.
 
+## Public encrypted-reply search (#3004)
+
+The follow-up search was restricted to public, released participant archives and preserved Stage10/Stage11 objects. It distinguished the OpenPGP armor types rather than treating every .asc file as an encrypted message.
+
+- In iBotPeaches/cicada_3301, the inspected 2014 message objects hello-you-have-done-well.asc, hello-your-enlightenment.asc, idgtk-umloo.asc, let-the-text-guide-you.asc, the-work-of-a-private-man.asc, very-good-you-have-done-well.asc and welcome.asc all begin with BEGIN PGP SIGNED MESSAGE.
+- The Stage10/Stage11 response copies in neuroretransmit/cicada (2014/010-hidden-service-reply/message.txt.asc), scream314/cicada3301 (assets/2014/stage11/message.txt.asc), and krisyotam/cicada3301 (the 2014onion7 message.txt.asc mirror) also begin with BEGIN PGP SIGNED MESSAGE. They are signed cleartext replies, not PGP-encrypted payloads.
+- GitHub code searches for BEGIN PGP MESSAGE in the four public repositories (neuroretransmit/cicada, iBotPeaches/cicada_3301, scream314/cicada3301 and krisyotam/cicada3301) returned earlier 2012/2013 encrypted objects, including the known 2013 tcp-server.asc, but no 2014 Stage10/Stage11 encrypted reply. Other returned hits were unrelated later material.
+- The known Stage10 response therefore remains a clear-signed message carrying the onward Cicada onion. No recipient-key fingerprint, recipient packet header, or participant-linked encrypted ciphertext is preserved in the searched public archives.
+
+This is a bounded public-source negative. It does not rule out an encrypted private email or a response retained only on the participant's original server; neither is present in the examined public artifacts, and no private mailbox or hidden service was accessed.
+
 ## Decision
 
-Close #2998 as a bounded no-copy result. Retire the participant /key.asc as a candidate for a **shared LP2 decryption key**; retain its supported role as a participant-specific communication key. Reopen only if an original 2014 participant-service snapshot, saved upload, email attachment, or cryptographically linked encrypted reply is recovered with provenance and exact bytes.
+Close #2998 and #3004 as bounded public-source no-copy results. Retire the participant /key.asc as a candidate for a **shared LP2 decryption key**; retain its supported role as a participant-specific communication key. Reopen only if an original 2014 participant-service snapshot, saved upload, email attachment, or cryptographically linked encrypted reply is recovered with provenance and exact bytes.
 
 ## Sources
 
