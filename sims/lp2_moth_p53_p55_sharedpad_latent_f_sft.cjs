@@ -55,7 +55,7 @@ function experiment(input) {
   function acc(x,y){return x.reduce((s,v,i)=>s+(v===y[i]),0)/x.length;}
   const plants=[];
   for(let t=0;t<24;t++){
-    const a=aDon.slice(300+t*400+rng(150),300+t*400+rng(1)); // offset selected below without coupling to key
+    rng(150);rng(1); // preserve the initial experiment's deterministic draw sequence
     const ia=1000+t*600+rng(300),ib=1000+t*600+rng(300);
     const pa=aDon.slice(ia,ia+179),pb=bDon.slice(ib,ib+75);if(pa.length!==179||pb.length!==75)throw Error("donor too short");
     const k=randpad(179),A=enc(pa,k),B=enc(pb,k);
@@ -71,7 +71,47 @@ function experiment(input) {
   const A=corpus.pages.find(x=>x.page===53).indices,B=corpus.pages.find(x=>x.page===55).indices.slice(1);
   if(A.length!==179||B.length!==75)throw Error("page geometry");
   const result={trainRunes:train.length,donors:[aDon.length,bDon.length],toys,threshold,tp,tn,pass,plants,originalCipherF:[count0(A),count0(B)],unpairedMinimum:A.length-count0(A)-B.length,original:null};
-  if(pass){const x=score(A,B,true);result.original={bf:x.full.logBF,prefix:x.prefix,increment:x.increment,logMAP:x.full.maxPosteriorLog,overlap:x.full.overlap,pa:x.full.pa,pb:x.full.pb,key:x.full.k};}
+  // Independent follow-up: use the original eight development pairs only to
+  // choose a full-span BF cutoff; the earlier 16 evaluation pairs are not reused.
+  // Match both original observed Fehu counts and actual Fehu counts within each
+  // positive/negative pair. Use disjoint donor windows beyond all earlier ones.
+  const fullThreshold=(med(dev.map(x=>x.shared.bf))+med(dev.map(x=>x.independent.bf)))/2;
+  const fresh=[];seed=0x2977f053;
+  for(let t=0;t<24;t++){
+    const baseA=16000+t*550,baseB=16000+t*550;
+    let ia,ib,pa,pb,triesA=0,triesB=0;
+    do{ia=baseA+rng(350);pa=aDon.slice(ia,ia+179);if(++triesA>10000)throw Error("no matched donor A");}while(count0(pa)>5);
+    do{ib=baseB+rng(350);pb=bDon.slice(ib,ib+75);if(++triesB>10000)throw Error("no matched donor B");}while(count0(pb)>3);
+    if(pa.length!==179||pb.length!==75)throw Error("short fresh donor");
+    let k,ca,cb,tries=0;
+    do{k=randpad(179);ca=enc(pa,k);cb=enc(pb,k);if(++tries>1000000)throw Error("shared observed F match failed");}while(count0(ca)!==5||count0(cb)!==3);
+    let cn,nt=0;do{cn=enc(pb,randpad(75));if(++nt>100000)throw Error("independent observed F match failed");}while(count0(cn)!==3);
+    const p=score(ca,cb,true),n=score(ca,cn,false),o=p.full.overlap;
+    fresh.push({t,ia,ib,triesA,triesB,tries,nt,actualF:[count0(pa),count0(pb)],cipherF:[count0(ca),count0(cb)],shared:{bf:p.full.logBF,prefix:p.prefix,increment:p.increment,logMAP:p.full.maxPosteriorLog,accA:acc(p.full.pa,pa),accB:acc(p.full.pb,pb),keyAcc:acc(p.full.k.slice(0,o),k.slice(0,o))},independent:{bf:n.full.logBF,prefix:n.prefix,increment:n.increment}});
+  }
+  const fullTP=fresh.filter(x=>x.shared.bf>fullThreshold).length,fullTN=fresh.filter(x=>x.independent.bf<=fullThreshold).length;
+  const fullPass=fullTP>=22&&fullTN>=22;
+  result.fullSpanFollowup={threshold:fullThreshold,tp:fullTP,tn:fullTN,pass:fullPass,fresh};
+  if(pass||fullPass){
+    const x=score(A,B,true);
+    result.original={bf:x.full.logBF,prefix:x.prefix,increment:x.increment,logMAP:x.full.maxPosteriorLog,overlap:x.full.overlap,pa:x.full.pa,pb:x.full.pb,key:x.full.k};
+  }
+  // Geometry-only exact count: every hold subset uniquely specifies the two
+  // consuming tapes; each pair has 27 choices (28 when equal), each unpaired
+  // consumed symbol 28 choices. No language model or original fit is used.
+  const zeroPositions=x=>x.flatMap((v,i)=>v===0?[i]:[]);
+  const az=zeroPositions(A),bz=zeroPositions(B);
+  let total=0n,all=[],hist={};
+  for(let a=0;a<2**az.length;a++)for(let b=0;b<2**bz.length;b++){
+    const aa=A.filter((x,i)=>!(x===0&&((a>>az.indexOf(i))&1))),bb=B.filter((x,i)=>!(x===0&&((b>>bz.indexOf(i))&1)));
+    const l=Math.min(aa.length,bb.length);let z=0;for(let i=0;i<l;i++)z+=aa[i]===bb[i];
+    const tail=Math.abs(aa.length-bb.length), count=28n**BigInt(z+tail)*27n**BigInt(l-z);
+    total+=count;hist[tail]=(BigInt(hist[tail]||0)+count).toString();all.push({a,b,l,z,tail,count:count.toString()});
+  }
+  const log10=n=>{const s=n.toString();return s.length-1+Math.log10(Number(s.slice(0,15))/10**(Math.min(15,s.length)-1));};
+  const stats=k=>{const a=test.map(x=>x.shared[k]);return {min:Math.min(...a),mean:a.reduce((s,v)=>s+v,0)/a.length,max:Math.max(...a)}};
+  const auc=k=>test.flatMap(x=>test.map(y=>+(x.shared[k]>y.independent[k])+.5*(x.shared[k]===y.independent[k]))).reduce((s,v)=>s+v,0)/256;
+  result.exactGeometryAmbiguity={zeroPositions:[az,bz],holdMaskCount:all.length,exactLegalPlaintextPairs:total.toString(),log10LegalPlaintextPairs:log10(total),bits:log10(total)/Math.log10(2),allConsume:all[0],unpairedConsumingTailMin:Math.min(...all.map(x=>x.tail)),unpairedConsumingTailMax:Math.max(...all.map(x=>x.tail)),tailHistogram:hist,holdMasks:all,validationStats:Object.fromEntries(["accA","accB","keyAcc","logMAP"].map(k=>[k,stats(k)])),auc:{full:auc("bf"),increment:auc("increment")}};
   return result;
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"];
