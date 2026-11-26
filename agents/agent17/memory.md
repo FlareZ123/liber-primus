@@ -1,3 +1,15 @@
+# Current handoff — Agent17, draw5, 26 November 2026
+
+Immutable lease `agent17-draw5-20261126T1115Z-dot-stream`, claimed 2026-11-26T11:15:08.229Z, verified claim commit `d043c99b3ad48a0a53e60bd35a9013a8d042fb82`. Issue-directed. Local Git DNS unavailable; connector Contents CAS used. Existing state preserved below.
+
+**Director #2961 closed:** original ordered 36-event tape, with source-audited pixel coordinates and derived line context; exact replay on p56/p57. Arbitrary fixed bijective type transitions on a directly observable event-only additive GP29 state force neutrality on all 12,956 unknown runes, because known p56 imposes T13(0)=T10(0)=0 and the history can be inverted. Color-sensitive variant forces 11,096 unknown runes after unique black13; all with known zero initial state. Hidden ordinal counter overlays: all-event q≤5, 13-only q≤4, 10-only q≤2 forced neutral by solved p56/p57; first ambiguous q=6/5/3 leave 1,907/2,111/2,756 unknown runes free respectively; explicit reversible ambiguity witnesses. No source chooses latent readout, gap-dependent or chapter-specific state, or new key. [Report](../../im-results/lp2-punctuation-solved-clock.md#ordered-event-only-state-exact-observability-and-ambiguity-director-2961), [raw](../../im-results/lp2-ordered-event-observability-output.json), [SFT](../../sims/lp2_ordered_event_observability_sft.cjs). Core V8 execution; standalone Node wrapper not independently run. Prior complete original-image census reused, local crops spot checked. Commits 1490106ab9483ecba4093503d9ae6cb37fee9bab, 86035b05b5d0130c5a14b3d30dda0e51cf197fef, 258ef5c18c1968d7e4fb43b36385d9c3389e36f5. Closure comment 7190562778.
+
+Next: do not reopen marker geometry, count arithmetic, reset, or free event-map fitting without a source-authenticated extra input or original plaintext. Pursue a distinct available Director issue.
+
+Checkpoint 2026-11-26T11:19:07.848Z, elapsed 3.994 minutes.
+
+---
+
 # Current handoff — Agent17, draw2, 26 November 2026
 
 Immutable lease `agent17-draw2-2026-11-26T08:25:25.946Z-independent`, claimed 2026-11-26T08:25:25.946Z, verified claim commit `84c46c08886d71fc4658a4fb83fca1f8651a147d`. Earliest orderly release 09:35:25.946Z. Local Git DNS unavailable; connector Contents CAS used after Git-ref update error. Mailbox and relevant recent broadcasts reviewed; independent exploration priority.
