@@ -1,0 +1,1109 @@
+{
+  "key": [
+    10,
+    2,
+    14,
+    7,
+    19,
+    6,
+    18,
+    12,
+    7,
+    8,
+    17,
+    0,
+    19,
+    7,
+    14,
+    18,
+    14,
+    19,
+    13,
+    0,
+    1,
+    2,
+    0
+  ],
+  "source": "2012/003-subreddit historical 23-character numeric key, 0 phase at each physical line, subtract mod29",
+  "trainingSections": [
+    "0_warning",
+    "0_welcome",
+    "0_wisdom",
+    "0_koan_1",
+    "0_loss_of_divinity",
+    "jpg107-167",
+    "jpg229"
+  ],
+  "controls": [
+    {
+      "name": "p56_an_end",
+      "results": [
+        {
+          "hold": false,
+          "n": 85,
+          "correct": 85,
+          "natsPerRune": -2.3873003804006867
+        },
+        {
+          "hold": true,
+          "n": 85,
+          "correct": 85,
+          "natsPerRune": -2.3873003804006867
+        }
+      ]
+    },
+    {
+      "name": "p57_parable",
+      "results": [
+        {
+          "hold": false,
+          "n": 95,
+          "correct": 95,
+          "natsPerRune": -2.3978706500456153
+        },
+        {
+          "hold": true,
+          "n": 95,
+          "correct": 95,
+          "natsPerRune": -2.3978706500456153
+        }
+      ]
+    }
+  ],
+  "result": [
+    {
+      "hold": false,
+      "all": {
+        "lines": 594,
+        "legal": 594,
+        "firstInvalid": -1,
+        "totalRunes": 12956,
+        "legalRunes": 12956,
+        "natsPerRune": -4.999729532741322
+      },
+      "p0": {
+        "lines": 12,
+        "legal": 12,
+        "firstInvalid": -1,
+        "totalRunes": 262,
+        "legalRunes": 262,
+        "natsPerRune": -5.107014108166227
+      },
+      "perPage": [
+        {
+          "page": 0,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 262,
+          "legalRunes": 262,
+          "natsPerRune": -5.107014108166227
+        },
+        {
+          "page": 1,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 266,
+          "legalRunes": 266,
+          "natsPerRune": -5.001506380914839
+        },
+        {
+          "page": 2,
+          "lines": 9,
+          "legal": 9,
+          "firstInvalid": -1,
+          "totalRunes": 201,
+          "legalRunes": 201,
+          "natsPerRune": -4.838275599844834
+        },
+        {
+          "page": 3,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 217,
+          "legalRunes": 217,
+          "natsPerRune": -4.737900927950767
+        },
+        {
+          "page": 4,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 261,
+          "legalRunes": 261,
+          "natsPerRune": -5.044496181219878
+        },
+        {
+          "page": 5,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 263,
+          "legalRunes": 263,
+          "natsPerRune": -5.116793574411511
+        },
+        {
+          "page": 6,
+          "lines": 10,
+          "legal": 10,
+          "firstInvalid": -1,
+          "totalRunes": 196,
+          "legalRunes": 196,
+          "natsPerRune": -5.153382990322159
+        },
+        {
+          "page": 7,
+          "lines": 10,
+          "legal": 10,
+          "firstInvalid": -1,
+          "totalRunes": 208,
+          "legalRunes": 208,
+          "natsPerRune": -5.28201607133162
+        },
+        {
+          "page": 8,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 255,
+          "legalRunes": 255,
+          "natsPerRune": -5.002377570985614
+        },
+        {
+          "page": 9,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 268,
+          "legalRunes": 268,
+          "natsPerRune": -4.886652813798329
+        },
+        {
+          "page": 10,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 263,
+          "legalRunes": 263,
+          "natsPerRune": -4.946719276719475
+        },
+        {
+          "page": 11,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -5.152407084107622
+        },
+        {
+          "page": 12,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 261,
+          "legalRunes": 261,
+          "natsPerRune": -4.7482618832086585
+        },
+        {
+          "page": 13,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 272,
+          "legalRunes": 272,
+          "natsPerRune": -4.997560784125736
+        },
+        {
+          "page": 14,
+          "lines": 7,
+          "legal": 7,
+          "firstInvalid": -1,
+          "totalRunes": 137,
+          "legalRunes": 137,
+          "natsPerRune": -4.9400261548623625
+        },
+        {
+          "page": 15,
+          "lines": 8,
+          "legal": 8,
+          "firstInvalid": -1,
+          "totalRunes": 159,
+          "legalRunes": 159,
+          "natsPerRune": -4.886634910391248
+        },
+        {
+          "page": 16,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 267,
+          "legalRunes": 267,
+          "natsPerRune": -4.895818493951606
+        },
+        {
+          "page": 17,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -4.861861652654416
+        },
+        {
+          "page": 18,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 260,
+          "legalRunes": 260,
+          "natsPerRune": -5.042928945064382
+        },
+        {
+          "page": 19,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 271,
+          "legalRunes": 271,
+          "natsPerRune": -4.822258396721976
+        },
+        {
+          "page": 20,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 269,
+          "legalRunes": 269,
+          "natsPerRune": -4.915342982347257
+        },
+        {
+          "page": 21,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -5.121577404424291
+        },
+        {
+          "page": 22,
+          "lines": 6,
+          "legal": 6,
+          "firstInvalid": -1,
+          "totalRunes": 131,
+          "legalRunes": 131,
+          "natsPerRune": -5.294628894689109
+        },
+        {
+          "page": 23,
+          "lines": 10,
+          "legal": 10,
+          "firstInvalid": -1,
+          "totalRunes": 213,
+          "legalRunes": 213,
+          "natsPerRune": -4.980690402665286
+        },
+        {
+          "page": 24,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 270,
+          "legalRunes": 270,
+          "natsPerRune": -5.138894491520297
+        },
+        {
+          "page": 25,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -5.023186600854995
+        },
+        {
+          "page": 26,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 265,
+          "legalRunes": 265,
+          "natsPerRune": -4.961119820427157
+        },
+        {
+          "page": 27,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 234,
+          "legalRunes": 234,
+          "natsPerRune": -4.951377278696841
+        },
+        {
+          "page": 28,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 269,
+          "legalRunes": 269,
+          "natsPerRune": -4.896669133920498
+        },
+        {
+          "page": 29,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 277,
+          "legalRunes": 277,
+          "natsPerRune": -4.914754045090326
+        },
+        {
+          "page": 30,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 263,
+          "legalRunes": 263,
+          "natsPerRune": -5.162910771948595
+        },
+        {
+          "page": 31,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 269,
+          "legalRunes": 269,
+          "natsPerRune": -4.954126580883193
+        },
+        {
+          "page": 32,
+          "lines": 6,
+          "legal": 6,
+          "firstInvalid": -1,
+          "totalRunes": 121,
+          "legalRunes": 121,
+          "natsPerRune": -4.777717326747233
+        },
+        {
+          "page": 33,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 214,
+          "legalRunes": 214,
+          "natsPerRune": -4.8163561512917985
+        },
+        {
+          "page": 34,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 261,
+          "legalRunes": 261,
+          "natsPerRune": -4.994331588462453
+        },
+        {
+          "page": 35,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 271,
+          "legalRunes": 271,
+          "natsPerRune": -5.199381864604912
+        },
+        {
+          "page": 36,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 238,
+          "legalRunes": 238,
+          "natsPerRune": -5.0754770965593625
+        },
+        {
+          "page": 37,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 228,
+          "legalRunes": 228,
+          "natsPerRune": -5.067066033446806
+        },
+        {
+          "page": 38,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 228,
+          "legalRunes": 228,
+          "natsPerRune": -4.867283879954041
+        },
+        {
+          "page": 39,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 240,
+          "legalRunes": 240,
+          "natsPerRune": -5.068744402192811
+        },
+        {
+          "page": 40,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 231,
+          "legalRunes": 231,
+          "natsPerRune": -4.710057284545102
+        },
+        {
+          "page": 41,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -4.971965666657746
+        },
+        {
+          "page": 42,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 272,
+          "legalRunes": 272,
+          "natsPerRune": -4.94960579244811
+        },
+        {
+          "page": 43,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 274,
+          "legalRunes": 274,
+          "natsPerRune": -5.090720410361279
+        },
+        {
+          "page": 44,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 273,
+          "legalRunes": 273,
+          "natsPerRune": -4.954748899336038
+        },
+        {
+          "page": 45,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 270,
+          "legalRunes": 270,
+          "natsPerRune": -5.155480841292673
+        },
+        {
+          "page": 46,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 270,
+          "legalRunes": 270,
+          "natsPerRune": -5.063823700358691
+        },
+        {
+          "page": 47,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 274,
+          "legalRunes": 274,
+          "natsPerRune": -4.72345159145452
+        },
+        {
+          "page": 48,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 271,
+          "legalRunes": 271,
+          "natsPerRune": -5.065890833602962
+        },
+        {
+          "page": 49,
+          "lines": 3,
+          "legal": 3,
+          "firstInvalid": -1,
+          "totalRunes": 66,
+          "legalRunes": 66,
+          "natsPerRune": -4.943823061733744
+        },
+        {
+          "page": 51,
+          "lines": 4,
+          "legal": 4,
+          "firstInvalid": -1,
+          "totalRunes": 92,
+          "legalRunes": 92,
+          "natsPerRune": -5.261445463451054
+        },
+        {
+          "page": 52,
+          "lines": 12,
+          "legal": 12,
+          "firstInvalid": -1,
+          "totalRunes": 263,
+          "legalRunes": 263,
+          "natsPerRune": -5.277716377955932
+        },
+        {
+          "page": 53,
+          "lines": 9,
+          "legal": 9,
+          "firstInvalid": -1,
+          "totalRunes": 179,
+          "legalRunes": 179,
+          "natsPerRune": -4.970870828137926
+        },
+        {
+          "page": 54,
+          "lines": 11,
+          "legal": 11,
+          "firstInvalid": -1,
+          "totalRunes": 232,
+          "legalRunes": 232,
+          "natsPerRune": -5.336691160111075
+        },
+        {
+          "page": 55,
+          "lines": 4,
+          "legal": 4,
+          "firstInvalid": -1,
+          "totalRunes": 76,
+          "legalRunes": 76,
+          "natsPerRune": -4.736362322207179
+        }
+      ],
+      "completePages": 55
+    },
+    {
+      "hold": true,
+      "all": {
+        "lines": 594,
+        "legal": 345,
+        "firstInvalid": 2,
+        "totalRunes": 12956,
+        "legalRunes": 7488,
+        "natsPerRune": -4.936769152424195
+      },
+      "p0": {
+        "lines": 12,
+        "legal": 8,
+        "firstInvalid": 2,
+        "totalRunes": 262,
+        "legalRunes": 175,
+        "natsPerRune": -5.071735036342966
+      },
+      "perPage": [
+        {
+          "page": 0,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 2,
+          "totalRunes": 262,
+          "legalRunes": 175,
+          "natsPerRune": -5.071735036342966
+        },
+        {
+          "page": 1,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 4,
+          "totalRunes": 266,
+          "legalRunes": 156,
+          "natsPerRune": -4.758912080841759
+        },
+        {
+          "page": 2,
+          "lines": 9,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 201,
+          "legalRunes": 114,
+          "natsPerRune": -5.174656445674609
+        },
+        {
+          "page": 3,
+          "lines": 11,
+          "legal": 8,
+          "firstInvalid": 6,
+          "totalRunes": 217,
+          "legalRunes": 157,
+          "natsPerRune": -4.6696416813707025
+        },
+        {
+          "page": 4,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 1,
+          "totalRunes": 261,
+          "legalRunes": 177,
+          "natsPerRune": -4.918517469669781
+        },
+        {
+          "page": 5,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 0,
+          "totalRunes": 263,
+          "legalRunes": 133,
+          "natsPerRune": -5.139151170164212
+        },
+        {
+          "page": 6,
+          "lines": 10,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 196,
+          "legalRunes": 92,
+          "natsPerRune": -5.014233909561634
+        },
+        {
+          "page": 7,
+          "lines": 10,
+          "legal": 4,
+          "firstInvalid": 0,
+          "totalRunes": 208,
+          "legalRunes": 78,
+          "natsPerRune": -5.204205403283352
+        },
+        {
+          "page": 8,
+          "lines": 12,
+          "legal": 9,
+          "firstInvalid": 0,
+          "totalRunes": 255,
+          "legalRunes": 192,
+          "natsPerRune": -4.924820121114911
+        },
+        {
+          "page": 9,
+          "lines": 12,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 268,
+          "legalRunes": 113,
+          "natsPerRune": -5.08715347909645
+        },
+        {
+          "page": 10,
+          "lines": 12,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 263,
+          "legalRunes": 111,
+          "natsPerRune": -4.966153830775758
+        },
+        {
+          "page": 11,
+          "lines": 12,
+          "legal": 9,
+          "firstInvalid": 2,
+          "totalRunes": 273,
+          "legalRunes": 204,
+          "natsPerRune": -5.082545898191737
+        },
+        {
+          "page": 12,
+          "lines": 12,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 261,
+          "legalRunes": 107,
+          "natsPerRune": -4.90377250450433
+        },
+        {
+          "page": 13,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 0,
+          "totalRunes": 272,
+          "legalRunes": 133,
+          "natsPerRune": -4.9052986479372045
+        },
+        {
+          "page": 14,
+          "lines": 7,
+          "legal": 6,
+          "firstInvalid": 3,
+          "totalRunes": 137,
+          "legalRunes": 116,
+          "natsPerRune": -5.031443959112245
+        },
+        {
+          "page": 15,
+          "lines": 8,
+          "legal": 6,
+          "firstInvalid": 3,
+          "totalRunes": 159,
+          "legalRunes": 114,
+          "natsPerRune": -4.922024673736572
+        },
+        {
+          "page": 16,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 3,
+          "totalRunes": 267,
+          "legalRunes": 176,
+          "natsPerRune": -4.975459522831118
+        },
+        {
+          "page": 17,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 0,
+          "totalRunes": 273,
+          "legalRunes": 136,
+          "natsPerRune": -5.0377103519804605
+        },
+        {
+          "page": 18,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 2,
+          "totalRunes": 260,
+          "legalRunes": 131,
+          "natsPerRune": -4.872677742026692
+        },
+        {
+          "page": 19,
+          "lines": 12,
+          "legal": 10,
+          "firstInvalid": 5,
+          "totalRunes": 271,
+          "legalRunes": 223,
+          "natsPerRune": -4.736987206754602
+        },
+        {
+          "page": 20,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 1,
+          "totalRunes": 269,
+          "legalRunes": 160,
+          "natsPerRune": -4.8057222369149155
+        },
+        {
+          "page": 21,
+          "lines": 12,
+          "legal": 4,
+          "firstInvalid": 0,
+          "totalRunes": 273,
+          "legalRunes": 94,
+          "natsPerRune": -5.087118841418405
+        },
+        {
+          "page": 22,
+          "lines": 6,
+          "legal": 3,
+          "firstInvalid": 0,
+          "totalRunes": 131,
+          "legalRunes": 63,
+          "natsPerRune": -5.075173391753243
+        },
+        {
+          "page": 23,
+          "lines": 10,
+          "legal": 5,
+          "firstInvalid": 2,
+          "totalRunes": 213,
+          "legalRunes": 107,
+          "natsPerRune": -4.98468421360034
+        },
+        {
+          "page": 24,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 1,
+          "totalRunes": 270,
+          "legalRunes": 180,
+          "natsPerRune": -5.007234350790243
+        },
+        {
+          "page": 25,
+          "lines": 12,
+          "legal": 2,
+          "firstInvalid": 0,
+          "totalRunes": 273,
+          "legalRunes": 42,
+          "natsPerRune": -4.580632260734902
+        },
+        {
+          "page": 26,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 0,
+          "totalRunes": 265,
+          "legalRunes": 178,
+          "natsPerRune": -4.785484601789955
+        },
+        {
+          "page": 27,
+          "lines": 11,
+          "legal": 8,
+          "firstInvalid": 0,
+          "totalRunes": 234,
+          "legalRunes": 171,
+          "natsPerRune": -4.75185418665964
+        },
+        {
+          "page": 28,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 0,
+          "totalRunes": 269,
+          "legalRunes": 185,
+          "natsPerRune": -4.8553496824351505
+        },
+        {
+          "page": 29,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 2,
+          "totalRunes": 277,
+          "legalRunes": 140,
+          "natsPerRune": -4.963023476318288
+        },
+        {
+          "page": 30,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 0,
+          "totalRunes": 263,
+          "legalRunes": 128,
+          "natsPerRune": -4.859295881417045
+        },
+        {
+          "page": 31,
+          "lines": 12,
+          "legal": 5,
+          "firstInvalid": 1,
+          "totalRunes": 269,
+          "legalRunes": 117,
+          "natsPerRune": -4.841309102808179
+        },
+        {
+          "page": 32,
+          "lines": 6,
+          "legal": 4,
+          "firstInvalid": 0,
+          "totalRunes": 121,
+          "legalRunes": 74,
+          "natsPerRune": -4.879633103201857
+        },
+        {
+          "page": 33,
+          "lines": 11,
+          "legal": 7,
+          "firstInvalid": 0,
+          "totalRunes": 214,
+          "legalRunes": 138,
+          "natsPerRune": -4.64816556839934
+        },
+        {
+          "page": 34,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 2,
+          "totalRunes": 261,
+          "legalRunes": 131,
+          "natsPerRune": -5.153869951926473
+        },
+        {
+          "page": 35,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 1,
+          "totalRunes": 271,
+          "legalRunes": 177,
+          "natsPerRune": -5.226639466335575
+        },
+        {
+          "page": 36,
+          "lines": 11,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 238,
+          "legalRunes": 97,
+          "natsPerRune": -4.847635765933692
+        },
+        {
+          "page": 37,
+          "lines": 11,
+          "legal": 5,
+          "firstInvalid": 4,
+          "totalRunes": 228,
+          "legalRunes": 99,
+          "natsPerRune": -4.788239661847353
+        },
+        {
+          "page": 38,
+          "lines": 11,
+          "legal": 7,
+          "firstInvalid": 2,
+          "totalRunes": 228,
+          "legalRunes": 151,
+          "natsPerRune": -4.852650499840236
+        },
+        {
+          "page": 39,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 6,
+          "totalRunes": 240,
+          "legalRunes": 137,
+          "natsPerRune": -4.955717832828934
+        },
+        {
+          "page": 40,
+          "lines": 11,
+          "legal": 7,
+          "firstInvalid": 3,
+          "totalRunes": 231,
+          "legalRunes": 145,
+          "natsPerRune": -4.6958213002119695
+        },
+        {
+          "page": 41,
+          "lines": 12,
+          "legal": 8,
+          "firstInvalid": 1,
+          "totalRunes": 273,
+          "legalRunes": 178,
+          "natsPerRune": -4.99548000177929
+        },
+        {
+          "page": 42,
+          "lines": 12,
+          "legal": 10,
+          "firstInvalid": 5,
+          "totalRunes": 272,
+          "legalRunes": 230,
+          "natsPerRune": -4.922536406716702
+        },
+        {
+          "page": 43,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 3,
+          "totalRunes": 274,
+          "legalRunes": 162,
+          "natsPerRune": -5.003890334593258
+        },
+        {
+          "page": 44,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 2,
+          "totalRunes": 273,
+          "legalRunes": 158,
+          "natsPerRune": -4.779528022857867
+        },
+        {
+          "page": 45,
+          "lines": 12,
+          "legal": 11,
+          "firstInvalid": 0,
+          "totalRunes": 270,
+          "legalRunes": 248,
+          "natsPerRune": -5.030563432572373
+        },
+        {
+          "page": 46,
+          "lines": 12,
+          "legal": 6,
+          "firstInvalid": 0,
+          "totalRunes": 270,
+          "legalRunes": 139,
+          "natsPerRune": -4.73050923895893
+        },
+        {
+          "page": 47,
+          "lines": 12,
+          "legal": 5,
+          "firstInvalid": 0,
+          "totalRunes": 274,
+          "legalRunes": 114,
+          "natsPerRune": -4.627876044034109
+        },
+        {
+          "page": 48,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 0,
+          "totalRunes": 271,
+          "legalRunes": 155,
+          "natsPerRune": -4.9051420688959055
+        },
+        {
+          "page": 49,
+          "lines": 3,
+          "legal": 1,
+          "firstInvalid": 0,
+          "totalRunes": 66,
+          "legalRunes": 21,
+          "natsPerRune": -5.42335201970276
+        },
+        {
+          "page": 51,
+          "lines": 4,
+          "legal": 4,
+          "firstInvalid": -1,
+          "totalRunes": 92,
+          "legalRunes": 92,
+          "natsPerRune": -5.13593870043982
+        },
+        {
+          "page": 52,
+          "lines": 12,
+          "legal": 7,
+          "firstInvalid": 1,
+          "totalRunes": 263,
+          "legalRunes": 155,
+          "natsPerRune": -5.2135433612319595
+        },
+        {
+          "page": 53,
+          "lines": 9,
+          "legal": 6,
+          "firstInvalid": 2,
+          "totalRunes": 179,
+          "legalRunes": 116,
+          "natsPerRune": -4.9102353120480835
+        },
+        {
+          "page": 54,
+          "lines": 11,
+          "legal": 6,
+          "firstInvalid": 3,
+          "totalRunes": 232,
+          "legalRunes": 122,
+          "natsPerRune": -5.343910566454442
+        },
+        {
+          "page": 55,
+          "lines": 4,
+          "legal": 2,
+          "firstInvalid": 2,
+          "totalRunes": 76,
+          "legalRunes": 46,
+          "natsPerRune": -5.0165053636480454
+        }
+      ],
+      "completePages": 1
+    }
+  ]
+}
