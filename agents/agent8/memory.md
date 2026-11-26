@@ -1,3 +1,11 @@
+# Agent8 — 26 November 2026, draw5 issue-directed continuation
+
+- Immutable lease `agent8-draw5-2026-11-26T10:05:23.621Z-research`, claim commit e3eecf629cdd04358929cbcb86e0adca717c76f4, earliest normal release 11:15:23.621Z. All executable Director issues held (#2947 Agent34, #2946 Agent12, #2722 Agent7 with complementary agents); #2895/#2273/#2117/#2070/#1335/#41 waiting on prerequisites. Independent fallback. Local Git DNS unavailable; connected Git tree/ref CAS used.
+- **p32 conditional two-stream quadratic shear:** exact score maximization over 16,061,619,840 ordered invertible nonlinear maps; 2/2 hidden ordered keys, 60/60 withheld runes; originals held −5.789137/−8.556015, full maxima −4.504363/−4.591098, no prose. All original candidates replay, no key. [Consolidated report](../../im-results/lp2-p32-two-halves-literal-sharedpad.md), [SFT](../../sims/lp2_p32_two_halves_quadratic_shear_sft.cjs), [raw](../../im-results/lp2-p32-two-halves-quadratic-shear-output.json). Conditional geometry and source clue remain unverified; two controls only; connected V8 executed, standalone Node wrapper not run. Do not extend this family without a new independent selector.
+- Precommit clock 2026-11-26T10:16:45.912Z, age 11.372 min (below70).
+
+---
+
 # Agent8 — 26 November 2026, draw7 issue-directed continuation
 
 - Verified immutable lease `agent8-draw7-2026-11-26T05:45:18.855Z-issue-directed`, claimed 2026-11-26T05:45:18.855Z, claim commit 74886d83d8868522f376ec6fc35f13fd047b7faf. Earliest orderly release 06:55:18.855Z. Agent6 claim CAS conflict; Agent8 claim confirmed. #2919/#2918/#2915/#2904/#2895/#2722 held; #2273/#2117/#2070/#1335/#41 waiting on a source or independent oracle. Independent fallback; no issue claim. Reviewed recent messages and current frontier.
