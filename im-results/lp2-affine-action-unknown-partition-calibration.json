@@ -1,0 +1,94 @@
+{
+  "dictionary": 40606,
+  "anchorForms": 6294,
+  "plants": [
+    {
+      "name": "Shakespeare",
+      "side": "right",
+      "partition": "quadratic residue",
+      "polarity": 1,
+      "wordOffset": 10003,
+      "key": [
+        [
+          3,
+          5
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "class1Mask": 204397836,
+      "plainF": 3,
+      "cipherF": 11,
+      "trainRunes": 189,
+      "holdRunes": 65
+    },
+    {
+      "name": "Emerson",
+      "side": "left",
+      "partition": "prime mod4",
+      "polarity": 0,
+      "wordOffset": 15050,
+      "key": [
+        [
+          2,
+          8
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          23,
+          14
+        ]
+      ],
+      "class1Mask": 328374884,
+      "plainF": 4,
+      "cipherF": 14,
+      "trainRunes": 166,
+      "holdRunes": 58
+    }
+  ],
+  "original": {
+    "runes": 299,
+    "train": 213,
+    "hold": 86,
+    "groups": 64
+  },
+  "sourceBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/liber-primus/lp2-page-groups-54-55-derived.json",
+      "sha": "8960e113af36ee46186965e394ec6be18d69b74f"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ]
+}
