@@ -24,7 +24,7 @@ function experiment(raw,opts={}){
  function exact(K,tape,prior,previous=-1){let A=prior?Float64Array.from(prior):Float64Array.from({length:q},()=>1/q),B=new Float64Array(q),ll=0;for(let i=0;i<tape.length;i++){B.fill(0);const x=tape[i],y=i?tape[i-1]:previous;for(let j=0;j<q;j++){const w=A[j];if(!w)continue;transitions(K,j,x,y,(next,plain,pr)=>{B[next]+=w*p[plain]*pr},true);}
   let z=B.reduce((a,b)=>a+b,0);if(!z)return {ll:-Infinity,end:[]};ll+=Math.log(z);for(let j=0;j<q;j++)A[j]=B[j]/z;}return {ll,end:Array.from(A)}}
  function nullLL(tape,previous=-1){let ll=0;for(let i=0;i<tape.length;i++){const y=i?tape[i-1]:previous;ll+=y<0?-Math.log(M):Math.log((tape[i]===y?1-rho:1)/(M-rho))}return ll}
- function decode(K,tape){const S=q*M,A=new Float64Array(S),B=new Float64Array(S),bp=new Int16Array(tape.length*S).fill(-1),bs=new Int8Array(tape.length*S);A.fill(-Infinity);for(let i=0;i<tape.length;i++){B.fill(-Infinity);const x=tape[i],y=i?tape[i-1]:-1;
+ function decode(K,tape){const S=q*M,A=new Float64Array(S),B=new Float64Array(S),bp=new Int16Array(tape.length*S).fill(-1),bs=new Int16Array(tape.length*S);A.fill(-Infinity);for(let i=0;i<tape.length;i++){B.fill(-Infinity);const x=tape[i],y=i?tape[i-1]:-1;
   for(let j=0;j<q;j++)transitions(K,j,x,y,(next,plain,pr,skips)=>{const b=next*M+plain,pen=Math.log(pr);if(i===0){const v=lp[plain]-Math.log(q)+pen;if(v>B[b]){B[b]=v;bp[i*S+b]=j;bs[i*S+b]=skips}}else{let v=-Infinity,z=-1;for(let prev=0;prev<M;prev++){const a=j*M+prev,h=A[a]+lb[prev][plain]+pen;if(h>v){v=h;z=a}}if(v>B[b]){B[b]=v;bp[i*S+b]=z;bs[i*S+b]=skips}}},false);
   A.set(B);
  }
@@ -35,20 +35,20 @@ function experiment(raw,opts={}){
  }
  function match(K){return Math.max(...Array.from({length:q},(_,d)=>K.filter((x,i)=>x===truth[(i+d)%q]).length))}
  // Approximate independent geometric skip model for key proposals, with exact collision receiver below.
- const alpha=new Float64Array(T*q),scale=new Float64Array(T),beta=new Float64Array(q),bb=new Float64Array(q),occ=new Float64Array(q*M),E=new Float64Array(q*M),Q=new Float64Array(q*M),nQ=new Float64Array(q*M),logs=new Float64Array(M),jump=[1-eps,(1-eps)*eps,eps*eps],iterN=opts.iterations??20,anchorN=opts.anchorIterations??3;
+ const alpha=new Float64Array(T*q),scale=new Float64Array(T),beta=new Float64Array(q),bb=new Float64Array(q),occ=new Float64Array(q*M),E=new Float64Array(q*M),Q=new Float64Array(q*M),nQ=new Float64Array(q*M),logs=new Float64Array(M),jump=[1-eps,(1-eps)*eps,eps*eps],iterN=opts.iterations??20,anchorN=opts.anchorIterations??3,anchorLen=opts.anchorLen??q;
  const prev=Array.from({length:3},(_,r)=>Int32Array.from({length:q},(_,j)=>(j-1-r+q)%q)),next=Array.from({length:3},(_,r)=>Int32Array.from({length:q},(_,j)=>(j+1+r)%q));
  function fb(start,anchor){for(let j=0;j<q;j++)for(let x=0;x<M;x++){let z=0;for(let k=0;k<M;k++)z+=Q[j*M+k]*em[k][x];E[j*M+x]=z}
-  let ll=0;for(let i=0;i<T;i++){const a=i*q,b=a-q,x=c[i],force=anchor&&i>=start&&i<start+q?i-start:-1;let z=0;
+  let ll=0;for(let i=0;i<T;i++){const a=i*q,b=a-q,x=c[i],force=anchor&&i>=start&&i<start+anchorLen?i-start:-1;let z=0;
    for(let j=0;j<q;j++){const v=force>=0&&j!==force?0:E[j*M+x]*(i===0?1/q:jump[0]*alpha[b+prev[0][j]]+jump[1]*alpha[b+prev[1][j]]+jump[2]*alpha[b+prev[2][j]]);alpha[a+j]=v;z+=v}if(!(z>0))throw Error("zero forward");scale[i]=z;ll+=Math.log(z);for(let j=0;j<q;j++)alpha[a+j]/=z}
   occ.fill(0);beta.fill(1);
   for(let i=T-1;i>=0;i--){const a=i*q,x=c[i];let z=0;for(let j=0;j<q;j++)z+=alpha[a+j]*beta[j];for(let j=0;j<q;j++)occ[j*M+x]+=alpha[a+j]*beta[j]/z;
-   if(i){const force=anchor&&i>=start&&i<start+q?i-start:-1;for(let j=0;j<q;j++){let v=0;for(let r=0;r<3;r++){const k=next[r][j];if(force<0||k===force)v+=jump[r]*E[k*M+x]*beta[k]}bb[j]=v/scale[i]}beta.set(bb)}
+   if(i){const force=anchor&&i>=start&&i<start+anchorLen?i-start:-1;for(let j=0;j<q;j++){let v=0;for(let r=0;r<3;r++){const k=next[r][j];if(force<0||k===force)v+=jump[r]*E[k*M+x]*beta[k]}bb[j]=v/scale[i]}beta.set(bb)}
   }return ll}
  function update(temp,damp){for(let j=0;j<q;j++){let best=-Infinity;for(let k=0;k<M;k++){let z=0;for(let x=0;x<M;x++)z+=occ[j*M+x]*lp[mod(x-k)];logs[k]=z/temp;best=Math.max(best,logs[k])}let z=0;for(let k=0;k<M;k++)z+=Math.exp(logs[k]-best);for(let k=0;k<M;k++)nQ[j*M+k]=damp*Q[j*M+k]+(1-damp)*Math.exp(logs[k]-best)/z}Q.set(nQ)}
  function hard(){return Array.from({length:q},(_,j)=>{let k=0;for(let h=1;h<M;h++)if(Q[j*M+h]>Q[j*M+k])k=h;return k})}
- const seedStarts=opts.seedStarts??Array.from({length:width},(_,i)=>Math.floor((T-q)*(i+.5)/width)),beam=[],layers=[];
- for(const start of seedStarts){for(let j=0;j<q;j++)for(let k=0;k<M;k++)Q[j*M+k]=p[mod(c[start+j]-k)];const history=[];let K;
-  for(let it=0;it<iterN;it++){const ll=fb(start,it<anchorN),temp=Math.max(opts.endTemp??1,(opts.startTemp??8)*(1-it/Math.max(1,iterN-1)));update(temp,opts.damping??.2);K=hard();history.push({it,ll,exact:exact(K,c).ll,...(mode==="plant"?{match:match(K)}:{})})}
+ const seedStarts=opts.seedStarts??Array.from({length:width},(_,i)=>Math.floor((T-anchorLen)*(i+.5)/width)),beam=[],layers=[];
+ for(const start of seedStarts){for(let j=0;j<q;j++)for(let k=0;k<M;k++)Q[j*M+k]=j<anchorLen?p[mod(c[start+j]-k)]:1/M;const history=[];let K;
+  for(let it=0;it<iterN;it++){const ll=fb(start,it<anchorN),temp=Math.max(opts.endTemp??1,(opts.startTemp??8)*(1-it/Math.max(1,iterN-1)));update(temp,opts.damping??.2);K=hard();history.push({it,ll,exact:(it===iterN-1||opts.scoreEvery&&it%opts.scoreEvery===0)?exact(K,c).ll:undefined,...(mode==="plant"?{match:match(K)}:{})})}
   const ll=fb(start,false);K=hard();beam.push({K,ll});layers.push({start,history,final:history.at(-1)})}
  const can=K=>Array.from({length:q},(_,j)=>K.slice(j).concat(K.slice(0,j)).join(",")).sort()[0],seen=new Set(),candidates=[];
  for(const x of beam){const key=can(x.K);if(seen.has(key))continue;seen.add(key);const a=exact(x.K,c);candidates.push({K:x.K,ll:x.ll,exact:a.ll,fitGain:a.ll-nullLL(c),end:a.end,...(mode==="plant"?{match:match(x.K)}:{})})}
