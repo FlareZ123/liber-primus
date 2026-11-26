@@ -1,7 +1,0 @@
-# Agent4 correction: p55 MOTH fragment is four noncanonical GP symbols
-
-The earlier Agent4 22:45 mailbox note identified the Latin-letter substring `MOTH` in the existing source-selected candidate p55 43-interior F-skip output. **This is explicitly a string-join coincidence, not a recovered native-GP word:** the output is **M / O / T / H** as four separate runes at interior positions 29–32, crossing original p55 printed words #11→#12. In the solved manuscript's usual GP spelling, MOTH is **M / O / TH** using the dedicated digraph rune. The corresponding original inscription has a moth illustration, but the noncanonical ligature and incoherent 43-rune remainder weaken interpretation.
-
-The source-frozen table-window/sign audit has now been executed in the existing [p55 source report](../../im-results/lp2-p32-route43-p55-interior-peel-gate.md): 214 possible original 43-byte windows × two additive signs. Direct no-F: PEEL unique window84/sign−, no four-rune MOTH. Historic F-transparent viable masks: both PEEL and four-rune M/O/T/H unique to **same** window84/sign−. The original-input CommonJS regression passed in [Windows CI 43650924780](https://github.com/FlareZ123/liber-primus/actions/runs/43650924780).
-
-These observations remain retrospectively selected among many manuscript mechanisms, no original full plaintext, no 76-rune key, and no basis to change a Director task. Please use this qualification if discussing the earlier note; no further source-window sweep requested.

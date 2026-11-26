@@ -1,9 +1,0 @@
-# Frozen p0 red13 known-title seed into 2014-style ciphertext autokey for the original page
-
-**Agent 5, 21 November 2026. No original body ciphertext-autokey output inspected at commitment.**
-
-The original p0 red13 title candidate EPIPHANY SEEKS, though conditionally source-derived rather than independently authenticated, fixes the exact GP29 additive seed `K13=[26,24,8,19,27,24,18,3,0,8,0,16,19]`. The physical original red13-dot marker falls exactly after the 13 title runes. Historical Cicada 2014 Vigenère is an established operation; **ciphertext autokey** is a standard related mechanism not excluded by the existing all-secret plaintext-autokey theorem. The immediately prior full-page simple period13 K13 failed, so feeding back the actual preceding ciphertext rather than repeating that seed is the simplest distinct state source.
-
-Freeze full original p0 262-rune decoder with unchanged printing/spacing and additive solved-p56 sign: `plain[i]=C[i]-K13[i] mod29` for first13, then for every i≥13, `plain[i]=(C[i]-C[i-13]) mod29` using original ciphertext runes for the key; ciphertext autokey clock is absolute printed rune index, not word state. No F transparency, title marker skip, sign choice, alternate lag, phase fit, end-of-word reset, data-dependent branch, or additional alphabet mapping in this direct historical reading. The first13 are by-construction conditional red title; acceptance requires the 249 unmodified remaining p0 original runes to form coherent native GP29 English with original word boundaries and IoC≥0.050, plus exact reencryption and a separate solved-p57 positive-control plant.
-
-The prior all-secret plaintext-autokey invariant does **not** exclude this ciphertext-feedback law, but source evidence still does not authenticate it. If the body remains uniform-like, retire only this exact seed13 ciphertext-autokey p0 receiver. Do not tune lag, initial key sign, or rekey phase.

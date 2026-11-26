@@ -1,2 +1,0 @@
-# Preserve original InfoTomb response prefix LF bytes, including on Windows checkouts.
-resources/historical/cicada2016-4gq25-20160109-prefix.txt text eol=lf

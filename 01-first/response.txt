@@ -1,0 +1,14 @@
+Participant code:
+Prior exposure (including known solutions, discussions, or images):
+Start time UTC:
+End time UTC:
+Source feature and location:
+Recognized representation / data type:
+Exact operation, input, output, parameters and reading order:
+Source evidence for each choice:
+Alternative interpretation:
+Prediction made before continuation is seen (location, exact value or relation, calculation):
+Falsifier:
+Missing input / limits:
+Offline resources or software used:
+Confidence and reasons:

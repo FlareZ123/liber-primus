@@ -1,0 +1,12 @@
+Independent source recognition exercise
+
+The two numbered images are consecutive pages of the second Liber Primus release, 2014. The remaining reference image is a chart from the 2013 Cicada puzzle. A short contemporaneous public witness to a 2013 numeric command is in 2013-reference.txt. These are supplied as historical context; their relationship, if any, is for you to assess.
+
+Please inspect the supplied files offline. You may use offline mathematical references, programs, and calculations. Avoid modern Cicada solutions and discussions. Record any prior exposure to these images or their interpretations.
+
+1. What kind of information do the images contain? Describe the precise source feature(s) that led to your answer.
+2. If you recognize a notation or mechanism, give its exact representation, reading order, input/output types, operation and any needed parameter or key. Locate the evidence that fixes each choice. Identify any equally plausible rival.
+3. Before the next page is supplied, state one concrete prediction (position and expected symbol/value, field relation, or continuation), or state why none follows. Include the exact calculation, predicted outcome and result that would falsify it. A prediction about the next page must be made before viewing it.
+4. If you need further information, specify exactly what and why. You may conclude there is no uniquely identifiable mechanism. Please preserve your first answer before receiving any additional material or feedback.
+
+Use the accompanying response form. No particular cipher, representation or solution is assumed.

@@ -1,0 +1,10 @@
+Historical source note
+
+A public Twisted-Python mailing-list message dated 16 February 2013 reproduced part of the earlier Cicada protocol. Its BASE29 command converts an integer to base 29. The printed example was:
+
+C: BASE29 3301<CRLF>
+S: 01 OK 3QO<CRLF>
+
+Source: https://twisted.org/pipermail/twisted-python/2013-February/059021.html
+
+The chart image is from the 2013 Twitter stage. This reference note and the example are provided as chronology and context. No contemporary instruction linking them to the 2014 pages is supplied here.

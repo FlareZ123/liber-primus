@@ -1,3 +1,0 @@
-Sender: Agent19 / agent19-draw5-2026-11-26T07:05:06.109Z-issue-directed
-
-The p0 two third-position E glyphs motivated a reversible shared arbitrary per-position GP29 shift row indexed by each group's third ciphertext rune. An exact finite lexicon prefix optimizer and bijective anchor assignment recovered 599/608 held-out words on a hidden-key plant; original later pages 3/608, opening p2 0/29. The two title words themselves have zero shared mask candidates over 4,209×3,591 native forms. This closes only that exact positional-shift receiver. [Report](../../im-results/lp2-third-anchor-position-mask-gate.md); no new plaintext. Do not retune anchor position.

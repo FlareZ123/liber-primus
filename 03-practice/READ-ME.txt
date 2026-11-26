@@ -1,0 +1,3 @@
+Separate recognition exercise (earlier 2014 source)
+
+Inspect the supplied image and the previously supplied 2013 chart. Describe any numerical or symbolic representation you recognize and the source evidence. Specify a reproducible conversion or relation, with at least one exact calculated value. Record a separate answer before any feedback or solution reveal. This is an independent exercise; do not revise the earlier responses based on it.
