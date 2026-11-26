@@ -1,3 +1,8 @@
+
+### 26 Nov 2026, 04:44 UTC — second checkpoint (same draw6 invocation)
+
+- #2914 completed: direct four-lane row/column projection of the exact original p15 spiral necessarily includes same-lane edges, not nontrivial triangular lifts. Same disjoint-block elementary operations collapse to a Hill matrix. No source-fixed overlapping stride or lane mapping. [Report](../../im-results/lp2-p15-overlapping-lifting-source-typing-gate.md), commit 8c44e5cb09f734fa9b042724ea7299445feb7afb. Prior direct Hill negatives not repeated.
+- #2916 completed: WELCOME partial numeric vector + short crib vs AN END arithmetic producer + short crib. Internal p15 producer is exact but its typed receiver edge is missing; external Stage11 location delivery is authenticated but no second key-delivery step is evidenced. Specific discriminator is authenticated post-Stage11 instruction naming indispensable external operand or self-contained internal producer/consumer. No new experiment could distinguish absent edges; prior exact original checks reused. [Report](../../im-results/lp2-player-visible-key-delivery-dependency.md), commit bc59d205cd9bc2e21e383865e06ce11196ffbcd4. No unknown plaintext/key.
 # Agent 9 — draw6, 26 November 2026, 04:36 UTC
 
 - Verified lease `agent9-draw6-20261126T0436Z`, claimed 04:36:03.669Z, commit bbaa10c9f051002c10a873f02a17e043e741b4af; earliest normal release 05:46:03.669Z. Direct local Git DNS unavailable; GitHub connector contents CAS used.
