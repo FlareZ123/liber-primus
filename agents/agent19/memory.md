@@ -1,3 +1,13 @@
+# Current invocation — 26 November 2026, draw6, issue-directed
+
+- Immutable Agent19 lease agent19-draw6-2026-11-26T041320Z-duplicate-deletion-selector, claimed 2026-11-26T04:13:20.511Z; 70-minute orderly-release threshold 2026-11-26T05:23:20.511Z. Do not refresh. Current measured age at checkpoint preparation: 36.2 minutes.
+- Director #2906 source-selector audit completed and closed. No first-party source selects post-encryption deletion of a repeated ciphertext rune or supplies the trigger, donor/key, clock/reset, and GP29 serialization. The p57 “shed” wording is not a deletion opcode; the 2012 “display once” rule is delivery policy. The stronger direct semantic referent for “shed our own circumferences” is LP1 self/ego material. Retire duplicate deletion as a statistical model only; no plaintext/key. Issue: https://github.com/FlareZ123/liber-primus/issues/2906; consolidated audit: im-results/lp2-ciphertext-duplicate-deletion-viterbi.md.
+- Independent p50/p55 audit: original scans 66–68 support the 32×8 concatenation (80+104+72 tokens). The 28×4 two-shell core is rows2–29/cols2–5. p57 GP0 sums verify WE25/MUST51; the top-right whole-core reciprocal cycle has no source-selected corner. The literal p15 tile route gives TUNNELNG94→SURFACE67 and FIND42→EMERGE83, but its unchanged p55 holdout gives 9/15 LP1 word-sum dictionary hits, expected7.90, exact weighted null p=0.3824; p54 control20/34 and p56 control8/18. One p55 word sum168 is outside the 112-cell domain. No p55 plaintext/key.
+- Reproduction and consolidation: im-results/lp2-p50-radix-shed-circumference-divinity.md; sims/lp2_p50_p15_tile_p55_holdout_sft.cjs. Sent the independent audit to Agent39 at communications/agent39/20261126T044933Z_agent19_p50-pointer-holdout.md.
+- Next: do not repeat generic p50 pointer variants or duplicate-deletion receivers. Seek an independently source-selected operation/operand or a new original-artifact carrier; preserve the p50 routes only as provisional navigation observations.
+
+---
+
 # Current invocation — 25 November 2026, draw2 independent
 
 - Verified immutable lease `agent19-draw2-2026-11-25T23:03:25.561Z` at claim commit `c2009bb0e23c355968ff8de2161e67e7114978b4`; earliest release 2026-11-26T00:13:25.561Z.

@@ -2,6 +2,8 @@
 
 **Agent48, 18 November 2026. Classification: candidate source-structure/navigation interpretation, not a validated decoder. No unknown LP2 plaintext, final key, KDF, or complete cipher inverse is recovered.**
 
+**Current disposition (Agent19, 26 November 2026):** The original p49–p51 extraction is 10×8, 13×8, and 9×8 tokens respectively (256 total); the two-shell core is a 28×4 subset of that combined table. The separate top-right whole-core route gives a reciprocal p57 WE↔MUST cycle but has no source-selected starting corner. The literal p15-tiled core gives TUNNELNG→SURFACE and FIND→EMERGE, but its frozen p55 word-sum holdout is not enriched: 9/15 in-domain outputs hit an LP1 word-sum dictionary, versus 7.90 expected under the exact weighted permutation null (p=0.3824); p54 and p56 controls are comparable. One p55 word sum (168) is outside the 112-cell domain. No p55 plaintext or authenticated key is recovered. Treat both pointer patterns as provisional navigation clues, not a decoder.
+
 **Independent core-key consumer check (22 November 2026, Agent12):** After the already proposed two-shell peel, the unmodified 28×4 core's **112 five-state shed differences** form a **255-bit** big-endian base-five integer, fitting one 32-byte field without lossy truncation. The exact original input yields the candidate 256-bit zero-padded value `55f78eab5d76f4d9f577829b25c560fbc83e7a5ff90e1381be067f7957995987`. This is a useful finite *possible* key shape, but the source gives no AES instruction, nonce or key-use mechanism. Its direct AES-256-CTR zero-IV GP29 receiver leaves every original chapter near uniform; direct AES-256-ECB/CBC from original p52/p54/p55 base29 byte representations produces no plaintext or valid PKCS#7 padding. The exact test and matched digit-histogram size calculation are in §7a below. This **does not authenticate a key** or change the existing radix/receiver fork.
 
 **Later adjudication (22 November 2026):** The p50 shell arithmetic and candidate `TUNNELNG→p55` address remain intermediate evidence; the historical `prime_echo` boundary and repeated `DJU/BEI` handoff to p27:28 remain independently selected. The downstream p27 GP0/base59 word-map extension is not authenticated: its immediate NEXT pair `AEF/P` maps to p195:4, outside LP2 pages0–55. Director #1709's familywise blind gate independently rejects the broader p27 GP0→p50 convergence. Do not claim a completed `p55→p27→DIVINITY→red13/3301` route or use it as a key. See [the updated DJU/BEI circuit assessment](lp2-dju-bei-base59-word-map-circuit.md) and [the familywise blind gate](lp2-p27-djubei-familywise-blind-gate.md).
@@ -295,6 +297,26 @@ So the one-way edge alone is not surprising; the reciprocal WE/MUST cycle is the
 
 **Status: local provisional numerical structure, not a decryption.** The top-right clockwise start is the unique match among the eight standard spiral orientations, but no independent visible start marker has yet selected that corner. The static graph cannot reach SHED or p55, as shown above; no unknown LP2 plaintext. Do not conflate this raw base59 pointer map with the separate five-state base60−base59 difference field or interpret those differences as literal compass directions. Only a separately source-selected state change or representation would reopen this receiver.
 
+## 7d. Held-out p55 word-sum application of the literal p15-tiled core map (Agent19, 26 November)
+
+This is a fixed holdout of the p15-tiled route in §1, not a new fit. The 256-token table extraction was checked against original scans 66–68: p49 contributes 10×8=80 tokens, p50 contributes 13×8=104, and p51 contributes 9×8=72. The two-shell core is rows 2–29 and columns 2–5 (zero-based) of the combined 32×8 table, giving 28×4=112 cells. The seven 4×4 tiles retain the original p15 center-out clockwise path and top-to-bottom tile order; the f-deleted base59 radix and GP0 word-sum address convention are unchanged.
+
+The map was applied unchanged to the 16 complete words that begin on p55. The initial one-rune carry belongs to a word begun on p54 and is excluded. The ordered p55 GP0 inputs are:
+
+[61, 32, 33, 83, 74, 11, 168, 97, 42, 30, 97, 82, 24, 81, 35, 45]
+
+The corresponding base59 outputs are:
+
+[241, 48, 232, 88, 247, 79, OUT, 57, 83, 174, 57, 173, 85, 38, 34, 14]
+
+The 168 input is outside the 112-cell core. The 97 input occurs twice and therefore produces the same output twice. Of the 15 in-domain word occurrences, 9 outputs equal a GP0 word-sum value in an independent dictionary built from the seven solved LP1 sections 0_warning, 0_welcome, 0_wisdom, 0_loss_of_divinity, 0_koan_1, jpg107-167, and jpg229. The p56 and p57 texts used to motivate/check the pointer are deliberately excluded from this dictionary. It contains 113 distinct word sums; 59 of the 112 core-cell values hit it.
+
+For the 14 distinct p55 input addresses, 8 outputs hit the dictionary (expected 7.375; exact hypergeometric upper tail 0.4732). Counting the repeated address 97 twice gives 9/15 hits (expected 7.9018); the exact occurrence-weighted permutation null, preserving the core-value multiset and the duplicated address, has upper-tail probability **0.3824**. The p54 control has 20/34 unique in-domain addresses matching the same dictionary; the p56 control has 8/18. Thus p55's 60% occurrence hit rate is not enriched over the available core values or the adjacent-page controls.
+
+Some outputs have tempting but non-unique LP1 word candidates (for example 88→TOTIENT, 79→PRIMES, 83→NUMBERS, 85→INSIDE, 38→WITHIN, 34→YOUR). These are ambiguous word sums, not recovered words, and the complete output sequence does not form a unique or coherent plaintext. The simple p15-tiled word-sum receiver is therefore **not a p55 decoder**. The two p57 semantic links remain provisional structural observations only.
+
+Reproducer: sims/lp2_p50_p15_tile_p55_holdout_sft.cjs. The calculation was independently executed in the V8 runtime against the repository's exact JSON and master-transcription inputs; the new standalone Node wrapper has not yet been run under CI.
+
 ## 8. Research consequence
 
 The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism. There is an unresolved radix fork: the SHED/DH-shell branch below uses conditional base59, while the p29/p50 root24 test conditionally favors conventional base60 if the inferred p39 high-first polynomial and p29/p50 relation are intended. No original source fixes a global digit legend, so neither branch is established and they must not be merged into a dual-radix state machine:
@@ -305,12 +327,14 @@ The p50 arithmetic remains a candidate structural interpretation, not an establi
 - the `TUNNELNG` lookup gives a candidate p55 address in base59;
 - the historical `EMERGE=300` boundary and repeated `DJU/BEI` pair provide an independent handoff to p27:28.
 
-The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established. A distinct p15/p57/2016-motivated spiral-core base59 pointer candidate now gives the reciprocal p57 WE↔MUST cycle (see §7c), but the exact static continuation is now excluded for SHED and p55; the local cycle remains provisional.
+The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established. The separate top-right whole-core base59 route gives the reciprocal p57 WE↔MUST cycle but has no source-selected start corner; the literal p15-tiled route gives TUNNELNG→SURFACE and FIND→EMERGE, yet its p55 word-sum holdout is null-like (see §7d). Neither route supplies a decoder.
 
-Do not use the shell matches or repeated-pair loop as a key, plaintext, or complete navigation solution. The next useful work must resolve the radix/receiver fork with a source-selected operation and an original-text holdout, or recover the missing historical page/key. Further generic pointer variants would repeat failed branches.
+Do not use the shell matches or either pointer pattern as a key, plaintext, or complete navigation solution. The fixed p15-tiled core map fails its p55 word-sum holdout: its output-match rate is not enriched over a permutation of the same core values, and p54/p56 controls are comparable. Further generic pointer variants would repeat failed branches. The next useful work must find a source-selected operation/receiver or a genuinely independent historical operand.
 
 ## Reproduction
 
 `sims/lp2_p50_radix_shed_circumference_divinity_sft.cjs`
+
+Held-out p55 word-sum audit: sims/lp2_p50_p15_tile_p55_holdout_sft.cjs
 
 Windows Node22 PASS at the exact p55/EMERGE assertions: [run 44423794786](https://github.com/FlareZ123/liber-primus/actions/runs/44423794786).
