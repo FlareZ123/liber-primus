@@ -1,6 +1,6 @@
 # Shared cyclic q8 action: population alphabet identification and finite marginal-channel inverse
 
-**Agent40, 26 November 2026.** Exact conditional identifiability theorem for the alphabet's translation group, plus failed finite-sample spectral recovery. This is distinct from identifying the ordered period-eight key and from the existing #2722 whole-word CSP. No unknown plaintext or authenticated key.
+**Agent40, 26 November 2026.** Exact conditional identifiability theorem for the alphabet's translation group, plus finite-sample factor-oracle and sparse-graph recovery calibration. This is distinct from identifying the ordered period-eight key and from the existing #2722 whole-word CSP. No unknown plaintext or authenticated key.
 
 ## What the model makes observable
 
@@ -32,8 +32,27 @@ Three unrestricted primitive q8 vectors and independent random alphabets were fr
 
 The exact population result does not survive sampling at original size even under the favorable shared full-book action and oracle. Larger samples do not rescue this particular algorithm within the tested scales. Independent literature introduces systematic mismatch, visible in errors growing as regularization weakens. This receiver is not ready to fit original ciphertext. No original symbol values are used in fitting (the original is used only for exact group-length inventory), and no original candidate is claimed. This is a calibrated algorithmic negative, not a theorem that the original alphabet cannot be identified from other higher-order or constrained likelihood methods.
 
+## Structured finite receiver: separate the two unknown factors
+
+A second calibration explicitly gives the receiver either the correct cycle or the correct shift histogram, and uses the actual multinomial context likelihood, including the literal-F column. Given the cycle, EM (150 iterations), rounding the mixing weights to eight counts, and exhaustive one-count exchange descent recover the exact **unordered** histogram for all three independently permuted controls, both with true Shakespeare donor marginals and with independent Gibran+Emerson reference marginals. The three primitive shift profiles are [0,4,4,7,13,13,22,28], [2,6,9,12,17,19,23,27], and [1,1,1,3,3,7,0,24]. Given the true histogram instead, two 10,000-swap annealing runs per control/reference recover no exact cycle. The planted cycle scores higher than the fitted alternatives, indicating a search failure, not an identifiability proof. This calibration again uses the full 12,956-rune inventory with one common key, not separate chapter keys or the p54 target alone.
+
+### Globally coupled sparse row support
+
+For an independently seeded all-distinct eight-shift plant, each row of the latent doubly stochastic A is an eight-element support. Enumerate all C(29,8)=4,292,145 possible supports simultaneously for every ciphertext row, minimizing weighted context least squares with the F contribution fixed. The independently optimal row supports contain 171/232 planted edges under the true donor and 145/232 under independent literature. Zero of 29 rows are exact in either reference; the true row ranks range from 3 to 4,891 and 8 to 43,973 respectively. The independent row optima need not have column degree eight.
+
+Use the resulting binary directed graph as the sole fitting input to a global cyclic graph alignment. For order o, h[d]=sum_i Ahat[o[i+d],o[i]]. With the shift set provided, maximize the sum over its eight offsets; without it, maximize the sum of the eight largest h[d]. Each of 160 restarts uses 16,000 transposition proposals, fixes F at index zero, and is scored against the planted affine gauge only after search.
+
+| Reference | Shift set supplied? | Best overlap | True-cycle overlap | Exact cycle recovered? |
+|---|---:|---:|---:|---|
+| True donor | Yes | 171 | 171 | Yes; 13/160 final states |
+| True donor | No | 162 | 171 | No |
+| Independent literature | Yes | 142 | 145 | No |
+| Independent literature | No | 136 | 145 | No |
+
+The coupled graph substantially improves the previous histogram-oracle optimizer in this one favorable planted test: true cycle recovered when both donor and shift set are provided. This is not a blind original receiver, and one plant cannot establish typical recovery. The remaining gap is jointly recovering an independently valid donor model, cycle, and shift histogram from manuscript-size samples. No ordered-key or withheld-word solution, no original cipher values fitted.
+
 ## Next decision
 
-The exact rank/identifiability result allows a clear separation: lack of population information is not the fundamental obstruction for the alphabet group in generic shared-key cases; finite-sample recovery and unknown donor marginals are. Do not use unconstrained linear inversion of position-conditioned marginals as a real source of key edges. An independently supplied alphabet/action clue, strongly structured joint channel likelihood, or independently anchored donor distribution would change the problem. This result does not remove the need for actual withheld-word recovery in #2722/#3046; it supplies no ordered phase key. Coordinate with those active efforts instead of more identical spectral restarts.
+The population rank/identifiability theorem identifies the translation group under exact contextual marginal information, but unconstrained finite spectral inversion fails. The factor-oracle result gives an actionable asymmetry: **given a source-authenticated cycle, unordered shift counts become recoverable in these three finite controls**, even with an independent literary reference. Supplying shift counts alone is weaker; globally coupled sparse graph alignment recovered a cycle only in one favorable oracle-donor control. Do not equate approximate support edges with key evidence, and do not apply this receiver to original symbol values without blind calibration of both unknown factors. An independent alphabet/action clue or a truly joint structured estimator would change the problem. Ordered phase and withheld word recovery remain separate objectives in #2722/#3046.
 
-Reproduce: [finite population and plant SFT](../sims/lp2_q8_marginal_channel_cycle_recovery_sft.cjs), [exact rational-rank and histogram-count SFT](../sims/lp2_q8_marginal_channel_population_exact_sft.cjs), [all raw fit results](lp2-q8-marginal-channel-cycle-recovery-output.json). Both functions executed in V8 with live repository sources; no CI claimed.
+Reproduce: [finite population and plant SFT](../sims/lp2_q8_marginal_channel_cycle_recovery_sft.cjs), [exact rational-rank and histogram-count SFT](../sims/lp2_q8_marginal_channel_population_exact_sft.cjs), [population raw results](lp2-q8-marginal-channel-cycle-recovery-output.json), [factor-oracle SFT](../sims/lp2_q8_marginal_channel_oracle_factor_sft.cjs) and [raw](lp2-q8-marginal-channel-oracle-factor-output.json), [all-row-support SFT](../sims/lp2_q8_marginal_channel_all_row_support_sft.cjs) and [raw](lp2-q8-marginal-channel-all-row-support-output.json), [coupled graph SFT](../sims/lp2_q8_marginal_channel_graph_alignment_sft.cjs) and [raw](lp2-q8-marginal-channel-graph-alignment-output.json). Functions executed in V8 with live repository sources; no CI claimed.
