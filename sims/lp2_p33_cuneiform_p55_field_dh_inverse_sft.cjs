@@ -2,6 +2,27 @@
 /** Source-fixed p33/p55 conditional DH inverse. Run from repository root. */
 const fs=require('node:fs');
 const corpus=JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8'));
+function publicOperandProjection(p,g){
+  /** @param {bigint} a @param {bigint} m */
+  const mod=(a,m)=>(a%m+m)%m;
+  /** @param {bigint} b @param {bigint} e @param {bigint} m */
+  function pow(b,e,m){let x=1n;while(e){if(e&1n)x=x*b%m;b=b*b%m;e>>=1n;}return x}
+  /** @param {bigint} a @param {bigint} m */
+  function inv(a,m){let r=m,s=mod(a,m),x=0n,y=1n;while(s){const q=r/s;[r,s]=[s,r-q*s];[x,y]=[y,x-q*y]}if(r!==1n)throw Error("not invertible");return mod(x,m)}
+  const orders=[4n,5n,41n,49477n,15535963n];
+  const M=orders.reduce((x,y)=>x*y,1n),R=(p-1n)/M;
+  if(M*R!==p-1n)throw Error("factorization");
+  for(const q of [2n,5n,41n,49477n,15535963n,R])if(pow(g,(p-1n)/q,p)===1n)throw Error("generator");
+  /** @param {bigint} h @param {bigint} z @param {bigint} order */
+  function dlog(h,z,order){const m=BigInt(Math.ceil(Math.sqrt(Number(order))));let babies=new Map(),v=1n;for(let j=0n;j<m;j++){babies.set(v,j);v=v*h%p}const step=pow(h,mod(-m,order),p);v=z;for(let k=0n;k<=m;k++){const j=babies.get(v);if(j!==undefined){const x=k*m+j;if(x<order&&pow(h,x,p)===z)return x}v=v*step%p}throw Error("log not found")}
+  /** @param {bigint} A */
+  function project(A){let x=0n,m=1n;const residues=[];for(const q of orders){const e=(p-1n)/q,r=dlog(pow(g,e,p),pow(A,e,p),q);x+=m*mod((r-x)*inv(m,q),q);m*=q;residues.push([q.toString(),r.toString()])}if(pow(g,x*R,p)!==pow(A,R,p))throw Error("projection");return {public:A.toString(),residues,x:x.toString(),leastNonnegative:x.toString(),fullLogAtLeast:x.toString(),isFullLog:pow(g,x,p)===A}}
+  const A=project(1033n),B=project(3301n),a=BigInt(A.x),b=BigInt(B.x);
+  const projected=pow(g,mod(a*b,M)*R,p);
+  if(projected!==pow(pow(1033n,R,p),b,p)||projected!==pow(pow(3301n,R,p),a,p))throw Error("projected agreement");
+  const test=project(pow(g,123456789n,p));if(test.x!=="123456789"||!test.isFullLog)throw Error("planted log");
+  return {M:M.toString(),R:R.toString(),A,B,sharedSecretProjection:projected.toString(),calibration:true,unknownLargeSubgroup:!A.isFullLog||!B.isFullLog};
+}
 function run(corpus) {
   /** @param {boolean} ok @param {string} message */
   function check(ok,message){if(!ok)throw Error(message)}
@@ -60,6 +81,6 @@ function run(corpus) {
   const ordinary=target.map((c,i)=>(c-key[i%key.length]+29)%29);
   check(forward(ordinary,key,false).every((x,j)=>x===target[j]),"ordinary replay");
   const ioc=xs=>{const f=Array(29).fill(0);xs.forEach(x=>f[x]++);return f.reduce((s,x)=>s+x*(x-1),0)/(xs.length*(xs.length-1))};
-  return {source:"p55 local 16 complete groups; p33 cuneiform 1033/3301 as hypothesized private exponents",p:p.toString(),g:g.toString(),a:a.toString(),b:b.toString(),A:A.toString(),B:B.toString(),K:K.toString(),key,target:{first:[33,99],lastExclusive:[39,119],length:target.length,rawIoc:ioc(target),strict:inverse(target,key),ordinary:{ioc:ioc(ordinary),first115:render(ordinary.slice(0,115)),replay:true}},control:{length:control.length,count:controlInverse.count,knownPathRetained:true,example:controlInverse.example}};
+  return {publicOperandRival:publicOperandProjection(p,g),source:"p55 local 16 complete groups; p33 cuneiform 1033/3301 as hypothesized private exponents",p:p.toString(),g:g.toString(),a:a.toString(),b:b.toString(),A:A.toString(),B:B.toString(),K:K.toString(),key,target:{first:[33,99],lastExclusive:[39,119],length:target.length,rawIoc:ioc(target),strict:inverse(target,key),ordinary:{ioc:ioc(ordinary),first115:render(ordinary.slice(0,115)),replay:true}},control:{length:control.length,count:controlInverse.count,knownPathRetained:true,example:controlInverse.example}};
 }
 console.log(JSON.stringify(run(corpus),null,2));
