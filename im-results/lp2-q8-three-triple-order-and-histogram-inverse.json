@@ -1,0 +1,2430 @@
+{
+  "schema": "q8-three-triple-order-histogram-inverse-v1",
+  "population": {
+    "orders": 11932,
+    "tab": [
+      {
+        "offsets": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "ambiguousClasses": 16,
+        "ambiguousOrders": 32,
+        "witnesses": [
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                0,
+                2,
+                3,
+                1,
+                3,
+                2
+              ],
+              [
+                0,
+                1,
+                3,
+                2,
+                3,
+                1,
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                0,
+                3,
+                2,
+                1,
+                2,
+                3
+              ],
+              [
+                0,
+                1,
+                2,
+                3,
+                2,
+                1,
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                2,
+                1,
+                0,
+                3,
+                2,
+                3
+              ],
+              [
+                0,
+                1,
+                2,
+                3,
+                0,
+                3,
+                2,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                3,
+                1,
+                0,
+                2,
+                3,
+                2
+              ],
+              [
+                0,
+                1,
+                3,
+                2,
+                0,
+                2,
+                3,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                2,
+                0,
+                3,
+                1,
+                2,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                1,
+                3,
+                1,
+                2,
+                0,
+                3
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "ks": [
+              [
+                0,
+                2,
+                1,
+                2,
+                0,
+                3,
+                1,
+                3
+              ],
+              [
+                0,
+                2,
+                1,
+                3,
+                0,
+                3,
+                1,
+                2
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                0,
+                2,
+                2,
+                1,
+                2,
+                2
+              ],
+              [
+                0,
+                1,
+                2,
+                2,
+                2,
+                1,
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              2,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                2,
+                1,
+                0,
+                2,
+                2,
+                2
+              ],
+              [
+                0,
+                1,
+                2,
+                2,
+                0,
+                2,
+                2,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              3,
+              3
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                0,
+                2,
+                1,
+                1,
+                2,
+                2
+              ],
+              [
+                0,
+                1,
+                1,
+                2,
+                2,
+                1,
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              3,
+              3
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                0,
+                2,
+                2,
+                1,
+                1,
+                2
+              ],
+              [
+                0,
+                1,
+                2,
+                2,
+                1,
+                1,
+                0,
+                2
+              ]
+            ]
+          },
+          {
+            "h": [
+              2,
+              3,
+              3
+            ],
+            "ks": [
+              [
+                0,
+                1,
+                1,
+                2,
+                0,
+                2,
+                2,
+                1
+              ],
+              [
+                0,
+                1,
+                2,
+                2,
+                0,
+                2,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              4,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              4,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              4,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "offsets": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            2
+          ]
+        ],
+        "ambiguousClasses": 4,
+        "ambiguousOrders": 8,
+        "witnesses": [
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                1,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              4,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1
+              ]
+            ]
+          },
+          {
+            "h": [
+              4,
+              4
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                0,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "offsets": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ]
+        ],
+        "ambiguousClasses": 1,
+        "ambiguousOrders": 2,
+        "witnesses": [
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "offsets": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ]
+        ],
+        "ambiguousClasses": 1,
+        "ambiguousOrders": 2,
+        "witnesses": [
+          {
+            "h": [
+              3,
+              5
+            ],
+            "ks": [
+              [
+                0,
+                0,
+                1,
+                1,
+                0,
+                1,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                1
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "offsets": [
+          [
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            3
+          ],
+          [
+            0,
+            1,
+            4
+          ]
+        ],
+        "ambiguousClasses": 0,
+        "ambiguousOrders": 0,
+        "witnesses": []
+      }
+    ]
+  },
+  "geometry": {
+    "fit": [
+      8,
+      3,
+      6,
+      2,
+      5,
+      3,
+      2,
+      3,
+      5,
+      7,
+      3,
+      4,
+      10,
+      8,
+      3,
+      5,
+      8,
+      4,
+      3,
+      4,
+      5,
+      4,
+      3,
+      5,
+      1,
+      3,
+      5,
+      5,
+      3,
+      4,
+      2,
+      6,
+      5,
+      3,
+      8,
+      5,
+      4,
+      8,
+      2,
+      3,
+      4,
+      6,
+      6,
+      3,
+      2,
+      10,
+      2
+    ],
+    "held": [
+      11,
+      4,
+      2,
+      2,
+      6,
+      6,
+      2,
+      13,
+      6,
+      4,
+      2,
+      7,
+      7,
+      2,
+      6,
+      3,
+      3
+    ]
+  },
+  "dictionary": 38910,
+  "controls": [
+    {
+      "seed": 834142208,
+      "kind": "distinct",
+      "source": "uniform TextBlob lexical oracle",
+      "fitVisibleF": 3,
+      "fitAdjacentEqual": 2,
+      "matchedExact": true,
+      "selectedDraw": 961,
+      "fitOov": 0,
+      "holdOov": 0,
+      "actualKey": [
+        13,
+        9,
+        24,
+        22,
+        15,
+        20,
+        5,
+        23
+      ],
+      "oracleCycle": [
+        0,
+        2,
+        5,
+        3,
+        20,
+        17,
+        10,
+        16,
+        1,
+        19,
+        6,
+        15,
+        14,
+        18,
+        7,
+        27,
+        11,
+        4,
+        13,
+        26,
+        21,
+        22,
+        24,
+        28,
+        25,
+        12,
+        23,
+        8,
+        9
+      ],
+      "orders": 5040,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        5,
+        23,
+        13,
+        9,
+        24,
+        22,
+        15,
+        20
+      ],
+      "bestGap": 309.6261063973402,
+      "truthGap": 5.684341886080802e-14,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 17,
+        "uniqueTruthMAP": 12,
+        "runeMatches": 81,
+        "words": [
+          {
+            "truth": "539gli95aif",
+            "c": "8pchrhmg9ll",
+            "map": "539gli95aif",
+            "truthMass": 0.9999999999999613,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 5,
+            "runeMatches": 11
+          },
+          {
+            "truth": "a958",
+            "c": "8p3k",
+            "map": "a958",
+            "truthMass": 0.9988020150165385,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "jg",
+            "c": "9j",
+            "map": "jg",
+            "truthMass": 0.9247268775381798,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "53",
+            "c": "rr",
+            "map": "ni",
+            "truthMass": 0.483145060068137,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "4ifa69",
+            "c": "baijbi",
+            "map": "4ifa69",
+            "truthMass": 0.9999984269576948,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 6
+          },
+          {
+            "truth": "bi7ikf",
+            "c": "rnedbg",
+            "map": "bi7ikf",
+            "truthMass": 0.9999968539203384,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 6
+          },
+          {
+            "truth": "03",
+            "c": "0d",
+            "map": "0i",
+            "truthMass": 0.3173422318186279,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 16,
+            "runeMatches": 1
+          },
+          {
+            "truth": "ajdi4aokafga5",
+            "c": "j1pj08dej329j",
+            "map": "ajdi4aokafga5",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 14,
+            "runeMatches": 13
+          },
+          {
+            "truth": "do55al",
+            "c": "f463jf",
+            "map": "do55al",
+            "truthMass": 0.9999968539203383,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 6
+          },
+          {
+            "truth": "f8i6",
+            "c": "g6r3",
+            "map": "f8i6",
+            "truthMass": 0.9988020150165385,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "n4",
+            "c": "ka",
+            "map": "fl",
+            "truthMass": 0.24712626108223787,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "hoffigg",
+            "c": "973kj4a",
+            "map": "hoffigg",
+            "truthMass": 0.9999998796696346,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 7
+          },
+          {
+            "truth": "3hbi5gf",
+            "c": "pnrnr7k",
+            "map": "3hbi5gf",
+            "truthMass": 0.9999998596145762,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 7
+          },
+          {
+            "truth": "35",
+            "c": "j8",
+            "map": "35",
+            "truthMass": 0.32699581319148074,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "ag58al",
+            "c": "8h3kg7",
+            "map": "ag58al",
+            "truthMass": 0.9999963295756528,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "74l",
+            "c": "gir",
+            "map": "74l",
+            "truthMass": 0.9900687466271921,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 3
+          },
+          {
+            "truth": "13k",
+            "c": "bp7",
+            "map": "13k",
+            "truthMass": 0.4979189327772379,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 7,
+            "runeMatches": 3
+          }
+        ]
+      }
+    },
+    {
+      "seed": 834142209,
+      "kind": "distinct",
+      "source": "Shakespeare, TextBlob weighted decoder",
+      "fitVisibleF": 3,
+      "fitAdjacentEqual": 3,
+      "matchedExact": false,
+      "selectedDraw": 606,
+      "fitOov": 4,
+      "holdOov": 0,
+      "actualKey": [
+        25,
+        3,
+        5,
+        19,
+        28,
+        20,
+        1,
+        18
+      ],
+      "oracleCycle": [
+        0,
+        7,
+        17,
+        13,
+        28,
+        25,
+        21,
+        8,
+        4,
+        9,
+        22,
+        26,
+        3,
+        24,
+        20,
+        6,
+        27,
+        14,
+        2,
+        15,
+        19,
+        23,
+        12,
+        5,
+        11,
+        18,
+        16,
+        1,
+        10
+      ],
+      "orders": 5040,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        1,
+        18,
+        25,
+        3,
+        5,
+        19,
+        28,
+        20
+      ],
+      "bestGap": 256.9810087135522,
+      "truthGap": 0,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 17,
+        "uniqueTruthMAP": 17,
+        "runeMatches": 86,
+        "words": [
+          {
+            "truth": "53jdigag34f",
+            "c": "h9p06b34id9",
+            "map": "53jdigag34f",
+            "truthMass": 0.9999999999998691,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 13,
+            "runeMatches": 11
+          },
+          {
+            "truth": "783j",
+            "c": "4nio",
+            "map": "783j",
+            "truthMass": 0.9998761173816809,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 4
+          },
+          {
+            "truth": "2i",
+            "c": "7c",
+            "map": "2i",
+            "truthMass": 0.9978361307770806,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 2
+          },
+          {
+            "truth": "2q",
+            "c": "1j",
+            "map": "2q",
+            "truthMass": 0.27267473483054383,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "o932i4",
+            "c": "hhcqa0",
+            "map": "o932i4",
+            "truthMass": 0.9999997319037729,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 14,
+            "runeMatches": 6
+          },
+          {
+            "truth": "5314fi",
+            "c": "jmg0dg",
+            "map": "5314fi",
+            "truthMass": 0.9999996656086926,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 16,
+            "runeMatches": 6
+          },
+          {
+            "truth": "93",
+            "c": "0h",
+            "map": "93",
+            "truthMass": 0.7961181939431207,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 16,
+            "runeMatches": 2
+          },
+          {
+            "truth": "ajd3ffahakagq",
+            "c": "l8eqo56nl7pr6",
+            "map": "ajd3ffahakagq",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 13
+          },
+          {
+            "truth": "go168g",
+            "c": "2sgaal",
+            "map": "go168g",
+            "truthMass": 0.99999710938144,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "043j",
+            "c": "029p",
+            "map": "043j",
+            "truthMass": 0.9999724079351875,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 14,
+            "runeMatches": 4
+          },
+          {
+            "truth": "n3",
+            "c": "7p",
+            "map": "n3",
+            "truthMass": 0.94530132212441,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 2
+          },
+          {
+            "truth": "na69agq",
+            "c": "d6msolk",
+            "map": "na69agq",
+            "truthMass": 0.9999999716453266,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 7
+          },
+          {
+            "truth": "h1g58i4",
+            "c": "ccrrlrk",
+            "map": "h1g58i4",
+            "truthMass": 0.999999836173033,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 3,
+            "runeMatches": 7
+          },
+          {
+            "truth": "hi",
+            "c": "nc",
+            "map": "hi",
+            "truthMass": 0.9854110418092638,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 2
+          },
+          {
+            "truth": "agfik0",
+            "c": "6p1ej0",
+            "map": "agfik0",
+            "truthMass": 0.9999996505835484,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 12,
+            "runeMatches": 6
+          },
+          {
+            "truth": "o4i",
+            "c": "qpr",
+            "map": "o4i",
+            "truthMass": 0.9973851625786283,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 3
+          },
+          {
+            "truth": "gaf",
+            "c": "b31",
+            "map": "gaf",
+            "truthMass": 0.6095549447798929,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 3
+          }
+        ]
+      }
+    },
+    {
+      "seed": 834142224,
+      "kind": "repeat-zero",
+      "source": "uniform TextBlob lexical oracle",
+      "fitVisibleF": 3,
+      "fitAdjacentEqual": 2,
+      "matchedExact": true,
+      "selectedDraw": 623,
+      "fitOov": 0,
+      "holdOov": 0,
+      "actualKey": [
+        5,
+        20,
+        5,
+        0,
+        0,
+        20,
+        11,
+        14
+      ],
+      "oracleCycle": [
+        0,
+        8,
+        11,
+        17,
+        3,
+        18,
+        1,
+        19,
+        9,
+        6,
+        5,
+        10,
+        27,
+        25,
+        24,
+        14,
+        4,
+        12,
+        16,
+        21,
+        20,
+        13,
+        22,
+        28,
+        26,
+        23,
+        7,
+        15,
+        2
+      ],
+      "orders": 630,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        0,
+        0,
+        20,
+        11,
+        14,
+        5,
+        20,
+        5
+      ],
+      "bestGap": 279.37140363845265,
+      "truthGap": 0,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 16,
+        "uniqueTruthMAP": 11,
+        "runeMatches": 73,
+        "words": [
+          {
+            "truth": "nig3ea5ogin",
+            "c": "b6810a53r6g",
+            "map": "nig3ea5ogin",
+            "truthMass": 0.9999999999999126,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 10,
+            "runeMatches": 11
+          },
+          {
+            "truth": "fgoh",
+            "c": "d5s4",
+            "map": "fgoh",
+            "truthMass": 0.9988020150165385,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "ee",
+            "c": "80",
+            "map": "50",
+            "truthMass": 0.24293742862294884,
+            "truthRetained": true,
+            "truthAtMAP": false,
+            "uniqueTruthMAP": false,
+            "paths": 11,
+            "runeMatches": 0
+          },
+          {
+            "truth": "j3",
+            "c": "hm",
+            "map": "qs",
+            "truthMass": 0.483145060068137,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "jio9lf",
+            "c": "jq1k5a",
+            "map": "jio9lf",
+            "truthMass": 0.9999984269576946,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 6
+          },
+          {
+            "truth": "3jaggl",
+            "c": "n9be8l",
+            "map": "3jaggl",
+            "truthMass": 0.9999963295756525,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "ho",
+            "c": "os",
+            "map": "9k",
+            "truthMass": 0.32699581319148074,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "8o9n5i458ai0f",
+            "c": "k227pi48k7j0a",
+            "map": "8o9n5i458ai0f",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 13
+          },
+          {
+            "truth": "f7iogf",
+            "c": "77i3rn",
+            "map": "f7iogf",
+            "truthMass": 0.9999963295756529,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "o9gi",
+            "c": "so8i",
+            "map": "o9gi",
+            "truthMass": 0.9988020150165385,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "f5",
+            "c": "np",
+            "map": "n4",
+            "truthMass": 0.32699581319148074,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "hio4alf",
+            "c": "p6spblf",
+            "map": "hio4alf",
+            "truthMass": 0.9999998796696343,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 7
+          },
+          {
+            "truth": "f8a4kiq",
+            "c": "f0i3dqh",
+            "map": "f8a4kiq",
+            "truthMass": 0.9999997793943516,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 12,
+            "runeMatches": 7
+          },
+          {
+            "truth": "af",
+            "c": "77",
+            "map": "n1",
+            "truthMass": 0.24712626108223792,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 0
+          },
+          {
+            "truth": "do9a5f",
+            "c": "632a5a",
+            "map": "do9a5f",
+            "truthMass": 0.9999984269576946,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 6
+          },
+          {
+            "truth": "fkq",
+            "c": "dah",
+            "map": "fkq",
+            "truthMass": 0.9917102342286139,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 3
+          },
+          {
+            "truth": "4aj",
+            "c": "1aj",
+            "map": "oki",
+            "truthMass": 0.49833375919814316,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 6,
+            "runeMatches": 0
+          }
+        ]
+      }
+    },
+    {
+      "seed": 834142225,
+      "kind": "repeat-zero",
+      "source": "Shakespeare, TextBlob weighted decoder",
+      "fitVisibleF": 3,
+      "fitAdjacentEqual": 2,
+      "matchedExact": true,
+      "selectedDraw": 708,
+      "fitOov": 3,
+      "holdOov": 1,
+      "actualKey": [
+        0,
+        0,
+        27,
+        5,
+        19,
+        23,
+        23,
+        27
+      ],
+      "oracleCycle": [
+        0,
+        9,
+        14,
+        17,
+        25,
+        15,
+        24,
+        18,
+        20,
+        11,
+        28,
+        27,
+        23,
+        5,
+        22,
+        8,
+        10,
+        26,
+        13,
+        7,
+        19,
+        4,
+        6,
+        3,
+        16,
+        1,
+        12,
+        2,
+        21
+      ],
+      "orders": 630,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        0,
+        0,
+        27,
+        5,
+        19,
+        23,
+        23,
+        27
+      ],
+      "bestGap": 271.13979023768286,
+      "truthGap": 0,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 17,
+        "uniqueTruthMAP": 16,
+        "runeMatches": 81,
+        "words": [
+          {
+            "truth": "5a451jfdi5g",
+            "c": "il51ndfd980",
+            "map": "5a451jfdi5g",
+            "truthMass": 0.9999999999997286,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 11,
+            "runeMatches": 11
+          },
+          {
+            "truth": "9oji",
+            "c": "9od7",
+            "map": "9oji",
+            "truthMass": 0.9997225893206005,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 4
+          },
+          {
+            "truth": "30",
+            "c": "e0",
+            "map": "30",
+            "truthMass": 0.8902793796012876,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 11,
+            "runeMatches": 2
+          },
+          {
+            "truth": "f3",
+            "c": "me",
+            "map": "f3",
+            "truthMass": 0.9667465929708402,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "f1jji4",
+            "c": "m1jd75",
+            "map": "f1jji4",
+            "truthMass": 0.9999991470286198,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 6
+          },
+          {
+            "truth": "13kf5i",
+            "c": "n93f59",
+            "map": "n9kn43",
+            "truthMass": 0.12500000000000003,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 1
+          },
+          {
+            "truth": "g3",
+            "c": "g3",
+            "map": "g3",
+            "truthMass": 0.9964589892487208,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "ajd3ffahakagq",
+            "c": "lha9mfa6l1elg",
+            "map": "ajd3ffahakagq",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 13
+          },
+          {
+            "truth": "78i2i4",
+            "c": "789knk",
+            "map": "78i2i4",
+            "truthMass": 0.9999997570901459,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 6
+          },
+          {
+            "truth": "7ikk",
+            "c": "7961",
+            "map": "7ikk",
+            "truthMass": 0.9999292021811264,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "8i",
+            "c": "4n",
+            "map": "8i",
+            "truthMass": 0.9911170757034656,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 2
+          },
+          {
+            "truth": "03kk37f",
+            "c": "0jii57f",
+            "map": "03kk37f",
+            "truthMass": 0.9999999523190082,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 14,
+            "runeMatches": 7
+          },
+          {
+            "truth": "5odagok",
+            "c": "dgahgo3",
+            "map": "5odagok",
+            "truthMass": 0.9999999897608121,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 7
+          },
+          {
+            "truth": "kk",
+            "c": "3k",
+            "map": "kk",
+            "truthMass": 0.8325274212477979,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 2
+          },
+          {
+            "truth": "i93168",
+            "c": "j131e4",
+            "map": "i93168",
+            "truthMass": 0.9999996531247645,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "93g",
+            "c": "1e0",
+            "map": "93g",
+            "truthMass": 0.9990129777160698,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 14,
+            "runeMatches": 3
+          },
+          {
+            "truth": "8s4",
+            "c": "7s4",
+            "map": "8s4",
+            "truthMass": 0.963097128560037,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 3
+          }
+        ]
+      }
+    },
+    {
+      "seed": 834142240,
+      "kind": "binary",
+      "source": "uniform TextBlob lexical oracle",
+      "fitVisibleF": 5,
+      "fitAdjacentEqual": 3,
+      "matchedExact": false,
+      "selectedDraw": 3255,
+      "fitOov": 0,
+      "holdOov": 0,
+      "actualKey": [
+        8,
+        8,
+        0,
+        8,
+        0,
+        8,
+        0,
+        8
+      ],
+      "oracleCycle": [
+        0,
+        16,
+        22,
+        24,
+        2,
+        12,
+        28,
+        20,
+        25,
+        21,
+        14,
+        8,
+        6,
+        18,
+        26,
+        11,
+        4,
+        5,
+        23,
+        19,
+        13,
+        1,
+        9,
+        3,
+        10,
+        7,
+        17,
+        15,
+        27
+      ],
+      "orders": 7,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        0,
+        8,
+        0,
+        8,
+        0,
+        8,
+        8,
+        8
+      ],
+      "bestGap": 254.92562462534949,
+      "truthGap": 0,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 16,
+        "uniqueTruthMAP": 14,
+        "runeMatches": 85,
+        "words": [
+          {
+            "truth": "nafohkiji9g",
+            "c": "fajokk4s495",
+            "map": "nafohkiji9g",
+            "truthMass": 0.9999999999999323,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 11
+          },
+          {
+            "truth": "jii5",
+            "c": "j4i7",
+            "map": "jii5",
+            "truthMass": 0.6664763365962254,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 4
+          },
+          {
+            "truth": "4l",
+            "c": "ol",
+            "map": "4l",
+            "truthMass": 0.9809874395744422,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 3,
+            "runeMatches": 2
+          },
+          {
+            "truth": "hk",
+            "c": "k9",
+            "map": "kk",
+            "truthMass": 0.3972284671801865,
+            "truthRetained": true,
+            "truthAtMAP": false,
+            "uniqueTruthMAP": false,
+            "paths": 3,
+            "runeMatches": 1
+          },
+          {
+            "truth": "4i5inl",
+            "c": "o454nm",
+            "map": "4i5inl",
+            "truthMass": 0.9999963295756529,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "fgo5al",
+            "c": "f5o72m",
+            "map": "fgo5al",
+            "truthMass": 0.9999963295756525,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "o4",
+            "c": "oo",
+            "map": "o4",
+            "truthMass": 0.49806937912054067,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 3,
+            "runeMatches": 2
+          },
+          {
+            "truth": "31i4fg4ig58al",
+            "c": "n14ojgoi55g2m",
+            "map": "31i4fg4ig58al",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 13
+          },
+          {
+            "truth": "gs58al",
+            "c": "5s7g2l",
+            "map": "gs58al",
+            "truthMass": 0.9999963295756525,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "ks1i",
+            "c": "kc34",
+            "map": "ks1i",
+            "truthMass": 0.9988020150165385,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 4
+          },
+          {
+            "truth": "ks",
+            "c": "kc",
+            "map": "ks",
+            "truthMass": 0.9809874395744422,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 3,
+            "runeMatches": 2
+          },
+          {
+            "truth": "nika1i4",
+            "c": "n4k214o",
+            "map": "nika1i4",
+            "truthMass": 0.999999859614576,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 7
+          },
+          {
+            "truth": "n41jjal",
+            "c": "f43js2m",
+            "map": "n41jjal",
+            "truthMass": 0.999999859614576,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 7
+          },
+          {
+            "truth": "i9",
+            "c": "i0",
+            "map": "i9",
+            "truthMass": 0.962684345288899,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "f84a9i",
+            "c": "fg4204",
+            "map": "f84a9i",
+            "truthMass": 0.9999937078604721,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 12,
+            "runeMatches": 6
+          },
+          {
+            "truth": "0i7",
+            "c": "047",
+            "map": "0i7",
+            "truthMass": 0.7471893894353668,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 6,
+            "runeMatches": 3
+          },
+          {
+            "truth": "53d",
+            "c": "7ne",
+            "map": "53d",
+            "truthMass": 0.4975047964072498,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 5,
+            "runeMatches": 3
+          }
+        ]
+      }
+    },
+    {
+      "seed": 834142241,
+      "kind": "binary",
+      "source": "Shakespeare, TextBlob weighted decoder",
+      "fitVisibleF": 2,
+      "fitAdjacentEqual": 4,
+      "matchedExact": false,
+      "selectedDraw": 2622,
+      "fitOov": 4,
+      "holdOov": 1,
+      "actualKey": [
+        0,
+        17,
+        17,
+        17,
+        17,
+        0,
+        0,
+        17
+      ],
+      "oracleCycle": [
+        0,
+        7,
+        23,
+        22,
+        12,
+        5,
+        8,
+        17,
+        13,
+        20,
+        27,
+        26,
+        16,
+        9,
+        21,
+        15,
+        25,
+        3,
+        14,
+        19,
+        18,
+        6,
+        24,
+        11,
+        1,
+        10,
+        2,
+        28,
+        4
+      ],
+      "orders": 7,
+      "rank": 1,
+      "truthTies": 1,
+      "topTies": 1,
+      "exact": true,
+      "winningKey": [
+        0,
+        0,
+        17,
+        0,
+        17,
+        17,
+        17,
+        17
+      ],
+      "bestGap": 228.25326502572614,
+      "truthGap": 0,
+      "held": {
+        "truthRetained": 17,
+        "truthAtMAP": 17,
+        "uniqueTruthMAP": 16,
+        "runeMatches": 80,
+        "words": [
+          {
+            "truth": "a9ifgajohki",
+            "c": "a6ih8f1ohli",
+            "map": "a6bhgaj8hlb",
+            "truthMass": 0.125,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": false,
+            "paths": 8,
+            "runeMatches": 5
+          },
+          {
+            "truth": "n39i",
+            "c": "rp6i",
+            "map": "n39i",
+            "truthMass": 0.9998018611155461,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 4
+          },
+          {
+            "truth": "30",
+            "c": "p0",
+            "map": "30",
+            "truthMass": 0.9252585360501964,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "1f",
+            "c": "mf",
+            "map": "1f",
+            "truthMass": 0.8773477766558156,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "7a55in",
+            "c": "5a33qr",
+            "map": "7a55in",
+            "truthMass": 0.9999959531393635,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "93hkif",
+            "c": "939kqh",
+            "map": "93hkif",
+            "truthMass": 0.9999932552530695,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 6
+          },
+          {
+            "truth": "a9",
+            "c": "f6",
+            "map": "a9",
+            "truthMass": 0.9988631345592688,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "i9gi4goa9ji9g",
+            "c": "q98q08oa6jq68",
+            "map": "i9gi4goa9ji9g",
+            "truthMass": 1,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 13,
+            "runeMatches": 13
+          },
+          {
+            "truth": "hi034i",
+            "c": "hq0p0q",
+            "map": "hi034i",
+            "truthMass": 0.9999998727529977,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 21,
+            "runeMatches": 6
+          },
+          {
+            "truth": "7ikk",
+            "c": "7ilk",
+            "map": "7ikk",
+            "truthMass": 0.9999797710287739,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 3,
+            "runeMatches": 4
+          },
+          {
+            "truth": "2i",
+            "c": "ni",
+            "map": "2i",
+            "truthMass": 0.9959716928845826,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "o58ai1i",
+            "c": "o38fqmq",
+            "map": "o58ai1i",
+            "truthMass": 0.9999997542595581,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 7
+          },
+          {
+            "truth": "d4a95if",
+            "c": "b4a65qh",
+            "map": "d4a95if",
+            "truthMass": 0.9999998436197027,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 8,
+            "runeMatches": 7
+          },
+          {
+            "truth": "2i",
+            "c": "2i",
+            "map": "2i",
+            "truthMass": 0.9974763960314204,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 4,
+            "runeMatches": 2
+          },
+          {
+            "truth": "8o4nkq",
+            "c": "8k0rlq",
+            "map": "8o4nkq",
+            "truthMass": 0.9999993984824042,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 13,
+            "runeMatches": 6
+          },
+          {
+            "truth": "8o2",
+            "c": "8on",
+            "map": "8o2",
+            "truthMass": 0.531765721337069,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 7,
+            "runeMatches": 3
+          },
+          {
+            "truth": "7of",
+            "c": "7oh",
+            "map": "7of",
+            "truthMass": 0.9999117359678851,
+            "truthRetained": true,
+            "truthAtMAP": true,
+            "uniqueTruthMAP": true,
+            "paths": 3,
+            "runeMatches": 3
+          }
+        ]
+      }
+    }
+  ],
+  "inputBlobs": {
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/liber-primus/lp2-page-groups-54-55-derived.json": "8960e113af36ee46186965e394ec6be18d69b74f",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  }
+}
