@@ -25,7 +25,8 @@ assert.equal(primes.length, 29);
 
 // p13 is 136 + 136. Fold the second half back: p13[i] with p13[271-i].
 const foldedPairs = Array.from({ length: 136 }, (_, i) => [p13[i], p13[271 - i]]);
-const ordinalKey = foldedPairs.map(([a, b]) => a ^ b);
+const zeroBasedKey = foldedPairs.map(([a, b]) => a ^ b);
+const oneBasedKey = foldedPairs.map(([a, b]) => (a + 1) ^ (b + 1));
 const primeKey = foldedPairs.map(([a, b]) => primes[a] ^ primes[b]);
 
 // Candidate F hold: omit only F at p14 page-local offset 2.
@@ -51,14 +52,22 @@ for (const direction of ["printed", "reversed"]) {
   const cipher = direction === "printed" ? p14Cipher : [...p14Cipher].reverse();
 
   // Mapping A: GP29 zero-based ordinal is the byte value.
-  const ordinalPlain = cipher.map((value, i) => value ^ ordinalKey[i]);
+  const zeroBasedPlain = cipher.map((value, i) => value ^ zeroBasedKey[i]);
   results.push({
-    encoding: "ordinal-byte",
+    encoding: "ordinal-zero-based",
     direction,
-    ...inspectByteStream(ordinalPlain, value => value >= 0 && value < 29)
+    ...inspectByteStream(zeroBasedPlain, value => value >= 0 && value < 29)
   });
 
-  // Mapping B: published Gematria prime is the byte value.
+  // Mapping B: GP29 one-based ordinal is the byte value.
+  const oneBasedPlain = cipher.map((value, i) => (value + 1) ^ oneBasedKey[i]);
+  results.push({
+    encoding: "ordinal-one-based",
+    direction,
+    ...inspectByteStream(oneBasedPlain, value => value >= 1 && value <= 29)
+  });
+
+  // Mapping C: published Gematria prime is the byte value.
   const primeCipher = cipher.map(value => primes[value]);
   const primePlain = primeCipher.map((value, i) => value ^ primeKey[i]);
   results.push({
@@ -73,14 +82,18 @@ const compact = results.map(({ encoding, direction, valid, invalid, completeRune
 }));
 
 assert.deepEqual(compact, [
-  { encoding: "ordinal-byte", direction: "printed", valid: 122, invalid: 14, completeRuneStream: false },
+  { encoding: "ordinal-zero-based", direction: "printed", valid: 122, invalid: 14, completeRuneStream: false },
+  { encoding: "ordinal-one-based", direction: "printed", valid: 126, invalid: 10, completeRuneStream: false },
   { encoding: "prime-byte", direction: "printed", valid: 57, invalid: 79, completeRuneStream: false },
-  { encoding: "ordinal-byte", direction: "reversed", valid: 124, invalid: 12, completeRuneStream: false },
+  { encoding: "ordinal-zero-based", direction: "reversed", valid: 124, invalid: 12, completeRuneStream: false },
+  { encoding: "ordinal-one-based", direction: "reversed", valid: 126, invalid: 10, completeRuneStream: false },
   { encoding: "prime-byte", direction: "reversed", valid: 62, invalid: 74, completeRuneStream: false }
 ]);
 
 assert.deepEqual(results[0].invalidPositions, [9, 21, 28, 30, 31, 35, 49, 60, 72, 74, 90, 95, 114, 135]);
-assert.deepEqual(results[2].invalidPositions, [1, 18, 30, 35, 36, 39, 50, 59, 60, 63, 110, 133]);
+assert.deepEqual(results[1].invalidPositions, [21, 23, 27, 28, 31, 40, 58, 95, 120, 135]);
+assert.deepEqual(results[3].invalidPositions, [1, 18, 30, 35, 36, 39, 50, 59, 60, 63, 110, 133]);
+assert.deepEqual(results[4].invalidPositions, [1, 25, 36, 39, 43, 88, 104, 117, 120, 132]);
 
 console.log(JSON.stringify({
   source: "resources/liber-primus/lp2-corpus.json",
