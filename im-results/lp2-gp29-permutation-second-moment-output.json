@@ -1,0 +1,73 @@
+{
+  "packing": [
+    {
+      "p": 5,
+      "states": 1000,
+      "plants": 500,
+      "quadraticCandidates": 1821,
+      "bruteTranslations": 25000,
+      "completeSolutions": 1821,
+      "maxCandidates": 2
+    },
+    {
+      "p": 7,
+      "states": 1000,
+      "plants": 500,
+      "quadraticCandidates": 1718,
+      "bruteTranslations": 49000,
+      "completeSolutions": 1379,
+      "maxCandidates": 2
+    },
+    {
+      "p": 11,
+      "states": 1000,
+      "plants": 500,
+      "quadraticCandidates": 1548,
+      "bruteTranslations": 121000,
+      "completeSolutions": 863,
+      "maxCandidates": 2
+    },
+    {
+      "p": 29,
+      "states": 1000,
+      "plants": 500,
+      "quadraticCandidates": 1514,
+      "bruteTranslations": 841000,
+      "completeSolutions": 569,
+      "maxCandidates": 2
+    }
+  ],
+  "connected": [
+    {
+      "p": 29,
+      "d": 1,
+      "states": 24,
+      "bruteKeyAssignments": 696,
+      "secondMomentCandidates": 38,
+      "rootCalls": 24,
+      "degeneratePrefixes": 0,
+      "validPermutations": 12
+    },
+    {
+      "p": 29,
+      "d": 2,
+      "states": 24,
+      "bruteKeyAssignments": 20184,
+      "secondMomentCandidates": 668,
+      "rootCalls": 696,
+      "degeneratePrefixes": 0,
+      "validPermutations": 12
+    },
+    {
+      "p": 29,
+      "d": 3,
+      "states": 24,
+      "bruteKeyAssignments": 585336,
+      "secondMomentCandidates": 20329,
+      "rootCalls": 20184,
+      "degeneratePrefixes": 0,
+      "validPermutations": 12
+    }
+  ],
+  "scope": "Exact permutation moment filters on generated component/affine states; not an original LP2 key search or measured C++ receiver speedup."
+}
