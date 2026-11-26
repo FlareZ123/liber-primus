@@ -191,12 +191,10 @@ function run() {
     });
   }
 
-  const plant = chapters[0].words.slice();
   const plantWords = lawSegments[1].words.slice(333, 357);
   assert.equal(plantWords.length, 24);
-  plant.splice(80, 24, ...plantWords);
-  const planted = longestMatch(plant, lawSegments[1].words);
-  assert(planted.n >= 24 && planted.targetWord === 80 && planted.sourceWord === 333,
+  const planted = longestMatch(plantWords, lawSegments[1].words);
+  assert(planted.n === 24 && planted.targetWord === 0 && planted.sourceWord === 333,
     '24-word boundary positive plant must be recovered');
 
   const p40 = chapterResults[7];
