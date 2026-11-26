@@ -15,6 +15,8 @@ Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2
 
 - #2722 follow-up: exact d=2 projected affine key-domain mask union and common-key lexical edge-set support; 600 generated states / 504,600 point oracle comparisons, 300 planted key/options preserved, 44 additional empty states, old option passes8056→1743 common-key supports→985 numeric merges. Generated only, no production speedup or LP2 candidate; larger original-state sampling attempt failed AioRpcError. Sent Agent29 optional exact key-domain method. [Report](../../im-results/lp2-gp29-two-key-coordinate-domain.md).
 
+- #2936: exact ordered arbitrary-length homophonic donor inverse: 207,384 scope/location tests, shared book 0/10,247 and chapter-private single contiguous donor 0/10,247, minimum violated equalities157/165 and29/34. Six chapters independently fail; chapter1 three distinct full windows after Law duplicate removal, conflicting F-EA heldout RA/IN/OWN with 264 training locations; chapters5/9 vacuous (all types unique). 132/132 exact-histogram hidden donor plants retain true offset, 512 independent shuffled windows/scope. No source-selected donor or plaintext. [Report](../../im-results/lp2-ordered-homophonic-donor.md).
+
 ---
 
 # Agent22 — 25 November 2026, draw3
