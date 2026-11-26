@@ -38,8 +38,8 @@ function edgeId(c,p,j){return (c*N+p)*Q+j;}
 const edgeC=new Uint8Array(N*N*Q),edgeP=new Uint8Array(N*N*Q),edgeJ=new Uint8Array(N*N*Q);
 for(let c=0;c<N;c++)for(let p=0;p<N;p++)for(let j=0;j<Q;j++){const z=edgeId(c,p,j);edgeC[z]=c;edgeP[z]=p;edgeJ[z]=j;}
 class Graph{
- constructor(gauge){this.d=7;this.comps=N;this.r=Uint8Array.from({length:N},(_,i)=>i);this.sz=new Uint8Array(N).fill(1);this.off=new Uint8Array(N*Q);this.k=new Uint8Array(Q*Q);this.vars=new Uint8Array(Q);let a=0;for(let j=0;j<Q;j++){if(j===gauge)this.k[j*Q+L]=1;else{this.k[j*Q+a]=1;this.vars[a++]=j;}}}
- copy(){const g=Object.create(Graph.prototype);g.d=this.d;g.comps=this.comps;g.r=this.r.slice();g.sz=this.sz.slice();g.off=this.off.slice();g.k=this.k.slice();g.vars=this.vars.slice();return g;}
+ constructor(gauge,forbidden=[]){this.hard=forbidden;this.d=7;this.comps=N;this.r=Uint8Array.from({length:N},(_,i)=>i);this.sz=new Uint8Array(N).fill(1);this.off=new Uint8Array(N*Q);this.k=new Uint8Array(Q*Q);this.vars=new Uint8Array(Q);let a=0;for(let j=0;j<Q;j++){if(j===gauge)this.k[j*Q+L]=1;else{this.k[j*Q+a]=1;this.vars[a++]=j;}}}
+ copy(){const g=Object.create(Graph.prototype);g.hard=this.hard;g.d=this.d;g.comps=this.comps;g.r=this.r.slice();g.sz=this.sz.slice();g.off=this.off.slice();g.k=this.k.slice();g.vars=this.vars.slice();return g;}
  project(v){const z=new Uint8Array(Q);for(let j=0;j<Q;j++){const f=v[j];if(!f)continue;const at=j*Q;for(let i=0;i<this.d;i++)z[i]=(z[i]+mul[f*N+this.k[at+i]])%N;z[L]=(z[L]+mul[f*N+this.k[at+L]])%N;}return z;}
  impose(v){const eq=this.project(v);let p=this.d-1;while(p>=0&&!eq[p])p--;if(p<0)return eq[L]===0;const last=this.d-1,rec=inv[eq[p]];
   for(let r=0;r<Q;r++){const at=r*Q,f=mul[this.k[at+p]*N+rec];if(f){for(let j=0;j<this.d;j++)if(j!==p)this.k[at+j]=sub[this.k[at+j]*N+mul[f*N+eq[j]]];this.k[at+L]=sub[this.k[at+L]*N+mul[f*N+eq[L]]];}if(p!==last)this.k[at+p]=this.k[at+last];this.k[at+last]=0;}
@@ -51,7 +51,7 @@ class Graph{
   if(--this.comps===1){const s=new Uint8Array(Q);for(let x=0;x<N;x++)for(let i=0;i<Q;i++)s[i]=(s[i]+this.off[x*Q+i])%N;if(!this.impose(s))return false;}return true;
  }
  primitive(){for(let j=0;j<4;j++)for(let i=0;i<Q;i++)if(this.k[j*Q+i]!==this.k[(j+4)*Q+i])return true;return false;}
- valid(){if(!this.primitive())return false;const seen=new Set();for(let x=0;x<N;x++){const a=this.project(this.off.subarray(x*Q,(x+1)*Q)),z=this.r[x]*600000000000+code(a,this.d);if(seen.has(z))return false;seen.add(z);}return true;}
+ valid(){if(!this.primitive())return false;const seen=new Set(),aa=[];for(let x=0;x<N;x++){const a=this.project(this.off.subarray(x*Q,(x+1)*Q)),z=this.r[x]*600000000000+code(a,this.d);if(seen.has(z))return false;seen.add(z);aa.push(a);}for(const z of this.hard){const c=edgeC[z],j=edgeJ[z];if(this.r[c]!==this.r[0])continue;let equal=true;for(let i=0;i<Q;i++)if(mod(aa[c][i]-aa[0][i]-this.k[j*Q+i])){equal=false;break;}if(equal)return false;}return true;}
  extend(o){const g=this.copy();for(const z of o.e)if(!g.edge(z))return null;return g.valid()?g:null;}
  dim(){return this.d+this.comps-1;}
  sig(){const out=[this.d,...this.vars,...this.k],roots=new Int8Array(N).fill(-1);for(let x=0;x<N;x++){const r=this.r[x];if(roots[r]<0)roots[r]=x;out.push(roots[r],...this.project(diff(this.off.subarray(x*Q,(x+1)*Q),this.off.subarray(roots[r]*Q,(roots[r]+1)*Q))));}return String.fromCharCode(...out);}
@@ -60,7 +60,9 @@ class Graph{
 class Filter{
  constructor(g){this.g=g;this.a=Array.from({length:N},(_,x)=>g.project(g.off.subarray(x*Q,(x+1)*Q)));this.cache=new Int8Array(N*N*Q).fill(-1);this.forbidden=new Set();this.diffs=new Map();this.saturated=false;
   const dirs=new Map();
-  for(let i=0;i<N;i++)for(let j=0;j<i;j++)if(g.r[i]===g.r[j]){const z=norm(diff(this.a[i],this.a[j]),g.d);if(z===0){this.saturated=true;return;}if(z<0)continue;this.forbidden.add(z);const dir=Math.floor(z/N),v=(dirs.get(dir)||0)|(1<<(z%N));dirs.set(dir,v);if(v===ALL){this.saturated=true;return;}}
+  const ban=v=>{const z=norm(v,g.d);if(z===0){this.saturated=true;return;}if(z<0)return;this.forbidden.add(z);const dir=Math.floor(z/N),m=(dirs.get(dir)||0)|(1<<(z%N));dirs.set(dir,m);if(m===ALL)this.saturated=true;};
+  for(let i=0;i<N;i++)for(let j=0;j<i;j++)if(g.r[i]===g.r[j])ban(diff(this.a[i],this.a[j]));
+  for(const z of g.hard){const c=edgeC[z],j=edgeJ[z];if(g.r[c]!==g.r[0])continue;const v=new Uint8Array(Q);for(let i=0;i<Q;i++)v[i]=mod(this.a[0][i]+g.k[j*Q+i]-this.a[c][i]);ban(v);}
  }
  allowed(z){let v=this.cache[z];if(v>=0)return !!v;const g=this.g,c=edgeC[z],p=edgeP[z],j=edgeJ[z],rc=g.r[c],rp=g.r[p],s=new Uint8Array(Q);
   for(let i=0;i<Q;i++)s[i]=mod(this.a[p][i]+g.k[j*Q+i]-this.a[c][i]);
@@ -111,9 +113,10 @@ function decode(row,pi,k){const ip=[];pi.forEach((v,i)=>ip[v]=i);let w="";for(le
 function makeSearch(db,groups,mask,budget=3){
  const rows=scenario(groups,mask),ds=rows.map((r,i)=>makeDomain(r,i===47?db.pref:db.by[r.C.length]));
  const order=Array.from({length:47},(_,i)=>i).sort((a,b)=>Math.log2(Math.max(1,ds[a].opts.length))/rows[a].C.length-Math.log2(Math.max(1,ds[b].opts.length))/rows[b].C.length||a-b);
+ const hard=[...new Set(rows.flatMap(r=>r.C.map((c,i)=>r.H[i]?null:edgeId(c,0,r.J[i])).filter(z=>z!==null)))];
  const seeds=[],seen=new Set();
  for(const o of ds[47].opts){const first=o.e.find(z=>edgeC[z]!==edgeP[z]);const gauges=first===undefined?Array.from({length:Q},(_,i)=>i).filter(j=>!o.e.some(z=>edgeJ[z]===j)):[edgeJ[first]];
-  for(const j of gauges){const g=new Graph(j).extend(o);if(!g)continue;const sig=g.sig();if(!seen.has(sig)){seen.add(sig);seeds.push({g,word:o.w,gauge:j});}}
+  for(const j of gauges){const g=new Graph(j,hard).extend(o);if(!g)continue;const sig=g.sig();if(!seen.has(sig)){seen.add(sig);seeds.push({g,word:o.w,gauge:j});}}
  }
  seeds.sort((a,b)=>a.g.dim()-b.g.dim()||a.g.sig().localeCompare(b.g.sig()));
  return {rows,ds,order,seeds,budget};
