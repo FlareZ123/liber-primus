@@ -221,6 +221,39 @@ def main() -> int:
         exterior_indices, zero_based_selected_indices, 1
     )
 
+    divinity_key = [23, 10, 1, 10, 9, 10, 16, 26]
+
+    def divinity_f_invariant(cipher: list[int], literal_f_bypass: bool) -> dict:
+        key_cursor = 0
+        violations: list[int] = []
+        for position, cipher_index in enumerate(cipher, start=1):
+            if cipher_index == 0 and literal_f_bypass:
+                continue
+            plain_index = (cipher_index - divinity_key[key_cursor % len(divinity_key)]) % 29
+            key_cursor += 1
+            if plain_index == 0 and cipher_index != 0:
+                violations.append(position)
+        return {
+            "plaintext_F_from_non_F_ciphertext_positions": violations,
+            "key_symbols_consumed": key_cursor,
+            "survives_literal_F_invariant": not violations,
+        }
+
+    divinity_f_tests = {
+        "one_based_candidate": {
+            "consume_ciphertext_F": divinity_f_invariant(selected_indices, False),
+            "literal_F_bypass": divinity_f_invariant(selected_indices, True),
+        },
+        "zero_based_candidate": {
+            "consume_ciphertext_F": divinity_f_invariant(zero_based_selected_indices, False),
+            "literal_F_bypass": divinity_f_invariant(zero_based_selected_indices, True),
+        },
+    }
+    if divinity_f_tests["zero_based_candidate"]["consume_ciphertext_F"]["plaintext_F_from_non_F_ciphertext_positions"] != [18]:
+        raise SystemExit("zero-based DIVINITY consume-F invariant result changed")
+    if divinity_f_tests["zero_based_candidate"]["literal_F_bypass"]["plaintext_F_from_non_F_ciphertext_positions"] != [7]:
+        raise SystemExit("zero-based DIVINITY literal-F invariant result changed")
+
     exterior_minus, exterior_minus_cursor = decode_exterior(-1)
     exterior_plus, exterior_plus_cursor = decode_exterior(1)
     exterior_vigenere = {
@@ -265,6 +298,7 @@ def main() -> int:
         "zero_based_original_word_gp29_indices": zero_based_selected_indices,
         "zero_based_original_word_candidate_password": zero_based_password,
         "interior_length_modulus_selected_count": len(interior_modulus_indices),
+        "divinity_f_invariant_tests": divinity_f_tests,
         "zero_based_direct_p55_vigenere_subtract_f_transparent": {
             "plaintext": "".join(translit[value] for value in zero_based_direct),
             "key_symbols_consumed": zero_based_direct_cursor,
