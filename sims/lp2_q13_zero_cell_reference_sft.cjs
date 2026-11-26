@@ -12,6 +12,10 @@ function evaluate(raw,mode="summary"){
  function body(s,start,end){const a=s.indexOf(start),b=s.indexOf(end);if(a<0||b<=a)throw Error("body");return s.slice(a,b)}
  const refs=[["Gibran",donor(body(raw[1],"Almustafa, the{7} chosen","End of the Project Gutenberg EBook of The Prophet"))],["Shakespeare",donor(raw[2])],["Emerson",donor(body(raw[3],"THERE is one mind","*** END OF THIS PROJECT GUTENBERG EBOOK"))]];
  const encode=p=>p.map(x=>x.toString(36)).join("");
+ const book=g.pages.filter(p=>p.page<56).flatMap(p=>p.indices),cuts=[0,3213,6426,9640,12648],hashes=[219227644,3064252624,3121541256,1862123327];
+ if(book.length!==12956)throw Error("book length");
+ if(/^block[0-3]$/.test(mode)){const j=Number(mode.slice(5)),b=book.slice(cuts[j],cuts[j+1]);let h=2166136261;for(const x of b)h=Math.imul(h^x,16777619)>>>0;if(h!==hashes[j])throw Error("block hash");return encode(b)}
+ if(mode==="wholebook"){const summary=refs.map(([name,v])=>{const c=Array(29).fill(0),hist={};let n=0,min=Infinity,max=0;for(let i=0;i<v.length;i++){c[v[i]]++;if(i>=12956)c[v[i-12956]]--;if(i<12955)continue;n++;const rare=c.slice(1).sort((a,b)=>a-b).slice(0,4).reduce((a,b)=>a+b,0);min=Math.min(min,rare);max=Math.max(max,rare);hist[rare]=(hist[rare]||0)+1}return {name,n,min,max,hist}});if(summary.reduce((s,x)=>s+x.n,0)!==531612||Math.max(...summary.map(x=>x.max))!==41)throw Error("wholebook reference mismatch");return {n:book.length,cuts,hashes,tailUnscored:308,requiredRareTotal:52,summary}}
  if(mode==="tape")return encode(C);
  if(mode==="gibran"||mode==="shakespeare")return encode(refs[mode==="gibran"?0:1][1].slice(10000,13008));
  const comparisons=[];
