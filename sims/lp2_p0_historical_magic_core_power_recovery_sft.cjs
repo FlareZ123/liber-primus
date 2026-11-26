@@ -28,7 +28,7 @@ function experiment(corpus,solved,squareText,lexiconText,bodyOnly=false){
   const sections=solved.sections.map(s=>({name:s.name,a:[...s.source_text].map(x=>solved.runes.indexOf(x)).filter(x=>x>=0)}));
   const donor=sections.find(s=>s.name==='0_koan_1');
   const parable=solved.sections.find(s=>s.name==='p57_parable');
-  const pWords=parable.source_text.split(/[^ᚠ-ᛠ]+/u).filter(Boolean);
+  const pWords=parable.source_text.split(new RegExp('[^'+solved.runes.join('')+']+','u')).filter(Boolean);
   const at=pWords.findIndex((w,i)=>w.length===8&&pWords[i+1]?.length===5);
   assert.ok(at>=0);
   const head=[...pWords[at]+pWords[at+1]].map(x=>solved.runes.indexOf(x));
