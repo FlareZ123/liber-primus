@@ -1,0 +1,207 @@
+{
+  "unknown": {
+    "tag": "p0–2",
+    "stage": [
+      {
+        "length": 5,
+        "seeds": 512,
+        "best": 19.65531700849533
+      },
+      {
+        "length": 6,
+        "seeds": 512,
+        "best": 25.53676199913025
+      },
+      {
+        "length": 7,
+        "seeds": 512,
+        "best": 30.678624257445335
+      },
+      {
+        "length": 8,
+        "seeds": 512,
+        "best": 33.33750446885824
+      },
+      {
+        "length": 9,
+        "seeds": 512,
+        "best": 41.518673770930036
+      },
+      {
+        "length": 10,
+        "seeds": 512,
+        "best": 44.78592044045217
+      },
+      {
+        "length": 11,
+        "seeds": 512,
+        "best": 49.95043146237731
+      },
+      {
+        "length": 12,
+        "seeds": 512,
+        "best": 56.05369643610902
+      },
+      {
+        "length": 13,
+        "seeds": 512,
+        "best": 63.09526560708764
+      }
+    ],
+    "short": 3307289,
+    "long": 11000001,
+    "truthKey": null,
+    "truthRank": null,
+    "correct": null,
+    "selected": [
+      3,
+      24,
+      23,
+      16,
+      5,
+      13,
+      26,
+      19,
+      28,
+      15,
+      17,
+      10,
+      27
+    ],
+    "fit": -4.074548195925109,
+    "held": -4.054561607209276,
+    "heldAccuracy": null,
+    "heldBoundaryF1": null,
+    "decoded": "EXT IF TEAT IT I A BE NG CAN A A SNGS WAX OR GO I THNG SNG ON A IN D IT A OF TO IT HOOD LD IT A IT A WOO SO AGO A NO ST SO OF AS A ON AT A WOONG THE CUR LIP S AS FREAC A A YET ITS I I DOWN A BE MY ER FLUNG A THNG ICE LAW SNG A AN AT A A ITS AT PETS PP BAD THIS THY ER A IN THE IF O SOW CNG A OF I BY CUT EM ME ER OARS S WAY A NO THNGS XIU NIP LIUNG AH CAP MY THE IT ROME A OF SNG I THAN A CNG MY GEM IN DO PEAS BANG I HE WHO A IS AND MY OF IN A EM YOUR AS IT CNIT HIP NO STOP A EUIL IN A A THOU GO DID SIN S PEW DIG A AS HEAR SIAM A TO OF I AS EACH A HA YOUR DEAH SNG BE ER THEIR AT AM MAR GO PIG AY I US NE WON S A A THE TAR S WHICH A AXE A BRNG A WOO LIE FLY A ROMEO WNG EAR AM HE YOU EN LURC I TO A A I ME A MEAL DE A MR SNG NOW I OF ODE I A I WHO EUERY TURN I ETC OF ON LO SO O SPEAC I HE SUP AT LIP D ERE OR THE LL SNG UP LAP IN NO EN IS SILC ALL SO NEAT THE HEW AN PRY THE AY BE D A BATS ME HEATS I WE MY BE WE A ON RNG DONGS A CAWNG LL HEAR WNGS AX MINE HUME UP OR IF I CNGS S DO A BE WIN AS IS S A ANGLE TIS BIER A CNG TO A IS PUB A HEAR HE TO ER A HID CAN EM I NOW BE S BY MR DOTH DAY I BOIL OR",
+    "fallback": 3,
+    "top": [
+      {
+        "key": [
+          3,
+          24,
+          23,
+          16,
+          5,
+          13,
+          26,
+          19,
+          28,
+          15,
+          17,
+          10,
+          27
+        ],
+        "fragmentScore": 58.00498615995457,
+        "fit": -4.074548195925109
+      },
+      {
+        "key": [
+          4,
+          12,
+          25,
+          27,
+          15,
+          7,
+          20,
+          26,
+          19,
+          16,
+          28,
+          16,
+          14
+        ],
+        "fragmentScore": 63.09526560708764,
+        "fit": -4.07469064369775
+      },
+      {
+        "key": [
+          2,
+          5,
+          13,
+          2,
+          28,
+          7,
+          15,
+          7,
+          20,
+          26,
+          19,
+          16,
+          10
+        ],
+        "fragmentScore": 58.66930649439746,
+        "fit": -4.074877120948778
+      },
+      {
+        "key": [
+          2,
+          14,
+          13,
+          2,
+          28,
+          7,
+          15,
+          7,
+          20,
+          26,
+          19,
+          16,
+          28
+        ],
+        "fragmentScore": 57.86880390942679,
+        "fit": -4.077544297463216
+      },
+      {
+        "key": [
+          4,
+          12,
+          25,
+          24,
+          15,
+          7,
+          20,
+          26,
+          19,
+          16,
+          28,
+          16,
+          14
+        ],
+        "fragmentScore": 57.990295083262026,
+        "fit": -4.083166864332865
+      }
+    ]
+  },
+  "fixed": [
+    {
+      "name": "red13+",
+      "fit": -4.248030209334932,
+      "held": -4.355793806735465
+    },
+    {
+      "name": "red13-",
+      "fit": -4.317829095819104,
+      "held": -4.397970545162136
+    },
+    {
+      "name": "red13-prime+",
+      "fit": -4.352584196834135,
+      "held": -4.448429914767388
+    },
+    {
+      "name": "red13-prime-",
+      "fit": -4.23425028967801,
+      "held": -4.35741865900814
+    },
+    {
+      "name": "KOAN+",
+      "fit": -4.388643062697354,
+      "held": -4.3617188828714175
+    },
+    {
+      "name": "KOAN-",
+      "fit": -4.3222361003604,
+      "held": -4.573705039828421
+    }
+  ]
+}
