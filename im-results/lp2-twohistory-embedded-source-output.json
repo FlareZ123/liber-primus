@@ -1,0 +1,800 @@
+{
+  "window": 650,
+  "training": 450,
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/blake_song_of_liberty_train.txt",
+      "sha": "c8d8afda002f2585ce64a959c26c20d24a5c990b"
+    }
+  ],
+  "controls": [
+    {
+      "model": "arbitrary",
+      "knownOffset": 10080,
+      "chapter": "hidden-plant",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 1,
+      "anchoredWindows": 1,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 1,
+        "full": 1,
+        "maxCoverage": 7,
+        "best": {
+          "cipherOffset": 0,
+          "donorOffset": 10080,
+          "covered": 7,
+          "correct": 7,
+          "eligible": 200
+        }
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 3644,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "model": "affine",
+      "knownOffset": 22220,
+      "chapter": "hidden-plant",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 1,
+      "anchoredWindows": 1,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 1,
+        "full": 1,
+        "maxCoverage": 6,
+        "best": {
+          "cipherOffset": 0,
+          "donorOffset": 22220,
+          "covered": 6,
+          "correct": 6,
+          "eligible": 200
+        }
+      },
+      "affine": {
+        "train": 1,
+        "full": 1,
+        "maxCoverage": 24,
+        "best": {
+          "cipherOffset": 0,
+          "donorOffset": 22220,
+          "covered": 24,
+          "correct": 24,
+          "eligible": 200
+        }
+      },
+      "anchorOffsetsExamined": 3711,
+      "affineDirectOffsetsExamined": 0
+    }
+  ],
+  "original": [
+    {
+      "chapter": "p0-2",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 80,
+      "anchoredWindows": 80,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 21,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 297328,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p3-7",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 496,
+      "anchoredWindows": 496,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 1871894,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p8-14",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 1080,
+      "anchoredWindows": 1080,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 42,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 3999651,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p15-22",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 1254,
+      "anchoredWindows": 1168,
+      "unanchoredWindows": 86,
+      "affineOnlyWindows": 86,
+      "arbitrary": {
+        "train": 663,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 4338844,
+      "affineDirectOffsetsExamined": 5318498
+    },
+    {
+      "chapter": "p23-26",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 372,
+      "anchoredWindows": 330,
+      "unanchoredWindows": 42,
+      "affineOnlyWindows": 42,
+      "arbitrary": {
+        "train": 876,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 1243308,
+      "affineDirectOffsetsExamined": 2597406
+    },
+    {
+      "chapter": "p27-32",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 784,
+      "anchoredWindows": 784,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 378,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 2915177,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p33-39",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 1031,
+      "anchoredWindows": 975,
+      "unanchoredWindows": 56,
+      "affineOnlyWindows": 56,
+      "arbitrary": {
+        "train": 757,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 3622892,
+      "affineDirectOffsetsExamined": 3463208
+    },
+    {
+      "chapter": "p40-53",
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "cipherWindows": 2359,
+      "anchoredWindows": 2356,
+      "unanchoredWindows": 3,
+      "affineOnlyWindows": 3,
+      "arbitrary": {
+        "train": 1168,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 8751379,
+      "affineDirectOffsetsExamined": 185529
+    },
+    {
+      "chapter": "p0-2",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 80,
+      "anchoredWindows": 80,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 192,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 1048165,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p3-7",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 496,
+      "anchoredWindows": 496,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 9,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 6475031,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p8-14",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 1080,
+      "anchoredWindows": 1080,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 211,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 13934210,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p15-22",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 1254,
+      "anchoredWindows": 1168,
+      "unanchoredWindows": 86,
+      "affineOnlyWindows": 86,
+      "arbitrary": {
+        "train": 2720,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 15153659,
+      "affineDirectOffsetsExamined": 18615302
+    },
+    {
+      "chapter": "p23-26",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 372,
+      "anchoredWindows": 330,
+      "unanchoredWindows": 42,
+      "affineOnlyWindows": 42,
+      "arbitrary": {
+        "train": 3964,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 4319208,
+      "affineDirectOffsetsExamined": 9091194
+    },
+    {
+      "chapter": "p27-32",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 784,
+      "anchoredWindows": 784,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 1237,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 10196190,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p33-39",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 1031,
+      "anchoredWindows": 975,
+      "unanchoredWindows": 56,
+      "affineOnlyWindows": 56,
+      "arbitrary": {
+        "train": 2391,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 12633215,
+      "affineDirectOffsetsExamined": 12121592
+    },
+    {
+      "chapter": "p40-53",
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "cipherWindows": 2359,
+      "anchoredWindows": 2356,
+      "unanchoredWindows": 3,
+      "affineOnlyWindows": 3,
+      "arbitrary": {
+        "train": 4115,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 30485934,
+      "affineDirectOffsetsExamined": 649371
+    },
+    {
+      "chapter": "p0-2",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 80,
+      "anchoredWindows": 80,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 156,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 1572627,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p3-7",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 496,
+      "anchoredWindows": 496,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 84,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 9790434,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p8-14",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 1080,
+      "anchoredWindows": 1080,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 176,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 21321561,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p15-22",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 1254,
+      "anchoredWindows": 1168,
+      "unanchoredWindows": 86,
+      "affineOnlyWindows": 86,
+      "arbitrary": {
+        "train": 3172,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 23100092,
+      "affineDirectOffsetsExamined": 27578308
+    },
+    {
+      "chapter": "p23-26",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 372,
+      "anchoredWindows": 330,
+      "unanchoredWindows": 42,
+      "affineOnlyWindows": 42,
+      "arbitrary": {
+        "train": 4804,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 6589014,
+      "affineDirectOffsetsExamined": 13468476
+    },
+    {
+      "chapter": "p27-32",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 784,
+      "anchoredWindows": 784,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 1824,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 15516331,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p33-39",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 1031,
+      "anchoredWindows": 975,
+      "unanchoredWindows": 56,
+      "affineOnlyWindows": 56,
+      "arbitrary": {
+        "train": 3592,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 19274487,
+      "affineDirectOffsetsExamined": 17957968
+    },
+    {
+      "chapter": "p40-53",
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "cipherWindows": 2359,
+      "anchoredWindows": 2356,
+      "unanchoredWindows": 3,
+      "affineOnlyWindows": 3,
+      "arbitrary": {
+        "train": 5097,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 46432911,
+      "affineDirectOffsetsExamined": 962034
+    },
+    {
+      "chapter": "p0-2",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 80,
+      "anchoredWindows": 80,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 5819,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p3-7",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 496,
+      "anchoredWindows": 496,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 34272,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p8-14",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 1080,
+      "anchoredWindows": 1080,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 82283,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p15-22",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 1254,
+      "anchoredWindows": 1168,
+      "unanchoredWindows": 86,
+      "affineOnlyWindows": 86,
+      "arbitrary": {
+        "train": 7,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 86319,
+      "affineDirectOffsetsExamined": 116272
+    },
+    {
+      "chapter": "p23-26",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 372,
+      "anchoredWindows": 330,
+      "unanchoredWindows": 42,
+      "affineOnlyWindows": 42,
+      "arbitrary": {
+        "train": 123,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 24517,
+      "affineDirectOffsetsExamined": 56784
+    },
+    {
+      "chapter": "p27-32",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 784,
+      "anchoredWindows": 784,
+      "unanchoredWindows": 0,
+      "affineOnlyWindows": 0,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 60537,
+      "affineDirectOffsetsExamined": 0
+    },
+    {
+      "chapter": "p33-39",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 1031,
+      "anchoredWindows": 975,
+      "unanchoredWindows": 56,
+      "affineOnlyWindows": 56,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 74006,
+      "affineDirectOffsetsExamined": 75712
+    },
+    {
+      "chapter": "p40-53",
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "cipherWindows": 2359,
+      "anchoredWindows": 2356,
+      "unanchoredWindows": 3,
+      "affineOnlyWindows": 3,
+      "arbitrary": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "affine": {
+        "train": 0,
+        "full": 0,
+        "maxCoverage": 0,
+        "best": null
+      },
+      "anchorOffsetsExamined": 181504,
+      "affineDirectOffsetsExamined": 4056
+    }
+  ]
+}
