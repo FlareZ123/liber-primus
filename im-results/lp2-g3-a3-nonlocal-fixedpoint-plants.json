@@ -1,0 +1,65 @@
+{
+  "keyLength": 2916,
+  "plants": [
+    {
+      "donor": 0,
+      "failed": true,
+      "halt": false,
+      "nodes": 179,
+      "seed": 5364,
+      "sgn": 1,
+      "stride": 1,
+      "need": 80
+    },
+    {
+      "donor": 0,
+      "failed": true,
+      "halt": false,
+      "nodes": 364,
+      "seed": 5537,
+      "sgn": 1,
+      "stride": 2,
+      "need": 80
+    },
+    {
+      "donor": 1,
+      "failed": true,
+      "halt": false,
+      "nodes": 109,
+      "seed": 5773,
+      "sgn": -1,
+      "stride": 1,
+      "need": 80
+    },
+    {
+      "donor": 1,
+      "failed": true,
+      "halt": false,
+      "nodes": 215,
+      "seed": 5946,
+      "sgn": -1,
+      "stride": 2,
+      "need": 80
+    },
+    {
+      "donor": 2,
+      "failed": true,
+      "halt": false,
+      "nodes": 79,
+      "seed": 6182,
+      "sgn": 1,
+      "stride": 1,
+      "need": 80
+    },
+    {
+      "donor": 2,
+      "failed": true,
+      "halt": false,
+      "nodes": 69,
+      "seed": 6355,
+      "sgn": 1,
+      "stride": 2,
+      "need": 80
+    }
+  ]
+}
