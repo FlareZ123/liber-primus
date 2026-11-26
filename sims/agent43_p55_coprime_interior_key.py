@@ -253,6 +253,14 @@ def main() -> int:
         raise SystemExit("zero-based DIVINITY consume-F invariant result changed")
     if divinity_f_tests["zero_based_candidate"]["literal_F_bypass"]["plaintext_F_from_non_F_ciphertext_positions"] != [7]:
         raise SystemExit("zero-based DIVINITY literal-F invariant result changed")
+    if [i for i, value in enumerate(selected_indices) if value == 0] != [4]:
+        raise SystemExit("one-based candidate ciphertext-F position changed")
+    if [i for i, value in enumerate(zero_based_selected_indices) if value == 0] != [4]:
+        raise SystemExit("zero-based candidate ciphertext-F position changed")
+    if divinity_f_tests["one_based_candidate"]["consume_ciphertext_F"]["plaintext_F_from_non_F_ciphertext_positions"] != [18]:
+        raise SystemExit("one-based DIVINITY consume-F invariant result changed")
+    if divinity_f_tests["one_based_candidate"]["literal_F_bypass"]["plaintext_F_from_non_F_ciphertext_positions"] != [7]:
+        raise SystemExit("one-based DIVINITY literal-F invariant result changed")
 
     exterior_minus, exterior_minus_cursor = decode_exterior(-1)
     exterior_plus, exterior_plus_cursor = decode_exterior(1)
