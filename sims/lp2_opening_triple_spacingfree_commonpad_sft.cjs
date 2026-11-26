@@ -4,7 +4,8 @@ function experiment(inputs,width=256){
  const assert=(x,m)=>{if(!x)throw Error(m)},mod=x=>(x+29)%29;
  const map=new Map(gp.runes.map((x,i)=>[x,i])),tokens=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
  function donor(s){const out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");while(w.length){const t=tokens.find(t=>w.startsWith(t.s));if(!t)throw Error(w);out.push(t.i);w=w.slice(t.s.length)}}return out}
- const g=donor(gib.slice(gib.toLowerCase().indexOf("almustafa"),gib.indexOf("*** END OF THE PROJECT GUTENBERG EBOOK"))),s=donor(sh),e=donor(em.slice(em.indexOf("THERE is one mind"),em.indexOf("*** END OF THIS PROJECT GUTENBERG EBOOK")));
+ function body(s,start,end){const a=s.indexOf(start),b=s.indexOf(end,a);assert(a>=0&&b>a,"donor boundaries");return s.slice(a,b)}
+ const g=donor(body(gib,"Almustafa, the{7} chosen","End of the Project Gutenberg EBook of The Prophet")),s=donor(sh),e=donor(body(em,"THERE is one mind","*** END OF THIS PROJECT GUTENBERG EBOOK"));
  const ds=[g,s,e];const train=ds.map(x=>x.slice(0,Math.floor(x.length*.7)));
  const off=[0,1,30,871],sizes=[1,29,841,24389],N=25260,counts=new Uint32Array(N*29),tot=new Uint32Array(N),probs=new Float64Array(N*29),ll=new Float64Array(N*29),next=new Uint16Array(N*29);
  for(const x of train)for(let i=0;i<x.length;i++){let code=0;for(let l=0;l<=Math.min(i,3);l++){if(l>0)code=x[i-l]*29**(l-1)+code;const r=off[l]+code;counts[r*29+x[i]]++;tot[r]++}}
