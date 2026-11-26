@@ -1,7 +1,7 @@
 "use strict";
 const fs=require("node:fs");
 const paths=["resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/orthodox_daily_prayers_pg34981.txt","resources/external/relikd-solved-gp29-native-v1.json"];
-const experiment=function experiment(raw){
+function makeDecoder(raw){
  const Q=29,S="F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA".split(" "),tok=S.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length),mod=x=>(x%Q+Q)%Q, id=p=>String.fromCharCode(...p.map(x=>65+x)), supp=1-.664/3.448,lnN=Math.log(supp/28),lnR=Math.log(1-supp),maxWord=20;
  function words(t){t=t.split(/\*\*\* END OF/i)[0].replace(/^.*?\*\*\* START OF[^\n]*\n/is,"");return (t.toUpperCase().match(/[A-Z]+(?:'[A-Z]+)*/g)||[]).map(w=>{w=w.replace(/'/g,"").replace(/QU/g,"CW").replace(/ING/g,"NG").replace(/IO/g,"IA").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let a=[];while(w){let t=tok.find(x=>w.startsWith(x[0]));if(!t)throw Error(w);a.push(t[1]);w=w.slice(t[0].length)}return a})}
  const a=new Map(),b=new Map(),add=(m,k,v)=>m.set(k,(m.get(k)||0)+v),train=raw.slice(0,2).flatMap(words),cnt=Array.from({length:4},()=>new Map()),ctx=Array.from({length:4},()=>new Map());
@@ -15,7 +15,8 @@ const experiment=function experiment(raw){
  function wordProb(w,first,last,cl){let len=w.length,unknown=.03*.20*.80**(len-1)*Math.exp(cl),q=(first?suffix:last?prefix:lex).get(w)||0;return Math.log(q+unknown)}
  function edges(C,K){return C.map((c,i)=>{let prev=C[i-1],e=[{j:i+1,p:mod(c-K[i]),w:i&&c===prev?lnR:0}];if(i&&c!==prev){let p=mod(prev-K[i]),w=0;for(let j=i;j<C.length;j++){let x=mod(p+K[j]);if(x===C[j]){e.push({j:j+1,p,w:w+(x===C[j-1]?lnR:0)});break}if(x!==C[j-1]||C[j]===C[j-1])break;w+=lnN}}return e})}
  const la=(a,b)=>a===-Infinity?b:b===-Infinity?a:Math.max(a,b)+Math.log1p(Math.exp(-Math.abs(a-b)));
- function decode(C,K,L=null){
+ function decode(C,K,L=null,sign=-1){
+  if(sign!==-1) K=K.map(k=>mod(-k));
   const E=edges(C,K),n=C.length,W=Array.from({length:n},()=>[]);
   for(let i=0;i<n;i++){
    function visit(j,w,p,s,cl){if(w.length){W[i].push({j,p,w:s+wordProb(w,i===0,j===n,cl)});if(w.length===maxWord)return}if(j===n)return;for(const e of E[j]){let k=w+String.fromCharCode(65+e.p);visit(e.j,k,[...p,e.p],s+e.w,cl+lp(k))}}
@@ -32,6 +33,11 @@ const experiment=function experiment(raw){
   let P=[],ev=[];while(best.s){P.push(best.e.p);ev.push(best);best=best.s}P.reverse();ev.reverse();for(const {i,e} of ev){for(let j=i;j<e.j-1;j++)if(j===0||mod(e.p+K[j])!==C[j-1]||C[j]===C[j-1])throw Error("null replay");if(mod(e.p+K[e.j-1])!==C[e.j-1])throw Error("real replay")}
   return {P,ll:Z/n};
  }
+ return {decode,encodeWords:words,lexicon:lex.size,supp};
+}
+
+function experiment(raw){
+ const {decode,encodeWords:words,lexicon,supp}=makeDecoder(raw),Q=29,mod=x=>(x%Q+Q)%Q;
  let seed=0x296947c9;function ri(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return Math.floor((seed>>>0)/4294967296*n)}
  function enc(P,K){let C=[];for(const p of P)while(true){let i=C.length,c=mod(p+K[i]);if(i&&c===C[i-1]&&ri(1e6)/1e6<supp){let z=ri(28);if(z>=c)z++;C.push(z)}else{C.push(c);break}}return C}
  function edit(a,b){let d=Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){let q=[i+1];for(let j=0;j<b.length;j++)q.push(Math.min(d[j+1]+1,q[j]+1,d[j]+(a[i]!==b[j])));d=q}return d.at(-1)}
@@ -40,7 +46,8 @@ const experiment=function experiment(raw){
  const groups=[["Gibran",[words(raw[3]).flat()]],["Orthodox",[words(raw[4]).flat()]],["native",seqs]],out=[];
  for(const [name,ss] of groups)for(let i=0;i<40;i++){let s=ss[ri(ss.length)],at=ri(s.length-239),P=s.slice(at,at+240),K=Array.from({length:600},()=>ri(29)),C=enc(P,K),WK=Array.from({length:600},()=>ri(29));let blind=decode(C,K),fixed=decode(C,K,240),wrong=decode(C,WK);out.push({name,at,n:C.length,blind:row(blind,P),fixed:row(fixed,P),wrong:wrong.ll,raw:row({P:C.map((c,i)=>mod(c-K[i])),ll:0},P)})}
  const summary={};for(const [name] of groups){const rs=out.filter(x=>x.name===name);summary[name]={n:rs.length,wrongMax:Math.max(...rs.map(x=>x.wrong))};for(const k of ["blind","fixed","raw"]){let a=rs.map(x=>x[k]);summary[name][k]={pass:a.filter(x=>x.pos>=.85).length,exact:a.filter(x=>x.edit===0).length,meanPos:a.reduce((n,x)=>n+x.pos,0)/a.length,meanEdit:a.reduce((n,x)=>n+x.edit,0)/a.length,minLL:Math.min(...a.map(x=>x.ll))}}}
- return {summary,rows:out,lexicon:lex.size,supp,seed:"0x296947c9",method:"semi-Markov word lattice with unknown word mixture, latent word boundaries, exact posterior and legal-path positional MBR; fixed length separately labelled"};
-};
+ return {summary,rows:out,lexicon,supp,seed:"0x296947c9",method:"semi-Markov word lattice with unknown word mixture, latent word boundaries, exact posterior and legal-path positional MBR; fixed length separately labelled"}; 
+}
+
 if(require.main===module) console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(p,"utf8"))),null,2));
-module.exports={experiment};
+module.exports={makeDecoder,experiment,paths};
