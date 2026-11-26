@@ -2,7 +2,7 @@
 // Conditional ciphertext-only difference-key estimation, q=8 strict one-redraw.
 // All randomized searches are seeded. Language enters only after D is frozen.
 function run(co,native,gibran,shakespeare) {
-const Q=8,A=29,Z=[0,0,0,1,0,0,0,1],m=x=>(x+58)%29;
+const Q=8,A=29,Z=[0,0,0,1,0,0,0,1],m=x=>((x%29)+29)%29;
 const j1=Array.from({length:Q},(_,j)=>(j+1)%Q),j2=Array.from({length:Q},(_,j)=>(j+2)%Q),free=Z.flatMap((v,i)=>v?[]:[i]);
 let seed=0x3f910aaa;
 function rng(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return ((seed>>>0)+.5)/4294967296}
@@ -35,9 +35,9 @@ const lm=counts.map(row=>{let s=row.reduce((a,b)=>a+b,0);return Array.from(row,x
 function decode(c,K,previous=null,startPhase=null){let n=c.length,prev=c[0],a=new Float64Array(Q).fill(-Infinity),back=new Int8Array(n*Q).fill(-1);if(previous===null){for(let j=0;j<Q;j++)a[j1[j]]=0;back.fill(-2,0,Q)}else{a[startPhase]=0;prev=previous.c}
 let first=previous===null?1:0;
 for(let i=first;i<n;i++){let b=new Float64Array(Q).fill(-Infinity),x=c[i];for(let j=0;j<Q;j++){if(!Number.isFinite(a[j]))continue;let p0=i===0?previous.p:m(prev-K[(j+Q-1)%Q]);if(x!==prev){let p=m(x-K[j]),k=j1[j],s=a[j]+lm[p0][p];if(s>b[k]){b[k]=s;back[i*Q+k]=j}}let p=m(prev-K[j]);if(m(p+K[j1[j]])===x){let k=j2[j],s=a[j]+lm[p0][p];if(s>b[k]){b[k]=s;back[i*Q+k]=j}}}a=b;prev=x}
-let end=0;for(let j=1;j<Q;j++)if(a[j]>a[end])end=j;if(!Number.isFinite(a[end]))return {score:-Infinity,p:[],end:null};let p=Array(n),j=end;for(let i=n-1;i>=first;i--){p[i]=m(c[i]-K[(j+Q-1)%Q]);j=back[i*Q+j];if(j<0)throw Error("bad backpointer")}if(previous===null)p[0]=m(c[0]-K[(j+Q-1)%Q]);return {score:a[end],p,end}}
+let end=0;for(let j=1;j<Q;j++)if(a[j]>a[end])end=j;if(!Number.isFinite(a[end]))return {score:-Infinity,p:[],end:null};let p=Array(n),j=end;for(let i=n-1;i>=first;i--){p[i]=m(c[i]-K[(j+Q-1)%Q]);j=back[i*Q+j];if(j<0)throw Error("bad backpointer")}if(previous===null)p[0]=m(c[0]-K[(j+Q-1)%Q]);let initial=previous===null?(j+Q-1)%Q:j;let ph=initial,prior=previous===null?-1:previous.c;for(let i=0;i<n;i++){let y=m(p[i]+K[ph]);ph=j1[ph];if(y===prior){y=m(p[i]+K[ph]);ph=j1[ph]}if(y!==c[i])throw Error('replay mismatch');prior=y}if(ph!==end)throw Error('phase replay mismatch');return {score:a[end],p,end,initial}}
 function fitDecode(c,D,cut){let k=keyOf(D),best=null;for(let s=0;s<A;s++){let K=k.map(x=>m(x+s)),p=decode(c.slice(0,cut),K);if(best===null||p.score>best.fit.score)best={K,fit:p}}if(!Number.isFinite(best.fit.score))return {K:best.K,fitScore:null,heldScore:null,fitP:[],heldP:[]};let h=decode(c.slice(cut),best.K,{c:c[cut-1],p:best.fit.p.at(-1)},best.fit.end);return {K:best.K,fitScore:best.fit.score/(cut-1),heldScore:h.score/(c.length-cut),fitP:best.fit.p,heldP:h.p}}
-function test(name,c,cut,truth,p,skips){let d=diff(c),tr=d.slice(0,cut-1),ho=d.slice(cut-1),fit=estimate(tr),s=hardScore(tr,fit.best.D),h=hardScore(ho,fit.best.D,s.phase),de=fitDecode(c,fit.best.D,cut),trueLL=truth?hardScore(tr,truth).ll:null;
+function test(name,c,cut,truth,p,skips){let d=diff(c),tr=d.slice(0,cut-1),ho=d.slice(cut-1),fit=estimate(tr),s=hardScore(tr,fit.best.D),h=s.phase?hardScore(ho,fit.best.D,s.phase):{ll:-Infinity},de=fitDecode(c,fit.best.D,cut),trueLL=truth?hardScore(tr,truth).ll:null;
 let preview=de.heldP.slice(0,120).map(x=>co.translit[x]).join(" ");
 return {name,n:c.length,cut,skips,repeats:d.filter(x=>x===0).length,truth,correctD:truth?canon(truth)===canon(fit.best.D):null,trueLL,fit,heldLL:h.ll,decoded:{K:de.K,fitScore:de.fitScore,heldScore:de.heldScore,fitCorrect:p?de.fitP.filter((x,i)=>x===p[i]).length:null,heldCorrect:p?de.heldP.filter((x,i)=>x===p[cut+i]).length:null,preview}}}
 const out=[],len=12956,cut=9640;
