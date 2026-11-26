@@ -284,6 +284,12 @@ The projection has rank88 as a linear observation over GF29, with nullity33. Eve
 
 Reproducer: [coverage and held-out route SFT](../sims/lp2_p32_route_projection_capacity_sft.cjs). The numerical core was executed against the current canonical corpus, base60 table and signed source in the connected JS runtime; standalone Node wrapper not yet executed.
 
+## Omitted-column redundancy obstruction (26 November 2026)
+
+A possible way to make the 88-cell projection sufficient would be to interpret the three unvisited columns as parity for the eight visited columns in each row. This is not source-authenticated; it is a direct test of the exact 8+3 geometry. Over GF29 the original 11×11 rune-index matrix has rank11 and determinant8. Its first eight columns have rank8; adjoining a constant-one column gives rank9. A single arbitrary shared systematic linear map from eight data symbols to three check symbols forces rank≤8; an arbitrary shared affine map forces rank≤9. Even allowing arbitrary additive row and column biases to an arbitrary common eight-dimensional linear code gives rank≤10, since the combined bias matrix has rank≤2. Thus none can explain the actual rank11. Row or column permutations and transposition cannot rescue the rank obstruction. The GP-prime-residue matrix independently has rank11, determinant21.
+
+This excludes shared (11,8) linear parity/check-code explanations, including RS with any fixed evaluation points and column multipliers, rather than only one generator polynomial. Native controls built from the original eight-column data matrix give ranks8,9,10 for linear, affine and row/column-biased codewords respectively. Nonlinear, row-dependent or additional encrypted redundancy remains outside the bound; the omission itself does not provide such a mechanism. Reproducer: [lp2_p32_omitted_columns_linear_redundancy_sft.cjs](../sims/lp2_p32_omitted_columns_linear_redundancy_sft.cjs), original and control assertions executed in connected V8, standalone Node wrapper untested.
+
 ## Decision
 
 Preserve the following as the leading p32 readout candidate:
