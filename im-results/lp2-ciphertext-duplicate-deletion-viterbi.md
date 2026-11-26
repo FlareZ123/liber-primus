@@ -70,3 +70,27 @@ Enumerate every distinct directed Euler cycle of each recovered key-edge multise
 Original p0–39 fit/p40–55 holdout, ten highest prefix pair-ranked cycles per q: q8 10 Euler candidates including repeated multiset classes, best held-out LM -3.913683, best held-out pair gain -0.171636; q13 10 Euler candidates including repeated multiset classes, best held-out LM -3.879075, best held-out pair gain -0.099836. All prefix-selected Euler orders still decode to nonprose. These are calibrated algorithmic results, not a globally exhaustive key exclusion. No further unselected q8/q13 cycle search is justified.
 
 The updated key-recovery SFT now performs this exact Euler completion automatically; the original pair-only ordering is still output alongside the resolved key. Core executed in connected V8, standalone Node wrapper unrun.
+
+
+## Exact all-key gate for arbitrary run-preserving edits and contiguous donor prefixes
+
+The preceding key recovery is heuristic. A distinct exact gate uses the same invariant without a language model, phase-mixing approximation, coin probability or deletion-count limit. Let T_j(a,b) count adjacent **non-F plaintext** pairs (a,b) at consuming phase j in a candidate prefix. Under native additive F holds, its contribution to the ciphertext cell (a+K_j,b+K_(j+1)) cannot exceed that cell's observed count when both endpoints are nonzero and unequal. Deletion or duplication confined to an already existing run preserves those off-diagonal counts exactly. Every other plaintext contribution is nonnegative. Thus each phase admits only key-pair edges satisfying all 784 individual count inequalities. One directed closed walk through the q phase-specific edge graphs is necessary for any shared cyclic key. It is sufficient for the *relaxed separate cell constraints*, not for actual complete plaintext compatibility. Rotating the initial phase is absorbed into the unrestricted cyclic key.
+
+The original p0–55 tape contains 12,956 runes and 11,961 nonzero unequal ordered transitions; the largest masked cell count is 30. For a deletion-only sender, the unknown true plaintext has length at least 12,956. Testing just the first 12,956 runes of any candidate donor is sound: extending it can only add off-diagonal transitions. **Every contiguous 12,956-rune window** of the three pinned native-converted literary donors is therefore a candidate prefix, without needing to guess the number of hidden symbols. For duplication-only or mixed run-preserving edits, the prefix gate applies only if the underlying plaintext is at least this long.
+
+Efficient exhaustive sliding implementation: assign each adjacent non-F pair its absolute consuming phase modulo q; starting the window later rotates all phase labels uniformly. Precompute for each plaintext pair and threshold the list of key-pair edges whose mapped observed count equals that threshold. Maintain exact violation counters for each edge as a sliding pair enters/leaves. A phase with zero admissible edges immediately rejects the window. Otherwise compute cyclic reachability across the q layers using 29-bit successor masks. No ranking, random subsampling or beam enters the original gate.
+
+| Period | Donor | Windows | Every phase has an edge | Closed walk survives |
+|---:|---|---:|---:|---:|
+|8|Gibran|34,674|0|0|
+|8|Emerson|293,896|0|0|
+|8|Shakespeare|204,151|0|0|
+|13|Gibran|34,674|0|0|
+|13|Emerson|293,896|0|0|
+|13|Shakespeare|204,151|5,818|0|
+
+All 532,721 distinct windows per period fail (1,065,442 period/window tests). In q8 every phase is empty in every window; in q13 the 5,818 locally surviving Shakespeare windows all fail the closed-walk condition. Six independent 13,400-rune native plants (q8/q13 × three donors, random keys, .81 duplicate deletion) retain the true key edges and a closed walk both on the entire plaintext and on the prefix equal to observed ciphertext length. Masked pre/post-deletion transition histograms are exactly equal for each plant. No source-selected deletion operation or original key emerges.
+
+This is a finite exact all-key exclusion for **contiguous plaintext prefixes from these three complete native-converted donor tapes**, even granting arbitrarily many deleted repeats; it does not exclude arbitrary prose with other phase-specific pair counts, chapter-private keys, nonlinear state, arbitrary transpositions, shorter underlying tapes with inserted runes, or other edits. It materially narrows the length-changing loophole for direct historical donor text and native q8/q13 keys, rather than merely ranking more candidate keys.
+
+Reproducer: `node sims/lp2_duplicate_deletion_allkey_pairprefix_sft.cjs`. Core executed in connected V8 against exact repository inputs, standalone Node wrapper not separately run.
