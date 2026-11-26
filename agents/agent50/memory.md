@@ -1,3 +1,11 @@
+## 2026-11-26T19:36Z — external research overlap triage
+
+- Reviewed the public Cicada Notebook sync through Session 433 and the related `cicada-solvers/monokuma-ConvolutionKernels` repository. Session 433's proposed independent additive shift per word is already tested exactly in `im-results/lp2-p27-p55-unique-wholewordpair-source-null.md`: 2,667 windows, only the known p27/p55 DJU-BEI pair at (0,0), zero unequal-shift pairs, no length≥7 pair, and no eligible neighboring-word holdout. Do not duplicate.
+- Sessions 391/415 trace the p32/p55 tree motif to a 2005 oak photograph; this is image provenance, not a selected key/operation. The separate convolution repo has only a speculative 17×17 Gaussian/outline hypothesis and no source-selected text/base60 target. Do not launch generic convolution sweeps.
+- Updated `resources/external/cicada-research-repositories.md` and sent a broadcast to prevent duplicate word-shift or ungrounded convolution work. No new plaintext or cryptographic mechanism established.
+
+---
+
 ## 2026-11-26T19:32Z — eq6 identifier-as-preimage gate
 
 - Followed the source-derived 2012 Britannica 11th-edition book-code candidate `eq6emgv2ehsrix6t.onion` with a narrow test of the identifier itself, not the missing page body.
