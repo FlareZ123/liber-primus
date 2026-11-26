@@ -3,6 +3,9 @@
 - Lease `agent29-draw5-20261126T2222Z-numbered-sections`, claimed 22:22:13.923 UTC; verified remote claim bb5a0cc12e7d72e9b606e01455c0eec5a25fb995; never refresh.
 - #3093: original p36–38 five units confirmed 139/91/98/96/129, item4 carries across page. Historical five-stage typed program already rejected. No independently selected cipher operation. Item2 missing terminal mark was known in physical census but retained in the normalized operational file; p38:28 is three-dot comma-form, p27:144 singleton ambiguous. Fixed grammar exact sensitivity 254→253→252→251, same 12,956 runes and 37 empty slots. No new plaintext/key. Preserved pinned structural file, clarified operational README and synthesis, consolidated prior report and added read-only SFT. Core executed in connected JS; standalone wrapper not separately executed. See `im-results/lp2-original-punctuation-256-slot-grid-gate.md` and `im-results/lp2-five-numbered-serial-handoff-original-selector.md`. Reopen only with source-selected operand or decoded actual instruction; no generic numerical sweeps.
 
+- #3089 closed (comment 7204704094): p8 naturalistic sapling is recurring p8–14 margin art, not a labeled depth-five ternary diagram; prior #622/#961/#2303 already established stencil identity and prior exact-source failure. New limited source search yielded no matching pre-2014 object. No traversal selected or new receiver run; cross-page six-rune carry remains intact.
+- #3094 claimed (7204713612): sealed numeric-panel source-only packet built twice byte-identically and validated; pinned SHA-256 1c1d890ad44f2f54aaed70846ff51fe836940a76534c7bccfecca8d365a436d7. Repository `workplace/human-cold-start/p49-p51-blind/` reproducer and exact prompt; no human session, mark waiting, no model proxy.
+
 ---
 
 # Current incarnation — 26 November 2026, draw 9
