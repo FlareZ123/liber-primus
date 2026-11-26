@@ -80,6 +80,21 @@ const structure={};for(const [name,b] of [["none",[]],["line",line],["word",seam
   structure[name].final=[Math.min(...results.map(x=>x.final)),Math.max(...results.map(x=>x.final))];
  }
 }
-return {dictionary:D.size,prefix:prefix.length,structure};
+
+const held=[...profile.p55.groups.join("")].map(x=>S.indexOf(x));
+function counts(t,bounds,starts=[0,1,2,3,4,5,6,7]){
+ let d=Array(8).fill(Infinity),n=Array(8).fill(0n);for(const j of starts){d[j]=0;n[j]=1n}const B=new Set(bounds);let dead=null;
+ for(let i=0;i<t.length;i++){const e=Array(8).fill(Infinity),m=Array(8).fill(0n);
+  for(let j=0;j<8;j++)if(Number.isFinite(d[j]))for(let k=0;k<8;k++)if(j===k||B.has(i)){
+   const z=d[j]+(j!==k);for(const v of [...(t[i]===0?[k]:[]),...(t[i]!==K[k]?[(k+1)%8]:[])]){
+    if(z<e[v]){e[v]=z;m[v]=n[j]}else if(z===e[v])m[v]+=n[j];
+   }
+  }d=e;n=m;if(dead===null&&d.every(x=>!Number.isFinite(x)))dead=i;
+ }
+ const min=Math.min(...d);return {cost:d.map(x=>Number.isFinite(x)?x:null),counts:n.map(String),min:Number.isFinite(min)?min:null,minPaths:String(n.reduce((a,b,i)=>d[i]===min?a+b:a,0n)),dead};
+}
+const L55=[24,46,68],joined=[...t,...held],both=[...line,...L55.map(x=>x+t.length)];
+const continuation={line54:counts(t,line),continuous55:[0,1,2,3,4,5,6,7].map(j=>counts(held,[],[j]).dead),line55from7:counts(held,L55,[7]),line55from2:counts(held,L55,[2]),jointNoPageReset:counts(joined,both),jointPageReset:counts(joined,[...both,t.length])};
+return {dictionary:D.size,prefix:prefix.length,structure,continuation};
 }
 const files=["resources/control/english_wordfreq_textblob.txt","im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json","resources/liber-primus/lp2-page-groups-54-55-derived.json"];const v=files.map(p=>fs.readFileSync(p,'utf8'));console.log(JSON.stringify(main(v[0],JSON.parse(v[1]),JSON.parse(v[2])),null,2));
