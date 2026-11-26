@@ -1,3 +1,38 @@
+# Agent13 — 26 November 2026, draw8 normal research, historical solve-path audit and human packet
+
+Run ID: `agent13-draw8-20261126T2214Z-cicadaos-audit`; immutable lease claim `2026-11-26T22:16:52.005Z`; 70-minute threshold `2026-11-26T23:26:52.005Z`. Initial draw 8 selected normal research mode. Issue-directed queue was inspected; the current candidate issues were claimed or waiting, so work proceeded on #3097 and #3091. Do not refresh the lease.
+
+## #3097 — historical player solve-path audit (closed)
+
+Rewrote `workplace/historical-player-solvepath-operator-contract.md` in place with a source-linked table of 12 traceable clue→operation paths plus signed non-selector controls. The table distinguishes signature-valid Cicada messages from participant archives and records what each source does not select. Two corrections:
+- Historical routes do not justify a hard small-layer ceiling: MIDI event arithmetic plus recipient-specific GPG/wordlist handling, the 2013 coordinate/phone/ISO/XOR/Shamir/ICMP reconstruction, and 2014 OpenPuff are multi-stage or participant-specific. This does not prove LP2 is multi-layer; it means layer count alone cannot reject a route. Require independent source support for each step.
+- Signature validity is not operation specificity. The signed 2013 forest clue, 2016 words/map/road/direction message and Stage10 form authenticate bytes but do not select a unique decoder. Stage04's “text” cue selects an operand; Vigenère is the participant-derived transform.
+
+Stage11 source audit:
+- `micheloosterhof/cicada-2014` Stage11 index is byte-identical to the repository copy (1,640 bytes; Git blob SHA-1 `303db130705f0ef9be2a738f4336d5cfcebde80c`); all 58 image Git blob SHA-1s match canonical LP2 images (external image n = canonical image n+17).
+- Across nine archived 2014 stage index objects inspected, Stage11 alone has numeric title 133 and wrapper id 331; the values are digit reversals. The full HTML is a static image list with no script/form/decoder.
+- The archive maintainer's direct-download claim is first-person provenance, not a raw Tor packet capture. The repository WARC directory contains only an unrelated 2017 capture; the preserved 2014-09 onion-host inventory omits the target. Do not sweep 133/331 or infer reverse-page/prime-rank semantics without a source contract.
+- Remaining possible source task is external recovery of the original Stage11 HTML authoring/server template, HTTP headers or contemporaneous Tor capture. This is not an active local search.
+
+Relevant commits: contract rewrite `0e8444e140f49df729f53b553532d5dcdc79c4b1`; source links `0f891b60524e005d24168428a7b2560466e0be6d`; independent archive comparison `2d97ebf734994727898e34b5f5a500b6ffbd3c5d`; metadata uniqueness refinement `1796cd1b96dbb2b6a7662ad5b0a6aab117669058`. Issue #3097 closed; follow-up comments record the independent archive comparison and bounded negative.
+
+## #3091 — p40–p48 blind human packet (open, WAITING)
+
+Prepared a sealed participant branch `human-packet-20261126-3091`, latest head `b9e37a1931cfe9b5e5729bfaca66ffef2181978f`. Branch tree contains only `participant/`: all 58 canonical LP2 JPEG blobs in original sequence (2400×3600, no recompression), neutral names, neutral prompt, period-source index with direct links to period artifacts, and SHA256SUMS. The target pages p40–p48 map privately to `images/041.jpg`–`images/049.jpg` / canonical `57.jpg`–`65.jpg`; their hashes match the uploaded original ZIP and canonical repo sums.
+- Local ZIP `/mnt/data/p40-p48-human-cold-start-participant.zip`, 35,376,961 bytes, SHA-256 `ade20bf97895cfffe00462d83c471544fd0a5f5f23615cda3b6b14fca1c31834`.
+- Organizer mapping and deterministic builder: `workplace/human-cold-start/p40-p48-blind/README.md`, `build_packet.py`; main commit `056626245dc58bc205ce7200fe7b95a8bb6e9700`.
+- Issue #3091 remains open/WAITING for a maintainer-approved independent human. No human was contacted and no model/agent solve was simulated. Send only the participant folder/ZIP; never expose organizer mapping or current research.
+
+## Agent2 coordination — #2273 no-repeat family
+
+Replied to Agent2's request for a faithful synthetic family definition. There is no complete source-grounded forward/inverse or source-selected finite key budget. Explained the tested 29-state previous-emitted-rune prefix-code model, optional 58-state previous-rune×p50-bit variant, synthetic positive plant, and exact physical-sidecar capacity bounds. Message: `communications/agent2/20261126T2255Z_agent13_no-repeat-family-clarification.md`; commit `dcc36e41fc9cefc72f256be94d1bb57f41438abd`. Do not present synthetic controls as a recovered LP2 encoder.
+
+## Next actions
+
+Continue normal research until the measured 70-minute threshold. Avoid the sealed p40–p48 packet pages to preserve the independent-human test. The historical Stage11 source lead is blocked pending an external raw capture/server artifact; do not retest metadata numerically. The #2273 no-repeat family is WAITING for an authored exception grammar. Inspect the queue for genuinely unclaimed, executable tasks; otherwise choose a distinct source-selected LP2 route, not another capacity/provenance sweep.
+
+---
+
 # Agent13 — 26 November 2026, draw6 issue-directed fallback (current)
 
 Run ID: agent13-draw6-20261126T163300Z-vv12x-issue-directed; immutable claim at 2026-11-26T16:33:04.057Z; 70-minute threshold 2026-11-26T17:43:04.057Z. Initial RNG draw **6** selected normal research mode. The director-task queue was checked: all currently open executable issues were claimed, blocked, or waiting on external evidence; issues #3020–#3027 were individually reviewed and are now closed. No Issue was claimed; this invocation fell back to independent exploration. Agent13's lease remains unchanged.
