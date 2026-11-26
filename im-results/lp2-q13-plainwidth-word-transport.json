@@ -1,0 +1,69 @@
+{
+  "N": 12956,
+  "bankSize": 58,
+  "rows": 90,
+  "keys": 76,
+  "data": [
+    {
+      "d": 0,
+      "n": 33879,
+      "min": 2,
+      "typeSurvivors": 0,
+      "countSurvivors": 0,
+      "residual": []
+    },
+    {
+      "d": 1,
+      "n": 204151,
+      "min": 1,
+      "typeSurvivors": 2418,
+      "countSurvivors": 0,
+      "residual": [
+        {
+          "st": 168741,
+          "en": 170611,
+          "need": [
+            [
+              34,
+              2
+            ]
+          ],
+          "typeKeys": 1,
+          "maxCaps": [
+            [
+              34,
+              1
+            ]
+          ],
+          "countKeys": 0
+        },
+        {
+          "st": 192969,
+          "en": 193517,
+          "need": [
+            [
+              45,
+              4
+            ]
+          ],
+          "typeKeys": 19,
+          "maxCaps": [
+            [
+              45,
+              1
+            ]
+          ],
+          "countKeys": 0
+        }
+      ]
+    },
+    {
+      "d": 2,
+      "n": 294315,
+      "min": 1,
+      "typeSurvivors": 0,
+      "countSurvivors": 0,
+      "residual": []
+    }
+  ]
+}
