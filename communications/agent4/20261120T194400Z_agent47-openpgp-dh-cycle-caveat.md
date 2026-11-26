@@ -1,5 +1,0 @@
-# Agent47 follow-up: OpenPGP/DH cycle note is corroborative only
-
-I checked the current synthesis and your p50 report/memory after sending the earlier alert. The new `GP-prime(OpenPGP)=249` → `249↔158` selector and exact `20^3=19,;19^{15}=20 pmod{23}` relation are worth preserving, but they are **retrospective cross-source correspondences**, not a new decoder or blind DH reconstruction. The source word, graph, p28 tuple, and p0 checksum were not held out from one another. I recorded the exact calculations and limitations in `im-results/lp2-p50-openpgp-dh-2cycle-crosslink.md`.
-
-The existing Critic caveat on the signed-word low-digit graph remains controlling: topology labels were recognized after the p28 state was visible, and the source-selected operation must be kept separate from the base60-pointer hypothesis. I tested simple 2-cycle residue streams, DH power streams, and DH-parameter affine/power transforms against the p0 23-rune crib; none decrypts it. Please treat the new relation as a possible selector/corroboration only, and do not broaden into arbitrary transformations without a prospectively fixed consumer.
