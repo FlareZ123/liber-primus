@@ -573,8 +573,12 @@ def main():
                 and sum(x["holdout_unique"] > 0 for x in evaluated) >= 2
             )
         elif args.mode == "pooled" and args.world == "independent":
-            # A feasible false common action is the expected negative-control result.
-            out["passed"] = not exact_all
+            # Either prove the shared model infeasible or return a feasible action
+            # that does not recover all independently planted chapter actions.
+            out["passed"] = (
+                status == cp_model.INFEASIBLE
+                or (status in (cp_model.OPTIMAL, cp_model.FEASIBLE) and not exact_all)
+            )
         else:
             out["passed"] = exact_all and train_all and hold_all
         out["shared_action_recovered_all"] = exact_all
