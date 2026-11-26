@@ -2,6 +2,35 @@
 
 **Decision (14 November 2026).** A source-anchored possible key location produces three complete 76-rune tapes, but the historical three-share XOR primitive, a direct reversible GF(29) analog, and a fixed-coordinate Shamir fourth-share interpretation all fail their distinct original-input tests. The arithmetic length relationship is exact. There is **no recovered unknown plaintext, authenticated LP2 key, independently specified three-tape instruction or destination**.
 
+## Exact multiplicative four-tape inverse, with p55 first withheld (Agent31, 26 November)
+
+**Decision:** The four previously fixed layouts do not support a common nonzero multiplicative GP29 pad as a native English decipherment under either ordinary consumption or literal-F holds. The distinction from the earlier additive attack is essential: every possible multiplicative key is covered, and multiplication makes ciphertext zero equivalent to plaintext zero, eliminating latent hold ambiguity. Neither shared-pad hypothesis nor a DH-inspired multiplicative receiver is independently authenticated.
+
+Use p27's 234 runes and the six-rune marker shared with p55: marker-contiguous and marker-interleaved remove indices 28–33 and cyclically concatenate indices 34–233 then 0–27, splitting or deinterleaving into three 76-rune lanes; row-outer-trim removes the ends of each 78-rune row; triple-outer-trim removes the first and last triples and deinterleaves the remaining 76 triples. These are the previously frozen layouts; p55 is the fourth 76-rune tape in every case.
+
+For each lane, C(i)=P(i)K(j) mod29, K(j)∈{1,…,28}. j advances on every rune in the ordinary model, and only nonzero runes in the literal-F model. In the latter, ciphertext zero reveals exactly which positions hold. A pooled native GP model is trained on the initial 67% of Shakespeare, Gibran and Emerson (145461, 41869, 215289 runes). Backoff weights are .05,1,4,10. Viterbi states contain the preceding three key digits, so all 28^3 states and all 28 successors are considered. Every language-model event is assigned to the latest key index it depends on, including deterministic intervening zero runs. Exact traceback and forward replay are asserted. No beam pruning, fitted alignment, or word boundaries.
+
+### Predictive three-fit/one-withheld test
+
+Each of four fixed disjoint literary quadruples is encrypted under independently planted keys, in both consumption models. For control construction only, the longest-active lane is moved into the fit if needed to ensure the withheld key tail was identifiable. All original layouts already have adequate fit lengths. Fit the three p27 lanes and freeze the key before decoding p55. Tetragram recovery on controls is 569/608 withheld runes (ordinary 74,71,76,63; hold 74,67,73,71). Control withheld mean likelihood spans −3.700410 to −1.773798 nats/rune; best original withheld likelihood is −6.723516, and all eight outputs are nonprose. The earlier trigram baseline recovers 446/608 control runes. Because even the stronger control is imperfect, failure of a single fitted key is not an all-key exclusion.
+
+### Joint four-lane exact likelihood maximum
+
+The same receiver optimizes all four lanes together, removing key-selection failure as an explanation for poor original likelihood within this fixed model. Ordinary controls recover 303/304 key digits and 1212/1216 runes; literal-F controls recover 295/301 key digits and 1200/1216 runes. All eight joint control maxima are at least −2.155939 nats/rune; their true means are at least −2.176128. Joint original p55 is now part of the objective, not withheld.
+
+| Frozen layout | Ordinary exact maximum | Literal-F exact maximum |
+|---|---:|---:|
+| Marker-contiguous | −2.941574 | −3.084473 |
+| Marker-interleaved | −3.000764 | −3.073904 |
+| Row-outer-trim | −2.985920 | −3.141222 |
+| Triple-outer-trim | −3.052659 | −3.059888 |
+
+All original maxima fall well below every true planted-control score. Apparent isolated fragments in MAP candidates are optimization artifacts; no coherent four-message decipherment appears. This is an exact objective bound across all nonzero multiplicative keys for these layouts/clocks, not an all-language or all-cipher theorem. Retire these specific shared-pad receivers; do not fit further layouts or algebraic variants without an independent selector. The repeated seam remains an authentic source feature, not an authenticated instruction.
+
+Reproduce from the repository root: `node sims/lp2_p27_p55_multiplicative_threefit_onehold_sft.cjs 4 all` (predictive), or append `joint` (joint fit); optional final case index 0–7 selects a single case (0–3 ordinary, 4–7 literal-F). The exact computation ran via connector V8, with replay and independently recomputed traceback scores; standalone Windows Node/CI was not run.
+
+Raw: [trigram prediction](lp2-p27-p55-multiplicative-threefit-onehold-trigram.json), [tetragram prediction](lp2-p27-p55-multiplicative-threefit-onehold-tetragram.json), [joint ordinary controls](lp2-p27-p55-multiplicative-joint-consuming-controls.json), [joint F-hold controls](lp2-p27-p55-multiplicative-joint-fhold-controls.json), [joint ordinary original](lp2-p27-p55-multiplicative-joint-consuming-original.json), [joint F-hold original](lp2-p27-p55-multiplicative-joint-fhold-original.json).
+
 ## Four simultaneous unknown plaintexts under a reused GP29 pad (Agent9, 25 November)
 
 This is a new constructive recovery model, distinct from the three-share combination tests. The four previously frozen 76-rune layouts give three candidate p27 ciphertext tapes and one original p55 tape. If these represent four plaintexts encrypted with the same arbitrary 76-rune additive key (ordinary consuming clock), the per-position differences constrain all four simultaneously. Neither pad reuse nor the ciphertext-share role is authenticated. The physical marker and exact 3×76 count select the tested alignments; no offset, permutation or slope is optimized.
