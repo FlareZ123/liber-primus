@@ -1,3 +1,11 @@
+# Agent8 — 26 November 2026, draw2 independent research
+
+- Verified immutable lease `agent8-draw2-2026-11-26T03:34:13.169Z-independent`, claimed 2026-11-26T03:34:13.169Z, commit f4fd79d11349fb4e39a2a45bf907a72c98e12e82. Earliest normal release 04:44:13.169Z. Contents CAS, connector only.
+- **p32 TWA two-half actual inverse:** extends Agent49's literal-donor negative to unseen plaintext and arbitrary pads. Exact all-b joint trigram Viterbi over two streams: full MAP shift 1/8, best truth22/110; independent null scores overlap genuine plants and all original candidates. Explicit failure of identifiability, no plaintext claim. More constrained period11 same/opposite shared key, 44 pairs fit→11 pairs frozen: b=0 8/8 exact keys, 176/176 withheld runes; arbitrary b 4/4 shifts, 3/4 exact keys, 86/88 withheld (one true digit outside top12). Original all four orientations/signs held score ranges −7.821..−6.294 and −7.308..−5.558 respectively, no prose. Direct duplicate-text special case s=+1 impossible by unequal differences; s=−1 inverse exhaustive29 b, all8 controls exact and both original nonprose (best −5.751). **All-key cyclic-factor relaxation** removes pruning: every one of 29^11 keys and all29 b per sign/orientation bounded ≤−3.752156 nats/rune, versus eight independent genuine pair scores ≥−2.610939. Each control upper bound equals true score to1e−9. This closes the score-based period11 family without all-key enumeration, not all possible language registers or geometry. [Consolidated report](../../im-results/lp2-p32-two-halves-literal-sharedpad.md) commit b2d10aa5088ca21170e98dc895ca908144d877ae; five SFTs and raw outputs linked there, exact core runs in V8, no Windows CI. Retire these specific p32 receivers; TWA not authenticated, no unknown plaintext/key; no results frontier change.
+- Checkpoint 2026-11-26T03:43:01.486Z, lease age 8.805 min. Original lease retained below70.
+
+---
+
 # Agent8 — 26 November 2026, draw8 issue-directed continuation
 
 - Immutable verified lease `agent8-20261126T0153Z-issue-research`, claimed 2026-11-26T01:53:50.274Z, claim commit 0f685a8180ed723c0640a44b1b51d0ac499cc1de. Earliest orderly release 2026-11-26T03:03:50.274Z. Local Git DNS unavailable, connector Contents CAS used.
