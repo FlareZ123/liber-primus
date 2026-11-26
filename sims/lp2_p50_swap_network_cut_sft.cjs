@@ -1,6 +1,7 @@
 "use strict";
 // Agent49: original p50 swap-network receiver and order-independent cut certificate.
 const fs = require("node:fs");
+/** @param {{pages:{indices:number[]}[],translit:string[]}} corpus @param {{alphabet:string,pages:{tokens:string[]}[]}} grid */
 function analyze(corpus,grid) {
   const assert=(x,m)=>{if(!x)throw Error(m)};
   const mod=x=>(x%29+29)%29;
@@ -63,6 +64,74 @@ function analyze(corpus,grid) {
   }
   return {toy,p56Plain:render(p56),result};
 }
+/** @param {{pages:{indices:number[]}[]}} corpus @param {{alphabet:string,pages:{tokens:string[]}[]}} grid */
+function alphabetGate(corpus,grid){
+ const range=n=>Array.from({length:n},(_,i)=>i);
+ const ring=[...range(8),...range(31).map(i=>(i+1)*8+7),...range(7).map(i=>31*8+6-i),...range(30).map(i=>(30-i)*8)];
+ const path=[...ring,...range(30).flatMap(r=>range(6).map(i=>(r+1)*8+i+1))],pos=Array(256);path.forEach((v,i)=>pos[v]=i);
+ const tape=corpus.pages.slice(55,58).flatMap(x=>x.indices),primes=[];
+ for(let n=2;primes.length<85;n++)if(!primes.some(p=>p*p<=n&&n%p===0))primes.push(n);
+ let k=0;const p56=corpus.pages[56].indices.map((v,i)=>i===56?v:((v-primes[k++]+1)%29+29)%29);
+ const native=[...tape.slice(0,76),...p56,...tape.slice(161)];
+ const fresh=()=>Array(29).fill(-1);
+ function localDomains(b,input,target){
+  const vals=b.cells.map(v=>input[pos[v]]),want=b.cells.map(v=>target[pos[v]]),domains=new Map(),x=[...vals,-1];
+  function gen(mask){
+   if(mask===((1<<b.edges.length)-1)){
+    const M=new Map(),N=new Map();
+    for(let i=0;i<want.length;i++){
+     if(x[i]<0)continue;
+     if((M.has(x[i])&&M.get(x[i])!==want[i])||(N.has(want[i])&&N.get(want[i])!==x[i]))return;
+     M.set(x[i],want[i]);N.set(want[i],x[i]);
+    }
+    const p=[...M.entries()].sort((a,b)=>a[0]-b[0]);domains.set(JSON.stringify(p),p);return;
+   }
+   for(let i=0;i<b.edges.length;i++)if(!(mask&(1<<i))){const[a,z]=b.edges[i];[x[a],x[z]]=[x[z],x[a]];gen(mask|(1<<i));[x[a],x[z]]=[x[z],x[a]];}
+  }
+  gen(0);return{...b,vals,want,domains:[...domains.values()]};
+ }
+ function solve(C,M=fresh(),N=fresh()){
+  if(!C.length)return M;
+  let best=-1,D=null;
+  for(let i=0;i<C.length;i++){
+   const d=C[i].domains.filter(d=>d.every(([a,b])=>(M[a]<0||M[a]===b)&&(N[b]<0||N[b]===a)));
+   if(!d.length)return null;
+   if(D===null||d.length<D.length){best=i;D=d;}
+  }
+  const rest=C.filter((_,i)=>i!==best);
+  for(const d of D){const a=M.slice(),b=N.slice();for(const[x,y]of d){a[x]=y;b[y]=x;}const q=solve(rest,a,b);if(q)return q;}
+  return null;
+ }
+ const out=[];
+ for(const base of [59,60]){
+  const alpha=base===59?grid.alphabet.replace("f",""):grid.alphabet;
+  const f=grid.pages.flatMap(p=>p.tokens).map(t=>alpha.indexOf(t[0])*base+alpha.indexOf(t[1]));
+  const adj=range(256).map(()=>[]);f.forEach((v,u)=>{if(u!==v){adj[u].push([v,u]);adj[v].push([u,u]);}});
+  const branches=[];
+  for(let i=0;i<256;i++){if(i===f[i])continue;for(const start of [i,f[i]]){
+   const q=[start],s=new Set(q);for(let j=0;j<q.length;j++)for(const [v,e]of adj[q[j]])if(e!==i&&!s.has(v)){s.add(v);q.push(v);}
+   if(s.has(start===i?f[i]:i)||q.length<2||q.length>8||q.some(v=>pos[v]<76))continue;
+   const edges=f.flatMap((v,u)=>s.has(u)&&s.has(v)&&u!==v?[[q.indexOf(u),q.indexOf(v)]]:[]);
+   if(edges.length!==q.length-1)continue;
+   edges.push([q.indexOf(start),q.length]);branches.push({cells:q,cut:[i,f[i]],edges});
+  }}
+  let plants=0;
+  for(const input of [tape,native])for(const direction of [1,-1]){
+   const raw=Array(256);path.forEach((v,i)=>raw[v]=input[i]);
+   for(const i of direction===1?range(256):range(256).reverse())[raw[i],raw[f[i]]]=[raw[f[i]],raw[i]];
+   const hidden=range(29).map(x=>(7*x+11)%29),target=path.map(v=>hidden[raw[v]]);
+   const C=branches.map(b=>localDomains(b,input,target));
+   if(!C.every(b=>b.domains.some(d=>d.every(([x,y])=>hidden[x]===y)))||!solve(C))throw Error("planted alphabet/order compatibility lost");
+   plants++;
+  }
+  for(const [label,t] of [["raw",tape],["native",native]]){
+   const C=branches.map(b=>localDomains(b,t,t)),m=solve(C);
+   let core=[];if(!m){core=C.slice();for(let i=0;i<core.length;){if(!solve(core.filter((_,j)=>i!==j)))core.splice(i,1);else i++;}}
+   out.push({base,label,branchCount:C.length,domainSizes:C.map(x=>[x.cells.length,x.domains.length]),feasible:!!m,core:core.map(x=>({cells:x.cells,cut:x.cut,edges:x.edges,vals:x.vals,domains:x.domains})),plants});
+  }
+ }
+ return out;
+}
 const corpus=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));
 const grid=JSON.parse(fs.readFileSync("resources/liber-primus/lp2-grid-256.json","utf8"));
-console.log(JSON.stringify(analyze(corpus,grid),null,2));
+console.log(JSON.stringify({direct:analyze(corpus,grid),alphabetGate:alphabetGate(corpus,grid)},null,2));
