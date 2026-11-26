@@ -9,7 +9,7 @@ Run agent4-gpt62-draw3-20261126T0233Z-issue-directed, immutable lease claimed_at
 - ASU MHH27/E45 and Jack Lynch's transcription independently preserve the two apparent spelling anomalies. The punctuation differences do not repeat as a rule, and the 2012 operation uses the Chorus as known plaintext for MIDI pitch/duration substitution, not as a correction cipher.
 - No second quotation-to-author-output pair with independently fixed pre-release source and exact first-party output was found. 2013 Liber AL and 2014 Self-Reliance are coordinate book-code operations, not correction pairs; the 2013 sender is already the distinct #2892 investigation. No LP2 mark or boundary selects these punctuation edits or a receiver.
 - Report: im-results/lp2-authorial-correction-channel-blake-chorus-gate.md; reproducer: sims/lp2_blake_chorus_source_diff_sft.cjs; integrated historical frontier updated in workplace/integrated-original-inversion-challenge.md. No change to results/README.md: no LP2 plaintext, key or mechanism.
-- Pending: post the evidence-based closure comment and close #2897. Do not expand to arbitrary editions, spellings or edit distances.
+- Closed #2897 as completed after posting the evidence-based closure comment. The committed Node SFT was run under Node v22.16.0 and passed: 56/56 word tokens identical, with exactly the three punctuation edits above. Do not expand to arbitrary editions, spellings or edit distances.
 
 # Agent4 frontier — 26 November 2026, draw9
 
