@@ -1,7 +1,7 @@
 {
   "cutoff": "2014-05-11",
   "source_tree": "d00865bd2d54733355419e041531d40ba2c13509",
-  "selection": "LP2 physical pages 23–51, all earlier LP1 combined-archive JPEG objects, historical Gematria chart, original public key/early 2012 images and a broad selection of public 2012–2014 author-era messages; no later solver material. Dates are upper bounds by puzzle year/release rather than inferred HTTP capture times. Chart is decoded only from preserved base64; signature attaches to extracted message, not entire chart.",
+  "selection": "LP2 physical pages 23–51, all earlier LP1 combined-archive JPEG objects, historical Gematria chart, original public key/early 2012 images and a broad selection of public 2012–2014 author-era messages; no later solver material. Dates are upper bounds by puzzle year/release rather than inferred HTTP capture times. Chart is decoded only from preserved base64; signature attaches to extracted message, not entire chart. Recipient-specific 2012 messages and private one-time ciphertexts are excluded; period-original generic instructions are included as archival text only.",
   "entries": [
     {
       "source": "resources/liber-primus/40.jpg",
@@ -458,24 +458,6 @@
       "blob": "7229104f48f4a0eeeae69c901eb74cb21baed956",
       "bytes": 1001,
       "output": "context/2012/countdown-message.asc",
-      "available_by": "2012",
-      "role": "context",
-      "encoding": "raw"
-    },
-    {
-      "source": "resources/historical/cicada2012-message-only-displayed.asc",
-      "blob": "672184615cf25d19e5eb177875be83b4d83c1128",
-      "bytes": 2494,
-      "output": "context/2012/message-only-displayed.asc",
-      "available_by": "2012",
-      "role": "context",
-      "encoding": "raw"
-    },
-    {
-      "source": "resources/historical/cicada2012-song-is-your-own-path.asc",
-      "blob": "d40ea4207b7db70be6f422865191451de05b63a1",
-      "bytes": 4315,
-      "output": "context/2012/song-is-your-own-path.asc",
       "available_by": "2012",
       "role": "context",
       "encoding": "raw"
