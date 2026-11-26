@@ -1,0 +1,74 @@
+{
+  "iterations": 40,
+  "starts": 1,
+  "pilots": [],
+  "eligible": true,
+  "original": {
+    "truth": null,
+    "fit": {
+      "K": null,
+      "score": null,
+      "history": [
+        {
+          "iteration": 5,
+          "softLL": -3.362671845402871,
+          "hardGain": null,
+          "legal": 5,
+          "keyRows": null
+        },
+        {
+          "iteration": 10,
+          "softLL": -3.3598742281540046,
+          "hardGain": null,
+          "legal": 3,
+          "keyRows": null
+        },
+        {
+          "iteration": 15,
+          "softLL": -3.3580054023444816,
+          "hardGain": null,
+          "legal": 2,
+          "keyRows": null
+        },
+        {
+          "iteration": 20,
+          "softLL": -3.3566799292101357,
+          "hardGain": null,
+          "legal": 0,
+          "keyRows": null
+        },
+        {
+          "iteration": 25,
+          "softLL": -3.357003003170344,
+          "hardGain": null,
+          "legal": 3,
+          "keyRows": null
+        },
+        {
+          "iteration": 30,
+          "softLL": -3.3703146996897075,
+          "hardGain": null,
+          "legal": 2,
+          "keyRows": null
+        },
+        {
+          "iteration": 35,
+          "softLL": -3.3897044326317354,
+          "hardGain": null,
+          "legal": 2,
+          "keyRows": null
+        },
+        {
+          "iteration": 40,
+          "softLL": -3.4005033474082453,
+          "hardGain": null,
+          "legal": 3,
+          "keyRows": null
+        }
+      ]
+    },
+    "oracle": null,
+    "train": null,
+    "held": null
+  }
+}
