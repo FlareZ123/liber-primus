@@ -873,6 +873,7 @@ void baseRegisterOnly(){
  cout<<"BASE REGISTER words="<<fixed::dict.size()<<" removed_fixture_additions="<<removed
      <<" prefixes="<<fixed::prefixDict.size()<<endl;
 }
+#ifndef LP2_Q8_MINUNION_NO_MAIN
 int main(int argc,char**argv){try{
  int seconds=180;uint32_t seed=0x59d2a638u;
  for(int i=1;i<argc;i++){
@@ -1049,3 +1050,5 @@ int main(int argc,char**argv){try{
  return 0;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
 #endif
+
+#endif // LP2_Q8_MINUNION_NO_MAIN
