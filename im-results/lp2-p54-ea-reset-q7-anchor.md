@@ -22,3 +22,20 @@ Blind receiver controls: two separately seeded hidden keys, source-shaped length
 [Standalone Node SFT](../sims/lp2_p54_ea_reset_q7_anchor_sft.cjs) and [machine output](lp2-p54-ea-reset-q7-anchor.json), executed in connected V8 on exact repository inputs. Standalone Node wrapper not separately executed. The explicit finite register/three-OOV bound does not exclude marker-containing plaintext words, arbitrary hidden segmentation, the published layered scaffold, other clocks, or non-additive mechanisms.
 
 No source-selected alternative follows from this negative. Keep the missing external executable scaffold and typed original source selector as the prerequisite for further dependent work; do not expand to a generic EA-key sweep.
+
+## Spacing-free exact maximum-likelihood follow-up
+
+The lexical gate alone does not decide this clock if the printed groups are decoys. Without changing the reset rule, period, marker assignment, or initial phase, remove **all** word boundaries and maximize a GP29 conditional trigram log likelihood trained on Shakespeare, Emerson and Gibran (unigram/bigram/trigram interpolation strengths 29, 8, 12). Score every payload rune, including the heading, and reset language context only at the same EA events; no context term crosses a marker. The p54→p55 seam retains key phase and the last two plaintext runes, with no parameter fitted on p55.
+
+For a fixed F-hold history, every trigram uses at most three consecutive consuming key positions. Thus the whole prefix objective is a sum of seven cyclic factors F_j(k_j,k_(j+1),k_(j+2)), plus a constant for fully held-F terms. Ordinary search covers all 17249876309 keys exactly; the F-bypass version separately enumerates all eight histories of the three visible ciphertext Fs and deletes each shift that would decode a consuming glyph to plaintext F. Fix the first two shifts, maximize the remaining factor chain via dynamic programming, then close the last two wraparound factors. Verify the resulting direct decoded score against the factor maximum. Complexity O(7*29^5) rather than O(29^7*232). No lexicon, guessed plaintext, beam, or original heldout selection.
+
+| Run | Exact best key | Fit log likelihood/payload rune | Unchanged p55-like continuation | Heldout log likelihood/payload rune |
+|---|---|---:|---|---:|
+| KOAN1 ordinary | 3,0,17,28,6,7,17 | -2.234092 | 1 legal histories | -2.184986 |
+| WELCOME F bypass | 23,0,15,0,16,15,15 | -2.274040 | 1 legal histories | -2.358936 |
+| Original ordinary | 23,0,3,3,4,16,13 | -4.963729 | 1 legal histories | -7.174355 |
+| Original fhold | 0,14,17,3,4,22,15 | -5.139593 | 0 legal histories | none |
+
+Authentic continuous solved-native controls, KOAN1 at offset0 and WELCOME at offset133, have markers inserted at original-shaped locations and independently seeded legal keys selected to avoid spurious EA (and accidental ciphertext F in the F-bypass control). They recover both exact keys, all 224 payload training runes and all 73 payload holdout runes, with the 8+3 fixed markers also reproduced. They are separate from the lexical plants. The F-bypass control has three visible literal Fs in training; no accidental consuming-F control in this small calibration. Both exact optima on original p54 are nonlinguistic and much worse than controls; the ordinary key produces a poor frozen continuation and the F-bypass winner has **zero legal p55 continuations**. This is an exact optimization of the fixed trigram objective, not a universal language/segmentation theorem. It retires this simple EA-reset additive clock even as a calibrated spacing-free receiver; no new unknown plaintext or authentic key.
+
+[Spacing-free SFT](../sims/lp2_p54_ea_reset_q7_spacingfree_exact_sft.cjs) (commit 47e79b86a70eeca0da5597bbd0238bba84b59dea) · [full machine output](lp2-p54-ea-reset-q7-spacingfree-exact.json) (commit bcbc6528c9adf0dfd4b3d1498aaae081d88cfd05). Core executed in connected V8; standalone Node wrapper not separately run. No additional EA-clock family expansion justified.
