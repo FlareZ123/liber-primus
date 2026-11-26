@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function study(data, restarts=48, iterations=42){
+function study(data, restarts=48, iterations=42, continuous=false){
  const [rawC,rawN,lp1,emerson,shakespeare,gibran]=data,c=JSON.parse(rawC),native=JSON.parse(rawN),Q=29,id=Array.from({length:Q},(_,i)=>i),m=x=>(x%Q+Q)%Q;
  const assert=(x,s)=>{if(!x)throw Error(s)},idx=new Map(c.runes.map((r,i)=>[r,i])),extract=s=>[...s].filter(r=>idx.has(r)).map(r=>idx.get(r));
  const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
@@ -147,7 +147,7 @@ function study(data, restarts=48, iterations=42){
    return out
  }
  function curriculum(C,K,seed,truth=null,truthA=null,truthB=null){
-   const rand=random(seed),cuts=C.map(c=>Math.floor(.75*c.length)),full=C.map((c,i)=>setup(c.slice(0,cuts[i]),K)),stages=[64,128,256,512,1024,10000].map(n=>C.map((c,i)=>setup(c.slice(0,Math.min(n,cuts[i])),K)));
+   const rand=random(seed),cuts=C.map(c=>Math.floor(.75*c.length)),full=C.map((c,i)=>setup(c.slice(0,cuts[i]),K)),stages=(continuous?[64,128,256,512,1024,2048,4096,10000]:[64,128,256,512,1024,10000]).map(n=>C.map((c,i)=>setup(c.slice(0,Math.min(n,cuts[i])),K)));
    const poolLength=cuts.reduce((a,b)=>a+b,0),G0=new Float64Array(Q*Q);
    for(const S of full){for(let i=0;i<S.n&&S.C[i]!==0;i++)G0[S.C[i]*Q+S.sh[i*S.H]]++}
    const initial=estimate(G0,2),records=[],candidates=[];
@@ -162,7 +162,10 @@ function study(data, restarts=48, iterations=42){
      }
      result=pooled(full,M);
      const seeds=spectralSeeds(result.G,M);
+     // Identical initial beta yields identical deterministic structured fit.
+     const seen=new Set();
      for(const item of seeds){
+       const key=item.B.join();if(continuous&&seen.has(key))continue;seen.add(key);
        let B=item.B,A=inner(result.G,B),trace2=[];
        const initBeta=truthB?B.reduce((s,v,i)=>s+(v===truthB[i]),0):null;
        // Start from inferred full profile, then anneal the forbidden cell softly on the full prefix.
@@ -198,17 +201,19 @@ function study(data, restarts=48, iterations=42){
    return {records,best:best?evaluate(best.A,best.B,best.D):null,oracle:truth?evaluate(truthA,truthB,full.map(s=>decode(s,truthA,truthB))):null}
  }
  function multi(){
-   const starts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956],primes=[];
-   for(let i=2;primes.length<3008;i++)if(primes.every(p=>p*p>i||i%p!==0))primes.push(i);
-   const K=primes.map(p=>(p-1)%Q),P=[gp(shakespeare).slice(50000,62956),gp(gibran).slice(15000,27956)],controls=[];
-   for(let j=0;j<2;j++){const rng=random(0x26260031+j),A=perm(rng,true),B=perm(rng,false),truth=starts.slice(0,-1).map((x,i)=>P[j].slice(x,starts[i+1])),C=truth.map(t=>encrypt(t,K,A,B));const result=curriculum(C,K,0x44f142+j,truth,A,B);controls.push({schedule:j,visibleF:C.map(row=>row.filter(x=>x===0).length),literalF:truth.map(row=>row.filter(x=>x===0).length),result})}
+   const starts=continuous?[0,5506]:[0,729,1874,3603,5506,6527,7960,9640,12648,12956],primes=[];
+   for(let i=2;primes.length<(continuous?5506:3008);i++)if(primes.every(p=>p*p>i||i%p!==0))primes.push(i);
+   const K=primes.map(p=>(p-1)%Q),P=continuous?[gp(shakespeare).slice(100000,105506),gp(gibran).slice(25000,30506)]:[gp(shakespeare).slice(50000,62956),gp(gibran).slice(15000,27956)],controls=[];
+   assert(P.every(p=>p.length===starts.at(-1)), 'control scope length');
+   for(let j=0;j<2;j++){const rng=random((continuous?0x26261101:0x26260031)+j),A=perm(rng,true),B=perm(rng,false),truth=starts.slice(0,-1).map((x,i)=>P[j].slice(x,starts[i+1])),C=truth.map(t=>encrypt(t,K,A,B));const result=curriculum(C,K,(continuous?0x44f601:0x44f142)+j,truth,A,B);controls.push({schedule:j,visibleF:C.map(row=>row.filter(x=>x===0).length),literalF:truth.map(row=>row.filter(x=>x===0).length),result})}
    const gate=controls.every(c=>c.result.best&&c.result.best.fit>=.9*c.result.best.fitLength&&c.result.best.held>=.9*c.result.best.heldLength&&c.result.best.exactReplay);
    const tape=c.pages.slice(0,56).flatMap(p=>p.indices),rows=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
-   const original=gate?curriculum(rows,K,0x44f155):null;
-   return {model:'authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver retaining all legal prefix Viterbi end states, keys frozen; gate requires >=90% fit and frozen suffix on two fresh plants',controls,gate,original}
+   const original=gate?curriculum(rows,K,continuous?0x44f605:0x44f155):null;
+   return {model:continuous?'authentic p56 prime-minus-one continuous clock across the first four illustrated chapters (p0–22), no chapter resets; 4129 fit / 1377 frozen continuation, independent alphabets, two fresh controls':'authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver retaining all legal prefix Viterbi end states, keys frozen; gate requires >=90% fit and frozen suffix on two fresh plants',controls,gate,original}
  }
  return multi();
 
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/transcriptions/lp1_wulfic_canonical.txt","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt"];
-console.log(JSON.stringify(study(paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'))),null,2));
+if(require.main===module)console.log(JSON.stringify(study(paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'))),null,2));
+module.exports={study,paths};
