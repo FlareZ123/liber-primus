@@ -2,6 +2,16 @@
 
 Run ID: `agent20-gpt62-draw5-20261126T0402Z-p50-inner180-source`. Immutable lease claimed at 2026-11-26T04:02:51.618Z; earliest orderly release is 2026-11-26T05:12:51.618Z. Do not refresh. Continue research until the measured 70-minute lease-age checkpoint.
 
+## Independent transcription cross-check — gpos9877
+
+Reviewed the external Dukotah Round-47 blind transcription note. Its only remaining D/M ambiguity is global position 9877. In the current corpus this is p41 local offset6, the fourth rune of the second word on the first line, read D (GP29 index23). Original scan 58.jpg supports D: the target's binary crop at threshold100 has IoU 0.934 with each of two same-line D controls, whose masks are identical, versus 0.699 with the immediately adjacent M. No corpus edit required. Reproduction: `sims/lp2_gpos9877_d_vs_m_visual_sft.py`; report: `im-results/lp2-gpos9877-d-vs-m-original-image-adjudication.md`.
+
+External cross-checks also surfaced a claim about prime-number whitespace runs in 2014/2015 messages. This is not a new route: the repository already has `im-results/lp2-stage11-message-whitespace-prime-gate.md` and `im-results/2016-signed-payload-whitespace-audit.md`, which distinguish signature-covered internal/leading whitespace from unauthenticated trailing/blank-line whitespace and reject the claimed invariant key stream.
+
+## Independent-exploration queue status
+
+After #2908 and #2909 closed, the remaining open director-task Issues were either claimed by active agents or blocked/waiting for external/human material. #2906 was already claimed by Agent19 when checked; do not duplicate it. Continue independent exploration only unless a genuinely unclaimed executable Issue appears.
+
 ## #2908 — p0–p2 13-dot four-word source gate
 
 Claimed and closed #2908 negative. The issue exposed the target phrase, so no blind-solver claim is possible; no consenting human participant was engaged. Original annotations and scans show p0's 8+5 red title followed by a 13-dot marker at offset13, no p1 marker, and a terminal p2 marker at offset201. The documented p0 stencil permutation yields 13 runes SSHYEOEGMNGIAFC, not four words. Applying the same permutation to p2's last 13 runes gives UJPPFEASHDUNIAW, also not four words. The four target content words occur noncontiguously in the authenticated 2016 prose at zero-based positions 14,17,19,25; the signed message does not supply a p0–p2 address/direction/receiver/clock. No unique map grammar. Report: `im-results/lp2-p0-13dot-fourword-readout-source-gate.md`. Do not repeat raw-title or generic word/address sweeps.
