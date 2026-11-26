@@ -4,10 +4,10 @@ function run(gp,sources){
  const assert=(v,m)=>{if(!v)throw new Error(m)};
  const bits=(x)=>{let n=0;while(x){x&=x-1;n++}return n};
  const labels=m=>Array.from({length:29},(_,i)=>i).filter(i=>m&(1<<i));
- function bound(tape,k){
+ function bound(tape,k,segments=[tape]){
   const forb=new Set(); let used=0;
   for(const x of tape)used|=1<<x;
-  for(let i=0;i+k<=tape.length;i++){let m=0;for(let j=0;j<k;j++)m|=1<<tape[i+j];forb.add(m)}
+  for(const seg of segments)for(let i=0;i+k<=seg.length;i++){let m=0;for(let j=0;j<k;j++)m|=1<<seg[i+j];forb.add(m)}
   // A forbidden set F implies no supersets of F. Keep inclusion-minimal sets only.
   const min=[...forb].sort((a,b)=>bits(a)-bits(b)||a-b).filter((m,i,arr)=>!arr.slice(0,i).some(n=>(m&n)===n));
   const req=Array.from({length:29},()=>[]);
@@ -50,6 +50,9 @@ function run(gp,sources){
  const scope=(name,tape)=>({name,n:tape.length,b2:bound(tape,2),b3:bound(tape,3)});
  const results=chapters.map(([a,b])=>scope(`p${a}-${b}`,pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices)));
  results.push(scope("all",all));
+ // Remove all adjacency constraints crossing page boundaries. Same secret table,
+ // but independent page-level grammar framing and arbitrary interpage separators.
+ const pageReset=[...chapters.map(([a,b])=>({name:`p${a}-${b}`,segments:pages.filter(p=>p.page>=a&&p.page<=b).map(p=>p.indices)})),{name:"all",segments:pages.map(p=>p.indices)}].map(({name,segments})=>{let t=segments.flat();return {name,b2:bound(t,2,segments),b3:bound(t,3,segments)}});
  // All overlapping fixed-length trigraph windows, in all 3 bit phases.
  const control=sources.map((s,id)=>{
   const t=trits(s); const streams=[0,1,2].map(p=>codes(t,p));
@@ -77,6 +80,6 @@ function run(gp,sources){
  assert(plantS.b2.alpha>=active.length&&plantS.b3.alpha>=active.length,"plant falsely rejected");
  // Independent brute-force check exact search on tiny random alphabets.
  for(let q=0;q<50;q++){const t=Array.from({length:60},()=>next(10));for(let k=2;k<=3;k++){let best=0;let masks=Array.from({length:t.length-k+1},(_,i)=>t.slice(i,i+k).reduce((m,v)=>m|(1<<v),0));for(let m=0;m<1024;m++)if(bits(m)>best&&!masks.some(f=>(m&f)===f))best=bits(m);assert(bound(t,k).alpha===best,"tiny brute-force mismatch")}}
- return {results,control,plant:{...plantS,active,activeCodeCount:new Set(active.map(v=>codebook[v])).size,recoveredTrits:recovered.length,codebook}};
+ return {results,pageReset,control,plant:{...plantS,active,activeCodeCount:new Set(active.map(v=>codebook[v])).size,recoveredTrits:recovered.length,codebook}};
 }
 const root=path.resolve(__dirname,"..");const files=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/control/shakespeare_first300k.txt"];const data=files.map(p=>fs.readFileSync(path.join(root,p),"utf8"));console.log(JSON.stringify(run(JSON.parse(data[0]),data.slice(1)),null,2));
