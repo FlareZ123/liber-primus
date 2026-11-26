@@ -40,3 +40,17 @@ g++ -O3 -std=c++17 sims/lp2_q13_plainwidth_cover_sft.cpp -o width-cover
 ./width-cover original book.txt extra.txt
 ```
 `book.txt` is the same base36 canonical original tape described above. The generalized exact C++ source blob is `4e90fcaa38a53e91219a10b0b7deef7346143b81`; no algorithm change beyond allowing a nonempty single-word bank. Original 20000 exact toy transition controls passed again. Exact coverage and extension totals in `im-results/lp2-q13-plainwidth-early-chapter-cover.json`. C++ compiled/run locally, coverage core executed V8. The earlier terminal score comparison remains a diagnostic, no longer needed for exclusion.
+
+## Exact arbitrary intact-word transport extension
+
+Allow any global word order, across chapter boundaries, and arbitrary independent chapter keys and starting phases. Each selected reference word must retain its internal rune order, remain contiguous, and belong entirely to one physical chapter. This does not require preservation of the donor chapter membership or word order. All 58 selected words are proved infeasible in the first eight original chapters; any occurrence therefore has to fit the single final chapter (one common cyclic key). Its 90 locally anchored assignments across the bank produce 76 distinct cyclic key classes.
+
+For each terminal key class and each word ID, count distinct feasible original start positions, deduplicating key rotations and repeated paths. This is an **upper bound** on number of copies simultaneously realizable; ignore interval overlap and joint hold-history compatibility, which only enlarges the relaxed receiver. Independently sweep all 532,345 donor-window starts with exact interval events from occurrences of the 58 selected complete word types, tracking their counts (not merely set membership). Every window contains at least one selected word. First require a terminal key class that supports every selected word type; then require distinct-start capacity for every selected word multiplicity. No assignment for unselected words is required.
+
+- Gibran 33,879: zero type-compatible windows.
+- Emerson 294,315: zero type-compatible windows.
+- Shakespeare 204,151: only 2,418 type-compatible windows in two exact intervals, [168741,170611) requiring two copies of ID34, and [192969,193517) requiring four copies of ID45. ID34 has one terminal key class and one start; ID45 has 19 classes, each with just one start. Thus zero multiplicity-compatible windows.
+
+**All 532,345 donor windows are exactly excluded even after arbitrary intact-word transport**, with independent chapter-private keys. This uses no English-language score, no target ordering and no donor chapter histogram. It cannot exclude arbitrary rune-level transport that breaks the anchor words or allows a word to straddle a chapter reset, alternate spelling widths, other clocks, or words outside the fixed reference condition.
+
+Reproduce `node sims/lp2_q13_plainwidth_word_transport_sft.cjs`. Input exact original 73+17 survivor rows from the two native C++ runs; extension survivor rows now embedded in `im-results/lp2-q13-plainwidth-early-chapter-cover.json`. Output `im-results/lp2-q13-plainwidth-word-transport.json`. Exact interval/count core executed on repository inputs in V8. No standalone Node or CI rerun claimed. This supersedes the weaker score-dependent ordered-register decision.
