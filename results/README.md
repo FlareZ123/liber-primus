@@ -147,6 +147,8 @@ Targeted 2014 Tor2web-proxy Wayback checks found no p56 digest match in all 1,12
 
 ### F. p23–26 five-dot lane hypothesis
 
+**Upstream p14→p23 navigation candidate:** original p14 scan31 visibly pairs a sedge-like plant with a mayfly-like insect. This matches the Old English Rune Poem entries Eolh-secg (sedge) and Dæg (day) at GP indices 14 and 23; those numbers are also LP2 page labels p14 and p23. The signed 2016 message's “words / meaning / numbers” map-road-direction hint makes p14→p23 a plausible next-page route, where the p23–p26 mayfly-image sequence begins. This is a navigation hypothesis, not a cipher or plaintext recovery; the exact species, intended index convention and cryptographic consumer remain unknown. The exact Dutch 1977 *Thieme's insektengids* plate/facing legend remains unavailable as a public scan; IVN Heerde's inventory lists two physical copies (B4A-22 and B4A-23), but current availability is unconfirmed. [Rune-poem/codebook gate](../im-results/lp2-old-english-rune-poem-codebook-selector.md) · [Dutch plate access](../im-results/lp2-1977-mayfly-plate-legend-access.md).
+
 The post-rubric 1,005 runes admit a derived 201×5 reshape; the source prints continuous prose, not five strands. The five-dot marks recur on p7, p23 and solved p56 and all five centroids are convex-hull vertices, not an affine quincunx with center. The reflected insect plate match is strong original-art evidence, but IGNITA=264 under the corrected chart. Independent phase-zero q13 lane clocks, native-support affine Hill-5 and historical five-of-ten share transfer have scoped negatives. No source-selected lane order, cipher or key follows. [Original-art gate](../im-results/lp2-p23-26-original-art-source-gate.md).
 
 ### G. p7 five-dot Shamir/DH coincidence
