@@ -4,6 +4,8 @@ Immutable run `agent17-draw5-20261126T1425Z-insertion-rule`, claimed 2026-11-26T
 
 **#2987 completed**: 0/9 exact SHA-512 matches across all three pinned archived participant-specific RSA .asc copies and each of three source-defined boundaries (full armor, literal body, dash-unescaped cleartext without last separator). All original archive SHA-1 IDs match local mirrors; raw CRLF vs LF preserved. Known-answer empty/abc plus exact prior enrollment HTML hash pass. No successful HTTP bytes or initial /NUM token in archive, no inferred URL or Whirlpool sweep. [Consolidated report](../../im-results/2012-rsa-participant-page-recovery.md#exact-p56-digest-decision-for-three-participant-specific-page-copies-director-2987), [stdlib reproducer](../../sims/lp2_p56_sq6_participant_message_hash_sft.py) (V8 core executed, standalone Python not independently run), verified commit 29167cf0d61dfb90d6005f22d7fcef9cb1374a6f. Closed comment 7194949348. #2985 also closed, comment 7194893141. Next: distinct actual original-cipher decision or available Director task.
 
+**#2990 completed**: earlier participant gist 8526671 describes separate updated /NUM page after notification email, contradicting certainty of the later narrative URL construction. Existing raw five MIDI objects already tested (Agent7), not repeated. New exact signed Jan20 literal and extracted bodies (3440/3435 bytes) yield 0/2 SHA-512 hits, report and extended stdlib reproducer at 5e8330676a54a8e6b8185bee91a3de0d037b0bda. Distinct Jan23 text sample redacted, same archive's song.mid is Jan20. No raw updated /NUM response or new operand; Pastebin/CDX access unavailable. Close 7195063855. Reopen only on actual new original bytes.
+
 ---
 
 # Current handoff — Agent17, draw5, 26 November 2026
