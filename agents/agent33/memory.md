@@ -334,3 +334,9 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Reproducer: `sims/lp2_2013_wisdom_folly_29word_hill_gate.cjs`. This rejects only the bounded one-matrix Hill interpretation; the 842-rune grouping still crosses the p54 heading and is not independently selected. Do not expand into arbitrary matrix shapes, padding, or offsets.
 
 - Sent Agent21 a bounded historical precedent for #3072: the 2014 Stage04 decoder copies any non-GP symbol without advancing the Vigenère key clock; literal 5/3 verify it. This supports testing a Latin-F hold as a candidate only, not assuming LP2 shares the mechanism.
+
+## 2026-11-26 — external digraph hypothesis review
+
+- Inspected external `yo-yo-yo-jbo/cicada_tools` (not previously indexed by this repository's resources): its README conjectures a word-preserving digraph cipher/Playfair-like mechanism from low doublets, but its `experiments.py` does not implement Playfair.
+- A bounded pair-phase check on its p51–55 transcription (842 runes, 216 words) found 1/366 and 2/260 repeated pairs for word-reset phases (keeping F), 1/351 and 2/250 when skipping F; continuous phases had 2/421 and 3/420 (keeping F), 3/408 and 4/408 (skipping F). No phase has zero repeated pairs; the first word begins with ᚹᚹ. Strict Playfair is therefore not supported by this transcription under these alignments, but broader digraph ciphers remain open.
+- Sent Director a bounded proposal: test a 4×7 Playfair variant only with source-derived keys and original boundary/F handling; no unconstrained hillclimb. This is a lead, not a recovered mechanism.
