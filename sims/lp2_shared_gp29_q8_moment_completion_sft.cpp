@@ -79,7 +79,7 @@ struct GFilter{
 };
 struct GPosting{int feat;vector<int> ids;vector<uint64_t> bits;};
 struct GDomain{string cipher;vector<GOption> opts;vector<vector<GPosting>> post;};
-GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base,bool anchor=false){
+GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base,bool anchor=false,const vector<int>*clock=nullptr){
  GDomain d;d.cipher=c;d.post.resize(c.size());vector<map<int,vector<int>>> tmp(c.size());unordered_set<string>seen;
  for(const auto&w:words){
   // Rotate phase labels so the first NONIDENTITY consuming carry edge has j=0.
@@ -89,7 +89,7 @@ GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base,b
   if(anchor)for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]);if(!p)continue;if(p!=x){canonical=(Q-consumed%Q)%Q;break;}consumed++;}
   for(int start=0;start<Q;start++){
   if(canonical>=0&&start!=canonical)continue;
-  GOption o;int j=start;bool ok=true;for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]);if(!p){if(x){ok=false;break;}continue;}if(j==0&&p==x){ok=false;break;}
+  GOption o;int j=start;bool ok=true;for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]);if(!p){if(x||(clock&&(*clock)[i]!=-1)){ok=false;break;}continue;}if(clock&&(*clock)[i]!=j){ok=false;break;}if(j==0&&p==x){ok=false;break;}
    for(int t=0;t<o.n;t++){auto e=o.e[t];if(e.j==j&&((e.c==x)!=(e.p==p))){ok=false;break;}if(e.j==j&&((e.c==e.p)!=(x==p))){ok=false;break;}}if(!ok)break;
    o.e[o.n++]={uint8_t(x),uint8_t(p),uint8_t(j)};o.f[i]=j*N+p;j=(j+1)%Q;
   }
@@ -141,13 +141,13 @@ string optionWord7(const GDomain&d,const GOption&o){
 uint64_t prior7(const string&w,bool prefix){auto&m=prefix?prefixPrior7:wordPrior7;auto it=m.find(w);return it==m.end()?0:it->second;}
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
- Graph base;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
+ Graph base;vector<string> train;vector<vector<int>> schedule;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
  vector<vector<uint64_t>> optionPrior;vector<uint64_t> seedPrior;vector<vector<string>> seedPrefixes;
  atomic<bool> found{false},timed{false};atomic<size_t>next{0},done{0};Clock::time_point deadline;mutex answerMutex;
  fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;
- GSearch(const vector<string>&g,int budget=3):train(g),maxOov(budget){
+ GSearch(const vector<string>&g,int budget=3,const vector<vector<int>>&clock={}):train(g),schedule(clock),maxOov(budget){
   vector<string> pre(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(pre.begin(),pre.end());
-  for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],i==47?pre:fixed::by[g[i].size()],base,i==47));if(i!=47)order.push_back(i);}
+  for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],i==47?pre:fixed::by[g[i].size()],base,i==47,schedule.empty()?nullptr:&schedule[i]));if(i!=47)order.push_back(i);}
   sort(order.begin(),order.end(),[&](int a,int b){auto s=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=s(a),y=s(b);return x==y?a<b:x<y;});
   unordered_set<string>seen;for(auto&o:ds[47].opts){Graph x;if(extend(base,o,x)&&seen.insert(x.sig()).second)seeds.push_back(x);}
   sort(seeds.begin(),seeds.end(),[](auto&a,auto&b){return a.dimension()==b.dimension()?a.sig()<b.sig():a.dimension()<b.dimension();});
@@ -202,9 +202,18 @@ struct GSearch{
  // Optional best-fit reporting for explicitly nonexhaustive discovery.
  // Exact searches keep their original early rejection and acceptance gate.
  bool recordNear=false;int nearMiss=48;fixed::Perm nearPi{};fixed::Key nearKey{};
+ bool scheduledWord(int i,const fixed::Maps&m,string&w)const{
+  w.clear();for(size_t n=0;n<train[i].size();n++){int x=fixed::val(train[i][n]),j=schedule[i][n];if(j<0){if(x)return false;w+='0';}else{int p=m[j][x];if(!p)return false;w+=fixed::SYM[p];}}return true;
+ }
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
-  c.perms++;if(!numericRedProfile7(k))return;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
-  int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov&&!recordNear)return;
+  c.perms++;if(!numericRedProfile7(k))return;auto m=fixed::maps(pi,k);int n=0;
+  if(schedule.empty()){
+   if(!fixed::support(train.back(),m,fixed::prefixDict))return;
+   for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov&&!recordNear)return;
+  }else{
+   string w;if(!scheduledWord(47,m,w)||!fixed::prefixDict.count(w))return;
+   for(int i:order){if(!scheduledWord(i,m,w))return;if(!fixed::dict.count(w)&&++n>maxOov&&!recordNear)return;}
+  }
   lock_guard<mutex>l(answerMutex);
   if(recordNear&&(n<nearMiss||(n==nearMiss&&make_pair(pi,k)<make_pair(nearPi,nearKey)))){nearMiss=n;nearPi=pi;nearKey=k;}
   if(n<=maxOov&&!found){answer=pi;answerKey=k;answerOov=n;found=true;}
