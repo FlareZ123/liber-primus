@@ -219,6 +219,34 @@ Direct original eight-byte row unpacking without a cipher has only 6/13 legal BE
 
 **Disposition:** retire these two fixed packed-ring receivers. No unknown plaintext, key or independently selected page-key architecture follows. Other source-typed payloads and differently specified reversible operations remain outside scope. [SFT](../sims/lp2_p0_row50_packed_uint64_sft.cjs) · [raw output and source blob IDs](lp2-p0-row50-packed-uint64-output.json). Exact core executed in connected V8; standalone Node filesystem wrapper not separately CI-run. No new workflow.
 
+
+### Row-sum pointer page receiver and arbitrary-state alphabet obstruction (Agent 34, 26 November)
+
+Follow the preceding conditional 203 match once: take each opening row's ordinary integer sum as its physical page's zero-based initial address in the full 256-cell grid G. These 55 values are all valid addresses. For p3–55 (52 rune-bearing pages, 12,227 runes), advance s'=G[s] and use s' mod29 as additive key, either sign. Ordinary consumption and historical literal plaintext F (emit zero, hold pointer) are tested separately. Both base60 and drop-f base59 remain conditional; no fitted seeds, offsets, or pointer variants. Prior grid-pointer work tested common starts 0 and 158; this receiver uses the distinct page-specific row sums. The first five pinned native sections fit an add-0.5 bigram/unigram model and the last four are recycled only for controls; original p3–39 and p40–55 are reported separately.
+
+| Radix | Sign | Ordinary original fit / continuation (nats/rune vs uniform) | Exact F-hold infeasible pages |
+|---|---:|---:|---:|
+| 60 | + | -0.63030 / -0.60789 | 48/52 |
+| 60 | − | -0.62277 / -0.61675 | 52/52 |
+| 59 | + | -0.62063 / -0.62213 | 51/52 |
+| 59 | − | -0.62385 / -0.60883 | 52/52 |
+
+F-hold Viterbi merges identical pointer/previous-rune states, admitting both legal branches at ciphertext zero, with no pruning. First dead offsets are saved. All legal original outputs and all eight planted runs replay exactly. Ordinary controls recover 12,227/12,227 each; literal-F controls recover 12,191/12,226/12,207/12,109 respectively, with ambiguity inherent in the receiver. Their scores are +0.72519 ordinary and +0.72539 to +0.73308 F-hold (true held text +0.72519). They reuse the same held source runes and are not independent full-book controls.
+
+**Stronger finite-reference bound:** replace the additive rule by an arbitrary GP29 bijection per pointer state, indexing each ordinary emission by its pre-transition state (post-transition maps are a subset). Within a state, the number of E/O plaintext symbols cannot exceed the two largest ciphertext histogram cells combined. Sum these maxima globally or separately per page to allow page-private state alphabets. In base59 every page enters a fixed point after at most 38 consuming emissions. In literal-F mode, every observed nonzero must consume; grant every symbol before the necessary nonzero-count anchor to E/O, then take top-two histograms at the fixed points for the remaining 11,275 runes. This even overcounts zero holds. The base60 graph enters cycles of length 11 on 51 pages and 2 on one; no analogous F-hold bound is claimed for that radix.
+
+| Receiver | Shared state maps | Page-private state maps |
+|---|---:|---:|
+| Base60 ordinary | 1,291 | 3,261 |
+| Base59 ordinary | 1,210 | 2,217 |
+| Base59 literal-F | 1,817 | 2,245 |
+
+All contiguous 12,227-rune windows of the pinned normalized complete Gibran/Emerson/Shakespeare controls have E/O counts at least 2,407/2,272/2,292 respectively (50,266/309,101/204,880 windows). Thus both shared ordinary families and both base59 page-private clocks fail **every one of these 564,247 windows**, even under arbitrary positional permutation preserving total frequencies. The base60 private ordinary bound is inconclusive and its F-hold case is untested at arbitrary-state-alphabet level. The held native plants contain 2,475 E/O; all applicable capacity controls retain this count. This is a finite-register exclusion, not a universal language theorem.
+
+**Decision:** retire direct page-sum pointer additive receivers for both radices, and the specified finite-reference state-map families. The retrospective header equality is not an authenticated checksum or radix selector; no original plaintext or key follows. Do not expand into arbitrary pointer/seed sweeps without new independent source constraints.
+
+[Reproducer](../sims/agent34_lp2_row_sum_grid_pointer_sft.cjs) · [exact output, source blobs and first-failure certificates](lp2-row-sum-grid-pointer-output.json). Executed the source core against pinned repository inputs in connected V8; standalone Node filesystem wrapper was not separately CI-run.
+
 ## Independent group orientations: complete disjunctive image solve (Agent 38, 26 November)
 
 The remaining freedom in the word-local receiver is an independent sign for every printed group, rather than one sign per physical page. Keep the same conditional opening rows, contained groups, arbitrary vectors before convolution, rotations, nonzero scale and offsets. For each singular group, collect the two full left-nullspace equation sets A_minus and A_plus on pi; the necessary and sufficient image test is A_minus*pi=0 OR A_plus*pi=0. The choice may be completely independent per group. No plaintext distribution, dictionary membership, word order, or language score is assumed.
