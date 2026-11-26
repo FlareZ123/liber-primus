@@ -26,8 +26,28 @@ Scan every contiguous original window of lengths 6–14. For each threshold T, r
 | 3 | hold | 115 | 9 | 187 | 72 | 75 |
 | 3 | mixed | 106 | 9 | 187 | 81 | 81 |
 
-The mixed quadratic model requires at least 219 OOV words (7.56% of all original word slots) even though each individual word receives a wholly independent secret scale, polynomial, and F convention. The mixed linear model requires at least 457 (15.78%). Thus any such source-word-length-conserving linear or quadratic receiver is excluded at <=5% OOV under this finite register; a different arrangement of the same lengths or changing keys cannot repair it. Degree 3 has only a 106-word relaxed lower bound and **is not excluded by the 5% gate**. It has no independent source selector and the abundant alternative planted inverses indicate that searching unconstrained local cubic keys would not establish a historical key.
+The mixed quadratic model requires at least 219 OOV words (7.56% of all original word slots) even though each individual word receives a wholly independent secret scale, polynomial, and F convention. The mixed linear model requires at least 457 (15.78%). Thus any such source-word-length-conserving linear or quadratic receiver is excluded at <=5% OOV under this finite register; a different arrangement of the same lengths or changing keys cannot repair it. Degree 3 has a 106-word lower bound and **is not excluded by the 5% gate**; the constructive extension below attains that bound exactly and proves severe non-identifiability. It has no independent source selector.
 
 Changed length inventory, rearranged runes, other languages, nonlinear clocks, and higher polynomial degrees are outside this decision. Do not repeat equivalent coefficient searches; no source-selected key schedule or new plaintext.
 
 [Standalone SFT](../sims/lp2_latent_affine_polynomial_fhold_inventory_sft.cjs) · [condensed actual output](lp2-latent-affine-polynomial-fhold-inventory.json). Exact core executed in connected V8; standalone Node wrapper was assembled from the executed function, not separately executed.
+
+## Constructive cubic optimum and non-identifiability
+
+A second actual original-tape experiment resolves the cubic relaxation rather than tightening a bound without a witness. Retain all 2,896 exact length counts and every original ciphertext rune in order. Compute compatible dictionary representatives at every start and length 1–14. With seed 0x33014326, greedily reserve nonoverlapping compatible length 9/10 intervals, reserve 156 length-eight intervals in seeded order, then best-fit pack the remaining exact inventory into the unoccupied gaps and seed-shuffle the within-gap length order. This first attempt produces a complete tile. Recover the affine scale, Newton coefficients and F mask for **every** word; for unmatched slots use the original ciphertext string as a nonlexical plaintext with identity coefficients. The entire forward replay is exact, 12,956/12,956.
+
+| Length | Original slots | OOV in constructive witness |
+|---:|---:|---:|
+| 1–9 | 2,787 | 0 |
+| 10 | 52 | 49 |
+| 11 | 32 | 32 |
+| 12 | 18 | 18 |
+| 13 | 4 | 4 |
+| 14 | 3 | 3 |
+| Total | 2,896 | **106** |
+
+All three compatible length-ten windows are used; no length >=11 window is compatible. Since 109 slots have length >=10, every possible tiling requires at least 106 OOV. The explicit witness attains this lower bound, so the optimum is **exactly 106**, not merely a relaxed bound. Eighteen witness words use nonempty transparent-F masks. This is a deliberately fitted nonsense witness, not decrypted text or historical key recovery.
+
+Even at that optimum the independent-key cubic family is radically non-identifiable. For a word of length at most four, an ordinary consuming cubic Newton polynomial interpolates an arbitrary plaintext-to-ciphertext difference vector; the scale can be fixed to one. The frozen register contains respectively 26, 197, 818 and 2330 distinct forms of lengths 1, 2, 3 and 4. Keeping the witness's cuts and every longer word fixed, the 83/448/720/513 short slots can independently take any same-length dictionary form. This gives at least 26^83 × 197^448 × 818^720 × 2330^513 distinct complete compatible tapes, approximately 10^4969.9996 (2^16509.9814), all with exactly 106 OOV. There is no coherent semantic solution demonstrated. Retire unconstrained independent word-local cubic coefficients as a key-recovery route: a source-selected shared parameter schedule is required before a language fit can identify plaintext.
+
+[Full witness including all 2,896 plaintext/key/mask rows](lp2-latent-cubic-inventory-constructive.json) · [Standalone constructive SFT](../sims/lp2_latent_cubic_inventory_constructive_sft.cjs). Core executed against repository sources in connected V8, standalone wrapper not independently run. Full tape and exact inventory asserted in the actual computation. Short-form cardinalities independently computed from the identical register construction.
