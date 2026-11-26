@@ -86,7 +86,7 @@ async function main(){
  ];
  if(nth)candidates.push({label:"9133rd-mpeg-frame-one-indexed",bytes:nth.bytes});
  const results=candidates.map(x=>({label:x.label,bytes:x.bytes.length,sha512:sha("sha512",x.bytes),blake2b512:sha("blake2b512",x.bytes)})).map(x=>({...x,matches:{sha512:x.sha512===TARGET,blake2b512:x.blake2b512===TARGET}}));
- const summary={
+ console.log(JSON.stringify({
   source:{repository:ARCHIVE,commit:COMMIT,path:SOURCE.path,size:mp3.length,gitBlobSHA1:git},
   target:TARGET,
   extraction:"MPEG frame-header parser mirroring mpg123 extract_frames: strips ID3/non-frame bytes; reports both all valid frames and the README's requested Info/Xing-frame omission",
@@ -95,9 +95,7 @@ async function main(){
   frame9133:nth?{offset:nth.offset,length:nth.length,version:nth.version,layer:nth.layer,bitrateKbps:nth.kbps,sampleRate:nth.samplerate,infoFrame:nth.isInfo}:null,
   frameCountEquals9133:parsed.frames.length===9133,
   frameCountWithoutInfoEquals9133:parsed.frames.length-infoFrames.length===9133,
-  candidates:results,
-  matches:results.filter(x=>x.matches.sha512||x.matches.blake2b512).length
- };
- console.log(JSON.stringify(summary,null,2));
+  candidates:results,matches:results.filter(x=>x.matches.sha512||x.matches.blake2b512).length
+ },null,2));
 }
 main().catch(e=>{console.error(e.stack||String(e));process.exitCode=1;});
