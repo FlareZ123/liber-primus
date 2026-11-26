@@ -1,0 +1,169 @@
+{
+  "schema": "agent10-corrected-terminal-mapped-key-exact-certificates-v1",
+  "lease": "agent10-draw4-20261126T0945Z",
+  "original": {
+    "fit": "47 complete p54 black-body groups + mandatory ten-rune carry prefix",
+    "holdout": "all 76 p55 glyphs",
+    "dictionary": 38938,
+    "maxOOV": 3
+  },
+  "regression": {
+    "run": 45795429122,
+    "artifact": 15104971231,
+    "commit": "41796973a121452da836d52375d05fd581391733",
+    "samples": [
+      {
+        "label": "original",
+        "states": 19,
+        "relationChecks": 119168,
+        "retainedOptions": 1898798,
+        "oldPostingVisits": 642561,
+        "newPostingVisits": 449452,
+        "indexLookups": 27930,
+        "oldOptionTests": 2608792,
+        "newOptionTests": 2608792,
+        "pass": true
+      },
+      {
+        "label": "plant-3301",
+        "states": 17,
+        "relationChecks": 106624,
+        "retainedOptions": 1267331,
+        "oldPostingVisits": 511768,
+        "newPostingVisits": 329509,
+        "indexLookups": 23987,
+        "oldOptionTests": 1651470,
+        "newOptionTests": 1651470,
+        "pass": true
+      },
+      {
+        "label": "plant-1033",
+        "states": 19,
+        "relationChecks": 119168,
+        "retainedOptions": 1746643,
+        "oldPostingVisits": 605530,
+        "newPostingVisits": 397098,
+        "indexLookups": 26980,
+        "oldOptionTests": 2234476,
+        "newOptionTests": 2234476,
+        "pass": true
+      }
+    ]
+  },
+  "rawRed8": {
+    "positive": {
+      "run": 45748837642,
+      "seeds": 447,
+      "exhausted": true
+    },
+    "negative": {
+      "oldRun": 45748837642,
+      "oldCompleted": 304,
+      "tail": {
+        "run": 45766192055,
+        "commit": "5b238ef656fdcb17effd9db14e5eb77b56d5488b",
+        "begin": 308,
+        "end": 343,
+        "workflowConclusion": "success",
+        "evidence": "checkpointed dispatch and pinned range-mode exit semantics; no machine-readable artifact from old runner"
+      },
+      "ranges": [
+        {
+          "run": 45795650203,
+          "artifact": 15105685637,
+          "exhausted": true,
+          "begin": 0,
+          "end": 77,
+          "inverseIndex": true,
+          "nodes": 1392099,
+          "joins": 35615213
+        },
+        {
+          "run": 45795657795,
+          "artifact": 15105270568,
+          "exhausted": true,
+          "begin": 77,
+          "end": 154,
+          "inverseIndex": true,
+          "nodes": 820879,
+          "joins": 17797808
+        },
+        {
+          "run": 45795665219,
+          "artifact": 15105011806,
+          "exhausted": true,
+          "begin": 154,
+          "end": 231,
+          "inverseIndex": true,
+          "nodes": 1269340,
+          "joins": 37305831
+        },
+        {
+          "run": 45795673819,
+          "artifact": 15105955060,
+          "exhausted": true,
+          "begin": 231,
+          "end": 308,
+          "inverseIndex": true,
+          "nodes": 1589597,
+          "joins": 40683934
+        }
+      ],
+      "total": 343
+    }
+  },
+  "divinity": {
+    "key": [
+      23,
+      10,
+      1,
+      10,
+      9,
+      10,
+      16,
+      26
+    ],
+    "commit": "24ffb05b3325f04d921c121980ac223dde18a0b9",
+    "runs": [
+      {
+        "run": 45796505620,
+        "artifact": 15105630556,
+        "sign": 1,
+        "controlsPassed": true,
+        "exhausted": true,
+        "found": false,
+        "timed": false,
+        "seedsDone": 231,
+        "seedsTotal": 231,
+        "nodes": 227969,
+        "joins": 1463030,
+        "pi": ""
+      },
+      {
+        "run": 45796512216,
+        "artifact": 15104897880,
+        "sign": -1,
+        "controlsPassed": true,
+        "exhausted": true,
+        "found": false,
+        "timed": false,
+        "seedsDone": 156,
+        "seedsTotal": 156,
+        "nodes": 161722,
+        "joins": 940425,
+        "pi": ""
+      }
+    ]
+  },
+  "titleCrib": {
+    "status": "conditional local affine test; redundant after complete body exclusion",
+    "originalNegativeHeadingPhases": [
+      1,
+      3,
+      5,
+      7
+    ],
+    "joinedCarryStates": 0,
+    "positiveHeadingPhases": []
+  }
+}
