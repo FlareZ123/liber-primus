@@ -1,0 +1,139 @@
+{
+  "scope": "All pre/post objects in the eight named host folders. Community copies; not independently authenticated HTTP responses. Git blob SHA-1 is content identity with Git object header; not raw SHA-256.",
+  "upstream": {
+    "repo": "iBotPeaches/cicada_3301",
+    "ref": "08a386a02570359c30eab8e5029d0b334178cdb1"
+  },
+  "comparison": {
+    "repo": "krisyotam/cicada3301",
+    "ref": "76d3ee8c762f60025822c8c05edbf31351636469",
+    "localTree": "413ea6b8ce998f4690227a44b16859029d671bf5"
+  },
+  "license": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/LICENSE.md explicitly excludes organized third-party material from the repository MIT grant. Store original research metadata and links; raw objects remain at pinned public sources pending redistribution permission.",
+  "entries": [
+    {
+      "path": "onions/auqgnxjtvdbll3pv.onion/post/1033.jpg",
+      "gitBlobSha1": "90d04bc54e9a35e3171a92386b5932a2dfb8e98f",
+      "bytes": 342361,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/auqgnxjtvdbll3pv.onion/post/1033.jpg",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage02/auqgnxjtvdbll3pv.onion/1033.jpg"
+      ],
+      "note": "Stage02 JPEG, 1327x1427, exact known asset; not in combined LP1/LP2 JPEG zip."
+    },
+    {
+      "path": "onions/auqgnxjtvdbll3pv.onion/post/index.html",
+      "gitBlobSha1": "807541d764ed33c976717b7ee2d08ac0720ce56b",
+      "bytes": 104,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/auqgnxjtvdbll3pv.onion/post/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage02/auqgnxjtvdbll3pv.onion/index.html"
+      ],
+      "note": "Stage02 title and 1033.jpg link, exact external source."
+    },
+    {
+      "path": "onions/avowyfgl5lkzfj3n.onion/post/index.html",
+      "gitBlobSha1": "f8b6e108b8dab4fa095356f73a4f53e41918cb55",
+      "bytes": 5149029,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/avowyfgl5lkzfj3n.onion/post/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage06/avowyfgl5lkzfj3n.onion/index.html"
+      ],
+      "note": "Stage06 exact already indexed external source; no independent large-file byte retrieval in this invocation."
+    },
+    {
+      "path": "onions/avowyfgl5lkzfj3n.onion/pre/index.html",
+      "gitBlobSha1": "69958517953dba63b8f5f76f34dda2c1967be01c",
+      "bytes": 615,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/avowyfgl5lkzfj3n.onion/pre/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage05/avowyfgl5lkzfj3n.onion/index.html"
+      ],
+      "note": "Stage05 exact external source, 512 hex characters match local three-block file; comment 3301 and historical port footer already investigated by #2951."
+    },
+    {
+      "path": "onions/cu343l33nqaekrnw.onion/pre/index.html",
+      "gitBlobSha1": "0de51aaeed32a13e37f1166e6709f04e277bcc35",
+      "bytes": 524,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/cu343l33nqaekrnw.onion/pre/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [],
+      "note": "Stage03 variant: comment 761 versus local Patience is a virtue; same 512 hex characters, 761 already labels this exact block in local Stage05 three-block file."
+    },
+    {
+      "path": "onions/fv7lyucmeozzd5j4.onion/pre/index.html",
+      "gitBlobSha1": "75dd2a3a0c291a9113c72cd74d7a61fbdfff87fb",
+      "bytes": 525,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/fv7lyucmeozzd5j4.onion/pre/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [],
+      "note": "Stage04 variant: one trailing newline difference; all nonwhitespace bytes and 512 hex characters match local source."
+    },
+    {
+      "path": "onions/ky2khlqdf7qdznac.onion/post/index.html",
+      "gitBlobSha1": "ca32c61d6ade50bc4dbc715bf637629f4e0d19ca",
+      "bytes": 1872,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/ky2khlqdf7qdznac.onion/post/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [],
+      "note": "Stage11 indentation-only variant (58 image refs, title133/id331). Nonwhitespace characters identical to local source."
+    },
+    {
+      "path": "onions/q4utgdi2n4m4uim5.onion/post/index.html",
+      "gitBlobSha1": "58de2bf93cc61e6817f7cae98afd690df9b9d039",
+      "bytes": 359282,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/q4utgdi2n4m4uim5.onion/post/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage08/index.jpg"
+      ],
+      "note": "Binary JPEG despite .html suffix; JFIF 850x1248, EOI present; exact known Stage08 index.jpg / Brotherboxportrait.jpg. Not in combined LP JPEG zip."
+    },
+    {
+      "path": "onions/q4utgdi2n4m4uim5.onion/pre/index.html",
+      "gitBlobSha1": "afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9",
+      "bytes": 13526359,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/q4utgdi2n4m4uim5.onion/pre/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage07/q4utgdi2n4m4uim5.onion/index.html"
+      ],
+      "note": "Stage07 exact already indexed external source; no independent large-file byte retrieval in this invocation."
+    },
+    {
+      "path": "onions/sq6wmgv2zcsrix6t.onion/post/index.html",
+      "gitBlobSha1": "adc9279bb7894612d1bf584f8f150ace23d27d66",
+      "bytes": 1740,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/sq6wmgv2zcsrix6t.onion/post/index.html",
+      "exactLocalPaths": [
+        "resources/external/2012-sq6wmgv2zcsrix6t-post-index.html"
+      ],
+      "exactKrisyotamPaths": [],
+      "note": "2012, not 2014. Exact local blob already present."
+    },
+    {
+      "path": "onions/ut3qtzbrvs7dtvzp.onion/post/index.html",
+      "gitBlobSha1": "e2eefba48af2006957072f60bfdeabb4f27b28f4",
+      "bytes": 1980,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/ut3qtzbrvs7dtvzp.onion/post/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [],
+      "note": "Stage10 indentation-only variant; signed block byte-identical to local form, all nonwhitespace characters identical."
+    },
+    {
+      "path": "onions/ut3qtzbrvs7dtvzp.onion/pre/index.html",
+      "gitBlobSha1": "eeabba07a9a97d5446cbf6bddc6f6bf4f18d13ff",
+      "bytes": 8623291,
+      "sourceUrl": "https://github.com/iBotPeaches/cicada_3301/blob/08a386a02570359c30eab8e5029d0b334178cdb1/onions/ut3qtzbrvs7dtvzp.onion/pre/index.html",
+      "exactLocalPaths": [],
+      "exactKrisyotamPaths": [
+        "puzzles/2014/assets/stage09/ut3qtzbrvs7dtvzp.onion/index.html"
+      ],
+      "note": "Stage09 exact already indexed external source; no independent large-file byte retrieval in this invocation."
+    }
+  ]
+}
