@@ -1,0 +1,4556 @@
+{
+  "capacity": [
+    {
+      "d4": [
+        0,
+        3
+      ],
+      "all": {
+        "cost": 0,
+        "count": "4205001839390044694104",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "APTLY"
+          },
+          {
+            "end": 10,
+            "example": "ACTE"
+          },
+          {
+            "end": 12,
+            "example": null
+          },
+          {
+            "end": 15,
+            "example": "CUR"
+          },
+          {
+            "end": 16,
+            "example": "G"
+          },
+          {
+            "end": 19,
+            "example": "AGE"
+          },
+          {
+            "end": 24,
+            "example": "AMPLE"
+          },
+          {
+            "end": 27,
+            "example": "ADJ"
+          },
+          {
+            "end": 29,
+            "example": "OO"
+          },
+          {
+            "end": 30,
+            "example": "X"
+          },
+          {
+            "end": 33,
+            "example": null
+          },
+          {
+            "end": 35,
+            "example": "WING"
+          },
+          {
+            "end": 36,
+            "example": "O"
+          },
+          {
+            "end": 42,
+            "example": "DANDLING"
+          },
+          {
+            "end": 46,
+            "example": "ARMS"
+          },
+          {
+            "end": 49,
+            "example": "AGO"
+          },
+          {
+            "end": 51,
+            "example": "EX"
+          },
+          {
+            "end": 53,
+            "example": "THE"
+          },
+          {
+            "end": 54,
+            "example": "H"
+          },
+          {
+            "end": 57,
+            "example": "THOU"
+          },
+          {
+            "end": 59,
+            "example": "KU"
+          },
+          {
+            "end": 62,
+            "example": "GIG"
+          },
+          {
+            "end": 66,
+            "example": "AGED"
+          },
+          {
+            "end": 71,
+            "example": "AMENE"
+          },
+          {
+            "end": 75,
+            "example": "AGED"
+          },
+          {
+            "end": 78,
+            "example": "GIG"
+          },
+          {
+            "end": 80,
+            "example": "KU"
+          },
+          {
+            "end": 83,
+            "example": "THOU"
+          },
+          {
+            "end": 84,
+            "example": "H"
+          },
+          {
+            "end": 86,
+            "example": "THE"
+          },
+          {
+            "end": 88,
+            "example": "EX"
+          },
+          {
+            "end": 91,
+            "example": "AGO"
+          },
+          {
+            "end": 95,
+            "example": "ARMS"
+          },
+          {
+            "end": 101,
+            "example": "DANDLING"
+          },
+          {
+            "end": 102,
+            "example": "O"
+          },
+          {
+            "end": 104,
+            "example": "WING"
+          },
+          {
+            "end": 107,
+            "example": null
+          },
+          {
+            "end": 108,
+            "example": "X"
+          },
+          {
+            "end": 110,
+            "example": "OO"
+          },
+          {
+            "end": 113,
+            "example": "ADJ"
+          },
+          {
+            "end": 118,
+            "example": "AMPLE"
+          },
+          {
+            "end": 121,
+            "example": "AGE"
+          },
+          {
+            "end": 122,
+            "example": "G"
+          },
+          {
+            "end": 125,
+            "example": "CUR"
+          },
+          {
+            "end": 127,
+            "example": null
+          },
+          {
+            "end": 131,
+            "example": "ACTE"
+          },
+          {
+            "end": 197,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "split": {
+        "cost": 0,
+        "count": "252372470502296883494",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "APTLY"
+          },
+          {
+            "end": 10,
+            "example": "ACTE"
+          },
+          {
+            "end": 12,
+            "example": null
+          },
+          {
+            "end": 15,
+            "example": "CUR"
+          },
+          {
+            "end": 16,
+            "example": "G"
+          },
+          {
+            "end": 19,
+            "example": "AGE"
+          },
+          {
+            "end": 24,
+            "example": "AMPLE"
+          },
+          {
+            "end": 27,
+            "example": "ADJ"
+          },
+          {
+            "end": 29,
+            "example": "OO"
+          },
+          {
+            "end": 30,
+            "example": "X"
+          },
+          {
+            "end": 33,
+            "example": null
+          },
+          {
+            "end": 35,
+            "example": "WING"
+          },
+          {
+            "end": 36,
+            "example": "O"
+          },
+          {
+            "end": 42,
+            "example": "DANDLING"
+          },
+          {
+            "end": 46,
+            "example": "ARMS"
+          },
+          {
+            "end": 49,
+            "example": "AGO"
+          },
+          {
+            "end": 51,
+            "example": "EX"
+          },
+          {
+            "end": 69,
+            "example": null
+          },
+          {
+            "end": 76,
+            "example": null
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 86,
+            "example": "GIG"
+          },
+          {
+            "end": 90,
+            "example": "AGED"
+          },
+          {
+            "end": 95,
+            "example": "AMENE"
+          },
+          {
+            "end": 99,
+            "example": "AGED"
+          },
+          {
+            "end": 102,
+            "example": "GIG"
+          },
+          {
+            "end": 104,
+            "example": "KU"
+          },
+          {
+            "end": 107,
+            "example": "THOU"
+          },
+          {
+            "end": 108,
+            "example": "H"
+          },
+          {
+            "end": 110,
+            "example": "THE"
+          },
+          {
+            "end": 112,
+            "example": "EX"
+          },
+          {
+            "end": 115,
+            "example": "AGO"
+          },
+          {
+            "end": 119,
+            "example": "ARMS"
+          },
+          {
+            "end": 125,
+            "example": "DANDLING"
+          },
+          {
+            "end": 126,
+            "example": "O"
+          },
+          {
+            "end": 128,
+            "example": "WING"
+          },
+          {
+            "end": 131,
+            "example": null
+          },
+          {
+            "end": 132,
+            "example": "X"
+          },
+          {
+            "end": 134,
+            "example": "OO"
+          },
+          {
+            "end": 137,
+            "example": "ADJ"
+          },
+          {
+            "end": 142,
+            "example": "AMPLE"
+          },
+          {
+            "end": 145,
+            "example": "AGE"
+          },
+          {
+            "end": 146,
+            "example": "G"
+          },
+          {
+            "end": 149,
+            "example": "CUR"
+          },
+          {
+            "end": 151,
+            "example": null
+          },
+          {
+            "end": 155,
+            "example": "ACTE"
+          },
+          {
+            "end": 197,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "nearest": {
+        "cost": 16,
+        "count": "15744",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "APTLY"
+          },
+          {
+            "end": 10,
+            "example": "ACTE"
+          },
+          {
+            "end": 12,
+            "example": null
+          },
+          {
+            "end": 17,
+            "example": null
+          },
+          {
+            "end": 20,
+            "example": "OVO"
+          },
+          {
+            "end": 23,
+            "example": "AGE"
+          },
+          {
+            "end": 28,
+            "example": "AMPLE"
+          },
+          {
+            "end": 31,
+            "example": "ADJ"
+          },
+          {
+            "end": 33,
+            "example": "OO"
+          },
+          {
+            "end": 40,
+            "example": null
+          },
+          {
+            "end": 43,
+            "example": null
+          },
+          {
+            "end": 45,
+            "example": "WING"
+          },
+          {
+            "end": 46,
+            "example": "O"
+          },
+          {
+            "end": 52,
+            "example": "DANDLING"
+          },
+          {
+            "end": 56,
+            "example": "ARMS"
+          },
+          {
+            "end": 65,
+            "example": null
+          },
+          {
+            "end": 67,
+            "example": "EX"
+          },
+          {
+            "end": 69,
+            "example": "THE"
+          },
+          {
+            "end": 76,
+            "example": null
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 94,
+            "example": null
+          },
+          {
+            "end": 98,
+            "example": "AGED"
+          },
+          {
+            "end": 105,
+            "example": "ACCENTS"
+          },
+          {
+            "end": 109,
+            "example": "AGED"
+          },
+          {
+            "end": 112,
+            "example": "GIG"
+          },
+          {
+            "end": 114,
+            "example": "KU"
+          },
+          {
+            "end": 117,
+            "example": "THOU"
+          },
+          {
+            "end": 118,
+            "example": "H"
+          },
+          {
+            "end": 120,
+            "example": "THE"
+          },
+          {
+            "end": 130,
+            "example": null
+          },
+          {
+            "end": 133,
+            "example": "AGO"
+          },
+          {
+            "end": 138,
+            "example": null
+          },
+          {
+            "end": 146,
+            "example": "ADENITIS"
+          },
+          {
+            "end": 147,
+            "example": "O"
+          },
+          {
+            "end": 149,
+            "example": "WING"
+          },
+          {
+            "end": 152,
+            "example": null
+          },
+          {
+            "end": 155,
+            "example": "NOR"
+          },
+          {
+            "end": 160,
+            "example": null
+          },
+          {
+            "end": 165,
+            "example": "ARCHING"
+          },
+          {
+            "end": 170,
+            "example": "AMPLE"
+          },
+          {
+            "end": 173,
+            "example": "AGE"
+          },
+          {
+            "end": 174,
+            "example": "G"
+          },
+          {
+            "end": 177,
+            "example": "CUR"
+          },
+          {
+            "end": 180,
+            "example": null
+          },
+          {
+            "end": 190,
+            "example": "INCONGRUOUS"
+          },
+          {
+            "end": 197,
+            "example": "BUNDLES"
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "lexical": {
+        "cost": 0,
+        "count": "13677702722952908094751097303932564068451912133856",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "APTLY"
+          },
+          {
+            "end": 10,
+            "example": "ACTE"
+          },
+          {
+            "end": 14,
+            "example": "BRIAR"
+          },
+          {
+            "end": 17,
+            "example": "CUR"
+          },
+          {
+            "end": 18,
+            "example": "G"
+          },
+          {
+            "end": 21,
+            "example": "AGE"
+          },
+          {
+            "end": 26,
+            "example": "AMPLE"
+          },
+          {
+            "end": 29,
+            "example": "ADJ"
+          },
+          {
+            "end": 31,
+            "example": "OO"
+          },
+          {
+            "end": 32,
+            "example": "X"
+          },
+          {
+            "end": 37,
+            "example": "ABUSING"
+          },
+          {
+            "end": 39,
+            "example": "WING"
+          },
+          {
+            "end": 40,
+            "example": "O"
+          },
+          {
+            "end": 46,
+            "example": "DANDLING"
+          },
+          {
+            "end": 56,
+            "example": "CURRICULUM"
+          },
+          {
+            "end": 63,
+            "example": "TUCHKOV"
+          },
+          {
+            "end": 69,
+            "example": "COLOUR"
+          },
+          {
+            "end": 75,
+            "example": "VIGOUR"
+          },
+          {
+            "end": 78,
+            "example": "ROTH"
+          },
+          {
+            "end": 81,
+            "example": "THOU"
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 86,
+            "example": "GIG"
+          },
+          {
+            "end": 90,
+            "example": "AGED"
+          },
+          {
+            "end": 95,
+            "example": "AMENE"
+          },
+          {
+            "end": 99,
+            "example": "AGED"
+          },
+          {
+            "end": 102,
+            "example": "GIG"
+          },
+          {
+            "end": 104,
+            "example": "KU"
+          },
+          {
+            "end": 107,
+            "example": "THOU"
+          },
+          {
+            "end": 108,
+            "example": "H"
+          },
+          {
+            "end": 110,
+            "example": "THE"
+          },
+          {
+            "end": 112,
+            "example": "EX"
+          },
+          {
+            "end": 115,
+            "example": "AGO"
+          },
+          {
+            "end": 119,
+            "example": "ARMS"
+          },
+          {
+            "end": 125,
+            "example": "DANDLING"
+          },
+          {
+            "end": 126,
+            "example": "O"
+          },
+          {
+            "end": 128,
+            "example": "WING"
+          },
+          {
+            "end": 133,
+            "example": "ABUSING"
+          },
+          {
+            "end": 134,
+            "example": "X"
+          },
+          {
+            "end": 136,
+            "example": "OO"
+          },
+          {
+            "end": 145,
+            "example": "INCOGNITO"
+          },
+          {
+            "end": 156,
+            "example": "CORROBORATE"
+          },
+          {
+            "end": 160,
+            "example": "FARM"
+          },
+          {
+            "end": 163,
+            "example": "OVO"
+          },
+          {
+            "end": 166,
+            "example": "CUR"
+          },
+          {
+            "end": 174,
+            "example": "COURTEOUS"
+          },
+          {
+            "end": 184,
+            "example": "INCONGRUOUS"
+          },
+          {
+            "end": 197,
+            "example": "NEIGHBOURHOOD"
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      }
+    },
+    {
+      "d4": [
+        1,
+        2
+      ],
+      "all": {
+        "cost": 0,
+        "count": "4785233187072597593169",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "G"
+          },
+          {
+            "end": 7,
+            "example": "CUR"
+          },
+          {
+            "end": 9,
+            "example": null
+          },
+          {
+            "end": 13,
+            "example": "ACTE"
+          },
+          {
+            "end": 18,
+            "example": "APTLY"
+          },
+          {
+            "end": 19,
+            "example": "O"
+          },
+          {
+            "end": 20,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "WING"
+          },
+          {
+            "end": 25,
+            "example": null
+          },
+          {
+            "end": 26,
+            "example": "X"
+          },
+          {
+            "end": 28,
+            "example": "OO"
+          },
+          {
+            "end": 31,
+            "example": "ADJ"
+          },
+          {
+            "end": 36,
+            "example": "AMPLE"
+          },
+          {
+            "end": 39,
+            "example": "THOU"
+          },
+          {
+            "end": 40,
+            "example": "H"
+          },
+          {
+            "end": 42,
+            "example": "THE"
+          },
+          {
+            "end": 44,
+            "example": "EX"
+          },
+          {
+            "end": 47,
+            "example": "AGO"
+          },
+          {
+            "end": 51,
+            "example": "ARMS"
+          },
+          {
+            "end": 57,
+            "example": "DANDLING"
+          },
+          {
+            "end": 59,
+            "example": "KU"
+          },
+          {
+            "end": 62,
+            "example": "GIG"
+          },
+          {
+            "end": 66,
+            "example": "AGED"
+          },
+          {
+            "end": 71,
+            "example": "AMENE"
+          },
+          {
+            "end": 75,
+            "example": "AGED"
+          },
+          {
+            "end": 78,
+            "example": "GIG"
+          },
+          {
+            "end": 80,
+            "example": "KU"
+          },
+          {
+            "end": 86,
+            "example": "DANDLING"
+          },
+          {
+            "end": 90,
+            "example": "ARMS"
+          },
+          {
+            "end": 93,
+            "example": "AGO"
+          },
+          {
+            "end": 95,
+            "example": "EX"
+          },
+          {
+            "end": 97,
+            "example": "THE"
+          },
+          {
+            "end": 98,
+            "example": "H"
+          },
+          {
+            "end": 101,
+            "example": "THOU"
+          },
+          {
+            "end": 106,
+            "example": "AMPLE"
+          },
+          {
+            "end": 109,
+            "example": "ADJ"
+          },
+          {
+            "end": 111,
+            "example": "OO"
+          },
+          {
+            "end": 112,
+            "example": "X"
+          },
+          {
+            "end": 115,
+            "example": null
+          },
+          {
+            "end": 117,
+            "example": "WING"
+          },
+          {
+            "end": 118,
+            "example": "O"
+          },
+          {
+            "end": 119,
+            "example": "O"
+          },
+          {
+            "end": 124,
+            "example": "APTLY"
+          },
+          {
+            "end": 128,
+            "example": "ACTE"
+          },
+          {
+            "end": 130,
+            "example": null
+          },
+          {
+            "end": 133,
+            "example": "CUR"
+          },
+          {
+            "end": 137,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": null
+          }
+        ]
+      },
+      "split": {
+        "cost": 0,
+        "count": "264750962275803978260",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "G"
+          },
+          {
+            "end": 7,
+            "example": "CUR"
+          },
+          {
+            "end": 9,
+            "example": null
+          },
+          {
+            "end": 13,
+            "example": "ACTE"
+          },
+          {
+            "end": 18,
+            "example": "APTLY"
+          },
+          {
+            "end": 19,
+            "example": "O"
+          },
+          {
+            "end": 20,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "WING"
+          },
+          {
+            "end": 25,
+            "example": null
+          },
+          {
+            "end": 26,
+            "example": "X"
+          },
+          {
+            "end": 28,
+            "example": "OO"
+          },
+          {
+            "end": 31,
+            "example": "ADJ"
+          },
+          {
+            "end": 36,
+            "example": "AMPLE"
+          },
+          {
+            "end": 39,
+            "example": "THOU"
+          },
+          {
+            "end": 40,
+            "example": "H"
+          },
+          {
+            "end": 42,
+            "example": "THE"
+          },
+          {
+            "end": 44,
+            "example": "EX"
+          },
+          {
+            "end": 47,
+            "example": "AGO"
+          },
+          {
+            "end": 51,
+            "example": "ARMS"
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 86,
+            "example": "GIG"
+          },
+          {
+            "end": 90,
+            "example": "AGED"
+          },
+          {
+            "end": 95,
+            "example": "AMENE"
+          },
+          {
+            "end": 99,
+            "example": "AGED"
+          },
+          {
+            "end": 102,
+            "example": "GIG"
+          },
+          {
+            "end": 104,
+            "example": "KU"
+          },
+          {
+            "end": 110,
+            "example": "DANDLING"
+          },
+          {
+            "end": 114,
+            "example": "ARMS"
+          },
+          {
+            "end": 117,
+            "example": "AGO"
+          },
+          {
+            "end": 119,
+            "example": "EX"
+          },
+          {
+            "end": 121,
+            "example": "THE"
+          },
+          {
+            "end": 122,
+            "example": "H"
+          },
+          {
+            "end": 125,
+            "example": "THOU"
+          },
+          {
+            "end": 130,
+            "example": "AMPLE"
+          },
+          {
+            "end": 133,
+            "example": "ADJ"
+          },
+          {
+            "end": 135,
+            "example": "OO"
+          },
+          {
+            "end": 136,
+            "example": "X"
+          },
+          {
+            "end": 139,
+            "example": null
+          },
+          {
+            "end": 141,
+            "example": "WING"
+          },
+          {
+            "end": 142,
+            "example": "O"
+          },
+          {
+            "end": 143,
+            "example": "O"
+          },
+          {
+            "end": 148,
+            "example": "APTLY"
+          },
+          {
+            "end": 152,
+            "example": "ACTE"
+          },
+          {
+            "end": 154,
+            "example": null
+          },
+          {
+            "end": 157,
+            "example": "CUR"
+          },
+          {
+            "end": 158,
+            "example": "G"
+          },
+          {
+            "end": 198,
+            "example": null
+          }
+        ]
+      },
+      "nearest": {
+        "cost": 17,
+        "count": "38080",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "G"
+          },
+          {
+            "end": 7,
+            "example": "CUR"
+          },
+          {
+            "end": 11,
+            "example": "BRIAR"
+          },
+          {
+            "end": 15,
+            "example": "ACTE"
+          },
+          {
+            "end": 20,
+            "example": "APTLY"
+          },
+          {
+            "end": 21,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "O"
+          },
+          {
+            "end": 24,
+            "example": "WING"
+          },
+          {
+            "end": 27,
+            "example": null
+          },
+          {
+            "end": 28,
+            "example": "X"
+          },
+          {
+            "end": 30,
+            "example": "OO"
+          },
+          {
+            "end": 33,
+            "example": "ADJ"
+          },
+          {
+            "end": 40,
+            "example": "ADVISER"
+          },
+          {
+            "end": 43,
+            "example": "THOU"
+          },
+          {
+            "end": 44,
+            "example": "H"
+          },
+          {
+            "end": 46,
+            "example": "THE"
+          },
+          {
+            "end": 52,
+            "example": "COLOUR"
+          },
+          {
+            "end": 57,
+            "example": "CUBIC"
+          },
+          {
+            "end": 65,
+            "example": "ARNSWORTH"
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 94,
+            "example": null
+          },
+          {
+            "end": 98,
+            "example": "AGED"
+          },
+          {
+            "end": 105,
+            "example": "ACCENTS"
+          },
+          {
+            "end": 109,
+            "example": "AGED"
+          },
+          {
+            "end": 112,
+            "example": "GIG"
+          },
+          {
+            "end": 114,
+            "example": "KU"
+          },
+          {
+            "end": 120,
+            "example": "DANDLING"
+          },
+          {
+            "end": 130,
+            "example": "CURRICULUM"
+          },
+          {
+            "end": 133,
+            "example": "AGO"
+          },
+          {
+            "end": 138,
+            "example": null
+          },
+          {
+            "end": 142,
+            "example": "GOWN"
+          },
+          {
+            "end": 143,
+            "example": "H"
+          },
+          {
+            "end": 146,
+            "example": "THOU"
+          },
+          {
+            "end": 155,
+            "example": "BRIGHTENS"
+          },
+          {
+            "end": 165,
+            "example": null
+          },
+          {
+            "end": 167,
+            "example": "OO"
+          },
+          {
+            "end": 168,
+            "example": "X"
+          },
+          {
+            "end": 171,
+            "example": null
+          },
+          {
+            "end": 173,
+            "example": "WING"
+          },
+          {
+            "end": 174,
+            "example": "O"
+          },
+          {
+            "end": 175,
+            "example": "O"
+          },
+          {
+            "end": 180,
+            "example": "APTLY"
+          },
+          {
+            "end": 184,
+            "example": "ACTE"
+          },
+          {
+            "end": 187,
+            "example": null
+          },
+          {
+            "end": 190,
+            "example": "CUR"
+          },
+          {
+            "end": 195,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": "AGE"
+          }
+        ]
+      },
+      "lexical": {
+        "cost": 0,
+        "count": "6678053491409104562402330969868987121172114870208",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "G"
+          },
+          {
+            "end": 7,
+            "example": "CUR"
+          },
+          {
+            "end": 11,
+            "example": "BRIAR"
+          },
+          {
+            "end": 15,
+            "example": "ACTE"
+          },
+          {
+            "end": 20,
+            "example": "APTLY"
+          },
+          {
+            "end": 21,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "O"
+          },
+          {
+            "end": 24,
+            "example": "WING"
+          },
+          {
+            "end": 29,
+            "example": "ABUSING"
+          },
+          {
+            "end": 30,
+            "example": "X"
+          },
+          {
+            "end": 32,
+            "example": "OO"
+          },
+          {
+            "end": 35,
+            "example": "ADJ"
+          },
+          {
+            "end": 40,
+            "example": "AMPLE"
+          },
+          {
+            "end": 43,
+            "example": "THOU"
+          },
+          {
+            "end": 44,
+            "example": "H"
+          },
+          {
+            "end": 46,
+            "example": "THE"
+          },
+          {
+            "end": 52,
+            "example": "COLOUR"
+          },
+          {
+            "end": 59,
+            "example": "TUCHKOV"
+          },
+          {
+            "end": 69,
+            "example": "CURRICULUM"
+          },
+          {
+            "end": 81,
+            "example": "CIRCUMVENTED"
+          },
+          {
+            "end": 83,
+            "example": "KU"
+          },
+          {
+            "end": 86,
+            "example": "GIG"
+          },
+          {
+            "end": 90,
+            "example": "AGED"
+          },
+          {
+            "end": 95,
+            "example": "AMENE"
+          },
+          {
+            "end": 99,
+            "example": "AGED"
+          },
+          {
+            "end": 102,
+            "example": "GIG"
+          },
+          {
+            "end": 104,
+            "example": "KU"
+          },
+          {
+            "end": 110,
+            "example": "DANDLING"
+          },
+          {
+            "end": 114,
+            "example": "ARMS"
+          },
+          {
+            "end": 117,
+            "example": "AGO"
+          },
+          {
+            "end": 119,
+            "example": "EX"
+          },
+          {
+            "end": 121,
+            "example": "THE"
+          },
+          {
+            "end": 122,
+            "example": "H"
+          },
+          {
+            "end": 125,
+            "example": "THOU"
+          },
+          {
+            "end": 130,
+            "example": "AMPLE"
+          },
+          {
+            "end": 133,
+            "example": "ADJ"
+          },
+          {
+            "end": 135,
+            "example": "OO"
+          },
+          {
+            "end": 136,
+            "example": "X"
+          },
+          {
+            "end": 145,
+            "example": "CANCEROUS"
+          },
+          {
+            "end": 151,
+            "example": "NORVIG"
+          },
+          {
+            "end": 152,
+            "example": "O"
+          },
+          {
+            "end": 153,
+            "example": "O"
+          },
+          {
+            "end": 166,
+            "example": "NEIGHBOURHOOD"
+          },
+          {
+            "end": 176,
+            "example": "INCONGRUOUS"
+          },
+          {
+            "end": 183,
+            "example": "CONFINING"
+          },
+          {
+            "end": 186,
+            "example": "CUR"
+          },
+          {
+            "end": 189,
+            "example": "OVO"
+          },
+          {
+            "end": 198,
+            "example": "OUTGROWTHS"
+          }
+        ]
+      }
+    },
+    {
+      "d4": [
+        4,
+        7
+      ],
+      "all": {
+        "cost": 0,
+        "count": "4714842722894216270241",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "AMPLE"
+          },
+          {
+            "end": 12,
+            "example": "DANDLING"
+          },
+          {
+            "end": 14,
+            "example": "KU"
+          },
+          {
+            "end": 17,
+            "example": "THOU"
+          },
+          {
+            "end": 18,
+            "example": "O"
+          },
+          {
+            "end": 21,
+            "example": "AGE"
+          },
+          {
+            "end": 26,
+            "example": "APTLY"
+          },
+          {
+            "end": 29,
+            "example": "ADJ"
+          },
+          {
+            "end": 33,
+            "example": "ARMS"
+          },
+          {
+            "end": 36,
+            "example": "GIG"
+          },
+          {
+            "end": 37,
+            "example": "H"
+          },
+          {
+            "end": 39,
+            "example": "WING"
+          },
+          {
+            "end": 40,
+            "example": "G"
+          },
+          {
+            "end": 44,
+            "example": "ACTE"
+          },
+          {
+            "end": 46,
+            "example": "OO"
+          },
+          {
+            "end": 49,
+            "example": "AGO"
+          },
+          {
+            "end": 53,
+            "example": "AGED"
+          },
+          {
+            "end": 55,
+            "example": "THE"
+          },
+          {
+            "end": 58,
+            "example": null
+          },
+          {
+            "end": 61,
+            "example": "CUR"
+          },
+          {
+            "end": 63,
+            "example": null
+          },
+          {
+            "end": 64,
+            "example": "X"
+          },
+          {
+            "end": 66,
+            "example": "EX"
+          },
+          {
+            "end": 71,
+            "example": "AMENE"
+          },
+          {
+            "end": 73,
+            "example": "EX"
+          },
+          {
+            "end": 74,
+            "example": "X"
+          },
+          {
+            "end": 76,
+            "example": null
+          },
+          {
+            "end": 79,
+            "example": "CUR"
+          },
+          {
+            "end": 82,
+            "example": null
+          },
+          {
+            "end": 84,
+            "example": "THE"
+          },
+          {
+            "end": 88,
+            "example": "AGED"
+          },
+          {
+            "end": 91,
+            "example": "AGO"
+          },
+          {
+            "end": 93,
+            "example": "OO"
+          },
+          {
+            "end": 97,
+            "example": "ACTE"
+          },
+          {
+            "end": 98,
+            "example": "G"
+          },
+          {
+            "end": 100,
+            "example": "WING"
+          },
+          {
+            "end": 101,
+            "example": "H"
+          },
+          {
+            "end": 104,
+            "example": "GIG"
+          },
+          {
+            "end": 108,
+            "example": "ARMS"
+          },
+          {
+            "end": 111,
+            "example": "ADJ"
+          },
+          {
+            "end": 116,
+            "example": "APTLY"
+          },
+          {
+            "end": 119,
+            "example": "AGE"
+          },
+          {
+            "end": 120,
+            "example": "O"
+          },
+          {
+            "end": 123,
+            "example": "THOU"
+          },
+          {
+            "end": 125,
+            "example": "KU"
+          },
+          {
+            "end": 131,
+            "example": "DANDLING"
+          },
+          {
+            "end": 197,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "split": {
+        "cost": 0,
+        "count": "230398351967945055032",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "AMPLE"
+          },
+          {
+            "end": 12,
+            "example": "DANDLING"
+          },
+          {
+            "end": 14,
+            "example": "KU"
+          },
+          {
+            "end": 17,
+            "example": "THOU"
+          },
+          {
+            "end": 18,
+            "example": "O"
+          },
+          {
+            "end": 21,
+            "example": "AGE"
+          },
+          {
+            "end": 26,
+            "example": "APTLY"
+          },
+          {
+            "end": 29,
+            "example": "ADJ"
+          },
+          {
+            "end": 33,
+            "example": "ARMS"
+          },
+          {
+            "end": 36,
+            "example": "GIG"
+          },
+          {
+            "end": 37,
+            "example": "H"
+          },
+          {
+            "end": 39,
+            "example": "WING"
+          },
+          {
+            "end": 40,
+            "example": "G"
+          },
+          {
+            "end": 44,
+            "example": "ACTE"
+          },
+          {
+            "end": 46,
+            "example": "OO"
+          },
+          {
+            "end": 49,
+            "example": "AGO"
+          },
+          {
+            "end": 53,
+            "example": "AGED"
+          },
+          {
+            "end": 55,
+            "example": "THE"
+          },
+          {
+            "end": 72,
+            "example": null
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": null
+          },
+          {
+            "end": 84,
+            "example": "X"
+          },
+          {
+            "end": 86,
+            "example": "EX"
+          },
+          {
+            "end": 91,
+            "example": "AMENE"
+          },
+          {
+            "end": 93,
+            "example": "EX"
+          },
+          {
+            "end": 94,
+            "example": "X"
+          },
+          {
+            "end": 96,
+            "example": null
+          },
+          {
+            "end": 99,
+            "example": "CUR"
+          },
+          {
+            "end": 102,
+            "example": null
+          },
+          {
+            "end": 104,
+            "example": "THE"
+          },
+          {
+            "end": 108,
+            "example": "AGED"
+          },
+          {
+            "end": 111,
+            "example": "AGO"
+          },
+          {
+            "end": 113,
+            "example": "OO"
+          },
+          {
+            "end": 117,
+            "example": "ACTE"
+          },
+          {
+            "end": 118,
+            "example": "G"
+          },
+          {
+            "end": 120,
+            "example": "WING"
+          },
+          {
+            "end": 121,
+            "example": "H"
+          },
+          {
+            "end": 124,
+            "example": "GIG"
+          },
+          {
+            "end": 128,
+            "example": "ARMS"
+          },
+          {
+            "end": 131,
+            "example": "ADJ"
+          },
+          {
+            "end": 136,
+            "example": "APTLY"
+          },
+          {
+            "end": 139,
+            "example": "AGE"
+          },
+          {
+            "end": 140,
+            "example": "O"
+          },
+          {
+            "end": 143,
+            "example": "THOU"
+          },
+          {
+            "end": 145,
+            "example": "KU"
+          },
+          {
+            "end": 151,
+            "example": "DANDLING"
+          },
+          {
+            "end": 197,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "nearest": {
+        "cost": 16,
+        "count": "49320",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "AMPLE"
+          },
+          {
+            "end": 12,
+            "example": "DANDLING"
+          },
+          {
+            "end": 14,
+            "example": "KU"
+          },
+          {
+            "end": 17,
+            "example": "THOU"
+          },
+          {
+            "end": 18,
+            "example": "O"
+          },
+          {
+            "end": 23,
+            "example": "ARGUS"
+          },
+          {
+            "end": 28,
+            "example": "APTLY"
+          },
+          {
+            "end": 31,
+            "example": "ADJ"
+          },
+          {
+            "end": 35,
+            "example": "ARMS"
+          },
+          {
+            "end": 40,
+            "example": "CHUCK"
+          },
+          {
+            "end": 41,
+            "example": "H"
+          },
+          {
+            "end": 43,
+            "example": "WING"
+          },
+          {
+            "end": 46,
+            "example": "OVO"
+          },
+          {
+            "end": 50,
+            "example": "ACTE"
+          },
+          {
+            "end": 52,
+            "example": "OO"
+          },
+          {
+            "end": 57,
+            "example": "CUBIC"
+          },
+          {
+            "end": 65,
+            "example": "COLOURED"
+          },
+          {
+            "end": 67,
+            "example": "THE"
+          },
+          {
+            "end": 72,
+            "example": "ABUSING"
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 87,
+            "example": "BRUTUS"
+          },
+          {
+            "end": 94,
+            "example": null
+          },
+          {
+            "end": 98,
+            "example": "CHER"
+          },
+          {
+            "end": 105,
+            "example": "ACCENTS"
+          },
+          {
+            "end": 107,
+            "example": "EX"
+          },
+          {
+            "end": 108,
+            "example": "X"
+          },
+          {
+            "end": 112,
+            "example": "BRIAR"
+          },
+          {
+            "end": 115,
+            "example": "CUR"
+          },
+          {
+            "end": 118,
+            "example": null
+          },
+          {
+            "end": 120,
+            "example": "THE"
+          },
+          {
+            "end": 130,
+            "example": "COPERNICUS"
+          },
+          {
+            "end": 133,
+            "example": "AGO"
+          },
+          {
+            "end": 138,
+            "example": null
+          },
+          {
+            "end": 142,
+            "example": "ACTE"
+          },
+          {
+            "end": 143,
+            "example": "G"
+          },
+          {
+            "end": 145,
+            "example": "WING"
+          },
+          {
+            "end": 146,
+            "example": "H"
+          },
+          {
+            "end": 155,
+            "example": null
+          },
+          {
+            "end": 160,
+            "example": null
+          },
+          {
+            "end": 165,
+            "example": "ARCHING"
+          },
+          {
+            "end": 170,
+            "example": "APTLY"
+          },
+          {
+            "end": 173,
+            "example": "AGE"
+          },
+          {
+            "end": 174,
+            "example": "O"
+          },
+          {
+            "end": 177,
+            "example": "THOU"
+          },
+          {
+            "end": 180,
+            "example": null
+          },
+          {
+            "end": 190,
+            "example": "CANTHARIDIS"
+          },
+          {
+            "end": 197,
+            "example": "ADVISER"
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      },
+      "lexical": {
+        "cost": 0,
+        "count": "27962386811694304083571859431831281999521961468224",
+        "path": [
+          {
+            "end": 1,
+            "example": "O"
+          },
+          {
+            "end": 6,
+            "example": "AMPLE"
+          },
+          {
+            "end": 12,
+            "example": "DANDLING"
+          },
+          {
+            "end": 14,
+            "example": "KU"
+          },
+          {
+            "end": 17,
+            "example": "THOU"
+          },
+          {
+            "end": 18,
+            "example": "O"
+          },
+          {
+            "end": 21,
+            "example": "AGE"
+          },
+          {
+            "end": 26,
+            "example": "APTLY"
+          },
+          {
+            "end": 29,
+            "example": "ADJ"
+          },
+          {
+            "end": 33,
+            "example": "ARMS"
+          },
+          {
+            "end": 36,
+            "example": "GIG"
+          },
+          {
+            "end": 37,
+            "example": "H"
+          },
+          {
+            "end": 39,
+            "example": "WING"
+          },
+          {
+            "end": 40,
+            "example": "G"
+          },
+          {
+            "end": 44,
+            "example": "ACTE"
+          },
+          {
+            "end": 46,
+            "example": "OO"
+          },
+          {
+            "end": 51,
+            "example": "CUBIC"
+          },
+          {
+            "end": 61,
+            "example": "COPERNICUS"
+          },
+          {
+            "end": 67,
+            "example": "VIGOUR"
+          },
+          {
+            "end": 78,
+            "example": "MICROSCOPIC"
+          },
+          {
+            "end": 81,
+            "example": "CUR"
+          },
+          {
+            "end": 85,
+            "example": "BRIAR"
+          },
+          {
+            "end": 86,
+            "example": "X"
+          },
+          {
+            "end": 88,
+            "example": "EX"
+          },
+          {
+            "end": 93,
+            "example": "AMENE"
+          },
+          {
+            "end": 95,
+            "example": "EX"
+          },
+          {
+            "end": 96,
+            "example": "X"
+          },
+          {
+            "end": 100,
+            "example": "BRIAR"
+          },
+          {
+            "end": 103,
+            "example": "CUR"
+          },
+          {
+            "end": 108,
+            "example": "ABUSING"
+          },
+          {
+            "end": 110,
+            "example": "THE"
+          },
+          {
+            "end": 114,
+            "example": "AGED"
+          },
+          {
+            "end": 117,
+            "example": "AGO"
+          },
+          {
+            "end": 119,
+            "example": "OO"
+          },
+          {
+            "end": 123,
+            "example": "ACTE"
+          },
+          {
+            "end": 124,
+            "example": "G"
+          },
+          {
+            "end": 126,
+            "example": "WING"
+          },
+          {
+            "end": 127,
+            "example": "H"
+          },
+          {
+            "end": 130,
+            "example": "GIG"
+          },
+          {
+            "end": 134,
+            "example": "ARMS"
+          },
+          {
+            "end": 145,
+            "example": "VISLOUKHOVO"
+          },
+          {
+            "end": 158,
+            "example": "NEIGHBOURHOOD"
+          },
+          {
+            "end": 167,
+            "example": "OUTGROWTHS"
+          },
+          {
+            "end": 168,
+            "example": "O"
+          },
+          {
+            "end": 171,
+            "example": "THOU"
+          },
+          {
+            "end": 173,
+            "example": "KU"
+          },
+          {
+            "end": 186,
+            "example": "UNTHANKFULNESS"
+          },
+          {
+            "end": 197,
+            "example": "CORROBORATE"
+          },
+          {
+            "end": 198,
+            "example": "O"
+          }
+        ]
+      }
+    },
+    {
+      "d4": [
+        5,
+        6
+      ],
+      "all": {
+        "cost": 0,
+        "count": "3969330615249869261984",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "O"
+          },
+          {
+            "end": 7,
+            "example": "THOU"
+          },
+          {
+            "end": 9,
+            "example": "KU"
+          },
+          {
+            "end": 15,
+            "example": "DANDLING"
+          },
+          {
+            "end": 20,
+            "example": "AMPLE"
+          },
+          {
+            "end": 21,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "G"
+          },
+          {
+            "end": 24,
+            "example": "WING"
+          },
+          {
+            "end": 25,
+            "example": "H"
+          },
+          {
+            "end": 28,
+            "example": "GIG"
+          },
+          {
+            "end": 32,
+            "example": "ARMS"
+          },
+          {
+            "end": 35,
+            "example": "ADJ"
+          },
+          {
+            "end": 40,
+            "example": "APTLY"
+          },
+          {
+            "end": 43,
+            "example": "CUR"
+          },
+          {
+            "end": 46,
+            "example": null
+          },
+          {
+            "end": 48,
+            "example": "THE"
+          },
+          {
+            "end": 52,
+            "example": "AGED"
+          },
+          {
+            "end": 55,
+            "example": "AGO"
+          },
+          {
+            "end": 57,
+            "example": "OO"
+          },
+          {
+            "end": 61,
+            "example": "ACTE"
+          },
+          {
+            "end": 63,
+            "example": null
+          },
+          {
+            "end": 64,
+            "example": "X"
+          },
+          {
+            "end": 66,
+            "example": "EX"
+          },
+          {
+            "end": 71,
+            "example": "AMENE"
+          },
+          {
+            "end": 73,
+            "example": "EX"
+          },
+          {
+            "end": 74,
+            "example": "X"
+          },
+          {
+            "end": 76,
+            "example": null
+          },
+          {
+            "end": 80,
+            "example": "ACTE"
+          },
+          {
+            "end": 82,
+            "example": "OO"
+          },
+          {
+            "end": 85,
+            "example": "AGO"
+          },
+          {
+            "end": 89,
+            "example": "AGED"
+          },
+          {
+            "end": 91,
+            "example": "THE"
+          },
+          {
+            "end": 94,
+            "example": null
+          },
+          {
+            "end": 97,
+            "example": "CUR"
+          },
+          {
+            "end": 102,
+            "example": "APTLY"
+          },
+          {
+            "end": 105,
+            "example": "ADJ"
+          },
+          {
+            "end": 109,
+            "example": "ARMS"
+          },
+          {
+            "end": 112,
+            "example": "GIG"
+          },
+          {
+            "end": 113,
+            "example": "H"
+          },
+          {
+            "end": 115,
+            "example": "WING"
+          },
+          {
+            "end": 116,
+            "example": "G"
+          },
+          {
+            "end": 117,
+            "example": "O"
+          },
+          {
+            "end": 122,
+            "example": "AMPLE"
+          },
+          {
+            "end": 128,
+            "example": "DANDLING"
+          },
+          {
+            "end": 130,
+            "example": "KU"
+          },
+          {
+            "end": 135,
+            "example": null
+          },
+          {
+            "end": 137,
+            "example": null
+          },
+          {
+            "end": 198,
+            "example": null
+          }
+        ]
+      },
+      "split": {
+        "cost": 0,
+        "count": "174463978636715411647",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "O"
+          },
+          {
+            "end": 7,
+            "example": "THOU"
+          },
+          {
+            "end": 9,
+            "example": "KU"
+          },
+          {
+            "end": 15,
+            "example": "DANDLING"
+          },
+          {
+            "end": 20,
+            "example": "AMPLE"
+          },
+          {
+            "end": 21,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "G"
+          },
+          {
+            "end": 24,
+            "example": "WING"
+          },
+          {
+            "end": 25,
+            "example": "H"
+          },
+          {
+            "end": 28,
+            "example": "GIG"
+          },
+          {
+            "end": 32,
+            "example": "ARMS"
+          },
+          {
+            "end": 35,
+            "example": "ADJ"
+          },
+          {
+            "end": 40,
+            "example": "APTLY"
+          },
+          {
+            "end": 43,
+            "example": "CUR"
+          },
+          {
+            "end": 46,
+            "example": null
+          },
+          {
+            "end": 48,
+            "example": "THE"
+          },
+          {
+            "end": 52,
+            "example": "AGED"
+          },
+          {
+            "end": 55,
+            "example": "AGO"
+          },
+          {
+            "end": 57,
+            "example": "OO"
+          },
+          {
+            "end": 81,
+            "example": null
+          },
+          {
+            "end": 83,
+            "example": null
+          },
+          {
+            "end": 84,
+            "example": "X"
+          },
+          {
+            "end": 86,
+            "example": "EX"
+          },
+          {
+            "end": 91,
+            "example": "AMENE"
+          },
+          {
+            "end": 93,
+            "example": "EX"
+          },
+          {
+            "end": 94,
+            "example": "X"
+          },
+          {
+            "end": 96,
+            "example": null
+          },
+          {
+            "end": 100,
+            "example": "ACTE"
+          },
+          {
+            "end": 102,
+            "example": "OO"
+          },
+          {
+            "end": 105,
+            "example": "AGO"
+          },
+          {
+            "end": 109,
+            "example": "AGED"
+          },
+          {
+            "end": 111,
+            "example": "THE"
+          },
+          {
+            "end": 114,
+            "example": null
+          },
+          {
+            "end": 117,
+            "example": "CUR"
+          },
+          {
+            "end": 122,
+            "example": "APTLY"
+          },
+          {
+            "end": 125,
+            "example": "ADJ"
+          },
+          {
+            "end": 129,
+            "example": "ARMS"
+          },
+          {
+            "end": 132,
+            "example": "GIG"
+          },
+          {
+            "end": 133,
+            "example": "H"
+          },
+          {
+            "end": 135,
+            "example": "WING"
+          },
+          {
+            "end": 136,
+            "example": "G"
+          },
+          {
+            "end": 137,
+            "example": "O"
+          },
+          {
+            "end": 142,
+            "example": "AMPLE"
+          },
+          {
+            "end": 148,
+            "example": "DANDLING"
+          },
+          {
+            "end": 150,
+            "example": "KU"
+          },
+          {
+            "end": 153,
+            "example": "THOU"
+          },
+          {
+            "end": 154,
+            "example": "O"
+          },
+          {
+            "end": 198,
+            "example": null
+          }
+        ]
+      },
+      "nearest": {
+        "cost": 18,
+        "count": "848904",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "O"
+          },
+          {
+            "end": 7,
+            "example": "THOU"
+          },
+          {
+            "end": 11,
+            "example": null
+          },
+          {
+            "end": 17,
+            "example": "DANDLING"
+          },
+          {
+            "end": 22,
+            "example": "AMPLE"
+          },
+          {
+            "end": 23,
+            "example": "O"
+          },
+          {
+            "end": 24,
+            "example": "G"
+          },
+          {
+            "end": 28,
+            "example": "BROW"
+          },
+          {
+            "end": 31,
+            "example": "ROTH"
+          },
+          {
+            "end": 34,
+            "example": "GIG"
+          },
+          {
+            "end": 40,
+            "example": "ARRIVING"
+          },
+          {
+            "end": 43,
+            "example": "ADJ"
+          },
+          {
+            "end": 52,
+            "example": "ANTIVENIN"
+          },
+          {
+            "end": 57,
+            "example": null
+          },
+          {
+            "end": 60,
+            "example": null
+          },
+          {
+            "end": 62,
+            "example": "THE"
+          },
+          {
+            "end": 70,
+            "example": "COLOURED"
+          },
+          {
+            "end": 73,
+            "example": "AGO"
+          },
+          {
+            "end": 75,
+            "example": "OO"
+          },
+          {
+            "end": 81,
+            "example": "AROUND"
+          },
+          {
+            "end": 87,
+            "example": "BRUTUS"
+          },
+          {
+            "end": 94,
+            "example": null
+          },
+          {
+            "end": 98,
+            "example": "CHER"
+          },
+          {
+            "end": 105,
+            "example": "ACCENTS"
+          },
+          {
+            "end": 107,
+            "example": "EX"
+          },
+          {
+            "end": 112,
+            "example": "OCCUR"
+          },
+          {
+            "end": 114,
+            "example": null
+          },
+          {
+            "end": 118,
+            "example": "ACTE"
+          },
+          {
+            "end": 120,
+            "example": "OO"
+          },
+          {
+            "end": 123,
+            "example": "AGO"
+          },
+          {
+            "end": 127,
+            "example": "AGED"
+          },
+          {
+            "end": 129,
+            "example": "THE"
+          },
+          {
+            "end": 138,
+            "example": "CANCEROUS"
+          },
+          {
+            "end": 141,
+            "example": "CUR"
+          },
+          {
+            "end": 146,
+            "example": "APTLY"
+          },
+          {
+            "end": 149,
+            "example": "ADJ"
+          },
+          {
+            "end": 155,
+            "example": "ARRIVING"
+          },
+          {
+            "end": 160,
+            "example": "CHUCK"
+          },
+          {
+            "end": 165,
+            "example": null
+          },
+          {
+            "end": 167,
+            "example": "WING"
+          },
+          {
+            "end": 170,
+            "example": "OVO"
+          },
+          {
+            "end": 171,
+            "example": "O"
+          },
+          {
+            "end": 180,
+            "example": "BRIGHTENS"
+          },
+          {
+            "end": 187,
+            "example": null
+          },
+          {
+            "end": 189,
+            "example": "KU"
+          },
+          {
+            "end": 194,
+            "example": null
+          },
+          {
+            "end": 195,
+            "example": "O"
+          },
+          {
+            "end": 198,
+            "example": "AGE"
+          }
+        ]
+      },
+      "lexical": {
+        "cost": 0,
+        "count": "6444329581966738626170257472694011652255813671440",
+        "path": [
+          {
+            "end": 3,
+            "example": "AGE"
+          },
+          {
+            "end": 4,
+            "example": "O"
+          },
+          {
+            "end": 7,
+            "example": "THOU"
+          },
+          {
+            "end": 9,
+            "example": "KU"
+          },
+          {
+            "end": 15,
+            "example": "DANDLING"
+          },
+          {
+            "end": 20,
+            "example": "AMPLE"
+          },
+          {
+            "end": 21,
+            "example": "O"
+          },
+          {
+            "end": 22,
+            "example": "G"
+          },
+          {
+            "end": 24,
+            "example": "WING"
+          },
+          {
+            "end": 25,
+            "example": "H"
+          },
+          {
+            "end": 28,
+            "example": "GIG"
+          },
+          {
+            "end": 32,
+            "example": "ARMS"
+          },
+          {
+            "end": 35,
+            "example": "ADJ"
+          },
+          {
+            "end": 40,
+            "example": "APTLY"
+          },
+          {
+            "end": 43,
+            "example": "CUR"
+          },
+          {
+            "end": 48,
+            "example": "ABUSING"
+          },
+          {
+            "end": 52,
+            "example": "GOWN"
+          },
+          {
+            "end": 62,
+            "example": "COPERNICUS"
+          },
+          {
+            "end": 69,
+            "example": "TUCHKOV"
+          },
+          {
+            "end": 71,
+            "example": "OO"
+          },
+          {
+            "end": 81,
+            "example": "INCONGRUOUS"
+          },
+          {
+            "end": 85,
+            "example": "BRIAR"
+          },
+          {
+            "end": 86,
+            "example": "X"
+          },
+          {
+            "end": 88,
+            "example": "EX"
+          },
+          {
+            "end": 93,
+            "example": "AMENE"
+          },
+          {
+            "end": 95,
+            "example": "EX"
+          },
+          {
+            "end": 96,
+            "example": "X"
+          },
+          {
+            "end": 100,
+            "example": "BRIAR"
+          },
+          {
+            "end": 104,
+            "example": "ACTE"
+          },
+          {
+            "end": 106,
+            "example": "OO"
+          },
+          {
+            "end": 109,
+            "example": "AGO"
+          },
+          {
+            "end": 113,
+            "example": "AGED"
+          },
+          {
+            "end": 115,
+            "example": "THE"
+          },
+          {
+            "end": 120,
+            "example": "ABUSING"
+          },
+          {
+            "end": 123,
+            "example": "CUR"
+          },
+          {
+            "end": 128,
+            "example": "APTLY"
+          },
+          {
+            "end": 133,
+            "example": "ARCHING"
+          },
+          {
+            "end": 143,
+            "example": "CURRICULUM"
+          },
+          {
+            "end": 148,
+            "example": "CHUCK"
+          },
+          {
+            "end": 151,
+            "example": "ROTH"
+          },
+          {
+            "end": 157,
+            "example": "NORVIG"
+          },
+          {
+            "end": 160,
+            "example": "OVO"
+          },
+          {
+            "end": 161,
+            "example": "O"
+          },
+          {
+            "end": 172,
+            "example": "CORROBORATE"
+          },
+          {
+            "end": 184,
+            "example": "CIRCUMVENTED"
+          },
+          {
+            "end": 187,
+            "example": "FOO"
+          },
+          {
+            "end": 190,
+            "example": "THOU"
+          },
+          {
+            "end": 191,
+            "example": "O"
+          },
+          {
+            "end": 198,
+            "example": "BROUGHT"
+          }
+        ]
+      }
+    }
+  ],
+  "original": [
+    {
+      "q": 1,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 10223,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 1,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 9981,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 1,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 10223,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 1,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 9981,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 2,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 9613,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 2,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 9959,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 2,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 9513,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 2,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 9467,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 3,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 9329,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 3,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 9699,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 3,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 8929,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 3,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 8997,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 4,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 9223,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 4,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 9257,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 4,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 9061,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 4,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 8687,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 5,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 8911,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 5,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 8571,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 5,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 8457,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 5,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 8575,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 6,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7935,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 6,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7961,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 6,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7499,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 6,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7837,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 7,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 8263,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 7,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 8181,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 7,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 8269,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 7,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7911,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 8,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 8309,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 8,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 8389,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 8,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7813,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 8,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7913,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 9,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7783,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 9,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7563,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 9,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7867,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 9,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7775,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 10,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7579,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 10,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7737,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 10,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7451,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 10,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7491,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 11,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7843,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 11,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7985,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 11,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7741,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 11,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7933,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 12,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7325,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 12,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7507,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 12,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7181,
+      "admissible": 3,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 12,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7155,
+      "admissible": 4,
+      "joint": 1,
+      "nodes": 9,
+      "prefixPrunes": 1,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 13,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7699,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 13,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7617,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 13,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7337,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 13,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7325,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 14,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7121,
+      "admissible": 2,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 14,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7259,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 14,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7005,
+      "admissible": 14,
+      "joint": 7,
+      "nodes": 393,
+      "prefixPrunes": 116,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 14,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 6983,
+      "admissible": 5,
+      "joint": 3,
+      "nodes": 115,
+      "prefixPrunes": 40,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 15,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7311,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 15,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7053,
+      "admissible": 15,
+      "joint": 4,
+      "nodes": 98,
+      "prefixPrunes": 20,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 15,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 7111,
+      "admissible": 5,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 15,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 7175,
+      "admissible": 3,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 16,
+      "pause": false,
+      "sign": 1,
+      "minimumObserved": 7125,
+      "admissible": 12,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 16,
+      "pause": false,
+      "sign": -1,
+      "minimumObserved": 7443,
+      "admissible": 0,
+      "joint": 0,
+      "nodes": 0,
+      "prefixPrunes": 0,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 16,
+      "pause": true,
+      "sign": 1,
+      "minimumObserved": 6715,
+      "admissible": 19,
+      "joint": 11,
+      "nodes": 81085,
+      "prefixPrunes": 57020,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    },
+    {
+      "q": 16,
+      "pause": true,
+      "sign": -1,
+      "minimumObserved": 6931,
+      "admissible": 19,
+      "joint": 6,
+      "nodes": 4435,
+      "prefixPrunes": 2233,
+      "parityMasks": 32,
+      "leaves": 0,
+      "complete": true,
+      "solutions": []
+    }
+  ],
+  "control": {
+    "n": 125,
+    "split": 57,
+    "wordCount": 35,
+    "expectedKey": [
+      23,
+      10,
+      1,
+      10,
+      9,
+      10,
+      16,
+      26
+    ],
+    "recovered": true,
+    "q": 8,
+    "pause": true,
+    "sign": 1,
+    "minimumObserved": 4268,
+    "admissible": 16,
+    "joint": 16,
+    "nodes": 83581,
+    "prefixPrunes": 92702,
+    "parityMasks": 16,
+    "leaves": 2,
+    "complete": true,
+    "solutions": [
+      {
+        "orientation": 0,
+        "mask": 52,
+        "key": [
+          23,
+          10,
+          1,
+          10,
+          9,
+          10,
+          16,
+          26
+        ],
+        "plain": [
+          7,
+          18,
+          20,
+          5,
+          3,
+          19,
+          18,
+          7,
+          18,
+          20,
+          5,
+          3,
+          19,
+          18,
+          13,
+          10,
+          20,
+          6,
+          4,
+          10,
+          19,
+          16,
+          3,
+          2,
+          18,
+          6,
+          4,
+          28,
+          16,
+          11,
+          3,
+          1,
+          4,
+          9,
+          18,
+          26,
+          16,
+          3,
+          7,
+          24,
+          4,
+          23,
+          2,
+          18,
+          18,
+          9,
+          23,
+          0,
+          3,
+          24,
+          20,
+          20,
+          2,
+          21,
+          15,
+          10,
+          16,
+          10,
+          15,
+          9,
+          3,
+          16,
+          24,
+          9,
+          28,
+          15,
+          26,
+          16,
+          4,
+          10,
+          13,
+          17,
+          1,
+          16,
+          0,
+          3,
+          4,
+          2,
+          3,
+          15,
+          18,
+          7,
+          8,
+          3,
+          0,
+          10,
+          9,
+          23,
+          2,
+          18,
+          10,
+          4,
+          7,
+          24,
+          26,
+          8,
+          18,
+          4,
+          18,
+          10,
+          16,
+          10,
+          15,
+          24,
+          9,
+          18,
+          5,
+          18,
+          15,
+          15,
+          24,
+          4,
+          26,
+          3,
+          9,
+          18,
+          24,
+          20,
+          3,
+          21,
+          2,
+          18,
+          7,
+          24,
+          26
+        ],
+        "ends": [
+          7,
+          14,
+          21,
+          23,
+          25,
+          29,
+          36,
+          42,
+          44,
+          47,
+          49,
+          52,
+          55,
+          57,
+          59,
+          62,
+          64,
+          67,
+          71,
+          74,
+          77,
+          81,
+          84,
+          88,
+          92,
+          95,
+          99,
+          101,
+          103,
+          104,
+          113,
+          116,
+          120,
+          122,
+          125
+        ]
+      },
+      {
+        "orientation": 0,
+        "mask": 56,
+        "key": [
+          23,
+          10,
+          1,
+          10,
+          9,
+          10,
+          16,
+          26
+        ],
+        "plain": [
+          7,
+          18,
+          20,
+          5,
+          3,
+          19,
+          18,
+          7,
+          18,
+          20,
+          5,
+          3,
+          19,
+          18,
+          13,
+          10,
+          20,
+          6,
+          4,
+          10,
+          19,
+          16,
+          3,
+          2,
+          18,
+          6,
+          4,
+          28,
+          16,
+          11,
+          3,
+          1,
+          4,
+          9,
+          18,
+          26,
+          16,
+          3,
+          7,
+          24,
+          4,
+          23,
+          2,
+          18,
+          18,
+          9,
+          23,
+          3,
+          0,
+          24,
+          20,
+          20,
+          2,
+          21,
+          15,
+          10,
+          16,
+          10,
+          15,
+          9,
+          3,
+          16,
+          24,
+          9,
+          28,
+          15,
+          26,
+          16,
+          4,
+          10,
+          13,
+          17,
+          1,
+          16,
+          0,
+          3,
+          4,
+          2,
+          3,
+          15,
+          18,
+          7,
+          8,
+          3,
+          0,
+          10,
+          9,
+          23,
+          2,
+          18,
+          10,
+          4,
+          7,
+          24,
+          26,
+          8,
+          18,
+          4,
+          18,
+          10,
+          16,
+          10,
+          15,
+          24,
+          9,
+          18,
+          5,
+          18,
+          15,
+          15,
+          24,
+          4,
+          26,
+          3,
+          9,
+          18,
+          24,
+          20,
+          3,
+          21,
+          2,
+          18,
+          7,
+          24,
+          26
+        ],
+        "ends": [
+          7,
+          14,
+          21,
+          23,
+          25,
+          29,
+          36,
+          42,
+          44,
+          47,
+          49,
+          52,
+          55,
+          57,
+          59,
+          62,
+          64,
+          67,
+          71,
+          74,
+          77,
+          81,
+          84,
+          88,
+          92,
+          95,
+          99,
+          101,
+          103,
+          104,
+          113,
+          116,
+          120,
+          122,
+          125
+        ]
+      }
+    ]
+  },
+  "sourceBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/cicada2014-openpuff-magic-squares.txt": "0cff0a94f16a8603443619b6338def411c9f7bd5",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/liber-primus/lp1-plaintext-reference.txt": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d",
+    "resources/control/blake_song_of_liberty_train.txt": "c8d8afda002f2585ce64a959c26c20d24a5c990b",
+    "resources/transcriptions/lp1_wulfic_canonical.txt": "37c96b816495c5f93ca658a01c9918bf92598316",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
