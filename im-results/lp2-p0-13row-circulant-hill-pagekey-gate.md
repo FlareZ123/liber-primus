@@ -97,3 +97,27 @@ Across p3–55 (52 rune-bearing pages, 12227 runes), all eight ordinary variants
 The zero-sum row50 circulant has image equal to the zero-sum subspace, so if p50's physical 13×8 array were direct encrypted columns every column would sum to zero mod29. Observed base60 sums [28,26,24,16,0,24,7,20], base59 [23,25,26,21,2,1,11,20]; both direct interpretations are impossible. Row sums also do not act as direct page ciphertext-sum checks (only p23/p50 match) or rune-count checks (only p50). This leaves the rank exception as a weak, retrospective mapping clue, not a decoded panel.
 
 Reproducer: `sims/agent7_p0_page_rows_q8_receivers_sft.cjs`; output: `im-results/agent7-p0-page-rows-q8-receivers.json`. Core executed in V8 on the pinned source, no standalone CI. No unknown plaintext or authentic key recovered.
+
+## 26 November: zero-eigenvalue scalar receiver (Agent 8)
+
+The sole p50 singularity is specifically the zero **constant-mode eigenvalue**, so a separate direct receiver treats each row sum `a_p` as a scalar field multiplier rather than reusing the 13×13 Hill blocks. This supplies an inverse for all 54 rune-bearing page rows, while zero makes the p50 plaintext unrecoverable. The observed adjacency suppression independently motivates testing a first-order ciphertext-feedback term; neither feedback nor this scalar receiver is authenticated by the source.
+
+For each page p3–55 (skip p50 and reserve p0–2 as key material), test
+```
+C_i = a_p * (g*P_i+b) + k*C_(i-1) mod29
+P_i = g^-1 * (a_p^-1*(C_i-k*C_(i-1))-b) mod29
+```
+with shared k,b in GF29 and g nonzero (23,548 distinct tuples). Use first ciphertext rune as public IV per page, no printed-group assumptions. Exact shared-key search uses the pooled residual bigram histogram and a fixed add-0.5 smoothed native Markov model. Fit p3–39, freeze for p40–55; these are familiar manuscript ranges, not fresh independent manuscript holdouts.
+
+| Result | Fit | Frozen continuation |
+|---|---:|---:|
+| Original, k=1,g=18,b=7 | −5097.578 / 8874 runes | −2007.521 / 3301 runes (−0.608155 per rune) |
+| Three affine plants | 3/3 exact keys | 1008/1008 withheld runes (+0.709042 per rune each) |
+
+Scores are log likelihood ratios against iid uniform GP29. Plants share the same four held solved sections but change keys, page allocation and IVs; they are three cipher controls, not three independent texts. All 3301 original held symbols re-encrypt exactly but decoded text is incoherent. The full original maximizer is unchanged. Even replacing the affine map by an arbitrary common bijection cannot produce more than 946 occurrences of its two most frequent plaintext symbols among 12175 original residuals over all 29 feedback coefficients (7.77%); relaxing to a different arbitrary bijection per page gives at most 1455 (11.95%). The nine pinned native solved sections individually have top-two fractions 17.83–28.24%; this is a finite-control comparison, not a universal linguistic bound.
+
+**Exact transparent-F extension.** Replace `g*P+b` by any shared GP29 bijection S, and let plaintext F emit literal ciphertext F=0. Enumerate all 841 pairs (k,S(0)) and all possible incoming feedback states independently for each page. Permit an ordinary ciphertext zero only when the residual differs from S(0); handle both F semantics (hold previous consuming ciphertext, or update the feedback to zero). A 29-state Boolean reachability calculation keeps every valid inverse path; no language score or guessed plaintext. Both conventions reject 840/841 pairs on original p3 alone. Their sole survivor is k=0,S(0)=0, for which every rune is exactly a static page-scaled substitution with no remaining F ambiguity. On p3–55 this survivor permits only 891/12175 pooled top-two occurrences (7.32%), or 1374/12175 (11.29%) with page-private alphabet relaxation. Six planted arbitrary-permutation controls (three k values, both conventions, same 683 source runes) retain every true pair; each has 5–6 surviving pairs, so the feasibility gate does not claim key identification.
+
+**Decision:** retire the source-row-sum scalar receiver with stationary ciphertext feedback, in the specified ordinary shared-affine and transparent-F arbitrary-shared-alphabet forms. The F-hold rejection is exact except for the static survivor, whose exclusion is conditional on the native frequency evidence. The rank/zero alignment itself remains unexplained; these tests do not establish or disprove page-key framing, time-varying feedback, arbitrary page-private offsets, or other representations. Do not tune the row sums into a new clock absent a source selector.
+
+Reproducers: [ordinary exact key search](../sims/agent8_lp2_p0_page_row_sum_scalar_feedback_sft.cjs), [F-hold exact reachability](../sims/agent8_lp2_p0_page_row_sum_scalar_fhold_sft.cjs). Outputs: [ordinary](lp2-p0-page-row-sum-scalar-feedback-output.json), [F-hold including first-failure certificates](lp2-p0-page-row-sum-scalar-fhold-output.json). Both cores executed against pinned blobs `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` (corpus) and `1b064ef6d85819b7d96adaff31a82d1ec551598f` (native solved register) in connected V8; standalone Node wrappers were not separately executed. No new workflow.
