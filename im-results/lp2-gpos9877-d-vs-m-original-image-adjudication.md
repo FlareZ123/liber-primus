@@ -33,4 +33,4 @@ No transcription edit is required.
 
 ## Reproduction
 
-Use the original image at resources/liber-primus/58.jpg and crop the four boxes above. Convert each crop to grayscale, threshold at 100, and compare binary-mask IoU. The current corpus mapping is in resources/liber-primus/lp2-corpus.json. The result is narrowly scoped to this glyph; it does not validate any cipher hypothesis or recover plaintext.
+Run sims/lp2_gpos9877_d_vs_m_visual_sft.py. It reads resources/liber-primus/58.jpg, crops the four boxes above, converts to grayscale, thresholds at 100, and compares binary-mask IoU. The current corpus mapping is in resources/liber-primus/lp2-corpus.json. The result is narrowly scoped to this glyph; it does not validate any cipher hypothesis or recover plaintext.
