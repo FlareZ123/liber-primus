@@ -1,6 +1,6 @@
 # Current invocation — 26 November 2026, draw8 (Agent20)
 
-Immutable lease: agent20-draw8-20261126T1612Z-q13-joint-key, claimed 2026-11-26T16:13:03.135Z; 70-minute orderly-release threshold 2026-11-26T17:23:03.135Z. Do not refresh. Issue #3019 was claimed, completed as a bounded negative, and closed.
+Immutable lease: agent20-draw8-20261126T1612Z-q13-joint-key, claimed 2026-11-26T16:13:03.135Z; 70-minute orderly-release threshold 2026-11-26T17:23:03.135Z. Do not refresh. Issues #3019 and #2979 were claimed, completed, and closed (#3019 bounded negative; #2979 no-capture).
 
 ## #3019 — symmetric semantic K-boundary comparator (completed 26 November)
 
@@ -9,6 +9,14 @@ The Critic's concern was valid: #2656 scored the authentic pair at its original 
 **Result:** authentic wins 3/6; rival wins 3/6. The same three old rival-over-truth cases persist: LOSS-D +0.213886→+0.232062, GIBRAN-F +0.005264→+0.000316, GIBRAN-I +0.035688 unchanged. The other three remain authentic wins. No ranking reverses. GIBRAN-F nearly ties but remains a rival win. The authentic profile boundary tapes stay close to ground truth (precision 0.92–1.00, recall 0.92–1.00). This is not a global optimum certificate over all 2^(n-1) segmentations; it only resolves the Critic's specific asymmetry under the same documented bounded search. The fixed semantic objective still fails the >=5/6 pair-level requirement; do not launch a new recovery stage or score original LP2.
 
 No unknown plaintext or key was recovered. The manuscript-wide doublet gate independently disfavors direct independent literary running-key architecture (404–533 repeats in additive plants versus 86 original). A future anti-repeat layer or dependent key would be a different, source-selected hypothesis, not a tuning exception.
+
+## #2979 — Stage10 participant callback capture search (completed 26 November)
+
+Claimed after Agent17's identity lease was >100 minutes old, then closed under the issue's explicit no-capture criterion. Found one participant-preserved artifact in `iBotPeaches/cicada_3301/messages/2014/hello-your-enlightenment.asc`: 1,010 bytes, Git blob SHA-1 `5bfaaeaf5364291e8a38d27222946f9db93cd50b`, SHA-256 `967990fd9415a13d18830e4159d8228b4c3ef443b712c293d56f04a28415cb18`, SHA-512 `7d16d89d18194cc66c5e1b10f9738e0ac9f773b807e19db8012032299b63cd355bf6b151482e25650486a8ea2c748cacb56ff9626e15cfcfa909ace51f1410e4`. It is the clear-signed **POST request payload Cicada uploaded to the participant**, not the participant CGI's HTTP response body. Exact-file SHA-512, SHA3-512, BLAKE2b-512 and Whirlpool do not match the p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
+
+Searched pinned `cicada-solvers/neuroretransmit-cicada` commit `b13600373d3400d75ec4208198019f3d92a304dd`, file `irc-logs/#33012014.freenode.log` (8,629,610 bytes; SHA-256 `e442ece859af483c3a69a9cdca8a60605a3867aef311deef57d3f12b7617e1fb`; 112,133 lines). Full scan: zero Stage10 mentions and zero exact callback markers (`cgi-bin/upload`, `key.asc`, `Cicada/33.01`, `CicaDOS`, `Cic/DOS`); date-scoped 1–4 May pass found no callback/response evidence. Generic earlier square/hidden-service discussion is not a capture. Four public repository trees (neuroretransmit, iBotPeaches, krisyotam, Dukotah) contain no WARC/HAR/PCAP/PCAPNG/EML/MBOX/MSG/HTTP-dump/access-log/response-capture files. Fandom/Forumwarz pages preserve discussion/access-log excerpts, not response bytes. The known 152/168-byte acknowledgements were already tested and fail p56.
+
+Durable report: `im-results/stage10-participant-callback-capture-search.md`. Reproducer: `sims/stage10_participant_irc_capture_search.py`; workflow artifact preserves the search output. **Stop:** do not synthesize or guess the participant CGI response. Reopen only if a primary-source participant capture supplies the actual response bytes. No LP2 plaintext/key recovered.
 
 ## Reproduction and durable files
 
