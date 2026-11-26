@@ -200,26 +200,11 @@ def clue_satisfied(M,k,clues):
     return (all(int(M[j,x])==y for j,x,y in clues["edges"]) and
             all((int(k[b])-int(k[a]))%29==d for a,b,d in clues["shifts"]))
 
-def decode_candidates(C,M,words):
-    inv=np.argsort(M,axis=1);out=[]
-    for c in C:
-        found=set()
-        for start in range(8):
-            phase=start;w=[]
-            for y in c:
-                if y==0:w.append(0)
-                else:w.append(int(inv[phase,y]));phase=(phase+1)%8
-            s=''.join(A[x] for x in w)
-            if s in words:found.add(s)
-        out.append(found)
-    return out
-
-def word_metrics(P,C,M,words):
-    cand=decode_candidates(C,M,words)
-    truth=[''.join(A[x] for x in w) for w in P]
-    present=sum(t in c for t,c in zip(truth,cand))
-    unique=sum(t in c and len(c)==1 for t,c in zip(truth,cand))
-    return {"present":present,"unique":unique,"total":len(P)}
+def word_metrics(P,C,M):
+    # Re-encrypt the planted words under the candidate action and allow every
+    # possible word-start phase; this tests true-word recovery without assuming
+    # a single decryption path when a non-F symbol maps to F.
+    return {"recovered":int(matches(P,C,M)),"total":len(P)}
 
 def run_case(seed,plant_data,words,by,kind,budget,random_values,args):
     p,h,c,hc,m,pi,k,starts,hstarts=plant_data
@@ -248,8 +233,8 @@ def run_case(seed,plant_data,words,by,kind,budget,random_values,args):
                          "exact_action":bool(np.array_equal(hm,m)),
                          "gauge_equivalent_action":bool(equivalent(hm,m)),
                          "fit_truth":int(matches(p,c,hm)),"held_truth":int(matches(h,hc,hm)),
-                         "fit_words":word_metrics(p,c,hm,words),
-                         "held_words":word_metrics(h[1:],hc[1:],hm,words)}
+                         "fit_words":word_metrics(p,c,hm),
+                         "held_words":word_metrics(h[1:],hc[1:],hm)}
                     if best_any is None or score>best_any["score"]:best_any=rec
                     if primitive and clue_ok and (best is None or score>best["score"]):best=rec
     return {"type":kind,"budget":budget,"random_constraints":random_values,
