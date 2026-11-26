@@ -454,7 +454,7 @@ const result = {
     comparisons: fourRuneWords.length * sourceFourTargets.length * 2,
     hits: fixedKeyHits,
     alternativeKey,
-    alternativeKeyLocalOutput,
+    alternativeLocalOutput,
     alternativeKeyManuscriptHits: alternativeKeyHits
   },
   sourceIndexConvergence: {
