@@ -1,6 +1,6 @@
 # p56 direct-hash gate: 2014 onion-chain candidates
 
-**Decision, 26 November 2026:** no direct p56-digest preimage was found in (a) a period-adjacent public directory of 3,204 v2-era onion hostnames under the tested string serializations, (b) the exact archived 2014 Stage11 HTML delivery index, (c) the exact archived 2014 fourth-onion page bodies and associated payloads, or (d) the source-pinned 2014 Onion6 image container and its four exact JPEG streams under SHA-512 and Whirlpool. This remains a bounded negative only. No unknown LP2 plaintext, key, complete cipher, or destination was recovered.
+**Decision, 26 November 2026:** no direct p56-digest preimage was found in (a) a period-adjacent public directory of 3,204 v2-era onion hostnames under the tested string serializations, (b) the exact archived 2014 Stage11 HTML delivery index, (c) the exact archived 2014 fourth-onion page bodies and associated payloads, (d) the source-pinned 2014 Onion6 image container and its four exact JPEG streams, or (e) the newly recovered 2014 cu343 761 HTML carrier and its two exact payload boundaries under SHA-512 and Whirlpool. This remains a bounded negative only. No unknown LP2 plaintext, key, complete cipher, or destination was recovered.
 
 ## Target and test rationale
 
@@ -83,8 +83,22 @@ The source-pinned workflow verifies the original Git blob, canonical archive ide
 
 The full source/component test is [the updated Node 22 SFT](../sims/lp2_p56_2014_onion6_hexdump_image_hash_gate.cjs), run in [workflow 45798842094](https://github.com/FlareZ123/liber-primus/actions/runs/45798842094). Raw reproducible output: [`lp2-p56-onion6-jpeg-component-hash-gate.json`](lp2-p56-onion6-jpeg-component-hash-gate.json).
 
+## 5. Newly recovered 2014 cu343 761 HTML and payload
+
+Agent34, 26 November 2026. The distinct, 3,641,310-byte historical delivery page recovered in #2945 is pinned to Git blob `dca24d10a0d6b1cc1b44451624454d64353f254e`. Unlike the previously tested preliminary 256-byte 761 object, it contains the first three LP1 images. See [complete source reconstruction](cicada2014-cu343-761-bundle-recovery.md). It is a plausible exact historical webpage candidate, although no authored clue binds it to p56.
+
+The new test reconstructs the exact page from the supplied originals 00/01/02.jpg (third reversed, bytewise complement, lowercase hex, literal 761 comment and newlines). The full reconstructed page has the already pinned SHA-256 and Git blob SHA; neither arbitrary HTML normalization nor substring scanning is used. Local Python hashlib and OpenSSL legacy-provider Whirlpool (abc known-answer checked) returned:
+
+| Exact object | Bytes | SHA-512 | Whirlpool |
+|---|---:|---|---|
+| HTML page | 3,641,310 | `9054af6bffdc0e416ffeed3868de4038279a417115a4769b208b235048629ff733f6c37b3c6b99a460e340da27c51c0c56686b756541f6113ba60b1a0aeec000` | `4e991659f0e186632bb5c9c70310c2835eae3f847223f9bba813b49abcde8aff1d990be8d9770ef3de3d5eaf7580fed600c129f1ef6e4c8b7d0bbbe5a4701ed1` |
+| Exact hex body | 3,641,298 | `265c5b0aac6dfae44cdd881318821f66a3fdb2b68b50ed520dd9d22b32cfce678e29ce32e8ea9ee219851ab4ec927f3099ad944b8b060a6d41ba2b64bd1a1e22` | `68fde4a4549f156fcb517ed4aca2a8c3d482f6157a7419752e72fceee78429d0b41bc2bd6a529dc1d6bd20121b187ebc0ae1662bc28b8d3d74c51ddfd1ad6917` |
+| Packed binary body | 1,820,649 | `c294ba752748bb6323ade78eb3d08901bbaac68216706127050eccf18162a85636ba2aff7b9b61c19ba863312ce5138684d291b91698c6569c3dad2b9b055540` | `90e876c25086642c61fd0c813aea36eceecae6fb78ba64a6be9d5582d25988f3a449558d1468d030da32e796c4ad01d9b2b6934445170f096f6ab17fa4517133` |
+
+**0/6 matches.** The archive object and both typed payload boundaries are excluded; no claim is made about the original HTTP headers, lost page content or other hash contracts. The precise test is [sims/lp2_p56_cu343_761_hash_sft.py](../sims/lp2_p56_cu343_761_hash_sft.py), which accepts the preserved HTML or the original JPEG ZIP. No CI required.
+
 ## Scope and next decision
 
-These results exclude direct hashing of the **3,204 listed host strings** in the four specified representations under the tested 512-bit algorithms, the exact archived Stage11 HTML body, the exact archived fourth-onion page/payload objects listed above, and the complete source-pinned Onion6/`10.jpg` container plus its four exact JPEG streams under SHA-512 and Whirlpool. They do **not** test the contents of every onion service, an unlisted/private service, original live HTTP entity bytes that were not archived, other serialization, salts, concatenated operands or an unidentified page body. The Stage11 index and fourth-onion files are archival participant-repository objects, not independently authenticated original live HTTP responses.
+These results exclude direct hashing of the **3,204 listed host strings** in the four specified representations under the tested 512-bit algorithms, the exact archived Stage11 HTML body, the exact archived fourth-onion page/payload objects listed above, and the complete source-pinned Onion6/`10.jpg` container plus its four exact JPEG streams, and the distinct cu343 761 HTML/hex/packed body under SHA-512 and Whirlpool. They do **not** test the contents of every onion service, an unlisted/private service, original live HTTP entity bytes that were not archived, other serialization, salts, concatenated operands or an unidentified page body. The Stage11 index and fourth-onion files are archival participant-repository objects, not independently authenticated original live HTTP responses.
 
 The public onion directory is not a Cicada artifact and omits the known LP2 distributor; it is therefore a weak coverage set for a potentially private target. The exact Stage11 index and fourth-onion objects are plausible but unselected page candidates. None of these negatives changes the authoritative conclusion that p56's target preimage and hashing contract remain unknown. Keep this as intermediate evidence; do not widen into arbitrary URL, whitespace, salt or hash-family enumeration without an independent historical instruction selecting the next input.

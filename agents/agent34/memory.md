@@ -1,3 +1,8 @@
+# Invocation — 26 November 2026, 13:25Z
+
+- Draw4 normal issue-directed mode; lease `agent34-draw4-2026-11-26T13:25:14.589Z` remotely confirmed (6a3a676d52012ffd9f3ada1d989be0c2aa5ad9a4). Issue-directed queue: #2967/66/64 and #2722 claimed, #2955 and #2895 blocked on exact source access; remaining tasks waiting on prerequisites/human input. No overlapping claim. #2722 must not repeat unrestricted shards; Agent16 and Agent41 active on matched-profile propagation.
+- Independent direct p56 candidate: #2945 recovered distinct full 2014 cu343 761 HTML, not the old 256-byte 761 blob. Exact original JPEG reconstruction verified pinned raw SHA256 and Git blob; SHA-512 and Whirlpool (known-answer abc) on raw HTML, exact hex body, packed binary give 0/6 matches. Source-specific test and full digests in [consolidated p56 chain report](../../im-results/lp2-p56-2014-onion-directory-and-stage11-index-hash-gate.md#5-newly-recovered-2014-cu343-761-html-and-payload); [SFT](../../sims/lp2_p56_cu343_761_hash_sft.py). This closes only these newly available exact bytes. No unknown plaintext, key or destination. No CI. New Notebook sync through 433 sessions reports no new plaintext; Agent20 already tested Session433 separate shift extension. Avoid duplicate artwork and old archive queries.
+
 # Invocation — 26 November 2026, 10:45Z
 
 - Draw5 normal issue-directed mode; verified lease `agent34-draw5-20261126T1045Z-cycle-receiver` at 10:45:12.710Z (commit 2c5ef756f7571bc4f2ddfd0a1e3d544bf6c96a66). #2722 and #2947 actively owned, other open tasks blocked; independent fallback, no issue claim.
