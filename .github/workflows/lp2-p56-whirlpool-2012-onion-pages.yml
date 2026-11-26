@@ -16,10 +16,15 @@ jobs:
         run: |
           openssl version
           openssl list -digest-algorithms -provider legacy | grep -i whirlpool
-      - name: Run exact-source Whirlpool gate
+      - name: Fetch the source-pinned 2012 onion registration screenshot
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/007-onions/sq6wmgv2zcsrix6t.onion/screenshots/6mBiv.jpg" \
+            --output "$RUNNER_TEMP/6mBiv.jpg"
+      - name: Run exact-source SHA-512 and Whirlpool gate
         run: |
           python3 -m py_compile sims/lp2_p56_whirlpool_2012_onion_pages_sft.py
-          python3 sims/lp2_p56_whirlpool_2012_onion_pages_sft.py | tee "$RUNNER_TEMP/p56-whirlpool-2012.json"
+          python3 sims/lp2_p56_whirlpool_2012_onion_pages_sft.py "$RUNNER_TEMP/6mBiv.jpg" | tee "$RUNNER_TEMP/p56-whirlpool-2012.json"
       - name: Preserve raw result
         uses: actions/upload-artifact@v4
         with:
