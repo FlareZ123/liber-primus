@@ -437,3 +437,5 @@ Find a **first-party original clue** that selects an exact invertible operation,
 - Report and scripts are intermediate evidence only; do not promote to `results/README.md` until the visual reading and a ciphertext consumer survive independent tests.
 
 - Additional alternative surfaced: the Heidelberger cipher is a specific historical stave-and-branch system, not just generic branch runes. The report now names it as a serious competitor and links the codebook reference. Cistercian quadrant conventions vary historically; require exact stroke geometry and blind review before accepting the reading.
+
+- Direct φ-to-base29 key test: φ(1133)=1020 -> [1,6,5] (165); φ(3311)=2520 -> [2,28,26] (2SQ); combined GP29 key [1,6,5,2,28,26]. Both additive signs on p0–5, p0–15, and p0–55, global/per-page resets, were random-like. Added to report and broadcast; do not repeat or expand into unconstrained phase searches. Structural grouping/coordinate/transposition remains the only plausible consumer to investigate if the visual hypothesis survives.
