@@ -1,0 +1,261 @@
+{
+  "model": "reverse maximal vowel/consonant runs, q8 literal-F",
+  "vowels": [
+    1,
+    3,
+    10,
+    12,
+    18,
+    22,
+    24,
+    25,
+    26,
+    27,
+    28
+  ],
+  "dict": 35944,
+  "transformed": 35944,
+  "anchorWords": 4791,
+  "fitGroups": 47,
+  "fitRunes": 213,
+  "holdGroups": 17,
+  "holdRunes": 86,
+  "carry": [
+    6,
+    3,
+    16,
+    2,
+    14,
+    18,
+    28,
+    4,
+    6,
+    26,
+    21
+  ],
+  "controls": [
+    {
+      "seed": 2918,
+      "truth": 15982861803,
+      "K": [
+        6,
+        17,
+        21,
+        26,
+        18,
+        0,
+        26,
+        25
+      ],
+      "changed": 34,
+      "fholds": 9,
+      "consumingZero": 10,
+      "replay": true,
+      "anchors": [
+        12657,
+        12718,
+        12734,
+        12807,
+        12824
+      ],
+      "keyCount": 23951,
+      "anchorPass": 1,
+      "bestAnchor": 5,
+      "bestCoverageAmongAnchorSurvivors": 47,
+      "bestKey": [
+        0,
+        26,
+        25,
+        6,
+        17,
+        21,
+        26,
+        18
+      ],
+      "fitRequired": 45,
+      "candidates": [
+        {
+          "n": 15982861803,
+          "K": [
+            0,
+            26,
+            25,
+            6,
+            17,
+            21,
+            26,
+            18
+          ],
+          "fitCovered": 47,
+          "holdCovered": 17,
+          "holdTrue": 17,
+          "holdUnique": 12
+        }
+      ]
+    },
+    {
+      "seed": 2919,
+      "truth": 5583604100,
+      "K": [
+        12,
+        25,
+        12,
+        0,
+        9,
+        11,
+        6,
+        13
+      ],
+      "changed": 32,
+      "fholds": 4,
+      "consumingZero": 10,
+      "replay": true,
+      "anchors": [
+        12657,
+        12718,
+        12734,
+        12807,
+        12824
+      ],
+      "keyCount": 23951,
+      "anchorPass": 1,
+      "bestAnchor": 5,
+      "bestCoverageAmongAnchorSurvivors": 47,
+      "bestKey": [
+        0,
+        9,
+        11,
+        6,
+        13,
+        12,
+        25,
+        12
+      ],
+      "fitRequired": 45,
+      "candidates": [
+        {
+          "n": 5583604100,
+          "K": [
+            0,
+            9,
+            11,
+            6,
+            13,
+            12,
+            25,
+            12
+          ],
+          "fitCovered": 47,
+          "holdCovered": 17,
+          "holdTrue": 17,
+          "holdUnique": 12
+        }
+      ]
+    },
+    {
+      "seed": 2920,
+      "truth": 201022280145,
+      "K": [
+        27,
+        18,
+        11,
+        24,
+        14,
+        18,
+        11,
+        18
+      ],
+      "changed": 36,
+      "fholds": 5,
+      "consumingZero": 15,
+      "replay": true,
+      "anchors": [
+        12657,
+        12718,
+        12734,
+        12807,
+        12824
+      ],
+      "keyCount": 23951,
+      "anchorPass": 1,
+      "bestAnchor": 5,
+      "bestCoverageAmongAnchorSurvivors": 47,
+      "bestKey": [
+        11,
+        18,
+        27,
+        18,
+        11,
+        24,
+        14,
+        18
+      ],
+      "fitRequired": 45,
+      "candidates": [
+        {
+          "n": 201022280145,
+          "K": [
+            11,
+            18,
+            27,
+            18,
+            11,
+            24,
+            14,
+            18
+          ],
+          "fitCovered": 47,
+          "holdCovered": 17,
+          "holdTrue": 17,
+          "holdUnique": 11
+        }
+      ]
+    }
+  ],
+  "original": {
+    "anchors": [
+      12657,
+      12718,
+      12734,
+      12807,
+      12824
+    ],
+    "keyCount": 23955,
+    "anchorPass": 0,
+    "bestAnchor": 1,
+    "bestCoverageAmongAnchorSurvivors": null,
+    "bestKey": null,
+    "fitRequired": 45,
+    "candidates": []
+  },
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "blob": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "blob": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "blob": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "blob": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "blob": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "blob": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    }
+  ]
+}

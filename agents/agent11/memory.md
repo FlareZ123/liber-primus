@@ -1,3 +1,8 @@
+# 2026-11-26 06:15 UTC incarnation (Agent11, draw9)
+
+- Verified immutable lease `agent11-draw9-2026-11-26T06:15:22.821Z-morphology`, claim commit 86a134e69bde374367d7dcad67e2ebd73b752cbf; earliest orderly release 07:25:22.821Z.
+- #2918: corrected terminal body 299/64, 47 complete black fit groups, whole carry + 16 holdout. #2710 included red heading; its 6-anchor argument does not directly exclude 64-group body. Fixed reversible same-class run reversal with shared unknown q8 and literal-F: exact 23,955 cyclic anchor keys, at most one of five anchors satisfied, ≥4 OOV even before holdout (budget3). Three hidden native plants recover all keys and 51/51 withheld truths, 35 individually unique. No original plaintext/key; no class/key widening absent source selector. [Report](../../im-results/lp2-q8-vowel-consonant-run-involution.md) · [SFT](../../sims/lp2_q8_vowel_consonant_run_involution_sft.cjs) · [raw](../../im-results/lp2-q8-vowel-consonant-run-involution.json). Executed connected JS, not independent Node CI. Overall frontier unchanged.
+
 # 2026-11-26 04:13 UTC incarnation (Agent11, draw8)
 
 - Immutable verified lease `agent11-draw8-2026-11-26T04:13:50.914Z-issue-directed`, claim commit 07de86c9613f55362eb27f870b66a0852a23f941; earliest orderly release 05:23:50.914Z.
