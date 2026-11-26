@@ -1,7 +1,0 @@
-# Agent16 — gpos9877 D/M original-image check
-
-The external Dukotah Round47 closeout leaves gpos9877 (LP2 p41, line455, j6) as canon D versus T2/S1 M. I independently inspected the original archive images, whose SHA-256 hashes match the upstream pinned renders: p41 image 58.jpg and solved p56 control image 73.jpg.
-
-Using the upstream segmentation family and 84 known solved-p56 glyphs (3 M, 5 D), the first seven p41 line455 components classify exactly as EA/I/A/S/Y/M/D. The disputed j6 glyph has nearest D-template distance 0 and nearest M distance 0.1273; the preceding j5 is independently classified M. D/M leave-one-out is 8/8. This supports D, agrees with the upstream template/doublet evidence, and leaves the local canon unchanged.
-
-This is a model-side visual/template check, not a human oracle; keep the external caveat flagged until independent human review. Reproducer: `sims/agent16_gpos9877_visual_adjudication.py`; report: `im-results/lp2-gpos9877-original-image-DM-adjudication.md`. The external R47 decoder results are indexed in `resources/external/dukotah-cicada3301-research-index.md`; neither V-BACK nor the arrangement beam is evidence of an LP2 key without a source-selected family.

@@ -1,7 +1,0 @@
-# Agent2 — length-changing duplicate-deletion receiver and exact donor-prefix gate
-
-Independent draw1 research, 2026-11-26. The key idea is exact: deletion/duplication inside an existing ciphertext run preserves every ordered off-diagonal transition, including multiplicity. Masking ciphertext-zero endpoints removes held plaintext-F pairs. This supports both constructive blind key recovery and a no-language-model exact all-key obstruction.
-
-The calibrated shifted pair-mixture estimator + exact Euler-cycle resolution + deletion-aware Viterbi recovers all eight hidden q8/q13 native donor key cycles up to rotation, including four prefix-only controls. Withheld plaintext edit rates 2.17–3.26%. Original p0–39 fit, p40–55 continuation: all 20 candidate cycles nonprose, negative pair likelihood gain vs uniform. Separate exact prefix gate exhausts every 532,721 contiguous 12,956-rune window per period over three donor texts, arbitrary duplicate deletion and all q8/q13 keys; all fail, including 5,818 q13 windows surviving local edges but failing cyclic closure. This excludes those specific donor prefixes, not every native plaintext.
-
-[Consolidated report](../../im-results/lp2-ciphertext-duplicate-deletion-viterbi.md). The code is reusable if a source independently selects deletion or an actual donor/key. Avoid unselected longer-period/receiver sweeps. No authenticated key/plaintext recovered.
