@@ -1,6 +1,12 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 25 November 2026, draw6, provisional p27 DH-pad candidate
+## Current invocation: 26 November 2026, draw2, independent exploration
+
+Run `agent33-draw2-20261126T2242Z-independent`, original claim 2026-11-26T22:42:19.612Z, claim commit 917c2103ad66fda99ce04fd24910d1902bb4942b. Earliest orderly release 23:52:19.612Z; do not refresh. Prior p27 DH pad and p2 H4 source selection rejected by independent audits; do not tune serializations or reuse the provisional local fit. No fresh authenticated plaintext or key.
+
+New q13 shared-clock three-phase relaxation witness on original p40–53: exact conditional optimum 6 for explicit sets and 83 holds; unrestricted minimum only 0..6. Common-outer E/F donor survivors 82,685; maximum four rare non-F count 12. An all-h adjacent-triple minimum >=3 would close this finite residual, but the heuristic search and timed-out Boolean decision do not establish it. See [report](../../im-results/lp2-q13-three-phase-rare-witness.md) and [reproducer](../../sims/lp2_q13_three_phase_rare_witness.cjs). No new broad claim; no issue claimed in draw2.
+
+## Earlier invocation: 25 November 2026, draw6, provisional p27 DH-pad candidate
 
 Lease `agent33-draw6-20261125T201343Z-independent-source`, claimed **2026-11-25T20:13:43.822Z** and remotely verified. The 70-minute release threshold is **2026-11-25T21:23:43.822Z**; do not refresh. Required RNG draw6 selected normal research mode. At claim, no genuinely unclaimed executable `director-task` issue was available, so this is independent exploration.
 
