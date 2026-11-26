@@ -96,5 +96,64 @@ for (let i = 0; i < contracts.length; i++) {
     magic: false
   }));
 }
+// Director #3103: source-cued centered order-seven candidate on p50.
+// The 13 printed rows give one centered seven-row window (zero-based 3..9).
+// The source-visible tree reflection c -> 7-c maps the two possible 7-column
+// windows in the eight-column page: columns 0..6 and 1..7. Test both, without
+// searching other row origins, radices, or receivers.
+const p50 = corpus.pages[1];
+assert.equal(p50.page, 50);
+const p50TokenRows = Array.from({ length: p50.rows }, (_, r) =>
+  p50.tokens.slice(8 * r, 8 * r + 8));
+const p50ValueRows = p50TokenRows.map(row => row.map(token => {
+  const a = alphabet.indexOf(token[0]);
+  const b = alphabet.indexOf(token[1]);
+  assert(a >= 0 && b >= 0);
+  return 60 * a + b;
+}));
+assert.deepEqual(p50ValueRows.flat(), p50.bytes);
+const centered7 = [0, 1].map(c0 => {
+  const grid = p50ValueRows.slice(3, 10).map(row => row.slice(c0, c0 + 7));
+  const s = sums(grid);
+  return {
+    firstColumn: c0,
+    rowSums: s.rows,
+    columnSums: s.columns,
+    diagonalSums: s.diagonals,
+    magic1033: [...s.rows, ...s.columns, ...s.diagonals].every(x => x === 1033)
+  };
+});
+assert.deepEqual(centered7, [
+  {
+    firstColumn: 0,
+    rowSums: [664, 920, 615, 968, 836, 1173, 942],
+    columnSums: [804, 994, 739, 937, 793, 987, 864],
+    diagonalSums: [1139, 1010],
+    magic1033: false
+  },
+  {
+    firstColumn: 1,
+    rowSums: [657, 1031, 766, 938, 978, 1237, 959],
+    columnSums: [994, 739, 937, 793, 987, 864, 1252],
+    diagonalSums: [930, 477],
+    magic1033: false
+  }
+]);
+const p50RowReflectionPairs = p50TokenRows.filter((row, r) =>
+  row.join('') === p50TokenRows[12 - r].slice().reverse().join('')).length;
+const p50CenterRowPalindrome =
+  p50TokenRows[6].join('') === p50TokenRows[6].slice().reverse().join('');
+assert.equal(p50RowReflectionPairs, 0);
+assert.equal(p50CenterRowPalindrome, false);
+console.log(JSON.stringify({
+  sourceCuedCenteredP50Order7: {
+    selectedRowsZeroBased: [3, 9],
+    reflectedSevenColumnWindows: centered7,
+    tableDataMirrorPairs: p50RowReflectionPairs,
+    centerRowPalindrome: p50CenterRowPalindrome,
+    decision: 'Neither horizontal-reflection placement is a 7x7 magic square of constant 1033.'
+  }
+}));
+
 assert(5 * 255 < 3301, 'A byte-valued five-entry row cannot sum to 3301');
-console.log('PASS: one-page/one-square top-left contract rejected, no variant search performed');
+console.log('PASS: top-left and centered/reflection-related Stage10 candidates rejected; no variant search performed');

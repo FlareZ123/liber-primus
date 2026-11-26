@@ -1,6 +1,6 @@
 # Original 2014 Stage10 three-square contract versus LP2 pp49–51
 
-**Decision (12 November 2026; Director #489):** The source-fixed one-square-per-original-page proposal fails. Natural top-left 5×5/7×7/5×5 blocks on physical pp49/50/51 do **not** have the three historical magic sums 3301, 1033, 1033. No plaintext, cipher, missing server handler or independent key emerges.
+**Decision (26 November 2026; Director #3103 extension):** The source-fixed top-left 5×5/7×7/5×5 transfer fails, and the one centered p50 7×7 candidate selected by its 13-row geometry and horizontal-reflection alternatives also fails the historical 1033 magic-square test. No plaintext, cipher, missing server handler or independent key emerges.
 
 ## Historical source and original artifact
 
@@ -35,12 +35,27 @@ p49:              p50:                           p51:
 
 **Stronger p49 bound:** all conventional source tokens encode bytes 0–255. Thus **any five source cells, no matter where selected, sum to at most 5×255=1275**, strictly below 3301. No page-local permutation can rescue the order-five/3301 square under this numeric domain. This does not exclude other, source-specified non-byte semantics.
 
+## Source-cued centered p50 reflection control (Director #3103)
+
+The original p50 tree pair independently selects the horizontal column reflection `c → 7−c`; see [the image-derived selector](lp2-p50-tree-reflection-selector.md). This is a real orientation constraint, but it does not itself select a start cell or a square receiver. To test the most economical Stage10 order-seven transfer without a generic block search, use the unique centered seven-row window of p50's 13 rows (zero-based rows 3–9). Since the page has eight columns, the reflection-related seven-column windows are columns 0–6 and 1–7; both are tested.
+
+Using the same conditional base60 byte decoding as the original-page test, their sums are:
+
+| Centered p50 window | Row sums | Column sums | Diagonals | All 16 sums = 1033? |
+|---|---|---|---|---|
+| rows 3–9, columns 0–6 | 664, 920, 615, 968, 836, 1173, 942 | 804, 994, 739, 937, 793, 987, 864 | 1139, 1010 | No |
+| rows 3–9, columns 1–7 | 657, 1031, 766, 938, 978, 1237, 959 | 994, 739, 937, 793, 987, 864, 1252 | 930, 477 | No |
+
+The second window's 1031 row sum is two below 1033; the remaining line sums do not approach a magic square. Do not repair this with an inferred +2. The 13×8 numeric block itself has no row pair satisfying `row[r] = reverse(row[12−r])`, and its central row is not palindromic. Thus the artwork selects a column-reflection involution, not a mirror-symmetric numeric square. This bounded test does not resolve the radix or establish that Stage10's magic-square receiver applies to p50.
+
+The p49 5×5/3301 transfer remains impossible in the byte domain: even five maximum byte values sum to only 1275. The complete 5/7/5 Stage10→LP2 mapping therefore remains rejected.
+
 ## Independent visual-layout follow-up (#1663)
 
 The exact Stage10 response is now known to return LP1 pp14–16 themselves. A separate original-image comparison asks whether those three page layouts, rather than the three magic-square operands, predict the LP2 pp49–51 table geometry. They do not. The returned pages have ordered visible structure of eleven prose lines; five prose lines plus insects; then four prose lines, an insect, a heading and a 5×5 square. LP2 pp49–51 instead form one eight-column table split 10/13/9 rows. Repeated three-page framing is common within LP1, and the Stage10 triplet's exact cross-release footer reuse occurs on LP2 p22, not pp49–51. See [the visual-layout gate](2014-stage10-lp1-triplet-lp2-table-layout-gate.md).
 
 ## Reproducer and controls
 
-[CommonJS original-input SFT](../sims/lp2_stage10_three_square_pp49_51_sft.cjs) loads the full 256-cell canonical source and asserts that every token matches its source byte under the frozen alphabet. It verifies page image names, printed row counts, the locked block positions, all row/column/diagonal sums and the p49 upper bound. It constructs independent genuine order-five and order-seven magic squares (sum 65 and 175) by the Siamese method and confirms that perturbing a cell breaks the magic-square predicate. The source-block arithmetic and positive/negative control calculations were independently executed in the JavaScript tool runtime.
+[CommonJS original-input SFT](../sims/lp2_stage10_three_square_pp49_51_sft.cjs) loads the full 256-cell canonical source and asserts that every token matches its source byte under the frozen alphabet. It verifies page image names, printed row counts, the locked top-left blocks, both reflection-related centered p50 7×7 windows, all row/column/diagonal sums and the p49 upper bound. It constructs independent genuine order-five and order-seven magic squares (sum 65 and 175) by the Siamese method and confirms that perturbing a cell breaks the magic-square predicate. The source-block arithmetic and positive/negative control calculations were independently executed in the JavaScript tool runtime.
 
-**Disposition:** retire the exact Stage10 square→LP2 natural-page transfer. A further square extraction requires an **independent contemporary rule selecting the exact cells and a compatible numeric domain**. The 2014 historical squares remain valid clues in their own Stage10 context, with the missing Cicada-side validator reserved for #494. No result here authenticates a cipher for the 56 unsolved LP2 pages.
+**Disposition:** retire the exact Stage10 square→LP2 natural-page transfer, including the centered/reflection-related p50 order-seven candidate. A further square extraction requires an **independent contemporary rule selecting the exact cells and a compatible numeric domain**. The 2014 historical squares remain valid clues in their own Stage10 context, with the missing Cicada-side validator reserved for #494. No result here authenticates a cipher for the 56 unsolved LP2 pages.
