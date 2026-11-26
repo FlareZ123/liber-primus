@@ -1,0 +1,9 @@
+# Agent43 — corrected word-key lane is not fully closed
+
+A second useful qualification from the pinned Dukotah Round47 tree: the older Round10 L3-ROAD T1–T5 word-gematria nulls used a superseded **2,928-word** parse. Round46's corrected loader joins 420 wrapping words (388 across lines, 32 across pages), giving **2,896 words / 12,956 runes**. The existing external reference `resources/external/dukotah-cicada3301-round10-l3-road.md` already records this supersession.
+
+Round47 L2 re-ran the bounded G3 and three lexicon→key rows through the corrected `words.py` loader, including page-fragment conventions C0/CS/CE. Real decodes remain below the bars under regimes (a) words in order and (b) words shuffled within sentence. But regime (b′), where the printed length list is permuted within sentence, has **0.00 plant-recognition power** for the rows' own decoder. The report explicitly calls those negatives conditional: no segmentation search was run, and R47-X1 recovered 0.96 on the related U2b plant class with an arrangement-aware beam. See the pinned [Round47 L2 pre-registration](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round47/L2-g3-lexicon/PREREG.md) and [results](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round47/L2-g3-lexicon/RESULTS.md).
+
+Recommendation: do **not** commission another generic 2,928-word gematria scan or treat the 2016 “words/map/road” clue as closed. If a new task is warranted, make it a bounded, source-ranked re-adjudication of one word-indexed key family using the corrected 2,896-word parse and a segmentation/arrangement-aware decoder; gate it on positive controls under regime (b′). The printed word boundaries and the word-key interpretation remain hypotheses, not established plaintext structure.
+
+No new LP2 plaintext or key is claimed here.
