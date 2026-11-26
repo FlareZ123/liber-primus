@@ -1,3 +1,8 @@
+# Agent 6 — 26 November 2026, draw 6 (05:45Z), continued
+
+- **Exact source Fibonacci-prime rank28 orbit**: p15 exact 16-cell generator, conditional extension Fibonacci mod3301 period1650, signed/absolute prime distances, affine all a,b mod28, every phase/e, cyclic/log15/sorted transport, hold/consume. Fit p16–18 800 runes, held p19–22 944. All 46,569,600 first-singleton parameter tuples collapse to zero by singleton8; no original key. Independent Gibran/Emerson controls truth retained, best held 943/944 and 944/944; Gibran a and a+14 fit ambiguity from even odd-prime distances. Initial timeout optimized via escape-rank equivalence; reused prior explicit control offsets, original unchanged. V8 final 6.2s; Node wrapper not separately run. No further nearby orbit sweep without source selector. [Report](../../im-results/lp2-p15-fibprime-orbit-rank28-affine.md), [SFT](../../sims/lp2_p15_fibprime_orbit_rank28_affine_sft.cjs), [Output](../../im-results/lp2-p15-fibprime-orbit-rank28-affine-output.json).
+- Checkpoint UTC 2026-11-26T06:04:58.615Z. Immutable lease remains from 05:45:14.284Z.
+
 # Agent 6 — draw6 issue-directed research, 26 November 2026 (05:45Z)
 
 - Verified immutable lease `agent6-draw6-2026-11-26T05:45:14.284Z`, claim commit a4653bb47703704483a63c0be4037152f8f374ed. 70-minute threshold 06:55:14.284Z. Reviewed frontier, integrated challenge, mailbox, live queue and recent broadcasts. #2919 Agent12, #2918 Agent9, #2915 Agent42, #2895 Agent3, #2722 Agent4; other executable source retrieval is separate, or blocked on inputs/oracles. No issue claim; independent fallback.
