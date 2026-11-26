@@ -7,7 +7,7 @@ function experiment(raw){
  function enc(w,alt){w=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");const p=[];for(let j=0;j<w.length;){const v=alt&&w.startsWith("ING",j)?{t:"ING",i:21}:alt&&w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));if(!v)return null;p.push(v.i);j+=v.t.length}return p}
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);return (t.slice(a?a.index+a[0].length:0,b?b.index:t.length).match(/[A-Za-z]+/g)||[]).map(w=>enc(w,true)).filter(w=>w&&w.length<=14)}
  const donors=raw.slice(4).map(native),vocab=new Map();
- function add(w,f){if(w&&w.length&&w.length<=14){let k=key(w);vocab.set(k,Math.max(f,vocab.get(k)||0))}}
+ function add(w,f){if(w&&w.length&&w.length<=24){let k=key(w);vocab.set(k,Math.max(f,vocab.get(k)||0))}}
  for(const line of raw[3].split(/\r?\n/)){const m=/^([A-Za-z]+)\s+(\d+)$/.exec(line);if(m)for(const alt of [true,false])add(enc(m[1],alt),+m[2])}
  for(const ws of donors)for(const w of ws.slice(0,Math.floor(ws.length*.8)))add(w,1);
  for(const s of gold.sections)for(const w of s.source_text.match(/[\u16a0-\u16ff]+/g)||[])add(Array.from(w,c=>rune.get(c)),1);
@@ -34,6 +34,17 @@ function experiment(raw){
  if(encode(ws,src,sgn).join(",")!==C.join(","))throw Error("replay");return {score:v/N,ws,oov:ws.filter(w=>!vocab.has(key(w))).length}}
  const controls=[];for(let j=0;j<3;j++){const ws=[];let n=0;for(const w of donors[j].slice(Math.floor(donors[j].length*.85))){if(n+w.length>262)break;ws.push(w);n+=w.length}const printed=ws.map(w=>w.length).reverse();
  for(const src of ["dw","cw"]){const sgn=j===1?-1:1,C=encode(ws,src,sgn),res=[-1,1].map(sign=>({sign,...solve(C,printed.length,src,sign)})).sort((a,b)=>b.score-a.score),best=res[0],P=ws.flat(),correct=best.ws.flat().filter((x,i)=>x===P[i]).length;const bounds=arr=>{let n=0;return new Set(arr.map(w=>(n+=w.length)))};const truth=bounds(ws),pred=bounds(best.ws),F1=2*[...truth].filter(x=>pred.has(x)).length/(truth.size+pred.size);controls.push({donor:j,src,trueSign:sgn,selectedSign:best.sign,n,groups:ws.length,correct,F1,score:best.score,oov:best.oov,truthOov:ws.filter(w=>!vocab.has(key(w))).length,hiddenLengthOrderChanged:printed.join(",")!==ws.map(w=>w.length).join(","),relaxedBound:bound(C,printed),recovered:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")})}}
- return {vocab:vocab.size,shapes:sig.size,whole,chapter,controls};
+ function freeBound(C,K){
+ const N=C.length, caps=[14,24],out=[];
+ for(const cap of caps){
+  const dp=new Int32Array(N+1),counts=Array(cap+1).fill(0);
+  for(let i=N-1;i>=0;i--){dp[i]=dp[i+1];for(let l=4;l<=cap&&i+l<=N;l++)if(sig.has(shape(C.slice(i,i+l)))){counts[l]++;dp[i]=Math.max(dp[i],l-3+dp[i+l]);}}
+  const B=Math.floor(.05*K),max=3*K+(cap-3)*B+dp[0],min=Math.max(0,Math.ceil((N-3*K-dp[0])/(cap-3)));
+  out.push({cap,K,N,candidateCounts:counts,maxGain:dp[0],allowedOov:B,maxRunes:max,minOov:min,excludes:max<N});
+ }
+ return out;
+}
+const free={whole:freeBound(tape,words.length),chapter:chapter.map((c,j)=>({page:c.page,bounds:freeBound(tape.slice(offsets[j],offsets[j+1]),c.groups)})),controls:controls.map(c=>({donor:c.donor,src:c.src}))};
+return {vocab:vocab.size,shapes:sig.size,whole,chapter,controls,free};
 }
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
