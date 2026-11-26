@@ -42,7 +42,24 @@ function experiment(corpus,raw,native){
     if(solutionSpace.length===2){let v=solutionSpace.find(x=>new Set(x).size>1);const den=mod(v[1]-v[0]);if(den){const normalized=v.map(x=>mod((x-v[0])*inv(den)));const truth=perm.map(x=>mod((x-perm[0])*inv(mod(perm[1]-perm[0]))));plantGaugeRecovered=normalized.join(",")===truth.join(",")&&plantEqHeld.every(eq=>dot(eq,normalized)===0);check(plantGaugeRecovered,"plant normalized alphabet");}}
     results.push({orient,groups:recs.length,sourceRunes:recs.reduce((s,w)=>s+w.seq.length,0),singularGroups:singular.length,maxNullity:maxNull,byPage:singular.reduce((o,v)=>(o[v.page]=(o[v.page]||0)+1,o),{}),badEquations:bad.length,badGroups:new Set(bad.map(x=>x.ordinal)).size,firstBad:bad.slice(0,4),fit,held,all,planted,plant,plantFit,plantGaugeRecovered});
   }
-  return {results};
+  // Grant each physical page an independent sign, with a shared unknown
+  // output permutation. Only pages with singular word matrices can constrain it.
+  function pageChoice(records){
+    const pages=[...new Set(records.map(w=>w.page))].filter(p=>records.some(w=>w.page===p&&left(p,w.seq.length,1).length));
+    const byPage=pages.map(p=>[-1,1].map(o=>records.filter(w=>w.page===p).flatMap(w=>left(p,w.seq.length,o).map(z=>eqFor(z,w.seq)))));
+    const histogram={},survivors=[],certificates=[];
+    for(let mask=0;mask<2**pages.length;mask++){
+      const rows=byPage.flatMap((pair,i)=>pair[(mask>>i)&1]);
+      const ns=nullspace(rows,29),rank=29-ns.length;
+      histogram[rank]=(histogram[rank]||0)+1;
+      let forced=null;
+      outer:for(let i=0;i<29;i++)for(let j=i+1;j<29;j++)if(ns.every(v=>v[i]===v[j])){forced=[i,j];break outer;}
+      if(!forced)survivors.push({mask,rank});else certificates.push({mask,rank,forced});
+    }
+    return {pages,assignments:2**pages.length,rankHistogram:histogram,survivors,certificates};
+  }
+  const pagewiseFit=pageChoice(recs.filter(w=>w.page<=39)),pagewiseFull=pageChoice(recs);
+  return {results,pagewiseFit,pagewiseFull};
 }
 const read=p=>fs.readFileSync(p,"utf8");
 console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),read("resources/liber-primus/lp2-transcription.txt"),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"))),null,2));
