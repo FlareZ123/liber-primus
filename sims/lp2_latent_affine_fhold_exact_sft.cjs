@@ -73,7 +73,16 @@ function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,ass
  const ends=new Uint32Array(tape.length+1),pairs=[],triples=[];
  function setEnds(slopes){for(let i=0;i<ends.length;i++){let x=0;for(const a of slopes)x|=S.E[a][i];ends[i]=x}}
  function fixed(slopes,lambda){setEnds(slopes);const x=optimum(ends,lambda);return {slopes,lb:Math.max(0,Math.ceil((x.cost-lambda*K)/M)),...x}}
- for(let a=1;a<29;a++)for(let b=a+1;b<29;b++)pairs.push(fixed([a,b],512));
+ if(options.fourSlope){const four=[];
+ for(const base of [[4,6,7],[4,7,13],[1,2,28]])for(let d=1;d<29;d++)if(!base.includes(d)){
+ const sl=[...base,d].sort((a,b)=>a-b);if(four.some(x=>x.slopes.join()===sl.join()))continue;
+ setEnds(sl);four.push({slopes:sl,...dual(ends,K)});
+ }
+ four.sort((a,b)=>a.lb-b.lb);
+ const chosen=four[0];setEnds(chosen.slopes);
+ chosen.exact=exact({starts:new Uint32Array(tape.length),ends},K,CAP);
+ return {four,chosen,elapsedMs:Date.now()-started};}
+for(let a=1;a<29;a++)for(let b=a+1;b<29;b++)pairs.push(fixed([a,b],512));
  pairs.sort((x,y)=>x.lb-y.lb);
  for(let a=1;a<29;a++)for(let b=a+1;b<29;b++)for(let c=b+1;c<29;c++)triples.push(fixed([a,b,c],586));
  triples.sort((x,y)=>x.lb-y.lb);
@@ -151,5 +160,5 @@ function experiment(raw,options={}){
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
  return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")||process.argv.includes("--small-slope"),smallSlope:process.argv.includes("--small-slope")}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")||process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),smallSlope:process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),fourSlope:process.argv.includes("--four-slope")}),null,2));
 module.exports={experiment};
