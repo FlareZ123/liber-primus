@@ -28,6 +28,25 @@ Eight of nine bodies have **no legal F-hold inverse**, independently of language
 
 The independent known p56 prime-minus-one control reproduces 85/85 ciphertext runes consuming 84 primes; p57 cleartext matches 95/95. Those checks validate the source chart, not this speculative receiver. Nine separate target-excluded native controls per model use hidden states 1033+137*j modulo3301 and half-record holdout. The transparent variant recovers 1490/1493 withheld symbols; ordinary consumption recovers 1493/1493. Each recovers 6/9 exact starting states; other states coalesce. Native heldout unigram scores range -3.2319 to -2.9030. Controls are short native records; language conclusions are conditional. The F impossibility is exact.
 
+## Exact trigram-ranked inverse of surviving paths
+
+To test whether the initial unigram score could have overlooked actual text, retain the same equations, framing, and all 3301 initial states, and rank every inverse under a fixed native interpolated trigram prior (add-one unigram; bigram and trigram backoff strength 10). The sufficient Viterbi state is now (s, previous two plaintext runes), so merging does not lose any higher-scoring path. Freeze all three state components at the first physical page boundary. The original had already been examined with the unigram scorer; this is a stronger post-hoc exact search within the same family, not a fresh independently hidden ciphertext trial.
+
+| Variant | Start p | Exact full best | Prefix-frozen continuation | All-origin continuation optimum |
+| --- | ---: | ---: | ---: | ---: |
+| F-hold | 0 | -4.9870 | none | -4.8652 |
+| ordinary | 0 | -4.8802 | -5.0094 | -4.8584 |
+| ordinary | 3 | -4.9510 | -5.1088 | -4.9480 |
+| ordinary | 8 | -4.9392 | -5.1090 | -4.9334 |
+| ordinary | 15 | -4.9302 | -5.1207 | -4.9293 |
+| ordinary | 23 | -4.9142 | -5.0252 | -4.9238 |
+| ordinary | 27 | -4.9224 | -5.0874 | -4.9337 |
+| ordinary | 33 | -4.8838 | -5.0097 | -4.8680 |
+| ordinary | 40 | -4.9852 | -5.0249 | -4.9860 |
+| ordinary | 54 | -4.6904 | -4.9728 | -4.3135 |
+
+Target-excluded native controls: F-hold 1493/1493 withheld runes, 8/9 exact IVs, heldout score range -3.3686 to -2.0569; ordinary 1493/1493 withheld runes, 8/9 exact IVs, heldout score range -3.3686 to -2.0569. All selected sequences replay exactly. Full candidate plaintext arrays, including the original best F-hold p0 path, are in the raw JSON. No coherent reading emerged. This closes the exact fixed-family decoder with stronger language ranking; an unknown extra layer or very different language remains out of scope.
+
 ## Reproduction and next decision
 
 [CommonJS SFT](../sims/lp2_running_gpprime_totient3301_sft.cjs) and [executed output](lp2-running-gpprime-totient3301-output.json). The exact experiment function executed in connected V8 using source blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and 1b064ef6d85819b7d96adaff31a82d1ec551598f. The filesystem wrapper was not separately run in Node or CI. No new source selector or plaintext; do not expand the modulus or reset menus based on these failures. The result removes one cumulative nonlinear-state alternative, without excluding other totient-based receivers.
