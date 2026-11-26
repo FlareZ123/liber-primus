@@ -167,6 +167,7 @@ struct Problem{
    for(int h=0;h<S;h++)if(outer[h]!=NEG){hstart=h;walk(walk,s,h,0);}
    outer.swap(next);if(verbose)cout<<"BLOCK "<<s<<" "<<e<<" leaves "<<leaves<<" upper_scaled "<<*max_element(outer.begin(),outer.end())<<" scale "<<(both?2:1)<<endl;
   }
+  if(verbose){cout<<"BY_H";for(int h=Hmin;h<=Hmax;h++)cout<<" "<<h<<":"<<outer[h]/(both?2:1);cout<<endl;}
   return *max_element(outer.begin()+Hmin,outer.end())/(both?2:1);
  }
  I exactMask(uint64_t mask)const{
@@ -175,8 +176,8 @@ struct Problem{
 };
 void selftest(){mt19937 g(297234);int cases=0;for(int t=0;t<64;t++){vector<int>x(18),ids(5);for(auto&v:x)v=g()%4;for(auto&v:ids)v=g()%3;int z=count(x.begin(),x.end(),0),lo=z?g()%(z+1):0,hi=lo+(g()%(z-lo+1));Problem p(x,ids,lo,hi);I best=NEG;for(uint64_t m=0;m<(uint64_t(1)<<z);m++)best=max(best,p.exactMask(m));require(p.blockBound(1)>=best&&p.blockBound(3)>=best&&p.blockBound(p.R)==best&&p.blockBound(3,false,true)>=best&&p.blockBound(p.R,false,true)==best,"block bound test");for(int i=0;i<5;i++){require(p.certificate()>=best*SCALE,"dual underbound");auto q=p.star();require(q.upper>=best*SCALE,"star underbound");p.starStep(q,100);p.sweep();}require(p.certificate()>=best*SCALE,"final underbound");cases++;}cout<<"SELFTEST "<<cases<<" exhaustive toy optima bounded"<<endl;}
 int main(int argc,char**argv){try{
- require(argc==4||argc==5,"args sweeps minH maxH [star]");int sweeps=stoi(argv[1]),lo=stoi(argv[2]),hi=stoi(argv[3]);require(sweeps>=1&&sweeps<=1000,"sweeps");selftest();auto x=corpus(),ids=grid();auto start=chrono::steady_clock::now();Problem p(x,ids,lo,hi);
- if(argc==5&&(string(argv[4])=="block"||string(argv[4])=="both")){require(sweeps<=16,"block max");bool both=string(argv[4])=="both";I b=p.blockBound(sweeps,true,both);cout<<"CERTIFIED_BLOCK_MAX "<<b<<" H "<<lo<<" "<<hi<<" block "<<sweeps<<" both "<<both<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;return 1;}
+ require(argc>=4&&argc<=6,"args sweeps minH maxH [star|block|both] [controlIndex]");int sweeps=stoi(argv[1]),lo=stoi(argv[2]),hi=stoi(argv[3]);require(sweeps>=1&&sweeps<=1000,"sweeps");selftest();auto x=corpus(),ids=grid();if(argc==6){int n=stoi(argv[5]);require(n>=0&&n<6,"fixture index");string f=read("im-results/lp2-p50-fhold-matched-control-fixtures.json");size_t pos=0;for(int i=0;i<=n;i++){pos=f.find("\"ciphertext\":",pos);require(pos!=string::npos,"fixture ciphertext");pos++;}auto a=f.find('[',pos),b=f.find(']',a);x=numbers(f,a+1,b);require(x.size()==3008&&count(x.begin(),x.end(),0)==125,"fixture dimensions");cout<<"CONTROL_FIXTURE "<<n<<endl;}auto start=chrono::steady_clock::now();Problem p(x,ids,lo,hi);
+ if(argc>=5&&(string(argv[4])=="block"||string(argv[4])=="both")){require(sweeps<=16,"block max");bool both=string(argv[4])=="both";I b=p.blockBound(sweeps,true,both);cout<<"CERTIFIED_BLOCK_MAX "<<b<<" H "<<lo<<" "<<hi<<" block "<<sweeps<<" both "<<both<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;return 1;}
  if(argc==5){require(string(argv[4])=="star","mode");I best=NEG,lower=0;
   for(int i=0;i<=sweeps;i++){auto q=p.star();if(i==0||q.upper<best)best=q.upper;lower=max(lower,q.primal);if(i==0||i%10==0||best/SCALE<1882||i==sweeps)cout<<"STAR "<<i<<" scaled "<<q.upper<<" best "<<best/SCALE<<" lower "<<lower<<" disagreement "<<q.differences<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;
    if(best/SCALE<1882||!q.differences)break;I eta=max<I>(1,(q.upper-lower*SCALE)/(max(1,2*q.differences)*(2+i/100)));p.starStep(q,eta);
