@@ -51,6 +51,11 @@ function phi(n) {
   return result;
 }
 
+function gcd(a, b) {
+  while (b !== 0) [a, b] = [b, a % b];
+  return a;
+}
+
 function counts(values) {
   const out = Array(29).fill(0);
   for (const x of values) out[x] += 1;
@@ -90,6 +95,21 @@ assert.deepEqual(primeFactors(left), [11, 103]);
 assert.deepEqual(primeFactors(right), [7, 11, 43]);
 assert.equal(phi(left), 1020);
 assert.equal(phi(right), 2520);
+const commonTotientDivisor = gcd(phi(left), phi(right));
+assert.equal(commonTotientDivisor, 60);
+const normalizedTotients = {
+  oneBasedThirdSectionStart: phi(left) / commonTotientDivisor,
+  thirdSectionLength: phi(right) / commonTotientDivisor,
+};
+assert.deepEqual(normalizedTotients, {
+  oneBasedThirdSectionStart: 17,
+  thirdSectionLength: 42,
+});
+assert.equal(
+  normalizedTotients.oneBasedThirdSectionStart
+    + normalizedTotients.thirdSectionLength - 1,
+  58,
+);
 
 const primeFactorTotients = primeFactors(right).map((p) => p - 1);
 assert.deepEqual(primeFactorTotients, [6, 10, 42]);
@@ -152,6 +172,8 @@ console.log(JSON.stringify({
     upperRight: { digits: upperRightGlyph, value: right, factors: primeFactors(right), phi: phi(right) },
   },
   factorTotients: primeFactorTotients,
+  commonTotientDivisor,
+  normalizedTotients,
   pageCount,
   pageRanges: ranges.map(([start, end], i) => ({ start, end, pages: sectionCounts[i] })),
   p32RuneCount: corpus.pages[32].indices.length,
