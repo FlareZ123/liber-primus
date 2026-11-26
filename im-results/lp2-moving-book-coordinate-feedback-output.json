@@ -1,0 +1,2703 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-I.txt",
+      "sha": "64876892683fab1467481fe87d85743a8ea17982"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-II.txt",
+      "sha": "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    },
+    {
+      "path": "resources/external/2013-book-of-law-III.txt",
+      "sha": "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "length": 716,
+  "fit": 249,
+  "held": 467,
+  "originalStats": {
+    "ioc": 0.034101652537406726,
+    "repeat": 0.005594405594405594,
+    "maxFreq": 0.046089385474860335
+  },
+  "models": [
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "character",
+      "sign": 1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.292144616195437,
+        "origin": [
+          26,
+          16
+        ],
+        "fitState": [
+          60,
+          8
+        ],
+        "fitTerminal": 2,
+        "peak": 1271,
+        "total": 4959,
+        "fitExcerpt": "S O TH NG F N F U Y C G TH TH G NG N S IA IA I B EA R IA EA S E P U N D EA B R G L M E OE X S L H M OE F TH U OE S A W M H TH T D C J X A D Y U B A N T T AE N D O G OE P U M A B",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.403946315309277,
+        "heldStats": {
+          "ioc": 0.03487698853976161,
+          "repeat": 0.02575107296137339,
+          "maxFreq": 0.057815845824411134
+        },
+        "heldExcerpt": "T F B L TH X U AE F EA NG L M X O T W U S N TH L U E AE O T L J E A AE P EO T T N Y N F EA W G Y EO M OE M L TH AE A U TH G EA T W W M H TH A E E O T N NG B I NG P H L AE IA EO O H",
+        "heldEnd": [
+          1,
+          2
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03534007891549791,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            66,
+            2
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5066,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            4
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.0346915654178224,
+            "repeat": 0.027972027972027972,
+            "maxFreq": 0.051675977653631286
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            18,
+            0
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5046,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            13
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "character",
+      "sign": 1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.380897379244493,
+        "origin": [
+          58,
+          11
+        ],
+        "fitState": [
+          60,
+          8
+        ],
+        "fitTerminal": 3,
+        "peak": 1238,
+        "total": 5463,
+        "fitExcerpt": "L L W A F W H EA Y S H U H T I X L U O N IA AE A EA T M E J AE Y M IA M G TH C J H O N I B EO E AE EA L U F D TH I G R T E L T J X A D Y U B A N T T AE N D O G OE P U M F T",
+        "heldLegal": 1,
+        "heldPeak": 1
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.034160253154666566,
+            "repeat": 0.023776223776223775,
+            "maxFreq": 0.046089385474860335
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            13,
+            26
+          ],
+          "fitTerminal": 5,
+          "peak": 1238,
+          "total": 5555,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 14,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            4
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.035554947845450637,
+            "repeat": 0.03636363636363636,
+            "maxFreq": 0.06005586592178771
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            91,
+            12
+          ],
+          "fitTerminal": 4,
+          "peak": 1238,
+          "total": 5089,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 25,
+          "fitExact": 249,
+          "heldScore": -2.7246010844008732,
+          "heldStats": {
+            "ioc": 0.05930466588855906,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            89,
+            3
+          ],
+          "heldExact": 463
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "character",
+      "sign": -1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -4.994917412062783,
+        "origin": [
+          69,
+          1
+        ],
+        "fitState": [
+          11,
+          2
+        ],
+        "fitTerminal": 2,
+        "peak": 1271,
+        "total": 4393,
+        "fitExcerpt": "O S M E R E A I EO TH M D E U L B U S IA O O J N H E R T OE N O OE B I X P I AE OE Y AE E S O Y C N Y T M Y L A R E H D M A S O EA S A N P Y I A TH X R I N T H NG NG S R AE",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.679376181239127,
+        "heldStats": {
+          "ioc": 0.03404067603459209,
+          "repeat": 0.015021459227467811,
+          "maxFreq": 0.047109207708779445
+        },
+        "heldExcerpt": "Y I L B B EA IA D AE H T I NG OE A Y O A H EO T J IA S E IA EA H A G N TH S AE B A J P D T N W AE R EA P G W M NG EO AE N J T S TH R D R B Y AE IA EO C I OE J S A D X O H N O P G TH",
+        "heldEnd": [
+          16,
+          21
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03471109895690901,
+            "repeat": 0.02937062937062937,
+            "maxFreq": 0.05307262569832402
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            66,
+            2
+          ],
+          "fitTerminal": 2,
+          "peak": 1271,
+          "total": 5105,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            4
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03532445208422862,
+            "repeat": 0.03496503496503497,
+            "maxFreq": 0.05307262569832402
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6371264304881996,
+          "origin": [
+            85,
+            20
+          ],
+          "fitState": [
+            18,
+            0
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5199,
+          "fitExcerpt": "D U P I E M E H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 242,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            13
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "character",
+      "sign": -1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.610429065551302,
+        "origin": [
+          63,
+          22
+        ],
+        "fitState": [
+          11,
+          2
+        ],
+        "fitTerminal": 1,
+        "peak": 1238,
+        "total": 4924,
+        "fitExcerpt": "A M B L F E A P EO TH M D E U L B U S IA O O J N H E R T OE N O OE B I X P I AE OE Y AE E S O Y C F D U H OE P NG F EA OE NG O U IA J IA M L O N A L AE Y AE J N I B O AE W NG F NG",
+        "heldLegal": 119,
+        "heldPeak": 8
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.034730632495995624,
+            "repeat": 0.02937062937062937,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.597054001988909,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            13,
+            26
+          ],
+          "fitTerminal": 3,
+          "peak": 1238,
+          "total": 6404,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 15,
+          "fitExact": 247,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            4
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03693401570496543,
+            "repeat": 0.032167832167832165,
+            "maxFreq": 0.07681564245810056
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6371264304881996,
+          "origin": [
+            85,
+            20
+          ],
+          "fitState": [
+            91,
+            12
+          ],
+          "fitTerminal": 6,
+          "peak": 1238,
+          "total": 4737,
+          "fitExcerpt": "D U P I E M E H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 54,
+          "fitExact": 242,
+          "heldScore": -2.7277615052996738,
+          "heldStats": {
+            "ioc": 0.05825697769526978,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.10278372591006424
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A U R U T NG F O C O L C B Y L O N T R",
+          "heldEnd": [
+            89,
+            3
+          ],
+          "heldExact": 459
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "verse",
+      "sign": 1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.408425171635963,
+        "origin": [
+          40,
+          12
+        ],
+        "fitState": [
+          0,
+          0
+        ],
+        "fitTerminal": 1,
+        "peak": 1271,
+        "total": 2127,
+        "fitExcerpt": "M Y L W I L U I S W EO E C X E H N IA S AE IA B F N EO TH G P O L O G Y EA Y T H O W OE B NG G I E M O D T U IA NG F I Y P EO NG P A M F W M D M IA Y F O I A G N A C AE D A S",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.6002278976615285,
+        "heldStats": {
+          "ioc": 0.03461047136778451,
+          "repeat": 0.034334763948497854,
+          "maxFreq": 0.05353319057815846
+        },
+        "heldExcerpt": "A N B EO N X M AE IA S OE L AE M L L S W X T B O U Y NG Y C M H S EO Y J IA TH G NG N EA I G D AE F E X J E R I O M U W F O L EO S E G TH L T I NG O C OE NG M L NG R L Y T E E TH",
+        "heldEnd": [
+          21,
+          21
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03485174043833262,
+            "repeat": 0.027972027972027972,
+            "maxFreq": 0.055865921787709494
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            66,
+            8
+          ],
+          "fitTerminal": 1,
+          "peak": 1271,
+          "total": 2259,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            9
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03481267336015939,
+            "repeat": 0.044755244755244755,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.637051982503946,
+          "origin": [
+            81,
+            12
+          ],
+          "fitState": [
+            18,
+            18
+          ],
+          "fitTerminal": 2,
+          "peak": 1271,
+          "total": 2387,
+          "fitExcerpt": "R EA T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 247,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            4
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "verse",
+      "sign": 1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 221,
+        "peak": 1238,
+        "total": 2187
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03458999101457202,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6007662015692405,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            13,
+            13
+          ],
+          "fitTerminal": 1,
+          "peak": 1238,
+          "total": 2717,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y R O U E U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 8,
+          "fitExact": 245,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            9
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.035164277063718406,
+            "repeat": 0.039160839160839164,
+            "maxFreq": 0.06564245810055866
+          },
+          "fitLegal": 249,
+          "fitScore": -2.637051982503946,
+          "origin": [
+            81,
+            12
+          ],
+          "fitState": [
+            91,
+            4
+          ],
+          "fitTerminal": 5,
+          "peak": 1238,
+          "total": 2758,
+          "fitExcerpt": "R EA T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 14,
+          "fitExact": 247,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            89,
+            2
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "verse",
+      "sign": -1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.434951499358327,
+        "origin": [
+          3,
+          16
+        ],
+        "fitState": [
+          3,
+          3
+        ],
+        "fitTerminal": 1,
+        "peak": 1271,
+        "total": 2218,
+        "fitExcerpt": "E S P H P IA B O I C P O OE B Y E Y B B U P OE AE N S I E EA H EA NG Y Y O O AE IA P D P E Y E A C H D T J T S M W NG TH D U Y L H I OE B O N W NG R N T AE EA P EA U P W F N TH",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.550109516164256,
+        "heldStats": {
+          "ioc": 0.03472075433549917,
+          "repeat": 0.03862660944206009,
+          "maxFreq": 0.05353319057815846
+        },
+        "heldExcerpt": "IA A C R F W E U F I M AE U Y O C TH Y G Y TH OE R O F N D I TH J EO Y B B AE AE S H F B E E A A S P C B C X C D W J S NG J I R J I H EA O F S F R AE A A IA B W AE I O W J E",
+        "heldEnd": [
+          5,
+          5
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.034433722701879124,
+            "repeat": 0.05314685314685315,
+            "maxFreq": 0.046089385474860335
+          },
+          "fitLegal": 249,
+          "fitScore": -2.5993517858226833,
+          "origin": [
+            20,
+            10
+          ],
+          "fitState": [
+            66,
+            8
+          ],
+          "fitTerminal": 1,
+          "peak": 1271,
+          "total": 2255,
+          "fitExcerpt": "S H I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 247,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            9
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.0346915654178224,
+            "repeat": 0.057342657342657345,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.637126604565386,
+          "origin": [
+            82,
+            16
+          ],
+          "fitState": [
+            18,
+            18
+          ],
+          "fitTerminal": 1,
+          "peak": 1271,
+          "total": 2103,
+          "fitExcerpt": "M Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 248,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            4
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "verse",
+      "sign": -1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 160,
+        "peak": 1238,
+        "total": 2199
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03520725084970895,
+            "repeat": 0.05454545454545454,
+            "maxFreq": 0.06284916201117319
+          },
+          "fitLegal": 249,
+          "fitScore": -2.5993517858226833,
+          "origin": [
+            20,
+            10
+          ],
+          "fitState": [
+            13,
+            13
+          ],
+          "fitTerminal": 2,
+          "peak": 1238,
+          "total": 2925,
+          "fitExcerpt": "S H I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 12,
+          "fitExact": 247,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            9
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.035668242372152985,
+            "repeat": 0.06433566433566433,
+            "maxFreq": 0.06983240223463687
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6354114236269726,
+          "origin": [
+            85,
+            0
+          ],
+          "fitState": [
+            91,
+            4
+          ],
+          "fitTerminal": 2,
+          "peak": 1238,
+          "total": 3437,
+          "fitExcerpt": "O F T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 18,
+          "fitExact": 247,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            89,
+            2
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "absolute",
+      "sign": 1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.365831333624159,
+        "origin": [
+          22,
+          26
+        ],
+        "fitState": [
+          1,
+          2
+        ],
+        "fitTerminal": 2,
+        "peak": 1271,
+        "total": 5624,
+        "fitExcerpt": "C F O L TH T M E P C I L O S H A W A R J OE N L Y F L W G I M S P F S A T T B B O E T I X B OE X C IA NG C A X O U N N O F L B E L F C TH IA H NG G AE L E B H NG X T E EA",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.416253061997964,
+        "heldStats": {
+          "ioc": 0.033921202819567876,
+          "repeat": 0.04291845493562232,
+          "maxFreq": 0.05139186295503212
+        },
+        "heldExcerpt": "OE I N U NG M P H A AE I W EO OE A A P M X O T D E C C W C D S TH OE Y R NG L NG R H I NG NG X D G EO M T X J TH W H IA AE IA U U TH O Y F B Y N F W O J O W H S IA B T Y B OE O TH",
+        "heldEnd": [
+          7,
+          25
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03520334414189163,
+            "repeat": 0.02937062937062937,
+            "maxFreq": 0.06005586592178771
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            66,
+            19
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5855,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            0
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03475407274289956,
+            "repeat": 0.033566433566433566,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            18,
+            8
+          ],
+          "fitTerminal": 2,
+          "peak": 1271,
+          "total": 5394,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            8
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "absolute",
+      "sign": 1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 222,
+        "peak": 1238,
+        "total": 5775
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.0345157635660429,
+            "repeat": 0.039160839160839164,
+            "maxFreq": 0.051675977653631286
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            13,
+            4
+          ],
+          "fitTerminal": 1,
+          "peak": 1238,
+          "total": 5007,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 32,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            0
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03541430636402704,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.06424581005586592
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            91,
+            8
+          ],
+          "fitTerminal": 4,
+          "peak": 1238,
+          "total": 5619,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 16,
+          "fitExact": 249,
+          "heldScore": -2.7286311206058254,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            89,
+            17
+          ],
+          "heldExact": 465
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "absolute",
+      "sign": -1,
+      "hold": false,
+      "units": 95,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.184518152451973,
+        "origin": [
+          19,
+          5
+        ],
+        "fitState": [
+          15,
+          14
+        ],
+        "fitTerminal": 2,
+        "peak": 1271,
+        "total": 5235,
+        "fitExcerpt": "W E O N R W U S J I S W C U I W C J NG G I L C IA D D M W O F Y TH P N J I U P L D AE EA OE E G N IA F F EO P L G IA A L P U B I L A L O J J A W P T X G E J P W D H I O",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.446646453624479,
+        "heldStats": {
+          "ioc": 0.03490455928169027,
+          "repeat": 0.027896995708154508,
+          "maxFreq": 0.05353319057815846
+        },
+        "heldExcerpt": "N AE A L EA J U Y F X T T B D M B T OE D NG EO C O P D S EA EO D I EO Y A C O TH S J M OE F B D J R J W EA Y S S AE P G E P H D EO L E G C EA TH G R N Y Y M Y U J W G H AE H P",
+        "heldEnd": [
+          0,
+          0
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03488690080868852,
+            "repeat": 0.032167832167832165,
+            "maxFreq": 0.06005586592178771
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            66,
+            19
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5416,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            0
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.034281361097003554,
+            "repeat": 0.027972027972027972,
+            "maxFreq": 0.04748603351955307
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            18,
+            8
+          ],
+          "fitTerminal": 3,
+          "peak": 1271,
+          "total": 5405,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            4,
+            8
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "LP1-native-lines",
+      "mode": "absolute",
+      "sign": -1,
+      "hold": true,
+      "units": 95,
+      "original": {
+        "fitLegal": 121,
+        "peak": 1238,
+        "total": 5453
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03422276047974372,
+            "repeat": 0.04055944055944056,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            13,
+            4
+          ],
+          "fitTerminal": 2,
+          "peak": 1238,
+          "total": 5188,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 32,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            67,
+            0
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03548853381255616,
+            "repeat": 0.039160839160839164,
+            "maxFreq": 0.06284916201117319
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            91,
+            8
+          ],
+          "fitTerminal": 2,
+          "peak": 1238,
+          "total": 6224,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 31,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            89,
+            17
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "character",
+      "sign": 1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.0019051026112376,
+        "origin": [
+          167,
+          26
+        ],
+        "fitState": [
+          103,
+          18
+        ],
+        "fitTerminal": 5,
+        "peak": 4094,
+        "total": 19818,
+        "fitExcerpt": "C T F T W M NG H G H A X S L O B B G Y M D C NG Y B U M TH H EO R J B J H IA B A X F S M U IA H IA TH N M U J W OE T B L EA D I P S Y A T Y T I J N D X D Y D G N P EA X OE",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.325384090831386,
+        "heldStats": {
+          "ioc": 0.03519864719559603,
+          "repeat": 0.0407725321888412,
+          "maxFreq": 0.057815845824411134
+        },
+        "heldExcerpt": "G L J S C TH NG TH W M P X M W D NG W OE Y N P N A X F B D C B Y I A J NG D E U L P F P P D F P T A B X P G E O B E O B P G O D U P P P W T B AE Y OE AE M OE H D F D TH T",
+        "heldEnd": [
+          36,
+          1
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03500410204320819,
+            "repeat": 0.03636363636363636,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            91,
+            2
+          ],
+          "fitTerminal": 5,
+          "peak": 4094,
+          "total": 18379,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            7
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.035011915458842836,
+            "repeat": 0.03496503496503497,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            17
+          ],
+          "fitTerminal": 5,
+          "peak": 4094,
+          "total": 18354,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            20
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "character",
+      "sign": 1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.191362107298492,
+        "origin": [
+          115,
+          21
+        ],
+        "fitState": [
+          28,
+          24
+        ],
+        "fitTerminal": 6,
+        "peak": 3913,
+        "total": 20767,
+        "fitExcerpt": "I R O E T G M Y B E EA TH R G H X Y G R TH TH C Y W D A I G O Y P O Y J TH N O P O I Y NG E T J W I C OE E I H A H E S NG M E AE TH H E IA P EA Y M IA S C W D NG L Y R E L B",
+        "heldLegal": 0,
+        "heldPeak": 0
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.035297105129507365,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.051675977653631286
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            72,
+            5
+          ],
+          "fitTerminal": 9,
+          "peak": 3913,
+          "total": 19553,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 65,
+          "fitExact": 249,
+          "heldScore": -2.5808324929095345,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            14
+          ],
+          "heldExact": 465
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03569168261905692,
+            "repeat": 0.039160839160839164,
+            "maxFreq": 0.0670391061452514
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            17
+          ],
+          "fitTerminal": 32,
+          "peak": 3913,
+          "total": 25426,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 35,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            14
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "character",
+      "sign": -1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.0039318253264,
+        "origin": [
+          138,
+          0
+        ],
+        "fitState": [
+          105,
+          0
+        ],
+        "fitTerminal": 3,
+        "peak": 4094,
+        "total": 17580,
+        "fitExcerpt": "TH E H B TH E A R EO D B E B P NG O R D X I P W B P R E X G O TH T O T S M B AE T H P A X J C M I W L I T X AE A E H L P IA W I G R B A W J F D NG G E TH C M O E S IA E AE",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.480855646399038,
+        "heldStats": {
+          "ioc": 0.03411419801306853,
+          "repeat": 0.04721030042918455,
+          "maxFreq": 0.05139186295503212
+        },
+        "heldExcerpt": "A J M IA TH T Y H S A D R U X O Y S IA G B D R W EA G TH EA X EO OE Y U IA O O A A I AE IA EO H U G TH D IA Y W L R O U C P B I TH A NG J A IA N D NG L A NG I OE M U A W B G OE D T",
+        "heldEnd": [
+          84,
+          2
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03453529710512951,
+            "repeat": 0.03076923076923077,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            91,
+            2
+          ],
+          "fitTerminal": 6,
+          "peak": 4094,
+          "total": 18659,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            7
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.034781419697620816,
+            "repeat": 0.033566433566433566,
+            "maxFreq": 0.04748603351955307
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            17
+          ],
+          "fitTerminal": 4,
+          "peak": 4094,
+          "total": 18684,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            20
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "character",
+      "sign": -1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 236,
+        "peak": 3913,
+        "total": 18903
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.034750166035082235,
+            "repeat": 0.03496503496503497,
+            "maxFreq": 0.051675977653631286
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            72,
+            5
+          ],
+          "fitTerminal": 4,
+          "peak": 3913,
+          "total": 19849,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 30,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            14
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03578544360667266,
+            "repeat": 0.02937062937062937,
+            "maxFreq": 0.06424581005586592
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            17
+          ],
+          "fitTerminal": 8,
+          "peak": 3913,
+          "total": 22550,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 66,
+          "fitExact": 249,
+          "heldScore": -2.726703886914962,
+          "heldStats": {
+            "ioc": 0.05910248044774885,
+            "repeat": 0.030042918454935622,
+            "maxFreq": 0.10920770877944326
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            14
+          ],
+          "heldExact": 462
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "verse",
+      "sign": 1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.050391538939292,
+        "origin": [
+          67,
+          28
+        ],
+        "fitState": [
+          56,
+          27
+        ],
+        "fitTerminal": 2,
+        "peak": 4094,
+        "total": 6541,
+        "fitExcerpt": "O U A P T Y C EO P C J E G S NG I T O F I B A I M L J T A S O B E N J Y T H R H A Y U M D TH O T W F X L OE IA U B O W U OE E T Y R T L S A TH C H X EO F C NG TH NG I EO D",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.3498899991820545,
+        "heldStats": {
+          "ioc": 0.034711564088189616,
+          "repeat": 0.04935622317596566,
+          "maxFreq": 0.06209850107066381
+        },
+        "heldExcerpt": "Y J M X G N X D M D U C J C R R EA M D EO EO NG T P H EO I A X E S J IA H P X B G M U A OE TH F E X L U S NG X IA C C IA TH E P C N Y OE T S I NG F TH NG NG E M NG G OE C AE M M TH",
+        "heldEnd": [
+          48,
+          19
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03455873735203344,
+            "repeat": 0.025174825174825177,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.5986983960766445,
+          "origin": [
+            18,
+            13
+          ],
+          "fitState": [
+            91,
+            4
+          ],
+          "fitTerminal": 2,
+          "peak": 4094,
+          "total": 6191,
+          "fitExcerpt": "E R I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 248,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            2
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03485955385396726,
+            "repeat": 0.043356643356643354,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            9
+          ],
+          "fitTerminal": 3,
+          "peak": 4094,
+          "total": 6864,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            15
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "verse",
+      "sign": 1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 162,
+        "peak": 3913,
+        "total": 5914
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03456655076766808,
+            "repeat": 0.03636363636363636,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.5986983960766445,
+          "origin": [
+            18,
+            13
+          ],
+          "fitState": [
+            72,
+            14
+          ],
+          "fitTerminal": 1,
+          "peak": 3913,
+          "total": 6424,
+          "fitExcerpt": "E R I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 16,
+          "fitExact": 248,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            18
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.0353205453764113,
+            "repeat": 0.04195804195804196,
+            "maxFreq": 0.0670391061452514
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6311623375803626,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            182,
+            8
+          ],
+          "fitTerminal": 7,
+          "peak": 3913,
+          "total": 6762,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 40,
+          "fitExact": 248,
+          "heldScore": -2.745011594325037,
+          "heldStats": {
+            "ioc": 0.05855106560917554,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "M O F G TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            13
+          ],
+          "heldExact": 461
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "verse",
+      "sign": -1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.3439065150598175,
+        "origin": [
+          70,
+          6
+        ],
+        "fitState": [
+          133,
+          17
+        ],
+        "fitTerminal": 1,
+        "peak": 4094,
+        "total": 6424,
+        "fitExcerpt": "H A L J B U P AE H TH I L I NG TH D TH OE M R X EA T IA R Y R X OE F T NG T L L EO L E A P B A S NG O G D B EO EA IA I A N IA C J H TH T T EA I A U EA I M A TH J E TH N IA OE H F R Y",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.646988275415677,
+        "heldStats": {
+          "ioc": 0.033231934271351245,
+          "repeat": 0.045064377682403435,
+          "maxFreq": 0.044967880085653104
+        },
+        "heldExcerpt": "EO E EA AE H S D G R J O N B P T E S I M I X H H H W S F T H B B T C TH N T C AE M O U U W W IA TH NG W AE EO R OE B NG L Y E S N T G C IA I W NG H X H M M A EA NG I M S M NG J",
+        "heldEnd": [
+          56,
+          27
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.035011915458842836,
+            "repeat": 0.057342657342657345,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            91,
+            4
+          ],
+          "fitTerminal": 3,
+          "peak": 4094,
+          "total": 6563,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            2
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03458217759893738,
+            "repeat": 0.05174825174825175,
+            "maxFreq": 0.046089385474860335
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            9
+          ],
+          "fitTerminal": 3,
+          "peak": 4094,
+          "total": 6738,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            15
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "verse",
+      "sign": -1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 143,
+        "peak": 3913,
+        "total": 6123
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03520334414189163,
+            "repeat": 0.06573426573426573,
+            "maxFreq": 0.05726256983240224
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            72,
+            14
+          ],
+          "fitTerminal": 4,
+          "peak": 3913,
+          "total": 7179,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 20,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            18
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03610579364769309,
+            "repeat": 0.05174825174825175,
+            "maxFreq": 0.06983240223463687
+          },
+          "fitLegal": 249,
+          "fitScore": -2.6354114236269726,
+          "origin": [
+            84,
+            0
+          ],
+          "fitState": [
+            183,
+            9
+          ],
+          "fitTerminal": 7,
+          "peak": 3913,
+          "total": 7556,
+          "fitExcerpt": "O F T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 39,
+          "fitExact": 247,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            13
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "absolute",
+      "sign": 1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -4.844274754630122,
+        "origin": [
+          120,
+          22
+        ],
+        "fitState": [
+          153,
+          24
+        ],
+        "fitTerminal": 3,
+        "peak": 4094,
+        "total": 18641,
+        "fitExcerpt": "N D M O W I A R G L R U NG I P G R IA S O H Y F F NG Y X M U E C D I U G H X OE I Y N E J TH M W T EO S G H AE A S NG M M E EO P R TH G L E E W OE H D X L T D H D J R G M",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.672141031693675,
+        "heldStats": {
+          "ioc": 0.03429800295925963,
+          "repeat": 0.03648068669527897,
+          "maxFreq": 0.055674518201284794
+        },
+        "heldExcerpt": "F P J Y E M B L W TH IA Y W P TH AE T IA EA OE EA P P O D AE EO E S EA U L Y T J H EO H AE IA A IA N Y Y X F EA X X F B IA F O B S S EO G R IA H EA B T R X G NG A U T OE EO OE J L U C",
+        "heldEnd": [
+          174,
+          12
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03419150681720514,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.04748603351955307
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            91,
+            24
+          ],
+          "fitTerminal": 5,
+          "peak": 4094,
+          "total": 19074,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            26
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03388287689963668,
+            "repeat": 0.032167832167832165,
+            "maxFreq": 0.04329608938547486
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            19
+          ],
+          "fitTerminal": 3,
+          "peak": 4094,
+          "total": 18746,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            23
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "absolute",
+      "sign": 1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -4.950947387752443,
+        "origin": [
+          54,
+          28
+        ],
+        "fitState": [
+          153,
+          17
+        ],
+        "fitTerminal": 7,
+        "peak": 3913,
+        "total": 19782,
+        "fitExcerpt": "O U R EA F NG I U A T EO R A P I TH A R NG D T R D I P O R G EA J IA O I AE G S W AE E Y NG N L I E F U M G EA B I R G W X X W G IA D J J O OE S N S O X C L L EA EO M P M F C",
+        "heldLegal": 19,
+        "heldPeak": 1
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.035277571590420755,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            72,
+            22
+          ],
+          "fitTerminal": 3,
+          "peak": 3913,
+          "total": 24889,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 22,
+          "fitExact": 249,
+          "heldScore": -2.5808324929095345,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            28
+          ],
+          "heldExact": 465
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.03448060319568699,
+            "repeat": 0.043356643356643354,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            19
+          ],
+          "fitTerminal": 6,
+          "peak": 3913,
+          "total": 18182,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 54,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            3
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "absolute",
+      "sign": -1,
+      "hold": false,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.060378453438024,
+        "origin": [
+          42,
+          18
+        ],
+        "fitState": [
+          55,
+          7
+        ],
+        "fitTerminal": 5,
+        "peak": 4094,
+        "total": 18980,
+        "fitExcerpt": "L O W A B T D D TH N R O N R NG IA TH D B O OE Y C TH L R M A D A P NG C H G TH EA I P G M P J S G G T Y W D U H U U L G NG I NG O I F E M P F P P O OE Y O C N E S J P E NG",
+        "heldLegal": 467,
+        "heldPeak": 1,
+        "heldScore": -5.495577816151734,
+        "heldStats": {
+          "ioc": 0.033884441830329654,
+          "repeat": 0.034334763948497854,
+          "maxFreq": 0.055674518201284794
+        },
+        "heldExcerpt": "TH R T J D OE I F X EO N X R R E T T I A J F R U S H D I NG EA Y Y I R H EA O B IA E NG EA W B T W A H O O R E TH N T I X AE IA L E R B TH AE U M U H OE N O D A P IA NG A D B B",
+        "heldEnd": [
+          32,
+          1
+        ]
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.034703285541274366,
+            "repeat": 0.026573426573426574,
+            "maxFreq": 0.04888268156424581
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            91,
+            24
+          ],
+          "fitTerminal": 4,
+          "peak": 4094,
+          "total": 18742,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            60,
+            26
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.034789233113255456,
+            "repeat": 0.03776223776223776,
+            "maxFreq": 0.05027932960893855
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            19
+          ],
+          "fitTerminal": 5,
+          "peak": 4094,
+          "total": 19696,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 1,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            15,
+            23
+          ],
+          "heldExact": 467
+        }
+      ]
+    },
+    {
+      "carrier": "2013-law-verses",
+      "mode": "absolute",
+      "sign": -1,
+      "hold": true,
+      "units": 220,
+      "original": {
+        "fitLegal": 249,
+        "fitScore": -5.048443485360969,
+        "origin": [
+          58,
+          2
+        ],
+        "fitState": [
+          63,
+          23
+        ],
+        "fitTerminal": 3,
+        "peak": 3913,
+        "total": 20325,
+        "fitExcerpt": "R E O L F I TH EO D T B T Y U S M B IA A W T S B U AE W O N M C D NG I A G L IA U EA R T T T U X EA U A F OE U A F R Y M H X M E TH S J D U E L Y A Y L IA O L C P X A E B",
+        "heldLegal": 94,
+        "heldPeak": 4
+      },
+      "controls": [
+        {
+          "donor": "Gibran",
+          "plantOrigin": [
+            17,
+            13
+          ],
+          "cipherStats": {
+            "ioc": 0.03543383990311365,
+            "repeat": 0.03636363636363636,
+            "maxFreq": 0.05446927374301676
+          },
+          "fitLegal": 249,
+          "fitScore": -2.603085661315186,
+          "origin": [
+            17,
+            13
+          ],
+          "fitState": [
+            72,
+            22
+          ],
+          "fitTerminal": 49,
+          "peak": 3913,
+          "total": 19268,
+          "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
+          "heldLegal": 467,
+          "heldPeak": 41,
+          "fitExact": 249,
+          "heldScore": -2.581380103837271,
+          "heldStats": {
+            "ioc": 0.062227164532997585,
+            "repeat": 0.02145922746781116,
+            "maxFreq": 0.1284796573875803
+          },
+          "heldExcerpt": "S O F TH E S EA S E P A R A T E U S N O W A N D TH E Y EA R S Y O U H A U E S P E N T I N O U R M I D S T B E C O M E A M E M O R Y Y O U H A U E W A L C E D A M O",
+          "heldEnd": [
+            192,
+            28
+          ],
+          "heldExact": 467
+        },
+        {
+          "donor": "Emerson",
+          "plantOrigin": [
+            83,
+            21
+          ],
+          "cipherStats": {
+            "ioc": 0.035996405828808066,
+            "repeat": 0.04055944055944056,
+            "maxFreq": 0.07681564245810056
+          },
+          "fitLegal": 249,
+          "fitScore": -2.638193354837015,
+          "origin": [
+            83,
+            21
+          ],
+          "fitState": [
+            183,
+            19
+          ],
+          "fitTerminal": 11,
+          "peak": 3913,
+          "total": 24497,
+          "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
+          "heldLegal": 467,
+          "heldPeak": 54,
+          "fitExact": 249,
+          "heldScore": -2.7299485558270136,
+          "heldStats": {
+            "ioc": 0.05906571945851063,
+            "repeat": 0.027896995708154508,
+            "maxFreq": 0.11134903640256959
+          },
+          "heldExcerpt": "E TH E R TH E S O L I D A NG U L A R I T Y O F F A C T S N O A N C H O R N O C A B L E N O F E N C E S A U A I L T O C E E P A F A C T A F A C T B A B Y L O N T R",
+          "heldEnd": [
+            13,
+            3
+          ],
+          "heldExact": 467
+        }
+      ]
+    }
+  ]
+}
