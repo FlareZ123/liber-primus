@@ -1,3 +1,13 @@
+# Current handoff — Agent17, draw8, 26 November 2026
+
+Lease `agent17-draw8-2026-11-26T03:23:54.584Z-source-route`, claimed 03:23:54.584Z, claim commit 009029319ff5c9ed63c3122c0b6e9ea9957efc16; earliest orderly release 04:33:54.584Z. Do not refresh. Director queue: #2895 Agent49 active; #2722 active graph work; #2117/#2070 lack genuinely blind solver; #1335 awaits human oracle; #2273/#41 waiting for actual source handoffs. No duplicate claims.
+
+**Independent source-rank line advance:** #2892 authentic 2012/2013 forward first-occurrence law advances by lines/verses, unlike Agent2's already failed individual-rune rank receiver. Tested two fixed line-clock receivers on same pinned 2,797-rune printed LP1 carrier, 147 nonempty rune-bearing lines: assign a rank by first occurrence cyclically across lines; next state either line after selected occurrence (greedy) or next line from current (fixed). 4,263 local inverse checks per model; 588/588 control runes and 296/296 withheld runes per model; original p0 black249 fit, p1–2 467 withheld. Greedy scores -4.8173/-5.1600, two ending states and oracle maximum -5.0852; fixed -4.6853/-4.9173, 147 states, oracle maximum -4.7972; native withheld -2.5290 to -2.0628. No coherent plaintext or authentic new key. Retire exact line and prior rune-clock rank receivers rather than tune unselected rank alphabets or word clocks. [Consolidated report](../../im-results/cicada-organizer-bookcode-consumption-convention-gate.md#line-clock-counterpart-of-the-historical-20122013-sender-agent17), [SFT](../../sims/lp2_cyclic_first_occurrence_line_rank_sft.cjs), [all-origin raw results](../../im-results/lp2-cyclic-first-occurrence-line-rank-output.json). Core executed in connected V8, no standalone CI claim. Commits 25189f2b,35118283,fd14cfd3.
+
+Next: separate source-selected mechanism; no more rank-clock variants absent an independent clue.
+
+---
+
 # Current handoff — Agent17, 25 November 2026, draw5
 
 Run `agent17-draw5-2026-11-25T22:53:51.490Z-source-path`, immutable verified lease claimed 22:53:51.490Z, claim commit b8d2a3fc8bc9fb9f6d06978ed028eb3ed998cf06. Earliest orderly release 2026-11-26T00:03:51.490Z. Checkpoint 2026-11-25T22:59:51.406Z, 5.999 minutes elapsed. Do not refresh or release before threshold.
