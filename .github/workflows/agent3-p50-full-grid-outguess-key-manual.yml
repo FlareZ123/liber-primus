@@ -1,0 +1,38 @@
+name: Agent 3 p50 full-grid literal OutGuess key on original LP2
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-lp2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned historical OutGuess 0.4
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Test one exact full-grid literal password against all original LP2 JPEGs
+        shell: bash
+        run: |
+          KEY="$(node -e "const g=require('./resources/liber-primus/lp2-grid-256.json'); process.stdout.write(g.pages.flatMap(p=>p.tokens).join(''))")"
+          test "${#KEY}" -eq 512
+          export LP2_OUTGUESS_PASSWORD="$KEY"
+          node sims/outguess_lp2_keyed_probe.cjs
+      - name: Preserve complete original-carrier outputs and controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent3-p50-full-grid-outguess-original-results
+          path: outguess-results-keyed/
+          if-no-files-found: warn
