@@ -7,8 +7,6 @@ function experiment(gp,ink,gold,lp1){
  function model(exclude){const u=new Float64Array(A).fill(.1),b=new Float64Array(A*A).fill(.1),t=new Float64Array(A*A*A).fill(.1);for(const {name,p} of sections)if(name!==exclude){for(let i=0;i<p.length;i++){u[p[i]]++;if(i>0)b[p[i-1]*A+p[i]]++;if(i>1)t[(p[i-2]*A+p[i-1])*A+p[i]]++}}
   function norm(a){for(let i=0;i<a.length;i+=A){let n=0;for(let j=0;j<A;j++)n+=a[i+j];for(let j=0;j<A;j++)a[i+j]=Math.log(a[i+j]/n)}}norm(u);norm(b);norm(t);return {u,b,t}}
  function score(p,M){let s=0;for(let i=0;i<p.length;i++)s+=i===0?M.u[p[i]]:i===1?M.b[p[i-1]*A+p[i]]:M.t[(p[i-2]*A+p[i-1])*A+p[i]];return s}
- function encrypt(p,k){let phase=0,prev=0;return p.map(x=>{prev=x===0?0:mod(prev+x+k[phase++%k.length]-0);return prev})}
- // mod must support values >=58 in the forward receiver.
  function enc(p,k){let phase=0,prev=0;return p.map(x=>{prev=x===0?0:(prev+x+k[phase++%k.length])%A;return prev})}
  function frame(c,q,mask,prev=0,start=0){const domains=Array.from({length:q},()=>Array(A).fill(true)),v=[],d=[];let phase=start,z=0;
   for(const x of c){const delta=mod(x-prev);prev=x;const held=x===0&&((mask>>z)&1);if(x===0)z++;if(held){v.push(-1);d.push(0)}else{v.push(phase);d.push(delta);domains[phase][delta]=false;phase=(phase+1)%q}}
