@@ -1,0 +1,4923 @@
+{
+  "inputs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "solved": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "n": 3008,
+  "controls": [
+    {
+      "name": "authentic p56",
+      "n": 85,
+      "a": 0,
+      "b": 0,
+      "firstDead": null,
+      "endStates": 5
+    },
+    {
+      "name": "0_warning",
+      "n": 184,
+      "a": 7,
+      "b": 11,
+      "firstDead": null,
+      "endStates": 3
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "a": 13,
+      "b": 5,
+      "firstDead": null,
+      "endStates": 3
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "a": 19,
+      "b": 8,
+      "firstDead": null,
+      "endStates": 3
+    }
+  ],
+  "keys": 812,
+  "survivors": 0,
+  "latestDeath": {
+    "a": 11,
+    "b": 1,
+    "firstDead": 490,
+    "endStates": 0
+  },
+  "rows": [
+    {
+      "a": 0,
+      "b": 1,
+      "firstDead": 36,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 2,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 3,
+      "firstDead": 69,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 4,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 5,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 6,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 7,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 8,
+      "firstDead": 144,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 9,
+      "firstDead": 25,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 10,
+      "firstDead": 52,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 11,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 12,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 13,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 14,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 15,
+      "firstDead": 113,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 16,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 17,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 18,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 19,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 20,
+      "firstDead": 36,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 21,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 22,
+      "firstDead": 139,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 23,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 24,
+      "firstDead": 60,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 25,
+      "firstDead": 67,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 26,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 27,
+      "firstDead": 94,
+      "endStates": 0
+    },
+    {
+      "a": 0,
+      "b": 28,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 1,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 3,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 4,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 5,
+      "firstDead": 119,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 6,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 7,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 8,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 9,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 10,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 11,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 12,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 13,
+      "firstDead": 107,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 14,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 15,
+      "firstDead": 31,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 16,
+      "firstDead": 118,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 17,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 18,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 19,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 20,
+      "firstDead": 148,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 21,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 22,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 23,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 24,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 25,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 26,
+      "firstDead": 108,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 27,
+      "firstDead": 48,
+      "endStates": 0
+    },
+    {
+      "a": 1,
+      "b": 28,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 1,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 2,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 3,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 4,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 5,
+      "firstDead": 26,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 6,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 7,
+      "firstDead": 90,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 8,
+      "firstDead": 28,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 9,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 10,
+      "firstDead": 449,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 11,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 12,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 13,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 14,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 15,
+      "firstDead": 145,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 16,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 17,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 18,
+      "firstDead": 116,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 19,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 20,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 21,
+      "firstDead": 298,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 22,
+      "firstDead": 42,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 23,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 24,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 25,
+      "firstDead": 60,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 26,
+      "firstDead": 110,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 27,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 2,
+      "b": 28,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 1,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 2,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 3,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 4,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 5,
+      "firstDead": 123,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 6,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 7,
+      "firstDead": 31,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 8,
+      "firstDead": 68,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 9,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 10,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 11,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 12,
+      "firstDead": 387,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 13,
+      "firstDead": 57,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 14,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 15,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 16,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 17,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 18,
+      "firstDead": 116,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 19,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 20,
+      "firstDead": 99,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 21,
+      "firstDead": 94,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 22,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 23,
+      "firstDead": 131,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 24,
+      "firstDead": 146,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 25,
+      "firstDead": 52,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 26,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 27,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 3,
+      "b": 28,
+      "firstDead": 115,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 1,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 2,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 3,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 4,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 5,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 6,
+      "firstDead": 102,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 7,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 8,
+      "firstDead": 160,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 9,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 10,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 11,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 12,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 13,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 14,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 15,
+      "firstDead": 29,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 16,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 17,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 18,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 19,
+      "firstDead": 111,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 20,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 21,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 22,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 23,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 24,
+      "firstDead": 160,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 25,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 26,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 27,
+      "firstDead": 459,
+      "endStates": 0
+    },
+    {
+      "a": 4,
+      "b": 28,
+      "firstDead": 113,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 1,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 2,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 3,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 4,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 5,
+      "firstDead": 130,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 6,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 7,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 8,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 9,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 10,
+      "firstDead": 76,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 11,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 12,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 13,
+      "firstDead": 67,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 14,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 15,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 16,
+      "firstDead": 36,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 17,
+      "firstDead": 42,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 18,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 19,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 20,
+      "firstDead": 129,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 21,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 22,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 23,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 24,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 25,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 26,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 27,
+      "firstDead": 95,
+      "endStates": 0
+    },
+    {
+      "a": 5,
+      "b": 28,
+      "firstDead": 110,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 1,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 2,
+      "firstDead": 69,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 3,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 4,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 5,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 6,
+      "firstDead": 55,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 7,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 8,
+      "firstDead": 54,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 9,
+      "firstDead": 95,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 10,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 11,
+      "firstDead": 55,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 12,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 13,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 14,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 15,
+      "firstDead": 42,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 16,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 17,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 18,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 19,
+      "firstDead": 136,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 20,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 21,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 22,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 23,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 24,
+      "firstDead": 100,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 25,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 26,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 27,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 6,
+      "b": 28,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 1,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 2,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 3,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 4,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 5,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 6,
+      "firstDead": 134,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 7,
+      "firstDead": 4,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 8,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 9,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 10,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 11,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 12,
+      "firstDead": 67,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 13,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 14,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 15,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 16,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 17,
+      "firstDead": 144,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 18,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 19,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 20,
+      "firstDead": 123,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 21,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 22,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 23,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 24,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 25,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 26,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 27,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 7,
+      "b": 28,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 1,
+      "firstDead": 89,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 2,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 3,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 4,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 5,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 6,
+      "firstDead": 132,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 7,
+      "firstDead": 237,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 8,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 9,
+      "firstDead": 33,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 10,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 11,
+      "firstDead": 100,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 12,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 13,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 14,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 15,
+      "firstDead": 119,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 16,
+      "firstDead": 91,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 17,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 18,
+      "firstDead": 100,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 19,
+      "firstDead": 106,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 20,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 21,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 22,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 23,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 24,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 25,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 26,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 27,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 8,
+      "b": 28,
+      "firstDead": 82,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 1,
+      "firstDead": 103,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 2,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 3,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 4,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 5,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 6,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 7,
+      "firstDead": 113,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 8,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 9,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 10,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 11,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 12,
+      "firstDead": 89,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 13,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 14,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 15,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 16,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 17,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 18,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 19,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 20,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 21,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 22,
+      "firstDead": 99,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 23,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 24,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 25,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 26,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 27,
+      "firstDead": 94,
+      "endStates": 0
+    },
+    {
+      "a": 9,
+      "b": 28,
+      "firstDead": 99,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 1,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 2,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 3,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 4,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 5,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 6,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 7,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 8,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 9,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 10,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 11,
+      "firstDead": 111,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 12,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 13,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 14,
+      "firstDead": 132,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 15,
+      "firstDead": 161,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 16,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 17,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 18,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 19,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 20,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 21,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 22,
+      "firstDead": 138,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 23,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 24,
+      "firstDead": 50,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 25,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 26,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 27,
+      "firstDead": 38,
+      "endStates": 0
+    },
+    {
+      "a": 10,
+      "b": 28,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 1,
+      "firstDead": 490,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 2,
+      "firstDead": 116,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 3,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 4,
+      "firstDead": 27,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 5,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 6,
+      "firstDead": 133,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 7,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 8,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 9,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 10,
+      "firstDead": 90,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 11,
+      "firstDead": 108,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 12,
+      "firstDead": 99,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 13,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 14,
+      "firstDead": 57,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 15,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 16,
+      "firstDead": 116,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 17,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 18,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 19,
+      "firstDead": 43,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 20,
+      "firstDead": 302,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 21,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 22,
+      "firstDead": 89,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 23,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 24,
+      "firstDead": 103,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 25,
+      "firstDead": 68,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 26,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 27,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 11,
+      "b": 28,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 1,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 2,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 3,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 4,
+      "firstDead": 136,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 5,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 6,
+      "firstDead": 114,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 7,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 8,
+      "firstDead": 91,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 9,
+      "firstDead": 31,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 10,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 11,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 12,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 13,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 14,
+      "firstDead": 127,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 15,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 16,
+      "firstDead": 48,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 17,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 18,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 19,
+      "firstDead": 107,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 20,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 21,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 22,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 23,
+      "firstDead": 54,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 24,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 25,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 26,
+      "firstDead": 76,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 27,
+      "firstDead": 129,
+      "endStates": 0
+    },
+    {
+      "a": 12,
+      "b": 28,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 1,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 2,
+      "firstDead": 119,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 3,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 4,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 5,
+      "firstDead": 29,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 6,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 7,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 8,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 9,
+      "firstDead": 27,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 10,
+      "firstDead": 47,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 11,
+      "firstDead": 26,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 12,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 13,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 14,
+      "firstDead": 111,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 15,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 16,
+      "firstDead": 149,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 17,
+      "firstDead": 55,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 18,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 19,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 20,
+      "firstDead": 68,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 21,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 22,
+      "firstDead": 154,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 23,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 24,
+      "firstDead": 157,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 25,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 26,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 27,
+      "firstDead": 133,
+      "endStates": 0
+    },
+    {
+      "a": 13,
+      "b": 28,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 1,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 2,
+      "firstDead": 159,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 3,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 4,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 5,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 6,
+      "firstDead": 57,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 7,
+      "firstDead": 176,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 8,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 9,
+      "firstDead": 50,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 10,
+      "firstDead": 154,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 11,
+      "firstDead": 82,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 12,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 13,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 14,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 15,
+      "firstDead": 125,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 16,
+      "firstDead": 60,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 17,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 18,
+      "firstDead": 105,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 19,
+      "firstDead": 114,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 20,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 21,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 22,
+      "firstDead": 124,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 23,
+      "firstDead": 42,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 24,
+      "firstDead": 131,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 25,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 26,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 27,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 14,
+      "b": 28,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 1,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 2,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 3,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 4,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 5,
+      "firstDead": 42,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 6,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 7,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 8,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 9,
+      "firstDead": 110,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 10,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 11,
+      "firstDead": 115,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 12,
+      "firstDead": 118,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 13,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 14,
+      "firstDead": 106,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 15,
+      "firstDead": 151,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 16,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 17,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 18,
+      "firstDead": 36,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 19,
+      "firstDead": 56,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 20,
+      "firstDead": 121,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 21,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 22,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 23,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 24,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 25,
+      "firstDead": 142,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 26,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 27,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 15,
+      "b": 28,
+      "firstDead": 91,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 1,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 2,
+      "firstDead": 53,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 3,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 4,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 5,
+      "firstDead": 27,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 6,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 7,
+      "firstDead": 34,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 8,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 9,
+      "firstDead": 118,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 10,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 11,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 12,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 13,
+      "firstDead": 99,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 14,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 15,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 16,
+      "firstDead": 100,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 17,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 18,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 19,
+      "firstDead": 113,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 20,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 21,
+      "firstDead": 82,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 22,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 23,
+      "firstDead": 105,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 24,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 25,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 26,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 27,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 16,
+      "b": 28,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 1,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 2,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 3,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 4,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 5,
+      "firstDead": 38,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 6,
+      "firstDead": 60,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 7,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 8,
+      "firstDead": 140,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 9,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 10,
+      "firstDead": 304,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 11,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 12,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 13,
+      "firstDead": 274,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 14,
+      "firstDead": 365,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 15,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 16,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 17,
+      "firstDead": 60,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 18,
+      "firstDead": 132,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 19,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 20,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 21,
+      "firstDead": 105,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 22,
+      "firstDead": 110,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 23,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 24,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 25,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 26,
+      "firstDead": 68,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 27,
+      "firstDead": 91,
+      "endStates": 0
+    },
+    {
+      "a": 17,
+      "b": 28,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 1,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 2,
+      "firstDead": 89,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 3,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 4,
+      "firstDead": 55,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 5,
+      "firstDead": 6,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 6,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 7,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 8,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 9,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 10,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 11,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 12,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 13,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 14,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 15,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 16,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 17,
+      "firstDead": 100,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 18,
+      "firstDead": 142,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 19,
+      "firstDead": 3,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 20,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 21,
+      "firstDead": 8,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 22,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 23,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 24,
+      "firstDead": 4,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 25,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 26,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 27,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 18,
+      "b": 28,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 1,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 2,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 3,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 4,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 5,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 6,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 7,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 8,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 9,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 10,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 11,
+      "firstDead": 106,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 12,
+      "firstDead": 74,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 13,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 14,
+      "firstDead": 356,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 15,
+      "firstDead": 153,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 16,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 17,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 18,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 19,
+      "firstDead": 135,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 20,
+      "firstDead": 103,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 21,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 22,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 23,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 24,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 25,
+      "firstDead": 32,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 26,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 27,
+      "firstDead": 95,
+      "endStates": 0
+    },
+    {
+      "a": 19,
+      "b": 28,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 1,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 2,
+      "firstDead": 34,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 3,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 4,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 5,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 6,
+      "firstDead": 147,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 7,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 8,
+      "firstDead": 108,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 9,
+      "firstDead": 137,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 10,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 11,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 12,
+      "firstDead": 154,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 13,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 14,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 15,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 16,
+      "firstDead": 107,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 17,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 18,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 19,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 20,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 21,
+      "firstDead": 95,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 22,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 23,
+      "firstDead": 161,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 24,
+      "firstDead": 103,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 25,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 26,
+      "firstDead": 31,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 27,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 20,
+      "b": 28,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 1,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 2,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 3,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 4,
+      "firstDead": 82,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 5,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 6,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 7,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 8,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 9,
+      "firstDead": 36,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 10,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 11,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 12,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 13,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 14,
+      "firstDead": 4,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 15,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 16,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 17,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 18,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 19,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 20,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 21,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 22,
+      "firstDead": 66,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 23,
+      "firstDead": 277,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 24,
+      "firstDead": 69,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 25,
+      "firstDead": 104,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 26,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 27,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 21,
+      "b": 28,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 1,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 2,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 3,
+      "firstDead": 51,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 4,
+      "firstDead": 107,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 5,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 6,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 7,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 8,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 9,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 10,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 11,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 12,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 13,
+      "firstDead": 38,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 14,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 15,
+      "firstDead": 68,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 16,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 17,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 18,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 19,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 20,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 21,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 22,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 23,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 24,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 25,
+      "firstDead": 69,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 26,
+      "firstDead": 76,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 27,
+      "firstDead": 97,
+      "endStates": 0
+    },
+    {
+      "a": 22,
+      "b": 28,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 1,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 2,
+      "firstDead": 47,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 3,
+      "firstDead": 64,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 4,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 5,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 6,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 7,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 8,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 9,
+      "firstDead": 90,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 10,
+      "firstDead": 51,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 11,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 12,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 13,
+      "firstDead": 37,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 14,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 15,
+      "firstDead": 63,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 16,
+      "firstDead": 53,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 17,
+      "firstDead": 95,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 18,
+      "firstDead": 50,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 19,
+      "firstDead": 61,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 20,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 21,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 22,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 23,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 24,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 25,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 26,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 27,
+      "firstDead": 33,
+      "endStates": 0
+    },
+    {
+      "a": 23,
+      "b": 28,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 1,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 2,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 3,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 4,
+      "firstDead": 88,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 5,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 6,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 7,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 8,
+      "firstDead": 137,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 9,
+      "firstDead": 35,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 10,
+      "firstDead": 76,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 11,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 12,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 13,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 14,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 15,
+      "firstDead": 102,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 16,
+      "firstDead": 4,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 17,
+      "firstDead": 134,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 18,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 19,
+      "firstDead": 31,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 20,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 21,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 22,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 23,
+      "firstDead": 49,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 24,
+      "firstDead": 9,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 25,
+      "firstDead": 13,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 26,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 27,
+      "firstDead": 67,
+      "endStates": 0
+    },
+    {
+      "a": 24,
+      "b": 28,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 1,
+      "firstDead": 30,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 2,
+      "firstDead": 72,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 3,
+      "firstDead": 26,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 4,
+      "firstDead": 39,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 5,
+      "firstDead": 49,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 6,
+      "firstDead": 157,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 7,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 8,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 9,
+      "firstDead": 26,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 10,
+      "firstDead": 75,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 11,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 12,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 13,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 14,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 15,
+      "firstDead": 38,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 16,
+      "firstDead": 33,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 17,
+      "firstDead": 153,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 18,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 19,
+      "firstDead": 58,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 20,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 21,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 22,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 23,
+      "firstDead": 117,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 24,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 25,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 26,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 27,
+      "firstDead": 5,
+      "endStates": 0
+    },
+    {
+      "a": 25,
+      "b": 28,
+      "firstDead": 107,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 1,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 2,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 3,
+      "firstDead": 28,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 4,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 5,
+      "firstDead": 82,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 6,
+      "firstDead": 127,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 7,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 8,
+      "firstDead": 54,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 9,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 10,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 11,
+      "firstDead": 122,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 12,
+      "firstDead": 427,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 13,
+      "firstDead": 7,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 14,
+      "firstDead": 116,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 15,
+      "firstDead": 18,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 16,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 17,
+      "firstDead": 48,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 18,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 19,
+      "firstDead": 71,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 20,
+      "firstDead": 96,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 21,
+      "firstDead": 94,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 22,
+      "firstDead": 53,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 23,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 24,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 25,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 26,
+      "firstDead": 182,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 27,
+      "firstDead": 11,
+      "endStates": 0
+    },
+    {
+      "a": 26,
+      "b": 28,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 1,
+      "firstDead": 23,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 2,
+      "firstDead": 115,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 3,
+      "firstDead": 38,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 4,
+      "firstDead": 162,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 5,
+      "firstDead": 16,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 6,
+      "firstDead": 76,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 7,
+      "firstDead": 87,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 8,
+      "firstDead": 152,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 9,
+      "firstDead": 83,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 10,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 11,
+      "firstDead": 93,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 12,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 13,
+      "firstDead": 119,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 14,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 15,
+      "firstDead": 10,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 16,
+      "firstDead": 79,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 17,
+      "firstDead": 57,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 18,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 19,
+      "firstDead": 78,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 20,
+      "firstDead": 41,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 21,
+      "firstDead": 90,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 22,
+      "firstDead": 48,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 23,
+      "firstDead": 77,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 24,
+      "firstDead": 22,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 25,
+      "firstDead": 80,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 26,
+      "firstDead": 84,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 27,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 27,
+      "b": 28,
+      "firstDead": 21,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 1,
+      "firstDead": 102,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 2,
+      "firstDead": 92,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 3,
+      "firstDead": 20,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 4,
+      "firstDead": 12,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 5,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 6,
+      "firstDead": 40,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 7,
+      "firstDead": 14,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 8,
+      "firstDead": 19,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 9,
+      "firstDead": 65,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 10,
+      "firstDead": 73,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 11,
+      "firstDead": 62,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 12,
+      "firstDead": 59,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 13,
+      "firstDead": 127,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 14,
+      "firstDead": 105,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 15,
+      "firstDead": 86,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 16,
+      "firstDead": 70,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 17,
+      "firstDead": 112,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 18,
+      "firstDead": 98,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 19,
+      "firstDead": 81,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 20,
+      "firstDead": 15,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 21,
+      "firstDead": 17,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 22,
+      "firstDead": 101,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 23,
+      "firstDead": 120,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 24,
+      "firstDead": 124,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 25,
+      "firstDead": 94,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 26,
+      "firstDead": 85,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 27,
+      "firstDead": 109,
+      "endStates": 0
+    },
+    {
+      "a": 28,
+      "b": 28,
+      "firstDead": 92,
+      "endStates": 0
+    }
+  ]
+}
