@@ -1,0 +1,265 @@
+{
+  "model": "K[t+2]=a*K[t+1]+b*K[t]+f*R[t]+d mod28; R=nonrepeat cyclic rank or log15, repeated consume R=0; equal cipher pair denotes fixed escape e; hold/consume; first rune clear IV",
+  "n": 1744,
+  "cut": 800,
+  "original": {
+    "fit": [
+      21,
+      119,
+      244,
+      380,
+      386,
+      414,
+      455,
+      471,
+      596,
+      712
+    ],
+    "held": [
+      871,
+      937,
+      989,
+      1032,
+      1491,
+      1557,
+      1574
+    ],
+    "candidates": 0,
+    "allHeldSingletons": 0,
+    "truthRetained": false,
+    "rowsSummary": [
+      {
+        "hold": false,
+        "read": false,
+        "mod7": 0,
+        "mod4ForSurvivingEscapes": 0,
+        "crtJoins": 0,
+        "fitCandidates": 0
+      },
+      {
+        "hold": false,
+        "read": true,
+        "mod7": 20,
+        "mod4ForSurvivingEscapes": 13,
+        "crtJoins": 13,
+        "fitCandidates": 0
+      },
+      {
+        "hold": true,
+        "read": false,
+        "mod7": 0,
+        "mod4ForSurvivingEscapes": 0,
+        "crtJoins": 0,
+        "fitCandidates": 0
+      },
+      {
+        "hold": true,
+        "read": true,
+        "mod7": 0,
+        "mod4ForSurvivingEscapes": 0,
+        "crtJoins": 0,
+        "fitCandidates": 0
+      }
+    ]
+  },
+  "controls": [
+    {
+      "donor": 3,
+      "offset": 1400,
+      "truth": {
+        "k": [
+          11,
+          9,
+          7,
+          23,
+          15,
+          17
+        ],
+        "e": 21,
+        "hold": true,
+        "read": false
+      },
+      "fit": [
+        300,
+        347,
+        383,
+        404,
+        435,
+        570,
+        652,
+        679,
+        702,
+        710
+      ],
+      "held": [
+        818,
+        870,
+        951,
+        966,
+        999,
+        1000,
+        1391,
+        1454,
+        1509,
+        1527,
+        1685,
+        1695,
+        1711
+      ],
+      "candidates": 13,
+      "allHeldSingletons": 13,
+      "truthRetained": true,
+      "rowsSummary": [
+        {
+          "hold": false,
+          "read": false,
+          "mod7": 20,
+          "mod4ForSurvivingEscapes": 65,
+          "crtJoins": 65,
+          "fitCandidates": 0
+        },
+        {
+          "hold": false,
+          "read": true,
+          "mod7": 0,
+          "mod4ForSurvivingEscapes": 0,
+          "crtJoins": 0,
+          "fitCandidates": 0
+        },
+        {
+          "hold": true,
+          "read": false,
+          "mod7": 20,
+          "mod4ForSurvivingEscapes": 13,
+          "crtJoins": 13,
+          "fitCandidates": 13
+        },
+        {
+          "hold": true,
+          "read": true,
+          "mod7": 0,
+          "mod4ForSurvivingEscapes": 0,
+          "crtJoins": 0,
+          "fitCandidates": 0
+        }
+      ],
+      "best": {
+        "k": [
+          11,
+          9,
+          7,
+          23,
+          15,
+          17
+        ],
+        "e": 21,
+        "hold": true,
+        "read": false,
+        "train": -2.308158202652679,
+        "held": -2.3344309161954047,
+        "heldSingletonHits": 13,
+        "excerpt": "UNGERANDWITHTHIRSTYETICANNOTTARRYLONGERTHESEATHATCALLSALLTHNGSUNTOHERCALLSMEANDIMUSTEMBARCFORTOSTAYTHOUGHTHEHOURSBURNINTHENIGHTISTOF",
+        "keyExact": true,
+        "heldRuneHits": 944
+      }
+    },
+    {
+      "donor": 4,
+      "offset": 12400,
+      "truth": {
+        "k": [
+          17,
+          5,
+          22,
+          3,
+          19,
+          7
+        ],
+        "e": 28,
+        "hold": false,
+        "read": true
+      },
+      "fit": [
+        16,
+        118,
+        181,
+        467,
+        500,
+        666,
+        698,
+        725,
+        736,
+        789
+      ],
+      "held": [
+        909,
+        915,
+        920,
+        942,
+        1040,
+        1135,
+        1170,
+        1248,
+        1345,
+        1436,
+        1729
+      ],
+      "candidates": 2394,
+      "allHeldSingletons": 959,
+      "truthRetained": true,
+      "rowsSummary": [
+        {
+          "hold": false,
+          "read": false,
+          "mod7": 0,
+          "mod4ForSurvivingEscapes": 0,
+          "crtJoins": 0,
+          "fitCandidates": 0
+        },
+        {
+          "hold": false,
+          "read": true,
+          "mod7": 69,
+          "mod4ForSurvivingEscapes": 2394,
+          "crtJoins": 3214,
+          "fitCandidates": 2394
+        },
+        {
+          "hold": true,
+          "read": false,
+          "mod7": 20,
+          "mod4ForSurvivingEscapes": 65,
+          "crtJoins": 65,
+          "fitCandidates": 0
+        },
+        {
+          "hold": true,
+          "read": true,
+          "mod7": 0,
+          "mod4ForSurvivingEscapes": 0,
+          "crtJoins": 0,
+          "fitCandidates": 0
+        }
+      ],
+      "best": {
+        "k": [
+          17,
+          5,
+          22,
+          3,
+          19,
+          7
+        ],
+        "e": 28,
+        "hold": false,
+        "read": true,
+        "train": -2.4255838402847343,
+        "held": -2.4293644103522065,
+        "heldSingletonHits": 11,
+        "excerpt": "IANSANDPLAYSTHEPAINTERENTERSINTOHISNATUREANDCANTHENDRAWHIMATWILLINEUERYATTITUDESOROOSENTEREDINTOTHEINMOSTNATUREOFASHEEPICNEW",
+        "keyExact": true,
+        "heldRuneHits": 944
+      }
+    }
+  ]
+}
