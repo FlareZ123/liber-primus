@@ -1,5 +1,5 @@
 'use strict';
-function experiment(raw,mode="original"){
+function experiment(raw,mode="original",ceiling=null){
  const c=JSON.parse(raw[0]),g=JSON.parse(raw[1]),tokens=g.pages.flatMap(p=>p.tokens),names=[...new Set(tokens)],ids=tokens.map(t=>names.indexOf(t)),C=c.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices);
  const N=C.length,T=names.length,Q=ids.length,L=T*29;
  if(N!==3008||Q!==256||T!==161||C.filter(x=>!x).length!==125)throw Error("source dimensions");
@@ -118,17 +118,17 @@ function experiment(raw,mode="original"){
   // histogram phase a mod256. Update all phase views in O(Q) per step.
   const refs=ds.map(([name,d])=>{
    const counts=Array.from({length:Q},()=>new Int16Array(L)),scores=new Int32Array(Q),min=Array(126).fill(null),max=Array(126).fill(null),byH=Array(126).fill(0),minStart=Array(126).fill(null);
-   let a=0,b=0,H=0,above125=0,allMin=Infinity,allMax=-Infinity,checked=0;
+   let a=0,b=0,H=0,above125=0,allMin=Infinity,allMax=-Infinity,checked=0,excluded=0;const excludedByH=Array(126).fill(0);
    function update(idx,v,sign){for(let ph=0;ph<Q;ph++){let cell=ids[(idx-ph+Q)%Q]*29+v,h=counts[ph],n=h[cell];scores[ph]+=sign===1?n:1-n;h[cell]+=sign}}
    for(let j=0;j<N;j++){let v=d[j];if(v===0)H++;else update(b++,v,1)}
    const end=d.length-N,check=new Set(Array.from({length:32},(_,i)=>Math.round(i*end/31)));
    for(let s=0;s<=end;s++){
     const M=scores[a%Q];if(check.has(s)){const p=d.slice(s,s+N),want=col(p,p.map(v=>!v));if(M!==want||p.filter(v=>!v).length!==H)throw Error("sliding mismatch");checked++}
     allMin=Math.min(allMin,M);allMax=Math.max(allMax,M);
-    if(H>125)above125++;else{byH[H]++;if(min[H]===null||M<min[H]){min[H]=M;minStart[H]=s}max[H]=max[H]===null?M:Math.max(max[H],M)}
+    if(H>125)above125++;else{if(ceiling&&M>ceiling[H]){excluded++;excludedByH[H]++}byH[H]++;if(min[H]===null||M<min[H]){min[H]=M;minStart[H]=s}max[H]=max[H]===null?M:Math.max(max[H],M)}
     if(s===end)break;let v=d[s],w=d[s+N];if(v===0)H--;else update(a++,v,-1);if(w===0)H++;else update(b++,w,1);
    }
-   return {name,windows:end+1,allMin,allMax,above125,byH,min,max,minStart,checked};
+   return {name,windows:end+1,allMin,allMax,above125,byH,min,max,minStart,checked,excluded:ceiling?excluded+above125:null,excludedByH:ceiling?excludedByH:null};
   });return {n:N,clock:"phase-zero literal-token F-transparent",refs};
  }
  if(mode==="original"){
@@ -148,4 +148,4 @@ function experiment(raw,mode="original"){
 }
 const files=["resources/liber-primus/lp2-corpus.json","resources/liber-primus/lp2-grid-256.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
 module.exports={experiment,files};
-if(require.main===module){const fs=require('node:fs'),path=require('node:path');console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv[2]||'original'),null,2));}
+if(require.main===module){const fs=require('node:fs'),path=require('node:path');console.log(JSON.stringify(experiment(files.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),process.argv[2]||'original',process.argv[3]?JSON.parse(fs.readFileSync(process.argv[3],'utf8')).B:null),null,2));}
