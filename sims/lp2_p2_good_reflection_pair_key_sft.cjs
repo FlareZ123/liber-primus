@@ -190,6 +190,22 @@ assert.deepEqual(p2PageLocalWord10, {
   end: 39,
   values: [1, 2, 8, 26],
 });
+const offset36PageCandidates = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const matches = pageLocalWords(page).filter((word) => word.start === selectedOffset);
+  if (matches.length) {
+    offset36PageCandidates.push({
+      page,
+      groups: matches.map((word) => ({ordinal:word.ordinal,length:word.values.length,values:word.values}))
+    });
+  }
+}
+assert.equal(offset36PageCandidates.length, 13);
+const offset36FourRunePages = offset36PageCandidates
+  .filter((entry) => entry.groups.some((group) => group.length === V))
+  .map((entry) => entry.page);
+assert.deepEqual(offset36FourRunePages, [2,8,48]);
 const p2CompletePage = pages.find((page) => page.page === 2);
 const p2CompleteWord = p2CompletePage.words.find((word) => word.start === 36);
 assert.deepEqual(p2CompleteWord, {
@@ -420,6 +436,8 @@ const result = {
     pageLocalGroupOrdinal: 10,
     runeOffset: selectedOffset,
     runeLength: V,
+    pagesWithGroupAtOffset36: offset36PageCandidates.map((entry) => entry.page),
+    pagesWithFourRuneGroupAtOffset36: offset36FourRunePages,
     pageLocalGroup: p2PageLocalWord10,
     wholeManuscriptCompleteWord: p2CompleteWord,
     parserNote: "The p2 first two-rune fragment continues across the p1/p2 page boundary under the continuous-text parser; page-local numbering resets at p2."

@@ -31,7 +31,7 @@ Using the two endpoint counts:
 23 - 13 = 10  -> page-local printed group10
 ```
 
-The reconstructed DH shared value **K=2** selects p2, and the direction-ray vertical magnitude **V=4** selects a four-rune receiver. Under a parser that resets group numbering at each physical page, p2's tenth printed group is exactly the packet at offsets36..39:
+The reconstructed DH shared value **K=2** selects p2, and the direction-ray vertical magnitude **V=4** selects a four-rune receiver. A page-local census finds a group beginning at offset36 on 13 pages; only p2, p8, and p48 have a four-rune group there. Thus K=2 selects p2 uniquely among the three length-compatible pages. Under a parser that resets group numbering at each physical page, p2's tenth printed group is exactly the packet at offsets36..39:
 
 ```text
 page-local group10
@@ -39,7 +39,7 @@ offsets36..39
 [1,2,8,26] = U TH H Y
 ```
 
-This is a source-motivated receiver selection made without using the plaintext GOOD. It depends on treating the physical page boundary as a reset for the page-local ordinal.
+This is a source-motivated receiver selection made without using the plaintext GOOD. Offset36 alone is not unique; the combined page K=2 and length V=4 gates isolate p2 among the three four-rune candidates. The group ordinal depends on treating the physical page boundary as a reset for page-local numbering.
 
 ### Page-boundary convention
 
