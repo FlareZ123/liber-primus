@@ -679,3 +679,9 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 - A coherent but unverified interpretation is a 56-row page-key schedule: red row for p0 and 55 payload rows for p1–p55. The 13-dot marker fits a 13-symbol width. This interpretation depends on the cross-family TH reading; the directly relevant Futhorc order instead gives E and matches the third rune in each red title word.
 - Falsification gates: representative page-specific row-key Vigenère (index and prime-valued shifts, signs/holds/key direction), page-specific keyed alphabets, and row-/column-major 715-symbol OTP fail to produce language. A separate title-keyed 13-column transposition + p56 prime clock also failed. Do not enumerate arbitrary grid routes; seek an independent source-selected operation before revisiting.
 - Reproducer: `sims/lp2_p0_13x55_matrix_gate.cjs`.
+
+
+## 2026-11-26 — synthesis reconciliation
+
+- Updated `im-results/lp2-opening-stave-second-marker-gate.md` and `workplace/integrated-original-inversion-challenge.md` to present the Futhorc E/E and reversed-Younger TH/sentinel interpretations separately, and to compare the conditional 13+1+55×13 partition with the existing p0 27×27 reshape.
+- The 55×13 matrix remains intermediate: simple per-page Vigenère, prime shifts, keyed alphabets, OTP and title-keyed transposition did not yield language. Do not promote the arithmetic partition to a key schedule.

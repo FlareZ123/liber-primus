@@ -35,8 +35,20 @@ A page-by-page visual pass over the 58 original LP2 scans found no other discret
 
 The reproduction script [`lp2_second_twig_marker_gate.py`](../sims/lp2_second_twig_marker_gate.py) uses the existing p0 peak detector, the original JPEGs, the canonical corpus and ink annotations to reproduce the p22 threshold/orientation counts, repeated tree/vine crops, and p22/p23 text-boundary checks.
 
+
+## 26 November p0 E/TH and 13+1+55×13 update
+
+The p0 3|3 motif now has two competing source interpretations that must remain separate:
+
+- In the Anglo-Saxon Isruna/Hahal-runa Futhorc order matching the first 24 GP29 runes, 3|3 = **E**. The 13-rune red heading is `SHEOGMIAF` + `SYENGC`, and the third rune of each word is E. This is a precise local correspondence between the two staves and the two red words.
+- In the reversed Younger Futhark 6:5:5 order, 3|3 = **TH**, matching the first black p0 glyph. If that glyph is then treated as a sentinel, the p0–p2 corpus partitions as 13 red runes + 1 black TH + 715 remaining runes, where 715 = 55×13. This suggests a 56-row, 13-symbol page-key matrix (red row for p0 plus 55 rows for p1–p55).
+
+The 55×13 consequence is exact, but it is conditional on treating the same TH glyph that selected the reversed order as a sentinel; it is not an independent confirmation of that order. Simple page-specific Vigenère, prime-valued shifts, keyed-alphabet, one-time-pad and title-keyed transposition receivers have failed on representative pages/segments. The matrix is therefore a structural hypothesis, not a validated key schedule. See the [consolidated stave and receiver report](lp2-p0-cistercian-staves-totient-partition-hypothesis.md) and [reproduction gate](../sims/lp2_p0_13x55_matrix_gate.cjs).
+
+The absence of a second independently varying branch-rune mark remains unchanged. Neither the E/E correspondence nor the conditional TH sentinel yields a source-selected operation, key, or plaintext.
+
 ## Conclusion and reopening condition
 
-The p0 3|3→TH correspondence remains an isolated, conditional one-symbol hypothesis. No second independent asymmetric mark validates the cipher-rune convention, and no operation or key follows from TH. Do not use the same p0 artwork as independent evidence for the 27×27 three-rune-node proposal, and do not continue branch-count searches over the repeated tree/vine artwork.
+The p0 3|3 motif has two underdetermined readings: E under the source-family Futhorc Hahal-runa order (matching the third rune of both red-title words), and TH under reversed Younger Futhark (matching the first black glyph). Treating TH as a sentinel yields the conditional 13+1+55×13 partition, but the simple matrix receivers fail and the sentinel choice is not independently authenticated. No second independent asymmetric mark validates either reading; no key, reversible operation, or plaintext follows. Do not use the same p0 artwork as independent evidence for the 27×27 three-rune-node proposal, and do not continue branch-count searches over the repeated tree/vine artwork.
 
-Reopen only if a new original artifact or explicit puzzle instruction fixes the applicable Futhorc/Younger ordering and orientation, or supplies a second clean symbol whose reading makes a predeclared prediction on an independently anchored ciphertext position.
+Reopen only if a new original artifact or explicit puzzle instruction fixes the applicable Futhorc/Younger ordering and orientation, supplies a second clean symbol whose reading makes a predeclared prediction on independently anchored ciphertext, or selects a concrete receiver for the 55×13 material.
