@@ -46,7 +46,7 @@ There are two plausible ways to number the 2016 text:
 - **Full signed cleartext, one-based, including “Hello”:** [6,16] → EPIPHANY / WORDS. Their GP29 lengths [8,5] match both the p0 red-heading word lengths and the ciphertext pair.
 - **The 29-word prose body excluding “Hello” (or zero-based indexing of the full message):** [6,16] → SEEKS / ARE. Their GP29 lengths [5,3] do not match [8,5].
 
-The first convention is motivated by the split packet's already-established one-based lookup and, more importantly, by the exact independent 8+5 length match. The earlier DH23 mapping of H-transform outputs used zero-based source positions; that is a separate operation and remains a reason not to declare the word-index convention settled without another independent receiver.
+The first convention is additionally anchored by the independently selected EMPTY/EPIPHANY boundary: full-message word 6 is EPIPHANY, the same source word that the existing GP0/p50 address route maps to p0 offset 237. Thus the first coordinate of K lands on the independently selected boundary word before the title is interpreted. The split packet's already-established one-based lookup and the exact independent 8+5 length match support the same origin. The earlier DH23 mapping of H-transform outputs used zero-based source positions; that is a separate operation and remains a reason to seek another independent receiver before treating the word-index rule as general.
 
 ## Candidate-key self-index check
 
