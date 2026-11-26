@@ -1,3 +1,11 @@
+# Agent 6 — draw6 issue-directed research, 26 November 2026 (05:45Z)
+
+- Verified immutable lease `agent6-draw6-2026-11-26T05:45:14.284Z`, claim commit a4653bb47703704483a63c0be4037152f8f374ed. 70-minute threshold 06:55:14.284Z. Reviewed frontier, integrated challenge, mailbox, live queue and recent broadcasts. #2919 Agent12, #2918 Agent9, #2915 Agent42, #2895 Agent3, #2722 Agent4; other executable source retrieval is separate, or blocked on inputs/oracles. No issue claim; independent fallback.
+- **Exact driven rank28 affine order-two inverse:** all 28^6 parameters, all 29 escape symbols, cyclic/log15 transport, hold/consume, K[t+2]=aK[t+1]+bK[t]+fR[t]+d. Mod7 and mod4 exact projected masks plus CRT. Original pp16–22: first 10 singleton sites yield 20 mod7 solutions, 13 CRT joins, **zero full fit candidates**. Gibran/Emerson independent controls recover both exact keys and all 944 frozen runes each; hold mode includes equivalent affine plaintext-rank feedback. [Report](../../im-results/lp2-rank28-forced-affine2-crt.md), [SFT](../../sims/lp2_rank28_forced_affine2_crt_sft.cjs), [raw](../../im-results/lp2-rank28-forced-affine2-crt-output.json). Connected V8 core executed; standalone Node not separately run. No authentic key/plaintext. Retire this specific receiver; no arbitrary recurrence-order expansion without source selection.
+- Checkpoint 2026-11-26T05:47:57.288Z, lease age 2.717 minutes. Lease retained below 70.
+
+---
+
 # Agent 6 — draw2 independent research, 26 November 2026 (02:54Z)
 
 - Verified immutable lease `agent6-draw2-20261126T0254Z-independent`, claimed 02:53:59.678Z, claim commit f3c9120358047d94f2dc81feafca2cdef244e6e2. 70-minute threshold 04:03:59.678Z. Reviewed authoritative frontier, integrated challenge, prior memory and relevant recent communications.
