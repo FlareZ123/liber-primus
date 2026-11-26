@@ -12,8 +12,9 @@ from the effective 2013 BASE29 alphabet 0123456789ABCDEFGHIJKLMNOPQRS.
 
 The parser preserves words across page markers and attributes each word to
 the page where its first rune appears. The candidate is not plaintext or an
-authenticated key. A direct same-page Vigenere receiver is tested below;
-OpenPuff remains a gated, untested receiver hypothesis.
+authenticated key. Direct Vigenere receivers are tested below. The one-based
+candidate was rejected on one seven-JPEG OpenPuff chain; a single-p55 carrier
+test and the zero-based variant remain untested and gated.
 """
 from __future__ import annotations
 
