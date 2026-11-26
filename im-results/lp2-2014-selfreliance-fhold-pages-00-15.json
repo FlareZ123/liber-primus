@@ -1,0 +1,726 @@
+{
+  "keyLength": 41181,
+  "p56Control": 85,
+  "pages": [
+    {
+      "name": "p0",
+      "length": 262,
+      "zeros": 14,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 262,
+          "survivorCount": 3331
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 262,
+          "survivorCount": 1973
+        }
+      ],
+      "best": [
+        {
+          "start": 1341,
+          "sign": -1,
+          "score": -4.379262972764946,
+          "holds": 6,
+          "runes": "ᛗᛖᚱᛄᛡᚪᚢᚱᚪᚦᛈᚢᛁᚳᚢᚪᛇᚠᛉᚢᛈᛠᛗᛁᚳᚾᛝᛡᛏᛠᛚᛖᚦᛏᚫᛠᛏᚢᛗᚣᚩᚫᚢᛚᚷᚩᛋᛚᚱᛗᚻᛁᚳᛚᛁᛏᛖᚱᚱᛒᚹᚾᚾᛚᚪᛁᛖᚾᚦᛇᛡᚪᛠᛋᛒᚱᚱᛉᛈᚩᚻᛠᛖᛚᛏᛠᛏᛚᚣᚾᚱᚠᛁᚾᛖᛁᚳᚪᛖᚫᛠᛈᚹᚦᚢᚦᛖᚳᚷᚪᛏᛠᛏᚢᛞᚹᛗᛝᛄᚷᚣᚩᚷᚦᛝᚢᛟᚷᛇᛡᛋᛄᛋᚻᛋᚷᛁᛞᚣᚪᚠᚳᛞᛒᛈᛋᛈᚱᚹᛏᚩᛝᛉᛇᚦᛖᚦᛈᚣᚢᛠᚳᚹᛇᛞᛏᛚᚾᛠᛖᛚᛠᛚᚫᛋᛝᚻᛏᚪᛏᛝᚪᛟᚪᚷᛞᛏᚣᛉᛞᛋᛇᚷᛇᛞᛈᚢᛟᚠᚷᛗᛡᚪᛒᛗᛏᛗᚩᛋᚩᚷᛡᚦᛉᚹᛞᛒᚪᛇᚫᚾᚦᛁᛚᚫᚾᚫᚷᛚᛚᛋᛏᛡᚳᛝᛏᛋᚳᚷᛚᛄᚹᛏᚦᚪᚠᚷᛡᛋᚾᛇᛋᚠᚳᛈᛠᚢᚣᚣᚻᚻᛏ",
+          "text": "MERJIAAURATHPUICUAEOFXUPEAMICNNGIATEALETHTAEEATUMYOAEULGOSLRMHICLITERRBWNNLAIENTHEOIAAEASBRRXPOHEAELTEATLYNRFINEICAEAEEAPWTHUTHECGATEATUDWMNGJGYOGTHNGUOEGEOIASJSHSGIDYAFCDBPSPRWTONGXEOTHETHPYUEACWEODTLNEAELEALAESNGHTATNGAOEAGDTYXDSEOGEODPUOEFGMIAABMTMOSOGIATHXWDBAEOAENTHILAENAEGLLSTIACNGTSCGLJWTTHAFGIASNEOSFCPEAUYYHHT"
+        },
+        {
+          "start": 34457,
+          "sign": -1,
+          "score": -4.426615656534158,
+          "holds": 7,
+          "runes": "ᚷᛖᚳᛁᚢᚳᛟᚠᚪᛝᚦᚳᚫᛇᛏᚢᛇᛡᛚᚫᚩᛒᛇᚪᛝᛉᚣᚣᛖᛞᛖᛖᚻᛒᛇᛡᚪᛇᛞᚪᛚᚣᛏᚹᛚᛖᚢᚷᛄᛖᛞᛋᛗᛚᚩᚹᛠᛉᛡᛞᛝᚠᚦᛏᚱᛖᛏᛖᚹᛋᚫᛋᛏᛚᚩᚣᚪᛈᛄᛁᚢᛉᛚᚱᚩᚣᛗᚳᚣᚩᛠᚠᛁᛠᛉᚷᚳᚪᛈᚫᛇᛏᚩᛄᛉᚣᛈᛋᚢᚻᛋᚾᛖᛚᚷᚠᚫᚾᚹᛉᛗᚩᛚᛟᚹᛁᚻᚦᛡᚪᚢᛖᛞᛋᚫᛖᚾᛒᛞᛗᚠᛟᛒᛋᚣᛋᚷᛖᛉᛄᚪᚾᛏᛄᛈᛠᚻᚻᚫᚪᚳᚣᚦᛇᛋᛏᛋᛄᛠᛗᚢᛡᛡᚫᚾᚷᛞᛋᚢᛠᚻᛋᛄᚠᛋᛏᚷᚣᚫᚦᚪᚱᚾᚢᚪᛗᚣᛉᚾᛠᚦᛄᚫᛉᚷᛠᚪᚳᚩᚾᚱᛞᛒᛏᛁᚾᛉᛏᚣᚳᚪᛒᚢᛉᛝᚹᛁᚳᛡᚱᛁᚳᚣᚾᚣᛞᛞᛒᛉᚩᚫᚾᛗᛡᛖᚾᛝᚷᚱᚹᚩᛁᚠᚢᛟᛈᚹᚱᛖᚻᚻᛠ",
+          "text": "GECIUCOEFANGTHCAEEOTUEOIALAEOBEOANGXYYEDEEHBEOIAAEODALYTWLEUGJEDSMLOWEAXIADNGFTHTRETEWSAESTLOYAPJIUXLROYMCYOEAFIEAXGCAPAEEOTOJXYPSUHSNELGFAENWXMOLOEWIHTHIAAUEDSAEENBDMFOEBSYSGEXJANTJPEAHHAEACYTHEOSTSJEAMUIAIAAENGDSUEAHSJFSTGYAETHARNUAMYXNEATHJAEXGEAACONRDBTINXTYCABUXNGWICIARICYNYDDBXOAENMIAENNGGRWOIFUOEPWREHHEA"
+        },
+        {
+          "start": 1342,
+          "sign": -1,
+          "score": -4.428686525934594,
+          "holds": 7,
+          "runes": "ᚫᛞᚣᚪᛄᛟᚦᚠᚪᚦᛈᚢᛁᚳᚢᚪᛇᚠᛉᚢᛈᛠᛗᛁᚳᚾᛝᛡᛏᛠᛚᛖᚦᛏᚫᛠᛏᚢᛗᚣᚩᚫᚢᛚᚷᚩᛋᛚᚱᛗᚻᛁᚳᛚᛁᛏᛖᚱᚱᛒᚹᚾᚾᛚᚪᛁᛖᚾᚦᛇᛡᚪᛠᛋᛒᚱᚱᛉᛈᚩᚻᛠᛖᛚᛏᛠᛏᛚᚣᚾᚱᚠᛁᚾᛖᛁᚳᚪᛖᚫᛠᛈᚹᚦᚢᚦᛖᚳᚷᚪᛏᛠᛏᚢᛞᚹᛗᛝᛄᚷᚣᚩᚷᚦᛝᚢᛟᚷᛇᛡᛋᛄᛋᚻᛋᚷᛁᛞᚣᚪᚠᚳᛞᛒᛈᛋᛈᚱᚹᛏᚩᛝᛉᛇᚦᛖᚦᛈᚣᚢᛠᚳᚹᛇᛞᛏᛚᚾᛠᛖᛚᛠᛚᚫᛋᛝᚻᛏᚪᛏᛝᚪᛟᚪᚷᛞᛏᚣᛉᛞᛋᛇᚷᛇᛞᛈᚢᛟᚠᚷᛗᛡᚪᛒᛗᛏᛗᚩᛋᚩᚷᛡᚦᛉᚹᛞᛒᚪᛇᚫᚾᚦᛁᛚᚫᚾᚫᚷᛚᛚᛋᛏᛡᚳᛝᛏᛋᚳᚷᛚᛄᚹᛏᚦᚪᚠᚷᛡᛋᚾᛇᛋᚠᚳᛈᛠᚢᚣᚣᚻᚻᛏ",
+          "text": "AEDYAJOETHFATHPUICUAEOFXUPEAMICNNGIATEALETHTAEEATUMYOAEULGOSLRMHICLITERRBWNNLAIENTHEOIAAEASBRRXPOHEAELTEATLYNRFINEICAEAEEAPWTHUTHECGATEATUDWMNGJGYOGTHNGUOEGEOIASJSHSGIDYAFCDBPSPRWTONGXEOTHETHPYUEACWEODTLNEAELEALAESNGHTATNGAOEAGDTYXDSEOGEODPUOEFGMIAABMTMOSOGIATHXWDBAEOAENTHILAENAEGLLSTIACNGTSCGLJWTTHAFGIASNEOSFCPEAUYYHHT"
+        }
+      ]
+    },
+    {
+      "name": "p1",
+      "length": 266,
+      "zeros": 13,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 266,
+          "survivorCount": 1748
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 266,
+          "survivorCount": 815
+        }
+      ],
+      "best": [
+        {
+          "start": 482,
+          "sign": -1,
+          "score": -4.416799858140735,
+          "holds": 5,
+          "runes": "ᛁᚣᚾᚱᛈᚫᚾᛄᛗᚦᚢᚫᚦᚩᛇᛉᚻᛖᛈᛏᚦᛞᛗᛋᛖᛠᚱᚷᛖᛄᛞᛏᚪᚢᚩᚫᛗᚠᚢᛖᚦᛞᛚᚳᛄᛏᛞᚻᛟᚻᚪᚳᚩᛁᚾᛏᛈᛁᛖᛞᛉᛝᛚᚷᛏᛝᛝᛋᚳᚦᚹᛚᚳᚣᛞᛏᛟᛒᛏᛚᛡᛋᛉᚩᛝᛖᛠᛚᚫᛝᚦᛁᚦᛞᚢᛈᛝᚠᛁᛠᛡᛄᛖᛋᛋᚱᚪᚩᛟᛚᛒᛏᛄᛖᛝᛡᛞᛟᛡᛇᚪᚾᚪᚱᛋᛚᚣᚩᚩᛞᚹᛠᛋᚢᚱᚷᚠᚣᛉᚷᚹᛝᛋᛏᛖᚦᛝᛝᚳᛏᛋᛚᚷᛋᛁᛠᛋᚳᛇᛞᛇᛈᛏᚦᛞᚷᛞᛚᛖᚻᛝᛈᛋᚫᛒᛗᚱᚢᚱᛡᛞᛡᛋᛈᛒᛒᛗᚩᚪᛏᚷᚩᛋᛞᚻᚾᛗᛗᚻᚠᛟᛡᚢᚩᚣᚹᚹᚪᚳᚩᛡᚱᛒᛞᛏᛋᚫᛏᚪᛉᚻᚾᛚᛞᚪᛡᚳᛉᚱᛠᛉᛏᛝᚣᛚᚣᛒᚫᚠᛝᛁᛁᚪᚢᚦᚻᛋᛡᛁᛖᚾᛄᛖᛁᛞᛟᚪᚱᚳᛞᚢᚣᛋᛞᛋᛏ",
+          "text": "IYNRPAENJMTHUAETHOEOXHEPTTHDMSEEARGEJDTAUOAEMFUETHDLCJTDHOEHACOINTPIEDXNGLGTNGNGSCTHWLCYDTOEBTLIASXONGEEALAENGTHITHDUPNGFIEAIAJESSRAOOELBTJENGIADOEIAEOANARSLYOODWEASURGFYXGWNGSTETHNGNGCTSLGSIEASCEODEOPTTHDGDLEHNGPSAEBMRURIADIASPBBMOATGOSDHNMMHFOEIAUOYWWACOIARBDTSAETAXHNLDAIACXREAXTNGYLYBAEFNGIIAUTHHSIAIENJEIDOEARCDUYSDST"
+        },
+        {
+          "start": 481,
+          "sign": -1,
+          "score": -4.431783573597779,
+          "holds": 4,
+          "runes": "ᛈᚫᚷᚳᛡᛗᚩᛚᚻᚫᛁᚷᚩᚣᚳᛈᛁᚦᚣᚩᛗᛚᛟᛒᛄᚪᛇᛗᚣᚣᚾᛚᚱᛚᚹᚾᛈᚾᚢᛖᚦᛞᛚᚳᛄᛏᛞᚻᛟᚻᚪᚳᚩᛁᚾᛏᛈᛁᛖᛞᛉᛝᛚᚷᛏᛝᛝᛋᚳᚦᚹᛚᚳᚣᛞᛏᛟᛒᛏᛚᛡᛋᛉᚩᛝᛖᛠᛚᚫᛝᚦᛁᚦᛞᚢᛈᛝᚠᛁᛠᛡᛄᛖᛋᛋᚱᚪᚩᛟᛚᛒᛏᛄᛖᛝᛡᛞᛟᛡᛇᚪᚾᚪᚱᛋᛚᚣᚩᚩᛞᚹᛠᛋᚢᚱᚷᚠᚣᛉᚷᚹᛝᛋᛏᛖᚦᛝᛝᚳᛏᛋᛚᚷᛋᛁᛠᛋᚳᛇᛞᛇᛈᛏᚦᛞᚷᛞᛚᛖᚻᛝᛈᛋᚫᛒᛗᚱᚢᚱᛡᛞᛡᛋᛈᛒᛒᛗᚩᚪᛏᚷᚩᛋᛞᚻᚾᛗᛗᚻᚠᛟᛡᚢᚩᚣᚹᚹᚪᚳᚩᛡᚱᛒᛞᛏᛋᚫᛏᚪᛉᚻᚾᛚᛞᚪᛡᚳᛉᚱᛠᛉᛏᛝᚣᛚᚣᛒᚫᚠᛝᛁᛁᚪᚢᚦᚻᛋᛡᛁᛖᚾᛄᛖᛁᛞᛟᚪᚱᚳᛞᚢᚣᛋᛞᛋᛏ",
+          "text": "PAEGCIAMOLHAEIGOYCPITHYOMLOEBJAEOMYYNLRLWNPNUETHDLCJTDHOEHACOINTPIEDXNGLGTNGNGSCTHWLCYDTOEBTLIASXONGEEALAENGTHITHDUPNGFIEAIAJESSRAOOELBTJENGIADOEIAEOANARSLYOODWEASURGFYXGWNGSTETHNGNGCTSLGSIEASCEODEOPTTHDGDLEHNGPSAEBMRURIADIASPBBMOATGOSDHNMMHFOEIAUOYWWACOIARBDTSAETAXHNLDAIACXREAXTNGYLYBAEFNGIIAUTHHSIAIENJEIDOEARCDUYSDST"
+        },
+        {
+          "start": 29677,
+          "sign": 1,
+          "score": -4.437888116854567,
+          "holds": 9,
+          "runes": "ᚱᚹᚱᚣᛞᚳᚷᛖᛇᛏᛋᛁᛖᚱᛋᚦᚢᚣᚻᛡᚣᛁᛖᛈᛇᚢᛒᛞᛠᛋᚠᚫᛁᛋᚫᛡᚢᚠᚣᛒᛠᛋᛋᛠᛈᚪᛝᛖᚦᛖᛒᚢᛠᛋᛈᛗᚩᚪᛠᛒᚳᚻᚳᚦᛈᛄᛡᛁᚹᚣᛋᛝᚳᚻᛡᛝᛋᛡᚻᛚᚱᛟᚩᚳᛖᚷᛏᚢᚻᛈᛡᚷᚢᛡᛁᛗᚩᚪᛉᛝᚢᛖᛏᛁᛟᛈᛋᚢᚫᚾᚢᚣᛟᚷᛄᚩᚦᛈᛖᚷᛞᛁᚷᛟᛝᚷᚦᛈᛄᚪᛁᛖᚳᚣᛝᛈᚠᚾᛞᛉᚢᚦᚦᛝᛞᛟᛏᛏᛏᛚᚦᚳᛄᛁᛈᚹᛉᚠᚾᚹᛞᚾᛡᛞᚩᚦᛠᛚᚾᛖᛚᚪᚹᚪᛝᚠᛞᚩᛁᛞᛏᚳᛞᛒᛠᚳᚩᛋᛏᛡᛋᚢᛁᛖᛗᛚᛡᛠᚷᛗᛖᚱᛏᛡᛈᛝᚩᛒᛗᛗᚩᚱᚦᚢᛟᛠᛇᛁᚪᚦᚫᛏᛖᚳᚠᛡᛒᚹᛉᛈᚦᛗᛞᛚᛞᛡᚱᛟᚠᚪᚾᛒᛈᚪᚷᚩᚠᛁᚠᚢᚱᛝᛏᛒᛁᚦᚱᛇᛈᛋᛉᚻᛗᚹᛁᚹ",
+          "text": "RWRYDCGEEOTSIERSTHUYHIAYIEPEOUBDEASFAEISAEIAUFYBEASSEAPANGETHEBUEASPMOAEABCHCTHPJIAIWYSNGCHIANGSIAHLROEOCEGTUHPIAGUIAIMOAXNGUETIOEPSUAENUYOEGJOTHPEGDIGOENGGTHPJAIECYNGPFNDXUTHTHNGDOETTTLTHCJIPWXFNWDNIADOTHEALNELAWANGFDOIDTCDBEACOSTIASUIEMLIAEAGMERTIAPNGOBMMORTHUOEEAEOIATHAETECFIABWXPTHMDLDIAROEFANBPAGOFIFURNGTBITHREOPSXHMWIW"
+        }
+      ]
+    },
+    {
+      "name": "p2",
+      "length": 201,
+      "zeros": 7,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 201,
+          "survivorCount": 691
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 201,
+          "survivorCount": 1445
+        }
+      ],
+      "best": [
+        {
+          "start": 31167,
+          "sign": 1,
+          "score": -4.335319083490696,
+          "holds": 4,
+          "runes": "ᛡᛋᛇᚷᛡᚹᚻᛋᛗᛗᛠᚫᛈᚾᛞᛠᛟᛖᚩᛒᚾᛞᛖᛖᚦᛖᚣᛉᛒᛡᛁᚦᛞᚦᛝᛄᛋᚹᛄᛗᛠᛇᛋᚩᚫᚪᚢᛖᚫᚾᛠᚪᛁᛈᛇᛒᚻᚩᚹᚪᚾᚹᛠᛝᛈᚹᚻᚹᚱᛠᛁᚳᚦᛗᚹᛏᚩᛏᚢᚩᛈᚾᛟᛡᚻᚱᚳᛈᚻᚻᚠᛝᛈᚱᚳᚱᚩᛗᛄᛄᛉᚳᛏᚣᚠᛈᚪᛏᚻᛡᛋᛁᛇᛠᛞᛡᚠᚪᛒᛁᛁᚻᚷᚩᛟᛉᛏᛗᛖᚪᚣᛞᛋᛞᚪᚫᛈᛇᛖᛚᛝᛖᚦᛏᛏᛡᛈᛋᛁᛋᚪᚱᚹᛈᚩᚳᚢᛞᚢᛏᚳᛄᛉᛈᚱᛈᚱᛋᚾᚦᚢᛁᚩᚩᛚᚳᚪᚢᚾᚳᚾᛁᛖᛟᚱᚢᛝᛁᚦᚣᚠᛁᛖᛁᛖᚾᚹᛁᛇᚣᛝ",
+          "text": "IASEOGIAWHSMMEAAEPNDEAOEEOBNDEETHEYXBIAITHDTHNGJSWJMEAEOSOAEAUEAENEAAIPEOBHOWANWEANGPWHWREAICTHMWTOTUOPNOEIAHRCPHHFNGPRCROMJJXCTYFPATHIASIEOEADIAFABIIHGOOEXTMEAYDSDAAEPEOELNGETHTTIAPSISARWPOCUDUTCJXPRPRSNTHUIOOLCAUNCNIEOERUNGITHYFIEIENWIEOYNG"
+        },
+        {
+          "start": 30531,
+          "sign": 1,
+          "score": -4.4272454093820555,
+          "holds": 2,
+          "runes": "ᛋᛏᚣᚩᛝᚻᛖᚫᚩᚱᛖᚫᚦᚦᛠᛚᚹᚹᛡᛖᛞᛒᛁᛡᚣᛄᛁᛋᛗᛉᛁᛞᛋᛞᚷᛗᚹᛠᚹᛟᛞᛒᛡᛟᛏᛄᚱᛄᛈᛖᚻᚪᚦᛠᛇᚱᚾᚻᛠᚱᚾᛒᛏᛚᚠᛡᚪᛚᚻᛈᛉᛈᚹᛋᚳᛉᛒᚱᛏᛚᛠᚱᛠᛗᛖᚹᛖᚹᛉᛡᛉᛁᚦᛇᚳᛡᚾᚻᚢᛟᚱᛁᛏᛏᚣᚱᛠᛚᛠᛏᛝᛏᛁᛡᚻᛗᛈᛉᚢᛒᚢᛖᛗᚹᛏᚹᛖᛠᛚᚫᛝᛇᚱᚫᚪᛈᛝᛇᛠᚳᛞᛠᚳᚩᛁᚹᚩᛋᚾᛠᚳᚱᚩᛏᚱᛝᛚᛞᚳᛚᛞᚫᛈᛄᛚᛖᚹᛏᛄᛋᛞᛟᛠᛖᛗᛖᛉᚷᛝᛏᛠᚢᚫᚫᛄᚣᚳᛏᚦᚩᚠᛞᛈᚹᛄᛖᛞᚩᛈᛠᛖ",
+          "text": "STYONGHEAEOREAETHTHEALWWIAEDBIIAYJISMXIDSDGMWEAWOEDBIAOETJRJPEHATHEAEORNHEARNBTLFIAALHPXPWSCXBRTLEAREAMEWEWXIAXITHEOCIANHUOERITTYREALEATNGTIIAHMPXUBUEMWTWEEALAENGEORAEAPNGEOEACDEACOIWOSNEACROTRNGLDCLDAEPJLEWTJSDOEEAEMEXGNGTEAUAEAEJYCTTHOFDPWJEDOPEAE"
+        },
+        {
+          "start": 5686,
+          "sign": -1,
+          "score": -4.4401477341316635,
+          "holds": 2,
+          "runes": "ᚷᛖᚷᛁᚳᛝᛈᛉᛇᚪᛝᛚᚢᛉᚣᚱᛠᚻᚫᚢᚾᚾᚢᚹᚦᛟᚱᛈᛈᚹᛞᛏᚱᚳᚳᛒᛄᛖᚳᚱᚻᛖᛗᚪᛏᛏᚫᚻᚦᚠᚾᛞᚣᚱᛖᛏᛈᚫᛝᛉᛄᛗᚳᛖᚪᚹᚦᚫᚳᛖᛒᛋᚢᚱᛟᚩᚢᚣᛄᛋᚷᛝᚣᛋᚩᚢᚦᚣᚾᚹᚢᛁᚹᛝᛁᛋᚱᛚᛈᛒᛖᚢᛞᛏᚢᛠᚾᛖᛗᛋᚳᛠᚹᚩᚳᚻᛚᛞᛄᛖᛁᛞᛖᛉᛏᛉᚪᚾᛟᛋᚣᛚᛇᛗᚾᛏᚦᛒᛞᛗᚣᛈᛇᛉᚾᛞᛟᛖᛉᚻᚩᛁᛖᚾᚣᚩᛖᚣᚫᛈᛁᚫᚱᚪᚾᚩᛠᚣᚻᛏᛠᛡᚱᛏᚫᛁᚷᚱᚳᛁᛞᛉᚫᚱᛋᚳᚣᛉᛝᛟᚠᛠᚩᚩᚫᛖᚱᛉᚱᚩᚱ",
+          "text": "GEGICNGPXEOANGLUXYREAHAEUNNUWTHOERPPWDTRCCBJECRHEMATTAEHTHFNDYRETPAENGXJMCEAWTHAECEBSUROEOUYJSGNGYSOUTHYNWUIWNGISRLPBEUDTUEANEMSCEAWOCHLDJEIDEXTXANOESYLEOMNTTHBDMYPEOXNDOEEXHOIENYOEYAEPIAERANOEAYHTEAIARTAEIGRCIDXAERSCYXNGOEFEAOOAEERXROR"
+        }
+      ]
+    },
+    {
+      "name": "p3",
+      "length": 217,
+      "zeros": 7,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 217,
+          "survivorCount": 870
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 217,
+          "survivorCount": 566
+        }
+      ],
+      "best": [
+        {
+          "start": 29707,
+          "sign": -1,
+          "score": -4.442486980259339,
+          "holds": 3,
+          "runes": "ᛝᛋᚹᛠᛏᛉᚫᚦᚣᚪᚳᛖᛒᛄᛒᛞᛗᚻᚪᚢᚷᚩᛉᚪᚷᛗᚫᛁᚠᚢᚹᚻᛞᚹᚹᛠᚹᛠᛁᚪᛖᛖᚦᛠᚫᛏᛝᛠᚷᚾᚩᚷᛋᚹᛞᛝᚦᛁᚣᚳᚪᚷᛇᚫᛚᚳᚩᚹᛈᚹᛚᚪᛒᛈᚦᛟᛚᛖᛋᚹᛋᚪᚷᚾᚣᛚᚦᚳᛠᛟᛞᚪᚣᛚᛈᚱᚳᛝᛚᛋᚣᛝᛋᚩᛒᛖᚾᛖᛏᚷᚹᚳᚣᚱᛉᛚᛏᛉᛗᛟᛁᛚᚦᚹᚩᛚᚹᚩᚹᛋᛠᛁᚫᛗᛝᚹᛒᛞᛗᚦᚪᛖᛝᚾᛝᛗᛇᛋᚢᚪᛞᚢᛝᛟᛝᛞᛞᚹᛟᛠᛠᛄᚩᚳᛡᛋᛉᛏᚣᛖᛏᚫᛈᛠᛚᚣᛖᚪᛠᛠᚢᚷᚩᚦᛝᚠᛄᛚᛟᚦᚻᚩᚠᚪᚷᛞᚣᚣᚫᛄᛉᛏᚷᛁᚣᛋᛖᛈᛉᚢᛝᚣᛈᚱᛁᛒᛞ",
+          "text": "NGSWEATXAETHYACEBJBDMHAUGOXAGMAEIFUWHDWWEAWEAIAEETHEAAETNGEAGNOGSWDNGTHIYCAGEOAELCOWPWLABPTHOELESWSAGNYLTHCEAOEDAYLPRCNGLSYNGSOBENETGWCYRXLTXMOEILTHWOLWOWSEAIAEMNGWBDMTHAENGNNGMEOSUADUNGOENGDDWOEEAEAJOCIASXTYETAEPEALYEAEAEAUGOTHNGFJLOETHHOFAGDYYAEJXTGIYSEPXUNGYPRIBD"
+        },
+        {
+          "start": 37025,
+          "sign": 1,
+          "score": -4.457009024740864,
+          "holds": 6,
+          "runes": "ᚳᚦᚾᛝᚩᛒᛠᛈᛚᚫᚷᚪᚪᛝᛚᛖᚹᚩᛖᛏᚻᛗᛝᚦᛋᛈᛠᛝᚾᛏᛝᛈᚱᛞᚩᛚᛄᛝᛉᚢᛈᚹᚫᚩᛏᚪᚹᛖᚦᛁᛇᚦᚦᛁᚾᚦᚷᚳᛈᛁᚠᛒᛠᛖᚱᚪᛒᚢᚱᚦᚹᛉᛁᚪᚣᚢᛄᚷᛁᚢᛗᚫᛝᛖᚢᚠᛁᛗᛖᛋᛞᚳᚻᚠᚱᛖᛋᚩᚦᚫᛒᛁᛖᚻᚪᛚᚷᛏᛒᚷᚩᛡᚹᚹᚢᚾᛚᚢᛡᛄᚳᛡᛟᛠᚹᛒᛁᚫᚾᚻᚦᛉᛉᚱᛒᛠᛉᛗᚹᚣᚩᛖᚱᚦᛒᚻᚢᚹᚣᛒᛄᛈᚣᚷᚻᚹᛖᛉᛏᚦᛠᛝᚠᛗᛁᛒᛠᚳᛡᚦᚫᚢᛟᛚᛏᛉᛄᛠᚳᚷᚹᛁᚣᛁᛒᚠᛁᚷᛏᚣᛁᚹᚠᛟᛁᛖᚦᛏᛏᚢᛏᛗᛖᚣᚻᛇᛠᛝᚱᚳᚩᛝᚾᚻᛠᛁᛟ",
+          "text": "CTHNNGOBEAPLAEGAANGLEWOETHMNGTHSPEANGNTNGPRDOLJNGXUPWAEOTAWETHIEOTHTHINTHGCPIFBEAERABURTHWXIAYUJGIUMAENGEUFIMESDCHFRESOTHAEBIEHALGTBGOIAWWUNLUIAJCIAOEEAWBIAENHTHXXRBEAXMWYOERTHBHUWYBJPYGHWEXTTHEANGFMIBEACIATHAEUOELTXJEACGWIYIBFIGTYIWFOEIETHTTUTMEYHEOEANGRCONGNHEAIOE"
+        },
+        {
+          "start": 23843,
+          "sign": -1,
+          "score": -4.463665247190451,
+          "holds": 4,
+          "runes": "ᚪᛉᚱᛋᚦᛉᚫᛖᛉᛇᚣᚢᚩᚹᚳᛄᚢᛏᚳᛁᚦᛡᛁᚾᛇᛁᛁᚫᚠᚢᚷᛇᚻᚻᚩᚱᛒᛗᚪᛈᛖᛏᚳᛏᚣᛡᚳᚪᛡᛋᚩᛟᛉᚾᚻᛚᛏᚪᚪᛞᚠᛒᚱᛗᛈᛁᚢᚷᚪᚢᚦᚻᚳᛞᛡᛚᚣᚻᚾᛋᛇᛁᛖᚢᚹᚠᚦᛞᚦᛚᚦᛗᛚᛋᛄᛖᚦᛟᛋᚫᚻᛇᛚᚢᛚᚻᚫᚷᛡᚷᚢᚹᛡᚣᚻᛞᛏᛖᚩᛒᛖᛖᚢᚾᚩᛉᚹᚷᛈᛝᚦᚪᛄᛟᛡᛚᛝᚣᚩᚩᛗᛞᚦᚹᛏᚦᛒᛠᛖᚪᛟᚢᛒᛏᛝᛈᚦᚪᚳᚹᛁᛈᚠᛝᛡᛚᛄᚫᛒᛄᚢᛗᚳᚳᛚᛁᚢᛞᛖᛄᚱᚢᚪᚾᚢᛏᛚᚱᛡᛋᚾᚹᛒᛖᚳᛒᛚᚩᚱᛠᚷᚢᚪᚾᚳᚦᚷᛋᛠᚳᛚᚱᛈᛡᛞᛋᛖ",
+          "text": "AXRSTHXAEEXEOYUOWCJUTCITHIAINEOIIAEFUGEOHHORBMAPETCTYIACAIASOOEXNHLTAADFBRMPIUGAUTHHCDIALYHNSEOIEUWFTHDTHLTHMLSJETHOESAEHEOLULHAEGIAGUWIAYHDTEOBEEUNOXWGPNGTHAJOEIALNGYOOMDTHWTTHBEAEAOEUBTNGPTHACWIPFNGIALJAEBJUMCCLIUDEJRUANUTLRIASNWBECBLOREAGUANCTHGSEACLRPIADSE"
+        }
+      ]
+    },
+    {
+      "name": "p4",
+      "length": 261,
+      "zeros": 7,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 261,
+          "survivorCount": 598
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 261,
+          "survivorCount": 76
+        }
+      ],
+      "best": [
+        {
+          "start": 2537,
+          "sign": 1,
+          "score": -4.491298994341921,
+          "holds": 2,
+          "runes": "ᛏᛖᚻᚾᚳᚹᛚᛉᚦᚩᚫᚦᚷᛞᛡᛉᚫᚪᛄᛏᚾᚻᚻᛋᚱᛗᛒᛇᛖᚾᚻᚳᚳᛞᛡᛒᛗᚳᚪᛈᚢᚠᛠᛇᛚᚪᚢᛚᚷᛖᚢᛇᛁᛁᚪᛉᛡᛚᛋᛒᛗᚪᛄᚳᛈᚩᚢᛁᛖᛞᛞᛒᚷᚹᛈᛟᛁᛝᛞᚢᛡᚱᚫᛒᚦᛇᚠᛠᚪᛞᛚᚣᛇᚦᚳᚣᛖᛖᛚᛠᛠᛗᚾᛒᛞᛏᚩᛝᛈᛟᚣᛏᚷᛁᚪᚢᚪᚳᛋᛖᚫᚻᚻᚳᚪᚪᛏᚩᛁᚱᚣᚻᛈᛞᛡᛗᚩᛋᛋᛟᚩᚾᛏᚦᚹᚢᚹᛁᚳᚾᛁᛖᚱᛋᚩᚻᚩᚹᛇᚦᛏᚪᚾᛝᛇᚦᛝᚳᚢᚢᚾᛒᛗᛉᚢᛈᛚᛒᚹᚹᚾᛚᛡᚷᛗᛈᛒᚣᛋᛚᛝᚩᚳᛝᛁᛠᛈᚣᚦᛁᚳᛁᛏᚦᚣᚢᛋᛚᛞᛄᛞᚪᛝᚱᚱᛈᛠᛗᚢᚹᛝᛏᛠᛏᛝᛁᚻᚣᚫᚻᛠᛄᛈᚷᛋᚦᚹᛞᛖᚾᛞᚣᛠᚪᛏᚳᚱᛁᛁᚦᚣᚾᚱᛋᛄᚾᚢᛁᛞᛏᛚ",
+          "text": "TEHNCWLXTHOAETHGDIAXAEAJTNHHSRMBEOENHCCDIABMCAPUFEAEOLAULGEUEOIIAXIALSBMAJCPOUIEDDBGWPOEINGDUIARAEBTHEOFEAADLYEOTHCYEELEAEAMNBDTONGPOEYTGIAUACSEAEHHCAATOIRYHPDIAMOSSOEONTTHWUWICNIERSOHOWEOTHTANNGEOTHNGCUUNBMXUPLBWWNLIAGMPBYSLNGOCNGIEAPYTHICITTHYUSLDJDANGRRPEAMUWNGTEATNGIHYAEHEAJPGSTHWDENDYEAATCRIITHYNRSJNUIDTL"
+        },
+        {
+          "start": 2538,
+          "sign": 1,
+          "score": -4.513340353895413,
+          "holds": 3,
+          "runes": "ᛄᚾᛟᚱᛄᛞᚦᛏᛡᛋᛏᛇᚠᛞᛡᛉᚫᚪᛄᛏᚾᚻᚻᛋᚱᛗᛒᛇᛖᚾᚻᚳᚳᛞᛡᛒᛗᚳᚪᛈᚢᚠᛠᛇᛚᚪᚢᛚᚷᛖᚢᛇᛁᛁᚪᛉᛡᛚᛋᛒᛗᚪᛄᚳᛈᚩᚢᛁᛖᛞᛞᛒᚷᚹᛈᛟᛁᛝᛞᚢᛡᚱᚫᛒᚦᛇᚠᛠᚪᛞᛚᚣᛇᚦᚳᚣᛖᛖᛚᛠᛠᛗᚾᛒᛞᛏᚩᛝᛈᛟᚣᛏᚷᛁᚪᚢᚪᚳᛋᛖᚫᚻᚻᚳᚪᚪᛏᚩᛁᚱᚣᚻᛈᛞᛡᛗᚩᛋᛋᛟᚩᚾᛏᚦᚹᚢᚹᛁᚳᚾᛁᛖᚱᛋᚩᚻᚩᚹᛇᚦᛏᚪᚾᛝᛇᚦᛝᚳᚢᚢᚾᛒᛗᛉᚢᛈᛚᛒᚹᚹᚾᛚᛡᚷᛗᛈᛒᚣᛋᛚᛝᚩᚳᛝᛁᛠᛈᚣᚦᛁᚳᛁᛏᚦᚣᚢᛋᛚᛞᛄᛞᚪᛝᚱᚱᛈᛠᛗᚢᚹᛝᛏᛠᛏᛝᛁᚻᚣᚫᚻᛠᛄᛈᚷᛋᚦᚹᛞᛖᚾᛞᚣᛠᚪᛏᚳᚱᛁᛁᚦᚣᚾᚱᛋᛄᚾᚢᛁᛞᛏᛚ",
+          "text": "JNOERJDTHTIASTEOFDIAXAEAJTNHHSRMBEOENHCCDIABMCAPUFEAEOLAULGEUEOIIAXIALSBMAJCPOUIEDDBGWPOEINGDUIARAEBTHEOFEAADLYEOTHCYEELEAEAMNBDTONGPOEYTGIAUACSEAEHHCAATOIRYHPDIAMOSSOEONTTHWUWICNIERSOHOWEOTHTANNGEOTHNGCUUNBMXUPLBWWNLIAGMPBYSLNGOCNGIEAPYTHICITTHYUSLDJDANGRRPEAMUWNGTEATNGIHYAEHEAJPGSTHWDENDYEAATCRIITHYNRSJNUIDTL"
+        },
+        {
+          "start": 8988,
+          "sign": 1,
+          "score": -4.554130337995731,
+          "holds": 5,
+          "runes": "ᚣᚪᛒᛁᛠᚾᚦᛄᚩᛖᚣᚩᚠᛠᛖᚦᛡᚻᛞᚢᛚᚷᛏᚩᛉᚫᛄᛋᚷᛝᛁᛇᛋᚩᛈᛖᛒᛈᛚᚪᚫᛄᚦᚢᚣᚫᚩᛡᛝᛏᛒᛡᚾᚻᛖᚹᚣᛝᚢᛒᛗᚾᚫᛏᚠᛒᚩᚹᚻᛟᚻᚪᛒᛟᛋᛠᚹᚫᛞᛈᛒᛄᛗᛗᚹᚣᚠᚹᚾᛋᚷᛖᚳᛁᚱᛇᛖᛉᚢᛏᛝᛈᚷᚷᚻᛁᚻᚢᚷᛡᚪᚣᚠᛏᛖᛚᚹᚾᛝᛖᛉᚦᛒᚩᛒᚣᚩᛚᚦᚳᚻᚻᚦᚻᛈᛇᚦᚢᛖᚢᛖᛒᚩᛁᛗᚦᛚᚪᚣᛟᛄᛠᛇᚾᛈᚷᛄᛡᚫᚢᚩᚩᚱᛝᛝᚪᛚᛟᛗᛚᛠᚦᛟᛠᚹᚹᛈᚱᚪᚣᛁᛄᛏᚻᚾᛇᚩᚷᚾᚳᛡᚪᚫᚾᚦᛞᛚᚫᚫᚹᚩᚦᛈᛖᛉᚹᚹᛡᛋᚩᛉᚾᛚᛗᛁᚳᛉᚱᛁᚢᚩᛇᚱᚹᛄᚹᚪᚩᚢᛖᛗᛖᛞᛇᛉᚦᛋᛖᚳᚷᛖᚱᚣᛋᛚᚳᛟᚫᚾᚳᛋᚢᛗᛡᚠᛟᛈᛄᚾᚦᛡ",
+          "text": "YABIEANTHJOEYOFEAETHIAHDULGTOXAEJSGNGIEOSOPEBPLAAEJTHUYAEOIANGTBIANHEWYNGUBMNAETFBOWHOEHABOESEAWAEDPBJMMWYFWNSGECIREOEXUTNGPGGHIHUGIAAYFTELWNNGEXTHBOBYOLTHCHHTHHPEOTHUEUEBOIMTHLAYOEJEAEONPGJIAAEUOORNGNGALOEMLEATHOEEAWWPRAYIJTHNEOOGNCIAAAENTHDLAEAEWOTHPEXWWIASOXNLMICXRIUOEORWJWAOUEMEDEOXTHSECGERYSLCOEAENCSUMIAFOEPJNTHIA"
+        }
+      ]
+    },
+    {
+      "name": "p5",
+      "length": 263,
+      "zeros": 8,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 263,
+          "survivorCount": 642
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 263,
+          "survivorCount": 106
+        }
+      ],
+      "best": [
+        {
+          "start": 27514,
+          "sign": 1,
+          "score": -4.525071026088062,
+          "holds": 6,
+          "runes": "ᛖᛁᚱᚦᚩᚾᛒᚫᚠᛖᛈᚳᛚᚣᚷᚪᚷᛏᛋᛞᛠᚾᚣᚣᚳᛝᚻᚢᚣᛇᛖᚠᚾᚹᛁᚢᛗᛗᚪᛠᚻᚱᚻᛄᛋᚩᛒᛉᚫᛖᛁᛖᚱᛖᚦᛝᛏᛇᛝᛁᚾᚣᚩᚦᛠᛟᛉᚣᛗᛉᚠᛠᛟᚾᚻᚦᚠᚦᚩᚷᛚᚱᛄᚻᛠᚷᛚᚪᛒᛖᚣᛞᚹᛉᚢᚫᚢᛝᚳᛖᛞᚣᛟᛄᚫᛁᚷᛝᛁᛄᚣᚪᛋᚳᚱᚻᛞᛉᚻᛠᚩᛖᛇᚦᚩᚣᚻᛟᛖᛚᛄᛁᛚᛠᛟᛉᚾᚻᛁᛞᚷᛝᚱᚢᛈᚳᛝᚾᛉᚳᚩᛋᛄᛗᚷᚢᛚᚫᚩᛈᚹᛏᛏᚠᚳᛈᛒᚩᚦᚦᛄᛒᚣᛏᛡᛒᛈᛄᛟᚻᚦᛞᚹᛖᚳᛝᚢᚳᛉᚱᛒᛝᛞᛇᛋᚹᛟᚢᚳᛈᚠᛝᚦᚪᛁᚪᛚᛏᛡᛋᛋᛒᚷᛇᛝᚩᚻᚷᚫᛟᛋᚣᚾᛏᚻᛒᛖᚾᚢᛚᛗᛟᚹᛚᛏᚪᛚᚦᛗᚣᚳᛈᚻᛚᛖᛞᛗᛚᛒᛋᚦᛚᛇᛠᛏᚻᚦᛈᛞᚷᛋᛞᛈ",
+          "text": "EIRTHONBAEFEPCLYGAGTSDEANYYCNGHUYEOEFNWIUMMAEAHRHJSOBXAEEIERETHNGTEONGINYOTHEAOEXYMXFEAOENHTHFTHOGLRJHEAGLABEYDWXUAEUNGCEDYOEJAEIGNGIJYASCRHDXHEAOEEOTHOYHOEELJILEAOEXNHIDGNGRUPCNGNXCOSJMGULAEOPWTTFCPBOTHTHJBYTIABPJOEHTHDWECNGUCXRBNGDEOSWOEUCPFNGTHAIALTIASSBGEONGOHGAEOESYNTHBENULMOEWLTALTHMYCPHLEDMLBSTHLEOEATHTHPDGSDP"
+        },
+        {
+          "start": 5819,
+          "sign": 1,
+          "score": -4.527005778719819,
+          "holds": 5,
+          "runes": "ᛞᛞᚷᛡᚫᚳᚪᚳᚠᛖᛇᚳᚩᚷᚩᚢᛇᚩᚢᚦᛖᛚᚷᛇᚢᛝᛒᛁᛖᛚᛈᚣᛈᚩᛚᚢᛗᚳᛞᛏᛖᛒᛁᚪᚱᛈᛟᛋᚾᚢᛋᛡᚳᚦᛞᚦᚹᛉᛝᛒᛒᛝᛁᛚᛞᛄᚷᚩᛒᛋᚠᛖᛚᛏᛞᚻᛏᚻᚠᛗᛝᚦᚻᛈᚷᚦᚷᛋᛏᚱᚣᚻᚳᛉᚹᛇᛋᛝᛚᚾᚣᛋᚩᚦᛁᚦᛚᛞᚱᛚᚾᚩᛈᛖᛡᚩᛋᛋᛗᛟᛞᛄᚢᚦᚻᛟᚢᛏᚫᚱᚦᛡᛚᛟᛏᛞᛗᚫᛏᚹᚹᛈᚪᚷᛁᛠᚾᚳᚠᛗᚻᚩᚦᚱᚷᛈᚣᛞᛒᚦᚫᚪᚪᛗᛈᚳᚹᚪᛞᚻᚱᚷᛈᛏᚹᛒᚳᚫᛞᚾᚦᚪᛖᚣᛚᚪᛞᚳᛁᛉᚢᛁᛟᛁᛗᚢᚾᛝᚹᛡᚠᛠᛄᛏᚾᚩᚦᚻᛒᛡᛒᚷᛗᚫᛁᛖᛉᛇᛁᛏᛠᛝᚩᛒᚫᚱᛡᛒᛝᛄᛝᚩᛞᛒᚢᚻᚷᚪᛒᛈᛒᛈᛒᛋᚢᛞᛞᚫᚱᛋᛄᚾᛞᛈᚱᛟᛄᛋᛞᚹᚪᚻᚻ",
+          "text": "DDGIAAECACFEEOCOGOUEOOUTHELGEOUNGBIELPYPOLUMCDTEBIARPOESNUSIACTHDTHWXNGBBNGILDJGOBSFELTDHTHFMNGTHHPGTHGSTRYHCXWEOSNGLNYSOTHITHLDRLNOPEIAOSSMOEDJUTHHOEUTAERTHIALOETDMAETWWPAGIEANCFMHOTHRGPYDBTHAEAAMPCWADHRGPTWBCAEDNTHAEYLADCIXUIOEIMUNNGWIAFEAJTNOTHHBIABGMAEIEXEOITEANGOBAERIABNGJNGODBUHGABPBPBSUDDAERSJNDPROEJSDWAHH"
+        },
+        {
+          "start": 27513,
+          "sign": 1,
+          "score": -4.545530593451859,
+          "holds": 5,
+          "runes": "ᛞᛁᛠᛡᚳᛒᚩᛖᚳᛖᛈᚳᛚᚣᚷᚪᚷᛏᛋᛞᛠᚾᚣᚣᚳᛝᚻᚢᚣᛇᛖᚠᚾᚹᛁᚢᛗᛗᚪᛠᚻᚱᚻᛄᛋᚩᛒᛉᚫᛖᛁᛖᚱᛖᚦᛝᛏᛇᛝᛁᚾᚣᚩᚦᛠᛟᛉᚣᛗᛉᚠᛠᛟᚾᚻᚦᚠᚦᚩᚷᛚᚱᛄᚻᛠᚷᛚᚪᛒᛖᚣᛞᚹᛉᚢᚫᚢᛝᚳᛖᛞᚣᛟᛄᚫᛁᚷᛝᛁᛄᚣᚪᛋᚳᚱᚻᛞᛉᚻᛠᚩᛖᛇᚦᚩᚣᚻᛟᛖᛚᛄᛁᛚᛠᛟᛉᚾᚻᛁᛞᚷᛝᚱᚢᛈᚳᛝᚾᛉᚳᚩᛋᛄᛗᚷᚢᛚᚫᚩᛈᚹᛏᛏᚠᚳᛈᛒᚩᚦᚦᛄᛒᚣᛏᛡᛒᛈᛄᛟᚻᚦᛞᚹᛖᚳᛝᚢᚳᛉᚱᛒᛝᛞᛇᛋᚹᛟᚢᚳᛈᚠᛝᚦᚪᛁᚪᛚᛏᛡᛋᛋᛒᚷᛇᛝᚩᚻᚷᚫᛟᛋᚣᚾᛏᚻᛒᛖᚾᚢᛚᛗᛟᚹᛚᛏᚪᛚᚦᛗᚣᚳᛈᚻᛚᛖᛞᛗᛚᛒᛋᚦᛚᛇᛠᛏᚻᚦᛈᛞᚷᛋᛞᛈ",
+          "text": "DIEAIACBOECEPCLYGAGTSDEANYYCNGHUYEOEFNWIUMMAEAHRHJSOBXAEEIERETHNGTEONGINYOTHEAOEXYMXFEAOENHTHFTHOGLRJHEAGLABEYDWXUAEUNGCEDYOEJAEIGNGIJYASCRHDXHEAOEEOTHOYHOEELJILEAOEXNHIDGNGRUPCNGNXCOSJMGULAEOPWTTFCPBOTHTHJBYTIABPJOEHTHDWECNGUCXRBNGDEOSWOEUCPFNGTHAIALTIASSBGEONGOHGAEOESYNTHBENULMOEWLTALTHMYCPHLEDMLBSTHLEOEATHTHPDGSDP"
+        }
+      ]
+    },
+    {
+      "name": "p6",
+      "length": 196,
+      "zeros": 3,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 196,
+          "survivorCount": 283
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 196,
+          "survivorCount": 198
+        }
+      ],
+      "best": [
+        {
+          "start": 32673,
+          "sign": 1,
+          "score": -4.468608497014216,
+          "holds": 2,
+          "runes": "ᛞᛒᛒᛖᛚᛄᚫᛈᚣᚹᚻᚦᛖᛞᛠᛉᛈᛖᚩᚳᚱᚢᚫᚣᛈᛁᛡᚾᛠᛝᚪᛗᛒᛇᛈᚷᛝᛖᛉᛗᚩᛗᛠᚹᛗᛒᛡᛟᛖᛠᚱᛏᛠᛉᛒᚪᚷᛠᚱᛖᛁᛝᚷᛖᛞᚢᚱᚣᛒᛞᛖᚻᛖᚳᛉᛗᛗᛞᛚᛏᚫᛝᛋᛒᛝᛒᚩᚷᚳᚱᚪᛈᛇᛚᚩᛒᛗᚷᛖᛋᚷᛉᛡᚢᛇᛈᚪᛒᛏᛇᚢᛗᚹᛚᛡᛁᚷᛠᚪᚣᛋᚾᚪᛖᚠᚣᛏᚩᚱᚢᛡᛠᛇᛁᚪᛡᚹᛁᚪᛏᛚᚩᚦᚻᛗᛒᚦᚦᛡᚣᚾᚹᚩᛉᛠᚷᚠᚱᛚᛖᚣᛈᚻᚩᛉᚻᚹᚣᛗᚩᚷᛒᛖᚣᛚᛝᛖᛏᛉᛒᚦᛄᛋᛇᛟᛉᛞᚻᛞᛏᚦᛚᚫᛖᚱᚣ",
+          "text": "DBBELJAEPYWHTHEDEAXPEOCRUAEYPIIANEANGAMBEOPGNGEXMOMEAWMBIAOEEEARTEAXBAGEAREINGGEDURYBDEHECXMMDLTAENGSBNGBOGCRAPEOLOBMGESGXIAUEOPABTEOUMWLIAIGEAAYSNAEFYTORUIAEAEOIAIAWIATLOTHHMBTHTHIAYNWOXEAGFRLEYPHOXHWYMOGBEYLNGETXBTHJSEOOEXDHDTTHLAEERY"
+        },
+        {
+          "start": 617,
+          "sign": -1,
+          "score": -4.518996930164952,
+          "holds": 1,
+          "runes": "ᛗᛈᛖᚩᛁᛖᚳᛏᛖᛠᚾᚦᚾᚢᚫᚳᚷᛋᚻᚫᛋᛁᛖᛁᛠᛠᛚᛁᛁᛏᚦᚣᛇᛗᚦᚩᛒᛞᚪᚦᚢᚣᛡᛗᚫᛡᚻᛁᛒᛠᛞᚪᚱᛞᚷᛚᛗᛗᚪᚱᛡᚾᛄᚻᛈᛒᛟᚩᛝᛁᚾᛠᚷᚾᚹᚻᛋᛉᛖᛒᚦᚹᛁᚩᛉᛚᛋᛋᚾᚾᚪᚳᛖᚩᛏᚻᛏᚳᛠᛚᛇᚢᚣᚻᛖᚣᛗᛖᛋᛚᚢᚱᛁᚱᛗᛈᛄᛉᛟᛚᚷᛄᛇᛝᚠᛟᚻᛏᚢᛡᛄᛚᚳᛚᛁᛗᛝᛝᚫᛟᛒᚹᛖᛞᛞᛟᛝᛉᚣᛈᚳᛉᛒᚪᚣᛋᚷᚻᚦᛒᚪᚷᛞᚪᚻᛝᚷᛖᛉᚱᚹᛡᛏᛞᚦᛇᛏᛉᛚᚪᚪᛠᚻᚷᛡᚻᚷᛄᛋᚣᚣᚩᚹᛝᚣᚱ",
+          "text": "MPEOIECTEEANTHNUAECGSHAESIEIEAEALIITTHYEOMTHOBDATHUYIAMAEIAHIBEADARDGLMMARIANJHPBOEONGINEAGNWHSXEBTHWIOXLSSNNACEOTHTCEALEOUYHEYMESLURIRMPJXOELGJEONGFOEHTUIAJLCLIMNGNGAEOEBWEDDOENGXYPCXBAYSGHTHBAGDAHNGGEXRWIATDTHEOTXLAAEAHGIAHGJSYYOWNGYR"
+        },
+        {
+          "start": 9991,
+          "sign": 1,
+          "score": -4.527394947187462,
+          "holds": 0,
+          "runes": "ᛒᚦᛋᚢᛈᛁᚱᚢᛈᚦᛠᚫᛋᚱᛖᚩᛡᚩᚾᚫᛡᛏᚫᚣᚾᚦᚦᛝᛄᛟᚩᚱᚦᚪᚱᛝᛏᛒᚾᛈᚱᛗᛋᛈᛠᚱᚪᛗᛝᚩᛞᚦᚳᛖᛋᚢᚪᛉᚳᚾᚣᛠᛗᛋᛟᚫᚳᚱᛒᛞᚱᛋᛟᚫᛈᚱᛋᚪᛇᛇᛗᚣᚢᛉᛗᛚᛒᛖᛉᚷᚻᚣᛟᚣᚫᚩᚪᛋᛒᛗᛏᚷᚢᚷᛠᛗᛋᚪᚦᛉᛒᛞᛝᚷᛏᛟᛚᛚᚪᛖᛁᛇᛋᛉᚾᛖᚢᚱᚱᛁᛚᚳᚪᚪᛞᛇᚹᛗᛚᛚᛄᛒᚪᛖᛚᛞᚱᛁᛗᛇᛒᚳᚩᛁᛈᚷᚪᛏᛈᛚᚳᚢᚩᛗᚾᛞᚹᛄᛗᚾᛏᚣᛄᚫᛝᚩᚪᛏᚢᛋᛒᚾᚾᛋᚻᛇᚩᚢᛞᚷᛁᛖᛇᛗᛒᚣ",
+          "text": "BTHSUPIRUPTHEAAESREOIAONAEIATAEYNTHTHNGJOEORTHARNGTBNPRMSPEARAMNGODTHCESUAXCNYEAMSOEAECRBDRSOEAEPRSAEOEOMYUXMLBEXGHYOEYAEOASBMTGUGEAMSATHXBDNGGTOELLAEIEOSXNEURRILCAADEOWMLLJBAELDRIMEOBCOIPGATPLCUOMNDWJMNTYJAENGOATUSBNNSHEOOUDGIEEOMBY"
+        }
+      ]
+    },
+    {
+      "name": "p7",
+      "length": 208,
+      "zeros": 1,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 208,
+          "survivorCount": 97
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 208,
+          "survivorCount": 17
+        }
+      ],
+      "best": [
+        {
+          "start": 31263,
+          "sign": 1,
+          "score": -4.513310226664983,
+          "holds": 0,
+          "runes": "ᚪᛟᛋᚹᚻᛖᛋᚷᚫᚫᛒᛖᚱᚫᛗᛋᛋᚳᚫᛝᚾᛟᛁᛏᛇᚦᚦᚩᛏᚫᚷᛞᚪᚫᛁᛞᛝᚪᚻᚪᛁᛈᛖᛟᚣᛋᛁᛒᛁᛠᚩᚾᚹᛋᛋᚦᛁᛖᛉᚣᛞᛄᛄᚢᛒᚣᚪᛞᚾᛚᚳᚫᚣᚪᛏᛒᛞᚢᚢᛗᛇᚫᚣᚱᛋᚹᚹᛖᛚᚳᚩᚩᛋᚪᚦᛁᛋᛁᚦᛡᚪᛒᛟᛖᚣᛉᚣᚩᚻᚾᚳᛟᛇᛁᛟᛟᚱᛏᛠᚾᚣᛖᛋᛈᚩᛡᛚᛞᚻᛉᚷᚪᛝᛉᚻᛖᛗᛈᛁᛋᚩᛁᛝᚹᚩᚻᚾᛞᚱᛚᚳᚪᛝᛝᛗᚾᛏᚦᛚᛈᚳᚻᚻᛝᚾᚾᚪᛞᛖᚻᚷᛁᛠᚱᚢᛚᛚᛡᛠᚪᚪᛖᚷᛁᛇᚦᛄᛖᛏᛄᚾᚦᛝᛚᛚᚦᚱᛝᛇᛋᚫᛈᚻᛉᛡᚣᛞᛏ",
+          "text": "AOESWHESGAEAEBERAEMSSCAENGNOEITEOTHTHOTAEGDAAEIDNGAHAIPEOEYSIBIEAONWSSTHIEXYDJJUBYADNLCAEYATBDUUMEOAEYRSWWELCOOSATHISITHIAABOEEYXYOHNCOEEOIOEOERTEANYESPOIALDHXGANGXHEMPISOINGWOHNDRLCANGNGMNTTHLPCHHNGNNADEHGIEARULLIAEAAAEGIEOTHJETJNTHNGLLTHRNGEOSAEPHXIAYDT"
+        },
+        {
+          "start": 31264,
+          "sign": 1,
+          "score": -4.563712131627367,
+          "holds": 1,
+          "runes": "ᚾᛏᚫᛟᛚᚫᛁᛝᛡᛟᚫᛗᛗᛏᚳᚢᚦᛞᚹᛖᛠᛟᛡᚦᚠᚦᚦᚩᛏᚫᚷᛞᚪᚫᛁᛞᛝᚪᚻᚪᛁᛈᛖᛟᚣᛋᛁᛒᛁᛠᚩᚾᚹᛋᛋᚦᛁᛖᛉᚣᛞᛄᛄᚢᛒᚣᚪᛞᚾᛚᚳᚫᚣᚪᛏᛒᛞᚢᚢᛗᛇᚫᚣᚱᛋᚹᚹᛖᛚᚳᚩᚩᛋᚪᚦᛁᛋᛁᚦᛡᚪᛒᛟᛖᚣᛉᚣᚩᚻᚾᚳᛟᛇᛁᛟᛟᚱᛏᛠᚾᚣᛖᛋᛈᚩᛡᛚᛞᚻᛉᚷᚪᛝᛉᚻᛖᛗᛈᛁᛋᚩᛁᛝᚹᚩᚻᚾᛞᚱᛚᚳᚪᛝᛝᛗᚾᛏᚦᛚᛈᚳᚻᚻᛝᚾᚾᚪᛞᛖᚻᚷᛁᛠᚱᚢᛚᛚᛡᛠᚪᚪᛖᚷᛁᛇᚦᛄᛖᛏᛄᚾᚦᛝᛚᛚᚦᚱᛝᛇᛋᚫᛈᚻᛉᛡᚣᛞᛏ",
+          "text": "NTAEOELAEINGIAOEAEMMTCUTHDWEEAOEIATHFTHTHOTAEGDAAEIDNGAHAIPEOEYSIBIEAONWSSTHIEXYDJJUBYADNLCAEYATBDUUMEOAEYRSWWELCOOSATHISITHIAABOEEYXYOHNCOEEOIOEOERTEANYESPOIALDHXGANGXHEMPISOINGWOHNDRLCANGNGMNTTHLPCHHNGNNADEHGIEARULLIAEAAAEGIEOTHJETJNTHNGLLTHRNGEOSAEPHXIAYDT"
+        },
+        {
+          "start": 3691,
+          "sign": 1,
+          "score": -4.564455415715299,
+          "holds": 1,
+          "runes": "ᚳᛖᚣᛉᛟᛝᚪᛝᛖᛉᛞᚦᛗᚪᛟᚾᛠᛝᛞᚦᚢᛟᛡᛉᚠᛈᛁᛇᚢᛡᚷᛒᚢᛏᚻᚾᚪᚦᛈᚫᛁᚳᛟᛋᚫᚦᛁᚹᛡᛚᛇᚻᛁᛈᛏᚻᚱᛞᛞᛒᚾᛈᛄᚦᛗᛇᚻᚪᛒᛞᛝᛋᛚᛝᚫᛚᛞᛞᚢᛒᚪᚩᛄᛁᛉᚢᚱᛒᚾᛠᚩᚷᚣᛗᛏᛖᚻᚪᛗᚹᚢᚦᛟᛖᛇᛗᛈᚱᚢᚾᛄᚷᚢᚾᚱᛁᚾᚣᛠᛇᚣᚳᛖᚷᛡᛗᚱᚷᚪᛠᚻᛄᛞᛈᛚᛚᛗᚳᛇᛚᚢᚷᚷᛋᛠᚣᛋᚻᛝᛖᚱᛇᛝᛚᛠᚾᚾᚩᛚᛋᚹᛏᛡᛋᚹᛖᛗᚻᚣᚻᚳᛡᛗᛖᛗᛚᛚᛡᚢᚣᛏᚪᚷᚷᛚᛋᛡᚩᛏᛚᚦᛝᚣᛉᚻᛡᛗᚹᛏᛚᚹᚷᚫᚳᛁᛚᛈᚪ",
+          "text": "CEYXOENGANGEXDTHMAOENEANGDTHUOEIAXFPIEOUIAGBUTHNATHPAEICOESAETHIWIALEOHIPTHRDDBNPJTHMEOHABDNGSLNGAELDDUBAOJIXURBNEAOGYMTEHAMWUTHOEEEOMPRUNJGUNRINYEAEOYCEGIAMRGAEAHJDPLLMCEOLUGGSEAYSHNGEREONGLEANNOLSWTIASWEMHYHCIAMEMLLIAUYTAGGLSIAOTLTHNGYXHIAMWTLWGAECILPA"
+        }
+      ]
+    },
+    {
+      "name": "p8",
+      "length": 255,
+      "zeros": 8,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 255,
+          "survivorCount": 115
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 255,
+          "survivorCount": 52
+        }
+      ],
+      "best": [
+        {
+          "start": 10643,
+          "sign": 1,
+          "score": -4.64875760497627,
+          "holds": 3,
+          "runes": "ᚣᚷᛈᚩᛇᛉᛏᚢᚣᚪᚢᛟᛄᛖᚷᛁᛠᛖᛒᚪᛉᛒᚫᚩᚳᚩᚪᛒᚢᚷᚹᛄᛟᛟᛈᚪᚳᚳᛗᛠᚾᚢᚫᛟᛡᛗᚱᚾᛚᚹᛒᚻᚫᛟᛗᚻᛠᚳᚱᛠᚳᛖᛁᚪᛈᚷᚫᛟᛋᛄᚪᛖᛡᛡᛇᚷᚾᛞᚹᛁᛡᛞᚩᛄᛁᚾᛖᛝᛠᛟᚣᚪᛡᛖᛁᛄᚾᛉᛁᛠᛚᚩᛋᛁᚦᛚᛚᛉᛒᚢᚦᛗᛉᚩᛚᚾᛡᚪᚳᚢᚾᚪᛈᚷᚢᚷᚩᚢᛁᛠᛋᛒᛁᛞᚱᛠᚢᚣᚫᚢᚳᛗᛖᛈᛄᚩᛡᛈᛝᛏᛚᚫᛁᛗᛝᛠᚹᛒᚳᛁᚣᚠᚪᚦᛇᛚᛞᚣᛖᛒᛈᚢᚱᛏᛄᚱᛟᚩᛗᚣᛋᛝᛋᚩᛞᛖᛒᛞᛠᚠᚷᚹᛚᚫᚱᛗᚠᛞᛒᚻᚱᚱᚩᚳᚳᚾᛞᚣᛠᛒᛠᛞᛟᛠᚢᚦᚱᚫᛇᛄᚦᛚᛈᚦᚩᛉᚱᛞᛏᛚᛉᛚᛡᚳᚻᚾᚻᚻᛈᛖᚳᛗᚦᚪᚳᚷᛖᚹᛚᚩᚹᚪᛝᚷᛟ",
+          "text": "YGPOEOXTUYAUOEJEGIEAEBAXBAEOCOABUGWJOEOEPACCMEANUAEOEIAMRNLWBHAEOEMHEACREACEIAPGAEOESJAEIAIAEOGNDWIIADOJINENGEAOEYAIAEIJNXIEALOSITHLLXBUTHMXOLNIAACUNAPGUGOUIEASBIDREAUYAEUCMEPJOIAPNGTLAEIMNGEAWBCIYFATHEOLDYEBPURTJROEOMYSNGSODEBDEAFGWLAERMFDBHRROCCNDYEABEADOEEAUTHRAEEOJTHLPTHOXRDTLXLIACHNHHPECMTHACGEWLOWANGGOE"
+        },
+        {
+          "start": 7295,
+          "sign": 1,
+          "score": -4.697148749943414,
+          "holds": 4,
+          "runes": "ᛗᚦᚱᛈᛟᚣᛏᛁᛡᛗᚢᛠᛒᚳᛋᛖᛁᚣᚩᚻᛒᛁᚪᚢᚻᛒᚳᚫᛝᛏᛝᚢᛟᛒᚠᛖᚷᛒᛟᛏᛟᚱᚱᚾᚢᚳᛟᚩᛈᛋᚻᛉᛉᚾᛁᛋᚪᚱᛝᛠᚾᚹᛝᚩᛝᛇᚩᛒᚦᛄᛚᛡᚷᛖᚩᛁᛖᚾᛒᚣᚳᛒᛄᛚᚢᚾᛇᚣᚫᛁᛗᛒᛗᛏᚷᚣᛡᛄᛗᛁᛖᛟᚳᛇᛇᚹᚳᚹᚻᚾᚻᚹᚾᚪᚻᚣᛁᚢᚣᛋᛄᛡᛡᛚᛏᚩᛞᛏᛈᛝᛡᚪᛖᛒᛚᛉᚪᚣᚣᛏᚩᚱᛈᛉᚫᛁᚪᛞᚹᚣᛚᚷᚱᛁᚢᚢᛋᛡᛖᚱᚢᛗᚻᚩᚻᛖᚻᛟᚳᛋᛡᚫᛒᛄᛡᚣᛗᚾᛈᛖᚪᚹᛗᛚᚩᚷᚹᚢᛚᛗᚩᛋᚠᛋᛉᚾᚠᛁᚳᚻᛒᛗᚢᚣᛗᛏᚪᚹᚷᚣᛒᛞᚹᛉᚻᚪᛈᚹᛡᚾᚢᛟᛇᛄᚩᛟᛠᛋᚾᚦᚢᛡᚹᛋᚷᚣᛉᛚᚻᚷᛡᛡᛖᚻᚫᚠᚾᛈᚫᚻᚷᚦᚻᚻᚦ",
+          "text": "MTHRPOEYTIIAMUEABCSEIYOHBIAUHBCAENGTNGUOEBFEGBOETOERRNUCOEOPSHXXNISARNGEANWNGONGEOOBTHJLIAGEOIENBYCBJLUNEOYAEIMBMTGYIAJMIEOECEOEOWCWHNHWNAHYIUYSJIAIALTODTPNGIAAEBLXAYYTORPXAEIADWYLGRIUUSIAERUMHOHEHOECSIAAEBJIAYMNPEAWMLOGWULMOSFSXNFICHBMUYMTAWGYBDWXHAPWIANUOEEOJOOEEASNTHUIAWSGYXLHGIAIAEHAEFNPAEHGTHHHTH"
+        },
+        {
+          "start": 24006,
+          "sign": -1,
+          "score": -4.699087093278464,
+          "holds": 5,
+          "runes": "ᚢᛄᛞᛉᛁᚻᛉᛚᛖᛏᛇᛡᛈᛒᛖᛒᚪᛟᛚᚢᚱᛠᛚᛞᛏᛞᚦᛄᛗᚪᛁᚷᛝᛚᚠᛏᚪᛉᚣᚣᚷᚪᛡᛚᛈᛒᛒᚫᚣᛖᚹᛖᛏᛇᚪᛡᚢᚦᛗᛇᛉᛉᚦᚣᛇᛗᚹᛝᚹᚳᛗᛇᛒᛚᛗᛁᛝᚱᛠᚾᚻᚢᛠᚢᛈᚦᚹᚹᛉᛋᛇᛉᚻᛞᛋᚫᛒᚦᛋᚾᛋᛁᚪᛒᚹᚢᛡᛄᛝᛄᚣᛏᛁᚩᛋᚢᛚᛡᛉᚱᛏᛏᚩᛋᛗᛠᚢᚹᛠᛄᚷᚫᚦᛚᛏᚩᛈᚦᛖᛞᛏᚩᚪᚫᛋᛁᚦᚳᛗᛝᛈᚣᛝᚪᚳᛞᛚᛇᚢᛋᛉᚠᚷᛗᛁᛡᛡᛋᛒᛟᛄᛄᚦᚪᛋᛒᚦᛏᛁᛞᚪᛄᚹᚠᛋᚾᚾᛡᛖᚱᛈᚩᚾᛝᛒᚣᚠᛚᛁᚢᚻᛒᚦᛏᚪᛚᚳᛚᛒᚾᛏᚱᚣᛝᛠᚷᛗᚱᚹᛝᛇᚫᛏᚪᛁᚷᚦᚩᛗᛞᛝᚾᛒᛖᛇᚳᛝᚪᛇᛝᚣᚫᚳᛒᛖᚠᚻᛁᚫᚱᛠᚩᚹᛉᛚ",
+          "text": "UJDXIHXLETEOIAPBEBAOELUREALDTDTHJMAIGNGLFTAXYYGAIALPBBAEYEWETEOAIAUTHMEOXXTHYEOMWNGWCMEOBLMINGREANHUEAUPTHWWXSEOXHDSAEBTHSNSIABWUIAJNGJYTIOSULIAXRTTOSMEAUWEAJGAETHLTOPTHEDTOAAESITHCMNGPYNGACDLEOUSXFGMIIAIASBOEJJTHASBTHTIDAJWFSNNIAERPONNGBYFLIUHBTHTALCLBNTRYNGEAGMRWNGEOAETAIGTHOMDNGNBEEOCNGAEONGYAECBEFHIAEREAOWXL"
+        }
+      ]
+    },
+    {
+      "name": "p9",
+      "length": 268,
+      "zeros": 11,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 268,
+          "survivorCount": 1540
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 268,
+          "survivorCount": 429
+        }
+      ],
+      "best": [
+        {
+          "start": 1956,
+          "sign": 1,
+          "score": -4.448212902136901,
+          "holds": 8,
+          "runes": "ᛁᚱᛒᚫᚫᛉᛏᛚᚦᛖᛋᚹᛋᛁᛖᚢᛁᛈᚹᛟᚫᛇᚩᚠᚫᚦᛋᚹᛋᚻᚹᚹᚪᚷᚩᛚᚹᛈᚠᛝᛚᚻᛖᛝᛠᛒᛈᛈᚷᚣᛟᚢᛖᛚᚦᛁᚫᛝᛁᚪᛏᛝᛠᛄᛖᛇᚻᚩᚦᛈᛖᛋᚩᛖᛒᛡᚻᛏᚩᛡᚳᛡᛟᛏᛄᛗᚠᛉᚣᚢᛡᚱᛄᛚᚢᚱᚷᛝᚢᚪᚢᚫᚩᛋᚩᚾᛏᚪᛁᚣᛇᚻᚦᛒᚪᚫᛚᛡᛉᛁᛏᚾᛋᚪᛖᛋᚱᚩᚳᛖᚦᛈᛖᚠᚩᛁᚫᚠᛟᚣᛇᛄᚱᛖᚩᚾᛋᚪᛋᚻᛈᛞᛈᚦᛞᚣᛏᛏᚢᚪᛝᚦᚣᛈᛞᛖᚩᚳᚦᛡᚦᚦᛞᚹᚳᛗᚦᛋᚹᚻᚻᚣᚢᚷᛚᚩᚠᛈᚩᚦᛋᚾᚻᚪᚦᚪᛋᛏᛞᚦᚱᛚᚹᛇᛈᛠᛈᚢᚷᚹᛋᛞᚩᚩᛄᚢᛒᛞᚻᛈᚾᛖᚪᚹᛁᚠᚢᚱᚳᚳᛄᛇᛟᛋᚻᚻᚾᛇᛝᛠᛖᚷᚾᚩᛇᛡᚻᛋᚦᛈᛏᚣᚩᛝᚠᛞᚷᛄᚱᚣᚣᛋᛁᚱᛟᛈᚷᛋ",
+          "text": "IRBAEAEXTLTHESWSIEUIPWOEAEEOOFAETHSWSHWWAGOLWPFNGLHENGEABPPGYOEUELTHIAENGIATNGEAJEEOHOTHPESOEBIAHTOIACIAOETJMFXYUIARJLURGNGUAUAEOSONTAIYEOHTHBAAELIAXITNSAESROCETHPEFOIAEFOEYEOJREONSASHPDPTHDYTTUANGTHYPDEOCTHIATHTHDWCMTHSWHHYUGLOFPOTHSNHATHASTDTHRLWEOPEAPUGWSDOOJUBDHPNEAWIFURCCJEOOESHHNEONGEAEGNOEOIAHSTHPTYONGFDGJRYYSIROEPGS"
+        },
+        {
+          "start": 4971,
+          "sign": -1,
+          "score": -4.470640413819069,
+          "holds": 5,
+          "runes": "ᚷᛇᚩᛏᛡᛁᛏᛡᚻᚳᚳᚻᚱᛠᛄᛞᛝᛈᚷᚣᚩᛝᚷᚩᚩᛡᚹᚩᛁᚷᛖᛏᚻᚳᛠᚪᛏᚩᛞᚩᚪᚣᛄᛗᚾᚳᚳᛞᚩᚢᚱᛄᚻᛟᚹᛠᛉᚷᛉᛖᚣᛖᚢᚾᛋᛇᛏᛗᛋᛠᛗᚾᛋᛡᚻᛄᛉᚳᛚᛗᚢᚪᛡᛋᚪᚩᚠᚾᚳᛗᚹᚢᚣᚱᛁᚦᚱᛋᛈᚹᚹᛏᚹᚢᛁᚦᛇᚹᛋᛟᛟᛝᛡᛟᛝᚢᛈᚳᚱᚫᚹᚣᛞᚦᛈᛚᛁᛟᛒᚢᚣᛚᚻᚠᚳᛠᚱᚠᛗᛚᛏᚻᚱᚷᛏᚹᛖᛞᛋᛟᛉᛟᛞᛉᛏᛉᛟᛒᚢᛟᛁᛋᛏᚢᛁᚻᚻᛞᛉᚢᛒᛖᚦᛖᚾᛋᛡᛡᛞᚩᚳᛋᚳᛞᛡᚢᛒᛄᛡᚩᚻᛄᛡᛋᚾᛇᛄᛞᛡᚷᚷᛈᚱᚱᛒᛡᛒᚻᛖᛇᛗᛏᛋᚢᛞᛋᚾᛞᚪᛗᚢᛝᛁᛗᛖᚠᛚᚪᚱᚩᛁᚣᛞᚳᛋᛋᛋᚱᛗᚩᛋᚱᛝᚪᛏᚪᛝᛚᛖᛗᚹᚪᛈᚪᚠᛉᛠᛞᚻᚩᚹᛝᚣᛞᚻᛞᚳᚣ",
+          "text": "GEOOTIAITIAHCCHREAJDNGPGYONGGOOIAWOIGETHCEAATODOAYJMNCCDOURJHOEWEAXGXEYEUNSEOTMSEAMNSIAHJXCLMUAIASAOFNCMWUYRITHRSPWWTWUITHEOWSOEOENGIAOENGUPCRAEWYDTHPLIOEBUYLHFCEARFMLTHRGTWEDSOEXOEDXTXOEBUOEISTUIHHDXUBETHENSIAIADOCSCDIAUBJIAOHJIASNEOJDIAGGPRRBIABHEEOMTSUDSNDAMUNGIMEFLAROIYDCSSSRMOSRNGATANGLEMWAPAFXEADHOWNGYDHDCY"
+        },
+        {
+          "start": 39999,
+          "sign": 1,
+          "score": -4.474537695534156,
+          "holds": 8,
+          "runes": "ᚣᛖᚹᛋᚫᛈᚾᚳᛝᚪᚱᚢᛞᚣᛞᛏᚣᚳᛖᚻᛗᛖᚦᚠᚪᚩᛠᛁᚳᛋᚣᛚᚱᚫᛚᚱᛗᚹᚠᛏᛗᚦᛠᛇᚦᚻᚳᛡᛟᛚᛒᛉᚱᚦᚢᛁᛞᚹᛁᚳᛒᛈᛁᚠᚦᛈᛖᛞᚢᚪᛠᛏᚩᛠᚢᚱᚱᛟᛟᚢᛁᚹᚱᛋᛇᚳᚠᛖᛠᛁᚱᛞᛇᚾᛄᛖᛈᛇᚢᚱᛏᛏᚳᛒᛖᚢᛄᚪᚦᛚᛄᚷᚫᛋᚢᚳᛚᛁᛁᚦᛏᚻᛚᛗᚾᛏᚦᚦᛈᚱᛉᚦᛖᛗᚢᛏᛁᛉᚫᚷᚢᛞᛝᚢᛇᚪᚾᛗᚣᚦᛒᚩᚷᛟᛚᚣᚩᚻᚷᚢᚢᛒᚩᚦᚪᚩᛖᚩᛖᛉᛒᛒᛁᚹᚱᛖᚹᛒᚩᚻᚣᛞᚫᛞᚳᛖᚠᚳᚢᛋᚢᚳᛇᚩᚢᚪᛝᚦᛞᛈᚳᚳᛠᛚᚠᛠᚦᚢᚷᚦᚳᚩᚾᚩᚣᛄᚣᛞᛞᛠᛇᛠᛋᚦᛚᚠᛠᛋᛞᚫᛒᚪᛟᛖᛒᚷᛇᚦᚾᚷᚻᚻᛞᛠᚹᛚᛏᚷᛟᛟᚦᛄᚷᛖᚠᛒᛝᚷᛇᛄᛖᛖᚹᛖᛗᛈᚳᛋ",
+          "text": "YEWSAEPNCNGARUDYDTYCEHMETHFAOEAICSYLRAELRMWFTMTHEAEOTHHCIAOELBXRTHUIDWICBPIFTHPEDUAEATOEAURROEOEUIWRSEOCFEEAIRDEONJEPEOURTTCBEUJATHLJGAESUCLIITHTHLMNTTHTHPRXTHEMUTIXAEGUDNGUEOANMYTHBOGOELYOHGUUBOTHAOEOEXBBIWREWBOHYDAEDCEFCUSUCEOOUANGTHDPCCEALFEATHUGTHCONOYJYDDEAEOEASTHLFEASDAEBAOEEBGEOTHNGHHDEAWLTGOEOETHJGEFBNGGEOJEEWEMPCS"
+        }
+      ]
+    },
+    {
+      "name": "p10",
+      "length": 263,
+      "zeros": 7,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 263,
+          "survivorCount": 143
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 263,
+          "survivorCount": 185
+        }
+      ],
+      "best": [
+        {
+          "start": 10490,
+          "sign": -1,
+          "score": -4.5677923641688745,
+          "holds": 5,
+          "runes": "ᚾᛋᚪᚦᚫᚦᚢᛝᛁᚱᛏᛒᛈᛗᛒᚻᚪᚩᚪᚩᛒᚾᛁᚷᚢᚻᛗᛉᚾᛝᚪᚢᛄᛋᛁᛒᚢᛖᚹᚣᚠᚱᚱᚾᚹᚣᚩᛒᚪᚩᚪᚾᚣᚣᚻᛖᚢᛁᛗᛒᛞᚣᛗᚩᛋᛝᛇᚱᛒᛏᛁᚠᛝᚫᛠᚻᚩᛖᛏᚩᚫᚫᛋᛞᛈᛖᛈᛉᛗᛏᛋᚫᛏᛉᛈᛋᛇᛏᛒᚣᛡᛗᚢᛒᚫᛞᚻᛖᛇᚢᚪᚪᛉᚾᛒᛋᛁᛟᛁᚢᛞᚣᚾᚱᛏᛚᚻᚹᛋᚱᛏᚳᛞᚦᚢᛠᚠᚪᚩᛡᛠᚱᛁᛞᚻᛄᛗᛄᛡᛠᛇᚪᚾᚢᛗᛉᚠᛁᛝᚩᛏᚱᛒᚠᚣᛏᚻᛚᛖᚢᚹᚦᛠᛉᛇᚳᛇᚾᚣᛈᛗᚣᚢᛒᛡᚣᚩᛉᛠᛚᚦᚾᚻᛋᛈᛞᚾᛡᛏᚷᛖᚹᚣᛗᚻᛋᛋᛟᛖᚷᛞᛒᚾᚹᚢᛒᛏᛡᚪᚳᛏᚫᚣᚻᚷᛈᛝᛏᚳᛈᛗᛚᛁᛉᚢᚩᚳᛗᚾᛄᚪᛈᛠᛝᛗᚦᛉᚦᛗᚣᚦᚫᛋᚦᛞᚹᚣᚾᛋᛠᛏᛋᛚ",
+          "text": "NSATHAETHUNGIRTBPMBHAOAOBNIGUHMXNNGAUJSIBUEWYFRRNWYOBAOANYYHEUIMBDYMOSNGEORBTIFNGAEEAHOETOAEAESDPEPXMTSAETXPSEOTBYIAMUBAEDHEEOUAAXNBSIOEIUDYNRTLHWSRTCDTHUEAFAOIAEARIDHJMJIAEAEOANUMXFINGOTRBFYTHLEUWTHEAXEOCEONYPMYUBIAYOXEALTHNHSPDNIATGEWYMHSSOEEGDBNWUBTIAACTAEYHGPNGTCPMLIXUOCMNJAPEANGMTHXTHMYTHAESTHDWYNSEATSL"
+        },
+        {
+          "start": 2615,
+          "sign": 1,
+          "score": -4.5913288134781585,
+          "holds": 5,
+          "runes": "ᛠᚷᛉᛏᛡᛋᚢᛋᚦᛋᚩᛄᚪᛚᚳᛚᛗᚱᚾᛒᛗᛉᛒᚾᛉᚱᛋᛋᚩᚣᛝᛝᚻᚦᚦᛒᚷᛗᛞᚻᚠᚦᛁᚳᚦᛗᚳᚫᚳᛚᛖᚦᚢᚩᛁᛉᛡᚷᛈᛁᛏᛇᚢᛞᚦᚫᚦᚻᚳᛖᚱᛗᛄᚩᛝᛝᛡᛡᛡᚹᚣᛗᛄᛞᚻᚫᚪᛒᚦᚫᛖᛒᚩᚩᛝᛟᛠᚢᛒᚪᛞᛁᛈᚷᛠᚫᛄᛝᚷᚦᚩᛚᚦᛄᚱᚳᚳᛖᛈᚩᛚᛝᚹᛋᛄᛝᚣᚾᛏᚻᚦᚻᚱᛟᛒᚫᚠᛞᛚᛚᚦᛈᚢᚩᛖᛝᛏᛟᛉᛝᛡᚱᛒᚫᚷᚣᚠᚹᚢᛠᚠᛋᛟᚠᚻᛞᛞᛋᚷᛏᚦᚦᚦᚻᚻᚳᚢᚷᛟᚹᛈᚾᛁᛗᚱᛈᚢᚾᚹᛠᛄᛋᛈᛞᛒᚩᛏᛈᚾᛏᛋᛋᚣᛈᛏᛟᚻᛞᛚᛚᚦᛗᛟᚩᚪᚾᛖᛞᛡᚷᚢᚱᚩᚪᚪᛏᚦᛁᚱᛗᛄᛈᚣᚷᛖᚹᚣᚹᚱᛠᛄᚫᛁᛏᛇᚦᚢᚾᛗᛠᚳᛖᚾᛒᛋᚣᛠᚱᛒᛖᛉᛝᛗ",
+          "text": "EAGXTIASUSTHSOJALCLMRNBMXBNXRSSOYNGNGHTHTHBGMDHFTHICTHMCAECLETHUOIXIAGPITEOUDTHAETHHCERMJONGNGIAIAIAWYMJDHAEABTHAEEBOONGOEEAUBADIPGEAAEJNGGTHOLTHJRCCEPOLNGWSJNGYNTHTHHROEBAEFDLLTHPUOENGTOEXNGIARBAEGYFWUEAFSOEFHDDSGTTHTHTHHHCUGOEWPNIMRPUNWEAJSPDBOTPNTSSYPTOEHDLLTHMOEOANEDIAGUROAATTHIRMJPYGEWYWREAJAEITEOTHUNMEACENBSYEARBEXNGM"
+        },
+        {
+          "start": 33884,
+          "sign": 1,
+          "score": -4.59441686869457,
+          "holds": 4,
+          "runes": "ᚢᛄᛄᚩᚢᚣᛇᛈᚱᛈᚣᚫᚦᚳᛞᚣᚳᛖᚳᛋᛚᚳᚾᛟᛖᛇᚫᛝᚣᛁᛠᛁᚦᚻᚢᚷᚣᚪᚢᚷᚠᚳᚳᚹᛋᛝᛝᛞᛉᛠᚳᛠᛇᚻᛒᛞᚱᚢᚾᛇᛡᛡᛁᛚᛁᛁᚣᛒᛗᛇᛗᚠᛠᛁᚪᛖᛈᛝᚣᛉᚫᛁᚩᛇᛏᛄᛒᚻᚳᚱᛝᛒᛒᛇᛠᚹᚳᚪᚪᛞᛒᚪᛉᚪᛁᚪᚣᚣᚳᛈᛁᚣᚹᛏᛝᛒᛗᛒᚪᚱᚱᚹᚾᛠᚪᛇᛖᚣᚻᚷᛇᛋᛖᛝᛄᛏᚠᚣᚱᛒᚾᛏᚣᚹᚦᛄᚣᚻᚷᛖᛖᛉᚻᛖᛝᚾᛏᚱᛈᚢᚠᚷᚦᚣᛟᚩᚾᛟᛡᛚᚳᛏᛖᚫᚻᚳᚾᛋᚷᚹᚾᚦᛄᛞᛗᛈᛞᛇᚹᚪᚢᚦᛏᚦᚦᛈᛠᚻᛒᚢᚱᚪᛖᚣᚪᛠᚻᚾᛖᛝᛋᚾᛋᛏᛠᚹᚩᚩᚷᚦᛄᛡᚪᛖᚾᚾᚦᛇᚢᚻᛡᛠᛉᚢᚦᛗᛋᛚᛠᛈᚪᚾᛖᛗᛝᛄᚢᛁᚳᛠᛄᚹᚪᚾᚾᚱᚫᚱᛞᛁᛈᚷᚪ",
+          "text": "UJJOUYEOPRPYAETHCDYCECSLCNOEEEOAENGYIEAITHHUGYAUGFCCWSNGNGDXEACEAEOHBDRUNEOIAIAILIIYBMEOMFEAIAEPNGYXAEIOEOTJBHCRNGBBEOEAWCAADBAXAIAYYCPIYWTNGBMBARRWNEAAEOEYHGEOSENGJTFYRBNTYWTHJYHGEEXHENGNTRPUFGTHYOEONOEIALCTEAEHCNSGWNTHJDMPDEOWAUTHTTHTHPEAHBURAEYAEAHNENGSNSTEAWOOGTHJIAAENNTHEOUHIAEAXUTHMSLEAPANEMNGJUICEAJWANNRAERDIPGA"
+        }
+      ]
+    },
+    {
+      "name": "p11",
+      "length": 273,
+      "zeros": 14,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 273,
+          "survivorCount": 1285
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 273,
+          "survivorCount": 3453
+        }
+      ],
+      "best": [
+        {
+          "start": 6351,
+          "sign": -1,
+          "score": -4.430226806134918,
+          "holds": 3,
+          "runes": "ᛈᚢᚻᚻᚫᚪᛒᛋᚻᛗᛡᚣᛋᚷᚦᚷᚪᛡᛒᛋᛗᛗᛉᛒᚣᚱᚣᚹᛟᚳᚻᚱᚩᛚᛗᚦᛈᛒᛝᚩᚾᛖᛁᛖᛚᛈᚢᛋᚷᛝᛞᚣᛏᛡᛁᛋᛖᛈᚩᛗᛄᛈᛒᛉᚻᚦᛏᛄᛈᛒᚢᛠᛉᛞᚦᛖᛋᛒᛁᚫᚦᚱᛞᚪᚱᚾᛁᛒᛞᚾᚻᛒᚪᛁᛠᚣᛋᛒᚾᚳᛈᚣᚠᚩᛞᚷᛚᛞᛟᚹᛇᛄᛇᛞᚦᛖᛚᛞᚦᚾᛡᚢᛉᛋᚢᚾᚦᛁᛉᚪᛚᚦᛠᛟᛉᛇᚳᚷᚷᚦᛡᚪᚷᚷᛖᚪᛏᛄᚦᚾᛒᛖᛝᚻᚳᛋᛈᛈᛚᚢᛠᚳᚳᛚᚫᛒᛒᛡᛈᛉᛈᚱᛖᚦᚢᚻᛄᚾᚫᚢᛚᛁᛚᚦᛝᚪᚩᛚᚹᛟᛈᛄᛒᚷᛝᛄᛄᚹᚻᚪᚠᛗᛖᚩᚷᚣᛋᛏᛗᚢᚩᛏᚢᛞᚣᛋᛏᚩᛚᛠᛄᚢᛈᛒᛚᛒᚩᚻᚪᚩᚪᛡᚣᛄᛚᚳᚠᚫᚾᛖᚾᛖᚫᚾᛚᛁᚻᚪᛡᛉᛏᛡᛉᛠᛋᚣᛁᛒᛚᛝᚳᚻᛗᛇᛞᛒᚳᛈᚢᛠᛋᛈᛒ",
+          "text": "PUHHAEABSHMIAYSGTHGAIABSMMXBYRYWOECHROLMTHPBNGONEIELPUSGNGDYTIAISEPOMJPBXHTHTJPBUEAXDTHESBIAETHRDARNIBDNHBAIEAYSBNCPYFODGLDOEWEOJEODTHELDTHNIAUXSUNTHIXALTHEAOEXEOCGGTHIAAGGEATJTHNBENGHCSPPLUEACCLAEBBIAPXPRETHUHJNAEULILTHNGAOLWOEPJBGNGJJWHAFMEOGYSTMUOTUDYSTOLEAJUPBLBOHAOAIAYJLCFAENENEAENLIHAIAXTIAXEASYIBLNGCHMEODBCPUEASPB"
+        },
+        {
+          "start": 28746,
+          "sign": -1,
+          "score": -4.4336016190493135,
+          "holds": 7,
+          "runes": "ᛟᚦᚳᛈᛡᚻᚪᛞᚢᛁᛗᚫᛠᚷᛏᛚᛁᚱᛒᛁᛈᚦᛉᚾᚹᛖᚳᚪᛞᛡᚪᚣᛏᚱᛁᛄᚾᚪᛝᛉᛗᚩᛝᛋᚱᚩᚫᛡᚱᚦᛗᛞᚣᚦᛞᛗᚪᚳᛞᚦᚱᚩᛈᛏᛈᛝᚠᛖᛁᚩᚹᚷᛡᚾᚳᚢᛡᛗᚻᛏᚾᛈᚪᚷᚷᛝᚠᛄᚻᚹᛖᚢᛝᚣᛒᚠᚣᛞᚻᚱᚫᚫᚠᛡᛚᛏᛋᛈᚾᛋᚹᛟᛠᛠᛋᚾᛞᚦᚻᚠᛒᚢᛚᛠᛡᚫᛟᚻᚦᛋᛒᛡᛞᛡᚣᚣᚩᛠᚹᛒᛗᛗᛄᚹᛟᚫᛝᛁᚦᛉᚷᚹᛗᛚᚣᛡᛗᛁᚳᚩᚷᚱᛈᚣᛒᚳᛖᚱᚾᛖᚻᚦᚪᛝᛋᚻᚫᚱᚪᛗᚣᛇᛋᚦᚦᚣᛖᛚᚷᛄᚹᚷᛡᚳᛏᛡᚦᛇᚹᚦᛖᛝᛖᚠᚩᛚᚱᛏᛉᛈᚢᛒᚹᚢᛖᛞᛁᚠᚱᚣᛝᚷᚪᛟᛝᚾᚢᛁᛁᚳᚾᚱᛏᛒᚫᛒᚾᛋᛝᛇᛗᚩᚪᛋᛇᛝᛚᚾᛉᛋᛟᚦᚩᛡᚢᚫᚹᛁᚱᛚᚩᚢᚷᛋᚹᚣᚻᛖᛈᚾᛋᛈᛏ",
+          "text": "OETHCPIAHADUIMAEEAGTLIRBIPTHXNWECADIAAYTRIJNANGXMONGSROAEIARTHMDYTHDMACDTHROPTPNGFEIOWGIANCUIAMHTNPAGGNGFJHWEUNGYBFYDHRAEAEFIALTSPNSWOEEAEASNDTHHFBULEAIAAEOEHTHSBIADIAYYOEAWBMMJWOEAENGITHXGWMLYIAMICOGRPYBCERNEHTHANGSHAERAMYEOSTHTHYELGJWGIACTIATHEOWTHENGEFOLRTXPUBWUEDIFRYNGGAOENGNUIICNRTBAEBNSNGEOMOASEONGLNXSOETHOIAUAEWIRLOUGSWYHEPNSPT"
+        },
+        {
+          "start": 1479,
+          "sign": -1,
+          "score": -4.454976817577632,
+          "holds": 7,
+          "runes": "ᛈᛟᛈᛈᛞᛗᚱᚹᚦᛒᛏᛖᚾᛟᚷᛇᛖᛞᚳᛏᚩᚠᛟᛁᚾᛈᚳᛈᛚᛇᛁᚦᛞᛖᚦᛞᛈᚢᛋᚻᚱᛖᚾᛗᚱᛄᛄᚢᛡᚳᛞᛄᛖᛉᛟᚪᛖᛝᛖᛈᚳᚱᛝᚢᛉᚦᛖᚪᚱᚣᚩᛚᛟᚪᛄᛋᛠᛠᚾᚱᛁᚹᚳᛇᚢᛠᛗᚣᛁᚾᛖᚱᛝᚻᛠᚠᛋᛖᚻᚠᚣᛉᚠᚪᛚᛠᚣᚹᛖᛚᛈᚱᚳᛉᛏᛖᛞᚦᛞᛖᚻᚹᚻᛝᚩᚪᛞᚳᚾᛁᚩᛡᚣᛉᚾᛈᛚᛟᚫᚾᚹᛚᛉᚦᚳᚫᛗᚣᛚᛋᛚᛋᚦᛋᛗᛡᚱᛞᚾᛖᛗᛉᚱᚱᚹᚱᛝᛈᚻᚦᛖᚪᛞᛟᛋᚾᚳᚻᛈᚣᚷᚫᛞᚳᛖᚩᛒᚾᛄᛗᚾᛉᛏᚾᛄᛡᚣᛠᛝᚹᚠᚪᛗᚠᚣᛈᛉᚷᚦᛄᛝᛝᛇᛏᛉᚳᛖᚪᚱᛖᛒᚳᛋᛁᛚᛞᛠᚦᚢᛒᚢᚪᛁᚱᚳᛚᚠᛖᚢᛋᛞᛏᚻᛖᚦᚳᛁᛒᛈᚪᚻᚱᚢᛟᛠᚫᚻᚦᚳᛟᛏᚪᛋᛚᚾᚣᚱᛖᛡᛗᛖᛁᛗ",
+          "text": "POEPPDMRWTHBTENOEGEOEDCTOFOEINPCPLEOITHDETHDPUSHRENMRJJUIACDJEXOEAENGEPCRNGUXTHEARYOLOEAJSEAEANRIWCEOUEAMYINERNGHEAFSEHFYXFALEAYWELPRCXTEDTHDEHWHNGOADCNIOIAYXNPLOEAENWLXTHCAEMYLSLSTHSMIARDNEMXRRWRNGPHTHEADOESNCHPYGAEDCEOBNJMNXTNJIAYEANGWFAMFYPXGTHJNGNGEOTXCEAREBCSILDEATHUBUAIRCLFEUSDTHETHCIBPAHRUOEEAAEHTHCOETASLNYREIAMEIM"
+        }
+      ]
+    },
+    {
+      "name": "p12",
+      "length": 261,
+      "zeros": 12,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 261,
+          "survivorCount": 822
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 261,
+          "survivorCount": 942
+        }
+      ],
+      "best": [
+        {
+          "start": 26447,
+          "sign": 1,
+          "score": -4.411940016456962,
+          "holds": 6,
+          "runes": "ᛁᚢᛁᚪᚹᛝᛞᛏᛠᛉᛒᛡᛚᚳᚱᛗᚻᛇᛠᚩᛋᛠᛏᛁᚱᚦᚩᛈᛒᚷᚢᛡᚹᚢᛈᛄᛝᛖᛝᚾᛗᚷᚣᛝᛏᛖᚾᚩᛖᛗᛈᚾᛖᛡᚣᚫᚠᚱᚾᚾᛁᛋᛄᛋᛏᛏᚦᛝᛞᛠᛚᚦᛠᚢᚦᚦᛝᛡᚠᚢᚻᛖᚻᛄᚹᚣᚪᚷᛈᚾᚣᛞᛝᛚᛡᛠᚷᚠᛁᛋᛋᛡᚪᛚᚢᛖᚢᚷᚹᚾᚱᚱᛁᚱᚢᚠᛟᚾᚹᛏᚩᚹᛏᚢᛁᚳᚹᚳᛝᚱᛏᚷᛇᛗᚢᛇᛇᚻᛚᛚᚣᛡᛉᛖᛏᛉᚳᛉᚦᛋᛚᚫᚻᛡᛈᚳᚻᚹᚷᚦᚾᚩᚻᚣᚩᛒᚹᚷᚹᚱᚣᛡᚢᚹᛈᚷᚪᛇᛡᛉᚩᛁᚷᛏᚩᛋᛉᛁᚣᛖᛈᛠᛠᚻᚪᚣᛠᛝᛈᛡᚢᛠᛝᛈᛝᚣᚾᚹᛋᛇᛚᚣᚩᛝᚳᚢᛝᚷᛒᛖᛚᛖᛟᚣᛁᚱᛋᛖᚾᛖᚳᛉᛠᚳᚠᚢᚱᛏᚠᛟᚦᛒᛉᛖᛉᛟᚹᛁᚳᚹᛏᚻᚹᛁᛁᚱᚳᚩᚣᛏᛚ",
+          "text": "IUIAWNGDTEAXBIALCRMHEOEAOSEATIRTHOPBGUIAWUPJNGENGNMGYNGTENOEMPNEIAYAEFRNNISJSTTTHNGDEALTHEAUTHTHNGIAFUHEHJWYAGPNYDNGLIAEAGFISSIAALUEUGWNRRIRUFOENWTOWTUICWCNGRTGEOMUEOEOHLLYIAXETXCXTHSLAEHIAPCHWGTHNOHYOBWGWRYIAUWPGAEOIAXOIGTOSXIYEPEAEAHAYEANGPIAUEANGPNGYNWSEOLYONGCUNGGBELEOEYIRSENECXEACFURTFOETHBXEXOEWICWTHWIIRCOYTL"
+        },
+        {
+          "start": 39464,
+          "sign": 1,
+          "score": -4.462433057822776,
+          "holds": 4,
+          "runes": "ᚱᛞᚷᚫᚱᚪᚩᛈᛡᚦᛚᛈᚾᚩᚷᛄᚹᚪᛋᚩᛋᛄᛗᚷᛡᚦᚷᛖᛏᚣᛒᛝᛋᚷᚩᚩᛋᛞᛈᛚᚱᚷᛗᛏᚦᛁᚱᛠᛚᚫᛠᛄᛏᛋᛉᚢᚠᛏᛇᚫᛖᛉᚩᛚᛋᛝᛈᛚᛈᚫᚾᛒᛋᚩᛚᚫᛚᛈᚠᛈᚳᚱᚱᛄᛄᚢᛚᛇᚪᚾᚦᚱᚫᚣᚻᚻᚦᛏᚪᛏᛖᚷᛋᛈᛡᚢᛗᚾᚳᚻᛠᛋᛄᛡᛈᛈᛁᛋᛋᚦᛗᛠᚩᛡᛞᚾᛗᛋᚳᛈᛏᛡᚪᚢᛋᚣᚻᛋᚣᛞᚾᛖᚢᛚᚠᚦᚷᚠᛉᛞᛗᚷᛞᛈᛠᚩᚣᚹᚷᚩᚾᛖᛄᛗᛏᛠᛚᚩᚹᛋᛒᛝᚳᛁᛚᛄᛒᚾᚷᛟᚻᚫᚻᚳᛟᛡᚣᚹᛒᛖᛋᚷᚣᛝᛏᛠᚻᛝᛡᛚᛁᚷᛚᚢᛞᚹᚫᛖᛞᛡᛒᛁᚱᛝᛁᚷᛈᚹᛈᛄᛝᛄᚳᚫᚹᚳᛞᛝᛋᚳᚹᚷᚱᛋᚣᛚᛚᛚᛚᚻᛒᛝᛞᚹᛡᛠᛉᛖᚪᚻᛄᚱᚩᛉᚳᚾᛠᛖᛋᛄᛇ",
+          "text": "RDGAERAOPIATHLPNOGJWASOSJMGIATHGETYBNGSGOOSDPLRGMTTHIREALAEEAJTSXUFTEOAEEXOLSNGPLPAENBSOLAELPFPCRRJJULEOANTHRAEYHHTHTATEGSPIAUMNCHEASJIAPPISSTHMEAOIADNMSCPTIAAUSYHSYDNEULFTHGFXDMGDPEAOYWGONEJMTEALOWSBNGCILJBNGOEHAEHCOEIAYWBESGYNGTEAHNGIALIGLUDWAEEDIABIRNGIGPWPJNGJCAEWCDNGSCWGRSYLLLLHBNGDWIAEAXEAHJROXCNEAESJEO"
+        },
+        {
+          "start": 26238,
+          "sign": -1,
+          "score": -4.466980449378788,
+          "holds": 9,
+          "runes": "ᛁᛈᛞᛖᚦᚻᛁᚫᛒᛋᛋᛄᛖᛡᚻᚪᚢᛖᛚᛁᚳᛈᚷᛄᛖᛟᚾᛋᚱᚢᚹᛋᚾᚳᛠᛄᛚᛠᛏᚠᚳᛖᚢᛁᚱᛈᚫᚫᚩᛈᛄᛞᛟᛖᛗᛁᚠᚷᛖᚻᚾᛒᛁᚢᛋᛒᚢᚷᚷᛄᚹᛡᛈᛚᚻᚹᚫᛗᚠᛚᛁᛋᚻᛋᛁᚫᚻᚦᛒᛟᚣᚻᚷᚻᚾᛠᛇᚠᚻᚳᛁᛡᚣᚠᛈᚾᛏᛞᚢᛗᛉᛋᛋᛋᛄᚠᛖᛠᛗᚫᛁᚻᚹᚣᚻᚳᚩᚱᚪᚢᛁᚹᚾᛒᚹᛄᚹᚳᛖᛁᛉᛏᛡᚪᚦᛈᚪᛋᚻᚫᛋᛡᛄᛞᚷᛟᚳᚱᛈᛋᚹᛗᛞᚾᛚᛁᛚᚣᚦᛖᛋᚱᛗᚳᚪᚫᛟᛝᚪᚷᛁᛞᚪᛋᛏᛝᛒᛋᛟᛞᛁᛖᛉᚾᛏᚱᚢᛁᛄᛉᚣᛚᚫᛄᛡᚳᛉᛏᛟᛄᚹᛖᛋᛗᚩᚩᛄᛚᛖᛚᛏᚱᚱᚢᛏᛄᛠᚫᚻᚣᛁᛈᚾᚢᚠᚳᛞᚫᚠᛝᚻᚩᛝᛄᚻᛋᚪᚦᛗᚣᚠᚪᛟᚳᚱᛒᛞᚱᚢᚹᚾ",
+          "text": "IPDETHHIAEBSSJEIAHAUELICPGJEOENSRUWSNCEAJLEATFCEUIRPAEAEOPJDOEEMIFGEHNBIUSBUGGJWIAPLHWAEMFLISHSIAEHTHBOEYHGHNEAEOFHCIIAYFPNTDUMXSSSJFEEAMAEIHWYHCORAUIWNBWJWCEIXTIAATHPASHAESIAJDGOECRPSWMDNLILYTHESRMCAAEOENGAGIDASTNGBSOEDIEXNTRUIJXYLAEJIACXTOEJWESMOOJLELTRRUTJEAAEHYIPNUFCDAEFNGHONGJHSATHMYFAOECRBDRUWN"
+        }
+      ]
+    },
+    {
+      "name": "p13",
+      "length": 272,
+      "zeros": 12,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 272,
+          "survivorCount": 941
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 272,
+          "survivorCount": 1352
+        }
+      ],
+      "best": [
+        {
+          "start": 37813,
+          "sign": -1,
+          "score": -4.453320624469077,
+          "holds": 6,
+          "runes": "ᛋᚫᚠᛝᛋᚷᚷᛗᚷᛖᛝᛉᛁᚾᚪᛇᛉᛏᚣᛠᛉᚩᚷᚢᛁᛗᚹᛇᛡᛈᛏᛇᚪᚱᚩᚩᚢᚩᛟᛡᛞᚣᛋᛚᛡᛗᛗᚪᚷᛚᛁᛚᛝᚹᛚᛟᛋᛁᛝᛝᚠᛒᛉᛚᛉᚦᛇᛁᚾᚳᛗᛒᚻᛞᛈᚳᚣᛒᛖᛖᛋᛇᚷᛈᛁᛚᛞᛖᛁᛗᚣᚣᛞᚠᛁᛖᚷᛁᚹᚾᛈᛏᚳᛟᛟᛠᛡᛄᚢᚾᛗᛟᛝᛈᚱᛄᛚᛈᚱᚹᛖᚢᛗᚣᛉᚠᚹᚷᚩᛝᛋᛖᚢᚹᛏᚻᛁᛠᚠᛏᚪᚱᛚᛁᚳᛖᚻᛋᚦᚷᛉᛏᚦᚩᚩᚢᚹᛗᚷᛒᛒᛚᛠᛇᚷᛖᛝᚱᛇᚳᛠᛋᚾᛠᚻᛗᛈᚣᚳᚱᛋᛈᛗᛖᛋᛠᚻᚠᛖᚾᚣᛟᛚᛋᛗᛈᛈᛖᛒᚢᛠᛁᛞᚢᛏᛋᚩᚹᚳᚻᛡᛗᚪᛡᚩᚳᛚᛋᚾᚣᛚᛇᚣᚫᛉᛚᚣᚻᚫᛈᚫᚹᛉᛖᛖᚩᛒᛞᚾᛖᛚᛖᚩᛈᚫᚱᛖᚾᚱᛏᛒᚪᛁᚩᚹᛁᛁᚾᛗᛒᚣᛠᛖᛉᚱᛋᛈᛇᚳᚦᛚᚣ",
+          "text": "SAEFNGSGGMGENGXINAEOXTYEAXOGUIMWEOIAPTEOAROOUOOEIADYSLIAMMAGLILNGWLOESINGNGFBXLXTHEOINCMBHDPCYBEESEOGPILDEIMYYDFIEGIWNPTCOEOEEAIAJUNMOENGPRJLPRWEUMYXFWGONGSEUWTHIEAFTARLICEHSTHGXTTHOOUWMGBBLEAEOGENGREOCEASNEAHMPYCRSPMESEAHFENYOELSMPPEBUEAIDUTSOWCHIAMAIAOCLSNYLEOYAEXLYHAEPAEWXEEOBDNELEOPAERENRTBAIOWIINMBYEAEXRSPEOCTHLY"
+        },
+        {
+          "start": 37812,
+          "sign": -1,
+          "score": -4.4698553630719635,
+          "holds": 5,
+          "runes": "ᚢᛄᛞᛝᛋᚷᚷᛗᚷᛖᛝᛉᛁᚾᚪᛇᛉᛏᚣᛠᛉᚩᚷᚢᛁᛗᚹᛇᛡᛈᛏᛇᚪᚱᚩᚩᚢᚩᛟᛡᛞᚣᛋᛚᛡᛗᛗᚪᚷᛚᛁᛚᛝᚹᛚᛟᛋᛁᛝᛝᚠᛒᛉᛚᛉᚦᛇᛁᚾᚳᛗᛒᚻᛞᛈᚳᚣᛒᛖᛖᛋᛇᚷᛈᛁᛚᛞᛖᛁᛗᚣᚣᛞᚠᛁᛖᚷᛁᚹᚾᛈᛏᚳᛟᛟᛠᛡᛄᚢᚾᛗᛟᛝᛈᚱᛄᛚᛈᚱᚹᛖᚢᛗᚣᛉᚠᚹᚷᚩᛝᛋᛖᚢᚹᛏᚻᛁᛠᚠᛏᚪᚱᛚᛁᚳᛖᚻᛋᚦᚷᛉᛏᚦᚩᚩᚢᚹᛗᚷᛒᛒᛚᛠᛇᚷᛖᛝᚱᛇᚳᛠᛋᚾᛠᚻᛗᛈᚣᚳᚱᛋᛈᛗᛖᛋᛠᚻᚠᛖᚾᚣᛟᛚᛋᛗᛈᛈᛖᛒᚢᛠᛁᛞᚢᛏᛋᚩᚹᚳᚻᛡᛗᚪᛡᚩᚳᛚᛋᚾᚣᛚᛇᚣᚫᛉᛚᚣᚻᚫᛈᚫᚹᛉᛖᛖᚩᛒᛞᚾᛖᛚᛖᚩᛈᚫᚱᛖᚾᚱᛏᛒᚪᛁᚩᚹᛁᛁᚾᛗᛒᚣᛠᛖᛉᚱᛋᛈᛇᚳᚦᛚᚣ",
+          "text": "UJDNGSGGMGENGXINAEOXTYEAXOGUIMWEOIAPTEOAROOUOOEIADYSLIAMMAGLILNGWLOESINGNGFBXLXTHEOINCMBHDPCYBEESEOGPILDEIMYYDFIEGIWNPTCOEOEEAIAJUNMOENGPRJLPRWEUMYXFWGONGSEUWTHIEAFTARLICEHSTHGXTTHOOUWMGBBLEAEOGENGREOCEASNEAHMPYCRSPMESEAHFENYOELSMPPEBUEAIDUTSOWCHIAMAIAOCLSNYLEOYAEXLYHAEPAEWXEEOBDNELEOPAERENRTBAIOWIINMBYEAEXRSPEOCTHLY"
+        },
+        {
+          "start": 19983,
+          "sign": 1,
+          "score": -4.504130014221654,
+          "holds": 6,
+          "runes": "ᚾᛈᛁᛏᚢᛏᚦᛟᛖᚱᛁᛁᛝᚷᚪᛏᚫᛒᛒᛉᛁᚢᚪᛗᛈᛡᛞᚩᛚᛏᚠᛏᚱᛚᚦᛟᚳᛏᚣᚪᚫᛠᚩᚹᚦᚾᚻᛠᛏᚱᚠᚳᚻᚣᛒᛗᚦᛄᚾᚱᚠᚳᛁᚫᛏᛞᚫᚣᛞᚻᛝᚣᛠᚣᛚᛡᚾᛖᛋᛁᛄᚦᚾᚻᛝᚻᚪᛇᛁᛋᛖᛚᛏᚩᛁᚳᚹᛉᚱᚫᚦᛖᛡᚱᛋᚩᛝᚱᛖᛠᛞᛗᛄᚳᛏᛡᛟᛋᛏᛒᛗᚦᛉᛠᛖᚣᚫᚦᚪᚳᛚᚪᛚᚪᚩᚣᚱᚹᚣᚣᚱᚦᚪᚠᚹᚪᚪᚫᚱᛖᛋᚫᛚᛝᛞᚻᛒᛞᛁᚹᛋᛞᚷᚹᚣᚹᚾᚢᚹᚷᛒᛄᛄᛖᛋᚷᚻᛇᚩᛋᚢᚩᚢᛁᚱᛋᚹᚠᛟᚣᛟᛞᛡᛏᚻᛡᛏᚣᚾᛖᚪᛗᛏᚢᛠᛒᛋᚷᛞᛟᛞᛋᚫᛉᚾᚾᛟᚪᛒᛚᛋᛝᛏᛟᛇᚣᚢᚱᛈᛖᛖᚣᛁᛉᛉᛇᛡᛈᛠᚩᚱᚾᛇᛒᚳᛏᛠᚠᛋᚪᚱᚢᚣᚩᛠᚣᚪᛚᛝᛖᚾᚳᛡᛟᛚᛒᚷᛋᛁᚷᛈᛡ",
+          "text": "NPITUTTHOEERIINGGATAEBBXIUAMPIADOLTFTRLTHOECTYAAEEAOWTHNHEATRFCHYBMTHJNRFCIAETDAEYDHNGYEAYLIANESIJTHNHNGHAEOISELTOICWXRAETHEIARSONGREEADMJCTIAOESTBMTHXEAEYAETHACLALAOYRWYYRTHAFWAAAERESAELNGDHBDIWSDGWYWNUWGBJJESGHEOOSUOUIRSWFOEYOEDIATHIATYNEAMTUEABSGDOEDSAEXNNOEABLSNGTOEEOYURPEEYIXXEOIAPEAORNEOBCTEAFSARUYOEAYALNGENCIAOELBGSIGPIA"
+        }
+      ]
+    },
+    {
+      "name": "p14",
+      "length": 137,
+      "zeros": 2,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 137,
+          "survivorCount": 1462
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 137,
+          "survivorCount": 1017
+        }
+      ],
+      "best": [
+        {
+          "start": 39402,
+          "sign": -1,
+          "score": -4.312808339341756,
+          "holds": 1,
+          "runes": "ᚩᚳᚠᚫᚷᚩᛇᛟᛟᚾᚣᛟᛚᛖᚱᚢᛖᛠᚢᛝᛈᛝᛄᚢᛡᛏᚫᚫᚩᚱᚾᚪᚾᛚᚫᚣᚱᚻᛚᛏᚷᛖᚢᛋᛄᛒᚹᚣᛋᚾᛏᚹᛝᚹᛡᛟᚪᚦᛚᛏᚷᛒᛗᚹᛝᛋᚪᛁᛈᛒᛝᚫᛖᛚᛋᚻᛖᚻᚾᚹᛒᚾᛋᚱᚢᛝᚦᛖᛖᛋᛁᛋᚾᛉᛚᚢᛗᚩᚻᛟᛚᛁᛞᚳᚱᚦᚣᛇᛞᚩᚪᛒᛝᚹᛋᚦᛈᛞᛖᛝᚦᛞᚹᛇᚹᛁᚻᚹᛡᚩᚪᚱᛗᛁᛖᛚᛏ",
+          "text": "OCFAEGOEOOEOENYOELERUEEAUNGPNGJUIATAEAEORNANLAEYRHLTGEUSJBWYSNTWNGWIAOEATHLTGBMWNGSAIPBNGAEELSHEHNWBNSRUNGTHEESISNXLUMOHOELIDCRTHYEODOABNGWSTHPDENGTHDWEOWIHWIAOARMIELT"
+        },
+        {
+          "start": 18238,
+          "sign": -1,
+          "score": -4.333254015633096,
+          "holds": 1,
+          "runes": "ᛚᛚᛏᚹᛝᚫᛏᚪᛠᛞᛋᛟᚢᛞᚱᛟᛄᛁᚣᛇᛏᚩᚾᛋᛁᚢᛁᚦᛖᛏᛗᚻᛝᚷᛋᚦᚢᛗᚣᚦᛡᛉᛞᚹᛇᚢᚷᛝᛏᚹᚻᚦᚱᚪᚹᛗᛚᚷᚪᛏᛉᛗᛒᚻᛋᚩᛚᛁᛠᚣᚱᚦᛋᛁᛏᚳᚩᛁᛗᛖᚦᚹᚾᛉᛏᛞᛞᚪᚩᚩᚾᛏᛋᛖᛋᛒᚫᚩᚠᛟᚦᚢᚩᛁᛈᛠᚪᛁᚹᛟᚻᚫᛁᚪᛄᛈᚢᛋᛠᛡᚩᚻᛝᚣᚢᚦᛈᛖᚷᚷᚪᚱᛁᛗᚱᛖᚣ",
+          "text": "LLTWNGAETAEADSOEUDROEJIYEOTONSIUITHETMHNGGSTHUMYTHIAXDWEOUGNGTWHTHRAWMLGATXMBHSOLIEAYRTHSITCOIMETHWNXTDDAOONTSESBAEOFOETHUOIPEAAIWOEHAEIAJPUSEAIAOHNGYUTHPEGGARIMREY"
+        },
+        {
+          "start": 39401,
+          "sign": -1,
+          "score": -4.334817714417489,
+          "holds": 0,
+          "runes": "ᚣᛡᛞᚫᚷᚩᛇᛟᛟᚾᚣᛟᛚᛖᚱᚢᛖᛠᚢᛝᛈᛝᛄᚢᛡᛏᚫᚫᚩᚱᚾᚪᚾᛚᚫᚣᚱᚻᛚᛏᚷᛖᚢᛋᛄᛒᚹᚣᛋᚾᛏᚹᛝᚹᛡᛟᚪᚦᛚᛏᚷᛒᛗᚹᛝᛋᚪᛁᛈᛒᛝᚫᛖᛚᛋᚻᛖᚻᚾᚹᛒᚾᛋᚱᚢᛝᚦᛖᛖᛋᛁᛋᚾᛉᛚᚢᛗᚩᚻᛟᛚᛁᛞᚳᚱᚦᚣᛇᛞᚩᚪᛒᛝᚹᛋᚦᛈᛞᛖᛝᚦᛞᚹᛇᚹᛁᚻᚹᛡᚩᚪᚱᛗᛁᛖᛚᛏ",
+          "text": "YIADAEGOEOOEOENYOELERUEEAUNGPNGJUIATAEAEORNANLAEYRHLTGEUSJBWYSNTWNGWIAOEATHLTGBMWNGSAIPBNGAEELSHEHNWBNSRUNGTHEESISNXLUMOHOELIDCRTHYEODOABNGWSTHPDENGTHDWEOWIHWIAOARMIELT"
+        }
+      ]
+    },
+    {
+      "name": "p15",
+      "length": 159,
+      "zeros": 7,
+      "signs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 159,
+          "survivorCount": 5887
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 159,
+          "survivorCount": 5211
+        }
+      ],
+      "best": [
+        {
+          "start": 40959,
+          "sign": -1,
+          "score": -4.257338979699367,
+          "holds": 4,
+          "runes": "ᛏᚱᚪᛏᛗᚩᚹᚻᛈᛞᚢᚫᛡᛉᛒᚩᛄᚳᚱᛁᛋᚱᛄᛗᚣᛟᛉᚠᚫᛡᚾᛋᛏᛠᚪᚦᚱᛞᛠᛏᛄᛖᛏᛖᚾᚩᛖᛡᚳᛡᚾᛁᛒᛈᚣᛒᛝᛁᚣᛡᚻᚣᛠᚣᚷᚻᚠᛁᛖᚳᛉᛠᛏᛁᛏᛝᚹᚻᚾᚹᛡᚾᚱᛝᛋᚷᚢᚱᛞᛒᛞᚳᚻᛗᛁᛏᚠᛠᚪᛉᚣᚩᛝᛏᛇᚻᚹᛖᛖᚱᛠᛠᛏᚪᛒᚻᛒᛒᚣᚱᛗᚾᛒᚣᛡᚾᛏᚪᚩᚳᛚᛝᚱᛗᚪᛖᛟᚢᛖᛞᛚᚾᛗᛉᚹᛈᛚᛗᚾᚠᛗᛗᛁᛋᚻᛡᛗᚻᛏ",
+          "text": "TRATMOWHPDUAEIAXBOJCRISRJMYOEXFAEIANSTEAATHRDEATJETENOEIACIANIBPYBNGIYIAHYEAYGHFIECXEATITNGWHNWIANRNGSGURDBDCHMITFEAAXYONGTEOHWEEREAEATABHBBYRMNBYIANTAOCLNGRMAEOEUEDLNMXWPLMNFMMISHIAMHT"
+        },
+        {
+          "start": 40960,
+          "sign": -1,
+          "score": -4.27086157678461,
+          "holds": 5,
+          "runes": "ᚠᚱᚪᛏᛗᚩᚹᚻᛈᛞᚢᚫᛡᛉᛒᚩᛄᚳᚱᛁᛋᚱᛄᛗᚣᛟᛉᚠᚫᛡᚾᛋᛏᛠᚪᚦᚱᛞᛠᛏᛄᛖᛏᛖᚾᚩᛖᛡᚳᛡᚾᛁᛒᛈᚣᛒᛝᛁᚣᛡᚻᚣᛠᚣᚷᚻᚠᛁᛖᚳᛉᛠᛏᛁᛏᛝᚹᚻᚾᚹᛡᚾᚱᛝᛋᚷᚢᚱᛞᛒᛞᚳᚻᛗᛁᛏᚠᛠᚪᛉᚣᚩᛝᛏᛇᚻᚹᛖᛖᚱᛠᛠᛏᚪᛒᚻᛒᛒᚣᚱᛗᚾᛒᚣᛡᚾᛏᚪᚩᚳᛚᛝᚱᛗᚪᛖᛟᚢᛖᛞᛚᚾᛗᛉᚹᛈᛚᛗᚾᚠᛗᛗᛁᛋᚻᛡᛗᚻᛏ",
+          "text": "FRATMOWHPDUAEIAXBOJCRISRJMYOEXFAEIANSTEAATHRDEATJETENOEIACIANIBPYBNGIYIAHYEAYGHFIECXEATITNGWHNWIANRNGSGURDBDCHMITFEAAXYONGTEOHWEEREAEATABHBBYRMNBYIANTAOCLNGRMAEOEUEDLNMXWPLMNFMMISHIAMHT"
+        },
+        {
+          "start": 40961,
+          "sign": -1,
+          "score": -4.326030685632081,
+          "holds": 6,
+          "runes": "ᚠᚳᛒᛉᛠᚾᛇᛄᛡᛚᚳᛁᛖᛝᛏᛗᛡᛚᚠᛁᛋᚱᛄᛗᚣᛟᛉᚠᚫᛡᚾᛋᛏᛠᚪᚦᚱᛞᛠᛏᛄᛖᛏᛖᚾᚩᛖᛡᚳᛡᚾᛁᛒᛈᚣᛒᛝᛁᚣᛡᚻᚣᛠᚣᚷᚻᚠᛁᛖᚳᛉᛠᛏᛁᛏᛝᚹᚻᚾᚹᛡᚾᚱᛝᛋᚷᚢᚱᛞᛒᛞᚳᚻᛗᛁᛏᚠᛠᚪᛉᚣᚩᛝᛏᛇᚻᚹᛖᛖᚱᛠᛠᛏᚪᛒᚻᛒᛒᚣᚱᛗᚾᛒᚣᛡᚾᛏᚪᚩᚳᛚᛝᚱᛗᚪᛖᛟᚢᛖᛞᛚᚾᛗᛉᚹᛈᛚᛗᚾᚠᛗᛗᛁᛋᚻᛡᛗᚻᛏ",
+          "text": "FCBXEANEOJIALCIENGTMIALFISRJMYOEXFAEIANSTEAATHRDEATJETENOEIACIANIBPYBNGIYIAHYEAYGHFIECXEATITNGWHNWIANRNGSGURDBDCHMITFEAAXYONGTEOHWEEREAEATABHBBYRMNBYIANTAOCLNGRMAEOEUEDLNMXWPLMNFMMISHIAMHT"
+        }
+      ]
+    }
+  ]
+}
