@@ -1,0 +1,953 @@
+{
+  "seed": "0x11a823d5",
+  "controls": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_welcome",
+      "off": 5,
+      "holds": [
+        43,
+        69
+      ],
+      "rank": 46,
+      "free": 1,
+      "plaintextCandidates": 7,
+      "acceptedOffsets": [
+        5
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_wisdom",
+      "off": 16,
+      "holds": [
+        20
+      ],
+      "rank": 46,
+      "free": 1,
+      "plaintextCandidates": 8,
+      "acceptedOffsets": [
+        16
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_koan_1",
+      "off": 27,
+      "holds": [
+        26
+      ],
+      "rank": 47,
+      "free": 0,
+      "plaintextCandidates": 13,
+      "acceptedOffsets": [
+        27
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "name": "0_loss_of_divinity",
+      "off": 38,
+      "holds": [
+        31
+      ],
+      "rank": 47,
+      "free": 0,
+      "plaintextCandidates": 9,
+      "acceptedOffsets": [
+        38
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_welcome",
+      "off": 5,
+      "holds": [
+        43,
+        69
+      ],
+      "rank": 47,
+      "free": 0,
+      "plaintextCandidates": 7,
+      "acceptedOffsets": [
+        5
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_wisdom",
+      "off": 16,
+      "holds": [
+        20
+      ],
+      "rank": 46,
+      "free": 1,
+      "plaintextCandidates": 8,
+      "acceptedOffsets": [
+        16
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_koan_1",
+      "off": 27,
+      "holds": [
+        26
+      ],
+      "rank": 47,
+      "free": 0,
+      "plaintextCandidates": 13,
+      "acceptedOffsets": [
+        27
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "name": "0_loss_of_divinity",
+      "off": 38,
+      "holds": [
+        31
+      ],
+      "rank": 47,
+      "free": 0,
+      "plaintextCandidates": 9,
+      "acceptedOffsets": [
+        38
+      ],
+      "unresolved": 0,
+      "truePlaintext": true,
+      "trueCycle": true
+    }
+  ],
+  "original": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "tested": 53,
+      "ranks": {
+        "47": 1,
+        "48": 52
+      },
+      "counts": {
+        "nonzero alphabet normalization impossible": 53
+      },
+      "survivors": [],
+      "rejections": [
+        {
+          "off": 0,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 1,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 1,
+          "holds": [
+            41
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 2,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 3,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 4,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 4,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 5,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 5,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 6,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 7,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 8,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 9,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 10,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 11,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 12,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 13,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 47
+        },
+        {
+          "off": 14,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 14,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 15,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 15,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 16,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 17,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 17,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 18,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 19,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 20,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 21,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 22,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 23,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 24,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 25,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 26,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 27,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 27,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 28,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 29,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 30,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 31,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 32,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 33,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 34,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 35,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 36,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 37,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 38,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 39,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 40,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 41,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 42,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 43,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 44,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 45,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        }
+      ]
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "tested": 53,
+      "ranks": {
+        "47": 1,
+        "48": 52
+      },
+      "counts": {
+        "nonzero alphabet normalization impossible": 53
+      },
+      "survivors": [],
+      "rejections": [
+        {
+          "off": 0,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 1,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 1,
+          "holds": [
+            41
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 2,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 3,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 4,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 4,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 5,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 5,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 6,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 7,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 8,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 9,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 10,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 11,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 12,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 13,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 47
+        },
+        {
+          "off": 14,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 14,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 15,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 15,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 16,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 17,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 17,
+          "holds": [
+            25
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 18,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 19,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 20,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 21,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 22,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 23,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 24,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 25,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 26,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 27,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 27,
+          "holds": [
+            15
+          ],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 28,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 29,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 30,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 31,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 32,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 33,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 34,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 35,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 36,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 37,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 38,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 39,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 40,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 41,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 42,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 43,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 44,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        },
+        {
+          "off": 45,
+          "holds": [],
+          "status": "reject",
+          "reason": "nonzero alphabet normalization impossible",
+          "rank": 48
+        }
+      ]
+    }
+  ]
+}
