@@ -22,33 +22,39 @@
         40
       ],
       "f": {
-        "count": 8642,
-        "best": -4624.023233727873,
+        "count": 8911,
+        "best": -4800.6532494102685,
         "key": [
           8,
-          4,
-          12,
-          7,
-          9,
-          11,
-          6,
-          28,
-          19,
-          26,
-          10,
-          4,
-          11
-        ],
-        "mean": -0.5350640168627485
-      },
-      "all": {
-        "count": 11727,
-        "best": -6429.537242088392,
-        "key": [
-          22,
           14,
           11,
           24,
+          20,
+          25,
+          22,
+          24,
+          27,
+          23,
+          22,
+          4,
+          11
+        ],
+        "mean": -0.538733391247926,
+        "noncycleEdges": [
+          [
+            0,
+            11
+          ]
+        ]
+      },
+      "all": {
+        "count": 12227,
+        "best": -6702.191365485605,
+        "key": [
+          22,
+          25,
+          21,
+          26,
           26,
           6,
           23,
@@ -59,36 +65,50 @@
           4,
           11
         ],
-        "mean": -0.5482678640818959
+        "mean": -0.5481468361401493,
+        "noncycleEdges": [
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            12
+          ]
+        ]
       },
-      "heldCount": 3085,
-      "heldScore": -1874.4590991082587,
-      "heldMean": -0.6076042460642653,
-      "allPageMean": -0.5569811382340228,
+      "heldCount": 3316,
+      "heldScore": -2026.5795308857073,
+      "heldMean": -0.6111518488798876,
+      "allPageMean": -0.5583734996561684,
       "p55": {
         "page": 55,
         "n": 76,
-        "mean": -0.7745981231071335,
-        "prefix": "IA M AE E S W D EA TH N O H J H M G G O N J S M IA H U B L R AE N P C X G O G I B J R W G AE T R"
+        "mean": -0.43884434709621334,
+        "prefix": "J D B NG O W D EA NG I S Y Y NG D IA N L N J S N EA L M O R H B EO U C X G OE W OE G Y B J IA EA R R"
       },
       "bestPages": [
         {
-          "page": 5,
-          "n": 263,
-          "mean": -0.4140857614560594,
-          "prefix": "N OE D IA D EA J E E AE EO AE TH Y F X C C NG E L Y NG Y AE EA F S A AE R O G NG O TH M I TH W I D T I S"
+          "page": 13,
+          "n": 272,
+          "mean": -0.43542785707781073,
+          "prefix": "F J F N D F D S G OE O U I O C W R L O U NG AE P B D M NG U U U B NG AE G R E L S W Y D O M C P"
         },
         {
-          "page": 32,
-          "n": 121,
-          "mean": -0.4208726111683654,
-          "prefix": "B I IA A EO A P AE N A A S AE X IA B I C R IA L J M J A T U A R B T Y TH G W W NG NG AE L D OE B I S"
+          "page": 55,
+          "n": 76,
+          "mean": -0.43884434709621334,
+          "prefix": "J D B NG O W D EA NG I S Y Y NG D IA N L N J S N EA L M O R H B EO U C X G OE W OE G Y B J IA EA R R"
         },
         {
-          "page": 15,
-          "n": 159,
-          "mean": -0.45861653460184937,
-          "prefix": "P T H T P EO G OE A S C TH I E T C G C P U I U C C O Y A S P IA A IA NG P X NG O U AE IA H TH A L NG"
+          "page": 17,
+          "n": 273,
+          "mean": -0.4591561976548973,
+          "prefix": "R H O O L O L E D A I N A E S H W AE EO M A L O G OE S AE O J W IA W W U X TH R EO G C F U N OE M"
         }
       ]
     },
@@ -99,16 +119,16 @@
         40
       ],
       "f": {
-        "count": 8642,
-        "best": -4623.264344090452,
+        "count": 8911,
+        "best": -4791.750973343634,
         "key": [
           2,
           28,
           9,
           21,
-          18,
-          13,
-          12,
+          28,
+          17,
+          20,
           18,
           26,
           15,
@@ -116,56 +136,76 @@
           23,
           6
         ],
-        "mean": -0.534976202741316
+        "mean": -0.5377343702551491,
+        "noncycleEdges": [
+          [
+            0,
+            11
+          ]
+        ]
       },
       "all": {
-        "count": 11727,
-        "best": -6420.004244040526,
+        "count": 12227,
+        "best": -6739.003657119655,
         "key": [
-          8,
           20,
-          17,
-          27,
+          7,
+          12,
+          13,
           26,
           13,
           12,
           18,
           26,
-          7,
-          2,
-          22,
-          22
+          15,
+          23,
+          0,
+          19
         ],
-        "mean": -0.5474549538706
+        "mean": -0.5511575739854139,
+        "noncycleEdges": [
+          [
+            0,
+            11
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            5,
+            12
+          ]
+        ]
       },
-      "heldCount": 3085,
-      "heldScore": -1929.4935012829894,
-      "heldMean": -0.6254435984709852,
-      "allPageMean": -0.5635711606645312,
+      "heldCount": 3316,
+      "heldScore": -2107.707223945637,
+      "heldMean": -0.6356173775469351,
+      "allPageMean": -0.5642805428387395,
       "p55": {
         "page": 55,
         "n": 76,
-        "mean": -0.4675850052556292,
-        "prefix": "EA O E TH S F I N C S B Y A N O EA M O TH IA AE OE R OE M U NG B E OE P IA U T G EO A G A C L EA N T Y"
+        "mean": -0.5031343813229633,
+        "prefix": "L O E TH S F I N C S B T L U O EA M O TH IA AE OE R OE N Y P B E OE P IA U T G EO A AE L Y L EA N T Y"
       },
       "bestPages": [
         {
-          "page": 6,
-          "n": 196,
-          "mean": -0.3826713309742246,
-          "prefix": "O EO F IA TH F E NG D IA Y H C P A TH E S S A J C F O I Y L TH EA U G J U H E A M U L J X I P A D"
+          "page": 19,
+          "n": 271,
+          "mean": -0.3458437287731676,
+          "prefix": "R O N I EA A J X G W H IA N D EO F C TH A EO N IA R IA S EO B J I TH R P R E Y W I X S N E I J H J"
+        },
+        {
+          "page": 12,
+          "n": 261,
+          "mean": -0.42983587048516153,
+          "prefix": "EO B W W A EO F X T D S J D X F N X U X U F L S H C S X EO NG D NG EO J X OE F B D R W NG A S Y U"
         },
         {
           "page": 8,
           "n": 255,
-          "mean": -0.38846941003284624,
-          "prefix": "F U IA P C U P OE W D Y TH NG A W EO H B L L L I N P G F F J X S X O Y EA C TH N C O N D O G F L"
-        },
-        {
-          "page": 19,
-          "n": 271,
-          "mean": -0.3996984155716612,
-          "prefix": "R O N I E L O X G W H IA N D EO F C NG L R N IA R IA S EO B J I TH D N AE E Y W I X S N E I J IA W"
+          "mean": -0.44385221388269414,
+          "prefix": "F U IA P S C NG OE W D Y TH NG A W EO H IA A EA L I N P G F F J X S A W C EA C TH N C O N D O G I A"
         }
       ]
     }
@@ -208,9 +248,9 @@
       "truthBankMatches": 715,
       "allMatches": 12227,
       "total": 12227,
-      "fitMean": 0.6481574375503957,
-      "heldMean": 0.6565509852656399,
-      "allMean": 0.6503655124801745
+      "fitMean": 0.6502422661510646,
+      "heldMean": 0.6598216088133366,
+      "allMean": 0.6528402133390978
     },
     {
       "seed": 140027,
@@ -249,9 +289,9 @@
       "truthBankMatches": 715,
       "allMatches": 12227,
       "total": 12227,
-      "fitMean": 0.6601400404841825,
-      "heldMean": 0.6596599152818994,
-      "allMean": 0.6600137348434343
+      "fitMean": 0.6598947246113951,
+      "heldMean": 0.6594732207148446,
+      "allMean": 0.659780411458457
     }
   ]
 }
