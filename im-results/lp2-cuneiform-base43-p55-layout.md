@@ -138,8 +138,14 @@ The same word-interior/circumference split was tested with the most direct recei
 
 These are finite, source-ordered tests, not an exhaustive cipher-family search. They close the obvious raw-register, position-clock, cross-log-key, and literal digit-Hill2 receivers of this particular p55 layout. They do not rule out unrelated mechanisms or an externally supplied key.
 
+## Algebraic constraint on a direct field-log → GP29 receiver
+
+The projected multiplicative subgroups have orders 43 and 33; a GP29 additive shift is an element of (C_{29}). For cyclic groups, (mathrm{Hom}(C_n,C_{29})) has (gcd(n,29)) elements. Since (gcd(43,29)=gcd(33,29)=1), both homomorphism sets contain only the trivial map. The same obstruction holds for the order-3 and order-11 factors of (C_{33}).
+
+Therefore there is no nontrivial group-homomorphic conversion from either subgroup's discrete-log coordinate to a GP29 shift. In particular, reducing a 43- or 33-valued log modulo 29 is a lossy truncation, not a canonical group map. This does **not** exclude a source-specified non-homomorphic lookup, a positional encoding, or a separate key/receiver; it does remove the presumed natural algebraic bridge. The exact 43/33 order match is consequently better treated as a structural locator/checksum until a first-party clue selects the missing operation.
+
 ## Decision and next step
 
-The p33→p55 arithmetic alignment remains structurally interesting: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. The direct source-ordered receivers now tested—subgroup projection, discrete-log mapping, position clock, cross-register log/raw additive keys, and literal cuneiform-digit Hill-2—have not recovered plaintext or an authenticated key.
+The p33→p55 arithmetic alignment remains structurally interesting: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. But the group orders are coprime to 29, so no nontrivial homomorphism supplies a canonical field-log-to-GP29 shift. The direct source-ordered receivers tested—subgroup projection, discrete-log mapping, position clock, cross-register log/raw additive keys, and literal cuneiform-digit Hill-2—have not recovered plaintext or an authenticated key.
 
 Keep this branch in im-results, not results. Do not expand into arbitrary phase, generator, residue, permutation, or key-order sweeps. A successor needs an independent original clue selecting a different field-to-GP29 operation, or authentic external key material; otherwise move compute to a genuinely independent route.

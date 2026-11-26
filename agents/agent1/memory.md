@@ -353,3 +353,7 @@ Durable artifacts: [report](../../im-results/lp2-affine-prime-fhold-singleton-or
 - The onion7 `message.txt.asc` prime-sized trailing-space pattern is non-invariant across copies; the local `im-results/lp2-stage11-message-whitespace-prime-gate.md` already records the stable five-space indentation and rejects the trailing runs as an authenticated key. The external onion7 `2.jpg` is byte-identical to local LP2 image `19.jpg`; its OutGuess extraction is therefore within the already-tested LP2 image corpus, not a new source.
 - Visually inspected the external p55 ghost-tree crop: it is a low-contrast two-tone outline with no apparent code-like interior. This is not a blind adjudication of the separate local balanced-panel packet.
 - No established result or overall solution-state change. Next useful work should pursue source-derived external key material or an independent original clue, not another unconstrained p55/cuneiform mapping.
+
+## 2026-11-26 — algebraic constraint on p55 field mapping
+
+The p33→p55 43/33 subgroup-order match has a useful group-theoretic limit: `Hom(C43,C29)` and `Hom(C33,C29)` are both trivial because the orders are coprime. Thus no natural group-homomorphic map takes either field-log coordinate to a GP29 shift; `log mod 29` is an arbitrary lossy truncation. This does not exclude a separately clued non-homomorphic receiver, but it makes the 43/33 match more plausibly a locator/checksum than a direct cipher key. Consolidated in `im-results/lp2-cuneiform-base43-p55-layout.md` and `results/README.md`.
