@@ -35,4 +35,29 @@ Original phase joins 7,660, 7,641 unique keys, 4,959,337 active-state visits. Ev
 
 `node sims/lp2_u2b_periodic_q8_anchor_sft.cjs all` ([script](../sims/lp2_u2b_periodic_q8_anchor_sft.cjs)). V8 executed the same core for [controls](lp2-u2b-periodic-q8-anchor-controls.json) and [original](lp2-u2b-periodic-q8-anchor-original.json); standalone Node wrapper not separately CI-run. Inputs: canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, corrected groups 8960e113af36ee46186965e394ec6be18d69b74f, TextBlob 140e1d22b5f8c45deddd2e8b25549d9d6307d938, native controls 1b064ef6d85819b7d96adaff31a82d1ec551598f.
 
-Do not extend ordinary q8 key sweeps. The original historical cipher permits literal plaintext-F holds; that distinct model needs a phase-history-aware anchor and path proof. Other key families need independent source support. #2887 remains Agent2's issue; this is a complementary key-inference result, not its closure.
+Do not extend ordinary q8 key sweeps. The original historical cipher permits literal plaintext-F holds; the following extension settles that distinct global consuming branch. Other key families need independent source support. #2887 remains Agent2's issue; this is a complementary key-inference result, not its closure.
+
+## Literal plaintext-F hold extension (26 November)
+
+The native historical rule makes plaintext F transparent and non-consuming; ordinary encrypted non-F can also emit ciphertext F. This is a different sender:
+\[
+C_{p+i}=\begin{cases}0 & P_i=0,\\ P_i+K_{(h+J_k)\bmod8}\pmod{29}&P_i\ne0,\end{cases}
+\]
+where h counts all preceding **non-F** plaintext runes, across true word boundaries. An ordinary branch decoding to zero is illegal; a visible ciphertext zero can be either a hold or a legal ordinary branch. The original has six visible zeros (body offsets 32,56,186,238,248,264).
+
+Anchor inference enumerates every in-register word of length >=10 at every count-feasible offset. F requires a literal zero at its position; the remaining runes must yield a consistent periodic eight-digit difference vector. Missing key digits are exhaustively completed (the original and all three controls have no compatible partial anchors; the sole low-consuming long dictionary form FOODSTUFFS cannot align its three literal Fs). Prior holds can only occur at visible zeros; enumerate every phase from the feasible ordinal/offset phase minus 0..number of preceding zeros. This is a conservative superset, not a fixed F assignment.
+
+The relaxed lattice state is now (true ordinal, rune offset, cumulative holds). At every word edge, enumerate every local consuming/holding inverse; two paths with the same length and number of holds have identical future key state, so retain the lowest OOV cost. Impossible ordinary-F transitions are discarded even on OOV words. The individual count-feasible edge mask and final total word count/length remain exact necessary conditions. The exact count DFS on survivors carries the hold state and replays each returned witness; no original candidate reaches it.
+
+| Input | Anchor matches | Unique complete keys | Relaxed survivors | Exact planted key | Recovered runes |
+|---|---:|---:|---:|---|---:|
+| Native LOSS | 1 | 6 | 1 | yes | 212/212 |
+| Native KOAN | 1 | 8 | 1 | yes | 191/191 |
+| Same inventory, three long OOV | 1,087 | 7,908 | 1 | yes | 298/299 |
+| Original p54–55, <=3 OOV | 1,047 | 7,941 | 0 | none | none |
+
+All original candidate ranges [0,1000),[1000,4000),[4000,7941) were executed, totaling 7,614,925 active-state visits. No rank cutoff, no partial anchor cap, no original exact-stage timeout. The stress control's full ranges [0,1000),[1000,5000),[5000,7908) have only its correct key survivor; its exact replay differs from the planted plaintext at one rune (an alternative segmentation/plaintext remains possible). The two native controls recover all words under this sender.
+
+**Decision:** the same exact original conditional exclusion now covers both ordinary and global plaintext-F-consuming periodic q8 U2b models. This is not an exclusion of every latent length inventory, arbitrary word phase or arbitrary key law. No original key/plaintext recovered. The combined sender remains a hypothesis, not a first-party authored operation.
+
+Reproduce: `node sims/lp2_u2b_periodic_q8_fhold_anchor_sft.cjs original 0 1000`, then `original 1000 3000`, `original 4000 3941`; control modes `loss`, `koan`, `stress 0 1000`, `stress 1000 4000`, `stress 5000 4000`. [SFT](../sims/lp2_u2b_periodic_q8_fhold_anchor_sft.cjs), [original first](lp2-u2b-periodic-q8-fhold-original-0000.json), [middle](lp2-u2b-periodic-q8-fhold-original-1000.json), [final](lp2-u2b-periodic-q8-fhold-original-4000.json), [LOSS](lp2-u2b-periodic-q8-fhold-loss.json), [KOAN](lp2-u2b-periodic-q8-fhold-koan.json), [stress first](lp2-u2b-periodic-q8-fhold-stress-0000.json), [middle](lp2-u2b-periodic-q8-fhold-stress-1000.json), [final](lp2-u2b-periodic-q8-fhold-stress-5000.json). Same four pinned inputs; connected V8 core executed, standalone Node/CI not independently run.
