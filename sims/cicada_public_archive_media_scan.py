@@ -31,6 +31,13 @@ IMAGE_SOURCES = [
     "archives/cijhho/2013/additional docs/The Leaked Email/screenshot from hacker-forum.png",
 ]
 DOCX_SOURCES = [
+    "archives/cijhho/2012/2012 - what happend part 1.docx",
+    "archives/cijhho/2012/2012 - what happend part 2.docx",
+    "archives/cijhho/2012/MIDI puzzle/The MIDI puzzle and solution.docx",
+    "archives/cijhho/2012/additional docs/The Leaked Email/The leaked email.docx",
+    "archives/cijhho/2012/additional docs/the outgussed messege.docx",
+    "archives/cijhho/2012/additional docs/the subreddit/The subreddit.docx",
+    "archives/cijhho/2012/additional docs/scream314 git pages/2012.docx",
     "archives/cijhho/2012/additional docs/unverified claims from alleged winners on Unfiction.docx",
 ]
 HOST_RE = re.compile(r"sq6wmgv2zcsrix6t(?:\.onion)?", re.I)
@@ -182,7 +189,7 @@ def main() -> None:
             errors.append({"source": source, "error": type(exc).__name__ + ": " + str(exc)})
 
     summary = {
-        "scope": "2012 Unfiction alleged-winner DOCX, 2013 leaked-email screenshots, and the omitted 2013 4chan text export",
+        "scope": "2012 email, MIDI, Reddit, Unfiction, and archive DOCX records; 2013 leaked-email screenshots; omitted 2013 4chan text export",
         "files_requested": len(TEXT_SOURCES) + len(IMAGE_SOURCES) + len(DOCX_SOURCES),
         "files_scanned": len(manifest),
         "errors": errors,
