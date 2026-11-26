@@ -1,0 +1,122 @@
+{
+  "which": "original",
+  "from": 0,
+  "to": 8,
+  "fitGroups": 47,
+  "holdGroups": 17,
+  "anchorOffsets": [
+    12657,
+    12718,
+    12734,
+    12807,
+    12824
+  ],
+  "results": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 0,
+      "prefixes": 103291,
+      "checks": 27913413,
+      "hits": 12678,
+      "distinct": 12678,
+      "anchorPass": 12678,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 1,
+      "prefixes": 105843,
+      "checks": 26842373,
+      "hits": 8211,
+      "distinct": 8211,
+      "anchorPass": 8211,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 2,
+      "prefixes": 121026,
+      "checks": 42730276,
+      "hits": 36366,
+      "distinct": 36366,
+      "anchorPass": 36366,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 3,
+      "prefixes": 103697,
+      "checks": 30457197,
+      "hits": 7774,
+      "distinct": 7774,
+      "anchorPass": 7774,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 4,
+      "prefixes": 100175,
+      "checks": 30506898,
+      "hits": 8590,
+      "distinct": 8590,
+      "anchorPass": 8590,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 5,
+      "prefixes": 98481,
+      "checks": 27636251,
+      "hits": 9081,
+      "distinct": 9081,
+      "anchorPass": 9081,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 6,
+      "prefixes": 101882,
+      "checks": 33378340,
+      "hits": 26539,
+      "distinct": 26539,
+      "anchorPass": 26539,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 7,
+      "prefixes": 95979,
+      "checks": 29532401,
+      "hits": 11662,
+      "distinct": 11662,
+      "anchorPass": 11662,
+      "survivors": []
+    }
+  ],
+  "evaluated": [],
+  "control": null
+}
