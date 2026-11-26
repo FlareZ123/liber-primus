@@ -1,6 +1,6 @@
 # P49–51 two-character byte transports: exact source-codebook ambiguity
 
-**Status: original-input mathematical constraint; no unknown LP2 plaintext or creator-selected radix.** This narrowly resolves the proposed choice between two *uniform-byte* source grammars. It does not establish that the field is made of bytes, identify the cryptographic role of its values, or exclude a historically specified nonuniform encoding.
+**Status: original-input mathematical constraint; no unknown LP2 plaintext or creator-selected radix.** This resolves specific source-typing decisions, including the ambiguity between two *uniform-byte* source grammars and the exclusion of a literal historical finite reciprocal-table grammar. It does not establish that the field is made of bytes, identify the cryptographic role of its values, or exclude a historically specified nonuniform encoding.
 
 ## Observable source and competing explanations
 
@@ -80,6 +80,60 @@ The exact archived [2014 Stage11 signed delivery message](../resources/historica
 **Decision:** no independently selected character-class record or typed payload. Retire fixed-column class framing and the exact direct historical numeral/signature grammars. Do not infer a hidden bitstream from case alone, or search arbitrary re-encodings. The original numeric table remains unsolved, both numeral readings remain conditional, and an independently decoded adjacent instruction or fixed sender grammar is still the causal prerequisite. No LP2 plaintext or key recovered.
 
 Reproduction: [CommonJS SFT](../sims/lp2_p50_class_record_gate_sft.cjs). The core analysis executed on exact repository source in connected V8 (12,000 simulated tables); the later original-image p10/p56 literal controls were checked separately, and the standalone Node wrapper was not separately CI-run. The test uses structural checks, not language fitting.
+
+## Historical reciprocal-table record decision (Director #2894, Agent8, 26 November)
+
+**Decision:** literal Old Babylonian finite reciprocal records cannot account for all printed cells under the conventional base60 numeral reading, even if any power-of-60 scale and any pairing were granted. The original supplies no distinct reciprocal-field, negation, grouping, or table-operation instruction. This is an arithmetic typing exclusion, not a radix selection or unknown-rune decoder.
+
+The motivating independent source is the p33 cuneiform pair (17,13)/(55,1), not the downstream byte scores. I inspected original archive scans 50 and 66–68 directly: the p33 numeral stamp and the p49–51 mixed-case alphanumeric panel are different visible notations; the latter has equal-spaced eight-cell rows with no explicit reciprocal label, semicolon, or alternating field separators. The earlier #440/#1968 missing-transfer conclusions remain intact; #2235 tested a separate digit-key transform.
+
+**Period control.** J. Friberg, *A Remarkable Collection of Babylonian Mathematical Texts* (2007), [CDLI MS 3874/P252955](https://cdli.earth/artifacts/252955), is a real Old Babylonian reciprocal tablet. [May 2012 Stony Brook transcription derived from Friberg](https://www.math.stonybrook.edu/~tony/whatsnew/may12/tablets/bab-mult2.html) distinguishes legible rows from eight restored rows at the damaged junction. The ordinary syntax identifies a number and its reciprocal, using the historical igi / gál.bi markers. The first two lines express the 2/3 and half relations; the last two surviving reverse rows give the reciprocals of 1,4 and 1,21. C. Proust, [2012 chapter, pp.388–390, Table 12.2 and n.19](https://www.ms.uky.edu/~sohum/ma330/files/Chemla_K.Ed.-The_history_of_mathematical_proof_in_ancient_traditions-Cambridge_University_Press_2012.pdf), independently explains the floating-place convention and the explicit negation used for irregular inputs in older tables. The 26 standard pairs in Proust's table, together with the special 3/2 and unity rows in the MS3874 reconstruction, are 28/28 arithmetically valid; the eight reconstructed rows are not claimed as legible original clay.
+
+For digits d, let M(d) be the nonnegative integer mantissa evaluated in base60. An unmarked place shift can only multiply it by 60^e for integer e. A finite reciprocal pair therefore requires positive A,B and A×B=60^k for some integer k≥0. Exact rational normalization B/60^k gives product 1. Every mantissa must be 2,3,5-smooth. No shift can remove a factor 7, 11, 13, 29, etc.; zero has no reciprocal. The integer arithmetic gives a stronger invariant than choosing a pair order or guessing a fraction point.
+
+Using the already case-adjudicated `lp2-grid-256.json` (blob 2550eae357442912220e05dc51147523a61dd75a), the conventional 60-digit alphabet and literal single-cell mantissas, without pairing, changing any rune or optimizing any scale:
+
+| Physical page | Positive regular | Positive irregular | Zero |
+| --- | ---: | ---: | ---: |
+| 49 | 14 | 66 | 0 |
+| 50 | 21 | 83 | 0 |
+| 51 | 12 | 58 | 2 |
+| Total | 47 | 207 | 2 |
+
+Witnesses: p49 row1 col1 `3N`=203=7×29; p50 row1 col1 `2M`=142=2×71; p51 row1 col2 `2a`=156=12×13. The visually confirmed literal `00` tokens are p51 row2 col1 and row6 col6 (one-based on physical page 51; global rows25/29). Their value is zero under both existing ordinary digit alphabets and any conventional place shift. Under the conditional base60 reading at most 47 of 256 fields are even individually eligible for finite reciprocal pairing, so at most 23 disjoint full pairs could exist before product constraints. The standard 28-record ordered range also does not match a 128-pair full panel; cardinality alone is not the exclusion. Earlier irregular-input tables explicitly mark no-reciprocal records, whereas the original provides no independently identified such field. No hypothesis about an unmarked zero-as-null, multi-cell regrouping, arbitrary digit remap or mixed literal/codeword records is authorized by the cuneiform.
+
+Reproduction (exact integer arithmetic; the tested core executed in connected V8, no standalone Node/CI run claimed). Historical digits below are mathematical data from the two cited sources; `1.30` is the modern normalization of the 3/2 input, not a claimed literal first-line transcription.
+
+```js
+const g = require('../resources/liber-primus/lp2-grid-256.json');
+const pairs = '1.30/40 2/30 3/20 4/15 5/12 6/10 8/7.30 9/6.40 10/6 12/5 15/4 16/3.45 18/3.20 20/3 24/2.30 25/2.24 27/2.13.20 30/2 32/1.52.30 36/1.40 40/1.30 45/1.20 48/1.15 50/1.12 54/1.6.40 1/1 1.4/56.15 1.21/44.26.40';
+const m = s => s.split('.').reduce((a,d)=>60n*a+BigInt(d),0n);
+function power60(n) {
+  if (n <= 0n) return null;
+  let k=0;
+  while (n%60n===0n) { n/=60n; k++; }
+  return n===1n ? k : null;
+}
+function residue(n) {
+  if (n===0) return 0;
+  for (const p of [2,3,5]) while (n%p===0) n/=p;
+  return n;
+}
+const exponents = pairs.split(' ').map(p=>{
+  const [a,b]=p.split('/');
+  return power60(m(a)*m(b));
+});
+if (exponents.some(x=>x===null)) throw Error('historical control failed');
+console.log('28 exact powers:', exponents);
+for (const page of g.pages) {
+  const v=page.tokens.map(t=>60*g.alphabet.indexOf(t[0])+g.alphabet.indexOf(t[1]));
+  console.log(page.page, v.filter(x=>residue(x)===1).length,
+    v.filter(x=>residue(x)>1).length,
+    v.flatMap((x,i)=>x===0?[[Math.floor(i/8)+1,i%8+1]]:[]));
+}
+```
+
+Control power exponents: 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 1, 2, 2, 1, 2, 2, 3, 1, 3, 2, 2, 2, 2, 2, 3, 0, 3, 4. Original output: [[49,14,66,[]],[50,21,83,[]],[51,12,58,[[2,1],[6,6]]]]. No arbitrary pairing, radix sweep, fitted operation or original rune-language score was performed. Retire the direct finite reciprocal-table grammar; only new source evidence specifying mixed fields or a distinct record syntax could justify a successor. No authentic key, plaintext or cryptographic receiver recovered.
 
 ## Historical evidence gate and next discriminating action
 
