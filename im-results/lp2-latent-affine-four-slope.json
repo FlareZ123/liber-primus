@@ -1,0 +1,1016 @@
+{
+  "inputs": [
+    {
+      "path": "sims/lp2_latent_affine_fhold_exact_sft.cjs",
+      "sha": "bb9d5aa5294eccf12c572b4a0f463a982c2967b3"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "four": [
+    {
+      "slopes": [
+        2,
+        4,
+        6,
+        7
+      ],
+      "lambda": 624,
+      "cost": 2342384,
+      "groups": 2953,
+      "oov": 122,
+      "lb": 131,
+      "exact": 131
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2343600,
+      "groups": 2909,
+      "oov": 129,
+      "lb": 131
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        14
+      ],
+      "lambda": 624,
+      "cost": 2342544,
+      "groups": 2927,
+      "oov": 126,
+      "lb": 131
+    },
+    {
+      "slopes": [
+        2,
+        4,
+        7,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2340944,
+      "groups": 2931,
+      "oov": 125,
+      "lb": 131
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        16
+      ],
+      "lambda": 624,
+      "cost": 2342272,
+      "groups": 2920,
+      "oov": 127,
+      "lb": 131
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        23
+      ],
+      "lambda": 624,
+      "cost": 2342000,
+      "groups": 2913,
+      "oov": 128,
+      "lb": 131
+    },
+    {
+      "slopes": [
+        3,
+        4,
+        6,
+        7
+      ],
+      "lambda": 624,
+      "cost": 2347424,
+      "groups": 2902,
+      "oov": 131,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "lambda": 624,
+      "cost": 2346096,
+      "groups": 2913,
+      "oov": 129,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        10
+      ],
+      "lambda": 624,
+      "cost": 2347152,
+      "groups": 2895,
+      "oov": 132,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        11
+      ],
+      "lambda": 624,
+      "cost": 2344736,
+      "groups": 2878,
+      "oov": 134,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        22
+      ],
+      "lambda": 624,
+      "cost": 2345440,
+      "groups": 2866,
+      "oov": 136,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        24
+      ],
+      "lambda": 624,
+      "cost": 2345120,
+      "groups": 2918,
+      "oov": 128,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        25
+      ],
+      "lambda": 624,
+      "cost": 2347152,
+      "groups": 2895,
+      "oov": 132,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        26
+      ],
+      "lambda": 624,
+      "cost": 2346832,
+      "groups": 2947,
+      "oov": 124,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2344736,
+      "groups": 2878,
+      "oov": 134,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        18
+      ],
+      "lambda": 624,
+      "cost": 2345056,
+      "groups": 2826,
+      "oov": 142,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        20
+      ],
+      "lambda": 624,
+      "cost": 2345616,
+      "groups": 2991,
+      "oov": 117,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        24
+      ],
+      "lambda": 624,
+      "cost": 2344480,
+      "groups": 3022,
+      "oov": 112,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        25
+      ],
+      "lambda": 624,
+      "cost": 2346880,
+      "groups": 2888,
+      "oov": 133,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        27
+      ],
+      "lambda": 630,
+      "cost": 2361362,
+      "groups": 2955,
+      "oov": 122,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2345280,
+      "groups": 2892,
+      "oov": 132,
+      "lb": 132
+    },
+    {
+      "slopes": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "lambda": 600,
+      "cost": 2278536,
+      "groups": 2835,
+      "oov": 141,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "lambda": 624,
+      "cost": 2349248,
+      "groups": 2964,
+      "oov": 122,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        8
+      ],
+      "lambda": 624,
+      "cost": 2351872,
+      "groups": 2896,
+      "oov": 133,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        12
+      ],
+      "lambda": 600,
+      "cost": 2280752,
+      "groups": 2866,
+      "oov": 137,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        15
+      ],
+      "lambda": 624,
+      "cost": 2351600,
+      "groups": 2889,
+      "oov": 134,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        16
+      ],
+      "lambda": 600,
+      "cost": 2279032,
+      "groups": 2829,
+      "oov": 142,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        17
+      ],
+      "lambda": 624,
+      "cost": 2348048,
+      "groups": 2903,
+      "oov": 131,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        18
+      ],
+      "lambda": 600,
+      "cost": 2278928,
+      "groups": 2822,
+      "oov": 143,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        20
+      ],
+      "lambda": 624,
+      "cost": 2350000,
+      "groups": 2893,
+      "oov": 133,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        21
+      ],
+      "lambda": 624,
+      "cost": 2348992,
+      "groups": 2852,
+      "oov": 139,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        27
+      ],
+      "lambda": 624,
+      "cost": 2348288,
+      "groups": 2864,
+      "oov": 137,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        1,
+        4,
+        7,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2348992,
+      "groups": 2852,
+      "oov": 139,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        3,
+        4,
+        7,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2348992,
+      "groups": 2852,
+      "oov": 139,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        5,
+        7,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2349024,
+      "groups": 2898,
+      "oov": 132,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        8,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2349248,
+      "groups": 2964,
+      "oov": 122,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        9,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2349072,
+      "groups": 2839,
+      "oov": 141,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        11,
+        13
+      ],
+      "lambda": 600,
+      "cost": 2278352,
+      "groups": 2862,
+      "oov": 137,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        12,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2349424,
+      "groups": 2833,
+      "oov": 142,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        14
+      ],
+      "lambda": 588,
+      "cost": 2243888,
+      "groups": 2820,
+      "oov": 143,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        15
+      ],
+      "lambda": 624,
+      "cost": 2350192,
+      "groups": 2913,
+      "oov": 130,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        17
+      ],
+      "lambda": 624,
+      "cost": 2348944,
+      "groups": 2911,
+      "oov": 130,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        21
+      ],
+      "lambda": 624,
+      "cost": 2351056,
+      "groups": 2875,
+      "oov": 136,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        22
+      ],
+      "lambda": 624,
+      "cost": 2347808,
+      "groups": 2942,
+      "oov": 125,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        26
+      ],
+      "lambda": 600,
+      "cost": 2278328,
+      "groups": 2821,
+      "oov": 143,
+      "lb": 133
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        23
+      ],
+      "lambda": 600,
+      "cost": 2282424,
+      "groups": 2821,
+      "oov": 144,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        10,
+        13
+      ],
+      "lambda": 624,
+      "cost": 2355264,
+      "groups": 2908,
+      "oov": 132,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        4,
+        7,
+        13,
+        19
+      ],
+      "lambda": 624,
+      "cost": 2354096,
+      "groups": 2893,
+      "oov": 134,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        15,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2354336,
+      "groups": 2854,
+      "oov": 140,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        16,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2285944,
+      "groups": 2861,
+      "oov": 139,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        25,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2352192,
+      "groups": 2844,
+      "oov": 141,
+      "lb": 134
+    },
+    {
+      "slopes": [
+        4,
+        6,
+        7,
+        19
+      ],
+      "lambda": 600,
+      "cost": 2287456,
+      "groups": 2884,
+      "oov": 136,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        6,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2288216,
+      "groups": 2817,
+      "oov": 146,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        7,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2252040,
+      "groups": 2806,
+      "oov": 147,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        8,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2356832,
+      "groups": 2858,
+      "oov": 140,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        9,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2356256,
+      "groups": 2798,
+      "oov": 149,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        14,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2357536,
+      "groups": 2846,
+      "oov": 142,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        21,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2356096,
+      "groups": 2824,
+      "oov": 145,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        22,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2288792,
+      "groups": 2777,
+      "oov": 152,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        23,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2357888,
+      "groups": 2840,
+      "oov": 143,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        27,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2357184,
+      "groups": 2852,
+      "oov": 141,
+      "lb": 135
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        3,
+        28
+      ],
+      "lambda": 624,
+      "cost": 2362640,
+      "groups": 2887,
+      "oov": 137,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        4,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2291712,
+      "groups": 2816,
+      "oov": 147,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        5,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2256724,
+      "groups": 2807,
+      "oov": 148,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        12,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2256136,
+      "groups": 2806,
+      "oov": 148,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        13,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2292680,
+      "groups": 2763,
+      "oov": 155,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        17,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2292992,
+      "groups": 2784,
+      "oov": 152,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        18,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2256684,
+      "groups": 2793,
+      "oov": 150,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        19,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2290904,
+      "groups": 2801,
+      "oov": 149,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        20,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2291168,
+      "groups": 2740,
+      "oov": 158,
+      "lb": 136
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        11,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2295864,
+      "groups": 2741,
+      "oov": 159,
+      "lb": 137
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        24,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2260212,
+      "groups": 2799,
+      "oov": 150,
+      "lb": 137
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        26,
+        28
+      ],
+      "lambda": 588,
+      "cost": 2261188,
+      "groups": 2731,
+      "oov": 160,
+      "lb": 137
+    },
+    {
+      "slopes": [
+        1,
+        2,
+        10,
+        28
+      ],
+      "lambda": 600,
+      "cost": 2299488,
+      "groups": 2788,
+      "oov": 153,
+      "lb": 138
+    }
+  ],
+  "chosen": {
+    "slopes": [
+      2,
+      4,
+      6,
+      7
+    ],
+    "lambda": 624,
+    "cost": 2342384,
+    "groups": 2953,
+    "oov": 122,
+    "lb": 131,
+    "exact": 131
+  },
+  "elapsedMs": 32168
+}
