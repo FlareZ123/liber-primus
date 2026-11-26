@@ -10,9 +10,10 @@ struct Profile7:FastSearch{
  struct Branch{size_t seed;int repeat;Graph graph;};
  vector<Branch> branches;
  vector<uint8_t> visited;
- void split(size_t first,size_t last){
+ void split(size_t first,size_t last,const set<size_t>&excluded={}){
   redProfile7=true;vector<int>counts(Q+1);size_t totalSeeds=0;
   for(size_t i=first;i<last;i++){
+   if(excluded.count(i))continue;
    int n=0;
    for(int j=0;j<Q;j++){
     Graph g=seeds[i];
@@ -59,13 +60,13 @@ bool profileControl(const vector<string>&train,const vector<string>&held,unsigne
  cout<<"PROFILE CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17 unique="<<unique<<" pass="<<pass<<endl;redProfile7=false;return pass;
 }
 int main(int argc,char**argv){try{
- bool controls=false,inventory=false;size_t first=27,last=82;int seconds=1200;
- for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--seconds")seconds=stoi(v);else throw runtime_error("unknown argument "+a);}
+ bool controls=false,inventory=false;size_t first=27,last=82;int seconds=1200;set<size_t>excluded;
+ for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--seconds")seconds=stoi(v);else if(a=="--exclude")excluded.insert(stoull(v));else throw runtime_error("unknown argument "+a);}
  aff::init();fixed::dictionary();frequencyOrderEnabled=true;exactMrvEnabled=true;buildPrior7();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));fixed::require(train.size()==48&&held.size()==17,"profile");
  if(controls){bool a=profileControl(train,held,3301),b=profileControl(train,held,1033);return a&&b?0:2;}
  Profile7 s(train);fixed::require(s.seeds.size()==93&&first<last&&last<=93&&seconds>0,"seed range");
- s.split(first,last);if(inventory)return 0;
+ s.split(first,last,excluded);if(inventory)return 0;
  s.runProfile(seconds);
  if(s.found){auto m=fixed::maps(s.answer,s.answerKey);cout<<"ORIGINAL PROFILE candidate pi";for(int x:s.answer)cout<<" "<<x;cout<<" k";for(int x:s.answerKey)cout<<" "<<x;cout<<endl;for(int i=0;i<47;i++){auto v=fixed::decode(train[i],m,fixed::dict);cout<<"TRAIN "<<i;for(auto&w:v)cout<<" "<<w;cout<<endl;}held[0]=train.back()+held[0];for(int i=0;i<int(held.size());i++){auto v=fixed::decode(held[i],m,fixed::dict);cout<<"HOLD "<<i;for(auto&w:v)cout<<" "<<w;cout<<endl;}}
  if(const char*p=getenv("SFT_OUTPUT")){ofstream o(p);o<<"{\"mode\":\"nonzero-one-adjacent-repeat\",\"found\":"<<(s.found?"true":"false")<<",\"timed\":"<<(s.timed?"true":"false")<<",\"profile_completed\":"<<s.done<<",\"profile_total\":"<<s.branches.size()<<",\"completed_profile_ids\":[";bool first=true;for(size_t i=0;i<s.visited.size();i++)if(s.visited[i]){if(!first)o<<",";first=false;o<<"["<<s.branches[i].seed<<","<<s.branches[i].repeat<<"]";}o<<"],\"full_exhausted\":false,\"completed_ids\":[]}\n";}
