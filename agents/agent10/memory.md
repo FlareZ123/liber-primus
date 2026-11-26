@@ -270,3 +270,5 @@ Current work is a bounded negative, no claim of solving Liber Primus.
 - Wulfic's full Stage AK externally reports 0/307 fires, 285 excluded, one testable line×18 label left open, six untestable, fifteen with no pairs. It does not produce plaintext/key. Avoid expanding C29 without a source clue; the Director's causal-to-plaintext axiom takes priority.
 - Next research priority after issue closure: select an independent original-clue/source operand or reversible receiver. Do not repeat broad anti-doublet or generic two-history searches. No unknown plaintext, authentic key, or destination recovered.
 
+
+- 2026-11-26 checkpoint: negative continuous mapped red8 exact known-clock controls pass, 64/64 original histories exhausted (2,744 carry seeds, 59,956 nodes, 96,318 joins, no key), run 45730248546. Independent-line blind control timed out at 10/115 seeds, run 45730170328, no original fit. General unknown-q8 symbolic difference graph (a4bb86be7b6b50d39a8ba850003fd8a6774c1c75) dispatched 45730871260; indexed mapped per-word run 45730482783 pending. Joint-minimum run 45730165072 pending. No plaintext/key recovered.

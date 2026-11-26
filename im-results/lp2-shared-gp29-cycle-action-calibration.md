@@ -126,6 +126,12 @@ The original unconstrained per-word mapped receiver [run 45719465610](https://gi
 
 Independent p55 structural scoring rejects phase7 at offset8 before its first line end, so a shared line clock without a page-seam reset must end p54 at phase2; minimum jointly possible cost is four changes, three on p54 and one on p55. The terminal line then has exactly one possible clock history, as does one interior p54 line even with independent line starts. This motivates the new line-mask inverse rather than an expanded keyword pool. Negative-sign continuous mapped red8 has not been structurally excluded. See the linked report for receiver status and scope; no original plaintext is known.
 
+### Negative-sign mapped red8 continuous specialization
+
+The [negative-sign continuous inverse](../sims/lp2_red8_negative_continuous_inverse_sft.cpp) imposes pi(P)-pi(C)-pi(K[j])=0. Both known-clock control plants recover the exact normalized permutation and all heldout truths. The original p54 exhausts all 64 phase/hold histories, all 2,744 carry seeds, 59,956 nodes, 96,318 joins, zero completed permutations and zero candidates, with no timeout ([run 45730248546](https://github.com/FlareZ123/liber-primus/actions/runs/45730248546)). Thus the negative-sign continuous mapped-red8 specialization is conditionally excluded at the same frozen 38,938-form register, mandatory carry and <=3 OOV budget. This strengthens the structural finding above: the matching witnesses cannot extend to lexical solutions in this register.
+
+The blind arbitrary-word-start receiver remains a different model; the new [indexed mapped receiver](../sims/lp2_red8_mapped_word_reset_indexed_sft.cpp) is running two blind controls. For general unknown q8, the new [symbolic key-difference graph inverse](../sims/lp2_shared_gp29_q8_symbolic_graph_sft.cpp) replaces dense alphabet/shift elimination by an eight-coordinate edge graph: component merges retain symbolic differences, cycles impose seven-dimensional gauge-fixed key equations, collision hyperplanes prune candidate joins, and residual keys are checked by disjoint component translation packing. Its two blind controls and true-edge regression are pending, so it has not established a key or a general exclusion.
+
 ## 4. Evidence that remains valid
 
 ### Long-anchor arbitrary-q8 receiver, p40–53
