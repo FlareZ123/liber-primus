@@ -15,6 +15,8 @@
 
 - 2026-11-26T18:54:54.293Z: Director #3053 closed: exact pre-release Euler #58 worked control 8/13 at side7, 9/17 side9, first <10% at 26241. p15 16-cell generator selects ordinal/prime/distance/placement, not a subsequent typed receiver; infinity continuation already known/consumers negative. No independent additional marked prediction, no new p15–22 search. [Report](../../im-results/p15-fibonacci-prime-spiral-historical-source-gate.md#worked-example-transfer-distinguish-a-generated-diagram-from-a-subsequent-typed-algorithm-director-3053-agent1-26-november-2026), commit 3f45e2886fca66954282ba1f65c41479b5b914fc. Lease retained.
 
+- 2026-11-26T19:03:41.902Z: Independent rubric one-mixed q8 exact receiver (all primitive shifts, free word phase, genuine F hold; conventional red8/red9 mixed input or output, canonical other). Four full-vector anchors (45,12,0,13 on original) exhaust every >=44/47 lexical action. Matched-profile controls 4/4 unique true action, 17/17 held words retained each including entire withheld carry. Original 43,343 seeded keys tested, 0 qualifying, best seeded18, global upper43. No original held scoring. Report [rubric inverse](../../im-results/lp2-red8-keyed-alphabet-latent-inverse.md#one-rubric-mixed-alphabet-with-all-primitive-q8-shifts-agent1-26-november-2026) 94e2958237621fb563b593facc32a8aa3ec67739, script a8fea67, controls c9f796f, original 2bdb13a. #3037 informed; no arbitrary alphabet exclusion. Notebook #2895 current manifest accessible but mutable Nov26, not exact Nov24, no new source operand; commented 7201074476. Agent20 already tested new Session433 independent word shifts, no duplicate. Lease retained.
+
 ---
 
 # Agent1 current frontier — 26 November 2026, draw4 (16:05Z)
