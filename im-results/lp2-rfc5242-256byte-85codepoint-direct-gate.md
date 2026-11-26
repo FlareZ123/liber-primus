@@ -29,6 +29,26 @@ The reproducer is `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`. It tests row-
 
 **Result:** no tested direct ordering/framing satisfies the 23-bit leading-bit constraint. The best candidate is the top-right, counterclockwise inward spiral, big-endian, deleting zero-based byte 154; it still has **31 invalid leading octets out of 85**. Row-major and column-major best cases each leave 37/85 violations. This rejects the direct 3-byte RFC 5242 interpretation under these orders and a one-byte framing model. It does not reject an additional, independently sourced permutation or transform; none has been identified.
 
+## Bounded cross-carrier test: all three named 2014 byte snapshots
+
+The repository also preserves three named 256-byte historical onion-response candidates. To test whether the RFC clue might consume one of these rather than the LP2 panel alone, each stream was tested directly and after same-index XOR with the p49–51 table. This is a bounded candidate family, not evidence that Cicada instructed the two sources to be combined.
+
+For each object, all 256 possible one-byte framing deletions were enumerated; the remaining 255 bytes were parsed as 85 three-octet codepoints. Big-endian is the RFC's leading-octet reading; little-endian is a permissive control. The necessary condition is 0/85 leading octets with the high bit set. The implementation also checks for literal zero bytes and a contiguous 00 00 00 reserved codepoint.
+
+| 2014 snapshot | Raw best BE | Raw best LE | Same-order XOR best BE | Same-order XOR best LE |
+|---|---:|---:|---:|---:|
+| Onion2 | 39/85 (delete 0) | 39/85 (delete 69) | 39/85 (delete 160) | 34/85 (delete 63) |
+| Onion3 | 35/85 (delete 61) | 38/85 (delete 105) | 38/85 (delete 187) | 37/85 (delete 168) |
+| Onion4 | 38/85 (delete 16) | 44/85 (delete 9) | 47/85 (delete 31) | 41/85 (delete 207) |
+
+The only zero bytes in the XOR outputs occur at Onion2 index 3, Onion3 index 194, and Onion4 indices 34, 56, 58. Deleting those individual zero bytes still leaves respectively 42/40, 39/38, and 47/49, 49/48, 49/48 invalid leading octets (BE/LE). No raw stream or XOR output contains a contiguous 00 00 00 codepoint. The raw streams contain no zero bytes.
+
+**Result:** none of the three raw snapshots or their same-order XORs with the LP2 panel satisfies even the necessary 23-bit leading-bit condition. The best result in this family still has 35/85 violations. The arbitrary best deletion is diagnostic only; no source selects that byte position. The one-byte framing is suggested by 256 = 1 + 85×3, not required by RFC 5242; RFC's reserved zero is a full three-octet codepoint.
+
+Reproduction: `sims/lp2_rfc5242_historical_crosscarrier_gate.cjs` · captured output: `lp2-rfc5242-historical-crosscarrier-output.json`. The script includes synthetic valid/invalid controls (0/85 and 85/85).
+
+This closes only direct 85×3 RFC 5242 streams from these raw inputs and same-index XORs. It does not rule out a separately sourced transform, but no such transform is currently identified.
+
 ## Other guardrails
 
 - The pair `(g,p)=(133,331)` has multiplicative order 66; `(1033,3301)` has order 550. Apparent matches to short LP2 blocks are not sufficient evidence for a DH cipher. Direct additive/multiplicative orbit-key tests on the p49 preamble and the numbered p33–39 block did not recover language.
@@ -37,7 +57,7 @@ The reproducer is `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`. It tests row-
 
 ## Decision
 
-Keep the RFC/base-60 coordinate observation as a low-confidence lead for Director review. Do not launch broad RFC mining or arbitrary table permutations from it. A worthwhile successor requires independent evidence that the four RFC identifiers are intentional and a specific, source-selected operation that consumes their contents or the numeric panel.
+Keep the base-60 coordinate output RFCÆ as a low-confidence pointer, not a decryption. The direct 85×3 interpretation fails on the LP2 panel, all three named 2014 byte snapshots, and their same-order XORs with the panel. No source-selected permutation, byte transform, or GP29-to-RFC mapping is identified. Do not broaden this into arbitrary RFC mining or arbitrary byte permutations. Resume only if an independent historical clue selects a reversible operation or supplies a specific mapping. No plaintext, key, or destination is recovered.
 
 
 ## External RFC references

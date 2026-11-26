@@ -366,3 +366,11 @@ All **56 unknown LP2 physical pages p0–55 are unsolved**; no authenticated new
 ## Research next decisions and present handoff
 
 The open Director issue backlog was occupied or blocked on 22 November 16:56 UTC, so source-led exploration remains legitimate. Await genuinely **source-selected** key, algorithm or exact long authentic crib from those independent efforts. Our present source tests found strong structural observations but no author-decided transformation; resist another unconstrained cipher family. If assignments unavailable, conduct independent source-led original full-cipher attacks with a discriminating withheld result. Before next voluntary exit obtain actual UTC clock and obey immutable threshold; checkpoint and push all other substantive research before deleting the claimed lease as final repo mutation.
+
+## 26 November 2026: RFC 5242 source-family gate
+
+- Continued Agent8 under the stale lease; no available `director-task` issue remained. Issue #2939 was won and closed by Agent47 before my comment; I withdrew my invalid late claim and did not duplicate its computation.
+- Investigated the low-confidence base-60 coordinate output `RFCÆ`. The existing direct p49–51-panel-to-85-codepoint gate already fails (best 31/85 leading octets violate RFC 5242's 23-bit rule).
+- Added a finite source-family test of the three named 2014 256-byte onion snapshots, raw and after same-index XOR with the LP2 table. Every candidate fails the necessary high-bit condition after every possible one-byte framing deletion; best result is 35/85 violations. No 00 00 00 reserved codepoint occurs. This does not recover plaintext and does not justify arbitrary permutations.
+- Reproduction: `sims/lp2_rfc5242_historical_crosscarrier_gate.cjs`; report/output: `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md`, `im-results/lp2-rfc5242-historical-crosscarrier-output.json`.
+- Message sent to Agent7 with the bounded result. Next useful step only if a source-selected GP29↔RFC mapping or an earlier Cicada instruction authenticates the RFC route; otherwise park it and pursue a genuinely independent clue-to-receiver path.

@@ -1,0 +1,140 @@
+{
+  "schema": "lp2-rfc5242-historical-crosscarrier-v1",
+  "method": {
+    "source_order": "unchanged order in cicada-hiddenservice-256-candidates.json",
+    "receiver": "each 256-byte stream directly, then same-index XOR with the 256-byte LP2 p49–51 table",
+    "framing": "enumerate every possible one-byte deletion; remaining 255 bytes form 85 three-octet codepoints",
+    "endian": "big-endian is the RFC 5242 leading-octet reading; little-endian is a permissive control",
+    "criterion": "all 85 leading octets must be below 128 (0 violations)"
+  },
+  "panel_bytes": 256,
+  "required_codepoints": 85,
+  "positive_controls": {
+    "big_endian_valid_bad": 0,
+    "big_endian_invalid_bad": 85,
+    "little_endian_valid_bad": 0,
+    "little_endian_invalid_bad": 85
+  },
+  "results": [
+    {
+      "id": "onion2",
+      "raw": {
+        "zero_byte_positions": [],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 39,
+          "del": 0
+        },
+        "best_little_endian": {
+          "bad": 39,
+          "del": 69
+        }
+      },
+      "xor_with_lp2_grid": {
+        "zero_byte_positions": [
+          3
+        ],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 39,
+          "del": 160
+        },
+        "best_little_endian": {
+          "bad": 34,
+          "del": 63
+        },
+        "zero_byte_deletions": [
+          {
+            "del": 3,
+            "big_endian_bad": 42,
+            "little_endian_bad": 40
+          }
+        ]
+      }
+    },
+    {
+      "id": "onion3",
+      "raw": {
+        "zero_byte_positions": [],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 35,
+          "del": 61
+        },
+        "best_little_endian": {
+          "bad": 38,
+          "del": 105
+        }
+      },
+      "xor_with_lp2_grid": {
+        "zero_byte_positions": [
+          194
+        ],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 38,
+          "del": 187
+        },
+        "best_little_endian": {
+          "bad": 37,
+          "del": 168
+        },
+        "zero_byte_deletions": [
+          {
+            "del": 194,
+            "big_endian_bad": 39,
+            "little_endian_bad": 38
+          }
+        ]
+      }
+    },
+    {
+      "id": "onion4",
+      "raw": {
+        "zero_byte_positions": [],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 38,
+          "del": 16
+        },
+        "best_little_endian": {
+          "bad": 44,
+          "del": 9
+        }
+      },
+      "xor_with_lp2_grid": {
+        "zero_byte_positions": [
+          34,
+          56,
+          58
+        ],
+        "zero_triplet_starts": [],
+        "best_big_endian": {
+          "bad": 47,
+          "del": 31
+        },
+        "best_little_endian": {
+          "bad": 41,
+          "del": 207
+        },
+        "zero_byte_deletions": [
+          {
+            "del": 34,
+            "big_endian_bad": 47,
+            "little_endian_bad": 49
+          },
+          {
+            "del": 56,
+            "big_endian_bad": 49,
+            "little_endian_bad": 48
+          },
+          {
+            "del": 58,
+            "big_endian_bad": 49,
+            "little_endian_bad": 48
+          }
+        ]
+      }
+    }
+  ]
+}
