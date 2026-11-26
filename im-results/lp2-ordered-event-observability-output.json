@@ -1,0 +1,1312 @@
+{
+  "events": [
+    {
+      "event": 1,
+      "page": 0,
+      "archive": 17,
+      "offset": 13,
+      "global": 13,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1424,
+        730
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᚳ",
+      "followingOnLine": "ᚦ",
+      "countsAfter": [
+        1,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 2,
+      "page": 2,
+      "archive": 19,
+      "offset": 201,
+      "global": 729,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1645,
+        2236
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 9,
+      "precedingOnLine": "ᚹ",
+      "followingOnLine": null,
+      "countsAfter": [
+        2,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 3,
+      "page": 3,
+      "archive": 20,
+      "offset": 16,
+      "global": 745,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1578,
+        730
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᛟ",
+      "followingOnLine": "ᛋ",
+      "countsAfter": [
+        3,
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 4,
+      "page": 3,
+      "archive": 20,
+      "offset": 119,
+      "global": 848,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1375,
+        1671
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 6,
+      "precedingOnLine": "ᛏ",
+      "followingOnLine": null,
+      "countsAfter": [
+        4,
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 5,
+      "page": 3,
+      "archive": 20,
+      "offset": 122,
+      "global": 851,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        953,
+        2158
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 7,
+      "precedingOnLine": "ᚦ",
+      "followingOnLine": "ᛇ",
+      "countsAfter": [
+        5,
+        5,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 6,
+      "page": 6,
+      "archive": 23,
+      "offset": 71,
+      "global": 1541,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        762,
+        1294
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 4,
+      "precedingOnLine": "ᛠ",
+      "followingOnLine": null,
+      "countsAfter": [
+        6,
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 7,
+      "page": 6,
+      "archive": 23,
+      "offset": 82,
+      "global": 1552,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1350,
+        1782
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 5,
+      "precedingOnLine": "ᛇ",
+      "followingOnLine": "ᚷ",
+      "countsAfter": [
+        7,
+        7,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 8,
+      "page": 7,
+      "archive": 24,
+      "offset": 194,
+      "global": 1860,
+      "dots": 13,
+      "color": "black",
+      "xy": [
+        1707,
+        2271
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 10,
+      "precedingOnLine": "ᚪ",
+      "followingOnLine": null,
+      "countsAfter": [
+        8,
+        8,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 9,
+      "page": 7,
+      "archive": 24,
+      "offset": 194,
+      "global": 1860,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        742,
+        2515
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 11,
+      "precedingOnLine": null,
+      "followingOnLine": "ᛞ",
+      "countsAfter": [
+        9,
+        9,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 10,
+      "page": 7,
+      "archive": 24,
+      "offset": 208,
+      "global": 1874,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1652,
+        2515
+      ],
+      "runeBefore": "red",
+      "runeAfter": "page-edge",
+      "derivedLine": 11,
+      "precedingOnLine": "ᛗ",
+      "followingOnLine": null,
+      "countsAfter": [
+        10,
+        10,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 11,
+      "page": 14,
+      "archive": 31,
+      "offset": 137,
+      "global": 3603,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1016,
+        1859
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 7,
+      "precedingOnLine": "ᚻ",
+      "followingOnLine": null,
+      "countsAfter": [
+        11,
+        11,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 12,
+      "page": 15,
+      "archive": 32,
+      "offset": 0,
+      "global": 3603,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        936,
+        730
+      ],
+      "runeBefore": "page-edge",
+      "runeAfter": "red",
+      "derivedLine": 1,
+      "precedingOnLine": null,
+      "followingOnLine": "ᚠ",
+      "countsAfter": [
+        12,
+        12,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 13,
+      "page": 15,
+      "archive": 32,
+      "offset": 9,
+      "global": 3612,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1459,
+        730
+      ],
+      "runeBefore": "red",
+      "runeAfter": "red",
+      "derivedLine": 1,
+      "precedingOnLine": "ᚪ",
+      "followingOnLine": null,
+      "countsAfter": [
+        13,
+        13,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 14,
+      "page": 15,
+      "archive": 32,
+      "offset": 20,
+      "global": 3623,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1299,
+        1792
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 6,
+      "precedingOnLine": "ᛝ",
+      "followingOnLine": "ᛁ",
+      "countsAfter": [
+        14,
+        14,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 15,
+      "page": 22,
+      "archive": 39,
+      "offset": 131,
+      "global": 5506,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1650,
+        1742
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 8,
+      "precedingOnLine": "ᛉ",
+      "followingOnLine": null,
+      "countsAfter": [
+        15,
+        15,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 16,
+      "page": 23,
+      "archive": 40,
+      "offset": 16,
+      "global": 5522,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1552,
+        1217
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᚣ",
+      "followingOnLine": "ᛠ",
+      "countsAfter": [
+        16,
+        16,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 17,
+      "page": 26,
+      "archive": 43,
+      "offset": 265,
+      "global": 6527,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1654,
+        2801
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 12,
+      "precedingOnLine": "ᛝ",
+      "followingOnLine": null,
+      "countsAfter": [
+        17,
+        17,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 18,
+      "page": 27,
+      "archive": 44,
+      "offset": 19,
+      "global": 6546,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1702,
+        974
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᛈ",
+      "followingOnLine": "ᚾ",
+      "countsAfter": [
+        18,
+        18,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 19,
+      "page": 32,
+      "archive": 49,
+      "offset": 121,
+      "global": 7960,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        948,
+        1671
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 6,
+      "precedingOnLine": "ᛇ",
+      "followingOnLine": null,
+      "countsAfter": [
+        19,
+        19,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 20,
+      "page": 33,
+      "archive": 50,
+      "offset": 10,
+      "global": 7970,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1287,
+        730
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᚷ",
+      "followingOnLine": "ᛇ",
+      "countsAfter": [
+        20,
+        20,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 21,
+      "page": 33,
+      "archive": 50,
+      "offset": 91,
+      "global": 8051,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1466,
+        1482
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 5,
+      "precedingOnLine": "ᛚ",
+      "followingOnLine": null,
+      "countsAfter": [
+        21,
+        21,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 22,
+      "page": 33,
+      "archive": 50,
+      "offset": 99,
+      "global": 8059,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1160,
+        1970
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 6,
+      "precedingOnLine": "ᛇ",
+      "followingOnLine": "ᛞ",
+      "countsAfter": [
+        22,
+        22,
+        0,
+        0
+      ]
+    },
+    {
+      "event": 23,
+      "page": 36,
+      "archive": 53,
+      "offset": 99,
+      "global": 8805,
+      "dots": 10,
+      "color": "red",
+      "xy": [
+        993,
+        1482
+      ],
+      "runeBefore": "black",
+      "runeAfter": "black",
+      "derivedLine": 5,
+      "precedingOnLine": "ᚻ",
+      "followingOnLine": null,
+      "countsAfter": [
+        23,
+        22,
+        1,
+        0
+      ]
+    },
+    {
+      "event": 24,
+      "page": 38,
+      "archive": 55,
+      "offset": 186,
+      "global": 9358,
+      "dots": 10,
+      "color": "red",
+      "xy": [
+        620,
+        2571
+      ],
+      "runeBefore": "black",
+      "runeAfter": "black",
+      "derivedLine": 11,
+      "precedingOnLine": null,
+      "followingOnLine": "ᚫ",
+      "countsAfter": [
+        24,
+        22,
+        2,
+        0
+      ]
+    },
+    {
+      "event": 25,
+      "page": 39,
+      "archive": 56,
+      "offset": 119,
+      "global": 9519,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        856,
+        1671
+      ],
+      "runeBefore": "black",
+      "runeAfter": "red",
+      "derivedLine": 6,
+      "precedingOnLine": "ᚻ",
+      "followingOnLine": null,
+      "countsAfter": [
+        25,
+        23,
+        2,
+        0
+      ]
+    },
+    {
+      "event": 26,
+      "page": 39,
+      "archive": 56,
+      "offset": 122,
+      "global": 9522,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        963,
+        1914
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 7,
+      "precedingOnLine": "ᛋ",
+      "followingOnLine": "ᛈ",
+      "countsAfter": [
+        26,
+        24,
+        2,
+        0
+      ]
+    },
+    {
+      "event": 27,
+      "page": 39,
+      "archive": 56,
+      "offset": 240,
+      "global": 9640,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1559,
+        2856
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 12,
+      "precedingOnLine": "ᛄ",
+      "followingOnLine": null,
+      "countsAfter": [
+        27,
+        25,
+        2,
+        0
+      ]
+    },
+    {
+      "event": 28,
+      "page": 49,
+      "archive": 66,
+      "offset": 66,
+      "global": 12114,
+      "dots": 10,
+      "color": "red",
+      "xy": [
+        1710,
+        1106
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 3,
+      "precedingOnLine": "ᛞ",
+      "followingOnLine": null,
+      "countsAfter": [
+        28,
+        25,
+        3,
+        0
+      ]
+    },
+    {
+      "event": 29,
+      "page": 53,
+      "archive": 70,
+      "offset": 179,
+      "global": 12648,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        842,
+        2307
+      ],
+      "runeBefore": "red",
+      "runeAfter": "page-edge",
+      "derivedLine": 11,
+      "precedingOnLine": "ᚾ",
+      "followingOnLine": null,
+      "countsAfter": [
+        29,
+        26,
+        3,
+        0
+      ]
+    },
+    {
+      "event": 30,
+      "page": 54,
+      "archive": 71,
+      "offset": 9,
+      "global": 12657,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1212,
+        974
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᛗ",
+      "followingOnLine": "ᛡ",
+      "countsAfter": [
+        30,
+        27,
+        3,
+        0
+      ]
+    },
+    {
+      "event": 31,
+      "page": 55,
+      "archive": 72,
+      "offset": 76,
+      "global": 12956,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1053,
+        1294
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 4,
+      "precedingOnLine": "ᛁ",
+      "followingOnLine": null,
+      "countsAfter": [
+        31,
+        28,
+        3,
+        0
+      ]
+    },
+    {
+      "event": 32,
+      "page": 56,
+      "archive": 73,
+      "offset": 5,
+      "global": 12961,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        983,
+        730
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᚱ",
+      "followingOnLine": "ᛗ",
+      "countsAfter": [
+        32,
+        29,
+        3,
+        0
+      ]
+    },
+    {
+      "event": 33,
+      "page": 56,
+      "archive": 73,
+      "offset": 45,
+      "global": 13001,
+      "dots": 10,
+      "color": "red",
+      "xy": [
+        1073,
+        1106
+      ],
+      "runeBefore": "black",
+      "runeAfter": "black",
+      "derivedLine": 3,
+      "precedingOnLine": "ᚫ",
+      "followingOnLine": null,
+      "countsAfter": [
+        33,
+        29,
+        4,
+        0
+      ]
+    },
+    {
+      "event": 34,
+      "page": 56,
+      "archive": 73,
+      "offset": 85,
+      "global": 13041,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1577,
+        2134
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 10,
+      "precedingOnLine": "ᛋ",
+      "followingOnLine": null,
+      "countsAfter": [
+        34,
+        30,
+        4,
+        0
+      ]
+    },
+    {
+      "event": 35,
+      "page": 57,
+      "archive": 74,
+      "offset": 7,
+      "global": 13048,
+      "dots": 13,
+      "color": "red",
+      "xy": [
+        1159,
+        974
+      ],
+      "runeBefore": "red",
+      "runeAfter": "black",
+      "derivedLine": 1,
+      "precedingOnLine": "ᛖ",
+      "followingOnLine": "ᛚ",
+      "countsAfter": [
+        35,
+        31,
+        4,
+        0
+      ]
+    },
+    {
+      "event": 36,
+      "page": 57,
+      "archive": 74,
+      "offset": 95,
+      "global": 13136,
+      "dots": 23,
+      "color": "red",
+      "xy": [
+        1678,
+        1782
+      ],
+      "runeBefore": "black",
+      "runeAfter": "page-edge",
+      "derivedLine": 6,
+      "precedingOnLine": "ᛖ",
+      "followingOnLine": null,
+      "countsAfter": [
+        36,
+        31,
+        4,
+        1
+      ]
+    }
+  ],
+  "knownCounts": [
+    [
+      31,
+      28,
+      3,
+      0
+    ],
+    [
+      32,
+      29,
+      3,
+      0
+    ],
+    [
+      33,
+      29,
+      4,
+      0
+    ],
+    [
+      34,
+      30,
+      4,
+      0
+    ],
+    [
+      35,
+      31,
+      4,
+      0
+    ]
+  ],
+  "knownConsumingRunes": 179,
+  "rows": [
+    {
+      "counter": "all",
+      "q": 1,
+      "fixed": [
+        0
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "all",
+      "q": 2,
+      "fixed": [
+        0,
+        1
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "all",
+      "q": 3,
+      "fixed": [
+        0,
+        1,
+        2
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "all",
+      "q": 4,
+      "fixed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "all",
+      "q": 5,
+      "fixed": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "all",
+      "q": 6,
+      "fixed": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "free": [
+        0
+      ],
+      "unknownRunesUnconstrained": 1907,
+      "intervals": [
+        {
+          "start": 0,
+          "end": 13
+        },
+        {
+          "start": 1541,
+          "end": 1552
+        },
+        {
+          "start": 3603,
+          "end": 3612
+        },
+        {
+          "start": 6546,
+          "end": 7960
+        },
+        {
+          "start": 9358,
+          "end": 9519
+        },
+        {
+          "start": 12657,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "all",
+      "q": 7,
+      "fixed": [
+        0,
+        3,
+        4,
+        5,
+        6
+      ],
+      "free": [
+        1,
+        2
+      ],
+      "unknownRunesUnconstrained": 3374,
+      "intervals": [
+        {
+          "start": 13,
+          "end": 745
+        },
+        {
+          "start": 1860,
+          "end": 1874
+        },
+        {
+          "start": 5506,
+          "end": 6527
+        },
+        {
+          "start": 8059,
+          "end": 9358
+        },
+        {
+          "start": 12648,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "all",
+      "q": 8,
+      "fixed": [
+        0,
+        1,
+        2,
+        3,
+        7
+      ],
+      "free": [
+        4,
+        5,
+        6
+      ],
+      "unknownRunesUnconstrained": 4284,
+      "intervals": [
+        {
+          "start": 848,
+          "end": 1552
+        },
+        {
+          "start": 3603,
+          "end": 5506
+        },
+        {
+          "start": 7970,
+          "end": 8805
+        },
+        {
+          "start": 12114,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "13-only",
+      "q": 1,
+      "fixed": [
+        0
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "13-only",
+      "q": 2,
+      "fixed": [
+        0,
+        1
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "13-only",
+      "q": 3,
+      "fixed": [
+        0,
+        1,
+        2
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "13-only",
+      "q": 4,
+      "fixed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "13-only",
+      "q": 5,
+      "fixed": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "free": [
+        2
+      ],
+      "unknownRunesUnconstrained": 2111,
+      "intervals": [
+        {
+          "start": 729,
+          "end": 745
+        },
+        {
+          "start": 1552,
+          "end": 1860
+        },
+        {
+          "start": 3603,
+          "end": 3612
+        },
+        {
+          "start": 6527,
+          "end": 6546
+        },
+        {
+          "start": 8059,
+          "end": 9519
+        },
+        {
+          "start": 12657,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "13-only",
+      "q": 6,
+      "fixed": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "free": [
+        2,
+        3
+      ],
+      "unknownRunesUnconstrained": 2429,
+      "intervals": [
+        {
+          "start": 729,
+          "end": 848
+        },
+        {
+          "start": 1860,
+          "end": 1874
+        },
+        {
+          "start": 3623,
+          "end": 5522
+        },
+        {
+          "start": 7970,
+          "end": 8059
+        },
+        {
+          "start": 12648,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "13-only",
+      "q": 7,
+      "fixed": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "free": [
+        4,
+        5,
+        6
+      ],
+      "unknownRunesUnconstrained": 5545,
+      "intervals": [
+        {
+          "start": 848,
+          "end": 1552
+        },
+        {
+          "start": 3603,
+          "end": 3623
+        },
+        {
+          "start": 6546,
+          "end": 8051
+        },
+        {
+          "start": 9640,
+          "end": 12956
+        }
+      ]
+    },
+    {
+      "counter": "10-only",
+      "q": 1,
+      "fixed": [
+        0
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "10-only",
+      "q": 2,
+      "fixed": [
+        0,
+        1
+      ],
+      "free": [],
+      "unknownRunesUnconstrained": 0,
+      "intervals": []
+    },
+    {
+      "counter": "10-only",
+      "q": 3,
+      "fixed": [
+        0,
+        1
+      ],
+      "free": [
+        2
+      ],
+      "unknownRunesUnconstrained": 2756,
+      "intervals": [
+        {
+          "start": 9358,
+          "end": 12114
+        }
+      ]
+    },
+    {
+      "counter": "10-only",
+      "q": 4,
+      "fixed": [
+        0,
+        3
+      ],
+      "free": [
+        1,
+        2
+      ],
+      "unknownRunesUnconstrained": 3309,
+      "intervals": [
+        {
+          "start": 8805,
+          "end": 12114
+        }
+      ]
+    },
+    {
+      "counter": "10-only",
+      "q": 5,
+      "fixed": [
+        3,
+        4
+      ],
+      "free": [
+        0,
+        1,
+        2
+      ],
+      "unknownRunesUnconstrained": 12114,
+      "intervals": [
+        {
+          "start": 0,
+          "end": 12114
+        }
+      ]
+    }
+  ]
+}
