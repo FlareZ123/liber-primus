@@ -1,6 +1,6 @@
 # P15 Fibonacci-prime orbit with repeat-triggered reversals: all-key inverse
 
-**Decision (Agent 6, 26 November 2026).** The exact shift-before-permutation receiver below fails original p16–39 independently of every secret alphabet, even though it recovers 6,631/6,632 withheld native-control runes and both hidden orbit configurations. No unknown LP2 plaintext or authenticated key.
+**Decision (Agent 6, 26 November 2026).** Both shift-before-permutation and map-before-shift receivers fail original p16–39 independently of every secret alphabet, even though the first recovers 6,631/6,632 withheld native-control runes and both hidden orbit configurations. No unknown LP2 plaintext or authenticated key.
 
 ## Mechanism and causal premise
 
@@ -20,10 +20,31 @@ For any fixed configuration, the unknown T merely relabels the 29 decoded catego
 
 Across all contiguous 5,877-rune windows of the three frozen native references, the minimum top-two counts are 1,066 (211,230 Shakespeare windows), 1,124 (56,616 Gibran windows), 1,107 (315,451 Emerson windows). Thus all 583,297 reference windows are incompatible with **every** phase/transport/direction/clock/sign and alphabet of the specified receiver, even if an arbitrary positional shuffle preserves the histogram. The original upper bound is 520 (less than half the global reference floor), with maximum fit IoC .03545817. The learned original winner has held IoC .03535107 and nonprose. Both independently seeded controls recover the exact hidden orbit configuration and all 5,877 fit runes; Emerson recovers all 29 map entries, Gibran swaps AE/OE, causing one held error (absent both in fit). Exact full forward replay passes for each selected winner. Replay alone is not key evidence.
 
+
+## Noncommuting map-before-shift extension
+
+The alternative decoder is P=unrank_e((S[r]−K(t)) mod28) on nonrepeat, P=e on repeat, with arbitrary bijection S of the 28 ranks and arbitrary fixed escape rune e. This is not equivalent to the earlier shift-before-map decoder. Retain exactly the same public clock and source construction.
+
+For a fixed clock define H[r,k] as the number of fitting nonrepeat transitions of raw rank r and shift k. For any nonescape output rank y, its count is the sum over r of H[r,(S[r]−y) mod28]. Since S−y is a permutation, the minimum assignment cost in the 28×28 matrix H lower-bounds **every** nonescape output count. Therefore it also lower-bounds the second-smallest of all 29 rune counts, independently of e and even of arbitrary output relabeling. A cheaper bound is the sum of the 14 smallest row minima restricted to even shifts, since exactly 14 rows must be assigned even columns. Both bounds hold with no word geometry assumption.
+
+Cyclic difference and log15 transports differ by a fixed row permutation. Negating all shifts permutes the assignment columns and preserves the even-column cheap bound. Thus 26,400 reduced configurations represent all 79,200 original configurations. Evaluate the cheap bound for all; invoke exact minimum assignment (Hungarian algorithm) only where that bound does not exclude the reference windows.
+
+| Reference | Maximum second-smallest count | Windows |
+|---|---:|---:|
+| Shakespeare | 4 | 211,230 |
+| Gibran | 3 | 56,616 |
+| Emerson | 5 | 315,451 |
+
+On p16–39, 13,137 reduced configurations have cheap bound >5. The remaining 13,263 have exact assignment minimum at least 91. Thus **all 26,400 reduced configurations fail**, for all 28! permutations and all 29 fixed escape labels. The exact minimum 91 is specifically for the subset needing assignment; it is not a global minimum over the cheap-excluded subset. Two independently constructed known-key controls reproduce all 9,194 runes each and pass both inequalities; their assignment minima are zero and observed second-smallest counts 0 and 2. These controls validate the exclusion test, not blind key recovery. Original p40–55 is not needed or scored by this extension.
+
+- [Map-before-shift SFT](../sims/lp2_p15_reversing_orbit_mapfirst_sft.cjs), frozen commit b313a7a2d2dbed47a0b44dacfabec6c22fd9cf91.
+- [Raw output and pinned blobs](lp2-p15-reversing-orbit-mapfirst.json), commit ff66d26d9fcd81da0d506110e9fec4325e6887e.
+- Exact committed core executed in connected V8 (28.768 seconds); standalone wrapper not independently run.
+
 ## Reproduction and limits
 
 - [Frozen CommonJS SFT](../sims/lp2_p15_reversing_orbit_rank28_sft.cjs), commit 7a26efa742ad2c1be78e629fc690e98686afc483.
 - [Original raw output](lp2-p15-reversing-orbit-rank28-original.json), [Gibran raw output](lp2-p15-reversing-orbit-rank28-control1.json), [Emerson raw output](lp2-p15-reversing-orbit-rank28-control2.json).
 - All three exact committed core functions ran in connected V8 against pinned source blobs; standalone Node wrapper not independently executed. The first raw output was serialized from the returned tool result rather than a second execution.
 
-This retires the specified shift-before-map reversing orbit for the three native-reference registers. It does not exclude other repeat state laws, other registers, variable escape labels, or the noncommuting map-before-shift order. Do not expand the source-unsupported direction rules merely to generate additional experiments.
+This retires both specified operation orders of the reversing orbit for the three native-reference registers. It does not exclude other repeat state laws, other registers, or variable escape labels. Do not expand the source-unsupported direction rules merely to generate additional experiments.
