@@ -14,6 +14,9 @@
 #undef main
 using Vec=array<uint8_t,8>;using Code=uint64_t;constexpr int N=29,Q=8,L=7;
 constexpr Code IMP=~Code(0);
+// Optional exact red-heading profile, set only after canonical domains are built.
+static bool redProfile7=false;
+bool numericRedProfile7(const fixed::Key&k){if(!redProfile7)return true;int n=0;for(int j=0;j<Q;j++){if(!k[j])return false;n+=k[j]==k[(j+1)%Q];}return n==1;}
 Vec add(const Vec&a,const Vec&b){Vec c{};for(int i=0;i<Q;i++)c[i]=(a[i]+b[i])%N;return c;}
 Vec minusv(const Vec&a,const Vec&b){Vec c{};for(int i=0;i<Q;i++)c[i]=aff::sub[a[i]][b[i]];return c;}
 Vec unit(int j){Vec x{};x[j]=1;return x;}
@@ -44,7 +47,9 @@ struct Graph{
   return true;
  }
  bool valid()const{
-  if(!k.primitive())return false;array<Code,N> v{};for(int x=0;x<N;x++)v[x]=k.code(k.project(off[x]));
+  if(!k.primitive())return false;
+  if(redProfile7){int repeats=0;for(int j=0;j<Q;j++){if(k.a[j]==Vec{})return false;repeats+=k.a[j]==k.a[(j+1)%Q];}if(repeats!=1)return false;}
+  array<Code,N> v{};for(int x=0;x<N;x++)v[x]=k.code(k.project(off[x]));
   for(int x=0;x<N;x++)for(int y=0;y<x;y++)if(r[x]==r[y]&&v[x]==v[y])return false;return true;
  }
  string sig()const{
@@ -56,6 +61,11 @@ bool extend(const Graph&g,const GOption&o,Graph&next){next=g;for(int i=0;i<o.n;i
 struct GFilter{
  const Graph&g;array<Vec,N>a{};unordered_set<Code> forbidden;unordered_map<int,vector<Code>> differences;array<int8_t,N*N*Q>cache;bool saturated=false;
  GFilter(const Graph&x):g(x){cache.fill(-1);for(int i=0;i<N;i++)a[i]=g.k.project(g.off[i]);unordered_map<Code,uint32_t> dirs;
+  if(redProfile7){
+   auto forbid=[&](const Vec&v){Code z=g.k.normalized(v);if(!z){saturated=true;return;}if(z==IMP)return;forbidden.insert(z);auto&mask=dirs[z/N];mask|=1u<<(z%N);if(mask==0x1fffffff)saturated=true;};
+   for(int j=0;j<Q;j++){forbid(g.k.a[j]);Vec d=minusv(g.k.a[j],g.k.a[(j+1)%Q]);if(d!=Vec{})forbid(d);}
+   if(saturated)return;
+  }
   for(int i=0;i<N;i++)for(int j=0;j<i;j++)if(g.r[i]==g.r[j]){Code z=g.k.normalized(minusv(a[i],a[j]));if(!z){saturated=true;return;}if(z==IMP)continue;forbidden.insert(z);auto&v=dirs[z/N];v|=1u<<(z%N);if(v==0x1fffffff){saturated=true;return;}}
  }
  bool allowed(int c,int p,int j){auto&v=cache[(c*N+p)*Q+j];if(v>=0)return v;
@@ -193,14 +203,14 @@ struct GSearch{
  // Exact searches keep their original early rejection and acceptance gate.
  bool recordNear=false;int nearMiss=48;fixed::Perm nearPi{};fixed::Key nearKey{};
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
-  c.perms++;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
+  c.perms++;if(!numericRedProfile7(k))return;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
   int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov&&!recordNear)return;
   lock_guard<mutex>l(answerMutex);
   if(recordNear&&(n<nearMiss||(n==nearMiss&&make_pair(pi,k)<make_pair(nearPi,nearKey)))){nearMiss=n;nearPi=pi;nearKey=k;}
   if(n<=maxOov&&!found){answer=pi;answerKey=k;answerOov=n;found=true;}
  }
  void pack(const Graph&g,const fixed::Key&k,GStats&c){
-  c.keyTests++;bool primitive=false;for(int j=0;j<4;j++)primitive|=k[j]!=k[j+4];if(!primitive)return;
+  c.keyTests++;if(!numericRedProfile7(k))return;bool primitive=false;for(int j=0;j<4;j++)primitive|=k[j]!=k[j+4];if(!primitive)return;
   array<int,N> val{},trans{};array<uint32_t,N> masks{};for(int x=0;x<N;x++){int v=0;for(int j=0;j<Q;j++)v+=g.off[x][j]*k[j];v%=N;val[x]=v;uint32_t b=1u<<v;if(masks[g.r[x]]&b)return;masks[g.r[x]]|=b;}
   int root=g.r[0];trans[root]=(N-val[0])%N;uint32_t used=fixed::rot(masks[root],trans[root]);vector<int> rem;for(int x=0;x<N;x++)if(masks[x]&&x!=root)rem.push_back(x);
   auto dfs=[&](auto&&self,uint32_t mask,vector<int>left)->void{if(stop())return;c.packNodes++;if(left.empty()){fixed::Perm pi{};for(int x=0;x<N;x++)pi[x]=(val[x]+trans[g.r[x]])%N;check(pi,k,c);return;}
@@ -481,7 +491,7 @@ struct FastSearch : GSearch {
   numericComplete++;numericKeys+=keys.size();uint64_t nodes=0,dfsNodes=0;
   vector<int>order=rem;stable_sort(order.begin(),order.end(),[&](int a,int b){return train[a].size()>train[b].size();});
   for(const auto&k:keys){
-   if(stop())break;NumericGraph12 a(g,k);int miss=0;
+   if(stop())break;if(!numericRedProfile7(k))continue;NumericGraph12 a(g,k);int miss=0;
    for(int id:order){if(!numericWord(a,k,id,nodes)&&++miss>budget)break;if(stop())break;}
    if(stop())break;if(miss>budget){numericRejected++;continue;}
    numericDfs(a,k,rem,budget,c,nodes,dfsNodes);
