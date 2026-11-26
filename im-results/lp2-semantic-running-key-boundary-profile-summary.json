@@ -1,0 +1,123 @@
+{
+  "decision": "bounded negative; fixed semantic objective retired for original direct running-key inference",
+  "workflowRun": 45858538867,
+  "workflowHeadSha": "9a3d8b6bf1e7f006492ab5a884dc920d06d2b57a",
+  "model": "distilbert/distilgpt2",
+  "modelRevision": "f241065e938b44ac52db2c5de82c8bd2fafc76d0",
+  "environment": {
+    "pytorch": "2.6.0",
+    "transformers": "4.49.0",
+    "safetensors": "0.5.3",
+    "device": "CPU"
+  },
+  "inputFixture": "im-results/lp2-semantic-running-key-boundary-profile-inputs.json.gz.b64",
+  "inputDecodedJsonSha256": "fd49346669ec90cf52bf12984a398cbc2715eeb5e438af1f78ed713a8c85cde0",
+  "outputFixture": "im-results/lp2-semantic-running-key-boundary-profile-output-fixture.json.gz.b64",
+  "outputDecodedJsonSha256": "c14f199e41916cc388e01825fea3ec61989bb397abc0f84862d73909101c80e5",
+  "search": {
+    "variable": "K boundaries only",
+    "fixed": [
+      "P rune sequence",
+      "K rune sequence",
+      "C=P+K mod29",
+      "P word-length tape"
+    ],
+    "beamWidth": 384,
+    "rightLookaheadRunes": 6,
+    "candidateCapPerWindow": 24,
+    "sweeps": [
+      {
+        "width": 18,
+        "stride": 9,
+        "reverse": false
+      },
+      {
+        "width": 24,
+        "stride": 12,
+        "reverse": true
+      },
+      {
+        "width": 12,
+        "stride": 6,
+        "reverse": false
+      }
+    ],
+    "globalOptimalityCertified": false
+  },
+  "aggregate": {
+    "authenticWins": 3,
+    "rivalWins": 3,
+    "rankingChanges": 0,
+    "originalExactPairsRecovered": 0,
+    "originalLp2Scored": false
+  },
+  "controls": [
+    {
+      "name": "LOSS-D",
+      "initialRivalMinusTrue": 0.21388618618834254,
+      "profiledRivalMinusTrue": 0.23206194709329075,
+      "authenticWins": false,
+      "selectedTrueBoundaries": 25,
+      "actualTrueBoundaries": 24,
+      "precision": 0.96,
+      "recall": 1,
+      "artifactId": 15136324593
+    },
+    {
+      "name": "LOSS-E",
+      "initialRivalMinusTrue": -0.609529958187955,
+      "profiledRivalMinusTrue": -0.5805907017976333,
+      "authenticWins": true,
+      "selectedTrueBoundaries": 20,
+      "actualTrueBoundaries": 21,
+      "precision": 1,
+      "recall": 0.9523809523809523,
+      "artifactId": 15137061512
+    },
+    {
+      "name": "GIBRAN-F",
+      "initialRivalMinusTrue": 0.005263983034620168,
+      "profiledRivalMinusTrue": 0.0003162458831189596,
+      "authenticWins": false,
+      "selectedTrueBoundaries": 25,
+      "actualTrueBoundaries": 25,
+      "precision": 0.92,
+      "recall": 0.92,
+      "artifactId": 15136164726
+    },
+    {
+      "name": "GIBRAN-G",
+      "initialRivalMinusTrue": -0.44955963449379865,
+      "profiledRivalMinusTrue": -0.44955963449379865,
+      "authenticWins": true,
+      "selectedTrueBoundaries": 27,
+      "actualTrueBoundaries": 27,
+      "precision": 1,
+      "recall": 1,
+      "artifactId": 15137660567
+    },
+    {
+      "name": "GIBRAN-H",
+      "initialRivalMinusTrue": -0.17866862188909494,
+      "profiledRivalMinusTrue": -0.17947120273236195,
+      "authenticWins": true,
+      "selectedTrueBoundaries": 25,
+      "actualTrueBoundaries": 24,
+      "precision": 0.96,
+      "recall": 1,
+      "artifactId": 15135954841
+    },
+    {
+      "name": "GIBRAN-I",
+      "initialRivalMinusTrue": 0.03568750498246187,
+      "profiledRivalMinusTrue": 0.03568750498246187,
+      "authenticWins": false,
+      "selectedTrueBoundaries": 27,
+      "actualTrueBoundaries": 27,
+      "precision": 1,
+      "recall": 1,
+      "artifactId": 15135994727
+    }
+  ],
+  "caveat": "The 384-state proposal beam and coordinate sweeps are approximate; no global optimum over all 2^(n-1) segmentations is certified. This tests the specific unequal-boundary comparator objection under matched bounds."
+}

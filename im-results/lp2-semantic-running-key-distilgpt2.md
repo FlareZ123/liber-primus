@@ -1,6 +1,6 @@
 # Pretrained semantic running-key discrimination — executed decision
 
-**Decision — 25 November 2026:** The initial fixed-candidate semantic rank gate passes, but the actual blind recovery gate fails. The selected DistilGPT2 coordinate-beam search improves aggregate exact rune accuracy 70.95%→82.30% without recovering any complete pair; three optimized wrong pairs outrank their true pairs. No original LP2 ciphertext scored. Retire this fixed semantic objective/search for original direct running-key inference.
+**Decision — 26 November 2026:** The fixed-candidate semantic rank gate passes 6/6, but actual ciphertext-only recovery remains 0/6 exact P/K pairs (425/599→493/599 runes). The #3019 symmetric K-boundary audit gives authentic and rival pairs identical boundary-search freedom; the authentic pair wins only 3/6, and the same three rival-over-truth cases remain. The comparator asymmetry is insufficient to rescue the fixed objective. No original LP2 ciphertext scored. Retire this semantic objective/search for original direct running-key inference.
 
 Director #2656 tests whether a long-context model ranks paired native plaintext and natural-language key above wrong exact-replay pairs. Unknown LP2 ciphertext is not scored in this stage.
 
@@ -53,4 +53,37 @@ SFT: `sims/lp2_semantic_running_key_recovery_sft.py`; exact proposal server: `si
 
 Both streams obey C=P+K mod29 and the unchanged printed P lengths; all candidate updates forward-replay. Partial recovery is a useful improvement, not a demonstration of full key recovery. DistilGPT2's pretraining may contain literary controls, and the rendering is lossy for some GP spellings. The existing independent [manuscript-wide doublet gate](lp2-runningkey-native-doublet-gate.md) is also adverse to the direct independent literary running-key architecture itself (404–533 repeats in additive plants versus 86 original). No original p54–55 scoring is authorized by this failed conjunctive gate. A future source-selected anti-repeat layer, dependent key, or independently constrained inverse would constitute a different premise; simply tuning this semantic search does not.
 
-**Decision — 25 November 2026:** The initial fixed-candidate semantic rank gate passes, but the actual blind recovery gate fails. The selected DistilGPT2 coordinate-beam search improves aggregate exact rune accuracy 70.95%→82.30% without recovering any complete pair; three optimized wrong pairs outrank their true pairs. No original LP2 ciphertext scored. Retire this fixed semantic objective/search for original direct running-key inference.
+## Symmetric K-boundary comparator audit (26 November 2026; Director Issue #3019)
+
+The Critic identified a real comparison asymmetry in the stage-two evaluation: the authentic P/K pair was scored with its original key-word boundaries, while each competing proposal could optimize K boundaries. This audit gives both sides the same boundary freedom without changing the DistilGPT2 model, rune pair, plaintext word-length tape, ciphertext or cipher family.
+
+For each of the six saved controls, the true pair and the prior stage-two final rival were separately profiled. Only the K boundary tape varied; every position after the first was eligible. Both received the same bounded search: general-GP 5-gram proposal beam width 384, six-rune right lookahead, at most 24 candidates per window (top 12 plus up to 12 additional distinct first-eight-boundary patterns), and the original three coordinate sweeps (18/9 forward, 24/12 reverse, 12/6 forward). DistilGPT2 scored the full rendered P/K pair; every returned pair was checked against exact C=P+K mod29 replay. The model and revision remained unchanged.
+
+**Rival-minus-true score gaps (nats per original rune):** positive means the rival scores higher; negative means the authentic pair scores higher.
+
+| Control | Before profile | After equal profile | Winner after profile |
+| --- | ---: | ---: | --- |
+| LOSS-D | +0.213886 | +0.232062 | Rival |
+| LOSS-E | −0.609530 | −0.580591 | Authentic |
+| GIBRAN-F | +0.005264 | +0.000316 | Rival |
+| GIBRAN-G | −0.449560 | −0.449560 | Authentic |
+| GIBRAN-H | −0.178669 | −0.179471 | Authentic |
+| GIBRAN-I | +0.035688 | +0.035688 | Rival |
+
+**No ranking changed.** The same three cases in which the original recovery selected a rival above truth (LOSS-D, GIBRAN-F, GIBRAN-I) still prefer the rival after equal boundary optimization. GIBRAN-F nearly ties, but the residual gap remains positive. The authentic pair wins 3/6, not the ≥5/6 needed to justify a further recovery gate.
+
+The selected authentic-pair boundary tapes remained close to their actual boundaries:
+
+| Control | Selected / authentic boundaries | Precision | Recall |
+| --- | ---: | ---: | ---: |
+| LOSS-D | 25 / 24 | 0.960 | 1.000 |
+| LOSS-E | 20 / 21 | 1.000 | 0.952 |
+| GIBRAN-F | 25 / 25 | 0.920 | 0.920 |
+| GIBRAN-G | 27 / 27 | 1.000 | 1.000 |
+| GIBRAN-H | 25 / 24 | 0.960 | 1.000 |
+| GIBRAN-I | 27 / 27 | 1.000 | 1.000 |
+
+This is a matched-bounds comparator test, **not** a global optimum certificate over all \(2^{n-1}\) K segmentations. The proposal beam and coordinate sweeps are approximate, so a better untested segmentation could still change a score. The bounded result nevertheless rejects the specific claim that the observed three rival wins are explained merely by giving the rival more K-boundary freedom. The fixed semantic objective remains unsuitable for original inference; no original LP2 ciphertext was scored. Do not widen the beam, change the language model, or reopen original scoring without a new source-selected mechanism.
+
+Reproduction: [boundary-profile SFT](../sims/lp2_semantic_running_key_boundary_profile_sft.py), [proposal server](../sims/lp2_semantic_running_key_recovery_server.cjs), [saved-pair input fixture](lp2-semantic-running-key-boundary-profile-inputs.json.gz.b64), and [full output fixture](lp2-semantic-running-key-boundary-profile-output-fixture.json.gz.b64). The decoded input/output JSON SHA-256 values are fd49346669ec90cf52bf12984a398cbc2715eeb5e438af1f78ed713a8c85cde0 and c14f199e41916cc388e01825fea3ec61989bb397abc0f84862d73909101c80e5, respectively. Workflow 45858538867 completed successfully; output artifacts 15136324593, 15137061512, 15136164726, 15137660567, 15135954841 and 15135994727 correspond to LOSS-D, LOSS-E, GIBRAN-F, GIBRAN-G, GIBRAN-H and GIBRAN-I.
+
