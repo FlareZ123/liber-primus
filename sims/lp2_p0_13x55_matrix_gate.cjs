@@ -23,6 +23,9 @@ assert.equal(translit[sentinel], "TH");
 assert.equal(payload.length, 715);
 assert.equal(payload.length, 55 * 13);
 const rows = Array.from({ length: 55 }, (_, r) => payload.slice(r * 13, (r + 1) * 13));
+// Frozen from the independently documented p0 13-dot route: SSHYEOEGMNGIAFC.
+const dotRoutePermutation = [8, 0, 1, 9, 2, 3, 10, 4, 5, 11, 6, 7, 12];
+const dotPermutedRows = rows.map(row => dotRoutePermutation.map(i => row[i]));
 const colMajor = Array.from({ length: 13 }, (_, c) => rows.map(row => row[c])).flat();
 
 function textOf(a) { return a.map(i => translit[i]).join(" "); }
@@ -89,24 +92,25 @@ const pageKeyCases = [
 const pageKeyResults = [];
 for (const { page, row } of pageKeyCases) {
   const cipher = pages[page].indices;
-  const key = rows[row];
-  const tests = [];
-  for (const primeShifts of [false, true]) {
-    for (const sign of [-1, 1]) {
-      for (const hold of [null, F, E]) {
-        for (const reverse of [false, true]) {
-          tests.push({
-            primeShifts,
-            sign,
-            hold: hold === null ? "none" : translit[hold],
-            reverse,
-            ...vigenere(cipher, key, sign, hold, primeShifts, reverse)
-          });
+  for (const [rowOrder, key] of [["printed", rows[row]], ["dot-route", dotPermutedRows[row]]]) {
+    const tests = [];
+    for (const primeShifts of [false, true]) {
+      for (const sign of [-1, 1]) {
+        for (const hold of [null, F, E]) {
+          for (const reverse of [false, true]) {
+            tests.push({
+              primeShifts,
+              sign,
+              hold: hold === null ? "none" : translit[hold],
+              reverse,
+              ...vigenere(cipher, key, sign, hold, primeShifts, reverse)
+            });
+          }
         }
       }
     }
+    pageKeyResults.push({ page, row, rowOrder, key: textOf(key), length: cipher.length, tests });
   }
-  pageKeyResults.push({ page, row, key: textOf(key), length: cipher.length, tests });
 }
 const keyedAlphabetResults = [];
 for (const { page, key } of [
@@ -127,7 +131,7 @@ for (const { page, key } of [
 }
 const laterCipher = pages.slice(3, 56).flatMap(p => p.indices).slice(0, 715);
 const otpResults = [];
-for (const [keyOrder, key] of [["row-major", payload], ["column-major", colMajor]]) {
+for (const [keyOrder, key] of [["row-major", payload], ["column-major", colMajor], ["dot-route-row-major", dotPermutedRows.flat()]]) {
   for (const sign of [-1, 1]) {
     for (const hold of [null, F, E]) {
       for (const reverse of [false, true]) {
@@ -149,6 +153,7 @@ process.stdout.write(JSON.stringify({
     firstBlackSentinel: translit[sentinel],
     payloadLength: payload.length,
     matrix: "55 x 13",
+    dotRoutePermutation,
     row0ForP1: textOf(rows[0]),
     row54ForP55: textOf(rows[54])
   },

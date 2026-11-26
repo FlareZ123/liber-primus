@@ -685,3 +685,10 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 
 - Updated `im-results/lp2-opening-stave-second-marker-gate.md` and `workplace/integrated-original-inversion-challenge.md` to present the Futhorc E/E and reversed-Younger TH/sentinel interpretations separately, and to compare the conditional 13+1+55×13 partition with the existing p0 27×27 reshape.
 - The 55×13 matrix remains intermediate: simple per-page Vigenère, prime shifts, keyed alphabets, OTP and title-keyed transposition did not yield language. Do not promote the arithmetic partition to a key schedule.
+
+
+## 2026-11-26 — dot-route permutation applied to 13×55 matrix
+
+- The p0 13-dot topology was already independently documented as the 3-column 8-outer/5-center pattern and the title-position permutation `[8,0,1,9,2,3,10,4,5,11,6,7,12]` (output `SSHYEOEGMNGIAFC`). Do not repeat its standalone Vigenère/autokey/prime-delta tests.
+- Applied that exact position permutation to each of the 55 rows in the conditional 13×55 payload. Dot-permuted page-row Vigenère (index/prime shifts, signs, no/F/E holds, forward/reverse) fails on p3/p55; dot-permuted row-major OTP over the first 715 runes of p3 onward also fails.
+- The new 13+1+55×13 matrix structure remains an unresolved conditional partition, not a key schedule. The source-matched dot route does not rescue the simple matrix receivers.
