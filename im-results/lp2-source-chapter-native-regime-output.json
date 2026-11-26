@@ -1,0 +1,1157 @@
+{
+  "controls": [
+    {
+      "name": "0_warning",
+      "trueOp": "atbash",
+      "length": 184,
+      "cut": 110,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.318681963415207,
+          "legal": 110
+        },
+        {
+          "id": "atbash",
+          "avg": -2.681114355079322,
+          "legal": 110
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 15
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 2
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 2
+        }
+      ],
+      "selected": "atbash",
+      "prefixScore": -2.681114355079322,
+      "heldScore": -2.663224124238648,
+      "heldLegal": 74,
+      "prefixCorrect": 110,
+      "heldCorrect": 74,
+      "preview": "AWARNNGBELIEUENOTHNGFROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHEC",
+      "heldPreview": "ANGETHISBOOCORTHEMESSAGECONTAINEDWITHINEITHERTHEWORDSORTHEIRNUMBERS"
+    },
+    {
+      "name": "0_welcome",
+      "trueOp": "DIUINITY",
+      "length": 515,
+      "cut": 309,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.177291286450346,
+          "legal": 309
+        },
+        {
+          "id": "atbash",
+          "avg": -4.7170027322373835,
+          "legal": 309
+        },
+        {
+          "id": "DIUINITY",
+          "avg": -2.7217582962246625,
+          "legal": 309
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 45
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 0
+        }
+      ],
+      "selected": "DIUINITY",
+      "prefixScore": -2.7217582962246625,
+      "heldScore": -2.529578359046303,
+      "heldLegal": 206,
+      "prefixCorrect": 303,
+      "heldCorrect": 206,
+      "preview": "WELCOMEWELCOMEPILGRIMTOTHEGREATJOURNEYTOWARDTHEENDOFALLTHNGSITISN",
+      "heldPreview": "URNEYDEEPWITHINANDYOUWILLARRIUEOUTSIDELICETHEINSTARITISONLYTHRO"
+    },
+    {
+      "name": "0_wisdom",
+      "trueOp": "clear",
+      "length": 157,
+      "cut": 94,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -2.6867698463364045,
+          "legal": 94
+        },
+        {
+          "id": "atbash",
+          "avg": -4.73186334418106,
+          "legal": 94
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 5
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 14
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 22
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -2.6867698463364045,
+      "heldScore": -3.309848790263732,
+      "heldLegal": 63,
+      "prefixCorrect": 94,
+      "heldCorrect": 63,
+      "preview": "SOMEWISDOMTHEPRIMESARESACREDTHETOTIENTFUNCTIANISSACREDALLTHNGSSHO",
+      "heldPreview": "BUFFERSUOIDCARNALOBSCURAFORMMOBIUSANALOGUOIDMOURNFULAETHEREALCA"
+    },
+    {
+      "name": "jpg107-167",
+      "trueOp": "FIRFUMFERENFE",
+      "length": 319,
+      "cut": 191,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.025355932333484,
+          "legal": 191
+        },
+        {
+          "id": "atbash",
+          "avg": -4.566971642140724,
+          "legal": 191
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 29
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": -2.5244111804615295,
+          "legal": 191
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 4
+        }
+      ],
+      "selected": "FIRFUMFERENFE",
+      "prefixScore": -2.5244111804615295,
+      "heldScore": -2.3986015382173997,
+      "heldLegal": 128,
+      "prefixCorrect": 191,
+      "heldCorrect": 128,
+      "preview": "ACOANDURNGALESSONTHEMASTEREXPLAINEDTHEITHEIISTHEUOICEOFTHECIRCUMFE",
+      "heldPreview": "EDHISHANDTOTELLTHEMASTERTHEMASTERSTOPPEDTHESTUDENTANDSAIDTHEUOIC"
+    },
+    {
+      "name": "p56_an_end",
+      "trueOp": "prime-minus-one",
+      "length": 85,
+      "cut": 51,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.256150984951753,
+          "legal": 51
+        },
+        {
+          "id": "atbash",
+          "avg": -4.7290348002614415,
+          "legal": 51
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 24
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 5
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": -2.3549512581402654,
+          "legal": 51
+        }
+      ],
+      "selected": "prime-minus-one",
+      "prefixScore": -2.3549512581402654,
+      "heldScore": -2.6531214919483377,
+      "heldLegal": 34,
+      "prefixCorrect": 51,
+      "heldCorrect": 34,
+      "preview": "ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHE",
+      "heldPreview": "DUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE"
+    },
+    {
+      "name": "p57_parable",
+      "trueOp": "clear",
+      "length": 95,
+      "cut": 57,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -2.8152649944567774,
+          "legal": 57
+        },
+        {
+          "id": "atbash",
+          "avg": -4.959040909132279,
+          "legal": 57
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 13
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 2
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 2
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -2.8152649944567774,
+      "heldScore": -1.9871805580416786,
+      "heldLegal": 38,
+      "prefixCorrect": 57,
+      "heldCorrect": 38,
+      "preview": "PARABLELICETHEINSTARTUNNELNGTOTHESURFACEWEMUSTSHEDOUROWNCIRC",
+      "heldPreview": "UMFERENCESFINDTHEDIUINITYWITHINANDEMERGE"
+    }
+  ],
+  "original": [
+    {
+      "start": 0,
+      "end": 2,
+      "whole": {
+        "length": 729,
+        "cut": 262,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -5.109847633529945,
+            "legal": 262
+          },
+          {
+            "id": "atbash",
+            "avg": -5.08980328896165,
+            "legal": 262
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 37
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 5
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 235
+          }
+        ],
+        "selected": "atbash",
+        "prefixScore": -5.08980328896165,
+        "heldScore": -5.050846344580782,
+        "heldLegal": 467,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "PLIAEOENUEAPTHIWDYBOEOEABGAEMYMINGJRPGTEWIAMOOEEYLJMUSJMTBYRWTHXJCSIUEAX",
+        "heldPreview": "RENPMPGAIANGPHUGROWPCSEODAYUAJAECYEATHXEEOGEEAHAEEAFAAEGNLNOESLOLMAELTHGPH"
+      },
+      "body": {
+        "length": 716,
+        "cut": 249,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -5.150548740900821,
+            "legal": 249
+          },
+          {
+            "id": "atbash",
+            "avg": -5.095430725366993,
+            "legal": 249
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 28
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 131
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 43
+          }
+        ],
+        "selected": "atbash",
+        "prefixScore": -5.095430725366993,
+        "heldScore": -5.050846344580783,
+        "heldLegal": 467,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "YBOEOEABGAEMYMINGJRPGTEWIAMOOEEYLJMUSJMTBYRWTHXJCSIUEAXOEEAPSEOEASIAWTHWXU",
+        "heldPreview": "RENPMPGAIANGPHUGROWPCSEODAYUAJAECYEATHXEEOGEEAHAEEAFAAEGNLNOESLOLMAELTHGPH"
+      }
+    },
+    {
+      "start": 3,
+      "end": 7,
+      "whole": {
+        "length": 1145,
+        "cut": 217,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -5.031524698144318,
+            "legal": 217
+          },
+          {
+            "id": "atbash",
+            "avg": -4.957923099622632,
+            "legal": 217
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 73
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 117
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 22
+          }
+        ],
+        "selected": "atbash",
+        "prefixScore": -4.957923099622632,
+        "heldScore": -5.017265974002602,
+        "heldLegal": 928,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "HBTLWDYEOOBEOXLEOIAGPSAOETHMROETWMNGEATHMJFUSMTHRPNJUFUEAEJAMHFAHHIJNGMLN",
+        "heldPreview": "HUTHSXENGNDEHOEEAMUDXSAEAULBNGXWIANTFOEWWNGDHWIAXBEAGIAOEFNXRNGHIAXONCWLATH"
+      },
+      "body": {
+        "length": 1129,
+        "cut": 201,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.9537148952820385,
+            "legal": 201
+          },
+          {
+            "id": "atbash",
+            "avg": -4.913407782543586,
+            "legal": 201
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 57
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 2
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 2
+          }
+        ],
+        "selected": "atbash",
+        "prefixScore": -4.913407782543586,
+        "heldScore": -5.017265974002601,
+        "heldLegal": 928,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "PSAOETHMROETWMNGEATHMJFUSMTHRPNJUFUEAEJAMHFAHHIJNGMLNEAGJWARUOEGTEONXCTN",
+        "heldPreview": "HUTHSXENGNDEHOEEAMUDXSAEAULBNGXWIANTFOEWWNGDHWIAXBEAGIAOEFNXRNGHIAXONCWLATH"
+      }
+    },
+    {
+      "start": 8,
+      "end": 14,
+      "whole": {
+        "length": 1729,
+        "cut": 255,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -5.040243162199,
+            "legal": 255
+          },
+          {
+            "id": "atbash",
+            "avg": -5.085054776950118,
+            "legal": 255
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 1
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 1
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 30
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -5.040243162199,
+        "heldScore": -5.069964642191457,
+        "heldLegal": 1474,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "XIXMUXMCTHPOBIANTEAXPRYOCEAMNGGXLUNGITOJFNGSLNDOMEOAERDWTJTHYTHSAEYESXOEB",
+        "heldPreview": "YWAEGJNGMAWPAUNPIAMEDOEIXIAMFPOTHXDODSPXIAGOEHFTHXJOESTHYTHTHSYHEAGLAERTUS"
+      },
+      "body": {
+        "length": 1717,
+        "cut": 243,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -5.022570802729417,
+            "legal": 243
+          },
+          {
+            "id": "atbash",
+            "avg": -5.110272330579361,
+            "legal": 243
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 7
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 64
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 66
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -5.022570802729417,
+        "heldScore": -5.069964642191456,
+        "heldLegal": 1474,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "IANTEAXPRYOCEAMNGGXLUNGITOJFNGSLNDOMEOAERDWTJTHYTHSAEYESXOEBEAREOPNGUPOTHXAH",
+        "heldPreview": "YWAEGJNGMAWPAUNPIAMEDOEIXIAMFPOTHXDODSPXIAGOEHFTHXJOESTHYTHTHSYHEAGLAERTUS"
+      }
+    },
+    {
+      "start": 15,
+      "end": 22,
+      "whole": {
+        "length": 1903,
+        "cut": 159,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.7696313731731514,
+            "legal": 159
+          },
+          {
+            "id": "atbash",
+            "avg": -5.229545539170396,
+            "legal": 159
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 46
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": -4.968926550724692,
+            "legal": 159
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 10
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.7696313731731514,
+        "heldScore": -5.098656911204914,
+        "heldLegal": 1744,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "FULMAEAYOEALUNGNCUBNTFNGIUIUOEAEJFAEUGXEOPXYEALAXOEXIATHHEANACUGNPENTHOUIIA",
+        "heldPreview": "EDAAETOEAEEAXCEATODCEANCTHMDGICWOEAUBCAETHRSYATTHBNGWSRINGBIAAELTRIAAEFDNGJO"
+      },
+      "body": {
+        "length": 1883,
+        "cut": 139,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.806729869668197,
+            "legal": 139
+          },
+          {
+            "id": "atbash",
+            "avg": -5.184021652757288,
+            "legal": 139
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 38
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": -5.0451744111132975,
+            "legal": 139
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 21
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.806729869668197,
+        "heldScore": -5.098656911204912,
+        "heldLegal": 1744,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "IUIUOEAEJFAEUGXEOPXYEALAXOEXIATHHEANACUGNPENTHOUIIARTIBEOCFGOTHAIPHIABWPHR",
+        "heldPreview": "EDAAETOEAEEAXCEATODCEANCTHMDGICWOEAUBCAETHRSYATTHBNGWSRINGBIAAELTRIAAEFDNGJO"
+      }
+    },
+    {
+      "start": 23,
+      "end": 26,
+      "whole": {
+        "length": 1021,
+        "cut": 213,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.930769192004622,
+            "legal": 213
+          },
+          {
+            "id": "atbash",
+            "avg": -5.142462696278294,
+            "legal": 213
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 15
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 14
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 0
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.930769192004622,
+        "heldScore": -4.895939343840601,
+        "heldLegal": 808,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "UAWNGGXDGIBIEOTBIYEAGSAEPWMEAEOJEOWHIGEABUYHYNGWURSOIAFIAEADOETHMCNXDTHEREOC",
+        "heldPreview": "DRFEJAENCHWEOIAPEAWMLWOEWEAANACAGLTHBOWUGLFSHNXNGMETHUNGIAPYUXGGWDISTHIAIA"
+      },
+      "body": {
+        "length": 1005,
+        "cut": 197,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.917092156270978,
+            "legal": 197
+          },
+          {
+            "id": "atbash",
+            "avg": -5.101680763187775,
+            "legal": 197
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 13
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 17
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 11
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.917092156270978,
+        "heldScore": -4.895939343840599,
+        "heldLegal": 808,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "EAGSAEPWMEAEOJEOWHIGEABUYHYNGWURSOIAFIAEADOETHMCNXDTHEREOCAJSOEUWRTSESTYREAAE",
+        "heldPreview": "DRFEJAENCHWEOIAPEAWMLWOEWEAANACAGLTHBOWUGLFSHNXNGMETHUNGIAPYUXGGWDISTHIAIA"
+      }
+    },
+    {
+      "start": 27,
+      "end": 32,
+      "whole": {
+        "length": 1433,
+        "cut": 234,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.844151866797265,
+            "legal": 234
+          },
+          {
+            "id": "atbash",
+            "avg": -5.116747964560429,
+            "legal": 234
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 133
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 87
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 95
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.844151866797265,
+        "heldScore": -5.0407464958910815,
+        "heldLegal": 1199,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "MPYLSOAAEHLEEOIMLLSCPNHGUIAHUBFDJUBEIAEFPAEPTHRMLCBGYMEABAENTHMFIAEACBG",
+        "heldPreview": "PCJTHBIWDWNGEAIAWLWJNAOETDXYERDRTEOICPNGTHOEGJTHYSEAHFBLIAELDXAIWGBOWNEAS"
+      },
+      "body": {
+        "length": 1414,
+        "cut": 215,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.857169114463321,
+            "legal": 215
+          },
+          {
+            "id": "atbash",
+            "avg": -5.164125190640874,
+            "legal": 215
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 85
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 14
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 28
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.857169114463321,
+        "heldScore": -5.04074649589108,
+        "heldLegal": 1199,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "NHGUIAHUBFDJUBEIAEFPAEPTHRMLCBGYMEABAENTHMFIAEACBGAEFEJROPBFBOEOREAREAGEL",
+        "heldPreview": "PCJTHBIWDWNGEAIAWLWJNAOETDXYERDRTEOICPNGTHOEGJTHYSEAHFBLIAELDXAIWGBOWNEAS"
+      }
+    },
+    {
+      "start": 33,
+      "end": 39,
+      "whole": {
+        "length": 1680,
+        "cut": 214,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.953934565739315,
+            "legal": 214
+          },
+          {
+            "id": "atbash",
+            "avg": -5.038690135529903,
+            "legal": 214
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 0
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 32
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 58
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.953934565739315,
+        "heldScore": -5.043770547274962,
+        "heldLegal": 1466,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "DEOXCFIAWHGEOOEFTEOEEAAIASGYEANTHAEROIAMWXMYDBTRUJHAEOEIANGWHSFIALTHTIWTOUNW",
+        "heldPreview": "MBNHEODHMLIEANIAEEUTTHEOSPHHEOCEAAEDLSNGIWACOTEONGGCTHSEAFUNGLHWOEOAPGEOMLJS"
+      },
+      "body": {
+        "length": 1670,
+        "cut": 204,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.957649026072751,
+            "legal": 204
+          },
+          {
+            "id": "atbash",
+            "avg": -5.049966680897196,
+            "legal": 204
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 23
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 129
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 96
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.957649026072751,
+        "heldScore": -5.043770547274961,
+        "heldLegal": 1466,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "EOOEFTEOEEAAIASGYEANTHAEROIAMWXMYDBTRUJHAEOEIANGWHSFIALTHTIWTOUNWMLSTHEAWJAJAE",
+        "heldPreview": "MBNHEODHMLIEANIAEEUTTHEOSPHHEOCEAAEDLSNGIWACOTEONGGCTHSEAFUNGLHWOEOAPGEOMLJS"
+      }
+    },
+    {
+      "start": 40,
+      "end": 53,
+      "whole": {
+        "length": 3008,
+        "cut": 231,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.960778383663224,
+            "legal": 231
+          },
+          {
+            "id": "atbash",
+            "avg": -5.223937911490286,
+            "legal": 231
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 60
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 67
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 38
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.960778383663224,
+        "heldScore": -5.075558463492039,
+        "heldLegal": 2777,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "FNMYGDAEHAPXYHEOEAOETNGEALITTHFMACEDCTROEGEANAEBUEBUTHFOEGSOEIPOEXSBWJBYM",
+        "heldPreview": "EAIASYMDYSBDJDONTLCANGRGHGJWFAUEODTMJINGAEXPCPEAOEABIISEOGHSEOIABFWNGAEA"
+      },
+      "body": {
+        "length": 3000,
+        "cut": 223,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.972022586815265,
+            "legal": 223
+          },
+          {
+            "id": "atbash",
+            "avg": -5.226397404741622,
+            "legal": 223
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 13
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 31
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 5
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.972022586815265,
+        "heldScore": -5.0755584634920385,
+        "heldLegal": 2777,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "APXYHEOEAOETNGEALITTHFMACEDCTROEGEANAEBUEBUTHFOEGSOEIPOEXSBWJBYMUEARIUOEJI",
+        "heldPreview": "EAIASYMDYSBDJDONTLCANGRGHGJWFAUEODTMJINGAEXPCPEAOEABIISEOGHSEOIABFWNGAEA"
+      }
+    },
+    {
+      "start": 54,
+      "end": 55,
+      "whole": {
+        "length": 308,
+        "cut": 232,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.849335018261397,
+            "legal": 232
+          },
+          {
+            "id": "atbash",
+            "avg": -4.973555444181192,
+            "legal": 232
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 38
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 49
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 105
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.849335018261397,
+        "heldScore": -5.288100247497727,
+        "heldLegal": 76,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "AMNGDIATHXIMIADPNGUWAMTANGNGTHIAWSHICAEPAEGOMIAEOTWOFYUTJTHJEAECNEACEAEROUX",
+        "heldPreview": "NGAEMIWSBXMSEOGDTHAEFIAABCUWRBEAFXIMUCPHNGLEOMSDIAPFBHEOCEOEEAEIGXGSESEOTHTH"
+      },
+      "body": {
+        "length": 299,
+        "cut": 223,
+        "ranked": [
+          {
+            "id": "clear",
+            "avg": -4.8433784193133835,
+            "legal": 223
+          },
+          {
+            "id": "atbash",
+            "avg": -4.982747654171656,
+            "legal": 223
+          },
+          {
+            "id": "DIUINITY",
+            "avg": null,
+            "legal": 17
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "avg": null,
+            "legal": 4
+          },
+          {
+            "id": "prime-minus-one",
+            "avg": null,
+            "legal": 53
+          }
+        ],
+        "selected": "clear",
+        "prefixScore": -4.8433784193133835,
+        "heldScore": -5.288100247497727,
+        "heldLegal": 76,
+        "prefixCorrect": null,
+        "heldCorrect": null,
+        "preview": "IADPNGUWAMTANGNGTHIAWSHICAEPAEGOMIAEOTWOFYUTJTHJEAECNEACEAEROUXDWHBNGFACJ",
+        "heldPreview": "NGAEMIWSBXMSEOGDTHAEFIAABCUWRBEAFXIMUCPHNGLEOMSDIAPFBHEOCEOEEAEIGXGSESEOTHTH"
+      }
+    }
+  ],
+  "globalResult": {
+    "length": 12956,
+    "cut": 262,
+    "ranked": [
+      {
+        "id": "clear",
+        "avg": -5.109847633529945,
+        "legal": 262
+      },
+      {
+        "id": "atbash",
+        "avg": -5.08980328896165,
+        "legal": 262
+      },
+      {
+        "id": "DIUINITY",
+        "avg": null,
+        "legal": 37
+      },
+      {
+        "id": "FIRFUMFERENFE",
+        "avg": null,
+        "legal": 5
+      },
+      {
+        "id": "prime-minus-one",
+        "avg": null,
+        "legal": 235
+      }
+    ],
+    "selected": "atbash",
+    "prefixScore": -5.08980328896165,
+    "heldScore": -5.040991769176872,
+    "heldLegal": 12694,
+    "prefixCorrect": null,
+    "heldCorrect": null,
+    "preview": "PLIAEOENUEAPTHIWDYBOEOEABGAEMYMINGJRPGTEWIAMOOEEYLJMUSJMTBYRWTHXJCSIUEAX",
+    "heldPreview": "RENPMPGAIANGPHUGROWPCSEODAYUAJAECYEATHXEEOGEEAHAEEAFAAEGNLNOESLOLMAELTHGPH"
+  },
+  "blockCoverage": [
+    {
+      "startPage": 0,
+      "bodyStart": 13,
+      "end": 729,
+      "full179": [
+        179,
+        358,
+        537
+      ]
+    },
+    {
+      "startPage": 3,
+      "bodyStart": 745,
+      "end": 1874,
+      "full179": [
+        895,
+        1074,
+        1253,
+        1432,
+        1611
+      ]
+    },
+    {
+      "startPage": 8,
+      "bodyStart": 1886,
+      "end": 3603,
+      "full179": [
+        1969,
+        2148,
+        2327,
+        2506,
+        2685,
+        2864,
+        3043,
+        3222,
+        3401
+      ]
+    },
+    {
+      "startPage": 15,
+      "bodyStart": 3623,
+      "end": 5506,
+      "full179": [
+        3759,
+        3938,
+        4117,
+        4296,
+        4475,
+        4654,
+        4833,
+        5012,
+        5191
+      ]
+    },
+    {
+      "startPage": 23,
+      "bodyStart": 5522,
+      "end": 6527,
+      "full179": [
+        5549,
+        5728,
+        5907,
+        6086,
+        6265
+      ]
+    },
+    {
+      "startPage": 27,
+      "bodyStart": 6546,
+      "end": 7960,
+      "full179": [
+        6623,
+        6802,
+        6981,
+        7160,
+        7339,
+        7518,
+        7697
+      ]
+    },
+    {
+      "startPage": 33,
+      "bodyStart": 7970,
+      "end": 9640,
+      "full179": [
+        8055,
+        8234,
+        8413,
+        8592,
+        8771,
+        8950,
+        9129,
+        9308
+      ]
+    },
+    {
+      "startPage": 40,
+      "bodyStart": 9648,
+      "end": 12648,
+      "full179": [
+        9666,
+        9845,
+        10024,
+        10203,
+        10382,
+        10561,
+        10740,
+        10919,
+        11098,
+        11277,
+        11456,
+        11635,
+        11814,
+        11993,
+        12172,
+        12351
+      ]
+    },
+    {
+      "startPage": 54,
+      "bodyStart": 12657,
+      "end": 12956,
+      "full179": [
+        12709
+      ]
+    }
+  ]
+}
