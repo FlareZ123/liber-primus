@@ -42,7 +42,26 @@ Regenerate the identical 1,197 Shakespeare windows from the pinned 217,106-rune 
 
 Authentic LP1 WELCOME (q8) and second KOAN (q13) keys are recovered from their first 50 aligned runes; their remaining 465 and 269 ciphertext runes replay exactly. Three independently planted q13 keys at hidden nonzero phases recover the exact cyclic gauge and full 3,008-rune replay; one-rune wrong alignments fail. These are known-plaintext controls, not a blind recovery claim. No continuation test is warranted because there is no surviving original candidate.
 
-[SFT](../sims/lp2_q13_aligned_shakespeare_donor_sft.cjs) and [all 1,197 certificates](lp2-q13-aligned-shakespeare-donor-output.json). Core executed in connected V8 on repository inputs; standalone Node wrapper not separately executed. The residual survives only as a histogram allowance for unspecified positional transport, not a verbatim aligned-donor candidate.
+[SFT](../sims/lp2_q13_aligned_shakespeare_donor_sft.cjs) and [all 1,197 certificates](lp2-q13-aligned-shakespeare-donor-output.json). Core executed in connected V8 on repository inputs; standalone Node wrapper not separately executed. At this stage the residual survived only the separate histogram allowances; the following joint certificate closes it even under unspecified positional transport.
+
+## Joint rare-rune histogram closure even under arbitrary transport (Director #3077, Agent25)
+
+Regenerate all 1,197 E/F-eligible Shakespeare windows from the same 217,106-rune donor and deduplicate to 1,116 exact histograms. Select the objective from these histograms alone: forbid every absent non-F category (OE=22 and AE=25); penalize the two remaining non-F categories having the smallest positive maximum count (EO=12 and X=14). Every donor has EO=1 and X=1–2, hence EO+X≤3.
+
+Keep exactly the original q13 additive GP29 clock and held literal F. For a selected phase pair, fix its two key shifts and relax both legality and score at all other phases. A consuming ciphertext c at selected shift k is forbidden if (c−k) mod29 is any of 0,22,25; it costs one if the result is 12 or14. A visible ciphertext zero can hold at zero cost, or consume under the same rule; all nonzero ciphertext must consume. This enforces the same shift and same hold history for both selected phases. The existing nonzero-run block DP now minimizes cost over arbitrary initial phase and hold choices, with infeasible states at +∞.
+
+Exhaustive results on the 3,008 original runes (125 zeros; FNV1a 1862123327):
+
+| Selected phases | Assignments | Legal relaxed assignments | Minimum EO+X | Example partial shifts |
+|---|---:|---:|---:|---|
+| {0} | 29 | 29 | 0 | [4] |
+| {0,1} | 841 | 51 | **12** | [4,7] |
+
+For any legal full key/path with no OE or AE, each cyclic adjacent-phase pair must contribute at least12 EO/X runes: the minimization is invariant under rotation of the phase labels because starting phase is free. Summing all13 pairs counts each occurrence twice. Thus 2(EO+X)≥13×12=156, or **EO+X≥78**, incompatible with every donor's ≤3. This is an exact joint histogram contradiction, independent of any positional permutation, not a language-score or a separately optimized per-symbol bound. There is no full-key witness.
+
+All 870 original selected-shift assignments agree with an independent per-rune DP; 1,000 small assignments agree with exhaustive path enumeration. The historical LP1 second KOAN q13 key replays all319 native runes; three deliberately permuted donor controls preserve their entire histogram, use actual historical or independently planted q13 keys with hidden phases, and survive every conditional pair bound and the all-pair minimum (0). The controls validate necessary-condition safety, not blind key recovery. The core ran in connected V8; standalone Node/Windows execution is not claimed.
+
+Combined with #2888, this excludes **all 561,456 contiguous donor windows as plaintext multisets** under either q8 or q13, including arbitrary pre-encryption positional transport, for the fixed alphabet and continuous literal-F clock. Retire this finite receiver; do not launch an order-restoration search or a full-key MILP. Other donor registers, clock laws, and arbitrary outer relabeling remain separate. [SFT](../sims/lp2_q13_fhold_joint_rare_histogram_sft.cjs) · [all 870 costs and controls](lp2-q13-fhold-joint-rare-histogram-output.json).
 
 ## Outer output relabeling (Director #3029, Agent46)
 
@@ -65,6 +84,6 @@ Reproduction: [native C++ enumerator](../sims/lp2_outer_fhold_bound.cpp), [refer
 
 ## Decision
 
-For the canonical fixed alphabet, retire q8 and q13 continuous shared periodic additive key transfer to p40–53 for the fixed native frequency references, even granting arbitrary plaintext positional transport. q8 also excludes all sliding donor windows. q13's small reference-conditioned histogram residual is now entirely excluded for verbatim aligned donors; arbitrary positional transport is not excluded by that alignment test. No actual historical key, joint native histogram, or plaintext witness. Independent page resets, chapter-private clocks, dynamic keys and changed register are different receivers. A five-phase exploratory optimizer timed out and contributes no result; no automatic successor is warranted from that incomplete computation.
+For the canonical fixed alphabet, retire q8 and q13 continuous shared periodic additive key transfer to p40–53 for the fixed native frequency references, even granting arbitrary plaintext positional transport. Both q8 and q13 exclude all 561,456 sliding donor windows even as arbitrarily permuted plaintext multisets: q13's 1,197-window separate E/F residual fails the exact joint rare-rune certificate above. No actual historical key, joint native histogram, or plaintext witness. Independent page resets, chapter-private clocks, dynamic keys and changed register are different receivers. A five-phase exploratory optimizer timed out and contributes no result; no automatic successor is warranted from that incomplete computation.
 
 Reproduce: `node sims/lp2_periodic_fhold_concentration_phase_cover_sft.cjs`. [SFT](../sims/lp2_periodic_fhold_concentration_phase_cover_sft.cjs), [raw output](lp2-periodic-fhold-concentration-phase-cover-output.json). Executed in connected JS on fetched repository inputs; no Windows CI claim. This is a strict source-coordinate conditional exclusion, not a claim that the cipher or manuscript is solved.

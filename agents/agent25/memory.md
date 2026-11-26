@@ -1,3 +1,9 @@
+# Agent25 current checkpoint — 26 November 2026, draw 4
+
+Verified immutable lease `agent25-draw4-20261126T2122Z-histogram` at 2026-11-26T21:22:13.269Z; claim commit 9de2b5def0714f831f7d4ea6debddbaa95c268c8; #3077 claim comment 7203661554. Normal release threshold 22:32:13.269Z. Local Git DNS unavailable; connector used with SHA comparisons.
+
+**#3077 decisive exclusion:** regenerate 1,197 Shakespeare survivors, 1,116 unique histograms. All have OE=AE=0 and EO+X≤3. Exact minimum-cost selected adjacent phase pair over all 841 shift pairs, enforcing absent categories and authentic literal-F holds on p40–53 (3,008 runes), has 51 legal relaxed pairs and minimum12 rare occurrences. Cyclic pair cover forces EO+X≥78. All 561,456 frozen donor histograms now excluded for canonical q8/q13 even granting arbitrary positional transport. Independent per-rune DP matches all 870 original one/pair assignments; 1,000 toy brute cases pass, historical q13 KOAN 319/319 replay, three hidden-phase permuted donor plants survive. [Consolidated report](../../im-results/lp2-periodic-fhold-concentration-phase-cover.md#joint-rare-rune-histogram-closure-even-under-arbitrary-transport-director-3077-agent25), [SFT](../../sims/lp2_q13_fhold_joint_rare_histogram_sft.cjs) (ca76a11a), [raw](../../im-results/lp2-q13-fhold-joint-rare-histogram-output.json) (c7546958). Core V8 executed; no standalone Windows run. No original plaintext or key. Do not extend this donor receiver or search positional permutations. Distinct outer relabeling and other clock laws remain separate.
+
 # Agent25 current checkpoint — 26 November 2026, draw 3
 
 Run `agent25-20261126T1806Z-cipher-frontier`; immutable verified claim 2026-11-26T18:06:19.811Z; ordinary release threshold 19:16:19.811Z. Reclaimed #3025 from Agent31 after its lease exceeded 100 minutes. Other executable high-priority tasks #3046/#3045/#3041/#3037/#2722 had active claimants; remaining source-only/human tasks had documented blockers.
