@@ -1,6 +1,8 @@
 # GP-prime multiplicative feedback in GF(3301): exact all-IV decision
 
-**Director #2784: retire this exact receiver.** No unknown plaintext, authentic IV or destination is recovered. Every original initial state produces a non-native decoded prefix. The selected continuation is null-like even with all 3,300 possible IVs retrospectively granted, while all 27 target-excluded native controls recover all held-out plaintext runes.
+**Current decision: retire both exact multiplicative-state receivers.** The direct state-shift receiver (Director #2784) and the distinct p56-style prime-index F-hold extension fail actual original ciphertext. The latter is impossible on seven chapters and its two short surviving chapters have nonprose inverses requiring EO/OE outside the observed solved register. See the complete receiver-specific results below.
+
+**Director #2784: direct state-shift receiver.** No unknown plaintext, authentic IV or destination is recovered. Every original initial state produces a non-native decoded prefix. The selected continuation is null-like even with all 3,300 possible IVs retrospectively granted, while all 27 target-excluded native controls recover all held-out plaintext runes.
 
 ## Mechanism and independent premise
 
@@ -59,3 +61,25 @@ Freeze physical p33–39 (1,680 runes), fit p33–36 (984), withhold p37–39 (6
 **Decision:** retire this exact +prime-minus-one multiplicative-ordinal law for p33–39. It is distinct from the prior direct-state shift and from the additive plaintext-prime advance in the [existing gate](lp2-plaintext-gpprime-advancing-prime-fhold-original-gate.md). Neither the state product nor the historical Parable product by itself supplies an authenticated key. The negative does not reject other initializations of genuinely different state laws or different reset framings. No new plaintext, key, or destination.
 
 [Exact receiver](../sims/lp2_gpprime_product_primeindex_fhold_sft.cjs) · [full results and pinned source blobs](lp2-gpprime-product-primeindex-fhold-output.json). Experiment core executed in connected V8 on the actual corpus and native records; standalone Node/CI not claimed.
+
+### Cross-chapter original inverse (same frozen law)
+
+Extend only the already frozen multiplicative-prime-index receiver to the other eight independent physical chapters and to the physical post-leading-rubric starts. These are two source-defined reset framings, not additional fitted clocks. No repeat of the completed p33 full experiment; fit each new frame through the penultimate physical page, then freeze the best fit state for the final page. Separately propagate the exact complete posterior to measure every legal full continuation. This is an actual original-cipher receiver; no printed-word restriction enters it.
+
+| Physical chapter | Full framing: first impossible rune (one-based) or end states | Post-rubric framing: first impossible rune or end states |
+|---|---:|---:|
+| p0–2 | 8 end states | 8 end states |
+| p3–7 | 254 | 321 |
+| p8–14 | 429 | 485 |
+| p15–22 | 365 | 356 |
+| p23–26 | 518 | 502 |
+| p27–32 | 581 | 562 |
+| p33–39 | 290 | 280 |
+| p40–53 | 409 | 401 |
+| p54–55 | 2 end states | 2 end states |
+
+An end-state count is the number of distinct (state, preceding plaintext) pairs, **not** the number of IVs or plaintext paths. For the two surviving chapters, the exact minimum EO+OE count over all legal paths is 38/37 (p0–2 full/body) and 19/18 (p54–55 full/body). The entire 2,979-rune authentic solved reference contains zero. Thus all legal paths fail the conditional native GP27 register, independently of language ranking. The p0 best-prefix state (464) has no legal frozen continuation in either framing; the full posterior predictive score is −4.73365 nats/rune. The p54 winner freezes state1773; both framings have the same nonprose p55 continuation, score −4.43525 nats/rune, compared with the native frozen plants' −2.70449 to −2.53262. All complete Viterbi candidates exactly replay their original ciphertext. The p55 preview in GP transliteration begins `TH AE NG D T J TH N N M N G B W A S TH B A D T U L A C P EO B B T M L D E C R EO TH W M` (no plaintext claim).
+
+This rejects the exact shared or independently chapter-initialized law under either stated reset framing for a complete-book solution. The short chapters are not unconditional language-independent impossibilities; the EO/OE exclusion depends on the observed native register. Do not expand the mechanism with arbitrary state moduli or resets merely to rescue it. The authentic p56 clock and historic prime products do not select this multiplication update. No unknown plaintext or key.
+
+[Cross-chapter SFT](../sims/lp2_gpprime_product_primeindex_crosschapter_sft.cjs) · [all original candidate tapes and exact outputs](lp2-gpprime-product-primeindex-crosschapter-output.json). Executed in V8; no new CI run or native Windows execution claimed.
