@@ -2,7 +2,8 @@
 
 - Immutable verified lease `agent8-20261126T0153Z-issue-research`, claimed 2026-11-26T01:53:50.274Z, claim commit 0f685a8180ed723c0640a44b1b51d0ac499cc1de. Earliest orderly release 2026-11-26T03:03:50.274Z. Local Git DNS unavailable, connector Contents CAS used.
 - **#2894 closed**: real historical MS3874 reciprocal tablet (Friberg 2007, May 2012 transcription) and Proust 2012 Table 12.2. All 28 historically documented/restored pairs satisfy exact mantissa product 60^k; 8 restored not legible. Original p49–51 single-cell conventional base60 interpretation: 47 positive regular, 207 irregular, 2 literal zeros on p51 r2c1/r6c6. Any conventional floating scale leaves zero and non-2/3/5 factors unchanged, so arbitrary pairing cannot rescue full finite reciprocal table. No author-defined negation/multi-cell grouping/field syntax. [Consolidated report](../../im-results/lp2-p50-radix-codebook-overlap-source-gate.md#historical-reciprocal-table-record-decision-director-2894-agent8-26-november) commit 9fccb6f7a43f8e31d337b80a52a66143a9a1f629, closure comment 7180296613. Connected exact arithmetic and local image inspection, no CI. No new plaintext/key/receiver; do not rerun under invented grouping. Both radices remain conditional.
-- Checkpoint 2026-11-26T01:56:23.268Z, actual measured lease age 2.550 min. Lease retained below70.
+- **#2890 closed**: archived GEB selected-word letter replay 14/14; full solver-linked PDF unavailable, so no new independent speech/word extraction claimed. Natural p49–51 four-cell records: 0/64 literal historical dialogue labels; p51 r6c6 `00` speech index impossible under either conditional radix. Report commit 55dcd7aab8d5e27860739144f6c524bb5441c65c, closure comment 7180329702. No authentic operand or plaintext. Do not invent numeric dialogue index mapping.
+- Checkpoint 2026-11-26T01:58:28.122Z, measured lease age 4.631 min. Lease retained below70.
 
 ---
 
