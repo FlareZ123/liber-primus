@@ -1,0 +1,254 @@
+{
+  "source": [
+    [
+      "resources/liber-primus/lp2-corpus.json",
+      "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    ],
+    [
+      "resources/lp2-transcription.txt",
+      "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ]
+  ],
+  "model": "K[t+1]=(a*R[t]+b)*K[t]+f*R[t]+d mod28",
+  "n": 1744,
+  "cut": 800,
+  "original": {
+    "fit": [
+      21,
+      119,
+      244,
+      380,
+      386,
+      414,
+      455,
+      471,
+      596,
+      712
+    ],
+    "held": [
+      871,
+      937,
+      989,
+      1032,
+      1491,
+      1557,
+      1574
+    ],
+    "candidates": 0,
+    "rowsSummary": [
+      {
+        "hold": false,
+        "read": false,
+        "mod7": 0
+      },
+      {
+        "hold": false,
+        "read": true,
+        "mod7": 0
+      },
+      {
+        "hold": true,
+        "read": false,
+        "mod7": 0
+      },
+      {
+        "hold": true,
+        "read": true,
+        "mod7": 0
+      }
+    ]
+  },
+  "controls": [
+    {
+      "donor": 3,
+      "offset": 1400,
+      "truth": {
+        "k": [
+          4,
+          3,
+          7,
+          15,
+          17
+        ],
+        "e": 21,
+        "hold": true,
+        "read": false
+      },
+      "candidates": 91,
+      "truthRetained": true,
+      "best": {
+        "k": [
+          4,
+          3,
+          23,
+          15,
+          17
+        ],
+        "e": 21,
+        "hold": true,
+        "read": false,
+        "train": -2.3077868294433626,
+        "held": -2.3344309161954047,
+        "heldRuneHits": 944,
+        "keyExact": false
+      }
+    },
+    {
+      "donor": 4,
+      "offset": 12400,
+      "truth": {
+        "k": [
+          6,
+          5,
+          22,
+          19,
+          7
+        ],
+        "e": 28,
+        "hold": false,
+        "read": true
+      },
+      "candidates": 13132,
+      "truthRetained": true,
+      "best": {
+        "k": [
+          6,
+          5,
+          22,
+          19,
+          7
+        ],
+        "e": 28,
+        "hold": false,
+        "read": true,
+        "train": -2.4255838402847343,
+        "held": -2.4293644103522065,
+        "heldRuneHits": 944,
+        "keyExact": true
+      }
+    }
+  ],
+  "robust": {
+    "rows": [
+      {
+        "hold": false,
+        "read": false,
+        "mod7Histogram": [
+          40959,
+          110732,
+          118282,
+          97615,
+          76529,
+          31443,
+          9903,
+          1920,
+          20,
+          0,
+          0
+        ],
+        "n7": 20,
+        "joins": 20480,
+        "passes": 6,
+        "maxJoinedFit": 8
+      },
+      {
+        "hold": false,
+        "read": true,
+        "mod7Histogram": [
+          56853,
+          107736,
+          102850,
+          97396,
+          65129,
+          37967,
+          16069,
+          3123,
+          280,
+          0,
+          0
+        ],
+        "n7": 280,
+        "joins": 286720,
+        "passes": 1092,
+        "maxJoinedFit": 8
+      },
+      {
+        "hold": true,
+        "read": false,
+        "mod7Histogram": [
+          41282,
+          110882,
+          117878,
+          96247,
+          78882,
+          29889,
+          10303,
+          2000,
+          40,
+          0,
+          0
+        ],
+        "n7": 40,
+        "joins": 40960,
+        "passes": 0,
+        "maxJoinedFit": 7
+      },
+      {
+        "hold": true,
+        "read": true,
+        "mod7Histogram": [
+          56821,
+          108120,
+          102333,
+          97523,
+          65248,
+          37728,
+          16187,
+          3163,
+          280,
+          0,
+          0
+        ],
+        "n7": 280,
+        "joins": 286720,
+        "passes": 1183,
+        "maxJoinedFit": 8
+      }
+    ],
+    "best": {
+      "k": [
+        13,
+        3,
+        24,
+        26,
+        27
+      ],
+      "e": 12,
+      "hold": true,
+      "read": true,
+      "train": -5.917671605989549,
+      "held": -6.402924504294178,
+      "fitHits": 8,
+      "heldHits": 0,
+      "excerpt": "XOCWMMNOTCLCOEJCFCDEODUXMNOEUYBFORAEWULTHELTBNFWEAEOAEYCAIABICPRRYWEAGNGIAEAYMXNGUBRIAPFWWMHJSGEAFIINDNNAEUEAODTPYAEOEOEIJEAANGAECDEOOEUWEAHFAEYD"
+    },
+    "maxHeld": 1,
+    "baseline": [
+      -6.525896872599357,
+      -6.59505410421961
+    ]
+  },
+  "note": "Compact transcription of actual connected V8 outputs; SFT emits additional per-control diagnostics."
+}
