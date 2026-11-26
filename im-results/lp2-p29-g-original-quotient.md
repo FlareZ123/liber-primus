@@ -87,11 +87,30 @@ The natural complete readout of a degree-28 function over GF(29), evaluating `Q(
 
 It has only 20 distinct outputs and transliterates to `CNGAEFHEOIAPTIGMTHNGRAYHUNGEEIAEEOROEH`; this is not plaintext or a permutation alphabet. The simplest literal “DIRECTION means take the formal derivative” check also fails as a direct receiver: `Q′(0), Q′(18), Q′(24) = [23,8,12]`, and the complete derivative readout is nonlinguistic. No additional derivative variants are justified.
 
+### Full BASE29-digit holdout (Agent29, 26 November 2026)
+
+The three-point correspondence above uses only the least-significant BASE29 digits of the two cuneiform values. The source-natural complete conversions are:
+
+- `1033 = [1,6,18]` in BASE29 (derived using the same radix demonstrated by the signed 2013 `3301 → 3QO` example).
+- `3301 = [3,26,24]` in BASE29.
+- The DIRECTION-selected page contributes `29 mod 29 = 0`.
+
+Freeze the full input set in source order as `[0,1,6,18,3,26,24]`. The p28 DH state supplies the target set `{p,g,a,B,A,K,g²}={23,5,6,19,8,2,25}`. The already reported three values are `Q(0)=5, Q(18)=8, Q(24)=25` (`g,A,g²`). The four remaining, previously unused BASE29 digits give:
+
+| Input x | Source | Q(x) |
+| ---: | --- | ---: |
+| 1 | 1033, leading digit | 21 |
+| 6 | 1033, middle digit | 27 |
+| 3 | 3301, leading digit | 0 |
+| 26 | 3301, middle digit | 4 |
+
+The held-out output set `{21,27,0,4}` does **not** equal the remaining DH values `{p,a,B,K}={23,6,19,2}`. Thus the natural full-digit extension fails even without imposing an output order. This does not erase the exact three-point correspondence, but it prevents promoting it to a map of the full source-derived numeral/DH state. No digit permutation, alternate residue, or output reassignment was searched. Treat the three-point subset as an isolated possible checksum/intermediate-state relation until a source selects a receiving operation.
+
 For completeness, reducing 1033 and 3301 modulo the p28 DH prime 23 gives exploratory inputs 21 and 12, for which `Q(21)=18` and `Q(12)=2`. The latter equals the candidate DH shared secret; the former requires interpreting 18 as `A−B (mod 29)`. These cross-modulus points are not part of the core result: the polynomial is over GF(29), the source does not prescribe feeding mod-23 residues into it, and `A−B` is not an independently selected DH output. Do not count them as further confirmations.
 
 **Source-based caution from the signed 2016 page map:** under the alphabetic-word-only convention used in `im-results/lp2-signed2016-beware-false-paths-page-map.md`, signed words 38–42 select p38–p42 as `BEWARE / FALSE / PATHS / VERIFY / OPENPGP`. The original p39 image has the enormous red X, so p39 is specifically selected by `FALSE`. This is a direct reason to distrust the assumption that the p39 red triad is an intended cipher key/divisor. It does not prove that all p39 information is a decoy; the page-map report explicitly preserves source-selected uses of p39. It does, however, lower the priority of the G→Q branch absent an independently selected receiver or held-out prediction.
 
-**Decision:** retain the three-point match as a possible cross-source checksum or intermediate-state clue. The full function readout and direct derivative do not recover text. Do not launch further key/cipher searches from this relation until an independent source selects a next operation and a held-out prediction. The runnable SFT emits and asserts the complete quotient-function and derivative vectors.
+**Decision:** retain the three-point match as a possible cross-source checksum or intermediate-state clue. The full function readout and direct derivative do not recover text. Do not launch further key/cipher searches from this relation until an independent source selects a next operation and a held-out prediction. The runnable SFT emits and asserts the complete quotient-function and derivative vectors, plus the full-BASE29-digit holdout above.
 
 ## Decision and reproducibility
 

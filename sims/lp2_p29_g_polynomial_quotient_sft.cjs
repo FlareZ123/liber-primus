@@ -129,6 +129,22 @@ assert.deepEqual(
   [quotientFunction[0], quotientFunction[18], quotientFunction[24]],
   [5, 8, 25]
 );
+const fullBase29Inputs = [0, 1, 6, 18, 3, 26, 24];
+const fullBase29Outputs = fullBase29Inputs.map((x) => evaluate(direct.quotient, x));
+assert.deepEqual(fullBase29Outputs, [5, 21, 27, 8, 0, 4, 25]);
+const heldOutBase29Inputs = [1, 6, 3, 26];
+const heldOutBase29Outputs = [21, 27, 0, 4];
+assert.deepEqual(
+  heldOutBase29Inputs.map((x) => evaluate(direct.quotient, x)),
+  heldOutBase29Outputs
+);
+// The three reported matches exhaust g, A and derived g^2; the four
+// remaining source digits do not produce p, a, B or K, even as an unordered set.
+const remainingDhValues = [23, 6, 19, 2];
+assert.notDeepEqual(
+  heldOutBase29Outputs.slice().sort((a, b) => a - b),
+  remainingDhValues.slice().sort((a, b) => a - b)
+);
 const quotientDerivative = derivative(direct.quotient);
 const derivativeFunction = Array.from({length: 29}, (_, x) =>
   evaluate(quotientDerivative, x));
@@ -169,6 +185,15 @@ console.log(JSON.stringify({
       base29_1033: quotientFunction[18],
       base29_3301: quotientFunction[24]
     }
+  },
+  fullBase29DigitHoldout: {
+    inputs: fullBase29Inputs,
+    outputs: fullBase29Outputs,
+    heldOutInputs: heldOutBase29Inputs,
+    heldOutOutputs: heldOutBase29Outputs,
+    remainingDhValues: remainingDhValues,
+    matchesAsUnorderedSet: heldOutBase29Outputs.slice().sort((a, b) => a - b).join(",") ===
+      remainingDhValues.slice().sort((a, b) => a - b).join(",")
   },
   formalDerivative: {
     values: derivativeFunction,
