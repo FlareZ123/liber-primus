@@ -91,7 +91,8 @@ function experiment(data) {
       const replay=H&&encrypt(H.P,K,w.key.slice(0,29),w.key.slice(29),end).join()===s.fullC.slice(s.local+s.len).join();
       return {anchor:s.word,recovered:q.w,anchorExact:q.P.join()===s.truth.join(),cursorExact:q.j===s.trueJ,heldCorrect:H?H.P.filter((v,i)=>v===s.fullP[s.local+s.len+i]).length:0,heldLength:76,legal:!!H,replay:!!replay}
     }):[];
-    return {answer,truthRetained,rows,keyMatches:w?w.key.filter((x,i)=>x===truthKey[i]).length:0,truthKey};
+    const bestTranslationKeyMatch=w?ids.map(d=>({d,total:w.key.filter((v,i)=>m(v+d)===truthKey[i]).length,inner:w.key.slice(0,29).filter((v,i)=>m(v+d)===truthKey[i]).length,outer:w.key.slice(29).filter((v,i)=>m(v+d)===truthKey[i+29]).length})).sort((a,b)=>b.total-a.total)[0]:null;
+    return {answer,truthRetained,rows,keyMatches:w?w.key.filter((x,i)=>x===truthKey[i]).length:0,bestTranslationKeyMatch,truthKey};
   }
   const results=[];
   for(let i=0;i<schedules.length;i++){const K=schedules[i],control=plant(i?gibran:shakespeare,K,0x20261126+i);
