@@ -11,6 +11,7 @@ This is not a search over arbitrary strings or a test of the missing /NUM token.
 """
 from __future__ import annotations
 import argparse
+import base64
 import hashlib
 import json
 import subprocess
@@ -86,6 +87,26 @@ def candidates() -> dict[str, bytes]:
         out[f"response-{index}-decimal"] = number.encode("ascii")
         out[f"http-response-url-{index}"] = f"http://{HOST}/{number}".encode("ascii")
         out[f"https-response-url-{index}"] = f"https://{HOST}/{number}".encode("ascii")
+    asc = Path("resources/external/2012-sq6wmgv2zcsrix6t-valid-participant-rsa-message.asc").read_bytes()
+    marker = b"-----BEGIN PGP SIGNATURE-----"
+    signature_armor = asc[asc.index(marker):]
+    sig_lines = signature_armor.splitlines()
+    sig_b64 = b"".join(line for line in sig_lines
+                       if line and not line.startswith(b"-----")
+                       and not line.startswith(b"Version:")
+                       and not line.startswith(b"="))
+    signature_packet = base64.b64decode(sig_b64)
+    signature_no_version = b"\\n".join([sig_lines[0]] + sig_lines[3:-2] + [sig_lines[-1]]) + b"\\n"
+    out.update({
+        "signature-armor-exact": signature_armor,
+        "signature-armor-no-version": signature_no_version,
+        "signature-base64-text": sig_b64,
+        "signature-binary-packet": signature_packet,
+        "signature-keyid-upper": b"181F01E57A35090F",
+        "signature-keyid-lower": b"181f01e57a35090f",
+        "signature-version": b"GnuPG v1.4.11 (GNU/Linux)",
+        "signature-crc24": b"LMdX",
+    })
     return out
 
 
