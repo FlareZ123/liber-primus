@@ -1,0 +1,701 @@
+{
+  "sourceBlobs": [
+    [
+      "resources/liber-primus/lp2-transcription.txt",
+      "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    ],
+    [
+      "resources/control/english_wordfreq_textblob.txt",
+      "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    ],
+    [
+      "resources/derived/dukotah-r38-r39-lp1-semantic-keys.json",
+      "2e3b6c79bc2ddb1eeaa2e6511b7c661b854540f7"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ]
+  ],
+  "parameters": {
+    "K": 16,
+    "WIDTH": 768,
+    "limit": 2.5,
+    "lexicon": 33350,
+    "keyCount": 116,
+    "convention": "CS, independent key per physical page",
+    "geometry": "[0,262,528,729] with original sentence endpoints; separate native-spelled literary windows per sentence"
+  },
+  "rows": [
+    {
+      "j": 18,
+      "wrong": false,
+      "donor": 0,
+      "ranges": [
+        [
+          9936,
+          9938
+        ],
+        [
+          9941,
+          9977
+        ],
+        [
+          9980,
+          10011
+        ],
+        [
+          10016,
+          10021
+        ],
+        [
+          10032,
+          10044
+        ],
+        [
+          10049,
+          10059
+        ],
+        [
+          10074,
+          10084
+        ],
+        [
+          10087,
+          10111
+        ],
+        [
+          10114,
+          10168
+        ]
+      ],
+      "trueKeys": [
+        {
+          "mode": "A2",
+          "s": 12,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 16,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 11,
+          "sign": 1
+        }
+      ],
+      "trueKey": [
+        82,
+        32,
+        23
+      ],
+      "keyRanks": [
+        1,
+        12,
+        4
+      ],
+      "keyInPool": [
+        true,
+        true,
+        true
+      ],
+      "used": [
+        82,
+        32,
+        23
+      ],
+      "correctKeys": 3,
+      "accuracy": 1,
+      "boundaryF1": 1,
+      "cost": 1.5876196550141692,
+      "lower": 1.5429046131183897,
+      "rankedN": 511,
+      "excluded": false,
+      "clipped": 98203,
+      "expanded": 547795,
+      "maxStates": 2554,
+      "reason": null,
+      "rank": [
+        {
+          "pg": 0,
+          "n": 154,
+          "maxK": 0,
+          "minimum": 232.85307458456356,
+          "chosen": [
+            82,
+            1,
+            11,
+            94,
+            46,
+            104,
+            13,
+            15,
+            5,
+            107,
+            26,
+            58,
+            39,
+            59,
+            7,
+            29
+          ]
+        },
+        {
+          "pg": 1,
+          "n": 159,
+          "maxK": 13,
+          "minimum": 266.59992183403335,
+          "chosen": [
+            10,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            8,
+            38
+          ]
+        },
+        {
+          "pg": 2,
+          "n": 198,
+          "maxK": 3,
+          "minimum": 288.97126088490023,
+          "chosen": [
+            17,
+            19,
+            21,
+            23,
+            25,
+            15,
+            27,
+            13,
+            29,
+            31,
+            33,
+            11,
+            9,
+            35,
+            37,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "j": 18,
+      "wrong": true,
+      "donor": 0,
+      "ranges": [
+        [
+          9936,
+          9938
+        ],
+        [
+          9941,
+          9977
+        ],
+        [
+          9980,
+          10011
+        ],
+        [
+          10016,
+          10021
+        ],
+        [
+          10032,
+          10044
+        ],
+        [
+          10049,
+          10059
+        ],
+        [
+          10074,
+          10084
+        ],
+        [
+          10087,
+          10111
+        ],
+        [
+          10114,
+          10168
+        ]
+      ],
+      "trueKeys": [
+        {
+          "mode": "A2",
+          "s": 150,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 553,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 410,
+          "sign": 1
+        }
+      ],
+      "trueKey": [
+        -1,
+        -1,
+        -1
+      ],
+      "keyRanks": [
+        0,
+        0,
+        0
+      ],
+      "keyInPool": [
+        false,
+        false,
+        false
+      ],
+      "used": null,
+      "correctKeys": null,
+      "accuracy": null,
+      "boundaryF1": null,
+      "cost": null,
+      "lower": 4.469467553363936,
+      "rankedN": 511,
+      "excluded": true,
+      "clipped": null,
+      "expanded": null,
+      "maxStates": null,
+      "reason": "rank-only",
+      "rank": [
+        {
+          "pg": 0,
+          "n": 154,
+          "maxK": 0,
+          "minimum": 679.3981359112825,
+          "chosen": [
+            62,
+            85,
+            76,
+            73,
+            109,
+            92,
+            70,
+            63,
+            54,
+            98,
+            56,
+            113,
+            34,
+            57,
+            72,
+            89
+          ]
+        },
+        {
+          "pg": 1,
+          "n": 159,
+          "maxK": 13,
+          "minimum": 702.741047020515,
+          "chosen": [
+            88,
+            1,
+            111,
+            12,
+            14,
+            16,
+            18,
+            20,
+            22,
+            24,
+            26,
+            28,
+            30,
+            32,
+            34,
+            36,
+            38
+          ]
+        },
+        {
+          "pg": 2,
+          "n": 198,
+          "maxK": 3,
+          "minimum": 901.7587368371737,
+          "chosen": [
+            13,
+            15,
+            17,
+            19,
+            11,
+            105,
+            21,
+            9,
+            106,
+            110,
+            23,
+            25,
+            27,
+            59,
+            102,
+            81
+          ]
+        }
+      ]
+    },
+    {
+      "j": 19,
+      "wrong": false,
+      "donor": 1,
+      "ranges": [
+        [
+          59086,
+          59090
+        ],
+        [
+          59093,
+          59131
+        ],
+        [
+          59134,
+          59164
+        ],
+        [
+          59176,
+          59181
+        ],
+        [
+          59184,
+          59195
+        ],
+        [
+          59206,
+          59215
+        ],
+        [
+          59221,
+          59230
+        ],
+        [
+          59235,
+          59259
+        ],
+        [
+          59262,
+          59310
+        ]
+      ],
+      "trueKeys": [
+        {
+          "mode": "A2",
+          "s": 18,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 2,
+          "sign": 1
+        },
+        {
+          "mode": "A1",
+          "s": 11,
+          "sign": 1
+        }
+      ],
+      "trueKey": [
+        94,
+        5,
+        23
+      ],
+      "keyRanks": [
+        1,
+        3,
+        4
+      ],
+      "keyInPool": [
+        true,
+        true,
+        true
+      ],
+      "used": [
+        94,
+        5,
+        23
+      ],
+      "correctKeys": 3,
+      "accuracy": 1,
+      "boundaryF1": 1,
+      "cost": 1.3518621614122814,
+      "lower": 1.297283196823569,
+      "rankedN": 511,
+      "excluded": false,
+      "clipped": 154452,
+      "expanded": 609816,
+      "maxStates": 4330,
+      "reason": null,
+      "rank": [
+        {
+          "pg": 0,
+          "n": 154,
+          "maxK": 0,
+          "minimum": 232.26179374264245,
+          "chosen": [
+            94,
+            104,
+            82,
+            42,
+            4,
+            11,
+            13,
+            66,
+            52,
+            56,
+            110,
+            50,
+            67,
+            54,
+            9,
+            58
+          ]
+        },
+        {
+          "pg": 1,
+          "n": 159,
+          "maxK": 13,
+          "minimum": 195.72533175109476,
+          "chosen": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            78,
+            98,
+            81,
+            103,
+            31,
+            33,
+            35,
+            37,
+            39,
+            41,
+            43,
+            45,
+            47,
+            49,
+            51,
+            53,
+            55,
+            57
+          ]
+        },
+        {
+          "pg": 2,
+          "n": 198,
+          "maxK": 3,
+          "minimum": 234.92458808310658,
+          "chosen": [
+            17,
+            19,
+            21,
+            23,
+            25,
+            15,
+            27,
+            13,
+            29,
+            31,
+            11,
+            9,
+            33,
+            35,
+            7,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "j": 19,
+      "wrong": true,
+      "donor": 1,
+      "ranges": [
+        [
+          59086,
+          59090
+        ],
+        [
+          59093,
+          59131
+        ],
+        [
+          59134,
+          59164
+        ],
+        [
+          59176,
+          59181
+        ],
+        [
+          59184,
+          59195
+        ],
+        [
+          59206,
+          59215
+        ],
+        [
+          59221,
+          59230
+        ],
+        [
+          59235,
+          59259
+        ],
+        [
+          59262,
+          59310
+        ]
+      ],
+      "trueKeys": [
+        {
+          "mode": "A2",
+          "s": 513,
+          "sign": -1
+        },
+        {
+          "mode": "A1",
+          "s": 146,
+          "sign": 1
+        },
+        {
+          "mode": "A1",
+          "s": 289,
+          "sign": 1
+        }
+      ],
+      "trueKey": [
+        -1,
+        -1,
+        -1
+      ],
+      "keyRanks": [
+        0,
+        0,
+        0
+      ],
+      "keyInPool": [
+        false,
+        false,
+        false
+      ],
+      "used": null,
+      "correctKeys": null,
+      "accuracy": null,
+      "boundaryF1": null,
+      "cost": null,
+      "lower": 3.9712807385354605,
+      "rankedN": 511,
+      "excluded": true,
+      "clipped": null,
+      "expanded": null,
+      "maxStates": null,
+      "reason": "rank-only",
+      "rank": [
+        {
+          "pg": 0,
+          "n": 154,
+          "maxK": 0,
+          "minimum": 628.21690843795,
+          "chosen": [
+            83,
+            84,
+            12,
+            17,
+            2,
+            21,
+            60,
+            15,
+            10,
+            8,
+            73,
+            102,
+            103,
+            7,
+            0,
+            48
+          ]
+        },
+        {
+          "pg": 1,
+          "n": 159,
+          "maxK": 13,
+          "minimum": 661.9166898155914,
+          "chosen": [
+            79,
+            80,
+            96,
+            100,
+            110,
+            71,
+            78,
+            70,
+            81,
+            97,
+            101,
+            62,
+            88,
+            76,
+            69,
+            107
+          ]
+        },
+        {
+          "pg": 2,
+          "n": 198,
+          "maxK": 3,
+          "minimum": 739.190859138079,
+          "chosen": [
+            29,
+            31,
+            33,
+            35,
+            104,
+            27,
+            106,
+            92,
+            21,
+            23,
+            25,
+            37,
+            19,
+            78,
+            1,
+            93
+          ]
+        }
+      ]
+    }
+  ]
+}
