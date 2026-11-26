@@ -74,7 +74,8 @@ async function runOne(q) {
     bodyBytes: r.bodyBytes ?? null,
     bodySha256: r.bodySha256 ?? null,
     error: r.error ?? null,
-    finalUrl: r.finalUrl ?? null
+    finalUrl: r.finalUrl ?? null,
+    bodyPreview: r.body ? r.body.slice(0, 1000) : null
   }));
   const output = {
     schema: 'archive-it-eq6-exact-host-lookup-v1',
