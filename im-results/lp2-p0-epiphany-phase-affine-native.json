@@ -1,0 +1,16 @@
+{
+  "controls_passed": true,
+  "found": false,
+  "timed": false,
+  "exhausted": true,
+  "completed": 62995,
+  "total": 62995,
+  "nodes": 64405,
+  "joins": 1410,
+  "fullKeys": 1208,
+  "emptyRejects": 62600,
+  "bitwords": 458286214,
+  "run_id": 45788578123,
+  "artifact_id": 15101462524,
+  "head_sha": "30148a19df3411eab916f6296e3b2c37e8b4c651"
+}
