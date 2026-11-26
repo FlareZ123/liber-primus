@@ -93,5 +93,34 @@
       "rankReduced": 0
     }
   ],
+  "forced": [
+    {
+      "trial": 129,
+      "joinIndex": 1,
+      "key": [
+        1,
+        15,
+        2,
+        27,
+        26,
+        7,
+        4,
+        11
+      ],
+      "primitive": true,
+      "componentSizes": [
+        25,
+        1,
+        1,
+        1,
+        1
+      ],
+      "nodes": 65,
+      "packings": 24,
+      "maxCovered": 11,
+      "cut": false,
+      "witness": null
+    }
+  ],
   "scope": "Randomized partial original p54 lexical joins, no p55 data used in fitting, no exhaustive search or key recovery."
 }
