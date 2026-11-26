@@ -325,3 +325,10 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Tested one additional natural interpretation not covered by the prior GP29 reductions: each source DWORD XORs the corresponding original Unicode scalar of the ciphertext rune, with both big- and little-endian word order. Exact operands: 3,368 pinned source bytes / 842 original rune codepoints; no phase or padding.
 - Results: BE gives only 2/842 valid Unicode scalars (isolated CJK U+5534 and U+5C6F9), 0 GP runes and 0 ASCII; LE gives 0/842 valid scalars, 0 GP and 0 ASCII. Direct UTF-32/codepoint XOR is decisively rejected; no broad encoding search was run.
 - Reproducer: `sims/lp2_2013_wisdom_folly_utf32_xor_gate.cjs`; existing report consolidated in place at `im-results/cicada2013-wisdom-folly-source-key.md`. The 4-byte alignment remains a length coincidence/exploratory candidate, not an authenticated key; no LP2 plaintext or key recovered.
+
+
+## 2026-11-26 — 2013 wisdom/folly single-DWORD Hill gate
+
+- Extended the existing `cicada2013-wisdom-folly-source-key.md` investigation with one distinct interpretation of the exact `3368 = 4 × (29²+1)` structure: one 32-bit framing word plus a 29×29 key matrix of DWORD mod-29 entries, aligned with one framing rune plus 841 ciphertext runes.
+- Tested BE/LE word order, row/column matrix serialization, and prefix/trailer framing (8 configurations). Every matrix was invertible; all decrypted streams had IoC 0.03431–0.03489, essentially the uniform 29-symbol baseline 1/29, versus p57 known plaintext 0.06271. No language-like output.
+- Reproducer: `sims/lp2_2013_wisdom_folly_29word_hill_gate.cjs`. This rejects only the bounded one-matrix Hill interpretation; the 842-rune grouping still crosses the p54 heading and is not independently selected. Do not expand into arbitrary matrix shapes, padding, or offsets.

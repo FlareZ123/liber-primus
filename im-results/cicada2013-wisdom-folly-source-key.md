@@ -95,6 +95,19 @@ The only two big-endian scalar outputs are isolated CJK codepoints: at rune posi
 
 ### GF(29²) paired-byte per-page substitution reading (Agent 33, 11 November 2026)
 
+#### One 29×29 Hill key from 841 DWORDs plus one framing word (Agent33, 26 November 2026)
+
+A distinct, bounded reading of the exact `3,368 = 4 × (29² + 1)` layout is: treat one 32-bit word as a framing/header word and the remaining 841 words as a single 29×29 key matrix over (GF(29)), with each entry equal to the corresponding DWORD modulo 29. Treat the matching first/last rune as framing and the remaining 841 original p51–55 runes as 29 ciphertext blocks of 29 symbols. This is distinct from the already-tested four 29×29 byte-plane rounds: here there is one matrix whose entries are 32-bit words.
+
+The [single-DWORD-matrix Hill gate](../sims/lp2_2013_wisdom_folly_29word_hill_gate.cjs) tests the two natural word endiannesses, row/column matrix serialization, and prefix/trailer framing (eight configurations). All eight matrices are invertible, so no singular-key exception hides the outcome. Decryption produces only noise-like GP29 streams:
+
+- Resulting IoC range: **0.03431–0.03489**, around the uniform 29-symbol baseline (1/29 approx 0.03448).
+- Original p51–55 combined ciphertext IoC: **0.03410**.
+- Known p57 plaintext control IoC: **0.06271**.
+- No configuration produces a language-like run or a useful GP29 frequency profile.
+
+**Decision:** reject this single 29×29 DWORD-matrix Hill interpretation in all eight natural configurations. The exact (29²+1) dimensional alignment remains an exploratory structural coincidence; the p51–55 grouping also crosses the separately illuminated p54 heading, so it is not independently established as one cipher block. Do not expand this into arbitrary matrix reshaping, padding, or fitted affine offsets.
+
 A distinct use of the same 58×58 binary is suggested by the shared dimensions: 58 physical LP2 pages, 29 alphabet symbols, and 58 bytes per matrix row/column. Pairing each 58-byte page vector gives 29 byte pairs. The p3 relation defines the field \(GF(29^2)\) with \(u^2=3u+8\); **under the candidate radix60 reading of p50**, conditionally preferred by the independent H/G dual-factor check, its quotient supplies the primitive element \(g=19+13u\) of order 840. The \(g\)-dependent log/exponent tests below are conditional on that radix; the linear, coordinate, trace, and norm tests do not require it. This makes a 29-entry field-valued table per page a plausible, source-constrained hypothesis, distinct from the additive page-key and Hill readings above.
 
 The SFT tests both four-byte framings, row/column page vectors, both byte-to-GF(29) reductions, and both pair orders: **16** layouts. For each layout it tests:
@@ -108,7 +121,7 @@ No tested page vector is a 29-symbol permutation in any family. The best project
 
 **Reproducer:** [sims/cicada2013_wisdom_folly_matrix_gate.cjs](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). The experiment recovers no plaintext or key.
 
-**Decision:** the exact 58² and 4×29² size relationships are worth recording, but their direct page-key, linear-matrix, and bounded GF(29²) per-page substitution readings do not decrypt original LP2. Retire these precise additive, Hill, and direct page-S-box interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different inter-page transformation or stateful key schedule.
+**Decision:** the exact 58², 4×29², and 29²+1 size relationships are worth recording, but their direct page-key, linear-matrix, single 29×29 DWORD-Hill, and bounded GF(29²) per-page substitution readings do not decrypt original LP2. Retire these precise additive, Hill, and direct page-S-box interpretations. Do not infer that the historical binary has no role in LP2; any further use requires a new source-visible operation that selects a different inter-page transformation or stateful key schedule.
 
 **Reproducer:** [`sims/cicada2013_wisdom_folly_matrix_gate.cjs`](../sims/cicada2013_wisdom_folly_matrix_gate.cjs). This is a bounded original-input study, not an established plaintext or key.
 
