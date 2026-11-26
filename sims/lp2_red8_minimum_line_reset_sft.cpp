@@ -2,6 +2,10 @@
 // Controls supply the schedule but not the plaintext or alphabet; original
 // schedules are enumerated structurally before fitting. Physical p55 withheld.
 #include <bits/stdc++.h>
+#ifdef main
+#define LP2_RED8_LINE_LIBRARY
+#undef main
+#endif
 #define main old_numeric_main
 namespace fixed {
 #include "lp2_red8_fixed_numeric_cycle_carry_sft.cpp"
@@ -61,9 +65,12 @@ vector<vector<string>> holdout(const vector<string>&held,const string&prefix,con
 struct Plant{vector<string>train,held,truth,holdTruth;Pi pi;Path path;};
 Plant plant(const vector<string>&shape,const vector<string>&held,unsigned seed){mt19937 rng(seed);Plant p;for(int i=0;i<29;i++)p.pi[i]=i;shuffle(p.pi.begin()+1,p.pi.end(),rng);int inv=aff::inv[p.pi[19]];for(auto&x:p.pi)x=aff::mul[x][inv];auto ip=inverse(p.pi);auto choose=[&](int n){auto&v=fixed::by[n];return v[rng()%v.size()];};for(int i=0;i<47;i++)p.truth.push_back(choose(shape[i].size()));string carry=choose(11);p.truth.push_back(carry.substr(0,10));p.holdTruth.push_back(carry);for(size_t i=1;i<held.size();i++)p.holdTruth.push_back(choose(held[i].size()));string plain=join(p.truth)+carry.substr(10);for(size_t i=1;i<p.holdTruth.size();i++)plain+=p.holdTruth[i];string c;int j=rng()%8;p.path.start=j;set<int> resets{seed==3301?31:71,93};for(int i=0;i<int(plain.size());i++){if(resets.count(i)){j=(j+1+rng()%7)%8;p.path.reset.push_back(i);}int a=fixed::val(plain[i]);if(i<223)p.path.key.push_back(a?K[j]:-1);if(a){c+=fixed::SYM[ip[(p.pi[a]+p.pi[K[j]])%29]];j=(j+1)%8;}else c+='0';if(i==222)p.path.end=j;}p.train=split(c.substr(0,223),shape);p.held=split(c.substr(223),held);return p;}
 bool control(const vector<string>&shape,const vector<string>&held,unsigned seed){auto p=plant(shape,held,seed);Search s(p.train,p.path);s.run(90);bool exact=s.found&&s.answer==p.pi,truth=false;size_t n=0;if(s.found){auto w=split(decode(join(p.train),p.path,s.answer),p.train);auto h=holdout(p.held,w.back(),s.answer,p.path.end);n=h.size();truth=find(h.begin(),h.end(),p.holdTruth)!=h.end();}bool pass=exact&&truth&&s.oov==0;cout<<"CONTROL "<<seed<<" exact="<<exact<<" heldoutTruth="<<truth<<" fullPaths="<<n<<" passed="<<pass<<endl;return pass;}
+#ifndef LP2_RED8_LINE_LIBRARY
 int main(){try{aff::init();fixed::dictionary();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));fixed::require(train.size()==48&&join(train).size()==223&&train.back()=="63g2eis46q"&&held.size()==17&&held[0]=="l","source profile");
  auto lm=schedules(join(train),LINE),wm=schedules(join(train),boundaries(train));fixed::require(lm.cost==2&&lm.paths.size()==11&&wm.cost==2&&wm.paths.size()==85,"structural source result");
  cout<<"MINIMUM line="<<lm.cost<<" paths="<<lm.paths.size()<<" word="<<wm.cost<<" paths="<<wm.paths.size()<<endl;for(size_t i=0;i<lm.paths.size();i++){auto&p=lm.paths[i];cout<<"PATH "<<i<<" start="<<p.start<<" end="<<p.end<<" resets";for(int x:p.reset)cout<<" "<<x;cout<<endl;}
  bool a=control(train,held,3301),b=control(train,held,1033);if(!a||!b){cout<<"ORIGINAL GATED OFF"<<endl;return 1;}int exhausted=0;for(size_t i=0;i<lm.paths.size();i++){cout<<"ORIGINAL PATH "<<i<<endl;Search s(train,lm.paths[i]);s.run(40);if(s.found){auto w=split(decode(join(train),lm.paths[i],s.answer),train);auto h=holdout(held,w.back(),s.answer,lm.paths[i].end);cout<<"ORIGINAL candidate pi="<<aff::str(s.answer)<<" OOV="<<s.oov<<" fullHoldoutPaths="<<h.size()<<endl;for(size_t n=0;n<min<size_t>(5,h.size());n++){cout<<"HOLD";for(auto&x:h[n])cout<<" "<<x;cout<<endl;}return 1;}if(!s.timed&&s.done==s.total)exhausted++;}
  cout<<"ORIGINAL exhausted="<<exhausted<<"/"<<lm.paths.size()<<" no key"<<endl;return 1;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
+
+#endif
