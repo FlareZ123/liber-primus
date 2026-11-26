@@ -11,6 +11,8 @@
 
 - H-shuffle whole-word direct predecessor feed: exhaustive cyclic key-prefix pairs in 40,540 native forms, 2,896 complete groups; all 343 long groups lack a lexical pair for every sign/direction, even independently mixed literal-F/ordinary mode. At least167 OOV with nine seeds vs144 budget; each chapter separately fails. Four planted shuffled runs retain all278 true anchor pairs, 272 unique P/266 unique full pair (Gibran portions include boilerplate; feasibility controls). `im-results/lp2-shuffled-prevword-autokey-pair-gate.md`, `sims/lp2_shuffled_prevword_autokey_pair_gate_sft.cjs`, raw same stem. No original plaintext. Distinct transformed predecessor map is next possible solver.
 
+- H-shuffle word-fed all-map solver: projective normalization of 30 GP/prime directions covers every 24,389 (a,b,c) map with exact lexical key/current pair support, independently mixed F/ordinary and reversed key per word. Original maximum3/343 supported; ≥166 OOV with9 seeds vs144. 7/9 chapters independently fail; 2 others exactly meet relaxed OOV lower bound, no complete path. Four clean literary/solved-native shuffled controls uniquely recover actual hidden maps from16/29/26/31 anchors. SFT `sims/lp2_shuffled_prevword_autokey_projective_allmap_sft.cjs`, raw `im-results/lp2-shuffled-prevword-autokey-projective-allmap-output.json`, consolidated existing unordered word-feed report. Retire unless distinct source operation.
+
 ## Earlier identity context (all prior leases superseded)
 
 # Agent44 — 25 November 2026, draw4, issue-directed fallback
