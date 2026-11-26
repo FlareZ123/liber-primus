@@ -32,8 +32,16 @@ function experiment(raw){
  let last=0;for(let s=1;s<29;s++)if(dp[K*dim+N*29+s]>dp[K*dim+N*29+last])last=s;const v=dp[K*dim+N*29+last];let i=N,ss=last,ws=[];
  for(let k=K;k>0;k--){const z=k*dim+i*29+ss,l=trace[z],old=pr[z];if(!l)throw Error("trace");ws.push(C.slice(i-l,i).map(x=>mod(x-sgn*old)));i-=l;ss=old}ws.reverse();
  if(encode(ws,src,sgn).join(",")!==C.join(","))throw Error("replay");return {score:v/N,ws,oov:ws.filter(w=>!vocab.has(key(w))).length}}
- const controls=[];for(let j=0;j<3;j++){const ws=[];let n=0;for(const w of donors[j].slice(Math.floor(donors[j].length*.85))){if(n+w.length>262)break;ws.push(w);n+=w.length}const printed=ws.map(w=>w.length).reverse();
- for(const src of ["dw","cw"]){const sgn=j===1?-1:1,C=encode(ws,src,sgn),res=[-1,1].map(sign=>({sign,...solve(C,printed.length,src,sign)})).sort((a,b)=>b.score-a.score),best=res[0],P=ws.flat(),correct=best.ws.flat().filter((x,i)=>x===P[i]).length;const bounds=arr=>{let n=0;return new Set(arr.map(w=>(n+=w.length)))};const truth=bounds(ws),pred=bounds(best.ws),F1=2*[...truth].filter(x=>pred.has(x)).length/(truth.size+pred.size);controls.push({donor:j,src,trueSign:sgn,selectedSign:best.sign,n,groups:ws.length,correct,F1,score:best.score,oov:best.oov,truthOov:ws.filter(w=>!vocab.has(key(w))).length,hiddenLengthOrderChanged:printed.join(",")!==ws.map(w=>w.length).join(","),relaxedBound:bound(C,printed),freeBound:freeBound(C,printed.length),recovered:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")})}}
+ function solveFree(C,src,sgn){
+ const N=C.length,dp=new Float64Array((N+1)*29);dp.fill(-Infinity);dp[0]=0;const tr=new Uint8Array(dp.length),pr=new Uint8Array(dp.length);
+ for(let i=0;i<N;i++)for(let s=0;s<29;s++){const v=dp[i*29+s];if(!Number.isFinite(v))continue;let sumP=0,sumC=0,p=[];for(let l=1;l<=24&&i+l<=N;l++){const x=C[i+l-1],y=mod(x-sgn*s);p.push(y);sumP+=gp.prime[y];sumC+=gp.prime[x];const next=(src==="dw"?sumP:sumC)%29,f=logF.get(key(p)),score=f===undefined?-18-l*3.5:f-lf,z=(i+l)*29+next;if(v+score>dp[z]){dp[z]=v+score;tr[z]=l;pr[z]=s;}}}
+ let i=N,s=0;for(let j=1;j<29;j++)if(dp[N*29+j]>dp[N*29+s])s=j;const score=dp[N*29+s]/N,ws=[];
+ while(i){const z=i*29+s,l=tr[z],old=pr[z];if(!l)throw Error("free trace");ws.push(C.slice(i-l,i).map(x=>mod(x-sgn*old)));i-=l;s=old}ws.reverse();
+ if(encode(ws,src,sgn).join(",")!==C.join(","))throw Error("free replay");
+ return {score,ws,oov:ws.filter(w=>!vocab.has(key(w))).length};
+}
+const controls=[],freeControls=[];for(let j=0;j<3;j++){const ws=[];let n=0;for(const w of donors[j].slice(Math.floor(donors[j].length*.85))){if(n+w.length>262)break;ws.push(w);n+=w.length}const printed=ws.map(w=>w.length).reverse();
+ for(const src of ["dw","cw"]){const sgn=j===1?-1:1,C=encode(ws,src,sgn),res=[-1,1].map(sign=>({sign,...solve(C,printed.length,src,sign)})).sort((a,b)=>b.score-a.score),best=res[0],P=ws.flat(),correct=best.ws.flat().filter((x,i)=>x===P[i]).length;const bounds=arr=>{let n=0;return new Set(arr.map(w=>(n+=w.length)))};const truth=bounds(ws),pred=bounds(best.ws),F1=2*[...truth].filter(x=>pred.has(x)).length/(truth.size+pred.size);const freer=[-1,1].map(sign=>({sign,...solveFree(C,src,sign)})).sort((a,b)=>b.score-a.score)[0],fb=bounds(freer.ws);freeControls.push({donor:j,src,sign:freer.sign,trueSign:sgn,n,correct:freer.ws.flat().filter((x,i)=>x===P[i]).length,groups:freer.ws.length,truthGroups:ws.length,F1:2*[...truth].filter(x=>fb.has(x)).length/(truth.size+fb.size),score:freer.score,oov:freer.oov});controls.push({donor:j,src,trueSign:sgn,selectedSign:best.sign,n,groups:ws.length,correct,F1,score:best.score,oov:best.oov,truthOov:ws.filter(w=>!vocab.has(key(w))).length,hiddenLengthOrderChanged:printed.join(",")!==ws.map(w=>w.length).join(","),relaxedBound:bound(C,printed),freeBound:freeBound(C,printed.length),recovered:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")})}}
  function freeBound(C,K){
  const N=C.length, caps=[14,24],out=[];
  for(const cap of caps){
@@ -45,6 +53,14 @@ function experiment(raw){
  return out;
 }
 const free={whole:freeBound(tape,words.length),chapter:chapter.map((c,j)=>({page:c.page,bounds:freeBound(tape.slice(offsets[j],offsets[j+1]),c.groups)})),controls:controls.map(c=>({donor:c.donor,src:c.src,bounds:c.freeBound}))};
-return {vocab:vocab.size,shapes:sig.size,whole,chapter,controls,free};
+const freeOriginal=[];
+ if(freeControls.every(c=>c.correct/c.n>=.95&&c.F1>=.90&&c.sign===c.trueSign)){
+  for(const src of ["dw","cw"]){
+   const p0=gp.pages[0].indices;
+   const selected=[-1,1].map(sign=>({sign,...solveFree(p0,src,sign)})).sort((a,b)=>b.score-a.score)[0];
+   for(let p=0;p<=5;p++){const C=gp.pages[p].indices,x=p===0?selected:solveFree(C,src,selected.sign);freeOriginal.push({page:p,src,sign:selected.sign,n:C.length,groups:x.ws.length,oov:x.oov,score:x.score,plaintext:x.ws.map(w=>w.map(q=>gp.translit[q]).join("")).join(" "),runeGroups:x.ws});}
+  }
+ }
+ return {vocab:vocab.size,shapes:sig.size,whole,chapter,controls,free,freeControls,freeOriginal};
 }
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
