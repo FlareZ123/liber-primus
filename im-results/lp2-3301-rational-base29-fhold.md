@@ -1,4 +1,4 @@
-# Rational BASE29 clock modulo 3301: exhaustive state inverse
+# Rational fraction receivers: GP29 clock and 256-cell numeric panel
 
 **Agent30, 26 November 2026. No recovered unknown plaintext or authenticated key.**
 
@@ -39,6 +39,16 @@ Allow each chapter to start at any independent nonzero remainder and either sign
 The first eight ranges have no legal path for any sign or seed, an exact language-independent rejection of this continuous chapter clock. Terminal p54–55 leaves seeds 17,37,512,1814 (+) and 1138,2375 (−). The full-tape Viterbi readouts for all six are in the raw output; all re-encrypt but none is coherent. Full-tape best scores are about −3.749 (+) and −3.711 (−) nats/rune, versus control continuation scores −2.844, −2.795 and −2.833. The score is diagnostic only.
 
 A separate frozen physical split preserves p54's ten-rune incoming-to-p55 carry prefix in the 223 training runes and withholds all 76 physical p55 runes. The best + training state 172 cannot continue through p55. The best − state 2375 continues and replays, but its p55 readout is incoherent at −3.686 nats/rune. Finally all nine native reference sections contain no EO or OE glyphs; adding that **conditional GP27 register restriction** leaves 0/3300 terminal starts per sign, with longest prefixes 94 and 107. The unrestricted GP29 terminal survivors are not mathematically excluded by that conditional result.
+
+## Independent numeric-panel rational reconstruction
+
+The original p49–51 panel has 256 printed two-character tokens whose decoded values fit the byte alphabet under conventional base60 and the drop-f base59 alternative. A distinct possible generator is ordinary base256 fractional long division of one rational number. If true, an exact small denominator could be recovered directly from the printed byte prefix and tested on the remainder, supplying a concrete external operand without guessing numerator or denominator. Neither the original panel nor BASE29 authenticates this interpretation.
+
+Freeze 129 bytes for inference and 127 for prediction; allow all denominators (1\le q\le 2^{512}), including non-prime q and terminating expansions. If the first 129 bytes form integer N and D=256^129, the rational p/q must lie in the half-open interval [N/D,(N+1)/D). Its distance from the midpoint (2N+1)/(2D) is at most 1/(2D), strictly less than 1/(2q²) in this denominator domain. Legendre's continued-fraction theorem therefore guarantees that every reduced candidate is a convergent of that midpoint. Enumerate those convergents with exact BigInt arithmetic, test interval membership by cross-multiplication, then predict the 127 unseen bytes by integer long division. There is at most one admissible reduced fraction per read order, since distinct fractions with denominators at most 2^512 differ by at least 2^-1024, larger than the interval width 2^-1032.
+
+Four synthetic fractions, including 3299/3301, 1/2^511, a nonterminating reduced 512-bit denominator and zero, recover exactly and predict 508/508 withheld bytes. Original source: both radices, eight standard rectangular row/column traversal directions (independent forward/reverse axes), 16 fixed readouts total. **No rational candidate survives the 129-byte inference interval in any readout.** The remaining 127 cells were not used to fit or select a denominator. This excludes every literal constant-rational base256 digit generator with q≤2^512 in these fixed readings, without brute-forcing primes or assuming linguistic content. It does not exclude large denominators, nonlinear state or keyed transformations of the table. No evidence warrants multiplying arbitrary transforms.
+
+[Exact panel SFT](../sims/lp2_grid_rational_reconstruction_sft.cjs) · [raw output](lp2-grid-rational-reconstruction-output.json) · canonical token grid blob 2550eae357442912220e05dc51147523a61dd75a. Executed connected JS core; wrapper not separately invoked.
 
 **Decision:** retire direct base-29 fractional-digit clocks with denominator 3301, nonzero numerator, both signs, native F hold, and this continuous framing. No justification for tuning arbitrary denominators, radix, or post-selection offsets. Reset-per-page, different arithmetic consumers, and unrestricted GP29 terminal paths are outside the exact all-state exclusions. No original ciphertext was used for training the bigram model; this is not a fresh manuscript-wide blind test because the project's original pages are already exposed.
 
