@@ -1,0 +1,4955 @@
+{
+  "which": "0",
+  "hold": false,
+  "n": 716,
+  "comparisons": 13684575,
+  "compatible": 193,
+  "uniqueIntervals": 155,
+  "anchorByLength": {
+    "7": 143,
+    "8": 6,
+    "9": 3,
+    "10": 2,
+    "11": 1
+  },
+  "counts": [
+    68,
+    10,
+    5,
+    2,
+    1
+  ],
+  "paths": [
+    [
+      {
+        "start": 2,
+        "end": 9,
+        "p": [
+          8,
+          3,
+          13,
+          18,
+          0,
+          1,
+          20
+        ],
+        "text": "HOPEFUL",
+        "active": 7,
+        "origin": 1750,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 14,
+        "end": 21,
+        "p": [
+          18,
+          5,
+          3,
+          9,
+          3,
+          19,
+          26
+        ],
+        "text": "ECONOMY",
+        "active": 7,
+        "origin": 862,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 11
+      },
+      {
+        "start": 21,
+        "end": 28,
+        "p": [
+          23,
+          28,
+          0,
+          9,
+          18,
+          15,
+          15
+        ],
+        "text": "DEAFNESS",
+        "active": 7,
+        "origin": 2292,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 18
+      },
+      {
+        "start": 32,
+        "end": 39,
+        "p": [
+          18,
+          14,
+          13,
+          3,
+          1,
+          9,
+          23
+        ],
+        "text": "EXPOUND",
+        "active": 7,
+        "origin": 301,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 0
+      },
+      {
+        "start": 40,
+        "end": 47,
+        "p": [
+          9,
+          3,
+          23,
+          1,
+          20,
+          18,
+          15
+        ],
+        "text": "NODULES",
+        "active": 7,
+        "origin": 1993,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 22
+      },
+      {
+        "start": 59,
+        "end": 66,
+        "p": [
+          1,
+          24,
+          15,
+          15,
+          24,
+          20,
+          15
+        ],
+        "text": "UASSALS",
+        "active": 7,
+        "origin": 2104,
+        "d": -1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 18
+      },
+      {
+        "start": 74,
+        "end": 81,
+        "p": [
+          3,
+          1,
+          16,
+          20,
+          24,
+          26,
+          15
+        ],
+        "text": "OUTLAYS",
+        "active": 7,
+        "origin": 672,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 5
+      },
+      {
+        "start": 82,
+        "end": 89,
+        "p": [
+          15,
+          5,
+          24,
+          16,
+          16,
+          18,
+          4
+        ],
+        "text": "SCATTER",
+        "active": 7,
+        "origin": 1201,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 8
+      },
+      {
+        "start": 92,
+        "end": 99,
+        "p": [
+          17,
+          4,
+          24,
+          1,
+          24,
+          23,
+          3
+        ],
+        "text": "BRAUADO",
+        "active": 7,
+        "origin": 2235,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 1
+      },
+      {
+        "start": 103,
+        "end": 110,
+        "p": [
+          10,
+          19,
+          13,
+          4,
+          18,
+          15,
+          15
+        ],
+        "text": "IMPRESS",
+        "active": 7,
+        "origin": 3138,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 20
+      },
+      {
+        "start": 116,
+        "end": 123,
+        "p": [
+          17,
+          4,
+          10,
+          18,
+          0,
+          18,
+          4
+        ],
+        "text": "BRIEFER",
+        "active": 7,
+        "origin": 950,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 21
+      },
+      {
+        "start": 123,
+        "end": 130,
+        "p": [
+          4,
+          3,
+          26,
+          24,
+          1,
+          16,
+          18
+        ],
+        "text": "ROYAUTE",
+        "active": 7,
+        "origin": 2737,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 28
+      },
+      {
+        "start": 130,
+        "end": 137,
+        "p": [
+          20,
+          18,
+          6,
+          10,
+          17,
+          20,
+          18
+        ],
+        "text": "LEGIBLE",
+        "active": 7,
+        "origin": 1646,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 16
+      },
+      {
+        "start": 139,
+        "end": 146,
+        "p": [
+          20,
+          3,
+          16,
+          16,
+          18,
+          4,
+          26
+        ],
+        "text": "LOTTERY",
+        "active": 7,
+        "origin": 537,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 15
+      },
+      {
+        "start": 146,
+        "end": 153,
+        "p": [
+          20,
+          28,
+          9,
+          9,
+          18,
+          15,
+          15
+        ],
+        "text": "LEANNESS",
+        "active": 7,
+        "origin": 122,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 8
+      },
+      {
+        "start": 159,
+        "end": 166,
+        "p": [
+          18,
+          6,
+          20,
+          10,
+          15,
+          18,
+          15
+        ],
+        "text": "EGLISES",
+        "active": 7,
+        "origin": 2798,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 7
+      },
+      {
+        "start": 166,
+        "end": 173,
+        "p": [
+          17,
+          10,
+          15,
+          18,
+          5,
+          16,
+          21
+        ],
+        "text": "BISECTNG",
+        "active": 7,
+        "origin": 1342,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 22
+      },
+      {
+        "start": 173,
+        "end": 180,
+        "p": [
+          16,
+          24,
+          1,
+          18,
+          4,
+          9,
+          15
+        ],
+        "text": "TAUERNS",
+        "active": 7,
+        "origin": 1938,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 13
+      },
+      {
+        "start": 180,
+        "end": 187,
+        "p": [
+          6,
+          8,
+          24,
+          15,
+          16,
+          20,
+          26
+        ],
+        "text": "GHASTLY",
+        "active": 7,
+        "origin": 726,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 28
+      },
+      {
+        "start": 188,
+        "end": 195,
+        "p": [
+          15,
+          18,
+          4,
+          19,
+          3,
+          9,
+          15
+        ],
+        "text": "SERMONS",
+        "active": 7,
+        "origin": 3298,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 16
+      },
+      {
+        "start": 196,
+        "end": 203,
+        "p": [
+          5,
+          24,
+          13,
+          24,
+          17,
+          20,
+          18
+        ],
+        "text": "CAPABLE",
+        "active": 7,
+        "origin": 2350,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 3
+      },
+      {
+        "start": 206,
+        "end": 213,
+        "p": [
+          13,
+          10,
+          5,
+          5,
+          18,
+          16,
+          15
+        ],
+        "text": "PICCETS",
+        "active": 7,
+        "origin": 2579,
+        "d": -1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 21
+      },
+      {
+        "start": 215,
+        "end": 222,
+        "p": [
+          15,
+          5,
+          7,
+          24,
+          4,
+          18,
+          23
+        ],
+        "text": "SCWARED",
+        "active": 7,
+        "origin": 2434,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 21
+      },
+      {
+        "start": 233,
+        "end": 240,
+        "p": [
+          13,
+          24,
+          16,
+          4,
+          27,
+          16,
+          15
+        ],
+        "text": "PATRIATS",
+        "active": 7,
+        "origin": 847,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 24
+      },
+      {
+        "start": 240,
+        "end": 247,
+        "p": [
+          15,
+          5,
+          27,
+          16,
+          10,
+          5,
+          24
+        ],
+        "text": "SCIATICA",
+        "active": 7,
+        "origin": 1927,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 25
+      },
+      {
+        "start": 249,
+        "end": 256,
+        "p": [
+          24,
+          9,
+          9,
+          1,
+          20,
+          24,
+          4
+        ],
+        "text": "ANNULAR",
+        "active": 7,
+        "origin": 1846,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 27
+      },
+      {
+        "start": 257,
+        "end": 264,
+        "p": [
+          1,
+          24,
+          9,
+          10,
+          15,
+          8,
+          21
+        ],
+        "text": "UANISHNG",
+        "active": 7,
+        "origin": 2106,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 24
+      },
+      {
+        "start": 264,
+        "end": 271,
+        "p": [
+          15,
+          10,
+          2,
+          18,
+          9,
+          5,
+          18
+        ],
+        "text": "SITHENCE",
+        "active": 7,
+        "origin": 479,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 6
+      },
+      {
+        "start": 277,
+        "end": 284,
+        "p": [
+          9,
+          24,
+          1,
+          1,
+          10,
+          18,
+          15
+        ],
+        "text": "NAUUIES",
+        "active": 7,
+        "origin": 2468,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 285,
+        "end": 292,
+        "p": [
+          18,
+          19,
+          1,
+          20,
+          24,
+          16,
+          18
+        ],
+        "text": "EMULATE",
+        "active": 7,
+        "origin": 2302,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 22
+      },
+      {
+        "start": 294,
+        "end": 301,
+        "p": [
+          19,
+          10,
+          15,
+          16,
+          24,
+          5,
+          18
+        ],
+        "text": "MISTACE",
+        "active": 7,
+        "origin": 2969,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 2
+      },
+      {
+        "start": 302,
+        "end": 309,
+        "p": [
+          13,
+          4,
+          3,
+          16,
+          18,
+          6,
+          18
+        ],
+        "text": "PROTEGE",
+        "active": 7,
+        "origin": 743,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 313,
+        "end": 320,
+        "p": [
+          0,
+          3,
+          4,
+          6,
+          18,
+          16,
+          15
+        ],
+        "text": "FORGETS",
+        "active": 7,
+        "origin": 3225,
+        "d": -1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 14
+      },
+      {
+        "start": 323,
+        "end": 330,
+        "p": [
+          3,
+          13,
+          16,
+          10,
+          5,
+          24,
+          20
+        ],
+        "text": "OPTICAL",
+        "active": 7,
+        "origin": 2806,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 2
+      },
+      {
+        "start": 344,
+        "end": 351,
+        "p": [
+          17,
+          24,
+          26,
+          3,
+          9,
+          18,
+          16
+        ],
+        "text": "BAYONET",
+        "active": 7,
+        "origin": 1962,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 4
+      },
+      {
+        "start": 352,
+        "end": 359,
+        "p": [
+          11,
+          24,
+          5,
+          5,
+          7,
+          18,
+          15
+        ],
+        "text": "JACCWES",
+        "active": 7,
+        "origin": 2520,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 17
+      },
+      {
+        "start": 359,
+        "end": 366,
+        "p": [
+          17,
+          18,
+          20,
+          3,
+          21,
+          21,
+          15
+        ],
+        "text": "BELONGNGS",
+        "active": 7,
+        "origin": 336,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 17
+      },
+      {
+        "start": 366,
+        "end": 373,
+        "p": [
+          17,
+          24,
+          16,
+          16,
+          20,
+          18,
+          15
+        ],
+        "text": "BATTLES",
+        "active": 7,
+        "origin": 1499,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 27
+      },
+      {
+        "start": 373,
+        "end": 380,
+        "p": [
+          16,
+          1,
+          15,
+          5,
+          24,
+          9,
+          15
+        ],
+        "text": "TUSCANS",
+        "active": 7,
+        "origin": 896,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 16
+      },
+      {
+        "start": 381,
+        "end": 388,
+        "p": [
+          5,
+          4,
+          1,
+          5,
+          10,
+          0,
+          26
+        ],
+        "text": "CRUCIFY",
+        "active": 7,
+        "origin": 3196,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 18
+      },
+      {
+        "start": 392,
+        "end": 399,
+        "p": [
+          1,
+          18,
+          4,
+          23,
+          1,
+          4,
+          18
+        ],
+        "text": "UERDURE",
+        "active": 7,
+        "origin": 2076,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 5
+      },
+      {
+        "start": 400,
+        "end": 407,
+        "p": [
+          13,
+          4,
+          1,
+          15,
+          15,
+          27,
+          9
+        ],
+        "text": "PRUSSIAN",
+        "active": 7,
+        "origin": 1990,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 408,
+        "end": 415,
+        "p": [
+          5,
+          24,
+          13,
+          18,
+          4,
+          18,
+          23
+        ],
+        "text": "CAPERED",
+        "active": 7,
+        "origin": 1840,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 0
+      },
+      {
+        "start": 427,
+        "end": 434,
+        "p": [
+          15,
+          13,
+          3,
+          16,
+          16,
+          18,
+          23
+        ],
+        "text": "SPOTTED",
+        "active": 7,
+        "origin": 1628,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 17
+      },
+      {
+        "start": 446,
+        "end": 453,
+        "p": [
+          4,
+          3,
+          17,
+          17,
+          18,
+          4,
+          15
+        ],
+        "text": "ROBBERS",
+        "active": 7,
+        "origin": 2254,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 458,
+        "end": 465,
+        "p": [
+          20,
+          3,
+          1,
+          23,
+          18,
+          15,
+          16
+        ],
+        "text": "LOUDEST",
+        "active": 7,
+        "origin": 1450,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 472,
+        "end": 479,
+        "p": [
+          5,
+          24,
+          4,
+          18,
+          18,
+          4,
+          15
+        ],
+        "text": "CAREERS",
+        "active": 7,
+        "origin": 664,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 7
+      },
+      {
+        "start": 484,
+        "end": 491,
+        "p": [
+          23,
+          4,
+          18,
+          15,
+          15,
+          18,
+          4
+        ],
+        "text": "DRESSER",
+        "active": 7,
+        "origin": 1306,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 2
+      },
+      {
+        "start": 494,
+        "end": 501,
+        "p": [
+          3,
+          13,
+          24,
+          20,
+          10,
+          9,
+          18
+        ],
+        "text": "OPALINE",
+        "active": 7,
+        "origin": 1750,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 1
+      },
+      {
+        "start": 502,
+        "end": 511,
+        "p": [
+          3,
+          4,
+          13,
+          8,
+          24,
+          20,
+          18,
+          15,
+          18
+        ],
+        "text": "ORPHALESE",
+        "active": 9,
+        "origin": 2024,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 511,
+        "end": 518,
+        "p": [
+          17,
+          3,
+          9,
+          11,
+          3,
+          1,
+          4
+        ],
+        "text": "BONJOUR",
+        "active": 7,
+        "origin": 1470,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 1
+      },
+      {
+        "start": 521,
+        "end": 528,
+        "p": [
+          23,
+          1,
+          9,
+          10,
+          7,
+          24,
+          26
+        ],
+        "text": "DUNIWAY",
+        "active": 7,
+        "origin": 858,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 27
+      },
+      {
+        "start": 537,
+        "end": 544,
+        "p": [
+          0,
+          4,
+          18,
+          18,
+          23,
+          3,
+          19
+        ],
+        "text": "FREEDOM",
+        "active": 7,
+        "origin": 2904,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 22
+      },
+      {
+        "start": 553,
+        "end": 560,
+        "p": [
+          15,
+          9,
+          10,
+          1,
+          18,
+          20,
+          21
+        ],
+        "text": "SNIUELNG",
+        "active": 7,
+        "origin": 254,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 8
+      },
+      {
+        "start": 561,
+        "end": 568,
+        "p": [
+          15,
+          16,
+          10,
+          0,
+          0,
+          20,
+          26
+        ],
+        "text": "STIFFLY",
+        "active": 7,
+        "origin": 66,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 4
+      },
+      {
+        "start": 577,
+        "end": 584,
+        "p": [
+          8,
+          3,
+          7,
+          17,
+          18,
+          10,
+          16
+        ],
+        "text": "HOWBEIT",
+        "active": 7,
+        "origin": 3020,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 2
+      },
+      {
+        "start": 584,
+        "end": 591,
+        "p": [
+          4,
+          18,
+          1,
+          18,
+          9,
+          1,
+          18
+        ],
+        "text": "REUENUE",
+        "active": 7,
+        "origin": 2538,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 10
+      },
+      {
+        "start": 591,
+        "end": 598,
+        "p": [
+          4,
+          18,
+          19,
+          3,
+          4,
+          15,
+          18
+        ],
+        "text": "REMORSE",
+        "active": 7,
+        "origin": 3231,
+        "d": -1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 27
+      },
+      {
+        "start": 598,
+        "end": 605,
+        "p": [
+          3,
+          4,
+          10,
+          0,
+          10,
+          5,
+          18
+        ],
+        "text": "ORIFICE",
+        "active": 7,
+        "origin": 1101,
+        "d": -1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 1
+      },
+      {
+        "start": 606,
+        "end": 613,
+        "p": [
+          5,
+          24,
+          9,
+          9,
+          1,
+          20,
+          24
+        ],
+        "text": "CANNULA",
+        "active": 7,
+        "origin": 1237,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 18
+      },
+      {
+        "start": 620,
+        "end": 627,
+        "p": [
+          15,
+          13,
+          18,
+          5,
+          10,
+          0,
+          26
+        ],
+        "text": "SPECIFY",
+        "active": 7,
+        "origin": 1279,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 10
+      },
+      {
+        "start": 635,
+        "end": 642,
+        "p": [
+          13,
+          4,
+          3,
+          1,
+          24,
+          9,
+          23
+        ],
+        "text": "PROUAND",
+        "active": 7,
+        "origin": 1548,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 5
+      },
+      {
+        "start": 644,
+        "end": 651,
+        "p": [
+          10,
+          19,
+          13,
+          1,
+          20,
+          15,
+          18
+        ],
+        "text": "IMPULSE",
+        "active": 7,
+        "origin": 2371,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 2
+      },
+      {
+        "start": 661,
+        "end": 668,
+        "p": [
+          8,
+          3,
+          0,
+          0,
+          19,
+          24,
+          9
+        ],
+        "text": "HOFFMAN",
+        "active": 7,
+        "origin": 431,
+        "d": 1,
+        "sign": -1,
+        "plainSign": 1,
+        "b": 25
+      },
+      {
+        "start": 669,
+        "end": 676,
+        "p": [
+          19,
+          1,
+          15,
+          16,
+          24,
+          4,
+          23
+        ],
+        "text": "MUSTARD",
+        "active": 7,
+        "origin": 1423,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 27
+      },
+      {
+        "start": 683,
+        "end": 690,
+        "p": [
+          15,
+          16,
+          24,
+          17,
+          20,
+          18,
+          15
+        ],
+        "text": "STABLES",
+        "active": 7,
+        "origin": 402,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 24
+      },
+      {
+        "start": 690,
+        "end": 697,
+        "p": [
+          5,
+          20,
+          3,
+          16,
+          16,
+          18,
+          23
+        ],
+        "text": "CLOTTED",
+        "active": 7,
+        "origin": 697,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 10
+      },
+      {
+        "start": 709,
+        "end": 716,
+        "p": [
+          15,
+          10,
+          20,
+          18,
+          9,
+          5,
+          18
+        ],
+        "text": "SILENCE",
+        "active": 7,
+        "origin": 1929,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 23
+      }
+    ],
+    [
+      {
+        "start": 2,
+        "end": 10,
+        "p": [
+          16,
+          18,
+          9,
+          24,
+          5,
+          27,
+          1,
+          15
+        ],
+        "text": "TENACIAUS",
+        "active": 8,
+        "origin": 2154,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 41,
+        "end": 49,
+        "p": [
+          0,
+          1,
+          20,
+          20,
+          9,
+          18,
+          15,
+          15
+        ],
+        "text": "FULLNESS",
+        "active": 8,
+        "origin": 13,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 82,
+        "end": 91,
+        "p": [
+          15,
+          5,
+          24,
+          16,
+          16,
+          18,
+          4,
+          18,
+          23
+        ],
+        "text": "SCATTERED",
+        "active": 9,
+        "origin": 1201,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 8
+      },
+      {
+        "start": 96,
+        "end": 104,
+        "p": [
+          23,
+          18,
+          9,
+          3,
+          1,
+          9,
+          5,
+          21
+        ],
+        "text": "DENOUNCNG",
+        "active": 8,
+        "origin": 2580,
+        "d": 1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 8
+      },
+      {
+        "start": 362,
+        "end": 372,
+        "p": [
+          1,
+          9,
+          23,
+          18,
+          4,
+          15,
+          16,
+          24,
+          9,
+          23
+        ],
+        "text": "UNDERSTAND",
+        "active": 10,
+        "origin": 2702,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 502,
+        "end": 511,
+        "p": [
+          3,
+          4,
+          13,
+          8,
+          24,
+          20,
+          18,
+          15,
+          18
+        ],
+        "text": "ORPHALESE",
+        "active": 9,
+        "origin": 2024,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 525,
+        "end": 534,
+        "p": [
+          18,
+          19,
+          13,
+          16,
+          10,
+          9,
+          18,
+          15,
+          15
+        ],
+        "text": "EMPTINESS",
+        "active": 9,
+        "origin": 3252,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 8
+      },
+      {
+        "start": 551,
+        "end": 561,
+        "p": [
+          0,
+          1,
+          20,
+          0,
+          10,
+          20,
+          19,
+          18,
+          9,
+          16
+        ],
+        "text": "FULFILMENT",
+        "active": 10,
+        "origin": 2896,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 16
+      },
+      {
+        "start": 594,
+        "end": 602,
+        "p": [
+          15,
+          3,
+          19,
+          17,
+          18,
+          4,
+          20,
+          26
+        ],
+        "text": "SOMBERLY",
+        "active": 8,
+        "origin": 346,
+        "d": -1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 5
+      },
+      {
+        "start": 682,
+        "end": 690,
+        "p": [
+          1,
+          3,
+          20,
+          24,
+          16,
+          10,
+          20,
+          18
+        ],
+        "text": "UOLATILE",
+        "active": 8,
+        "origin": 1491,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 15
+      }
+    ],
+    [
+      {
+        "start": 82,
+        "end": 91,
+        "p": [
+          15,
+          5,
+          24,
+          16,
+          16,
+          18,
+          4,
+          18,
+          23
+        ],
+        "text": "SCATTERED",
+        "active": 9,
+        "origin": 1201,
+        "d": -1,
+        "sign": -1,
+        "plainSign": -1,
+        "b": 8
+      },
+      {
+        "start": 362,
+        "end": 372,
+        "p": [
+          1,
+          9,
+          23,
+          18,
+          4,
+          15,
+          16,
+          24,
+          9,
+          23
+        ],
+        "text": "UNDERSTAND",
+        "active": 10,
+        "origin": 2702,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 502,
+        "end": 511,
+        "p": [
+          3,
+          4,
+          13,
+          8,
+          24,
+          20,
+          18,
+          15,
+          18
+        ],
+        "text": "ORPHALESE",
+        "active": 9,
+        "origin": 2024,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 9
+      },
+      {
+        "start": 525,
+        "end": 534,
+        "p": [
+          18,
+          19,
+          13,
+          16,
+          10,
+          9,
+          18,
+          15,
+          15
+        ],
+        "text": "EMPTINESS",
+        "active": 9,
+        "origin": 3252,
+        "d": 1,
+        "sign": 1,
+        "plainSign": 1,
+        "b": 8
+      },
+      {
+        "start": 551,
+        "end": 561,
+        "p": [
+          0,
+          1,
+          20,
+          0,
+          10,
+          20,
+          19,
+          18,
+          9,
+          16
+        ],
+        "text": "FULFILMENT",
+        "active": 10,
+        "origin": 2896,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 16
+      }
+    ],
+    [
+      {
+        "start": 362,
+        "end": 372,
+        "p": [
+          1,
+          9,
+          23,
+          18,
+          4,
+          15,
+          16,
+          24,
+          9,
+          23
+        ],
+        "text": "UNDERSTAND",
+        "active": 10,
+        "origin": 2702,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      },
+      {
+        "start": 551,
+        "end": 561,
+        "p": [
+          0,
+          1,
+          20,
+          0,
+          10,
+          20,
+          19,
+          18,
+          9,
+          16
+        ],
+        "text": "FULFILMENT",
+        "active": 10,
+        "origin": 2896,
+        "d": -1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 16
+      }
+    ],
+    [
+      {
+        "start": 362,
+        "end": 373,
+        "p": [
+          1,
+          9,
+          23,
+          18,
+          4,
+          15,
+          16,
+          24,
+          9,
+          23,
+          21
+        ],
+        "text": "UNDERSTANDNG",
+        "active": 11,
+        "origin": 2702,
+        "d": 1,
+        "sign": 1,
+        "plainSign": -1,
+        "b": 25
+      }
+    ]
+  ],
+  "candidates": [
+    {
+      "start": 82,
+      "end": 91,
+      "p": [
+        15,
+        5,
+        24,
+        16,
+        16,
+        18,
+        4,
+        18,
+        23
+      ],
+      "text": "SCATTERED",
+      "active": 9,
+      "origin": 1201,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 8
+    },
+    {
+      "start": 362,
+      "end": 372,
+      "p": [
+        1,
+        9,
+        23,
+        18,
+        4,
+        15,
+        16,
+        24,
+        9,
+        23
+      ],
+      "text": "UNDERSTAND",
+      "active": 10,
+      "origin": 2702,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 362,
+      "end": 373,
+      "p": [
+        1,
+        9,
+        23,
+        18,
+        4,
+        15,
+        16,
+        24,
+        9,
+        23,
+        21
+      ],
+      "text": "UNDERSTANDNG",
+      "active": 11,
+      "origin": 2702,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 502,
+      "end": 511,
+      "p": [
+        3,
+        4,
+        13,
+        8,
+        24,
+        20,
+        18,
+        15,
+        18
+      ],
+      "text": "ORPHALESE",
+      "active": 9,
+      "origin": 2024,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 9
+    },
+    {
+      "start": 525,
+      "end": 534,
+      "p": [
+        18,
+        19,
+        13,
+        16,
+        10,
+        9,
+        18,
+        15,
+        15
+      ],
+      "text": "EMPTINESS",
+      "active": 9,
+      "origin": 3252,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 8
+    },
+    {
+      "start": 551,
+      "end": 561,
+      "p": [
+        0,
+        1,
+        20,
+        0,
+        10,
+        20,
+        19,
+        18,
+        9,
+        16
+      ],
+      "text": "FULFILMENT",
+      "active": 10,
+      "origin": 2896,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 16
+    }
+  ],
+  "originCount": 3301,
+  "routes": 13192,
+  "indexSize": 12104,
+  "covered": [
+    14,
+    8,
+    5,
+    2,
+    1
+  ],
+  "longTruth": 5,
+  "longExact": 5,
+  "truth": [
+    {
+      "start": 0,
+      "end": 2,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 554,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 11
+    },
+    {
+      "start": 2,
+      "end": 10,
+      "p": [
+        16,
+        18,
+        9,
+        24,
+        5,
+        27,
+        1,
+        15
+      ],
+      "active": 8,
+      "origin": 2154,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 9
+    },
+    {
+      "start": 10,
+      "end": 15,
+      "p": [
+        13,
+        20,
+        24,
+        9,
+        16
+      ],
+      "active": 5,
+      "origin": 74,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 23
+    },
+    {
+      "start": 15,
+      "end": 18,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 559,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 18,
+      "end": 20,
+      "p": [
+        10,
+        16
+      ],
+      "active": 2,
+      "origin": 1335,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 28
+    },
+    {
+      "start": 20,
+      "end": 22,
+      "p": [
+        10,
+        15
+      ],
+      "active": 2,
+      "origin": 1706,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 4
+    },
+    {
+      "start": 22,
+      "end": 24,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 2392,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 4
+    },
+    {
+      "start": 24,
+      "end": 27,
+      "p": [
+        3,
+        1,
+        4
+      ],
+      "active": 3,
+      "origin": 2630,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 24
+    },
+    {
+      "start": 27,
+      "end": 35,
+      "p": [
+        4,
+        10,
+        13,
+        18,
+        9,
+        18,
+        15,
+        15
+      ],
+      "active": 8,
+      "origin": 2123,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 35,
+      "end": 38,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 437,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 26
+    },
+    {
+      "start": 38,
+      "end": 41,
+      "p": [
+        3,
+        1,
+        4
+      ],
+      "active": 3,
+      "origin": 2683,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 41,
+      "end": 49,
+      "p": [
+        0,
+        1,
+        20,
+        20,
+        9,
+        18,
+        15,
+        15
+      ],
+      "active": 8,
+      "origin": 1700,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 6
+    },
+    {
+      "start": 49,
+      "end": 51,
+      "p": [
+        3,
+        0
+      ],
+      "active": 2,
+      "origin": 1,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 16
+    },
+    {
+      "start": 51,
+      "end": 55,
+      "p": [
+        8,
+        28,
+        4,
+        16
+      ],
+      "active": 4,
+      "origin": 1294,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 24
+    },
+    {
+      "start": 55,
+      "end": 58,
+      "p": [
+        2,
+        24,
+        16
+      ],
+      "active": 3,
+      "origin": 481,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 11
+    },
+    {
+      "start": 58,
+      "end": 60,
+      "p": [
+        7,
+        18
+      ],
+      "active": 2,
+      "origin": 1280,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 13
+    },
+    {
+      "start": 60,
+      "end": 63,
+      "p": [
+        24,
+        4,
+        18
+      ],
+      "active": 3,
+      "origin": 2176,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 17
+    },
+    {
+      "start": 63,
+      "end": 68,
+      "p": [
+        6,
+        10,
+        1,
+        18,
+        9
+      ],
+      "active": 5,
+      "origin": 2832,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 27
+    },
+    {
+      "start": 68,
+      "end": 70,
+      "p": [
+        16,
+        3
+      ],
+      "active": 2,
+      "origin": 2010,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 70,
+      "end": 72,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 3071,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 18
+    },
+    {
+      "start": 72,
+      "end": 76,
+      "p": [
+        7,
+        10,
+        9,
+        23
+      ],
+      "active": 4,
+      "origin": 2645,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 11
+    },
+    {
+      "start": 76,
+      "end": 79,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 2624,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 12
+    },
+    {
+      "start": 79,
+      "end": 82,
+      "p": [
+        24,
+        4,
+        18
+      ],
+      "active": 3,
+      "origin": 2811,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 23
+    },
+    {
+      "start": 82,
+      "end": 91,
+      "p": [
+        15,
+        5,
+        24,
+        16,
+        16,
+        18,
+        4,
+        18,
+        23
+      ],
+      "active": 9,
+      "origin": 1201,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 8
+    },
+    {
+      "start": 91,
+      "end": 96,
+      "p": [
+        17,
+        4,
+        10,
+        18,
+        0
+      ],
+      "active": 5,
+      "origin": 1801,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 1
+    },
+    {
+      "start": 96,
+      "end": 100,
+      "p": [
+        7,
+        18,
+        4,
+        18
+      ],
+      "active": 4,
+      "origin": 1978,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 27
+    },
+    {
+      "start": 100,
+      "end": 102,
+      "p": [
+        19,
+        26
+      ],
+      "active": 2,
+      "origin": 2862,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 102,
+      "end": 106,
+      "p": [
+        23,
+        24,
+        26,
+        15
+      ],
+      "active": 4,
+      "origin": 2709,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 106,
+      "end": 110,
+      "p": [
+        24,
+        19,
+        3,
+        21
+      ],
+      "active": 4,
+      "origin": 1284,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 10
+    },
+    {
+      "start": 110,
+      "end": 113,
+      "p": [
+        26,
+        3,
+        1
+      ],
+      "active": 3,
+      "origin": 2601,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 17
+    },
+    {
+      "start": 113,
+      "end": 116,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 112,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 12
+    },
+    {
+      "start": 116,
+      "end": 123,
+      "p": [
+        17,
+        4,
+        10,
+        18,
+        0,
+        18,
+        4
+      ],
+      "active": 7,
+      "origin": 950,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 123,
+      "end": 128,
+      "p": [
+        15,
+        16,
+        10,
+        20,
+        20
+      ],
+      "active": 5,
+      "origin": 2895,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 128,
+      "end": 130,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 3220,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 24
+    },
+    {
+      "start": 130,
+      "end": 135,
+      "p": [
+        7,
+        3,
+        4,
+        23,
+        15
+      ],
+      "active": 5,
+      "origin": 1574,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 23
+    },
+    {
+      "start": 135,
+      "end": 136,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 1139,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 136,
+      "end": 140,
+      "p": [
+        8,
+        24,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 1611,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 22
+    },
+    {
+      "start": 140,
+      "end": 146,
+      "p": [
+        15,
+        13,
+        3,
+        5,
+        18,
+        9
+      ],
+      "active": 6,
+      "origin": 1668,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 0
+    },
+    {
+      "start": 146,
+      "end": 149,
+      "p": [
+        17,
+        1,
+        16
+      ],
+      "active": 3,
+      "origin": 2801,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 149,
+      "end": 155,
+      "p": [
+        15,
+        8,
+        3,
+        1,
+        20,
+        23
+      ],
+      "active": 6,
+      "origin": 3259,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 18
+    },
+    {
+      "start": 155,
+      "end": 157,
+      "p": [
+        19,
+        26
+      ],
+      "active": 2,
+      "origin": 3209,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 20
+    },
+    {
+      "start": 157,
+      "end": 162,
+      "p": [
+        1,
+        3,
+        10,
+        5,
+        18
+      ],
+      "active": 5,
+      "origin": 2192,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 10
+    },
+    {
+      "start": 162,
+      "end": 166,
+      "p": [
+        0,
+        24,
+        23,
+        18
+      ],
+      "active": 4,
+      "origin": 2980,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 166,
+      "end": 168,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 266,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 28
+    },
+    {
+      "start": 168,
+      "end": 172,
+      "p": [
+        26,
+        3,
+        1,
+        4
+      ],
+      "active": 4,
+      "origin": 2047,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 22
+    },
+    {
+      "start": 172,
+      "end": 175,
+      "p": [
+        28,
+        4,
+        15
+      ],
+      "active": 3,
+      "origin": 2120,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 3
+    },
+    {
+      "start": 175,
+      "end": 178,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 1520,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 24
+    },
+    {
+      "start": 178,
+      "end": 180,
+      "p": [
+        19,
+        26
+      ],
+      "active": 2,
+      "origin": 826,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 8
+    },
+    {
+      "start": 180,
+      "end": 184,
+      "p": [
+        20,
+        3,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 672,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 7
+    },
+    {
+      "start": 184,
+      "end": 190,
+      "p": [
+        1,
+        24,
+        9,
+        10,
+        15,
+        8
+      ],
+      "active": 6,
+      "origin": 2219,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 24
+    },
+    {
+      "start": 190,
+      "end": 192,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 2086,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 192,
+      "end": 196,
+      "p": [
+        26,
+        3,
+        1,
+        4
+      ],
+      "active": 4,
+      "origin": 810,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 24
+    },
+    {
+      "start": 196,
+      "end": 202,
+      "p": [
+        19,
+        18,
+        19,
+        3,
+        4,
+        26
+      ],
+      "active": 6,
+      "origin": 1882,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 9
+    },
+    {
+      "start": 202,
+      "end": 205,
+      "p": [
+        2,
+        18,
+        9
+      ],
+      "active": 3,
+      "origin": 25,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 12
+    },
+    {
+      "start": 205,
+      "end": 206,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 1327,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 14
+    },
+    {
+      "start": 206,
+      "end": 210,
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "active": 4,
+      "origin": 260,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 22
+    },
+    {
+      "start": 210,
+      "end": 214,
+      "p": [
+        5,
+        3,
+        19,
+        18
+      ],
+      "active": 4,
+      "origin": 400,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 5
+    },
+    {
+      "start": 214,
+      "end": 219,
+      "p": [
+        24,
+        6,
+        24,
+        10,
+        9
+      ],
+      "active": 5,
+      "origin": 2213,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 21
+    },
+    {
+      "start": 219,
+      "end": 222,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 3104,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 25
+    },
+    {
+      "start": 222,
+      "end": 225,
+      "p": [
+        7,
+        10,
+        2
+      ],
+      "active": 3,
+      "origin": 1607,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 25
+    },
+    {
+      "start": 225,
+      "end": 226,
+      "p": [
+        24
+      ],
+      "active": 1,
+      "origin": 2202,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 12
+    },
+    {
+      "start": 226,
+      "end": 232,
+      "p": [
+        4,
+        10,
+        5,
+        8,
+        18,
+        4
+      ],
+      "active": 6,
+      "origin": 458,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 20
+    },
+    {
+      "start": 232,
+      "end": 236,
+      "p": [
+        8,
+        28,
+        4,
+        16
+      ],
+      "active": 4,
+      "origin": 801,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 22
+    },
+    {
+      "start": 236,
+      "end": 239,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 1679,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 5
+    },
+    {
+      "start": 239,
+      "end": 243,
+      "p": [
+        20,
+        10,
+        13,
+        15
+      ],
+      "active": 4,
+      "origin": 1276,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 4
+    },
+    {
+      "start": 243,
+      "end": 247,
+      "p": [
+        19,
+        3,
+        4,
+        18
+      ],
+      "active": 4,
+      "origin": 1287,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 17
+    },
+    {
+      "start": 247,
+      "end": 253,
+      "p": [
+        26,
+        10,
+        18,
+        20,
+        23,
+        21
+      ],
+      "active": 6,
+      "origin": 3194,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 253,
+      "end": 255,
+      "p": [
+        16,
+        3
+      ],
+      "active": 2,
+      "origin": 759,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 255,
+      "end": 257,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 2889,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 257,
+      "end": 263,
+      "p": [
+        15,
+        13,
+        10,
+        4,
+        10,
+        16
+      ],
+      "active": 6,
+      "origin": 3238,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 263,
+      "end": 267,
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "active": 4,
+      "origin": 1885,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 267,
+      "end": 268,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 3265,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 2
+    },
+    {
+      "start": 268,
+      "end": 272,
+      "p": [
+        15,
+        13,
+        28,
+        5
+      ],
+      "active": 4,
+      "origin": 1725,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 12
+    },
+    {
+      "start": 272,
+      "end": 274,
+      "p": [
+        26,
+        28
+      ],
+      "active": 2,
+      "origin": 264,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 18
+    },
+    {
+      "start": 274,
+      "end": 275,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 350,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 0
+    },
+    {
+      "start": 275,
+      "end": 280,
+      "p": [
+        15,
+        8,
+        24,
+        20,
+        20
+      ],
+      "active": 5,
+      "origin": 1950,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 13
+    },
+    {
+      "start": 280,
+      "end": 286,
+      "p": [
+        4,
+        18,
+        16,
+        1,
+        4,
+        9
+      ],
+      "active": 6,
+      "origin": 2301,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 286,
+      "end": 289,
+      "p": [
+        7,
+        10,
+        2
+      ],
+      "active": 3,
+      "origin": 2065,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 17
+    },
+    {
+      "start": 289,
+      "end": 291,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 957,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 291,
+      "end": 295,
+      "p": [
+        16,
+        10,
+        23,
+        18
+      ],
+      "active": 4,
+      "origin": 1081,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 26
+    },
+    {
+      "start": 295,
+      "end": 298,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 1564,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 20
+    },
+    {
+      "start": 298,
+      "end": 303,
+      "p": [
+        2,
+        3,
+        1,
+        6,
+        8
+      ],
+      "active": 5,
+      "origin": 104,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 25
+    },
+    {
+      "start": 303,
+      "end": 306,
+      "p": [
+        23,
+        28,
+        2
+      ],
+      "active": 3,
+      "origin": 2319,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 306,
+      "end": 309,
+      "p": [
+        19,
+        24,
+        26
+      ],
+      "active": 3,
+      "origin": 2808,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 18
+    },
+    {
+      "start": 309,
+      "end": 313,
+      "p": [
+        8,
+        10,
+        23,
+        18
+      ],
+      "active": 4,
+      "origin": 2946,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 313,
+      "end": 315,
+      "p": [
+        19,
+        18
+      ],
+      "active": 2,
+      "origin": 378,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 315,
+      "end": 318,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 740,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 23
+    },
+    {
+      "start": 318,
+      "end": 320,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 641,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 320,
+      "end": 326,
+      "p": [
+        6,
+        4,
+        28,
+        16,
+        18,
+        4
+      ],
+      "active": 6,
+      "origin": 3228,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 326,
+      "end": 333,
+      "p": [
+        15,
+        10,
+        20,
+        18,
+        9,
+        5,
+        18
+      ],
+      "active": 7,
+      "origin": 527,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 22
+    },
+    {
+      "start": 333,
+      "end": 339,
+      "p": [
+        18,
+        9,
+        0,
+        3,
+        20,
+        23
+      ],
+      "active": 6,
+      "origin": 233,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 22
+    },
+    {
+      "start": 339,
+      "end": 341,
+      "p": [
+        19,
+        18
+      ],
+      "active": 2,
+      "origin": 1626,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 16
+    },
+    {
+      "start": 341,
+      "end": 344,
+      "p": [
+        26,
+        18,
+        16
+      ],
+      "active": 3,
+      "origin": 19,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 5
+    },
+    {
+      "start": 344,
+      "end": 349,
+      "p": [
+        24,
+        6,
+        24,
+        10,
+        9
+      ],
+      "active": 5,
+      "origin": 1003,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 2
+    },
+    {
+      "start": 349,
+      "end": 353,
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "active": 4,
+      "origin": 130,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 13
+    },
+    {
+      "start": 353,
+      "end": 354,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 633,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 354,
+      "end": 358,
+      "p": [
+        15,
+        18,
+        18,
+        5
+      ],
+      "active": 4,
+      "origin": 2488,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 12
+    },
+    {
+      "start": 358,
+      "end": 362,
+      "p": [
+        26,
+        3,
+        1,
+        4
+      ],
+      "active": 4,
+      "origin": 2147,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 19
+    },
+    {
+      "start": 362,
+      "end": 373,
+      "p": [
+        1,
+        9,
+        23,
+        18,
+        4,
+        15,
+        16,
+        24,
+        9,
+        23,
+        21
+      ],
+      "active": 11,
+      "origin": 2702,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 373,
+      "end": 376,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 2647,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 24
+    },
+    {
+      "start": 376,
+      "end": 379,
+      "p": [
+        9,
+        3,
+        16
+      ],
+      "active": 3,
+      "origin": 2345,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 0
+    },
+    {
+      "start": 379,
+      "end": 381,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 2618,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 13
+    },
+    {
+      "start": 381,
+      "end": 385,
+      "p": [
+        1,
+        24,
+        10,
+        9
+      ],
+      "active": 4,
+      "origin": 1572,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 21
+    },
+    {
+      "start": 385,
+      "end": 389,
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "active": 4,
+      "origin": 1600,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 6
+    },
+    {
+      "start": 389,
+      "end": 390,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 1638,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 28
+    },
+    {
+      "start": 390,
+      "end": 394,
+      "p": [
+        15,
+        18,
+        18,
+        5
+      ],
+      "active": 4,
+      "origin": 2211,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 7
+    },
+    {
+      "start": 394,
+      "end": 396,
+      "p": [
+        10,
+        0
+      ],
+      "active": 2,
+      "origin": 1604,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 12
+    },
+    {
+      "start": 396,
+      "end": 401,
+      "p": [
+        24,
+        1,
+        6,
+        8,
+        16
+      ],
+      "active": 5,
+      "origin": 90,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 7
+    },
+    {
+      "start": 401,
+      "end": 402,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 3165,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 26
+    },
+    {
+      "start": 402,
+      "end": 406,
+      "p": [
+        8,
+        24,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 3019,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 406,
+      "end": 410,
+      "p": [
+        15,
+        24,
+        10,
+        23
+      ],
+      "active": 4,
+      "origin": 2951,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 0
+    },
+    {
+      "start": 410,
+      "end": 412,
+      "p": [
+        10,
+        15
+      ],
+      "active": 2,
+      "origin": 3280,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 4
+    },
+    {
+      "start": 412,
+      "end": 416,
+      "p": [
+        16,
+        4,
+        1,
+        2
+      ],
+      "active": 4,
+      "origin": 2280,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 416,
+      "end": 419,
+      "p": [
+        2,
+        24,
+        16
+      ],
+      "active": 3,
+      "origin": 448,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 11
+    },
+    {
+      "start": 419,
+      "end": 423,
+      "p": [
+        16,
+        4,
+        1,
+        2
+      ],
+      "active": 4,
+      "origin": 1640,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 11
+    },
+    {
+      "start": 423,
+      "end": 428,
+      "p": [
+        15,
+        8,
+        24,
+        20,
+        20
+      ],
+      "active": 5,
+      "origin": 352,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 428,
+      "end": 433,
+      "p": [
+        4,
+        18,
+        1,
+        28,
+        20
+      ],
+      "active": 5,
+      "origin": 3146,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 19
+    },
+    {
+      "start": 433,
+      "end": 439,
+      "p": [
+        10,
+        16,
+        15,
+        18,
+        20,
+        0
+      ],
+      "active": 6,
+      "origin": 2594,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 7
+    },
+    {
+      "start": 439,
+      "end": 441,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 422,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 22
+    },
+    {
+      "start": 441,
+      "end": 442,
+      "p": [
+        24
+      ],
+      "active": 1,
+      "origin": 499,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 3
+    },
+    {
+      "start": 442,
+      "end": 448,
+      "p": [
+        5,
+        20,
+        28,
+        4,
+        18,
+        4
+      ],
+      "active": 6,
+      "origin": 767,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 448,
+      "end": 453,
+      "p": [
+        1,
+        3,
+        10,
+        5,
+        18
+      ],
+      "active": 5,
+      "origin": 1820,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 453,
+      "end": 456,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 1394,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 3
+    },
+    {
+      "start": 456,
+      "end": 458,
+      "p": [
+        10,
+        9
+      ],
+      "active": 2,
+      "origin": 3145,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 17
+    },
+    {
+      "start": 458,
+      "end": 463,
+      "p": [
+        7,
+        3,
+        4,
+        23,
+        15
+      ],
+      "active": 5,
+      "origin": 3047,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 1
+    },
+    {
+      "start": 463,
+      "end": 467,
+      "p": [
+        19,
+        3,
+        4,
+        18
+      ],
+      "active": 4,
+      "origin": 1407,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 467,
+      "end": 470,
+      "p": [
+        5,
+        10,
+        9
+      ],
+      "active": 3,
+      "origin": 2179,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 15
+    },
+    {
+      "start": 470,
+      "end": 472,
+      "p": [
+        16,
+        3
+      ],
+      "active": 2,
+      "origin": 726,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 3
+    },
+    {
+      "start": 472,
+      "end": 476,
+      "p": [
+        26,
+        3,
+        1,
+        4
+      ],
+      "active": 4,
+      "origin": 2852,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 20
+    },
+    {
+      "start": 476,
+      "end": 483,
+      "p": [
+        2,
+        3,
+        1,
+        6,
+        8,
+        16,
+        15
+      ],
+      "active": 7,
+      "origin": 2976,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 4
+    },
+    {
+      "start": 483,
+      "end": 484,
+      "p": [
+        10
+      ],
+      "active": 1,
+      "origin": 1838,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 1
+    },
+    {
+      "start": 484,
+      "end": 486,
+      "p": [
+        6,
+        3
+      ],
+      "active": 2,
+      "origin": 1005,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 486,
+      "end": 489,
+      "p": [
+        7,
+        10,
+        2
+      ],
+      "active": 3,
+      "origin": 2370,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 17
+    },
+    {
+      "start": 489,
+      "end": 491,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 3080,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 9
+    },
+    {
+      "start": 491,
+      "end": 495,
+      "p": [
+        7,
+        10,
+        9,
+        23
+      ],
+      "active": 4,
+      "origin": 334,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 3
+    },
+    {
+      "start": 495,
+      "end": 500,
+      "p": [
+        13,
+        12,
+        13,
+        20,
+        18
+      ],
+      "active": 5,
+      "origin": 571,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 21
+    },
+    {
+      "start": 500,
+      "end": 502,
+      "p": [
+        3,
+        0
+      ],
+      "active": 2,
+      "origin": 1398,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 3
+    },
+    {
+      "start": 502,
+      "end": 511,
+      "p": [
+        3,
+        4,
+        13,
+        8,
+        24,
+        20,
+        18,
+        15,
+        18
+      ],
+      "active": 9,
+      "origin": 2024,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 9
+    },
+    {
+      "start": 511,
+      "end": 514,
+      "p": [
+        17,
+        1,
+        16
+      ],
+      "active": 3,
+      "origin": 2664,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 18
+    },
+    {
+      "start": 514,
+      "end": 517,
+      "p": [
+        9,
+        3,
+        16
+      ],
+      "active": 3,
+      "origin": 453,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 8
+    },
+    {
+      "start": 517,
+      "end": 521,
+      "p": [
+        23,
+        3,
+        7,
+        9
+      ],
+      "active": 4,
+      "origin": 695,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 5
+    },
+    {
+      "start": 521,
+      "end": 525,
+      "p": [
+        10,
+        9,
+        16,
+        3
+      ],
+      "active": 4,
+      "origin": 2385,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 4
+    },
+    {
+      "start": 525,
+      "end": 534,
+      "p": [
+        18,
+        19,
+        13,
+        16,
+        10,
+        9,
+        18,
+        15,
+        15
+      ],
+      "active": 9,
+      "origin": 3252,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 8
+    },
+    {
+      "start": 534,
+      "end": 537,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 459,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 2
+    },
+    {
+      "start": 537,
+      "end": 539,
+      "p": [
+        10,
+        0
+      ],
+      "active": 2,
+      "origin": 2985,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 7
+    },
+    {
+      "start": 539,
+      "end": 542,
+      "p": [
+        2,
+        10,
+        15
+      ],
+      "active": 3,
+      "origin": 1896,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 23
+    },
+    {
+      "start": 542,
+      "end": 545,
+      "p": [
+        23,
+        24,
+        26
+      ],
+      "active": 3,
+      "origin": 2948,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 18
+    },
+    {
+      "start": 545,
+      "end": 547,
+      "p": [
+        10,
+        15
+      ],
+      "active": 2,
+      "origin": 2110,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 1
+    },
+    {
+      "start": 547,
+      "end": 550,
+      "p": [
+        9,
+        3,
+        16
+      ],
+      "active": 3,
+      "origin": 1697,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 550,
+      "end": 551,
+      "p": [
+        24
+      ],
+      "active": 1,
+      "origin": 2750,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 18
+    },
+    {
+      "start": 551,
+      "end": 561,
+      "p": [
+        0,
+        1,
+        20,
+        0,
+        10,
+        20,
+        19,
+        18,
+        9,
+        16
+      ],
+      "active": 10,
+      "origin": 2896,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 16
+    },
+    {
+      "start": 561,
+      "end": 563,
+      "p": [
+        3,
+        0
+      ],
+      "active": 2,
+      "origin": 1340,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 24
+    },
+    {
+      "start": 563,
+      "end": 567,
+      "p": [
+        26,
+        3,
+        1,
+        4
+      ],
+      "active": 4,
+      "origin": 1084,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 567,
+      "end": 572,
+      "p": [
+        9,
+        18,
+        18,
+        23,
+        15
+      ],
+      "active": 5,
+      "origin": 728,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 13
+    },
+    {
+      "start": 572,
+      "end": 575,
+      "p": [
+        24,
+        9,
+        23
+      ],
+      "active": 3,
+      "origin": 2844,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 16
+    },
+    {
+      "start": 575,
+      "end": 577,
+      "p": [
+        19,
+        26
+      ],
+      "active": 2,
+      "origin": 2467,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 577,
+      "end": 581,
+      "p": [
+        20,
+        3,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 39,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 18
+    },
+    {
+      "start": 581,
+      "end": 584,
+      "p": [
+        2,
+        18,
+        9
+      ],
+      "active": 3,
+      "origin": 956,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 2
+    },
+    {
+      "start": 584,
+      "end": 587,
+      "p": [
+        20,
+        18,
+        16
+      ],
+      "active": 3,
+      "origin": 2622,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 16
+    },
+    {
+      "start": 587,
+      "end": 589,
+      "p": [
+        10,
+        16
+      ],
+      "active": 2,
+      "origin": 3269,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 4
+    },
+    {
+      "start": 589,
+      "end": 591,
+      "p": [
+        17,
+        18
+      ],
+      "active": 2,
+      "origin": 1425,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 21
+    },
+    {
+      "start": 591,
+      "end": 592,
+      "p": [
+        24
+      ],
+      "active": 1,
+      "origin": 2243,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 6
+    },
+    {
+      "start": 592,
+      "end": 599,
+      "p": [
+        13,
+        4,
+        3,
+        19,
+        10,
+        15,
+        18
+      ],
+      "active": 7,
+      "origin": 3013,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 17
+    },
+    {
+      "start": 599,
+      "end": 603,
+      "p": [
+        16,
+        10,
+        20,
+        20
+      ],
+      "active": 4,
+      "origin": 815,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 24
+    },
+    {
+      "start": 603,
+      "end": 609,
+      "p": [
+        24,
+        9,
+        3,
+        2,
+        18,
+        4
+      ],
+      "active": 6,
+      "origin": 657,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 11
+    },
+    {
+      "start": 609,
+      "end": 612,
+      "p": [
+        23,
+        24,
+        26
+      ],
+      "active": 3,
+      "origin": 1754,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 612,
+      "end": 615,
+      "p": [
+        19,
+        24,
+        9
+      ],
+      "active": 3,
+      "origin": 3088,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 12
+    },
+    {
+      "start": 615,
+      "end": 616,
+      "p": [
+        15
+      ],
+      "active": 1,
+      "origin": 2536,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 26
+    },
+    {
+      "start": 616,
+      "end": 621,
+      "p": [
+        9,
+        18,
+        18,
+        23,
+        15
+      ],
+      "active": 5,
+      "origin": 537,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 28
+    },
+    {
+      "start": 621,
+      "end": 626,
+      "p": [
+        5,
+        8,
+        24,
+        21,
+        18
+      ],
+      "active": 5,
+      "origin": 3239,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 10
+    },
+    {
+      "start": 626,
+      "end": 629,
+      "p": [
+        17,
+        1,
+        16
+      ],
+      "active": 3,
+      "origin": 1778,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 27
+    },
+    {
+      "start": 629,
+      "end": 632,
+      "p": [
+        9,
+        3,
+        16
+      ],
+      "active": 3,
+      "origin": 1433,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 25
+    },
+    {
+      "start": 632,
+      "end": 635,
+      "p": [
+        8,
+        10,
+        15
+      ],
+      "active": 3,
+      "origin": 1109,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 23
+    },
+    {
+      "start": 635,
+      "end": 639,
+      "p": [
+        20,
+        3,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 2982,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 23
+    },
+    {
+      "start": 639,
+      "end": 642,
+      "p": [
+        9,
+        3,
+        4
+      ],
+      "active": 3,
+      "origin": 2407,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 642,
+      "end": 645,
+      "p": [
+        8,
+        10,
+        15
+      ],
+      "active": 3,
+      "origin": 559,
+      "d": 1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 26
+    },
+    {
+      "start": 645,
+      "end": 651,
+      "p": [
+        23,
+        18,
+        15,
+        10,
+        4,
+        18
+      ],
+      "active": 6,
+      "origin": 3276,
+      "d": -1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 10
+    },
+    {
+      "start": 651,
+      "end": 654,
+      "p": [
+        2,
+        24,
+        16
+      ],
+      "active": 3,
+      "origin": 1086,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 13
+    },
+    {
+      "start": 654,
+      "end": 657,
+      "p": [
+        8,
+        10,
+        15
+      ],
+      "active": 3,
+      "origin": 3214,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 0
+    },
+    {
+      "start": 657,
+      "end": 661,
+      "p": [
+        20,
+        3,
+        1,
+        18
+      ],
+      "active": 4,
+      "origin": 1126,
+      "d": -1,
+      "sign": 1,
+      "plainSign": -1,
+      "b": 15
+    },
+    {
+      "start": 661,
+      "end": 667,
+      "p": [
+        15,
+        8,
+        3,
+        1,
+        20,
+        23
+      ],
+      "active": 6,
+      "origin": 3025,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 13
+    },
+    {
+      "start": 667,
+      "end": 674,
+      "p": [
+        15,
+        24,
+        16,
+        10,
+        15,
+        0,
+        26
+      ],
+      "active": 7,
+      "origin": 684,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 19
+    },
+    {
+      "start": 674,
+      "end": 677,
+      "p": [
+        8,
+        10,
+        15
+      ],
+      "active": 3,
+      "origin": 624,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 13
+    },
+    {
+      "start": 677,
+      "end": 682,
+      "p": [
+        9,
+        18,
+        18,
+        23,
+        15
+      ],
+      "active": 5,
+      "origin": 1421,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 26
+    },
+    {
+      "start": 682,
+      "end": 686,
+      "p": [
+        5,
+        9,
+        3,
+        7
+      ],
+      "active": 4,
+      "origin": 126,
+      "d": -1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 5
+    },
+    {
+      "start": 686,
+      "end": 694,
+      "p": [
+        2,
+        18,
+        4,
+        18,
+        0,
+        3,
+        4,
+        18
+      ],
+      "active": 8,
+      "origin": 1432,
+      "d": 1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 20
+    },
+    {
+      "start": 694,
+      "end": 697,
+      "p": [
+        2,
+        24,
+        16
+      ],
+      "active": 3,
+      "origin": 3167,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 16
+    },
+    {
+      "start": 697,
+      "end": 701,
+      "p": [
+        0,
+        4,
+        3,
+        19
+      ],
+      "active": 4,
+      "origin": 1724,
+      "d": 1,
+      "sign": -1,
+      "plainSign": 1,
+      "b": 18
+    },
+    {
+      "start": 701,
+      "end": 703,
+      "p": [
+        2,
+        18
+      ],
+      "active": 2,
+      "origin": 3122,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 21
+    },
+    {
+      "start": 703,
+      "end": 709,
+      "p": [
+        6,
+        4,
+        28,
+        16,
+        18,
+        4
+      ],
+      "active": 6,
+      "origin": 1049,
+      "d": 1,
+      "sign": -1,
+      "plainSign": -1,
+      "b": 0
+    },
+    {
+      "start": 709,
+      "end": 716,
+      "p": [
+        15,
+        10,
+        20,
+        18,
+        9,
+        5,
+        18
+      ],
+      "active": 7,
+      "origin": 1929,
+      "d": -1,
+      "sign": 1,
+      "plainSign": 1,
+      "b": 23
+    }
+  ]
+}
