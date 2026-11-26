@@ -57,15 +57,23 @@ function study(raw,goldText,lp1Text,lp2Text){
  const sentences=gold.sections.find(x=>x.name==="p57_parable").source_text.split("\n").slice(1).map(parse);
  const cribs=[{name:"all-three",p:sentences.flat()},{name:"first-two",p:sentences.slice(0,2).flat()},{name:"last-two",p:sentences.slice(1).flat()}];
  if(cribs.map(x=>x.p.join("").length).join()!=="88,60,58")throw Error("PARABLE geometry");
- function scan(scopes){const res=[];for(const scope of scopes)for(const crib of cribs){const n=crib.p.join("").length,f=[...crib.p.join("")].flatMap((x,i)=>x==="0"?[i]:[]),out={scope:scope.name,crib:crib.name,n,alignments:Math.max(0,scope.c.length-n+1),fCompatible:0,completeRejected:0,unresolved:0,hits:[],tested:[]};
-  for(let start=0;start+n<=scope.c.length;start++){if(!f.every(i=>scope.c[start+i]==="0"))continue;out.fCompatible++;let pos=start;const words=crib.p.map(p=>{const c=scope.c.slice(pos,pos+p.length);pos+=p.length;return {p,c}});const r=recover(words,seq(words.length));const hit={start,globalStart:(scope.offset??0)+start,...r};if(!r.complete)out.unresolved++;else if(r.candidates===0)out.completeRejected++;if(r.actions.length)out.hits.push(hit);delete hit.actions;out.tested.push(hit);}
+ function scan(scopes,patternList=cribs){const res=[];for(const scope of scopes)for(const crib of patternList){const n=crib.p.join("").length,f=[...crib.p.join("")].flatMap((x,i)=>x==="0"?[i]:[]),out={scope:scope.name,crib:crib.name,n,alignments:Math.max(0,scope.c.length-n+1),fCompatible:0,completeRejected:0,unresolved:0,hits:[],tested:[]};
+  for(let start=0;start+n<=scope.c.length;start++){if(!f.every(i=>scope.c[start+i]==="0"))continue;out.fCompatible++;let pos=start;const words=crib.p.map(p=>{const c=scope.c.slice(pos,pos+p.length);pos+=p.length;return {p,c}});const r=recover(words,seq(words.length));const hit={start,globalStart:(scope.offset??0)+start,...r};if(!r.complete)out.unresolved++;else if(r.candidates===0)out.completeRejected++;if(r.actions.length)out.hits.push({...hit,actions:r.actions});delete hit.actions;out.tested.push(hit);}
   res.push(out);
  }return res}
  const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
  let offset=0;const scopes=ranges.map(([a,b])=>{const c=corpus.pages.filter(p=>p.page>=a&&p.page<=b).flatMap(p=>p.indices).map(x=>S[x]).join("");const r={name:`p${a}-${b}`,c,offset};offset+=c.length;return r});if(offset!==12956)throw Error("LP2 corpus length");
  const z=fixtures[0],p=cribs[0].p,pre=z.words.slice(0,6).map(x=>x.c).join(""),plant={name:"embedded-parable",c:pre+p.map((w,i)=>encrypt(w,z.pi,z.k,(3*i+2)%8)).join("")+z.words.slice(6,16).map(x=>x.c).join("")};
+ const historicalCribs=[];
+ for(const rec of gold.sections){if(/^p(56|57)/.test(rec.name))continue;
+  const segments=rec.source_text.split(/[⁘⁜]/u).map(t=>({words:parse(t),numeric:/[0-9]/.test(t)})).filter(t=>t.words.length);
+  for(let i=0;i<segments.length;i++){let p=[];for(let j=i;j<segments.length;j++){if(segments[j].numeric)break;p=p.concat(segments[j].words);const flat=p.join("");if(flat.length>160)break;if(flat.length<58||[...flat].filter(x=>x==="0").length<2||!p.some(w=>[...w].filter(x=>x!=="0").length>=8))continue;historicalCribs.push({name:rec.name+":"+i+"-"+j,source:rec.name,from:i,to:j,p:p.slice()});}}
+ }
+ if(historicalCribs.length!==88)throw Error("historical span geometry "+historicalCribs.length);
  const plantScan=scan([plant]);const original=scan(scopes);
- return {schema:2,plants,welcome,cribs:cribs.map(x=>({name:x.name,words:x.p})),positive:{offset:pre.length,truth:canonical(z.pi,z.k),scan:plantScan},original};
+ if(!plantScan.every((r,i)=>r.hits.some(h=>h.start===pre.length+(i===2?sentences[0].join("").length:0)&&h.actions.some(a=>canonical(a.pi,a.k)===canonical(z.pi,z.k)))))throw Error("positive truth lost");
+ const historical=scan(scopes,historicalCribs);
+ return {schema:3,plants,welcome,historicalCribs:historicalCribs.map(({p,...r})=>({...r,words:p})),historical,cribs:cribs.map(x=>({name:x.name,words:x.p})),positive:{offset:pre.length,truth:canonical(z.pi,z.k),scan:plantScan},original};
 }
 if(require.main===module){const fs=require('node:fs');const paths={"fixture":"im-results/lp2-q8-independent-small-clue-fixtures.txt","gold":"resources/external/relikd-solved-gp29-native-v1.json","lp1":"resources/transcriptions/lp1_wulfic_canonical.txt","lp2":"resources/liber-primus/lp2-corpus.json"};const a=Object.fromEntries(Object.entries(paths).map(([k,p])=>[k,fs.readFileSync(p,'utf8')]));console.log(JSON.stringify(study(a.fixture,a.gold,a.lp1,a.lp2),null,2));}
 module.exports={study};
