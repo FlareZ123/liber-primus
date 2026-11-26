@@ -85,4 +85,71 @@ function solve(corpus,transcription,wisdom,matrices){
 }
 const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
 const result=solve(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt'),read('resources/external/2013-0-wisdom.txt'),read('resources/cicada2014-openpuff-magic-squares.txt'));
-console.log(JSON.stringify(result,null,2));
+function solvePermutation(corpus,transcription,matrices){
+ const check=(p,m)=>{if(!p)throw Error(m)};
+ const pages=transcription.replace(/\r/g,"").split("\n%\n");
+ const groups=pages[33].replace(/[\s/]/g,"").split("&").map(s=>s.slice(s.indexOf(".")+1).split(/[-.]/).filter(Boolean));
+ check(groups.length===2&&groups[0].length===21&&groups[1].length===28,"source groups");
+ const words=groups.flat();check(words[48]==="ᛒ"&&pages[34].replace(/[\s/]/g,"").startsWith("ᛗᛒ-"),"source carry");words[48]+="ᛗᛒ";
+ const W=words.map(w=>[...w].map(r=>corpus.runes.indexOf(r)));
+ const target=matrices.trim().split(/\n\s*\n/)[1].trim().split(/\s+/).map(Number);
+ check(W.flat().length===198&&target.length===49&&W.flat().every(x=>x>=0),"source lengths");
+ const maxLen=Math.max(...W.map(w=>w.length));
+ // dp[n][f] contains exactly the sums of n GP primes with exactly f Fs.
+ const dp=[[new Set([0])]];
+ for(let n=1;n<=maxLen;n++){
+   dp[n]=[];
+   for(let f=0;f<=n;f++){
+     const s=new Set();
+     if(f<n)for(const v of dp[n-1][f])for(const p of corpus.prime.slice(1))s.add(v+p);
+     if(f>0)for(const v of dp[n-1][f-1])s.add(v+2);
+     dp[n][f]=s;
+   }
+ }
+ const feasible=(n,f,v)=>dp[n][f].has(v);
+ const counts=(word,r)=>word.filter(x=>x===r).length;
+ const allowed=(source,r,exact)=>source.map(w=>target.map(v=>exact?feasible(w.length,counts(w,r),v):Array.from({length:counts(w,r)+1},(_,f)=>f).some(f=>feasible(w.length,f,v))));
+ /** Maximum bipartite matching, with a Hall-deficient set as certificate. */
+ function match(A){
+   const R=Array(49).fill(-1);
+   function aug(i,seen){for(let j=0;j<49;j++)if(A[i][j]&&!seen[j]){seen[j]=true;if(R[j]<0||aug(R[j],seen)){R[j]=i;return true}}return false}
+   let size=0;for(let i=0;i<49;i++)if(aug(i,Array(49).fill(false)))size++;
+   const leftMatch=Array(49).fill(-1);R.forEach((i,j)=>{if(i>=0)leftMatch[i]=j});
+   const left=new Set(leftMatch.flatMap((j,i)=>j<0?[i]:[])),right=new Set(),queue=[...left];
+   for(let k=0;k<queue.length;k++){const i=queue[k];for(let j=0;j<49;j++)if(A[i][j]&&!right.has(j)){right.add(j);if(R[j]>=0&&!left.has(R[j])){left.add(R[j]);queue.push(R[j])}}}
+   check(left.size-right.size===49-size,"Hall deficiency equals matching gap");
+   return {size,leftMatch,hallWords:[...left].sort((a,b)=>a-b).map(i=>i+1),hallCells:[...right].sort((a,b)=>a-b).map(j=>j+1)};
+ }
+ const byLabel=Array.from({length:29},(_,r)=>({r,label:corpus.translit[r],selective:match(allowed(W,r,false)).size,stationary:match(allowed(W,r,true)).size}));
+ const literal=match(allowed(W,0,false));
+ // The lower bound 4 is certified by maximum zero-exception matching of 45.
+ // One independently optimized perfect matching demonstrates it is tight.
+ const assignment=[49,2,35,5,6,7,9,10,8,11,12,13,17,15,18,20,19,22,28,21,31,16,23,24,27,26,32,37,29,40,34,46,1,25,30,47,3,33,38,39,36,41,14,4,44,42,45,48,43].map(x=>x-1);
+ check(new Set(assignment).size===49,"permutation witness");
+ const witness=[],exceptions=[];
+ for(let i=0;i<49;i++){
+   const w=W[i],v=target[assignment[i]],n=w.length,cap=counts(w,0);
+   const fs=Array.from({length:n+1},(_,f)=>f).filter(f=>feasible(n,f,v)).sort((a,b)=>Math.max(0,a-cap)-Math.max(0,b-cap)||a-b);
+   check(fs.length>0,"witness sum feasible");
+   let left=n,f=fs[0],sum=v;
+   const odd=[];
+   while(left>f){
+     const p=corpus.prime.slice(1).find(p=>feasible(left-1,f,sum-p));
+     check(p!==undefined,"odd-prime decomposition");
+     odd.push(corpus.prime.indexOf(p));sum-=p;left--;
+   }
+   check(sum===2*f,"even-prime remainder");
+   const positions=[...w.flatMap((r,j)=>r===0?[j]:[]),...w.flatMap((r,j)=>r!==0?[j]:[])].slice(0,f);
+   const plain=w.map((r,j)=>positions.includes(j)?0:odd.shift());
+   check(plain.length===n&&plain.reduce((s,r)=>s+corpus.prime[r],0)===v,"exact witness sum");
+   for(const j of positions)if(w[j]!==0)exceptions.push([i+1,j+1,w[j]]);
+   witness.push(plain);
+ }
+ check(exceptions.length===49-literal.size,"sharp optimal exception count");
+ const synthetic=W.map((w,i)=>w.map((r,j)=>witness[i][j]===0?0:r));
+ check(match(allowed(synthetic,0,false)).size===49,"true transparent-F exact-square positive");
+ check(literal.size===45&&byLabel.filter(x=>x.selective===49).map(x=>x.r).join(",")==="11"&&byLabel.every(x=>x.stationary<49),"source decision");
+ return {literal,byLabel,minimumNonliteral:exceptions.length,assignmentOneBased:assignment.map(i=>i+1),witness,exceptions,positiveMatching:49};
+}
+const permutation=solvePermutation(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt'),read('resources/cicada2014-openpuff-magic-squares.txt'));
+console.log(JSON.stringify({...result,permutation},null,2));
