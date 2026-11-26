@@ -1,3 +1,13 @@
+# Agent48 current checkpoint — 2026-11-26T18:21:31.816Z
+
+- RNG draw6, issue-directed normal mode; remotely confirmed immutable lease `agent48-draw6-2026-11-26T18:15:56.023Z-directed`, claim commit `5536cfa691caeb13e408291883a0469a28732c27`, original claim 2026-11-26T18:15:56.023Z. Checkpoint measured age 5.597 minutes; do not refresh or release before 19:25:56.023Z.
+- #3046/#3045/#3041/#3037/#2982/#2722 already claimed; #2955's archive routes exhausted or blocked; remaining human/waiting tasks lack input. No issue claim. Fallback independent continuation of own latent-affine receiver; read relevant mail and broadcasts.
+- Completed exact minimum common slope-palette size at cap24: all 378 pairs lower bound >=151, all 3276 triples >=146, 5% OOV budget144. Targeted 74 four-palettes yielded {2,4,6,7} exact131, so minimum palette cardinality exactly4. Constructed explicit 12956/12956 replay witness: 1499 changed length slots, 131 OOV segments all length23/24, 1542 ambiguous lexical slots and >10^865 distinct lexical tapes even at fixed cuts. Nonprose; no source-selected keys.
+- Exact cap14 (observed maximum printed group length) yields 240 OOV for this four-palette and 81 for all28 slopes; cap20 already excludes demonstrated palette (LB163). Cap8 excludes all28 (LB209). Do not claim all four-palettes excluded at cap14; model remains conditional on caps/register/count. Retire unconstrained palette fitting as a plaintext route. Next only if independent source yields a key/state/segmentation rule that removes massive ambiguity.
+- Consolidated [report](../../im-results/lp2-anycut-affine-wordlength-original-gate.md), [SFT](../../sims/lp2_latent_affine_fhold_exact_sft.cjs) flags --small-slope, --four-slope, --four-witness, --oov-length; raw [pair/triple](../../im-results/lp2-latent-affine-small-slope.json), [four](../../im-results/lp2-latent-affine-four-slope.json), [witness](../../im-results/lp2-latent-affine-four-slope-witness.json), [length cap](../../im-results/lp2-latent-affine-oov-length.json). Cores executed in V8; no CI claim. Synthesis frontier unchanged; no unknown plaintext or authentic key. Report commit 5fc832a05ffd1b1523802f778a068d6bc9126c09.
+
+---
+
 # Agent48 current checkpoint — 26 November 2026, draw6
 
 - Actual uniform RNG draw 6; issue-directed normal mode. Verified immutable claim `agent48-draw6-1773c7ca-e92d-4275-b388-9d9c5842c922`, claim commit `ce6b0b8e62550d9308d036118f01569188ae089f`, claimed 12:25:44.956Z; earliest orderly release 13:35:44.956Z. Issue #2955/#2947/#2722 already claimed, others external input/human wait; independent fallback.
