@@ -1,6 +1,6 @@
 # p55 coprime-interior selector: a 29-rune key candidate
 
-**Status: the source-derived selector remains provisional; its one frozen, native OpenPuff v4.00 seven-JPEG receiver is experimentally rejected (23 November 2026). No p55 plaintext or authentic key was recovered.**
+**Status: the source-derived selector remains provisional; its frozen OpenPuff receiver (23 November) and one source-derived mixed-alphabet prime-totient receiver (26 November) are experimentally rejected. No p55 plaintext or authentic key was recovered.**
 
 ## Human solve-path hypothesis
 
@@ -51,7 +51,42 @@ If the creator implemented the same gcd test using zero-based original-word arra
 
 The standard mathematical definition of Euler's totient favors the one-based candidate above. The source does not explicitly specify indexing convention, however, so the zero-based result remains a possible implementation variant, not an independently selected key. Using n-2 as the modulus yields 30 symbols. Do not test both variants as a sweep.
 
-This 29-character string is a **candidate key/password**, not plaintext. Reproduction and exact word-boundary checks are in [sims/agent43_p55_coprime_interior_key.py](../sims/agent43_p55_coprime_interior_key.py).
+This 29-character string is a **candidate key/password**, not plaintext.
+
+## Mixed-alphabet prime-totient receiver (Agent23, 26 November 2026)
+
+**Decision: negative for this one source-derived receiver.** The one-based 29-rune candidate was used as a keyword-mixed GP29 alphabet around the solved p56 prime-minus-one stream, with a skip-tolerant additive receiver. This was selected as a finite test because the p55 candidate has exactly 29 positions, p56 supplies the prime-totient operation, and an independent external LP2 research workspace explicitly identified a keyword-mixed outer alphabet around an additive key as an open finite family (proposal and implementation: https://github.com/pnotisdev/cicada3301/tree/main/work/proposals/outer_alphabet). The external skip prior of 0.81 is a community model, not an authenticated Cicada instruction.
+
+### Frozen construction
+
+- Use the source-derived one-based candidate A25S0EAJ15D8LKDCIA6E6FC22I5BI, mapped to GP29 indices as listed above.
+- Build a conventional keyword alphabet by retaining the first occurrence of each candidate symbol, then appending missing GP29 symbols in canonical order. The candidate contains only **17 distinct symbols**, so this completion is a substantive but conventional assumption.
+- This gives the fixed permutation sigma = [10,2,5,28,0,14,19,1,13,8,21,20,12,18,6,15,11,3,4,7,9,16,17,22,23,24,25,26,27].
+- Test C = sigma^-1(sigma(P) + K) mod 29, where K[i] = (prime[i] - 1) mod 29 for the unbounded sequence of primes beginning at 2. The key pointer advances one position per rune; on a would-be adjacent ciphertext repeat, the receiver admits a one-position key skip with prior 0.81.
+- The primary model does **not** import p56's transparent-F exception; a separate transparent-F variant is tested below.
+- The target is the complete original rune tape on p0-p54 (12,880 runes), excluding p55 because it supplies the candidate alphabet and excluding solved p56-p57. No printed word segmentation is used in the target decoder.
+- A GP29 bigram model is trained from resources/control/shakespeare_first300k.txt. The decoder is a beam-64 Viterbi over key pointer and previous plaintext rune.
+
+### Original-input results
+
+| Variant | Bigram log-score / rune | Normalized GP29 IoC | Result |
+|---|---:|---:|---|
+| Continuous key pointer, no transparent-F | **−4.3864684823** | **1.0141956018** | No language signal |
+| Reset pointer at every rune-bearing page, no transparent-F | **−4.4390825888** | **1.0092379549** | No language signal |
+| Continuous pointer with p56 transparent-F | — | — | No admissible state at zero-based rune offset **6** |
+| Page-reset with p56 transparent-F | — | — | No admissible state on p0 at offset **6** |
+
+The source-derived alphabet ranks **11th of 11** against ten deterministic random-permutation null alphabets. Their bigram log-scores range from **−4.3838029445 to −4.3604342967**, mean **−4.3689185092**; all ten score above the source-derived candidate. Their mean normalized IoC is **1.01595**, compared with the candidate's **1.01420**.
+
+### Decoder control
+
+An 800-rune Shakespeare-bigram Markov plant, encrypted by the exact same source-derived alphabet, unbounded prime-minus-one stream and 0.81 repeat-skip rule, is recovered **800/800** by the no-transparent-F decoder. The transparent-F plant is recovered **799/800**. This validates the principal implementation on the planted model; it does not authenticate that model as Cicada's cipher.
+
+### Scope and decision
+
+Reject this fixed mixed-alphabet construction around the unbounded prime-totient stream, under both continuous and page-reset clocks, with the stated repeat-skip model. The p56 transparent-F extension has no admissible path at the opening p0 offset6. The result does **not** reject the p55 selector as a key for another receiver, a different source-selected completion rule, another key stream, or a separate use of the selected runes. Do not sweep alternate alphabet completions, arbitrary shifts, key phases, or skip rules. A further p55-key test requires an independent first-party clue selecting its receiver.
+
+Reproducer: sims/agent23_p55_totient_keyword_alphabet_prime_stream_sft.cjs. Inputs: resources/liber-primus/lp2-corpus.json (blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165) and resources/control/shakespeare_first300k.txt (blob 94c677ad9dd50771c6670e0c4e4dad9052b46d85). Reproduction and exact word-boundary checks are in [sims/agent43_p55_coprime_interior_key.py](../sims/agent43_p55_coprime_interior_key.py).
 
 ## Bounded check against the p56 digest
 
