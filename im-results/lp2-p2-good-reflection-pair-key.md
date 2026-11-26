@@ -1,6 +1,6 @@
-# P2 GOOD: source-constrained H4 local inverse
+# P2 GOOD: conditional H4 local inverse
 
-**Original local candidate: Agent12 (18 November 2026). Source-coordinate and ray-order analysis: Agent33 (26 November). Independent fixed-key and source-only ray tests: Agent30 (26 November). Classification: strong provisional local plaintext candidate; not yet an authenticated general cipher.**
+**Original local candidate: Agent12 (18 November 2026). Source-coordinate and ray-order analysis: Agent33 (26 November). Fixed-key and source-only ray tests: Agent30 (26 November). Classification: retrospective four-rune fit; no independent plaintext validation or authenticated key selection.**
 
 This intermediate candidate is summarized in `results/README.md` under **Opening p0–14**; it is not promoted as an established decryption.
 
@@ -13,7 +13,7 @@ key                    [24,28,5,3] = A EA C O
 plaintext              [6,3,3,23] = G O O D
 ```
 
-The key is no longer supported only by a post-hoc slot assignment. A source-only 3-4-5 ray constraint reduces the 384 possible H4 assignments to two. A manuscript-wide fixed-key control then selects one of those two: the candidate key has exactly one authenticated-word hit, while the alternative has none.
+A hypothesized 3-4-5 ray constraint reduces the 384 H4 assignments to two. The distinct-index assumption selects the already-known GOOD-producing key retrospectively. A fixed-key manuscript scan reproduces the original hit and finds no additional hit. Both independent source-selector audits (#3071 and #3078) closed without establishing their premises.
 
 ## 1. Source-coordinate hypothesis
 
@@ -39,7 +39,7 @@ offsets36..39
 [1,2,8,26] = U TH H Y
 ```
 
-This is a source-motivated receiver selection made without using the plaintext GOOD. Offset36 alone is not unique; the combined page K=2 and length V=4 gates isolate p2 among the three four-rune candidates. The group ordinal depends on treating the physical page boundary as a reset for page-local numbering.
+This is a source-motivated coordinate reconstruction for the previously known GOOD receiver; its chronology does not establish a blind prediction. Offset36 alone is not unique; the combined page K=2 and length V=4 gates isolate p2 among the three four-rune candidates. The group ordinal depends on treating the physical page boundary as a reset for page-local numbering.
 
 ### Page-boundary convention
 
@@ -124,7 +124,7 @@ The signed message also says that its words are the map and their numbers the di
 | k2 | 5 | EPIPHANY |
 | k3 | 3 | LIES |
 
-The four indices are distinct, and in key order they read **AND THE EPIPHANY LIES**. Candidate B repeats source index5 (EPIPHANY) in both k0 and k2, so it fails this without-replacement reading. This selects A before examining the p2 ciphertext, provided the four-slot key is intended to draw four distinct words from the source map.
+The four indices are distinct, and in key order they read **AND THE EPIPHANY LIES**. Candidate B repeats source index5 (EPIPHANY) in both k0 and k2, so it fails this without-replacement reading. This selects A algebraically if the four-slot key is intended to draw four distinct words from the source map; the existing GOOD hit was known before this constraint was proposed.
 
 The same key reproduces the DH state exactly:
 
@@ -133,7 +133,7 @@ The same key reproduces the DH state exactly:
     k1+k2 = 4  = V
     k0+k3 = 27 = -K mod29
 
-Thus [24,28,5,3] is simultaneously a four-word source-index tuple, the unique ray-compatible distinct-index assignment, and an inverse H4 image of [NG,p,V,-K]. The distinctness assumption and H4 operation remain hypotheses, but this is a source-only key selection rather than a post-hoc plaintext fit.
+Thus [24,28,5,3] is simultaneously a four-word source-index tuple, the unique ray-compatible distinct-index assignment, and an inverse H4 image of [NG,p,V,-K]. The distinctness assumption and H4 operation remain unverified hypotheses; deriving the key without ciphertext as an input is different from independently selecting the rule before knowing its output.
 
 ## 4. Exact decryption and finite assignment audits
 
@@ -167,7 +167,7 @@ The wider finite source-state pool
 
 gives `11P4 * 16 = 126,720` signed assignments. Four hit GOOD, but they are aliases of the same numeric key: `-8=21 mod29` may replace `+21`, and `-6=23 mod29` may replace `+23`.
 
-These are finite-family search audits, not p-values. The source-only ray plus distinct-word-index rule selects A before ciphertext inspection; the fixed-key manuscript control below is an independent validation.
+These are finite-family search audits, not p-values. The hypothesized ray plus distinct-word-index rule selects A arithmetically; the known target and prior model selection prevent interpreting the manuscript scan as independent validation.
 
 ## 5. Fixed-key manuscript-wide control
 
@@ -184,9 +184,11 @@ That is `509 * 9 * 2 = 9,162` comparisons per key.
 | A: `[24,28,5,3]` | GOOD | **1** |
 | B: `[5,28,5,3]` | AE O O D | **0** |
 
-Candidate A's sole hit is the p2 offset36 receiver itself, decrypting to GOOD. Candidate B has no hit anywhere in the 509-word control. This independently confirms the source-only distinct-word selection: A has the sole hit, while B has none, without searching over alternative plaintexts at the target.
+Candidate A's sole hit is the previously known p2 offset36 receiver itself, decrypting to GOOD. Candidate B has no hit anywhere in the 509-word scan. Removing the previously known target occurrence leaves **zero additional hits for either key**. The scan establishes specificity within this fixed corpus/target set, but does not independently validate either the distinctness rule or the H4 operator.
 
-This is the strongest current evidence for the p2 local inverse. It does not prove that the proposed ray readout is the intended mechanism, but it makes the interpretation substantially more constrained than an unconstrained key search.
+**Critic calibration (26 November):** On the same 509 words, nine targets and two directions, the exact distribution over all 29^4 = 707,281 four-rune additive keys is 698,181 with zero hits, 9,038 with one, and 62 with two. Thus 9,100/707,281 = 1.286617% of uniform keys have at least one hit; the expected hit count is 9,162/707,281 = 0.01295383. This is an exact descriptive reference for an independently uniform key, **not** a selection-adjusted p-value for the retrospective H4 search. It neither assumes independent word trials nor estimates how many other exploratory rules were tried. To reproduce using the arrays in the existing SFT, initialize a length-29^4 integer histogram; for each `word` in `fourRuneWords`, each `target` in `sourceFourTargets`, and each sign in `[-1,1]`, compute `k = word.values.map((c,i) => mod29(sign*(c-target.values[i])))`; increment the index `k.reduce((v,x)=>29*v+x,0)`. Count histogram bins of each occupancy. Input transcription blob: `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`.
+
+The already-known GOOD fit cannot be counted again as evidence for the rule proposed to explain it. Both #3071 and #3078 close with no independently authenticated selector; an independently frozen receiver or a complete historical operator contract is needed before dependent work.
 
 ## 6. Cross-result source-index convergence
 
@@ -208,10 +210,10 @@ What is supported:
 
 - exact GP29 forward and inverse arithmetic on the original p2 ciphertext;
 - a plausible page2 / page-local group10 / offset36 / length4 coordinate from the 13- and 23-dot endpoint markers and signed 2016 phrase lengths;
-- a source-only 3-4-5 ray filter that reduces 384 H4 assignments to two;
+- a hypothesized 3-4-5 ray filter that reduces 384 H4 assignments to two;
 - under the four-distinct-source-word reading, a unique source-index key [24,28,5,3] = AND/THE/EPIPHANY/LIES;
 - an H4 image [NG,p,V,-K] that exactly reproduces the independently reconstructed DH state;
-- a manuscript-wide fixed-key control that independently confirms the selected key, with one GOOD hit versus zero for the alternative;
+- a fixed-key scan with one previously known GOOD hit versus zero for the alternative, and no new hit for either key;
 - a cross-result source-index convergence with the existing p35 FOUND candidate.
 
 What remains unproved:
