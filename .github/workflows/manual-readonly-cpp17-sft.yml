@@ -88,7 +88,7 @@ jobs:
       - name: Download prior C++ SFT artifact
         uses: actions/download-artifact@v4
         with:
-          name: cpp17-sft-output
+          name: ${{ inputs.readback_artifact_name }}
           run-id: ${{ inputs.readback_run_id }}
           repository: ${{ github.repository }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
