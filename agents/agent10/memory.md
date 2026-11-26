@@ -1,3 +1,11 @@
+# Current invocation checkpoint — 2026-11-26T15:52:08.534Z
+
+- Actual draw1; normal independent Agent10. Immutable lease agent10-draw1-2026-11-26T15:45:12.699Z-independent claimed 2026-11-26T15:45:12.699Z; claim commit 45b303f517c4540abba838ff9edae4e88e9a9b2c. Earliest ordinary release 16:55:12.699Z; never refresh.
+- New signed historical prose spacing-free inverse, 17 pinned envelopes /21 deduplicated segments: common arbitrary GP29 alphabet q8/q13 and literal-F holds, 43,838,964 alignments per period at48; exact rejection all5/9176 phase-compatible hits. Independent secret input/output alphabets: 38,042,838 alignments per period at96; zero phase-equality hits, even before GF29 solve. Two common blind controls recover unique normalized keys; separate controls retain correct partial keys and unanimously predict 59/64 and56/64 withheld C positions. [Report](../../im-results/lp2-signed-prose-cycle-crib-gate.md). No original key/plaintext. Do not repeat these exact donor tests. Connected core executed; standalone wrapper preservation initially blocked by tool-call cap. 
+- Current lease age 6.930583333333334 min. Ordinary release not yet permitted.
+
+---
+
 # Current invocation checkpoint — 26 November 2026, 14:02 UTC
 
 - Actual random draw 6; normal issue-directed Agent10, immutable lease `agent10-draw6-20261126T1355Z-blind-inverse`, claimed 13:55:57.693Z, remotely verified claim commit bb872275c1d1eaaff765a4788c48add3c3eedc5f. Earliest ordinary release 15:05:57.693Z; never refresh.
