@@ -444,6 +444,25 @@ In both controls the true carry prefix is absent from the base register and **no
 
 
 
+### Agent44 carry-independent exact lexical SMT receivers (26 November)
+
+[Shared-map MDD](../sims/lp2_q8_smt_calibration/q8_smt.py), [incremental lexical receiver](../sims/lp2_q8_smt_calibration/q8_lazy.py), [calibration data](lp2-q8-smt-lexical-calibration.json) and [finite uniform-null counting bound](lp2-q8-carry-free-counting-bound.py). The two core sources are byte-identical to the executed local sources (Git blobs 5c92078bd6bd86bb17d0a7c38b288d5e1cb469bf and 1c77fb246bc68278363fe8d56a541974c9b7270b). Native libz3 C API, local Python 3.13. Register construction produced 38,910 forms from the local TextBlob spelling input (SHA-256 eade91558167fe09a481abf59e176af8643ad78678cc53dd5aeaf2a8b30fa332); byte identity with the repository dictionary was not established. The seed-1506977336 control agrees with the earlier matched profile in the two actual OOV indices (12,43) and lack of true-action support for the old carry-prefix condition. The 47 complete p54 groups (213 runes) supply lengths only; the full 11-rune carry and 16 p55-local groups are withheld. No original glyph values entered a search.
+
+Each phase/cipher inverse entry is shared across occurrences. The eager receiver uses a reduced suffix decision diagram, independently chosen word start phase, and literal plaintext-F nonconsumption. The lazy receiver replaces the full dictionary relation by unary projections and iteratively adds sound lexical clauses: if a selected word is absent, intersect bitset postings for its chosen runes, shrink an empty intersection to an inclusion-minimal set, then require a different value at a pivot whenever all other members of that set remain fixed. Every dictionary word satisfies these implications. The omitted-group budget remains three. Both formulations fix a representative pi(F)=0, k0=1, require primitive q8 and check a returned action by independent enumeration of all legal inverse paths.
+
+| Receiver | Truth-pinned control | Blind matched-profile control |
+|---|---|---|
+| Shared MDD (174,863 edges) | SAT, 11.27 s, exact action, 16/16 local held words and carry | UNKNOWN, 61.69 s |
+| Lazy shared inverse | SAT, 2.22 s, 258 learned clauses, 45/47 support, 16/16 held and carry | UNKNOWN, 90.15 s; 2,002 clauses, best 8 selected valid words |
+| Lazy direct modular lookup | Not run | UNKNOWN, 90.16 s; 2,198 clauses, best 9 |
+| All pair projections + shared maps | Not run | UNKNOWN, 91.02 s, no first model |
+| Hybrid eager six longest groups + lazy | Not run | UNKNOWN, 121.09 s, no first model |
+| Boolean one-hot modular action | Not run | UNKNOWN, 180.29 s; 3,445 clauses, best 9 |
+
+The two pinned passes are implementation checks, not blind recoveries or speedup claims about a real attack. The latter four rows are exploratory derivatives, with summary outputs retained rather than committed sources. Selected valid words are not a maximum-support certificate. All blind runs failed the recovery gate. No original candidate, exclusion, key, or plaintext. Do not scale these equivalent lexical SAT encodings without a qualitatively stronger constraint or independent key clue.
+
+**Carry-free counting extension:** For a fixed action and a group of length l, at most 8 D_l ciphertext strings are emitted by the D_l dictionary words over all starts (the deterministic F hold is already included). Thus under IID uniform ciphertext conditioned on the observed group lengths, the chance of support is at most p_l=min(1,8 D_l/29^l). For B omissions, sum products over the size-(47-B) retained subsets, i.e. the corresponding elementary symmetric polynomial. There are 28!*(29^8-29^4)/(28*8) effective primitive actions after quotienting coordinate scaling and cyclic phase rotation. The resulting union upper bound for B=3 is 10^-53.75517657; B=11/12/13 give log10 bounds -7.7187/-3.9371/-0.4137. This bound does not require the carry prefix or independence of different actions. It applies only to IID uniform ciphertext and the stated dictionary, not a real-null false-positive calibration or evidence that a qualifying original action exists.
+
 ## Carry-independent fixed-numeric red8 extension (Agent34, 26 November 2026)
 
 The earlier exact fixed ordinal and prime-derived red8 exclusions require a mandatory dictionary-supported ten-rune carry prefix. That premise is not authenticated. This extension retains the two independently source-derived vectors, literal F holds, a shared secret permutation fixing F, arbitrary per-word phase, the same 38,938-form register and up to three unsupported complete groups, but entirely withholds the 11-rune carry and all 16 p55-local groups. No unrestricted unknown-q8 shards were duplicated.
