@@ -1,0 +1,605 @@
+{
+  "register": 29081,
+  "maxCodeLength": 19,
+  "trieNodes": 144271,
+  "original": [
+    {
+      "chapter": 1,
+      "canonical": {
+        "n": 729,
+        "minUncovered": 153,
+        "cost": 5842.073957267185,
+        "costPerRune": 8.01381887142275,
+        "mapUncovered": 193,
+        "mapWords": 365,
+        "edges": 1138,
+        "preview": "[S] H [E] PP FOR [IA] FF CM [E] XI ON FUCC FF J CU N THE [E] FAR AM [S] FOE [EO] [I] [NG] HTM LL [I] L H AX N AU AX N"
+      },
+      "padded": {
+        "n": 729,
+        "minUncovered": 153,
+        "cost": 5695.25381891837,
+        "costPerRune": 7.812419504689122,
+        "mapUncovered": 191,
+        "mapWords": 350,
+        "edges": 1180,
+        "preview": "[S] H [E] PP FOR [IA] CM [E] XI ON FUCC J CU N THE [E] FAR AM [S] FOE [EO] [I] [NG] HTM LL [I] L H AX N AU AX N [EO] J"
+      }
+    },
+    {
+      "chapter": 2,
+      "canonical": {
+        "n": 1145,
+        "minUncovered": 230,
+        "cost": 9191.201456667848,
+        "costPerRune": 8.027250180495937,
+        "mapUncovered": 311,
+        "mapWords": 568,
+        "edges": 1708,
+        "preview": "[L] J FOES XI UE [AE] J [T] [X] H [T] S [S] IL WE [Y] N UP LL [EO] FEAR FAR FF [Y] N AX [EA] AU YEA UP [S] FOR AX [IA] BUT"
+      },
+      "padded": {
+        "n": 1145,
+        "minUncovered": 230,
+        "cost": 9040.98652840809,
+        "costPerRune": 7.8960581034131785,
+        "mapUncovered": 306,
+        "mapWords": 555,
+        "edges": 1745,
+        "preview": "[L] J FOES XI UE [AE] J [T] [X] H [T] S [S] IL WE [Y] N UP LL [EO] FEAR FAR WID N AX [EA] AU YEA UP [S] FOR AX [IA] BUT PA"
+      }
+    },
+    {
+      "chapter": 3,
+      "canonical": {
+        "n": 1729,
+        "minUncovered": 334,
+        "cost": 13842.611908879422,
+        "costPerRune": 8.006137599120544,
+        "mapUncovered": 427,
+        "mapWords": 931,
+        "edges": 2756,
+        "preview": "[X] [I] [X] FOR I [X] FOR C B PA [IA] N FIR [X] IL R [Y] IF ROE [NG] LL [X] [L] I [NG] [I] [T] O J FF [NG] MO TE FLNG [EO]"
+      },
+      "padded": {
+        "n": 1729,
+        "minUncovered": 334,
+        "cost": 13432.063680025381,
+        "costPerRune": 7.76868923078391,
+        "mapUncovered": 423,
+        "mapWords": 886,
+        "edges": 2882,
+        "preview": "[X] [I] [X] FOR I [X] FOR C B PA [IA] N FIR [X] IL R [Y] IF ROE [NG] LL [X] [L] I [NG] [I] [T] O J FF [NG] MO TE FLNG [EO]"
+      }
+    },
+    {
+      "chapter": 4,
+      "canonical": {
+        "n": 1903,
+        "minUncovered": 372,
+        "cost": 15240.77149109923,
+        "costPerRune": 8.008813185023243,
+        "mapUncovered": 476,
+        "mapWords": 1013,
+        "edges": 2980,
+        "preview": "FF I [L] MA [EA] DI UP [L] I FEAR C I AX YE FF [NG] [I] FOG S [AE] J FF [AE] EH [X] CE [X] NY [L] UP [X] HA [IA] L H"
+      },
+      "padded": {
+        "n": 1903,
+        "minUncovered": 372,
+        "cost": 14903.123603596776,
+        "costPerRune": 7.8313839220161725,
+        "mapUncovered": 473,
+        "mapWords": 977,
+        "edges": 3076,
+        "preview": "I [L] MA [EA] DI UP [L] I FEAR C I AX YE FF [NG] [I] FOG S [AE] J FF [AE] EH [X] CE [X] NY [L] UP [X] HA [IA] L H [EA]"
+      }
+    },
+    {
+      "chapter": 5,
+      "canonical": {
+        "n": 1021,
+        "minUncovered": 198,
+        "cost": 7987.963789470186,
+        "costPerRune": 7.823666786944355,
+        "mapUncovered": 237,
+        "mapWords": 545,
+        "edges": 1656,
+        "preview": "I UP FAR [NG] LL [X] [D] LL [I] IS SEA IS NY LL [S] [AE] TM FOR [EA] [EO] J [EO] FAR HI AFT AX UY H MY FAR NE O [IA] FF [IA]"
+      },
+      "padded": {
+        "n": 1021,
+        "minUncovered": 198,
+        "cost": 7795.680486169104,
+        "costPerRune": 7.635338380185215,
+        "mapUncovered": 236,
+        "mapWords": 525,
+        "edges": 1714,
+        "preview": "I UP FAR [NG] LL [X] [D] LL [I] IS SEA IS NY LL [S] [AE] TM FOR [EA] [EO] J [EO] FAR HI AFT AX UY H MY FAR NE O [IA] FF [IA]"
+      }
+    },
+    {
+      "chapter": 6,
+      "canonical": {
+        "n": 1433,
+        "minUncovered": 264,
+        "cost": 11372.66235257703,
+        "costPerRune": 7.936261236969316,
+        "mapUncovered": 344,
+        "mapWords": 750,
+        "edges": 2246,
+        "preview": "TU FTP [S] O UP JE [L] [E] [EO] [I] FOR [L] [L] [S] C IL N H LL I [IA] H I AX FF [D] J I AX HO [AE] FF IL [AE] MEND"
+      },
+      "padded": {
+        "n": 1433,
+        "minUncovered": 264,
+        "cost": 11052.016365166852,
+        "costPerRune": 7.712502697255305,
+        "mapUncovered": 340,
+        "mapWords": 716,
+        "edges": 2337,
+        "preview": "TU FTP [S] O UP JE [L] [E] [EO] [I] FOR [L] [L] [S] C IL N H LL I [IA] H I AX UO J I AX HO [AE] IL [AE] MEND [L] C"
+      }
+    },
+    {
+      "chapter": 7,
+      "canonical": {
+        "n": 1680,
+        "minUncovered": 318,
+        "cost": 13299.027172650985,
+        "costPerRune": 7.916087602768444,
+        "mapUncovered": 425,
+        "mapWords": 863,
+        "edges": 2675,
+        "preview": "[D] FOOL WEDDNG [I] UP UNE WHY FF ND FOE [EA] UP [IA] ULM NY N FUN R O [IA] FOR AT FOR [Y] TOE [T] AS J H [AE] MS [NG] UNE [S] FF"
+      },
+      "padded": {
+        "n": 1680,
+        "minUncovered": 318,
+        "cost": 13084.81235673673,
+        "costPerRune": 7.788578783771863,
+        "mapUncovered": 421,
+        "mapWords": 842,
+        "edges": 2738,
+        "preview": "[D] FOOL WEDDNG [I] UP UNE WHY ND FOE [EA] UP [IA] ULM NY N FUN R O [IA] FOR AT FOR [Y] TOE [T] AS J H [AE] MS [NG] UNE [S] FF [IA]"
+      }
+    },
+    {
+      "chapter": 8,
+      "canonical": {
+        "n": 3008,
+        "minUncovered": 615,
+        "cost": 24153.360567592383,
+        "costPerRune": 8.029707635502787,
+        "mapUncovered": 784,
+        "mapWords": 1547,
+        "edges": 4784,
+        "preview": "FF WEN LL FIG H UP IL [X] [Y] H [EO] [EA] O [E] [T] [NG] [EA] [L] [I] [T] L FF MA C FED C [T] R FOE AFT N [AE] BU UOW P"
+      },
+      "padded": {
+        "n": 3008,
+        "minUncovered": 615,
+        "cost": 23493.816228231735,
+        "costPerRune": 7.810444224811082,
+        "mapUncovered": 776,
+        "mapWords": 1479,
+        "edges": 4985,
+        "preview": "WEN LL FIG H UP IL [X] [Y] H [EO] [EA] O [E] [T] [NG] [EA] [L] [I] [T] L MA C FED C [T] R FOE AFT N [AE] BU UOW P FOE LL"
+      }
+    },
+    {
+      "chapter": 9,
+      "canonical": {
+        "n": 308,
+        "minUncovered": 69,
+        "cost": 2497.3355290154673,
+        "costPerRune": 8.108232237063206,
+        "mapUncovered": 89,
+        "mapWords": 156,
+        "edges": 454,
+        "preview": "UP FOR [NG] [D] [IA] L [X] [I] FOR FLEA IL [NG] I AY FOR [T] UP [NG] [NG] L [IA] FAR [S] H LEO [AE] IL RNG FLNG [I] UP [E] O [T] FAR"
+      },
+      "padded": {
+        "n": 308,
+        "minUncovered": 69,
+        "cost": 2473.2453356765996,
+        "costPerRune": 8.030017323625323,
+        "mapUncovered": 88,
+        "mapWords": 154,
+        "edges": 460,
+        "preview": "UP FOR [NG] [D] [IA] L [X] [I] FOR FLEA IL [NG] I AY FOR [T] UP [NG] [NG] L [IA] FAR [S] H LEO [AE] IL RNG FLNG [I] UP [E] O [T] FAR"
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_warning",
+      "plainWords": 45,
+      "plainRunes": 184,
+      "canonical": {
+        "n": 186,
+        "minUncovered": 0,
+        "cost": 320.83649411804896,
+        "costPerRune": 1.724927387731446,
+        "mapUncovered": 0,
+        "mapWords": 45,
+        "edges": 356,
+        "preview": "A WARNNG BELIEUE NOTHNG FROM THIS BOOC EXCEPT WHAT YOU CNOW TO BE TRUE TEST THE CNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT FOR CHANGE THIS BOOC FOR THE MESSAGE CONTAINED WITHIN",
+        "exactWords": 42,
+        "exactPlainRunes": 178
+      },
+      "padded": {
+        "n": 186,
+        "minUncovered": 0,
+        "cost": 320.83649411804896,
+        "costPerRune": 1.724927387731446,
+        "mapUncovered": 0,
+        "mapWords": 45,
+        "edges": 361,
+        "preview": "A WARNNG BELIEUE NOTHNG FROM THIS BOOC EXCEPT WHAT YOU CNOW TO BE TRUE TEST THE CNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT FOR CHANGE THIS BOOC FOR THE MESSAGE CONTAINED WITHIN",
+        "exactWords": 42,
+        "exactPlainRunes": 178
+      }
+    },
+    {
+      "name": "0_welcome",
+      "plainWords": 124,
+      "plainRunes": 515,
+      "canonical": {
+        "n": 530,
+        "minUncovered": 0,
+        "cost": 896.126753156153,
+        "costPerRune": 1.6908051946342508,
+        "mapUncovered": 0,
+        "mapWords": 124,
+        "edges": 988,
+        "preview": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A NECESSARY ONE ALONG THE WAY",
+        "exactWords": 124,
+        "exactPlainRunes": 515
+      },
+      "padded": {
+        "n": 530,
+        "minUncovered": 0,
+        "cost": 896.126753156153,
+        "costPerRune": 1.6908051946342508,
+        "mapUncovered": 0,
+        "mapWords": 124,
+        "edges": 1006,
+        "preview": "WELCOME WELCOME PILGRIM TO THE GREAT JOURNEY TOWARD THE END OF ALL THNGS IT IS NOT AN EASY TRIP BUT FOR THOSE WHO FIND THEIR WAY HERE IT IS A NECESSARY ONE ALONG THE WAY",
+        "exactWords": 124,
+        "exactPlainRunes": 515
+      }
+    },
+    {
+      "name": "0_wisdom",
+      "plainWords": 31,
+      "plainRunes": 157,
+      "canonical": {
+        "n": 162,
+        "minUncovered": 0,
+        "cost": 307.1208843318144,
+        "costPerRune": 1.895807927974163,
+        "mapUncovered": 0,
+        "mapWords": 31,
+        "edges": 313,
+        "preview": "SOME WISDOM THE PRIMES ARE SACRED THE TOTIENT FUNCTIAN IS SACRED ALL THNGS SHOULD BE ENCRYPTED CNOW THIS SHADOWS AETHEREAL BUFFERS UOID CARNAL OBSCURA FORM MOBIUS ANALOG UOID MOURNFUL AETHEREAL CABAL",
+        "exactWords": 31,
+        "exactPlainRunes": 157
+      },
+      "padded": {
+        "n": 162,
+        "minUncovered": 0,
+        "cost": 307.1208843318144,
+        "costPerRune": 1.895807927974163,
+        "mapUncovered": 0,
+        "mapWords": 31,
+        "edges": 321,
+        "preview": "SOME WISDOM THE PRIMES ARE SACRED THE TOTIENT FUNCTIAN IS SACRED ALL THNGS SHOULD BE ENCRYPTED CNOW THIS SHADOWS AETHEREAL BUFFERS UOID CARNAL OBSCURA FORM MOBIUS ANALOG UOID MOURNFUL AETHEREAL CABAL",
+        "exactWords": 31,
+        "exactPlainRunes": 157
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "plainWords": 208,
+      "plainRunes": 780,
+      "canonical": {
+        "n": 836,
+        "minUncovered": 0,
+        "cost": 1339.9910620238038,
+        "costPerRune": 1.6028601220380427,
+        "mapUncovered": 0,
+        "mapWords": 208,
+        "edges": 1665,
+        "preview": "A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE",
+        "exactWords": 207,
+        "exactPlainRunes": 776
+      },
+      "padded": {
+        "n": 836,
+        "minUncovered": 0,
+        "cost": 1339.9910620238038,
+        "costPerRune": 1.6028601220380427,
+        "mapUncovered": 0,
+        "mapWords": 208,
+        "edges": 1683,
+        "preview": "A COAN A MAN DECIDED TO GO AND STUDY WITH A MASTER HE WENT TO THE DOOR OF THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER THE STUDENT TOLD THE",
+        "exactWords": 207,
+        "exactPlainRunes": 776
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "plainWords": 181,
+      "plainRunes": 755,
+      "canonical": {
+        "n": 782,
+        "minUncovered": 0,
+        "cost": 1338.8653598609812,
+        "costPerRune": 1.7121040407429429,
+        "mapUncovered": 0,
+        "mapWords": 181,
+        "edges": 1594,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN WE CONSUME TOO MUCH BECAUSE WE BELEIUE THE FOLLOWNG TWO ERRORS WITHIN THE DECEPTIAN WE DO NOT HAUE ENOUGH",
+        "exactWords": 179,
+        "exactPlainRunes": 751
+      },
+      "padded": {
+        "n": 782,
+        "minUncovered": 0,
+        "cost": 1338.8653598609812,
+        "costPerRune": 1.7121040407429429,
+        "mapUncovered": 0,
+        "mapWords": 181,
+        "edges": 1635,
+        "preview": "THE LOSS OF DIUINITY THE CIRCUMFERENCE PRACTICES THREE BEHAUIARS WHICH CAUSE THE LOSS OF DIUINITY CONSUMPTIAN WE CONSUME TOO MUCH BECAUSE WE BELEIUE THE FOLLOWNG TWO ERRORS WITHIN THE DECEPTIAN WE DO NOT HAUE ENOUGH",
+        "exactWords": 179,
+        "exactPlainRunes": 751
+      }
+    },
+    {
+      "name": "jpg107-167",
+      "plainWords": 88,
+      "plainRunes": 319,
+      "canonical": {
+        "n": 329,
+        "minUncovered": 0,
+        "cost": 540.5781352407776,
+        "costPerRune": 1.6430946359902054,
+        "mapUncovered": 0,
+        "mapWords": 88,
+        "edges": 717,
+        "preview": "A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE UOICE OF THE CIRCUMFERENCE HE SAID WHEN ASCED BY A STUDENT TO EXPLAIN WHAT THAT MEANT THE MASTER SAID IT IS",
+        "exactWords": 88,
+        "exactPlainRunes": 319
+      },
+      "padded": {
+        "n": 329,
+        "minUncovered": 0,
+        "cost": 540.5781352407776,
+        "costPerRune": 1.6430946359902054,
+        "mapUncovered": 0,
+        "mapWords": 88,
+        "edges": 719,
+        "preview": "A COAN DURNG A LESSON THE MASTER EXPLAINED THE I THE I IS THE UOICE OF THE CIRCUMFERENCE HE SAID WHEN ASCED BY A STUDENT TO EXPLAIN WHAT THAT MEANT THE MASTER SAID IT IS",
+        "exactWords": 88,
+        "exactPlainRunes": 319
+      }
+    },
+    {
+      "name": "jpg229",
+      "plainWords": 18,
+      "plainRunes": 89,
+      "canonical": {
+        "n": 93,
+        "minUncovered": 0,
+        "cost": 147.68624445508533,
+        "costPerRune": 1.5880241339256487,
+        "mapUncovered": 0,
+        "mapWords": 18,
+        "edges": 176,
+        "preview": "AN INSTRUCTIAN CWESTIAN ALL THNGS DISCOUER TRUTH INSIDE YOURSELF FOLLOW YOUR TRUTH IMPOSE NOTHNG ON OTHERS CNOW THIS",
+        "exactWords": 18,
+        "exactPlainRunes": 89
+      },
+      "padded": {
+        "n": 93,
+        "minUncovered": 0,
+        "cost": 147.68624445508533,
+        "costPerRune": 1.5880241339256487,
+        "mapUncovered": 0,
+        "mapWords": 18,
+        "edges": 178,
+        "preview": "AN INSTRUCTIAN CWESTIAN ALL THNGS DISCOUER TRUTH INSIDE YOURSELF FOLLOW YOUR TRUTH IMPOSE NOTHNG ON OTHERS CNOW THIS",
+        "exactWords": 18,
+        "exactPlainRunes": 89
+      }
+    },
+    {
+      "name": "p56_an_end",
+      "plainWords": 25,
+      "plainRunes": 85,
+      "canonical": {
+        "n": 86,
+        "minUncovered": 0,
+        "cost": 175.23203859772383,
+        "costPerRune": 2.0375818441595794,
+        "mapUncovered": 0,
+        "mapWords": 25,
+        "edges": 175,
+        "preview": "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE",
+        "exactWords": 25,
+        "exactPlainRunes": 85
+      },
+      "padded": {
+        "n": 86,
+        "minUncovered": 0,
+        "cost": 175.23203859772383,
+        "costPerRune": 2.0375818441595794,
+        "mapUncovered": 0,
+        "mapWords": 25,
+        "edges": 189,
+        "preview": "AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE",
+        "exactWords": 25,
+        "exactPlainRunes": 85
+      }
+    },
+    {
+      "name": "p57_parable",
+      "plainWords": 20,
+      "plainRunes": 95,
+      "canonical": {
+        "n": 97,
+        "minUncovered": 0,
+        "cost": 163.3461142290681,
+        "costPerRune": 1.6839805590625576,
+        "mapUncovered": 0,
+        "mapWords": 20,
+        "edges": 174,
+        "preview": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE",
+        "exactWords": 20,
+        "exactPlainRunes": 95
+      },
+      "padded": {
+        "n": 97,
+        "minUncovered": 0,
+        "cost": 163.3461142290681,
+        "costPerRune": 1.6839805590625576,
+        "mapUncovered": 0,
+        "mapWords": 20,
+        "edges": 174,
+        "preview": "PARABLE LICE THE INSTAR TUNNELNG TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIUINITY WITHIN AND EMERGE",
+        "exactWords": 20,
+        "exactPlainRunes": 95
+      }
+    }
+  ],
+  "totalOriginal": {
+    "canonicalMinUncovered": 2553,
+    "paddedMinUncovered": 2553,
+    "canonicalCost": 103427.00822521975,
+    "paddedCost": 100970.99840292965
+  },
+  "nulls": [
+    {
+      "canonicalMinUncovered": 2617,
+      "paddedMinUncovered": 2617,
+      "canonicalCost": 104541.82225301155,
+      "paddedCost": 102189.03286524703
+    },
+    {
+      "canonicalMinUncovered": 2669,
+      "paddedMinUncovered": 2669,
+      "canonicalCost": 105046.08712236135,
+      "paddedCost": 102770.37175361012
+    },
+    {
+      "canonicalMinUncovered": 2639,
+      "paddedMinUncovered": 2639,
+      "canonicalCost": 104933.80298809755,
+      "paddedCost": 102550.15379692285
+    },
+    {
+      "canonicalMinUncovered": 2669,
+      "paddedMinUncovered": 2669,
+      "canonicalCost": 104675.21118427425,
+      "paddedCost": 102124.97031829256
+    },
+    {
+      "canonicalMinUncovered": 2655,
+      "paddedMinUncovered": 2655,
+      "canonicalCost": 105269.6680848909,
+      "paddedCost": 102897.73818756323
+    },
+    {
+      "canonicalMinUncovered": 2709,
+      "paddedMinUncovered": 2709,
+      "canonicalCost": 105578.04850879172,
+      "paddedCost": 103213.2798209282
+    },
+    {
+      "canonicalMinUncovered": 2598,
+      "paddedMinUncovered": 2598,
+      "canonicalCost": 104366.01881349302,
+      "paddedCost": 102019.12787296508
+    },
+    {
+      "canonicalMinUncovered": 2584,
+      "paddedMinUncovered": 2584,
+      "canonicalCost": 104150.26617953823,
+      "paddedCost": 101848.70205245141
+    },
+    {
+      "canonicalMinUncovered": 2629,
+      "paddedMinUncovered": 2629,
+      "canonicalCost": 105009.56079185983,
+      "paddedCost": 102546.36196306771
+    },
+    {
+      "canonicalMinUncovered": 2629,
+      "paddedMinUncovered": 2629,
+      "canonicalCost": 104963.5596440326,
+      "paddedCost": 102466.20712165938
+    },
+    {
+      "canonicalMinUncovered": 2627,
+      "paddedMinUncovered": 2627,
+      "canonicalCost": 104822.28994759671,
+      "paddedCost": 102580.97835806858
+    },
+    {
+      "canonicalMinUncovered": 2688,
+      "paddedMinUncovered": 2688,
+      "canonicalCost": 105333.4354945729,
+      "paddedCost": 103004.36524016774
+    },
+    {
+      "canonicalMinUncovered": 2592,
+      "paddedMinUncovered": 2592,
+      "canonicalCost": 104275.62134640722,
+      "paddedCost": 101789.08713777414
+    },
+    {
+      "canonicalMinUncovered": 2610,
+      "paddedMinUncovered": 2610,
+      "canonicalCost": 104278.20337513745,
+      "paddedCost": 101797.31584100376
+    },
+    {
+      "canonicalMinUncovered": 2602,
+      "paddedMinUncovered": 2602,
+      "canonicalCost": 104510.67795653232,
+      "paddedCost": 101926.03683270465
+    },
+    {
+      "canonicalMinUncovered": 2694,
+      "paddedMinUncovered": 2694,
+      "canonicalCost": 105227.62526336982,
+      "paddedCost": 102860.55872208398
+    },
+    {
+      "canonicalMinUncovered": 2563,
+      "paddedMinUncovered": 2563,
+      "canonicalCost": 104217.83752007171,
+      "paddedCost": 101758.6958034228
+    },
+    {
+      "canonicalMinUncovered": 2633,
+      "paddedMinUncovered": 2633,
+      "canonicalCost": 105035.39679961065,
+      "paddedCost": 102580.0491311726
+    },
+    {
+      "canonicalMinUncovered": 2617,
+      "paddedMinUncovered": 2617,
+      "canonicalCost": 104520.90355200609,
+      "paddedCost": 102092.14818186552
+    },
+    {
+      "canonicalMinUncovered": 2692,
+      "paddedMinUncovered": 2692,
+      "canonicalCost": 104807.84732298844,
+      "paddedCost": 102475.3629866898
+    }
+  ]
+}
