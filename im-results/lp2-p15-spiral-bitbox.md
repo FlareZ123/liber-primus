@@ -50,3 +50,27 @@ A smoothed GP29 unigram/bigram/trigram backoff model (one additive unigram pseud
 The spiral's actual positional order can specify a binary permutation, but the ordinary direct receiver is structurally invalid on all examined original frames; the fixed self-contained cycle-walk alternative is a language-negative. The group-preservation theorem also rules out the *universal* closed-domain premise for any nonidentity repeated 16-bit local P-box without an additional representation layer. Do not expand to arbitrary bit positions, per-packet permutations, keyed cyclewalking or unrelated radix layers without a new source selector. The established arithmetic spiral remains intact; no change to the overall plaintext frontier.
 
 Run `node sims/lp2_p15_spiral_bitbox_sft.cjs`. The same function was actually executed in connected V8 on the canonical source corpus and pinned solved-native input (the standalone Node CLI was not independently run). [Full output](lp2-p15-spiral-bitbox-output.json) includes pinned blob SHAs, all 192 direct results, complete cycle-walk outputs and controls.
+
+## Distinct packed-integer BASE29 receiver (Agent5, 26 November)
+
+Unlike the earlier 80-bit fixed-width packing, the historically attested integer BASE29 operation provides a compact carrier for **three** consecutive runes: \(x=841a+29b+c\), with \(0\le x<29^3=24,389<2^{15}\). Zero-extend to 16 bits; apply the same source-selected positional permutation to those bits; decode to exactly three GP29 digits (including leading zeros). The source does not explicitly connect BASE29, three-rune grouping or bit permutation to the p15 prose; this is a distinct proposed typed receiver, not an authenticated instruction.
+
+Test the two reciprocal source directions, both bit-significance conventions, both BASE29 digit orders and all three initial rune phases (24 configurations). Copy unfilled leading/trailing runes. The original contiguous p15 black body through p22 contains 1,883 runes and 627 complete packets at each phase. Select by a native-GP trigram model on the prefix through p21 (1,752 runes, excluding any packet crossing the split), and score the withheld p22 suffix without changing the configuration.
+
+**Direct inverse:** all 24 fail, with at least 286/627 illegal packed integers. Independently enumerate the entire domain: the MSB convention maps just 9,216/24,389 legal inputs directly back to the domain, and the LSB convention maps 12,288/24,389. The reciprocal directions have the same domain-overlap counts.
+
+**Closed-domain inverse:** first-return cycle walking on the same 16-bit permutation restricts it to the packed GP29 integer domain. Exhaustively verify inverse first-return and bit-weight invariance on all 24,389 integers for each of the four direction/bit conventions (97,556 checks), with at most 18 applications. The two MSB directions have 207 fixed points each; the two LSB directions have 54. All 24 full original tapes exactly replay. Across eight native solved prose records and all 24 configurations, all 67,728 aggregate rune positions are recovered exactly. These are fixed-operation controls, not blind key recovery.
+
+| Receiver | Fit nats/rune | Frozen holdout nats/rune |
+|---|---:|---:|
+| Untransformed original (raw full p15–21 / p22) | -5.152076 | -4.985110 |
+| Best packed cycle-walk fit: gather, MSB, reversed digit order, phase 1 | -4.975597 | -5.154554 |
+| Leave-one-record-out native plaintext | -2.742766 to -2.262128 | n/a |
+
+The selected fit is 1,750 runes and its independent suffix begins at offset 1,753 (130 runes); the crossing packet is excluded from both. The decoded text remains incoherent.
+
+**Any-P-box donor obstruction.** Every bit-position permutation, including first-return cycle walking, preserves the Hamming weight of the packed integer. This holds even if an independent secret permutation is chosen for each packet. For each of the two digit orders and three packet phases, compare the exact 627-weight original sequence against every contiguous 1,881-rune window of the pinned normalized Gibran and Shakespeare donor texts. The comparison covers 60,612 Gibran and 215,226 Shakespeare windows per configuration, 1,655,028 comparisons total. None matches; the best still disagrees at 482/627 packet weights. Twelve corresponding planted source-permutation checks preserve all weights. This excludes these two donor texts as exact contiguous plaintext windows under this receiver, not arbitrary English, other representations, reordered packets, or bit-value-changing layers. The high-dimensional weight-sequence mismatch is not independent evidence for or against an arbitrary prose source.
+
+No unknown plaintext, key, or continuation recovered. Retire this direct packed-integer receiver and its source-fixed cycle walk. Do not widen to arbitrary P-boxes or compound layers without a new source-selected operand. The code was executed in connected V8; the standalone CLI was not separately run.
+
+Reproduce: `node sims/lp2_p15_spiral_packed_base29_bitbox_sft.cjs`. [Exact output, all candidate vectors and source blob SHAs](lp2-p15-spiral-packed-base29-bitbox-output.json).
