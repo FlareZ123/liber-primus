@@ -130,6 +130,68 @@ for (const { page, key } of [
   }
 }
 const laterCipher = pages.slice(3, 56).flatMap(p => p.indices).slice(0, 715);
+
+const base60 = JSON.parse(fs.readFileSync(
+  path.join(__dirname, "../resources/liber-primus/base60-grid.json"), "utf8"
+));
+const p50ByteRows = base60.byte_rows.slice(10, 23);
+assert.equal(p50ByteRows.length, 13);
+assert(p50ByteRows.every(row => row.length === 8));
+const p50RowKey = rows[47]; // conditional p3-p57 page-to-row mapping
+const p50DotKey = dotPermutedRows[47];
+const p50KeyVariants = {
+  row47Index: p50RowKey,
+  row47Prime: p50RowKey.map(i => prime[i]),
+  dotRow47Index: p50DotKey,
+  dotRow47Prime: p50DotKey.map(i => prime[i])
+};
+function printableRatio(bytes) {
+  return bytes.filter(x => x >= 32 && x <= 126).length / bytes.length;
+}
+function asciiPreview(bytes) {
+  return bytes.map(x => x >= 32 && x <= 126 ? String.fromCharCode(x) : ".").join("");
+}
+const p50Tests = [];
+for (const [keyName, key] of Object.entries(p50KeyVariants)) {
+  for (const op of ["xor", "minus", "plus"]) {
+    for (const reverse of [false, true]) {
+      const K = reverse ? key.slice().reverse() : key;
+      const out = [];
+      for (let r = 0; r < 13; r++) {
+        for (const byte of p50ByteRows[r]) {
+          const v = K[r];
+          out.push(op === "xor" ? (byte ^ v) :
+            op === "minus" ? ((byte - v + 256) % 256) : ((byte + v) % 256));
+        }
+      }
+      p50Tests.push({
+        keyName, op, reverse,
+        printableRatio: printableRatio(out),
+        asciiPreview: asciiPreview(out)
+      });
+    }
+  }
+}
+const p50RowOrder = p50RowKey.map((v, i) => ({ v, i }))
+  .sort((a, b) => a.v - b.v || a.i - b.i).map(x => x.i);
+const p50Reorders = [];
+for (const [orderName, order] of [
+  ["row47-rank", p50RowOrder],
+  ["dot-route", dotRoutePermutation],
+  ["reverse-dot-route", dotRoutePermutation.slice().reverse()]
+]) {
+  const reordered = order.map(i => p50ByteRows[i]);
+  for (const read of ["row", "column"]) {
+    const out = read === "row" ? reordered.flat() :
+      Array.from({ length: 8 }, (_, col) => reordered.map(row => row[col])).flat();
+    p50Reorders.push({
+      orderName, read,
+      printableRatio: printableRatio(out),
+      asciiPreview: asciiPreview(out)
+    });
+  }
+}
+
 const otpResults = [];
 for (const [keyOrder, key] of [["row-major", payload], ["column-major", colMajor], ["dot-route-row-major", dotPermutedRows.flat()]]) {
   for (const sign of [-1, 1]) {
@@ -159,5 +221,13 @@ process.stdout.write(JSON.stringify({
   },
   pageKeyResults,
   keyedAlphabetResults,
-  oneTimePadResults: otpResults
+  oneTimePadResults: otpResults,
+  p50CrossCarrierGate: {
+    mapping: "conditional p3-p57; p50 -> row47",
+    rowKey: textOf(p50RowKey),
+    base60TableShape: [13, 8],
+    rowPermutation: p50RowOrder,
+    rowwiseByteOperations: p50Tests,
+    rowReorders: p50Reorders
+  }
 }, null, 2) + "\n");

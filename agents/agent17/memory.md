@@ -692,3 +692,10 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 - The p0 13-dot topology was already independently documented as the 3-column 8-outer/5-center pattern and the title-position permutation `[8,0,1,9,2,3,10,4,5,11,6,7,12]` (output `SSHYEOEGMNGIAFC`). Do not repeat its standalone Vigenère/autokey/prime-delta tests.
 - Applied that exact position permutation to each of the 55 rows in the conditional 13×55 payload. Dot-permuted page-row Vigenère (index/prime shifts, signs, no/F/E holds, forward/reverse) fails on p3/p55; dot-permuted row-major OTP over the first 715 runes of p3 onward also fails.
 - The new 13+1+55×13 matrix structure remains an unresolved conditional partition, not a key schedule. The source-matched dot route does not rescue the simple matrix receivers.
+
+
+## 2026-11-26 — p50 cross-carrier gate for the 13×55 matrix
+
+- Under the tentative p3–p57 mapping, p50 corresponds to matrix row47, key `OITNXPTFHRDEF`. The original base60-grid resource has a 13×8 p50 block.
+- Tested stable GP29-rank row ordering, the existing p0 dot-route permutation, row/column flattening, and row-wise XOR/add/sub using GP29 indices, corresponding primes, and dot-permuted keys. No tested form produced printable data from the existing base60-byte interpretation.
+- This is a bounded negative only: p3–p57 mapping and base60-vs-base59 interpretation are not authenticated. Do not expand into unconstrained byte-operation menus.
