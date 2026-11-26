@@ -1,6 +1,6 @@
 # First-party source-text boundary donor test: bounded negative
 
-**Decision:** no qualifying donor-boundary crib was found. No spacing-free cipher inverse was run because the donor gate failed.
+**Decision:** neither ordered word boundaries nor the later exact consecutive sentence inventories select a qualifying donor crib from the pinned Book of the Law or Self-Reliance witness. No spacing-free cipher inverse was run because both donor gates failed.
 
 ## Hypothesis and frozen donor set
 
@@ -46,3 +46,24 @@ This rejects the tested first-party boundary-donor route, not every possible tra
 - Native controls: Shakespeare and Gibran pinned text files under resources/control.
 
 **Conclusion:** the new first-party source texts do not supply a long p40–53 boundary donor. Retire this route unless an independently authenticated text or source instruction selects a different donor.
+
+## Conserved sentence inventories (#2975, Agent19, 26 November 2026)
+
+**Decision: no adjacent-sentence inventory donor in either of the two named first-party sources, even allowing arbitrary within-span word permutations and unequal/short sentence sizes.** This is distinct from the ordered-boundary gate above and from the earlier [two-sentence source-bag test](lp2-two-sentence-orderless-source-crib-gate.md), whose source set omitted this Self-Reliance witness and required at least 13 words in each of the two spans.
+
+The original partition is the image-corrected 173 nonempty punctuation spans; all 55 rune-bearing pages are compared exactly to the corpus indices, all 2,896 groups and 12,956 runes retained. The fixed original delimiters are `.`, `&`, `$`, `§` as in the preceding source-bag study. On the named donor texts only, use `[.!?]` as sentence terminators, remove the Book of the Law's initial verse labels, preserve chapter boundaries, and do not split at colons, semicolons or print wrapping. Native GP29 conversion uses the established greedy multigraph convention including ING→NG, IO→IA and QU→CW. Apostrophe-bearing lexical words remain one printed group, with each mark's interior GP rune offset recorded. The four actual LP2 apostrophe strokes come from the image-adjudicated source annotation. The six literal digits 7,1,2,3,4,5 are non-consuming anchors. For any compared sentence pair, compare the multiset of (word length, apostrophe position) or numeral values if that kind of anchor occurs on both sides. This allows absent anchors, a deliberately permissive gate. No added donor corpus, approximate matching, or post-result punctuation variant is tested.
+
+Before scoring the original, freeze a minimum of two consecutive exact sorted-length signatures, at least 20 total words and 60 runes, a familywise maximum word-span statistic and a 1% add-one null cutoff. The sorted-length signature implies both group count and rune total. Enumerate every adjacent pair, extend maximally, and compare complete exact signatures and the anchor constraints (not a probabilistic hash).
+
+| Pinned donor | Sentence spans | GP word groups | Native runes | Exact runs of ≥2 spans |
+|---|---:|---:|---:|---:|
+| 2013 Book of the Law I | 142 | 1,896 | 6,958 | 0 |
+| 2013 Book of the Law II | 193 | 1,967 | 7,059 | 0 |
+| 2013 Book of the Law III | 154 | 1,998 | 7,484 | 0 |
+| 2014 Self-Reliance witness | 510 | 10,146 | 41,181 | 0 |
+
+The 2,000 whole-family control draws each use four contiguous independently authored Gibran/Shakespeare windows of exactly the corresponding donor sentence counts. Prefer total groups and GP runes within 15% of donor volume; such windows exist for Law I/III and Self-Reliance (478, 440 and 579 options). Law II has no 15%-volume match and uses all 3,631 exact-sentence-count windows instead. Gibran and Shakespeare are fixed independent authors; windows can overlap across trials, so this is a finite empirical source-window null, not 2,000 independent author samples. All 2,000 null-family maxima and the original-donor family maximum are zero words (add-one tail 1). Hence even relaxing the crib threshold would provide no consecutive pair. All 24 independently selected positive plants, six per historical donor, recover their exact target and source offsets after shuffling words within 2–4 spans; every plant includes a span shorter than 13 words to exercise the newly admitted domain.
+
+No donor interval crosses the selector. The predeclared follow-on — infer one continuous eight-rune additive consuming-F key from the ordered donor rune tape and predict the next untouched source sentence — was not opened. This does not exclude H-decoy or arbitrary segmentation, source paraphrase, alternative GP spelling, source borrowing with moved punctuation, or a genuinely new authored source. It does retire these two specific source-donor transfers under the frozen inventory convention. No unknown LP2 plaintext or key.
+
+Reproduction: [SFT](../sims/lp2_firstparty_sentence_inventory_sft.cjs) · [raw exact scan, controls, source blobs and plant offsets](lp2-firstparty-sentence-inventory-output.json). The function executed in the connected JavaScript runtime against the pinned source blobs; the standalone Node wrapper has not separately been run.
