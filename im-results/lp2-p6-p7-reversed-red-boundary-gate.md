@@ -68,3 +68,21 @@ The five printed p7 red words have original-index products modulo29 **[11,26,8,1
 ## Reproduction
 
 The read-only Node 22/CommonJS SFT `sims/lp2_p6_p7_red_boundary_gate_sft.cjs` regenerates every word, the four adjacent-page controls, the conditional probabilities and direct p50 lookups from the canonical repository inputs. It asserts the exact values reported here and logs the complete diagnostic object.
+
+
+## Director #2957: exact arbitrary word-local permutation obstruction
+
+The red pairs themselves refute a positional interpretation of their equal sums. In corresponding length order the p6 and p7 GP0 bags are [6,27,15,17] versus [22,16,2,25] (sum 65) and [14,12] versus [23,3] (sum 26). Both intersections are empty. Even an arbitrary permutation of all six positions cannot map the first six-rune packet to the other. The equality of length and scalar sum therefore does not identify a positional permutation.
+
+For the original 308-rune black interval, an exact necessary condition for **every** value-preserving within-word permutation is a dictionary match of its sorted rune multiset. This does not require choosing a permutation or enumerating factorially many arrangements. Using the canonical transcript, the existing native GP orthographic conversion, and 29,157 parsed lowercase TextBlob entries (27,351 distinct bags), the result is:
+
+| Interval | Complete groups | Runes | Groups >=4 | Long bag hits | All bag hits | Runes in bag hits |
+|---|---:|---:|---:|---:|---:|---:|
+| p6 complete | 25 | 113 | 16 | 0 | 5 | 12 |
+| Cross-page word | 1 | 3 | 0 | 0 | 0 | 0 |
+| p7 complete | 44 | 192 | 24 | 1 | 5 | 14 |
+| Joined | 70 | 308 | 40 | 1 | 10 | 26 |
+
+The one long hit is body offsets [185,189), GP0 [20,27,10,5], admitting dictionary "iliac". The page-spanning three-rune group is [15,8,21]. The independently clear p57 text reproduces all original runes and has 9/12 long bag matches and 17/20 overall; reversing its words preserves each bag exactly. In comparison, no possible word-local permutation on the 308-rune target can exceed 26/308 dictionary-covered runes in this register. The historical fixed 14-column row permutation in the p33 report supplies no rule selecting these length-two and length-four word permutations.
+
+**Decision:** reject the direct red-to-red positional mapping algebraically, and retire pure value-preserving word-local permutation as an ordinary native-English receiver on this interval. The latter conclusion is conditional on printed groups, native orthography and this finite dictionary. It does not exclude an additional value-changing layer, different segmentation, or a non-English plaintext. No new key, plaintext, or source-selected rule. The calculation was executed on canonical resources in V8; standalone CommonJS wrapper [SFT](../sims/lp2_p6_p7_word_bag_gate_sft.cjs) preserves the calculation, but was not separately run through CI.
