@@ -1,0 +1,84 @@
+{
+  "tag": "pad2",
+  "cycles": 141457,
+  "align": 3663262,
+  "full": 91591,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    2,
+    3,
+    6,
+    11,
+    7
+  ],
+  "fit": -3.535722429685684,
+  "held": -3.6641992703307866,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "NOT FACT THE ANTI ALL THE SHOOC WHY FOR OF IN OF MODES EACH OF OF HOME ART EBBNG OF WAS ELY THE MEN OF OF HOLD THE OF AFAR THE SAY IN OF THE ALL AS THESE DOES OF WHEN TIS WHO LET CAN THE IN THE AS THE THAN IS OF IS THE AND THEE THE WAY DOES ROME IS MAST THE IN THAT IN BOAR AND THE TEST THE NAY THEORY OF THEY OF BENDNG YOU BEE NEED AIR TEACH DEATH OF IN YOU IN NOW WHY OF AND TIS HIM AND WAR THESE FEWER SWIFT THREE FAR NOT PLAN IN THE DUTY HIM THE THE AND THE OF READ DATA IN WAR FAITH WEEC EACH AND THE THE LOAF PITY IS WARM NOBLE IF THE IS OF WAR THE EUEN A OF OF THE ACT WITH A HIUE FOOL FROM THEY THE THEIR THEM THE SPIRIT TIS GREASY GRANT MOOD THE CEASE SHE OF WILD BALD THEN BEARNG OF THE HELL REGAL OF WNGS INDIAN HE THE THE GROW OF AND A THE NOW NEW CAN IN HARC BENG WEAR BOTH OF SHUN MOCC MORE IS DON THE CLEAR IF PREY THOU OF AND OFF THE RUIN ITS AS IT THE HIM AWARD OF THE MOOD IS LEAF THEM TWO OF WHO REND SETS IN THE ALL MAY NEW FEEL THE THAT AS HE HELD CLAW LAW IN IS SITS IS DURNG OF CAN ITS DEED IS THE THE EARS YET THAT ALL",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        2,
+        3,
+        6,
+        11,
+        7
+      ],
+      "score": 63.067254812169324,
+      "support": 2,
+      "fit": -3.535722429685684
+    },
+    {
+      "key": [
+        1,
+        2,
+        3,
+        6,
+        17
+      ],
+      "score": 56.86498020982643,
+      "support": 2,
+      "fit": -3.5411527840852193
+    },
+    {
+      "key": [
+        3,
+        5,
+        11,
+        20,
+        19
+      ],
+      "score": 59.4574730685644,
+      "support": 3,
+      "fit": -3.5491240489390377
+    },
+    {
+      "key": [
+        1,
+        20,
+        7,
+        10,
+        20
+      ],
+      "score": 57.20983757639756,
+      "support": 1,
+      "fit": -3.5516739654267715
+    },
+    {
+      "key": [
+        3,
+        19,
+        27,
+        10,
+        28
+      ],
+      "score": 57.119351025052545,
+      "support": 2,
+      "fit": -3.5522522737804296
+    }
+  ]
+}
