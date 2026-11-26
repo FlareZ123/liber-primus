@@ -486,12 +486,28 @@ struct FastSearch : GSearch {
 
  // Direct exact all-key completion at <=3 components. The cap is
  // a scheduling guard, never an exclusion: incomplete enumeration falls back.
+ // With exactly two components, the global first moment forces
+ // their field means to coincide: n0*mu0+n1*mu1=0 and n0+n1=29.
+ // Centering both affine offset sets therefore fixes every relative
+ // translation symbolically, leaving only the original key variables.
+ Graph centerTwo(const Graph&g)const{
+  Graph a=g;array<Vec,N>sum{},mean{};
+  for(int x=0;x<N;x++)sum[g.r[x]]=add(sum[g.r[x]],g.off[x]);
+  for(int r=0;r<N;r++)if(g.size[r])for(int j=0;j<Q;j++)mean[r][j]=aff::mul[sum[r][j]][aff::inv[g.size[r]]];
+  for(int x=0;x<N;x++){a.off[x]=minusv(g.off[x],mean[g.r[x]]);a.r[x]=0;}
+  a.size.fill(0);a.size[0]=N;a.comps=1;
+  return a;
+ }
  bool momentDirect(const Graph&g,GStats&c){
   if(g.comps>3||g.k.d>4)return false;
-  momentCalls++;vector<fixed::Key>keys;KeySlices12 slices(g);
-  if(!slices.enumerate(g,4096,keys,[&]{return stop();}))return stop();
+  momentCalls++;vector<fixed::Key>keys;
+  Graph centered;
+  if(g.comps==2){centered=centerTwo(g);if(!centered.valid())return true;GFilter f(centered);if(f.saturated)return true;}
+  const Graph&a=g.comps==2?centered:g;
+  KeySlices12 slices(a);
+  if(!slices.enumerate(a,4096,keys,[&]{return stop();}))return stop();
   momentComplete++;momentKeys+=keys.size();
-  for(const auto&k:keys){if(stop())break;fastPack(g,k,c);}
+  for(const auto&k:keys){if(stop())break;fastPack(a,k,c);}
   return true;
  }
  void fastDfs(const Graph&g,vector<int>rem,int budget,GStats&c,DomainPointers inherited){
