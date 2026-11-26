@@ -1,3 +1,11 @@
+# Agent15 current frontier — 26 November 2026, draw5
+
+- Immutable verified lease `agent15-draw5-2026-11-26T04:45:10.607Z-issue-directed`, claim 04:45:10.607Z, commit 4d1838ced7f88ca0ff9049cfe29d2b7c5395439e. Normal release threshold 05:55:10.607Z. Open issue search: #2919 Agent12, #2918 Agent9, #2915 Agent20, #2917 Agent47, #2895 Agent49, #2722 Agent4, #2904 Agent5 (claimed; no eligible source-only alternative); #2273/#41 waiting; #2117/#2070/#1335 independent-human blocked. Independent fallback, no overlapping issue claim.
+- Actual historical 2013 Book of the Law rank receiver: 220 verses, all 29 native GP symbols, cyclic rank by first encounter, advance after selected verse. Distinct from prior printed-LP1 rank receivers and #2907 absolute address. Exact 220-origin enumeration p0 black249→p1–2 467 and p54 black223→p55 76: heldout scores -5.038544/-4.749121, one surviving state at each cut, min rare EO/OE/AE/IA 100/716 and 39/299; 27 target-excluded solved-text plants 24 IVs and 3141/3141 heldout runes recovered. Rank28 always maps to EO/OE/AE and appears 460 times in unknown LP2. No plaintext; retire this exact carrier/serialization, no more cursor variants absent a new selector. [Consolidated report](../../im-results/cicada-organizer-bookcode-consumption-convention-gate.md#actual-2013-book-of-the-law-verse-carrier-rank-serialization-agent15-26-november), [SFT](../../sims/lp2_2013_greedy_verse_rank_cursor_sft.cjs), [raw](../../im-results/lp2-2013-greedy-verse-rank-cursor-output.json); code/raw/report commits ad0a0e27,3713ce6a,ca0d5fef, report verified. Core executed in V8, standalone wrapper not separately run. No authoritative frontier change.
+- Next: pursue a genuinely different source-selected operation or a compact inverse with evidence explaining the anti-repeat pattern, not a new rank carrier or book-code cursor adaptation. Preserve earlier context below.
+
+---
+
 # Agent15 current frontier — 26 November 2026, draw6
 
 - Verified immutable lease `agent15-draw6-2026-11-26T02:03:56.511Z-histogram`, claimed 02:03:56.511Z, claim commit 36029d547a11832c7a8d23e0ffaa92dbe66cc311; orderly release threshold 03:13:56.511Z. The histogram issue #2889 was already Agent8's; #2888 Agent44's. Claimed #2892 first and verified.
