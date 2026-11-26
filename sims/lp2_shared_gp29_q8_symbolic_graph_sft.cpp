@@ -4,6 +4,9 @@
 // posting intersections reduce redundant rotational and lexical search.
 // Component translations are packed
 // at residual leaves. Mandatory carry prefix, <=3 of 47 complete words OOV.
+#include <cstdlib>
+#include <fstream>
+#include <sstream>
 #define main previous_line_sft_main
 #include "lp2_red8_minimum_line_reset_sft.cpp"
 #undef main
@@ -163,10 +166,14 @@ struct GSearch{
   for(int i:best){if(stop())return;c.joins++;Graph x;if(extend(g,ds[id].opts[i],x)&&seen.insert(x.sig()).second)dfs(x,rem,b,c);}
   if(b)dfs(g,rem,b-1,c);
  }
- void run(int seconds){deadline=Clock::now()+chrono::seconds(seconds);unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<GStats>stats(n);vector<thread>pool;
-  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seeds.size())break;dfs(seeds[i],order,maxOov,c);if(!found&&!timed)done++;}});
+ void run(int seconds,size_t seedStart=0,size_t seedEnd=SIZE_MAX){
+  if(seedEnd==SIZE_MAX)seedEnd=seeds.size();
+  if(seedStart>seedEnd||seedEnd>seeds.size())throw runtime_error("invalid seed range");
+  next=seedStart;done=0;deadline=Clock::now()+chrono::seconds(seconds);
+  unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<GStats>stats(n);vector<thread>pool;
+  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seedEnd)break;dfs(seeds[i],order,maxOov,c);if(!found&&!timed)done++;}});
   for(auto&t:pool)t.join();for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
-  cout<<"GRAPH SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<seeds.size()<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" OOV="<<answerOov<<endl;
+  cout<<"GRAPH SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" OOV="<<answerOov<<endl;
  }
 };
 bool equalAction(const fixed::Perm&pi,const fixed::Key&k,const fixed::Perm&pj,const fixed::Key&l){auto a=fixed::maps(pi,k),b=fixed::maps(pj,l);for(int r=0;r<Q;r++){bool good=true;for(int j=0;j<Q;j++)good&=a[j]==b[(j+r)%Q];if(good)return true;}return false;}
@@ -206,8 +213,42 @@ bool graphControl(const vector<string>&train,const vector<string>&held,unsigned 
  bool exact=equalAction(s.answer,s.answerKey,p.pi,k),pass=exact&&s.answerOov==0&&tr==47&&hit==17&&unique>=8;
  cout<<"GRAPH CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17 unique="<<unique<<" pass="<<pass<<endl;return pass;
 }
-int main(){try{aff::init();fixed::dictionary();regression();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
- bool a=graphControl(train,held,3301),b=graphControl(train,held,1033);if(!a||!b){cout<<"GRAPH ORIGINAL GATED OFF"<<endl;return 2;}
- GSearch s(train);s.run(1500);if(s.found){auto m=fixed::maps(s.answer,s.answerKey);cout<<"ORIGINAL candidate pi";for(int x:s.answer)cout<<" "<<x;cout<<" k";for(int x:s.answerKey)cout<<" "<<x;cout<<endl;auto h=held;h[0]=train.back()+h[0];for(int i=0;i<int(h.size());i++){auto v=fixed::decode(h[i],m,fixed::dict);cout<<"HOLD "<<i<<" candidates="<<v.size();for(auto&w:v)cout<<" "<<w;cout<<endl;}}
- bool exhausted=!s.found&&!s.timed&&s.done==s.seeds.size();cout<<"GRAPH ORIGINAL exhausted="<<exhausted<<endl;return exhausted?0:1;
+int main(int argc,char**argv){try{
+ bool skipControls=false,controlsOnly=false;size_t seedStart=0,seedEnd=SIZE_MAX;int seconds=1500;
+ for(int i=1;i<argc;i++){
+  string arg=argv[i];
+  auto value=[&]()->string{if(i+1>=argc)throw runtime_error("missing value for "+arg);return string(argv[++i]);};
+  if(arg=="--seed-start")seedStart=stoull(value());
+  else if(arg=="--seed-end")seedEnd=stoull(value());
+  else if(arg=="--seconds")seconds=stoi(value());
+  else if(arg=="--skip-controls")skipControls=true;
+  else if(arg=="--controls-only")controlsOnly=true;
+  else throw runtime_error("unknown argument: "+arg);
+ }
+ if(skipControls&&controlsOnly)throw runtime_error("--skip-controls conflicts with --controls-only");
+ if(seconds<=0)throw runtime_error("--seconds must be positive");
+ aff::init();fixed::dictionary();regression();
+ auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");
+ auto train=fixed::strings(src,"body_groups",src.find("\\"heading_groups\\": ["));
+ auto held=fixed::strings(src,"groups",src.rfind("\\"p55\\""));
+ fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
+ auto writeOutput=[&](const string&text){const char*p=getenv("SFT_OUTPUT");if(p&&*p){ofstream f(p);if(f)f<<text<<endl;}};
+ if(!skipControls){
+  bool a=graphControl(train,held,3301),b=graphControl(train,held,1033);
+  if(controlsOnly){ostringstream o;o<<"{\\"mode\\":\\"controls\\",\\"control_3301\\":"<<(a?"true":"false")<<",\\"control_1033\\":"<<(b?"true":"false")<<",\\"passed\\":"<<((a&&b)?"true":"false")<<"}";writeOutput(o.str());return a&&b?0:2;}
+  if(!a||!b){cout<<"GRAPH ORIGINAL GATED OFF"<<endl;ostringstream o;o<<"{\\"mode\\":\\"original\\",\\"controls_passed\\":false}";writeOutput(o.str());return 2;}
+ }else if(controlsOnly)throw runtime_error("controls-only cannot skip controls");
+ if(controlsOnly)return 0;
+ GSearch s(train);fixed::require(s.seeds.size()==93,"seed count changed; update shard matrix");
+ if(seedEnd==SIZE_MAX)seedEnd=s.seeds.size();
+ fixed::require(seedStart<=seedEnd&&seedEnd<=s.seeds.size(),"seed range outside canonical seed set");
+ s.run(seconds,seedStart,seedEnd);
+ if(s.found){auto m=fixed::maps(s.answer,s.answerKey);cout<<"ORIGINAL candidate pi";for(int x:s.answer)cout<<" "<<x;cout<<" k";for(int x:s.answerKey)cout<<" "<<x;cout<<endl;auto h=held;h[0]=train.back()+h[0];for(int i=0;i<int(h.size());i++){auto v=fixed::decode(h[i],m,fixed::dict);cout<<"HOLD "<<i<<" candidates="<<v.size();for(auto&w:v)cout<<" "<<w;cout<<endl;}}
+ bool shardExhausted=!s.found&&!s.timed&&s.done==seedEnd-seedStart;
+ bool exhausted=shardExhausted&&seedStart==0&&seedEnd==s.seeds.size();
+ cout<<"GRAPH ORIGINAL exhausted="<<exhausted<<" shard_exhausted="<<shardExhausted<<" found="<<s.found<<" timed="<<s.timed<<" seeds="<<s.done<<"/"<<(seedEnd-seedStart)<<" total="<<s.seeds.size()<<endl;
+ ostringstream o;o<<"{\\"mode\\":\\"original\\",\\"seed_start\\":"<<seedStart<<",\\"seed_end\\":"<<seedEnd<<",\\"seed_total\\":"<<s.seeds.size()<<",\\"done\\":"<<s.done.load()<<",\\"found\\":"<<(s.found?"true":"false")<<",\\"timed\\":"<<(s.timed?"true":"false")<<",\\"shard_exhausted\\":"<<(shardExhausted?"true":"false")<<",\\"full_exhausted\\":"<<(exhausted?"true":"false")<<",\\"oov\\":"<<s.answerOov;
+ if(s.found){o<<",\\"pi\\":[";for(int i=0;i<int(s.answer.size());i++){if(i)o<<",";o<<int(s.answer[i]);}o<<"],\\"key\\":[";for(int i=0;i<int(s.answerKey.size());i++){if(i)o<<",";o<<int(s.answerKey[i]);}o<<"]";}
+ o<<"}";writeOutput(o.str());
+ return (s.found||shardExhausted)?0:1;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
