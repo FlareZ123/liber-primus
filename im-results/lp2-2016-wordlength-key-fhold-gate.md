@@ -45,6 +45,18 @@ The best GP29-length output begins:
 
 \`binggjoeff euddw gxio fxa eojc pdsoeyoeiaeeodr eouneoc eooejf\`
 
+## Cross-source 5×23 register hypothesis
+
+The same 29-word core tokenizes to **115 GP29 symbols**. The signed 2013 TCP/DH example independently supplies generator (g=5) and modulus (p=23), so (115=5\times23) suggests a 5×23 register. The locked, source-motivated interpretation tested here fills a 5×23 matrix row-major, orders its 23 columns by the multiplicative powers of 5 modulo23 (the 22 nonzero residues), appends the zero column, then reads each ordered column top-to-bottom. This produces a 115-symbol repeating key. The shared DH value 2 is covered by the full cyclic phase sweep.
+
+| 115-symbol receiver | All 230 sign/phase trials: min / median / mean | Best sign, phase | Best dictionary hits |
+|---|---:|---:|---:|
+| Raw GP29 core sequence | 73 / 93 / 94.23 | (+1, r=49) | **118/2,896 (4.07%)** |
+| DH23-ordered 5×23 sequence | 75 / 94 / 93.67 | (-1, r=82) | **119/2,896 (4.11%)** |
+
+Neither output is English. The 5×23 count is a real cross-source alignment, but the signed DH example does not explicitly instruct this tokenization or matrix reading; the locked candidate fails as a repeating additive key. Do not promote the factorization itself to a decryption claim or search arbitrary zero-column positions/readouts without new evidence.
+
+
 Neither is lexical English. Even the best phase leaves more than 95% of original groups outside the broad control lexicon. The slight lift over the unkeyed 3.04% baseline is not plaintext evidence; the mean across the 58 trials is only 3.23% (Latin) or 3.26% (GP29).
 
 ## Decision and scope
@@ -59,4 +71,4 @@ Run from the repository root:
 
 \`node sims/lp2_2016_wordlength_29key_fhold_gate_sft.cjs\`
 
-The script asserts the exact signed-message core, both length vectors, the original 2,896-group framing, the 12,244-word control lexicon, all 58 sign/phase trials, and the best/unkeyed hit counts.
+The script asserts the exact signed-message core, both length vectors, the raw 115-symbol GP29 sequence, the DH23 power-order 5×23 permutation, the original 2,896-group framing, the 12,244-word control lexicon, all 58 length-key trials and 230 trials for each 115-symbol key, and the best/unkeyed hit counts.
