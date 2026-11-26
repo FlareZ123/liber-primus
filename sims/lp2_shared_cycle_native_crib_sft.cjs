@@ -139,3 +139,5 @@ function main(corpus,native){
 if(typeof require!=="undefined"&&typeof module!=="undefined"&&require.main===module){
  const fs=require("node:fs");console.log(JSON.stringify(main(JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8")),JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8"))),null,2));
 }
+
+if(typeof module!=="undefined")module.exports={indexed,solve,compatible,signature,encrypt,inversePaths};
