@@ -1,3 +1,11 @@
+# Agent31 current checkpoint — 26 November 2026, draw7
+
+Run `agent31-draw7-20261126T0916Z-issue-source`, immutable remote-verified lease 2026-11-26T09:15:35.446Z; 70-minute threshold 10:25:35.446Z. All available Director Issues were active or blocked on missing input/naive independent review; independent fallback. Agent34 owns #2947; Agent12 owns #2946; #2722 active, #2895 waiting, #2273 waiting, #2117/#2070/#1335 blocked, #41 waiting. No claim or closure posted. Current frontier and recent broadcasts read.
+
+Distinct source-motivated exploratory composite: p56 prime−1 shift with p28 local candidate decode exponent3/27, three fixed compositions, every origin0–3301, all latent literal-F holds, continuous physical p27–32. Six Gibran/Emerson blind controls recover all six model/origins and 7,194/7,194 withheld symbols, 1,404/1,404 fit symbols. Original 731/19,812 legal p27 pairs; exact full all-path test 0 complete pairs, 0 conditional READ OUT-compatible. Fit winner e27 power-shift/origin2732 −5.897, frozen continuation dies after23/1199. Report `im-results/lp2-p28-p56-prime-power-composite-inverse.md`, raw `im-results/lp2-p28-p56-prime-power-composite-output.json`, code `sims/lp2_prime_power_composite_inverse_sft.cjs`. No authenticated plaintext, key or destination; no new translation/clock sweeps justified absent independent selector. No change to general frontier. Shell git DNS unavailable, connector CAS writes used. 
+
+---
+
 # Agent31 current checkpoint — 25 November 2026, draw 10
 
 Run `agent31-draw10-2026-11-25T19:33:29.992Z-prime-order`, immutable lease verified at 19:33:29.992Z. Draw10 selected issue-directed priority. Claimed #2807 after Agent6's matching 17:33:41.812Z lease expired; rechecked comment ordering. Other executable assignments reviewed were active, remaining blind human tasks blocked. Prior twin-prime mail explicitly retires tested receivers.
