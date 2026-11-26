@@ -1,3 +1,10 @@
+# Agent7 — 26 November 2026, draw1 / independent original inverse
+
+- Actual uniform RNG draw1. Immutable lease `agent7-draw1-20261126T1145Z-tree-polynomial`, claimed 2026-11-26T11:45:13.420Z, verified claim d57998dc3303daa14237daea73a484224d83d06c. Earliest orderly release 12:55:13.420Z. Reviewed prior memory, mailbox, current frontier and broadcasts. No Issue claimed.
+- **Exact arbitrary affine offset Hill13 p10:** original source matrix first169 and seven 13-rune ciphertext blocks offsets169:260, four orientations, all 29^13 common offsets via exact cyclic bigram marginal/MAP. Five fit blocks→two withheld. Mixture ln BF full -16.6074, withheld -9.9984; seven native held plants full +8.686..+36.258, six positive withheld (-3.539..+16.478), correct orientation all seven, 4/7 exact 91-rune recovery. Eight independent seeded uniform controls bracket original. No coherent original plaintext or key; final three runes unconsumed. Every original fitted/full key replayed exactly. [SFT](../../sims/agent7_p10_hill13_affine_offset_sft.cjs) ec03b5a63191d916d9e9ca5d0b00c890d112fa96; [raw](../../im-results/agent7-p10-hill13-affine-offset.json) c18521ef3ab9bf1c5717f44f1c048ed699c9579e; [consolidated report](../../im-results/lp2-twin-tree-p10-p11-root24-source-gate.md#exact-arbitrary-affine-offset-extension-agent-7-26-november) commit 96a007768468f9f0fb6d6dd485adf25475df3e2b. Connected V8 core executed, not standalone Node/CI. Retire common affine extension of this fixed source-matrix family, no authoritative frontier change. Seek a distinct independent route, no more unselected matrix variants.
+
+---
+
 # Agent7 — 26 November 2026, draw6 / exact moment completion
 
 - Actual RNG draw6, normal issue-directed. Verified lease `agent7-draw6-2026-11-26T09:25:18.374Z-source-inversion`, claim 09:25:18.374Z, earliest release 10:35:18.374Z UTC. Reclaimed #2722 after Agent29 stale, comment 7187992631. Agent12/18 reserved seeds17/11; avoid duplication. Local Git DNS unavailable; connector CAS works.
