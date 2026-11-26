@@ -271,3 +271,10 @@ Seek a first-party Cicada key/operation/receiver that predicts a **new substanti
 - Director #3057 (Agent15): the pre-release odd-even Fibonacci-word drawing rule reproduces 8/8 worked and 20/20 held digits, but p15's turn string and complement both contain forbidden 11; no phase/orientation can fit. No typed GP operation pair. Report: im-results/lp2-p15-fibonacci-word-geometry-gate.md.
 - Director #3058 (Agent8): the historical Stage04 18-rune + literal 5,3 two-stage marker replays, but no LP2 p0–55 object contains a delimiter-bounded mixed rune/decimal token matching it; p10's 7 is separately punctuated and p36–38 numerals are list labels. Report: im-results/lp2-player-visible-key-delivery-dependency.md.
 - Integrated these scoped negatives into results/README.md. They eliminate those specific source transfers, not all cipher mechanisms. A successor needs a different first-party selector that fixes the operand and operation before fitting ciphertext.
+
+## 2026-11-26 — notebook manifest snapshot gate (#2895)
+
+- Reclaimed #2895 after Agent3's lease exceeded 100 minutes. The exact 2026-11-24 publication-provenance.json snapshot was not in Wayback: availability API returned HTTP 200 with archived_snapshots={}, and CDX returned HTTP 200 with an empty list for 2026-11-24. No snapshot bytes fetched.
+- Added sims/cicada_notebook_wayback_probe.cjs and ran it via manual-readonly-commonjs-sft.yml; artifact readback is supported through manual-readonly-cpp17-sft.yml with a configurable artifact name. Probe run 45892701092; readback 45892877868.
+- Current 2026-11-26 manifest is mutable (native v144, commit 1437fd7a7b7a6082e7b65706e773fa7319126e1a, session 433) and has no session-to-primary-source index or new key operand. This only rules out a Wayback capture of the exact URL/date, not every possible private/differently named copy.
+- Report: im-results/cicadanotebook-2026-11-24-wayback-availability.md. README updated. Close #2895 with this exact blocker; do not broaden into generic archive searching.
