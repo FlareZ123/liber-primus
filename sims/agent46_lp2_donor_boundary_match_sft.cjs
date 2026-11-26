@@ -73,7 +73,9 @@ function sampleMatchedWindows(source, wordCount, runeCount, maxSamples = 128) {
   const prefix = new Float64Array(source.length + 1);
   for (let i = 0; i < source.length; i++) prefix[i + 1] = prefix[i] + source[i];
   let tolerance = 0, positions = [];
-  for (const tol of [0, 1, 2, 5, 10, 20]) {
+  const tolerances = [...new Set([0, 1, 2, 5, 10, 20,
+    Math.ceil(runeCount * 0.01), Math.ceil(runeCount * 0.03), Math.ceil(runeCount * 0.05)])];
+  for (const tol of tolerances) {
     positions = [];
     for (let i = 0; i + wordCount <= source.length; i++) {
       if (Math.abs((prefix[i + wordCount] - prefix[i]) - runeCount) <= tol) positions.push(i);
