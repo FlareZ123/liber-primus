@@ -1,6 +1,6 @@
 # Three-trit fractionated Morse: original-alphabet capacity gate
 
-**Current original-cipher decision (26 November 2026).** Agent5's 15 November result for Director Issue #1041 excludes direct fixed-key three-trit fractionated Morse on 54 of 55 unknown rune-bearing LP2 pages by alphabet capacity. Agent14's 18 November original p55 tests add two distinct and explicitly bounded conclusions: the 17 printed p55 word boundaries cannot all correspond to the local conventional Morse double-separator under any secret 26-code assignment; and no complete p55 quotation from ten pinned reference files matches any secret fixed fractionated-Morse alphabet. Agent25's 26 November forbidden-subset bound also rejects a complete stationary homophonic trigraph codebook on every original chapter for letters/digits, and seven chapters even when Morse tokens of length up to eight are allowed. **No unknown plaintext, authentic key, or final destination has been recovered.** The general free-running p55 case remains possible.
+**Current original-cipher decision (26 November 2026).** Agent5's 15 November result for Director Issue #1041 excludes direct fixed-key three-trit fractionated Morse on 54 of 55 unknown rune-bearing LP2 pages by alphabet capacity. Agent14's 18 November original p55 tests add two distinct and explicitly bounded conclusions: the 17 printed p55 word boundaries cannot all correspond to the local conventional Morse double-separator under any secret 26-code assignment; and no complete p55 quotation from ten pinned reference files matches any secret fixed fractionated-Morse alphabet. Agent25's 26 November forbidden-subset bound also rejects a complete stationary homophonic trigraph codebook on every original chapter for letters/digits, and seven chapters even when Morse tokens of length up to eight are allowed. **No unknown plaintext, authentic key, or final destination has been recovered.** The free-running p55 grammar is feasible, but Agent25's calibrated bounded lexical inverse recovered all six planted keys and no original inverse.
 
 ## Why this form is incompatible with the authentic source
 
@@ -76,6 +76,35 @@ Inputs: original canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165;
 
 **Decision:** the previously open stationary complete homophonic three-trit repair cannot support the ordinary Morse register, even with independent chapter-private tables and arbitrary interpage framing. A nonsurjective decoder producing extremely atypical coverage, page-private tables, moving state, inserted separators inside the trigraph stream, other token lengths, and the p55-only sparse case are outside the strongest result. The original punctuation does not establish Morse; there is no justification for a broader key sweep.
 
+## Free-running p55: constructive key recovery and original search (26 November, Agent25)
+
+The exact 76 original p55 runes, including the carried initial rune, use 25 distinct types. Discard all printed word-boundary constraints. Conventional A-Z Morse with x between letters, xx between words, and a stationary injective codebook over the 26 non-xxx trigrams is the receiver.
+
+A grammar-only arc-consistency/DFS search reached its original 120,000-node cap without finding a witness. That is not UNSAT: a separate local SciPy HiGHS one-hot MILP produced a valid codebook with no illegal internal letters. The witness is preserved in the raw results; its decoded output is nonprose (beginning E GKNU MIXS GTP SUMT). The first stochastic annealer also failed calibration, recovering only 1, 4, and 1 of 25 observed codebook entries on three planted controls. Neither failed search is evidence of exclusion.
+
+### Constructive lexical receiver
+
+The C++ implementation constructs word arcs over the 228 trit positions. Each arc intersects 26-bit code domains for all involved original rune types, checks repeated-identity consistency and prunes singleton collisions. Complete words use their ordinary Morse encoding plus xx; the final word may be clipped. The search retains at most 1,000 partial states per trit boundary, ranked by unigram log word frequency. The finite lexicon uses the 5,000 most frequent entries of the repository TextBlob control with non-A/I singletons removed, leaving 4,978 entries; maximum word-plus-separator length is 59 trits.
+
+An initial mixed-prefix search failed clipped-control calibration. The revised search separates the 59 possible initial fragment lengths (0 through 58) and intersects the completed suffix path with a compatible initial word suffix. No true boundary is supplied to this clipped receiver.
+
+| Fixture | True initial fragment | Selected fragment | Observed codes recovered | Trits recovered |
+|---|---:|---:|---:|---:|
+| Gibran aligned 1 | 0 | 0 | 25/25 | 228/228 |
+| Gibran aligned 2 | 0 | 0 | 25/25 | 228/228 |
+| Gibran aligned 3 | 0 | 0 | 25/25 | 228/228 |
+| Gibran clipped 1 | 12 | 12 | 25/25 | 228/228 |
+| Gibran clipped 2 | 9 | 9 | 25/25 | 228/228 |
+| Gibran clipped 3 | 12 | 12 | 25/25 | 228/228 |
+
+The controls use six separate random keys, but two clipped source passages overlap aligned passages, so the six are not independent linguistic samples. The aligned controls receive the aligned boundary; the three clipped controls independently search all 59 starts and each has only one surviving start. Reconstruction refers to observed code entries and actual trits, not to unobserved letters in guessed clipped words.
+
+The identical clipped receiver searched all 59 starts on the original p55: 3,910,806,200 candidate word-arc checks after score pruning, 7,812,961 accepted partial extensions, furthest retained start 137 of 228 trits, zero complete suffix states. No original plaintext or key was recovered. This is a calibrated bounded search negative, **not** an exhaustive all-key impossibility proof. A larger beam or out-of-vocabulary word could change the result; a grammar-valid nonprose key already exists. There is no authenticated clue selecting Morse.
+
+[Constructive C++ receiver](../sims/lp2_p55_fractionated_morse_wordbeam.cpp), [Python fixture/reproduction wrapper](../sims/lp2_p55_fractionated_morse_wordbeam_sft.py), [executed raw results and grammar witness](lp2-p55-fractionated-morse-wordbeam.json), [grammar CSP](../sims/lp2_p55_fractionated_morse_free_running_csp_sft.cjs), [failed annealer](../sims/lp2_p55_fractionated_morse_free_running_anneal_sft.cjs), [annealer output](lp2-p55-fractionated-morse-free-running-anneal.json). The C++ search actually ran locally with the original repository rune sequence and matching normalized lexicon (FNV32 dbba7225); the combined committed reproduction wrapper was not separately executed, and no Windows CI pass is claimed.
+
+**Decision:** stop this exploratory branch absent an independent source selector. Neither arbitrary extra key searches nor interpreting grammatical gibberish as plaintext is justified.
+
 ## Historical selector and boundary of the exclusion
 
 The archived 2013 signed file often named `2013-01-rune-table-morse.asc` is a misleadingly named historical **whitespace binary ASCII** carrier. Its actual four space/tab-only data lines contain 552 bits, interpreted as 69 ASCII bytes; the recovered message names `emiwp4muu2ktwknf.onion`. The already reproducible [historical source audit](lp2-punctuation-2013-original-binary-selector-gate.md) establishes that event and explains that its signed message does not cryptographically authenticate trailing whitespace. It does not select Morse trits for LP2.
@@ -84,4 +113,4 @@ LP2's 138 small four-dot marks, five three-dot marks and larger red ten/thirteen
 
 **Outside the bound:** A nonsurjective or changing-state homophonic alphabet outside the forbidden-subset gates above, explicit escape symbols, position-dependent codebooks, length-four ternary grouping, genuine 5-bit Baconian codes, variable-length Morse fields or an intermediate non-rune alphabet could avoid this cardinality argument. Each needs independent instruction defining its code assignment and page/word clock. Do not rescue the excluded direct scheme with fitted exceptional symbols, or promote an arbitrary such extension without an original-source selector.
 
-**Research decision:** Retire direct standard three-trit fractionated Morse and its complete stationary homophonic extension as whole-manuscript decoders, and the exact print-word-aligned p55 fractionated-Morse subtype. Retire complete original p55 quotations from the named ten donors under a fixed hidden fractionated-Morse alphabet. The free-running p55 case remains mathematically eligible but historically unselected; further expansion requires an authenticated original clue specifying a codebook, source passage, word clock, or reversible transform. Do not repeat unmotivated parameter or quote sweeps.
+**Research decision:** Retire direct standard three-trit fractionated Morse and its complete stationary homophonic extension as whole-manuscript decoders, and the exact print-word-aligned p55 fractionated-Morse subtype. Retire complete original p55 quotations from the named ten donors under a fixed hidden fractionated-Morse alphabet. The free-running p55 case is grammar-feasible, historically unselected, and negative under the calibrated finite lexical receiver; further expansion requires an authenticated original clue specifying a codebook, source passage, word clock, or reversible transform. Do not repeat unmotivated parameter or quote sweeps.
