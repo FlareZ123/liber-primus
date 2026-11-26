@@ -160,7 +160,7 @@ jobs:
           path: im-results/lp2-semantic-running-key-recovery-${{ matrix.index }}.json
 
   semantic-running-key-boundary-profile:
-    if: \${{ inputs.script == 'sims/lp2_semantic_running_key_boundary_profile_sft.py' }}
+    if: ${{ inputs.script == 'sims/lp2_semantic_running_key_boundary_profile_sft.py' }}
     strategy:
       fail-fast: false
       matrix:
@@ -181,10 +181,10 @@ jobs:
           python -m pip install transformers==4.49.0 safetensors==0.5.3
       - name: Profile authentic and rival rune pairs with equal boundary freedom
         run: |
-          python sims/lp2_semantic_running_key_boundary_profile_sft.py --index \${{ matrix.index }}
+          python sims/lp2_semantic_running_key_boundary_profile_sft.py --index ${{ matrix.index }}
       - name: Preserve symmetric boundary-profile evidence
         uses: actions/upload-artifact@v4
         with:
-          name: lp2-semantic-running-key-boundary-profile-\${{ matrix.index }}
-          path: im-results/lp2-semantic-running-key-boundary-profile-\${{ matrix.index }}.json
+          name: lp2-semantic-running-key-boundary-profile-${{ matrix.index }}
+          path: im-results/lp2-semantic-running-key-boundary-profile-${{ matrix.index }}.json
 
