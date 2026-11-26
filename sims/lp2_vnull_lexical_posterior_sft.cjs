@@ -1,9 +1,9 @@
 "use strict";
 const fs=require("node:fs");
 const paths=["resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/orthodox_daily_prayers_pg34981.txt","resources/external/relikd-solved-gp29-native-v1.json"];
-function makeDecoder(raw){
+function makeDecoder(raw,encoding="native"){
  const Q=29,S="F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA".split(" "),tok=S.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length),mod=x=>(x%Q+Q)%Q, id=p=>String.fromCharCode(...p.map(x=>65+x)), supp=1-.664/3.448,lnN=Math.log(supp/28),lnR=Math.log(1-supp),maxWord=20;
- function words(t){t=t.split(/\*\*\* END OF/i)[0].replace(/^.*?\*\*\* START OF[^\n]*\n/is,"");return (t.toUpperCase().match(/[A-Z]+(?:'[A-Z]+)*/g)||[]).map(w=>{w=w.replace(/'/g,"").replace(/QU/g,"CW").replace(/ING/g,"NG").replace(/IO/g,"IA").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let a=[];while(w){let t=tok.find(x=>w.startsWith(x[0]));if(!t)throw Error(w);a.push(t[1]);w=w.slice(t[0].length)}return a})}
+ function words(t){t=t.split(/\*\*\* END OF/i)[0].replace(/^.*?\*\*\* START OF[^\n]*\n/is,"");return (t.toUpperCase().match(/[A-Z]+(?:'[A-Z]+)*/g)||[]).map(w=>{w=w.replace(/'/g,"");if(encoding==="native")w=w.replace(/QU/g,"CW").replace(/ING/g,"NG").replace(/IO/g,"IA");w=w.replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let a=[];while(w){let t=tok.find(x=>w.startsWith(x[0]));if(!t)throw Error(w);a.push(t[1]);w=w.slice(t[0].length)}return a})}
  const a=new Map(),b=new Map(),add=(m,k,v)=>m.set(k,(m.get(k)||0)+v),train=raw.slice(0,2).flatMap(words),cnt=Array.from({length:4},()=>new Map()),ctx=Array.from({length:4},()=>new Map());
  for(const p of train){if(p.length<=maxWord)add(a,id(p),1)}
  for(const l of raw[2].split(/\r?\n/)){let m=l.match(/^([a-z]+)\s+(\d+)$/i);if(m){const p=words(m[1])[0];if(p.length<=maxWord)add(b,id(p),+m[2])}}
