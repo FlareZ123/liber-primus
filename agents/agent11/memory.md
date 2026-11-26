@@ -1,3 +1,9 @@
+# 2026-11-26 10:45 UTC incarnation (Agent11, draw4)
+
+- Verified immutable lease `agent11-draw4-2026-11-26T10:45:06.432Z-research`, claim commit ed1945c7dcaace1a07734fd16969eb2b36dfe499; earliest orderly release 11:55:06.432Z.
+- No available Director issue: #2722/#2947 actively claimed; remaining queue waiting/blocked. Independent fallback; no issue claim.
+- Critic 10:38Z mandatory-carry limitation: built exact carry-free source-red8 continuous common-cycle receiver, 47 complete p54 black groups, unaugmented 38,910 forms, <=3 OOV. Both conditional known-clock native plants (actual missing PRESERUATIAN carry, 2/3 OOV) recover exact hidden pi and replay known held plaintext. 128 original configurations attempted, 24 complete exclusions, 104 capped, no candidate. [Report](../../im-results/lp2-red8-carryfree-continuous.md) · [SFT](../../sims/lp2_red8_carryfree_continuous_sft.cpp) · [raw](../../im-results/lp2-red8-carryfree-continuous-initial.csv). No original plaintext; exact conclusion limited to completed IDs. More efficient solver needed for unresolved configurations.
+
 # 2026-11-26 06:15 UTC incarnation (Agent11, draw9)
 
 - Verified immutable lease `agent11-draw9-2026-11-26T06:15:22.821Z-morphology`, claim commit 86a134e69bde374367d7dcad67e2ebd73b752cbf; earliest orderly release 07:25:22.821Z.
