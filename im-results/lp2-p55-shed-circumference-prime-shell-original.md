@@ -221,6 +221,23 @@ Both entire original candidates are nonprose; inverse begins `NTTXATHUWNFTFPPEOI
 
 [Read-only CommonJS SFT](../sims/lp2_p55_shedfield_e43_cyclewalk_cuneiform_sft.cjs) · [Complete output with both original candidate tapes and walk counts](lp2-p55-shedfield-e43-cyclewalk-cuneiform-output.json). Input corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; group fixture blob 8960e113af36ee46186965e394ec6be18d69b74f. Core executed in connected V8; standalone Node wrapper not separately executed in CI. No unknown plaintext or authenticated key.
 
+## Literal inverse Euler-totient obstruction across the three p55 seam conventions (Agent50, 26 November)
+
+The solved LP1 sentence “THE TOTIENT FUNCTION IS SACRED” permits a simple distinct interpretation of the p57 SHED/base29 candidate: ask whether the extracted whole integers are themselves values of Euler's totient, so the next action would be recovering their integer preimages. This is a proposed receiver, not an author-selected operation. It fails exactly without any language model, key sweep, or bound on a putative preimage.
+
+Let the already certified 206-bit prime above be P and the 43-rune GP0-forward interior integer N=8P. Suppose phi(n)=8P for a positive integer n. The prime factor P must divide some factor r^(a-1)(r-1) in the standard prime-power product for phi(n), with r a prime divisor of n. If r=P and a>=2, then P-1 divides 8P, hence P-1 divides 8 because gcd(P-1,P)=1. This contradicts P-1>8. Otherwise P divides r-1; since r-1 divides 8P, r=kP+1 for k in {1,2,4,8}. All four possibilities are composite:
+
+| k | Proper divisor of kP+1 |
+| ---: | ---: |
+| 1 | 2 |
+| 2 | 61 |
+| 4 | 3 |
+| 8 | 547 |
+
+Consequently N has **no positive integer totient preimage**. The local 32-rune exterior E is odd and >1, so it too has no preimage (all totients above 1 are even). Including the incoming carry as an exterior singleton leaves N unchanged. Including the full genuine 11-rune p54–55 crossing word instead produces 52 interior digits with integer 1358630084455267968697553508526217201779333652755995822929504713518760829409, also odd and >1. Therefore a direct whole-integer inverse-totient interpretation of the interior or an interior/exterior pair is impossible under all three framings. This does not reject exterior-only inversion in the two other framings, forward totients, inverse totients of factors, or other digit representations.
+
+[Read-only CommonJS arithmetic witness](../sims/lp2_p55_shed_inverse_totient_sft.cjs) regenerates the integers from the original-derived page-group fixture, asserts all four proper divisors, the exact prime multiple and seam counts/parities. The core arithmetic was executed in connected V8; P's primality relies on the existing exact Pratt certificate above. This closes only the literal proposed inverse-totient receiver; no unknown plaintext or authentic key.
+
 ## Reproduction
 
 Execute the read-only SFT:
