@@ -1,6 +1,6 @@
-# Original p49/p51 literal 32×8 byte-split receiver: exact keyless obstruction
+# Original p49–51 literal 32×8 byte-split receivers: exact obstructions
 
-**Agent39, 22 November 2026 · Director #2214.** Intermediate original-source result; no unknown plaintext, authentic cipher key or Cicada destination recovered. This original-input test addresses a direct 29-GP-rune input by eight-state byte-packed Mealy interpretation, distinct from the prior autonomous byte graph, eight-tap full-sentence FIR model, and previous-ciphertext-row substitution upper bound.
+**Director #2214 (Agent39, 22 November 2026) and #3033 (Agent6, 26 November 2026).** Both natural assignments of the physical panel axes to inputs and states now fail universal lossless encoding. The earlier 32-input/eight-state GP receiver fails same-byte injectivity; the reverse 32-state/eight-input octal receiver fails even with unlimited delay and a known final state, including collisions on canonical GP29 triples. Neither radix is authenticated. No unknown plaintext, key or destination was recovered. The detailed scopes differ and neither excludes a separately typed address/operand, restricted-language or side-information mechanism.
 
 ## Exact hypothesis
 
@@ -44,3 +44,41 @@ The apparent near-hit on original p49 for the natural radix60 low-five interpret
 Read-only CommonJS SFT: [the original-input test](../sims/lp2_p49_p51_32x8_bitpacked_direct_mealy_sft.cjs). Exact source tables and GP indices are loaded directly from resources/liber-primus; the test asserts the known 256-byte digest, counts, 12 collisions, minimum seven row omissions, all 4,960 candidate alphabets, 128 complete original-decoder applications, and the 16 solved-GP positives. [Passing full dual-flank and all-158,720-state-closure Windows Node22 CI](https://github.com/FlareZ123/liber-primus/actions/runs/45017693865).
 
 **Decision:** stop treating p50 as a literal five-bit GP output/three-bit state lookup or ordinary 29-symbol universally invertible byte-S-box. This is a bounded source-conditional negative. A genuinely competing architecture is **an address/instruction table whose bytes navigate a separately supplied operand** rather than jointly specify plaintext and state. That alternative presently lacks a first-party rule specifying the operand, index-to-address conversion and output serializer. The original complete pre/post-table sentences continue across p48 and p52; this test covers all physical p49 and p51 runes, not those larger sentence spans. Do not manufacture extra phase, row permutations or key texts in response to this failure.
+
+
+## Reverse-axis 32-state octal receiver (#3033)
+
+**Exact decision:** all four fixed interpretations are noninjective from **every** possible starting state, even when the complete output and final state are supplied. This is a distinct receiver from the preceding eight-state GP-letter construction, #1409's relative byte walk and #2576's absent authored instruction. The 32 physical rows are states 0–31, eight columns input digits 0–7; byte `b=T[state,input]` gives either `(next,out)=(b>>3,b&7)` (high-five state) or `(b&31,b>>5)` (low-five state). Decode the printed tokens separately in conventional radix60 and drop-f radix59. No reordering or fitted labels.
+
+**Complete delayed-injectivity test.** A synchronous product vertex is `(s,t,d)`, where `d` records whether the two input paths have ever differed. Start at `(i,i,false)` and follow every pair of input edges that emits the same octal digit. Update `d'=d OR (x!=y)`. Reaching `(j,j,true)` proves distinct same-length inputs with identical output and terminal state; any identical suffix preserves the ambiguity. Breadth-first search over at most 2×32² vertices returns a shortest witness for each seed. A separate reachability test finds all 32 states reachable from every seed in every model (so even a prescribed terminal state can be reached by appending a common suffix). Controls: a binary one-step delay machine outputs its previous state and stores its input; its immediate output collisions are resolved by the final state and the product finds no merged divergence. An immediately lossy constant-output/constant-state machine is correctly rejected.
+
+| Radix | State field | Seeds with shortest collision of length 2 | Length 3 | Reachable states per seed |
+|---|---|---:|---:|---:|
+| 59 | high 5 | 19 | 13 | 32 |
+| 59 | low 5 | 22 | 10 | 32 |
+| 60 | high 5 | 19 | 13 | 32 |
+| 60 | low 5 | 15 | 17 | 32 |
+
+**Canonical GP29 domain strengthening.** Unrestricted octal collisions need not be valid GP29 strings. Freeze the direct MSB-first 15-bit frame: three indices 0–28 packed as five octal inputs; require the output's three five-bit indices also be 0–28. Exhaust all 29³=24,389 input triples for each of 32 seeds and four models (3,121,792 input triples). For each valid output group by (15-bit output, terminal state). All 128 seed/model combinations contain a collision among valid GP inputs and valid GP outputs. Counts of valid output paths and excess preimages (valid paths minus distinct output/state pairs) are exact ranges over the 32 seeds.
+
+| Radix | State field | Valid-output paths per seed | Excess preimages per seed | Largest fiber per seed |
+|---|---|---:|---:|---:|
+| 59 | high 5 | 12,353–20,584 | 1,310–3,352 | 4–9 |
+| 59 | low 5 | 11,335–19,935 | 772–2,850 | 3–8 |
+| 60 | high 5 | 15,008–20,822 | 1,078–2,735 | 3–6 |
+| 60 | low 5 | 13,604–20,564 | 782–2,767 | 3–7 |
+
+Explicit examples at seed zero, indices rather than proposed plaintext:
+
+| Radix | State field | GP input A | GP input B | Identical GP output | Final state |
+|---|---|---|---|---|---:|
+| 59 | high 5 | 0,3,18 | 0,3,28 | 2,12,21 | 10 |
+| 59 | low 5 | 0,2,25 | 0,3,10 | 25,24,22 | 3 |
+| 60 | high 5 | 0,2,24 | 0,4,0 | 15,15,10 | 15 |
+| 60 | low 5 | 0,0,12 | 0,1,20 | 27,14,28 | 16 |
+
+For example, radix60/high-five uses octal paths 00130 and 00200, both emitting 36752 and ending at state15. The state histories are 0→25→13→7→8→15 and 0→25→13→3→13→15. These are actual original-panel transitions, not synthetic tables. Every witness was explicitly forward-replayed.
+
+[Read-only CJS reproducer](../sims/lp2_p50_32state_octal_transducer_sft.cjs) loads both canonical token datasets and requires exact equality. [Complete machine/seed witnesses and counts](lp2-p50-32state-octal-transducer-output.json) record source blobs 4698c0806e6bab06a39cfbc3c3283b862de58b35 and 2550eae357442912220e05dc51147523a61dd75a. The analysis ran on the exact repository inputs in connected JavaScript and independently on a local Node implementation with the same transcribed rows; summaries agree. No Windows CI claimed.
+
+**Director fork:** retire this exact direct octal transducer as a universal lossless receiver. The canonical GP-frame counterexamples do not prove that any particular original ciphertext has multiple *linguistically* valid full-page preimages, nor do they decide alternate bit orders, redundancy, external control or side-information. The proof holds with known initial and terminal states and does not depend on the source-selected IV, so no source-era framing hunt or arbitrary model fitting is needed for this branch. No original unknown rune plaintext tested or recovered.
