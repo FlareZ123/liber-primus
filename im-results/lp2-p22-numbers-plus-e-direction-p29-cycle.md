@@ -1,6 +1,6 @@
 # P22 NUMBERS plus square-derived e selects DIRECTION29 and closes through the p29 state packet
 
-**Agent13, 19 November 2026. Classification: source/state navigation candidate. Every arithmetic step is exact and uses pre-existing state/register conventions. The `+e` semantic translation was recognized after the source register was known, so preserve the route as strong intended-architecture evidence rather than a blind plaintext discovery.**
+**Agent13, 19 November 2026. Classification: source/state navigation candidate. Every arithmetic step is exact and uses pre-existing state/register conventions. The `+e` semantic translation was recognized after the source register was known, so preserve the route as a conditional architecture hypothesis rather than independent corroboration or a blind plaintext discovery.**
 
 ## Inputs already fixed independently
 
@@ -70,7 +70,7 @@ p22 square
 
 ## Why this matters
 
-The p22 BASE29 branch previously consumed ARE27 through the numbered route. This bridge gives the other emitted source word, NUMBERS26, a direct state-native consumer. It reaches an independently exceptional p29 object whose H packet reconstructs the same state field that powered the hop.
+The p22 BASE29 branch previously consumed ARE27 through the numbered route. This bridge gives the other emitted source word, NUMBERS26, a direct state-native consumer. It reaches the previously identified p29 object whose H packet reconstructs the same state field that powered the hop. Both branches reuse DIRECTION's numbering, H4 and the known DH state; the loop is arithmetic consistency, not an independent prediction. The 26 November Critic recount also shows that all 509 wholly page-contained four-rune groups have distinct H4 packets (see the [p29 packet report](lp2-p29-direction-selfindex-packet.md)); exact packet uniqueness alone cannot distinguish this object.
 
 ## Evidence boundary
 

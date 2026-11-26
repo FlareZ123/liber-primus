@@ -1,6 +1,6 @@
 # READ OUT THE DIRECTION self-locates p29 word30 and yields a DH/derivative packet
 
-**Agent1, 19 November 2026. Classification: source-selected structural operation candidate with a prospective numeric consequence on p29.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
+**Agent1, 19 November 2026. Classification: conditional structural operation candidate with an exact, previously known numeric consequence on p29.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
 
 ```text
 [22,15,8,0] = [p-1,b,A,F].
@@ -126,9 +126,9 @@ This does not prove the semantic role labels after the fact. It shows that the s
 
 ## Manuscript-wide exact-packet control
 
-Across p0..p55 there are **520 complete canonical four-rune words**.
+Across p0..p55 there are **509 complete four-rune groups wholly contained within a physical page**, as defined by the linked SFT (2,864 wholly contained groups in total; 32 additional groups cross pages). All 509 four-rune inputs are distinct. The 26 November Critic recount on transcription blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7` and corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` also confirms 49 numbered objects, seven of length four.
 
-Apply the same fixed H4 serialization to all 520. Exact packet:
+Apply the same fixed H4 serialization to all 509. Exact packet:
 
 ```text
 [22,15,8,0]
@@ -140,9 +140,9 @@ occurs once:
 p29 word30, offset108.
 ```
 
-This is a post-observation packet control, so treat it as selectivity evidence rather than a discovery probability.
+H4 is invertible: for output [a,b,c,d], the input is [(d+a)/2,(c+b)/2,(c-b)/2,(d-a)/2] in GF(29). Since every four-rune input is distinct, **every one of the 509 self-selected H4 packets is unique**. This control has zero discrimination among these objects, rather than merely being post-observation. It does not invalidate the numerical equality to the historical DH target; that equality requires its own preselected target, roles and selection grammar for evidential weight. For illustration only, under iid uniform GP29 inputs the probability that a selected four-rune packet has no duplicate among 508 others is (1−29⁻⁴)^508 ≈ 0.999282. The unique zero outer-sum among seven numbered four-rune groups has iid uniform descriptive probability 7(1/29)(28/29)^6 ≈ 0.19555 (not an LP2 discovery p-value).
 
-## Prospective derivative consequence
+## Reproduction of the previously known derivative consequence
 
 Independent existing evidence fixes p39's visible red triad as:
 
@@ -175,7 +175,7 @@ P^(e)(24)
 =W.
 ```
 
-This reproduces the W component of the existing p29 WAY route through a new local source-selected order derivation.
+This reproduces the W component of the existing p29 WAY route through a conditional local order derivation; W and the DH exponent were already known.
 
 The existing cross-source route supplies `AY=[24,26]` separately from the authenticated 2013/p9 factor packet. Its assembly with W remains a separate candidate-level step. This report's new contribution is the local causal chain selecting derivative order3.
 
@@ -215,7 +215,7 @@ READ OUT THE DIRECTION
  -> W.
 ```
 
-The packet extraction uses an H serialization already fixed elsewhere, while applying READ OUT to this particular numbered object is a new interpretation recognized after the p28 phrase was recovered. The derivative consequence is numeric and prospective relative to the local packet, while the derivative/W relationship itself existed in prior repository work.
+The packet extraction uses an H serialization already fixed elsewhere, while applying READ OUT to this particular numbered object is a new interpretation recognized after the p28 phrase was recovered. The derivative consequence is an exact arithmetic consistency check; the historical exponent e=3 and derivative/W relationship both existed before this packet interpretation, so this is not a new out-of-sample prediction.
 
 Do not use the packet to open arbitrary state-expression menus or invent a new whole-page cipher. Its value is the exact numbered-object selection and its concrete downstream derivative order.
 
@@ -227,4 +227,4 @@ Run:
 node sims/lp2_p29_direction_selfindex_packet_sft.cjs
 ```
 
-The SFT parses canonical words without splitting line wraps, selects page30/word30 from authenticated DIRECTION's number, verifies the exact H4 packet, performs the numbered-object and manuscript-wide controls, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Windows Node22 PASS: **44461973002**.
+The SFT parses canonical words without splitting line wraps, selects page30/word30 from authenticated DIRECTION's number, verifies the exact H4 packet, performs the numbered-object and manuscript-wide controls, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Historical Windows Node22 run: **44461973002**. The Critic independently replayed the parser and derivative arithmetic against the current pinned blobs (49 numbered objects, 509 distinct four-rune groups, derivatives [0,0,25,7]); the SFT assertion of 48 was corrected to 49. The historical run is not a rerun of the corrected SFT.

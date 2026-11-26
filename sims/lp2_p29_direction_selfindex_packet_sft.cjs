@@ -232,7 +232,7 @@ for (let page = 0; page <= 55; page += 1) {
     h4: word.values.length === 4 ? H4(word.values) : null,
   });
 }
-assert.equal(numberedObjects.length, 48);
+assert.equal(numberedObjects.length, 49);
 const numberedFourRune = numberedObjects.filter((row) => row.h4);
 assert.equal(numberedFourRune.length, 7);
 const numberedZeroOuterSum = numberedFourRune.filter((row) => row.h4[3] === 0);
@@ -261,6 +261,10 @@ for (const word of fourRuneWords) {
   }
 }
 assert.equal(fourRuneWords.length, 509);
+// H4 is bijective over GF(29)^4. Every observed complete within-page
+// four-rune input is distinct, so exact self-packet uniqueness is automatic.
+const distinctFourRuneInputs = new Set(fourRuneWords.map(w => w.values.join(","))).size;
+assert.equal(distinctFourRuneInputs, 509);
 assert.deepEqual(exactPacketHits, [{
   page: 29,
   ordinal: 30,
@@ -309,6 +313,7 @@ console.log(JSON.stringify({
   },
   manuscriptControl: {
     fourRuneWords: fourRuneWords.length,
+    distinctFourRuneInputs,
     exactPacketHits,
   },
   derivative: {
