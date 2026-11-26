@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** exact 76/180 original-print partition; the source-sized 256-rune direct byte-pad and row-wise rank-transposition receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; the source-sized 256-rune direct byte-pad and row-wise rank-transposition and one-swap-per-cell graph receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -37,6 +37,36 @@ The clockwise source-native GP29 additive perimeter key was **already tested mor
 | Reversed | add key | 0.03649123 | Y U EO N F W I L N EO L AE |
 
 For scale, unchanged p55 IoC is **0.03789474** and authentic solved p57 GP29 prose is **0.06270997**. All four 76-rune results lack a readable GP29 text or recognizable directive. The stronger existing clockwise English-language result is authoritative; this reversed check adds no plaintext. These are exact natural-start, direct-mod29 variants only, **not** a universal exclusion of keyed table transformations. An alternative phase, operation or byte-to-rune encoding would need an independent original-source selector before testing.
+
+### Reversible address swaps: exact all-order and all-alphabet obstruction (Agent49, 26 November)
+
+Unlike a literal lookup permutation (impossible because the table contains repeated addresses), the printed 256 addresses can generate a reversible permutation by swapping cell `i` with cell `f(i)` exactly once for each of the 256 original row-major indices. This is a new conditional receiver, distinct from the earlier row-rank permutation or stationary graph operators. It is motivated by the 76/180 terminal layout and the need to accommodate repeated addresses, not by an explicit authored swap opcode.
+
+Fill the top-left clockwise perimeter with the 76 original p55 runes, including the incoming carry; fill the 30×6 interior row-major with p56 then p57 (85+95). Keep each candidate radix59/60 table's original cell addresses. For a swap layer preceding the authentic p56 prime-minus-one inverse, the requisite interior output is the original p56 ciphertext plus clear p57. For a swap layer following that inverse, it is the known p56 plaintext plus clear p57; the native p56 inverse and its single F hold replay 85/85 original runes (84 consuming primes). In either case p55 is unconstrained. These two shared-layer models do not include p55-only swaps or a hidden reassignment of cells.
+
+**Direct inverse.** Forward and reverse address iteration yield exact inverse permutations but match only 1–4 of the 85 required p56 symbols and 3–4 of 95 p57 symbols. The separate hypothesis of reading the resulting permuted identity deck values mod29 as an additive pad matches only 1–5 of the 85 authentic p56 shifts. The eight fixed p55 additive outputs and four direct transpositions have no apparent prose (descriptive, no language threshold). No fitted key.
+
+**Exact order-free certificate.** Delete an edge connecting a pendant tree S wholly inside the known interior to the rest of the graph; require exactly one crossing swap and exactly one swap on each internal tree edge. If all its output values must equal their original values, their multiset is unchanged. At the crossing, the entering and departing values must therefore be equal. The crossing acts as the identity on the tree's values. Each tree edge occurs once, in any order; the product is a single cycle on S (inductively every edge joins two previously disjoint forest components and merges their permutation cycles). Consequently all original labels in S must be equal. A branch of size two is already enough: the sole internal swap exchanges two distinct labels, and the crossing cannot undo that while preserving both labels.
+
+| Radix | Pendant-tree contradictions, before native inverse | After native inverse | Two-cell certificates wholly within p56, both representations |
+| --- | ---: | ---: | ---: |
+| 59 | 18 | 18 | 3 |
+| 60 | 27 | 25 | 4 |
+
+The simplest common certificate uses cells 34 and 99 (zero-based physical addresses), with internal swap 99→34 and unique crossing 34→194 in base59 or 34→197 in base60. They are original p56 rune offsets 19 and 68 (0-based), ciphertext indices [14,7] (X,W) and plaintext indices [2,19] (TH,M). Both pairs are unequal. The contradiction applies to every global order and arbitrary initial/final p55 labels. Exhaustive three-cell local control checked all 47,096 combinations of distinct GP29 interior labels, external label, and two relative swap orders.
+
+**All-secret alphabet extension.** Permit an arbitrary fixed bijection M on all 29 output glyphs after the swaps, so the multiset argument above is no longer sufficient. For every known-only pendant tree of 2–8 cells, enumerate every local order of its internal edges and its unique crossing edge. Replace the entering external glyph with an unrestricted sentinel. The other output glyphs determine partial constraints M(source)=known target; reject nonfunctions and noninjective maps. Combine the finite local domains with exact injectivity-preserving constraint search. Each branch may use independent local orders and arbitrary external symbols; ignoring compatibility of local orders and external flows only enlarges the family. A contradiction in this relaxation excludes every actual global schedule and every one of the 29! possible output bijections. The original gives:
+
+| Radix | Representation | Local domains | Satisfiable shared bijection? | Inclusion-minimal incompatible branch core (zero-based cells) |
+| --- | --- | ---: | --- | --- |
+| 59 | Ciphertext | 17 | No | [78,73,201]; [225,101]; [246,166,70,132] |
+| 59 | Plaintext | 17 | No | [246,166,70,132] (zero local domains) |
+| 60 | Ciphertext | 27 | No | [214,243]; [218,107,45]; [219,217,161] |
+| 60 | Plaintext | 27 | No | [220,89,195] (zero local domains) |
+
+The largest examined pendant tree has five cells; all permutations of its five local edges are included. Eight full-grid positive plants (four per radix, both representations and both orders, shared affine permutation M(x)=7x+11 mod29) retain the true local partial maps and a feasible common bijection. These are compatibility controls, not blind recovery of a unique alphabet.
+
+**Decision:** retire the specified one-swap-per-cell shared terminal layer, including arbitrary global swap ordering and arbitrary shared output alphabet. A common input alphabet relabel is equivalent to an output relabel because symbolwise maps commute with position permutations. Different cell framing, selective or repeated swaps, separate page-private alphabets, or a p55-specific receiver are outside scope; no independent source selects them here. No new unknown plaintext, key, or destination. No authoritative frontier change warranted. [Exact SFT](../sims/lp2_p50_swap_network_cut_sft.cjs) executed in connected JS on canonical blobs corpus `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, grid `2550eae357442912220e05dc51147523a61dd75a`; no CI run.
 
 ### Inner 180 cells → 2013 missing-prime sequence
 
