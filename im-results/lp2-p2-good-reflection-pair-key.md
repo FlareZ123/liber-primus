@@ -267,3 +267,45 @@ python sims/lp2_p2_marginal_sign_rotation_sft.py resources/liber-primus/19.jpg
 ```
 
 Raw measurements: `im-results/lp2-p2-marginal-sign-rotation-output.json`.
+
+
+## 9. Historical operator audit: H4 is not source-selected (Agent5, 26 November 2026)
+
+The frozen candidate called H4 in #3078 is the paired map
+
+```text
+y = [k0-k3, k1-k2, k1+k2, k0+k3] mod 29
+```
+
+or, on the ordered input vector `[k0,k1,k2,k3]`, the matrix
+
+```text
+[ 1  0  0 -1 ]
+[ 0  1 -1  0 ]
+[ 0  1  1  0 ]
+[ 1  0  0  1 ]
+```
+
+It is mathematically invertible (determinant (4\bmod29)); with (2^{-1}=15\bmod29), its inverse is (k_0=15(y_0+y_3)), (k_3=15(y_3-y_0)), (k_1=15(y_1+y_2)), (k_2=15(y_2-y_1)), all modulo 29. Reversibility establishes a valid construction, not that Cicada selected it.
+
+### Historical worked-source comparison
+
+The source-cited 2012–2016 solve-path records document recognizable, typed operations: ROT−4, OutGuess and explicit book-code coordinates; the 2012 MIDI's note-value-plus-delta-time construction; 2013 BASE29 conversion, participant-run DH, NEXT, packet framing, XOR and Shamir reconstruction; 2014 Vigenère, XOR/seven-column composition, hex/media extraction and OpenPuff. None specifies a four-slot paired sum/difference operation with a declared ring, operand pairing, difference signs and output order. In particular:
+
+- The 2013 signed DH example gives (p=23,g=5) and shared value 2, but its protocol has the participant server choose its base and secret. It specifies modular exponentiation, not a subsequent H4 transform or an organizer-fixed LP2 key.
+- The 2012 MIDI sum is note value plus delta time, followed by sorting distinct sums. It does not produce both sum and difference from mirrored operands.
+- The 2014 Stage03→04 XOR/seven-column composition is a reproducible participant reconstruction, not an author-specified GF29 paired transform. Vigenère and magic-square word sums likewise do not supply H4's paired outputs.
+
+Source syntheses: `im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md` and `workplace/historical-player-solvepath-operator-contract.md`; the signed DH protocol is detailed in `resources/external/2013-tcp-server-signed-source.md`.
+
+### What the LP2 originals actually select
+
+- **p50:** the mirrored botanical drawings select the horizontal table permutation (c\mapsto7-c) on eight printed columns. The source report explicitly limits this to a reflection involution: it gives no arithmetic combiner, start cell or payload receiver. A permutation of columns is not the paired linear mixing above.
+- **p57:** “Shed our own circumferences / Find the divinity within” plausibly motivates an outer/inner distinction, but the source's established LP1 usage is also semantic (the ego/circumference). It does not specify a ring, operand order, plus/minus signs or a four-slot output order.
+- **p2:** the two marginal marks are a near-exact 180° rotational pair (section 8). This is a geometric involution, not an arithmetic instruction; the pair has no privileged origin or mapping to the two H4 outputs.
+
+The missing discriminant is an original, solver-visible instruction or worked source example that fixes **which operands are paired, which ring is used, which member is added/subtracted, and the order of the four outputs**. The originals supply none of those together. Reflection alone cannot distinguish a permutation from XOR, a single difference, or paired sum/difference.
+
+### Decision
+
+No historical solved source independently derives or authenticates the frozen H4 operation. Keep the p2 local candidate conditional; do not expand H4 matrices, slot orders or four-rune phrase searches. Reopen this route only if a first-party source fixes the complete operator contract or a genuinely independent historical worked example transfers with an untouched, source-selected LP2 prediction.
