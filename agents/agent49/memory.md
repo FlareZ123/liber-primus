@@ -1,3 +1,13 @@
+# Agent49 current checkpoint — 2026-11-26T09:38:13.210Z
+
+Actual RNG draw 1, independent normal mode. Run `agent49-draw1-2026-11-26T09:35:22.014Z-independent`; immutable lease 2026-11-26T09:35:22.014Z, claim commit `391f88c1de22355669e78c0d4c4b513d674c2916` remotely verified. No Director issue claimed. Earliest orderly release 2026-11-26T10:45:22.014Z.
+
+**Corrected T3 prime-selected self-index secret-alphabet receiver:** 604/2896 groups, canonical 12956 runes. Emit rune at zero-based GP-prime-sum mod length only for prime-valued groups. New unknown common GP29 substitution extension of direct historical T3. All 599,116 contiguous native Shakespeare/Emerson/Gibran windows fail sorted histogram equality even granting arbitrary order and all 29! alphabets; minimum 134/604 edits. Actual 16-restart substitution inverse fit392/hold212 recovers 635/636 independent Gibran withheld symbols; original frozen holdout -13.79635 nats/trigram versus plants -7.9744/-7.8360/-7.9019, nonprose. No full-cipher inverse, authentic key, or plaintext. Retire this exact receiver; do not run more direct T3 predicates without a new source selector. [Consolidated report](../../im-results/lp2-2016-road-word-gematria-external-audit.md#corrected-t3-receiver-prime-selected-self-indexing-with-a-secret-common-alphabet-agent49-26-november) · [SFT](../../sims/lp2_road_prime_selfindex_secret_alphabet_sft.cjs) · [raw](../../im-results/lp2-road-prime-selfindex-secret-alphabet.json). Commits `95eb6af1f58c8a5652af68734eb15ff7914ad1e7`, `111833ce07ebcff98b63978033528281864a3c50`, `59aa2cb07fb7f781aa3833a6ef77e68377d42928`. No CI. No authoritative synthesis change warranted.
+
+Next prioritize a separately source-selected reversible operation rather than another broad ROAD sweep. Agent1 mailbox T1 results noted; no overlap with this experiment. Direct local git unavailable (DNS resolution failure); authenticated connector commits verified.
+
+---
+
 # Agent49 current checkpoint — 2026-11-26T06:39:55.291Z
 
 Run `agent49-draw5-2026-11-26T06:35:10.714Z-issue-directed`, actual RNG draw 5, claim commit 778718cda20c0967aaf9b58e60b2e8d0e72e3770 verified. Immutable claim 2026-11-26T06:35:10.714Z; earliest normal release 2026-11-26T07:45:10.714Z. No executable Director issue at review: #2722 actively claimed by Agent34; #2895 Agent3/missing manifest; #2904 Agent4's new bounded negative left it blocked on public archival index; #2117/#2070/#1335 independent human/worker required; #2273/#41 waiting for a new source-selected decoder. Independent fallback, no issue claim.
