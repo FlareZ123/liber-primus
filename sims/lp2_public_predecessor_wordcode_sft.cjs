@@ -32,12 +32,12 @@ function main(inputs){
  }
  /** Exact bidirectional consistency; first contradiction determines maximal compatible prefix. */
  function scanner(s){
-  const a=new Int32Array(s.types),at=new Int32Array(s.types),b=new Int32Array(s.numStates*V),bt=new Int32Array(s.numStates*V);let stamp=0;
-  return(P,start)=>{stamp++;let repeats=0;for(let i=0;i<s.n;i++){const c=s.codes[i],p=P[start+i],k=s.states[i]*V+p;
-   if(at[c]===stamp&&a[c]!==p||bt[k]===stamp&&b[k]!==c)return{i,repeats};
-   if(at[c]===stamp&&i>=s.split)repeats++;
+  const a=new Int32Array(s.types),at=new Int32Array(s.types),first=new Int32Array(s.types),b=new Int32Array(s.numStates*V),bt=new Int32Array(s.numStates*V);let stamp=0;
+  return(P,start)=>{stamp++;let repeats=0,withinHoldout=0;for(let i=0;i<s.n;i++){const c=s.codes[i],p=P[start+i],k=s.states[i]*V+p;
+   if(at[c]===stamp&&a[c]!==p||bt[k]===stamp&&b[k]!==c)return{i,repeats,withinHoldout};
+   if(at[c]===stamp){if(i>=s.split){if(first[c]<s.split)repeats++;else withinHoldout++;}}else first[c]=i;
    at[c]=stamp;a[c]=p;bt[k]=stamp;b[k]=c;
-  }return{i:s.n,repeats};};
+  }return{i:s.n,repeats,withinHoldout};};
  }
  function scan(s){const test=scanner(s),rows=[];let total={windows:0,training:0,full:0,bestPrefix:0};
   for(const d of donors){const windows=Math.max(0,d.ids.length-s.n+1);let training=0,full=0,bestPrefix=0,fullOffsets=[],trainOffsets=[];
@@ -53,11 +53,23 @@ function main(inputs){
  const scopes=[spec("book-shared",chapters),spec("book-private-chapter",chapters,true),...chapters.map((ch,i)=>spec("chapter"+(i+1),[ch]))],results=[];
  for(const s of scopes){const orig=scan(s),eligible=donors.filter(d=>d.ids.length>=s.n),plants=[];
   for(let j=0;j<3;j++){const d=eligible[rnd(eligible.length)],start=rnd(d.ids.length-s.n+1),P=d.ids.slice(start,start+s.n),H=plant(s,P),check=scanner(H)(d.ids,start);assert(check.i===s.n,"planted receiver");const q=scan(H);
-   // Exact chosen-offset forward replay follows from both maps; construct negative by duplicating one ciphertext type's plaintext with a different ID.
+   // Reconstruct the state-specific sender dictionary and check exact code-id replay.
+   assert(replay(H,P)===H.n,'forward replay');
    plants.push({donor:d.name,start,trueOffsetRetained:true,training:q.total.training,full:q.total.full,heldRepeatChecks:check.repeats});
   }
   results.push({name:s.name,n:s.n,split:s.split,stateCipherTypes:s.types,observedRepeats:s.n-s.types,...orig,plants});
  }
- return{source:{groups:2896,runes:12956,carries:32,chapterWords:expected},vocabulary:V,results};
+
+ /** Reconstruct the sender dictionary, then replay each state and code type exactly. */
+ function replay(s,P){const enc=new Map();for(let i=0;i<s.n;i++){const k=s.states[i]*V+P[i],c=s.codes[i];if(enc.has(k)&&enc.get(k)!==c)return 0;enc.set(k,c);}
+  return P.reduce((n,p,i)=>n+(enc.get(s.states[i]*V+p)===s.codes[i]),0);}
+ const ch5=scopes.find(s=>s.name==="chapter5"),d=donors.find(d=>d.name==="Self-Reliance"),start=822,P=d.ids.slice(start,start+ch5.n);
+ assert(scanner(ch5)(d.ids,start).i===ch5.n,"isolated original donor compatibility");
+ const candidate={name:d.name,start,replay:replay(ch5,P),heldoutCrossSplitPredictions:scanner(ch5)(d.ids,start).repeats,firstEight:d.words.slice(start,start+8).map(w=>[...w].map(c=>A[R.indexOf(c)]).join("")),lastEight:d.words.slice(start+ch5.n-8,start+ch5.n).map(w=>[...w].map(c=>A[R.indexOf(c)]).join(""))};
+ // Conditional null: permute exactly the observed groups, then recompute predecessor states.
+ const nulls=[];
+ for(let j=0;j<128;j++){const ch=chapters[4].slice();for(let i=ch.length-1;i>0;i--){const k=rnd(i+1);[ch[i],ch[k]]=[ch[k],ch[i]];}const s=spec("chapter5-shuffled",[ch]);const q=scan(s);nulls.push(q.total);}
+ const nullSummary={trials:nulls.length,anyCompatible:nulls.filter(q=>q.full>0).length,compatibleCounts:nulls.map(q=>q.full),totalCompatible:nulls.reduce((n,q)=>n+q.full,0),maxCompatible:Math.max(...nulls.map(q=>q.full)),nulls};
+ return{candidate,nullSummary,source:{groups:2896,runes:12956,carries:32,chapterWords:expected},vocabulary:V,results};
 }
 console.log(JSON.stringify(main(paths.map(p=>fs.readFileSync(p,'utf8'))),null,2));
