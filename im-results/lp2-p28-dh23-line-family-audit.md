@@ -125,7 +125,7 @@ p=23, g=5, a=6, b=15, A=8, B=19, K=2
 e = 15^-1 mod22 = 3.
 ```
 
-The exact GP29 chain is `2^3=8`, `8^3=19`, `19^3=15` modulo29. The same sole hit remains in the stricter **289-variant / 133-line** invertible nontrivial family and the older **60-variant / 31-line** seven-distinct control. This fixes exponent3 from standard DH algebra rather than from candidate English.
+The exact GP29 chain is `2^3=8`, `8^3=19`, `19^3=15` modulo29. The same sole hit remains in the stricter **289-variant / 133-line** invertible nontrivial family and the older **60-variant / 31-line** seven-distinct control. This computes exponent3 from standard DH algebra rather than from candidate English. The GP29 chain is nevertheless a deterministic property of the already known historical tuple, so its uniqueness in the enumerated family does not constitute an independent confirmation of the historical-tuple match or authenticate cross-field exponentiation.
 
 Supporting audit: [`lp2-p28-dh-crossmod-chain-audit.md`](lp2-p28-dh-crossmod-chain-audit.md).
 
@@ -156,7 +156,7 @@ Preserve the p28 DH23 route with a narrower statement:
 - the literal-label alignment has exact length-stratified matched rate **1/120**;
 - the independently visible p50 width **8** resolves the charged line-origin ambiguity in favor of one-based `a=6`, which predicts `A=8` and `K=2`;
 - a predeclared solved-p57 punctuation holdout independently reselects **23** and `EMERGE=83`;
-- the independent 711-variant nontrivial outer-H/count family leaves this p28 state as the sole cross-modulus DH-inverse-chain hit;
+- the 711-variant nontrivial outer-H/count family leaves this p28 state as the sole cross-modulus DH-inverse-chain hit; the chain is intrinsic to the known historical tuple and must not be counted as an independent confirmation of it;
 - the tuple should therefore be described as a **source-constrained LP2-native DH operation/state selector**, not uniquely selected by geometry alone.
 
 This satisfies #1689's positive operation-selector fork. Do not use the tuple-geometry duplicate as a reason to add new parameter permutations or arithmetic. Standard DH still supplies no KDF, GP29 serialization, payload cipher, reset rule, or general unknown-page receiver, so candidate `READ OUT` remains under its separate transform, solved-control, and output-type gates.

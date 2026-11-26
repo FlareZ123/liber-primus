@@ -78,7 +78,7 @@ The useful causal chain is now narrower than a language fit:
 4. that same exponent uniquely closes the labeled `K -> A -> B -> b` chain in GP29 across the nontrivial manuscript-wide source family;
 5. the existing p28 center/page-word action-count transform uses that exponent and yields candidate `READ OUT`.
 
-This is independent evidence for the tuple labeling and cube direction. It does not settle the separate one-based action-count versus zero-index layer convention, and it does not by itself establish READ OUT as recovered plaintext.
+This is a conditional discriminator within the enumerated source family, not independent evidence for the already known historical DH23 tuple. The cross-modulus chain is determined completely by that tuple: a line reconstructed as the historical tuple necessarily passes it. In particular, the 1/711 result is a descriptive family count, not a second independent likelihood factor to combine with the historical-tuple match. Applying the DH inverse exponent to GP29 remains a cross-field receiver hypothesis. It does not settle the separate one-based action-count versus zero-index layer convention, and it does not by itself establish READ OUT as recovered plaintext.
 
 The subsequent p28 page-start result `READ OUT -> HERE` is compatible with this route but was discovered later and is deliberately excluded from this audit.
 
