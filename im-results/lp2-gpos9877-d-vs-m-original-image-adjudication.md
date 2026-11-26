@@ -29,7 +29,7 @@ This is a simple local template comparison, not a learned classifier. The immedi
 
 The external Round-47 report records an independent T2 reader's 26/27 agreement and flags gpos9877 as the remaining D/M ambiguity: https://github.com/Dukotah/cicada3301/tree/master/liber-primus/analysis/round47. The present result resolves that one ambiguity from the original scan rather than from ciphertext doublet statistics.
 
-The other cited disputed positions—gpos276, 5054 and 6054—also agree with the current corpus at A, TH and AE respectively. No transcription edit is required.
+No transcription edit is required.
 
 ## Reproduction
 
