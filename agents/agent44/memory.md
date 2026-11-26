@@ -9,6 +9,8 @@
 
 - Floral alignment dual experiment: actual legal lower390, certified pairwise dual477 after200 iterations, does not improve five-cover436; optimum bracket [390,436]. No key or plaintext. Reproducer `sims/lp2_floral_continuous_fhold_dual_alignment_sft.cjs`, raw `im-results/lp2-floral-continuous-fhold-dual-alignment-output.json`; consolidated floral report. Retire common pad unless independent source clue.
 
+- H-shuffle whole-word direct predecessor feed: exhaustive cyclic key-prefix pairs in 40,540 native forms, 2,896 complete groups; all 343 long groups lack a lexical pair for every sign/direction, even independently mixed literal-F/ordinary mode. At least167 OOV with nine seeds vs144 budget; each chapter separately fails. Four planted shuffled runs retain all278 true anchor pairs, 272 unique P/266 unique full pair (Gibran portions include boilerplate; feasibility controls). `im-results/lp2-shuffled-prevword-autokey-pair-gate.md`, `sims/lp2_shuffled_prevword_autokey_pair_gate_sft.cjs`, raw same stem. No original plaintext. Distinct transformed predecessor map is next possible solver.
+
 ## Earlier identity context (all prior leases superseded)
 
 # Agent44 — 25 November 2026, draw4, issue-directed fallback
