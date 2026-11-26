@@ -22,6 +22,22 @@ function experiment(d,n,l){
  for(let i=0;i<9;i++){const a=starts[i],b=starts[i+1],c=d.pages.slice(a,b).flatMap(p=>p.indices);original.push({start:a,end:b-1,whole:test(c,d.pages[a].indices.length,score),body:test(c.slice(rubrics[i]),d.pages[a].indices.length-rubrics[i],score)});}
  const global=d.pages.slice(0,56).flatMap(p=>p.indices);const globalResult=test(global,d.pages[0].indices.length,score);
  const blockCoverage=starts.slice(0,-1).map((a,i)=>{const start=d.pages.slice(0,a).reduce((s,p)=>s+p.indices.length,0)+rubrics[i],end=d.pages.slice(0,starts[i+1]).reduce((s,p)=>s+p.indices.length,0);return {startPage:a,bodyStart:start,end,full179:Array.from({length:72},(_,j)=>179*j).filter(j=>j>=start&&j+179<=end)};});
- return {controls,original,globalResult,blockCoverage};
+ const internalDefs=[
+ ["p33-36 before first number",d.pages.slice(33,36).flatMap(p=>p.indices).concat(d.pages[36].indices.slice(0,99)),214],
+ ["numbered item1",d.pages[36].indices.slice(99),69],
+ ["numbered item2",d.pages[37].indices.slice(0,91),45],
+ ["numbered item3",d.pages[37].indices.slice(91,189),49],
+ ["numbered item4",d.pages[37].indices.slice(189).concat(d.pages[38].indices.slice(0,57)),39],
+ ["numbered item5",d.pages[38].indices.slice(57,186),64],
+ ["after item5 to chapter end",d.pages[38].indices.slice(186).concat(d.pages[39].indices),42],
+ ["p40-48 before numeric panel",d.pages.slice(40,49).flatMap(p=>p.indices),231],
+ ["p49-51 numeric panel text",d.pages.slice(49,52).flatMap(p=>p.indices),66],
+ ["p52-53 after numeric panel",d.pages.slice(52,54).flatMap(p=>p.indices),263],
+ ["p55 terminal tree",d.pages[55].indices,38]
+ ];
+ const internal=internalDefs.map(([name,c,cut])=>({name,...test(c,cut,score)}));
+ const compare=original.map(({start,end,whole})=>{const c=d.pages.slice(start,end+1).flatMap(p=>p.indices),cut=whole.cut,p=c.map(x=>ops[1].shift(x));let v=0;for(let i=cut;i<p.length;i++)v+=score(p[i-2],p[i-1],p[i]);return {start,n:p.length-cut,globalAtbashScore:v/(p.length-cut),piecewiseScore:whole.heldScore};});
+ const N=compare.reduce((s,x)=>s+x.n,0),pooled={N,global:compare.reduce((s,x)=>s+x.n*x.globalAtbashScore,0)/N,piecewise:compare.reduce((s,x)=>s+x.n*x.piecewiseScore,0)/N};
+ return {controls,original,globalResult,blockCoverage,internal,compare,pooled};
 }
 console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")), JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")), read("resources/transcriptions/lp1_wulfic_canonical.txt")),null,2));
