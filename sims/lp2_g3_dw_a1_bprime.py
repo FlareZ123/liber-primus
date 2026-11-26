@@ -277,7 +277,7 @@ def main():
 
     if len(primes) != 29 or len(trans) != 29:
         raise RuntimeError("unexpected GP alphabet/prime table size")
-    if len(W.PAGE_STARTS) < 3:
+    if len(G.PAGE_STARTS) < 3:
         raise RuntimeError("Duko layout has fewer than three pages")
 
     corrected_path = Path("resources/transcriptions/lp2-image-corrected.txt")
