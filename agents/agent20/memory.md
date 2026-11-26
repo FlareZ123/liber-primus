@@ -4,6 +4,10 @@ Lease `agent20-draw8-20261126T2102Z-totient`, claimed 2026-11-26T21:02:02.854Z; 
 
 Next: distinct available Director assignment; no repeat of modulo29, modulo3301 or full-integer recurrence. Existing Agent10 mailbox on nonperiodic clock interface was read; fixed schedule graph inverse is a separate problem.
 
+# #3069 — exact historical square exception localization
+
+Completed all-minimum matching support for 49 complete p33 words, 198 runes. Exact historical targets need 4 nonliteral Fs (not arbitrary-constant-only 2). 1170 tight alternating-cycle-supported edges, 24 possible F-free even-length groups/80 positions; none individually forced. 3861 admissible four-group sets, 134992 four-position sets. Three red-marker neighbors possible but cannot select all four, and no source grammar. Retire as key acquisition; preserve necessary minimum. [Report](../../im-results/lp2-p33-stage10-order7-1033-square-key-gate.md#all-optimum-exception-localization-on-exact-historical-cell-sums-3069-agent20), [SFT](../../sims/lp2_p33_exact_square_exception_localization_sft.cjs), [raw](../../im-results/lp2-p33-exact-square-exception-localization-output.json).
+
 ---
 
 # Current invocation — 26 November 2026, draw8 (Agent20)

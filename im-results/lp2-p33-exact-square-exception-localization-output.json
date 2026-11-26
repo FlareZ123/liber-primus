@@ -1,0 +1,7917 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/cicada2014-openpuff-magic-squares.txt",
+      "sha": "0cff0a94f16a8603443619b6338def411c9f7bd5"
+    },
+    {
+      "path": "resources/liber-primus/lp2-ink-annotations.json",
+      "sha": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6"
+    }
+  ],
+  "original": {
+    "total": 4,
+    "assignment": [
+      36,
+      25,
+      35,
+      44,
+      6,
+      8,
+      7,
+      10,
+      20,
+      11,
+      12,
+      15,
+      29,
+      42,
+      13,
+      9,
+      19,
+      18,
+      22,
+      21,
+      28,
+      24,
+      23,
+      26,
+      17,
+      34,
+      32,
+      31,
+      27,
+      37,
+      3,
+      40,
+      1,
+      2,
+      30,
+      46,
+      47,
+      33,
+      38,
+      39,
+      14,
+      4,
+      49,
+      16,
+      43,
+      5,
+      45,
+      48,
+      41
+    ],
+    "u": [
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "v": [
+      0,
+      0,
+      -1,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      0,
+      -1,
+      -1,
+      0,
+      -1,
+      -1,
+      0,
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      -1,
+      0,
+      -1,
+      -1,
+      0,
+      -1,
+      0,
+      0,
+      -1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -1,
+      -1,
+      0,
+      0
+    ],
+    "allowedEdges": 1170,
+    "rows": [
+      {
+        "word": 1,
+        "length": 2,
+        "cipher": [
+          12,
+          22
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 2,
+        "length": 9,
+        "cipher": [
+          0,
+          16,
+          18,
+          22,
+          28,
+          24,
+          27,
+          15,
+          6
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 3,
+        "length": 6,
+        "cipher": [
+          26,
+          28,
+          9,
+          2,
+          25,
+          4
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 1
+          },
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 15,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 1
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 35,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 4,
+        "length": 3,
+        "cipher": [
+          3,
+          27,
+          19
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 5,
+        "length": 3,
+        "cipher": [
+          7,
+          14,
+          19
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 6,
+        "length": 5,
+        "cipher": [
+          26,
+          23,
+          17,
+          16,
+          4
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 7,
+        "length": 3,
+        "cipher": [
+          1,
+          11,
+          8
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 8,
+        "length": 2,
+        "cipher": [
+          25,
+          22
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 9,
+        "length": 7,
+        "cipher": [
+          27,
+          21,
+          7,
+          8,
+          15,
+          0,
+          27
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 10,
+        "length": 3,
+        "cipher": [
+          20,
+          2,
+          16
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 11,
+        "length": 3,
+        "cipher": [
+          10,
+          7,
+          16
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 12,
+        "length": 6,
+        "cipher": [
+          3,
+          1,
+          9,
+          7,
+          19,
+          20
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 1
+          },
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 15,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 1
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 35,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 13,
+        "length": 5,
+        "cipher": [
+          15,
+          2,
+          28,
+          7,
+          11
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 14,
+        "length": 8,
+        "cipher": [
+          24,
+          11,
+          25,
+          6,
+          26,
+          19,
+          7,
+          23
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 1
+          },
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 15,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 1
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 35,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 15,
+        "length": 2,
+        "cipher": [
+          13,
+          27
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 16,
+        "length": 3,
+        "cipher": [
+          18,
+          11,
+          7
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 17,
+        "length": 2,
+        "cipher": [
+          18,
+          1
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 18,
+        "length": 2,
+        "cipher": [
+          8,
+          7
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 19,
+        "length": 2,
+        "cipher": [
+          21,
+          10
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 20,
+        "length": 3,
+        "cipher": [
+          15,
+          25,
+          6
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 21,
+        "length": 2,
+        "cipher": [
+          11,
+          20
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 22,
+        "length": 6,
+        "cipher": [
+          23,
+          17,
+          26,
+          27,
+          26,
+          1
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 1
+          },
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 15,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 1
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 35,
+            "value": 456,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 23,
+        "length": 7,
+        "cipher": [
+          26,
+          9,
+          2,
+          4,
+          18,
+          19,
+          10
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 24,
+        "length": 4,
+        "cipher": [
+          12,
+          23,
+          4,
+          7
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 25,
+        "length": 3,
+        "cipher": [
+          14,
+          17,
+          8
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 26,
+        "length": 4,
+        "cipher": [
+          5,
+          11,
+          27,
+          24
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 27,
+        "length": 2,
+        "cipher": [
+          9,
+          7
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 28,
+        "length": 2,
+        "cipher": [
+          9,
+          19
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 29,
+        "length": 3,
+        "cipher": [
+          0,
+          12,
+          10
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 30,
+        "length": 2,
+        "cipher": [
+          12,
+          24
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 31,
+        "length": 4,
+        "cipher": [
+          3,
+          15,
+          17,
+          22
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 32,
+        "length": 2,
+        "cipher": [
+          16,
+          11
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 33,
+        "length": 1,
+        "cipher": [
+          13
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 34,
+        "length": 9,
+        "cipher": [
+          18,
+          13,
+          11,
+          3,
+          7,
+          1,
+          28,
+          21,
+          7
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 35,
+        "length": 8,
+        "cipher": [
+          19,
+          5,
+          3,
+          16,
+          16,
+          0,
+          1,
+          11
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 36,
+        "length": 4,
+        "cipher": [
+          23,
+          28,
+          14,
+          3
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 37,
+        "length": 4,
+        "cipher": [
+          14,
+          2,
+          6,
+          23
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 38,
+        "length": 9,
+        "cipher": [
+          17,
+          3,
+          16,
+          20,
+          12,
+          10,
+          17,
+          27,
+          24
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 39,
+        "length": 5,
+        "cipher": [
+          18,
+          0,
+          28,
+          1,
+          18
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 40,
+        "length": 5,
+        "cipher": [
+          13,
+          15,
+          7,
+          23,
+          23
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 41,
+        "length": 2,
+        "cipher": [
+          15,
+          27
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 42,
+        "length": 4,
+        "cipher": [
+          7,
+          2,
+          23,
+          15
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 43,
+        "length": 2,
+        "cipher": [
+          21,
+          11
+        ],
+        "edges": [
+          {
+            "cell": 1,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 14,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 36,
+            "value": 7,
+            "e": 1
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 49,
+            "value": 7,
+            "e": 1
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 44,
+        "length": 4,
+        "cipher": [
+          20,
+          6,
+          1,
+          27
+        ],
+        "edges": [
+          {
+            "cell": 3,
+            "value": 236,
+            "e": 0
+          },
+          {
+            "cell": 4,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 10,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 13,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 16,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 18,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 19,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 22,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 24,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 26,
+            "value": 270,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 1
+          },
+          {
+            "cell": 28,
+            "value": 16,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 1
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 1
+          },
+          {
+            "cell": 31,
+            "value": 72,
+            "e": 0
+          },
+          {
+            "cell": 32,
+            "value": 114,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 1
+          },
+          {
+            "cell": 34,
+            "value": 232,
+            "e": 0
+          },
+          {
+            "cell": 37,
+            "value": 98,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 1
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 1
+          },
+          {
+            "cell": 40,
+            "value": 14,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 1
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 1
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 1
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 1
+          },
+          {
+            "cell": 46,
+            "value": 190,
+            "e": 0
+          },
+          {
+            "cell": 47,
+            "value": 236,
+            "e": 0
+          }
+        ],
+        "es": [
+          0,
+          1
+        ],
+        "min": 0,
+        "max": 1,
+        "possiblePositions": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "forcedPositions": []
+      },
+      {
+        "word": 45,
+        "length": 3,
+        "cipher": [
+          9,
+          14,
+          0
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 46,
+        "length": 7,
+        "cipher": [
+          4,
+          24,
+          26,
+          19,
+          0,
+          2,
+          8
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 47,
+        "length": 3,
+        "cipher": [
+          4,
+          24,
+          4
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 48,
+        "length": 5,
+        "cipher": [
+          25,
+          24,
+          6,
+          22,
+          23
+        ],
+        "edges": [
+          {
+            "cell": 2,
+            "value": 375,
+            "e": 0
+          },
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 8,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 25,
+            "value": 331,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 42,
+            "value": 351,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 48,
+            "value": 375,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      },
+      {
+        "word": 49,
+        "length": 3,
+        "cipher": [
+          17,
+          19,
+          17
+        ],
+        "edges": [
+          {
+            "cell": 5,
+            "value": 27,
+            "e": 0
+          },
+          {
+            "cell": 6,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 7,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 9,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 11,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 12,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 17,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 20,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 21,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 23,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 27,
+            "value": 65,
+            "e": 0
+          },
+          {
+            "cell": 29,
+            "value": 15,
+            "e": 0
+          },
+          {
+            "cell": 30,
+            "value": 23,
+            "e": 0
+          },
+          {
+            "cell": 33,
+            "value": 121,
+            "e": 0
+          },
+          {
+            "cell": 38,
+            "value": 293,
+            "e": 0
+          },
+          {
+            "cell": 39,
+            "value": 47,
+            "e": 0
+          },
+          {
+            "cell": 41,
+            "value": 223,
+            "e": 0
+          },
+          {
+            "cell": 43,
+            "value": 181,
+            "e": 0
+          },
+          {
+            "cell": 44,
+            "value": 17,
+            "e": 0
+          },
+          {
+            "cell": 45,
+            "value": 27,
+            "e": 0
+          }
+        ],
+        "es": [
+          0
+        ],
+        "min": 0,
+        "max": 0,
+        "possiblePositions": [],
+        "forcedPositions": []
+      }
+    ]
+  },
+  "summary": {
+    "forcedWords": [],
+    "possibleWords": [
+      1,
+      3,
+      8,
+      12,
+      14,
+      15,
+      17,
+      18,
+      19,
+      21,
+      22,
+      24,
+      26,
+      27,
+      28,
+      30,
+      31,
+      32,
+      36,
+      37,
+      41,
+      42,
+      43,
+      44
+    ],
+    "possiblePositions": 80,
+    "forcedPositions": 0,
+    "nonF": 191,
+    "byBlock": [
+      {
+        "block": 1,
+        "words": 21,
+        "runes": 81,
+        "nonF": 79,
+        "possibleWords": 10,
+        "possiblePositions": 34,
+        "forcedWords": 0,
+        "forcedPositions": 0
+      },
+      {
+        "block": 2,
+        "words": 28,
+        "runes": 117,
+        "nonF": 112,
+        "possibleWords": 14,
+        "possiblePositions": 46,
+        "forcedWords": 0,
+        "forcedPositions": 0
+      }
+    ],
+    "offsets": [
+      {
+        "word": 1,
+        "start": 0,
+        "possible": [
+          0,
+          1
+        ],
+        "forced": []
+      },
+      {
+        "word": 2,
+        "start": 2,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 3,
+        "start": 11,
+        "possible": [
+          11,
+          12,
+          13,
+          14,
+          15,
+          16
+        ],
+        "forced": []
+      },
+      {
+        "word": 4,
+        "start": 17,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 5,
+        "start": 20,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 6,
+        "start": 23,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 7,
+        "start": 28,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 8,
+        "start": 31,
+        "possible": [
+          31,
+          32
+        ],
+        "forced": []
+      },
+      {
+        "word": 9,
+        "start": 33,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 10,
+        "start": 40,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 11,
+        "start": 43,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 12,
+        "start": 46,
+        "possible": [
+          46,
+          47,
+          48,
+          49,
+          50,
+          51
+        ],
+        "forced": []
+      },
+      {
+        "word": 13,
+        "start": 52,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 14,
+        "start": 57,
+        "possible": [
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64
+        ],
+        "forced": []
+      },
+      {
+        "word": 15,
+        "start": 65,
+        "possible": [
+          65,
+          66
+        ],
+        "forced": []
+      },
+      {
+        "word": 16,
+        "start": 67,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 17,
+        "start": 70,
+        "possible": [
+          70,
+          71
+        ],
+        "forced": []
+      },
+      {
+        "word": 18,
+        "start": 72,
+        "possible": [
+          72,
+          73
+        ],
+        "forced": []
+      },
+      {
+        "word": 19,
+        "start": 74,
+        "possible": [
+          74,
+          75
+        ],
+        "forced": []
+      },
+      {
+        "word": 20,
+        "start": 76,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 21,
+        "start": 79,
+        "possible": [
+          79,
+          80
+        ],
+        "forced": []
+      },
+      {
+        "word": 22,
+        "start": 81,
+        "possible": [
+          81,
+          82,
+          83,
+          84,
+          85,
+          86
+        ],
+        "forced": []
+      },
+      {
+        "word": 23,
+        "start": 87,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 24,
+        "start": 94,
+        "possible": [
+          94,
+          95,
+          96,
+          97
+        ],
+        "forced": []
+      },
+      {
+        "word": 25,
+        "start": 98,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 26,
+        "start": 101,
+        "possible": [
+          101,
+          102,
+          103,
+          104
+        ],
+        "forced": []
+      },
+      {
+        "word": 27,
+        "start": 105,
+        "possible": [
+          105,
+          106
+        ],
+        "forced": []
+      },
+      {
+        "word": 28,
+        "start": 107,
+        "possible": [
+          107,
+          108
+        ],
+        "forced": []
+      },
+      {
+        "word": 29,
+        "start": 109,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 30,
+        "start": 112,
+        "possible": [
+          112,
+          113
+        ],
+        "forced": []
+      },
+      {
+        "word": 31,
+        "start": 114,
+        "possible": [
+          114,
+          115,
+          116,
+          117
+        ],
+        "forced": []
+      },
+      {
+        "word": 32,
+        "start": 118,
+        "possible": [
+          118,
+          119
+        ],
+        "forced": []
+      },
+      {
+        "word": 33,
+        "start": 120,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 34,
+        "start": 121,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 35,
+        "start": 130,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 36,
+        "start": 138,
+        "possible": [
+          138,
+          139,
+          140,
+          141
+        ],
+        "forced": []
+      },
+      {
+        "word": 37,
+        "start": 142,
+        "possible": [
+          142,
+          143,
+          144,
+          145
+        ],
+        "forced": []
+      },
+      {
+        "word": 38,
+        "start": 146,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 39,
+        "start": 155,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 40,
+        "start": 160,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 41,
+        "start": 165,
+        "possible": [
+          165,
+          166
+        ],
+        "forced": []
+      },
+      {
+        "word": 42,
+        "start": 167,
+        "possible": [
+          167,
+          168,
+          169,
+          170
+        ],
+        "forced": []
+      },
+      {
+        "word": 43,
+        "start": 171,
+        "possible": [
+          171,
+          172
+        ],
+        "forced": []
+      },
+      {
+        "word": 44,
+        "start": 173,
+        "possible": [
+          173,
+          174,
+          175,
+          176
+        ],
+        "forced": []
+      },
+      {
+        "word": 45,
+        "start": 177,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 46,
+        "start": 180,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 47,
+        "start": 187,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 48,
+        "start": 190,
+        "possible": [],
+        "forced": []
+      },
+      {
+        "word": 49,
+        "start": 195,
+        "possible": [],
+        "forced": []
+      }
+    ],
+    "types": [
+      {
+        "n": 2,
+        "words": [
+          0,
+          7,
+          14,
+          16,
+          17,
+          18,
+          20,
+          26,
+          27,
+          29,
+          31,
+          40,
+          42
+        ]
+      },
+      {
+        "n": 4,
+        "words": [
+          23,
+          25,
+          30,
+          35,
+          36,
+          41,
+          43
+        ]
+      },
+      {
+        "n": 6,
+        "words": [
+          2,
+          11,
+          21
+        ]
+      },
+      {
+        "n": 8,
+        "words": [
+          13
+        ]
+      }
+    ],
+    "compositions": [
+      {
+        "ks": [
+          0,
+          0,
+          3,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "1",
+        "nPositions": "1728"
+      },
+      {
+        "ks": [
+          0,
+          1,
+          2,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "21",
+        "nPositions": "24192"
+      },
+      {
+        "ks": [
+          0,
+          1,
+          3,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "7",
+        "nPositions": "6048"
+      },
+      {
+        "ks": [
+          0,
+          2,
+          1,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "63",
+        "nPositions": "48384"
+      },
+      {
+        "ks": [
+          0,
+          2,
+          2,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "63",
+        "nPositions": "36288"
+      },
+      {
+        "ks": [
+          0,
+          3,
+          0,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "35",
+        "nPositions": "17920"
+      },
+      {
+        "ks": [
+          0,
+          3,
+          1,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "105",
+        "nPositions": "40320"
+      },
+      {
+        "ks": [
+          0,
+          4,
+          0,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "35",
+        "nPositions": "8960"
+      },
+      {
+        "ks": [
+          1,
+          0,
+          2,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "39",
+        "nPositions": "22464"
+      },
+      {
+        "ks": [
+          1,
+          0,
+          3,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "13",
+        "nPositions": "5616"
+      },
+      {
+        "ks": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "273",
+        "nPositions": "104832"
+      },
+      {
+        "ks": [
+          1,
+          1,
+          2,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "273",
+        "nPositions": "78624"
+      },
+      {
+        "ks": [
+          1,
+          2,
+          0,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "273",
+        "nPositions": "69888"
+      },
+      {
+        "ks": [
+          1,
+          2,
+          1,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "819",
+        "nPositions": "157248"
+      },
+      {
+        "ks": [
+          1,
+          3,
+          0,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "455",
+        "nPositions": "58240"
+      },
+      {
+        "ks": [
+          2,
+          0,
+          1,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "234",
+        "nPositions": "44928"
+      },
+      {
+        "ks": [
+          2,
+          0,
+          2,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "234",
+        "nPositions": "33696"
+      },
+      {
+        "ks": [
+          2,
+          1,
+          0,
+          1
+        ],
+        "feasible": false,
+        "nGroups": "546",
+        "nPositions": "69888"
+      },
+      {
+        "ks": [
+          2,
+          1,
+          1,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "1638",
+        "nPositions": "157248"
+      },
+      {
+        "ks": [
+          2,
+          2,
+          0,
+          0
+        ],
+        "feasible": false,
+        "nGroups": "1638",
+        "nPositions": "104832"
+      },
+      {
+        "ks": [
+          3,
+          0,
+          0,
+          1
+        ],
+        "feasible": true,
+        "nGroups": "286",
+        "nPositions": "18304"
+      },
+      {
+        "ks": [
+          3,
+          0,
+          1,
+          0
+        ],
+        "feasible": true,
+        "nGroups": "858",
+        "nPositions": "41184"
+      },
+      {
+        "ks": [
+          3,
+          1,
+          0,
+          0
+        ],
+        "feasible": true,
+        "nGroups": "2002",
+        "nPositions": "64064"
+      },
+      {
+        "ks": [
+          4,
+          0,
+          0,
+          0
+        ],
+        "feasible": true,
+        "nGroups": "715",
+        "nPositions": "11440"
+      }
+    ],
+    "groupSets": "3861",
+    "positionSets": "134992",
+    "redAdjacent": {
+      "positions": [
+        0,
+        80,
+        81
+      ],
+      "nonF": 3,
+      "possible": 3
+    },
+    "lineEndpoints": {
+      "positions": [
+        0,
+        7,
+        8,
+        23,
+        24,
+        41,
+        42,
+        64,
+        65,
+        80,
+        81,
+        91,
+        92,
+        109,
+        110,
+        127,
+        128,
+        149,
+        150,
+        171,
+        172,
+        195
+      ],
+      "nonF": 21,
+      "possible": 7
+    },
+    "blockEndpoints": {
+      "positions": [
+        0,
+        80,
+        81,
+        197
+      ],
+      "nonF": 4,
+      "possible": 3
+    },
+    "carry": {
+      "positions": [
+        195,
+        196,
+        197
+      ],
+      "nonF": 3,
+      "possible": 0
+    }
+  },
+  "positive": {
+    "total": 0
+  }
+}
