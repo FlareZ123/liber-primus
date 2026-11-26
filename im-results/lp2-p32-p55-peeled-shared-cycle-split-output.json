@@ -1,0 +1,126 @@
+{
+  "sourceCommit": "8bfaec540a9f8cb00559c812e6224668c094727d",
+  "sourceBlob": "a7b68ffab9c218a0f047e3673d0e22075b7acca7",
+  "localSourceEquivalence": {
+    "method": "FNV64 after removing line comments and whitespace",
+    "hash": "bcefc5597e4b99c2",
+    "length": 13434
+  },
+  "execution": "local g++ -std=c++17 -O3 -march=native, assertions enabled; 30000000 2 1 1 originals; modes 20..23 instead of 1 for individual controls",
+  "input": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "donor": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "original": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "len": 76,
+      "nodes": 400029,
+      "spaces": 41419,
+      "plans": 6,
+      "seconds": 0.809459,
+      "permutations": 0,
+      "validPaths": 0,
+      "keyPathAssignments": 0,
+      "stopped": false
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "len": 75,
+      "nodes": 2004091,
+      "spaces": 173690,
+      "plans": 7,
+      "seconds": 3.86925,
+      "permutations": 0,
+      "validPaths": 0,
+      "keyPathAssignments": 0,
+      "stopped": false
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "len": 76,
+      "nodes": 678408,
+      "spaces": 47681,
+      "plans": 6,
+      "seconds": 1.41772,
+      "permutations": 0,
+      "validPaths": 0,
+      "keyPathAssignments": 0,
+      "stopped": false
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "len": 75,
+      "nodes": 6359248,
+      "spaces": 502668,
+      "plans": 7,
+      "seconds": 13.3961,
+      "permutations": 0,
+      "validPaths": 0,
+      "keyPathAssignments": 0,
+      "stopped": false
+    }
+  ],
+  "controls": [
+    {
+      "qa": 8,
+      "qb": 13,
+      "len": 76,
+      "nodes": 1999204,
+      "spaces": 215410,
+      "permutations": 4,
+      "validPaths": 8,
+      "keyPathAssignments": 40,
+      "plans": 21,
+      "seconds": 6.53977,
+      "truthFound": true,
+      "stopped": false
+    },
+    {
+      "qa": 8,
+      "qb": 13,
+      "len": 75,
+      "nodes": 4814935,
+      "spaces": 137986,
+      "permutations": 8,
+      "validPaths": 32,
+      "keyPathAssignments": 176,
+      "plans": 22,
+      "seconds": 4.33025,
+      "truthFound": true,
+      "stopped": false
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "len": 76,
+      "nodes": 21324725,
+      "spaces": 1822086,
+      "permutations": 2,
+      "validPaths": 2,
+      "keyPathAssignments": 9,
+      "plans": 48,
+      "seconds": 45.3141,
+      "truthFound": true,
+      "stopped": false
+    },
+    {
+      "qa": 13,
+      "qb": 8,
+      "len": 75,
+      "nodes": 9058554,
+      "spaces": 623057,
+      "permutations": 4,
+      "validPaths": 16,
+      "keyPathAssignments": 68,
+      "plans": 31,
+      "seconds": 27.3722,
+      "truthFound": true,
+      "stopped": false
+    }
+  ]
+}
