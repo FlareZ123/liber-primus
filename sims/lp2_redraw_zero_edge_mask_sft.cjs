@@ -25,7 +25,7 @@ return {ll,phase:Array.from(a)}}
 function iid(d,r){let n=d.filter(x=>x===0).length;return (n?n*Math.log(r*29):0)+(d.length-n? (d.length-n)*Math.log((1-r)*29/28):0)}
 const catalog=[8,13].flatMap(q=>masks(q).flatMap(Z=>[0.8,1].map(s=>({q,Z,s}))));
 function blind(d,cut,truth){let tr=d.slice(0,cut),ho=d.slice(cut),r=tr.filter(x=>x===0).length/tr.length;let candidates=catalog.map(x=>({...x,...maskScore(tr,x.Z,x.s)})).sort((a,b)=>b.ll-a.ll);
-let a=candidates[0],h=maskScore(ho,a.Z,a.s,a.phase),truthFit=truth?candidates.find(x=>x.q===truth.q&&x.s===truth.s&&x.Z.join(",")===canonical(truth.D.map(v=>+(v===0)))):null;
+let a=candidates[0],h=maskScore(ho,a.Z,a.s,a.phase),truthFit=truth?candidates.find(x=>x.q===truth.q&&x.s===truth.supp&&x.Z.join(",")===canonical(truth.D.map(v=>+(v===0)))):null;
 let tie=candidates.filter(x=>x.ll>=a.ll-1e-10).length;
 let rank=truthFit?1+candidates.filter(x=>x.ll>truthFit.ll+1e-10).length:null;
 return {cut,held:ho.length,trainingRepeats:tr.filter(x=>x===0).length,heldRepeats:ho.filter(x=>x===0).length,catalog:catalog.length,best:{q:a.q,Z:a.Z,s:a.s,fitLL:a.ll,fitVsIID:a.ll-iid(tr,r),heldLL:h.ll,heldVsIID:h.ll-iid(ho,r),tie},truthRank:rank,truthFit:truthFit?{ll:truthFit.ll,heldVsIID:maskScore(ho,truthFit.Z,truthFit.s,truthFit.phase).ll-iid(ho,r)}:null,top10:candidates.slice(0,10).map(({q,Z,s,ll})=>({q,Z,s,ll}))}}

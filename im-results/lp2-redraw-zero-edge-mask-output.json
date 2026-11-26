@@ -87,8 +87,11 @@
           "heldVsIID": 0.4411613729050501,
           "tie": 2
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 151.57760127794475,
+          "heldVsIID": 0.44116137290498614
+        },
         "top10": [
           {
             "q": 13,
@@ -367,8 +370,11 @@
           "heldVsIID": null,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 152,
+        "truthFit": {
+          "ll": 26.442232569677845,
+          "heldVsIID": -0.5855930263865812
+        },
         "top10": [
           {
             "q": 13,
@@ -657,8 +663,11 @@
           "heldVsIID": -0.2532055926704402,
           "tie": 2
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 158.12803643554795,
+          "heldVsIID": -0.253205592670497
+        },
         "top10": [
           {
             "q": 13,
@@ -927,8 +936,11 @@
           "heldVsIID": 6.63742368839128,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 131.98755043431905,
+          "heldVsIID": 6.63742368839128
+        },
         "top10": [
           {
             "q": 8,
@@ -1177,8 +1189,11 @@
           "heldVsIID": -1.7907333976886353,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 4,
+        "truthFit": {
+          "ll": 31.27610750977335,
+          "heldVsIID": 1.6194639839330698
+        },
         "top10": [
           {
             "q": 13,
@@ -1452,8 +1467,11 @@
           "heldVsIID": 5.917966207030368,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 120.04177883386261,
+          "heldVsIID": 5.917966207030368
+        },
         "top10": [
           {
             "q": 8,
@@ -1707,8 +1725,11 @@
           "heldVsIID": 0.5105132585438099,
           "tie": 2
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 153.21521006734565,
+          "heldVsIID": 0.5105132585438099
+        },
         "top10": [
           {
             "q": 13,
@@ -2002,8 +2023,11 @@
           "heldVsIID": -2.931023748726254,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 4,
+        "truthFit": {
+          "ll": 36.26788530608265,
+          "heldVsIID": 0.34255655425041454
+        },
         "top10": [
           {
             "q": 13,
@@ -2287,8 +2311,11 @@
           "heldVsIID": -1.7960687899497572,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 12,
+        "truthFit": {
+          "ll": 107.36216396412334,
+          "heldVsIID": 0.4440166402283552
+        },
         "top10": [
           {
             "q": 8,
@@ -2587,8 +2614,11 @@
           "heldVsIID": 11.811368106194024,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 156.33757888932132,
+          "heldVsIID": 11.811368106194024
+        },
         "top10": [
           {
             "q": 13,
@@ -2892,8 +2922,11 @@
           "heldVsIID": -1.1186763265518636,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 2,
+        "truthFit": {
+          "ll": 33.305792785836445,
+          "heldVsIID": 8.497236139389381
+        },
         "top10": [
           {
             "q": 13,
@@ -3197,8 +3230,11 @@
           "heldVsIID": 7.705419966510604,
           "tie": 1
         },
-        "truthRank": null,
-        "truthFit": null,
+        "truthRank": 1,
+        "truthFit": {
+          "ll": 165.50630700184493,
+          "heldVsIID": 7.705419966510604
+        },
         "top10": [
           {
             "q": 13,
