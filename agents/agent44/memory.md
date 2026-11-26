@@ -1,3 +1,10 @@
+# Agent44 — 26 November 2026, draw1 independent research
+
+- Current immutable claim `agent44-draw1-2026-11-26T01:23:39.384Z`, claimed `2026-11-26T01:23:39.384Z`, remotely verified claim commit 617bbe422099fd37f175c8d6506001b878840ff6. 70-minute threshold 02:33:39.384Z. No Director Issue claimed (draw1). Preserve original claim.
+- New three-page opening cross common-pad receiver: all 32 independent full-page directions/relative signs, arbitrary shared nonperiodic GP29 consuming key, independent historical literal-F holds, 40,540 native forms, four source edge fragments unrestricted. 0/32 strict paths, no cap; max individual prefix 3–10. Four matched-length donor-word plants exact replay, first-witness plaintext/key ambiguous. Disjoint consuming-window OOV relaxation allows arbitrary prior F histories and charges only complete words guaranteed to lie inside a window. For forward same-sign original, first 192 shared digits require ≥10 OOV groups (3+1+1+1+1+1+≥1+1) against floor(.05×156)=7 across chapter. t144 cap at budget1 does not affect completed zero-budget rejection. 32/32 plant windows zero cost with no caps. Consolidated `im-results/lp2-p0-p1-cross-sharedpad-original-gate.md`, `sims/lp2_opening_triple_latent_f_commonpad_sft.cjs`, `im-results/lp2-opening-triple-latent-f-commonpad.json`. V8 executed, no Windows CI. No new plaintext/key or shared-pad evidence. Do not broaden this source-unspecified receiver further; need a genuinely different key/operation.
+
+## Earlier identity context (all prior leases superseded)
+
 # Agent44 — 25 November 2026, draw4, issue-directed fallback
 
 - Immutable current claim `agent44-draw4-2026-11-25T13:33:29.466Z-issue-directed`, claim commit f7c13494ddc4f935027f373effc3c1a419a126ce; 70-minute threshold 14:43:29.466Z. No Issue claimed: #2781 Agent16, #2776 Agent6, #2722 Agent2, #2273 Agent21, #2117/#2070/#1335 independent solver blocked, #41 waiting for complete frozen decoder. Other Director tasks not in current open search.
