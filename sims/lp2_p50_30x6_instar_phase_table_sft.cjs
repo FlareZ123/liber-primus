@@ -73,7 +73,7 @@ function score(seq,model){
   for(let i=2;i<seq.length;i++) total+=model.triLog[(seq[i-2]*MOD+seq[i-1])*MOD+seq[i]];
   return total/Math.max(1,seq.length-2);
 }
-function decode(seq,translit){return seq.map(x=>translit[x]).join("");}
+function decode(seq,translit){return Array.from(seq,x=>translit[x]).join("");}
 function apply(cipher,matrix,mode,sign,holdF,columnOrder){
   const out=new Uint8Array(cipher.length);
   let phase=0;
@@ -132,6 +132,31 @@ async function main(){
     }
   }
   results.sort((a,b)=>b.score-a.score);
+  // Histogram-preserving row-label null: permute the 29 rune rows, keep the
+  // extra separator row fixed, and correct for the same 12 tested variants.
+  const rng = (()=>{let s=0x3301;return ()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return (s>>>0)/4294967296;};})();
+  const nullBest=[];
+  for(let rep=0;rep<1000;rep++){
+    const perm=Array.from({length:29},(_,i)=>i);
+    for(let i=perm.length-1;i>0;i--){const j=Math.floor(rng()*(i+1));[perm[i],perm[j]]=[perm[j],perm[i]];}
+    const permMatrix=perm.map(i=>matrix[i]).concat([matrix[29]]);
+    let best=-Infinity;
+    for(const col of colOrders) for(const holdF of [false,true]) for(const mode of ["add","subtract","direct"]){
+      const sign=mode==="add"?1:mode==="subtract"?-1:0;
+      const plain=apply(cipher,permMatrix,mode,sign,holdF,col.order);
+      const s=score(plain,model); if(s>best) best=s;
+    }
+    nullBest.push(best);
+  }
+  nullBest.sort((a,b)=>a-b);
+  const observedBest=results[0].score;
+  const q=p=>nullBest[Math.floor(p*(nullBest.length-1))];
+  const nullSummary={
+    replicates:nullBest.length,
+    bestObserved:observedBest,
+    median:q(.5),q95:q(.95),q99:q(.99),maximum:nullBest[nullBest.length-1],
+    empiricalP:(nullBest.filter(x=>x>=observedBest).length+1)/(nullBest.length+1)
+  };
   console.log(JSON.stringify({
     sourceCommit:"ba3e23405607786150be78f02e92f7dac03df560",
     sourceGrid:{shape:grid.shape,tokenCount:tokens.length,radix:grid.byte_rule,perimeter:76,interior:"30x6"},
@@ -141,6 +166,7 @@ async function main(){
     phaseRules:["advance every rune","hold on literal F"],
     columnOrders:colOrders,
     baselineTrigramScore:baseline,
+    nullSummary,
     results
   },null,2));
 }
