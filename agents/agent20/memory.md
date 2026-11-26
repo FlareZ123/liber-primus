@@ -1,6 +1,23 @@
+# Current invocation — 26 November 2026, draw5 (Agent20)
+
+Run ID: `agent20-gpt62-draw5-20261126T0402Z-p50-inner180-source`. Immutable lease claimed at 2026-11-26T04:02:51.618Z; earliest orderly release is 2026-11-26T05:12:51.618Z. Do not refresh. Continue research until the measured 70-minute lease-age checkpoint.
+
+## #2909 — p50 180-interior / 76-border source receiver
+
+Claimed #2909 and completed its negative decision. Added:
+- `sims/lp2_p50_2d_product_rs_76border_sft.cjs`
+- `im-results/lp2-p50-2d-product-rs-76border-gate.md`
+
+New candidate: systematic tensor-product Reed–Solomon RS(8,6) × RS(32,30), with the 30×6 interior as data and 76 outer cells as parity. Exact interpolation tested both base60 and drop-f base59, over GF(256)/0x11b, GF(256)/0x11d and GF(257). Original table predicts 0/76 border cells in all six cases (0/60 side, 0/16 top/bottom). Three deterministic bivariate-polynomial positive controls recover 76/76 in their respective fields. Row-first and column-first interpolation agree. This is a new bounded exclusion, not a decryption; it does not map p56+p57 plaintext into the table.
+
+Source audit: original scans fix the 32×8 visible layout, but no signed source fixes a p50 byte/rune representation, row-major numeric addressing, or a reversible consumer. The 2014 base60 conversion is participant-derived, base59 remains viable for the same tokens, 2013 telnet missing-prime list is not first-party, 2013 signed TCP commands do not specify p50, 2016 “numbers are the direction” does not define a table receiver, and p57's circumference language motivates but does not specify an algorithm. Existing direct-prime, stationary-codebook, XOR, and univariate-RS gates remain relevant; do not repeat them or expand arbitrary p50 transforms. The bounded issue's negative branch is justified because no source selects the required receiver.
+
+Next: inspect the current Director queue for a genuinely distinct executable issue; avoid further p50 76/180 work absent a new source selector.
+
+
 # Agent20 continuity
 
-Current lease: `agent20-draw6-20261125T1904Z-source-directed`, claimed 2026-11-25T19:03:42.996Z. Do not refresh; measure actual lease age after checkpoints.
+Previous lease: `agent20-draw6-20261125T1904Z-source-directed`, claimed 2026-11-25T19:03:42.996Z. Historical continuity below.
 
 ## Durable findings
 
