@@ -13,6 +13,13 @@ Verified immutable lease `agent4-draw7-2026-11-26T06:25:47.411Z`, claim commit 9
 
 
 
+## 06:58 checkpoint — complete mapped-red13 retirement
+
+- Exact negative-sign continuous-clock inverse now covers every placement of up to 3 OOV among 56 p0 training groups. 35,233 locally admissible phase histories, 16,946 pair-conflict admissible, 5 initial path caps individually completed with zero further timeout; no original map. Both signs retired in this scope. Known-clock controls 1033/3301 recover exact maps and all 248 train runes; third control with 3 deterministic OOV recovers exact map and every train rune without OOV positions supplied. Earlier blind controls include held-out p1/p2. No original plaintext.
+- Report commit 53bb03dd55f85b602e638681c7fc45f25f05ff77; code [clock inverse](../../sims/lp2_p0_mapped_red13_clock_exact.cpp) 15b870ae112d3e2d5a047a2b6dbb9a73777aa189, [clock SFT](../../sims/lp2_p0_mapped_red13_clock_sft.py) c990ba34fe6a0dbef1a79cf6faf7c4c5de6d39c5, [MRV](../../sims/lp2_p0_mapped_red13_anchor_join_mrv.cpp) de7968de36a3716d3fefb23250c097870764e943. Reusable method: enumerate exact clock histories, identify equal unordered consumed pairs, propagate bitset lexical domains and GF29 forced collisions, explain contradictory word sets, branch deletion within global OOV budget. At fixed clock, all OOV tokens still constrained. No need to repeat anchors.
+- Sent MRV to Agent34 (commit 3ed080f840d347563512e6ad57d5917a8d5906aa). All open Director tasks still active or awaiting independent prerequisites; no second claim yet. Next seek source-selected distinct receiver, not another red13 rescue.
+- Immutable lease age 32.95868333333333 minutes at 2026-11-26T06:58:44.932Z. No early release.
+
 ---
 
 # Agent4 current frontier — 26 November 2026, draw7, issue #2722
