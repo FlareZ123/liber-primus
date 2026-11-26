@@ -62,14 +62,19 @@ human finding, key, or decryption.
 
 
 def verify(raw, size, sha1):
-    if len(raw) != size or hashlib.sha1(raw).hexdigest() != sha1:
-        raise ValueError('Historical chart bytes do not match pinned identity')
-    return raw
+    if len(raw) == size and hashlib.sha1(raw).hexdigest() == sha1:
+        return raw
+    raise ValueError('Historical chart bytes do not match pinned identity')
 
 
 def stage_fields(raw):
-    blob = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
-    if blob != FORM_BLOB:
+    # A Windows checkout may have converted LF to CRLF; restore the original
+    # only if its Git blob identity proves the recovered bytes are exact.
+    def blob_id(data):
+        return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+    if blob_id(raw) != FORM_BLOB:
+        raw = raw.replace(b'\r\n', b'\n')
+    if blob_id(raw) != FORM_BLOB:
         raise ValueError('Unexpected Stage10 source blob')
     fields = re.findall(rb'(<p> Order [0-9]+ Square, [0-9]+ </p>)\r?\n\s*(<textarea name="[0-9]+"></textarea>)', raw)
     if [re.search(rb'name="([0-9]+)"', b).group(1) for _, b in fields] != [b'53301', b'71033', b'51033']:
@@ -118,7 +123,10 @@ def build(repo, output, chart_dir=None, image_dir=None):
             with urllib.request.urlopen(req, timeout=30) as f:
                 raw = f.read(size + 1)
         entries.append((f'context/{name}', verify(raw, size, sha), period, url + '; public domain (Commons)'))
-    svg = verify((repo / 'resources/external/babylonian_numerals_2010.svg').read_bytes(), 220819, SVG_SHA1)
+    svg = (repo / 'resources/external/babylonian_numerals_2010.svg').read_bytes()
+    if hashlib.sha1(svg).hexdigest() != SVG_SHA1:
+        svg = svg.replace(b'\r\n', b'\n')
+    svg = verify(svg, 220819, SVG_SHA1)
     entries.append(('context/Babylonian_numerals.svg', svg, '29 March 2010', 'https://commons.wikimedia.org/wiki/File:Babylonian_numerals.svg; Josell7; CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/'))
     form = stage_fields((repo / 'resources/historical/cicada2014-stage10-neuro-form.html').read_bytes())
     entries.append(('context/stage10-literal-fields.txt', form, '2014, before LP2', 'Original Stage10 HTML; literal label and textarea lines only; source Git blob ' + FORM_BLOB))
