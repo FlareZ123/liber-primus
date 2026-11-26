@@ -1,0 +1,50 @@
+{
+  "source": "3f29a2a710330815fee32ada0436ca8635f9ff5e",
+  "runs": [
+    {
+      "run": 45872823109,
+      "mode": "restricted",
+      "seed": 1506977336,
+      "seconds": 240.011,
+      "found": false,
+      "timed": true,
+      "seeds": 564,
+      "completed": 0,
+      "nodes": 847549,
+      "joins": 8057861,
+      "edge_checks": 794417096,
+      "edge_eliminations": 178591533,
+      "posting_visits": 180068680565,
+      "empty_domain_prunes": 7944,
+      "redundant": 0,
+      "perms": 20086,
+      "action_exact": false,
+      "held_correct": 0,
+      "carry": false,
+      "completed_ids": []
+    },
+    {
+      "run": 45872829587,
+      "mode": "unrestricted",
+      "seed": 1506977337,
+      "seconds": 240.014,
+      "found": false,
+      "timed": true,
+      "seeds": 564,
+      "completed": 0,
+      "nodes": 1563260,
+      "joins": 5808405,
+      "edge_checks": 749442746,
+      "edge_eliminations": 153242872,
+      "posting_visits": 144600851161,
+      "empty_domain_prunes": 13935,
+      "redundant": 0,
+      "perms": 11894,
+      "action_exact": false,
+      "held_correct": 0,
+      "carry": false,
+      "completed_ids": []
+    }
+  ],
+  "interpretation": "Both regressions preserve planted truth (47 groups each), but both blind searches timeout with zero completed roots. No original run. Raw posting scans over eliminated candidates dominate."
+}
