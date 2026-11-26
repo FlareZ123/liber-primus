@@ -1,6 +1,6 @@
 # Old English Rune Poem as an LP1-to-LP2 keytext hypothesis
 
-**Status:** plausible cross-round source hypothesis; no unknown LP2 plaintext, key, or reversible decoder recovered. The global and stanza-local prime/totient book-index tests fail, and a p57-selected Tiw/Os word-index key test also produces no language signal. Retain as a semantic reference candidate only; do not broaden the key search without a more specific independent selector.
+**Status:** plausible cross-round source hypothesis; no unknown LP2 plaintext, key, or reversible decoder recovered. The global and stanza-local prime/totient tests fail, and the alternate p57 Tiw/Os word-index key test also produces no language signal. The p57 line has a more literal DIVINITY-key interpretation already tested separately; do not broaden this poem branch without a stronger source selector.
 
 ## Why a solver might look at this poem
 
@@ -58,7 +58,7 @@ Results:
 
 ## p57 "divinity within": bounded stanza-key index test
 
-The solved p57 transcription says: "We must shed our own circumferences; find the divinity within and emerge." This is a plausible LP2 selector for a divine stanza in the 29-stanza poem. The 2016 signed message's "words are the map, meaning is the road, numbers are the direction" supports treating printed word groups and their numeric values as coordinates. A 2014 community IRC suggestion independently proposed that a word's GP value and rune position could enter the index of a key/cipher rune. This is a hypothesis chain, not proof of author intent.
+The solved p57 transcription says: "We must shed our own circumferences; find the divinity within and emerge." A literal interpretation as the historical LP1 key **DIVINITY** has already been tested separately: [direct LP1-key reuse on LP2](divinity-key-reuse-lp2.md) and [word-boundary/circumference variants](lp2-abaab-word-boundary-circumference-divinity-gate.md) are bounded negatives. The present test asks whether the same p57 wording could instead point to a divine stanza in the 29-stanza Old English Rune Poem. That is a weaker selector: no first-party source names the poem or a particular deity. The 2016 signed "words are the map, meaning is the road, numbers are the direction" message and a 2014 community IRC suggestion about word GP value plus rune position motivate one frozen experiment, not proof of intended use.
 
 The two strongest direct stanza candidates were tested:
 - **Tiw/Tir:** an explicitly named deity; the Ragweed Forge Old English verse body maps to 78 GP29 values.
@@ -87,8 +87,8 @@ Neither candidate yields readable groups. The small chi-square improvement for O
 
 ## Human solve-path hypothesis and next decision
 
-A plausible player path is: recognize the 29-rune Anglo-Saxon Futhorc; recall LP1's `AMASS GREAT WEALTH` and the Feoh stanza; then notice p57's "find the divinity within" and consider a divine stanza, with Tiw the clearest candidate and Os a weaker alternative. The 2016 word-map message and the 2014 community GP-value/position suggestion motivate a word-index key test. That test fails for both Tiw and Os under the frozen rule above.
+A plausible player path is: recognize the 29-rune Anglo-Saxon Futhorc; recall LP1's "AMASS GREAT WEALTH" and the Feoh stanza; then notice p57's "find the divinity within." The more literal historical DIVINITY-key reading has already been tested and fails. An alternate Tiw/Os stanza reading, motivated by the 2016 word-map message and a 2014 community GP-value/position suggestion, also fails under the frozen rule above.
 
-The strongest objection is that the poem's 29-stanza order is already implied by the GP29 alphabet, the semantic selector is ambiguous, and neither the LP1 prime/totient instructions nor the LP2 word-map message specifies the key-index formula. The direct global, stanza-local, and divinity-selected readings tested here do not produce plaintext.
+The strongest objection is that the poem's 29-stanza order is already implied by the GP29 alphabet, p57 does not name the poem or a particular stanza, and neither the LP1 prime/totient instructions nor the LP2 word-map message specifies the key-index formula. The direct global, stanza-local, and divinity-selected readings tested here do not produce plaintext.
 
 **Next action:** do not broaden this poem branch to more stanzas, translations, or Vigenère variants without a new independent selector or a source-defined coordinate rule. If one appears, freeze it and test two untouched pages with a third held out, requiring coherent plaintext and an exact reversible encoder. The separate 2012 29-volume Britannica clue is a distinct book-code hypothesis; it is not evidence that the Rune Poem is the LP2 key.
