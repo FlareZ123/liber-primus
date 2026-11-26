@@ -1,0 +1,831 @@
+{
+  "n": 3008,
+  "fnv1a": 1862123327,
+  "q": 13,
+  "threshold": 53,
+  "holdEventsPerInterval": 12,
+  "labelsExcluded": 29,
+  "totalPairs": 5656764958,
+  "totalFilterVisits": 5334603,
+  "labelsNeedingThirdInterval": 9,
+  "codeBlob": "2720178c0b1214a2a65074bffae79f815574e0c5",
+  "toy": {
+    "setComparisons": 80,
+    "nonemptyFilters": 27,
+    "emptyFilters": 13
+  },
+  "plants": [
+    {
+      "source": "Gibran",
+      "offset": 10000,
+      "seed": 3301,
+      "h": 0,
+      "E": 332,
+      "F": 81,
+      "rare": 0,
+      "fullCap": 65,
+      "finalCap": 65
+    },
+    {
+      "source": "Shakespeare",
+      "offset": 10000,
+      "seed": 1033,
+      "h": 17,
+      "E": 344,
+      "F": 65,
+      "rare": 3,
+      "fullCap": 65,
+      "finalCap": 65
+    }
+  ],
+  "cases": [
+    {
+      "h": 0,
+      "I": [
+        1245,
+        1721
+      ],
+      "J": [
+        2608,
+        2995
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4088
+      ],
+      "rotatedJ": 53144,
+      "pairs": 217677824,
+      "rawBest": 67,
+      "capBestWhenRawGe53": 62,
+      "pairSurvivors": 252294,
+      "K": [
+        1985,
+        2368
+      ],
+      "uniqueCommon": 219714,
+      "filterVisits": 4682043,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 1,
+      "I": [
+        788,
+        1329
+      ],
+      "J": [
+        209,
+        718
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4079,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 217198592,
+      "rawBest": 53,
+      "capBestWhenRawGe53": 51,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 2,
+      "I": [
+        723,
+        1324
+      ],
+      "J": [
+        44,
+        573
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4082,
+        4059
+      ],
+      "rotatedJ": 52767,
+      "pairs": 215394894,
+      "rawBest": 48,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 3,
+      "I": [
+        2219,
+        2739
+      ],
+      "J": [
+        383,
+        827
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4093,
+        4060
+      ],
+      "rotatedJ": 52780,
+      "pairs": 216028540,
+      "rawBest": 56,
+      "capBestWhenRawGe53": 54,
+      "pairSurvivors": 39,
+      "K": [
+        985,
+        1411
+      ],
+      "uniqueCommon": 38,
+      "filterVisits": 517,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 4,
+      "I": [
+        1396,
+        1999
+      ],
+      "J": [
+        702,
+        1265
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4054,
+        4063
+      ],
+      "rotatedJ": 52819,
+      "pairs": 214128226,
+      "rawBest": 40,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 5,
+      "I": [
+        475,
+        1174
+      ],
+      "J": [
+        1871,
+        2483
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        2678,
+        4084
+      ],
+      "rotatedJ": 53092,
+      "pairs": 142180376,
+      "rawBest": 36,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 6,
+      "I": [
+        281,
+        983
+      ],
+      "J": [
+        1982,
+        2589
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        3331,
+        4065
+      ],
+      "rotatedJ": 52845,
+      "pairs": 176026695,
+      "rawBest": 34,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 7,
+      "I": [
+        703,
+        1453
+      ],
+      "J": [
+        0,
+        537
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        1351,
+        3071
+      ],
+      "rotatedJ": 39923,
+      "pairs": 53935973,
+      "rawBest": 38,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 8,
+      "I": [
+        1309,
+        2001
+      ],
+      "J": [
+        13,
+        624
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        3274,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 174333952,
+      "rawBest": 35,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 9,
+      "I": [
+        953,
+        1496
+      ],
+      "J": [
+        37,
+        473
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4095
+      ],
+      "rotatedJ": 53235,
+      "pairs": 218050560,
+      "rawBest": 58,
+      "capBestWhenRawGe53": 55,
+      "pairSurvivors": 95,
+      "K": [
+        1892,
+        2323
+      ],
+      "uniqueCommon": 89,
+      "filterVisits": 1267,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 10,
+      "I": [
+        2448,
+        3008
+      ],
+      "J": [
+        510,
+        968
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4054,
+        4012
+      ],
+      "rotatedJ": 52156,
+      "pairs": 211440424,
+      "rawBest": 49,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 11,
+      "I": [
+        1612,
+        2120
+      ],
+      "J": [
+        0,
+        426
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 218103808,
+      "rawBest": 60,
+      "capBestWhenRawGe53": 58,
+      "pairSurvivors": 5727,
+      "K": [
+        715,
+        1115
+      ],
+      "uniqueCommon": 4935,
+      "filterVisits": 64261,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 12,
+      "I": [
+        1107,
+        1616
+      ],
+      "J": [
+        1627,
+        2076
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 218103808,
+      "rawBest": 61,
+      "capBestWhenRawGe53": 58,
+      "pairSurvivors": 1542,
+      "K": [
+        154,
+        591
+      ],
+      "uniqueCommon": 1460,
+      "filterVisits": 24136,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 13,
+      "I": [
+        844,
+        1448
+      ],
+      "J": [
+        1515,
+        1939
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4081,
+        4014
+      ],
+      "rotatedJ": 52182,
+      "pairs": 212954742,
+      "rawBest": 51,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 14,
+      "I": [
+        1879,
+        2705
+      ],
+      "J": [
+        755,
+        1301
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        13,
+        4089
+      ],
+      "rotatedJ": 53157,
+      "pairs": 691041,
+      "rawBest": 33,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 15,
+      "I": [
+        2076,
+        2613
+      ],
+      "J": [
+        1358,
+        1877
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4027,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 214429696,
+      "rawBest": 47,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 16,
+      "I": [
+        2431,
+        2926
+      ],
+      "J": [
+        1762,
+        2255
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 218103808,
+      "rawBest": 55,
+      "capBestWhenRawGe53": 53,
+      "pairSurvivors": 4,
+      "K": [
+        424,
+        897
+      ],
+      "uniqueCommon": 4,
+      "filterVisits": 52,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 17,
+      "I": [
+        1200,
+        1649
+      ],
+      "J": [
+        2584,
+        3008
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4078,
+        4084
+      ],
+      "rotatedJ": 53092,
+      "pairs": 216509176,
+      "rawBest": 67,
+      "capBestWhenRawGe53": 59,
+      "pairSurvivors": 50695,
+      "K": [
+        2061,
+        2481
+      ],
+      "uniqueCommon": 43208,
+      "filterVisits": 562126,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 18,
+      "I": [
+        2145,
+        2632
+      ],
+      "J": [
+        138,
+        608
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4027,
+        4084
+      ],
+      "rotatedJ": 53092,
+      "pairs": 213801484,
+      "rawBest": 55,
+      "capBestWhenRawGe53": 53,
+      "pairSurvivors": 18,
+      "K": [
+        1221,
+        1670
+      ],
+      "uniqueCommon": 13,
+      "filterVisits": 175,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 19,
+      "I": [
+        575,
+        1175
+      ],
+      "J": [
+        1526,
+        2126
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4046,
+        4094
+      ],
+      "rotatedJ": 53222,
+      "pairs": 215336212,
+      "rawBest": 40,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 20,
+      "I": [
+        565,
+        1114
+      ],
+      "J": [
+        2530,
+        3008
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        3929,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 209211392,
+      "rawBest": 50,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 21,
+      "I": [
+        454,
+        1006
+      ],
+      "J": [
+        1076,
+        1592
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4093,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 217944064,
+      "rawBest": 47,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 22,
+      "I": [
+        1573,
+        2168
+      ],
+      "J": [
+        321,
+        839
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4088,
+        3053
+      ],
+      "rotatedJ": 39689,
+      "pairs": 162248632,
+      "rawBest": 44,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 23,
+      "I": [
+        262,
+        804
+      ],
+      "J": [
+        1682,
+        2220
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        4060
+      ],
+      "rotatedJ": 52780,
+      "pairs": 216186880,
+      "rawBest": 54,
+      "capBestWhenRawGe53": 53,
+      "pairSurvivors": 2,
+      "K": [
+        925,
+        1451
+      ],
+      "uniqueCommon": 2,
+      "filterVisits": 26,
+      "filterLeaves": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 24,
+      "I": [
+        607,
+        1108
+      ],
+      "J": [
+        2514,
+        3008
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4041,
+        3984
+      ],
+      "rotatedJ": 51792,
+      "pairs": 209291472,
+      "rawBest": 52,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 25,
+      "I": [
+        1219,
+        1735
+      ],
+      "J": [
+        2054,
+        2533
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4085,
+        4095
+      ],
+      "rotatedJ": 53235,
+      "pairs": 217464975,
+      "rawBest": 52,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 26,
+      "I": [
+        452,
+        970
+      ],
+      "J": [
+        2062,
+        2538
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4089,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 217731072,
+      "rawBest": 53,
+      "capBestWhenRawGe53": 50,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 27,
+      "I": [
+        0,
+        605
+      ],
+      "J": [
+        2465,
+        2971
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4027,
+        4096
+      ],
+      "rotatedJ": 53248,
+      "pairs": 214429696,
+      "rawBest": 43,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    },
+    {
+      "h": 28,
+      "I": [
+        893,
+        1504
+      ],
+      "J": [
+        84,
+        626
+      ],
+      "histories": [
+        4096,
+        4096
+      ],
+      "eligible": [
+        4096,
+        3903
+      ],
+      "rotatedJ": 50739,
+      "pairs": 207826944,
+      "rawBest": 45,
+      "capBestWhenRawGe53": -1,
+      "pairSurvivors": 0,
+      "finalSurvivors": 0
+    }
+  ]
+}
