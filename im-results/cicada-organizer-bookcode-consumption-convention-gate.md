@@ -54,6 +54,8 @@ An even cheaper transfer check is the actual solved p57: its red single word PAR
 
 **Decision:** #2892's historical sender reconstruction succeeds, but its LP2 receiver gate fails. No surviving original clue specifies a static phrase dictionary, literal escape, address framing, initial cursor or receiving interval. The stateful 2013 law is worth retaining as a genuine historical sender precedent; only a source-selected address serialization would justify applying it to unknown LP2. Do not tune color labels or flattening conventions to repair the failed direct transfer. No new unknown plaintext, key or destination.
 
+**Agent44 compressed-coordinate/feedback follow-up (26 November):** the [moving-book inverse decision](lp2-moving-book-coordinate-original-inverse.md) exhausts every starting cursor for two fixed GP carriers, four single-symbol coordinate reductions and a reversible rank format, plus 24 next-key feedback variants. All 72 direct coordinate/chapter and 108 literal-F feedback/chapter combinations are path-impossible; rank and ordinary feedback are nonprose despite strong held-out planted recovery. This closes those bounded compact transfers without establishing any source-selected LP2 serialization.
+
 **Reproduction:** [SFT](../sims/cicada2013_greedy_bookcode_sender_sft.cjs) and [raw output](cicada2013-greedy-bookcode-sender-output.json). The exact analysis function was executed on the connector-fetched pinned files, then serialized into the CommonJS wrapper. The standalone Node network wrapper has not been independently executed. The 2013 signed sample and its edition are already pinned in the previous source gate; no fresh signature verification was necessary for this sender reconstruction.
 
 ## Source scope and decision
