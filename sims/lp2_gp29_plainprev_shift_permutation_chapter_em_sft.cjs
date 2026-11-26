@@ -60,6 +60,7 @@ function experiment(raw,{width=128,count=3,startPlant=0,originalTest=false,refin
  const prior=initPrior();
  const W0=prior.map(w=>Math.max(w,1e-8));
  const iterations=60,starts=2;
+ const shiftIndex=Array.from({length:A},(_,d)=>Uint8Array.from({length:A},(_,p)=>mod(p-d)));
  function solve(frames,width,truth){
   const N=sum(frames.map(f=>f.d.length)),runs=[];
   for(let start=0;start<starts;start++){
@@ -68,21 +69,21 @@ function experiment(raw,{width=128,count=3,startPlant=0,originalTest=false,refin
    let bestK=null,best=-Infinity;
    for(let it=0;it<iterations;it++){
     const M=new Float64Array(A*A*A),C=new Float64Array(A*A);
-    for(let d=0;d<A;d++)for(let q=0;q<A;q++)for(let p=0;p<A;p++)M[(d*A+q)*A+p]=B[q*A+p]*W[q*A+mod(p-d)];
+    for(let d=0;d<A;d++)for(let q=0;q<A;q++)for(let p=0;p<A;p++)M[(d*A+q)*A+p]=B[q*A+p]*W[q*A+shiftIndex[d][p]];
     let ll=0;
     for(const f of frames){
      const d=f.d,alpha=new Float64Array((d.length+1)*A),scale=new Float64Array(d.length);alpha[0]=1;
      for(let i=0;i<d.length;i++){
       const off=i*A,nxt=off+A,base=d[i]*A*A;
-      if(i===0){for(let p=0;p<A;p++)alpha[nxt+p]=U[p]*W[mod(p-d[i])]}
+      if(i===0){for(let p=0;p<A;p++)alpha[nxt+p]=U[p]*W[shiftIndex[d[i]][p]]}
       else for(let q=0;q<A;q++){const a=alpha[off+q],b=base+q*A;for(let p=0;p<A;p++)alpha[nxt+p]+=a*M[b+p]}
       let z=0;for(let p=0;p<A;p++)z+=alpha[nxt+p];assert(z>0,"scale");ll+=Math.log(z);scale[i]=z;for(let p=0;p<A;p++)alpha[nxt+p]/=z;
      }
      let beta=new Float64Array(A).fill(1),tmp=new Float64Array(A);
      for(let i=d.length-1;i>=0;i--){
       const base=d[i]*A*A,off=i*A,sc=scale[i],di=d[i];
-      if(i===0){for(let p=0;p<A;p++){const k=mod(p-di);C[k]+=U[p]*W[k]*beta[p]/sc}continue}
-      for(let q=0;q<A;q++){const b=base+q*A,a=alpha[off+q]/sc;let z=0;for(let p=0;p<A;p++){const h=M[b+p]*beta[p];z+=h;C[q*A+mod(p-di)]+=a*h}tmp[q]=z/sc}
+      if(i===0){for(let p=0;p<A;p++){const k=shiftIndex[di][p];C[k]+=U[p]*W[k]*beta[p]/sc}continue}
+      for(let q=0;q<A;q++){const b=base+q*A,a=alpha[off+q]/sc;let z=0;for(let p=0;p<A;p++){const h=M[b+p]*beta[p];z+=h;C[q*A+shiftIndex[di][p]]+=a*h}tmp[q]=z/sc}
       const t=beta;beta=tmp;tmp=t;
      }
     }
