@@ -330,3 +330,5 @@ Current work is a bounded negative, no claim of solving Liber Primus.
 
 
 - 2026-11-26 checkpoint: negative continuous mapped red8 exact known-clock controls pass, 64/64 original histories exhausted (2,744 carry seeds, 59,956 nodes, 96,318 joins, no key), run 45730248546. Independent-line blind control timed out at 10/115 seeds, run 45730170328, no original fit. General unknown-q8 symbolic difference graph (a4bb86be7b6b50d39a8ba850003fd8a6774c1c75) dispatched 45730871260; indexed mapped per-word run 45730482783 pending. Joint-minimum run 45730165072 pending. No plaintext/key recovered.
+
+- 16:21Z: Known Fibonacci schedule independent-alpha/beta EM + Hungarian + bigram Viterbi calibrated on two blinds: both 1200/1200 fit, 703/703 and 700/703 frozen suffix, exact beta and observed alpha up to gauge. Original no legal heldout. Unknown K controls fail; no original unknown-K run. Report im-results/lp2-fibonacci-independent-alphabet-em.md. Full chapter optimization failure not UNSAT. Portable code checkpoint pending.
