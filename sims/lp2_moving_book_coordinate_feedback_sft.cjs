@@ -94,7 +94,17 @@ function core(data){
    const r=fitTest(m,c,p);assert(r.fitLegal===fit,"positive fit reachable");
    controls.push({donor:i?"Emerson":"Gibran",plantOrigin:[Math.floor(start/N),start%N],cipherStats:stats(c),...r});
   }
-  result.models.push({carrier:src.name,mode,sign,hold,units:m.n,original,controls});
+  const boundaries=[0,3,8,15,23,27,33,40,54,56];
+  const chapters=boundaries.slice(0,-1).map((start,i)=>{
+   const stop=boundaries[i+1], t=corpus.pages.slice(start,stop).flatMap(p=>p.indices);
+   const a=decode(m,t);
+   const z={scope:`p${start}-${stop-1}`,n:t.length,legal:a.legal,peak:a.peak,terminal:a.terminal};
+   if(a.legal===t.length){const traced=decode(m,t,{state:a.start,last:null},a.id,true);assert(Math.abs(traced.score-a.score)<1e-9,"chapter exact optimum trace");z.score=a.score;z.origin=[Math.floor(a.start/N),a.start%N];z.excerpt=preview(traced.p);z.plainStats=stats(traced.p)}
+   return z;
+  });
+  const body=decode(m,C);
+  const whole=decode(m,corpus.pages.slice(0,56).flatMap(p=>p.indices));
+  result.models.push({carrier:src.name,mode,sign,hold,units:m.n,original,controls,chapters,bodyAllStates:{legal:body.legal,score:body.score,terminal:body.terminal},wholeAllStates:{legal:whole.legal,score:whole.score,terminal:whole.terminal}});
  }
  return result;
 }
