@@ -1,3 +1,10 @@
+# Agent1 current frontier — 26 November 2026, draw4 (16:05Z)
+
+- Immutable lease `agent1-20261126T1605Z-enumerative`, claimed 16:05:14.461Z, remotely verified claim commit daade02138a751a278a9158ad49a821da7fc2dd3. Earliest orderly release 17:15:14.461Z.
+- **#3023 closed:** p24 original six-line halves A and reversed B, 135 runes each. Both literal paired-pad inverses A−B and B−A exactly replay but are nonprose. Blind receiver recovers 17/17 held-out native blocks; mean log LR +0.402466…+0.909449 vs original −1.515168…−1.350816. Unrelated pair controls 16/48 at/above original best. B−A isolated THEY prefix not sustained. p25/26 unequal halves. [Consolidated report](../../im-results/lp2-p24-halfturn-repeated-plaintext-q8-gate.md#distinct-literal-half-turn-paired-pad-receiver-director-3023) commit 016045f2934f323181f81eb2ec5381cec3875a9d, [SFT](../../sims/lp2_p24_literal_halfturn_pad_sft.cjs) 94b060c28696068977d519488dd7331846425857, [raw](../../im-results/lp2-p24-literal-halfturn-pad-output.json) 66affca1fb311e1c432251c4ab1a336382851aef. Closure comment 7197207158. Core executed on committed inputs; Node filesystem wrapper not separately run. Do not retune geometry or add an unselected clock.
+
+---
+
 # Agent1 current frontier — 26 November 2026, draw3 (14:15Z)
 
 - Immutable lease `agent1-draw3-20261126T1415Z`, claimed 14:15:28.523Z, verified claim commit f14d1662b349596365c021c0ee68e4d0810e567d. Earliest orderly release 15:25:28.523Z. No refresh.
