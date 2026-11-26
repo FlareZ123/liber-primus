@@ -72,10 +72,34 @@ One fixed prospective p0-body consumer was evaluated: use the height-ordered fiv
 
 [Cross-page p0 original-source reproducer](../sims/lp2_p7_five_dot_height_dh_handoff_sft.cjs) · [Windows Node22 execution, PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44944583720).
 
+## Primary 2013 SSSS field and packet reconstruction (Agent3, 26 November 2026)
+
+The prior comparison relied on a later historical walkthrough. The primary corpus now has three original 2013 cleartext-PGP-signed share messages mirrored verbatim in `resources/historical/2013-ssss-{03,09,10}.asc`. Each carries the header `ssss, Threshold:5` and one 44-hex-character share value:
+
+| Share index / x | 176-bit serialized value |
+|---:|---|
+| 03 | `7678a5f6b72042d839151b34b02ffe161cf997fed484` |
+| 09 | `82a98a7fe06014f783b752506cf6cd1fabaa3d8b3750` |
+| 10 | `1668a611ba9fccddee2a0d8fd7e05df4d01c6d42a26d` |
+
+The archive's 2013 signing-key artifact is identified by fingerprint `67F363C61BA8FB6FDBA9C47D0670B0E57A35090F` and linked in [the primary-source index](../resources/external/2013-ssss-primary-source-index.md). The three messages contain PGP signature blocks; the public archive preserves only these three share messages, not five shares needed to reconstruct the secret.
+
+The preserved B. Poettering `ssss` v0.5 implementation ([source file at pinned mirror commit](https://github.com/osresearch/ssss/blob/e2d11c3c128c992947afbe18accb7be1ac55feed/ssss.c), blob `0955e250971da324412fdc8454888881df9d3411`) supplies the missing serialization mechanics. In `combine`, a share's hexadecimal payload sets the field degree to four times its character length; 44 hex digits therefore select **176 bits**. `field_init` selects the degree-176 irreducible polynomial
+[
+x^{176}+x^{11}+x^3+x^2+1
+]
+over GF(2). Thus each share is one element of **GF(2^176)**, not 22 independent GF(256) bytes and not an element of GF(29). The split routine evaluates at `x=i+1`, so share labels 03, 09 and 10 correspond to x=3,9,10; combine reads that prefix as x and interpolates the polynomial at x=0. The signed message explicitly fixes threshold 5. The 2013 round is documented as 5-of-10; the surviving index 10 is consistent with ten shares, although the three signed fragments alone prove only that the set reaches at least x=10.
+
+The v0.5 implementation enables its diffusion layer by default and exposes `-D` to disable it. The signed messages do not preserve the exact command line/version flags, so whether that optional diffusion was enabled in the 2013 invocation remains unknown. This uncertainty does not alter the field degree, share width, or x-coordinate convention.
+
+**Bridge test:** p7's independently extracted red-word products are the small GP29 scalars **[11,26,8,15,2]**, with five black dots. None is a serialized 176-bit share; several are outside the historical share-coordinate range 1–10; p7 provides neither 44-hex values nor a source-selected conversion to GF(2^176), nor ten share indices. The five dots can at most resemble the historical threshold numeral 5. The same five-dot ornament recurs on p23 and solved p56, so it does not independently identify SSSS. No original LP2 instruction or primary 2013 artifact bridges p7's GP29 packet to this 2013 GF(2^176) scheme.
+
+**Decision:** reject the p7-as-2013-Shamir-share interpretation as a source-selected mechanism. Preserve the geometric GF29/DH coincidence as an intermediate observation only; do not search arbitrary GP29-to-GF(2^176) encodings or promote a key/plaintext. The 2013 secret itself remains unreconstructible from the three publicly preserved shares.
+
 ## Research decision
 
 This is a **new geometry-constrained candidate mechanism for recovering already-known key-state constants from the original manuscript**. Its merit is that the dot heights supply an actual missing order permutation, while Cicada's earlier puzzle historically used the five-share operation. It may be useful if a future independent original clue specifies how to consume the resulting parameters.
 
-The direct p8 tensor and p0 period-five body consumers both fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
+The direct p8 tensor and p0 period-five body consumers both fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
 
 **Reproducer:** [source-native Windows Node22 CommonJS single-file test](../sims/lp2_p7_fivedot_shamir_dual_secret_sft.cjs), including the original JPEG SHA, all five rune products, unchanged dot ranks, two GF29 polynomials, synthetic interpolation control, full 120-permutation enumeration, six competing aggregations, and original p8 16-way receiver. [Independent Windows CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44941697115).

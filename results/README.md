@@ -149,6 +149,11 @@ Targeted 2014 Tor2web-proxy Wayback checks found no p56 digest match in all 1,12
 
 The post-rubric 1,005 runes admit a derived 201×5 reshape; the source prints continuous prose, not five strands. The five-dot marks recur on p7, p23 and solved p56 and all five centroids are convex-hull vertices, not an affine quincunx with center. The reflected insect plate match is strong original-art evidence, but IGNITA=264 under the corrected chart. Independent phase-zero q13 lane clocks, native-support affine Hill-5 and historical five-of-ten share transfer have scoped negatives. No source-selected lane order, cipher or key follows. [Original-art gate](../im-results/lp2-p23-26-original-art-source-gate.md).
 
+### G. p7 five-dot Shamir/DH coincidence
+
+The original p7 red words and five black dots yield a reproducible GF29 interpolation coincidence with the documented 2013 DH pair (5,23), but the direct p8 tensor and p0 period-five consumers recover no plaintext. Primary 2013 signed SSSS fragments (shares 03,09,10) and the preserved `ssss` v0.5 implementation identify a different packet: threshold 5, 44-hex values as single GF(2^176) elements, polynomial (x^{176}+x^{11}+x^3+x^2+1), and share coordinates 1–10. The p7 GP29 products ([11,26,8,15,2]) have no source-selected conversion to that field or serialization; the five dots alone are not a bridge. Only three 2013 shares survive publicly, so that historical secret is not reconstructible here. [Primary source and p7 gate](../im-results/lp2-p7-fivedot-shamir-dual-dh-source-gate.md) · [source index](../resources/external/2013-ssss-primary-source-index.md).
+
+
 ### G. Prime-gap key stream with plaintext-F holds
 ### H. Period-13 standard Beaufort versus additive under plaintext-F holds
 
