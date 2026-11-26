@@ -1,0 +1,173 @@
+{
+  "tag": "pad0",
+  "stage": [
+    {
+      "length": 5,
+      "seeds": 512,
+      "best": 20.14349511745968
+    },
+    {
+      "length": 6,
+      "seeds": 512,
+      "best": 26.00012790891924
+    },
+    {
+      "length": 7,
+      "seeds": 512,
+      "best": 33.348713600076735
+    },
+    {
+      "length": 8,
+      "seeds": 512,
+      "best": 36.99707166850567
+    },
+    {
+      "length": 9,
+      "seeds": 512,
+      "best": 41.80339663568884
+    },
+    {
+      "length": 10,
+      "seeds": 512,
+      "best": 47.610088103450835
+    },
+    {
+      "length": 11,
+      "seeds": 512,
+      "best": 52.91070874128491
+    },
+    {
+      "length": 12,
+      "seeds": 512,
+      "best": 57.987094982672716
+    },
+    {
+      "length": 13,
+      "seeds": 512,
+      "best": 66.83487249352038
+    }
+  ],
+  "short": 3303881,
+  "long": 10992788,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    0,
+    26,
+    18,
+    1,
+    28,
+    12,
+    4,
+    11,
+    22,
+    13,
+    8,
+    18,
+    27
+  ],
+  "fit": -4.052744281864341,
+  "held": -4.278108406143184,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "AT SHY FIR NE LL AS BEAM WAY IN SO OF NEUER EAT PATH A SO NEAR IS CNEE I A ON A A A S LA IT PIG MY TWO I D BANDS HAG TIDNG US S GOD THOU MY THNGS WITHIN A D A WE S TOE D BE DEATH FAIR I I HAD NAY I WHY BY SO OF A MY DIAL OUT WOE I IS ODE BRNG BE WNG IS CNG EAR THY ON IUY AM BAY A ME HUM US BET RE YOUR ST IN OF LYNG TO BE DO HAS TA IS A HE AN GO D IF US I SEAS A A THEN OX A BY YE NOR IU DES A BWEAC ME A PACNG WAX YOU THAN I AN S IN WIT I THE A CO I A FOES I WOULD COX NO A LUTE TO END A THE OF OF AX A RED HEAR DOES A A THY I HE A UTAH A TOO A THY A MY ER ST IS I IS S US OF US S TO SPY A HER CUT EN AND MY US BE WENT IN LL AYE BAD S LEG ER A AS AS THAN U MARC A HE WHO AN LL I IT D YEA S NO ME A IN A OF BALE WIG THIRD ALL OX THE DEATH A AS YEA EYE A CEY MR NIGH A A LL A TAX WHIG A IT MAP U HAP NO TO A NO TO AY UI TUT A BAD OH AM AY IN HE I IX AWE TO IT IN AY THNGS LL IT I ET CEPT A I SO RUM TO TOP I HAD OWE A READ PAY I YE THY SNG US DOTE IT OH TOE S I A DONG RAN BY TALC THE THNG I AN UE ELY AM DRON AN A BAD S GO OUNCE SEA BAY WON OF A BOW MY S AM S THY THE ERE MY ON A LIE WOE ME SUB I SUNG TEA",
+  "fallback": 2,
+  "top": [
+    {
+      "key": [
+        0,
+        26,
+        18,
+        1,
+        28,
+        12,
+        4,
+        11,
+        22,
+        13,
+        8,
+        18,
+        27
+      ],
+      "fragmentScore": 61.19840742321685,
+      "fit": -4.052744281864341
+    },
+    {
+      "key": [
+        0,
+        20,
+        3,
+        25,
+        2,
+        7,
+        2,
+        6,
+        19,
+        20,
+        13,
+        4,
+        16
+      ],
+      "fragmentScore": 59.899135389365256,
+      "fit": -4.074860964291175
+    },
+    {
+      "key": [
+        1,
+        28,
+        12,
+        4,
+        11,
+        22,
+        13,
+        8,
+        18,
+        27,
+        19,
+        13,
+        21
+      ],
+      "fragmentScore": 60.465144590474665,
+      "fit": -4.081483021534325
+    },
+    {
+      "key": [
+        1,
+        28,
+        12,
+        4,
+        11,
+        22,
+        13,
+        8,
+        18,
+        27,
+        19,
+        13,
+        22
+      ],
+      "fragmentScore": 66.56148956157267,
+      "fit": -4.089493502832308
+    },
+    {
+      "key": [
+        1,
+        28,
+        12,
+        4,
+        11,
+        22,
+        13,
+        8,
+        18,
+        27,
+        19,
+        16,
+        4
+      ],
+      "fragmentScore": 61.29465475164761,
+      "fit": -4.091928982891987
+    }
+  ]
+}
