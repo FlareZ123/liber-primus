@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function study(raw,donorRaw,projectionRaw){
+function study(raw,donorRaw,projectionRaw,minOrigin=0,maxOrigin=3302,levels=[4,6],cap=2000){
   const corpus=JSON.parse(raw),projection=JSON.parse(projectionRaw),Q=29,N=3302,all=(1<<Q)-1;
   const assert=(v,s)=>{if(!v)throw Error(s)};
   const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
@@ -79,16 +79,16 @@ function study(raw,donorRaw,projectionRaw){
   const chapters=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
   const P=gp(donorRaw).slice(190000,202956),rnd=rng(0x26112691),A=permutation(Q,rnd,true),B=permutation(Q,rnd),inv=B.map((_,i)=>B.indexOf(i)),o=911;let offset=0;
   const plant=chapters.map(row=>{let j=o;const plain=P.slice(offset,offset+row.length);offset+=row.length;return plain.map(p=>p===0?0:inv[(A[p]+K[j++])%Q])});
-  let live=Array.from({length:N},(_,i)=>i);const stages=[];
-  for(const maxF of [4,6]){
+  let live=Array.from({length:maxOrigin-minOrigin},(_,i)=>i+minOrigin);const stages=[];
+  for(const maxF of levels){
     const rows=chapters.map(C=>trunc(C,maxF)),controlRows=plant.map(C=>trunc(C,maxF));
     const control=solve(controlRows,K,o,Q,maxF,2000);assert(control.status!=='UNSAT','true plant origin lost');
-    const results=live.map(origin=>({origin,...solve(rows,K,origin,Q,maxF,2000)}));
+    const results=live.map(origin=>({origin,...solve(rows,K,origin,Q,maxF,cap)}));
     live=results.filter(x=>x.status!=='UNSAT').map(x=>x.origin);
     stages.push({maxF,lengths:rows.map(x=>x.length),controlLengths:controlRows.map(x=>x.length),control,results});
     if(!live.length)break;
   }
-  return{model:'Exact joint complete hold-path disjunction over nine chapter prefixes, each cut just before the next visible F; common origin, shared outer permutation. UNSAT rejects full chapters; SAT or UNKNOWN retains origin.',stages};
+  return{minOrigin,maxOrigin,levels,cap,model:'Exact joint complete hold-path disjunction over nine chapter prefixes, each cut just before the next visible F; common origin, shared outer permutation. UNSAT rejects full chapters; SAT or UNKNOWN retains origin.',stages};
 }
 
 if(require.main===module){const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');console.log(JSON.stringify(study(read('resources/liber-primus/lp2-corpus.json'),read('resources/control/shakespeare_first300k.txt'),read('im-results/lp2-p56-shared-origin-outer-projection-output.json')),null,2))}
