@@ -73,7 +73,7 @@ The original printed-line result establishes that direct short-row substitution 
 
 ## Arbitrary positional transport before the fixed phase maps (Director #2889, Agent8, 26 November)
 
-The aligned equality invariant above need not survive a secret position permutation. However, a stricter *multiset* bound survives **every** such permutation, including unrelated permutations for each chapter, without knowledge of the transposition. This is a separate necessary condition motivated by the historical 2014 columnar transposition and [Notebook Session 224](https://cicadanotebook.com/sessions/224.html)'s one-rune maximum. Scope: ordinary consuming q8/q13 only, not selective-F clocks.
+The aligned equality invariant above need not survive a secret position permutation. However, a stricter *multiset* bound survives **every** such permutation, including unrelated permutations for each chapter, without knowledge of the transposition. This is a separate necessary condition motivated by the historical 2014 columnar transposition and [Notebook Session 224](https://cicadanotebook.com/sessions/224.html)'s one-rune maximum. Scope: ordinary consuming clocks, not selective-F clocks. The q8/q13 case includes constructive terminal feasibility; the all-period extension below gives broader exact necessary bounds.
 
 For phase j, let h_j(c) count ciphertext symbol c. Under arbitrary phase bijection pi_j, the plaintext histogram is H(p)=sum_j h_j(pi_j(p)). For any k-symbol set S, its total count is bounded by sum_j of the k largest entries of h_j. Thus the sorted prefix vector of **every** possible H is bounded componentwise by B(k)=sum_j prefix_k(sort_desc(h_j)). Rearranging positions cannot alter H, so this excludes even arbitrary, secret pre-encryption position transport. The same formula allows private chapter maps by summing over (chapter,phase). It also gives a common-key impossibility wherever the more permissive private-key model fails.
 
@@ -105,3 +105,24 @@ Exact integer feasibility on the surviving cases:
 **Decision:** do not invest in additional short ordinary additive-period searches hidden behind arbitrary transposition to match these native controls, even on the short terminal chapter. The arbitrary-bijection q13 terminal case survives with massive ambiguity and no independent selector; no automatic order recovery successor follows. A dynamic F-hold phase register or alternate non-native representation is separate.
 
 Reproduction: [original-source envelope generator](../sims/lp2_phase_histogram_envelope_sft.cjs) emits JSON including full 29-prefix envelopes and target vectors. [Exact integer solver](../sims/lp2_phase_histogram_feasibility.py) consumes it (numpy/scipy required). The generator was executed in connected V8, the exact original terminal matrices and fixed controls were transferred to local Python for MILP; integer witness replay and the four plants were executed locally. The terminal WELCOME witness was additionally checked directly against the remotely fetched corpus. No combined Windows CI run is claimed. No new unknown plaintext, historical key or source-selected transposition.
+
+
+### All-period extension under arbitrary positional transport
+
+The same exact majorization formula is evaluated for **every q=1–3301**, keeping the full-book histogram targets fixed and allowing arbitrary transport across physical pages and chapters. For shared phase maps, first add ciphertext count vectors at the same local phase across all reset units, then sort. For independent phase maps, sort each unit's phase histogram separately and sum its prefix capacities. All resets have the same phase-zero origin; independent unit starting offsets under a shared key are not covered by the shared-reset result. For private maps the origin choice is immaterial.
+
+The table lists the first period not rejected by the necessary condition, **not** the first proven feasible cipher. Feasibility in q is nonmonotonic, so do not interpret any listed period as a sufficient threshold.
+
+| Ordinary consuming clock | Crowley 0 | Crowley 4327 | Crowley 8655 | Blake 0 | Blake 5675 | Solved cyclic |
+|---|---:|---:|---:|---:|---:|---:|
+| Continuous, shared | 616 | 586 | 500 | 520 | 475 | 495 |
+| Chapter reset, shared | 651 | 596 | 520 | 536 | 467 | 509 |
+| Page reset, shared | none | none | none | none | none | none |
+| Chapter reset, private | 75 | 72 | 64 | 60 | 60 | 60 |
+| Page reset, private | 13 | 12 | 10 | 10 | 10 | 10 |
+
+The longest original page has 277 runes. For shared phase-zero page resets, all q≥277 have exactly the same nonempty phase columns, so the failure of **every tested q** extends to **every positive integer q** under this exact reset convention. Even at q≥277 the smallest five-donor maximum-prefix deficit is 866 runes. This excludes a common, arbitrary alphabet-per-position-of-page transformation with unrestricted prior rune reordering, for these reference histograms. Other phase origins and nonordinary clocks are outside the shared-reset claim.
+
+Consequently the book-wide ordinary shared clock must have q≥475 (continuous) or ≥467 (chapter resets) to admit even one of these five controls in the majorization relaxation. Chapter-private clocks require q≥60; page-private clocks can evade the bound at q=10. This gives a practical architectural lower bound independent of the transposition complexity, with no new plaintext or key. Do not turn the large surviving arbitrary-map space into an unselected key search.
+
+[Reproducer](../sims/lp2_phase_histogram_allperiod_transport_sft.cjs) and [complete nonmonotonic passing-period ranges](lp2-phase-histogram-allperiod-transport-output.json). Executed directly in V8 against the pinned repository sources with total-count assertions and exact previous q8/q13 checkpoint reproduction. No separate Windows CI run.
