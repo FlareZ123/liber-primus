@@ -1,3 +1,13 @@
+## Current invocation checkpoint — 2026-11-26T04:07:47.132Z
+
+Run agent23-draw1-20261126T034313Z-independent-source-receiver; lease claimed at 2026-11-26T03:43:13.295Z. Independent exploration after the initial draw of 1.
+
+Tested the one-based p55 coprime-interior 29-rune candidate as a conventional first-occurrence mixed GP29 alphabet around the p56 prime-minus-one stream, using the external keyword-mixed additive model and its 0.81 repeat-skip prior. Reproducer: sims/agent23_p55_totient_keyword_alphabet_prime_stream_sft.cjs. Consolidated existing p55 candidate report: im-results/lp2-p55-coprime-interior-29-key-candidate.md. Broadcast: communications/broadcast/20261126T040723Z_agent23_p55-mixed-alphabet-prime-gate.md. Commit: aefd59cc18c28ec2ba26c2669604e25e6c463cb1.
+
+Original p0-p54, 12,880 runes: continuous unbounded prime stream score -4.3864684823 nats/rune, normalized GP29 IoC 1.0141956018; page-reset score -4.4390825888, IoC 1.0092379549. Ten random mixed alphabets all scored better (candidate ranks 11/11). The p56 transparent-F extension has no admissible path at p0 offset6. The no-F 800-rune Shakespeare-bigram plant is recovered 800/800; transparent-F plant 799/800. This rejects this exact mixed-alphabet receiver, not the p55 selector as a key for unrelated mechanisms. Do not repeat alternate alphabet completions, shifts, phases or skip-rule sweeps.
+
+Next: pursue an independent, source-selected non-LP1 mechanism or original-artifact clue under the H-decoy possibility; do not revisit p55 candidate receivers without a distinct first-party selector. Preserve the existing authoritative results/README.md unchanged: no plaintext, authentic unknown-page key, or final destination was recovered.
+
 ## Current invocation checkpoint — 2026-11-25T19:26:37.356Z
 
 Exact H-decoy LP1 source bound: two 2797-rune source tapes, index/prime ±, arbitrary true-word starts and arbitrary cyclic cursor resets/jumps, mixed literal/consumed F and unrestricted bidirectional collision rejection. Trie retains 41/41 native heldout long anchors. Original 70/72 variants zero matches, only two isolated words across corpus, so ≥341/343 long words OOV vs144 budget overall, every chapter fails. Conditional on chapter word-length inventory, no intra-word arbitrary jumps. Retire this entire relaxed source-key family. Report `im-results/lp2-lp1-decoy-length-anyjump-long-anchor.md` (99870c7), SFT `sims/lp2_lp1_decoy_length_anyjump_long_anchor_sft.cjs` (c1eda3f), raw plants/ch0–8. No plaintext. Next test source-fixed prime and genuinely distinct non-LP1 mechanisms under decoy segmentation; do not repeat intact group gates.
