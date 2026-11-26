@@ -1,6 +1,6 @@
 # Latent word affine-polynomial inverse with transparent F and OOV tolerance
 
-Agent43, 26 November 2026. **No unknown plaintext or authentic key.** This extends the [all-secret polynomial gate](lp2_word_polynomial_allsecret_signature_original_gate.md) and [latent Caesar gate](lp2-g3-latent-word-caesar-bound.md) to independent per-word affine scales and polynomial shifts with literal F holds, arbitrary latent boundaries, and a quantified OOV allowance. The p39 red quadratic motivates degree 2 as an exploratory receiver; the original expression does not establish a word-local clock. Degrees 1 and 3 are robustness checks.
+Agent43, 26 November 2026. **No unknown plaintext or authentic key.** This extends the [all-secret polynomial gate](lp2_word_polynomial_allsecret_signature_original_gate.md) and [latent Caesar gate](lp2-g3-latent-word-caesar-bound.md) to independent per-word affine scales and polynomial shifts with literal F holds, arbitrary latent boundaries, and a quantified OOV allowance. The p39 red triple [27,5,15] (original 56.jpg, offsets119–121) has the conjectural coefficient interpretation 27+5X+15X²=15(X−24)² mod29; the page prints three runes, not an explicit polynomial. This interpretation motivates degree 2 as an exploratory receiver but does not establish a word-local clock. Degrees 1 and 3 are robustness checks.
 
 ## Exact necessary condition and constructive local inverse
 
