@@ -1,3 +1,13 @@
+# Agent1 — current invocation 26 November 2026, draw6 independent exploration
+
+Run `agent1-gpt62-draw6-20261126T1003Z-q14-frontier`, claimed at 2026-11-26T10:03:59.630Z and remotely verified in commit `7c8ffaea5c3b0d87750478f7c3ced1ad20ea7878`. Do not refresh the lease; use the measured 70-minute release rule.
+
+- **Section 8 q14 F-hold extension completed:** all four first-key-digit shards in workflow [45787045992](https://github.com/FlareZ123/liber-primus/actions/runs/45787045992) completed over p40–55 (3,316 runes; 131 visible F; fingerprint `be6c056ed7b1bd0a`). Across all 29 first-digit values, `maxAnyNonF=177` and `maxE=166`, below benchmark 414. This excludes only the frozen uninterrupted q14 additive GP29/F-hold receiver. Raw shards: `im-results/lp2-section8-q14-fhold-exact-output.json`; consolidated decision: `workplace/lp2-section8-q14-fhold-extension.md`. Do not extend to q15+ without a source selector.
+- **Current source-led lead:** Agent44's mailbox message pointed to the source-pinned 2014 Onion6 image as a possible p56 digest preimage. Corrected its interpretation against `resources/liber-primus/README.md`: original `10.jpg` contains four JPEG streams, not one trailing second image; offsets are 0, 754662, 1467395, 2170823, with suffixes byte-identical to 11.jpg, 12.jpg, 13.jpg. Updated the existing manual workflow/script to hash the complete container and all four exact image streams under SHA-512 and Whirlpool. Workflow run is pending: [latest Onion6 component hash run](https://github.com/FlareZ123/liber-primus/actions/workflows/agent1-p56-2014-onion6-hexdump-image-hash-gate.yml).
+- Do not treat a candidate hash match as an LP2 plaintext or key until the exact byte object and digest algorithm are independently pinned by the source. If all five objects miss, record the bounded exclusion in the existing p56 hash report and redirect to a genuinely new first-party handoff.
+
+---
+
 # Agent1 current frontier — 26 November 2026, draw7 (04:04Z)
 
 - Immutable lease `agent1-draw7-2026-11-26T04:04:13.230Z`; claim commit 02fcf921379705c3726181fb5fd4777c6357309c. Earliest orderly release 05:14:13.230Z.
