@@ -88,6 +88,24 @@ For each exact archived byte object, test SHA-512 over the full armor; the liter
 
 The pinned directory README reports a 500 error screenshot and later successful text “Correct. We’ll email you.” at approximately 02:49 UTC on 17 January. Neither is a byte-preserving successful HTTP response. The directory contains the three .asc files and derived cryptographic/solver materials, not an initial /NUM email or exact successful response body. The separately archived disqualification email is not a one-time page. Therefore the specific recovered copies are retired as direct SHA-512 preimages; the missing actual onion response and distinct eq6 route remain open. No unknown plaintext, key or destination recovered.
 
+
+## MIDI continuation page boundary (Director #2990)
+
+The 2021 [secondary account](https://saumitrasapre.medium.com/the-mysterious-puzzle-2-c73d805e1f04) equates the RSA response number with a URL suffix and describes a subsequent email attachment. An earlier, first-person [participant account preserved in a 2014 gist](https://gist.github.com/tekknolagi/8526671) instead reports submitting the decrypted number to the same page, receiving the acceptance text, and receiving an email **directing a return to that page** for the poem and PGP block. This corroborates the distinction between the initial locator and submitted RSA number, and identifies a specific missing updated page body. It links the payload mirror Pastebin VuyPwuL4 and MIDI mirror droplet.tk/i/O8TrB.midi; neither is the original HTTP response. Direct retrieval of the paste and CDX queries for both historical mirror URLs was unavailable in the browsing interface; no inference of a zero capture count is made.
+
+The signed 4,322-byte January 20 MIDI-stage message and 10,889-byte MIDI are already pinned and independently authenticated in [2012-midi-source-metadata.md](2012-midi-source-metadata.md). Prior [raw gate](../communications/broadcast/20261111T071129_agent7-2012-midi-raw-gate.md) tested their full bytes and three other raw MIDI-stage files; these tests are not repeated. Since the participant reports a PGP-bearing updated page, the two previously unreported, exact cleartext boundaries of the signed message are tested without guessing any HTML wrapper:
+
+| Form | Bytes | SHA-512 |
+| --- | ---: | --- |
+| Literal body between armor header and signature | 3440 | `c8dfcc20ccf549ff67af5c9084d77f94e58a5405858b01820f0f3cff55cd04c7063698b8710ad8fa2ab26335f4890e3f9bc2df1b28d289d67061d30ad43c61c6` |
+| Dash-unescaped cleartext, final signature separator omitted | 3435 | `772418c0f960462db6b788e34aea1b13418a1e00d57e154024e7fb2c768006b333d406662e7e6abe2d81ee1321d00cef990d83e5f269a642f61365e923c3d935` |
+
+**0/2 matches**, computed in V8 using the same SHA-512 implementation and abc control as #2987. The standard-library reproducer now also covers these two forms. The full source is local `resources/historical/cicada2012-midi-email.asc`, blob `cbdb9899a5c77f364456f55e39bd25b73467d809`.
+
+A distinct apparent Jan 23 sample survives only as a redacted text transcription in the [Complete Archive, pinned commit c3127e0e9eb5afbb582d37988d6369fe38429238](https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive/blob/c3127e0e9eb5afbb582d37988d6369fe38429238/2012/MIDI%20puzzle/MIDI%20Puzzle.txt), 11,261 bytes, blob `7dc8cf837f809ab2b29e69b5a4e558595e792a1e`. Its PGP armor contains explicit redactions, and three textual MIDI metadata records state Mon Jan 23 16:19:14 2012. The duplicate filename Cicada 3301 Puzzles.txt has the identical blob. Its sibling song.mid is the known Jan 20 blob, not the Jan 23 recording. The cijhho123 archive and krisyotam mirror contain the same MIDI/text blobs; iBotPeaches and krisyotam preserve the same already-tested 1740-byte enrollment POST page, not the updated participant page. Thus the Jan 23 record is not independently authenticated original bytes, and hashing the composite transcription or synthesizing a missing message would not be a test of the requested page. The [community missing-information inventory](https://uncovering-cicada.fandom.com/wiki/List_of_missing_information) separately identifies both the acceptance page source and updated MIDI page source as missing.
+
+**Decision:** bounded negative on preserved exact candidates. The raw updated /NUM HTTP body, original participant locator and unredacted distinct Jan 23 message remain absent from the inspected archive trees and accessible indexed mirrors. No authenticated LP2 operand or p56 preimage found. Do not repeat existing raw hashes or infer a page from a reported success sentence; reopen this route only for new original bytes. The 2014 and eq6 routes remain independent.
+
 ## Exact missing artifact and stopping boundary
 
 Recovered:

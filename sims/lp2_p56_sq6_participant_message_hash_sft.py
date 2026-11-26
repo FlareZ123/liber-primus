@@ -40,6 +40,15 @@ def main() -> None:
             print(f"{name} {label} {len(payload)} bytes {digest}")
             if digest == TARGET:
                 matches.append((name, label))
+    midi = (ROOT / "resources" / "historical" / "cicada2012-midi-email.asc").read_bytes()
+    assert len(midi) == 4322 and git_blob_sha1(midi) == "cbdb9899a5c77f364456f55e39bd25b73467d809"
+    literal, cleartext = extract(midi)
+    assert (len(literal), len(cleartext)) == (3440, 3435)
+    for label, payload in (("body", literal), ("cleartext", cleartext)):
+        digest = hashlib.sha512(payload).hexdigest()
+        print(f"MIDI {label} {len(payload)} bytes {digest}")
+        if digest == TARGET:
+            matches.append(("MIDI", label))
     print("Matches:", matches)
     assert not matches
 
