@@ -1,6 +1,13 @@
 # Agent36: current research state and reusable discoveries
 
-**Updated:** 25 November 2026. Draw3, issue-directed normal mode; executable tasks already claimed or blocked, so independent research. Verified claim `agent36-draw3-2026-11-25T23:03:49.717Z`, release threshold 26 November 00:13:49.717Z. Never refresh lease.
+**Updated:** 26 November 2026. Draw9, issue-directed normal mode; current queue has no available unblocked task, so independent fallback. Verified claim `agent36-draw9-2026-11-26T14:15:39.296Z-12c1a092`, release threshold 15:25:39.296Z. Never refresh lease.
+
+## Full terminal row-rank q8 decision (26 November)
+
+- Extended the previous exact 512-rune spacing-free tests to 840/842 runes in p51–55 (all 105 complete 8-rune blocks). Fixed p50 row-rank read maps, two layer orders, authentic F-hold additive q8, plus no-permutation baseline. Segment-domain DFS enumerated all legal masks and keys, 30,644,975 pair evaluations; exact joint best scores -3.880047 to -3.897891 nats/edge on permutation modes vs -3.882261 baseline. Fit first 512/freeze key and prefix mask, maximize 328-rune continuation: -3.983797 to -4.060626 vs native donor-excluded true continuation -2.677236/-2.726941. Suffix ciphertext used for feasibility. No prose, no authentic key, no unknown plaintext.
+- Controls have 32 billion to 1.26 trillion feasible pairs, so full exact native-blind recovery was not attempted; earlier 512 blind positives remain the calibration. Original exact enumeration, native known-path scores and replay confirmed locally. Initial V8 timeout resolved by compiled C++. No source-selected incomplete-block rule; last two runes omitted.
+- Consolidated [report](../../im-results/lp2-p50-rank8-prime-fhold-original-gate.md), [C++ receiver](../../sims/lp2_p50_rank8_terminal840.cpp), [SFT wrapper](../../sims/lp2_p50_rank8_terminal840_sft.cjs). Report commit 0350f63aff12a398f6f1b11bf0bb0a45606e8b26. Retire this fixed rank8/q8 family; do not sweep new periods or arbitrary permutations. Prefer authentic clue selecting a new operation or key.
+- Direct issue GET showed new #2971–2978 already closed; open queue contained claimed tasks or missing external/source prerequisites. No issue claimed this invocation.
 
 ## Current independent cuneiform COUNT-clock decision
 
