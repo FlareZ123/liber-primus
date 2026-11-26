@@ -250,6 +250,32 @@ Reproduce the fixed-multiset null with:
 
 node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
+## Source-selected horizontal reflection composed with the successor map (Agent8, 26 November 2026)
+
+The separate [p50 mirrored-artwork audit](lp2-p50-tree-reflection-selector.md) fixes the horizontal reflection involution
+\[
+R(i)=8\lfloor i/8\rfloor + (7-(i\bmod 8)).
+\]
+The functional-graph hypothesis uses the forward base60 successor map \(T(i)=\mathrm{byte}[i]\). The p50 artwork therefore motivates testing the direct coordinate compositions before treating the raw graph as a complete cell-order account:
+
+| Composition | Meaning | Cycle lengths |
+|---|---|---:|
+| \(T\circ R\) | look up the reflected source cell | **10, 7, 6, 2, 2** |
+| \(R\circ T\) | reflect the destination address | **10, 7, 6, 2, 2** |
+| \(R\circ T\circ R\) | reflect both source and destination coordinates | **11, 2** |
+
+The two one-sided reflections do **not** preserve the raw graph's 11+2 cycle structure. Their exact cycles are:
+
+- \(T\circ R\): [192,47,80,65,169,209,251,180,175,240], [233,129,72,82,28,25,141], [196,89,56,51,86,58], [150,210], [31,109].
+- \(R\circ T\): [199,40,87,70,174,214,252,179,168,247], [134,79,85,27,30,138,238], [195,94,63,52,81,61], [145,213], [24,106].
+
+The conjugate \(R\circ T\circ R\) has cycles [116,240,199,7,204,67,192,40,75,117,194] and [254,153]. Its 11+2 lengths are mathematically inevitable under conjugation: it only relabels the raw graph's coordinates and is not an independent receiver or a new cryptographic result.
+
+**Decision:** the p50 artwork selects the reflection involution, but does not say whether it acts on source lookup, destination address, or both. The two one-sided readings change the cycle structure; the only 11+2-preserving reading is a coordinate conjugation that adds no information. No unknown plaintext or key is recovered. Do not combine the raw successor graph with further guessed reflection/graph variants unless a separate source fixes the coordinate frame and a typed receiver.
+
+Reproducer: `sims/lp2_p50_reflected_functional_graph_gate.cjs` (reads the canonical 256-byte table, asserts all cycle lengths, and emits the full cycle lists).
+
+
 ## Objections and negative controls
 
 1. All 256 tokens have now been visually re-read from original scans and match the canonical grid; the eleven disputed glyphs retain their pixel-level adjudication. The base60 forward successor map is selected by the separate 560-case p32 route. What remains a second-layer interpretation is the q/r mapping of cycle nodes into signed-message words.
@@ -263,7 +289,7 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 The forward base60 row-major successor map remains a source-selected **navigation mechanism**. The original four-word route from SEEKS=71 reaches p32 at step p=23 and hits EMPTY=92 at step g+K=7. The p6 red-word anchor independently selects SEEKS=71; its 4-1-4-2 signature matches p32 zero-based fragment index 7 (eighth printed fragment), the 11-rune HOMEXWDSLFD at offsets33–44. A second signed-word start, GP-prime(MAP)=211, reaches EPIPHANY=121 at step g=5 and p32 at step g+K=7; only MAP among the 43 signed words matches both milestones. This is a conditional path-length interpretation of the 2013 DH example, not an authenticated instruction. The total p0/p6 red sum181 supplies another fixed start to the same p32 destination after 13 transient nodes, then enters the same 11-cycle. Separately, the unique adjacent EMPTY/EPIPHANY pair supplies a two-symbol key candidate [5,5] for p0 word53; its plaintext sign is unresolved (OF under C-K, PI under C+K), and the earlier THE crib remains competing.
 
-Do not expand this branch into more graph, radix, rotation, permutation, or nonlinear-consumer families. The p32/p55 tree branch-count/junction investigation is already closed for lack of a stable graph isomorphism; the blocked p55 ghost-tree human-oracle issue is not a substitute for a source-selected plaintext operation. The next useful decision is to establish whether any first-party instruction actually assigns the 2013 DH g/K values as graph-step counts and whether the p32 zero-based fragment index 7 (eighth printed fragment) has a source-defined consumer. The MAP route is a strong navigation hypothesis, not plaintext.
+The source-selected p50 horizontal reflection has now been composed with the successor map in both one-sided directions and as a conjugation: one-sided readings yield cycle lengths 10,7,6,2,2; conjugation preserves 11+2 only by relabeling. No new receiver results. Do not expand this branch into more graph, radix, rotation, permutation, or nonlinear-consumer families. The p32/p55 tree branch-count/junction investigation is already closed for lack of a stable graph isomorphism; the blocked p55 ghost-tree human-oracle issue is not a substitute for a source-selected plaintext operation. The next useful decision is to establish whether any first-party instruction actually assigns the 2013 DH g/K values as graph-step counts and whether the p32 zero-based fragment index 7 (eighth printed fragment) has a source-defined consumer. The MAP route is a strong navigation hypothesis, not plaintext.
 
 Keep the evidential layers separate:
 - **Established:** original table transcription at the critical cells; deterministic base60 successor map; 2+11 cycles and basin sizes; the unique source-window-to-p32 navigation route under the stated family; exact 29-word body and 13-word coda segmentation in the authenticated 2016 payload.
