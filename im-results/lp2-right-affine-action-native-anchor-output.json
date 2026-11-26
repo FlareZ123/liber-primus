@@ -1,0 +1,591 @@
+{
+  "dictionary": {
+    "forms": 40606,
+    "anchors8": 6294,
+    "second5": 4206
+  },
+  "original": {
+    "runes": 12956,
+    "redWords": [
+      "f8i36jr0",
+      "fqil5"
+    ]
+  },
+  "plants": [
+    {
+      "source": "Shakespeare",
+      "wordOffset": 11836,
+      "anchorWords": [
+        "contempt",
+        "shall"
+      ],
+      "actual": [
+        [
+          3,
+          5
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "trueKeyRetained": true,
+      "exactPlainRunes": 12956,
+      "nodes": 108143930,
+      "knownTests": 104281779,
+      "newTrials": 108140088,
+      "completeLeaves": 5,
+      "unseenClassLeaves": 0,
+      "anchorWordsWithKey": 5,
+      "firstWordKeys": 5,
+      "bothWordsKeys": 1,
+      "baseline": -5.7804794254511895,
+      "candidates": [
+        {
+          "coeff": [
+            [
+              3,
+              5
+            ],
+            [
+              7,
+              11
+            ],
+            [
+              13,
+              8
+            ]
+          ],
+          "first": "contempt",
+          "second": "shall",
+          "firstCompact": "539gijdg",
+          "secondCompact": "f8okk",
+          "bodyScore": -2.5495199971398743,
+          "first40": "C O N T E M P T S H A L L N O T B E B R U I S NG T O Y O U W H E N H E H A TH P O"
+        },
+        {
+          "coeff": [
+            [
+              22,
+              23
+            ],
+            [
+              7,
+              13
+            ],
+            [
+              8,
+              15
+            ]
+          ],
+          "first": "fwashing",
+          "second": null,
+          "firstCompact": "07of8a96",
+          "secondCompact": "brl69",
+          "bodyScore": -5.774181009721889,
+          "first40": "F W A S H I N G J IA NG G N D X I M H C H I OE A OE S L AE B F L EO S TH S N B J N EA IA"
+        },
+        {
+          "coeff": [
+            [
+              4,
+              12
+            ],
+            [
+              14,
+              12
+            ],
+            [
+              9,
+              7
+            ]
+          ],
+          "first": "beardless",
+          "second": null,
+          "firstCompact": "hs4nkiff",
+          "secondCompact": "maql3",
+          "bodyScore": -5.806968959520493,
+          "first40": "B EA R D L E S S OE I Y NG O U D F L B N IA I B L OE R J R EO D P T W IA J O Y B EO IA W"
+        },
+        {
+          "coeff": [
+            [
+              12,
+              24
+            ],
+            [
+              7,
+              23
+            ],
+            [
+              26,
+              26
+            ]
+          ],
+          "first": "dressing",
+          "second": null,
+          "firstCompact": "n4iffa96",
+          "secondCompact": "cnc0j",
+          "bodyScore": -5.815832908588895,
+          "first40": "D R E S S I N G EO D EO F M L E N P I N OE AE T H M M AE W B NG X X N E X OE P R W M G"
+        },
+        {
+          "coeff": [
+            [
+              21,
+              21
+            ],
+            [
+              17,
+              27
+            ],
+            [
+              16,
+              20
+            ]
+          ],
+          "first": "thronged",
+          "second": null,
+          "firstCompact": "g84396in",
+          "secondCompact": "35b5h",
+          "bodyScore": -5.8276145988233194,
+          "first40": "T H R O N G E D O C J C B EO L F Y NG A A T R O T W B IA EA EO U A T OE E Y R L EO M AE"
+        }
+      ]
+    },
+    {
+      "source": "Emerson",
+      "wordOffset": 10254,
+      "anchorWords": [
+        "estimate",
+        "rather"
+      ],
+      "actual": [
+        [
+          2,
+          8
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          23,
+          14
+        ]
+      ],
+      "trueKeyRetained": true,
+      "exactPlainRunes": 12956,
+      "nodes": 108209321,
+      "knownTests": 104348598,
+      "newTrials": 108099992,
+      "completeLeaves": 9,
+      "unseenClassLeaves": 0,
+      "anchorWordsWithKey": 9,
+      "firstWordKeys": 9,
+      "bothWordsKeys": 1,
+      "baseline": -5.8222463209037585,
+      "candidates": [
+        {
+          "coeff": [
+            [
+              2,
+              8
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              23,
+              14
+            ]
+          ],
+          "first": "estimate",
+          "second": "rather",
+          "firstCompact": "ifgajogi",
+          "secondCompact": "4o2i4",
+          "bodyScore": -2.4313033981111887,
+          "first40": "E S T I M A T E R A TH E R TH E E X C E P T IA N TH A N TH E R U L E TH E R E I S TH E"
+        },
+        {
+          "coeff": [
+            [
+              9,
+              11
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              27,
+              23
+            ]
+          ],
+          "first": "scrutiny",
+          "second": null,
+          "firstCompact": "f541ga9q",
+          "secondCompact": "jpna2",
+          "bodyScore": -5.777221323656768,
+          "first40": "S C R U T I N Y M AE D I TH W Y EO AE W NG T O I W D N R O D X R A IA G C AE M F IA T A"
+        },
+        {
+          "coeff": [
+            [
+              21,
+              21
+            ],
+            [
+              16,
+              1
+            ],
+            [
+              8,
+              4
+            ]
+          ],
+          "first": "attaches",
+          "second": null,
+          "firstCompact": "oggo58if",
+          "secondCompact": "epbfr",
+          "bodyScore": -5.814841282917848,
+          "first40": "A T T A C H E S X AE J S IA P IA S N L TH C O U EO NG AE N I G W S AE J L B R X W U A I"
+        },
+        {
+          "coeff": [
+            [
+              6,
+              8
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              12,
+              8
+            ]
+          ],
+          "first": "groaning",
+          "second": null,
+          "firstCompact": "643o9a96",
+          "secondCompact": "im1po",
+          "bodyScore": -5.815256113806115,
+          "first40": "G R O A N I N G E OE U AE A E IA N Y W C I P N D H J G X Y P C P S EO O S E TH C T EA"
+        },
+        {
+          "coeff": [
+            [
+              12,
+              17
+            ],
+            [
+              22,
+              20
+            ],
+            [
+              4,
+              22
+            ]
+          ],
+          "first": "foresees",
+          "second": null,
+          "firstCompact": "034ifiif",
+          "secondCompact": "pr17p",
+          "bodyScore": -5.815994890287978,
+          "first40": "F O R E S E E S AE IA U W AE D L O L N N EA W J L A D B E NG C T G G NG EA A D C NG L L"
+        },
+        {
+          "coeff": [
+            [
+              27,
+              0
+            ],
+            [
+              19,
+              23
+            ],
+            [
+              20,
+              26
+            ]
+          ],
+          "first": "defender",
+          "second": null,
+          "firstCompact": "ni0i9ni4",
+          "secondCompact": "jg1bd",
+          "bodyScore": -5.820060258176431,
+          "first40": "D E F E N D E R M T U J P TH O X C M A IA G W F X A E EO EO B EO W H EA W G A T O W NG"
+        },
+        {
+          "coeff": [
+            [
+              6,
+              6
+            ],
+            [
+              20,
+              14
+            ],
+            [
+              15,
+              17
+            ]
+          ],
+          "first": "innocent",
+          "second": null,
+          "firstCompact": "a9935i9g",
+          "secondCompact": "5obij",
+          "bodyScore": -5.83082962605706,
+          "first40": "I N N O C E N T C A J E M D F A F S D AE D W Y TH L E Y TH F EA TH U EA N OE H EA S A U"
+        },
+        {
+          "coeff": [
+            [
+              10,
+              16
+            ],
+            [
+              11,
+              11
+            ],
+            [
+              24,
+              25
+            ]
+          ],
+          "first": "elements",
+          "second": null,
+          "firstCompact": "ikiji9gf",
+          "secondCompact": "q8l10",
+          "bodyScore": -5.831869497051347,
+          "first40": "E L E M E N T S Y H NG U F H A D E OE NG J U T Y J B P TH R J C M R EO EA F J N T A N"
+        },
+        {
+          "coeff": [
+            [
+              3,
+              25
+            ],
+            [
+              13,
+              10
+            ],
+            [
+              17,
+              4
+            ]
+          ],
+          "first": "pulsates",
+          "second": null,
+          "firstCompact": "d1kfogif",
+          "secondCompact": "nkr6p",
+          "bodyScore": -5.83279873675802,
+          "first40": "P U L S A T E S D L IA G AE H U H D W N TH O H O L IA G W E IA G IA B J D IA X J AE M P"
+        }
+      ]
+    }
+  ],
+  "originalFit": {
+    "nodes": 108283408,
+    "knownTests": 104419420,
+    "newTrials": 108191440,
+    "completeLeaves": 8,
+    "unseenClassLeaves": 0,
+    "anchorWordsWithKey": 8,
+    "firstWordKeys": 8,
+    "bothWordsKeys": 0,
+    "baseline": -5.812752859105864,
+    "candidates": [
+      {
+        "coeff": [
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            9
+          ],
+          [
+            24,
+            26
+          ]
+        ],
+        "first": "humorist",
+        "second": null,
+        "firstCompact": "81j34afg",
+        "secondCompact": "01rbe",
+        "bodyScore": -5.782910784457129,
+        "first40": "H U M O R I S T F U IA J X X D E E X G IA OE D OE S M T C H H D R U N I S D R F TH F",
+        "decodedCompact": "81j34afg01rbeeniie6rmnmfjg588n419afn4020pnrhpnogs1s06kk8bfr2g6aodi7icd9bedi6gfqcb30pgqelmfjckl8madeio86r0j615bjlgmh3qkbo8g3djdn550bicc479alra1snakrnr253c3lm6lc8l56lfjmljcb126a279qr9i60hc2sg1oiegm6mrq97b9lq6n6j5ciarfdjrrn9log11i5nbdchmb162amjb14ns1a460khmj37ncddnlnarhnm6ij6j9ci1mng81qdbasl8g77bkbrlgrk76l07ma4beg48qm4ejnj84fh5o8r8g8if4ogsmd4o3ocihna834ncl594fn39kqdelb2neme1jb32eh8ibo0kc84rc3a4edcnr0rfs8013a2ip0p0cg8idm22ebk25cbq1rik94mrhj48melppnd31l9n0erk66h9dcr1d29elop9jgaljrg263ca6gg92ir7hcpc39cag1og9g17kl3knkfmgaab6h8nsabl9iql0p1al210cqdkjjip1pin9o1c3qij3lec8lgf4b41339enlbhfcg85gnnh1jhj2hoe68pcbgcoknosaf073c2gdm3532j936jjcal62r4bonk9n731fdb7fb5cnqb4kqr4o6flbg57eo46ref59nfaagdhiblsb7qeaqhcnma9c58658f8a5i6in5sqbc4bgqji98gibd11kn9h3p97egknnp4on3ia81siqgq0g9h1mrqm3gj3dm5n5b5im29ejk047ik02ie03alacc9ahfeoesbq0ofjgoj7n4b9amm4fjdd286ln3s0ngbnoqqcmhbhnoskh6ljoh4641cm37hhbi0b4jj5i265p43ao6qh03pl6loe65s9erdsp825aanqnc7g6rrfahgmq6fh78nl7dd5fp4kjhq586ad8ji6fq37qlnbgs1dqhcclc42n7ra0032al2880ncak4m40987dion40o822lo1836eilebsjdil6l03d9jp09fini4a9qgjbb6eohhjdh22h9hf209r0480ngdmse6oo5q0sgnhalkj94a5be9lh3j143odc6irjq0fe01c2aogaaemrg2o3kfomkaq3cdcj7nls21a9o4ejsfk1fqg03ep3ibcfa40ga27g5srl5o8698irg23kjjnc669gmhdqasi66soah047b7epgl2km3fs8jfm1761l02hel72i7knac35hcb77n81r9j61ma1012impik2ai9l4e9kifqo47ph2og5om44c4941mrhcr5r2ofc932841ar5n7d85hd5s5sr4i0bki53g509r8d6so397lh3kogh3op3nn0a2rl943o56kcos20d5c0o85ske6eepsfpe10d2jjl5g0j4k1n460bas7noo0f2ag4j65argcpm216o5gnpfr5lh53a6sg6gkqfsl07maars81qnkjds4khi7qp8ed68alrjeg1oibsij2gkj0i5r6r86hoqhgf4ar5irnfbjod978a9r29a1ip6qa5nea5q644jkoona8gi62l5k9kdd6fb3j3ks1gmpg5g1ld4oqd5a8n3e6jshos76011c6ogf8sk1o51fq8950ome7qbi3bq8a1a4lhc745iiib43b203hh7cnambplbf4787j43nlfr74qo7f921bhdh3asbjqlgcealrrsf86d4qkjqqggngjsjeg0ksj41gnm0iii6npkfahl74aceq4crp9844eod8lhlqgencl5ih3l7jn3k6lbk51a5ghbd2e3gr8abndgpk934ae5g93d0n5bh6hb186e8r4qdkb2n9pki0i53c0j100d976rq0nqn0ogs1o30bhr5g500ipne2jdi9pr8k3h02p0m9kia037573a6lk38he400i79abr8f8f2f6qea7jkn81gnm8efnp1l9lapccea21rglrqc3es3cbmmgm488b99fjjfahk21977c31g3jgcebenr1ijdr9rrqga3ebkci63qkfpb74mdg1oqmgjr8df8sm5nnj4medb4k3ae2j8d60487go4h9cnhn93p3o49lba6gr5dqrc760nfdmsb4pqrhgr2gih540cq5rmbkn27esi8mijlia7fs415m1184le5icfm03iff22e16h1sqk1m4hdcbji87i97ks56hf737eec6jqa76j3qa07of4dc7jali0brckmlkijfs7hg8sldqq2cqo0kom5egoklejmj2r7sb9g72gfpl7l2g8hjdlfefq5401a4721qnpi0ais1deip3cp6pser1b1b0d1pgrfl28227pkh3bp37l3b6kp4sr3c0p8k12mb63ehp56k98r8606dfdn76sp86mr3sq8gka0k39khjf6q4cnija09fds721nmkseac6s5fsdjs885ho9gj62mjad7j4fgpblq6d7sn229n2oge1snlr9bg2fhd4bb085cajop8pl4gjrekbi4h93h5elr7e1ajh4mmp414e1ijqm0dkjie5fqksl8ksqq0n6as2lhij2bgaobpes525ki5r6glq5pia3r3iojcl29q8m19fhcmri5cmgaksr3od0nb4id4far25acd371f73h1862abd1js7fp3afd1ggf5mcgkr9pi87siq5pgambqfeg0s68r33ad817ne9icc9r2no7lihjn6dj27gih24gns6mg20qofs7emsl9spnq2edpf8sg8fs15fjsh03ai92cemlbq1gb70rl9e6rjkrdkbqgnnmb65g44gab86rsrbkh47ml2d3jq5fbng9323ck1endrh54psgg6h33a4h11anknn7adhiio87go5n0a4r31sf2h089k8pbn5s8fkc4eb72g6c60jq4piqshrdqk0hdjm3gi7j6c41bhs1n7chgedsolnjlpf1cm788f8kh20m8l779qj3jnr62aj26qs24jem4fan2rloqp6ed60sq3gj8ad1ck30os3ola2d36ki3he1le1irs6mrac5hle0r0bn9p2om9fk0kikonpl3qf6pea6qfpege8esd40jbrqe0s6rrg2c3pek5kh1l3pig0i4idb720k4hbca3n578is5giksd4agosb1smear02l5a9560sn37fdm66lglqmgol2h0fsbqh2e5is45fglh7f6mhcqm5skfl0caa7mjkkq21edks5hce2rh3j8988i5chfdklqjdp41b7najfbr9lqp4h99609864gr8e1l0p8bfn0j9ado4eiof7192c6nh8l7028jc52dq1mka6l0hlkh9k4spd4bj1ll6l8116qklrmbd531gf0p1i0eb7gcbbqccg6f7icdr8844eg2fn051dgf2l7773bdop30hs2nc2l5i7qmmbm623c29r450mp2j8kqmd7bs5gb148g6m65pq2h8lpgmr64r88ola8f6gg0fa7mld3kck6bd2bebo51bbhoecspco3q6p3sni86sggpf7shqs9a5s0mfm3hd5egf7nispccoh1mhgbkadohc29hg6eifbshefke3n1c5d5lalhsm633q349lsbhaop4g4lsa0bd5mml47j81jolh6j6m07r8of305p8f2r0jk6o7jl0ien0ognqbs5pf0950b6qo3okr5d518a06c63oo882biheoi4bshm40k54cqddi20994hm36jd3hdbmkrsk8hmjl4hs8lnb08rqmo1id9737e5k5s0hhrjiqr2hf4srplg040eq9413jk22l9go73djlasphlrp63akfgp4258ddribs6gl7af0pc7588rj66o6b0m2828ms9p27f9j3q22m7fmdoho5rj1jnrhj326pd8ge7p47mk7gg1jqiqr58ghgqrks6pslgj5gobksofdp4ccsbi3k92ac3f7ql94qn1i02msij0ss4s0d00r9jne2020i5r0kqh3db9m1r3caiomorqo08s1k8fhocqesi2sd9fg6o9k0r2e20e7kcgc6o6q2bk0180gehml65o66q8s7srrqclsnnljdde39s1oehs4k01n3qbg5om5elnm6oekar057coj5gnsoj3jgq9psrbkp6rjj5isbq44qg4gkek7g60mogcdnemailc69pes4os6qbo8aqihjhi0ped7lg8gljgg7n4alfmh1qd60fkmsnniaa4cc20s2jd03ae26077e9qg228e2ddbm5bbes6cqis1sf2mf9n4mbenfen2lnm604mk06431pn2nm5g5m951jr23irs0cqdesdq8neloackncpd7cmrkgrjkrhm0q0egrm6jq0isc0p8aof9e3krp8h7k3h54m7ad0ek0d74s37b7g894q65gf2kmki2jna785fe6dj9jea9log7es246oo7k2718l6p3k02ccr5sd9jar188bakqr7fqn4b7kc7p69n78rq81fia0895279je5p2ia1d81l54kac6lb38ss9lpl38r9eg0nrssshqe5clqghog3i7n84gh6r9ilm5545ogecp7f1jpgd2f9nepqd8ase2p7508dobnn0dg4rmdg6596k3a0b77cglr2s6i79hek9dd1q2g344kl821a85l5rikiaq8ib3fspsh3k7p7bfqppqjjp1kf7fpkfb7f4glg813p047cqp836dr1mlrageaegf8l9r21gjkfjkibe1s3q7j66219bmgr05p773539dg7ef328firgl69iq8ja816d88idflk5mg7e5kqlibpakelf00p022rqpgpok720de9f1ic48ao43e1lkfqeq83sfoqllam1q6hr022rja1mp3qph1l63ncgmki9fhjmai6d80d341ngfsp26qmg9krn8omif0ansdp4e5m87jl34jmsdd8grjhf81lfq2cf49d1b3gdghmob4rd24f2maf25sahbbc6o1c6oqnq8j5gsjmps07q0qk1s1i4nn4549941ef3dh2dcq640qg60j8a42d7f0i3raa5op4e2b9poip24q98lbgklglcdnfna0a9bss4a7jdqpdlq3np39fq0716g0qacs0jr086plg0kpaikllcsp0nbrnma45fehdmdq4b7p5pcp25qkm7blhcedn843ls5nbs0enoqesnj9eeejl9g73rm6shop912ekrgn23eopsnpocj1l19a45ggmhaj1ee58bp87fhpk2nh753bi93nkp497l89pnaqmgrpbjha3a8p6g9ngnfaj9q051p8aclo3edi4psj9gs7s816aj3eifmfn77snfq4cg5sol6o3806r3i9b4kgnp4no58sp184p84oesf4c8qkms86in2dd4jnl6ja8dnfaagdss72mkfan5gkbpr5pq1jlnd9p3ocj0i20pl42srp5kl6r2ilp8fd8ad30hhjbfsrsob2cn3qbs7dn5ednr7demcra6r9nnc2ljhcps4eo5837cd9nn0bj3h8gslnglskire161bljardbll8eplos1g7nqgp3cr5mfc2fr9k11a8mekbqk2l5mijs1so69kibff0p01cfhoj44lgnmhorhrfm84p20dfn04r1s2ij7n7dgmd3p0eh2m8sdq57cbg91gejcoi5nc87nck298obok9rqsn98h710oos8qmhrlq2jshm64mnd5g2jlnjaqp2clfb20dfng3gobmhmq0bafe6gnfm6qfsfn7h2beqog8nhjsh1le5cd1i7a31jnsl144p4bmnc7ignfgdlho7bm2l75hr53eik8a34n4llq5minjsr2pcope80pp5k9889541l8ademdnnf9o3gk699snhak9nobk0g6ofd3ccp46pbd2na2e2313bdrqlmp3f498i9he8q5ofa21g321ploe4hckepikglr7pp3ge2gi7cqlagm0genchc21a7g1lm8cpcfiag6m23o7csqsib06hoccmkh3hbdr1nq6r1k6s2lk82841kjl6j9l4jaigohch13c97141d382168q0g05bcd88aeq54mk2p047kom4l3ipagcrii1i2dmn7fk5i50pq4k5srh1lr79397ih7jleea52807ar366cq24p21gljrm51ekjksl64h0od5arb45mfimopmsc5c959a7hanhde4752a5ibcm7dmfk25sf0pi2p15c621e524qkl8on7ho7dk45rag4j46hbpah0786jg63i8kjcghdgcebi99s0la7id6gie9kb76ibrphl5fqrkca543hbfj9b352nrl1ebjf6sbjga3qsoqeoodk80ejdl6emgrkpdcr58a1b6qsd4ljon0c745r7jc9nik1l0ehlldg5i7nl7l2miqbd7pih6pmes1rc7668jnlp96q52smiil4fh43lh1ll3l87c2n123hjc2rgckfnhf63becn8gc0q6c3l8k6ja0r13nsb9er7q3r9cir05bjmba5597jh6d2rlfc73cha4rfqlp7aiahfk4ir1cpp49pfgfegifpfeohk1mj0b57i5l6gekq0kiheo61konr5kkk9397l7c1bh2dfdhhrho1cgme7mirpqia2cph9jfbinaksinpg49b87488jnflr7jhhib1kkq9i5bl7n8mhl4kenl48qdc068samo3dlgdcfejhnepj569klb88jceios1ngne3n9sj7si6epohmea63oca8gfnen2biekeb95gjjg0j87fsifr04enhaj8n2f83iclp46227m0ba0o92kjmfd83eoejfjl4psekbjdsj3g1pd0j239engej1e0n9arm3fqfr02e17el5lk71gbl452jhe2eceae6j64rk7f3rbc09sbgf7qekqq5d0cs49ekb1361o988ncqijqlnfadeaj62p8gedi9r21jmbfjmn2lb88i6n97e3fdc05pb9hn2cijrjk8m0dmmreqlgoiiedsm0e7fk1ilofs2cmlb66ck1im3d8rkgk4mr13i8fsedej1o94nja6330k3f094m2qa3lq4rbk33gfajql3ir0e1s6jpno41qk86iiqe7qhcmkpepq4h0lplj4ie26nm8ob8e9ne82hdf1g8ji3hbhjgge49gb0so9h7l6aokaeq1236h7pj7q9ge37k2gi3g4a2om3fqgqep6dss0sgnqcpr6lce7ep1jqimgsk66s10fkce3k66jsi83j3l92k438dj6jf82o766ec2enskcl411c25h9398g5nlgk20i44psbkqaa3anm1e1ricf3k2p2rba2qqaald98oidhccbmcbfmd0d1j9o935sfnn32prah1b2n1oll80db77jn3na453dea5b7gnco7q3nn78qjmehc55ek2hp9pri9s1dol0ghp157sa8eh2ncbi6b44h0g93ijc24h75rqadbdjadnpr99bk7p9pfgncci4ngk18ef1f026mlc8g71r4pq690jcg1g269a2p6rc0pil3nc7an79809dosg7dkcbrhbckrjeq1cge5e4r05pcbo1drpk8bgpalm14ifc0cjlepa3k4fqm39iek8hmp948lr0bn47cgl7crq0p8l6m607slecsd9bacq63esbhhm9dim70sp2gq4gs9rjekhm3fihmar0gkghjgfm5pn45bi70o5k5qljf13123o9lq628k10glhmg11ed710o3geic3ijefm97ahi7rcahjar8j6mgm7k3pms8p0ck4pb8kmpd7drh065iljkh6js0s2osq042f0efogrdjl02joqo51mkmjgnilej156fad8d226se1821l4ce0pg96c2insr3100880oh8kfjp2c0g885lr31501p2i775k8961inblm92jrd4rea11k37pnljodlr1nhp8irc8j2fih7fij7eihaoh5iok9onq0ngg99o59g19njas3nb35f1fad5imom4c795lfqoo8me7qnma05cm8j8b707p233gf309cihlb72rbra3ahkl7077r4ncpdhrfhaqki5m54j2pk3erksmpf5g17lirfe5e80arpc3qqqm5rij8bohf6a5pe623fs6aiebm90jcrdbgf834phllsgpdnfncgsraaknkmamab1fl3pfkgprm229s8lai081dno4pkbbm5663i5gor3cfoo9nphr52krg5fj1d4lakjn3fra3403qe3m44mbcc9co1448l6qoo8b8edk0ei9l8kl8ogaen11an540afgac62ead744brehbpd0jmbn2fr52q87cd0filqpcg0nde4r3bgsegcr29k0kb9h8g8h1s5e2im9rne2rfdcdk783cbos5nj00i3lp5g68ojg754mflaclkbjo4p1pc34dimh4pl6no1is13g5cm52m21dsr4keq8p37jqs91ds991eep2sf7j9rn9qd5fp4i4pqqing9ceq1shb43d4p9e3lja4gcm1l8npnoo5m5ib4sdhqegmmlqm4qfqa6415e8me4ofc96p2gkfld7oc8bhdffn72lar0eo0fknmr5p5sfr17hls6r0i9e3glno9sioii9o683h0f8mp5im7s9o27p28ka2g0ioeh4gjk57pmskjc16s0s1s0di9f3l71sdi05khbp3cl9k29gjfs3fa7hq1nedqbbl1mgba34o4j16ebha8qs4elaloepnn00q5imd6oofjknsjgo8ei3rmpam9i5prfh2ddi1ib6nsm94mkg8oo9pqlobbe5bil664154r4d5h5ai08fhbm5ecqq3elq51m1fqps435adjiijj80qn4cs6a80fnkl5er4gnfe9j60o8mo3qrmi4d75sa2069mkbqhabcdi1blsa4ccp1pec4emso09r8441ss77g5fo4kfck1eoeiiqrjii9e9gg8l82jeh6acoo3q4r3oi8lhgp5imjc5plid485hoasoak7r60odkpcjmg2jfml0m9e3q9icl486laaehih895mb6dprr250j024rrpsnnq1an87kaiiciih1e1cm3r3l4s9hclab0b4eaqhbshf3i53qd9pip2nofokref8d5kc29qajgo3p31qgn82a1sa4oqg24fka814mcaa3n3f87282sa06eppd2ifnmf8f599p3jariqem0end3hqfg59jesa4dkef9njl25a51qcag12pec5ec9o6nr92s93dl43ac4gih64r91pql820j9bf5gbhino0hd08g236i03619o98a1j5mpb2aik994f64mmpejo3ngqcf5n5857ck2jcsl6j021nlld72ejgis252j01k2o5m8k7ekh5dsohi626ko5912dmis9c85olbkcle01m8lh9iemksk328no4jaaamo39qoh8bfdlcm2b3c8facp70bsnc5a858i585dh0n96cj37fcbmod6o6431g6hqipfm9so4k8m9h0h2blfps5rfli829ao11hsj2goinb1kj3ln4ni3chbl7mkki6dsm5r80h0hpmojne8eg710rf6dgo01jmrp8224oe3nbea4mbpa7miqsqmh6jei6ncjf54em2n2843n9pnr94h46sr81kok370ga9g6o77gd2pkio8qmp0blg6o6rr5hleq85pd1g74586ehmegg2e6d3nbejrn4a1rpce3h46bg9phpqid1bf304mahrjok0q33dk5gncpom5okf93958q8337l5oposgn4ekgbd5de7rlddd48in384o6r8ae7cra21eb7r03s0k15eg20djchabdc9fpn3p28pjqkkceb22bn9ri4ddgg6mm4r0iecc22c5s3nn92eol2sm5kr7jkf37afq258kos5ei3g89rfjaqi9kn3im3jomk3l5dj2r9nismgkos1cepges8sgf0n88ancqa1f971ei34mnhl70oqnnaqdsio64l5h0d0andcnci87s326n9pmho7e0qqoai914nj58drnn31r0dc78geenhc8qeg0eqrq97r1gb5disreqcgsirsqgf8jagsd9ds3ml8go07c5s7pa565l9kje8a2ehie49oj1ksflrh6i5c9b0k07k8sg13dof17gk02o6c8p273aam75dl28s8nn0ncl2333j25eq2e36m2je9bkjlpr7ed2mr2sfq4j2d0sk59k85hrd9krb38frrb64bkn375npopllhm4b0oj40aajg0aamacrc2rg626l3fo301as6le3ni2psidbhorkpai9qsimlm6kmajiihak2d2hadio1gm333i553g774l3647mrrhl53c85e161pmoeojh38pr7gnqkqnsjq2fl96m1p5q888ng7kiopfkk541cjn3lanrq233sn0o6c8o248j0r8aq0dndlqp26c629b19q3faf89p7f979p1embnejkga4g8jhlnb4bn8cgi9c3cgg9rg5dolfj8bbfcnged47sh19r0o631gjn42lrnhdqddl6cjl9cqnq3kppg1mogc4rik3c0iic98hp3p9becm0falshaene2pkcjlrmc9q3i5268og41jojc9o5g8oj7ke9b8ibfqs00gsj54hc5i8gle152s6iseqdn4qs8k3h490ab0ngnb1s5jdhn54k69m4ec022ejdih2dfssbjfi9llsb1sleh1o1n54nc3nc705q50iacn32eji48nk4827c4k5akn6gbmj7lrekj1qb24sme1m478pra0s4bqpo1s0d011kl2jai6j5ej8f6sa8kj65dsi8ojorlefoi1pbna3k3j0arf8s2j5q8isd1eo8f69k18aqi5jdcmob2ocp8354rfsobrk943q9c9d2afgg9rrd2pgq4ina8p073gq92221m86j4flh2o864jo89ikgjrc25a4fo7hag2f9mcrs4ksj11epsnqmk1rhln45me9f37mm0fos1a1f9556pbm0ge08gfmqfp91s5ndj9fl4ogm5s1e9h4nbqoeg9dof7jgoie0i2rgoicpdqhh6bddflae0s3en47p8rhqe0a5lpsqllfcg3lj787fdnf2n93dp9cmc5ij9pfj3rhjhhj8s31i39sb84l0d3s789hjrcc82n53akihgs14dnao53b2c0e4809r45cpik8hiba58r8ok983hd91j70orb9eo494emjc02e7clnn444c2s6lkhdodia3q8o90hcrsd7d94d2sniincnnk0cnq6aog10fo7pg55c31ikrdrs7e4c72a2go63hodjrchf1dnjrbomg2632i1836od1723fn0h5ikh6s4oqjbjik64adcssq2s23f0g82c49r40b89171im7ld7lh23a91o8rr6a22d21k4lae7fedpsq1f5mo4h30ni1d2rlbamnf46a8iof7kf5n8k5d6a3ikfd6645fhc339jhnoosglm0id9cdnjh6qcd4og6c1afcrc3f89bs880p0d47fh1ggksa9acr1ae9hg181cqmopifep8idi30532kd6e9s6m2caq3bkmij1gplg696dea7pf9hj9irdnjor55ggis8loaf0023bdjf19a4golqfj0n2pajq5g9dbk5723k5qhme9bln7e38qogkh0sjhnae3cq1bgk33lnop1qembkhc01fag5r7s9401b4ckmlej7jc5c04ef4d8garj1j71nmarm08rr67r0o97lbe762p8gicrlc3p9gg1sd7gj3h9k5iboin0s4hsbq85p0hl9oeq9pk218fqlreq186ds6181k6meaoe93dho91sldqkhq9kknsf4ea6pio7dpg0cm1o489c7lccipss51cob7321jae1e8bnfongq4e5ibpmmdqcg98fdh81llckol85ha163gjjgd23o8ir68ha82djl077nfcsq9225hochf76mr97mc4kfjoiqrngckpql9d0ei9p9gnm4j8d5o1jd5apcme978mo5o1a45c06441806r2hhdsqrr5o09oe8f44l0oo1ldoiedqjejibh9em5s9qg9802boesg45857f2p5q56hbdc0aje64jd4psgion4s4947cjcpglcnsdmekas54437irjoqkh17s9hr5knp21nb8lhs8si8gkr5re2a5gnm46dk24jems6qr631adlf31jq52pafnbf10pq573bkqco744c58r5h3a0qbs2il4ossns8mn0ib3dkg6r187o31rhqb4nm6fqh8rqkoj6bk0a5rc986j934jhlbml9k38gcaq847sidr115flclbd83351do440iri6j919jcd2rn7fnipb3dqp4qgaa1r5moae4lsobecpqakhp7foq554hl0gnae1l5osqnb324ohr540kbfmfq8sl4i803cqc7l8ghnp0j86rlabrqme720d49511brj4e7pkh94i1s9ej4jceppkosbiqc22aa8oid5hfq418lna54k51fr44ph0amcc4idk4b05fd7cdbankb9poqh1opk0bigr0bf4eal795846e5clb08n89holfkmseooq4h846flkic0q0qj0cfnb2pf7mar09j6sa4dcegq6q6nps0bqb3fejajmi4oj4cdr795p3f3d8k27n75h700ajl9rlrrqph96jf6o2h6k2ddbb64elie5307eif6bs2oi1rci7no05kjm4q4jqr0b30k8dblb0g4l2d061205sjarm9cb65cbn29d9289enseachemnhcmb2o6grsdialhmg5goh1mfsfdfph1lqnoierf26h6a4lr5f92imm"
+      },
+      {
+        "coeff": [
+          [
+            27,
+            10
+          ],
+          [
+            14,
+            20
+          ],
+          [
+            20,
+            15
+          ]
+        ],
+        "first": "formless",
+        "second": null,
+        "firstCompact": "034jkiff",
+        "secondCompact": "m78p0",
+        "bodyScore": -5.797257486588542,
+        "first40": "F O R M L E S S OE W H AE F I P OE S NG I D Y D E H E TH I EO S OE S M X A W EA D N A U",
+        "decodedCompact": "034jkiffm78p0admflanqni8i2acfmfjeo7sn9o1ddoddalcn54d4rbpgmf6b080q3rsjh70idbf9p57s5h2mhc5chq5m2d3bsbppddle9a9pocf0p10ijkfnip64il4he1qpfdafilcdi7n7ar1rja931q48l9sbrmq3okmbd22mj52pojfcpq55c0lb071mb3ok9piqsoc05h69gck97147obhl1krpnie3d3kmlfn6l2ig558l34r9f6lm96lf63s5oa7672h23s1mddpf21952pbc56e5652mj5s46brf5d66pms60g0cldqs677k871mdlblb923eol8imha1ok85l8n8f707rs2eh8draprd5ifi818gkf04b3a5eqa4nj06b85gjkcjlm1oh7cnkc6kgq10o71pp448ma38583a7g9905pnein17bol4nossp5nh0bbm37ehlg2rrldff6e0fhfpqd9f3737k5hn2acc1qqdd3o0mm6424f5m6qjhpek17spq78ir994i41epami3o1qc5mh7rmci3ml58plm4e56m6059p9rj9jl5s09pqpa3coof25dqj8i0fcko6mdhdafdcq08gjcge2s8nddfjm2gp0ra1cfnsje2ms4qjlpj12r1jig4se1sf6lih5cp5389ej3lgplbmh3nlkaodgdm44oqdh1peina3oajdl82gndrdi7l5g1mh8nisbglanin918lgrmbaq625f4613hgpmoco6cm3ai0fljf3mrci7a5r63hqnpikmbmhq59jkq4ebmja259iob6njg4orsrhgpb0amcepdk78312rp61e40nd3qf800icb4iblkl9eb65858p90pk3mjbse0ak5359ine1agb3cee9sco37ic2om2igqnfq6i58j6ba1lq5i30b29apcg0ok8p8qa2kagkbje46ji85jm853orr7ior9ah5kipq12h091el22m312d1oqqpi6e5b838q9p0l2g4jqmmo9dd996gjb5m335q0bl94e5s8653p09i06ifk7bbli983rsh8gl96ee4lj5gisooniodlai5crjmfnk6q7l19sf3f0nsci39i0o44q8k6e6qorcq8agmk55obhqbklfc8gnl216oo83707gj4rpjjghas0ehok44s2logg0g3pkhrdpqej0c5bdraj8rd9henhr5jch35b5pi785kn0os4jm1lk9b68nhglmos75hjs42a8rld0qeocdplfh1an9d247d7lgf9hn2mdij8dgglb4bgklednb89lkgeigreek67rn93ceqpdmfn338n5571sjdili8lmfnml69bdl3gnm3rp6hkld2q228bfhh55shd117p1e7s9op3bd23j8c876j4gkqcd4hikksekbgjhelcmiepoio1shjmr7jgrnem2k9o2eal83je7ek8p9n5i8ncn8b7k6fsh2ae7m2rfofmf2apor36q3g1ncfc87s23joqga5rgcceq37d8kebhghgpaaj7cng1hf8hjf0hh2aeic56gqgd6q160qnlisd3ea4kb2ed8som44mmqnjg5cm654mkjf2rbb26j4h8cenfbmcmpcls0ocgr05fl78do487d0jr9ibna9b7m4nsh3obnhpg5f9l30qoehl4ol5b7m8q91pcf33ms5i8qcr3pd5gdkrs7eeoh84o3bjksarm9l2glso20d5ng56kd3q05ge9dr0g0m9ahf0g0ojms4606l937p59bar3af6ffq5gf1pn3e4gofphkd0j4h4cr4bd4o7lsfhe25ak9sjd38dkcr96ajroa36onrji8r1co4lhe1i9sp53jgfm0p9clb0ok67k5hobdpk169ksc2q2isgc9icpoh0dnf2geqca5bodadqjsaid61b774j9kb16qdc5o8nlm6r3headlfrg2rqb1gidmoaf9mjlisbh8gb19dpaodmdgl11d90rddp1n8127iq4n8cg0g8m132e5nb5oer3q31048kr196pmge8cbs63dn01crh88e6j92gi6o886675n0mlfdrcbna6iqq2s89jl333ld28rhafpkeh5bh0hhml792q9crcfne6fnje9lf8ddfr87c2hfsc0c75rlekkaslfhkqglblog3mea6gkn1jrscgpihkanfhq02o5rq4qc47re3n6r4d035dnfqnlhk7hn1lrcpid8krf0chb7e8jaob82rcolb2qen750pm77mlqb86h0pjqgs1sjm76rem2fe2eanmgn5dirhpmbrjnrd5nmcn0sl61cf447ospo0mnjm1ep4qibrj761m3qmh25f4rgi7s0gbl1mpmei8c7i3k9g61pfel2pm35hk1em72ldjl5f54758jjglieddd8ephl9rg6k18d2p8hf52gqo1d1gdk492mrbb88063321oooj6p0ffmm76ja69h14qgaq2ifi7fpflm5k1ig76076o657nhhgjbk8n56ps8ei4qcq24msfp13mhko6qog5pm591pk21f731s7is9o2j2mkl7reao5ffnio6f114jp9k846fl74ak1lmld1f9khqa9jckfrqgp898f98ckjh9j8i00hsfk18h7840hpfsf2egf6p5530go3r9kr28hpfribgahjb1355fpg0re9enr3fg3dgn8rhk8562o8h8qorn667cl451pbc1h3p92aoqhr3eej5lbm4smr4qhbr5imcmsejooshgf4of5mqpckj73b17ag6bnopqah1q836eq48shq35fsr9b5foglb8jdjiq60a9fol882958radcb3qfjgfrksbrjhokbaq4eberr384bfq791cmbgjrsah7gg5i399gamrm4lme3lnrkj1bn83pnroibn37cjq7p1c35ai9fp3ce6amefkbharjm5i7occ3cfgqs5feh9g58qn7g49o8acfdoe9df1nojjesnf573e4apmhabpe0rc6b55pfdha617a8dnd356r7pd1pbdcf93rlk9bo4njc0inmsm4lnp99cgh5e64l9b08nd54nfpaq0kcdh9f493gpe26a1km9pcemkp0074iih4g8dh814sa7c0rlbjp6ji48b4ab4nl7h8k8asfsmkf8s1kpb232dd2q2898ff853bqopslbbmhfmq7iqq4lf3mq58h03oj9eas6p3e60mpp6crd585cd3mc281asim9pqkm4jiq7sm08ablsdg3ed3rd24afk8eg2do4rlpboc2r76dn8meqgkfoaqm9h82s89q8lh0knlg2d78k9g4rl9c39q0ojo6bjmj3sbbhck91nf0ihljlf4n22hgem71njjapodg94khkhjqi7m0dqoodcel2f60lq1karef77h2nrpjknikk49phc94rsgmen9i41q54gpqh3ena74i4cc630p339dd5sbe0epjc6nob1kqbnraapr9es1p5phc3smf5aho3r2p0m407ageg304r36ancod762e5hpfcnr9sa4g7j6jjkrmfsjri17fqejjkb6bgna8dfs07rbcrm5o657l2k4abj3dg6jm4na3pq7kc1cjk3plc26qnoeh11pefiadqqb7e9jeo0ls1pnmcapnhijim132grh0o3sd8i0fqrgjplfgrks38rige4cgc22b2iolbl635e1fp2e7g7fq7imasn5s5bo6i47lo4no2d261sslm6l7e2j1k9nigm6e2brn3jg0na776qpi52ekm0ilcdcn2hpscmo55pldn66m6316bnr7m2ga6p1ffr7osblrpq5m5edk1ss46isjicdogj313adl5nmdc9krh29boredl5osnohb0egnkd7c299l4pke8rdg32iielemjea6ar15k5gsepb1dhs452836nkead4178c7hbmqef6j0h3s6hmrjr74lk3mbp60n2ml03ppm5dflhkhimr58d60482gjhl3m9ldj41l57932q32ad96c7ccjaka8k5lll8hgh23obeh4g58db2kmlisahbmln7hkms494ea1opjdp9pqejrjle03qb0i52j9s8l4755pdk6h3mlo9rrp857g3m2pcg2gmh1befmelns71h2lhksf4ibjpdpaddo7dofd1pd5i5jpn7sok9a6bbko48s2sr234hi8f34k1i9dbko4gsi1sr55nim6a84e2h3hkssrlh31bmrfdqncao9sm5olhs9kagc6l3d338g58876frbli1eiqfglb283p812jb15ofk4dhpaf54b0fns1dhasbhcli3k2eifqnddnjl17jqdd9q73kfjqmqq929i2oomha8qfnm9qje8cj35rf0jq78935ngbksi365c2n4444d2ffqkdds7orpc49f0hmarpiqio84li72db22rokna9i7jnob8qjgdksm5dkd1or7d12kebf5iq5h0o5ogopm77ef96rn787ndh7mdsfq5j422l1m3c79ab96e99jgb4fcp4dhd9qsg4cos491qj2d9gajhnpk2odshp53rn9cjamba0sc7nsjs1qeemq9ijjnc631alf9p63r8229p4crheiscq9ab42ikclhoqm35f35lomklfmi7470o7l6r2bnep3rpe5o92scr535mck65bmnbs9an82jrn3airpr9krhej56h90cnf166kqggk309n0s23b5qs21399nfi1debsqf5mfmlmmrf7cqasedno8rh1hrpop4n53lel1g00c1o9bdd37e9snrffs9gc4428m6pgjs0k312201spjg2q0m7rpblkclh3d4dse8f96hfeei33ep6k1n5epkllqe3jafc0a16f77rbcd4s57lc3qnk5sbr3sd83bfispnl7nk4os2s5eb1452535nopocekkabo9fc6jascg19e2na4q491pae0koqd657pks26bdqnrmrm4cji6ff574je5qjijdp4cln8dbml1lj4b9iq8308km2n4jmb748d7gi6272feqap0m2clblfj049sf5g1ibspmb7o125rbdolmdncle1bl7ijjmbofqosrlo0nisb4np10lg576m25d2gjqp0sq7f5dqfno2kb6lb1f76fod477hf95clk7nsjq6nc4i8214g472sjo7di53h10631c28iakii7hsf7d376p5qm331k7erm5dlqlplpqjqii4raqcjnmjdakaosajl774iii7p4fmg2osnesbe2l4qnkl60jkpcmioc3dfg1g2dqop904sgn2973ej9g1sb5iaf56gdkmfijjb49k8q3ffo50nibgagbp6b2q225fs2lcl4fbgfl9n2kljcfpr1g9fl4j123867kfpls0233e2499qe304i9eq71lpkd85h1ikg9p450m5cr91jgbjjror20msl97ifirs711qdqq21bhrr17jpbpjqc85pmdq5eklo55f9cr71103jm4fojsb125qkj6d3m78pdjidm9cmlfsa992pae44pg2fsc0snrf6mg3c79pje2e4fm34g2h94n67jgo6qib6ga8ied8pj2lifn31hfkf7ef1aosr560kl60154jepiikhl00m0al4bc5dbe0jrr2d12j4e02e6ajfbop3pg9nmdhgmdkfk5s83q0lm35g57ejaj3d4420qgrfo2m1k3cjq1ocojl8n56pirs6de5mr9q7q14q7jl7akn1rrq0lq86bb94lqbqs16ednge21fgghg69n0beo62rlof44320kfkkp8bghjb6bbq5j90iegrn8qgdca2kd09r2cnrf7f90qfe1fohnjon5clkpck1n1aoofkms24epkpm7sd5s1qn00sbs795s8gd8qp03lgjlg09soq47o2roq31l21ns07qejerf74ifkokoie18c574r99p578nqqmq961qqscmmrn6e7ih6ofmk1ab3j85a2s3qsqenp8mdo64kprgksqh7d9olds7cchn6lgel7ijgi4or6ekrb1r9a5a1ngc98nfb1qkq1lb12bs9hemg45npa7r80rn6oqgcncfmcci2f0iq5d7idjo4lg128ll6ds2knspkp3r2l7s9o8cqb22g1sqrk4rh3kjsnbne62g4f0a25on9dfopf7p50sa026d79kicb199qe75ksd584m6kc7lo1nkhmian5sr7lis4fgsdh10qp1feqdlpahdn53c28075eebrrs6f3fpc6126o0a60f579m3agjraimbhlaarj6la7lnk7jf55g3drp2kqnlh4fip5phk5k1gs7jbfigdork3r42m4k7h5k4jnerpae1sl2a3dj539ape8n2hnj8aokg05nacc5jimedlo6am0dgc9pddj0s3g4kf7jk55pf0ispsibgg5c8mhh1sg97p8agsrr2900480hqhlqoeq7ddf2gksa4j6fnhno67kahmogk48bh3i7bnsnbkfnibar8bhh8h24d535m2fheknkc6rinajl2kj71aki3ofnk76fjk75ffl5hefae73mp7cc18h1hf1agei9bedqi4enegsekkm57omgkq55m0nslkg2achb6kqkn9i12gq7n8n39h1g2197mhl0482353eie07nl1329qm2j45agea2r08l2e4o2proi8kscdmig5ssmqeml9emnad4pifoicor0sm8s9sn7ar2250i8bk45cin58lass4opi0250el4gsfpnm309oraprqb2ih0l0h4i5g3bpn0if4qe0nkligp1lqfppj4js5b4h7lofjc69kl02kndbmcij16b545sr8rhgkcd7462fhi7536l2hhaoh3pab65r5ekln94lh31apel028sb0icb7ojmr5gngr2942qkbc9hmjbsl65aiedqsg33hknf1ob97gkkcjq7fp9qa806khsfdjn7g42i4c5qigrkdocdmrbenpar2c9rkh9l18gibqhbmhksll57n252qrddo8p05hrnaem74cn49ocrri00k5qeonfrc23rh1hrj8h6aknjgo0dhkgm0i3abo5nencla07n2g9qsg6dgfqjalg3ghonp9skdhpolofbel9odsmfgq2fh1aha42cmjoonadbnsq3nhpd42h0mg08r7rk1673nn62ms39cfroadferb0c3hi3h78jir5cnh1knok89j8ie14leme0gg2b41r1nj1s1c5ieifjh5aqbnhjk68gih70eirfen0sfholb6j7325iflb7dpkjal03sck42e997os36f1mcgfe0lgakigdk7qnkhja4hond5b031mbg1s31pf9f19p8gr38059a83ch9i3k9gie8d354bon404prn7n5d905qjmo7pro4b4mda3oidf455j72n4891kpln83sbqja89oh3oesf2qsogmjh0kphb12m46599oo67n42h357ghmig975cdss13gaf0dh5clhj6j70ap8fdeoi4hclnp5ogois449hp8p1m8i7gple0sb2o4ch1knr3go8f16kjf52nanr54hd95p8sl1con47jpcpdnkddh1fol2fp0oeadj676ebp2pdcis7867k2o3p2pbdq137l745c3dso92bb6l4kfirmdkl72c7c36ice4j4c5g1sakqm2km2qb5pp2oicim4gl7o5la5m6e1rl6c2gr7koe45kgasssme9a3paa9dolsnm4d0ibb1b825c5d7npg1ldm4b2ah46r1mgbhmbq9rjfs11ofkq1shf3g01bmkqjaocs2of8hgf0fehhb5o4ba6l7k7388j44kmf69b29n38mc45qgbagrai90gdhbm4kro80ca2ssn5omdoqhq1q40mfc99jnbn9c5ppkmgosf8aes673ndgh7gk3pdp9fi6h0aber5g0f1s368j78l196oe859f00kkfb9ac4j64hofi7267iqc86h5rlqiighkprlef5kr3165m6c1apclmimk1h2i5kgbb8pj0c125qgjdi5pcqfkecdnh3fsf05qfg9sssjore9bg020hpql309ne14bfkqjq5amq2js0fp1gm4krqn5nldi5fhakejil20e67rgg8aok2ekccn2126f207d5aadh2o7eloo6m812ki19582so8rmekg9ikd1sa63gn1qi009268b69kokron3epm5qi63gmf35ei0pd7aqjrr8j0qnoq8oh3oko7b7ag4fgohrnhb9careij9hn36qh9pr428boko85fdrbd8paihp1rm1hp3d7gr9aikbgja0k7n93blnaqe0ncrqf1re1o83n58q1sr9ld2r1kal5qpq5f8js0f46ds82najn53jos0eanejd3agb3d93l7nicc31m4gn19cjjk3qelk5c8nl5ojn9ljqi77jofgi4r821cnrrmjhg1poag45ppho5f3js0l66n38cf8j7bsop2f5ngjrffe68bgmmg0phlbf32cef4d1rg6m0h9h555bg47d4s7e2pocjdkri7draaf17fmchfd3ibrmfe6sicngdqfnq9g4lqpseo2mbhog4e3c8qm68s561oiqdl64pese56lkl2qhai5i0blef2s2dmq3kfkm8hq364kisllrke1o7e15d5r9gedsfdd906jfg529i6d1ahqqh0jofg70l3p28o97srbkkhiqb5h4l67s8rfff4590mjj8c6lb93cfjbf6j6k1hmas6msalpjm8pia7983rf1d98r06l1imr164oiio2dh7jpn21gbmjdir3n7dlaa9o1kf192a1f0pb5j0lnffk6a6ob88a3bmqoe85rhjcaclk07b20295s00hr8ji9117n626d7nbqf5cps1m309jprlfincrgijss21m2a8lndcm4ns5mbmj46k2loc19g5di2krmcqk5oneak85dqe7led3jl046m0io5qm1slkrlo057ig5sab9q4kp53fl7ih8pndkkkgblmibqmoor7o9ojkil69gjh1p4obphponlkkc4pahjqr4d5n4nbm9ogrh9q0a5c0p4hpigo7md93gck71a4meqsg7m3jf09onm67erq5o905i70a947sqa9900p66im9i9l5hmoerghqi1brja4nodm6gaob53pkjan20qr910oi54k8ke3p9iiogsj5lojgrjhph429r57jibhbqg7hmla1iehb62nh2hkarh96dc3g25m4gq2626h5k4kiao5gkin8maaqsjsqc0adbopkssj94b54rg17ik9h2n7rs58hj8ed9qd99eog1hqa89colos035rjr8i61inq8qn5fspknd4f7b4ikqmeeg6245mi0refiojibq6pmesee2jrj8dd8gs00ekd5cgp69endo536gqh5bf79rgro1h5gifgp355kgmj0osen3gooa1iil0qfeqrle08d0jrkpiid7fk1888jd7bk3n2qjod01do49iamo5cib807p7bes61elqmd1ngo7gpgrqghcbo64bnb45b53esonq4fk3arr7jj1apk7i8f0sp6pqkma3pg1phk19lmppa8lhrc1ldkeg109c2ol371r4qsa7k247ei5rn0s3fps5qq5e5irbk3qd9i0eggq5ibefdcoq09osgebosr13bjnf494l9cngn28n39sncock4e3h7j84sflsoanajd500jrebmbrsbgc60d5m2med5h7srnqhg44lasoa83o6810crhorn873rddmdb70anm18944pedb8sn5g961dpoq3b1d25lfn2qqgce12mb7slg5s2ecnh1nog66ar8raaqi3en8f90irrie7hg2c04h31gq9s6qj89or5330e24n8m9k8bdrj3n835hp3ls4l05hss482hb5qe8b74krggr9a3ng09k72nembq2n5rag6lc8fh3epf18d9hjcc5m768e5mih8ka9b0sc5m06kccf448468cfqhhodho71oi3a9dbml2fk25ph8pn304je0k39e9gcfi6092emnggae4sg6l772mje60lsr2r0nmn1e61gjg4ghqs49bf8s75ka6q2hr7r2hjci8s3o8ld95bj3rh1dnriegm37okep9kk9r0jg6eqacep583m011f7a1a54inea744fe690kl9j07k69arhp81shr8gm76icq95qfq6fl395o34ids72jp9jl9onpd7sglh57jn912im7m2s9b58cqkoerb25crj6nohp3k1a5b88jo162c0gkdd933nj9k4jf4sjkgk10klb0jeeiia4hijloqcl9rkfj55mshc02dbe3bar2okq01r3krss67d7pddikd8gens3m4h0fhcb44rcb2221b1kppj566hiejiapmmk9d943eso0kpa9q6nekpfr2cr0ph1l9i9r4pp8a58hn7e21b859is7imhmpnebjfo3is2khpqi0iachqb4e79hbl8f8dqf6c3safbli007renn00c7jogm5qg5erg1pkgjkgq7rk3ncrf9kjqo5q2sl3rrka10smilb74kln5e3mi7hncqaqgckc3ppqhq0kiopb61a2qoijk3lsp94lhk7pbnkfsgdbbk4lfcqenp56nm2kh5bsjfg8c1nfdf4rpbie382aa4ilie16bjjkjgoananoq9bkpmgqprhmarnam3r8ao3h5p35okla16mqhnc61ps2boo5gbl168lr0nkd3083pehmjh5s912k49drgmi5kkb3egkbga5l10agm77o2bljl31198fmkdm779k4po0135db41c0mcdr3kdddsp0goq2g9e1380sfpc2ekipa33q5ifsgm777k5aqkkoniijgmp29d481in98aplm9sqh4qdchbe97r0g3q5g04rs93o0ee8s3fq7ki6jjq4sl4jlbmk56k8jnq6ms0em3ao1fsnrqkb837gb6bqc26l09ddg9dogp4oapidr1mr6b61qnehsglff8sab3pa3qik28g69ao0dfrm116in9oren0igc5ri8b4dk762se5fgnofies7dck93n7o585b0bjs2e35m1a9jhn0jer8r73a506o64qm4069ls6crcnrkq0fp8sbjckgm5b5b4sriog2b97rk16855mf7rmak30p8gos7pe6bnrfdclhichso0gc97d42r5rr3n0edl5qd4q21ir4d62n90qj6m9pf9n1n2bij007lfmrfpp54m44sljasdj1acnphp6lesihp86gf5fd4a9pc7lm07bgdionf12odjepeifgbhnhfjo413rqiniaorc7pb6odriho07girc32ajjc1s9nljqfcor897pqcgrh9honjrh4ekb5r0d8fepfinfhbbl5k53nfjfe2f54938a2q7sd4m6fpbgmah44d9pm7glgoci14ml55f905fr570p367gj30q4f67lgqi7nidcc83lh2ha12oqll9oar49nlpbc6h53gf5he99q3ssdp0nj6inqfol8njja1i285fe25a92n7273npghofl26jgii796fjerh4220m6f90ns46d2crakbs3bk81d534e2h7chdhrldgbqjrg4c1ed1djaf50ocp523aiirlcir7m37arn4mdlqgce283o7pgooer96jagghc4k20ng41k9c7sgnajonjs21srefj322k30e4e2k549lpfg9g9ppo0dg6sador5s9g77rsiinginlcisedbs4bsoq5seodla5lk7f896q5a9a66i2mgkp106jhkah999q5n52ccaig5dcrlgmeill2of223co13bqerh4mfpc7m5d250d90l34mopflpr2nhkd5p41iihg67f0gmakb07g5ebm37mep8amlg65khcm8l0na9ac69rjma1gkdq8ho1c6gm6jmsrrr2d4ihlf5jngmm37b8b7dgkc2s07ro9ihscbo8d8r571q3prqca88ii5rej7q17nf3931bj13gqcfl9osfpp6j6pkb6l0pnkqe9o1lcdl90goo82s8in89i9b8r01e1r5hgk8m2hfg10le0o645pf980lp190mdbgr72d8d4o54ebbpf8sdml8822qj15djai01eo2g1k6gas1bmqps147r184pspbbqgpacb1dioksjrspfos3a6ge4p4jgckrgj4ks87l5r96d37rab0dmc4q16rhksi6d0p48jbnqoqo62er0re07g2orklgsdnj2r3qedrbfbj0jcds3e4fi0s40i7gmqkamqdq28gr2adpjicjqmd9225jf1g32f1hrne4dq5kqalpl2l1ejcb9aama9npijjg4g5sod8mjk319jjb1mf9h9rj55es139inbkji5ni2q26ns982rprjojoob1cp47752041ppj5j90o3d86hp53323qkb25do9nlfna67a74ss6jqms1p8317gkrhao4cj0jp335h0kf8ed4qicdgl3jbdn6erlgj79grqdb6dc5s9sragsieo7r53f8fqp2sad805r0bbo7ekh4gc1n89gsgsjeb5r4id5cgs7ifr0291b1qon5h0i3d70ghnqhi1fsmee8e98mq611p484ig3lss97kfqs3spl1lsihe2s17ha6n56bal8jre44aeapn8ljkq4lhlnc2627hn0sq7mmob60lgc078qg2rbokrq340p2195h1pprd6dd1oo88nr5pnf1fefnj0peroiqqjdh37e6169pbg2g5kb3dlhp0558g0jdcdm3r7m0j1n1l6k2o37dcrn5nb122394ar682e9e4m6hpccpmi5"
+      },
+      {
+        "coeff": [
+          [
+            15,
+            11
+          ],
+          [
+            18,
+            21
+          ],
+          [
+            12,
+            13
+          ]
+        ],
+        "first": "kwudener",
+        "second": null,
+        "firstCompact": "571ni9i4",
+        "secondCompact": "bbgmb",
+        "bodyScore": -5.809344174716971,
+        "first40": "C W U D E N E R J J T OE J A X OE TH U C S P F AE A A E E H C C M EA E U TH O H R S E",
+        "decodedCompact": "571ni9i4bbgmboem215fd0pooii855jsi12384fibk17860m4g44qrkm84reb2do15f1bimr1gi760rf6reg2oe9mgnghnfeds3561nr0i54jm2q2drrlas9jerhdaag5jlf7idlslhqphcfgsb18k2f3qjphc6ib5fsic9ksgisiojqoae1dq5ac7rcscngia3lpa4oehbljos578e7sa9gj076dj8n02q25k3cdj9k4adqjbaj9haalr025l82gnn7o9gnpr0s74j0aic9e7n8c0o9osdf8761pilkg53r5e26m95am3l1knha14jb56qd5hibhdeofhrblen11h558qcb15ek7b7nqr14e0f249ks6omo2br4r1f3m1nmd3s8nfnjl1gcb1degm85hfdfg4i9rafdo5j78p8pm0o536fa06ph5e80h0a7s762oorf6pagbagl109fdeh93j67rp54m7c63a8srff5k6a2ddlsj2053p1a18pif3g756o2dke1885jm628cjci5lca4s7f22oeaegsh1i5kjf4i6apc8780gskfff86g7kmqfdd0fa5kg50mfdbsnsgq842peldl3014rsii53mcok9jagqbbr1gsjejd89jd5p485n4es0fi67ppef02rle806kg7ojfcr9hkc72bce0rk4m0p2ea20qpil4317ei0afqqeae8rp4nla4heqgkaio5sn0d7hf39e4gkhml795l5hb60dpf63lpho52fi59q532obe9pnlijg09rjm677gnf2ae3e70sg9c8cqahl7gpbsfcsnf3h7nkg8c9climq68nojs0kcfe58oi78acjh88i8feb0cim37e00kdelhlc8035kgimic6idep343h925gen8di5bmi5r4pj1i8sj5ojpi7a1ejmm8oa0coli5b7hqe5khd7jrgfdkidms8a3cedsg7h58nmeq5cpijn2206me9mebrf29n3grg2i90h7g5iconf9oipejrb3l2sb09jpp8k5l0jpj9bgfeorig5m4n8o4si6q9b07r68gr0o9ms0ai71p3b6l82mo6hkhbbjcab5pcgi17dkh70kls85ajs9l2s3akp38j8laecq5os8i66haqh2mgr9je6pcijmlfoh7enqe5111bfbhsq3lpcbk95m3b4o4926gl1oe5rdo35pdo8mqjp9em0sff5fc1a5dkad3ao89i2jp5nlif1b431f9k9h5hnek9dmjk3eqes8pb58fi7ep9l7nad553igliikhis0m0078k0rjpa8pp2mfamd8i37qa8ni06am3fem8o52jdl7maprap62ld184smeq8ji6rhasidfkl32sipje1pjdkhcnsd9aklm49jppph48b456ml1qn4o62ah0a5s6kh0eagof3frrbig1h671pf9ikiggn23jfahgss1d8npc3hl9r76k6c0emjp5kmio8lq0opooleqh4jbacqmnrn7j1nr62gnjf0l1as9k6i5rhnrai5pmj9r1brb2ho53p67g6cnnrp3b1gio02nm2oad5mhi1ej17f77p89afffmi95abja7g7bn3nf0bpjp6ascfr0a0m3bjje7ifhohclmfq5enb07se8qr1sp89apes4nckq0kcb7nom98ljcl5m56dr7jc96mcn8jrjf65r63n1kckjb35792fcjkfglo88nsedrlh6m5nhic4bo6i8d0cipjofba2ebldp4aba7h0k35rb9pnr7jkhae4egdngl6lc5ocj7bkmnelfs65b62h4428q61kri10ac029n63ee0adbc6hin4rsgp1c5jna96k21a3r6epjnbqsphql6j4ogkgf77f3jj7d9njh57qemd1laed3il89a84qf8b5j1a96ims94okeeb2d0cns1g2ijh41jm5l37r85j9cg20ap2qa3ilseg6hfje7b06jcfe5pp5pisbij18qiob59jb500pc23bfbhgg5r37deapq3m5n6dc8440lehcs0kdcjocfekegson4cjbl3m5qskas1jpqpid2lasbl1o577fhqgml9mdmhdjld5lqab4d76r1qqisjm8g03sc9don1qf8sgmq2irpnrhrjnjcpg2dnnhjl6i7dbeaqr980kp40l3b729m67bmaojmgcqe2fnsg6c15g0gp2j890kpm79ab29f8bc75i5n2gj7ppmlskj9k1hgjl6cl62c86f8sn59ge4mnrp04ogipnm0o7959j1a6m5f5fcifnl7h8phid55m2g2k43lg8k5m4dlff5s1bbo7bljia8q1hh67h8scq4ce9m24g3o94fb55dcmaomqqhjmjok3jlh2i2kep0p91grboo6j5dl3m2j7rsg2hpg8neadj6f5o6l4feaiir18d7j1kqbe0aq2onm82p16dre609c5enobjkesg7bphpgdg0hiigjn1k26926d14dc1rs433phm746gpq3e6dfisik5s3657i40pg7qaqsq61c5r9hor9k1bdsi1j53fl6es2s13cfr275irej75o2b7e6ihk6rn5od03l1n8rle06banhmcj7cjnbf68gk0qh18l2ok4gkc75ripmo9q660qi1h2fe4g3krhe6ssmsigpm3j0heg0e36018lmc0m74s602e0a4q2jhj4290e5idmh74ghs722314b14qicmm178b23o1kd83f6do6ebb507aq932p7d8qlng0804o73hkgfhijfhl9p7hhncd4l51hae7gp29dqqqnb442b7g292d8oj6n2ng2hf2recd47fdren4segjk1mdrk1r9d96g8lpn7odq24136k1n8a900apaq6agmddn0o1m45m4f91l4eo775m3i1jkr2d3sn4n7hfq0l2rea0d41gl37a1aakgen8ooirmoassp59l2s8osi1l26crd5pgaag6ddqkf68nrbo76h8qin4c4s7cgss7aipdqi3gfl2qol9s7ikbrs7002honpqge1kedo33chhsg50lkbj9o72nisc3534ihlrbr8qabkfl7scq56s7q607af9amnnisej48abbgo1nsroc3b2g99g6a945ll6mo4n51qmblca5r474bafk00aajlp471jac0qdipehg6qmiadl5spifp405467bj0hgkjql4j4mg111ks79n7jqld3pao1em8kb50cqlp04fpqd8raen47agiqihrnehnjb62sbknrcdeqn10s14shd567q509fph022jn9bg8bl4jcg7br0gh4heqe6eanclbja9qm858dag1bsha1n09kpp3aahb6i8rnqd28bl1na59404j1ri0078dgfr2eqopa0j96ijkom8bhk6h61a11jaslols76ipmsppgm808g6ls97fr29pm36b76b84b5j14cg9pjj8f2dqs62sme76pni26kjq3ekifoe6grhe7gpmj32bk6brp78mfi6j7n9mns350kn76ggcfb24s2aqdgjpm97eba52mcecjaidi9p9o334g0dhra5lmghhse0moeaj8f9fron1sqrobqr6pjnno4i4jrcrddf82bf98ddg4g3isjm1k21mbq4bnkfia2pnbl2fhsip1hqib2j85asl29i7sje02j1ms34q407dj71gejkjnnhfr63aa98g9qif9ea9j9crdbln3prqlmr0655r0akng89fldesjqapds652m3sm4galgqi867j9mo8qj0d1sj21b7d8iae0g57j74inpemhk2maih256na1lmjn1331nclmph8hjba445ngd4r15h809hscdmanl6mj4agkl4bfqmilji77ece9ahkrpm18cjoa5lrl32j3106qro62ngdbjnigg7alg8ahmafk0agn7dgc8rq2n2nkd7i5966sqaa0sk718iqipi4142didipabi79faa365jsia4grjdibgcdhd4iae4sk915q710d94dhgkksg3rifc5amebq31s2o626ccl8o51m5l3q825nqfcfpgjaa8p50ba8djphmh2d1abfgnrbdnkh40os3a5972dgs0drbpp8b53c06aqii0ajel4ci6nclfqc39sosmjd1jln66j1fsg870mkmh76047sf59m3mp2oaame24peecfb8ae6m4ralk6147apbkfajpkjappi0fhi79i1k7q2055e3a3q00hf8rjbs93a6gh9h554ql61hoi0fo4r9i6ff7hre74nnn1be678ei2lhp6p0eob0bildjckhcf1oikkdn3ph666ls6i28self110srobf1cgaab6c0ci4r131orndgnkf2jjlffs8o52sip8nrqh8nad8qon42gmqnsliphrqqi6cjd0l1jfr0qj76ed5j3nq3h1dr9ca2f084rbedi16b4rnqod4m36q6eheo91ljcgkm9jp2m891ehhiakp6bf97amjha70ogqplb3odqbj9389hg2elho4q4p384jpodfoo85ocg1hec0mb6454sr8gk2lm9r2r40g0ghg1d8ind0hc91kohon4e4dgjmi5efnn7ihp9nodrikfnnlds3hg5grnejk07a7oe87811rojgh9gcnmb13a2mhknbcdnn14iccc0esj8nra39ljhmmqe71s1bf9mancpon0j0aibl3845k6qr1s6kjl1g65aamn16j1k7eceje4p17palclfsr7oe6ea2eeegs32fpl5o1mfidm3mn87h2n0o57sddo5ghgonihooa4cg1be1fn9ralr55sshi5ejmf20ell26mnnji75ke36np1cc6cl91r43nneca5oe92f5adi53k6c5qg71n2pmqbd3plqp4jd5ri5sfgr1emfgebk1gmfgalnsom28j0087a4djnqcbi3o033p0l5g144rki4m9crfsbibj8c7adp1rcg6mdb4sqda6l8af4m7d4ecn7e6ddfrf5557dfnhqe3f0canc7d989ihilgna3n88i5c4re73g8bqd4a7q9iq3baa5qm60k92ks6s94icrd38635njcf1mcm7obc4qbpnhi9rnamj9q8grpe1bid1460phloghq9pcsd4m3985ab13o0jo1s1h056beone1n3hiap5pim0k5ob2pil35e3na31b2asoohl1h9li4pgfpprpd8fod8fcf537b19eil93srkcjddnodehqcjlipodcjb8d3p45hakp15fe0csg550dbls45p61nb54gpboepj25pfemp2isen9dhlj50p1hhjhgdr7sdhqo8imskh4l1i0hgq7f69igre6qbiro6dfkln3l66homqrrmrr45li3mpkl29nmprs0940osk6nmoln31cn5heshrg6iff05e4cejecc15d4lghiker9ahjilf1q7895i5607m7ai0il8csl8cm1p967hsdgp6jlokkrrrn9n66qrkj7ikp721gg2a2d2481khcn3hfb59g2rqr75grk05dsa5no87155qok5kq3npbraid21s6r9nj2felskfs2296hp44e22msoog5c1raaco24qldbh5f767efle3ihsaqgr5j8p3inijs7kn6pp561ikp82aj7ikop7de7i2a9adl2o9jlnkom8m9c9e40mgnrd0mkogfqm7ljrdsfc0hkflh4hipqsislkfmqfq7ocrs5409fm6436go58e0cje7qbscn2dj51261dsfshjsdnlo0qk3ffslimm72o25hsnp19sdrq5f5a1dljor48im2lr5so1dqn339dfl8gre8p29n441lkpk9ssdjed9pceh51ea9soghfp9jk1m4m7qd0bakhbde71nck44l94i03sn0eel6dj0cck2s1oc6fa306j16m19h0jpi1ra7ipm86dd2896jrccbdr82dlj031me6fpaagh8dl98hoo6qihc9hl4h2n6qba0rqdq71ccqm7l49lhf4h2f3qc8j9inld48rsh7o6qr36kl23e4bo5nl2j3io42d48iq0qpj4g6grc48cs0j2sbo81m74524ba79bdhn0d8rp7gr05d2kk257ei8mr5f9nre09ssdq63eikocaoehm4f5o4fom0rjsf7k6en7b6a9sa1jpcikg6nq64ibgnq8qrcmlio960e61hkp57jnk5slcblf232khl82ffmhm7m0feq46jess728b7aqhif1cgfgrbohmfm7561k4dio9r0lqj5bm5pg7f5j705jlsackrj1jjpkb8eplj1s1h1d2neml7po7oac163g3o721bom1iahg8njmb4co0dqmslg7lqcgo3o8qo5gd806qhjih453sr1lr9qcrd5m7bhlnoebgln0d3rq8ls7k40keobae54jsi1p536aakk7bpec97si352kpmeb5f2o85iq0raq4cn8prfpq9hf09doiaol9jq93f061iem2o9e5h8f2brrchlkcge7lqa0jmgj7igfd8kcosamkbf41cjpe9qgf1sqkfhrjeljom99m8326445d5k6qdgqb8j8o54d5g4l2qmoj428699n4083efa9lchomsrdq752se0c91pnhpdob8jcajp0qcfo02h50hl8ol3i1429896qqlma6gok0f30flo24p98r7a9poka18omq61dsass59s4n88ljig08d7lcis62s9l2g0c7d04br84geqqj3pmd0pid4fhhib5dp2am0ogsf2p6eesq7o0jk0imcl31nckm5sldj2fngoi30hq2a47l5lf9e1hg0ebrq33orn3jb3lbqffid4fijlo2naojh494o2c6nb26l80hojlnp5f8aknkfk9grmej8qrm41i3a7l5g1h00i2drsr55od8ce1cgcj9hmfn18r1q0k29af0jo395odhl6r8ic94moh7f0sggmqb370ccseoa7hnc8acj8ircqcniq0e7d5390a3nleaq3lbje23cg2ib3qa9o9qo42ggs7r15ekh0g59dej1r9h8igr5r7n680599e9j4ecl1m0q2i6l4jr2jsa3ok801im51s70rj86q2k7amelen7bmo137hnp9n3mns9eqmhnj8f2241qs7reea979jrelhkf4422jfgiffhoaofq3gbr9d81jpgirs7a0off7bkh05qljssm67ma04n4j9f0cfdse1i0gddeplpm7edlff06o1r7s05mgacdhq3a56hb2epli633m7m9r5io9qi10jm7kg41am2rpmqe1hb09i7ds6ib98ihebrn97c5fgq1mrcjbbdq345b6bsspfbpc875ma1f6c8i7js2n40110h67i2a3670ac3k0l759qd169d5411opigo0kh4fp3qj31652figi49jc4plfb6e369ok3mfscelins2bde963go89k3138l4j8d3h9ojc83i1cj9b4noopco15l672cqhpofacbaocks2ipb64bc90k6ggimjj4jocshcnad2879p3mkem8raeolc0dncoscclhr2igl2f06en6jrcdnof3s85phme88f7cnbhheis3h4sohnljdb1f041g0slgnhjnlsse6cpealf8cshl4ljdsdp1l3c5an4om58fki2hrgm9efdd8io9deo33qsb355ijdhjja6eebf0592cdflm92emg4irmr5m401i1nka401jamh0jpd8lb7118dbc9n40afc78qsab1cmh2g5207oaccqm2o818ccehja7eo1gn2r59g75hmlp07b99a7mr07fe67b9h11iiiqf511koca7e457f37rphdsiigknni86h1glqs7oi37jc30pggfdffs27lg9cho9fd7gk3ln7islp114h5f4he4e74okj8negjfi7f28cse4b5kli9oj0qfrsi2oekdf3re2fq74g50d54i7lcapgak0e3gq5pk06oh57j6h5k53rmnp468q5hdl724qm43sf5b66rf3ae0ag2sc85579q3008sofejls5s32enm3m5f4mc4oajoo4ols9ri20r353epakolmi7ih08k40e7snmjldmi52k4hcqcj9o5elh174mrd16h4k9n4rmlnpdflnf7k51npbdgi4gikjbricm135j2klb8nn478pj2i043p154iaqfbnbf66ge0hnqcp5i3p118dp0igo1e1oc4mf0f8d24b0bq2dipq1qeh8928i2pid4iq5li02khj7rb41ec945sipfmp9oh0md2gme1hh84jb3i3pl5flh94fci6scq27a030rkchokgc3qkiqcpnqm23nejbah1069m5m1gkkmk1jamk9j87ghrjrbplo13ppqdmn3s7lgajaqck985shf1kemlikp57bf365repaqs8csjc345p9i15046ne595egs25i42g6i4lg8k294blsbagrlmgji6rgeb7r9m7j2r16l5a9r6fb7inb14qhc07b3r98pmklssnfrs82fm00dh57hm0rgrrlsod7174hs06sc7006kfjba6r0c2r529ojepokp7qmaicrfcqsrdn0qm3e63lb047rlfdr8f7e1s7bppj56cas3kjgrodjansenk21dinogakaqenbc21fp28q00js1mjs3cdqri62ac0res739sq5oeogg8rof6ogjogbjk2j4ofseae0236r9fn9kqcln43ji80eonr6aonsj767aqjkpiqpq4bhrs2e0r9si5gp1bo539lbekqh0pd9d96m3ghb1rl74q7shgm0086j6a7r9gplbllsg34o9rjpf5g10dado2cne78214b4qqaj70j5q1h7fg8abns4901c0qh70rj3scke71osl47o48omsm7jc9a7h7cnqenr2300e81imrmasin1jp0m0gh4bhkddp1o6coa1of0blfe23hehljslbh7r866nb049ob5o6qh51rrbn6orhkc6jkl7js6klqj0f9r6sag9ifl3im4jsi5pf4olcopiohni4b0o7331magga91hsec4l8leq5n944c8e6sk7g5p42jah9lk2q87rlh7dd41li25o4em3n79iicd89oeia7dnmopbimba40lrpjb8kgjrlia5jigcs9krrd3318mrsnqcqdr81jbpmkld51ki1f358j4jos8f7n8j9ds0b95ile2ihihhaceb80kasb1cfro1ac08mfsia771is481ff4fa0sq2aqi7904d0rq8or65dhb29jo5125pp1f7d1ap3a32g6csdkg8pk31qg3j2qmgp9idegriini1obg0k96sf0114ge70qqh7jao5o6b0ggkf1eao6ilg5sbofhggg1dr4qhamapprrqs8r246qrkslgsjc3ccfi9e7ikcrqf4brrck475ikkd031ef45h0rkdlqilfed7gno8e4qsn481scmqhcl97qmnp56jf054f8ii82rse8s4dklkk56nbf3qlo9hbmgm8aqkm1c6ji3lpl7si2qce5qfgf0eemi3ipe02g794emrag0icg1o98ck10pifoob3ki46mi871n3qqneb21kscmek0lp444fm8b79f4a3rf3ib09ldqb0r73q5osje9e4spr449qbns4b5jlee441kc3ehd42411bknl53rh9e7gq9fqbbckinqjbgn0qj2mag8fp9bdle342s69sclfo896boc47rrcp2pgjiap6qcf46b2o8bssns8pnbpfdijcmc43ncqhp546e9anhf2i0hao6k3nbnnh7ncak6h2i9l5g87siasb90jdmfa3ndhl2mb5s3cp4l20gf5o1p1cnaifopad7b1kjfojfe31d0ej95qijp8bfs7j73crbc52o53e16qi76pjcjs38352ceoicsmll14e2gk95257khmp1lo2da93ep2kg50dloe987q08f5i6ni3593n9rr9j3p40i820kir87bedgp4mf4icbfhpcqjsq3im1gmfhgi1ph751hl4nr79sipfegl2bfms3lpsm01go5okbjmj96b872l2q9hqfj89h223qdoi6nafkhrm8i8cebqqlip1eo65gqo9p8b15iphenfbc0ee9io44p5q8io7f88cmr888b7o81cda4m611b1am04g3lh7bj7nbdc109c538n729s7ojf68672aeq05fgrmi0q54b9f6q42eddmhpo5i0bfbakb85bf6b9d9cqpci3g7oso3h5rc83ajrbkl2k59qpna8fac3lehn3ad2glq3qrf09kn6lmpoinr98biqsiok4n4f0b8i3qe65r4a3n1h182h5hnfe4rae2cpmjh4qig8f1oe1qhd25s34gmaj1dqj41gmoobl6c5s1a6eik7hlkgoe2hlbie97hb1jcl81osafqqgnlems8l1ccgki544cj6ajl77i1ple4amfr5g178ri9ern7n75bnb84o2qaqn2epq843khrmjqbgkon61n4s7koqfdo1re81m3lp10e08j8o43elaiiqa0pp5gj3i653na8nj09203g3gc0g2i8f0qg50haeen357qjrakrbla7ha9m0ci7ipkh9ibesek15482jmnceplcmbrgc6p3759lrqing79nafjn4mqh5m4ofj9nhfn43qbpnmj7mf3hrh9shi2mse24qi8f446c6b41j2c8e7s25rbaem0dr0iqnqds2djr122b2eq315ceijq560rickiokrn44dog9l8om8ke8as2jfp8aa8nefhpp84sojnj40aeiqhq4egom2mcpekqf3923bae3k53ipbc78f42mhejb975n6p48c4poq070epfa50h5752l8d46i2f1l47gnhi7agl128lame505102n0a05g4iof554lnlrkhn2orckn886d926p0fdeof81nslj57gjf605ki146d9p2bnsoo4dbsif3q2ijjdqlck9b8is68l9sbsqbdh37kl3mjdh04l8adfn76rr8gnhbr9580l6gfbo1kojn9n69cdkpd7j76r7nnn72lhcnk6pn7na1d170qsr9n65s5mnmb4amjsod5lbdamf6cc742oo0ccs9a6rec3ge06c6dsnm8pd3ek6qn6nhrlijjeji4ll6e6m24fq2p78pl5jo3paglb53onl10cqo0jj1rfbl6jm4ap57o0k2s3f2e4hpib28qema2sij5k714876pfmm4pf8k22jdfcfs6hepqe4878je2jk95n248codlmh5rgiiba2hriskq6qrh59imq52qp2f5i6h5lic4h8gs7mq0dj804bcghbkqq03sql717npn9dc3opke74h7deq8g3eodblkabboo47lk29m5p9bck9djlqs8gl52k6b54spf8qc3h8ijci684qmfm9phjh10c7jem1i6q020e4no2i4h2r6jhc40s47fsr880e6sabn4iaicc6sr0oe8nibm8nk3q7b34drk076bqf875d4i7qlam4fgn92krs8dpane0k6mgicq2iskiobm7srdh4hqjrkfap36mbj012k5aodj8jinsne7jq9j4bddi5d9ji8mslnsc9753i9go1d951633ba9b01lr65bl24bree4p5ge855okcfp46cg1e46kq7f9cfsbicen1fhh6asni0k2q4qq247elig88nlb1i7soonln92e374a4a6a7n2adc36l7opse8l3r4libqiq830ffqn6qacesig75054gmfg1mahh5g6sk11j2e0d1q2fi4cqdh79dmqs7r623gd8opqls0c92be0lh6qrn5r0kh5qhbsspffknknkspfmskb61g24l4djoflqngphpn2msrjlgrbd3s4g15d83f442qmk4ha3kb2rdkhgfsmk9mbdhe1bolm36jq6honhniphhffdg9344o6j34382ldbg3men4d7o74creg7br4m2r00km31ecg3gk2qcs2b66ieoa2b7n9p3skk3qr1eidgdb2sj4ri81srnal5fkf3071l51lqh9q8baee4910e3or1p6jdds0srj4hh232boiq2qoia9a4i8spjbs4ajo53810ebce815fmddbjec3iqp3lse129dp9nagc7eikp6ia7cea6dobhobb6jfn8ojed4ef1nsn4fmrqco8q4ospeb68nke01g9q0a65dm5qlmi1adlh02k3ne5slnhf09n68p49afs2al7f6pf9p44n2i64m0ofhfh2i3kcq0jf5gg5mnf6jc1p6fep8a2cgrc53oanbje05li094qgnjrdfm0j7rr4jikls0ij1iaa9infkecej6b0codpa5l2mcf0hsb0esdan02m29b6ppplb5ee5hjio87enj2hlgg1lk6iqqk4o43935jlhki7daqnj6m1083qebn9pah4ilcfq09k71c51eg1ji15acjdqba794dssi4hagdb02f6jim558oilbn5g51bb3p9enq7jb5hm0284fnji53g9skp0o6rkq8n0lb87jcg3ge499qselg21shchakkmapg77h9fdjqa32hcf6gpfeklfaab89ri3bd4nqqssf79g078ls0g5sbsd05abjjmkdc74rbk72qq69jfd1a39m5aa8gp6o4ea0hr614r50ai9pldqp6c9ihpsq25s8lhdk9gs93ofl79bkpbabge7l9fm14f2lrrm7j0b781pibcl35sgsm2i403ojf0cj0rnk30q2jha9g86984p2p4beclh4o1id2241bj10d82dfcmqoh0aopf2n7gqi6rk99bpp6blo28igdc62o"
+      },
+      {
+        "coeff": [
+          [
+            20,
+            27
+          ],
+          [
+            11,
+            1
+          ],
+          [
+            3,
+            6
+          ]
+        ],
+        "first": "organism",
+        "second": null,
+        "firstCompact": "346o9afj",
+        "secondCompact": "g9rja",
+        "bodyScore": -5.818273666575285,
+        "first40": "O R G A N I S M T N IA M I OE E T EO OE OE S EO E EA M C EO X U AE M NG IA B TH J EO H Y T S",
+        "decodedCompact": "346o9afjg9rjamigcmmfcisj5ce1pjlrh2bc8qgfcj6ji25bi6ol1h9hqgjr544qnk65prdrc4c1oel5qn6frefs13gk452kes8f5d6e241inijjkqpssm6o3pq130injerrk56r64qbpfganb4jgqes2a01i2d6qhbpm3iqhf2rl6dgmeiq9qgkn0g1rf23q36daphi2ca8bfi10gap2m4inhqgak63q91nao35qem2mo9hb4f132bqqeni9d69spbdprn4mi400im23111olb325gj2rsb3h73sfmkpogfn4k6mo4r2lgmprd8hbsei22go7sjnln5iesq12scj7h57shas5cqolqc8aoeil829c4ignafo0j9no485fmfm9o47f4ccdhfh3fad422kdc1prgjo43ems1qmoij34almso2s8c1he72ee15rchhb2j5o2n0lqq5rc3jpian7shl93qea3jpab902ejlblc5r2c81pkafcn617al825sr5a30oopf8b39j1lpfj8e4m682c32jjl89jr89b2gm54k1adna6ee81i08b8ccfie7o6g07diqll3o62f5o4ikr87siko2ri76g5jcj13gm2cs7bjk4kpf292ord37083o80i4mgrpr66b2292h410ie4m97qsk8lmr2sd1kof0dio4rjq3jopeam2f4ldkr4c6olhs32sk89pmbof7qm3ldke54l6q0n4cfl6khg35071q8h0m5a452mpd377314qr5lr4is69qalf11acb343eg95pr3lo2i3s52cojhrrs0km4j71n50od5kh5jh4r1nm4egpbi0amjaeaonghonk471dbhs1588jofie9cp3rff5eger99sfni566hm13idnrdl2hsp1289icnl0hajp6gkilq5gb14k7422bo7rh7q67md8ooodr8kr23pc8mgpmp9k0768jc2mhicl2ijqf3eoi849550rhe323rih9mjkl39m3q6g0f33niggila7n70om42p2n2b7l7p4j03cae5cjigpkis8500mo719i80crg9s6jbej1bs7d5s4bfnf7gicjf8enaapjc3chg73oki7seoqrpilis2k67hhfq6giaa48nshsr5k3k40mf410jdj43hdjr81i23b4jdmlbqp9ogfgq7o2ma2gkdn0rodi87qmr79nl9ahrr2adpldgkp1g72ecbksakjr1ls83kqf3j1cj3g9ockoj0sienc9kjb7929c92ag6ci54la4eq3ral0jn1mq6ld709q3hohslk35dhs86s15a9j369rbjfki75hi7500nc24im4l6lmimc04ifemh5aq1bq1if6q0o9c1dqs3sijp5ophghr12aq0pd7bbl35psqf2ejnpb3k46s43238o8432gq7mcpr1f59bh1a4816n0qifc3g00efleldfdf9bel7s06keanp301o7aosomaokm9q9er6hb72o6dah3b6597aonabajej724i48a9nm0ser1nc2a2jn4pgfc5e4e0hsr4geqrbbd4ips3qhqb2j32csqec46bfms10b03g3n5q8sip3rdfid63bbkh99kelhdosmin7r6kpr9feg0h77o50a3a6g7r13546ak3pf2bjjqrklhnfkn8d3iq05ofn6h8q8qb4spel82f7m9d0p2bp5j0oe8p836ad2joeao45il9j8ml26e5776so9mg7k9b9qbf1hn0f8m1skh1cppfhsdk3hjn6ooelr73e5g1d3c8s04e5c39hhbn3j34k1ihd899er8931eqnjmh1ng8d4e41n0jkhikmd4q9pa4hd8iispofsb4hqo87f3g5dpkmls6n656ko4nj1b24j6fqhsce4ej59eilmc4s3dr291bcjdckdf9jj59o4kj2gh4er3hfkid0isidlgdlpmbreddp8csh1e6bj00p48f7lcscr381lqjhbdsf27qljq94fn2aqf2q8kgclh857qb1hb6eppi57e30qmckpsh49odsfkmrr1doggjfeqlr5csoo836siejal047eg7enonh1rs63050m4qkc5l3kb6q23egld117og18k8e321lpla71md145fi3bc85rrq3sbd1pff0d2mhrjog5fslqeeror2hq9rm79png6liedh8dollcc3asrnqg1401q8djqi25cr9hr9a2lnbehdhrsk6d80gnqc62o608bc18gjplde73g12q1h3lhbqp6nr2la319ejdqcqlh4b8bco6o58lnp9iqf2o4cqngp0f2rc74p803ie3s7mjsj1emooiio487i678322o41n8gjp4dri24179qn1bee4d413aal92slg6p1kfr3jhpe47chreae2jll1obpl6o1onbdsiak80d77k6akq89pj2b2am5fb9hob8im1r3o42r191i8eo9og3eogmlh3gq8nbn6icmaj8h8ncm9iopd8m99n78e19fhomjmded3sl1oqldqoe7d448dijjffg6k0fk9el5d8jn495q5de0lngjn1ecff4pbjqml37gqljfkfoe6i93rrc0m9bdi2dnf8e8mjkgb7sn1kdl7r737hpe5g61sf8meld5h8acdp1iiood6gncb5slr6gi0m85g9mqkcg0n6h68f13r7f0eeaa60nbd2ed38asqe8g8b0ikp0srr70ll9s9asseo131es0omjo12kkmf1cf29mmh1ofoi8q86h5b85l59doj9e4bl4m99mlb2b8o45obkh4ln82r83gpdj54en7g77k5qjf9nmm6ofa7odi4hok95nfi7q0im8jk4g3kq8nqba4g0cdk6l1leqnq145k8sknh35lhlmqcshhb3ng1e0rj83ia5l7fif3h22sc919jgppg6le6nmno1prnqj6f8g3hgli2e13ama9rj0h0n393om001pbdg5ppdib7pcs6l2d0bn3hhlobbp9joekh68gghksnd7rl408jmsjmp7l5hab08b04n9pokgdos4joho55seolhhm6eakd2la4bs609m3gp84bnidd78o5obq8b09cm8fes8ghq6inobaojec27jh0op8nh6lens2j20jhdlim40s992l4nn41gdmmr2o60jphlj571n8daq5b0g8j822dj1ci2ee0inh1hogjg36c064rjcs24l1hf77pskham4lp74lise3bpp7ikj1ac91p79s8aqg63lqcr4psir79gkqirs7niaqlmsq9phkildaca7frlqeag39879a0os3hb7gpsfe2pg0e8ms2m6mgkh5oo1nkhfsdi3sedkdjllq1d2enjd4qgl9hloc89gqiqm0a9d3elarcj9cnnaa07c4f7192casmln5eg9s18d67disp5gq6era5ab8n8g0hkmfcc0m1ek8k6304rd0b7p2i8bilpdkiga731qc7s0e3d8912enlsacplr56dle4r7io2990gr629j34bacqb5qer5a34ibeqnllbc7dho4if66a1hpsqccpk04l3jaj6a78e5okcssbgafb2p6aqi4e72he94filmbjqp0fqm6498egmfmb8npld44g0sla8e7iosp8c598slrja9o6mnqk5176ci26sjpogjino81crbh94kj1g835idco8ngabhjbl2shbofg7kmm1mh801aq4ajie85c14i4ise648bqjqaf0dn61spoesk84s6a47m5lmk07gf5rohf5d2odge51s7i4km2h7cf94h69rlj934j732mgqla5llrfadjmr6apq4ng5pllgdi6qlp61f2b1gb1ljpfdsnr4f1rnpr4p48j31d5qmc9g3bds0oeefb67ald20q7177f871efi7nkk0b67b2ia07djj26am448fj3ag92fcd15h2ckq3sfdedijmq9aliic913f90je63gojeko4qbkj7m2r7ck2kogbfrnq73sp45grbdf6qrhrisdkh1hrj29opje5lp433c6nc8d3krp3ihd7r1eknociq79l38sej2fqpf62401m0fbofofs5do1l221o6436smr7p78d3e1o8bdsam6p0fcc9bbfccqs27gnrqcbccmkfne8mqgeormdpl9rmdn80h7co7chq9jk2qn71hhq3el8g1m8nnsk1cd48c5a1gpbg6l2ada6mgspil948bgksj4qf2oia7qlhj3kl73ph2id6f87no374m8erp5ie3r1ddl89mo371eq2n06rgdphj7fip05hh6igmqnlc632aafc474c8bdh9j09m1b2d5e7h7p3g85ibhh04gbjngrknek76fdlbqb614cif217aofce09hmhfd54q191s0hkgcfk4rgmgdd801sb7f2egigihfhms2fn16e8h2hnadnei3fjpg0joi8n6qe80jdakfeja2e3875q6qogs1kjnopna35ko788li3n350p9j88ap298gkelq6q7o2o85qinq5ille4f131ispc1263ro5534m3lm4q6e42b2eo0a7qp304i73mbiinnh6anon3o506folbrdk29pimc9am5nrhderds2a27nm5gpn8pog2gchqbbj3meafdg10np2kk97del9af4i0h540dlkefkqirb73lfejbp7682n75nq517dmjbopg3g898d0ieggfch7odre01ml0477ad0flg724bmfqhijnodhjn14414a63lm4j37qm9o922mf63pr7f0s0bgrp118074kafh40spg1im1a1e90p4p4br7361q9fs5dcd7inno1p3pbqgmqirm4pmif2cq9c9drg2s1687dec0q3nns735c0cb350k9fqi5kq9imsacjnfhgme4dribgsbb6q83i3b5l800c465p06eg6sdl7e79mdofnre5jmq9nqiqjfqjma75jmsnm00sksk4do4qgn52qq1eloe7hspije6olnr8d2adea4gqp6rnisi2ifjkifmq8cd5gssg649da9qk2613rfcesloiobkol5p2eodr6f1f9n6ih01f56dc7o6e8gbrlajj1slib25cc5iiagm5fssbirbnh1c1inohrpkdp0nmql4k59kh6sqg39c7eg7705m1rf557095cq9al0cs1gqr7g9mgmc5icbei56km56e4r259e9cbc0jl88j6l3kai0pek9fec89pif42jk6sadr1ooeeb4pa8kfi93ohe4cndld0hnh5jc9cem37lrgps9cnl9p4qq3dja58faj0bcq2k9e00ghh9nq641f9hbjjpi66gabpahmlk0mcsbnlaebaa5g9se1hsfhgcfeliial26fcrghf0hb40ojffc9hdaqkmoi5681df7ihqfa2rfrap58oh7dpijqchaokbb4o9bpopbl8i8djn9m5e29q2skih29k8co1p6jdnkrs464a8hmi0jkjd02f6okl8qop4qh3ar6ernlq3jco8flrgsse2nd2qj6cf0ck0cd576frmh3s6grrodhf214r5a5epkl9l7en1n49qe0a0ieim6h17c43oa37fanlrq1ib74ijdb4gip9alsc3ggq6leg2r1554fhhoone0fapp3dd5m0gr34q68f92hr26jin3l8eqos4rhgqo6hbkjp5le9q0m2er81phml2ijo4h9qac690dim1kml83e45ehba05b6b545q8a09r44lpe1595dqfnid2qi6lkasl83l07m4n025a1j4qll0rrern242fhe155k16cbhl7scef4lae6p21a4jn6nc9h6rf49o0d403cg7kl8dik957794d026pm4s00q31ikk2djf48e61bd18hgpiki6oicsp1bdd0eaapc4csbjmd49b5fmq92so3m3j3b0b6sl6mhso2b3rm5mc1ch882k6s068ep0o9p51oqpm60n2oddp1bhjkpii9iqljrb08fgs5nrg2mf4h7ecnj3sb25783a9e4m2sahmc9ghcp70fdl16l1eifs8hj7nd37pm00gqm15a9m081gdp121eng2flmh9fdga5hdneal05e4hadkm3g1lab45l0qrg9106mcglg59b929hko3o6hk2c177bk45aq9ri7434sjl60cdm9r562qppq3ihf0eqiqgfkcb5gbplk0sh8q1ej0pkiq9fsolnfgrbdod38o84dh3pkcq54l1ppsja183pm1a9h2ekrdapg9adprqjj5ssk3sg06ob5lo0nbb5hms0prk2o1pgphionqpidc2inql453inaroh977g6d21srr3khpp16odgb6di315ghsonefsrp6i8ia9ph82k55afqesod05ao52k3rdij5dmgsa8kq8djps7k0jn6ka12gf5j9ckm3j9lndannbcpcmbj9fsfjqgaof79hnahq5psf9oj6385fj772je9cpf361ceok0befa1j4hme206qpphghhqkpd1aeceeo9j5b21688bh9raf8npr4hlgc2ks94f5qb9n38iq7k56bj3epehn8adr9ir5a7l7g5ko25kfmj1qs238ngd98k0jqa4k4mbdamh4kfn5gb5a85bgqpad346podqfdgamom1503bib675g8melhp97ddm3o4gl2li6sahgi9csbeg5kjd4ndscobbdfc6n2d2b2n4cjgee0c2j3qc81oj1smcbrofea74e01pfk5q8qorgmmj0s1eqqc6qgm6mr2nnpah3ip5njg9l6rc5r8bek9d8qfg3nnrd8h1cbnaega85rogad7ib74f2sk8d27hn5nl87qe079ge6nq2233al04c89rfhll6ll75lm6q7701sr1hq75mrir88cef9774r1o77os21ab264c9m078cce5a5n0osso3577epifrj8prrh6qe79kasqjd7qgqs1g8op791m949cpd25aapnqam8leg75g7ijh7h1ps7fm6kkmslj8l3ra0qmjas0456en3nhnbgas21s6rmjmkao20ki9gq94al2acs896c57i2ka7r1ek3bolpeo41a4boa2r99oel603qhl4m1rlesemelpqb6kerle4jcqbn5l7o6o85n63kaoiomdo2rs3dg3drmns5j1h759qs1n5r8bchcrhk3gj06oprpog1mimgbaareab2j07k8eg9j9lq7035d7lonlkpg37c0b92l2l3klbdlgp7ca7grcq0jbqoji93c2ddnb73bfmep79p468987g5mocs8jgp17okqga586gq6hfr4ef14gecsc003mcnsj5dechq5j4s5i7fnnib07c74k8ci291srb165ik48e66hna0go5e6fo3bsqkmljj4dhr7l8lpb7336fqag9kla5ar1cegbj5h9ca4861drc1hf476jnlmjf3ser38kjdl25q256jmdjnoggmnk22i0okaj5prc5n90pmn83amh6879c4gc0mo19cl0s0hne2730p56iqbcmkm3829ghpn4jdbr34l9olrpokqbng6qff2fj6c4ro6i2fbigp3nk4cockrl2r4agj5erj08fsq09i3rq3pfochorq05fl216dskq4mio55ijjr3b3jq3e7r7adb4p7hkrn5jdn4pbsc9cfi514a8ig09mnda0fod5r4ghkqg75c729fn1dh1d313blc6c1gemp4jp0g2ba1gnk25i47oqp54aec1f4psp1orhl7c34qnlh1e6a6jid6h42rphhg1p76h5hor699medjdq77k31ep7jpdodpa9pnef25ofh1i6f0mq744kif1f7q85f2pkq050kshqcfa0cqgcfmi6eejqi7k5m6osa53qg84sshqcbjpdb9j8d3j5nn18026n6f2mm1qas3q35kjflpa5e0a8or299c6a0nrh5agaacj64gkmro5ppik01akdpnhiigr3je41emmfsrqqief4rbis6fmps7342cpf5l6hgokle4qp83fa0khheasrl0bfklhh6hl3ecjslr6snplqojf2446924skd84fmgabi19a87o3jamhof43051a0351lmb0s2rjflijhg50reso755bkgifi8m791pgscb2lhi8aha3godlo1kmoqf2gcam6le2dj0kj92597b830cnkqk2j62nhdm369ir7a14309j5qeasfamgce5nb989lnnr19rj9dhfq4flnchc7c86ip8ga78bpk60or7narq63r8pibdf7nfbhm05ronh138sq640dnl73gmgckp29ldbpp1egbsgridha8epl01ol7s5e95j0nms2l38k3c9jp1olrq0jbbho79jk0regd2s37l65s642hscj82e0bpfqoshkfgl85sd82h050rak65739mqi0ds2fki874bb0g9k93i65h3d3e9l2r788qrqmeo9p561afj68sk02kisc5op1s6hrhs9mo0hda00bjcol1250afkfaoe8dm3s89j4467sepba7434igk2156kmibpp6is2p9bn9c37afpm3odf3m58n7pl46c40rdscq937314hnll3h885m9pfkfop1slh7kn9j624bb04bsmrkhc05f88f9er6cje1ab00dfdohn53p23251ocepo45e0gllng7ba5r9icnodg9ps0p7ogordkf9s1oaoq3bbs00o24aefb5dsa67fcim2bsc1q9hroirc1mcfskr1ka7lhsf2qmipp2j6o507g0rj9llg7944e4r4kcrkr8j1bn11k5qml82np6oh388420cdpka8kqn44spsrd8856glgja710fl1dnaofhessi6gcfpoc2564imfj7ni2fl7ldbpksj51p0s835d68q7cikfgalrngbn0p0da5q2naa4cdi270jidrekaomb22l7668ckmjfiqr15ls06slo48482a84nhhn4515noc5pb654dl5r63qba864p4q0ss6ra9ogj6omnji3g6s6qaqepfgkeil1e52oe1o09fe26iq9am29hk330adk54g8d8e2l6562i6p91m3o5e5qkhl02169n55n41afs7edej9hbi2f9dohgk8i0gk948gqie0dn3j8ia7959jf3o6l3h1i2p927hse092hjn5pl33gjimsirll9ahg3f0mbk65i9e7m0rslills0jd1cks2rd22bhskio7h8ipbnhaq0ila5cbjpmk934p2b3gc69bopb94f4ejrgbhdec7pmfom9cji845pm1mlei5ng8fiepm0hgqlih6mldje1c2b20n660oos8dkqph40h1bgnc7pra48i07bogr5rfc9ipnjik2ko8ekppbea7ls6l68linornep6na26nknc5bf0i5sagkkd1hnjgesb6hjbaf4lpci6a07iqfsde06qn862ql5hipdsrogdgr5rnfhdr3b4r9a501sk5r9f4b8p2nrnmsra274q1dqr6j1bgbchpce32sg8f7sigp6ahngfm439op0461lb6kjr4folkj6765hfdkhng7pe49khabje4r6m2ar6hglssnberfioiscnnjer8n8ldiqfl6h62kf5o0alddjpilp5jlpmko3o35kec2q8on4fl23ifh77ssjjm00ie74b9cp5md8eiscj2h5o4amao1rhqsk6o2eilr6nfsfljls1amcjjdnqr2k1ljbs5q6rhdhkjjbii7746smrm0e33p3sd586jpbkho8mled126mlr1gorn3bhsepe60pi64r77ib7nq8j8il546c546kh3j4h702rdd4naqeoo28o4fkco2c85s62kohmk505nbfsnpocr5f772hs5h09bp6cgcg1n5ffs9qq4nrhn12b3rcjgbnjce7bfcs1ace1114dr733jn51ij25dknmnf25o62qea84m07gh4ipfnb4m4p33ce8j3cbnqoo7cgggdcakfn4jbl2adsf95n30odf1103op27g6prkjiiicnfiilij227e2c3ee8aa4galqrks4br539h1ideob8dae7f622gop2l2kbmjgls2pjkjqqofio2alqros18hnec39loq3ffcqjrikr2dijo6oli3dhgpg68154shg8befsmq6ibqq0akhbg65f8ffkkr55sji4kck4r2jbjn319gggg01mac2nkd80k5l01mdc6ggjl17hk5dpf3l0in6gm9qgoeb8lgscjbo5qmi99r69o09fjpa5sk8amf7mnjcqmi00oiaa3p7krcbh6fsfa91kfdjdkl8a4jgo4e4hpsqjhpaknlrjgi3krfia9lkqrmp60c9k1977m0mho95s06q793df0r80i44g81g8mn6caqk9hqgkgqse5jnjba4rhfbic3jm097n6n2o03f352rd6f2aq3i5n82qkl669i2q277e5i5h5ofd4kk69bb08887r73ajh1j37o9jnqmqfads1dfs442qq8predafdpgp972g5ko896kfk9da33fschk8qjf23655n68318nlpmd5b6kjfo64bo6arkgsma99bj73inpi091occardaooprdf4a0ff0a41rlmq468k21sq1pgef0fid3e9dfm59grq9091li39smg6kj9mi53rhjq7r7f8bmdloe68n4jff7e3cin9meecbkpdns9825qhbpsanfhep2gpib90psb03ibsi79f4ei7lj09k0qlqc0fohcf6lo4f2ekh0i6srr44b162c66ajm2qfs2ask2h0a8jjfrb64d6kgh9bqgmicm36lbiflgibhohkfb1m0aecp2dohd7iko4jp7llb7o1qq60sbkpqbpdgpg2bngskkfdkr9193ic1d4nk16en8erkeipho2f0paprr4qkfaajc9cspisf1c7kr6ofg1o1saj3g7esq659l62g9fdjo9johs58smngqhq602g82f5nqrps1444q0neq6kif05jl44ffhsai47r37a7r7nj8ok15bgcq20cr5i011rmnsi98ej48bh9j03g92h13c2e1375cal1remei6550415r9l4f2no81jd3ebgh9mjh76aejg6sfbasdoj5pn5bi35c5qmkn1205ag8p9h2a3frfrpp27g73ifr18nsqslbeo6h3rlrd71neo662didi0190505jpiiq51q4spdkhkrek0e2srss2kdoo391m3a8l3435hl225koeen2ck0i2a5o6s734gle17cn6rlq6qakldij2p7hmaf440j9410rsf88gn7q8enbkgm6nj4crlo1qmdqed324eerj9m8c5q8ah082fm1raesh3ga3e60nd0jmrrab3o3d0sk5q85g3s99pja57a1rc7a5nf1cjkjcdsj06ar56a784kqn9r54im0hkb6h9a9h17kgmh32dhlrl8fege00hh011oqf3a8158le1s927nhgeg8sro9r1od84h0h1ki2n2imgr3dhq56k38qji07887iqlb9aep7d1d78j433ak42hn4dqgms1ee71eqlfm090gf0dijisf8ibrbjf3o5dcshdnkikeammrsrg0o400qr32cc6qelpfaqrsep27kbjo3cim05n1qsrn9njbhj7h6p1m1rhnlgeqpj05m858ho84a0k8716fi2d19q76ki6ni8bpgg9c9s93k14gsjol7cdim082bkp4jn5e8c1kdkjqkamf36h7jneieie4qkqlc7kj50nna2oj5hf93nd77p1ppn6nd7b9q2onk4ecss4jkdhdefl9o9dak3pk0qmb0er1693i79pr4psl9lk91m8q71a2grjq62dllrcrjp9fs9hjbposhlbki594j31mkjirsqe878b8h52p55si76lbl62qfk14i85h4p77hd02n77emsc0s8njnfmbk4krjr8ob3lnlgagil1gijr65lhqor8nbfo8k17ogab3pp1is1hbrcgmsa7l925md4rogk7cm55poi7p3c8oq84mnm14ibispmdb7pjlri2j5jj6i9jp77gasrqcpmfmpdnh1br7rsc2c0jqi9ci26j0o798iog7pad5lsp4n9qpi29arbams9ep3imo55b87dp2lika84b7es12i227b7fnhdq3kpki87rq4r2nknhddeocoqpcj2ilojns5lslp7dhskj64fom3f6m5f0ro411rkq6o04j4se273hrmadid29jc5rks4fmhid0pphml2md5oj8eh800hif8l7mqc2g16jmmejnc6gf7b8kh8chhdqsbpfoj88cc3hokl104srimk4p6c270d1gqo5jc42q74r3hqsahllmbi5073c78n37ae32c2p4g8bg7hdcf66isripidb4coeniifh35mslphr36abag2nq7spk3q56k4n3kqsca18gkd3ee5so01sao8o7rcpm4d078d62hmrcfeolb273p1rbakbsf9gnmdealo89mbo7ofih3ac46kkd0c7qch0e75o3ea9fd1ci2rk2o5ae8mddm5asqco47cl56fic8qj5d8cpjcndcj8nsmjpfqbsj5s84h9ppedoop75f78j63r5882k4s5nnp1lqhla3nhglqlsdfhla40dikcnfb5k2md4s2i86m18n4sio8n9rnsap58s90rl0i8knl9mbclirh3nk3p60b94l8qaaro0nnnr3p8jadqi5skca18j8305phjpd44id43lb5ra71hpedmfooj6grogj5jpegrd0mafe850nhnf23jah63h8lgifmkiqacnjecgf1hsciajj4d8aiaks1k3499332ajee"
+      },
+      {
+        "coeff": [
+          [
+            16,
+            25
+          ],
+          [
+            21,
+            6
+          ],
+          [
+            28,
+            28
+          ]
+        ],
+        "first": "pleadingly",
+        "second": null,
+        "firstCompact": "dksnalkq",
+        "secondCompact": "lsd1g",
+        "bodyScore": -5.825778075420943,
+        "first40": "P L EA D I NG L Y NG EA P U T IA IA R TH X OE D IA IA C O P L R G X G D G R S NG H O NG U B",
+        "decodedCompact": "dksnalkqlsd1grr42emnrr53dk46e6n64fl83l1hgigq1j5m6p3b25sp2gasbnf2e8o3lasm58lsg7dkjmiqa431jf3bipoeb48phn0fipcd36iqsrh7cjojbngs041hrrs5s5jb05frhlgassh8pjfr32d58erreqep5d59khpk9ip17jmehak3pg9g463psg81ksea8oeeo1mr8ecq4e3f72mii80rad4ah6krom126ip1mqq2gldmplheqcm44ink4amai19ahd6seiflfd8bn1gbrek47lnor0s048io3a20o3dqek3dnf6rjrd2odegbnq0prfooieqn965ckm1h85k29bg71ejjifabqic9h6dq3002kf8b1f0rm23sih5o3pib9q1eqab0n5q3age5n0p863d12em7jn3k4n1rksl0sgra785g4rlgj81gplfsnsrbic903848n3jrmasg0hm4n1j9bhemic5cr3j8d8ror3578leijm9ifbed2dkmprsdc46610qdrlqfdmk90h221aihnep1bqmpp7lbhffinb4r51m2gblcpk0rshpfjp6gr2r90sdricd8pq4pmhfd7fi315j0r4g2qacflq3sja794sjn1in4aack1frhan37raq3ojg8ic8q4rpn5r2bc4blr9b75klbm7lfr9khr820gm201nlmas6rq9gfmbe8n8hp3bef4k061qr95q6misnldennh064rn2drcq0c52h5q996a6g0jnmpqek8hcp56bi87rehnpl2mbdsm0h0hnhn243l70rjh09eq81hr5rcdcigfbbo193a7sbrhg0g16kfn37n1fgo85jh6fdisj1hdoc9nf5of93eenonk0o31cpdkqoqsp9n1k15a6d4plb3ifbb0g5soimkgr6l5m509esl5rkjksg1gslfgakmfb9sjhd3m0m7fnnf94ddn10m7dl5ajjp1oh0eisjcbjh6nfl4f44apsproljgnnjq214d9ifsokis07h5pcj9rgi5ahdmj666i3egcq5935ec25icmadlr9dde2k6bm5a89dckqg0sni8ji6rf43r9i12bmi9045s3f982ssrp8bg7df6102rf79n0icla57gn3rflf2b8d2n1jn16gb5o7gjn18rf1r50s7989am22np3lbbfn9mcpohsmcjpiblp7aoh0fpjiecm4ef78rnoi8e4qmi2rhcgiqf5sqeh6rrph88iha5lqdf1sl86pjc8meccfn239e17fd9cn3ekq3sr9a9scp27ssmpchb514rjsg9bejnps4alfdiiph8dmqll4hpqqdpkls6rn3ena7l28nqglq7k70i0757jlk2asi9o421epmsnog8qfq7p8e73pk9cq9343kh124onr2giej61rdb6qnbmpk9ljfbna5kokb0jqa9l8lnepfloqrshhcg3kh2rsjmqafeardmg4n89qb51qiokb051h8ic5sh1kosl6eq767llioblq458pl8g4f0aa1i1he9mojmn39qqqq7rim46ee496li3i61nh7bfq41lhif0i40890k0n4974ol3poqj38l5igkn5i8sfm00serh9crfq6pi00mpodo4i7nosgkp5dj4503gjc48c9l6m1ldm719jjsqsn0penkapneek13jr8nd01bi96ik426a5nn442eoansc8lrj6aqro80crk04n2s44ln3nof4emm2n4a6aq2dor884i62q7gcbmjk26ad12rgjo03734kbj9k077dnpnfi4jso6l425sefcsspipkdb0gkn5on6cjqd8rih414s52lp8l825mkneic3m2e05d3i6qmjadmmirhcgdjrr9k8ec4g19h3kl220ikgakln4fpql1iep80i3k753jqao71er343fic9f4blcd2knkhkh0611p9n50o1ehrcf7gfj57ig5mj819q2pops5hi0firgdd27lrg8csejc1n30kej7hmr4asjk8sj36n9l2sk26pq6d2kh6549s6s4n3ml66ni486hce6odbor070fc83k7ooqeprh1qe6i4iq721f3s5l21h3dmhpdgor4h5454jf2pnqdf4skhqfr71n1qokjpcpblepod32amie2kcr7l3sn358baa738a2sgbc1j199ob0qoi17j5g48jb0901bm8en8103com2hb1njcppj6lp048fs5m12lqihink4ccj5rmbpcobsr20dck8gonpdsplo1aaplbpkdqascbl16hfrnpe9j1gqq5s7ha3h7ggnj3j6ec52cp302h8nidhoik5n1olpahc72isqr5koiqn8bpippjrm49ihsjpr6dskgbh54alc770elee832iiiji6f85628fr384agmdk2oafdjah3n4q9h33467j8frrrm8csp38f4rnfepsn9riga4oqhf8egsg8pfir57fmfq9aagpslqfa380m722691ogd1g50fn3h9ecaf7ll671gioameqri1o3cb2ki1c6cknsrfopgsbkegkph6id1dr2spqn15alfa1c3fo0h6jr0ink2e9d21k9opbphm9bpk801ls9aekppiqghm3514s67cai3js5asj18l0i6glpoln1op18bdc9ls3encb7nbq17m121g54glsagaqafbkfn85prgm181ad8cr68bpe0jenqlkm1d2449l5nlohbnb6391cqgcgjec5pf5llsdr2nog7r21nq8idjrhi6ds9dcheg54p6l6526g4eb7290dd0sbmdq95di8gclmd9fmssoe2d0pl5sd88bbql8jdp1er4a89i2h7p3in21670i3kgmqg78b9il0ir3gh1f4c8rn7oje6c650i7goh4g8ol4ck1b6fn6d0p3sbgidmin5pb7o5j5k61kf21mm1flpph51c7efgdokbq4soekq7ms3kofl2213j3dh22ahb7pd2q2c2a30sf7g10cogd6cf0r9aoah13mg42i17ol62cn9j70f18oqm3bdh7skj7saogm0clegbjn8s3d1aioge4pa0f1pg535ql0mn9e19skrrobdf8pfedg5l048r4g3od40m64a2s6435d259m04r45ob8q5l0k42p1kl55rch7fp1pn3ck8ag7r7ri7q936a328b722qq97ornsog59i77kp5e43s96i27ap7h0i0cjsr66nfpakhc69f6l6hf48nh053pp9ojh86eol7nd79981o838nf32cii1fl0qdqgphl249b1m0ji4jqlbb0o1rilmhp35eg2n48452skolsji10dmhq7pd2dp1ipmmemebhakfppg9lg3gf1f672hb662kjbprspsarr692gnbgh958m6dhpgbr89r0n5e8dgo4sa33dpqhgq20eq2ph1seh0galfklciciq716dq0dk48heqih522093229rh67jln5f5qha0f5c591fbnp9kcq9g7f48hmfe7k8h45pcocjo81lr99qi76re9gnlnrfq16q463q7lhii6srsrhi3i3bacpbc5qj7hj3qn7cmkb28dh5gjmkf25h3ilsnj7lkeogad7g95nd9r97pg1mjdbhhd06j53hq8c25eh1l3lhnro5n51mbjc5e75gjolce2nln80jhfff0kpem3k8c79k9ioe21pnkh0a76e8plf3hhekq31bklie3405lm6i1km9cpp3mpoa10kh6i6s9c4b49a8mf5nh16jbd6f23ccqsf6jel1q58saoge2arl5310inmb5e16ikjn97f576gn6s2qffqm6jkm3hdfm037lgjg5p8eimi85qnsoo4i1m02lnmdk6im947p2ki14nragjm9af0epj70br5jobspn739re4n6944j4qdmhag5kas8lhqi3ssiod73sr5ldgnbopqra0r7b9rmcifq1qq94eehb59ekqre258955aos43pf5r9e3c366b42kme16qhr1g2jqcfkpik47fi3h86e63qgdbbj8h0568j6mpre6slfqqg57k0or6a6dc7g4oigha51ih0mgeq7ee9fo2b5lfae7lbegbpno5qd7800sqg179s0hfrp9h2qfroconsa4sk9kl4bmo3gm8d3k7fnsc94oap682sg05f5clq818hkedcd0b26sdjqe8lk629i4ohrnn9inqlffj05g9ae0p28l38r9rge1778984nl3hip29s4om75ihaaenkqcrhlmfnj9bdmqhep7dq1pf2d951b654j77an7eg56m526arm6egi01g3l7nn15i7mao04qgb5gdea4sg075nl6g3mn2i5eh49d8jf9qmocrr8b075e4ijskm738mgcnsed5l02bfje4nbrph4e45obm7a006kgafkd047n4le7ba9135jei7bhi4hfcs5p4kak19ik2hq0qsefk48nahap6r4sfqr4g7lcak8r96j4gmmfgc9j85e5g0i1m8ad8a0qncr5kji8fp5m29qipfpg54jog6apf426sarlrm8mkok73pqc4fehoeonr1k59073kbc047lj7dsko7580hknn31afpdpso46saq6brc6lf24n752h4ldrb79gce2b7k0gbhi85j4j0k7l7l7amn51gc29gpdi2f4qml1a5o4bnib88l3dms025giedlhjkc71q4c6pq4893a5n6lrn912dm1ek5biq96ccpcnepd1c9hdhkelgpkjjos915deee13ff3137oidglb812i7b0j5ob93m2marhnood7gcrf3hr32p9a8f5idj4n8clhejjans9ldepffqb48802cjkopeh1q8fs9e2nh4r1qj1emdnpm43171akjgao13fs3ircibkmfod389lc7j4a0n5hglarancsrdn168m2h46hsrjir94rjh9ibijbs5okcsm33iha7o4pe2j6mg77s9r8akpjd142rep3nm4gc8djnhnbq509l2gg4pi9s0coqmsbs1m2m89pa4hmic4n3b91qij1jb92jnn9fjo8d4gcie8p6lf8hi9n81317slfkls9o2qjhmojp1hq3cbnabk75khak0i28kr746mee92gcge5485copgbimplfpmg7h9fe4aa5f55den6efk6jd6il1500oardj3knps0eq9gncgikf6jial2aldf23dobq935bg5iqqf91mi7ep4j93s6o5qf719a294n96o03gckqoglhc6ipmfik8f8ha4edpp5p46nbiopsc7jeks1j882q42ligil4aa7br731pjss4lo7cmidkp5and63sd3jk9qeb0944jakbf6oibim2hpkhm25cp8ek924pki8rsqqp854s4e6e3cmidl6d8e13n97n38677eocah7d4f07phjd7i0s3s8mf2cgbpg2b9g06qd75n4sf66fa9iaelfomshd4ohdd9589bhbl48b2mb220b7rmq12s4pr2dqbgibmfs7j0p1a4sje7m17aon1gls3io2r10ja33in4qia2nij1rggfsqel8qm44h5nhsjk3f8q9gd6hopk36enfkj1bhcil8g5arosdmc9m4onas7min6rkc71gsmf122ipd2e0dkhe1j5317ml2gh1rg15qnr2o1nn32hr2ken8s73nrsjq2m61e8kihbb70hcofeg89ej4qmipp59m4onqk5clk47idqeam912dmm7n2298h2sfoefpjh1ebpoo09b9q6nqce434m931hgj8psaj3gh4qrpoq5rs7k9icaqp8mhf30h0n6mofeqn81ogq6350hb1as3kahff5sh5gjimdgcco7o8j889m431rn7q9s5016fi29nlqo6akmmk2croc2agne3ebc0i779agl6pr6k0fhkd2ik76gdfph4iaram0jhl8qha5aqri75o0gd4hdhbgi99612fli69n6oc9sa57jrldfo3r9ido6q6d1j1hijjjjbkokj5gkhqm86scj9r54hda0i1j0rgce33kfc8e91c5e2lj97rsd9qq01kdmcc8s16rhcqqspaqb1s10p2kbd0jbe6smh1fsj3s6fnnbgii74akdnl7dks6m0pmnklgbshbopgb7okappfe0afps3hjl7r7eakbripgib3pfmn44en638qgfdm3jfosr29ig3rml1bhih4kgaslnr39ibqnbfbqq3n7q4cia7dedo7bo35hgq42df5gdisookmj0r5kl2gb08310phrmncee7adragqr31qe33s541c4rrl396eqg1dc9ldm6dmf3scf5i2bhsagborokrepa18s5rme8ni9qrl0edd3bepgsm9m8q996odcqsn93hmc3nlkp9ffnk6d18eom1hj5hjm5sgrrkr2de9mq96c63le90cribb1n9oncnsh0beg85e6a17pjbskbh1i6qospr43dph1q661l8apbbj2lmmjojhcis7dqmchdsno7gdooq4l664k0dlj1gjjnm6dpphldc7930q4h45rrlaqf84esi0ckqk9qpr00do4sdkhqsnrpohc5m5f8fbg4gho1p1m6s1450bfe090r30206disrca97gdqm3365om6498a8f9h3e4hd2adhheb2456or5m2g9hj6bklf0gb0c2nasn0faijio492qs8e0c1l7msbqnm1efieor1fbor59o720klq6khdrkgld9mo1o07admprdralr07cgd3ccq58sgjjk0r2qi00coqgcmee5fnr5cdjqjk48fncbh2p1a6sb23d7j0djqm18d70o02hllf3e14j8d1lr52i6lnsd6gcfpl1ano335a3cns4rncj8ll14qm05pnsk9fjoe6edoaidolhhrlpj73q8edfgq6o0ih7o1bgnqbinm3ppbapgqs4h5jpeasp7m2m2jaane5jf5912enff1kj04nkgks8pkdg98dc9855n5p1b1200b84102opb6sic327fdhscmeh8rfb2of22o21egs86gd2apqigmh0agrdo87ldfgih9ine3ipias4sfk6kq787pk71jigleona7mds17047jdkb3mgofskg54icc9ld62j9lqdh7pafbsc067pj8aior8l23r8rfpr9ae1m4epfa1d8qro895jr34pkp1j5r32hbj174j1m24japcls8erkeiidl89qqgnm9904jk851gcciac8q33j0gdg7a76kdnr0k70ockjdjb6663gopfb829fakcimimq9nsf3iko0aqjghbqrd0scbkndh5hph5b9jf6n8rjfr867jrmikqmh75qhap4rcnfm8n9signbeq3ni2qaeijlasncigre1mbl42bh9he50mh1sd0qgbqfrnec7n262abdj55hqdrelgai93ebh64cd6fj8cpjd9nlrkrfss6dh8563d0sfld2kjdkpgbnpabbk3k7ne81f0i0m152heeg7lc297ilr1ek31e6ehlbs99jff4n0adkdg5rrfaqikm8c2ssbepli1o5mks6dnfi2hkeqeq2doe9o704jkmqpnasfq0rc7l1si4qr81gpq3rdkc37plrsch10rk0jsaml7e47o1edd5ir4fi7673son1i0qckdgaoonkje070ljnmqagmms1mdeflqqeqahqca1fsogak3r1mg304icaa6heg79cigj4ik1fbg7l0fsp1h2d48h5rfs0ipo3dne3bc5akpca5k8jds4al3jgl811lk8g02d2o75f79k1j7jl02elb4m9hiie7einsqed7qhcqgm94jli6sr207q9orqhnan3d43ls0ima8k16g71gpebepd0qhce3mns2i63ssrdflpc297de3205a12bqsf1lfgsopl5f2h1gf4fpo42n37f86a0c25lpchaaoblijcakp622aq7m7chqqr1pm1jj09rhak5lpi05db5n0pis073b668bi4i35sg827rp4956l7ceqncl7ps8orc6h6283npkos8ij9i5elp7r0e7r9han32opb01n50rmm9gb3ne1nel2mhe18ii2if6qrahjhfgbsskj8fd186enl8maecfkfel67esn7k99sf3pgr99cnod90frdhl35q2jbe9o5914p8insjicgq64841j912afch23bm6oq2qoc9rfejpfg0serlipik0o6klihq8e04kagj3khaqem1d6a7jnaljojar0bfoolcq0sdscoqdm1s62e8m0ssi379a3g9obl6a858jrkakmeicjfg1gnc092aj7cpboh1696107hmmp1qmbi3p4ok006r8roqne26pnab89jf07q7219333b4179gnegg55ljeorcnqroojab8j47sk3jhbhji96jh579klojc4flofo45geb5ck3f7g2rqg0994in0heq502gpbphrikfcp9mmk4ir88jmo6b7qcihc5m9h62dchddq6ss9325i3pp86ec2ss53hc4585re36a93d110faapkmemm6efn2kfi3hcc87943la5bsrjn6dcpgjg9ggpciqs4a043pdo3cid5nqcdj4afpcdfmo3lqd37no6kqdkoes6b8bpleqlm1k7qm8s43rp75mkk5197h8n0dmggc3bh1kcoca2qpp686q4po59e7q1sb2sf4851mrhdk7p10jelcknn3ra77fmpk4314pci3dbcjg19ijl8jk52nc0fbbqn0sapg3m8qh4fafgqs3prp9glf72kgappjc5grs33hcrdsni29hr8p69rcn16hkampq24nhmkmqs5fpemlomid5p4apn096m6ck0h8jajopdfd2cpsmsprjco8db8db61ipcn1mmc6mol3l6p8nla06po1oc29e46pbmpl65l3albbrerqe0350adpch5mbl2nj661aaafeb147ff0nm4bi82cqsr5mld3apg5f5mlo116dqrqie1230sf58mao4oa9a05obgjgoj1l891n5np659l84kd40rjgg772mekcdrqdfj5fibbnio30k8idei6fia89dmjj32n9f356f2iasqqgj95f15r89im9h38lcq9nd6df31h3d9hn3c324pili0398hlnh1r10jop676d564pnkqber5dd42qcid5eekf4d8mbi8eln75olljbeoodfj8ej98k34fg2552hb93q14k65dl39ke6ramm0b2i1caakdegfbfm5efrm9ehb531apehhm3hha161nrn06m6dp6rf3en4gknl3afifjdj594kj4pof5pc7a6qa2qg165l4201il252qr6c7qadhf1kqcsm6i4d48do319776f61ge01g53dqca19eqjsqi8ano7a01na0090n4en19j35e9aoqaf5p5hg2804f5fmokfj0rm0eb7kicnsci7f82ssgin8rchrjdoif480bjd3ij18pnme1oe4cg8a1j502cheq1a6jce5ibn08pado0aq25719k00rf934gjbmjhabjhqr9jgschpsh5n18n3hipmoe40mqrhn19hrs1ldmnh1jppoe68ppbmm938354oop7jfosgr3g28m2q9nagso37pb9hqb4ifmg9roe05gbganm643rgl2j09gainp8l52ooa851hj84kjmi2he553sqsqn569abdqfpg567pf90ai166jjr9kb6dlskbcr8bcdqfs7hei46983jrk5fqolgs3c5jg8oq3bh5rahrp1r25pg0hme46r4sfos8o30ipcmnq281kn30b7caf7294knhj6djm81kg1fo9nqe66kimpped5qqci0m7afqh1gnqmk867e8o4r380kdjqf6a539630db5a17573hb7db1cnlj3pg0r6afn65g1e9rgalncnofobbeil6qh9fl4ldlqr9jloqqdd6ibgncgf36hnp2jc62g2mlc4ra2s84inoiek7mlff3fid8dmd5rqc8hprcnci68cmfipn8adepl6s41fa40dmg7ak2norak909875eeianh5fq74ne3filc2j88pfhln4fg2glk5lsojmce1c6kqlcl35rp7gco16l3s8cjr2aohd19igkgj5isiqle9cgmdmnqj9j6m18h8pimmlfrnk0ona0rq65o725leb5rsm0123lnjgnpbi20isdbsm24k2jigmeg5ap1c34qs588qmshdsjf511an8kq373hpfeojqsqcr6e2jp72413p1bdlnd6hbib74cgk64or16p9hee80bd86bddi0oiclnm2i338kf740nmhiioh5lmirsgm76khsee2eblr0kqe67n7e35erf8rhfcj0noemk9il7dpmqn5dbso77rfdhi6sfljn52om8ih5fpbcn183nglr5cd0s9qpm80ke5qjim8fo56aen2l15iiqr7829b8g0sfko0sqmh4folq2i52e7mdlcg9ck9jan7q9k44br61g2ag815e3ksp9ep3j25k139fjfi6dl3494chno2dn3nr47bib94al0s10dibq0ojopi98lrpa4pecolrc2p2d24efmlf3i9i1gf2o0mfcc92o12099llo1iqbnd2ndhkbi45kagqil5m1qidoak95qcneqrbjbm1hc663esdgrdnmi9hcrch3rn4ki3m9sim4303bh4jq5i6ml0gg94g5ssjnsokah9bg0oao4rhle78gfpnbcrca1b35hn6m8lq500iiegj9qihmshg0eee4prirsegi9d7932g9kasr3qpab4inrjbqlsenc4imd6jrpb6jj643i8ddor7pn2hc821n65i9mci2loqa9ajrq4si1bhka12rpkffcgier98repjods5pgeh7qskopn01je3e7rpb12haoacqi8p7srkjaeps676sr7bd6f89edmfagceronfe78e6m2b5h5746943fpkjpfe738qmogof6br7dinbjonmkedck7i12d14kaojjp4j6c72dgmc8m0s7emdhn2k9joee0ok1ss74o01rn4j943m26r6jkpk5kqel730ai1mlg96ks95b6n71e59k4qej189rfldk2lsb49cmi3cn5gpg835pm0h2kcb81oi4s6c52hkg8hk8ibahpk3381c5pkp7h2jeao389rkgd6fq63eqaljfr8o8139b2d65k98jqmhphgrd26bgfr52elq2l19bh81fc9eejs2bf39rlcjnkrqd352ards598h36k5eqsmgi7kcrm278gsk0ea15oo4llciemj63ao4qbbdoocf1j4k96nmlihpckro70216efq5cipoq1q353k625n5od80smosehkbqo4aln2nkm0m3nh1148gpfg57jk3sgm8hhq3qcig5orqo51ab59ndmbhi70lscmir4ie1ncifql1a2i72oochd5fnqr75qgreh979m2ab8agj1gp703dhsiqom4ce9sdao4hh83kqor180p3qd77q96gsijsd4jmqa1cfak6g3srnkjihh2q5922gj39p4ilr53m8r3jjhp9lj5nhkr0ejb6e5i2ofipekjidker12oqn8saqhao416a1q98a36cma9bs8cdrrg23jq0lgnjiol49oqbknr1oc6nkloi38l663l0p1l2m6c3kh8l56531kcmn5g7s37c8l5dcnra3l6o6nmapbr06aqnpah2bha89hcdsib06b3hr83l5kii0rom5qh2joc8d7scpsqa5mi9s4iji9q9d6pa90g3s7llaea2m22ik9554r95hpfpif2rm38qq1g265jl1hjcjo2jin78578deo6bbnok7re99r3s7amira0m58qqs5hjrkogblnir9f1qe8jareh12psogjqmh1jor0h8mi64h4174b23qfqmm7nikpb9gra6nnrhsagrqdlridr3qgn3k0r5i10pfjdra3r454sfrmk8em7fa58m82s480cn7jb1mss2e9hd671h4ee13nr7lb5r3glagnmndsd15hgk45pmakdr9iqfp7652cchp7psjgsm4pod68ppjclloaef7nedobjdqd2e38abpha650ao15068ir22e77nc5i7cb1o8qn6nr7l4perllls51gdqdpc4cae3cder7fs68d8ien3pqjg1anpl0c7lnhd48nqcd4p72bsnmi2bsi7ra7f4976hlkq5dribg4l3lbl7hfmpced97dselfp4a0c8pedighr5bqd5dpmcr1qjooa9rsanl662854ss7kqeadg0pqea0ei96hd783fm0osdp33fkpkpjq0fb57nncb0o0f202j03cds3a94drgnd6ofarnm7j39m2d5rqnqmdr35n8dppl83rgkc02b1k6loo0bhf7kn74nb4enmkilkhmcsasnd67hg7d05p40dl6gkei3kllojdnhp6lsf195jkm4pfec4e18em42qh33pm1r9e9fmoeikqglf19l3ddioi270klsal8afga4qeroljclns9lo0k1e25eikck38eb9plq9n45mhg5p3n8spjd9h3apfec2k8mf6qmql2osd6j63saimljqnnai484284gemg485sfop1kbmjd4baranj8e2c33bp6q7hkejpgcil1n35sqo6g5s16k1icgn59ra71gqmo60cp479nhfc56i32181m882abefisiq4hqp578q4abbjm4g1651cjjknf98s4221ja51o36pclf8be3ks7a8elhg8lfn2pacmm33hkorkirqba34dekiecrrjp786smsc7qelj8j265ofioi2cn68brcf"
+      },
+      {
+        "coeff": [
+          [
+            27,
+            23
+          ],
+          [
+            11,
+            12
+          ],
+          [
+            9,
+            18
+          ]
+        ],
+        "first": "matheson",
+        "second": null,
+        "firstCompact": "jog8if39",
+        "secondCompact": "33i4h",
+        "bodyScore": -5.8306194886816805,
+        "first40": "M A T H E S O N O O E R B TH L O P I J EA OE EO J G N E S W D S N I P J D R N A R AE",
+        "decodedCompact": "jog8if3933i4h2k3dabsmcb69if7nf9adbn49o4pc0351ajdfgh8ebsd46cdba0pa207rf4202pil4d497d3281fe122hqe4glidb51kjfdlgf9r08a9r48in8q8djepql04go662qi9hi0cj2slonjmcs7618b1cr45emd74rcdbsrlbi9lm3s642rjsf26mpdsfkl4rq0m96blorken90ac3i4q3q54mbb1ghs87asrnp1c8kjcjhhsjbhaojbn8pbj7kffr3r53mrjgj6phfeqc1apoik0751044bkrjma8nmoc1oojeefser2jdk0h0pano5hc7on2jei8b81cpqfe9jlq9k8r7bjbh0ak21cgs1qa2g6pqgbg5hs5b9of47ldan9fe5cr86qcl9f088kk2p8bch2kkor7fh3r15hjn3nahiaqkfel29ebhg2gem16n7iamab4e8i8m5lpj4jpb8142fqqj3mgd2gr8e5ak4jn318d97d57mieboog0h349cn3fadg2lq05a46nqld7d2j4i1qh4msnf12mkfnmopac4aiqe2sq04oh0om8ncmk4q7obr8goc1i8hi7g82edgp0mi2fe1197amhmhkn0g23kjj582gpf16ngohodo0a6kj0qqdcp6bq28mk0qshsaa2oopc74bi6qc7f2oislaiq5h5d98g4j5763p0njp06qej6bsdmk5nhdeods0ob1mo5jf9nd6cb0i9789m8c8ripeq44hiqk0c9sph8l163eq212qd3473sor4k2rkfd6k3mp8p0seo6n767neo1jk0b730fl5o3po1ff673of35k198gi37bb8gpc8srdp67gd3o5fg8jjn4osldso1j59r61ssk7q942mlmnkdmmc3s5nihsqk4499739lag5hcmmb4joe9g6n0sn0md9i9qp4ldbas4lbelcmd44bj7eio0j5go6378qo73p4qacb8j17qlrq0ojlhsm989qn9jcqffi8r2ecok5p616p1i4q67jsalm371h030qsld5qia3l076fgnpq51f9nsbb50nk3kl4b9026j4008od0b59f29lgbmpenhkngh7kod4ehrg7r3q7kfc9ilgr0b9qq4rf2ghso4qch3iddsies2jjnc9d1qo4fs6fjokocldl6r91m56q8di99dbs3l7ng4g45b3q69gf85f3ogehnh2fches8amb5p8miiq32cb5l8jmekrnesii9871e4d1er0m73efidqjocbkq01ga80sncgnnra4355dj1plnpknfsj4enomq1shnos4ploq47q58pke7s5fsl1poich8hll50hqrmorgld9i9c3m5e8erm8a0r8rqogcl3m828mrj8iiqqf265kj6ffg8cakn45e9907qn3067hek10q3qh17g79sprdqn0m59s220chppo2gl45bnq2hq0cjacmaf10a8gf8p15mqm7ajoi0dmdj98d1ec9eqbnpmb170fc216mcs4g7hq69n0i6om72pmar830fkm36kad61g2k9nn2pbfbhj882od6j99o3enqjeleq6kjdm8frhgi8f3ogp9id334777gd55gas0edcqj4rf5hcdki1j19h5j4fepe9kfje4dcag8gekh2g173ddhhqsf7jfk4rkhddr80sim267bgoo4kmkr7n24r5ln7710o2kkp6eilc8r8j20p3qk2jbgn4esis46hn5arkjmhm18g299j2o59rg8ar62hajop1qlbinae7j9rms86gdfnns1qhqfmqor3kl8g67m9ib768j2nq445gbkeh150cpkr03bp3noobsgchs49fkfnosn0iohgohd33imcfcfh24ddna592m62h92q5fi2c0i9a8s7qf4sr7k2akbpfes2s92f37k831fcm5mi081a9p9l23rnip5r8f33b5jai5lq0i5mfnbern6lg6k47190jhe1c5c4s39crf17gnsc824ei02qk60bf4hgcsjn9773m7s3n25o0b6slkmrf67rn72q6qb41d9silr0hc9irmqn7mca6o56r4araephsn4983lc3ppjjd2j8d6h5nlr2qc22ojh0ibp0okjbf1loa9d6grdjo4q1hlbfj0cs1aapebskfa00ffaas5bq21espn1c0hphee2im7jso77g15j331fkp0gojch0c7s3cj0smqi4ff3aropgr2sjdes8edceo97g9brnh2ed1l194pqjd3m2san96086b8e9sdfim4krp6mab8plc9oijpajdol0lfp07f1fr5a7hk5bm4h4l5d82kq72q887nojk9kboimb0cpnfqlo1a2pi7s0f1nkpg9j7d5jn9i8dadlii00fds55e084p464de0hqh29bgneqhm1l9ki0q55aic75fh2lp999h4gcrqf079fimla7n8dank1l84hsddcjhf7dse7m3sajjdqngkekppn847mss3bff2lik37cabgfif3m36i1gbnfljk91aemqqe1jmibnm37pj814fi5160i5h4ckrhl15gh2lqcfnak2r9dha2i6godinllder2m56qe8fs40sfg1n2b0lgbhgdbi7gm3grbjkcg0r8jn3h1ghmnee9li44dfa22d64qrg7m88g1dqo4kmki1rs2p4fieqa3b453b5hpaj971mkncsd5ei13c77sho3ak7ocmn08aaksj08l4i3635slsbdh2kbh060fplk10qa9re8m6rh2d5hc0e8em92mmbajad261s19q26jj7ksflnis8bnn8rje6fid579efgrpneqsgl75ngk8ldbfgiagc4lch3m508jnsf6ddgfjfg516ppembd51sqsrbfk0cjmog6nll34sfgc58biibrpmn04dmo8sb17r5882ki8a360la292r736j05e1n7d47dap7ffb0qll6mk8hf97a3fd0mhg20pcabarads65qp0p23182e653gol7cif33e1e08ig5sjbekm6j234ljl6fq63l9qc74sso1ieo6jg5p9g7n07ng5aj90hg0dk97lqkhs11cel0a6f7jd2gns9r68s3gfp451edhb4fq0mjcg00opr3h2cl61r9rg51jq67nch22m7088rfk0bm664jg1ddi0emqlp4lqpp3n0q4r9j9do7knr33cjiclsg69hs6ke0fp5smic0bsh450891mcrnl1e2ij8amq0emikgg0i2qhobkdfd9sr8dr6p7p0o60fgksdpkqe9qke4hm9h9qoo1js9i501kajficgi5fiqpj4aemq1jq81j45p6200eaj4eh60491dr7lmcaid3oanm85rk2kobqsgdhlqgh1rl2si897a638iahemb7oib05s9mp4rn5h9hrbgah6kekpi166crg58fd1rjbbj5amr5beik7b14c2k9bqmsoarh15hj7n5a3ncia82ae7sfjjbd1p4ij9dhc9qf1ikf6oqh5m6560dso4pj63gnlqk5q2h17bi1sb56el1qb4m184rfh9mml98f9gik9r9madehcpcr2l591akqm9ipfiie47ohggmb09sfgjlocp9nii3onm9aafkh09baeom45gocedf631r0n0e74r5n2rig5e074f4h65m66kkq5g2abe6c1menjl2koljkn2kf9k58l6h00o5g928bi5mlcnjdjic2qjs2apfbh8rcpqk1n0jc6orek1apk8gfkdmgro2mk0hg1fmg9b61rmmra47kpg0as6282sehpojdhea9p3b8gjg9h417qmpreihs0esarqqm9d3r8gri87654h3bd3bho1qlgmrji0nq0s5o5p5cg232l77f1i6mh5fhh747sgfsjagl7d638fi7a1dn2oas7rcdnp0699m4mpqbg18o6c9s84q6r20n8b4ph5q43f0aqs38266sfgdj0j602hrdnr9k81a1n3ji1h5c1sbs2e1hdgf14lb8fg42df4g5g8a2dp1ide0qpnin23g57erk4e5eln734kk4a1llinj5ojk9m59pb7l25ei1f0jfbb9gkhcdo4r30164dsd4ap29988rn3r5c7s6qg567ojce7s6lc7onhrsqkh10lllqp51cc284d0b0bid35114lld4lkp3s3ka0db511qiac37k3gnsolafncn2jnannh23ef2lb3ic8eq562dmklp2pg843ipaobf1h80g4cda063f0bga6d50n0f9ld5bbhrb8mafi17he34mdg89q8d0r6csrf85ngqjkrqo82c04o5602rnk03oa1ao0nnlor7ccpkek208rdo2rqsoecbj00bglif5p91oj9b9dsaa3do59h8ko9h68bm7rml6i6nq6n5nnc784r5p12g4p97n91d9qedod6ebsr61hff592k387486j4c381i8ddlnnrs00sp166n650g9b37jf71ahc3er19md1ikhkbesmlai74ssad5g432ic85knm5ndnco583jk1a834qcckbsh8ik4cl03jpgikid09o5sb77ipeo65fdbs5ngifh5l2f0lolopohrbhmlrhdbs8i597qf6o6m92135ernhrkgnonih02seabsd5pq8nep4r2ehi6q9r75h39lqm38fkmcbl2perifsmj99kogigh06p7jhanj43ns6n03m6m5ciprb93qc475e0qk1f78ahbkojkab7lmkji4pb6p35iofgl21qs9mien3i0pl48ch25o9d43dipek39cpi7odsdcjjdnpgbsl2lmjm7dhpkd0m39c8digl8nmloqnodh7d07pioroj5o0dlgcfhpr4i4gosqk5f285cdh2jo5k00s6s258o5oq2n05o62q63mge1ge3ke86f3053op00lo3pkp0i94r3kqj0ohqhjdkj4slcra113k7h424enp61n8epbi15qmhrbkgq861c4d4s0doqgokdlm1e32h1looddsd6ppr3plhf45ap8ofaaaihg0qb0d1lbea1l070bfjs55pnj84670cngd65b6fb2eidheifj61ldass747h8ceoi3nkbji3lgeh5flb7kchol78444iknlnpcbi2d7f8gs7lkiadebmc35ma6q40mkk5ejkbo9ari9l18j5bd2b4iik5kbp9pi8bmg496kk7096ekgf8a3cqson271eq5g87c2kai8p2kf7hi7p85jh49lqjir7l458mdlq4hf4koigh803e4f40p83cp0fs6il1jobod4shsmcm9sbpn5i129nsh2p86ng5qp49an4k9qqp1h9lsrgjfk1q8og709g55jilbm0dns89er8iaidlbhfg28jhh3i0rj182cq4cj8e7r4hhm6o1dm1c6c7ce5qmbmkca2o1pda5hps0mkefa1r5hafro2f97ennjnjj3k1e0ab5jqj4a7el74obifkmd03kcigear4ki3j3r6l2qc1lbgnd4lgcdp47no46r0op13833edg5jlk17glqq3rn0fp5id0aoqgd71l39mon30cjc3b00jdp1s932c5fhg0k8rceh9ji06mrji8jq7pcp3mcjg053c035qa2l3kb5k29b118dj8h9lnl6d6pgaelc61rmrb8ks35j1s2h6291n97fe8afbj8j0fm3jmric46gd7l88rnk5qq7ngnmi9p2ke2oromfs9a346arhrgpbco9slb21q5meqlnlsnq2oi2eqilka0o75n8b9q7hbm72on9np0bl8m8507pjns759nfir7fjim3j13m3bpgk4h6drq817bcs0rm39chabqgs33ro8ldhljqinp14crm4bji86sg5r5srnbh1346ge18o4rkg289jaijooben5d3758fifm5od7n2ck0pqg9dfmq34fh2qpborna8n7sf24eo8m30p75im1fno3kehmqdhkiecrc6q8bhm4k9lagd6q5423n4jqr8a15p4mi1dgao5ejac3bfj619jgh6anip8f62ojkcfimdkfqmdhf5ir7g66lm8go8jdf3me0ama30q7e9a2djo71rdp4or1g5cpjc2la36kdqad53b5q04il779dgmrdqg7d1i86b3hhp2aaikpnna94isneqp8lorl2floado4lebk8119kf3cs3407gmm6jqmr1p1mgi6bohrm00s9bspf36rbcdp492eaho08di24ga3pcs363s3de0i8or762b1mnnqkaqcjm2oenk5crkhlcq5g0m2nqneksrbfpo9mggsokmn98ob77i2ca3q5md363555r54746er3d559cl3ea0d0c5kha82lml9h8d0o72nkrcqi2e6936jerm620s7jsf0c4jd6qoh2146cir3lb7nbqelq2b64qlh1l08h3fm66hir35cl94d11ocllfpo9hk3is1aqjgqb1ecg7c7nj4mqkedl12m963gihl0bsm55s7hlgom2bniddmdoqm3miogo1dbmgl4mccf24h7jb9cq6gdof4a0e2i44g9m3a7r4h1b2n4qq6kc4idel55o9db4fr2rn543jdsk6flbgrfpeksh7csfagdkhkm515cb674d15mlj84o60ljjapj2c01k2pp6isq668d2lh9d9croh7m1ml1nbr1ohch7mijasdqgl08d06lhqdsl6fdmd316qh8ij4q68meiln4hh8d0qlc6knlb2112pe6q42khollk1mjs3srg8kq0pb8chk87e1l54g904io4in5g1m333rlbfkoobnoh3l67ne8pj9lm3r69pj063mid171flmdch089hlbf0seenb02p791ncl51lkrhssa1ira85nrp97dl1cc0oi8bh4kos436nrjeonj8rfk4g0e36307s33pe307brg7aq596msfgbgfn01e6cl0aehm1fsn5g78dl6orqisgb3b9g0261738gmodbfqpk5jjg6p1a51r84jignc32k4rmajh4mlki6jhnol7h337aqoc03qcq9ji6idb8mn5h3n6eg6f1c1ib3p2e64me6mej5opi8egrh1ap3hhs4bfph9294c76bdk7ii2ad9mgg8dkll6k8309hrkmh4jn8ri4517chkslbr2j3k2l7f4f782gh7rag27qs9lq45bj87rbgkc353hs5fifnnfk4jnol8mndb7meq1l470g5fmjsm500p5pog8kgbkinjq8933fjjsgedg7s001r384l849shpr7r32peoj6hsb9dki5n3cr3nfnj00md7ni30g8sejgng7eceg1jf1368spa1ncikngmsgo6gk0emc5oske59ra2h049orqlfh3d189i9dde8si4hnob6slicogp38dob2s18gjg7mr5pec1r289aa7hocg5e8lmd5lq1cac34m3sbqkn057j3cdnmr6clsj93qbi53mhreqigriabj9d5h1r0se2jdsff5p3fjakc4rhbjqfa5362o5120npo86pcgph1aij09ikn0bjhk8p51g50ejbrqocp8afjqinfe7dime3eq9pnri1ka75mnekp8l2eci7br1dd7rhro1cbjsog1aomr3ch04ao5frmb7p6ese7c1igrkfcbf5nkhoord3n7l6johose3p5ph4o07g2j7o380grgpi438obp0fq16mk9jfc5h82mjjkcedki2ro1s0a8oc613mkq1i8nqoopnfpb4lkhljggi0q730m3p68eobhc22fpohjg4mmn459bi2cp7ri2fdrl0i686ckiji6j8r8d28nhf10nd7n64o8b146f3g1i9m88430sr7l9i2lrfb0lnp55brdmijam248ip2l52ohf1iamp2mcmp38sk05ks5s57porlc2908b86omo7s9812f6j6o0brjikfd04odajlk11dgel9k5lh7g64smkcmd2kmk8oikr5pbb1hkk406lf5pcom2b2383dni7948ea0gpfh2680o6gbr69dfdlc82l4q0jo6jm224mdps9li3pkmn51oim8b075fgk8e58h5k8qhlg7h370mns1fs63dmp26f72jjj6ojj0444mkk7ofr2gac48mq7lg3s62470cl92rg9c1fj5pf7cnhm73b3m69g9gn409gg9ka76jlcjkaqhr74ma9m2cmmc8dsp8ocn09kk04me104cib2qrlamehq7jm5cp9gqoq3gp0kfef9a7g5mo8cb1a93hfippis56j3dh084frifsbr4q4qsaoaf0p01dj17a5ro3n2db9h0hh0c24nhgoo6j1amdf5d000bhpdrlccfasrma1js1j3gs2odepk2m1o0fkb246dfi1lbjar282a65393p2gikj4dr5ld9lk8i04la6cg5e8047n70l8g8adg5ikdmcido1k483pnhc0er51lq83rf0p28eq3dn211c9hrk2ajnsi1n4r167p0gb1rq7b8p9on8n9dio363b2sgkja71k5622bre1jlj5536ra46ofg2p77or2lqh3d097e2oe20051fosgn51mokpaq9kji6q5bjd3ioke07p1c35rdsenl7laojqebk1f00cloighfqmfac1e4k29m03is5ak7fredjhg7i6p9pq11mnp19ills76n21am9pb8e76po9fn517gpljb3one3fodqo90s376qr4sk44c3pig2bhpdh0e12msgcj0gga13h6eje69l13538b78p7omc4ppggrlkfglapc1rhkcorg4oasipj7c7ff93jq12l263j4f532qjf18lb867722f5sl0e650j5dqqom6606cdpq1if714mf85mjnke2eimn4ojkl3mndp0iadk9cdg1pp1h0ch6eqb68co30ba2jb9o454mi75d7jhdilki78gm0854ophgs5kjppcb1olb5gknkjnh7jdeo2dakj5iss8ah2g1q53grjqp1lgs68iq3rg6g5sece1699r9jelmil8f04bmpdppjdk05a16sogg087cnho079m57jns00lsj9aiehe5ea9sd59jh85l7nimdci00icbgjdobg7emgri2jh4o2a93h266h6lbj5o397922k54kffe6mk5oj2km3c281mghgql81rsfaad714cp03popccb6pp6bsfespdf88r7enhijmh8sm29ke5o3enonh3e9f84362i1r0la6on0dpi9klokrj3momngcm0e2ro8592i3fd503soq4qf2ncr2rmm4m0g4657srk4099304i4od4mm120q7726104rcmebj5nge6g8oin367ddjer07s1kghm45oj5n4k3sm3eiqjd4f5di72bfe2ldrlhmrgmli1mnm6648d1s567k47phmpooc8eqpe6lma8sm3m9nfr9k506iaar3nffcbasdoqqn25dd1kjocf19rojdmndn2580bbpdmbdfpomj18f8objqkeiosaqh3elb30c20f0klre89ljqe2gpm6ki9pgp8r3kf2n3n49q36cgqq9o305kk8el928rlljp2gl3hg1ehcqpr5ri24skq9kl305snh32fhs7cc3p9kf1lipqqmr7osehnp60mmq2l4f3qmljbngci98gsh4fsereqf1s9qq01esj5fn6h6f0epa266khq351pqmkce03s8c3n336nhcok2ojqg82skjie2807d0p8j1ofb9lsrfjsholg7k81nq6l40r6ij3g20nn5ajn487rq9bad6k99rbr1ejibc0cn03lcjlbmnm8fs2ei5f330s8ka748ejgoa3iso8q07d2d49c1pede85je9fag28mi544imcjeha76ph8nosrdeifh6smrcirke449d2ep8l8cidoqcs39fqqepqhg4941g8rqa502h8b7qbq42sa1o7omhqaesr7m43kf23rbgl88bef2ambj4mm51j5ko5sikijpf3432h28d9ef6nmgsdjdca6dh5iik2k8rcd6kr00iemod5qkej76e547eb2aglj5k648c9dl9f0p21lieae6e35ii227pnpqgi2n6e34jls9de9jail02lokbmian4b8cdrdil6rim2qqh66sa85feijpcm00r34krjjo6ir5hijbsqf4pl7p8g02c9riqbe3dh24lppcel05dj9bm2fg013fsr3da6je3oi58j9r01sao56igh88sk0akb6npams7ghe2a7ekieogcghm6g6iafrcokc04j1ish61lpf4jg7ffioo14i54o8dicf4oj7sbo5llqj01m7r2jqn4ir6q6n474p8emcbac4r779shd0fqnsr68e44edb317crbqe910gd3rng6be7oqo5pchokbqa47ndpkbmqa2ean6k7sjq4pspfilafa848hcn77as8j3ookrggcr1a7om8de81jahjgh15h7aibf7jm639geg1nq5jglln3krsqfm6sll3plh3s3npm0c3gidfekaopsgd9mek5c317g748dcjncami5b6r7gre73d2jdskk5mmcirsmc61re1ieof6g4eabchmh9jli9fjmr1i1mjoj6ncs5jj6q8oqp0rosnj6npje8b65686clp2983ikprk06e4rhmbgals0r97p36mg3l7k0mcdqe7kr7kflpgh5h7elrlgf91q6pcrc4ieefhcl44s2kcdsjn3cc07dqisqcmlqbg48go2qp53mffabcijgln20ber748eefn7pfajsgoij16j60i3432ig8n03lne60clm3dqj1393eqg5ia9931k8so2cbb6d1q31oa6hho7hmo7qno3fefcgoj0274fmiba7aq598emlnkbfiormjgif2od6669808gsqjpm9s43mnm8l0aqcjn36ogp51q34j9ojij6qspbbe51pm20rp4s1iqlh449gqiql4m3hmomq759njflh3ifaflae8nq03q6ong10ne85r4bg3c5lnmoks83mlclpd0qsr9dh83rjcaclh54r7348gm5p1sddsddi6cb4kj5obim8s6clai3np55desiirpc680kd5047e81amrcn7fd5kece4jidfbce0sn55942gn7bgm0ioq8j7mpk0cmq09d3qsionp0npgnenfjg5s5pmmc93es6hcffik1aqb69jd77h6581lgrgj2gbi512pfbf2fdhjn2ais4bg0eq264fdnn28lp4neirkccm6faajf9q79rc20ll8kn8ejash755dbkl3bsaoq8hn0582gr6rkbc0ib9fka6h2dn8cq207cqgl128b7dgsgjof1lkm6i2hahm5531iseij9pasnss8b51sk3n9011mn6oidose2osp7nrmodl2q1sbsbb8iik2ms3g5km142jci54kci2945flha051np7gn9604858o4qemdoffrg81qgp7kgiisnba5jqb0mrdo6p3f3djlcebo66aqo0a08rlo207hd2hqid93crmnrdfamrq6rdb1d2singenq8aa75hsb8kakckm931gla6g9l46bd69155g5el15esg4mrlkpq1565ppqspppml7f76r16khaoc2lmij64fh626fno8i2gjifm414fq9oqaj947mnnfe292g41r06ge0ig43mp74o11kh5ib423ka55q9d6cg1oon588e3fnb6gapcda9qsfr5i2bee41r3b9qsp2ohbodkq98nq80d76fqmismci66h8ff6dcorc4bmer564s9ncls8ha20ejlgg1gs9si0adboii816k5m9qlkr6plg5sg4oiqss0l5fbbkdb5eq2ogimnhj0sm9f860bi3nfq11on049s3gfl9edmndgof7e93oi5s8rqirkq91p67qga6o53r9fg7b3s8ol7cldi7dmoi2h6h1q161g70igq11qpeknshm842ocf3f7krpa59c17esb2f8s1og4ilifi4shppf04h3cf1b1s428m0isi1gmn75g5jnpabp8drm02kpp8bnndb3kghc9415eqjdpc5h9besk4hm688je5kgdai4ji5lkokq6rko8e3i5r1hnkijgqkd76m0893ekmp22c2mia567g7lgj065apea57h6s4h85i0pif531ra8l6hkbj773808hgnsj21fk48h93q5fg2icilqlg09288cdlsr76mr3189kr9r3h2cnksra2i7l5o7b3llh6s8n5670fgsahm18kdf1bmpbf4j7sggkhe101r60862niopb78lh445aim5n0hgo0r57nhjbg8i6g48am4hd5gjcc6b4qom1mm3sbrpe3p1r7ojgepi3b5edsp6k5dklbdkdjc2gqbf18d34pjlfglqr4rn0om79bg1dcr9943ic9nb8ocbo3gqqg2qg056n89epd6c3766espeb97l14p2k0rafbf2sq8lr5aksr6m32ls84k0b03fj8d2r5ni21q88rhp0ecb1kgbiedpo0lhknj0ab50mkjkjkipa0q7sqprl9lgln2kmh52beqfaj914lk9m8a1798rnrpaibb26hp2a8h32o4a34qm6q04edsl4dh3q60crp0adm13lg12mgjh2rfb3diiksijar98n77qbbo30ljn779gdm726764h0mjmdr1mnk8oms1ekps37cnp175qa7n4d4a503940pf3c0mnjf17s9l59hk2ql8j424gcbebqg43f94opgc1n5iai3dkr9chijd7gripp2q0bb39pfsfcnsk3me3fhh8arql2hlmi56clpeca9n2re4e8qe0q2irc9d0emrpjn"
+      },
+      {
+        "coeff": [
+          [
+            25,
+            18
+          ],
+          [
+            15,
+            6
+          ],
+          [
+            7,
+            19
+          ]
+        ],
+        "first": "telyanin",
+        "second": null,
+        "firstCompact": "gikqo9a9",
+        "secondCompact": "o1830",
+        "bodyScore": -5.837496682467428,
+        "first40": "T E L Y A N I N A U H O F TH A J TH I S S TH AE Y X A N H U A J A NG F E O A U R Y F",
+        "decodedCompact": "gikqo9a9o18302ob2aff2pqeo981obol0i3o14q0n4fbe0097aq8ebjp97pg8fl6e2mq2n1a7sbb0gr6jgj4f254e175b4fj5qqddpooc95o2jn9nnbl2cn4m5rkgr6g2nfpm1r00s2fd3e1g1n6ib11437hnnd7ir0s8ih62prpr68b00544fgrmd1hpadp68nimcpm7apdhb0hnnh2dkiq1om8n79k9cs2gf0p2pn11as1g4nnlib4sm8ager9ol9dra74aas4g0kghbe29nee2r4dp0ocpsjk21hg9dfarnpsmeqj6bdd36a3riqm3k073jk6enlhdlm9jsrk9poic7kjsna1890nm2na4100p4lgshlgen10jdohrr2ma0rcb85n1i79bpa59g20ds0rkck9f7pjinjg793np6fmcooaer9qhabgsnakcr491b37dj1cggqc1kb3n90jc7kp00frq5pb474n1l3nffnildk288icia3kqas7hosf75ffgq37dbbinlfrjj05cl9l5ga9bmqkjenb43obgrp4c8h88hpdnjklbsikn1kjbe1ohr4ssp5q70376mrg1k2b9dfls9phbm579q027o6nckhqcaal5d8b3lk7aiagmom29m946pf7ks61is41k5sohbffkds697ljd5l2i1ie3ghqq0bpnjdqog3nml7anbkl5ej1mhlaro48k46och3e1gg8dsnk4j661i7c5f7jcm104ohlkgirf2gp148p3rp5sf02oppr31qn17rj8o2qs48p624r154k8mn0ql7s5d28lpr3cnphioi33rso08eesinmalh82dha9rorkr8ore9j88orhnkp64c3i9e3c1dmef6qqb0mffhkone3k29hf0oq1ljrjq7fl795p1mobl4ged9i9l7eglcf0emef4rf7opbpmijbeq28ndjhf0lni5kiq1s7e6bqia2g21782dnr3oj01ier45b9hbcr2i9mgm81bglog1p629l9o04d3sjfcl3kdee48lpp6l8logfs734oo2er78062c5lq0d4ljcnsmn1g3jarmllnh83446rhrsslarekdmcp2bjei8ca5agoa61ogrlao33ef1bmbccm5207k13afhi1o6ka791csnkk8jboh7sgj7okflm3k6g8h6jgm587rroo8f9jeah899jbki2bn71l7bqnme89f91n1cbh0oflaiehd09pa4s3dc5klfj6rc5f1dr12samhp8c0lbgcno80okeeq14157rkcjelpjdiqke63pda170pl75p0ao7ac91d039i2019s0o7k1257e977jna6lgg4gd4bkfmro8ecpabgjm1faffbl2pr3e5lhbd464qp4hkh2i413gna5i9kh9poljrji5omai8l0pamlrmq5j4fn4k424hem31e286l7me4271hgqsdsoek9ckgdb95kpd438536r6le12g076qpgbfj8p1o330eoa6s4e03s3cencqml21dbdfk0on7ag74sg3q0a0j3cc3oobckfai1fce91sn34dre64ni6k7kdb8cg9aq5oc9pr317qelop5kpgq874jaap2b8bbl6qgsgl62ndifob94nj5qid0929jij03m4as4rg95a03p5mefj26222k2eqoclls1h97sirb0gprq21dndl6mldhnkgbne2rcc430cb7g4rjo71e5apei18kgoes5qss7e9csim7jsdme9i3e7bfsap3johjla005cphrhbmmlcmq5e9k0ihhgb8dfp8nih2sbcm1e226dn9o4gqc4dq4n9h9e7m06jg53e47dak38fnangh2pi4e5kaj1rlp5b1risg5nl29ps4i36ed13shdlp49l7bochf6pemj3kij2bgr7sfkpfb1imd2i3ggn7dnh4feclbjir2sinin6ap8k45g13nm02qdfir8a1d9pp3hdp11d98eirkbns03hr9khhkfib11m3nfll1rpm0cdhljb3e1hsa6q5l4ocafhoj1dkn6ljcapfpp1gjfk70jrk51efgemlo833474934l43el530p4hdlo2iadhd464em9j70fc7ce94qg54o2a1999r8cqdqsdf1pcmhkocdr33ah3mglfcj4h9q5m2rqjn7koj9ilba9fapcakgc192kifrf6s3hfpcndnpq7ha7ok1sfohqf7m2hal1c51rpc190sobn4621pglmll6o3hb62g3976jriprb410idfgs8c8n829os8b3gir38jcrsr2r7hpdg21kc2jie9f78eskabq64f301r5e9ad21lb7rf3446pf62aedl09e4ebgsddibsocfh0ojfor87oidle1reanc7p70k8db4f99271k3i2fpdgmle4lke53glqi6n15m74a6mj3jl7lnpc0clf6iq94nfn3a0qhk6rm4q759eopacjncco1649jjlp8igmkq63a4ee8fafc80pnqn3jn1h5bqapjc1m52srnjab19km69nk34r2o89kdn3kehebnqe9abr5ire8l8dbgd200je4b6ng6kjjn6ea6d1o99ssqpdngc8rikrh126enhs4qp2oemg5cr0n7b6s5jm0d0aipgd8735i8la54mr04ef05aejibm4g78ad959qha4rnl4j2rn9i6cm2soqao2jemrkgq4j4h9m5g8sq1q49b7jfcbiadqldp8r6cqq8kh0j1dasso237gsdk59jnonqgf5dmeses4nf2fqnjnsmed48s11jd5ilenqoad8kgogrirmor71ra4ad7o13oqip3s34sejmbpg8fh89a31koi8edpdiloahpq8d6q0o5dns619dno7gfe0njbmmlj5fj1hn4eb5a3f67nm1kfk4dir3c77408h2m7pd8gr3s1becln4hjkh15cco4d27hk58b3i2e2sgnmbhpeim939ankqj9ranp13chfqk69hs2gc7eb11610g2bcq3889e53hnjjpqf4rco6p9e747pq3osnbo34m9ncbq7pnpq108omhoeck3pbqiplbbmr29n47s774f8b43f39dm3ma37lr47cjhspg1afi52sb0af8d0975009kbf46gsa1lfnamnohpdc3s5sjefe0bq1ac2ndje4c2rndafd5i69m2ao780b740b6cprpimk0k5ce2kqe87chbi7aif3gbrsohc8jl2rfpi5qj6o032g121pbnlnhajp81crrlq4ff37cp8oogrgle6hf2k71p57gb0fg9hrs51bqam850k332o6habk0cer4dh17595piq7gek8sgh5hkrljjcccah1kcf592dmhlcm2opjoaj47q0f6ro46l61k6mg7lk55d7mo0dj5gisn3pobpn2bqj003c76f5lm5589pf717qcrhdfsmp25qgr3823i6om511ik1gilsn9mmdbn6jpsqbgicf7la3kb9rga46f5lrbga13511789q87di19cs7so246hq42e8jfoosn1laa9ajd9sb8efmm5f04ooldqs1mahlppoea4eqna13j0es5s2o54jm54rrpp6pp4gsaqe0e2q38j2bson4oh8l2s0gco514g0o3p8bk4kfa6jb80949linralek9orlec1400r3n73cofrnm4bkm8nlbhgpdm3jda9age1e0cif2n0eqio5ie8cp49gnih67dc78gjonlm4fh07k925q0re13lroc7hpipsnm1bqbc1roo5ccdi2d7e1hgf46d0enca1mgbd7k0j7ljp46pdcp5kgpr7ms3lo9db8gik2gabffshjo2po8gpp5d0j4c5j50n8695gpsdjhb4lqne4c42mlorjgigrlic1cok2q4m82cnbof1c8iad904cmch5p1n8974il4gmfb6mb9sk44g82f080c8o1lol3mie99fjrl085sqa5h3f8r7s3nhs4rgcrsqsmbki23sf5c8pom1cnfjdsnrjg19rhogjcmoafjpj5qkce4o91jordaj3j88fn4ok5a5f3qhar78rhh6ld361ss6nehp2mg1rjp94kes0k5ndas8800jrc1867p0eccna7rrpe7gfrisdairihj5ediam4c1ipjk4bkj3i2ram020eqj2bqpdonpg5q5j3kqh18cr6s3n3a3qdqg51lmji3lsfjdj4opjb294kidrnaflaf6lfao8ol8578sp50op6jaipclr43l48oo71b434nfb8b20kkesp6e22s6ko9a6e4q1co1r7g1smc61bi80fb3nnqm7enrb995d2sf04ofc2c0an9gq0ajsfr06pl7eod4sfaedgoh1kqjlni4fn9n671e0ac2b59f1i3io4n708saab5knmhh1i2dc3i6dk2jne850am58a0g687qgo2o87pflhi3or2d3mmenep6rs00a82p7em6drdcorc45lg40i6k50o9dn4gnhil2176632je64q730p6c114aihojpsgecag812gg0da435gk3d0m1mbc83j23fo2ase4hg5idfil3ahic62r2ggjabe8j9qg7leb8r64ipbg563s3hfgore3d2bj9ckil431ak516pfiafd9hqq01ra13a0f6jisogb1o6d3k9on4a856lo4plq6fhanrlc54l6d25qga9ibbi5pllrff39eb24m832he6smllpeim7dqf6184mae6il4fl8ajia39lenbemf9m6cmaqo0rm4omdjhhi4mhc19lal4h63q4c0n7dh47d78kh0bpbdoinp7jel00q6i8jhpnc0sfk5f6b4085blah0pf0d1c2crqai80kds73cq35l6s17g71g4qe8on4mpge6pb1d5pqqmll0e83ho6aen235g853nssang545q6hnj5k6noa3r4s7hfc6d1s81o30a5dibmg3sp1jldnqp9n0ac7a09of973lsss6khle6arlp1i78cedmoo44f86so6j0am6c7lfjh859h7l1g7n4qekqlchsps4k27gsdh6587pbg0iriamlnk5qq5di31p6d3p97grdonc8rofr05sd3psff6rkkdlah88c5fl0f9bdr3q3d05qalse94jrbd12n1ch5gl0g3n3h8s7e9boq74amdj991hh9p86gshk4hf5cqajlinimn7n9hcsp6df8gogdqqnl1a0pbngb79e1sf612spqc69qkrnr067hk37lj8k6fjolccj407l7bfn8924rrj9jc3s3pnskceo6a8d7c7qjhr3ilki5n274gb0897esmgbps2a8hnq1jnrpjme0klq44k8n95k0lqsfcppgi749398le2sm2m91par0p1l208dlf7kk3ra40gdna7ll92ehe39cohjpin9djb8mg42f04l1falqm3i3io0apnfq38klaid34r79hh4aa0n4388p787i5lh1repamo4eamiohic8jp1jk5d554dqdk70miekjj27c0g5ifqsd970ssfmaqp1r8khbf21fl3i55ibslg41neeas94dk7gpq3niheraheabohdbaqnq86s0l3fd53klnc8gmfje4cp6qpia492j9ghjmgrrsiqjo300nfrgakarohjeemk6o2ers4dqbcln959majr86l4ep9n91kgdmnjgbcner8rs638rhfkghca86np3locbeld5i0blnqgbappd2r4rbbjm5mrs2km8a78lih9d4k2k1la04rp9b83j80cgmkoejhqme4pbn117b6pcrq30cd5pmpcfjolll5e278kjc7ss7frfq75gl8i3id3ec9isalbhfmbn379dlil2dgehg6re6pb05k4bq47j477ka6k59pireed3gebbhei1dsmkkm8lrcp22n8finsja3h717cjrib53sdgidf3199fg4610agbrdg30l80rbh525r6mf5d302hhbhje2asjk22128kqn7bg817a9fjaqlr9pmp9idogjdramrm0igkhomo6976qep9nns0m4m92r0fnglqml5cjfmkom88f4lb7mbe31r89eaciqpa987kr9i9hk3p06o68hkh47i81ag26a3gnebhfos6r9jkmqqlb8rnoc46bhne615mb3iad2r6d6bs375bs5rrjj8rg3q0fl0ajijsk70983006adj2bhngc4ld3nn8g75mfd7s9bh1kf5052ion67gs0mr8ib3hpd25almis71r8q9pfe79mefi473ojl4r9ph7nggjhj41c2rq45bcsieafhomgmfrded74s173o7rhp9pmjfbd391dmlaoppje6ok165be8e5sr74iqcse1pacnpge2ck28lfllbpmpnrka4lkl68picfqmd8b9f0d95an4k068rchblcp1l2ns346es82piirlpre66q6e23i850cdgsfk1oggaacl777ble7c6m90432oi23qrdhn4aolskb9jdk93qshfgnsh795si5m48n9jcmmj6lrhs1d8laa734sd970ldmij6prn5fmap4pmpm8mc751dfek35gag5c3ddkro5iajm4pee1f8dc181pck110ls7mc4oelbh8caklp81mlf4cj2kbk5ns0s9b3fbmb29bj9b5d6bs4b8dlipro5ceihhcqdk1hkeoppjhn42jj3pogkofo7es7h1phpslamf30qaaapb05ee9klph7la1cj6e9ajpneqgonmjhogmjcfh3f5srnbp48ose77jhj8flikil9hs4nkmp5s7ei3738s64if4q1b54s019g88d7477s822ni7hcarl64onoc7mrnf2759plrslnq3sepo1pbk5i66qd3gqchpb5lc8g1mrrqo7be4n3m48ke91208l5fc1h9e7goloa5kpp9mfajdpp079bganaajnm4foorpol6ndkqci3cbeqb99s73f6aorn2779mdi3e0sglbbfhs273j8c4k80mdlase7l93m0fkid6j3ajdlla7s1a7ghqmfmghlb3qgdo93q1d22n5s5m173nehrejpccahrabf8nc0hof4jh0qc6h3jgfrfq90jmff1gk9q9hs7a6grp2g94m2csj9rlm9o71fsg8s2alncqc6hd4i13ckp3hsddc2ir3fimgm9q5gpfh0sskr0sn34s27h24hqq3rjoj42bsp89bc92mcm5jd0lnoij17c0l9bn2338ap712m89c7580cijrgrbin7mnn71mk58gn80cqml43f7rhc0b9q89047m3d9h8ormll37jg94i9ojd5rrjsm2fa9rf9pfhgqfklnnkres850659eid62ek0ghfoc6s6pge5l70l0pbdcdhjdc1m9fj2818pmernj0f7hg2k631jebiiob4s0s0r2gh3a1a44ml22fsfo39ncidp6k7e2qb2oilfjfb0sq8fgeero8fpsihbjpnoj4j5n1b0fl23m2mi17pdahcegcrnhl6mnei1gad771bbmfpb4an328nc61n0i9la48cdmk06brd4cdpdlq8ehriicjbc9ro6mclh0lsedd071p8kg1eof1091gselc6hpn1280p8g647ainliisl36l2h9i1d7nac9man0l9g5drarpj4i6p47h29hf8kojn2rsjgl3h81abb7is799eqpr7p95gj7487g2jm3r6c7ojkcqpajjp9bi40s46mi3lb6iqnbd9n18colgbsrqigqm7jsidbk7ek6bg65k7hps55ohgngf2329s1c9mh2js31begpiq1b16hn4jgeci36o40ic7i62on0fo4fmqosm3co6bn27b5goi4750fpd86e4s629c6ikrdl1melleajdi32qp89csf90kgria71o9p4j8s2ek7lhh1j634466bdqc3a6fm6pdknm5haigrfg0m4853a7bk9d07pn04l6f71mi8ncq1rjp2k2n9g4ce3rn9n0smleldolk51c0obslkaanlglfnosonia53qed0lqb9s15ik0hqi80458dqsk7k7r3m5b8pqa8jo7lcg1861el801n7ge08586f045fm0c86j3kmc3p5hf70s19kdsi9oagbn5q3c5mjpbe5qss9jb2ioaad7cr1e7sdhage66en3k1ji2k5fk4ff62364hq8og7pdpss3mc6733n92monqnjcemiefbnj9inl3slqn6r34m9nnp2jqeirfm5lh4bl5p0lch74hi8nj1o0g5n3h31320dan88n1g5of6hjbgl616jj26hiclr1f3fg41sscsi9mahgck2mm7j453lemh205sdg74h5nne000f9c925c401l43dh9sm3op7dbocnpsim2ecii5n2rnask15k1hfb75geef4ah2k4kpl550loq54dhorja3e8aa6keq9cfdii4s93qlk2gbkge1o6170g7lqkmlp3eormhb67e9ro2jsn9dnlp1ppc8pn32kpc4r9gife5k5563fg7mi6edk532d2c6bkekk6c9mn0chgsr4gg7nr729jrcln585ll75493hjs0q97sk47ef0mqfof17bdjrejj9r63mdr29l9gnf832dl8np74piij9nq8aeesgrc9hc6hhaq0ofic3qhih4rb015e3l63q1hllnb5agl3nn1907cc83hrkgdimq7r51f3libgchc8q8rjn8pfompglbs4lb9krlh2pd3gjrb2a1j7ok0ab24549sji2kccb9m8qha8mr6427m03rk79lcnpc109h45c5gp3piednskanmbhqkhrbrjhnh4012s4g9a36epc58h7ec8soqqbbfkmghfpkd5pe3hfcfk8g30589me5cbifbd2djh8nfaohpepfjnk9gnp7fqd07fflid8c4an0rio3id81kc23c8f6dmo85kib43kfenabmheeiqk65eil8hogqoia0qf6c7q3e5l0g9c91s86hl0rmfrj4ssqhol01o7e45k22gbog61m80mp19kjocanieqfcocai7mf1l9i2oh8lp3dabdrqaj81be22sboqhj7bq50q482hjr3646m6ffq2sej6409rohs2qpjph73j8r3q0g30annp17e0dls8qf4aqi82hi98b70gmmgnr746d4lgd8flaf4o7ed0cjopec9pc35ffsdrh09sn82sp275b7o586h99l6rib7f99i85q7qemeaeoi8f99npf4kjab2djcjmo82f959drf373qpnqh8habek4fr07so50i8hpn0s98sohd7oghri24fbiosq0695p46d2ng3p0jd5jkgfc35gsa0em0d73l6659ojdl8q44q83i5kl6k7gmee2edrc12k8e8lqfl25ljrddqldcpp2so02gg0cdbp4cdllrc6iacmb82m8r8097ifcnhf739r25gjc02jo0pdqq3a8fj490ql4111hkrfh78rh2312sdo6nqqqfcajm91k87lkq3rf1q2igis6o3ghn4gg58lnn4orbkn0ain8f3re4gdlnqbqjbomh2qqek85m80e0dh7ihl8a86r6k1m0sri91s5sapff113kdoaqd32oml90bsgilj3semoadcroi3ko2m2dmnqipep3593rlsqborig3rn64m0igo5gcc4sbjjs5pdmrg1erf3nhedc1mm6oq7cncsj102hpqi5lfglhkgeq63ln929b41k1nmreh283i5oe2f477i95fflll55jlapsqgcbrp26p8pq90gphsfq6r648m15h43qadakn2gsag803sk9qhek0of70emr2nk0hf9s9e5l9assf27kebbka5hafslqorrar35ej8624sae6beqm0caa1no9ihca5a581adq8jmd16rh7p3li75mikgqclope1foo0a4ao3ml94rffg8aabnjk03cbdkpob5f8d6nb203dlqik3q8qqei9obn87039d630fhi220kr1h35ls5djpi2b7aec2gnbm2a18kbp1jai412qm00goe716d45oqksbd6ld8ssj6j26dog6omg5a68odq2m55em5306rsf9jrc1gm6ilf48aaf7pp3rplso49kl2ip2mn0ofn4men7sp5eocaa9siei9f91cehb68en13hji7ojpmbh4e1ijbejihk990qf91slpdrm1hd7q5bib1sj9lcj6l25p2hhr3ralp4n2234akfre14hhlo8k4of7o19i18klisjkkd54h7fr2a3na3iolmqkg2na7l8ad5fq3h07nkoec2j8m2sjn9e7kf95328grs17og71o2q55h62pq2022i2s48b34h8plor6miq8g2sk26cad2b46122rrj3peheqfgm1g5dp8foag2bhi7714942oac5gacg62jblm2e3a8sjfh6298ek03866krbirdab958a8s86c0oi9hddm6b65kl5ga2rg7j7kiqkqmh2ao1sncq6cj6n9e143rq4dlm4hhs7r5m8irha1d1k0s0dfambmaqkpqejfednac4rg0i62b5ns578j65bo7qkd9j5k23f98367ifs11m717b119a8l81olcdl7fapfe32rcj09i813l731bdapesql0dc50p3o1g033lko5od6ek75q63efioq2ijo1olc59cmj5a6ngoe9aer3foqs59madrqd25s16l3176p3a44or6jsb837peqd77gsn23crap1sc9lc4qc3p8n862e2klhd2inpiq4h5liqeq474s8f38fmp25hklha6oq2gfpqq9f8bi78gc5bc6iin4ls8jsg8d9o01pp244hf442kifbsn9k63s5rh3fd30fqa41h29ppo4jal9po78dh05lr6kd365dliir436fp3f48ob6k67c6gfq7r6mn9pocr74q3i1fb0qmrgcnd7m62jhdc46q8i1kjcj46k2jjl06jikni8c7523h3ho9rj7qedhe6nq586sl1rn8ki268ngjs90ff6oec1r13flm42bceh540pak20eh4s1p2d4k612021bl7i6m8p3ednboklbol5jc4rdfhqrkfbpf56snk4llbgbeajd580mdqmiglje7diehplpa3k3paaa676ign617fs3k4s1md4hg89gid69omirilcoic4g2js77r622iid6s2qsjdij55nm957rir1ah05o9cm9065es6sf155grk04b752p9r30h175iencmdahj7gilr999mqma8774e5ek4kbl9f68sealggoi9ij7l4lh4m39jfrm9il08k9cka4ofgcedni831coomgqq0n3goqdqaqklo4k6ej5o4dnjp5bnjmggjrrsi4cdsqcis1nff7smb11ashdppnmd4b4aem81f2s0gpbm2g0g7obif9f9if2dgf3r4651j0qnfm53h7chb8bpp661klj08pb6dq6qk6cdnkd44efg1879aaehaf3296e3e13epmd0l716fj1hsrf08sggrb7qqlo49blhah906co9qp3g257spi66ks9gg5dd64db8hl4jmjhi92pc1d9n2paikap7ole9ac4s8en6lrshhg49pn8rebgeb3ssg28b715f02gees7023no3fllaj02mdon142q1d2b7h0c7g7hlnb7ckj70cbrg3g3i62rmkcrmronshkcd21opb9no2jerl4afephlhossgq4olc29317lks8irjeb4nf2bk039doc58ghrkfn8k87j8sjbnsjoc1hcpnp4fgs170a74lj31frfp11cbrie8mb1omofm4g4s4ndij9hal5achg7epcdi186j0j4fdhokmoe4ebrg85f1j16d898rf6n9r6cp62242a4f9fgpmafc2h56in8r01npbf6a00pqsfmqosmc4hoai70iq07pn66pos3pccf24e8ignad8la53sbkojinb49lr6fdk9j8c2gq5gfhdj7o36kdqoq8e01hgk8nmoiqpd5f6e91kojk8c35lj9l5j6nn6moef80oreb1kpsl7s82roggl0p7k9912b33qq2mgh3ik559o5l935c859qnd4008eq2sk8hif5nec5jkciqsjhkql352d3n0l9sfpgsr709i9o9rg338kbc05144ler7dqhq5525ejsjsnjsl6qkb10q3rc031of5nc500gap4k1pbd638ns48edrjn7d5kdijbo49idkfkk3r1rl4onefsqfdpip33osgk8lir49f6p5qdhbld11i9hqkd8lrs1n4s12ekgbernccr24nje0poof7icirpqisqn8bqcqg34jdrl3o7bmc34ldg16b0bmjbc2bhr3npgb9mh88i9f62s57k4gbib7dlhfcnb5e00710k8bs6hdk076hjs97rpjlr4qqersaflraomp8l4bp0pdglce9mkrhhnnn79k9p0238pf242hpfrf1450rnenq2oe15jnfbb5cda1j7df2s9ediqnl5267kr6j8i49hg7g32km89mih3nj7fpa1k0s3ld8n5pee635sd7gombbnrd4lkdd7mk5fl6d6bk85oq6c5l95apaq6c5qd53rsifddp61adbrempjfprglf7moq9k5drgfp09g3j3nh8lsjssojgedcfo9f32938gbbkq7fp6l37s1d04pqslj4d579oq3ah9jkqnnombdif9k7lmhcrsbq0m574e9asnn1g9ohlfoo8f91da1jjn2nemhb70i6be9o17hroici4ab8edc8cfnrf41e2nh6r9sbek0np9jor2b1meekjkb5de79sgjrqqp06acke8"
+      },
+      {
+        "coeff": [
+          [
+            25,
+            15
+          ],
+          [
+            28,
+            18
+          ],
+          [
+            1,
+            23
+          ]
+        ],
+        "first": "ingratiating",
+        "second": null,
+        "firstCompact": "l4ogaogl",
+        "secondCompact": "e703c",
+        "bodyScore": -5.839873713832623,
+        "first40": "NG R A T I A T NG X W F O EO E X P T E I R Y D M D E A W IA IA IA T R AE B O TH P EO Y Y",
+        "decodedCompact": "l4ogaogle703ciedgia4qnjnio7rrrg4ph32dcqqkf5lkfdisqrapn2ie5gakm6e7rmsh5h7ifo4926rnbcggerneob9ocfs83p18dckk5rsl6ref49g3febb4ej5md30d315jbsj32p2rn2podgjii3fqa7rj70m58j7p0q18r0sm2d7ibjkm2s0r4ksk3629187pfpdjfarns46qd0j3sqqoqb9f7701dcdhks9gn9b4jo49m2odo3l57de8406agp2epo9ebek61rnf4ng6sro88mpos93hli6korr4sisg5cebo30faa180e9iaoar5okeadffa4f5a5g4ga3f725h5ehqaj184b4h0cnrmmfes87ijd27pgkddc60edoklfm6nhjrg7364cls3b9rn1r47r1hpgfd7kbpe1fnef1jjmfla4n74qhjg9p1jklci6o39c8mfoqaso8o496p80m0q9m5fakhn61q2e003qg7he8oh9omde5ir7qqs01p1cn30glmfnm05c0gesme3kh987a3ga1cd7cgk7a28oefl06h64d9ei9e18gh4jjl2975c46f77ar86asdf9caj55qpr5jcpd7od6o9blose26qa2cd6lmhepbol9a7850k29631fh3an10e2air5mcf9dcbb540mponk9mec20nnfq600a4a7hobom4p83a1p5bb3n26n1pf8npe21ff102ceoplhjpddc0d8c0pqpmoga856mmbf6abreojgr3bikqgm1bb432pc0ma8hkfcoe6sfmp1e7gbi1ncoq563bs9m4r22f4p6gm0sgmrcsjhqgpi54n83eblpfdq711bboida1jb0nploflj0rlp5437a3rji8jr6h6grr9lp6d7o989emj3733ehek8jj5fbna7ga88pgiqpcperp96b6jeeoa2l6brhf1f4cgb6e0jcj39jpepqdlni1mmkd7qqp5rihdc9gbpo9qkf74p548dr5i63sd165rpfqmfikaon95el04m8q332jfbf0b9s6qcfa5h5lmo6jce62ni4gbi2ii3ndlgmigs2e2lsdgs9esokeqasa1s6nsog1omg65abdg9o8mbq36ngk2a21k8ckqiirhn7sdg36aksi3a4kln0qo9en20c0mhskjr3qp2q3blr5g0jfosfifsq9oebrs22bok8rc2dj5eos3dc0qgh57shsqp4fo6qnlg595onnle23d9bm2p76kfqg17khkjm151b3mbogjkqomrnc57pmof928eabce7pbik805resner72qqo3crg5fd6mhg9dh9mgemqeh6ni7r4apihg000c2soodb53gi7c1mbieg3h2n3jc3g8r58b4ssqral9mn4j2fppea76skjgl85ccic641fpi3akl7ddnpgqsk60kglp9m5sr5ga38o70pjq3dm2r95bp11kib526ql97ci76shgj0esl71gofc29aejmm4f6qm62jl7p309hbsmjm31bp32iqfsii0g9kn3hm2fh9k07f5a8iioccns21jlf6go2fa83jr3srmoiibbsa899smcp1ois2amljjedka2670m1m79dmdf27mnm1gp9dok5snj07lg7es89ipkpkcijj7j3j6jio9mpghs2qisnkle5roq7j19fk9j8i1prls2jla4n3e0nkg34j21s59j0me5jdqfp5i73l8hrh491moab1r6s8f1h5892k83e19oid8i6o8ma0qhknrson97fmrg17gbis15kio4s0slea9oadjgmh5l8ekomhn5582aiamqgi3jr81s2ee22jcdi7i7sk1cgekm2csgi2k43n9lkld909d295p1kdq8p5p1rdsbopj7d8febl2mcrc7f605kljal68bb8bg48kgp0pqo3n9foda9bgs2rj97cerair68h25b2cmj8ocs1ms536rdilaif7gk9gh2o3h65boro7941a71epncch50i1c1p5g8cg2lkd60odge93i5ljicsp7h2k7koqo7er0r64rfh937elfkibd820rk77fqbp8gd9n6b344lpsfi5nnllk5rdgfnp9jgpldca6nsin78ohka7emok55k85gcopdmjokorshcfp35r6blr9r9of1jmfrf5m305jgrghr59af30mefnqd384aidgn9ad3enn931a6ih6350625rina350m9l88a7rg8q164cg003qql7d8ekp36s7rk76dc20l8c5alfcir4100blb9f1dk2adijd24okl0l18inhkslgfsq20f9pdgko2cf0on277e7m338c4srklk075n4f61q579n4apa1327ngrb61db55hfp6la5ar37cbr1a9elsif9d8kmlpb67rjl3ib8q2q9eljrkk0bcdjr2msdkjr752a7plrgdk7esn6e9ka86e9facfqgb1ocmocl7a5l9jbdc4hc784hncoqdj9nf2i10ck3hell969jmh9qd9gqnq697pr1cn07m0j42m1368h964hcdkk2ef1r63np0l2ihn0i1kkbjh6860kiajg8lc7ri3rejgsnc2dl9siimoj8jqh9hjr953lhpb07nfrcdj36pg0bd69d12knggd87s30a46i68nm6n022dh9gkcd2iq90arbd9qhg187rppg64dm17iciqq2ad915ncamhmc7808fpbq2frq9fd84o3bpkaojd1phhlpfssqsdp5npqf8r4jasmp34dqrld4o7o4qlke2b35oergc1mnjpkm6nkf9b5i1pjmdfe1nn06eq03m1ael9q6e0mo0m80hed006b4npalbochi8o2kamskfcse72202pmnqpre0257kf6ph5n435c5jr6ajn5a0lofracmidhl3e9p75cnqi1fl8q982lhhjh3j6sa0lbbf0oifej40emhhb26q4cf4b97pkoi8f461dhqqsfqgcsphrgbhrnshsbhbsr1n3em02h9ip309302f03j0hid32bik0hdl9ponqe05i5f5nm9d0hcn6is7549sn92foidi82kpierdc93i87rldnsjpl7053i9kadeglpgqlj4hmh0j0c64esj47hpdla7s2jr56och26kprj4l3o2jpj0se3bgdnrgmasppk77jc2318god0o07i2s9bn5kmnpa57hkbcj13jk7hl6g8inm7fbdjisl8biqrmbisghkeqlkggfipfl2agdahifp798rbe3gha7o2277r8q22cnmgo1kjmp4qsp4sisr3473449mgmjj0lh88c479021fj9q9dn1sigsm718k9hl4102i2rhj3arkl3dga3e04p50dak0ac24k78dnmcm3402rnjm2eagaof08fj9jbk5hgfa2akegeq8597op2pmd7qfpb5o4h3lfag1s19if8sp4cpn1qhopkkp27csa2a910ersm6bnaj0s2jjnmjnsnl1h7ormoeg49kpb0g324ca54b59hhgifq52fonqmrf86hdc715k11lgajh6n89h72pe7hnnn3knq271m57jbjrrllbris720p27lhmoni8g5co3klklcn7eo4fdm41s6k2qls3c1jddjm01e9ichjmisfnsd4n06g3h4ji9laaecc55j00qn109l367406ahh707es6srckdnl7mga6nh3ha08f2ao07h7k47gkqckdio9rnbc6qfpk05bgmj0r1ba241pn0jqoo4mch3rj28dpi457dn6ep1sdmap7p8hf2bbolb6pnr8es14ogi5kb3s5pspkhg55amcmh4pbc81scnj089la3n4ss0l32qgcin9nmqrpreqmp9ds8sclr2jfljlk0hq73l1ba2pk1perf6om6ak2bgmein5raicmn6iho4396m3oh2pi0lha70pbne0f2roep9nlsasda5hf6s1hgb2lrhq6oiqha5m1alddccs76agk85ga0eirehh419ca8ln6l8mdrffe393jg6e2pdhff6b0qn63nh67pls71pgip6pmhef16kmhrhai4lr6o91ldmnplbb9fmrrf28m6ai9a8p3lii19qmdr229kie73502s6h0di59rfg6g31gc3sb8c0mn42050j929qnji47pedp4pbn0bnscc035fme791k8d2dooj7q6d2eri7i057slppkm9cfgqcakd1a7e530dgig7ehfmnrec0bjjb48cp6asgs3hk4fdqro16ksn0ar1qcgiq17psho6paofgkio9bg9emjojq9da9j1f4mdm6m43h2od7poi77npm0jenskkinrj7laq2cshjf76sji8l51ffemlp0is1fsaphp7ggja9dhia6dlhirbhq4b65eqp8g035gin57d2hjr9ci07q8hb63g0e5n2ce8656l496k02jgo61el5lecmfisg0bakn6m739lpa1hlajmqfnmdj8beiqo362mi90fi9obskdmqcn5qreda82bq458s9ofs9n61mh87inschq9djc679f0o6lpcnp283h7pemldsf24knpk5eaoalqb6e025b1dfeh3ssmareebkml5n9j8706852951qpi82cpp0njc920j1fg450ee3994hp9q9j6b0nk75nje512179akenmj6q143jhgoc4egq0509e09dic0dqrfqb8dj244irnpi1asofhdeg310mjpo1f7q8dlfgg4dban5lo6abcrmq8bqh61o0g7jm4o450ljhlf132dqd4goqr5obesmn13rklm157sjnq64ikajn0geag4imi2rl22jgr9bgpjrdcchr9lkhm0aaq06j89q7mbommoa18jn4mjhqfh0hg1amd7e5oqs3c9babh617jdr3m9pjnp2nsmhfkl1hhloe3fi8735c44nk1cr6g3539okg7ch0fdh0lcsl65481n3r2d4i798rhrs2s7jlj1b9qm4pabgcl7amoqh938rpgsaof7icqp9ddf2234o4nl8lom0dgdbce0k25drd9gkj0bab0apbbd166med007h7iosl6ahbm0953m360bndrrd0deshjo1eeml2c7ipgo663km5s530mhholpo90r17nr1hjmmqscbr66h8dja6rij0q7k527fjaj4aj05rosb3lhsg59p6477fdn59e3qql7ncka23hbjd4lkjk21gbnm8372jig2671m3engcjmf2egaa3pfbs3s2f298b8cnmh7efgfjf8c25l3ne1o7aig0fpm0acgb9fe1aor724mj7r4chiahsb4538c67l5989knjgkghs10po9kdqs3jfndp56s7mn5meq7odij1olhaam9nm6nf52j77cecn7rf6qm4ooj6rf8mbcs3kar8f0606q9p4b41odl3a84c35gprgshmn6h1mhf6re7ck1kmo3sg3ee8p088q3g1rdbjeijnlr2lfp75k841kcsebd1hpje54o47s1j2ndq19h9dpbrnd6irfpfdlssh0fr01bfb01di65pahgk68hicjfhn4ssnjibl14mhk7iig861qh4860m840mgqon833pi564cd1b930m4bn3rgrnps25aia62dk0phg3fqkadgjiqddk6jjljqsbpgdsr0pbmnnln3pm08fgg695kejal2o9h6i4iq8lf5ae3kflhdhmijkpe239ej8oplahk3clp793s0kr6d4r4no2q5pkcqfdi40h6gjh5inlmje6n8be959k5ak0b528cl8co5mdeoc7ei8s40o3545b8ia2pr93r65qf1plrdqp9oe8o1m6osoqdh2649ioq9mbb0n1bj8g5ps1934m0sagm4824d25khiakjr18pafk2moebp8kbc0045caaljek0fs24cjg8f2p989h0l22gl2cbse2i16fh4den4bar0jlhl9kpe11p8d70sk8cgoj2082rh1f7k8ie5bfr2b88gacofkiqpr6i4hgqpak5n11d6b07jalgfbodg3ecbi8opd5gqbi41lk3fprk82aaa1e9k06q5b3rjq9h65bm8ksakfh6ja2002r87so9erp4b22e7lrj14lfeghmi235codl0m29qc2coj3i5r3a9a83k34akh5ra5kdksl089pkabde1gkqalprnc0sd5oc3godrahrkq9f11r4p6o9a5j938qhs6g916e7gpocjboh4japepp61oq1j45bn0f67cf9oipbr3iojqbgibassidi6bj0k4mmk2p323og80kcl9arf984c2lpnk193pn190l0e6hgfh10a2ag9dae7446dafo3634ke03rhdp853004n77p1j1k2mcjmj8gaa97h9kq6bc3gpmd98iofli5fffhs95b53s0s57m0f0sqhi03gc0nfgqnqq1r7cfsr236j9l9erhs8584iebj55jen5b8k7abda1oeaghl8jhjkm4kmnm0qhksgranfln8ephr90e7ridr3fb1cp9jembh9q3j31fqqgei1jqrb13aeqg9h9jm9595jq7lg3n6cgdafo5r5b0p9o23bei16qhnbs512c5khrgbgfpckp38d262qk9dq5hdq49sceb8mhiir7770bqp86a2mq977iosl6ifm5iknd6b5of83i55oidg9fb9aijp8j81rpsdhjn6klpoakih8d4hangifr3oifmejljb1o494873obedh9omhm0s53kd4j6drbdcgjpoo9n8ii23i6g08nr4sf61mo9lf0mrj5o0k2scqe26h4ir0k07l1oqqr55kfnee8ho7pemlsdl83ak07k3hh7f7mf90482hg8n3kli285rlscoabipemse07l9h7o7q231ri8f1r0s20f2f42rj1588bem316f4aisr4agj5snmijcln7p4jd24bii2l45karmb6ng3hqiq4mj4prldsbe85g0npmol6hgaq3k7k637edm83ph06sd6oe2abj69imdjfd1bq349fh0na546dc6n77i0jei972k4p9of9o0edrcq96bberncef3q3l34r8o425ac79qkmfp06if4endag0ejf7qqdn5m1haj8j0j1qjdk2en9qdh2fonammid9s2pn5ld3qb6m2rjdjqq0ggb092k7ha3pn4k1aps5hrqcpjn0phea4keisao6g5qe31bccii03dboca0nehbqdcr6og0acro7k42pbqdqqagel4k7kk5paamaas31fnlsc9as8rbo8r2asefiqrp7pd36ngl51pnj9dgo0fsr1dok0eqhccq59ff8s78d9n8aqdmi3d8erj6lf7shd6l7srampksbj78jg906kl5hoecqph521jfpmi6l4q5iefn020s8e7iodnk2kcnnlp0np8nqmag8g1nc9mjfkol1mbl39gdcq3bp9lnrlmne5adj97r97pmp1ojdoh9p6sppis784j4cl9ifmlik193sjl92i469bq3m7ahb2oo5pap7c584q9iippgkngnesjdagi631qb3gkc4f74bgsgi5c36b0a4l5j2l59fhj505op00fcpqbe76ifdd72fse1f9f5fq3hm4pm6a906mcihfh4116eremqp3i22bb04fsnmeocmge81baf8lh2ml6gg9ep9rho4mibsbnsia5a9hmp5ldrca53b19l4k1nhr0ga4d862m3018m2cad0fppjlmisagh84d8rd9eggj7f64h9rkgg09f90eff83kij49emoq02c3a7n6i2q31lakj4rfbnnb44nqerl9p4of3l3csks3rjamj87h82klf8ifhm1rrhq3rdefblfq3kbb2looi85h84sri3la365n2maqeedjfpcmbnljd1rnfornaceneifgslsaqemrm2nsoghqkog1c6jm5lld0knfokje22c1arjd743ldqd6na4gqk708fnf0g6pn0356bkckkq11mi7is3kac0e6k1pbkb12qcmaihdq5nk8bqerna8o2j7m13kgsob2e9e2o6smqggs1o50jiol7s14jebai8dqcpe01dojrnc2g53nj73ge9kli4r905n1geqd4dhe2bkidqr4dfeebj9qsl3i0a51g7b3nbsf1e5acjd2b1b5hi8nnp7i0rhhsccd4ae0jonmrp54g4j0j9in4o6drnrp3dd3kihr4hifl52pfdlfahr9rppghh87risr4me969q6lm2hnqnolpde85pgq7rkb57cg4in9dmfcis73b58jl826oii5er6f8of4s9bjrn4j5824da8ebpiig8flk99pkhq9nls349d3sh3naq616rra7ragh541hdosmso1arla3m62i5p45nbcqe30b9b01r188nror5afnidd4rh809si142ia6ifscdmicr1mjkjdshs94nplisbpli0pb2005b27i2j0ma4587jiasgi4bch5c5srnl1p6ja8f7hardm4aa588qg9e1fj46ddmhc4bimr484s8gjmgfdenq3sj05m21bmfeiafehkp52j8giis2cf9rq1lr45rq6hgrgjbn8mso1e7sen9brp7onlis696rc4fr4k0hhnk445bnekaahhaj180f5d9aglli2da8nmfcsapeqahke5an44kbgn16d1dfmei2d3kqha4ap1alsgmr5fbbies5frbfqffj99o8413ood1di11gb9a4a5lp1ocqb9q01flhshqq0jegaia4hi496fe59k3h3o7qisk83j20g66n9aleckop94imaelmrd7ge7s1mbp424lmahgj83288ohiiaqdcmml3f2m767ob3d2cd9s6saqf2a84lmc1e2ga5fr5pliaddjldkqaf256mm26e8sjrrer85c9120sfgh8mafsbgc4nfdp0dlh3626icj3re769djcksgnml22psrj7j8mji361jhaoh7dpsrjkc0qfkihlg7sdhb224fhbferbb8dnfgfbcji6bi92kkpjp4ajkh8jhff2he3bc5oorki2o6bps89oehh07sgbkap88ldl0k00l509g49psbom1l4h2827hpdr6kj22crppsheernnrk79agk1b57on2r11l64p6ig8hehjc791pijj6ai0nc4kplhk11kf7a1q6eg9keb39d4250nb0bdbfn82n1f4llaq7n8mrbn0pscdq1qse3cd4qa8nnpfhr2o0crs3cli63qmdle8k4sep8qfqq8n231qghbidog1gkg62ng1351edjk1na3hfi3moim1l6l6j0mb43cbej60cekjn5ojm9o3raqbchea5j115814hiod6bnjdk020hsslaofn2587i2ld451sl0n77j9mc68of5r9iiqlco22mm3refip34cm7d3gf1psddel3o0ks24rhrmm5b8iqmm9fkj7qib531a88qbodofkqdhoo2c31s26q54c9hsm9q730qqic9o4imr8bkk6lko2h891s8b64pjam8dre48fms8jh0kg5041pfsk20qn6r761aql365j3s6dk6i022nd47li4rg9ckkqaqmb87mq8o20lpgscq4ksnbfge37409d09649b036j3gpkagmd8o6lr6abr3g5q0hjds2fkphqdf804kfd2drdbls2fdg98l68pboemggms8ngs84he6ehelim8555iercrsfsjj7hjfqdf138b5rr21snl3n2ie0m9293cih0a31d0c9rejpde7pds6dlirc69fga8o9jgoks30jpla4a8ocp02jmfep9ibqaaso2i2r555mg948lfp4cs1ddsgephmdc8gnbmpqm61jqf2baae627hb1aqdnk5se12rk43p2hj91mmcpie1qi37e3s8ik0e0f4gbabg9rboo75k0f7ls201gg7e0lkkk40d3g0m5l387oc5e1g16bcf648eb09s9aefl5aj612laq4co7q4m8iso686eo269ss35rjdsmbk37acd97docm66a32boj9slebs576q987n7isemslb6bhnfo2je5mkg0pmbcp40rkbch2nlbs5g9slc8kl52kah6mr7idllo0n6mdn5l437ac1mp3mqcc9ei563m9iiojlol6a218sbl6b078q4l2o9nhc21kdfhfgpoghcec9in832ndr1ndj19do6m8116p1caki715504hl20m3go7ifc90442rr8435qk5ib032f2adnagra659ksclbl652mslr3i3sodk3seihgi9d9iq3h8hcgpon9nqpne1pkjn8sk48rd8bm8oj2i696nscdri06kigmsir9cnld49p8fq6rk03f28m7ha2mc2ekp5mjh0hda84qqgpbb1h27o8shgp6186al89nf8sc4lg8flgi4qaa02m0jdplq5cqdqde01adpdc13fa2pdn55k2jnsdpj8gce547p0fcp5mdrlfhl29155j07bhqpii5fh63os86f7igqg4rm7qdb9d3f8onmss3sf5ilcaln9gej6gcg44kmiemmr1omh45c9prrjpacfqc0k3mi1absbokm3ef6drdprdnq1frfrodplcpg6enkimd9erloojmi34rgbnaqcrdh4k89ijldodoohs9b3phchq50nj8edok28aohk8jfdebd5bm9nr2kkn52pgiqq540aqr4gq9bkak6kpf4ir0as8l61kkmpjhhf73l4gc17m3mb0ho9rb3c6ib2s7kb78d1pgn42o9rap2q7oh8f67mg701db12jifn9d3frpkfa72hrbn1g8nbhpmcj8576j9d18dgj7oi7hi0o6ajmec0p2s2a8fkprpdm69h31q117d0iped73ol07n91hadpsqmjb6f487685h0bqfg4fijdhg5jkp4chdqeddqen02mrcb6f0mri4ikd8nso41g07m1kqb6p36m1cfe627emrc581me0mpadl7e08nmfd0q0lbrhkj57onegeapsqpefsbg2e5p4q5402dmhja2aqr72qsqf2kdbf09gbb6m3hmpkeqpnrleqlbbfiisr75ci34db0bi76d7c3m618qc06k2o5hogk35r936q3mhs01dn7iqc679mhq0f2kn1al0m81ghhm53mfbd6m3hn5leoegad13q8p1sg914hrafe8iqkfr2phcdd9sl98kjl664cpfc5eg4r3r69isn2cj91bie5a9hg7k9pmf9a38seb1srrf8one406843k4ibigg6fqohob4mjiencp155n1857lpsqgld04iprne1669aslco34ahhmhqce6hn0c1md3a5oc7n02egglhkaldam89pq6i40p4oioqddlfk8seocingmon4n1c4m4pnal1447n2jhcj2qa98bm07e31fel07ejp361m7c1pnngm5choqig6ihf6mjlke5nmsnqgdr6gdlrofdsfoamsj5mj9a88oc5qai1r95nkehjqp3e5j6pabd1ips742l4hrmoqea0cb90fo98s7rff6ojg8hr3qsdir08nk6311n4akcfldq33n96e5e0he6ljbp20jdis6dq4k8r19c9esc6h3i5pd6n4ipec4bh69d3ojljcn44n9i9q5a349o64rhi7r00d823je2dinhripm14pgam5b3mljbi3iod60fros8m9ndqsfd92mp2s1brisqp7ao77ofobq5ekfa94jqddels8h8785mm4prd360cg2r080ml8drd01s7l0k30eigmmclp3hifmsgjhnir0oq4acm3mdkhb81chajj1q4f790sk2icqf2ckebm9cl8lf8kam19cpnmssmqd0akpqsfghpg90ojlnga6lkbr5nqc0o4qdhga0a9e9lcc5jde9gi2qde8sg647ccrrgegdslfhll73q50jbs85qib6m4n6omc3gkah2d4i746mp625e1b4hdcldbf6i7sfonkpj91cacg1h6bap05ki8kb97jo32cpf9nh78pilke65j2o4pfgc5c1l810q6hdni2528hqfidd9im3r0epq08na4j5m52s8carkj6d1hq2d0bqn9dmnp4cfqpd7rlp7o6h6qbjiip23d391jcm44k9nfm6lhi2b534omdp79bqfr4l6blrskbib4drrh87kk8qpgne278k03nagdni0l50lm9qk38dfmh3f5rn7lk0msr6pe6ssl045onn44lbcokbl2mhrnpagkb1qn9jj47ic985af9a7c1bkf29bepc5b81sd3misoorocb5bna5blbaf4mpgb6hdp13ihl47rbqe6j2eisggqqhjeda1mm7hn3asd2nlm5fl15pag1dnmejo436fnhgh6l0j45q9g09kck4b58q3hgc307nnr588fsllikn30pm92p9c5c5riim8o8gr3l9peponj2p7n205b414ko94hi03bmgaco1f1b9kg8d09qhnlpb06mdj005b477cmmj3ee2f5q69g6lkl32ijcipnh6qsni043khc02demm372osl414j13pls9doble38kiijkrnh7p62ke2epnf7eqrk5qmcfdi5q4cdbmfrgg14ah0rdefs2nqmh77q9ojns1314b8mem4h5kksi7mqnf44nk3nrc7aabknbjm1jbd03s2oglaf8gg4dpffrl8deg36hc26nlp6lq1fbs6ma06f2a10g14qe04i7klnqldfsdmaag4f93fl3jg93o8b5elaol8j630a1r2smpa68km67h02bsi22cdnhfm0odmrnpg4dhl7i5ai9gqf6bnrm2c0ops8jdjb1f0bjbof3s2fqh0ldhhe2839s"
+      }
+    ]
+  }
+}

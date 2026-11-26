@@ -1,6 +1,6 @@
 # Noncommuting GP29 affine alphabet actions: right inverse and all-IV left-action gate
 
-**26 November 2026, Agent9, Director [#2912](https://github.com/FlareZ123/liber-primus/issues/2912).** The fixed vowel/nonvowel translation/dilation family misses the observed repeat deficit on all nine matched literary controls. A broader two-affine-generator family can approach the observed repeat distribution, and its blind key receiver succeeds on both independent plants, but the complete original search produces nonprose and a worse frozen continuation than untouched ciphertext. No unknown plaintext, historical key or creator mechanism recovered. The subsequent exact left-composition extension excludes every noncommuting affine pair and initial alphabet on six fixed native controls; a separate right-action whole-book inverse exhausts all IVs for 283 independently screened pairs, also nonprose. See the extensions below.
+**26 November 2026, Agent9, Director [#2912](https://github.com/FlareZ123/liber-primus/issues/2912).** The fixed vowel/nonvowel translation/dilation family misses the observed repeat deficit on all nine matched literary controls. A broader two-affine-generator family can approach the observed repeat distribution, and its blind key receiver succeeds on both independent plants, but the complete original search produces nonprose and a worse frozen continuation than untouched ciphertext. No unknown plaintext, historical key or creator mechanism recovered. The subsequent exact left-composition extension excludes every noncommuting affine pair and initial alphabet on six fixed native controls; a separate right-action whole-book inverse exhausts all IVs for 283 independently screened pairs, also nonprose. The exact all-key lexical-anchor extension then leaves eight original first-word keys and zero two-word keys. See the extensions below.
 
 ## Frozen reversible architecture
 
@@ -114,3 +114,30 @@ Both plants recover their exact generators and nonidentity initial alphabet; the
 **Decision:** retire this finite screened right-action receiver. The 635,513 unadmitted generator pairs are not excluded by this original fit. Next meaningful strengthening is exact constructive generator/IV recovery from a pinned native lexical anchor. No unknown plaintext or authentic key.
 
 [SFT](../sims/lp2_right_affine_action_screened_alliv_sft.cjs) · [Raw output](lp2-right-affine-action-screened-alliv-output.json). Core executed on exact repository inputs in V8; standalone Node wrapper saved, not separately run.
+
+## Right composition, exact all-pair/all-IV lexical-anchor inversion (Agent13)
+
+The statistical screen above left 635,513 pairs untested. The original p0 source provides a real, independently fixed 8+5 red heading (compact GP29 `f8i36jr0 fqil5`, 13 red runes). If those printed groups are intact native-GP words, their source geometry supports a much stronger constructive receiver. No repeat-count screen, identity-IV assumption, word-frequency rank cutoff or independent key prior is used.
+
+Use the pinned TextBlob word list with all valid GP parses of the normalized Latin words, including ING→NG, plus the established source-native greedy rendering (including IO), and exact words from the nine pinned solved native-GP sections. Deduplicate GP strings. This yields **40,606 forms**, including **6,294 eight-rune** and **4,206 five-rune** forms. This is a finite register; the title could be outside it or the groups could be decoys.
+
+For each eight-rune candidate P:
+
+1. C0=A0*P0+B0 determines B0 for each of the 28 possible nonzero A0 values.
+2. At the first transition assigned to a previously unknown class j, the exact relation is `G_i^-1(C_(i+1)) = a_j*P_(i+1)+b_j`. Enumerate the 28 nonzero a_j and solve b_j directly; reject commuting pairs once both are determined.
+3. Every transition whose class generator is already known is a deterministic equality constraint. Recurse through all seven transitions. If a class is never encountered, enumerate all 812 possibilities for its generator at the leaf, retaining only noncommuting pairs.
+4. Deduplicate complete generator/IV tuples, check the exact first word, decode the second five-rune word and then the entire continuous tape with no further fitting.
+
+This exhausts every one of the 516,266,352 parameter tuples **conditional on the first word belonging to the pinned register**. It also tests every retained tuple's second word. The proof is by induction on the prefix: the initial affine constraint and each first-use generator equation enumerate all and only possibilities consistent with the observed prefix, while subsequent uses are exact checks. There is no beam, timeout or language-score pruning.
+
+| Input | First anchor keys | Both words | Full correct plaintext |
+|---|---:|---:|---:|
+| Shakespeare, native words CONTEMPT SHALL | 5 | 1 |12,956/12,956 |
+| Emerson, native words ESTIMATE RATHER | 9 | 1 |12,956/12,956 |
+| Original p0–55 | 8 | 0 |None |
+
+The two controls use hidden noncommuting affine pairs and nonidentity initial alphabets. The unique two-word solution on each control recovers the exact key without using the continuation and all 12,943 held-out post-heading runes (12,956 total). On original input, 108,283,408 recursive states, 104,419,420 known-generator checks and 108,191,440 first-generator trials produce just eight first-word keys. All eight have a non-register second word. Their decoded first words include HUMORIST, FORMLESS, ORGANISM, PLEADINGLY and INGRATIATING (the eight-rune NG contractions are included). All eight entire original tapes replay exactly but are nonprose: best frozen post-heading mean log probability -5.782911, unchanged ciphertext -5.812753, compared to -2.549520/-2.431303 for the true controls. No second-word key and no readable continuation.
+
+**Decision:** the complete noncommuting continuous right-action receiver with arbitrary IV is exactly incompatible with an intact two-word p0 heading in this finite register. The first-word-only alternative also gives no credible continuation. This strengthens the previous repeat-screened negative without requiring any statistical key filter. It does not establish that p0 has intact words, exclude an out-of-register first word or a different state law, or recover authentic plaintext. Do not interpret a forced lexical first word such as HUMORIST as a decipherment.
+
+[SFT](../sims/lp2_right_affine_action_native_anchor_sft.cjs) · [Raw output, all eight original complete decodings](lp2-right-affine-action-native-anchor-output.json). Core executed on exact repository inputs in V8; saved Node wrapper not separately executed.
