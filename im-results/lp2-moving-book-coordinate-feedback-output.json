@@ -160,7 +160,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.3613044092026065,
+          "origin": [
+            30,
+            12
+          ],
+          "excerpt": "O O O TH S F J T H E T EO C N AE C NG F N F U Y C G TH TH G NG N S IA IA I B EA R IA EA S E P U N D EA B R G L M E OE X S L H M OE F TH U OE S A W M H TH T D C J X A D Y U B A N",
+          "plainStats": {
+            "ioc": 0.03457242346131235,
+            "repeat": 0.03708791208791209,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.604934166624413,
+          "origin": [
+            84,
+            1
+          ],
+          "excerpt": "M E N R P TH Y C E I H S G W E E N U NG U E B NG G Y G F C T L OE B IA X NG Y W E N B T NG P M C F A F H EO EA B F M EO B G A D EA H D Y J O W Y C L W O B U S N B D O L IA",
+          "plainStats": {
+            "ioc": 0.0346092771856964,
+            "repeat": 0.03409090909090909,
+            "maxFreq": 0.04978165938864629
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.393659819762385,
+          "origin": [
+            54,
+            28
+          ],
+          "excerpt": "S Y B M A D T A D C A R AE H S P T I M S L Y NG S T T O U E R C S Y M EA X D X S NG L D EA N U O C EO J H IA E W IA S O P J N S D O I EO NG A R A B NG G TH B AE L Y A P EA I",
+          "plainStats": {
+            "ioc": 0.03444240944240944,
+            "repeat": 0.034722222222222224,
+            "maxFreq": 0.042799305957200696
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.529189627732862,
+          "origin": [
+            82,
+            3
+          ],
+          "excerpt": "Y M TH E M Y S M M EA N T EO C H N U N NG G F F Y E T OE J G M AE C I O I G B U H OE X L O NG T OE EA OE A R B S G O N J U H IA EA OE R EO I P W A S EA J U F B F EA R P N IA E Y",
+          "plainStats": {
+            "ioc": 0.034380382295263495,
+            "repeat": 0.03838065194532071,
+            "maxFreq": 0.04151339989490278
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.610534774593472,
+          "origin": [
+            41,
+            0
+          ],
+          "excerpt": "U S A M A I M IA L W N W G U C H A IA O D D Y J S G Y W S AE N R A Y D L J P E C IA L P E NG F C Y O L F I M IA A NG E P D J NG EO J NG E OE W TH G U J NG EO Y OE EA N G P C D",
+          "plainStats": {
+            "ioc": 0.034005492500624145,
+            "repeat": 0.027450980392156862,
+            "maxFreq": 0.04211557296767875
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.493836548947212,
+          "origin": [
+            85,
+            9
+          ],
+          "excerpt": "I S A T H A I H N U B R C B W T O Y G F AE C Y R D G H M S AE F N T IA G L NG T W D R F E IA C IA S J S J TH S F EO F S AE R J OE AE EA A N EA OE P EO F C F J I IA L Y EA B W H",
+          "plainStats": {
+            "ioc": 0.034191074707512856,
+            "repeat": 0.034217877094972066,
+            "maxFreq": 0.04396371249127704
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.366992808485259,
+          "origin": [
+            74,
+            24
+          ],
+          "excerpt": "EA R N O Y Y P A W R R EO F R A H F W P U O N T AE U L F T H Y D M T D EA W H B I X T J N AE L O C H EA B L O EO I O R A T D AE E EA C EA NG N AE D U R NG Y I OE D F Y W M S",
+          "plainStats": {
+            "ioc": 0.03476842791911285,
+            "repeat": 0.03692674210839786,
+            "maxFreq": 0.044642857142857144
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.559067217750845,
+          "origin": [
+            16,
+            13
+          ],
+          "excerpt": "T O TH M O NG L TH R N N E M N P B B O P EO L W N D AE E O TH NG D I N J N R NG Y G O A R S E E IA N H C M R H M J TH P R W I A C E IA L H L Y L E P S W F G H L T I G X J",
+          "plainStats": {
+            "ioc": 0.034733007733727686,
+            "repeat": 0.030595277685400733,
+            "maxFreq": 0.04488031914893617
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.466913292078429,
+          "origin": [
+            73,
+            0
+          ],
+          "excerpt": "A N L TH S Y O W C E L B L M TH NG U IA J L L I D F C L R EA TH T M IA P N H U W A AE G Y G B O I Y T H Y P A H C TH A N T EA D G EO W G O S I W Y J F I W X W N T F J D Y",
+          "plainStats": {
+            "ioc": 0.03413849993654554,
+            "repeat": 0.029315960912052116,
+            "maxFreq": 0.05844155844155844
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.365065556818571,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.56142845218851,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -269,7 +443,69 @@
           ],
           "heldExact": 463
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 375,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 346,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 112,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 138,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 155,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 164,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 280,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 143,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 78,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 362
+      },
+      "wholeAllStates": {
+        "legal": 375
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -389,7 +625,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.416463350506903,
+          "origin": [
+            64,
+            15
+          ],
+          "excerpt": "U S A J M NG R P L H TH A N F TH J Y L O A W OE TH M D E U L B U S IA O O J N H E R T OE N O OE B I X P I AE OE Y AE E S O Y C N Y T M Y L A R E H D M A S O EA S A N P Y I",
+          "plainStats": {
+            "ioc": 0.03410135817543225,
+            "repeat": 0.017857142857142856,
+            "maxFreq": 0.04526748971193416
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.662331637486472,
+          "origin": [
+            49,
+            24
+          ],
+          "excerpt": "S I T IA O W I B T S L I N TH G R B Y L E EA E TH W P R AE H U G E M W EA D E EA TH A IA F EO EA X TH R G U F B F C F NG W S N W G S R IA EA Y IA X M EA U L W NG A A NG C N IA EO I",
+          "plainStats": {
+            "ioc": 0.03416801539072281,
+            "repeat": 0.025349650349650348,
+            "maxFreq": 0.043668122270742356
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.431702911799869,
+          "origin": [
+            37,
+            16
+          ],
+          "excerpt": "U M U C G D O H L E M AE EA O M U D M W O G OE EA G TH N EO L R S P M H I X P I NG NG R W Y B T M S S G B I U X W Y T A T L TH F F T E S J A NG W T T U O IA S W G A G J R",
+          "plainStats": {
+            "ioc": 0.034409608422766316,
+            "repeat": 0.031828703703703706,
+            "maxFreq": 0.04395604395604396
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.503454969265333,
+          "origin": [
+            23,
+            18
+          ],
+          "excerpt": "E B R D C F P L Y IA L TH I G B H P EA EO NG T W L G R I AE U U H W S S E L AE F EA E L C D OE TH E F I U AE TH Y O NG E AE O R S F X AE B EO B P I TH D R R F J W G R P NG P J B",
+          "plainStats": {
+            "ioc": 0.034587040330918084,
+            "repeat": 0.024185068349106203,
+            "maxFreq": 0.04203888596952181
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.338920890309301,
+          "origin": [
+            86,
+            1
+          ],
+          "excerpt": "TH E N D W L Y B U H N TH NG B E O E M E F D M U G Y E X EA T S J OE B TH TH L TH N EO U I B D E U D O Y O N A T OE X AE O M S TH X T AE T C R EA X H T O E E TH S TH I I F AE E",
+          "plainStats": {
+            "ioc": 0.03479479940849993,
+            "repeat": 0.03627450980392157,
+            "maxFreq": 0.047992164544564155
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.592596960858668,
+          "origin": [
+            53,
+            26
+          ],
+          "excerpt": "T L R IA L TH S W OE L NG IA D H U D E J Y EA A L G N P S A J W AE TH H M E IA M M EA D J B L TH B H C AE L O L H M C L C S X Y EA IA W TH U L W I S W NG G N I C TH J EO G O Y D",
+          "plainStats": {
+            "ioc": 0.034411341600814015,
+            "repeat": 0.034217877094972066,
+            "maxFreq": 0.0418702023726448
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.569527188372716,
+          "origin": [
+            15,
+            24
+          ],
+          "excerpt": "E G I W I X T NG L TH Y R H F M EA L Y H AE W NG EA M I Y AE R R R J IA U O AE E H C R O S J G L U P J N C Y U I F O N NG H O A X J R TH P TH EO J E H G TH R Y S A OE IA TH T P",
+          "plainStats": {
+            "ioc": 0.034922998383391475,
+            "repeat": 0.03513996426444312,
+            "maxFreq": 0.04642857142857143
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.602683471131442,
+          "origin": [
+            37,
+            1
+          ],
+          "excerpt": "U E NG Y S N W L T T L P A O O NG A A N B S D Y E R Y NG N T H J F U TH S G D F E O D NG C D T EA W EA IA F S G U L P M EO B IA O P P S M W O U OE M R M N C AE OE EA F NG EO O",
+          "plainStats": {
+            "ioc": 0.03441990851134587,
+            "repeat": 0.034585966079148656,
+            "maxFreq": 0.03956117021276596
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 2,
+          "score": -5.2055925607383635,
+          "origin": [
+            63,
+            22
+          ],
+          "excerpt": "B R B E TH O T EO M P EA F OE U P F L NG P H TH T H I Y T P AE Y W EA T E NG OE A M E B IA T O R C M B I S P NG I S F X L X G B NG O F A X N M W N W P R W E F F J X IA M M T",
+          "plainStats": {
+            "ioc": 0.03382122763230255,
+            "repeat": 0.02280130293159609,
+            "maxFreq": 0.05194805194805195
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.441345128830033,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.577223793780969,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -498,7 +908,69 @@
           ],
           "heldExact": 459
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 381,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 138,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 109,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 129,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 77,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 117,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 184,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 125,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 86,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 368
+      },
+      "wholeAllStates": {
+        "legal": 381
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -618,7 +1090,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.532021562473213,
+          "origin": [
+            74,
+            24
+          ],
+          "excerpt": "L L EA H H L IA Y I M T E U Y C EA P T Y W T NG P J B C X E H N IA S AE IA B F N EO TH G P O L O G Y EA Y T H O W OE B NG G I E M O D T U IA NG F I Y P EO NG P A M F W M D M IA",
+          "plainStats": {
+            "ioc": 0.03482491445454408,
+            "repeat": 0.027472527472527472,
+            "maxFreq": 0.05075445816186557
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.669238783146367,
+          "origin": [
+            53,
+            2
+          ],
+          "excerpt": "E S S I NG TH IA N T U C TH A TH S G AE I F U E F I L D U B J EA L EA C S P Y NG H TH NG M P P P H M J T TH C S NG O E B J C D A OE M IA H U R S C C J NG H P P TH I IA A U N EA W",
+          "plainStats": {
+            "ioc": 0.03451766574037316,
+            "repeat": 0.03496503496503497,
+            "maxFreq": 0.048034934497816595
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.602748346612579,
+          "origin": [
+            20,
+            10
+          ],
+          "excerpt": "R E NG M Y G G L T Y X L EA N S Y N G F NG AE TH D J L R J H B U E D W X O D T L W M AE T R T D EO W S N EA L NG O EO Y S J TH N O P B NG P W S Y X C T AE C E EA OE U T U NG P",
+          "plainStats": {
+            "ioc": 0.0341425144056723,
+            "repeat": 0.028935185185185185,
+            "maxFreq": 0.04048582995951417
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.557225672483559,
+          "origin": [
+            72,
+            11
+          ],
+          "excerpt": "E S R TH C H EA D A M D B TH Y E R A U P R NG I B U M NG OE F D Y U H C C R X TH OE A P M G S E D P OE A R EA F EA U C A T T P EO IA M U D F NG C EA O EA Y T U O Y S R OE P C F",
+          "plainStats": {
+            "ioc": 0.03439585401985796,
+            "repeat": 0.03732912723449001,
+            "maxFreq": 0.04203888596952181
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.534214513080414,
+          "origin": [
+            26,
+            11
+          ],
+          "excerpt": "M Y W L O I E IA E A T B L L J AE AE U W T O AE T L U EA P G R C F M G B EO H D B F L OE S U A OE IA X Y D TH E O R H L IA R E AE TH M O G N T NG S Y A Y OE T D F D M U X T E",
+          "plainStats": {
+            "ioc": 0.0339651629505867,
+            "repeat": 0.016666666666666666,
+            "maxFreq": 0.04701273261508325
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.5482786839392535,
+          "origin": [
+            44,
+            24
+          ],
+          "excerpt": "A Y H U A J D D O X S H O J H W U M Y NG M T I C P O E F L G OE B T W NG OE P OE P EA IA C C T Y X F NG A T OE N U B Y OE EA EA C OE AE Y I U OE O J C T O B NG R AE EA F G X D X",
+          "plainStats": {
+            "ioc": 0.03429341109599348,
+            "repeat": 0.03212290502793296,
+            "maxFreq": 0.04326587578506629
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.485892715864149,
+          "origin": [
+            79,
+            5
+          ],
+          "excerpt": "E S T G F C T R O F TH I T TH TH C I C C L I F F G Y B S P G A J P EO Y L P I Y E IA D I G N U S S NG F A T D W F OE T F AE G TH J M H EA OE W I OE J P OE Y T O E W M N EA D",
+          "plainStats": {
+            "ioc": 0.03438909214668595,
+            "repeat": 0.0357355568790947,
+            "maxFreq": 0.041666666666666664
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.633589958531264,
+          "origin": [
+            54,
+            21
+          ],
+          "excerpt": "H I M AE O M L TH T R R S AE N D A N C N S G OE T EA D EO A R T L U J NG H M I M F E U S P T T P O S D EA J EO OE X EO B C H I E I L B L AE IA U E T A OE AE U J P X AE I T S D",
+          "plainStats": {
+            "ioc": 0.03447408175250656,
+            "repeat": 0.03392085134685733,
+            "maxFreq": 0.041555851063829786
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.520203180237067,
+          "origin": [
+            44,
+            8
+          ],
+          "excerpt": "T O R C H J P O J S I EA C EO W D S N T N H S I E A T B C A J A R F X W L H M U L S J AE IA A E H S TH M R G A F M W L E S IA G B B AE E A E Y U M E AE A A C X N I E U",
+          "plainStats": {
+            "ioc": 0.036824738779136175,
+            "repeat": 0.035830618892508145,
+            "maxFreq": 0.07142857142857142
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.533525552996216,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.620907022039829,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -714,7 +1360,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 38,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 84,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 90,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 52,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 73,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 84,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 152,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 91,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 36,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 221
+      },
+      "wholeAllStates": {
+        "legal": 38
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -834,7 +1542,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.491341911350334,
+          "origin": [
+            69,
+            3
+          ],
+          "excerpt": "E L TH E OE M F C NG R Y R E T Y D S L O S Y C F H E I NG P C P R O S AE EO AE N S I E EA H EA NG Y Y O O AE IA P D P E Y E A C H D T J T S M W NG TH D U Y L H I OE B O N W NG",
+          "plainStats": {
+            "ioc": 0.034726932875081024,
+            "repeat": 0.03708791208791209,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.702580002979364,
+          "origin": [
+            66,
+            14
+          ],
+          "excerpt": "C NG D L C M M C T O I N R P F IA F EA L D T F T EA S AE X R IA F X L O O M B G W EA R O X AE U X F S O N NG O N IA C R R A IA O S Y OE B D H TH G E G Y TH G O P I E Y T H L",
+          "plainStats": {
+            "ioc": 0.03425351940635783,
+            "repeat": 0.04195804195804196,
+            "maxFreq": 0.043668122270742356
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.475858086335012,
+          "origin": [
+            52,
+            4
+          ],
+          "excerpt": "E C I T EA P L H G E N A G E Y T R R AE F W P P C N A R J TH D S D W M N R EA C A I L H C L F OE W B P C U W D C W F IA EA N C B A R W B U T J O M TH T AE W F I EA O Y NG",
+          "plainStats": {
+            "ioc": 0.03464791787160208,
+            "repeat": 0.032407407407407406,
+            "maxFreq": 0.04569115095430885
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.505923892509876,
+          "origin": [
+            53,
+            19
+          ],
+          "excerpt": "M Y B E A F F TH C O X E W R U E J EA P H EA D G G U G A X OE U H B M NG Y I P W EO X AE B TH W T H M G E S NG IA C X G TH R O S C EO T P D M P EO G W I R L A L EO B N T EO R",
+          "plainStats": {
+            "ioc": 0.034522390624576946,
+            "repeat": 0.03943217665615142,
+            "maxFreq": 0.047819232790331054
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.3659802613583345,
+          "origin": [
+            92,
+            2
+          ],
+          "excerpt": "O U N A P Y W L AE L S L IA N O L A O X OE P I A G L NG A L OE I H TH NG H I OE Y A X IA W M I G R O C U TH X T R N S AE C OE R P H TH M A O EO W C E E OE S E F N C O B O D F",
+          "plainStats": {
+            "ioc": 0.0341898561579382,
+            "repeat": 0.023529411764705882,
+            "maxFreq": 0.043095004897159644
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.6368319043422535,
+          "origin": [
+            32,
+            12
+          ],
+          "excerpt": "TH E C U Y S H I D W W TH U J NG A T H L M M E X A G U E TH IA AE R NG W F B AE T R OE TH G D AE H Y T H TH P O EO N O NG W G J OE B H EA G Y D B D N T F L H NG OE EA I G X S E J",
+          "plainStats": {
+            "ioc": 0.034270019921483624,
+            "repeat": 0.0356145251396648,
+            "maxFreq": 0.04256803907885555
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.579332428016692,
+          "origin": [
+            45,
+            9
+          ],
+          "excerpt": "O F O A L TH B O C R J D TH L D Y R U W Y E I P AE C F N I G O NG O N B S I I EA F J N IA AE U AE EO H E R O Y X P N W E W W B N OE L B C O EO J W A I NG S N IA E N Y E X R",
+          "plainStats": {
+            "ioc": 0.034221758983521935,
+            "repeat": 0.03216200119118523,
+            "maxFreq": 0.04047619047619048
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.549006510072643,
+          "origin": [
+            71,
+            19
+          ],
+          "excerpt": "M Y I M F NG F P TH NG S EA X N Y TH E B D O AE P U B E N S Y J A W L N F H TH P TH A N IA TH B OE F A N M U M A C IA F O D EA I L S IA IA AE P S H IA TH EO E IA E U U N B R EO D W",
+          "plainStats": {
+            "ioc": 0.034619796715465334,
+            "repeat": 0.03159294978383771,
+            "maxFreq": 0.045545212765957445
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.651424190527433,
+          "origin": [
+            25,
+            20
+          ],
+          "excerpt": "S T L D F C E S IA M T W T Y R OE M E IA G H L E EA H TH H C Y NG X O U E I AE NG NG H F EA EA C J B P C S G Y B OE EA J J G OE O O B U T L TH H E S Y R A IA I EA TH S EA C N M R",
+          "plainStats": {
+            "ioc": 0.035238377257921234,
+            "repeat": 0.04234527687296417,
+            "maxFreq": 0.06818181818181818
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.510061546632583,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.5744139570872875,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -930,7 +1812,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 173,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 222,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 65,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 94,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 117,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 101,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 81,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 128,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 39,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 160
+      },
+      "wholeAllStates": {
+        "legal": 173
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -1050,7 +1994,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.411308844844501,
+          "origin": [
+            6,
+            10
+          ],
+          "excerpt": "C S W A G L S T P B G L E U EA Y J NG O H AE R IA TH I J N H H EA O Y TH AE R NG I I E T W Y E R W TH A J D W D T Y W E M N H D P NG NG U P F E O H OE Y J O X T Y X F A H W",
+          "plainStats": {
+            "ioc": 0.03423702497776572,
+            "repeat": 0.034340659340659344,
+            "maxFreq": 0.05212620027434842
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.585370747994512,
+          "origin": [
+            9,
+            5
+          ],
+          "excerpt": "S W U A G E U H L S F TH D L O F TH W E N S TH A M O M TH R X T IA OE EA E Y NG EO A X E L Y J EA M S P B F W P W F E P G OE N O R W B T TH U J EA S Y M I U TH D J J S Y N M",
+          "plainStats": {
+            "ioc": 0.03456347146303478,
+            "repeat": 0.032342657342657344,
+            "maxFreq": 0.043668122270742356
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.6090403762934855,
+          "origin": [
+            8,
+            24
+          ],
+          "excerpt": "M E C C N TH R T F T OE B L O F TH N U J IA M B M I Y NG E H F TH TH R M E Y OE S AE R M G X TH R E U NG H R P U J R R EO E W H EA H OE R H G EO U U L AE N W OE OE R B D I NG U F",
+          "plainStats": {
+            "ioc": 0.03453947368421053,
+            "repeat": 0.037037037037037035,
+            "maxFreq": 0.04684788895315211
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.5412509430282375,
+          "origin": [
+            52,
+            5
+          ],
+          "excerpt": "A S I T S TH P W I C I W I E L W NG P G U N EA U I EA L AE A L J IA M M NG E E IA Y NG G NG P U C N F M J Y TH S P N S N P W AE C AE EA L A F OE C U D A W EA U B AE OE B F TH IA I",
+          "plainStats": {
+            "ioc": 0.03443619101612209,
+            "repeat": 0.033648790746582544,
+            "maxFreq": 0.043615344193378876
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.499044797206414,
+          "origin": [
+            42,
+            7
+          ],
+          "excerpt": "D U I N C U S M Y EA X TH A S A IA R E E B D EA I I L I S AE O J IA R F D E X T I OE U NG M D T Y H E M O EA EA AE R M N L M TH Y F OE J R U H Y EA AE I C R NG U AE D F IA T O O",
+          "plainStats": {
+            "ioc": 0.03511743580879952,
+            "repeat": 0.026470588235294117,
+            "maxFreq": 0.047992164544564155
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.345540560761828,
+          "origin": [
+            72,
+            9
+          ],
+          "excerpt": "I S F R D S N NG S A T D F P Y I O F T G NG IA B E U IA I E G L C EA OE I S TH L A NG B NG E P H AE U D D O X S P I C Y EA M AE EO G T I M TH U M S P L H I M T A W C P NG A X",
+          "plainStats": {
+            "ioc": 0.03449710924068349,
+            "repeat": 0.03910614525139665,
+            "maxFreq": 0.04675505931612003
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.357926559334744,
+          "origin": [
+            75,
+            10
+          ],
+          "excerpt": "P N I W TH O E B U D R R TH E I L IA U R N O U NG H O G EO O EO M S T F F OE B N M NG C W H EO IA IA D T J NG M IA H G G G A L S TH W EA A IA M W S R R O D P H L Y W R G F G Y",
+          "plainStats": {
+            "ioc": 0.03472588558949488,
+            "repeat": 0.03633114949374628,
+            "maxFreq": 0.05357142857142857
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.42376016054889,
+          "origin": [
+            83,
+            5
+          ],
+          "excerpt": "A S D L L E Y N Y O I X P T M C W B N M O C E EA L F P H Y E F M Y M OE EA F EA H A W I F C H D X C L B G P E EA H U E T A R I EA P D C N M U Y R T A A I L U T O D M",
+          "plainStats": {
+            "ioc": 0.03452604384096682,
+            "repeat": 0.03358829398071167,
+            "maxFreq": 0.0425531914893617
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 2,
+          "score": -5.379338173881928,
+          "origin": [
+            47,
+            9
+          ],
+          "excerpt": "S E T O O B Y U H E N U P P F Y O I M F T L EO W P R NG N W C E D N W OE A B AE J EA D E E F M A I O S C D H G P TH O O O EA E N A R W A I I H EO U L C AE D X I EO H I E",
+          "plainStats": {
+            "ioc": 0.03265789585007826,
+            "repeat": 0.04560260586319218,
+            "maxFreq": 0.05194805194805195
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.398718131320482,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.540394262355939,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -1146,7 +2264,69 @@
           ],
           "heldExact": 465
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 235,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 107,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 79,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 208,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 105,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 142,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 86,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 116,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 138,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 222
+      },
+      "wholeAllStates": {
+        "legal": 235
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -1266,7 +2446,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.346715872958981,
+          "origin": [
+            35,
+            5
+          ],
+          "excerpt": "L D C A N M W N E TH NG T T I B W O C IA N B N TH O H T J O F F U OE NG W S D L J P TH O X H C NG B M L O I E U W A S E U C NG S O TH NG N M W O S J C X S AE TH X IA AE J J A",
+          "plainStats": {
+            "ioc": 0.03447821040413633,
+            "repeat": 0.03021978021978022,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.3691320297033185,
+          "origin": [
+            70,
+            27
+          ],
+          "excerpt": "E E U A TH O N E NG M N A N U P E TH L C L B R N Y B R J S L TH U O D G IA O TH F EO M N EO EA W G TH E L R Y R A EA J Y T A I E M N EO B EA P L I O F N AE A M L IA Y S C NG A",
+          "plainStats": {
+            "ioc": 0.03459248175405381,
+            "repeat": 0.032342657342657344,
+            "maxFreq": 0.04716157205240175
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.396690271073092,
+          "origin": [
+            63,
+            4
+          ],
+          "excerpt": "E TH P T C E Y NG A H TH A Y H D W I S H O T U W F E N N A L M M P F P J F NG NG S E O D Y F U W EO T T IA L Y L C E P TH T I P AE N F A S W A D AE M R H E F O Y D I A E",
+          "plainStats": {
+            "ioc": 0.034320577083734975,
+            "repeat": 0.03530092592592592,
+            "maxFreq": 0.04337767495662233
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.683435236872876,
+          "origin": [
+            63,
+            1
+          ],
+          "excerpt": "U C A D B EA D L AE AE G Y G U H N I X I S P H E F EA C R G A T P EA O Y W C Y G T B T P N TH L A S O OE U E N T H O W J EO I H J IA R G NG P T I EA J O A X N U C N Y AE N",
+          "plainStats": {
+            "ioc": 0.03427539559265822,
+            "repeat": 0.03943217665615142,
+            "maxFreq": 0.04151339989490278
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.518588248520373,
+          "origin": [
+            52,
+            15
+          ],
+          "excerpt": "T B A IA L T NG TH NG EA C W U R D N IA M W D EA S I S EO J D E A N NG W T E F L EA U I AE N O NG D D A H W I W C B I W U I O EA W R R EO S B L P F P J B IA F F S U H C T L T",
+          "plainStats": {
+            "ioc": 0.03424939025561253,
+            "repeat": 0.04019607843137255,
+            "maxFreq": 0.04407443682664055
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.6366341902140356,
+          "origin": [
+            74,
+            25
+          ],
+          "excerpt": "S B U M W U T Y W O P T G R AE AE L L EA C I L M I OE U F J C EO U F F W W E B H G D F U M A NG TH D P I EA NG C OE M NG D D T L E Y C F H Y C A W H NG EA H C O NG I L M NG T",
+          "plainStats": {
+            "ioc": 0.03457118129329804,
+            "repeat": 0.027932960893854747,
+            "maxFreq": 0.04326587578506629
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.603883668087993,
+          "origin": [
+            37,
+            13
+          ],
+          "excerpt": "W I E I G G O O N W NG X I I P F C R TH TH G J I B X G X R T C D AE A TH F EA EO R C I L Y I G H B L L IA J EA J IA R AE NG EA Y H H M O B TH OE W P EA L Y D H F R AE E C F OE W",
+          "plainStats": {
+            "ioc": 0.03446425026234436,
+            "repeat": 0.03513996426444312,
+            "maxFreq": 0.04285714285714286
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 1271,
+          "terminal": 1,
+          "score": -5.405686677776133,
+          "origin": [
+            61,
+            24
+          ],
+          "excerpt": "A N O I L A R N D EA P L C E U P R E B G U AE NG IA W N J P EO D P EO R Y T A R TH L TH D EA M F Y L R F AE S X O X G IA TH E R P P C U NG G S C E OE M I H IA N C O TH TH C H W",
+          "plainStats": {
+            "ioc": 0.03451498807746464,
+            "repeat": 0.02993016295310941,
+            "maxFreq": 0.043550531914893616
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 1271,
+          "terminal": 2,
+          "score": -5.26369744717971,
+          "origin": [
+            46,
+            23
+          ],
+          "excerpt": "E A M U O Y O R F T NG N B B N N M B A IA R D S OE S O NG U T T C S T NG E C I AE NG O C TH F W TH S M E X EA I D N NG W U T H A IA B M AE OE NG G R D M I C E I AE S NG TH C M AE",
+          "plainStats": {
+            "ioc": 0.03422310588434367,
+            "repeat": 0.026058631921824105,
+            "maxFreq": 0.05519480519480519
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.355487309780972,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.539974806413474,
+        "terminal": 1
+      }
     },
     {
       "carrier": "LP1-native-lines",
@@ -1362,7 +2716,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 134,
+          "peak": 1238
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 156,
+          "peak": 1238
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 93,
+          "peak": 1238
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 208,
+          "peak": 3993
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 94,
+          "peak": 1238
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 160,
+          "peak": 1238
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 224,
+          "peak": 1238
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 135,
+          "peak": 3993
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 98,
+          "peak": 1238
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 121
+      },
+      "wholeAllStates": {
+        "legal": 134
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -1482,7 +2898,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.205471126824758,
+          "origin": [
+            133,
+            18
+          ],
+          "excerpt": "Y D N T O W R L X H U G M A Y W E A E NG O TH U IA T Y J A J J T C S L NG M EA TH U EA U L EO R J B J H IA B A X F S M U IA H IA TH N M U J W OE T B L EA D I P S Y A T Y T I",
+          "plainStats": {
+            "ioc": 0.03455358084987715,
+            "repeat": 0.04120879120879121,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.40081779148775,
+          "origin": [
+            169,
+            10
+          ],
+          "excerpt": "I N O R C E B S H H TH W U L G EO A R E F F TH T A D D B G N S IA U H N C L R I X I TH A Y M Y TH I O E H IA IA R I B T A W X C T E X P I D E J E H X H AE EA TH S AE TH L NG",
+          "plainStats": {
+            "ioc": 0.03470699606070785,
+            "repeat": 0.049825174825174824,
+            "maxFreq": 0.0445414847161572
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.321096126113079,
+          "origin": [
+            214,
+            28
+          ],
+          "excerpt": "S E H Y I IA O A A R T N T C A D F R G H B R D T M NG T N F L E J TH I L D J X D AE H T U B TH OE T T H P U M EA OE F R H N EO H TH M O NG X T H EO E I E G EO EO C J N X H B",
+          "plainStats": {
+            "ioc": 0.034575621746674376,
+            "repeat": 0.03356481481481482,
+            "maxFreq": 0.042220936957779065
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.4335854191372865,
+          "origin": [
+            176,
+            16
+          ],
+          "excerpt": "P E E B D R T M L P R EO E L E S EA N A Y D O L P Y W H IA O X H W A EO C N X L M AE IA TH Y S W D EA Y T P A F EO N N B TH NG E M S C TH T R IA W C I U NG NG P IA H S EA H W EA",
+          "plainStats": {
+            "ioc": 0.03468539629441145,
+            "repeat": 0.0341745531019979,
+            "maxFreq": 0.04834471886495008
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.3849693618373875,
+          "origin": [
+            5,
+            21
+          ],
+          "excerpt": "N O O O R G NG TH A C AE B I O L N E F W A T R C P N I OE T H R NG U C NG A F E H TH F R W IA H IA S X C IA I X P D A J G C R IA EO S H E I E TH A U T H L J NG G N J N EO F G",
+          "plainStats": {
+            "ioc": 0.03478135622515412,
+            "repeat": 0.03823529411764706,
+            "maxFreq": 0.04603330068560235
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.442752553263664,
+          "origin": [
+            191,
+            18
+          ],
+          "excerpt": "U W D F T L L A W O U S R I W E W G H Y F TH Y W Y I A L E N L T O H I U R E O U L T F EA T A W U L U EO F T EO Y H R AE OE N E IA AE T OE G F C I S F AE IA EO A D F O EO N",
+          "plainStats": {
+            "ioc": 0.03451465262156588,
+            "repeat": 0.0335195530726257,
+            "maxFreq": 0.04745289602233078
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.334730904733351,
+          "origin": [
+            219,
+            5
+          ],
+          "excerpt": "E I C L Y IA A A E D M W I H P Y I I J N B O A TH U EA EO D M I G Y F F O S W U M E O EA L T T TH G TH X M C W S C E EO J NG N S T IA D OE TH P C C H P B S R W L EO E T R AE",
+          "plainStats": {
+            "ioc": 0.03436073059360731,
+            "repeat": 0.04169148302561048,
+            "maxFreq": 0.044642857142857144
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.476946626681785,
+          "origin": [
+            36,
+            3
+          ],
+          "excerpt": "Y L H A N O D T S W Y H P M NG R S EA TH U T IA Y A D W C L P P G C NG O T NG AE U H TH A Y EA R TH NG R I E Y W N P U EA C X C H B E IA X J IA T OE M Y X J R G Y EA U I U S J",
+          "plainStats": {
+            "ioc": 0.03464898393111109,
+            "repeat": 0.03292317924842035,
+            "maxFreq": 0.0425531914893617
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 4,
+          "score": -4.934845805745389,
+          "origin": [
+            85,
+            14
+          ],
+          "excerpt": "I S F B Y U S R EO B I R P U A D H TH N NG M L S O P NG F F I EO R O NG AE S O R F TH G EO L N T EO H I T T W J R AE I A D P AE A C H I E N I A M IA NG M D S B IA NG EO Y P F F",
+          "plainStats": {
+            "ioc": 0.03502686238842591,
+            "repeat": 0.029315960912052116,
+            "maxFreq": 0.05844155844155844
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.212889303028565,
+        "terminal": 2
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.502824462988465,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -1591,7 +3181,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 585,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 147,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 135,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 176,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 105,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 220,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 130,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 153,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 126,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 572
+      },
+      "wholeAllStates": {
+        "legal": 585
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -1711,7 +3363,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.28375175587204,
+          "origin": [
+            18,
+            17
+          ],
+          "excerpt": "O N N D S Y I TH T H C T T W U M Y E P R O J H T IA D EA H U OE O X G B A U H W B E R D U U F B J S O W S J D D C EA O TH I OE O U EA F EO N P E D OE EO A H T P B T F J TH",
+          "plainStats": {
+            "ioc": 0.034515895627006736,
+            "repeat": 0.04120879120879121,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.365206337091405,
+          "origin": [
+            157,
+            4
+          ],
+          "excerpt": "A T M F R T C A S T I G D R O U B X AE U G OE S S S G Y A U N D EA TH P X B AE M NG N C R G E EO EO L N F B J N S A M R S P G W U EO U H C H N M J U U NG EA W G AE NG IA NG M",
+          "plainStats": {
+            "ioc": 0.03434818456652518,
+            "repeat": 0.02972027972027972,
+            "maxFreq": 0.045414847161572056
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.493420367599188,
+          "origin": [
+            138,
+            4
+          ],
+          "excerpt": "E NG M G W I U G S IA F D D NG W G EA U L P U I L NG I Y T E X I T L J R S E F G B D C B EA C M Y H OE H P O S E R H M G C P NG O W F B I E L I A W Y D OE A F B IA Y M EA",
+          "plainStats": {
+            "ioc": 0.03418134010239273,
+            "repeat": 0.03125,
+            "maxFreq": 0.042799305957200696
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.451074106691626,
+          "origin": [
+            90,
+            18
+          ],
+          "excerpt": "E O J A F U N E W NG O TH I N TH E J C A G G W R I N E P E U O B EA EA NG C S EO J B IA O M C J H OE G H TH EO S EO T I E W Y R Y EO X U B O A P P X J L B N EA W O F EA M P B",
+          "plainStats": {
+            "ioc": 0.03440414244374785,
+            "repeat": 0.03680336487907466,
+            "maxFreq": 0.04151339989490278
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.396037897376817,
+          "origin": [
+            6,
+            3
+          ],
+          "excerpt": "R G N O S I A W P IA I L F E B O F E NG TH E N T T S Y E N N EA C C X P R J S F EO I OE G H T I I A A D B C F I I W W D OE N EO R B W D Y Y C A IA J R IA N C F Y F I M U",
+          "plainStats": {
+            "ioc": 0.03490618578479384,
+            "repeat": 0.041176470588235294,
+            "maxFreq": 0.047992164544564155
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.511700202927065,
+          "origin": [
+            13,
+            0
+          ],
+          "excerpt": "M D B E L A Y U A R R H A TH EA U D O O OE EA O C N O H EA O U E W E IA F C A IA H I P A F O B P O TH H EO H R EO C A X M N H G NG S G TH EO P M OE H P Y A B P EA W D B R L B",
+          "plainStats": {
+            "ioc": 0.03450783019566717,
+            "repeat": 0.034217877094972066,
+            "maxFreq": 0.044661549197487785
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.389923353232314,
+          "origin": [
+            59,
+            24
+          ],
+          "excerpt": "E M A G M P IA E L T L Y A E D U I EA OE G J TH F J TH NG G U G D F P G W F Y I W W T M N C C A M B I C L R C L M P P H D S T OE B B O W H I N H P I TH D AE E AE R E A NG",
+          "plainStats": {
+            "ioc": 0.03457344224169716,
+            "repeat": 0.038117927337701016,
+            "maxFreq": 0.044642857142857144
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.38624599827868,
+          "origin": [
+            44,
+            2
+          ],
+          "excerpt": "TH I A C W EA IA A G A B N E E R B A H P G I T TH M P C H T C Y J EO P N L X N O NG W EO IA D N F O B T P D I E U O AE TH J P R Y O O G U O N E B L C L M C G O G NG TH L B",
+          "plainStats": {
+            "ioc": 0.03459967522589136,
+            "repeat": 0.03225806451612903,
+            "maxFreq": 0.04321808510638298
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 3,
+          "score": -4.9593408872077225,
+          "origin": [
+            128,
+            14
+          ],
+          "excerpt": "N C C E O R B E D B U TH R I D E NG N AE T O R G IA H U S J EO OE T G H H F Y EA G R L S F OE IA N TH C Y T TH N R TH G J S W B S U IA Y S E Y H TH EO L E S L TH O T EO OE EA X S",
+          "plainStats": {
+            "ioc": 0.0351537713101231,
+            "repeat": 0.019543973941368076,
+            "maxFreq": 0.05844155844155844
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.280623432763926,
+        "terminal": 2
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.504846803455939,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -1807,7 +3633,69 @@
           ],
           "heldExact": 462
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 249,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 302,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 100,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 144,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 240,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 199,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 159,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 137,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 131,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 236
+      },
+      "wholeAllStates": {
+        "legal": 249
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -1927,7 +3815,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.228689941371061,
+          "origin": [
+            206,
+            26
+          ],
+          "excerpt": "E R P A Y N S T U I U L O EA C EA I P OE L F C Y TH I Y C N EA R OE U I B A I M L J T A S O B E N J Y T H R H A Y U M D TH O T W F X L OE IA U B O W U OE E T Y R T L S A",
+          "plainStats": {
+            "ioc": 0.034632719817905,
+            "repeat": 0.03708791208791209,
+            "maxFreq": 0.04938271604938271
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.538849324299104,
+          "origin": [
+            136,
+            18
+          ],
+          "excerpt": "TH E E P A W O T A N P G IA C E H F Y T B W E O P E Y P N U Y H S AE EA EO P F Y T M T A A OE U NG F S M EA G N A D L E W W C S A T I P A X X E R OE X TH AE A EO D F I F I",
+          "plainStats": {
+            "ioc": 0.03426878798057837,
+            "repeat": 0.032342657342657344,
+            "maxFreq": 0.045414847161572056
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.541873853195865,
+          "origin": [
+            25,
+            25
+          ],
+          "excerpt": "E P T L U P T U Y G NG R P D F J NG M N U C G EA T B U H J P O L D N T R A B NG N OE D H F J EO T EA W U L X E U I I U Y D U A C N T T D TH P U EA R P NG C S TH I Y J J R",
+          "plainStats": {
+            "ioc": 0.03418200951095688,
+            "repeat": 0.03819444444444445,
+            "maxFreq": 0.03932909196067091
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.755269240601269,
+          "origin": [
+            146,
+            21
+          ],
+          "excerpt": "H EA B P T M T J TH Y G L W F A I U W M I IA T A X IA EA P EA D IA D U Y Y Y H N F O NG EA M TH C I F N D O IA F U R H IA T S EO X Y U J AE E EO N O H R TH D H I R OE H Y F D E",
+          "plainStats": {
+            "ioc": 0.03453399441802279,
+            "repeat": 0.03259726603575184,
+            "maxFreq": 0.04203888596952181
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.373727247715741,
+          "origin": [
+            61,
+            10
+          ],
+          "excerpt": "L L TH S IA EA C S E A T B E E I AE F G EO F T N L EA J H H TH TH U A T R T J T R IA D T E EA S N N C R IA L EA N D Y F H S U S OE O NG R W EO C I G B S B EO EO P M P N L R OE S",
+          "plainStats": {
+            "ioc": 0.03460083347736744,
+            "repeat": 0.03823529411764706,
+            "maxFreq": 0.04701273261508325
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.510167751472127,
+          "origin": [
+            143,
+            1
+          ],
+          "excerpt": "E X R Y L W Y Y H E S H C P P EO OE O I C O F D M EA M C X G L N A A S F O S Y P F U S S EA W A X R EO NG Y N U T AE EA IA OE H AE Y EA T H F IA U R S TH T A S N P W P A AE P",
+          "plainStats": {
+            "ioc": 0.03452634820882081,
+            "repeat": 0.030726256983240222,
+            "maxFreq": 0.04326587578506629
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.533628360469422,
+          "origin": [
+            133,
+            18
+          ],
+          "excerpt": "C NG L I R P Y H H C I M NG G W N X TH R L I F U N U D U IA E N AE S M A L P N AE E IA B R F R Y J H X Y D S AE B H R EO W R J W E E EO IA C N EO B O T AE IA M C L N OE N U AE",
+          "plainStats": {
+            "ioc": 0.034418162738591565,
+            "repeat": 0.044073853484216795,
+            "maxFreq": 0.04404761904761905
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.594736856901538,
+          "origin": [
+            152,
+            26
+          ],
+          "excerpt": "O U I T A J O X M C C T Y F S E O F R I U M A N G L A R T L U J L H L EO T TH L O M B EA EA AE I OE G I Y EA W Y D A P P E Y E EA AE C I F L H G H G EO H B S NG IA I T E Y",
+          "plainStats": {
+            "ioc": 0.03446258375846429,
+            "repeat": 0.03358829398071167,
+            "maxFreq": 0.04089095744680851
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 3,
+          "score": -5.203820221743007,
+          "origin": [
+            71,
+            6
+          ],
+          "excerpt": "E C G U R W E P L IA L N T A F T I G EO H W X H S OE G W U L W E IA L G A H U X Y T J W TH C M P O J AE M C H Y TH A P Y D L O J M E Y F W F N P TH O I AE F I M R C P D",
+          "plainStats": {
+            "ioc": 0.03403274250179788,
+            "repeat": 0.035830618892508145,
+            "maxFreq": 0.05194805194805195
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.245734808399308,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.595516000450384,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2023,7 +4085,69 @@
           ],
           "heldExact": 461
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 175,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 243,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 76,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 125,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 77,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 260,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 114,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 97,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 107,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 162
+      },
+      "wholeAllStates": {
+        "legal": 175
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2143,7 +4267,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.5498366922918025,
+          "origin": [
+            156,
+            5
+          ],
+          "excerpt": "L L O M D H B L W M EO M C O P J J T EA J AE H TH I L I NG TH D TH OE M R X EA T IA R Y R X OE F T NG T L L EO L E A P B A S NG O G D B EO EA IA I A N IA C J H TH T T EA I A U EA I",
+          "plainStats": {
+            "ioc": 0.034169191576598985,
+            "repeat": 0.04532967032967033,
+            "maxFreq": 0.04526748971193416
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.559694843641112,
+          "origin": [
+            35,
+            11
+          ],
+          "excerpt": "TH E L B O B S U J EA C R EA H D T I N TH C Y I Y N T Y S S I H NG G NG NG N G A D S L M U R R B J TH M EA J L Y X R O O D Y Y I OE A L AE T H EO TH M EO B OE D C A O J F NG I",
+          "plainStats": {
+            "ioc": 0.034077930802821635,
+            "repeat": 0.04195804195804196,
+            "maxFreq": 0.04104803493449782
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.321121078968724,
+          "origin": [
+            8,
+            18
+          ],
+          "excerpt": "O M A U P EA C NG D G F S Y I E TH E E I R J OE H F O E IA X X N EA W AE I F OE B D P U EO S N D O D H E X NG Y O B EA U D NG OE A L O N M NG O P EA NG OE D G L G E W E W D B M",
+          "plainStats": {
+            "ioc": 0.03467536362273205,
+            "repeat": 0.03298611111111111,
+            "maxFreq": 0.044534412955465584
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.554283182184501,
+          "origin": [
+            74,
+            2
+          ],
+          "excerpt": "TH E N N S L M T M T IA L N G O L P NG G U NG E EA L P B I F IA X D O TH R W OE U D EA M F OE W EO NG T IA E F Y R H P M J T E B IA F W OE EO P N O EA G R R IA R H R A S G P N G",
+          "plainStats": {
+            "ioc": 0.03433838761422139,
+            "repeat": 0.026813880126182965,
+            "maxFreq": 0.04308985811875985
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.355580201450398,
+          "origin": [
+            49,
+            14
+          ],
+          "excerpt": "S T F S U I L R N B J S L OE M N X AE X P TH Y I L C C W R G N G F M R U P O EA B P B F E X B B M S S AE E C I T Y N Y P A E N Y TH I M Y A H H EO J X IA W R TH E R A F",
+          "plainStats": {
+            "ioc": 0.034683413032206026,
+            "repeat": 0.03725490196078431,
+            "maxFreq": 0.04701273261508325
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.6241501052158585,
+          "origin": [
+            38,
+            18
+          ],
+          "excerpt": "H A N R F E J P Y I N R O P S T P R P J J I G R E EO P Y NG I U E L P F C M R OE R W D AE B U NG X N M N E O Y S Y AE IA C E H EA R D B J L TH W L N AE J C U W O J G J C",
+          "plainStats": {
+            "ioc": 0.03443180887851014,
+            "repeat": 0.02863128491620112,
+            "maxFreq": 0.046057222609909285
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.430898656458264,
+          "origin": [
+            103,
+            9
+          ],
+          "excerpt": "O F O A L O E TH R O I NG F E NG Y R U C D S W EO B J E IA EO L P O J L EA Y A A P P Y A P J L S TH R P EA IA D G OE M M F B B Y EA EO IA EA T X A F X TH E F NG B G AE EO D S N G",
+          "plainStats": {
+            "ioc": 0.03447843103888369,
+            "repeat": 0.033948779035139966,
+            "maxFreq": 0.04285714285714286
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.616934767074364,
+          "origin": [
+            74,
+            19
+          ],
+          "excerpt": "M Y J L U L D W A X R B W X EO J J TH H T N F W A D X M U S NG G M J I A E F B I A P P EA U F D H E Y S M F OE A IA U W X I R T S NG U OE A X IA I I E IA P P NG U T A EA P",
+          "plainStats": {
+            "ioc": 0.03462222898343581,
+            "repeat": 0.035583638177585634,
+            "maxFreq": 0.04321808510638298
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.208183593522878,
+          "origin": [
+            94,
+            9
+          ],
+          "excerpt": "R IA S E D F P I L F Y B Y W S R F IA H G H M E EA H TH C TH D EO R S P U D N C L C Y D NG L AE S J O P TH OE X EA M Y NG E C C R E EA S B EA R P N L IA O G E G N NG W D Y W NG",
+          "plainStats": {
+            "ioc": 0.03462498413638479,
+            "repeat": 0.019543973941368076,
+            "maxFreq": 0.05194805194805195
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.5415869369678985,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.57189356086822,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2239,7 +4537,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 156,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 152,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 133,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 143,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 131,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 163,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 86,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 91,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 112,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 143
+      },
+      "wholeAllStates": {
+        "legal": 156
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2359,7 +4719,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.396981571318334,
+          "origin": [
+            125,
+            6
+          ],
+          "excerpt": "N C D M T IA O D N D T M IA I R IA IA D H G W S D NG L IA D X T TH O N I R D S TH TH S W I B B B AE R T D NG OE R A T O L J O N T R B OE EA J F N Y M A S F P S W F N EA M TH U",
+          "plainStats": {
+            "ioc": 0.034270941678349084,
+            "repeat": 0.03983516483516483,
+            "maxFreq": 0.05212620027434842
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.522246217966114,
+          "origin": [
+            63,
+            5
+          ],
+          "excerpt": "S N N N Y TH H TH Y E P L S N D N N IA U F Y S L NG AE T NG C OE N Y TH E W O TH Y EA P S AE OE EO P B I T X S F Y I IA G P P G R NG F T G X S E W J N Y TH G B J C E D R S R I",
+          "plainStats": {
+            "ioc": 0.03451461202552906,
+            "repeat": 0.028846153846153848,
+            "maxFreq": 0.04978165938864629
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.570293981775177,
+          "origin": [
+            31,
+            27
+          ],
+          "excerpt": "T D S I U S L EA W H A I M T T C J F O A H NG R EA C H E Y N C R L H C TH Y A E Y TH W OE A OE B E IA NG T D G AE I EA I C G A D G I E O T NG EA T F L IA S F R C W Y AE EA I W",
+          "plainStats": {
+            "ioc": 0.03442098836835679,
+            "repeat": 0.028935185185185185,
+            "maxFreq": 0.049161364950838636
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.432725882713427,
+          "origin": [
+            136,
+            24
+          ],
+          "excerpt": "C O U F T D N H I TH H A W H E R TH L P I X O N S IA TH G NG F R EA P W EO F A M O R R G IA O F H NG IA TH S OE E H EA O C N T C C TH X I F AE W I T M AE D P W X F W H D L W W",
+          "plainStats": {
+            "ioc": 0.0347296012218242,
+            "repeat": 0.03785488958990536,
+            "maxFreq": 0.051497635312664214
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.552103075997232,
+          "origin": [
+            26,
+            12
+          ],
+          "excerpt": "E M H O TH G R EA M A T E H S TH X L U T L N A D NG G M NG R O OE E IA O TH S EO O Y C H F I L E EO O E IA U E Y W X T N T O P Y T IA B O EO T H J X W N J D J EA O H EA W R O",
+          "plainStats": {
+            "ioc": 0.03447600391772772,
+            "repeat": 0.03529411764705882,
+            "maxFreq": 0.050930460333006855
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.413160342739117,
+          "origin": [
+            26,
+            6
+          ],
+          "excerpt": "P R I D T H I I D D H B EA A NG AE I H A G E TH W L C H R S U IA C EA EA D E T T C EA T P TH AE F D W J S J U M T TH W F N I B O E G O P W Y U A I AE EO E R IA AE EA EO NG H T C",
+          "plainStats": {
+            "ioc": 0.034498083872954735,
+            "repeat": 0.031424581005586594,
+            "maxFreq": 0.044661549197487785
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.400363238167554,
+          "origin": [
+            51,
+            7
+          ],
+          "excerpt": "T S G L A C Y S C H T TH U T I W M EO P OE E AE D N EO J J EA O W N J C D U I E O F A G TH O B TH E W W X NG N M S TH NG N W N T T T OE EA F N G NG F J N P TH A E S NG D J IA IA",
+          "plainStats": {
+            "ioc": 0.03429337190504552,
+            "repeat": 0.04050029779630732,
+            "maxFreq": 0.04404761904761905
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.542365702074279,
+          "origin": [
+            129,
+            21
+          ],
+          "excerpt": "H O D TH T EA C I P R C EA P E S O J IA IA O I I C EA M G I E EA J C R O M O G L A EO E P EO T D OE C U W M C L EA L D L N IA F P NG D IA N C I J OE D E N A U T H L I IA AE E IA",
+          "plainStats": {
+            "ioc": 0.034577121468346905,
+            "repeat": 0.04356501496508148,
+            "maxFreq": 0.04521276595744681
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 3,
+          "score": -4.9260238084031736,
+          "origin": [
+            197,
+            9
+          ],
+          "excerpt": "S H E N U F T P G IA S Y M N N D N C T O U U D D NG B OE E M G G E T F E C AE IA J C X NG S P B E T H OE U Y D NG L C E H Y NG E R O L EA O W D IA D D H W O D N A EA C E Y",
+          "plainStats": {
+            "ioc": 0.03460383264943526,
+            "repeat": 0.03908794788273615,
+            "maxFreq": 0.05844155844155844
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.384237815228839,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.5521429472951525,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2468,7 +5002,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 281,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 154,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 117,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 210,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 338,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 183,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 307,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 128,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 130,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 268
+      },
+      "wholeAllStates": {
+        "legal": 281
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2588,7 +5184,181 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.337330702579796,
+          "origin": [
+            183,
+            17
+          ],
+          "excerpt": "O NG R M I I S E O T W OE NG R AE X R R W L F D B T NG TH N NG IA TH D B O OE Y C TH L R M A D A P NG C H G TH EA I P G M P J S G G T Y W D U H U U L G NG I NG O I F E M P F P",
+          "plainStats": {
+            "ioc": 0.03418803418803419,
+            "repeat": 0.03571428571428571,
+            "maxFreq": 0.053497942386831275
+          }
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 1145,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.5633942347627565,
+          "origin": [
+            198,
+            24
+          ],
+          "excerpt": "S B J H D EA W P E NG W G A X N S E X O R A R S G N E G H T X NG L NG E TH C L C B U IA N TH D A G I F OE W NG T Y N X AE EO D OE W F G U C Y L AE J A L G N IA O O C C TH J D",
+          "plainStats": {
+            "ioc": 0.03431459370323999,
+            "repeat": 0.037587412587412584,
+            "maxFreq": 0.048034934497816595
+          }
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 1729,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.4738107017114945,
+          "origin": [
+            145,
+            12
+          ],
+          "excerpt": "Y D L C U D S H Y J NG T IA O F P W OE L T NG B NG L S O M R NG G H OE L I Y M Y A I R A G A E D U F C W F G C X TH R EO I T M E I B B E D G O R U J OE A AE EO G G H H A EA",
+          "plainStats": {
+            "ioc": 0.034497300944669365,
+            "repeat": 0.031828703703703706,
+            "maxFreq": 0.0410641989589358
+          }
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 1903,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.5958181610394835,
+          "origin": [
+            97,
+            9
+          ],
+          "excerpt": "N W D Y EA TH Y E F T J X IA F T IA U F B Y J M E Y M P Y E N Y A TH B I AE TH NG T M OE I I C NG OE S P H S TH G EA R X R T D T O F S P D EO Y G C H W E N C F Y F T R L TH X",
+          "plainStats": {
+            "ioc": 0.034667161761853686,
+            "repeat": 0.031545741324921134,
+            "maxFreq": 0.04466631634261692
+          }
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 1021,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.384655517454515,
+          "origin": [
+            82,
+            2
+          ],
+          "excerpt": "O P F U G A M S D R T B R P N I X J U TH L A J NG NG E H S D C C Y D E J Y B E S I U IA Y E H F Y M I EA L TH X P T Y E E B U M E B R P L L H OE G EA TH T EO OE EO D H J NG",
+          "plainStats": {
+            "ioc": 0.03453745847016573,
+            "repeat": 0.0392156862745098,
+            "maxFreq": 0.04995102840352596
+          }
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 1433,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.439642046076598,
+          "origin": [
+            155,
+            15
+          ],
+          "excerpt": "C E H S S M A W A J W E G S T F W H L IA TH J EA S B M O D W P EO TH F P E I A AE NG Y F M P D I F S IA A M F S TH F F T AE I X X O Y T TH D R J U P NG L J C X T P H O G EO",
+          "plainStats": {
+            "ioc": 0.034508804827938416,
+            "repeat": 0.04120111731843575,
+            "maxFreq": 0.04396371249127704
+          }
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 1680,
+          "peak": 4094,
+          "terminal": 2,
+          "score": -5.392611602312465,
+          "origin": [
+            191,
+            9
+          ],
+          "excerpt": "O TH Y L Y T TH R A S E G IA R S P A TH R S EA S X H A J G M C F OE TH F I L A I M H B S W J L Y N Y TH H IA S L M IA EA C W T P P T C Y EA C U E AE T P T S EA U IA H G W I OE",
+          "plainStats": {
+            "ioc": 0.03450608355313537,
+            "repeat": 0.04169148302561048,
+            "maxFreq": 0.04642857142857143
+          }
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 3008,
+          "peak": 4094,
+          "terminal": 1,
+          "score": -5.512412338945041,
+          "origin": [
+            27,
+            18
+          ],
+          "excerpt": "E D M TH O L E L B G R R D T E L NG IA X IA T J F H E E EA F M T P O S E A E N F G U M R N H IA AE J B E T TH N U M S X M I G NG O Y L E H J A C N U I P NG L J EO IA D L L",
+          "plainStats": {
+            "ioc": 0.034450643533881935,
+            "repeat": 0.03292317924842035,
+            "maxFreq": 0.0425531914893617
+          }
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 308,
+          "peak": 4094,
+          "terminal": 3,
+          "score": -5.136159404268396,
+          "origin": [
+            63,
+            2
+          ],
+          "excerpt": "Y N A R Y C L TH J J D N TH H C Y S T L O R H NG O X P C I E D W G H TH EO E N T G I U U G O NG E IA G W S T J B A N B B N C H W I X T EO EO N J R N J B O EO TH U G F G J",
+          "plainStats": {
+            "ioc": 0.03375777317145395,
+            "repeat": 0.03257328990228013,
+            "maxFreq": 0.05194805194805195
+          }
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 716,
+        "score": -5.34423055174432,
+        "terminal": 1
+      },
+      "wholeAllStates": {
+        "legal": 12956,
+        "score": -5.622295495580979,
+        "terminal": 1
+      }
     },
     {
       "carrier": "2013-law-verses",
@@ -2697,7 +5467,69 @@
           ],
           "heldExact": 467
         }
-      ]
+      ],
+      "chapters": [
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "legal": 356,
+          "peak": 3913
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "legal": 249,
+          "peak": 3913
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "legal": 117,
+          "peak": 3913
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "legal": 176,
+          "peak": 10293
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "legal": 174,
+          "peak": 3913
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "legal": 124,
+          "peak": 3913
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "legal": 358,
+          "peak": 3913
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "legal": 436,
+          "peak": 10293
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "legal": 245,
+          "peak": 3913
+        }
+      ],
+      "bodyAllStates": {
+        "legal": 343
+      },
+      "wholeAllStates": {
+        "legal": 356
+      }
     }
   ]
 }
