@@ -47,10 +47,11 @@ function experiment(raw,book,plants){
    counts.push(cand.size);beam=[...cand.values()].sort((a,b)=>b.rank-a.rank).slice(0,width);
    if(!beam.length)throw Error("empty beam "+i);
   }
-  let a=beam[0],score=a.rank,words=[],P=[],skips=[],bounds=[],n=N,tail=a.pref;
+  const terminal=beam[0],future=terminal.queue;let a=terminal,score=a.rank,words=[],P=[],skips=[],bounds=[],n=N,tail=a.pref;
   while(a.parent){P.push(a.p);skips.push(a.skips);if(a.word){words.push(a.word);bounds.push(n);}a=a.parent;n--;}
   P.reverse();skips.reverse();words.reverse();bounds.reverse();
-  return {P,skips,bounds,score:score/N,plaintext:[...words,tail].filter(Boolean).map(w=>[...w].map(c=>gp.translit[c.charCodeAt(0)-65]).join("")).join(" "),counts};
+  let J=0,start=0,kt=[];for(const end of [...bounds,...future]){for(let j=start;j<end;j++)kt.push(K[mk(j+J)]);J=mk(J+sign*((cs[end]-cs[start])%29));start=end;}let j=0;for(let i=0;i<N;i++){for(let s=0;s<skips[i];s++){if(mod(P[i]+kt[j])!==C[i-1])throw Error("reject replay");j+=stride;}if(mod(P[i]+kt[j])!==C[i])throw Error("emit replay");j++;}if(j!==terminal.j)throw Error("cursor replay");
+  return {P,skips,bounds,future,replay:true,score:score/N,plaintext:[...words,tail].filter(Boolean).map(w=>[...w].map(c=>gp.translit[c.charCodeAt(0)-65]).join("")).join(" "),counts};
  }
  const controls=[];
  for(const p of plants.plants.filter(p=>!p.failed&&p.realSkips>0)){
@@ -60,7 +61,16 @@ function experiment(raw,book,plants){
    controls.push({donor:p.donor,sgn:p.sgn,stride:p.stride,known,correct,n:p.need,F1:2*a.bounds.filter(b=>ends.includes(b)).length/(ends.length+a.bounds.length),trueSkips:p.skips.slice(0,p.need),...a});
   }
  }
- return {vocab:vocab.size,beam:500,drift:16,maxSkipsPerRune:5,controls};
+ 
+ const originals=[],choices=[];
+ if(controls.filter(c=>!c.known).every(c=>c.correct/c.n>=.95&&c.F1>=.90)){
+   const C=gp.pages[0].indices;
+   for(const sign of [-1,1])for(const stride of [1,2])choices.push({sign,stride,...solve(C,80,sign,stride)});
+   choices.sort((a,b)=>b.score-a.score);const {sign,stride}=choices[0];
+   for(let page=1;page<=5;page++)originals.push({page,sign,stride,...solve(gp.pages[page].indices,80,sign,stride)});
+ }
+ return {vocab:vocab.size,beam:500,drift:16,maxSkipsPerRune:5,controls,choices,originals};
+
 }
 const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");
 console.log(JSON.stringify(experiment(paths.map(read),JSON.parse(read("resources/derived/dukotah-r37-lp1-map-runes.json")),JSON.parse(read("im-results/lp2-g3-a3-nonlocal-fixedpoint-plants.json"))),null,2));
