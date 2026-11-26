@@ -1,0 +1,18 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path"),{spawnSync}=require("node:child_process"),assert=require("node:assert/strict");
+const root=path.join(__dirname,"..");
+const gp=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
+const C=gp.pages.filter(p=>p.page>=40&&p.page<=55).flatMap(p=>p.indices);
+let h=14695981039346656037n;for(const x of C)h=BigInt.asUintN(64,(h^BigInt(x))*1099511628211n);
+assert.equal(C.length,3316);assert.equal(C.filter(x=>x===0).length,131);assert.equal(h.toString(16),"be6c056ed7b1bd0a");
+const exe=process.argv[2],lo=Number(process.argv[3]),hi=Number(process.argv[4]),limit=Number(process.argv[5]||600),out=process.argv[6];
+if(!exe||!Number.isInteger(lo)||!Number.isInteger(hi)||lo<0||hi>28||lo>hi)throw Error("Usage: node sims/lp2_section8_q14_fhold_sft.cjs <cpp-exe> <root-lo> <root-hi> [seconds] [output.json]");
+const run=spawnSync(exe,["14",String(limit),String(lo),String(hi)],{input:C.map(x=>x.toString(29)).join(""),encoding:"utf8",timeout:(limit+60)*1000});
+if(run.error)throw run.error;if(run.status!==0)throw Error(run.stderr||"q14 solver failed");
+const fields=Object.fromEntries(run.stdout.trim().split(/\s+/).map(x=>x.split("=")));
+const list=x=>x.split(",").filter(Boolean).map(Number);
+const result={section:[40,55],runes:C.length,visibleF:131,fnv64:h.toString(16),benchmark:Math.ceil(C.length*349/2797),q:14,rootRange:[lo,hi],complete:Number(fields.complete)===1,leaves:Number(fields.leaves),nodes:Number(fields.nodes),tests:Number(fields.tests),maxE:Number(fields.E),maxAnyNonF:Number(fields.any),maxAnyRuneIndex:Number(fields.target),keyE:list(fields.keyE),keyAny:list(fields.keyAny),elapsedSeconds:Number(fields.elapsed)};
+result.anyCapacityReachesBenchmark=result.maxAnyNonF>=result.benchmark;
+if(out)fs.writeFileSync(out,JSON.stringify(result,null,2)+"\n");
+console.log(JSON.stringify(result,null,2));
+if(!result.complete)process.exitCode=1;
