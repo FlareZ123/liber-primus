@@ -1,0 +1,187 @@
+{
+  "tag": "donor2",
+  "stage": [
+    {
+      "length": 5,
+      "seeds": 512,
+      "best": 23.997124433517456
+    },
+    {
+      "length": 6,
+      "seeds": 512,
+      "best": 38.266191482543945
+    },
+    {
+      "length": 7,
+      "seeds": 512,
+      "best": 50.33312211930752
+    },
+    {
+      "length": 8,
+      "seeds": 512,
+      "best": 62.94448721408844
+    },
+    {
+      "length": 9,
+      "seeds": 512,
+      "best": 73.13783752918243
+    },
+    {
+      "length": 10,
+      "seeds": 512,
+      "best": 80.82109558582306
+    },
+    {
+      "length": 11,
+      "seeds": 512,
+      "best": 90.2202661037445
+    },
+    {
+      "length": 12,
+      "seeds": 512,
+      "best": 94.36032438278198
+    },
+    {
+      "length": 13,
+      "seeds": 512,
+      "best": 120.0890313074924
+    }
+  ],
+  "short": 3298687,
+  "long": 10981731,
+  "truthKey": [
+    3,
+    5,
+    8,
+    23,
+    21,
+    5,
+    13,
+    27,
+    28,
+    5,
+    24,
+    28,
+    10
+  ],
+  "truthRank": 1,
+  "correct": true,
+  "selected": [
+    3,
+    5,
+    8,
+    23,
+    21,
+    5,
+    13,
+    27,
+    28,
+    5,
+    24,
+    28,
+    10
+  ],
+  "fit": -2.3033349763943676,
+  "held": -2.37795670347725,
+  "heldAccuracy": 0.9701492537313433,
+  "heldBoundaryF1": 1,
+  "decoded": "MY OWN PERFECT THE NG SOMEHOW RECEPTIUE OF THE GREAT SOUL AND THEREBY IT A OUERLOOC THE SUN AND THE STARS AND FEEL THEM TO BE THE FAIR ACCIDENTS AND EFFECTS WHICH CHANGE AND PASS MORE AND MORE THE SURGES OF EUERLASTNG NATURE ENTER INTO ME AND A BECOME PUBLIC AND HUMAN IN MY REGARDS AND ACTIANS SO COME A TO LIUE IN THOUGHTS AND ACT WITH ENERGIES WHICH ARE IMMORTAL THUS S EUER D THE SOUL AND LEARNNG AS THE ANCIENT SAID THAT ITS BEAUTY IS IMMENSE MAN WILL COME TO SEE THAT THE WORLD IS THE PERE MR LL MIRACLE WHICH THE SOUL WORC DID OR BE LESS ASTONISHED IS PARTICULAR WONDER SHE WILL LEARN THAT THERE IS NO PROFANE HISTORY THAT ALL HISTORY IS SACRED THAT THE UNIUERSE IS REPRESENTED IN AN PAIR IN A MOMENT OF TIME HE WILL WEAUE MY LONGER A SPOTTED LIFE OF SHREDS AND PATCHES BUT HE WILL LIUE WITH A DIUINE UNITY HE WILL CEASE FROM WHAT IS BASE AND FRIUOLOUS IN HIS LIFE AND BE CONTENT WITH ALL PLACES AND WITH ANY SERUICE HE CAN RENDER HE",
+  "fallback": 1,
+  "top": [
+    {
+      "key": [
+        3,
+        5,
+        8,
+        23,
+        21,
+        5,
+        13,
+        27,
+        28,
+        5,
+        24,
+        28,
+        10
+      ],
+      "fragmentScore": 120.0890313074924,
+      "fit": -2.3033349763943676
+    },
+    {
+      "key": [
+        3,
+        5,
+        8,
+        23,
+        21,
+        8,
+        13,
+        27,
+        28,
+        5,
+        24,
+        28,
+        10
+      ],
+      "fragmentScore": 106.66474213823676,
+      "fit": -2.8589551713742427
+    },
+    {
+      "key": [
+        0,
+        13,
+        27,
+        28,
+        5,
+        24,
+        28,
+        10,
+        3,
+        5,
+        8,
+        23,
+        21
+      ],
+      "fragmentScore": 101.36928739398718,
+      "fit": -2.9191821474832533
+    },
+    {
+      "key": [
+        3,
+        5,
+        8,
+        23,
+        16,
+        5,
+        13,
+        27,
+        28,
+        5,
+        24,
+        28,
+        10
+      ],
+      "fragmentScore": 105.67127611860633,
+      "fit": -2.93207481519537
+    },
+    {
+      "key": [
+        0,
+        5,
+        13,
+        27,
+        28,
+        5,
+        24,
+        28,
+        10,
+        3,
+        5,
+        8,
+        23
+      ],
+      "fragmentScore": 99.48941888427362,
+      "fit": -2.9355612785449363
+    }
+  ]
+}
