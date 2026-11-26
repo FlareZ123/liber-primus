@@ -80,6 +80,19 @@ On all 95 authentic clear p57 runes, the same sender retains the exact known nat
 
 Reproducer: [sims/lp2_p33_cuneiform_p55_field_dh_inverse_sft.cjs](../sims/lp2_p33_cuneiform_p55_field_dh_inverse_sft.cjs), committed at a9df63e2378ca58af8052713a8d57a748784a8ad. The exact failure rules out this particular phase-zero additive receiver before any language scoring. It does not reject an unrelated typed cuneiform operation or other field use.
 
+### Rival: the cuneiform numerals are public DH values
+
+If 1033 and 3301 denote public values rather than private exponents, the same field has a tractable subgroup of order M=630311729907820 and a remaining prime-order factor R=101149063843788281988908603592862658065019147521. Exact baby-step/giant-step in each smooth subgroup and CRT give:
+
+| Candidate public value | Log modulo 4 | 5 | 41 | 49477 | 15535963 | Exact log modulo M |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| 1033 | 2 | 1 | 3 | 42056 | 13771801 | 495201920893266 |
+| 3301 | 0 | 4 | 25 | 9300 | 13036955 | 208442035865464 |
+
+Neither least representative is the full log, so neither value can arise from a small historical-style exponent (including 6, 15, 8, 43, 1033, 3301 or any positive exponent below 208442035865464). The common shared secret's R-th power is determined exactly as
+`55582936767324806650735115392056447093901202905955408043374090`.
+It agrees when computed through either projected public value. It is **not** the shared secret: the R-order component remains undetermined. An independent planted exponent123456789 is exactly recovered and the full group generator order is checked. This extension executed in V8 and is incorporated in the same SFT (commit a2d961ee8bd321c4cf9d82a6893163ccd7c4ff2f). No full DH inverse or original plaintext is claimed.
+
 ## Decision and next step
 
 This is a new exact cross-page arithmetic alignment, but it does **not** yet specify a reversible cipher operation. The affine-permutation, affine-key-stream and Hill interpretations do not decrypt p55; the new private-exponent DH handoff does not decrypt the cuneiform-bearing section. The values may be a locator/checksum for p55 rather than cipher parameters.
