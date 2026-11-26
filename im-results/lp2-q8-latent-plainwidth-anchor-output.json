@@ -1,0 +1,632 @@
+[
+  {
+    "which": "0",
+    "continuous": true,
+    "truthKey": [
+      3,
+      28,
+      10,
+      15,
+      15,
+      24,
+      28,
+      24
+    ],
+    "n": 3011,
+    "tries": 26757490,
+    "valid": 310700,
+    "completions": 351916,
+    "masks": {
+      "127": 495,
+      "191": 256,
+      "223": 184,
+      "239": 201,
+      "247": 168,
+      "251": 168,
+      "255": 309228
+    },
+    "bounds": [
+      {
+        "threshold": 9,
+        "keys": 350131,
+        "max": 20,
+        "winner": [
+          3,
+          28,
+          10,
+          15,
+          15,
+          24,
+          28,
+          24
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 350128,
+          "2": 2,
+          "20": 1
+        },
+        "trueCount": 20,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 18,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 9,
+            "minStart": 20298
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 5,
+            "minStart": 12965
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 20,
+            "minStart": 124626
+          }
+        ]
+      },
+      {
+        "threshold": 10,
+        "keys": 9180,
+        "max": 7,
+        "winner": [
+          3,
+          28,
+          10,
+          15,
+          15,
+          24,
+          28,
+          24
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 9179,
+          "7": 1
+        },
+        "trueCount": 7,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 6,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 1,
+            "minStart": 29567
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 70664
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 8,
+            "minStart": 55849
+          }
+        ]
+      },
+      {
+        "threshold": 11,
+        "keys": 176,
+        "max": 4,
+        "winner": [
+          3,
+          28,
+          10,
+          15,
+          15,
+          24,
+          28,
+          24
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 175,
+          "4": 1
+        },
+        "trueCount": 4,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 4,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 0,
+            "minStart": 33535
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 13205
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 1,
+            "minStart": 55753
+          }
+        ]
+      },
+      {
+        "threshold": 12,
+        "keys": 1,
+        "max": 1,
+        "winner": [
+          3,
+          21,
+          9,
+          22,
+          15,
+          16,
+          5,
+          21
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 1
+        },
+        "trueCount": 0,
+        "trueIsBest": false,
+        "truthCoveredLongWords": 0,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 0,
+            "minStart": 2517
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 3488
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 0,
+            "minStart": 12481
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "which": "1",
+    "continuous": false,
+    "truthKey": [
+      0,
+      28,
+      13,
+      6,
+      16,
+      15,
+      21,
+      8
+    ],
+    "n": 3011,
+    "tries": 26757490,
+    "valid": 307113,
+    "completions": 349337,
+    "masks": {
+      "95": 1,
+      "127": 432,
+      "191": 284,
+      "223": 180,
+      "237": 1,
+      "239": 188,
+      "247": 180,
+      "251": 184,
+      "255": 305663
+    },
+    "bounds": [
+      {
+        "threshold": 9,
+        "keys": 346231,
+        "max": 27,
+        "winner": [
+          0,
+          28,
+          13,
+          6,
+          16,
+          15,
+          21,
+          8
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 345169,
+          "2": 864,
+          "3": 197,
+          "27": 1
+        },
+        "trueCount": 27,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 27,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 9,
+            "minStart": 20298
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 5,
+            "minStart": 12965
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 20,
+            "minStart": 124626
+          }
+        ]
+      },
+      {
+        "threshold": 10,
+        "keys": 8608,
+        "max": 17,
+        "winner": [
+          0,
+          28,
+          13,
+          6,
+          16,
+          15,
+          21,
+          8
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 8595,
+          "2": 10,
+          "3": 2,
+          "17": 1
+        },
+        "trueCount": 17,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 17,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 1,
+            "minStart": 29567
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 70664
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 8,
+            "minStart": 55849
+          }
+        ]
+      },
+      {
+        "threshold": 11,
+        "keys": 157,
+        "max": 3,
+        "winner": [
+          0,
+          28,
+          13,
+          6,
+          16,
+          15,
+          21,
+          8
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 156,
+          "3": 1
+        },
+        "trueCount": 3,
+        "trueIsBest": true,
+        "truthCoveredLongWords": 3,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 0,
+            "minStart": 33535
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 13205
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 1,
+            "minStart": 55753
+          }
+        ]
+      },
+      {
+        "threshold": 12,
+        "keys": 5,
+        "max": 1,
+        "winner": [
+          0,
+          4,
+          24,
+          27,
+          28,
+          11,
+          0,
+          8
+        ],
+        "tied": 5,
+        "hist": {
+          "1": 5
+        },
+        "trueCount": 0,
+        "trueIsBest": false,
+        "truthCoveredLongWords": 0,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3011,
+            "windows": 43824,
+            "min": 0,
+            "minStart": 2517
+          },
+          {
+            "donor": 1,
+            "n": 3011,
+            "windows": 214096,
+            "min": 0,
+            "minStart": 3488
+          },
+          {
+            "donor": 2,
+            "n": 3011,
+            "windows": 304260,
+            "min": 0,
+            "minStart": 12481
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "which": "p40",
+    "n": 3008,
+    "tries": 26730748,
+    "valid": 301636,
+    "completions": 343608,
+    "masks": {
+      "95": 1,
+      "127": 460,
+      "191": 259,
+      "223": 190,
+      "239": 208,
+      "247": 171,
+      "251": 181,
+      "255": 300166
+    },
+    "bounds": [
+      {
+        "threshold": 9,
+        "keys": 341928,
+        "max": 1,
+        "winner": [
+          2,
+          7,
+          15,
+          19,
+          9,
+          28,
+          2,
+          8
+        ],
+        "tied": 341928,
+        "hist": {
+          "1": 341928
+        },
+        "trueCount": null,
+        "trueIsBest": null,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3008,
+            "windows": 43827,
+            "min": 9,
+            "minStart": 20298
+          },
+          {
+            "donor": 1,
+            "n": 3008,
+            "windows": 214099,
+            "min": 5,
+            "minStart": 12965
+          },
+          {
+            "donor": 2,
+            "n": 3008,
+            "windows": 304263,
+            "min": 20,
+            "minStart": 124626
+          }
+        ],
+        "gap": 4
+      },
+      {
+        "threshold": 10,
+        "keys": 8553,
+        "max": 1,
+        "winner": [
+          1,
+          21,
+          26,
+          21,
+          4,
+          8,
+          2,
+          22
+        ],
+        "tied": 8553,
+        "hist": {
+          "1": 8553
+        },
+        "trueCount": null,
+        "trueIsBest": null,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3008,
+            "windows": 43827,
+            "min": 1,
+            "minStart": 29567
+          },
+          {
+            "donor": 1,
+            "n": 3008,
+            "windows": 214099,
+            "min": 0,
+            "minStart": 70664
+          },
+          {
+            "donor": 2,
+            "n": 3008,
+            "windows": 304263,
+            "min": 8,
+            "minStart": 55849
+          }
+        ],
+        "gap": -1
+      },
+      {
+        "threshold": 11,
+        "keys": 176,
+        "max": 1,
+        "winner": [
+          6,
+          13,
+          8,
+          10,
+          28,
+          16,
+          22,
+          20
+        ],
+        "tied": 176,
+        "hist": {
+          "1": 176
+        },
+        "trueCount": null,
+        "trueIsBest": null,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3008,
+            "windows": 43827,
+            "min": 0,
+            "minStart": 33535
+          },
+          {
+            "donor": 1,
+            "n": 3008,
+            "windows": 214099,
+            "min": 0,
+            "minStart": 13205
+          },
+          {
+            "donor": 2,
+            "n": 3008,
+            "windows": 304263,
+            "min": 1,
+            "minStart": 55753
+          }
+        ],
+        "gap": -1
+      },
+      {
+        "threshold": 12,
+        "keys": 1,
+        "max": 1,
+        "winner": [
+          0,
+          25,
+          4,
+          17,
+          16,
+          22,
+          12,
+          20
+        ],
+        "tied": 1,
+        "hist": {
+          "1": 1
+        },
+        "trueCount": null,
+        "trueIsBest": null,
+        "refs": [
+          {
+            "donor": 0,
+            "n": 3008,
+            "windows": 43827,
+            "min": 0,
+            "minStart": 2517
+          },
+          {
+            "donor": 1,
+            "n": 3008,
+            "windows": 214099,
+            "min": 0,
+            "minStart": 3488
+          },
+          {
+            "donor": 2,
+            "n": 3008,
+            "windows": 304263,
+            "min": 0,
+            "minStart": 12481
+          }
+        ],
+        "gap": -1
+      }
+    ]
+  }
+]
