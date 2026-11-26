@@ -113,6 +113,24 @@ function experiment(raw,mode="original"){
   h=0;for(let i=0;i<N;i++){if(mask[i]){if(p[i]||C[i])throw Error("witness hold");h++;continue}if((p[i]+key[ids[(i-h)%Q]])%29!==C[i])throw Error("witness replay")}
   return {H:h,collisions:col(C,mask),allClassShiftsLegal:true,replay:true,meaning:"statistic witness only, no linguistic claim",holdPositions,key};
  }
+ if(mode==="sliding"){
+  // A sliding window at absolute non-F index a selects the precomputed
+  // histogram phase a mod256. Update all phase views in O(Q) per step.
+  const refs=ds.map(([name,d])=>{
+   const counts=Array.from({length:Q},()=>new Int16Array(L)),scores=new Int32Array(Q),min=Array(126).fill(null),max=Array(126).fill(null),byH=Array(126).fill(0),minStart=Array(126).fill(null);
+   let a=0,b=0,H=0,above125=0,allMin=Infinity,allMax=-Infinity,checked=0;
+   function update(idx,v,sign){for(let ph=0;ph<Q;ph++){let cell=ids[(idx-ph+Q)%Q]*29+v,h=counts[ph],n=h[cell];scores[ph]+=sign===1?n:1-n;h[cell]+=sign}}
+   for(let j=0;j<N;j++){let v=d[j];if(v===0)H++;else update(b++,v,1)}
+   const end=d.length-N,check=new Set(Array.from({length:32},(_,i)=>Math.round(i*end/31)));
+   for(let s=0;s<=end;s++){
+    const M=scores[a%Q];if(check.has(s)){const p=d.slice(s,s+N),want=col(p,p.map(v=>!v));if(M!==want||p.filter(v=>!v).length!==H)throw Error("sliding mismatch");checked++}
+    allMin=Math.min(allMin,M);allMax=Math.max(allMax,M);
+    if(H>125)above125++;else{byH[H]++;if(min[H]===null||M<min[H]){min[H]=M;minStart[H]=s}max[H]=max[H]===null?M:Math.max(max[H],M)}
+    if(s===end)break;let v=d[s],w=d[s+N];if(v===0)H--;else update(a++,v,-1);if(w===0)H++;else update(b++,w,1);
+   }
+   return {name,windows:end+1,allMin,allMax,above125,byH,min,max,minStart,checked};
+  });return {n:N,clock:"phase-zero literal-token F-transparent",refs};
+ }
  if(mode==="original"){
   const test=brute(),B=bound(C),m=marginals(C),refs=ds.map(([name,d])=>{
    const windows=Array.from({length:32},(_,i)=>{let start=Math.round(i*(d.length-N)/31),p=d.slice(start,start+N),hold=p.map(x=>!x),H=hold.filter(Boolean).length;return {start,H,col:col(p,hold),upper:B[H]??null,classRejections:rejects(p,m)}});
