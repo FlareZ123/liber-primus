@@ -78,9 +78,60 @@ struct Problem{
    vector<I> next(Hmax+1,NEG);for(auto&s:st[r])next[s.h+s.d]=max(next[s.h+s.d],pre[s.h]+s.unary);pre.swap(next);
   }
  }
+ int edgeId(int a,int b)const{return a*(2*R-a-1)/2+b-a-1;}
+ struct StarResult{I upper,primal;vector<int> outer;vector<vector<int>> local;int differences=0;};
+ StarResult star(bool paths=true)const{
+  const int S=Hmax+1;vector<vector<I>> extra(R);
+  // Condition each residual star on the target run's state. All earlier
+  // states in the star share a single legal prefix path.
+  for(int s=0;s<R;s++){
+   int nb=st[s].size();vector<I> pre(size_t(nb)*S,NEG),next(pre.size());for(int b=0;b<nb;b++)pre[size_t(b)*S]=0;
+   for(int r=0;r<s;r++){
+    auto&f=fac[edgeId(r,s)];fill(next.begin(),next.end(),NEG);
+    for(int a=0;a<f.na;a++){auto&v=st[r][a];const int16_t*row=f.w.data()+size_t(a)*nb;I ma=f.ma[a];int h=v.h,hh=h+v.d;
+     for(int b=0;b<nb;b++)if(row[b]>=0){size_t i=size_t(b)*S;I u=pre[i+h];if(u==NEG)continue;I val=u+I(row[b])*SCALE-ma-f.mb[b];I&dst=next[i+hh];if(val>dst)dst=val;}
+    }pre.swap(next);
+   }
+   extra[s].resize(nb);for(int b=0;b<nb;b++){extra[s][b]=pre[size_t(b)*S+st[s][b].h];require(extra[s][b]!=NEG,"star target infeasible");}
+  }
+  // Outer chain enforces a common target-state trajectory, unlike the
+  // independent sum of star maxima. Reparameterized unary terms exactly
+  // cancel their respective residual factor messages on any full path.
+  vector<I> pre(S,NEG);pre[0]=0;vector<vector<int>> trace(R,vector<int>(S,-1));
+  for(int r=0;r<R;r++){vector<I> next(S,NEG);for(int a=0;a<int(st[r].size());a++){auto&v=st[r][a];if(pre[v.h]==NEG)continue;I u=pre[v.h]+v.unary+extra[r][a];if(u>next[v.h+v.d]){next[v.h+v.d]=u;trace[r][v.h+v.d]=a;}}pre.swap(next);}
+  int h=int(max_element(pre.begin()+Hmin,pre.end())-pre.begin());StarResult out;out.upper=pre[h];out.primal=0;require(out.upper!=NEG,"outer infeasible");
+  if(!paths)return out;
+  out.outer.resize(R);for(int r=R-1;r>=0;r--){int a=trace[r][h];require(a>=0,"outer traceback");out.outer[r]=a;h=st[r][a].h;}require(h==0,"outer start");
+  vector<int> hist(L);for(int r=0;r<R;r++)for(int c:st[r][out.outer[r]].cells)out.primal+=hist[c]++;
+  out.local.resize(R);
+  // Recompute only each selected star's best prefix for the integer
+  // subgradient. No hidden solution or reference plaintext is used.
+  for(int s=1;s<R;s++){
+   int b=out.outer[s];vector<I> dp(S,NEG);dp[0]=0;vector<vector<int>> tr(s,vector<int>(S,-1));
+   for(int r=0;r<s;r++){
+    auto&f=fac[edgeId(r,s)];vector<I> next(S,NEG);
+    for(int a=0;a<f.na;a++){auto&v=st[r][a];int w=f.w[size_t(a)*f.nb+b];if(w<0||dp[v.h]==NEG)continue;I u=dp[v.h]+I(w)*SCALE-f.ma[a]-f.mb[b];if(u>next[v.h+v.d]){next[v.h+v.d]=u;tr[r][v.h+v.d]=a;}}
+    dp.swap(next);
+   }
+   h=st[s][b].h;require(dp[h]==extra[s][b],"star traceback score");out.local[s].resize(s);
+   for(int r=s-1;r>=0;r--){int a=tr[r][h];require(a>=0,"star traceback");out.local[s][r]=a;out.differences+=a!=out.outer[r];h=st[r][a].h;}require(h==0,"star start");
+  }
+  require(out.upper>=out.primal*SCALE,"primal above certificate");return out;
+ }
+ void starStep(const StarResult&s,I eta){
+  require(eta>=0,"step");for(int b=1;b<R;b++)for(int a=0;a<b;a++){int i=s.outer[a],j=s.local[b][a];if(i==j)continue;auto&f=fac[edgeId(a,b)];f.ma[i]-=eta;f.ma[j]+=eta;st[a][i].unary-=eta;st[a][j].unary+=eta;}
+ }
  I exactMask(uint64_t mask)const{
   int h=0,z=0;vector<int> hist(L);I score=0;for(int i=0;i<int(x.size());i++){if(!x[i]&&((mask>>(z++))&1)){h++;continue;}int c=ids[(i-h)%ids.size()]*29+x[i];score+=hist[c]++;}return h>=Hmin&&h<=Hmax?score:NEG;
  }
 };
-void selftest(){mt19937 g(297234);int cases=0;for(int t=0;t<64;t++){vector<int>x(18),ids(5);for(auto&v:x)v=g()%4;for(auto&v:ids)v=g()%3;int z=count(x.begin(),x.end(),0),lo=z?g()%(z+1):0,hi=lo+(g()%(z-lo+1));Problem p(x,ids,lo,hi);I best=NEG;for(uint64_t m=0;m<(uint64_t(1)<<z);m++)best=max(best,p.exactMask(m));for(int i=0;i<5;i++){require(p.certificate()>=best*SCALE,"dual underbound");p.sweep();}require(p.certificate()>=best*SCALE,"final underbound");cases++;}cout<<"SELFTEST "<<cases<<" exhaustive toy optima bounded"<<endl;}
-int main(int argc,char**argv){try{require(argc==4,"args sweeps minH maxH");int sweeps=stoi(argv[1]),lo=stoi(argv[2]),hi=stoi(argv[3]);require(sweeps>=1&&sweeps<=200,"sweeps");selftest();auto x=corpus(),ids=grid();auto start=chrono::steady_clock::now();Problem p(x,ids,lo,hi);I best=p.certificate();cout<<"BOUND 0 scaled "<<best<<" floor "<<best/SCALE<<endl;for(int i=1;i<=sweeps;i++){p.sweep();I v=p.certificate();best=min(best,v);cout<<"BOUND "<<i<<" scaled "<<v<<" floor "<<v/SCALE<<" best "<<best/SCALE<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;if(best/SCALE<1882)break;}cout<<"CERTIFIED_MAX "<<best/SCALE<<" H "<<lo<<" "<<hi<<"; no key recovery"<<endl;return 1;}catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
+void selftest(){mt19937 g(297234);int cases=0;for(int t=0;t<64;t++){vector<int>x(18),ids(5);for(auto&v:x)v=g()%4;for(auto&v:ids)v=g()%3;int z=count(x.begin(),x.end(),0),lo=z?g()%(z+1):0,hi=lo+(g()%(z-lo+1));Problem p(x,ids,lo,hi);I best=NEG;for(uint64_t m=0;m<(uint64_t(1)<<z);m++)best=max(best,p.exactMask(m));for(int i=0;i<5;i++){require(p.certificate()>=best*SCALE,"dual underbound");auto q=p.star();require(q.upper>=best*SCALE,"star underbound");p.starStep(q,100);p.sweep();}require(p.certificate()>=best*SCALE,"final underbound");cases++;}cout<<"SELFTEST "<<cases<<" exhaustive toy optima bounded"<<endl;}
+int main(int argc,char**argv){try{
+ require(argc==4||argc==5,"args sweeps minH maxH [star]");int sweeps=stoi(argv[1]),lo=stoi(argv[2]),hi=stoi(argv[3]);require(sweeps>=1&&sweeps<=1000,"sweeps");selftest();auto x=corpus(),ids=grid();auto start=chrono::steady_clock::now();Problem p(x,ids,lo,hi);
+ if(argc==5){require(string(argv[4])=="star","mode");I best=NEG,lower=0;
+  for(int i=0;i<=sweeps;i++){auto q=p.star();if(i==0||q.upper<best)best=q.upper;lower=max(lower,q.primal);if(i==0||i%10==0||best/SCALE<1882||i==sweeps)cout<<"STAR "<<i<<" scaled "<<q.upper<<" best "<<best/SCALE<<" lower "<<lower<<" disagreement "<<q.differences<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;
+   if(best/SCALE<1882||!q.differences)break;I eta=max<I>(1,(q.upper-lower*SCALE)/(max(1,2*q.differences)*(2+i/100)));p.starStep(q,eta);
+  }cout<<"CERTIFIED_STAR_MAX "<<best/SCALE<<" H "<<lo<<" "<<hi<<"; relaxed lower "<<lower<<"; no key recovery"<<endl;return 1;
+ }
+ I best=p.certificate();cout<<"BOUND 0 scaled "<<best<<" floor "<<best/SCALE<<endl;for(int i=1;i<=sweeps;i++){p.sweep();I v=p.certificate();best=min(best,v);cout<<"BOUND "<<i<<" scaled "<<v<<" floor "<<v/SCALE<<" best "<<best/SCALE<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;if(best/SCALE<1882)break;}cout<<"CERTIFIED_MAX "<<best/SCALE<<" H "<<lo<<" "<<hi<<"; no key recovery"<<endl;return 1;
+ }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
