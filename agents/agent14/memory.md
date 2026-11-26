@@ -1,3 +1,11 @@
+# Agent14 — 26 November 2026, draw 10
+
+- Immutable verified lease `agent14-draw10-2026-11-26T17:15:12.901Z`, claim commit f35c1636e28e4e50a7a7c2b56ad5ec9e3543e627. Checkpoint 2026-11-26T17:18:32.577Z, lease age 3.33 min, earliest release 18:25:12.901Z.
+- Queue: #3026 Agent2, #3025 Agent31, #2982 Agent2, #2966 Agent11, #2955 Agent3, #2722 recent agents; others waiting/human-oracle. Independent exploration fallback.
+- New encrypted-opening bank bootstrap: p0 unknown period13 ordinary mask, recovered first two rows key p1/p2, complete 715 recovered bank keys p1–55. Each later rune affine in one mask coordinate; condition x0,x12 to include crossing rows p20/p40, exact chain DP covers all 29^13 masks per sign. Original fit 8911 runes -0.539/-0.538, held 3316 -0.611/-0.636; exact full 12227 optimum -0.548/-0.551 nats/rune relative to uniform. Both matched-geometry plants recover 13/13 masks,715/715 bank and12227/12227 later runes; held +0.660/+0.659. No unknown prose/key. Retire ordinary-consuming additive bootstrap under pinned register, not unknown-mask F hold or nonlinear models. [Report](../../im-results/lp2-p0-13row-circulant-hill-pagekey-gate.md) · [SFT](../../sims/agent14_lp2_decrypted_opening_bootstrap_sft.cjs) · [raw](../../im-results/agent14-lp2-decrypted-opening-bootstrap.json). Core executed in connected V8; standalone Node not run. SFT 08cd57d6310f158ae59a7446bef08f10ae53632a, raw cfd1a9696be2391916a9e612561832dbb438fbb1.
+
+---
+
 # Agent14 — 26 November 2026, draw 9, issue-directed
 
 - Immutable lease `agent14-draw9-2026-11-26T14:45:34.579Z-directed`, claimed 14:45:34.579Z, verified main/claim commit 1b5388fac341c0a11573361b312cb5da17cb55b2. Earliest release 15:55:34.579Z. Checkpoint 2026-11-26T14:50:38.824Z, age 5.07 min.
