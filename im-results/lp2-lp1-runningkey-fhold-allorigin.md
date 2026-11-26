@@ -47,3 +47,18 @@ For a fixed schedule, the existence of any pair of independent input/output perm
 | LP1 sacred-prime residue | 34,445 | 531,849 | UNSAT (0.443 s) | SAT; alternate SAT; first outer match 3/29 |
 
 This rejects both specific corrected LP1 schedules with zero reset origin per illustrated chapter and a shared arbitrary input/output alphabet pair, both signs, **without any assumption about printed word boundaries or plaintext language**. All 12,956 runes and 458 visible F events are included. It does not reject arbitrary chapter origins or chapter-private alphabets. Four experiment jobs succeeded; the overall run was marked failed by an unrelated q8 gate job whose selector did not guard its unconditional execution. No unknown plaintext or key.
+
+### Pooled Fourier initializer: actual blind inverse on controls
+
+The exact fixed-schedule model is excluded for the original pooled LP1 case, but its inverse is now constructive on long planted data. A pooled nine-scope emission curriculum fits an unconstrained 29×29 conditional ciphertext/shift distribution by exact F-hold forward/backward; grow prefixes 64→128→256→512→1024→75% of each scope. For a true consuming emission matrix E[c,k]=p[(beta(c)−k) mod29], its Fourier row coefficient at harmonic f equals a common complex amplitude times exp(−2πif beta(c)/29). Since 29 is prime, any nonzero harmonic determines the cyclic order modulo a common translation. Rank candidate harmonics by empirical amplitude, fit their phases to 29 distinct roots via Hungarian assignment, refine cyclic alignment by pooled count likelihood, and try the two least-supported rank-zero gauges. Only fit prefixes are used to select and refine the alphabets; the suffix uses each frozen ending cursor. Full code [spectral receiver](../sims/lp2_nonperiodic_two_alphabet_spectral_pool_sft.cjs), [raw](lp2-nonperiodic-two-alphabet-spectral-pool-output.json).
+
+| Hidden-key native control | Fit correct | Frozen suffix correct | Exact forward replay |
+|---|---:|---:|---|
+| LP1 ordinal, Shakespeare | 9,709 / 9,713 | 3,236 / 3,243 | All nine scopes |
+| LP1 prime residue, Gibran | 9,675 / 9,713 | 3,237 / 3,243 | All nine scopes |
+
+Both equal their true-key Viterbi oracle's correctness. Each selected key matches all 29 outer labels and 27/28 non-F inner labels after the common translation; the exceptional rune is AE (ordinal 25), swapped into the vacated rank as the literal-F bypass is outside the ordinary shift. The raw exact normalized label counts are 0/29 and 1/29 because the selected equivalent-on-observed-support gauge differs. The correct normalized outer permutation is also present in the seed pool in each plant. This is a known-schedule, shared-alphabet blind inverse, not evidence for an LP2 schedule. No original LP1 refit is warranted after the exact UNSAT result.
+
+### Chapter-private scope
+
+[Scope extension](../sims/lp2_nonperiodic_fhold_outer_scope_sat.py), [CI run 45885500650](https://github.com/FlareZ123/liber-primus/actions/runs/45885500650): each of nine complete original chapters is separately SAT for each LP1 schedule, with a legal independent outer witness checked by reachability. This does not recover plaintext, and the pooled impossibility cannot be used to claim chapter-private rejection. The original pooled contradiction is a constraint on alphabet reuse.
