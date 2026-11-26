@@ -219,12 +219,14 @@ bool graphControl(const vector<string>&train,const vector<string>&held,unsigned 
 #include "lp2_gp29_numeric_subtree12.hpp"
 #include "lp2_gp29_moment7.hpp"
 using DomainPointers=array<const vector<int>*,48>;
+static bool exactMrvEnabled=false;
 
 struct FastSearch : GSearch {
  using GSearch::GSearch;
  vector<uint8_t> completed;
  mutex checkpointMutex;
  atomic<uint64_t> inheritedCount{0},earlyPackCount{0},momentCalls{0},momentComplete{0},momentKeys{0};
+ atomic<uint64_t> exactProbeCalls{0},exactProbeZero{0},exactProbeRedundant{0},exactProbeSelected{0},exactProbeFallback{0},exactProbeAccepted{0};
 
  // Produce a full necessary shortlist from the three most selective postings.
  // This differs from the old capped query: the untested suffix is retained
@@ -284,6 +286,34 @@ struct FastSearch : GSearch {
   if(n==input->size()){store=out;next=&store;}
   else if(!parent||n-out.size()>=max<size_t>(8,input->size()/16)){
    store=out;store.insert(store.end(),input->begin()+n,input->end());next=&store;
+  }else next=parent;
+  return out;
+ }
+
+ // Exact symbolic domain probe. Invalid whole-word extensions are
+ // permanently impossible in descendants; retain every untested suffix.
+ // A dimension-preserving witness imposes no new graph/key constraint:
+ // the word is supported by every completion of this state.
+ struct ExactChoice7{vector<Graph> states;bool capped=false,redundant=false;};
+ ExactChoice7 exactCachedDomain(const Graph&g,int id,GFilter&f,size_t cap,GStats&c,
+                              const vector<int>*parent,vector<int>&store,const vector<int>*&next){
+  exactProbeCalls++;vector<int>fresh;const vector<int>*input=parent;
+  if(!input){fresh=shortlist(id,f,c);input=&fresh;}
+  else inheritedCount.fetch_add(1,memory_order_relaxed);
+  ExactChoice7 out;out.states.reserve(min(cap,input->size()));vector<int>kept;kept.reserve(min(cap,input->size()));
+  size_t n=0;
+  for(;n<input->size();n++){
+   if((n&255)==0&&stop())return out;
+   int opt=(*input)[n];c.options++;if(!f.allowed(ds[id].opts[opt]))continue;
+   c.joins++;Graph x;if(!extend(g,ds[id].opts[opt],x))continue;
+   if(x.dimension()==g.dimension()){out.redundant=true;exactProbeRedundant++;return out;}
+   kept.push_back(opt);out.states.push_back(move(x));exactProbeAccepted++;
+   if(out.states.size()>=cap){n++;break;}
+  }
+  out.capped=n<input->size();
+  if(!out.capped){store=move(kept);next=&store;}
+  else if(!parent||n-kept.size()>=max<size_t>(8,input->size()/16)){
+   store=move(kept);store.insert(store.end(),input->begin()+n,input->end());next=&store;
   }else next=parent;
   return out;
  }
@@ -434,6 +464,35 @@ struct FastSearch : GSearch {
    double sy=log2(double(max<size_t>(1,y)))/train[b].size();
    return sx<sy;
   });
+  // Use a bounded exact MRV/zero-domain probe only after the first
+  // long-word join. If every nonempty domain reaches the cap, fall
+  // back to the original relaxed MRV using safe inherited supersets.
+  array<vector<int>,48> exactStorage;
+  if(exactMrvEnabled&&g.dimension()<=18){
+   int chosen=-1;size_t exactCap=128;vector<Graph>children;
+   for(int i=0;i<ntry;){
+    int id=rem[i];const vector<int>*old=inherited[id];
+    auto d=exactCachedDomain(g,id,f,exactCap,c,old,exactStorage[id],inherited[id]);
+    if(stop())return;
+    if(d.redundant||(!d.capped&&d.states.empty())){
+     if(!d.redundant){exactProbeZero++;if(!budget)return;budget--;}
+     rem.erase(rem.begin()+i);ntry--;if(chosen>i)chosen--;continue;
+    }
+    if(!d.capped&&(chosen<0||d.states.size()<exactCap)){
+     chosen=i;children=move(d.states);exactCap=children.size();
+    }
+    i++;
+   }
+   if(chosen>=0){
+    exactProbeSelected++;rem.erase(rem.begin()+chosen);unordered_set<string>seen;
+    for(auto&x:children){if(stop())return;if(seen.insert(x.sig()).second)fastDfs(x,rem,budget,c,inherited);}
+    if(budget)fastDfs(g,rem,budget-1,c,inherited);
+    return;
+   }
+   if(rem.empty()||int(rem.size())<=budget){fastEnumerate(g,c);return;}
+   exactProbeFallback++;
+   ntry=min<int>(rem.size(),g.dimension()>20?5:g.dimension()>12?8:16);
+  }
   for(int i=0;i<ntry;){
    int id=rem[i];const vector<int>*old=inherited[id];
    auto d=cachedDomain(id,f,cap,c,old,storage[id],inherited[id]);
@@ -470,7 +529,7 @@ struct FastSearch : GSearch {
   });
   for(auto&t:pool)t.join();
   for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
-  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" moment_calls="<<momentCalls<<" moment_complete="<<momentComplete<<" moment_keys="<<momentKeys<<" numeric_calls="<<numericCalls<<" numeric_complete="<<numericComplete<<" numeric_keys="<<numericKeys<<" numeric_rejected="<<numericRejected<<" numeric_trie_nodes="<<numericTrieNodes<<" numeric_dfs_nodes="<<numericDfsNodes<<" OOV="<<answerOov<<endl;
+  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" exact_probe_calls="<<exactProbeCalls<<" exact_probe_zero="<<exactProbeZero<<" exact_probe_redundant="<<exactProbeRedundant<<" exact_probe_selected="<<exactProbeSelected<<" exact_probe_fallback="<<exactProbeFallback<<" exact_probe_accepted="<<exactProbeAccepted<<" moment_calls="<<momentCalls<<" moment_complete="<<momentComplete<<" moment_keys="<<momentKeys<<" numeric_calls="<<numericCalls<<" numeric_complete="<<numericComplete<<" numeric_keys="<<numericKeys<<" numeric_rejected="<<numericRejected<<" numeric_trie_nodes="<<numericTrieNodes<<" numeric_dfs_nodes="<<numericDfsNodes<<" OOV="<<answerOov<<endl;
  }
 };
 
@@ -522,6 +581,7 @@ int main(int argc,char**argv){try{
   else if(arg=="--seconds")seconds=stoi(value());
   else if(arg=="--skip-controls")skipControls=true;
   else if(arg=="--controls-only")controlsOnly=true;
+  else if(arg=="--exact-mrv")exactMrvEnabled=true;
   else throw runtime_error("unknown argument: "+arg);
  }
  if(skipControls&&controlsOnly)throw runtime_error("--skip-controls conflicts with --controls-only");
