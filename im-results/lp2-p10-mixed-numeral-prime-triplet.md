@@ -28,3 +28,33 @@ No 7! or q7 sweep. The test only rejects the specified fixed triplet laws/layout
 
 ## Reproduction
 [Read-only CJS SFT](../sims/lp2_p10_mixed_numeral_prime_triplet_sft.cjs), [executed output and pinned input blob IDs](lp2-p10-mixed-numeral-prime-triplet-output.json). Executed in connected V8 on repository inputs; no separate Node CI run. Physical source interpretation uses the original supplied images. No held-out equivalent inline numeral exists in the corrected textual stream.
+
+## #2956 — Cross-year first-party numeral-role audit (Agent3, 26 November 2026)
+
+**Decision:** no preserved 2012–2016 Cicada source gives a *bare decimal token embedded between encrypted/rune words* a uniquely specified cipher mode, state, page, coordinate, or direction role. Historical numerals are usable when their type and recipient are supplied by a command, label, delimiter, grid, URL, or ordinary sentence. The 2016 “numbers are the direction” sentence is relevant semantic guidance, but does not define an executable numeral grammar or select p10's recipient.
+
+| Source artifact | Literal numeral and actual role | What makes the role knowable | Consequence for p10's bare `7` |
+|---|---|---|---|
+| 2012 signed countdown | `17:00`, `9 January 2012`: a time and date | Ordinary sentence: “Check back at …” | A numeral in a Cicada message can be ordinary scheduling prose; no cipher state is implied. |
+| 2012 first-image 61-byte suffix | Caesar-decoded URL `http://i.imgur.com/m9sYK.jpg`; `9` is part of the filename | The Caesar clue selects the text transform; URL syntax types the output as a locator. The digit is carried unchanged as an ASCII character, not used as the shift or an opcode. The archived JPEG is a byte-pinned mirror corroborated by contemporary accounts, not a separately recovered original 4chan upload. | An embedded digit can be literal address data, but this supplies no standalone numeric-control convention. |
+| 2013 signed TCP challenge | `BASE29 3301 → 3QO`: `3301` is one integer operand | The explicit `BASE29` command types the following whole decimal integer; the documented conversion consumes it positionally. | It does not license interpreting the first/only digit of a rune-adjacent token as a hidden opcode. |
+| 2013 signed book-code records | `III:19:84`: a three-field carrier address selecting a character | The colon delimiters and the documented chapter/verse/character record grammar type all three fields. The 220-verse carrier contains `7` at this exact address. | The p10 `7` is not an address record: it has no field delimiters, chapter, verse, or character position. The prior #2932 test already shows it is not an absent-literal reset under that sender. |
+| 2014 signed Stage09 and Stage10 form | Numeric square cells and targets `3301` / `1033`; Stage10 labels `Order 7 Square, 1033` and field `71033` | The signed instruction says to submit magic squares; the visible HTML labels separately identify order and target sum. Thus `7` means the square's order only inside the explicit “Order 7 Square” field. | This is the closest precedent for a numeral selecting a mode/size, but its type is explicitly named; it does not support an unlabeled inline `7`. |
+| 2014 signed Stage11 message | `ky2khlqdf7qdznac.onion`: service hostname | The surrounding message and `.onion` syntax make the whole string a destination. The `7` is one hostname character. | No standalone index or state is selected. |
+| 2016 signed message | “Their numbers are the direction”; footer `3301`; key ID `7A35090F` | The sentence gives a broad semantic hint. The key-ID digits are explicitly typed by “Verify OpenPGP”; `3301` is the message footer. | This is the only reviewed first-party wording that broadly associates numbers with direction. It does not say whether p10's `7` is a step count, bearing, ordinal, page address, or other operand; it supplies no origin, map coordinate, transition, or recipient. |
+| Solved LP1 p05 mixed word/number grid | Twelve literal Arabic numbers coexist with thirteen rune words; rune words map to prime sums, producing the known 5×5 magic square | The original page supplies the grid; the GP table supplies the word-to-number operation; the square structure fixes row/column/diagonal checks. The separate movement/direction rule remains unselected. | A mixed rune/number object can encode arithmetic operands, but even this much richer typed grid does not select a path without an additional instruction. See the existing LP1 p05 source gate. |
+| LP1 LOSS and LP2 p36–38 numbered units | Labels `1–2` / `1–5`: ordinals | Visible list layout and numbered unit boundaries | They select presentation order, not a cipher mode; they are not matched controls for the isolated p10 token. |
+
+The reconstructed first-onion `NUMBER` service is deliberately **not** counted as an authenticated convention: the signed 2013 TCP specification contains no `NUMBER`, `PRIMES`, or `COUNT` command. Its retrospective behavior cannot supply the missing author-selected type. Likewise, participant-generated DH parameters and the 2014 participant-run CGI URL are not organizer-selected LP2 operands.
+
+### Source gate and fork
+
+The physical p10 original is archive image `27.jpg` (the supplied source copy SHA-256 is `1716e282c1d5e8a9ff911c01621e9b195d4728c7fa55ac857176a473eaba3239`). The black `7` is a separate hyphen-delimited word at printed line 8, local rune offset 169 / global offset 2566 (zero-based), between `ᚩᚦᛏ` and `ᚷ`. The hyphens are word boundaries, not arithmetic operators. It is the only isolated decimal numeral in ordinary unknown-page prose; the other five numeric groups are explicitly numbered-list labels.
+
+The evidence therefore supports only these distinctions:
+
+1. **Possible semantic role:** the 2016 signed sentence makes a directional reading worth retaining as a hypothesis.
+2. **Not selected:** no first-party source specifies the p10 numeral's type, origin, recipient, or reversible transition.
+3. **No authorized receiver:** do not turn `7` into every possible page/line/column/index, reuse the rejected absent-literal sender, or launch another p10/p50 arithmetic consumer. The earlier `7G` products, p50 phase-119 key, 48×35 consumers, and LP1 page-07 OutGuess password tests remain bounded negatives in their cited reports.
+
+**Completion of #2956:** no source-authenticated numeral type and predictive original-cipher consequence was found. Retain the numeral as a source-visible token and the 2016 directional sentence as broad context, but retire the claim that a historical convention uniquely selects an operation for p10. Reopen only if a newly recovered first-party artifact supplies a typed recipient and deterministic receiver.
