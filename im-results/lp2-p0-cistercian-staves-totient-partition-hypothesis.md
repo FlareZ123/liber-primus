@@ -92,3 +92,17 @@ Do **not** repeat the already-tested p5-derived φ(1033)/φ(3301) two-residue ad
 4. **Source-selected 7×11×43 consumer.** If the numeral reading survives, formulate one locked extraction/order rule connecting the p33 7-based register, p32 11-based page, and p55 43-rune interior. Test it on original ciphertext with p56/p57 and independent plaintext controls. The 2520-cell interior (6×10×42) is a possible structural model, not permission to enumerate arbitrary 3D layouts.
 
 **Current conclusion:** the Cistercian reading is a promising, falsifiable structural hypothesis. The exact totient partition and factor/page correspondences justify an independent test; they do not yet establish creator intent, a key, or plaintext.
+
+## Test of a distinct cipher regime at the proposed section boundaries
+
+A cheap, locked diagnostic checked whether the candidate 0–5 / 6–15 / 16–57 partition corresponds to obvious rune-level substitution changes. Using the canonical GP29 indices directly:
+
+| Candidate section | Runes | Shannon entropy (bits/rune) | IoC |
+|---|---:|---:|---:|
+| p0–5 | 1,470 | 4.84454 | 0.03445817 |
+| p6–15 | 2,292 | 4.84679 | 0.03460540 |
+| p16–57 | 9,374 | 4.85545 | 0.03450079 |
+
+The Jensen–Shannon divergences between aggregate section distributions are small: 0.00481 bits (first/second), 0.00359 (second/third), and 0.00524 (first/third). The two proposed adjacent page boundaries are not unusual among the 57 physical transitions: p5|p6 has JSD 0.04079 (rank 30/57); p15|p16 has 0.05206 (rank 42/57). The largest shifts occur near the solved terminal pages, not at the proposed 6/10/42 boundaries.
+
+**Decision:** this does not support three visibly different simple substitution regimes or obvious frequency resets at those boundaries. It does not reject a structural grouping used for transposition, page navigation, or a shared cipher. Do not claim the partition identifies three distinct ciphers. The updated arithmetic/distribution SFT reproduces these statistics.
