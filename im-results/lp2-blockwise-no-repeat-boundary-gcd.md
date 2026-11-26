@@ -90,3 +90,31 @@ As a source-shaped positive plant, the test constructs a 217-symbol 29-alphabet 
 Fixed-length blocks whose internal encoder forbids adjacent ciphertext repeats are excluded **even if every block has an unrelated secret key and every source page chooses its own fixed length and phase**. This includes the specific explanation in which all 86 repeats are innocuous joins between independently generated duplicate-free blocks. The ciphertext's low adjacent-repeat count must have some other explanation.
 
 A **changing-length** partition, a cipher that permits occasional internal repeats, a global predecessor-dependent no-repeat transform with explicit exceptions, or a layout-dependent marker/insertion channel can generate the observed locations. This theorem does not test those families and provides no reason to choose one. Its practical use is to eliminate an otherwise unconstrained key/phase sweep for a complete class of human-plausible small-block mechanisms; the priority remains an author-selected reversible cipher that recovers actual prose.
+
+
+## Deterministic cycle-walking domain decision (Director #2893, Agent8, 26 November)
+
+**Decision:** deterministic first-return cycle walking supplies an exact reversible mechanism only after a valid common domain has been selected. The strict four-rune no-adjacent-repeat domain fails both the original ciphertext and authentic native plaintext controls. No source-selected rank, framing, exception grammar, key or LP2 decipherment is recovered.
+
+The genuine historical construction is John Black and Phillip Rogaway, [*Ciphers with Arbitrary Finite Domains*, CT-RSA 2002](https://web.cs.ucdavis.edu/~rogaway/papers/subset.pdf), §4 and Fig. 2. For a finite ambient permutation P on T and subset M, define the sender on M by the first positive iterate P^j(x) that lies in M. Inverse applies P^{-1} until the preceding point in M. Existence follows because every x in M is on a finite permutation cycle containing x itself. Each cycle restricted to its M members is a cyclic permutation. This is an exact, deterministic receiver; no skipped-iteration count is required for an input already in M. The paper explicitly extends the idea beyond integer intervals to other efficiently recognizable domains in §6.
+
+The p15 4×4 motif suggests four-rune blocks as a tentative experimental unit, **not an authenticated four-rune block clock**. On GP29 define T as all 29^4=707,281 four-rune tuples and M as the 29×28^3=636,608 tuples having no adjacent equality. Its complement has 70,673 tuples. A public test rank is the first GP index followed by three base28 digits: each digit is the cyclic successor difference in 1..28, less one. This is bijective on M; its inverse reconstructs each successive rune by modular addition. No first-party instruction selects this ranking.
+
+With test permutation P(x)=x+1 mod 29^4 on ordinary base29 integers, the SFT validates **636,608/636,608** exact rank/unrank and first-return inverse pairs. The permutation is a correctness control, not an asserted historical key or a secure cipher. Extending first-return to an arbitrary input outside M is not injective: `[0,0,0,0]` and the allowed tuple `[28,27,28,27]` both return `[0,1,0,1]`. In general each non-M point whose cycle intersects M shares its first hit with the preceding M point; a cycle disjoint from M never hits at all. No choice of secret permutation rescues unrestricted T→M injection because |T|>|M|. A distinct plaintext representation could supply an injection into M only by restricting the allowed inputs, expanding the output, or adding recoverable state. This is not a general rejection of format-preserving encryption.
+
+**Original complete-block membership**, using physical page-local phase s and dropping incomplete prefix/suffix blocks (therefore deliberately favourable to the candidate):
+
+| s | Complete four-rune blocks | Blocks outside M |
+|---:|---:|---:|
+| 0 | 3219 | 54 |
+| 1 | 3207 | 72 |
+| 2 | 3188 | 65 |
+| 3 | 3177 | 63 |
+
+Even granting an independently optimized phase for every page, at least **30 complete blocks across 20 pages** are outside M. These are additional concrete four-block domain-membership measurements; the existing gcd proof above already excludes a strict boundary-only explanation for all 86 page-local doublets. The phase-zero figure excludes fringe blocks and must not be mistaken for the count of all internal doublets under a continuous clock. Cross-block equality is permitted; any internal duplicate is forbidden by M.
+
+Native controls: reproduce the independently established p56 plaintext exactly (prime-totient subtraction, F transparent at original index56 only) and use clear p57. Their counts of inadmissible complete blocks for phases 0,1,2,3 are respectively **[3,2,2,2]** and **[1,1,0,1]**. Thus even choosing a favourable phase cannot encode the authentic p56 plaintext as raw consecutive GP29 tuples within this domain. This is a necessary-format test, not a claim the historical p56 cipher is cycle walking.
+
+The source does not identify an exceptional-block family or injective native representation, so the strict common domain fails before a key search. Generalized domains admitting doublets, a genuinely source-fixed escape format, or a rank-coded plaintext language are not excluded by this test; each requires independently selected operands and a complete recoverable decoder. The [source-visible side-information analysis](lp2-no-repeat-source-visible-channel-capacity.md) already addresses broader enumerative escape carriers. Do not duplicate it or fit exception positions from the ciphertext.
+
+[Reproducer](../sims/lp2_four_rune_cyclewalk_domain_sft.cjs) committed as 9a1451113b4c0e1cb6f001e83dad82027d6a96ae. The exact test body executed in connected V8 against canonical source blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 with strict assertion shim; all assertions passed. No separate Windows CI claim. No unselected permutation sweep, no original plaintext candidate.
