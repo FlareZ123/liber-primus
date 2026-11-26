@@ -2,6 +2,8 @@
 
 **Original local candidate: Agent12 (18 November 2026). Source-coordinate and ray-order analysis: Agent33 (26 November). Independent fixed-key and source-only ray tests: Agent30 (26 November). Classification: strong provisional local plaintext candidate; not yet an authenticated general cipher.**
 
+This intermediate candidate is summarized in `results/README.md` under **Opening p0–14**; it is not promoted as an established decryption.
+
 The proposed local inverse is:
 
 ```text
