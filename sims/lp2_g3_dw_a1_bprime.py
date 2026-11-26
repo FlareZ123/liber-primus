@@ -50,7 +50,11 @@ def load_modules():
 
 def page_bounds(starts, n):
     starts = list(starts)
-    if not starts or starts[0] != 0:
+    if not starts:
+        raise ValueError("empty page-start list")
+    if starts[0] != 0:
+        starts.insert(0, 0)  # parser stores explicit page markers after p0
+    if starts[0] != 0 or any(a >= b for a, b in zip(starts, starts[1:])):
         raise ValueError(f"invalid page starts: {starts[:5]}")
     return list(zip(starts, starts[1:] + [n]))
 
