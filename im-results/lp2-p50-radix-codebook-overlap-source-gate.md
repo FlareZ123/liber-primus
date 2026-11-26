@@ -68,7 +68,21 @@ Because the adjacent solved p56 page prints a 128-hex-character digest, the p49�
 | original p51 JPEG (68.jpg) | 661727 | `dc13d7b5289c9c67e2780b3742e1e8a43baa23e24e672607e077096525c32bd6c5e7020226fb86eb38498b524979ace851ed79b3534c403f5e6cb465810de316` | `85ff40ab5d907c1a09fab7031e812e26911f77a23f1f9c957e3e1d35ae97cf1c3ee760ff5517bdfc1d9c9bba3bce243e6bfa9e4d7ee48c2a3fb78ebd9da2a92b` |
 | p49–p51 concatenated JPEGs | 1895214 | `83251803a614098cec506a13410c92ac866f8a0816ea96cdd8d7e468a56220fb60c3b54ad63bafdf252dc1917748b257ea467b1aa5c46f1bab87057943069782` | `6f3e403c766e2e6b6bbae749dd511c74dd79208cd763a53f7c5e26398a35403b9edfeb6b4a41eab720773ddfda632b15c12688b184c07dacaf462bc21b01d247` |
 
-All 14 comparisons fail. The p50 table is not the direct SHA-512/Whirlpool preimage in any of these exact forms. This does not identify the intended deep-web page, choose the digest family, or exclude a different source-selected external object. Reproduce with [the standalone preimage gate](../sims/lp2_p50_p56_preimage_gate.py). No destination or plaintext recovered.
+All 21 comparisons fail across SHA-512, Whirlpool and BLAKE2b-512.
+
+A third 512-bit family, BLAKE2b-512, is named as a candidate in the secondary [Dukotah key-hint synthesis](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/KEY-HINT-RESEARCH.md). Applying that fixed family to the same seven exact candidates gives another **0/7**; this is a bounded candidate check, not evidence that BLAKE2b is the intended algorithm.
+
+| Candidate | BLAKE2b-512 |
+|---|---|
+| p50 table, base60 bytes | `8d5fea0ca5bc463bf741480cd8262765284db064a08ded4256725fc7361d570fdc71e68ad4f1adfa18ad0d4b137d6302df6c1d726308deab69009f313ac0f18c` |
+| p50 table, base59 bytes | `f2b3151ad93a26fd31a94b9d71ee40a15c87f57297547e898c55b83fe468090b7d3eb8451b99f5caa07d09a07356eccb9084a4dda6a40aa3280e1484a7e6df80` |
+| literal 512-token string | `6ebe0f319cf57cbc0ed8f49c280521c4c753f2d45651e3801eda8a96918c4b3339a195f4083bc2a294a904265b4a547545c6ad97be35206b3ee2e80c699a33ce` |
+| original p49 JPEG (66.jpg) | `955e406a9c298ed86fddfbeca062b32dbeb883d5d0b33a752237ea5ffab70dfb1790be8a49461874fe0017f74404ae4a98788eebead6f95157c0609fd8ff8ca5` |
+| original p50 JPEG (67.jpg) | `c058008906e935f4175a1ba65e4c646fa22ad40f72412517a3babd1ca4c6b589ed8b4f93dd3577c1da90c758c67529eb60d5a113c1e39765ab450c5d141c0add` |
+| original p51 JPEG (68.jpg) | `750fc13c1aac351a9ea8df7fd29dda6f32c5e29d33448be4416770b7235c048e792c377717e8551cde9e2bec94e817083016391230d2b327a2903ee940ca95b0` |
+| p49–p51 concatenated JPEGs | `50b85d442d8ed29d05c0e646607095425cabd3e211b140d1dc5fbae8592713dfd46d9d26ed09ed3a0db8d3345ad1826e98a0a323f8b4cd16efb2aac67d410c79` |
+
+ The p50 table is not the direct SHA-512/Whirlpool preimage in any of these exact forms. This does not identify the intended deep-web page, choose the digest family, or exclude a different source-selected external object. Reproduce with [the standalone preimage gate](../sims/lp2_p50_p56_preimage_gate.py). No destination or plaintext recovered.
 
 ## Literal character-class record decision (Director #2877, Agent3, 25 November)
 

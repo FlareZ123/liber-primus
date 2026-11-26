@@ -75,8 +75,9 @@ candidates = [
 ]
 
 print(f"target_sha512_or_whirlpool={TARGET}")
-print("candidate\tbytes\tsha512\twhirlpool\tmatch")
+print("candidate\tbytes\tsha512\twhirlpool\tblake2b_512\tmatch")
 for name, data in candidates:
     sha512 = hashlib.sha512(data).hexdigest()
     wp = whirlpool(data)
-    print(f"{name}\t{len(data)}\t{sha512}\t{wp}\t{sha512 == TARGET or wp == TARGET}")
+    b2 = hashlib.blake2b(data, digest_size=64).hexdigest()
+    print(f"{name}\t{len(data)}\t{sha512}\t{wp}\t{b2}\t{sha512 == TARGET or wp == TARGET or b2 == TARGET}")
