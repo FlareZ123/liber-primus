@@ -82,9 +82,23 @@ Five clock conventions: continuous tape; chapter reset; absolute rune position w
 
 Every q=1..13 is excluded for continuous and both chapter conventions by the minimum E count 1397 in the three exact pinned GP-encoded donor registers; q=1..12 are excluded for both page conventions. Specifically, Gibran, Emerson, and Shakespeare have minimum E counts 1407,1482,1397 across respectively 50,159 / 311,675 / 205,845 contiguous manuscript-length windows. This adds a seam-sensitive q13 exclusion **without the common-cycle constraint** in the prior [q13 common cyclic certificate](lp2-conjugated-cumulative-gp29-recovery.md). The previously known page-head q13 independent assignments (1421/1430) remain above the floor; the earlier common-cycle refinement excludes that narrower page-head model. The row-only maxima at q13 do not exclude by E count.
 
+### Page-head q13: exact per-phase native-window exclusion
+
+The aggregate single-letter result leaves both page-head conventions open. Optimizing the k-regular graph for each k=1..15 gives stronger necessary sorted-prefix occupancy bounds. In addition, for an *ordered* candidate plaintext, every phase's E count over constrained positions must individually be no larger than its assignment optimum. Page heads remain wholly free. This second test does not assume printed word boundaries, but it does assume the candidate native text order relative to cipher phase.
+
+| Donor | Windows | Page-local passes E / all k / phase E | Page-absolute passes E / all k / phase E |
+|---|---:|---:|---:|
+| Gibran | 50,159 | 2543 / 0 / 0 | 3377 / 0 / 0 |
+| Emerson | 311,675 | 0 / 0 / 0 | 0 / 0 / 0 |
+| Shakespeare | 205,845 | 5621 / 460 / 0 | 7986 / 3716 / 0 |
+
+The best surviving aggregate-compatible Shakespeare window still exceeds at least one phase's E capacity by 9 (local) or 15 (absolute). Therefore **no contiguous manuscript-length window in these three donor registers can be output under either q13 page-head clock**, even allowing unrelated Latin-square operations at each phase. The aggregate survivors do not prove existence of a key. Reordering the candidate's runes can evade the phase test, and arbitrary English not in these finite windows is not excluded. The result extends the prior shared common-cycle page-head gate to a broader model but makes the explicit ordered-donor assumption.
+
+Reproduce with `node sims/lp2_periodic_latin_feedback_capacity_sft.cjs page13-window:page-local` and `page13-window:page-absolute`; both exact functions executed on the pinned original input and donors. Full phase and multi-symbol bounds are stored in the raw JSON.
+
 Three independent phase-isotope controls (each phase has three independently shuffled alphabets A,B,O; `C=O^-1(A(previous C)+B(P))` modulo29) roundtrip all 38,868 native runes. True top-one counts 1473/1644/1502 fall below capacities 1870/1979/1896, and true top-two counts 2628/2683/2615 fall below capacities 3429/3577/3447. These are known-key inversion controls. Twenty-four small exact flow instances match exhaustive graph enumeration. The actual connected JS experiment was run on pinned Git blobs; the standalone Node wrapper was not separately run.
 
-**Decision:** retire these phase-only two-sided receivers through q13 under continuous and chapter-seam clocks and through q12 under page-head clocks for the specified finite native registers. Page-head q13, q14+, independently keyed chapters, one-sided tables, nonconsuming F, nonliteral ciphertext ordering, and differently distributed plaintext remain outside this exclusion. No unknown plaintext or key. Do not promote the phase count or Latin-square assumption as authorial evidence.
+**Decision:** retire these phase-only two-sided receivers through q13 under continuous and chapter-seam clocks and through q12 under page-head clocks for the specified finite native registers. The q13 page-head model is also excluded for the finite contiguous ordered donor windows by the phase gate; its general reordered-plaintext version remains open. q14+, independently keyed chapters, one-sided tables, nonconsuming F, nonliteral ciphertext ordering, and differently distributed plaintext remain outside this exclusion. No unknown plaintext or key. Do not promote the phase count or Latin-square assumption as authorial evidence.
 
 [Exact SFT](../sims/lp2_periodic_latin_feedback_capacity_sft.cjs) · [raw capacities, controls and input blobs](lp2-periodic-latin-feedback-capacity.json). Run `node sims/lp2_periodic_latin_feedback_capacity_sft.cjs` for the summary; optional task `continuous:13:1,2,3,5,9,15` calculates exact multi-symbol bounds.
 
