@@ -153,3 +153,8 @@ Interpreting 17 as the **one-based first page** and 42 as the **length** gives p
 The shared divisor 60 is also a possible source-derived sexagesimal invariant. This is relevant to the older p0/base-60 discussion, but it does **not** validate that report's unsourced page/word address formula or the unresolved p50 radix. Do not revive those address searches without a separate source selecting the exact indexing grammar.
 
 This is a stronger structural prediction than “6+10+42 happens to sum to 58”: the two totients normalize by their common divisor to the exact start/length pair (17,42). It remains conditional on the visual Cistercian reading and the natural, but still interpretive, choice to read the quotients as a one-based page start and section length.
+
+
+### Relationship to the earlier p0/base-60 address hypothesis
+
+This conditional gcd-60 invariant updates, but does not validate, `im-results/lp2-p0-title-base60-totient-navigation-candidate.md`. It supplies a possible source for the number 60; the old report's page/word address grammar and p50 token radix remain unresolved. The old address route stays closed pending an independent selector.

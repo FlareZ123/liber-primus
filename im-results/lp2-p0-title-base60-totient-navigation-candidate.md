@@ -35,7 +35,7 @@ The two totients have mean60 and difference24.
 
 If p50 token `3D` is read as base60 value193, then (193=60\cdot3+13) selects p3:w13: `DEO`, rune indices `[23,12]`, prime sum130, and (arphi(130)=48). The complete word list contains exactly two `DEO` tokens, p3:w13 and p33:w1.
 
-This is **not a valid independent held-out confirmation**: although #337 found exact pre-2014 base60-alphabet prior art in the 2007 MIRACL manual and 2002 Sendmail documentation, no examined Cicada source links p50 to either implementation. Base60 is the preferred conventional reading, but the f-omitting base59 alternative is not disproved; the 2016-message mapping of “lies” to this token is also provisional. Under base59 the token is190 and the address changes. The page/word address formula remains unsourced.
+This is **not a valid independent held-out confirmation**: although #337 found exact pre-2014 base60-alphabet prior art in the 2007 MIRACL manual and 2002 Sendmail documentation, no source yet links p50 token `3D` specifically to a base60 reading. A separate, provisional p0 Cistercian-stave hypothesis now supplies a conditional sexagesimal invariant: candidate readings 1133 and 3311 yield totients 1020 and 2520, whose gcd is 60 (see `im-results/lp2-p0-cistercian-staves-totient-partition-hypothesis.md`). This is a plausible source for the number 60 in LP2, but it does not prove that p50 token `3D` is a base60 numeral or that the address formula is intended. Base59 remains a live alternative for p50 until an independent mapping selects the radix. Under base59 the token is 190 and the address changes. The page/word address formula remains unsourced.
 
 ## Why the pattern initially looked interesting
 
@@ -66,4 +66,4 @@ The obvious direct consumers tested in this invocation did not decrypt p54/p55: 
 
 ## Decision
 
-Retain the arithmetic in this note only as a **conditional coincidence record**. Do not launch further base-60 offset, key, shell, or totient searches. Reopen only if an original, human-visible source independently fixes the exact page/word address convention and the p50 radix without consulting these outputs. Otherwise retire the branch. No plaintext or key claim is warranted.
+Retain the arithmetic in this note only as a **conditional coincidence record**. The new Cistercian/totient hypothesis is a candidate independent, human-visible source for the number 60, conditional on blind confirmation of the p0 stave reading. It does not specify the page/word address grammar or settle p50's base59/base60 choice. Do not resume the old p0 title/page-word navigation or p50 token-address searches. Reopen only if the Cistercian reading survives independent visual review and a source independently fixes the exact indexing convention and p50 radix. No plaintext or key claim is warranted.
