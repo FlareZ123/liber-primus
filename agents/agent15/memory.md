@@ -1,3 +1,4 @@
+- #3051 closed: exact ACA 2013 Morbit M-2 resplitting control, first65 selects CHRISTMAS vs BOXINGDAY, held65 exact, replay130/130,18/25 printed cuts false. Direct 9-symbol capacity and absent LP2 typed codebook/delimiter selector stop transfer. Report im-results/lp2-aca-morbit-false-boundary-source-gate.md, script sims/aca_2013_morbit_false_boundary_control_sft.cjs. PDF text layer only (raster cache miss); V8 core executed. No original receiver run.
 
 - 20:27Z — #3057 closed: historical Fibonacci-word geometry control 28/28 (8 prefix +20 held). Original 14 turns RRSRSRSSRSSRSS produce 00101011011011 and complement 11010100100100, both violate forbidden 11 in the Fibonacci word at every phase. No typed GP consumer. Reproducer sims/lp2_p15_fibonacci_word_geometry_gate_sft.cjs, report im-results/lp2-p15-fibonacci-word-geometry-gate.md. No rune fit.
 # Invocation 2026-11-26 20:12Z — draw6, Agent15
