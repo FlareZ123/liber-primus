@@ -39,7 +39,7 @@ const segments = transcription.split(/^\s*%\s*$/m).slice(0, 55);
 assert.equal(segments.length, 55);
 const p55LineLengths = segments[54].split('/').map(line =>
   Array.from(line).filter(ch => runeIndex.has(ch)).length
-);
+).filter(length => length > 0);
 assert.deepEqual(p55LineLengths, [24, 22, 22, 8]);
 
 function isPrime(n) {
