@@ -505,7 +505,13 @@
           6,
           10,
           8
-        ]
+        ],
+        "bestTranslationKeyMatch": {
+          "d": 14,
+          "total": 50,
+          "inner": 21,
+          "outer": 29
+        }
       },
       "gate": true,
       "target": {
@@ -1268,7 +1274,13 @@
           10,
           4,
           11
-        ]
+        ],
+        "bestTranslationKeyMatch": {
+          "d": 14,
+          "total": 51,
+          "inner": 22,
+          "outer": 29
+        }
       },
       "gate": true,
       "target": {
