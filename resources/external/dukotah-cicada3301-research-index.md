@@ -150,3 +150,7 @@ Use the latest handoff and live ledger for any newer work. The upstream scope is
 ## Round47 — backward rejection and decoy arrangements (25 November)
 
 [Round47 synthesis](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round47/SYNTHESIS.md) (observed blob 9e4b3c0e9d6c5d705b12a45877e994f521adda02) identifies a gap in monotone rejection decoders: a rejected repeat can move the key cursor backward rather than forward. It also revisits bounded key recovery when printed group lengths are decoys. These are proposed architectures, not first-party evidence. Local [periodic and prime-stream V-BACK experiments](../../im-results/lp2-vback-periodic-ring-recovery.md) cover q8/q13 by a calibrated bounded nomination/beam, and signed prime-minus-one with origins 0–3301 by exact cursor DP (including literal-F holds). No authentic original key recovered.
+
+### Resolved 2014 archive object (Director #2944; 26 November 09:10 UTC)
+
+The [fv7ly archive identity report](../../im-results/2014-fv7ly-archive-identity.md) resolves the external OSINT sweep's second .htaccess blob. Actual downloaded 5,577,967-byte raw ASCII hex SHA256 matches exact reconstruction from known LP1 pages 03, 04 and composite 05 (nested central 1033 magic square, mirrored/reversed streams, complemented bytes). No gzip or novel LP2 material. Avowy was separately resolved as the known Stage5 four-image container. This is a scoped object identity, not a general conclusion about other unexamined archive items.
