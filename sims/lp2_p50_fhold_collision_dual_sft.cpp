@@ -121,13 +121,52 @@ struct Problem{
  void starStep(const StarResult&s,I eta){
   require(eta>=0,"step");for(int b=1;b<R;b++)for(int a=0;a<b;a++){int i=s.outer[a],j=s.local[b][a];if(i==j)continue;auto&f=fac[edgeId(a,b)];f.ma[i]-=eta;f.ma[j]+=eta;st[a][i].unary-=eta;st[a][j].unary+=eta;}
  }
+ I blockBound(int B,bool verbose=false)const{
+  const int S=Hmax+1;require(B>=1,"block size");vector<int> offset(R+1);vector<vector<vector<int>>> by(R,vector<vector<int>>(S));
+  for(int r=0;r<R;r++){offset[r+1]=offset[r]+st[r].size();for(int a=0;a<int(st[r].size());a++)by[r][st[r][a].h].push_back(a);}
+  vector<I> outer(S,NEG);outer[0]=0;
+  for(int s=0;s<R;s+=B){
+   int e=min(R,s+B),P=offset[s],depth=e-s;
+   // Transposed cross-score vectors: each target state contributes one
+   // contiguous vector over all preceding states. Prefix feasibility is
+   // imposed by the actual chain DP, not by independent pair maxima.
+   vector<vector<vector<int16_t>>> cross(depth);
+   for(int t=s;t<e;t++){
+    cross[t-s].assign(st[t].size(),vector<int16_t>(P));
+    for(int r=0;r<s;r++){auto&f=fac[edgeId(r,t)];for(int a=0;a<f.na;a++)for(int b=0;b<f.nb;b++){
+     int v=f.w[size_t(a)*f.nb+b];if(v>=0)cross[t-s][b][offset[r]+a]=v;
+    }}
+   }
+   vector<vector<int>> reward(depth+1,vector<int>(P));vector<int> hist(L);
+   vector<I> next(S,NEG),pre(S),buf(S);int64_t leaves=0;int hstart=0;
+   // Each leaf fixes the ENTIRE target-block path. Its cross reward is
+   // optimized against one coherent preceding trajectory ending at hstart.
+   auto walk=[&](auto&&self,int r,int h,I within)->void{
+    if(r==e){leaves++;fill(pre.begin(),pre.end(),NEG);pre[0]=0;
+     for(int k=0;k<s;k++){fill(buf.begin(),buf.end(),NEG);int lo=max(0,hstart-(s-k)),hi=min(k,hstart);
+      for(int j=lo;j<=hi;j++)if(pre[j]!=NEG)for(int a:by[k][j]){auto&v=st[k][a];int hh=j+v.d;if(hh>hstart||hh+(s-k-1)<hstart)continue;buf[hh]=max(buf[hh],pre[j]+reward[depth][offset[k]+a]);}
+      pre.swap(buf);
+     }
+     require(pre[hstart]!=NEG,"block prefix infeasible");next[h]=max(next[h],outer[hstart]+within+pre[hstart]);return;
+    }
+    int d=r-s;
+    for(int a:by[r][h]){auto&v=st[r][a];auto&cv=cross[d][a];for(int j=0;j<P;j++)reward[d+1][j]=reward[d][j]+cv[j];I z=within;for(int c:v.cells)z+=hist[c]++;
+     self(self,r+1,h+v.d,z);for(int c:v.cells)hist[c]--;
+    }
+   };
+   for(int h=0;h<S;h++)if(outer[h]!=NEG){hstart=h;walk(walk,s,h,0);}
+   outer.swap(next);if(verbose)cout<<"BLOCK "<<s<<" "<<e<<" leaves "<<leaves<<" upper "<<*max_element(outer.begin(),outer.end())<<endl;
+  }
+  return *max_element(outer.begin()+Hmin,outer.end());
+ }
  I exactMask(uint64_t mask)const{
   int h=0,z=0;vector<int> hist(L);I score=0;for(int i=0;i<int(x.size());i++){if(!x[i]&&((mask>>(z++))&1)){h++;continue;}int c=ids[(i-h)%ids.size()]*29+x[i];score+=hist[c]++;}return h>=Hmin&&h<=Hmax?score:NEG;
  }
 };
-void selftest(){mt19937 g(297234);int cases=0;for(int t=0;t<64;t++){vector<int>x(18),ids(5);for(auto&v:x)v=g()%4;for(auto&v:ids)v=g()%3;int z=count(x.begin(),x.end(),0),lo=z?g()%(z+1):0,hi=lo+(g()%(z-lo+1));Problem p(x,ids,lo,hi);I best=NEG;for(uint64_t m=0;m<(uint64_t(1)<<z);m++)best=max(best,p.exactMask(m));for(int i=0;i<5;i++){require(p.certificate()>=best*SCALE,"dual underbound");auto q=p.star();require(q.upper>=best*SCALE,"star underbound");p.starStep(q,100);p.sweep();}require(p.certificate()>=best*SCALE,"final underbound");cases++;}cout<<"SELFTEST "<<cases<<" exhaustive toy optima bounded"<<endl;}
+void selftest(){mt19937 g(297234);int cases=0;for(int t=0;t<64;t++){vector<int>x(18),ids(5);for(auto&v:x)v=g()%4;for(auto&v:ids)v=g()%3;int z=count(x.begin(),x.end(),0),lo=z?g()%(z+1):0,hi=lo+(g()%(z-lo+1));Problem p(x,ids,lo,hi);I best=NEG;for(uint64_t m=0;m<(uint64_t(1)<<z);m++)best=max(best,p.exactMask(m));require(p.blockBound(1)>=best&&p.blockBound(3)>=best&&p.blockBound(p.R)==best,"block bound test");for(int i=0;i<5;i++){require(p.certificate()>=best*SCALE,"dual underbound");auto q=p.star();require(q.upper>=best*SCALE,"star underbound");p.starStep(q,100);p.sweep();}require(p.certificate()>=best*SCALE,"final underbound");cases++;}cout<<"SELFTEST "<<cases<<" exhaustive toy optima bounded"<<endl;}
 int main(int argc,char**argv){try{
  require(argc==4||argc==5,"args sweeps minH maxH [star]");int sweeps=stoi(argv[1]),lo=stoi(argv[2]),hi=stoi(argv[3]);require(sweeps>=1&&sweeps<=1000,"sweeps");selftest();auto x=corpus(),ids=grid();auto start=chrono::steady_clock::now();Problem p(x,ids,lo,hi);
+ if(argc==5&&string(argv[4])=="block"){require(sweeps<=16,"block max");I b=p.blockBound(sweeps,true);cout<<"CERTIFIED_BLOCK_MAX "<<b<<" H "<<lo<<" "<<hi<<" block "<<sweeps<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;return 1;}
  if(argc==5){require(string(argv[4])=="star","mode");I best=NEG,lower=0;
   for(int i=0;i<=sweeps;i++){auto q=p.star();if(i==0||q.upper<best)best=q.upper;lower=max(lower,q.primal);if(i==0||i%10==0||best/SCALE<1882||i==sweeps)cout<<"STAR "<<i<<" scaled "<<q.upper<<" best "<<best/SCALE<<" lower "<<lower<<" disagreement "<<q.differences<<" sec "<<chrono::duration<double>(chrono::steady_clock::now()-start).count()<<endl;
    if(best/SCALE<1882||!q.differences)break;I eta=max<I>(1,(q.upper-lower*SCALE)/(max(1,2*q.differences)*(2+i/100)));p.starStep(q,eta);
