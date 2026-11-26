@@ -1,0 +1,1574 @@
+{
+  "sourceBlobs": [
+    [
+      "resources/liber-primus/lp2-transcription.txt",
+      "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    ],
+    [
+      "resources/control/english_wordfreq_textblob.txt",
+      "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    ],
+    [
+      "resources/external/relikd-solved-gp29-native-v1.json",
+      "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    ],
+    [
+      "resources/control/gibran_prophet_58585.txt",
+      "df260a07d56bf5998d40a6360b6132c35c252d10"
+    ],
+    [
+      "resources/control/emerson_essays_2944.txt",
+      "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    ],
+    [
+      "resources/control/shakespeare_first300k.txt",
+      "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    ]
+  ],
+  "mode": "pilot",
+  "diagnosticCaveat": null,
+  "lexicon": 33350,
+  "variants": [
+    [
+      -1,
+      false
+    ],
+    [
+      -1,
+      true
+    ],
+    [
+      1,
+      false
+    ],
+    [
+      1,
+      true
+    ]
+  ],
+  "rows": [
+    {
+      "name": "0_warning",
+      "mode": "plant",
+      "n": 120,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3263874298055063,
+      "lower": 1.3263874298055065,
+      "oov": 0,
+      "expansions": 30,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_warning",
+      "mode": "wrong-rule",
+      "n": 120,
+      "variant": 0,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.041666666666666664,
+      "cost": 5.511283397316514,
+      "lower": 5.370531708518021,
+      "oov": 22,
+      "expansions": 56,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_warning",
+      "mode": "wrong-length",
+      "n": 120,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.43333333333333335,
+      "cost": 4.28422213664795,
+      "lower": 3.76271976801667,
+      "oov": 16,
+      "expansions": 144,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "mode": "plant",
+      "n": 215,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3809564191461932,
+      "lower": 1.380956419146193,
+      "oov": 1,
+      "expansions": 54,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "mode": "wrong-rule",
+      "n": 215,
+      "variant": 1,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.03255813953488372,
+      "cost": 5.210272609386721,
+      "lower": 4.60871528036608,
+      "oov": 32,
+      "expansions": 84296,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          2,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          1,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "mode": "wrong-length",
+      "n": 215,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.7395348837209302,
+      "cost": 2.760062631353595,
+      "lower": 2.258638851690927,
+      "oov": 13,
+      "expansions": 1054,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "mode": "plant",
+      "n": 128,
+      "variant": 2,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.9453125,
+      "cost": 2.9450719340763847,
+      "lower": 2.9450719340763842,
+      "oov": 8,
+      "expansions": 27,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "mode": "wrong-rule",
+      "n": 128,
+      "variant": 2,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.0234375,
+      "cost": 5.323582211390234,
+      "lower": 5.282765016242215,
+      "oov": 21,
+      "expansions": 36,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "mode": "wrong-length",
+      "n": 128,
+      "variant": 2,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.5,
+      "cost": 4.414371955355873,
+      "lower": 3.7102047368878988,
+      "oov": 17,
+      "expansions": 81,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "mode": "plant",
+      "n": 132,
+      "variant": 3,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3279012193749085,
+      "lower": 1.327901219374909,
+      "oov": 1,
+      "expansions": 38,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "mode": "wrong-rule",
+      "n": 132,
+      "variant": 3,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.007575757575757576,
+      "cost": 5.491611974011837,
+      "lower": 5.020197396597797,
+      "oov": 22,
+      "expansions": 1774,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          1,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          0,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "mode": "wrong-length",
+      "n": 132,
+      "variant": 3,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.7121212121212122,
+      "cost": 3.5080571056179735,
+      "lower": 2.812449361702236,
+      "oov": 14,
+      "expansions": 505,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "plant",
+      "n": 153,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.4933143453319684,
+      "lower": 1.4727314007660588,
+      "oov": 2,
+      "expansions": 41,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "wrong-rule",
+      "n": 153,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.058823529411764705,
+      "cost": 4.903954675725084,
+      "lower": 4.499940645818867,
+      "oov": 20,
+      "expansions": 2961,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "mode": "wrong-length",
+      "n": 153,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.5359477124183006,
+      "cost": 3.794699692885573,
+      "lower": 3.052147341652777,
+      "oov": 18,
+      "expansions": 642,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "mode": "plant",
+      "n": 145,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.2105952580008381,
+      "lower": 1.210595258000838,
+      "oov": 1,
+      "expansions": 40,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "mode": "wrong-rule",
+      "n": 145,
+      "variant": 1,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.06206896551724138,
+      "cost": 5.169689387264379,
+      "lower": 4.631385338721163,
+      "oov": 21,
+      "expansions": 26512,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          1,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "mode": "wrong-length",
+      "n": 145,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.6896551724137931,
+      "cost": 3.1112850272421038,
+      "lower": 2.6298633961775773,
+      "oov": 11,
+      "expansions": 663,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-0",
+      "mode": "plant",
+      "n": 252,
+      "variant": 2,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.6749842775568,
+      "lower": 1.653302581142467,
+      "oov": 3,
+      "expansions": 68,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-0",
+      "mode": "wrong-rule",
+      "n": 252,
+      "variant": 2,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.03968253968253968,
+      "cost": 5.286814499221713,
+      "lower": 4.718295647840267,
+      "oov": 39,
+      "expansions": 31341,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-0",
+      "mode": "wrong-length",
+      "n": 252,
+      "variant": 2,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.7341269841269841,
+      "cost": 3.168859031150609,
+      "lower": 2.2712816863935004,
+      "oov": 20,
+      "expansions": 2600,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-1",
+      "mode": "plant",
+      "n": 299,
+      "variant": 3,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 2.019516503996483,
+      "lower": 1.9494171475230584,
+      "oov": 8,
+      "expansions": 388,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-1",
+      "mode": "wrong-rule",
+      "n": 299,
+      "variant": 3,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 4.7244514528509995,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          0,
+          "cap",
+          1631.4387812731172
+        ],
+        [
+          1,
+          "cap",
+          1643.0517451470948
+        ],
+        [
+          2,
+          "cap",
+          1656.5999198497834
+        ],
+        [
+          3,
+          "cap",
+          1666.609660926701
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-1",
+      "mode": "wrong-length",
+      "n": 299,
+      "variant": 3,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.7859531772575251,
+      "cost": 2.8484072418648436,
+      "lower": 2.280223695588089,
+      "oov": 19,
+      "expansions": 15894,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-2",
+      "mode": "plant",
+      "n": 297,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3615780259013843,
+      "lower": 1.3565159100907254,
+      "oov": 2,
+      "expansions": 76,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-2",
+      "mode": "wrong-rule",
+      "n": 297,
+      "variant": 0,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.04377104377104377,
+      "cost": 5.336826089085736,
+      "lower": 4.773098339866358,
+      "oov": 47,
+      "expansions": 112805,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          2,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-2",
+      "mode": "wrong-length",
+      "n": 297,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.6094276094276094,
+      "cost": 3.2451094016477904,
+      "lower": 1.9674378129970624,
+      "oov": 26,
+      "expansions": 17103,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-3",
+      "mode": "plant",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.2815607835599891,
+      "lower": 1.2815607835599891,
+      "oov": 0,
+      "expansions": 63,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-3",
+      "mode": "wrong-rule",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.025,
+      "cost": 5.346966826431385,
+      "lower": 4.815174473101869,
+      "oov": 40,
+      "expansions": 36348,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          2,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-0-3",
+      "mode": "wrong-length",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.8,
+      "cost": 2.8940952842143384,
+      "lower": 2.1635584094800584,
+      "oov": 17,
+      "expansions": 4247,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-0",
+      "mode": "plant",
+      "n": 357,
+      "variant": 2,
+      "recoveredVariant": 2,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3049095028233966,
+      "lower": 1.284837148988743,
+      "oov": 1,
+      "expansions": 116,
+      "states": [
+        [
+          2,
+          "exact",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-0",
+      "mode": "wrong-rule",
+      "n": 357,
+      "variant": 2,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 4.4219786521800115,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          3,
+          "cap",
+          1717.6405877965271
+        ],
+        [
+          0,
+          "cap",
+          1746.4479325460693
+        ],
+        [
+          2,
+          "cap",
+          1743.0216499207786
+        ],
+        [
+          1,
+          "cap",
+          1775.1847678475506
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-0",
+      "mode": "wrong-length",
+      "n": 357,
+      "variant": 2,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 1.7805214339955575,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          2,
+          "cap",
+          830.1356946801413
+        ],
+        [
+          0,
+          "cap",
+          1713.5262025794302
+        ],
+        [
+          1,
+          "cap",
+          1767.2524406697698
+        ],
+        [
+          3,
+          "cap",
+          1789.047797575924
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-1",
+      "mode": "plant",
+      "n": 277,
+      "variant": 3,
+      "recoveredVariant": 3,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.3206398409544151,
+      "lower": 1.320639840954415,
+      "oov": 1,
+      "expansions": 71,
+      "states": [
+        [
+          3,
+          "exact",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-1",
+      "mode": "wrong-rule",
+      "n": 277,
+      "variant": 3,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 4.400015730653739,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          2,
+          "cap",
+          1294.6613163631037
+        ],
+        [
+          1,
+          "cap",
+          1298.0668753731597
+        ],
+        [
+          0,
+          "cap",
+          1318.5636569856415
+        ],
+        [
+          3,
+          "cap",
+          1315.380919202857
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-1",
+      "mode": "wrong-length",
+      "n": 277,
+      "variant": 3,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 2.6281102973143198,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          3,
+          "cap",
+          889.9486239064263
+        ],
+        [
+          1,
+          "cap",
+          1332.4063334212456
+        ],
+        [
+          2,
+          "cap",
+          1375.3957753217546
+        ],
+        [
+          0,
+          "cap",
+          1411.1853864599273
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-2",
+      "mode": "plant",
+      "n": 274,
+      "variant": 0,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.713867562675196,
+      "lower": 1.631857556487468,
+      "oov": 5,
+      "expansions": 1071,
+      "states": [
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          1,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-2",
+      "mode": "wrong-rule",
+      "n": 274,
+      "variant": 0,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 4.330717365528963,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          3,
+          "cap",
+          1237.0203165560545
+        ],
+        [
+          2,
+          "cap",
+          1257.7803906114152
+        ],
+        [
+          1,
+          "cap",
+          1253.3941504638738
+        ],
+        [
+          0,
+          "cap",
+          1255.1024576885493
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-2",
+      "mode": "wrong-length",
+      "n": 274,
+      "variant": 0,
+      "recoveredVariant": null,
+      "exact": false,
+      "excluded": false,
+      "accuracy": 0,
+      "cost": null,
+      "lower": 2.2676649870736463,
+      "oov": null,
+      "expansions": 240004,
+      "states": [
+        [
+          0,
+          "cap",
+          711.4960957619081
+        ],
+        [
+          2,
+          "cap",
+          1291.1112267508718
+        ],
+        [
+          3,
+          "cap",
+          1314.560191450789
+        ],
+        [
+          1,
+          "cap",
+          1337.5237687447468
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-3",
+      "mode": "plant",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 1,
+      "cost": 1.4044071836432908,
+      "lower": 1.3940129158396526,
+      "oov": 1,
+      "expansions": 72,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-3",
+      "mode": "wrong-rule",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 0,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.0375,
+      "cost": 4.9647232204366585,
+      "lower": 4.4960198680348515,
+      "oov": 34,
+      "expansions": 164154,
+      "states": [
+        [
+          1,
+          "cap",
+          1200.4256784990428
+        ],
+        [
+          0,
+          "exact",
+          null
+        ],
+        [
+          2,
+          "excluded-above-cutoff",
+          null
+        ],
+        [
+          3,
+          "excluded-above-cutoff",
+          null
+        ]
+      ]
+    },
+    {
+      "name": "literary-1-3",
+      "mode": "wrong-length",
+      "n": 240,
+      "variant": 1,
+      "recoveredVariant": 1,
+      "exact": true,
+      "excluded": false,
+      "accuracy": 0.725,
+      "cost": 2.7974924697654346,
+      "lower": 2.1447734477158704,
+      "oov": 15,
+      "expansions": 31599,
+      "states": [
+        [
+          1,
+          "exact",
+          null
+        ],
+        [
+          3,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          2,
+          "relaxed-exclusion",
+          null
+        ],
+        [
+          0,
+          "relaxed-exclusion",
+          null
+        ]
+      ]
+    }
+  ],
+  "summary": {
+    "plants": 14,
+    "good": 14,
+    "maxGood": 2.9450719340763847,
+    "minNeg": 1.7805214339955575,
+    "negatives": 28,
+    "negativesExcluded": 0,
+    "gate": false,
+    "cutoff": null
+  },
+  "original": []
+}
