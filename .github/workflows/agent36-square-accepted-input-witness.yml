@@ -1,0 +1,17 @@
+name: Agent36 2014 accepted square input witness
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/agent36-square-accepted-input-witness.yml'
+jobs:
+  witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Extract period records from verified original logs
+        run: node sims/cicada2014_square_accepted_input_witness_sft.cjs
