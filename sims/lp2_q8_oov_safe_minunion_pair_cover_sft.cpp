@@ -133,6 +133,7 @@ string optionWord7(const GDomain&d,const GOption&o){
 uint64_t prior7(const string&w,bool prefix){auto&m=prefix?prefixPrior7:wordPrior7;auto it=m.find(w);return it==m.end()?0:it->second;}
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
+ GSearch()=default;
  Graph base;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
  vector<vector<uint64_t>> optionPrior;vector<uint64_t> seedPrior;vector<vector<string>> seedPrefixes;
  atomic<bool> found{false},timed{false};atomic<size_t>next{0},done{0};Clock::time_point deadline;mutex answerMutex;
@@ -273,6 +274,7 @@ static bool pairCoverEnabled=false;
 
 struct FastSearch : GSearch {
  using GSearch::GSearch;
+ FastSearch():GSearch(){}
  vector<uint8_t> completed;
  mutex checkpointMutex;
  atomic<uint64_t> inheritedCount{0},earlyPackCount{0},momentCalls{0},momentComplete{0},momentKeys{0};
@@ -846,12 +848,16 @@ int main(int argc,char**argv){try{
 
  // GSearch's legacy constructor is used only to initialize its reusable
  // graph/filter infrastructure; replace its 48-group carry profile entirely.
- vector<string>dummy(48,"0");FastSearch s(dummy,3);
+ FastSearch s;
  s.train=p.train;s.ds.clear();s.order.clear();s.seeds.clear();s.maxOov=3;
+ for(const auto&w:fixed::dict)for(char ch:w)fixed::require(fixed::SYM.find(ch)!=string::npos,"invalid base-register glyph");
+ for(const auto&w:p.train)for(char ch:w)fixed::require(fixed::SYM.find(ch)!=string::npos,"invalid control-cipher glyph");
+ cout<<"DOMAIN_BUILD start"<<endl;
  for(int i=0;i<47;i++){
   s.ds.push_back(makeGDomain(s.train[i],fixed::by[s.train[i].size()],s.base,false));
   s.order.push_back(i);
  }
+ cout<<"DOMAIN_BUILD done"<<endl;
  sort(s.order.begin(),s.order.end(),[&](int a,int b){
   auto score=[&](int i){return log2(double(max<size_t>(1,s.ds[i].opts.size())))/s.train[i].size();};
   double x=score(a),y=score(b);return x==y?a<b:x<y;
