@@ -72,7 +72,10 @@ const sourceBody = signed2016.slice(
   signed2016.indexOf("Hello."),
   signed2016.indexOf("-----BEGIN PGP SIGNATURE-----")
 );
-const signedWords = sourceBody.match(/[A-Za-z]+/g).map((word) => word.toUpperCase());
+const signedWords = sourceBody
+  .split(/[^A-Za-z0-9]+/u)
+  .filter((token) => /^[A-Za-z]+$/u.test(token))
+  .map((word) => word.toUpperCase());
 assert.equal(signedWords.length, 43);
 assert.equal(signedWords[35], "FOUND");
 assert.equal(signedWords[36], "GOOD");
