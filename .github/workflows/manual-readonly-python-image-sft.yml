@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   image-source-test:
-    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' && inputs.script != 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' && inputs.script != 'sims/lp2_semantic_running_key_distilgpt2_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_recovery_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_boundary_profile_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_carry_prefix_sft.py' }}
+    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' && inputs.script != 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' && inputs.script != 'sims/lp2_semantic_running_key_distilgpt2_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_recovery_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_boundary_profile_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_carry_prefix_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_multichapter_pool_sft.py' }}
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -195,3 +195,83 @@ jobs:
           name: lp2-semantic-running-key-boundary-profile-${{ matrix.index }}
           path: im-results/lp2-semantic-running-key-boundary-profile-${{ matrix.index }}.json
 
+
+  q8-multichapter-pool:
+    if: ${{ inputs.script == 'sims/lp2_shared_gp29_q8_multichapter_pool_sft.py' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { plant: 0, mode: pooled }
+          - { plant: 1, mode: pooled }
+          - { plant: 0, mode: independent, chapter: 0 }
+          - { plant: 0, mode: independent, chapter: 1 }
+          - { plant: 0, mode: independent, chapter: 2 }
+          - { plant: 1, mode: independent, chapter: 0 }
+          - { plant: 1, mode: independent, chapter: 1 }
+          - { plant: 1, mode: independent, chapter: 2 }
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned CP-SAT solver
+        run: python -m pip install --disable-pip-version-check 'ortools==9.14.6206'
+      - name: Run pooled or independent blind native control
+        continue-on-error: true
+        env:
+          PLANT: ${{ matrix.plant }}
+          MODE: ${{ matrix.mode }}
+          CHAPTER: ${{ matrix.chapter }}
+        run: |
+          if [ "$MODE" = "pooled" ]; then
+            python -u sims/lp2_shared_gp29_q8_multichapter_pool_sft.py --plant "$PLANT" --mode "$MODE" --seconds 1200 --workers 4
+          else
+            python -u sims/lp2_shared_gp29_q8_multichapter_pool_sft.py --plant "$PLANT" --mode "$MODE" --chapter "$CHAPTER" --seconds 1200 --workers 4
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: q8-multichapter-${{ matrix.mode }}-p${{ matrix.plant }}-${{ matrix.chapter || 'all' }}
+          path: im-results/lp2-q8-multichapter-*.json
+          if-no-files-found: warn
+
+  q8-multichapter-pool-gate:
+    if: always()
+    needs: q8-multichapter-pool
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          pattern: q8-multichapter-*
+          path: controls
+      - name: Require both pooled blind recoveries and preserve independent comparison
+        run: |
+          python - <<'PY'
+          import glob, json, sys
+          files = glob.glob('controls/**/lp2-q8-multichapter-*.json', recursive=True)
+          rows = [json.load(open(p, encoding='utf-8')) for p in files]
+          pooled = {r['plant']: r for r in rows if r.get('mode') == 'pooled'}
+          independent = [r for r in rows if r.get('mode') == 'independent']
+          summary = {
+              'artifact_count': len(files),
+              'pooled': {k: {'status': v.get('solver', {}).get('status'), 'passed': v.get('passed')} for k, v in pooled.items()},
+              'independent': [
+                  {'plant': r.get('plant'), 'chapter': r.get('independent_chapter_index'),
+                   'status': r.get('solver', {}).get('status'),
+                   'effective_action_recovered': (r.get('recovery') or [{}])[0].get('effective_action_recovered'),
+                   'holdout_truth_present': (r.get('recovery') or [{}])[0].get('holdout_truth_present'),
+                   'holdout_groups': (r.get('recovery') or [{}])[0].get('holdout_groups')}
+                  for r in independent
+              ],
+          }
+          print(json.dumps(summary, separators=(',', ':')))
+          complete = len(files) == 8 and len(pooled) == 2 and len(independent) == 6
+          passed = complete and all(v.get('passed') is True for v in pooled.values())
+          if not passed:
+              sys.exit('Pooled blind controls did not both recover the planted effective actions and held native words.')
+          PY
