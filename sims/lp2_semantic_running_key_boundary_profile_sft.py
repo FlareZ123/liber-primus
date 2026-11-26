@@ -7,6 +7,9 @@ sweeps are applied to the authentic pair and the previously selected rival.
 The 384-state n-gram proposal beam is a search bound, not a proof of optimality.
 """
 import argparse
+import base64
+import gzip
+import hashlib
 import json
 from pathlib import Path
 
@@ -70,19 +73,28 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--index", type=int, required=True, choices=range(6))
     parser.add_argument(
-        "--input-dir",
+        "--input-file",
         type=Path,
-        default=ROOT / "im-results" / "prior-semantic-recovery",
+        default=ROOT / "im-results" / "lp2-semantic-running-key-boundary-profile-inputs.json.gz.b64",
     )
     args = parser.parse_args()
 
-    source = args.input_dir.resolve() / f"lp2-semantic-running-key-recovery-{args.index}.json"
-    data = json.loads(source.read_text(encoding="utf-8"))
-    control = data["control"]
-    summary = data["summary"]
+    source = args.input_file.resolve()
+    compressed = base64.b64decode(source.read_text(encoding="ascii").strip())
+    raw = gzip.decompress(compressed)
+    input_sha256 = hashlib.sha256(raw).hexdigest()
+    expected_sha256 = "fd49346669ec90cf52bf12984a398cbc2715eeb5e438af1f78ed713a8c85cde0"
+    if input_sha256 != expected_sha256:
+        raise RuntimeError(f"saved-input SHA-256 mismatch: {input_sha256}")
+    cases = json.loads(raw)
+    case = cases[args.index]
+    if case["index"] != args.index:
+        raise RuntimeError("saved-input index mismatch")
+    control = {"C": case["C"], "L": case["L"], "truth": case["truth"], "name": case["name"]}
+    summary = case["summary"]
     C, L = control["C"], control["L"]
     truth = control["truth"]
-    rival = data["positive"]["final"]
+    rival = case["rival"]
 
     server = Server()
     try:
@@ -111,7 +123,9 @@ def main():
             "source": {
                 "workflowRun": 45536706261,
                 "artifact": f"lp2-semantic-running-key-recovery-{args.index}",
+                "artifactId": case["artifactId"],
                 "input": str(source.relative_to(ROOT)),
+                "inputSha256": input_sha256,
                 "model": MODEL,
                 "revision": REV,
             },
