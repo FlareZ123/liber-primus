@@ -93,6 +93,39 @@ All nine variants exactly reproduce the original ciphertext when **their own** d
 
 **Result:** the authentic prime-totient cipher on solved LP2 p56 runs continuously **across both internal 13-dot and 10-dot marks**. Its key counter is based on **eligible GP runes**, with the known literal-F skip, and does not consume an extra step at either physical control stencil. The presence of a hexadecimal digest is not a key-state reset under this solved-page mechanism.
 
+
+## Ordered event-only state: exact observability and ambiguity (Director #2961)
+
+The original order matters even when marks share a rune offset. The [36-event tape and raw results](lp2-ordered-event-observability-output.json) joins the existing original-pixel-audited centers to the corrected ink ledger, page-local and global rune offsets, adjacent rune ink, and the pinned Rain transcription's line context. It preserves the separate black and red 13-dot events at global offset 1860 (p7, different physical lines), and the p14 terminal / p15 initial events at offset 3603 (different physical pages). The core checked all 58 page rune counts and the ordered type/offset sequences against the pinned transcription. Local original JPEG crops were additionally inspected at p7, p15, p36, p38, p49, p56 and p57; this is a reuse of the prior complete pixel census, not a new independent full-image extraction. Transcription line context is explicitly derivative.
+
+**Distinct question:** Can an event-only reversible state update be learned even without selecting a particular reset or advance operation? Let a single public state `s ∈ GP29` remain constant between large marks and add to the output of an independently specified base decoder. On each mark type `t`, apply an arbitrary fixed permutation `T_t(s)` (all bijective transitions allowed). Assume this overlay, including its state continuity, is common to the book and both solved controls. The established base decoder is prime-minus-one with literal-F hold for p56 and identity for p57. This does not assume the unknown base decoder is known.
+
+Direct replay of the historical wordings gives 85/85 p56 and 95/95 p57 exact symbols, including the p56 literal F. The 179 other symbols all impose zero additive residual. In source order the five observed event-counter vectors (all events, 13-only, 10-only, 23-only) are:
+
+| Control interval | All | 13 | 10 | 23 |
+|---|---:|---:|---:|---:|
+| p56 [0,5) | 31 | 28 | 3 | 0 |
+| p56 [5,45) | 32 | 29 | 3 | 0 |
+| p56 [45,85) | 33 | 29 | 4 | 0 |
+| p57 [0,7) | 34 | 30 | 4 | 0 |
+| p57 [7,95) | 35 | 31 | 4 | 0 |
+
+The first three observations alone require `T_13(0)=0` and `T_10(0)=0`. Because each is a permutation, its unique preimage of zero is zero. Run the original event history backwards from p56's first rune: every previous 13/10 event must have had state zero before and after. Thus **all 12,956 unknown runes must have neutral overlay**, independent of the initial state or the (28!)² pairs of transition permutations fixing zero. The terminal 23 event has no following rune. This excludes an entire event-only observable GP29 state family, not just a handful of reset/advance modes. If color is a separate opcode, the unique black13 at p7:194 is unobserved on the solved pages; backward propagation still forces neutrality for all 11,096 unknown runes at global indices [1860,12956). If the shared initial state is zero, neutrality extends to the full book even in that color-sensitive variant. A clock depending on rune values, gap lengths, page resets, or an independently hidden state is a different model.
+
+**Exact ambiguity when state is hidden.** To test the genuinely different ordinal-stream hypothesis, let a counter advance cyclically modulo q on every event (or on 13-only or 10-only events) and let a free GP29 table f map the counter to an additive output offset. State continuity is fixed; q and f are deliberately unselected, so this is an identifiability result rather than a key proposal. All observed residues of f must be zero. The five consecutive all-event counts force every residue for q≤5; four consecutive 13-counts force every residue for q≤4; two consecutive 10-counts force every residue for q≤2. The first periods beyond those thresholds have the following exact original support:
+
+| Counter | First ambiguous q | Free residue | Unknown runes on this residue | Other unknown runes forced neutral |
+|---|---:|---:|---:|---:|
+| All large marks | 6 | 0 | 1,907 | 11,049 |
+| 13-dot marks only | 5 | 2 | 2,111 | 10,845 |
+| 10-dot marks only | 3 | 2 | 2,756 | 10,200 |
+
+The 10-only witness's unconstrained interval is exactly [9358,12114), i.e. after the numbered block and before the numeric table. For each first ambiguous counter, all-zero f and f(free residue)=1 with all other entries zero yield **identical authentic solved plaintext** while differing on the stated unknown support. Both maps are reversible GP29 translations on the original symbols; exact round-trip was checked. These witnesses do not assert F-bypass compatibility on unknown pages or genuine plaintext. More generally every free residue that occurs on unknown runes can take any of 29 offsets, independently, producing distinct overlays consistent with these controls. Larger q samples in the raw output illustrate the increasing ambiguity; no search for a language-optimal f was run.
+
+**Decision:** the ordered tape supplies neither a recoverable nontrivial universal observable state nor a unique hidden counter readout. Historical Cicada's actual prime stream, signed book-code reset conventions, and typed packet framing do not specify an LP2 event opcode or hidden-counter modulus/readout (see #2174, #2355, #2796, #2843 and #2915). Do not optimize free maps against unknown ciphertext. An independently selected non-event state input, historical rule for a hidden-state output, or authenticated unknown plaintext spanning an event would be needed to revive this branch. This leaves gap-dependent and chapter-specific mechanisms open; no unknown base cipher, plaintext or authentic key is recovered.
+
+Reproduction: [single-file CommonJS test](../sims/lp2_ordered_event_observability_sft.cjs), `node sims/lp2_ordered_event_observability_sft.cjs`. Core executed on the actual repository inputs in connected V8; the standalone Node wrapper has not independently run. Corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, ink blob `0614aca67969a14ae006e0c1ae6aee6dcd8136e6`, Rain blob `4d346cd5c0c85dac71624cc2ad3c100f963404bc`.
+
 ## Source-selected transfer target: the 10-dot and 256-byte table bridge
 
 **New visual connection, classified as source-supported layout and a *provisional* clock-transfer hypothesis:** among all four original LP2 ten-dot stencil events, the two on physical **p49** and solved **p56** immediately introduce conspicuous non-runic binary-encoded material before printed rune text resumes. The other two 10-dot marks on pp36 and38 delimit the five Arabic-numbered heading paragraphs, so ten dots identify unusual typographic block boundaries more generally and cannot be asserted to mean "binary bytes" or "cipher restart."
