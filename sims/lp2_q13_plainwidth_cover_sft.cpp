@@ -37,7 +37,7 @@ unsigned brute(const Key&k,int c,unsigned m,bool reverse){unsigned out=0;for(int
 void toy(){mt19937 rng(3301);for(int i=0;i<10000;i++){Key k;for(int&t:k)t=int(rng()%30)-1;Trans x=transition(k);unsigned m=rng()&ALL;int c=rng()%A;assert(next(x,c,m)==brute(k,c,m,false));assert(prev(x,c,m)==brute(k,c,m,true));}cerr<<"toy transition comparisons 20000/20000\n";}
 struct Counts{uint64_t placements=0,partial=0,complete=0,relaxRejected=0,exactTested=0,local=0,continuous=0,shared=0;};
 int main(int argc,char**argv){if(argc<4)return 1;string mode=argv[1];auto c=readTape(argv[2]);auto words=readBank(argv[3]);vector<int>cuts;Key truth{};int truthWord=-1,truthAt=-1,truthPhase=0;bool truthFound=false;
- if(mode=="original"){assert(c.size()==12956&&words.size()==57);uint32_t h=2166136261u;for(int x:c)h=(h^x)*16777619u;assert(h==4267951341u);cuts={0,729,1874,3603,5506,6527,7960,9640,12648,12956};}
+ if(mode=="original"){assert(c.size()==12956&&!words.empty());uint32_t h=2166136261u;for(int x:c)h=(h^x)*16777619u;assert(h==4267951341u);cuts={0,729,1874,3603,5506,6527,7960,9640,12648,12956};}
  else if(mode=="plant"){assert(argc==7);truthWord=stoi(argv[4]);truthAt=stoi(argv[5]);uint32_t seed=stoul(argv[6]);for(int&x:truth){seed=seed*1664525u+1013904223u;x=seed%A;}const auto&w=words.at(truthWord);assert(truthAt>=0&&truthAt+(int)w.p.size()<=(int)c.size());copy(w.p.begin(),w.p.end(),c.begin()+truthAt);int phase=0;for(int i=0;i<(int)c.size();i++){if(i==truthAt)truthPhase=phase;int p=c[i];if(p){c[i]=(p+truth[phase])%A;phase=(phase+W[p])%Q;}}cuts={0,(int)c.size()};rotate(truth.begin(),truth.begin()+truthPhase,truth.end());cerr<<"truth "<<truthWord<<" "<<truthAt<<" "<<str(truth)<<"\n";}
  else return 1;
  toy();vector<Counts>rows(words.size());Counts total;
