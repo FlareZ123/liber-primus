@@ -99,7 +99,7 @@ jobs:
             const fs = require('fs');
             const path = require('path');
             const runId = process.env.READBACK_RUN_ID;
-            if (!/^\\d+$/.test(runId)) throw new Error('Invalid run ID');
+            if (!/^[0-9]+$/.test(runId)) throw new Error('Invalid run ID');
             const files = [];
             function walk(dir) {
               for (const name of fs.readdirSync(dir)) {
@@ -120,7 +120,7 @@ jobs:
             ].join('\n');
             const issue = process.env.READBACK_ISSUE;
             if (issue) {
-              if (!/^\\d+$/.test(issue)) throw new Error('Invalid issue number');
+              if (!/^[0-9]+$/.test(issue)) throw new Error('Invalid issue number');
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
