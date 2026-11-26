@@ -69,3 +69,36 @@ The historical LP1/p56 convention permits plaintext F to emit ciphertext F witho
 Frozen source rows have 7,15,11,3,10,6,5,9,9,6,15,8 ciphertext F positions. Their exhaustive maximizing counts are 42,33,38,31,38,27,33,36,33,35,33,20, summing to **399**, versus 342 without holds. Fixed native donor plants after removing genuine plaintext F have 574,604,507 matches (Shakespeare, Gibran, Emerson). Across 100 deterministic original-shape donor offsets per source, minima/medians/maxima are 486/542/612, 496/562/616, 501/569/646. Every one of the 300 controls exceeds even the original optimized ceiling. A small genuine hold/encrypted-zero control attains true score 12, with exhaustive relaxed ceiling 18 confirmed by independent Cartesian enumeration. These are reference-conditioned observations, not independent statistical replicates or a universal impossibility theorem.
 
 **Decision:** retire this common physical-row/consuming-column model under the authenticated F-hold rule as well. No authentic unknown plaintext or key; distinct page keys and independently justified alternative state clocks remain open. [Frozen SFT](../sims/lp2_floral_physical_2d_fhold_equality_ceiling_sft.cjs), [commit 3961116](https://github.com/FlareZ123/liber-primus/commit/3961116d8f42581e1200debc4c2c63e755c5d4e6). Exact committed script executed against exact fetched source in connected JS runtime, 1.465 seconds, all assertions passed; no separate Node CI claimed.
+
+## Continuous consuming-clock F holds: blind key recovery and exact joint alignment ceiling (Agent44, 26 November)
+
+The earlier continuous attack consumes every rune, while the exact F-hold extension above resets at each physical line. Here the same *arbitrary nonperiodic* 200-digit additive pad starts at the first physical rune of each original p40–48 page and advances only for non-F plaintext, throughout each page independently. Every printed separator is ignored. This is distinct from the two earlier clocks. The repeated floral template motivates the shared page origin; it does not establish it as the intended cipher.
+
+A frozen width-128 joint beam uses the same interpolated GP29 four-gram model and literal-F branches as the [opening triple attack](lp2-p0-p1-cross-sharedpad-original-gate.md#spacing-free-constructive-inverse-agent44-26-november-2026). Training uses literary source bodies with explicit Gutenberg boundaries. Six streams p40–45 determine the hard MAP key; p46–48 decode under that fixed key with no new key fitting. A separate nine-page fit allows every page to contribute to the key. The 200-digit horizon is guaranteed by source lengths 231,273,272,274,273,270,270,274,271 and visible F counts 10,11,14,17,12,8,9,9,14. Every returned prefix reencrypts exactly.
+
+| Input | Six-stream key recovery / 200 | Frozen p46–48-style holdout | Nine-stream key recovery / 200 | Joint per-rune log ratio vs uniform |
+| --- | ---: | --- | ---: | --- |
+| Solved-Cicada native passages, shared secret pad | 200 | 607/607 runes | 200 | +0.951 to +1.448 |
+| Held-out literary passages, shared secret pad | 200 | 613/613 runes | 200 | +1.230 to +1.462 |
+| Same native passages, independent secret pads | 5 vs first pad | no path at step10 | 12 vs first pad | −1.178 to −0.570 |
+| Original p40–48 | unknown | no path at step1 | unknown | −0.974 to −0.678 |
+
+Steps are zero-based consuming positions: original holdout fails on its second key digit, without any holdout pruning. The positive six-stream training plaintexts are 1227/1227 and 1221/1221, and both nine-stream joint positives recover 1834/1834. Original joint output is incoherent. Unlike the opening two-page fit, the frozen six-stream transfer passes both positive controls and fails the independent-key negative. This is strong calibrated evidence against the stated forward shared additive pad, not an exhaustive all-key language theorem. The manuscript pages have been examined previously by the project; “holdout” refers to this fixed fit only. Native controls concatenate solved sections including the mixed-word square; literary control passages are disjoint from training. The exact [SFT](../sims/lp2_floral_continuous_fhold_sharedpad_predictive_sft.cjs) was frozen at 76f57e9b389a5cf72626abe2413cf420f0341c17 and executed in connected V8. [Complete output](lp2-floral-continuous-fhold-sharedpad-output.json).
+
+### All-secret shared-map equality bound with a balanced subset cover
+
+For any fixed consuming index, a deterministic common bijection preserves pairwise equality of the nine plaintext symbols; a noninjective map may increase equality but cannot decrease it. A legal F-hold history removes only chosen ciphertext zeros. A five-page DP maximizes equalities across its ten page pairs, simultaneously allowing every such deletion mask. State before consuming digit t is the five hold counts h, with physical indices t+h. A transition can increase each h through consecutive zeros only, then consumes the selected rune. Add the ten equality indicators, and retain the maximum for each new state. Exactly 200 consuming positions are scored, no dictionary, key, plaintext or beam pruning.
+
+Use the two five-page subsets of offsets (0,1,2,3,5) and (0,1,3,5,6) and all nine cyclic translations of each modulo9. The resulting 18 blocks cover every unordered page pair exactly five times. For any global alignment its pair total multiplied by five equals the sum of its 18 restricted totals, each no larger than its independently maximized block total. Thus floor(sum of block maxima / 5) is a rigorous upper bound on *all nine-page alignments* (not necessarily achievable by one). The balanced design uses page ordinals only.
+
+The original pair-independent upper bound 557 is inconclusive. The 18 exact five-page maxima sum to 2181, giving **at most 436 equal pairs in 7200 opportunities**. Intermediate exploratory all-triple and all-quadruple covers gave bounds 488 and 454. The two authentic-key control prefixes have true totals 448 and 488; their corresponding exact cover bounds 500 and 516 retain both. An independently brute-enumerated five-stream small case returns the same exact 23 maximum.
+
+The broader 300 native literary windows (100 deterministic evenly spaced offsets per donor, nine consecutive source-shaped passages, first200 consuming runes each) have these reference-conditioned totals:
+
+| Donor | Minimum / median / maximum | Above original ceiling436 |
+| --- | --- | ---: |
+| Gibran | 397 / 455 / 512 | 79/100 |
+| Shakespeare | 391 / 445 / 513 | 66/100 |
+| Emerson | 398 / 466 / 540 | 92/100 |
+
+This exact capacity result strengthens the key-independent argument while **not** excluding every native English window: 63/300 references are below or equal to the relaxed ceiling. The windows overlap, so this is not a p-value. The proof extends to arbitrary shared deterministic per-consuming-position maps, under the stated identical literal-F convention. It does not exclude independent keys, other state laws or other alignments. [Exact-cover SFT](../sims/lp2_floral_continuous_fhold_exact_cover_sft.cjs) and [raw output](lp2-floral-continuous-fhold-exact-cover-output.json) were executed in V8; no Windows CI claimed. No authentic unknown plaintext recovered.
