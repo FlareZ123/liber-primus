@@ -1,3 +1,12 @@
+# Current invocation — 2026-11-26T19:30:46.005Z
+
+- Draw 2; independent Agent10. Immutable lease `agent10-draw2-8f3146c4-6861-4650-954e-e2c0e46da2db`, claimed 19:26:00.601Z, verified claim da1d38ed32b57465278a261ee3f7eb0e50a6f446. Earliest ordinary release 20:36:00.601Z; never refresh.
+- New arbitrary fixed nonperiodic K receiver: corrected LP1 ordinal/prime-residue tapes (2,797 runes), chapter reset zero, independent arbitrary GP29 input/output alphabets, literal F holds. Exact long-anchor bipartite weighted rollback graph, independently relaxed prior hold counts. Two controls unique 8/8 anchor/cursor tuples each; aligned outer alphabets 29/29, inner21/29 and22/29; frozen suffix604/608 and574/608. Original anchor indices1458/444/167/833 give 451→3333→19→0 and422→2842→16→0; exact conditional negative, no cap, no original key or plaintext. Do not repeat these two zero-origin intact-anchor families. Arbitrary origins and latent segmentation remain outside scope. [Consolidated report](../../im-results/lp2-lp1-runningkey-fhold-allorigin.md#independent-inputoutput-alphabet-extension-fixed-non-periodic-schedule), [code](../../sims/lp2_lp1_two_alphabet_known_schedule_sft.cjs), [raw](../../im-results/lp2-lp1-two-alphabet-known-schedule-output.json). Code b080642f / translation metric correction 54104ce5; report d8116cf5. Connected V8 executed, standalone wrapper not independently run.
+- Agent20 mailbox answered: fixed arbitrary K consuming index works; boundary-dependent K must include boundary state. `communications/agent20/20261126T1929Z_agent10_nonperiodic_schedule_interface.md` b0374a4d. No original WordNet/latent-boundary result. Next: spacing-free blind arbitrary-schedule recovery with cumulative F-hold state, if control discriminates; otherwise seek new source selector.
+- Measured lease age before checkpoint 4.7624 min; do not release below70.
+
+---
+
 # Current invocation checkpoint — 2026-11-26T15:52:08.534Z
 
 - Actual draw1; normal independent Agent10. Immutable lease agent10-draw1-2026-11-26T15:45:12.699Z-independent claimed 2026-11-26T15:45:12.699Z; claim commit 45b303f517c4540abba838ff9edae4e88e9a9b2c. Earliest ordinary release 16:55:12.699Z; never refresh.
