@@ -1,0 +1,1289 @@
+{
+  "model": "One unknown additive GP29 shift per distinct case-sensitive literal grid token, 256 row-major cycle, phase0 at physical p40, ordinary consuming, no F hold",
+  "n": 3008,
+  "classes": 161,
+  "eq": 1160,
+  "q256Eq": 568,
+  "eligiblePairs": 33717,
+  "bound": [
+    423,
+    753,
+    1026,
+    1271,
+    1499,
+    1712,
+    1914,
+    2097,
+    2263,
+    2406,
+    2513,
+    2597,
+    2672,
+    2745,
+    2807,
+    2860,
+    2906,
+    2938,
+    2963,
+    2979,
+    2990,
+    3001,
+    3007,
+    3008,
+    3008,
+    3008,
+    3008,
+    3008,
+    3008
+  ],
+  "pairBounds": [
+    {
+      "a": 18,
+      "b": 3,
+      "max": 612
+    },
+    {
+      "a": 18,
+      "b": 24,
+      "max": 608
+    },
+    {
+      "a": 18,
+      "b": 15,
+      "max": 594
+    }
+  ],
+  "nativeTop": [
+    18,
+    3,
+    24,
+    15,
+    16,
+    4,
+    10,
+    9
+  ],
+  "refs": [
+    {
+      "name": "Gibran",
+      "n": 46781,
+      "colMin": 1915,
+      "colMax": 2182,
+      "q256Min": 910,
+      "q256Max": 1053,
+      "minDef": 0,
+      "passHist": 32,
+      "passPair": 18,
+      "passCol": 0,
+      "windows": [
+        {
+          "start": 0,
+          "col": 2085,
+          "q256Col": 975,
+          "E": 325,
+          "maxDef": 0,
+          "pairDef": [
+            -82,
+            -16,
+            -56
+          ]
+        },
+        {
+          "start": 1412,
+          "col": 2021,
+          "q256Col": 938,
+          "E": 357,
+          "maxDef": 0,
+          "pairDef": [
+            -27,
+            0,
+            -19
+          ]
+        },
+        {
+          "start": 2824,
+          "col": 2141,
+          "q256Col": 1044,
+          "E": 362,
+          "maxDef": 0,
+          "pairDef": [
+            44,
+            -47,
+            7
+          ]
+        },
+        {
+          "start": 4236,
+          "col": 2110,
+          "q256Col": 1025,
+          "E": 367,
+          "maxDef": 0,
+          "pairDef": [
+            68,
+            -47,
+            -13
+          ]
+        },
+        {
+          "start": 5648,
+          "col": 2072,
+          "q256Col": 970,
+          "E": 382,
+          "maxDef": 0,
+          "pairDef": [
+            63,
+            -30,
+            -23
+          ]
+        },
+        {
+          "start": 7060,
+          "col": 2025,
+          "q256Col": 957,
+          "E": 370,
+          "maxDef": 0,
+          "pairDef": [
+            25,
+            -43,
+            -30
+          ]
+        },
+        {
+          "start": 8472,
+          "col": 2072,
+          "q256Col": 1020,
+          "E": 342,
+          "maxDef": 0,
+          "pairDef": [
+            -18,
+            -47,
+            -57
+          ]
+        },
+        {
+          "start": 9884,
+          "col": 2006,
+          "q256Col": 988,
+          "E": 330,
+          "maxDef": 0,
+          "pairDef": [
+            -22,
+            -47,
+            -57
+          ]
+        },
+        {
+          "start": 11296,
+          "col": 2008,
+          "q256Col": 979,
+          "E": 336,
+          "maxDef": 0,
+          "pairDef": [
+            13,
+            -54,
+            -33
+          ]
+        },
+        {
+          "start": 12708,
+          "col": 2130,
+          "q256Col": 1023,
+          "E": 340,
+          "maxDef": 0,
+          "pairDef": [
+            13,
+            -42,
+            -27
+          ]
+        },
+        {
+          "start": 14120,
+          "col": 2020,
+          "q256Col": 948,
+          "E": 343,
+          "maxDef": 0,
+          "pairDef": [
+            -13,
+            -38,
+            -25
+          ]
+        },
+        {
+          "start": 15532,
+          "col": 1997,
+          "q256Col": 960,
+          "E": 336,
+          "maxDef": 0,
+          "pairDef": [
+            -7,
+            -59,
+            -40
+          ]
+        },
+        {
+          "start": 16944,
+          "col": 2002,
+          "q256Col": 960,
+          "E": 358,
+          "maxDef": 0,
+          "pairDef": [
+            22,
+            -60,
+            -35
+          ]
+        },
+        {
+          "start": 18356,
+          "col": 2002,
+          "q256Col": 971,
+          "E": 351,
+          "maxDef": 0,
+          "pairDef": [
+            -8,
+            -50,
+            -40
+          ]
+        },
+        {
+          "start": 19768,
+          "col": 1946,
+          "q256Col": 952,
+          "E": 329,
+          "maxDef": 0,
+          "pairDef": [
+            -35,
+            -31,
+            -48
+          ]
+        },
+        {
+          "start": 21180,
+          "col": 2001,
+          "q256Col": 961,
+          "E": 320,
+          "maxDef": 0,
+          "pairDef": [
+            -37,
+            -27,
+            -48
+          ]
+        },
+        {
+          "start": 22593,
+          "col": 2046,
+          "q256Col": 983,
+          "E": 313,
+          "maxDef": 0,
+          "pairDef": [
+            -34,
+            -78,
+            -39
+          ]
+        },
+        {
+          "start": 24005,
+          "col": 1957,
+          "q256Col": 910,
+          "E": 313,
+          "maxDef": 0,
+          "pairDef": [
+            -28,
+            -106,
+            -26
+          ]
+        },
+        {
+          "start": 25417,
+          "col": 1945,
+          "q256Col": 915,
+          "E": 314,
+          "maxDef": 0,
+          "pairDef": [
+            -32,
+            -113,
+            -47
+          ]
+        },
+        {
+          "start": 26829,
+          "col": 2068,
+          "q256Col": 1000,
+          "E": 353,
+          "maxDef": 0,
+          "pairDef": [
+            20,
+            -80,
+            -12
+          ]
+        },
+        {
+          "start": 28241,
+          "col": 2099,
+          "q256Col": 1002,
+          "E": 364,
+          "maxDef": 0,
+          "pairDef": [
+            56,
+            -60,
+            -9
+          ]
+        },
+        {
+          "start": 29653,
+          "col": 2037,
+          "q256Col": 953,
+          "E": 339,
+          "maxDef": 0,
+          "pairDef": [
+            34,
+            -81,
+            -42
+          ]
+        },
+        {
+          "start": 31065,
+          "col": 2024,
+          "q256Col": 988,
+          "E": 351,
+          "maxDef": 0,
+          "pairDef": [
+            10,
+            -80,
+            -17
+          ]
+        },
+        {
+          "start": 32477,
+          "col": 2020,
+          "q256Col": 936,
+          "E": 379,
+          "maxDef": 0,
+          "pairDef": [
+            7,
+            -49,
+            27
+          ]
+        },
+        {
+          "start": 33889,
+          "col": 1915,
+          "q256Col": 982,
+          "E": 353,
+          "maxDef": 0,
+          "pairDef": [
+            -14,
+            -46,
+            5
+          ]
+        },
+        {
+          "start": 35301,
+          "col": 2059,
+          "q256Col": 951,
+          "E": 351,
+          "maxDef": 0,
+          "pairDef": [
+            -11,
+            -54,
+            -29
+          ]
+        },
+        {
+          "start": 36713,
+          "col": 2182,
+          "q256Col": 1053,
+          "E": 379,
+          "maxDef": 0,
+          "pairDef": [
+            -8,
+            -31,
+            -3
+          ]
+        },
+        {
+          "start": 38125,
+          "col": 2081,
+          "q256Col": 1040,
+          "E": 352,
+          "maxDef": 0,
+          "pairDef": [
+            -58,
+            -18,
+            -13
+          ]
+        },
+        {
+          "start": 39537,
+          "col": 1957,
+          "q256Col": 936,
+          "E": 337,
+          "maxDef": 0,
+          "pairDef": [
+            -28,
+            -42,
+            -31
+          ]
+        },
+        {
+          "start": 40949,
+          "col": 2047,
+          "q256Col": 963,
+          "E": 359,
+          "maxDef": 0,
+          "pairDef": [
+            18,
+            -39,
+            -27
+          ]
+        },
+        {
+          "start": 42361,
+          "col": 1994,
+          "q256Col": 937,
+          "E": 364,
+          "maxDef": 0,
+          "pairDef": [
+            -6,
+            -33,
+            -18
+          ]
+        },
+        {
+          "start": 43773,
+          "col": 2042,
+          "q256Col": 958,
+          "E": 364,
+          "maxDef": 0,
+          "pairDef": [
+            -22,
+            -8,
+            -14
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shakespeare",
+      "n": 217106,
+      "colMin": 1859,
+      "colMax": 2138,
+      "q256Min": 893,
+      "q256Max": 1019,
+      "minDef": 0,
+      "passHist": 32,
+      "passPair": 13,
+      "passCol": 0,
+      "windows": [
+        {
+          "start": 0,
+          "col": 2101,
+          "q256Col": 1001,
+          "E": 366,
+          "maxDef": 0,
+          "pairDef": [
+            -19,
+            -54,
+            20
+          ]
+        },
+        {
+          "start": 6906,
+          "col": 2028,
+          "q256Col": 991,
+          "E": 321,
+          "maxDef": 0,
+          "pairDef": [
+            -64,
+            -92,
+            -7
+          ]
+        },
+        {
+          "start": 13813,
+          "col": 2090,
+          "q256Col": 1013,
+          "E": 337,
+          "maxDef": 0,
+          "pairDef": [
+            -19,
+            -59,
+            -11
+          ]
+        },
+        {
+          "start": 20719,
+          "col": 1975,
+          "q256Col": 937,
+          "E": 376,
+          "maxDef": 0,
+          "pairDef": [
+            20,
+            -13,
+            -11
+          ]
+        },
+        {
+          "start": 27626,
+          "col": 2094,
+          "q256Col": 1006,
+          "E": 409,
+          "maxDef": 0,
+          "pairDef": [
+            57,
+            -10,
+            32
+          ]
+        },
+        {
+          "start": 34532,
+          "col": 2134,
+          "q256Col": 1019,
+          "E": 386,
+          "maxDef": 0,
+          "pairDef": [
+            28,
+            -35,
+            -2
+          ]
+        },
+        {
+          "start": 41438,
+          "col": 2127,
+          "q256Col": 1016,
+          "E": 352,
+          "maxDef": 0,
+          "pairDef": [
+            52,
+            -97,
+            -44
+          ]
+        },
+        {
+          "start": 48345,
+          "col": 2016,
+          "q256Col": 898,
+          "E": 332,
+          "maxDef": 0,
+          "pairDef": [
+            -23,
+            -63,
+            -23
+          ]
+        },
+        {
+          "start": 55251,
+          "col": 1971,
+          "q256Col": 922,
+          "E": 366,
+          "maxDef": 0,
+          "pairDef": [
+            -4,
+            -74,
+            6
+          ]
+        },
+        {
+          "start": 62157,
+          "col": 1955,
+          "q256Col": 931,
+          "E": 334,
+          "maxDef": 0,
+          "pairDef": [
+            -24,
+            -77,
+            -38
+          ]
+        },
+        {
+          "start": 69064,
+          "col": 2115,
+          "q256Col": 1011,
+          "E": 405,
+          "maxDef": 0,
+          "pairDef": [
+            45,
+            -1,
+            37
+          ]
+        },
+        {
+          "start": 75970,
+          "col": 1993,
+          "q256Col": 956,
+          "E": 351,
+          "maxDef": 0,
+          "pairDef": [
+            -22,
+            -23,
+            -15
+          ]
+        },
+        {
+          "start": 82877,
+          "col": 2120,
+          "q256Col": 1006,
+          "E": 380,
+          "maxDef": 0,
+          "pairDef": [
+            -20,
+            -46,
+            60
+          ]
+        },
+        {
+          "start": 89783,
+          "col": 1972,
+          "q256Col": 944,
+          "E": 352,
+          "maxDef": 0,
+          "pairDef": [
+            11,
+            -31,
+            -40
+          ]
+        },
+        {
+          "start": 96689,
+          "col": 1859,
+          "q256Col": 907,
+          "E": 337,
+          "maxDef": 0,
+          "pairDef": [
+            9,
+            -71,
+            -35
+          ]
+        },
+        {
+          "start": 103596,
+          "col": 2102,
+          "q256Col": 951,
+          "E": 374,
+          "maxDef": 0,
+          "pairDef": [
+            -13,
+            -32,
+            25
+          ]
+        },
+        {
+          "start": 110502,
+          "col": 1873,
+          "q256Col": 912,
+          "E": 312,
+          "maxDef": 0,
+          "pairDef": [
+            -57,
+            -81,
+            -59
+          ]
+        },
+        {
+          "start": 117409,
+          "col": 1904,
+          "q256Col": 928,
+          "E": 367,
+          "maxDef": 0,
+          "pairDef": [
+            -10,
+            -30,
+            -27
+          ]
+        },
+        {
+          "start": 124315,
+          "col": 1982,
+          "q256Col": 937,
+          "E": 379,
+          "maxDef": 0,
+          "pairDef": [
+            16,
+            -12,
+            -21
+          ]
+        },
+        {
+          "start": 131221,
+          "col": 2047,
+          "q256Col": 987,
+          "E": 381,
+          "maxDef": 0,
+          "pairDef": [
+            5,
+            -14,
+            -22
+          ]
+        },
+        {
+          "start": 138128,
+          "col": 1914,
+          "q256Col": 902,
+          "E": 350,
+          "maxDef": 0,
+          "pairDef": [
+            -32,
+            -45,
+            -58
+          ]
+        },
+        {
+          "start": 145034,
+          "col": 1925,
+          "q256Col": 957,
+          "E": 378,
+          "maxDef": 0,
+          "pairDef": [
+            21,
+            -55,
+            -21
+          ]
+        },
+        {
+          "start": 151941,
+          "col": 1934,
+          "q256Col": 893,
+          "E": 333,
+          "maxDef": 0,
+          "pairDef": [
+            -19,
+            -57,
+            -56
+          ]
+        },
+        {
+          "start": 158847,
+          "col": 2015,
+          "q256Col": 961,
+          "E": 377,
+          "maxDef": 0,
+          "pairDef": [
+            50,
+            -40,
+            0
+          ]
+        },
+        {
+          "start": 165753,
+          "col": 1969,
+          "q256Col": 937,
+          "E": 331,
+          "maxDef": 0,
+          "pairDef": [
+            10,
+            -91,
+            -42
+          ]
+        },
+        {
+          "start": 172660,
+          "col": 1925,
+          "q256Col": 952,
+          "E": 342,
+          "maxDef": 0,
+          "pairDef": [
+            5,
+            -85,
+            -37
+          ]
+        },
+        {
+          "start": 179566,
+          "col": 2015,
+          "q256Col": 956,
+          "E": 339,
+          "maxDef": 0,
+          "pairDef": [
+            -16,
+            -64,
+            -68
+          ]
+        },
+        {
+          "start": 186472,
+          "col": 2045,
+          "q256Col": 963,
+          "E": 379,
+          "maxDef": 0,
+          "pairDef": [
+            37,
+            -24,
+            -57
+          ]
+        },
+        {
+          "start": 193379,
+          "col": 1972,
+          "q256Col": 926,
+          "E": 313,
+          "maxDef": 0,
+          "pairDef": [
+            -71,
+            -106,
+            -101
+          ]
+        },
+        {
+          "start": 200285,
+          "col": 1965,
+          "q256Col": 948,
+          "E": 395,
+          "maxDef": 0,
+          "pairDef": [
+            21,
+            -17,
+            -21
+          ]
+        },
+        {
+          "start": 207192,
+          "col": 2138,
+          "q256Col": 986,
+          "E": 373,
+          "maxDef": 0,
+          "pairDef": [
+            -24,
+            -5,
+            -29
+          ]
+        },
+        {
+          "start": 214098,
+          "col": 2077,
+          "q256Col": 987,
+          "E": 364,
+          "maxDef": 0,
+          "pairDef": [
+            -27,
+            -59,
+            -9
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Emerson",
+      "n": 306590,
+      "colMin": 1885,
+      "colMax": 2232,
+      "q256Min": 901,
+      "q256Max": 1086,
+      "minDef": 0,
+      "passHist": 32,
+      "passPair": 11,
+      "passCol": 0,
+      "windows": [
+        {
+          "start": 0,
+          "col": 1954,
+          "q256Col": 901,
+          "E": 347,
+          "maxDef": 0,
+          "pairDef": [
+            -53,
+            -21,
+            -12
+          ]
+        },
+        {
+          "start": 9793,
+          "col": 2046,
+          "q256Col": 988,
+          "E": 398,
+          "maxDef": 0,
+          "pairDef": [
+            2,
+            25,
+            18
+          ]
+        },
+        {
+          "start": 19586,
+          "col": 2122,
+          "q256Col": 1045,
+          "E": 405,
+          "maxDef": 0,
+          "pairDef": [
+            5,
+            41,
+            40
+          ]
+        },
+        {
+          "start": 29379,
+          "col": 1993,
+          "q256Col": 959,
+          "E": 326,
+          "maxDef": 0,
+          "pairDef": [
+            -30,
+            -44,
+            -64
+          ]
+        },
+        {
+          "start": 39172,
+          "col": 2001,
+          "q256Col": 958,
+          "E": 344,
+          "maxDef": 0,
+          "pairDef": [
+            -15,
+            -36,
+            -48
+          ]
+        },
+        {
+          "start": 48965,
+          "col": 1885,
+          "q256Col": 934,
+          "E": 354,
+          "maxDef": 0,
+          "pairDef": [
+            -20,
+            -13,
+            -8
+          ]
+        },
+        {
+          "start": 58758,
+          "col": 2070,
+          "q256Col": 1022,
+          "E": 358,
+          "maxDef": 0,
+          "pairDef": [
+            4,
+            -38,
+            -36
+          ]
+        },
+        {
+          "start": 68551,
+          "col": 2080,
+          "q256Col": 974,
+          "E": 363,
+          "maxDef": 0,
+          "pairDef": [
+            -30,
+            0,
+            -10
+          ]
+        },
+        {
+          "start": 78344,
+          "col": 2108,
+          "q256Col": 1034,
+          "E": 390,
+          "maxDef": 0,
+          "pairDef": [
+            -25,
+            31,
+            5
+          ]
+        },
+        {
+          "start": 88137,
+          "col": 2097,
+          "q256Col": 1008,
+          "E": 350,
+          "maxDef": 0,
+          "pairDef": [
+            -47,
+            -21,
+            -20
+          ]
+        },
+        {
+          "start": 97930,
+          "col": 2232,
+          "q256Col": 1039,
+          "E": 385,
+          "maxDef": 0,
+          "pairDef": [
+            -8,
+            31,
+            54
+          ]
+        },
+        {
+          "start": 107723,
+          "col": 2118,
+          "q256Col": 1035,
+          "E": 395,
+          "maxDef": 0,
+          "pairDef": [
+            -13,
+            18,
+            17
+          ]
+        },
+        {
+          "start": 117516,
+          "col": 2029,
+          "q256Col": 989,
+          "E": 346,
+          "maxDef": 0,
+          "pairDef": [
+            -27,
+            -21,
+            -24
+          ]
+        },
+        {
+          "start": 127309,
+          "col": 2051,
+          "q256Col": 976,
+          "E": 363,
+          "maxDef": 0,
+          "pairDef": [
+            12,
+            -31,
+            -60
+          ]
+        },
+        {
+          "start": 137102,
+          "col": 2070,
+          "q256Col": 981,
+          "E": 378,
+          "maxDef": 0,
+          "pairDef": [
+            30,
+            10,
+            8
+          ]
+        },
+        {
+          "start": 146895,
+          "col": 2180,
+          "q256Col": 1003,
+          "E": 422,
+          "maxDef": 0,
+          "pairDef": [
+            32,
+            25,
+            83
+          ]
+        },
+        {
+          "start": 156687,
+          "col": 1941,
+          "q256Col": 950,
+          "E": 382,
+          "maxDef": 0,
+          "pairDef": [
+            -17,
+            -6,
+            -4
+          ]
+        },
+        {
+          "start": 166480,
+          "col": 1885,
+          "q256Col": 932,
+          "E": 353,
+          "maxDef": 0,
+          "pairDef": [
+            -24,
+            -31,
+            -25
+          ]
+        },
+        {
+          "start": 176273,
+          "col": 2083,
+          "q256Col": 1024,
+          "E": 355,
+          "maxDef": 0,
+          "pairDef": [
+            3,
+            -42,
+            -30
+          ]
+        },
+        {
+          "start": 186066,
+          "col": 2084,
+          "q256Col": 987,
+          "E": 384,
+          "maxDef": 0,
+          "pairDef": [
+            -6,
+            30,
+            6
+          ]
+        },
+        {
+          "start": 195859,
+          "col": 2082,
+          "q256Col": 985,
+          "E": 375,
+          "maxDef": 0,
+          "pairDef": [
+            -17,
+            -30,
+            29
+          ]
+        },
+        {
+          "start": 205652,
+          "col": 2054,
+          "q256Col": 981,
+          "E": 359,
+          "maxDef": 0,
+          "pairDef": [
+            -31,
+            -8,
+            -15
+          ]
+        },
+        {
+          "start": 215445,
+          "col": 2028,
+          "q256Col": 955,
+          "E": 393,
+          "maxDef": 0,
+          "pairDef": [
+            31,
+            0,
+            4
+          ]
+        },
+        {
+          "start": 225238,
+          "col": 2088,
+          "q256Col": 996,
+          "E": 396,
+          "maxDef": 0,
+          "pairDef": [
+            2,
+            12,
+            49
+          ]
+        },
+        {
+          "start": 235031,
+          "col": 2102,
+          "q256Col": 1016,
+          "E": 366,
+          "maxDef": 0,
+          "pairDef": [
+            -15,
+            -39,
+            23
+          ]
+        },
+        {
+          "start": 244824,
+          "col": 2057,
+          "q256Col": 984,
+          "E": 384,
+          "maxDef": 0,
+          "pairDef": [
+            10,
+            -13,
+            -12
+          ]
+        },
+        {
+          "start": 254617,
+          "col": 2124,
+          "q256Col": 1039,
+          "E": 385,
+          "maxDef": 0,
+          "pairDef": [
+            -17,
+            11,
+            29
+          ]
+        },
+        {
+          "start": 264410,
+          "col": 2204,
+          "q256Col": 1086,
+          "E": 421,
+          "maxDef": 0,
+          "pairDef": [
+            47,
+            38,
+            43
+          ]
+        },
+        {
+          "start": 274203,
+          "col": 1934,
+          "q256Col": 951,
+          "E": 369,
+          "maxDef": 0,
+          "pairDef": [
+            -45,
+            -19,
+            -10
+          ]
+        },
+        {
+          "start": 283996,
+          "col": 2056,
+          "q256Col": 963,
+          "E": 364,
+          "maxDef": 0,
+          "pairDef": [
+            -38,
+            -1,
+            45
+          ]
+        },
+        {
+          "start": 293789,
+          "col": 2054,
+          "q256Col": 1009,
+          "E": 381,
+          "maxDef": 0,
+          "pairDef": [
+            -45,
+            16,
+            10
+          ]
+        },
+        {
+          "start": 303582,
+          "col": 2147,
+          "q256Col": 1040,
+          "E": 378,
+          "maxDef": 0,
+          "pairDef": [
+            -51,
+            6,
+            -2
+          ]
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "name": "Gibran",
+      "n": 3008,
+      "plainCollisions": 2085,
+      "cipherCollisions": 2085,
+      "prefixBoundPass": true,
+      "exactInverse": true
+    },
+    {
+      "name": "Shakespeare",
+      "n": 3008,
+      "plainCollisions": 2101,
+      "cipherCollisions": 2101,
+      "prefixBoundPass": true,
+      "exactInverse": true
+    },
+    {
+      "name": "Emerson",
+      "n": 3008,
+      "plainCollisions": 1954,
+      "cipherCollisions": 1954,
+      "prefixBoundPass": true,
+      "exactInverse": true
+    }
+  ],
+  "scope": "Fixed ordered donor windows, exact same-token equality, sorted histogram/pair bounds independent of plaintext positional transport. No language fit after fixed native-window gate."
+}
