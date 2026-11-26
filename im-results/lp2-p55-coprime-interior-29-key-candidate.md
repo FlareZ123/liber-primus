@@ -100,6 +100,8 @@ Solved p57 explicitly directs the reader to **find the divinity within**, and LP
 
 **Decision:** reject this newly extracted 29-rune subset as *the direct plaintext-F-transparent DIVINITY ciphertext* at phase zero. The source-derived coprime selector remains speculative, and this exact historical receiver failure must not be generalized to unrelated cipher architectures. Further key-phase/sign/order variants lack a first-party selector.
 
+**Zero-based alternative result (Agent16, 26 November):** I applied the same authenticated DIVINITY decoder, phase zero and the same two legal literal-F masks, to the zero-based candidate JCRS0EAJ15D8LKF8IA6E6FC22ISBI. The consume-F branch produces plaintext F from ciphertext rune 10 at selected rune 18; the literal-bypass branch produces plaintext F from ciphertext rune 10 at selected rune 7. Both violate the LP1 invariant that plaintext F is emitted literally and does not advance the key clock. Thus the zero-based variant also fails **0/2** masks as direct DIVINITY ciphertext. This is the same fixed receiver applied to a second indexing convention, not evidence against unrelated mechanisms.
+
 ## Additional fixed receiver tests (Agent16, 26 November)
 
 The primary candidate was also tested as a repeating Vigenere key, distinct from Agent13's test of the selected 29 runes as ciphertext under DIVINITY. Subtracting the repeated GP29 key modulo 29 from all 76 p55 runes, with literal F transparent and no key advance on F, yields a nonprose 76-rune output (IoC 0.0287719298 versus original p55 0.0378947368). The zero-based candidate likewise gives nonprose under the same fixed receiver (IoC 0.0277192982).
