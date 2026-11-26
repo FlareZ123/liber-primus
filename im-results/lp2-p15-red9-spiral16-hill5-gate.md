@@ -30,6 +30,10 @@ M⁻¹ = [[25,26,23,18, 7],
 
 The top-left perimeter start and reuse of the 4×4 spiral's integer values as matrix entries are **hypothesis choices**, not authenticated instructions. No cipher key, phase, block boundary, or plaintext symbols are tuned to improve output.
 
+## Historical magic-square operand gate
+
+The direct 5×5 perimeter/interior analogy cannot reproduce the literal integer **centrosymmetric magic-square grammar** of the two original LP1 KNOW THIS controls. A 5×5 centrosymmetric grid has at most 13 distinct values, whereas p15 supplies 16 distinct integers. Even without centrosymmetry, all 32 rotations/reflections of the established spiral on a 5×5 perimeter have unequal border sums (minimum spread 4926), so no nine interior values can complete that magic square. This is independent of the Hill results and does not reject nonmagic matrix operands. See [exact operand recovery and transfer obstruction](lp1-know-this-magic-grammar-gate.md).
+
 ## Original ciphertext inversions
 
 Apply `M` and `M⁻¹`, each in both column-vector and row-vector conventions, to **every one** of the original 150 p15 body GP indices, with contiguous five-rune blocks beginning immediately after the red heading.
