@@ -1,5 +1,5 @@
 {
-  "model": "authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver, gate requires >=90% fit and frozen suffix on two fresh plants",
+  "model": "authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver retaining all legal prefix Viterbi end states, keys frozen; gate requires >=90% fit and frozen suffix on two fresh plants",
   "controls": [
     {
       "schedule": 0,
@@ -185,12 +185,12 @@
         "best": {
           "fit": 9704,
           "fitLength": 9713,
-          "held": 2819,
+          "held": 3239,
           "heldLength": 3243,
           "fitScore": -25778.602124620284,
-          "heldScore": null,
-          "legal": false,
-          "exactReplay": false,
+          "heldScore": -8562.814581028264,
+          "legal": true,
+          "exactReplay": true,
           "A": [
             0,
             6,
@@ -263,6 +263,8 @@
               "heldCorrect": 183,
               "replay": true,
               "fitEnd": 534,
+              "continuationEnd": 534,
+              "possibleFitEnds": 2,
               "fitScore": -1451.144295606683,
               "heldScore": -486.0483856311952
             },
@@ -273,6 +275,8 @@
               "heldCorrect": 287,
               "replay": true,
               "fitEnd": 845,
+              "continuationEnd": 845,
+              "possibleFitEnds": 2,
               "fitScore": -2284.2757641127655,
               "heldScore": -749.5386677059479
             },
@@ -283,6 +287,8 @@
               "heldCorrect": 433,
               "replay": true,
               "fitEnd": 1275,
+              "continuationEnd": 1275,
+              "possibleFitEnds": 6,
               "fitScore": -3378.444291044923,
               "heldScore": -1143.2295633656092
             },
@@ -293,6 +299,8 @@
               "heldCorrect": 476,
               "replay": true,
               "fitEnd": 1405,
+              "continuationEnd": 1405,
+              "possibleFitEnds": 2,
               "fitScore": -3775.761228785102,
               "heldScore": -1255.9022876584693
             },
@@ -303,6 +311,8 @@
               "heldCorrect": 256,
               "replay": true,
               "fitEnd": 756,
+              "continuationEnd": 756,
+              "possibleFitEnds": 2,
               "fitScore": -2039.6195148541437,
               "heldScore": -687.8296145512463
             },
@@ -313,6 +323,8 @@
               "heldCorrect": 357,
               "replay": true,
               "fitEnd": 1051,
+              "continuationEnd": 1051,
+              "possibleFitEnds": 4,
               "fitScore": -2843.3167096018747,
               "heldScore": -938.7369102663203
             },
@@ -320,11 +332,13 @@
               "fit": 1260,
               "fitCorrect": 1257,
               "held": 420,
-              "heldCorrect": null,
-              "replay": false,
+              "heldCorrect": 420,
+              "replay": true,
               "fitEnd": 1239,
+              "continuationEnd": 1238,
+              "possibleFitEnds": 2,
               "fitScore": -3348.28975347056,
-              "heldScore": null
+              "heldScore": -1099.811562503071
             },
             {
               "fit": 2256,
@@ -333,6 +347,8 @@
               "heldCorrect": 752,
               "replay": true,
               "fitEnd": 2224,
+              "continuationEnd": 2224,
+              "possibleFitEnds": 4,
               "fitScore": -6045.708350450227,
               "heldScore": -1985.9542932127276
             },
@@ -343,6 +359,8 @@
               "heldCorrect": 75,
               "replay": true,
               "fitEnd": 225,
+              "continuationEnd": 225,
+              "possibleFitEnds": 7,
               "fitScore": -612.0422166940048,
               "heldScore": -215.76329613367704
             }
@@ -351,12 +369,12 @@
         "oracle": {
           "fit": 9704,
           "fitLength": 9713,
-          "held": 2819,
+          "held": 3239,
           "heldLength": 3243,
           "fitScore": -25778.602124620284,
-          "heldScore": null,
-          "legal": false,
-          "exactReplay": false,
+          "heldScore": -8562.814581028264,
+          "legal": true,
+          "exactReplay": true,
           "A": [
             0,
             6,
@@ -429,6 +447,8 @@
               "heldCorrect": 183,
               "replay": true,
               "fitEnd": 534,
+              "continuationEnd": 534,
+              "possibleFitEnds": 2,
               "fitScore": -1451.144295606683,
               "heldScore": -486.0483856311952
             },
@@ -439,6 +459,8 @@
               "heldCorrect": 287,
               "replay": true,
               "fitEnd": 845,
+              "continuationEnd": 845,
+              "possibleFitEnds": 2,
               "fitScore": -2284.2757641127655,
               "heldScore": -749.5386677059479
             },
@@ -449,6 +471,8 @@
               "heldCorrect": 433,
               "replay": true,
               "fitEnd": 1275,
+              "continuationEnd": 1275,
+              "possibleFitEnds": 6,
               "fitScore": -3378.444291044923,
               "heldScore": -1143.2295633656092
             },
@@ -459,6 +483,8 @@
               "heldCorrect": 476,
               "replay": true,
               "fitEnd": 1405,
+              "continuationEnd": 1405,
+              "possibleFitEnds": 2,
               "fitScore": -3775.761228785102,
               "heldScore": -1255.9022876584693
             },
@@ -469,6 +495,8 @@
               "heldCorrect": 256,
               "replay": true,
               "fitEnd": 756,
+              "continuationEnd": 756,
+              "possibleFitEnds": 2,
               "fitScore": -2039.6195148541437,
               "heldScore": -687.8296145512463
             },
@@ -479,6 +507,8 @@
               "heldCorrect": 357,
               "replay": true,
               "fitEnd": 1051,
+              "continuationEnd": 1051,
+              "possibleFitEnds": 4,
               "fitScore": -2843.3167096018747,
               "heldScore": -938.7369102663203
             },
@@ -486,11 +516,13 @@
               "fit": 1260,
               "fitCorrect": 1257,
               "held": 420,
-              "heldCorrect": null,
-              "replay": false,
+              "heldCorrect": 420,
+              "replay": true,
               "fitEnd": 1239,
+              "continuationEnd": 1238,
+              "possibleFitEnds": 2,
               "fitScore": -3348.28975347056,
-              "heldScore": null
+              "heldScore": -1099.811562503071
             },
             {
               "fit": 2256,
@@ -499,6 +531,8 @@
               "heldCorrect": 752,
               "replay": true,
               "fitEnd": 2224,
+              "continuationEnd": 2224,
+              "possibleFitEnds": 4,
               "fitScore": -6045.708350450227,
               "heldScore": -1985.9542932127276
             },
@@ -509,6 +543,8 @@
               "heldCorrect": 75,
               "replay": true,
               "fitEnd": 225,
+              "continuationEnd": 225,
+              "possibleFitEnds": 7,
               "fitScore": -612.0422166940048,
               "heldScore": -215.76329613367704
             }
@@ -700,10 +736,10 @@
         "best": {
           "fit": 9705,
           "fitLength": 9713,
-          "held": 3227,
+          "held": 3230,
           "heldLength": 3243,
           "fitScore": -24946.614818641156,
-          "heldScore": -8443.6735073925,
+          "heldScore": -8431.060625141283,
           "legal": true,
           "exactReplay": true,
           "A": [
@@ -778,6 +814,8 @@
               "heldCorrect": 183,
               "replay": true,
               "fitEnd": 539,
+              "continuationEnd": 539,
+              "possibleFitEnds": 2,
               "fitScore": -1389.6716418057888,
               "heldScore": -472.0035713660591
             },
@@ -788,6 +826,8 @@
               "heldCorrect": 287,
               "replay": true,
               "fitEnd": 836,
+              "continuationEnd": 836,
+              "possibleFitEnds": 3,
               "fitScore": -2182.7424961427528,
               "heldScore": -743.8914980944921
             },
@@ -798,6 +838,8 @@
               "heldCorrect": 433,
               "replay": true,
               "fitEnd": 1254,
+              "continuationEnd": 1254,
+              "possibleFitEnds": 4,
               "fitScore": -3291.98636702599,
               "heldScore": -1081.056677710369
             },
@@ -805,11 +847,13 @@
               "fit": 1427,
               "fitCorrect": 1423,
               "held": 476,
-              "heldCorrect": 469,
+              "heldCorrect": 472,
               "replay": true,
               "fitEnd": 1377,
+              "continuationEnd": 1376,
+              "possibleFitEnds": 5,
               "fitScore": -3686.5283680555413,
-              "heldScore": -1241.076786231203
+              "heldScore": -1228.4639039799874
             },
             {
               "fit": 765,
@@ -818,6 +862,8 @@
               "heldCorrect": 256,
               "replay": true,
               "fitEnd": 735,
+              "continuationEnd": 735,
+              "possibleFitEnds": 5,
               "fitScore": -2001.7555375659495,
               "heldScore": -664.8610535654229
             },
@@ -828,6 +874,8 @@
               "heldCorrect": 359,
               "replay": true,
               "fitEnd": 1051,
+              "continuationEnd": 1051,
+              "possibleFitEnds": 13,
               "fitScore": -2740.8304884865606,
               "heldScore": -938.6167232771217
             },
@@ -838,6 +886,8 @@
               "heldCorrect": 420,
               "replay": true,
               "fitEnd": 1218,
+              "continuationEnd": 1218,
+              "possibleFitEnds": 1,
               "fitScore": -3264.8273883410207,
               "heldScore": -1086.4553391667232
             },
@@ -848,6 +898,8 @@
               "heldCorrect": 743,
               "replay": true,
               "fitEnd": 2204,
+              "continuationEnd": 2204,
+              "possibleFitEnds": 2,
               "fitScore": -5778.319027266779,
               "heldScore": -2018.186396970488
             },
@@ -858,6 +910,8 @@
               "heldCorrect": 77,
               "replay": true,
               "fitEnd": 224,
+              "continuationEnd": 224,
+              "possibleFitEnds": 2,
               "fitScore": -609.9535039507723,
               "heldScore": -197.52546101061958
             }
@@ -866,12 +920,12 @@
         "oracle": {
           "fit": 9705,
           "fitLength": 9713,
-          "held": 2758,
+          "held": 3230,
           "heldLength": 3243,
           "fitScore": -24946.614818641156,
-          "heldScore": null,
-          "legal": false,
-          "exactReplay": false,
+          "heldScore": -8431.060625141283,
+          "legal": true,
+          "exactReplay": true,
           "A": [
             0,
             5,
@@ -944,6 +998,8 @@
               "heldCorrect": 183,
               "replay": true,
               "fitEnd": 539,
+              "continuationEnd": 539,
+              "possibleFitEnds": 1,
               "fitScore": -1389.6716418057888,
               "heldScore": -472.0035713660591
             },
@@ -954,6 +1010,8 @@
               "heldCorrect": 287,
               "replay": true,
               "fitEnd": 836,
+              "continuationEnd": 836,
+              "possibleFitEnds": 3,
               "fitScore": -2182.7424961427528,
               "heldScore": -743.8914980944921
             },
@@ -964,6 +1022,8 @@
               "heldCorrect": 433,
               "replay": true,
               "fitEnd": 1254,
+              "continuationEnd": 1254,
+              "possibleFitEnds": 4,
               "fitScore": -3291.98636702599,
               "heldScore": -1081.056677710369
             },
@@ -971,11 +1031,13 @@
               "fit": 1427,
               "fitCorrect": 1423,
               "held": 476,
-              "heldCorrect": null,
-              "replay": false,
+              "heldCorrect": 472,
+              "replay": true,
               "fitEnd": 1377,
+              "continuationEnd": 1376,
+              "possibleFitEnds": 6,
               "fitScore": -3686.5283680555413,
-              "heldScore": null
+              "heldScore": -1228.4639039799874
             },
             {
               "fit": 765,
@@ -984,6 +1046,8 @@
               "heldCorrect": 256,
               "replay": true,
               "fitEnd": 735,
+              "continuationEnd": 735,
+              "possibleFitEnds": 3,
               "fitScore": -2001.7555375659495,
               "heldScore": -664.8610535654229
             },
@@ -994,6 +1058,8 @@
               "heldCorrect": 359,
               "replay": true,
               "fitEnd": 1051,
+              "continuationEnd": 1051,
+              "possibleFitEnds": 5,
               "fitScore": -2740.8304884865606,
               "heldScore": -938.6167232771217
             },
@@ -1004,6 +1070,8 @@
               "heldCorrect": 420,
               "replay": true,
               "fitEnd": 1218,
+              "continuationEnd": 1218,
+              "possibleFitEnds": 6,
               "fitScore": -3264.8273883410207,
               "heldScore": -1086.4553391667232
             },
@@ -1014,6 +1082,8 @@
               "heldCorrect": 743,
               "replay": true,
               "fitEnd": 2204,
+              "continuationEnd": 2204,
+              "possibleFitEnds": 3,
               "fitScore": -5778.319027266779,
               "heldScore": -2018.186396970488
             },
@@ -1024,6 +1094,8 @@
               "heldCorrect": 77,
               "replay": true,
               "fitEnd": 224,
+              "continuationEnd": 224,
+              "possibleFitEnds": 3,
               "fitScore": -609.9535039507723,
               "heldScore": -197.52546101061958
             }
@@ -1032,6 +1104,165 @@
       }
     }
   ],
-  "gate": false,
-  "original": null
+  "gate": true,
+  "original": {
+    "records": [
+      {
+        "start": 0,
+        "kind": "forbidden",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier7g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier7g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier10g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier10g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier1g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier1g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier11g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier11g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier3g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 0,
+        "kind": "fourier3g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "forbidden",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier13g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier13g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier5g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier5g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier10g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier10g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier6g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier6g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier11g0",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      },
+      {
+        "start": 1,
+        "kind": "fourier11g1",
+        "initBeta": null,
+        "fitBeta": null,
+        "strictLL": null
+      }
+    ],
+    "best": null,
+    "oracle": null
+  }
 }
