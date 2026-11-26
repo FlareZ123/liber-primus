@@ -448,6 +448,13 @@ process.stdout.write(JSON.stringify({
   controls,
   originals: originals.map(x => ({
     order: x.order,
+    p54Feasible: x.p54Feasible,
+    noPathAt: x.noPathAt,
+    priorActiveStates: x.priorActiveStates,
+    maxActiveStates: x.maxActiveStates,
+    transitionsBeforeDeadEnd: x.transitionsBeforeDeadEnd,
+    p55Feasible: x.p55Feasible,
+    p55NoPathAt: x.p55NoPathAt,
     initialPhases: x.initialPhases,
     p54ExitPhases: x.p54ExitPhases,
     p55ExitPhases: x.p55ExitPhases,
