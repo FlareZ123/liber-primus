@@ -1,0 +1,32 @@
+name: Agent44 p56 archived Onion4 htaccess hash gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-pinned-object-hash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify OpenSSL Whirlpool provider
+        run: |
+          openssl version
+          openssl list -digest-algorithms -provider legacy | grep -i whirlpool
+      - name: Hash exact archived object
+        run: |
+          set -o pipefail
+          node --check sims/lp2_p56_avowy_onion4_htaccess_hash_gate.cjs
+          node sims/lp2_p56_avowy_onion4_htaccess_hash_gate.cjs | tee "$RUNNER_TEMP/p56-avowy-htaccess-hash.json"
+      - name: Preserve raw result
+        uses: actions/upload-artifact@v4
+        with:
+          name: p56-avowy-onion4-htaccess-hash-gate
+          path: ${{ runner.temp }}/p56-avowy-htaccess-hash.json
+          if-no-files-found: error
