@@ -1,0 +1,1285 @@
+{
+  "lexiconSize": 33394,
+  "clock": "arbitrary phase and either ordinary or literal-F per word; period8 shared key modulo cyclic rotations",
+  "original": null,
+  "controls": [
+    {
+      "name": "0_loss_of_divinity",
+      "key": [
+        2,
+        15,
+        6,
+        27,
+        24,
+        5,
+        15,
+        24
+      ],
+      "truthOOV": 0,
+      "truthFound": true,
+      "truthRunes": 197,
+      "N": 212,
+      "W": 48,
+      "B": 0,
+      "anchorFloor": 13,
+      "counts": {
+        "2": 16,
+        "3": 5,
+        "4": 10,
+        "5": 3,
+        "6": 3,
+        "7": 4,
+        "8": 4,
+        "9": 1,
+        "10": 1,
+        "13": 1
+      },
+      "anchorMatches": [
+        0,
+        1
+      ],
+      "partialAnchors": [
+        0,
+        0
+      ],
+      "rotationKeysByMode": [
+        0,
+        1
+      ],
+      "rotationKeys": 1,
+      "truthRetained": true,
+      "truthStage": {
+        "stage": "relaxed-path",
+        "lb": 0,
+        "supports": [
+          101,
+          43,
+          13,
+          8,
+          4,
+          5,
+          5,
+          1,
+          1,
+          1
+        ],
+        "steps": 1749
+      },
+      "packingReject": 0,
+      "pathReject": 0,
+      "minRejectedPacking": null,
+      "relaxedSurvivors": 1,
+      "states": 1749,
+      "nodes": 49,
+      "exact": [
+        {
+          "key": [
+            2,
+            15,
+            6,
+            27,
+            24,
+            5,
+            15,
+            24
+          ],
+          "stage": "exact",
+          "lb": 0,
+          "supports": [
+            101,
+            43,
+            13,
+            8,
+            4,
+            5,
+            5,
+            1,
+            1,
+            1
+          ],
+          "steps": 1749,
+          "nodes": 49,
+          "capped": false,
+          "found": true,
+          "minOOV": 0,
+          "words": [
+            {
+              "w": "YF",
+              "phase": 0,
+              "hold": false,
+              "text": "AC"
+            },
+            {
+              "w": "UDPP",
+              "phase": 6,
+              "hold": false,
+              "text": "LOSS"
+            },
+            {
+              "w": "DA",
+              "phase": 1,
+              "hold": true,
+              "text": "OF"
+            },
+            {
+              "w": "XKBKJKQ[",
+              "phase": 7,
+              "hold": false,
+              "text": "DIUINITY"
+            },
+            {
+              "w": "YI",
+              "phase": 0,
+              "hold": false,
+              "text": "AH"
+            },
+            {
+              "w": "FKEFBTASESJFS",
+              "phase": 0,
+              "hold": true,
+              "text": "CIRCUMFERENCE"
+            },
+            {
+              "w": "NEYFQKFSP",
+              "phase": 0,
+              "hold": false,
+              "text": "PRACTICES"
+            },
+            {
+              "w": "CESS",
+              "phase": 2,
+              "hold": false,
+              "text": "THREE"
+            },
+            {
+              "w": "RSIYB\\EP",
+              "phase": 2,
+              "hold": false,
+              "text": "BEHAUIARS"
+            },
+            {
+              "w": "HIKFI",
+              "phase": 0,
+              "hold": false,
+              "text": "WHICH"
+            },
+            {
+              "w": "FYBPS",
+              "phase": 6,
+              "hold": false,
+              "text": "CAUSE"
+            },
+            {
+              "w": "CS",
+              "phase": 0,
+              "hold": false,
+              "text": "THE"
+            },
+            {
+              "w": "UDPP",
+              "phase": 7,
+              "hold": false,
+              "text": "LOSS"
+            },
+            {
+              "w": "DA",
+              "phase": 1,
+              "hold": true,
+              "text": "OF"
+            },
+            {
+              "w": "XKBKJKQ[",
+              "phase": 3,
+              "hold": false,
+              "text": "DIUINITY"
+            },
+            {
+              "w": "FDJPBTNQ\\J",
+              "phase": 3,
+              "hold": false,
+              "text": "CONSUMPTIAN"
+            },
+            {
+              "w": "HS",
+              "phase": 1,
+              "hold": false,
+              "text": "WE"
+            },
+            {
+              "w": "FDJPBTS",
+              "phase": 5,
+              "hold": false,
+              "text": "CONSUME"
+            },
+            {
+              "w": "QDD",
+              "phase": 3,
+              "hold": false,
+              "text": "TOO"
+            },
+            {
+              "w": "TBFI",
+              "phase": 0,
+              "hold": false,
+              "text": "MUCH"
+            },
+            {
+              "w": "RSFYBPS",
+              "phase": 4,
+              "hold": false,
+              "text": "BECAUSE"
+            },
+            {
+              "w": "HS",
+              "phase": 0,
+              "hold": false,
+              "text": "WE"
+            },
+            {
+              "w": "RSUSKBS",
+              "phase": 7,
+              "hold": false,
+              "text": "BELEIUE"
+            },
+            {
+              "w": "CS",
+              "phase": 2,
+              "hold": false,
+              "text": "THE"
+            },
+            {
+              "w": "ADUUDHV",
+              "phase": 1,
+              "hold": true,
+              "text": "FOLLOWNG"
+            },
+            {
+              "w": "QHD",
+              "phase": 4,
+              "hold": false,
+              "text": "TWO"
+            },
+            {
+              "w": "SEEDEP",
+              "phase": 3,
+              "hold": false,
+              "text": "ERRORS"
+            },
+            {
+              "w": "HKCKJ",
+              "phase": 7,
+              "hold": false,
+              "text": "WITHIN"
+            },
+            {
+              "w": "YF",
+              "phase": 0,
+              "hold": false,
+              "text": "AC"
+            },
+            {
+              "w": "XSFSNQ\\J",
+              "phase": 3,
+              "hold": false,
+              "text": "DECEPTIAN"
+            },
+            {
+              "w": "HS",
+              "phase": 5,
+              "hold": false,
+              "text": "WE"
+            },
+            {
+              "w": "XD",
+              "phase": 0,
+              "hold": false,
+              "text": "DO"
+            },
+            {
+              "w": "JDQ",
+              "phase": 6,
+              "hold": false,
+              "text": "NOT"
+            },
+            {
+              "w": "IYBS",
+              "phase": 3,
+              "hold": false,
+              "text": "HAUE"
+            },
+            {
+              "w": "SJDBGI",
+              "phase": 6,
+              "hold": false,
+              "text": "ENOUGH"
+            },
+            {
+              "w": "GE",
+              "phase": 0,
+              "hold": false,
+              "text": "GR"
+            },
+            {
+              "w": "CSES",
+              "phase": 7,
+              "hold": false,
+              "text": "THERE"
+            },
+            {
+              "w": "HW",
+              "phase": 3,
+              "hold": false,
+              "text": "WOE"
+            },
+            {
+              "w": "JDQ",
+              "phase": 0,
+              "hold": false,
+              "text": "NOT"
+            },
+            {
+              "w": "SJDBGI",
+              "phase": 0,
+              "hold": false,
+              "text": "ENOUGH"
+            },
+            {
+              "w": "QP",
+              "phase": 2,
+              "hold": false,
+              "text": "TS"
+            },
+            {
+              "w": "IYBS",
+              "phase": 5,
+              "hold": false,
+              "text": "HAUE"
+            },
+            {
+              "w": "HIYQ",
+              "phase": 7,
+              "hold": false,
+              "text": "WHAT"
+            },
+            {
+              "w": "QP",
+              "phase": 2,
+              "hold": false,
+              "text": "TS"
+            },
+            {
+              "w": "IYBS",
+              "phase": 0,
+              "hold": false,
+              "text": "HAUE"
+            },
+            {
+              "w": "JDH",
+              "phase": 7,
+              "hold": false,
+              "text": "NOW"
+            },
+            {
+              "w": "KQ",
+              "phase": 0,
+              "hold": false,
+              "text": "IT"
+            },
+            {
+              "w": "UBFF",
+              "phase": 6,
+              "hold": false,
+              "text": "LUCC"
+            }
+          ]
+        }
+      ],
+      "elapsedMs": 34
+    },
+    {
+      "name": "0_koan_1",
+      "key": [
+        2,
+        10,
+        7,
+        24,
+        2,
+        14,
+        10,
+        4
+      ],
+      "truthOOV": 0,
+      "truthFound": true,
+      "truthRunes": 166,
+      "N": 191,
+      "W": 48,
+      "B": 0,
+      "anchorFloor": 12,
+      "counts": {
+        "1": 4,
+        "2": 10,
+        "3": 15,
+        "4": 3,
+        "5": 5,
+        "6": 4,
+        "7": 2,
+        "8": 1,
+        "9": 3,
+        "12": 1
+      },
+      "anchorMatches": [
+        1,
+        1
+      ],
+      "partialAnchors": [
+        0,
+        0
+      ],
+      "rotationKeysByMode": [
+        1,
+        1
+      ],
+      "rotationKeys": 1,
+      "truthRetained": true,
+      "truthStage": {
+        "stage": "relaxed-path",
+        "lb": 0,
+        "supports": [
+          191,
+          92,
+          46,
+          16,
+          10,
+          4,
+          4,
+          3,
+          3,
+          1
+        ],
+        "steps": 1874
+      },
+      "packingReject": 0,
+      "pathReject": 0,
+      "minRejectedPacking": null,
+      "relaxedSurvivors": 1,
+      "states": 1874,
+      "nodes": 261,
+      "exact": [
+        {
+          "key": [
+            2,
+            10,
+            7,
+            24,
+            2,
+            14,
+            10,
+            4
+          ],
+          "stage": "exact",
+          "lb": 0,
+          "supports": [
+            191,
+            92,
+            46,
+            16,
+            10,
+            4,
+            4,
+            3,
+            3,
+            1
+          ],
+          "steps": 1874,
+          "nodes": 261,
+          "capped": false,
+          "found": true,
+          "minOOV": 0,
+          "words": [
+            {
+              "w": "D",
+              "phase": 0,
+              "hold": false,
+              "text": "O"
+            },
+            {
+              "w": "GYKJ",
+              "phase": 7,
+              "hold": false,
+              "text": "GAIN"
+            },
+            {
+              "w": "YAQSE",
+              "phase": 4,
+              "hold": false,
+              "text": "AFTER"
+            },
+            {
+              "w": "[",
+              "phase": 0,
+              "hold": false,
+              "text": "Y"
+            },
+            {
+              "w": "TDTSJQ",
+              "phase": 1,
+              "hold": false,
+              "text": "MOMENT"
+            },
+            {
+              "w": "IT",
+              "phase": 0,
+              "hold": false,
+              "text": "HM"
+            },
+            {
+              "w": "CDBGIQ",
+              "phase": 2,
+              "hold": false,
+              "text": "THOUGHT"
+            },
+            {
+              "w": "YK",
+              "phase": 0,
+              "hold": false,
+              "text": "AI"
+            },
+            {
+              "w": "NEDASPPDE",
+              "phase": 6,
+              "hold": false,
+              "text": "PROFESSOR"
+            },
+            {
+              "w": "ESNUKSX",
+              "phase": 6,
+              "hold": false,
+              "text": "REPLIED"
+            },
+            {
+              "w": "PQ[",
+              "phase": 0,
+              "hold": false,
+              "text": "STY"
+            },
+            {
+              "w": "D",
+              "phase": 0,
+              "hold": false,
+              "text": "O"
+            },
+            {
+              "w": "FDJPF\\BPJSPP",
+              "phase": 1,
+              "hold": false,
+              "text": "CONSCIAUSNESS"
+            },
+            {
+              "w": "KJIYRKQV",
+              "phase": 5,
+              "hold": false,
+              "text": "INHABITNG"
+            },
+            {
+              "w": "YJ",
+              "phase": 1,
+              "hold": false,
+              "text": "AN"
+            },
+            {
+              "w": "YERKQEYE[",
+              "phase": 6,
+              "hold": false,
+              "text": "ARBITRARY"
+            },
+            {
+              "w": "RDX[",
+              "phase": 5,
+              "hold": false,
+              "text": "BODY"
+            },
+            {
+              "w": "YQ",
+              "phase": 0,
+              "hold": false,
+              "text": "AT"
+            },
+            {
+              "w": "QKS",
+              "phase": 5,
+              "hold": false,
+              "text": "TIE"
+            },
+            {
+              "w": "TSESU[",
+              "phase": 7,
+              "hold": false,
+              "text": "MERELY"
+            },
+            {
+              "w": "HI",
+              "phase": 6,
+              "hold": false,
+              "text": "WH"
+            },
+            {
+              "w": "CYQ",
+              "phase": 3,
+              "hold": false,
+              "text": "THAT"
+            },
+            {
+              "w": "YHYES",
+              "phase": 6,
+              "hold": false,
+              "text": "AWARE"
+            },
+            {
+              "w": "JDQ",
+              "phase": 2,
+              "hold": false,
+              "text": "NOT"
+            },
+            {
+              "w": "HID",
+              "phase": 5,
+              "hold": false,
+              "text": "WHO"
+            },
+            {
+              "w": "[DB",
+              "phase": 3,
+              "hold": false,
+              "text": "YOU"
+            },
+            {
+              "w": "YES",
+              "phase": 1,
+              "hold": false,
+              "text": "ARE"
+            },
+            {
+              "w": "HID",
+              "phase": 1,
+              "hold": false,
+              "text": "WHO"
+            },
+            {
+              "w": "YES",
+              "phase": 5,
+              "hold": false,
+              "text": "ARE"
+            },
+            {
+              "w": "[DB",
+              "phase": 4,
+              "hold": false,
+              "text": "YOU"
+            },
+            {
+              "w": "HID",
+              "phase": 5,
+              "hold": false,
+              "text": "WHO"
+            },
+            {
+              "w": "HKPISP",
+              "phase": 4,
+              "hold": false,
+              "text": "WISHES"
+            },
+            {
+              "w": "SU",
+              "phase": 4,
+              "hold": false,
+              "text": "EL"
+            },
+            {
+              "w": "PQBX[",
+              "phase": 5,
+              "hold": false,
+              "text": "STUDY"
+            },
+            {
+              "w": "ISES",
+              "phase": 2,
+              "hold": false,
+              "text": "HERE"
+            },
+            {
+              "w": "KP",
+              "phase": 0,
+              "hold": false,
+              "text": "IS"
+            },
+            {
+              "w": "TYJ",
+              "phase": 5,
+              "hold": false,
+              "text": "MAN"
+            },
+            {
+              "w": "KEP",
+              "phase": 2,
+              "hold": false,
+              "text": "IRS"
+            },
+            {
+              "w": "GSQQV",
+              "phase": 2,
+              "hold": false,
+              "text": "GETTNG"
+            },
+            {
+              "w": "KEEKQYQSX",
+              "phase": 5,
+              "hold": false,
+              "text": "IRRITATED"
+            },
+            {
+              "w": "M",
+              "phase": 0,
+              "hold": false,
+              "text": "EO"
+            },
+            {
+              "w": "YT",
+              "phase": 1,
+              "hold": false,
+              "text": "AM"
+            },
+            {
+              "w": "IS",
+              "phase": 6,
+              "hold": false,
+              "text": "HE"
+            },
+            {
+              "w": "PQYEQSX",
+              "phase": 5,
+              "hold": false,
+              "text": "STARTED"
+            },
+            {
+              "w": "RBQ",
+              "phase": 3,
+              "hold": false,
+              "text": "BUT"
+            },
+            {
+              "w": "IS",
+              "phase": 0,
+              "hold": false,
+              "text": "HE"
+            },
+            {
+              "w": "FDBUX",
+              "phase": 2,
+              "hold": false,
+              "text": "COULD"
+            },
+            {
+              "w": "JDQ",
+              "phase": 6,
+              "hold": false,
+              "text": "NOT"
+            }
+          ]
+        }
+      ],
+      "elapsedMs": 32
+    },
+    {
+      "name": "same inventory, three long OOV",
+      "key": [
+        0,
+        24,
+        27,
+        5,
+        20,
+        27,
+        26,
+        24
+      ],
+      "truthOOV": 3,
+      "truthFound": true,
+      "truthRunes": 236,
+      "N": 299,
+      "W": 64,
+      "B": 3,
+      "anchorFloor": 10,
+      "counts": {
+        "1": 1,
+        "2": 11,
+        "3": 14,
+        "4": 9,
+        "5": 9,
+        "6": 8,
+        "7": 3,
+        "8": 5,
+        "10": 2,
+        "11": 1,
+        "13": 1
+      },
+      "anchorMatches": [
+        1066,
+        1069
+      ],
+      "partialAnchors": [
+        0,
+        0
+      ],
+      "rotationKeysByMode": [
+        1063,
+        1066
+      ],
+      "rotationKeys": 1176,
+      "truthRetained": true,
+      "truthStage": {
+        "stage": "relaxed-path",
+        "lb": 3,
+        "supports": [
+          297,
+          140,
+          56,
+          30,
+          17,
+          11,
+          4,
+          5,
+          0,
+          0,
+          1
+        ],
+        "steps": 4081
+      },
+      "packingReject": 1175,
+      "pathReject": 0,
+      "minRejectedPacking": 22,
+      "relaxedSurvivors": 1,
+      "states": 4081,
+      "nodes": 3158,
+      "exact": [
+        {
+          "key": [
+            0,
+            24,
+            27,
+            5,
+            20,
+            27,
+            26,
+            24
+          ],
+          "stage": "exact",
+          "lb": 3,
+          "supports": [
+            297,
+            140,
+            56,
+            30,
+            17,
+            11,
+            4,
+            5,
+            0,
+            0,
+            1
+          ],
+          "steps": 4081,
+          "nodes": 3158,
+          "capped": false,
+          "found": true,
+          "minOOV": 3,
+          "words": [
+            {
+              "w": "TR",
+              "phase": 2,
+              "hold": false,
+              "text": "MB"
+            },
+            {
+              "w": "HSUUKV",
+              "phase": 5,
+              "hold": false,
+              "text": "WELLING"
+            },
+            {
+              "w": "SJQE]QSX",
+              "phase": 0,
+              "hold": false,
+              "text": "ENTREATED"
+            },
+            {
+              "w": "PF",
+              "phase": 0,
+              "hold": false,
+              "text": "SC"
+            },
+            {
+              "w": "PFBEB[",
+              "phase": 5,
+              "hold": false,
+              "text": "SCURUY"
+            },
+            {
+              "w": "RKEFI",
+              "phase": 1,
+              "hold": false,
+              "text": "BIRCH"
+            },
+            {
+              "w": "HIKT",
+              "phase": 2,
+              "hold": false,
+              "text": "WHIM"
+            },
+            {
+              "w": "PFDQP",
+              "phase": 1,
+              "hold": false,
+              "text": "SCOTS"
+            },
+            {
+              "w": "UDDPSU[",
+              "phase": 7,
+              "hold": false,
+              "text": "LOOSELY"
+            },
+            {
+              "w": "UM",
+              "phase": 1,
+              "hold": false,
+              "text": "LEO"
+            },
+            {
+              "w": "TX",
+              "phase": 1,
+              "hold": false,
+              "text": "MD"
+            },
+            {
+              "w": "RYV",
+              "phase": 6,
+              "hold": false,
+              "text": "BANG"
+            },
+            {
+              "w": "RBG",
+              "phase": 0,
+              "hold": false,
+              "text": "BUG"
+            },
+            {
+              "w": "RSS",
+              "phase": 7,
+              "hold": false,
+              "text": "BEE"
+            },
+            {
+              "w": "STSEGV",
+              "phase": 2,
+              "hold": false,
+              "text": "EMERGNG"
+            },
+            {
+              "w": "PFISTS",
+              "phase": 1,
+              "hold": false,
+              "text": "SCHEME"
+            },
+            {
+              "w": "IYEF",
+              "phase": 3,
+              "hold": false,
+              "text": "HARC"
+            },
+            {
+              "w": "PSVSE",
+              "phase": 5,
+              "hold": false,
+              "text": "SENGER"
+            },
+            {
+              "w": "JDQ",
+              "phase": 7,
+              "hold": false,
+              "text": "NOT"
+            },
+            {
+              "w": "KX",
+              "phase": 2,
+              "hold": false,
+              "text": "ID"
+            },
+            {
+              "w": "KJX",
+              "phase": 1,
+              "hold": false,
+              "text": "IND"
+            },
+            {
+              "w": "SONYJXSX",
+              "phase": 4,
+              "hold": false,
+              "text": "EXPANDED"
+            },
+            {
+              "w": "TKJBQSPQ",
+              "phase": 5,
+              "hold": false,
+              "text": "MINUTEST"
+            },
+            {
+              "w": "YVEKU[",
+              "phase": 1,
+              "hold": false,
+              "text": "ANGRILY"
+            },
+            {
+              "w": "FNPLVEPKAQ",
+              "phase": 0,
+              "hold": false,
+              "text": "CPSJNGRSIFT"
+            },
+            {
+              "w": "DEX",
+              "phase": 2,
+              "hold": false,
+              "text": "ORD"
+            },
+            {
+              "w": "IYEBSPQ",
+              "phase": 0,
+              "hold": false,
+              "text": "HARUEST"
+            },
+            {
+              "w": "JT",
+              "phase": 0,
+              "hold": false,
+              "text": "NM"
+            },
+            {
+              "w": "B\\",
+              "phase": 4,
+              "hold": false,
+              "text": "UIA"
+            },
+            {
+              "w": "IST",
+              "phase": 2,
+              "hold": false,
+              "text": "HEM"
+            },
+            {
+              "w": "WQJNNBGFOT",
+              "phase": 0,
+              "hold": false,
+              "text": "OETNPPUGCXM"
+            },
+            {
+              "w": "RYPS",
+              "phase": 2,
+              "hold": false,
+              "text": "BASE"
+            },
+            {
+              "w": "DJ\\J",
+              "phase": 5,
+              "hold": false,
+              "text": "ONIAN"
+            },
+            {
+              "w": "IYX",
+              "phase": 7,
+              "hold": false,
+              "text": "HAD"
+            },
+            {
+              "w": "PJYNNKV",
+              "phase": 1,
+              "hold": false,
+              "text": "SNAPPING"
+            },
+            {
+              "w": "DHJV",
+              "phase": 0,
+              "hold": false,
+              "text": "OWNNG"
+            },
+            {
+              "w": "FKJ",
+              "phase": 0,
+              "hold": false,
+              "text": "CIN"
+            },
+            {
+              "w": "QEYKJ",
+              "phase": 0,
+              "hold": false,
+              "text": "TRAIN"
+            },
+            {
+              "w": "AEDPSJ",
+              "phase": 5,
+              "hold": false,
+              "text": "FROSEN"
+            },
+            {
+              "w": "RF",
+              "phase": 0,
+              "hold": false,
+              "text": "BC"
+            },
+            {
+              "w": "RKG",
+              "phase": 4,
+              "hold": false,
+              "text": "BIG"
+            },
+            {
+              "w": "QKJQ",
+              "phase": 4,
+              "hold": false,
+              "text": "TINT"
+            },
+            {
+              "w": "HKQ",
+              "phase": 3,
+              "hold": false,
+              "text": "WIT"
+            },
+            {
+              "w": "TDEK",
+              "phase": 4,
+              "hold": false,
+              "text": "MORI"
+            },
+            {
+              "w": "SQES",
+              "phase": 0,
+              "hold": false,
+              "text": "ETRE"
+            },
+            {
+              "w": "REYJXV",
+              "phase": 0,
+              "hold": false,
+              "text": "BRANDNG"
+            },
+            {
+              "w": "IBPIV",
+              "phase": 1,
+              "hold": false,
+              "text": "HUSHNG"
+            },
+            {
+              "w": "PDESP",
+              "phase": 2,
+              "hold": false,
+              "text": "SORES"
+            },
+            {
+              "w": "TSJ",
+              "phase": 7,
+              "hold": false,
+              "text": "MEN"
+            },
+            {
+              "w": "FH",
+              "phase": 1,
+              "hold": false,
+              "text": "CW"
+            },
+            {
+              "w": "PB",
+              "phase": 1,
+              "hold": false,
+              "text": "SU"
+            },
+            {
+              "w": "EYG",
+              "phase": 0,
+              "hold": false,
+              "text": "RAG"
+            },
+            {
+              "w": "KJPDUSJQ",
+              "phase": 0,
+              "hold": false,
+              "text": "INSOLENT"
+            },
+            {
+              "w": "KX",
+              "phase": 3,
+              "hold": false,
+              "text": "ID"
+            },
+            {
+              "w": "QSUU",
+              "phase": 2,
+              "hold": false,
+              "text": "TELL"
+            },
+            {
+              "w": "B",
+              "phase": 0,
+              "hold": false,
+              "text": "U"
+            },
+            {
+              "w": "TDJ",
+              "phase": 1,
+              "hold": false,
+              "text": "MON"
+            },
+            {
+              "w": "TSJXSX",
+              "phase": 7,
+              "hold": false,
+              "text": "MENDED"
+            },
+            {
+              "w": "LUCQYDL[VGM",
+              "phase": 0,
+              "hold": false,
+              "text": "JLTHTAOJYNGGEO"
+            },
+            {
+              "w": "IBTYJ",
+              "phase": 5,
+              "hold": false,
+              "text": "HUMAN"
+            },
+            {
+              "w": "BKUSJSPP",
+              "phase": 2,
+              "hold": false,
+              "text": "UILENESS"
+            },
+            {
+              "w": "TYQSE",
+              "phase": 4,
+              "hold": false,
+              "text": "MATER"
+            },
+            {
+              "w": "FYTND",
+              "phase": 1,
+              "hold": false,
+              "text": "CAMPO"
+            },
+            {
+              "w": "PFIKTTSURBPFI",
+              "phase": 0,
+              "hold": false,
+              "text": "SCHIMMELBUSCH"
+            }
+          ]
+        }
+      ],
+      "elapsedMs": 25229
+    }
+  ]
+}
