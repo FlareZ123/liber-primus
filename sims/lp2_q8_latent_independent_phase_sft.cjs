@@ -1,7 +1,7 @@
 'use strict';
 const fs=require('node:fs');
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function core(raw) {
+function core(raw, attack) {
  const corpus=JSON.parse(raw[0]), native=JSON.parse(raw[1]), alphabet=corpus.alphabet??["ᚠ","ᚢ","ᚦ","ᚩ","ᚱ","ᚳ","ᚷ","ᚹ","ᚻ","ᚾ","ᛁ","ᛄ","ᛇ","ᛈ","ᛉ","ᛋ","ᛏ","ᛒ","ᛖ","ᛗ","ᛚ","ᛝ","ᛟ","ᛞ","ᚪ","ᚫ","ᚣ","ᛡ","ᛠ"];
  const latin=["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"], by=new Map(latin.map((s,i)=>[s,i]));
  function gp(s){s=s.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");const a=[];for(let i=0;i<s.length;){const t=s.slice(i,i+2);if(by.has(t)){a.push(by.get(t));i+=2;}else{if(!by.has(s[i]))return [];a.push(by.get(s[i++]));}}return a;}
@@ -26,10 +26,12 @@ function core(raw) {
  function encodeWord(w,k,phase){return w.map(p=>{if(!p)return 0;const c=(p+k[phase])%29;phase=(phase+1)%k.length;return c;});}
  function rng(seed){return ()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};}
  function assess(c,truth,actual,boundaries,tag){const cut=223;const variants=keys.map(([name,key])=>({name,...decode(c,key,cut)}));variants.sort((a,b)=>b.prefix-a.prefix);const w=variants[0];const ends=new Set(w.words.map(e=>e.i+e.plain.length));const right=boundaries?boundaries.filter(x=>x>cut):[];const pred=[...ends].filter(x=>x>cut);const hit=right.filter(x=>ends.has(x)).length;return {tag,actual,selected:w.name,fit:w.fit,held:w.held,heldAccuracy:truth?truth.slice(cut).filter((x,i)=>x===w.plain[cut+i]).length/(c.length-cut):null,heldBoundaryF1:truth?2*hit/(right.length+pred.length):null,fallback:w.fallback,decoded:w.words.map(e=>e.plain.map(x=>latin[x]).join("")).join(" "),phases:w.words.map(e=>e.start),scores:variants.map(v=>({name:v.name,fit:v.fit,held:v.held}))};}
+ if(attack)return attack({donors,dict,decode,encodeWord,rng,corpus,latin});
  const controls=[];for(let d=0;d<donors.length;d++){const a=donors[d];let found;for(let i=Math.floor(a.length*.8);i<a.length;i++){let count=0,j=i;while(j<a.length&&count<299)count+=a[j++].length;if(count===299){found=a.slice(i,j);break;}}if(!found)throw Error("no held-out 299-rune span");const rnd=rng(0x29d800+d),truth=found.flat(),k=keys[2*d][1],bound=[];let n=0;for(const w of found){n+=w.length;bound.push(n);}const c=found.flatMap(w=>encodeWord(w,k,Math.floor(rnd()*8)));controls.push(assess(c,truth,keys[2*d][0],bound,"donor"+d));const pad=truth.map(p=>(p+Math.floor(rnd()*29))%29);controls.push(assess(pad,null,null,null,"pad"+d));}
  const positives=controls.filter(x=>x.actual),neg=controls.filter(x=>!x.actual);const gate=positives.every(x=>x.selected===x.actual&&x.heldAccuracy>=.85&&x.heldBoundaryF1>=.75&&x.held>Math.max(...neg.map(y=>y.held)));
  const p54=corpus.pages.find(p=>p.page===54).indices,p55=corpus.pages.find(p=>p.page===55).indices;if(p54.length!==232||p55.length!==76||p54.slice(1,9).join(",")!==keys[0][1].join(","))throw Error("source geometry/key mismatch");
  const original=gate?assess([...p54.slice(9),...p55],null,null,null,"p54-body+p55"):null;
  return {model:"independent uniform phase at every latent plaintext word; F bypass; canonical GP29; 95% word lexicon plus 5% singleton fallback; six fixed signed keys",dict:dict.size,trie:trie.length,controls,gate,original};
 }
-console.log(JSON.stringify(core(paths.map(p=>fs.readFileSync(p,'utf8'))),null,2));
+module.exports={core,paths};
+if(require.main===module)console.log(JSON.stringify(core(paths.map(p=>fs.readFileSync(p,'utf8'))),null,2));
