@@ -37,6 +37,19 @@ g++ -O3 -march=native -std=c++17 sims/lp2_red8_carryfree_continuous_sft.cpp -o c
 ```
 Return status 3 in original mode indicates at least one clipped configuration; use per-ID clipped flags to distinguish exact negatives. Time-capped node counts are machine-dependent.
 
+## Gauge-aware candidate recovery
+
+A separate [annealing receiver](../sims/lp2_red8_carryfree_anneal_sft.cpp) uses smoothed weighted native GP29 trigrams and a word-register bonus. Its initial hard-fixed-F neighborhood failed the native controls (best OOV 17/10), despite 24/28 and 26/28 of the non-F coordinates respectively matching the true alphabet up to a common translation. Normalizing pi(0)=0 is appropriate for exact enumeration, but forbidding swaps of rune 0 during stochastic optimization creates a severe local-minimum trap: translation of all coordinates is invisible to difference constraints. Optimize over all 29 rune-to-residue assignments (including F swaps), allowing transient illegal consuming F with penalty 10, then normalize the final permutation and require zero illegal consuming F. This changed both controls to exact hidden-pi recovery: control0 488501 proposals, 2 OOV; control1 628979 proposals, 3 OOV. Scores -217.481 and -226.881 match known true fits. Controls are the same development fixtures, with supplied key and clock.
+
+Original: 128/128 configurations, three seconds each, 65,807,070 proposals, all best permutations legal but **33–38 OOV** (best 33 at IDs 9,37,51,122). No candidate remotely approaches the 3-OOV criterion. This is heuristic evidence against the fixed keys, not a further exact exclusion. [Raw OOV counts](lp2-red8-carryfree-anneal-original.csv). One SMT QF_BV attempt also timed out after 15 seconds on the first native control, and an omission-aware pair-branch exact prototype failed to find that control within 25 seconds; neither supplanted the graph solver.
+
+Reproduction:
+```sh
+g++ -O3 -march=native -std=c++17 sims/lp2_red8_carryfree_anneal_sft.cpp -o anneal
+./anneal resources/control/english_wordfreq_textblob.txt control 15 0 2 5
+./anneal resources/control/english_wordfreq_textblob.txt original 3 0 128 5
+```
+
 ## Decision
 
 Keep the mandatory-carry exclusion clearly conditional. The missing-carry escape is now executable with true native OOV examples, without widening source keys or changing the clock. A complete no-carry-free fit exclusion would remove this particular escape from the fixed-source-key/continuous-clock branch, but it would not address arbitrary key residues, alternate clocks, different lexical coverage, or unknown plaintext generally. The 24 completed configurations are a reproducible partial constraint. Continue only if a stronger solver materially advances actual candidate recovery or completion.
