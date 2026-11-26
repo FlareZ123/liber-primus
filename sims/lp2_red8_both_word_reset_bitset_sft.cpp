@@ -187,11 +187,60 @@ void indexRegression(IndexedSearch& s,const string& label,ostream& json){
  cout<<"INVERSE INDEX "<<label<<" states="<<states<<" relationChecks="<<comparisons<<" retainedOptions="<<options<<" oldPostingVisits="<<oldTotal.featureTests<<" newPostingVisits="<<newTotal.featureTests<<" indexLookups="<<newTotal.indexLookups<<" oldOptionTests="<<oldTotal.optionTests<<" newOptionTests="<<newTotal.optionTests<<" pass=1"<<endl;
  json<<"{\"label\":\""<<label<<"\",\"states\":"<<states<<",\"relationChecks\":"<<comparisons<<",\"retainedOptions\":"<<options<<",\"oldPostingVisits\":"<<oldTotal.featureTests<<",\"newPostingVisits\":"<<newTotal.featureTests<<",\"indexLookups\":"<<newTotal.indexLookups<<",\"oldOptionTests\":"<<oldTotal.optionTests<<",\"newOptionTests\":"<<newTotal.optionTests<<",\"pass\":true}";
 }
+// A separate, conditional title-crib branch: the red eight-rune title is
+// hypothesized to be DIVINITY encrypted by the same mapped keyword. Its
+// phase is independent of the mandatory 10-rune carry. No body word is
+// assumed known, and no p55 glyph enters this gate.
+bool containsPi(const aff::Space& s,const Pi& pi){
+ for(int x=0;x<29;x++){int v=s.a[x][aff::L];for(int j=0;j<s.d;j++)v+=s.a[x][j]*pi[s.vars[j]];if(aff::mod(v)!=pi[x])return false;}return true;
+}
+struct TitleGate {size_t roots=0;array<int,8> dimension{},joins{};bool truth=false;};
+TitleGate titleGate(const string& heading,const string& carry,const Pi* truth=nullptr,int truthPhase=-1){
+ TitleGate z;z.dimension.fill(-1);auto b=aff::base();
+ vector<string> words(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(words.begin(),words.end());
+ auto d=mappedDomain(47,byteWord(carry),byteWords(words),b);
+ vector<aff::Space> roots;unordered_set<string> seen;
+ for(auto& o:d.opts){aff::Space t;if(aff::apply(b,o,t)&&seen.insert(signature(t)).second)roots.push_back(t);}z.roots=roots.size();
+ auto C=byteWord(heading);fixed::require(C.size()==8,"title length");
+ for(int phase=0;phase<8;phase++){
+  aff::Option o;bool valid=true;for(int i=0;i<8;i++){
+   int p=DIVINITY[i],x=C[i],k=activeKey[(phase+i)%8];
+   if(p==x||(negative?((x==0&&p!=k)||(x!=0&&p==k)):(x==k))){valid=false;break;}
+   if(negative){if(x)o.e[o.n++]={uint8_t(p),uint8_t(x),uint8_t(k)};}else o.e[o.n++]={uint8_t(x),uint8_t(p),uint8_t(k)};
+  }
+  if(!valid)continue;aff::Space title;if(!aff::apply(b,o,title))continue;z.dimension[phase]=title.d;
+  for(const auto& root:roots){aff::Space t;if(!aff::apply(root,o,t))continue;z.joins[phase]++;if(truth&&phase==truthPhase&&containsPi(t,*truth))z.truth=true;}
+ }
+ return z;
+}
+void titlePrint(const string& label,int sign,const TitleGate& z,ostream& out){
+ out<<"{\"label\":\""<<label<<"\",\"sign\":"<<sign<<",\"roots\":"<<z.roots<<",\"dimension\":[";
+ for(int i=0;i<8;i++){if(i)out<<",";out<<z.dimension[i];}out<<"],\"joins\":[";
+ for(int i=0;i<8;i++){if(i)out<<",";out<<z.joins[i];}out<<"],\"trueKeyRetained\":"<<(z.truth?"true":"false")<<"}";
+}
 int main(int argc,char**argv){try{aff::init();fixed::dictionary();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
  // Prior both-sign run passed both blind controls for the unchanged search.
  // A range invocation searches only the negative-sign original and reports
  // exact completed IDs; an incomplete previous worker prefix is not assumed.
+ if(argc==2&&string(argv[1])=="title-crib"){
+  activeKey=DIVINITY;string plain;for(int x:DIVINITY)plain+=fixed::SYM[x];
+  auto headings=fixed::strings(src,"heading_groups",src.find("\"p54\""));fixed::require(headings.size()==2&&headings[0]=="o"&&headings[1]=="jlnr2eaj","original title");
+  ostringstream out;out<<"[";bool first=true;
+  for(int sign:{1,-1}){
+   negative=sign<0;
+   for(unsigned seed:{3301u,1033u}){
+    auto p=wordPlant(train,held,seed);int phase=seed%8;
+    auto head=fixed::encode(plain,wide(p.pi),mappedKey(p.pi),phase);
+    auto z=titleGate(head,p.train.back(),&p.pi,phase);
+    fixed::require(z.truth,"title/carry planted true key lost");
+    if(!first)out<<",";first=false;titlePrint("plant-"+to_string(seed),sign,z,out);
+   }
+   auto z=titleGate(headings[1],train.back());fixed::require(z.roots==(negative?156:231),"original root count");
+   if(!first)out<<",";first=false;titlePrint("original",sign,z,out);
+  }
+  out<<"]\n";cout<<out.str();if(const char* p=getenv("SFT_OUTPUT")){ofstream f(p);f<<out.str();}return 0;
+ }
  if(argc==3&&string(argv[1])=="divinity"){
   activeKey=DIVINITY;int sign=stoi(argv[2]);fixed::require(sign==1||sign==-1,"DIVINITY sign");
   negative=sign<0;useInverseIndex=negative;
