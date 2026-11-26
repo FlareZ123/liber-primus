@@ -75,7 +75,12 @@ def download(url):
 
 def fetch_upstream(root):
     def one(path):
-        b = download(PREFIX + "Dukotah/cicada3301/" + UPSTREAM + "/" + path)
+        source = ("liber-primus/analysis/round36/P1-panel-r36/inputs_frozen/welsh_mabinogion.txt"
+                  if path == "liber-primus/data/keys/welsh/welsh_mabinogion.txt" else path)
+        try:
+            b = download(PREFIX + "Dukotah/cicada3301/" + UPSTREAM + "/" + source)
+        except OSError as exc:
+            raise RuntimeError(f"upstream input unavailable: {source}") from exc
         out = root / path
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_bytes(b)
