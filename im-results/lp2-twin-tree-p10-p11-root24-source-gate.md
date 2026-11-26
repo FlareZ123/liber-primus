@@ -105,9 +105,36 @@ The four-stream restriction also correctly disfavors all three pairwise-only pla
 
 Reproduce with [standalone CommonJS SFT](../sims/agent7-tree-quotient-sharedpad.cjs); [full machine-readable results and input blob SHAs](agent7-tree-quotient-sharedpad.json). Executed in the connected V8 runtime on canonical repository inputs; standalone Node execution and CI were not run.
 
+### Native transparent-F consuming clock
+
+The authentic F-hold rule is a distinct receiver: plaintext rune 0 emits literal ciphertext 0 without consuming the pad; nonzero plaintext adds the next GP29 pad value and consumes it, possibly emitting ciphertext 0. Apply this convention to the same fixed quotients/raw counterparts. Under a shared pad, the consuming positions of different streams need not coincide.
+
+The two-stream inverse is exact: states are the two emitted positions and last jointly consumed pad symbol. Before each joint consumption, enumerate all legal literal-F holds in each stream. Each consuming plaintext is nonzero and determined by its ciphertext and the common key symbol. Use a normalized Shakespeare bigram prior (unigram pseudocount .5, backoff mass 16), including all possible trailing holds and remaining single-stream consumption when one stream ends. Terminal cases are disjoint. Sum-product and max-product include every path; the denominator is the exact independent F-hold-pad likelihood, not uniform raw ciphertext. All selected paths replay the original quotients and raw tapes with a shared consuming key.
+
+| Pair | Original ln BF | Shared planted ln BF range (3 cases) | Independent planted ln BF range |
+|---|---:|---:|---:|
+| Left | -3.0879 | +1.0366 to +5.9736 | -4.7414 to +0.8298 |
+| Right | -3.8186 | -0.3565 to +6.8834 | -3.8288 to -0.8923 |
+
+Original left/right MAP consumes respectively 252/253 and 267/267 symbols. The true shared plants only recover 6.1–20.3% of plaintext per stream; one true right control has slightly negative evidence. Both original likelihoods are below all matched shared controls, but the small, weakly discriminating calibration cannot exclude general native F-hold pad reuse.
+
+The four-stream extension uses the same bigram prior and authentic F-hold clock, keeping all 29 previous-key states for each of up to 128 joint-position tuples at each consuming step. Tuples are ranked by their forward mass multiplied by independent remaining suffix likelihood. Exhausted streams contribute no further key constraints; the final common pad need only agree over shared prefixes. This is a **pruned sum-product lower bound**, with max-product reconstruction over retained paths, not an exact four-stream exclusion.
+
+| Four-stream case | ln BF lower bound | Rune accuracy per stream |
+|---|---:|---:|
+| Shared plant 0 | +81.8413 | 67.0–69.0% |
+| Shared plant 1 | +70.7131 | 69.9–72.0% |
+| Pairwise-only plants | -30.7620 to -27.9008 | 6.9–12.5% |
+| Independent plants | -39.7655 to -33.5097 | 4.2–8.5% |
+| Original | -44.7883 | unknown; incoherent |
+
+Original has 13/12/8/12 ciphertext F positions, consumes 253/256/269/266 in the MAP witness, and prunes 2,331 position tuples. The selected witness exactly replays all four streams under one common key, but does not read as coherent GP-English. Thus the finite beam receiver does not rescue the quotient-pad hypothesis, despite meaningful true-plant recovery. The likelihood lower bound alone cannot establish that the exact original likelihood is negative. No plaintext/key claim.
+
+Reproduce: [exact asynchronous pair SFT](../sims/agent7-tree-quotient-fhold-sharedpad.cjs), [pair raw](agent7-tree-quotient-fhold-sharedpad.json), [four-stream bounded SFT](../sims/agent7-tree-quotient-fhold-fourway.cjs), [four-stream raw](agent7-tree-quotient-fhold-fourway.json). Both computations executed in connected V8; standalone Node/CI not run.
+
 ## Decision and actionable prerequisite
 
-The p10 original `7-G` dual-root/derivative signature, shared root24 on p10/p11 and both same-stencil quotient-length equalities are **precise and cheaply reproducible original-source observations**. The direct original 13×13 Hill matrix likewise fails to recover 91 connected runes. The two complete-length source-quotient transfers fail to produce readable GP-English and are rigorously incompatible with their matching-stencil target pages under **every** fixed global GP29 substitution. The opposed *reused* margin art supplies a reason to investigate the **seven-page family**, while no original art feature selects this exact two-page pair. GF29 polynomial language has independently appeared in the p15/p36/p39/p50 investigation. Neither page provides an authenticated instruction for polynomial division, a relative quotient alignment, or a cryptographic key. The separate p10→p12 and p11→p13 transfers eliminate the ten-position mismatch for their declared targets and still fail. The most literal quotient and mirror operations fail to reveal English; the exact same-stencil additive common-pad marginal and joint MAP also fail under a held-out calibrated trigram model; further rotations, phases, masks, and polynomial operations would be postselected without new evidence.
+The p10 original `7-G` dual-root/derivative signature, shared root24 on p10/p11 and both same-stencil quotient-length equalities are **precise and cheaply reproducible original-source observations**. The direct original 13×13 Hill matrix likewise fails to recover 91 connected runes. The two complete-length source-quotient transfers fail to produce readable GP-English and are rigorously incompatible with their matching-stencil target pages under **every** fixed global GP29 substitution. The opposed *reused* margin art supplies a reason to investigate the **seven-page family**, while no original art feature selects this exact two-page pair. GF29 polynomial language has independently appeared in the p15/p36/p39/p50 investigation. Neither page provides an authenticated instruction for polynomial division, a relative quotient alignment, or a cryptographic key. The separate p10→p12 and p11→p13 transfers eliminate the ten-position mismatch for their declared targets and still fail. The most literal quotient and mirror operations fail to reveal English; the exact same-stencil additive common-pad marginal and joint MAP also fail under a held-out calibrated trigram model; authentic transparent-F clocks do not rescue the exact pair receiver or the finite four-stream beam receiver; further rotations, phases, masks, and polynomial operations would be postselected without new evidence.
 
 A genuinely decisive next input is an original instruction or already-readable partial passage that identifies the **intended consumer of the root7/root24 factors**, or an independent predicted relationship on uninspected original runes. If that emerges, test a complete reversible original-cipher inverse and a held-out paragraph; otherwise retain this as an intermediate algebraic clue, with **no change to the authoritative unsolved status**.
 
