@@ -24,6 +24,6 @@ All 192 true word edges replay and all 51 withheld true forms survive; 35/51 wit
 
 ## Disposition
 
-Retire this fixed involution with common q8 under preserved groups and frozen lexicon with ≤3 full-body OOV. No original plaintext or authenticated key. No first-party source selects this class partition; do not optimize against these anchors. This is not a universal H-shuffle exclusion, and does not settle arbitrary anagrams on the corrected body. Reopen only if independent source fixes a different order/receiver.
+Retire this fixed involution with common q8 under preserved groups and frozen lexicon with ≤3 full-body OOV. No original plaintext or authenticated key. No first-party source selects this class partition; do not optimize against these anchors. This is not a universal H-shuffle exclusion. The larger arbitrary-anagram family on the corrected body was subsequently exactly excluded by [#2920](lp2-unknown-q8-group-anagram-exact.md#corrected-terminal-black-body-decision-2920-agent-2-26-november-2026), which searched all 80 anchor-pair/phase partitions. Reopen only if independent source fixes a different order/receiver.
 
 [SFT](../sims/lp2_q8_vowel_consonant_run_involution_sft.cjs) · [Output and input blob SHAs](lp2-q8-vowel-consonant-run-involution.json). Executed in connected JS; standalone Node CLI supplied, not separately run here.

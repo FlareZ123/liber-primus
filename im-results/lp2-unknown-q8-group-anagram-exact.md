@@ -1,6 +1,6 @@
 # Unknown q8 group-anagram model: exhaustive terminal-chapter key exclusion
 
-Agent 13, 2026-11-25, Director #2710. This is a complete finite all-key exclusion for a materially relaxed form of the authentic additive cipher, not a plaintext recovery.
+Agent 13, 2026-11-25, Director #2710; corrected black-body extension Agent 2, 2026-11-26, #2920. Both scopes now have complete finite all-key exclusions for a materially relaxed form of the authentic additive cipher, not a plaintext recovery.
 
 ## Frozen model and scope
 
@@ -44,3 +44,28 @@ Retire all unknown shared cyclic q8 additive literal-F keys for the terminal pri
 - `node sims/lp2_unknown_q8_group_anagram_replay_sft.cjs` (continuous exact replay from saved key outputs)
 
 Original/controls executed from commits 8200cde3e2945ffaae3d6a1c8a6ddd819bbc91a4 / 204ae827446b0b5673f171e3ac99c34e426f56b2, with same solver blob 8c89fa747097661f2d736bb7810762c00110159c.
+
+## Corrected terminal black-body decision (#2920, Agent 2, 26 November 2026)
+
+**Exact all-key exclusion independently closes the heading-removal loophole.** The earlier six-anchor proof included one red heading word. On the corrected physical black-body scope (offsets 12657–12955, 299 runes, 64 complete groups), the heading is removed completely. Training consists only of the 47 complete p54 body groups (213 runes); the full 11-rune carry and all 16 p55-local groups (86 runes, 17 groups) are held out. The full-body allowance remains three OOV groups, so a feasible full-body key must cover at least 44/47 training groups. The five zero-free eight-rune training anchors start at 12657, 12718, 12734, 12807 and 12824.
+
+The previous exact 4+4 complement index is reused unchanged with the frozen 35,944-form GP register (33,828 bags, 4,676 zero-free eight-rune bags). The five-anchor proof requires coverage of at least two anchors, so the exhaustive union is **all ten unordered pairs × eight relative phases = 80 partitions**, not the earlier two triples. Every covering key can be rotated to give one of those pairs a starting phase zero. The pair generator enumerates all dictionary plaintext permutations and therefore all such cyclic keys; the remaining groups are checked with independent arbitrary phases, all literal-F holds and both lawful ciphertext-zero branches. It stops a candidate only after a fourth empty group domain. This relaxation includes every stricter continuous common q8 key with arbitrary within-word order and conserved membership.
+
+| Original training-only exhaustive result | Count |
+|---|---:|
+| Completed pair/phase partitions | 80/80 |
+| Compatible prefix events | 8,300,915 |
+| Suffix membership checks | 2,562,712,938 |
+| Partition-distinct cyclic key evaluations (duplicates across partitions possible) | 1,471,885 |
+| Keys covering at least 44/47 training groups | **0** |
+
+All ten disjoint range outputs are persisted under [corrected-body raw outputs](lp2-q8-corrected-blackbody-anagram/). There is no key to freeze or original carry/p55 plaintext to score. This is a complete finite negative without requiring the held-out ciphertext, not a probabilistic language-score failure.
+
+Fresh hidden-key controls used prior sender's shuffled held-donor native forms, including genuine F holds and continuous clock, with the corrected body/training split. Each calibration searched one independently fixed pair across all eight relative phases; the original searched every pair. Seeds and pair indices were 29201 / 0 and 29202 / 9. Each recovered exactly one key among its tested pair partitions, matching the hidden cyclic key. Both had 0 missing groups, 64/64 true phase/bag edges, 17/17 withheld true bags, and a complete continuous phase path. Unique withheld word forms were 7/17 and 8/17 respectively; ordered plaintext is not identified by multiset recovery. This is a fresh positive-control check of the corrected receiver, not an assertion that every control partition was separately run.
+
+- [Corrected receiver SFT](../sims/lp2_q8_corrected_blackbody_anagram_sft.cjs), committed b68a2b269bf271788617cec9386af58a675fd041. Uses the previous exact solver as a library.
+- Reproduce original: `node sims/lp2_q8_corrected_blackbody_anagram_sft.cjs original 0 80`.
+- Reproduce controls: `node sims/lp2_q8_corrected_blackbody_anagram_sft.cjs 29201 0 8` and `node sims/lp2_q8_corrected_blackbody_anagram_sft.cjs 29202 72 80`.
+- Actual connected V8 execution of all 80 original partitions and 16 fresh-control partitions; CLI wrapper supplied, not independently run in Node CI. Each original pair's raw output was committed separately for resumability. No new workflow.
+
+**Decision:** retire shared unknown cyclic q8 additive literal-F with intact black-body groups and arbitrary within-group permutations under this frozen register and three-OOV budget. Both the earlier heading-inclusive and corrected black-body variants are now exactly excluded. This does not rule out decoy group boundaries, altered membership, a different register/OOV allowance, longer periods or different cipher families. There is no newly recovered authentic key or unknown plaintext. Do not tune new within-word permutation heuristics under the excluded family.
