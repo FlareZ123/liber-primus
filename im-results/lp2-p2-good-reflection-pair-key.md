@@ -115,7 +115,25 @@ Crucially, it can be tested before looking at the p2 plaintext. Enumerating all 
 | A | -K = -2 | NG = 21 | V = 4 | p = 23 | `[24,28,5,3]` |
 | B | -NG = -21 | K = 2 | V = 4 | p = 23 | `[5,28,5,3]` |
 
-The ray fixes the inner pair and `k3`, but leaves a binary ambiguity in the outer-left key symbol. The ciphertext and manuscript-wide control must distinguish A from B.
+The signed message also says that its words are the map and their numbers the direction. Under the natural reading that the four H4 key slots select four distinct source-word positions, only A survives:
+
+| Key slot | Zero-based source word index | Source word |
+|---|---:|---|
+| k0 | 24 | AND |
+| k1 | 28 | THE |
+| k2 | 5 | EPIPHANY |
+| k3 | 3 | LIES |
+
+The four indices are distinct, and in key order they read **AND THE EPIPHANY LIES**. Candidate B repeats source index5 (EPIPHANY) in both k0 and k2, so it fails this without-replacement reading. This selects A before examining the p2 ciphertext, provided the four-slot key is intended to draw four distinct words from the source map.
+
+The same key reproduces the DH state exactly:
+
+    k0-k3 = 21 = NG
+    k1-k2 = 23 = p
+    k1+k2 = 4  = V
+    k0+k3 = 27 = -K mod29
+
+Thus [24,28,5,3] is simultaneously a four-word source-index tuple, the unique ray-compatible distinct-index assignment, and an inverse H4 image of [NG,p,V,-K]. The distinctness assumption and H4 operation remain hypotheses, but this is a source-only key selection rather than a post-hoc plaintext fit.
 
 ## 4. Exact decryption and finite assignment audits
 
@@ -149,7 +167,7 @@ The wider finite source-state pool
 
 gives `11P4 * 16 = 126,720` signed assignments. Four hit GOOD, but they are aliases of the same numeric key: `-8=21 mod29` may replace `+21`, and `-6=23 mod29` may replace `+23`.
 
-These are finite-family search audits, not p-values. The source-only ray filter is the stronger result because it reduces the key choices before inspecting the ciphertext output.
+These are finite-family search audits, not p-values. The source-only ray plus distinct-word-index rule selects A before ciphertext inspection; the fixed-key manuscript control below is an independent validation.
 
 ## 5. Fixed-key manuscript-wide control
 
@@ -166,7 +184,7 @@ That is `509 * 9 * 2 = 9,162` comparisons per key.
 | A: `[24,28,5,3]` | GOOD | **1** |
 | B: `[5,28,5,3]` | AE O O D | **0** |
 
-Candidate A's sole hit is the p2 offset36 receiver itself, decrypting to GOOD. Candidate B has no hit anywhere in the 509-word control. This resolves the remaining binary ambiguity in favor of A without searching over alternative plaintexts at the target.
+Candidate A's sole hit is the p2 offset36 receiver itself, decrypting to GOOD. Candidate B has no hit anywhere in the 509-word control. This independently confirms the source-only distinct-word selection: A has the sole hit, while B has none, without searching over alternative plaintexts at the target.
 
 This is the strongest current evidence for the p2 local inverse. It does not prove that the proposed ray readout is the intended mechanism, but it makes the interpretation substantially more constrained than an unconstrained key search.
 
@@ -191,12 +209,15 @@ What is supported:
 - exact GP29 forward and inverse arithmetic on the original p2 ciphertext;
 - a plausible page2 / page-local group10 / offset36 / length4 coordinate from the 13- and 23-dot endpoint markers and signed 2016 phrase lengths;
 - a source-only 3-4-5 ray filter that reduces 384 H4 assignments to two;
-- a manuscript-wide fixed-key control that selects one of those two, with one GOOD hit versus zero for the alternative;
+- under the four-distinct-source-word reading, a unique source-index key [24,28,5,3] = AND/THE/EPIPHANY/LIES;
+- an H4 image [NG,p,V,-K] that exactly reproduces the independently reconstructed DH state;
+- a manuscript-wide fixed-key control that independently confirms the selected key, with one GOOD hit versus zero for the alternative;
 - a cross-result source-index convergence with the existing p35 FOUND candidate.
 
 What remains unproved:
 
-- whether the right-side readout `[k3,k1+k2,k2]` is the intended interpretation of the 2016 direction ray;
+- whether the four key slots are intended to select distinct source-word indices (the without-replacement assumption);
+- whether the right-side readout [k3,k1+k2,k2] is the intended interpretation of the 2016 direction ray;
 - whether the H4 reflection/sum/difference operation is explicitly selected by the p50/p57 clues rather than merely compatible with them;
 - whether the mechanism generalizes beyond this local receiver.
 

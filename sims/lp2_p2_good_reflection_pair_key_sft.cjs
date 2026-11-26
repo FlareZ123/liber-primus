@@ -282,6 +282,26 @@ assert.deepEqual(
 );
 const alternativeKey = [5, 28, 5, 3];
 
+// The 2016 message says its words are the map and their numbers the direction.
+// Under the natural four-distinct-word reading of the four H4 key slots,
+// only one ray-compatible assignment remains.
+const distinctSourceWordAssignments = rayCompatibleAssignments.filter((entry) =>
+  new Set(entry.key).size === 4 &&
+  entry.key.every((index) => index >= 0 && index < signedWords.length)
+);
+assert.equal(distinctSourceWordAssignments.length, 1);
+const sourceIndexKey = distinctSourceWordAssignments[0].key;
+assert.deepEqual(sourceIndexKey, [24, 28, 5, 3]);
+const sourceIndexKeyWords = sourceIndexKey.map((index) => signedWords[index]);
+assert.deepEqual(sourceIndexKeyWords, ["AND", "THE", "EPIPHANY", "LIES"]);
+const h4Invariants = [
+  mod29(sourceIndexKey[0] - sourceIndexKey[3]),
+  mod29(sourceIndexKey[1] - sourceIndexKey[2]),
+  mod29(sourceIndexKey[1] + sourceIndexKey[2]),
+  mod29(sourceIndexKey[0] + sourceIndexKey[3]),
+];
+assert.deepEqual(h4Invariants, [NG, p, V, mod29(-K)]);
+
 const sourceFourByValue = new Map();
 for (const word of signedWords) {
   const values = gp(word);
@@ -447,7 +467,11 @@ const result = {
     readout: "[k3,k1+k2,k2]",
     compatibleAssignments: rayCompatibleAssignments,
     remainingKeys: [...new Set(rayCompatibleAssignments.map((entry) => entry.key.join(",")))],
-    note: "The ray fixes the inner pair and k3, but leaves two possible outer-left values."
+    distinctSourceWordAssignments,
+    sourceIndexKey,
+    sourceIndexKeyWords,
+    h4Invariants,
+    note: "The ray leaves two assignments; requiring four distinct source-word indices selects [24,28,5,3] = AND/THE/EPIPHANY/LIES before plaintext inspection."
   },
   candidate: {
     sourceState: { K, NG, V, p },
@@ -485,7 +509,7 @@ const result = {
     signedWord36: signedWords[36],
     classification: "cross-result consistency, not independent authentication of the p2 key"
   },
-  decision: "The source-only 3-4-5 ray filter reduces the 384 H4 assignments to two; the 509-word fixed-key control selects [24,28,5,3] uniquely (one GOOD hit) over the alternative [5,28,5,3] (zero hits). This is a source-constrained local plaintext candidate, not yet an authenticated general cipher."
+  decision: "The source-only 3-4-5 ray filter reduces 384 H4 assignments to two; the four-distinct-source-word reading selects [24,28,5,3] = AND/THE/EPIPHANY/LIES before plaintext inspection. The 509-word fixed-key control independently confirms one GOOD hit for this key and zero for the alternative. This is a source-constrained local plaintext candidate, not yet an authenticated general cipher."
 };
 const rendered = JSON.stringify(result, null, 2);
 console.log(rendered);
