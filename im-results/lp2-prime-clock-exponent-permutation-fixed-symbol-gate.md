@@ -1,6 +1,6 @@
 # Global GP29 prime-exponent clock: identity and all-fixed-alphabet exclusion
 
-**26 November 2026. Intermediate negative for Director Issue #2942 and Agent5's all-fixed-alphabet extension. No unknown plaintext or authentic key recovered.** The current strongest result is the exact arbitrary-input/output-permutation concentration bound below; the original fixed-symbol gate remains the special identity-offset case.
+**26 November 2026. Intermediate negative for Director Issue #2942 and Agent5's all-fixed-alphabet extension. No unknown plaintext or authentic key recovered.** The current strongest results are the exact global arbitrary-input/output-permutation concentration bound and the all-3,301-origin chapter-private upper bound below. The original fixed-symbol gate remains the special identity-offset case.
 
 ## Hypothesis and source boundary
 
@@ -90,3 +90,21 @@ The exact assignment implementation checks integer primal/dual feasibility and m
 - [Affine inverse SFT](../sims/lp2_prime_exponent_affine_wrapper_original_sft.cjs), freeze d7594116; [raw outputs](lp2-prime-exponent-affine-wrapper-output.json), ef25f7f3.
 - [Exact arbitrary-permutation SFT](../sims/lp2_prime_exponent_allpermutation_capacity_sft.cjs), freeze 942fb1e4; [raw witnesses](lp2-prime-exponent-allpermutation-capacity-output.json), 0d242ba7.
 - Both frozen computation cores ran in connected V8; standalone CommonJS wrappers have not separately run in native Node/Windows. No CI dispatched. No new unknown plaintext, key, or authenticated clock selection.
+
+## All 3,301 prime origins: chapter-private arbitrary alphabet maps (Agent 5)
+
+The global result does not by itself address a private chapter key or shifted start. On the full physical p40–53 chapter (3,008 runes), grant independently arbitrary static input/output alphabets, both consuming and internal-zero-hold clocks, both exponent directions, and all 3,301 consecutive unit-prime origins 0..3300.
+
+For each multiplicative-order orbit in GF29, unit exponentiation partitions the 12 unit exponents into cosets of the stabilizer of a representative. Orbit sizes including zero are 1,1,1,2,6,6,12. For one target inside an orbit of size k, a given ciphertext label can contribute at most its largest coset count; for two distinct targets in the same orbit it can contribute at most its two largest coset counts. Exactly k ciphertext labels may be assigned to that orbit. Therefore the sum of the k largest per-label capacities bounds any alphabet permutation. Distinct-orbit target pairs are bounded by the sum of their individual orbit capacities (relaxing disjointness). For a zero-hold clock, pin the ciphertext label assigned to zero and remove it from other classes, with its entire count available only to the zero singleton. Inverting all exponents merely permutes the stabilizer cosets; one evaluation covers both directions. This is a rigorous upper bound, not a claim of exact assignment optima.
+
+| Clock | Origin/held-label states | Largest relaxed top-two bound | States reaching native floor |
+|---|---:|---:|---:|
+| Consuming | 3,301 | 382 (origin 51) | 0 |
+| Internal-zero hold | 95,729 | 397 (origin 2811, ciphertext label 9) | 0 |
+| Native reference | 594,402 contiguous 3,008-rune windows | minimum 532 | — |
+
+All four arbitrary-alphabet planted controls at origins 0,777,1234,3300 retain their true top-two counts (598/642/607/604 within bounds 696/653/624/716), including two inverse-exponent cases and two held-label clocks. These are positive bound checks, not recovered arbitrary-permutation keys. The four exact affine key-recovery controls remain the earlier separate experiment.
+
+**Decision:** retire this entire public unit-prime exponent receiver with fixed alphabet maps for p40–53, even under chapter-private alphabets and any of the 3,301 tested origins; consequently a book-wide model of that family with independent chapter origins/maps cannot match the frozen native chapter distributions. The 135-rune gap between the most permissive upper bound and the minimum donor concentration is robust to secret alphabet relabeling. This does not exclude arbitrary other exponent schedules, page-private alphabets, other source registers, position-dependent alphabets, non-unit powers with genuine side information or other state laws. No unknown plaintext or key. No historical source selects this speculative power cipher; do not broaden its exponent/clock family absent a new independent clue.
+
+[All-origin orbit-bound SFT](../sims/lp2_prime_exponent_allorigin_chapter_orbit_bound_sft.cjs), freeze c2ca9f16; [complete raw output](lp2-prime-exponent-allorigin-chapter-orbit-bound-output.json), edf2e291. All 99,030 states evaluated in connected V8; standalone Windows/Node wrapper not independently executed. Sources and exact per-held-label maxima preserved.
