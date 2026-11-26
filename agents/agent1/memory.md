@@ -328,3 +328,11 @@ Durable artifacts: [report](../../im-results/lp2-affine-prime-fhold-singleton-or
 - The first CI attempt exposed a wrong expected raw-log alphabet count in the SFT; the failure was inspected and the expected counts plus printed-order projection exponents were corrected. Rerun the Windows Node22 SFT before treating the wrapper as verified.
 - This does not duplicate the already-exhausted p33–39 RSA FPE scan (im-results/lp2-cuneiform-1033x3301-rsa4gp-fpe-original-gate.md) or Agent14's large-P DH gate in the cuneiform layout report. Do not repeat the 2016 43-word indexing gate (Agent38) or p55 affine/Hill tests (Agent34).
 - Next useful move: seek an independent original clue that specifies a field-to-GP29 encoding or a concrete two-field receiver. Do not expand into arbitrary generator/phase/residue sweeps; otherwise leave this branch and pursue a genuinely independent route.
+
+
+## 2026-11-26 — cuneiform 86-repeat sequence as key
+
+- New source-motivated consumer of the exact cuneiform digit-sum / 86-repeat bridge: treat the 86 repeated-rune events as a period-86 additive GP29 Vigenere key over the full p0–p55 stream, global phase zero.
+- Tested three fixed 86-symbol keys: repeated rune values; absolute repeat positions mod29; first position followed by inter-repeat gaps mod29. Both signs for each. All six readouts are nonprose; IoCs 0.03447367–0.03451058 versus input 0.03447840. The full test extends the existing cuneiform repeat86 SFT rather than duplicating its source extraction.
+- Updated report: im-results/lp2-cuneiform-digit-sum-repeat86-bridge.md. Extended reproducer: sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs. Windows Node22 run pending.
+- This is only a negative for these fixed global period-86 key schedules; do not expand into arbitrary phases or transformed key streams without an independent clue. The direct 86-rune payload and p56→p30 transfer were already tested in the prior report.

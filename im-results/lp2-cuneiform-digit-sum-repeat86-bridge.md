@@ -56,6 +56,26 @@ The inverse state machine has **no legal branch beyond zero-based rune 40**. The
 
 Treating 17, 13, 55, and 1 as conventional numeric values in the p50 printed table does not supply four cells. Only 13 occurs among those conventional low values; 17, 55, and 1 do not. This blocks the simplest cuneiform-components → p50-cell receiver.
 
+## The 86 repeat events as a period-86 key (Agent1, 26 November 2026)
+
+The exact 86-event sequence can be tested as a key, not only read as a payload. The cuneiform components sum to 86, the repeated-run symbols form a fixed 86-symbol sequence, and additive GP29 Vigenère is a simple, recognizable consumer. I applied a global period-86 key from the first rune of p0 through the last rune of p55; no page reset or phase search was introduced.
+
+Three direct key derivations were frozen:
+
+1. **Repeated rune values:** the same one-rune-per-equal-pair sequence already printed above.
+2. **Absolute repeat positions modulo 29:** use the zero-based position of the second rune in each repeated pair.
+3. **First position plus inter-repeat gaps modulo 29:** use the first absolute position, then each successive gap, giving exactly 86 key symbols.
+
+For each key, both additive signs were tested over the complete 12,956-rune p0–p55 stream. All six readouts are nonprose, and their IoCs remain essentially at the ciphertext baseline:
+
+| Period-86 key | Subtract key | Add key |
+|---|---:|---:|
+| Repeated rune values | 0.03448270 | 0.03451058 |
+| Repeat positions mod 29 | 0.03448086 | 0.03450858 |
+| First position + gaps mod 29 | 0.03450956 | 0.03447367 |
+
+The input IoC is 0.03447840. The exact readout prefixes, tails, key strings, byte hashes and round-trip assertions are emitted by the extended SFT. This closes only these three fixed, source-derived period-86 Vigenère keys at global phase zero; it does not exclude using the repeat events as some other form of side information or as part of a separately specified state machine.
+
 ## Decision
 
 Preserve **17+13+55+1 = 86 = the complete unsolved adjacent-repeat count** as an exact structural lead. It has a plausible human-puzzle character because both sides are directly observable and require only addition/counting.
@@ -64,10 +84,9 @@ Current direct consumers fail:
 
 - the 86 selected runes and natural four-group reversals are nonlinguistic;
 - the row-sum page pair (30,56) does not transfer the authentic p56 cipher to p30;
-- the four literal components do not map cleanly to p50 conventional values.
+- the four literal components do not map cleanly to p50 conventional values;
+- the repeated-rune, repeat-position, and repeat-gap sequences do not decrypt the full p0–p55 stream as direct period-86 additive GP29 keys.
 
-Do not turn the equality into a broad key search. A useful successor needs an independent clue explaining why the doubled-rune events should be segmented or transformed by the four cuneiform components.
+Do not turn the equality into a broad key search. A useful successor needs an independent clue explaining why the doubled-rune events should be segmented, transformed, or used as side information.
 
-Reproduction: `sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs`.
-
-Windows Node 22 PASS: Actions **44404927206**, job **135157507463**.
+Reproduction: **sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs**.

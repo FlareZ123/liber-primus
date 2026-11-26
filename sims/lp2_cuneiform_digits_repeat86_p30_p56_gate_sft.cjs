@@ -1,5 +1,7 @@
 'use strict';
 
+const crypto = require('node:crypto');
+
 /**
  * Cuneiform digit-sum / adjacent-repeat bridge gate.
  *
@@ -90,6 +92,64 @@ const reversalVariants={
   both:[...groups].reverse().flatMap((g)=>[...g].reverse())
 };
 
+/*
+ * Treat the 86 repeat events as a source-selected period-86 key, not merely
+ * as a payload. Three direct key derivations are tested on the complete
+ * p0-p55 stream with global phase zero: repeated rune values, absolute
+ * repeat positions mod 29, and first position followed by inter-repeat gaps
+ * mod 29. Both additive Vigenere signs are tested; no phase/key search.
+ */
+const repeatPositions=[];
+const repeatValues=[];
+for(let i=1;i<flat.length;i++){
+  if(flat[i]===flat[i-1]){
+    repeatPositions.push(i);
+    repeatValues.push(flat[i]);
+  }
+}
+assert.deepEqual(repeatValues,repeatRunes);
+assert.equal(repeatPositions.length,86);
+const repeatKeys={
+  repeatRuneValues:repeatRunes,
+  repeatPositionsMod29:repeatPositions.map((x)=>x%29),
+  firstPositionPlusGapsMod29:[
+    repeatPositions[0],
+    ...repeatPositions.slice(1).map((x,i)=>x-repeatPositions[i])
+  ].map((x)=>x%29)
+};
+function mod29(x){return ((x%29)+29)%29;}
+function streamIoC(values){
+  const f=new Array(29).fill(0);
+  for(const x of values)f[x]++;
+  return f.reduce((s,n)=>s+n*(n-1),0)/(values.length*(values.length-1));
+}
+const repeatVigenereResults=[];
+const expectedRepeatIoC={
+  repeatRuneValues:[0.03448269945279269,0.03451058232423752],
+  repeatPositionsMod29:[0.03448086442621042,0.03450858047705686],
+  firstPositionPlusGapsMod29:[0.03450955756913314,0.03447366730896569]
+};
+for(const [name,key] of Object.entries(repeatKeys)){
+  assert.equal(key.length,86);
+  for(const [signIndex,sign] of [-1,1].entries()){
+    const plain=flat.map((x,i)=>mod29(x+sign*key[i%key.length]));
+    const replay=plain.map((x,i)=>mod29(x-sign*key[i%key.length]));
+    assert.deepEqual(replay,flat);
+    const score=streamIoC(plain);
+    assert.ok(Math.abs(score-expectedRepeatIoC[name][signIndex])<1e-12);
+    repeatVigenereResults.push({
+      key:name,
+      keyLength:key.length,
+      sign,
+      keyText:show(key),
+      ioc:score,
+      sha256:crypto.createHash('sha256').update(Buffer.from(plain)).digest('hex'),
+      prefix:show(plain.slice(0,180)),
+      tail:show(plain.slice(-180))
+    });
+  }
+}
+
 console.log(JSON.stringify({
   classification:'exact source-number/repeat-count bridge; direct receiver negative',
   cuneiform:{
@@ -106,6 +166,11 @@ console.log(JSON.stringify({
     reversalPreviews:Object.fromEntries(
       Object.entries(reversalVariants).map(([k,v])=>[k,show(v)])
     )
+  },
+  repeatDerivedVigenere:{
+    inputIoC:streamIoC(flat),
+    globalPhase:0,
+    candidates:repeatVigenereResults
   },
   p56ToP30Transfer:{
     p30Runes:p30.length,
