@@ -329,6 +329,35 @@ function verifyHistoricalKeys() {
   };
 }
 
+function phaseReachability(cipher, order) {
+  const q1 = order.k1.length, q2 = order.k2.length;
+  const transitions = makeTransitions(order);
+  let active = new Set(Array.from({ length: q1 * q2 }, (_, i) => i));
+  let maxActive = active.size;
+  for (let i = 0; i < cipher.length; i++) {
+    const c = cipher[i];
+    const next = new Set();
+    for (const pair of active) {
+      for (const option of transitions[c][pair]) next.add(option.nextPair);
+    }
+    if (next.size === 0) {
+      return {
+        feasible: false,
+        noPathAt: i,
+        positionOneBased: i + 1,
+        cipherValue: c,
+        cipherToken: gp.translit[c],
+        cipherRune: gp.runes[c],
+        priorPairs: Array.from(active).map(pair => [Math.floor(pair / q2), pair % q2]),
+        maxActivePhasePairs: maxActive
+      };
+    }
+    active = next;
+    if (active.size > maxActive) maxActive = active.size;
+  }
+  return { feasible: true, finalPhasePairs: Array.from(active), maxActivePhasePairs: maxActive };
+}
+
 function runControl(sectionName, order, start1, start2, model) {
   const section = relikd.sections.find(s => s.name === sectionName);
   assert(section, 'missing native control section ' + sectionName);
@@ -368,8 +397,14 @@ function runControl(sectionName, order, start1, start2, model) {
 }
 
 function runOriginal(order, model) {
+  const phaseReach = phaseReachability(p54, order);
   const fit = viterbi(p54, order, model, allInitialStates(order), true);
-  if (!fit.feasible) return { order: order.name, p54Feasible: false, noPathAt: fit.noPathAt, priorActiveStates: fit.priorActiveStates, maxActiveStates: fit.maxActive, transitionsBeforeDeadEnd: fit.transitionCount };
+  if (!fit.feasible) {
+    assert(!phaseReach.feasible && phaseReach.noPathAt === fit.noPathAt, 'phase-only and full-state reachability disagree');
+    assert(phaseReach.priorPairs.length === fit.priorActiveStates, 'phase-pair and full-state active counts disagree');
+    return { order: order.name, p54Feasible: false, noPathAt: fit.noPathAt, priorActiveStates: fit.priorActiveStates, maxActiveStates: fit.maxActive, transitionsBeforeDeadEnd: fit.transitionCount, phaseReachability: phaseReach };
+  }
+  assert(phaseReach.feasible, 'phase-only reachability rejected a full-state path');
   const initial = unpackState(fit.initialState, order.k2.length);
   const exit = unpackState(fit.bestState, order.k2.length);
   const continuation = viterbi(p55, order, model, [fit.bestState], true);
@@ -455,6 +490,7 @@ process.stdout.write(JSON.stringify({
     transitionsBeforeDeadEnd: x.transitionsBeforeDeadEnd,
     p55Feasible: x.p55Feasible,
     p55NoPathAt: x.p55NoPathAt,
+    phaseReachability: x.phaseReachability,
     initialPhases: x.initialPhases,
     p54ExitPhases: x.p54ExitPhases,
     p55ExitPhases: x.p55ExitPhases,
