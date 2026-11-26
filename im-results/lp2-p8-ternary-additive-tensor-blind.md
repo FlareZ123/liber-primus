@@ -52,3 +52,17 @@ The strongest possible original score across **every** full tensor key is theref
 **Decision:** this is an exact upper bound on the stated score over the entire proposed cipher family, not merely a beam failure. Its linguistic interpretation remains conditional on the two trained models and finite control samples; it is not an impossibility proof for all real languages. No authenticated plaintext/key.
 
 [Exact exhaustive SFT](../sims/lp2_p8_ternary_additive_tensor_exact_bound_sft.cjs) · [Raw output](lp2-p8-ternary-additive-tensor-exact-bound-output.json) · [Windows Node22 PASS run 45727125472](https://github.com/FlareZ123/liber-primus/actions/runs/45727125472).
+
+
+## Source-cued cubing composition, exact lower-axis relaxation
+
+The documented [p7/p8 cubing orbit](lp2-p7-p8-complete-cube-orbit-receiver.md) independently singles out the exponent3 and inverse19, beyond the speculative tensor shape. Test only the two natural layer orders C=(P+K)^3 and C=P^3+K over GF29, with the same arbitrary eleven-parameter mask K. For the first, apply the exact cube-root permutation to ciphertext before the prior inverse; for the second, evaluate the unchanged plaintext model at the cube-root of each tentative recovered rune. No exponent search. Six controls per order recover every true lower-axis key; the gate requiring all six passes for both.
+
+| Original register / order | Exact max within-block mean | Whole-page upper bound (omitting seams) |
+|---|---:|---:|
+| original-modern / cubeOutside | -3.254051 | -2.551932 |
+| original-oldEnglish / cubeOutside | -3.127651 | -2.452805 |
+| original-modern / cubeInside | -3.248641 | -2.547689 |
+| original-oldEnglish / cubeInside | -3.109654 | -2.438691 |
+
+All four relaxed within-block maxima remain well below all corresponding genuine control within-block scores. The modern whole-page bound is below all matching full control scores; the OE whole-page bound is too loose for that claim for both orders. No original decipherment; an exact seam upper-bound refinement is queued rather than widening the layer family. [SFT](../sims/lp2_p8_ternary_cube_tensor_exact_bound_sft.cjs) · [raw](lp2-p8-ternary-cube-tensor-exact-bound-output.json) · [CI PASS 45727403409](https://github.com/FlareZ123/liber-primus/actions/runs/45727403409).
