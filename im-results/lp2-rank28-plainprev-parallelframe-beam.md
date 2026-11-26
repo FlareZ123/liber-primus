@@ -203,3 +203,34 @@ Each used at most 10,000 moves and 15 seconds, seed 3045+K[0]. No zero-cost key.
 **Decision:** all five initial domains remain UNKNOWN. No legal original witness, no original plaintext, no all-key exclusion. Do not repeat the same bounded optimization or infer an impossibility theorem from repair-positive candidates. A further exact attack needs materially stronger shared-row constraints or a new independently sourced selector. Original heldout language scoring was not triggered because no legal full key was found.
 
 [Frontier SFT](../sims/lp2_gp29_plainprev_fhold_frontier_sft.cpp), [repair SFT](../sims/lp2_gp29_plainprev_fhold_repair_witness_sft.cpp), [raw output](lp2-plainprev-fhold-full-legality-output.json). Both C++17 sources compiled and executed locally under g++ -O3, with published Git blobs byte-identical to the executed source. No native Windows/CI claim. To reproduce, convert the canonical JSON's nonempty physical pages 0–55 to one ASCII base-29 index string per line (0–9,a–s, LF after each), preserving every physical rune including IV. The input is 13,011 bytes, FNV-1a32 0534412c. Run the frontier binary with controls and original K0 50000000 21 15; the repair binary with controls and original K0 10000 15 SEED, feeding original runs the same page strings on stdin. Wall-limited counts vary by hardware; fixed move or node budgets are deterministic within the same implementation/toolchain.
+
+#### Incremental key-only conflict learning (Agent8, 26 November)
+
+Same fixed F-held page-IV model; no new clock, key family, or scoring. The earlier frontier and repair searches leave the full original legality question unresolved. Rather than repeat enumeration, this receiver learns exact constraints in key space from failed partial permutations.
+
+**Merged deterministic prefix receiver.** The 55 initial zero-free page prefixes (1,428 transitions) share 1,398 nonroot difference-trie nodes. On these prefixes, q'=(d+K[q]) mod29 must be nonzero, and K is an all-different 29-entry table. A depth-four exact partial-key traversal learns short clauses excluding a failed partial assignment, with subsumption elimination. Three QF_BV encodings (balanced table mux, direct implication, bidirectional permutation equivalence) agree with brute force on all 540 reduced-alphabet decisions (201 SAT, 339 UNSAT; alphabets 3–6). The original inverse-equivalence formula has about 4.0–4.2 MB of SMT-LIB and 21,933–23,829 initial clauses per K[0]. All five branches attempted at 180-second Z3 caps; 10,15,23 returned UNKNOWN, and 1,13 processes ended without a terminal record. No conclusion from those two missing records.
+
+**Key-only CEGIS.** Z3 receives just the permutation variables, the fixed K[0] and learned clauses. A C++ finite-state inverse checks all 55 complete pages, including both interpretations of ciphertext F, plus 24 zero-free interior runs of at least 70 transitions. These interior runs admit *all* initial states, so a dead run is a necessary obstruction irrespective of preceding history. To derive a clause from a failed segment, keep only the rows visited by the failed trajectory set (and fixed row 0), then greedily drop rows. Every unassigned row may choose any unused key label independently at each occurrence. If even this relaxed state union empties, every completion of the retained partial permutation fails. Thus the disjunction of inequalities against the retained row assignments is an exact necessary clause. Deletion order rotates with candidate index. A full SAT witness must pass independent Python exact bitset/set replay; an UNSAT answer would prove impossibility for the corresponding initial shift. A timeout proves neither.
+
+300 exhaustive reduced-alphabet control decisions (alphabets 3–7, 177 SAT, 123 UNSAT) agree exactly with brute force, including literal F holds and ordinary ciphertext-zero alternatives. They test decision soundness, not full-GP29 blind recovery.
+
+| K[0] | Initial short clauses | Distinct full candidates | New necessary clauses | From interior runs | Best failed pages of 55 | Result |
+|---:|---:|---:|---:|---:|---:|---|
+| 1 | 23,256 | 3,847 | 159,634 | 765 | 44 | cap |
+| 10 | 23,829 | 3,813 | 159,356 | 716 | 45 | cap |
+| 13 | 23,013 | 3,636 | 151,589 | 641 | 44 | cap |
+| 15 | 21,933 | 4,053 | 167,638 | 800 | 42 | cap |
+| 23 | 22,900 | 3,912 | 162,648 | 754 | 43 | cap |
+
+All five 180s wall-limited runs completed, 19,261 distinct candidate keys and 800,865 new necessary clauses total (not a count of all excluded full permutations). Most clauses remain large because long-page failures depend on many rows. No legal original key found, no language scoring triggered, no all-key proof. This formulation explores more distinct complete candidates than the earlier UF prototype but does not establish progress toward a satisfying key. **Do not simply extend the cap:** the remaining bottleneck is the weak propagation of long trajectory conflicts. A further exact receiver should integrate trajectory state constraints selectively, or obtain an independently fixed key coordinate; no original source selects this particular law.
+
+Reproduction: [executed source directory](../sims/agent8-fhold-key-only/), [terminal output summary and source pins](lp2-plainprev-fhold-key-only-output.json). Run from the source directory on Linux with Python, g++ and libz3.so.4 (executed Z3 4.13.3.0):
+```
+python prepare_inputs.py
+g++ -std=c++17 -O3 -shared -fPIC conflict.cpp -o conflict.so
+python prefix_sat.py controls
+python cegis.py controls
+python prefix_sat.py prefixes.txt 1 inverse 180000 10000 4
+python cegis.py pages.txt 1 180 15000 70 4
+```
+Repeat original commands for K[0]=10,13,15,23. The exporter asserts the exact previously verified input FNVs. Three committed solver source blobs match the executed local files byte-for-byte; exporter added after execution. The report records all terminal summary fields needed for interpretation, omitting progress logs and clause histograms. Wall-limited counts are hardware-dependent. No native Windows/CI claim and no new unknown LP2 plaintext.
