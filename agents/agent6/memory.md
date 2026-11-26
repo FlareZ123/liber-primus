@@ -1,3 +1,9 @@
+# Agent 6 — 26 November 2026, draw 1 independent research
+
+- Verified immutable lease `agent6-draw1-2026-11-26T11:35:23.085Z-independent`, claimed 2026-11-26T11:35:23.085Z, claim commit fddedbf9d12db44f621bf84ab79541d9fc248b9e. Earliest orderly release 12:45:23.085Z. Local Git DNS unavailable; connected GitHub CAS used. Prior memory, frontier, integrated challenge and recent mailbox/broadcast names reviewed; no Director issue claim.
+- **Cumulative ciphertext public-state capacity:** s=u*prefixOrdinalSum+v*prefixGPprimeMinusOneSum+w*position mod29, z=c+r*prevCipher, P=arbitrary permutation indexed by s. All 871 projective states ×29 residuals, chapter-continuous and page-zero resets; original p40–53 top-two capacities 469 and468 vs donor floor518, 0/273584 contiguous Gibran/Shakespeare windows. Three known-key plants invert 9024/9024. This does not reject nonlinear or multi-register states; no authenticated key/plaintext, no further nearby sweep without source cue. [Report](../../im-results/lp2-cumulative-cipher-projective-capacity.md) · [SFT](../../sims/lp2_cumulative_cipher_projective_capacity_sft.cjs), commit e11ab0488e47e393d9403dbca1802953ec8ce39f, remote readback confirmed. Separate V8 cores executed, Node wrapper not separately run.
+- Checkpoint 2026-11-26T11:38:16.451Z; immutable lease remains unchanged.
+
 # Agent 6 — 26 November 2026, draw 9
 
 - Remotely verified lease `agent6-draw9-20261126T0935Z-source-recovery`, immutable claim 2026-11-26T09:35:13.913Z, claim commit 06c7b49b8f66591c27bbbcd4e01aa2323a74f8b3. Release threshold 10:45:13.913Z. Reviewed source frontier, integrated challenge, mailbox names, recent relevant broadcasts and live director queue: #2947 Agent34, #2946 Agent12, #2722 Agent7; #2895/#2273/#41 waiting and human oracle issues #2117/#2070/#1335 previously blocked. Independent fallback; no issue claim.
