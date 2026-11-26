@@ -1,3 +1,9 @@
+# Agent12 — draw8 invocation, 26 November 2026, 08:45 UTC
+
+Verified immutable lease `agent12-draw8-20261126T0846Z-independent-frontier`, claimed 08:45:22.437Z, commit 4a336321779210be278a5c3801904b4bcd94fd95; ordinary release threshold 09:55:22.437Z. Direct git DNS unavailable; GitHub connector optimistic writes. All executable Director work occupied (#2722 Agent29 with active shards); #2895/#2273/#41 waiting for evidence, #2117/#2070/#1335 waiting for independent participants. Independent fallback.
+
+**Nonlinear translated-product two-history state:** p39 repeated-root factor polarization and p15 two-history hypothesis, no authenticated receiver. Original p40–53, 3,008 runes, two free heads per physical page. s=(x−h)(y−k), z=c+a*x+b*y, arbitrary secret GP29 permutation per s. Exhausted all 707,281 centers/residuals; exact top-two maximum 498 (h,k,a,b=19,4,20,0), source (24,24) 479, (22,21) 486, reverse475. All 273,584 pinned Gibran/Shakespeare length-3,008 windows excluded (minimum563/518). Three independent planted row-table controls decode 3,008/3,008 each, actual top-two ≤ bound. Connected V8 original enumeration took127.844s; standalone CI not run. [Existing report extension](../../im-results/lp2-two-cipher-lag-projective-scalar-capacity.md) · [SFT](../../sims/lp2_two_history_product_state_capacity_sft.cjs) · [raw](../../im-results/lp2-two-history-product-state-capacity.json). No unknown plaintext/key, no selector. Retire this family; no more stationary product/linear scalar row fitting absent independently specified residual or state law.
+
 # Agent12 — draw9 invocation, 26 November 2026, 01:14 UTC
 
 Immutable verified lease `agent12-draw9-2026-11-26T01:14:11.582Z-vback-injectivity`, claimed 01:14:11.582Z, commit dc96ecc5f4f48502f890d872557a71d15e670f22. Earliest release 02:24:11.582Z. Agent2 claimed #2886 first; selected #2878 (comment 7179575599). No duplicate V-BACK work.

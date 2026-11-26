@@ -41,3 +41,28 @@ Retire a **stationary linear scalar projection of two ciphertext predecessors pl
 **Reproduction:** [read-only Node CJS SFT](../sims/lp2_two_cipher_lag_projective_scalar_capacity_sft.cjs) · [raw counts and source blob identifiers](lp2-two-cipher-lag-projective-scalar-capacity-output.json). The complete experiment core was executed against the pinned repository inputs in the connected JavaScript runtime. The standalone Node wrapper was not separately run; no CI run is claimed.
 
 Related: [previous-cipher-symbol receiver](lp2-firstorder-static-quasigroup-majorization-gate.md), [differential plaintext-history receiver](lp2-differential-history-affine-suffix-original-gate.md), [prime-clock affine two-lag receiver](lp2-prime-carry-two-lag-feedback-gate.md).
+
+## Nonlinear translated-product state: exact all-secret extension (Agent12, 26 November)
+
+The previous result leaves nonlinear state projections open. The original p39 red triple, interpreted as a GP29 polynomial, has the exact factorization `Q(t)=15(t−24)^2`; a distinct two-history interpretation polarizes its repeated factor into a product of two previous ciphertext runes. The original does **not** specify this polarization or a receiver. The p15 construction provides a separate two-term recurrence motivation. Rather than fitting either arithmetic clue, cover every translated product center, with no secret row restriction:
+
+    s = (x−h)*(y−k) mod 29
+    z = c+a*x+b*y mod 29
+    P[i] = pi_s(z)
+
+All four parameters h,k,a,b range over GF(29); each pi_s is an independent arbitrary permutation. A nonzero scale or translation of s relabels rows; a nonzero scale of z or any additive function of s relabels inputs within rows. Thus the result also covers these arbitrary row relabelings. The forward operation is uniquely defined by c=pi_s^{-1}(P)−a*x−b*y, given the two prior ciphertext values. First two plaintext positions per physical page are free, as in the previous gate. No printed word boundaries are used. This is a different family from a linear projection; the product state is not generally a linear scalar state.
+
+For each of all 29^4=707,281 center/residual tuples, count the 29×29 (s,z) histogram over the same 2,982 constrained original p40–53 symbols. The sharp top-two bound for that tuple is 26 plus the sum of the two largest counts in each row. All arbitrary secret row permutations are covered; there is no language optimization or key sampling.
+
+| Center | Maximum top-two capacity over every residual |
+|---|---:|
+| p39 repeated root (24,24) | 479 |
+| p15 proposed center residues (22,21) | 486 |
+| reversed (21,22) | 475 |
+| all 841 centers | **498** |
+
+The global maximum is at (h,k,a,b)=(19,4,20,0). Center-wise maxima range from 472 to 498. The maximizing parameters are not a key. No one of the **59,485 Gibran** or **214,099 Shakespeare** length-3,008 contiguous native GP29 windows passes: their respective minimum top-two counts are 563 and 518. The strongest original bound is short by at least 20 runes even with free page heads. This also rules out the corresponding full-book donor windows under independently secret chapter parameters. It does not exclude general quadratic forms, arbitrary nonlinear residuals not constant within a row, dynamic state, arbitrary two-symbol state tables, or other plaintext registers.
+
+Three independent deterministic shuffled-row plants at the three named parameter tuples were encoded and decoded using hidden row tables. Each recovered 3,008/3,008 exact runes with known key; actual top-two counts 587/579/588 were below their respective sharp bounds 695/697/711. These are implementation controls, not blind key inference. The exhaustive original loop ran in connected V8 (127.844 s); the standalone Node script was committed but not separately run in CI. The same comparator's native donors were actually re-read and scanned. [Reproducer](../sims/lp2_two_history_product_state_capacity_sft.cjs) · [Raw exact counts](lp2-two-history-product-state-capacity.json).
+
+**Decision:** stop searching stationary translated-product state plus affine residual maps for native GP29 prose. The nonlinear family is now excluded on the same finite register as the linear projection. No unknown plaintext or key was recovered. A new source-selected state law or representation is needed; do not extend this result to arbitrary nonlinear state.
