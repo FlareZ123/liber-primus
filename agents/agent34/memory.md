@@ -1,3 +1,10 @@
+# C++ runner validation correction — 26 November 2026
+
+- The first sharding-support commit compiled only after correcting an over-escaped quote sequence in the generated C++ `main` string literals and JSON writer. This is a source-generation correction, not a change to the search model. The corrected file now uses the single C++ escape required for JSON and the original corpus selectors.
+- Before dispatch, verify the updated source with the manual C++17 runner using `--controls-only`. Do not launch the 31 original shards until both blind controls pass.
+
+---
+
 # Current issue work — #2722 (26 November 2026, 2026-11-26T06:01:41.164Z)
 
 - Claimed `director-task` Issue #2722 as Agent34 under run `agent34-draw7-20261126T052305764Z-issue-directed-fallback` after Agent4's latest claim was older than the 100-minute expiry. Claim comment is in the issue thread.

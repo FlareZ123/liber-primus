@@ -229,14 +229,14 @@ int main(int argc,char**argv){try{
  if(seconds<=0)throw runtime_error("--seconds must be positive");
  aff::init();fixed::dictionary();regression();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");
- auto train=fixed::strings(src,"body_groups",src.find("\\"heading_groups\\": ["));
- auto held=fixed::strings(src,"groups",src.rfind("\\"p55\\""));
+ auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));
+ auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
  auto writeOutput=[&](const string&text){const char*p=getenv("SFT_OUTPUT");if(p&&*p){ofstream f(p);if(f)f<<text<<endl;}};
  if(!skipControls){
   bool a=graphControl(train,held,3301),b=graphControl(train,held,1033);
-  if(controlsOnly){ostringstream o;o<<"{\\"mode\\":\\"controls\\",\\"control_3301\\":"<<(a?"true":"false")<<",\\"control_1033\\":"<<(b?"true":"false")<<",\\"passed\\":"<<((a&&b)?"true":"false")<<"}";writeOutput(o.str());return a&&b?0:2;}
-  if(!a||!b){cout<<"GRAPH ORIGINAL GATED OFF"<<endl;ostringstream o;o<<"{\\"mode\\":\\"original\\",\\"controls_passed\\":false}";writeOutput(o.str());return 2;}
+  if(controlsOnly){ostringstream o;o<<"{\"mode\":\"controls\",\"control_3301\":"<<(a?"true":"false")<<",\"control_1033\":"<<(b?"true":"false")<<",\"passed\":"<<((a&&b)?"true":"false")<<"}";writeOutput(o.str());return a&&b?0:2;}
+  if(!a||!b){cout<<"GRAPH ORIGINAL GATED OFF"<<endl;ostringstream o;o<<"{\"mode\":\"original\",\"controls_passed\":false}";writeOutput(o.str());return 2;}
  }else if(controlsOnly)throw runtime_error("controls-only cannot skip controls");
  if(controlsOnly)return 0;
  GSearch s(train);fixed::require(s.seeds.size()==93,"seed count changed; update shard matrix");
@@ -247,8 +247,8 @@ int main(int argc,char**argv){try{
  bool shardExhausted=!s.found&&!s.timed&&s.done==seedEnd-seedStart;
  bool exhausted=shardExhausted&&seedStart==0&&seedEnd==s.seeds.size();
  cout<<"GRAPH ORIGINAL exhausted="<<exhausted<<" shard_exhausted="<<shardExhausted<<" found="<<s.found<<" timed="<<s.timed<<" seeds="<<s.done<<"/"<<(seedEnd-seedStart)<<" total="<<s.seeds.size()<<endl;
- ostringstream o;o<<"{\\"mode\\":\\"original\\",\\"seed_start\\":"<<seedStart<<",\\"seed_end\\":"<<seedEnd<<",\\"seed_total\\":"<<s.seeds.size()<<",\\"done\\":"<<s.done.load()<<",\\"found\\":"<<(s.found?"true":"false")<<",\\"timed\\":"<<(s.timed?"true":"false")<<",\\"shard_exhausted\\":"<<(shardExhausted?"true":"false")<<",\\"full_exhausted\\":"<<(exhausted?"true":"false")<<",\\"oov\\":"<<s.answerOov;
- if(s.found){o<<",\\"pi\\":[";for(int i=0;i<int(s.answer.size());i++){if(i)o<<",";o<<int(s.answer[i]);}o<<"],\\"key\\":[";for(int i=0;i<int(s.answerKey.size());i++){if(i)o<<",";o<<int(s.answerKey[i]);}o<<"]";}
+ ostringstream o;o<<"{\"mode\":\"original\",\"seed_start\":"<<seedStart<<",\"seed_end\":"<<seedEnd<<",\"seed_total\":"<<s.seeds.size()<<",\"done\":"<<s.done.load()<<",\"found\":"<<(s.found?"true":"false")<<",\"timed\":"<<(s.timed?"true":"false")<<",\"shard_exhausted\":"<<(shardExhausted?"true":"false")<<",\"full_exhausted\":"<<(exhausted?"true":"false")<<",\"oov\":"<<s.answerOov;
+ if(s.found){o<<",\"pi\":[";for(int i=0;i<int(s.answer.size());i++){if(i)o<<",";o<<int(s.answer[i]);}o<<"],\"key\":[";for(int i=0;i<int(s.answerKey.size());i++){if(i)o<<",";o<<int(s.answerKey[i]);}o<<"]";}
  o<<"}";writeOutput(o.str());
  return (s.found||shardExhausted)?0:1;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
