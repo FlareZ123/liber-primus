@@ -140,7 +140,7 @@ async function commonCrawlSearch() {
   for (const index of indexes) for (const domain of PROXIES) jobs.push({ index, domain });
   const queried = await mapLimit(jobs, 4, async job => {
     const params = new URLSearchParams({ url: job.domain, matchType: 'domain', output: 'json', filter: 'status:200' });
-    const url = job.index.cdx_api + '?' + params.toString();
+    const url = job.index['cdx-api'] + '?' + params.toString();
     const r = await fetchText(url, 45000);
     if (r.status !== 200) return { index: job.index.id, domain: job.domain, status: r.status, error: r.body.slice(0, 300) };
     const records = r.body.split(/\r?\n/).filter(Boolean).map(line => JSON.parse(line));
@@ -232,7 +232,9 @@ async function fetchCommonCrawlBodies(cc) {
     } : commonCrawl,
     conclusion: (waybackBodies.matches.length + commonCrawlBodies.matches.length) > 0
       ? 'EXACT MATCH FOUND; inspect the matched archived representation and provenance'
-      : 'NO EXACT MATCH IN THE QUERIED 2014 PROXY ARCHIVES; this does not exclude unindexed services, other years, other proxies, or a different hash serialization'
+      : (wayback.some(x => x.status !== 200 || x.error) || (commonCrawl && commonCrawl.queried && commonCrawl.queried.some(x => x.status !== 200 || x.error)) || waybackBodies.truncated || commonCrawlBodies.truncated)
+        ? 'NO EXACT MATCH IN THE SUCCESSFULLY FETCHED SUBSET; one or more proxy/index queries failed or were truncated, so coverage is incomplete'
+        : 'NO EXACT MATCH IN THE QUERIED 2014 PROXY ARCHIVES; this does not exclude unindexed services, other years, other proxies, or a different hash serialization'
   };
   console.log(JSON.stringify(output, null, 2));
 })().catch(e => { console.error(e && e.stack || String(e)); process.exitCode = 1; });
