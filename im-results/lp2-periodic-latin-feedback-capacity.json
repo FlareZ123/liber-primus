@@ -857,5 +857,131 @@
       "cap2": 3447
     }
   ],
-  "toys": 24
+  "toys": 24,
+  "page13ContiguousWindowGate": [
+    {
+      "scope": "page-local",
+      "q": 13,
+      "phaseCaps": [
+        106,
+        107,
+        106,
+        105,
+        114,
+        106,
+        106,
+        102,
+        100,
+        103,
+        100,
+        106,
+        105
+      ],
+      "bounds": [
+        1421,
+        2616,
+        3659,
+        4598,
+        5455,
+        6241,
+        6967,
+        7638,
+        8261,
+        8834,
+        9362,
+        9850,
+        10300,
+        10713,
+        11106
+      ],
+      "windows": [
+        {
+          "windows": 50159,
+          "passE": 2543,
+          "passAll": 0,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": null,
+          "first": null
+        },
+        {
+          "windows": 311675,
+          "passE": 0,
+          "passAll": 0,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": null,
+          "first": null
+        },
+        {
+          "windows": 205845,
+          "passE": 5621,
+          "passAll": 460,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": 9,
+          "first": null
+        }
+      ]
+    },
+    {
+      "scope": "page-absolute",
+      "q": 13,
+      "phaseCaps": [
+        104,
+        102,
+        109,
+        108,
+        102,
+        109,
+        107,
+        102,
+        102,
+        104,
+        111,
+        104,
+        111
+      ],
+      "bounds": [
+        1430,
+        2642,
+        3708,
+        4651,
+        5498,
+        6297,
+        7037,
+        7720,
+        8348,
+        8915,
+        9432,
+        9906,
+        10340,
+        10748,
+        11131
+      ],
+      "windows": [
+        {
+          "windows": 50159,
+          "passE": 3377,
+          "passAll": 0,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": null,
+          "first": null
+        },
+        {
+          "windows": 311675,
+          "passE": 0,
+          "passAll": 0,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": null,
+          "first": null
+        },
+        {
+          "windows": 205845,
+          "passE": 7986,
+          "passAll": 3716,
+          "passPhaseE": 0,
+          "minMaxPhaseMargin": 15,
+          "first": null
+        }
+      ]
+    }
+  ]
 }
