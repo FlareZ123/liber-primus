@@ -1,6 +1,6 @@
 # Authenticated 2013 BASE29 and LP2 word-to-address grammar
 
-**Decision, Agent 23, 11 November 2026:** the historical command authenticates a base-29 *numeral conversion*, while LP2's printed word delimiters do not come with an authenticated instruction to treat each word as a separate integer or map address. A complete original-word positional conversion is reproducible, but **it does not select a reversible LP2 operation, plaintext, key, or destination**. Retire the per-word BASE29→p32 map-address interpretation unless an independent manuscript/historical instruction supplies the missing coordinate grammar.
+**Decision, Agent 23, 11 November 2026:** the historical command authenticates a base-29 *numeral conversion*, while LP2's printed word delimiters do not come with an authenticated instruction to treat each word as a separate integer or map address. A complete original-word positional conversion is reproducible, but **it does not select a reversible LP2 operation, plaintext, key, or destination**. Retire the per-word BASE29→p32 map-address interpretation unless an independent manuscript/historical instruction supplies the missing coordinate grammar. The later #3054 all-shared-alphabet result below also rejects ordinary fixed dictionary indices, even granting arbitrary leading-zero padding.
 
 ## Source-selected premise and its missing step
 
@@ -67,3 +67,39 @@ The exact histogram is 3:4, 4:4, 5:6, 6:5, 7:3, 8:1, 9:2, 10:3, 11:4. **22 of 32
 **Decision:** retire the equal 32↔32 count as a structural coincidence without a 32×8 source-attested key or ciphertext inverse. The narrow literal eight-rune-per-carried-word mechanism is impossible on the original 22 short words. A separately authenticated operation transforming arbitrary 3–11-rune words into eight digits might reopen a different bounded hypothesis; a raw count match cannot justify the rescue. No original LP2 plaintext/key recovered. [Source-only SFT](../sims/lp2_crosspage_32row_eightrune_source_gate.cjs); [Director #629](https://github.com/FlareZ123/liber-primus/issues/629).
 
 **Scope update (20 November 2026):** a separate conditional cicada-article route now maps the 221-year value to p50 table cells 221–223 (52/51/151), converts them through the signed 2013 BASE29 command (1N/1M/56), and uses the numeric digits as positions in the signed 2016 word register. This is not the rejected p32/Fibonacci-89 word-to-grid address proposal or the rejected 32-cross-page-word→eight-rune row transport. It may favor zero-based table addressing, but the 2016-message-word receiver remains unsupported in light of closed #304, which finds no authenticated grammar for using the signed message's own words as the map and notes that “Its words” refers to Liber Primus. The article→table address is also inferred. See [the cicada row27 word-map report](lp2-cicada-article-p50-row27-word-map.md); do not reopen the retired p32/32-word branches or start a broad address scan.
+
+## Exact static finite-dictionary address obstruction (#3054, 26 November 2026)
+
+**Decision:** a complete printed group cannot consistently be the ordinary positional BASE29 index into a source-sized fixed dictionary, even if the GP29 digit alphabet is an arbitrary unknown shared bijection. This is a different representation from the earlier fixed GP0 p32 address, #2583's growing pointer-plus-literal grammar, #2629's prime-product values and #2935's unrestricted word-codebook multiplicities. No plaintext or key recovered. There is no authenticated dictionary ordering or index-prefix syntax in the audited Cicada material; the magnitude result is independent of ordering.
+
+### Canonical representation and padding
+
+The signed 2013 challenge's example is 3301 → 3QO. The January participant witness 30 → 11, together with its returned CODE handler, selects minimal positive numerals in that implementation (not 011); the March witness 1033 → 16I agrees. That participant handler returns 0 for zero. These participant implementation details are not an additional signed organizer rule. See [historical source](../resources/external/2013-tcp-server-signed-source.md).
+
+The image-corrected source parser reproduces all 12,956 original unknown runes in 2,896 complete groups, joining line/page carries and checking the full tape against the canonical physical-page arrays. Every one of the 29 glyphs starts a multi-rune group, with counts 78–116. Whichever glyph is zero, at least 78 complete groups are noncanonical. Removing both opening red heading groups leaves the same lower bound. Thus minimal integer notation is impossible for any shared bijection, regardless of dictionary size. A single fixed numeral width also cannot reproduce the variable original lengths. To grant the model its strongest chance, allow arbitrary leading-zero padding per record in the following test.
+
+### Exact shared-alphabet minimax (all 29! mappings)
+
+Write V_d(w) for the ordinary most-significant-first integer in radix 29 under shared digit bijection d. Exactly three groups have the maximum length 14; their zero-based complete-group indices are 754, 1353 and 2341, with distinct leading GP indices 17, 28 and 16.
+
+Let B=29^13. Every shorter group is strictly below B. At least one of the three longest first digits is at least 2, so max_w V_d(w) ≥ 2B. Any assignment giving the three distinct leading glyphs digits {0,1,2} has max_w V_d(w)<3B, hence any global optimum must assign precisely these three digits to those glyphs. For each of the six possible assignments, the unique longest word starting with digit 2 is the maximum; its remaining free digits are minimized greedily by assigning the least unused digit at each first occurrence of a new glyph (fixed-length radix order is lexicographic). Other mappings cannot improve that maximum. Complete the unused alphabet arbitrarily and evaluate the entire tape.
+
+The exact minimum over all shared bijections of the maximum index is **21,633,695,484,715,464,044**. An explicit attaining bijection and all six conditional optima are in the raw output. Therefore a zero-based ordinary contiguous dictionary requires at least **21,633,695,484,715,464,045 entries**; one-based indexing still requires at least 21,633,695,484,715,464,044. This bound even permits leading zeros and duplicate numerical aliases. It remains unchanged when the two opening heading groups are excluded, because all three maximizing-length witnesses lie outside them.
+
+Even independently optimizing a separate digit bijection for every word gives a maximum lower bound of 379,538,560,875,585,181 (group 1353). This relaxation assigns 0,1,... in order of first distinct glyph appearance; it cannot be beaten by a shared mapping.
+
+### Source-sized tests and controls
+
+The three independently pinned historical carrier witnesses are the existing 2013 Liber AL chapter texts, 2012 Blake Marriage text witness and 2014 Self-Reliance witness. No organizer-selected dictionary sorting is asserted. Since every ordering of a finite list has the same index range, no ordering search is needed. Distinct case-folded ASCII word forms (apostrophes retained) are diagnostic dictionary sizes; UTF-8 byte lengths are generous upper bounds on any ordinary list of distinct nonempty word occurrences from the actual files.
+
+| Carrier witness | Distinct word forms | UTF-8 bytes | Groups impossible even at byte-count capacity (zero or one based) |
+|---|---:|---:|---:|
+| Liber AL I–III | 1,310 | 31,061 | 812 |
+| Blake | 1,913 | 46,722 | 812 |
+| Self-Reliance | 2,529 | 55,562 | 812 |
+
+All three distinct-word capacities reject 1,131 of 2,896 groups under the per-record independent-digit relaxation alone. Controls encode every distinct source form by its first-occurrence dictionary ordinal using the attaining mixed digit alphabet, recovering 1,310 + 1,913 + 2,529 = 5,752 distinct indices exactly, with canonical zero/leading-digit handling. These are constructive representation controls; they do not authenticate the word dictionary as a historical sender. The original gate requires no language model and no dictionary contents after the magnitude obstruction.
+
+[Reproducer](../sims/lp2_fixed_dictionary_base29_minimax_sft.cjs) · [raw results and source blob pins](lp2-fixed-dictionary-base29-minimax-output.json) · [Director #3054](https://github.com/FlareZ123/liber-primus/issues/3054). The checked-in analysis function ran on the exact repository inputs in connected V8 with minimal assertion and UTF-8 byte-count shims; the standalone Node file-read wrapper was not separately executed.
+
+**Fork:** retire this ordinary fixed contiguous dictionary-index framing, including arbitrary mixed alphabet, redundant leading zeros and either conventional index origin. A sparse index space with an independently defined compressing map, an explicit source-selected prefix grammar, or a separate cryptographic layer would be different mechanisms; none follows from these results or the prior authentic absolute-coordinate book codes. Do not fit a modulo, offset or additional index alphabet to bypass the obstruction.
