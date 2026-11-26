@@ -1,0 +1,352 @@
+{
+  "width": 128,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "eligible": false,
+  "pilots": [
+    {
+      "key": [
+        17,
+        21,
+        11,
+        6,
+        13,
+        15,
+        1,
+        2,
+        0,
+        22,
+        7,
+        20,
+        18,
+        19,
+        28,
+        26,
+        9,
+        8,
+        12,
+        5,
+        4,
+        23,
+        16,
+        14,
+        27,
+        10,
+        25,
+        24,
+        3
+      ],
+      "initial": [
+        17,
+        21,
+        11,
+        6,
+        13,
+        15,
+        1,
+        2,
+        0,
+        22,
+        7,
+        20,
+        18,
+        19,
+        28,
+        26,
+        9,
+        8,
+        12,
+        5,
+        4,
+        23,
+        16,
+        14,
+        27,
+        10,
+        25,
+        24,
+        3
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 1.0822924387739081,
+          "improved": 0,
+          "evals": 407
+        }
+      ],
+      "truth": [
+        17,
+        21,
+        11,
+        6,
+        13,
+        15,
+        1,
+        2,
+        0,
+        22,
+        7,
+        20,
+        18,
+        19,
+        28,
+        26,
+        9,
+        8,
+        12,
+        5,
+        4,
+        23,
+        16,
+        14,
+        27,
+        10,
+        25,
+        24,
+        3
+      ],
+      "train": {
+        "n": 9639,
+        "repeats": 66,
+        "gain": 1.0822924387739081,
+        "correct": 9639,
+        "usedRows": 29,
+        "keyRows": 29,
+        "preview": "RANDCOMPACTERLANDSCAPETHANTHEHORISONFIGURESNATURESECLECTICISMANDWHATISHISSPEECHHISLOUEOFPAINTNGLOUEOFNA"
+      },
+      "held": {
+        "n": 3316,
+        "repeats": 20,
+        "gain": 1.0854261093379,
+        "correct": 3316,
+        "usedRows": 27,
+        "keyRows": 27,
+        "preview": "NOWLEDGEOFPICTUREDEALERSHASITSUALUEBUTLISTENNOTTOTHEIRCRITICISMWHENYOURHEARTISTOUCHEDBYGENIUSITWASNOTPA"
+      },
+      "trace": [
+        {
+          "K": [
+            17,
+            21,
+            11,
+            6,
+            13,
+            15,
+            1,
+            2,
+            0,
+            22,
+            7,
+            20,
+            18,
+            19,
+            28,
+            26,
+            9,
+            8,
+            12,
+            5,
+            4,
+            23,
+            16,
+            14,
+            27,
+            10,
+            25,
+            24,
+            3
+          ],
+          "score": 1.0822924387739081,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.336749880155485,
+              "hardGain": -3.159910026730639,
+              "keyRows": 6
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.3208764453829756,
+              "hardGain": -3.178424200035422,
+              "keyRows": 6
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.3015616638565293,
+              "hardGain": -3.132908777022158,
+              "keyRows": 12
+            },
+            {
+              "iteration": 20,
+              "softLL": -3.2235388270255743,
+              "hardGain": -2.8179900790131245,
+              "keyRows": 26
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.5646891280922905,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.5646387023058375,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            }
+          ]
+        },
+        {
+          "K": [
+            17,
+            21,
+            11,
+            6,
+            13,
+            15,
+            1,
+            2,
+            0,
+            22,
+            7,
+            20,
+            18,
+            19,
+            28,
+            26,
+            9,
+            8,
+            12,
+            5,
+            4,
+            23,
+            16,
+            14,
+            27,
+            10,
+            25,
+            24,
+            3
+          ],
+          "score": 1.0822924387739081,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.3362759951662175,
+              "hardGain": -3.1760009015066415,
+              "keyRows": 4
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.320036700422542,
+              "hardGain": -3.1337304380654563,
+              "keyRows": 8
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.299272471893366,
+              "hardGain": -3.241761471407338,
+              "keyRows": 11
+            },
+            {
+              "iteration": 20,
+              "softLL": -3.177007160439896,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.56463920255348,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.5646387023058375,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.564591183678073,
+              "hardGain": 1.0822924387739081,
+              "keyRows": 29
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "negative": null,
+  "original": null
+}
