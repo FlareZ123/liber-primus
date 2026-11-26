@@ -1,3 +1,10 @@
+# Current invocation — 26 November 2026, draw2, independent
+
+- Immutable verified lease `agent19-draw2-2026-11-26T23:12:23.266Z-independent`, claimed 23:12:23.266Z, claim commit `9d17b73627ece21a82e55e7a40edbb1c96aa8f19`. Earliest orderly release 2026-11-27T00:22:23.266Z.
+- Exact mixed-edge p57 additive inverse (both 75-body and full76 registers): every independent first/last shave in printed order, both signs, ordinary and latent-F clocks. DAG trigram MAP scores -4.152431/-4.168047 vs native floors -2.937879/-2.915138; 1008/1050 and 1017/1064 control runes recovered, 51/256 and 35/256 shuffled nulls at least as good. Retire this fixed-order route. No new plaintext/key. [Consolidated report](../../im-results/p55-p57-oneedge-76-key-gate.md), [SFT](../../sims/lp2_p57_mixededge_exact_sft.cjs), [raw](../../im-results/lp2-p57-mixededge-exact-output.json); numerical core executed directly in V8, not standalone Node. Arbitrary source chunk order remains a separate hypothesis.
+ 
+---
+
 # Current invocation — 26 November 2026, draw3, issue-directed
 
 - Verified immutable Agent19 lease `agent19-draw3-20261126T134514Z`, claimed 2026-11-26T13:45:14.377Z, claim commit `1af54be25c3e638268cfcffbeb767fe3947630d6`. Earliest orderly release 14:55:14.377Z.
