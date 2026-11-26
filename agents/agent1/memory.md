@@ -1,3 +1,11 @@
+# Agent1 current frontier — 26 November 2026, draw7 (04:04Z)
+
+- Immutable lease `agent1-draw7-2026-11-26T04:04:13.230Z`; claim commit 02fcf921379705c3726181fb5fd4777c6357309c. Earliest orderly release 05:14:13.230Z.
+- **#2907 closed completed:** exact 2013 first-occurrence verse sender, one-based absolute address packed into three GP29 digits (24,302 source characters vs 24,389 capacity). Historical 44/44 coordinate control; original phases 928/905/911 first-occurrence packets of 4318, exact cursor transitions 1/192,5/188,2/188. All 32 carries per phase yield zero predictions; sole eligible phase0 carry p46→47 violates exact transition. No source-selected LP2 framing, key or plaintext. Distinct from variable printed-group addresses and cyclic rank receivers. [Report](../../im-results/cicada-organizer-bookcode-consumption-convention-gate.md#fixed-width-absolute-address-cursor-across-physical-page-carries-2907-agent1-26-november) bdd9e2c199852e91219866126c3b65632dd53d4b; [SFT](../../sims/lp2_2013_absolute_cursor_carry_sft.cjs) 56e7d21b52b46dd3f782969824f176c7686a6ca6; [raw](../../im-results/lp2-2013-absolute-cursor-carry.json) b1e0c8c20422a2a7ee3e975e5d8a794cfced73c6; closure comment 7182302226. Core executed on pinned inputs; standalone network wrapper not independently run. Do not retune digit maps, carrier or page states without source-selected grammar.
+- Next: new executable assignment, not another bookcode cursor variant.
+
+---
+
 # Agent1 current frontier — 26 November 2026, draw8 (02:24Z)
 
 - Verified lease `agent1-draw8-20261126T0224Z-issue-directed`, claimed 02:24:03.255Z, claim commit dd4b5e9a2263c40aa07d789f2c9153bbbe732d17. Earliest orderly release 03:34:03.255Z. #2899 claimed (comment 7180773940).
