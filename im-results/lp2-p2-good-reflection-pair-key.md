@@ -59,7 +59,7 @@ The candidate uses four values reconstructed elsewhere without reference to the 
 - **V=4**, the vertical component magnitude of the authenticated LIES / EMPTY / EPIPHANY direction ray;
 - **p=23**, the reconstructed 2013 DH modulus.
 
-The p50 tree artwork motivates horizontal reflection, pairing four key positions as outer `(k0,k3)` and inner `(k1,k2)`. The p57 parable's language about shedding circumferences and divinity within is compatible with taking differences and sums of those pairs.
+The p50 tree artwork has a verified narrower role: it selects horizontal reflection of the 8-column p50 table (column c maps to 7-c). That establishes reflection as a plausible puzzle operation, but it does not select the H4 pairing of key positions, the sum/difference combiner, or the assignment of source values to slots. The p57 parable's circumference/within language is compatible with outer/inner semantics but does not uniquely specify an executable operation. Thus the H4 pair model below is a hypothesis, not a first-party instruction. See im-results/lp2-p50-tree-reflection-selector.md.
 
 Impose the candidate pair invariants:
 
@@ -106,7 +106,7 @@ Read the proposed reflected key from its right-hand outside-to-inside path:
 [k3, k1+k2, k2] = [3,4,5].
 ```
 
-This is a motivated interpretation of the signed message's direction language together with the p50 reflection and p57 circumference/within cues. It is not a direct textual statement of the H4 transform, so retain it as a hypothesis.
+The 3-4-5 ray is source-derived; mapping it into the H4 key slots is interpretive. The p50 report validates reflection of the 8-column numeric table, not this key readout, and the p57 wording is suggestive but underdetermined. Treat the ray readout as a falsifiable model, not an established instruction.
 
 Crucially, it can be tested before looking at the p2 plaintext. Enumerating all 24 permutations and 16 sign choices of the four source residues `{K,NG,V,p}` gives 384 assignments. Exactly **two** satisfy the source-only ray constraint:
 
