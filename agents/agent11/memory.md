@@ -771,3 +771,30 @@ Carrier closure discovered prospectively after the p0->218/28 selection: p28 wor
 - 2026-11-25: Three-moth p05/p53/p55 affine-anchor CSP: 74 clear upper p05 runes aligned to terminal 74 (offsets105,2); every arbitrary per-position invertible affine map fixing clear anchor canceled exactly. Preserved printed word boundaries and finite existing six-source GP lexicon. 8/8 shared-map plants feasible, all forced runes correct; 8/8 independent-map nulls infeasible; original infeasible. No plaintext/key. Fixed alignment/anchor premise weak, do not broaden without evidence. See im-results/lp2-three-moth-affine-anchor.md and script/output linked there. Initial 73 count assertion corrected before original. Actual V8, no CI.
 
 - 2026-11-25 21:11Z: #2841 complete; fixed clockwise physical-page rune-row shell on exact 594-line map. 12,956 unknown runes partition into 3,294 perimeter and 9,662 interior, lossless original offsets; p56/p57 controls. No typed instruction or selected receiver; retire this interpretation. Script sims/lp2_physical_row_circumference_sft.cjs; report and exact tape im-results/lp2-physical-row-circumference-{gate.md,output.json}; commit c1398a9f0301e8994d8bcd7f1a642ded32111dc3. Actual connected V8, not CI; source row/column coordinates not pixel centroids.
+
+
+## 2026-11-26 — Director #3013: Stage7→Stage11 chronology and callback evidence
+
+Claimed and completed Director Issue #3013 after #3002. Added a combined dated chronology to im-results/cicada2014-stage10-to-stage11-original-operator-gate.md and updated results/README.md in the same commit.
+
+Established source chain:
+- 2014-01-18 01:03:57 UTC: Cicada-signed Stage7 carrier verifies; hex→MP3 and OpenPuff v4.00 password 33011033 recover 99 values in 5x5/7x7/5x5 matrices. Workflow run 44708710753 later fails at unrelated PacketStorm ZIP retrieval, after the signature/extraction checks.
+- 2014-01-25 08:26:57 UTC: Cicada-signed Stage10 form requests fields 53301, 71033, 51033, and the participant's own onion URL; separately specifies participant /key.asc and /cgi-bin/upload with field file.
+- Archived 2014-02-13: 152-byte response links /107.jpg, /167.jpg, /229.jpg, byte-identical to LP1 pages14–16; raw Stage10 POST/handler absent.
+- 2014-04-02 08:49:51 UTC: public Cicada-signed Stage11 redirect points to ky2khlqdf7qdznac.onion (Cicada's onion, not the participant host).
+- Participant archive reports 2014-05-02 GET /key.asc, GET /, POST /cgi-bin/upload, all 200. The preserved message.txt.asc is a separate Cicada clear-signature with the same canonical body and signature timestamp as the public Stage11 redirect; both signatures verified under the published Cicada key. It is not an encrypted PGP MESSAGE.
+- Archived 2014-05-11 index is a static 58-image LP2 index, no scripts/forms/key/cipher code.
+
+Conclusion: the surviving Stage7→Stage10→Stage11 chain is qualification/distribution, not an LP2 decryption mechanism. One possible missing archival record remains: the complete participant-side 2 May callback transaction (participant onion URL, exact /key.asc, raw multipart POST body and CGI response). If unavailable, retire this historical branch as distribution-only. Do not infer a key from the mere key-fetch log.
+
+Relevant files:
+- im-results/cicada2014-stage7-chain-reproduction.md
+- im-results/cicada2014-stage10-to-stage11-original-operator-gate.md
+- resources/cicada2014-openpuff-magic-squares.txt
+- resources/historical/cicada2014-stage10-original-form.html
+- resources/external/2014-stage10-post-square-response.html
+- resources/historical/cicada2014-stage11-message.asc
+- resources/historical/cicada2014-onion7-original-index.html
+- resources/historical/stage11-2014-index-manifest.json
+
+The human cold-start packet for p0–p55 was prepared under Issue #3002; no human was contacted or simulated. Its local ZIP hash is recorded in that issue. The 133/331 metadata-number line is already represented in current Director research and should not be duplicated without a source-selected operation.
