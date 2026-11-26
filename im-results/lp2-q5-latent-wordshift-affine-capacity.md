@@ -38,3 +38,16 @@ The comparison floor counts fully contained lexicon-covered words of the specifi
 **p40–53 is incompatible with every tested contiguous literary window under this entire shared-five-cycle model**, even with arbitrary latent word segmentation, independent wordwise affine masks and direction, and either historical clock. The seven-rune threshold yields gaps of 28 and 25 anchors respectively. The opening scope remains unexcluded by these floors. A different lexicon/register, changing cycle between words, nonaffine transform, nulls or inserted/removed symbols remains outside the claim.
 
 Reproduce: [exact capacity](../sims/lp2_q5_latent_affine_long_capacity_sft.cjs), e.g. `node sims/lp2_q5_latent_affine_long_capacity_sft.cjs p40 hold`; omit hold for ordinary. Control selector 0/1/2. Raw results lp2-q5-latent-affine-long-{control0,control1,control2,p0,p40}-{ordinary,hold}.json. The calculations ran in connector JavaScript using the exact repository source and data; standalone Node CLI was not separately executed. All results are scoped to the existing GP encoding and the 31,629-word lexicon of the shared q8 core.
+
+## Stronger projective cycle: arbitrary wordwise cycle amplitude
+
+Allow C_j=a_w P_j+b_w+t_w K_(r_w+d_w j mod5), with both a_w and t_w arbitrary nonzero residues independently. This includes affine masks applied before or after the shared cycle. The lag-five equations still fix a_w; the inferred adjacent key differences now equal t_w D, so quotient the zero-sum cycle by every nonzero scalar, rotation and reversal. Canonicalize each oriented rotation by scaling its first nonzero component to one, and take the lexicographic minimum (the all-zero cycle is its own class). This gives at most 2,557 classes. Interval packing and finite donor floors remain exact. The separate Shakespeare ordinary and Emerson F-hold controls retain all actual covered words and uniquely recover the true projective class at thresholds8–10, not uniquely at threshold7.
+
+| p40–53, 3008 runes | Threshold | Maximum original | Minimum donor window |
+|---|---:|---:|---:|
+| ordinary | 7/8/9/10 | 179/17/4/1 | 50/20/6/0 |
+| F-hold | 7/8/9/10 | 168/16/4/1 | 47/15/5/0 |
+
+The broad projective receiver is excluded at threshold9 under both clocks (gaps2/1), and at threshold8 ordinary (gap3). Lower thresholds are insufficient. This is still conditional on every tested donor window supplying its actual covered words, shared cycle up to independent amplitude, and no length-changing operation. No new key or plaintext.
+
+[Projective SFT](../sims/lp2_q5_latent_projective_long_capacity_sft.cjs); raw lp2-q5-latent-projective-{1-ordinary,2-hold,p40-ordinary,p40-hold}.json. Executed via repository JS source in connector runtime.
