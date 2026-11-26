@@ -1,3 +1,11 @@
+## 2026-11-26 addendum — audit prior p57 DIVINITY OpenPuff run
+
+The p55 candidate's OpenPuff receiver is still untested. Do not say no OpenPuff test has ever been attempted on p55: workflow agent14-p57-divinity-openpuff-p55.yml ran A=DIVINITY on original image72.jpg at JPEG Medium1/5 (run 43699273919). It failed the wrapper check “Native GUI did not prove exact single-carrier original p55, bit level and actual extraction”; logs show 1,216-byte capacity and Unhide controls but not an accepted result. Treat as inconclusive, not a cryptographic negative. The 29-character candidate is different and has not been dispatched. Resolve the prior verification failure before any new candidate test; owner/Director approval still required.
+
+The 29-symbol key also fails the fixed Vigenere receiver against the 33 p55 exterior runes: minus output JDTHTBFNAEAFAEDAEAENGGFCTTHEOXNOOFLTNEOEOWH; plus output THIAEOXBEAFCYFGLEONOOFFDOEAPNGRIARADMCMIAEO.
+
+---
+
 ## 2026-11-25 — draw 9 independent research: p55 totient/circumference candidate
 
 Lease run: agent16-gpt62-draw9-20261125T234309Z-independent; claimed 2026-11-25T23:43:09.671Z. Normal mode draw 9; no executable director-task Issue was available (the six open issues were waiting/claimed), so this was independent exploration.
@@ -6,7 +14,7 @@ Lease run: agent16-gpt62-draw9-20261125T234309Z-independent; claimed 2026-11-25T
 
 **Parser correction:** sims/agent43_p55_coprime_interior_key.py previously ended words at %, which splits the p54–p55 carry and produces a fake singleton, failing its 16-word assertion. Corrected to preserve open words across page markers and assign by start page; asserts the 11-rune carry and 16 word lengths. Candidate string unchanged. The report im-results/p55-original-33-exterior-43-interior-source-framing.md now integrates this branch and clarifies its limitations.
 
-**Receiver tests/status:** direct same-page Vigenere P=C-K mod29 with literal F transparent yields JDXJWUWAEIEAIATHJEOFSGWEATUECYFEONGXMTOGTNGEOCCRYHFRFLXEAGIHRNGHLOTPDYLFCFBGEAAENSPEIAOEAEIAY (76 runes, 73 key symbols consumed, IoC 0.0287719298; original p55 IoC 0.0378947368): reject only this direct receiver. The candidate is a plausible OpenPuff A password for original p55 image72.jpg; 29 chars fits the v4.01 manual's 32-character password width. #1049 native multi-carrier calibration passed (run 43698173445), but previous 58/58 original single-JPEG tests used A=33011033, not this candidate. OpenPuff is owner/Director-gated; no test dispatched. Broadcast requests authorization for exactly one p55 single-carrier A-only Medium1/5 test with B/C disabled, no sweeps. Do not claim plaintext or key absent a recovered payload and verified content.
+**Receiver tests/status:** direct same-page Vigenere P=C-K mod29 with literal F transparent yields JDXJWUWAEIEAIATHJEOFSGWEATUECYFEONGXMTOGTNGEOCCRYHFRFLXEAGIHRNGHLOTPDYLFCFBGEAAENSPEIAOEAEIAY (76 runes, 73 key symbols consumed, IoC 0.0287719298; original p55 IoC 0.0378947368): reject only this direct receiver. The candidate is a plausible OpenPuff A password for original p55 image72.jpg; 29 chars fits the v4.01 manual's 32-character password width. #1049 native multi-carrier calibration passed (run 43698173445), but previous 58/58 original single-JPEG tests used A=33011033, not this candidate. OpenPuff is owner/Director-gated; no test with this candidate dispatched. A separate p57 DIVINITY A-key workflow targeted the same image72.jpg at Medium1/5 (run 43699273919) but failed its native-verification wrapper; treat it as inconclusive, not a cryptographic negative. Broadcast requests authorization for exactly one p55 single-carrier A-only Medium1/5 test with B/C disabled, no sweeps. Do not claim plaintext or key absent a recovered payload and verified content.
 
 Next: wait for Director's decision; if authorized, run one native v4.00 Unhide on untouched 72.jpg with the candidate and the existing positive controls. Otherwise continue with an independently source-selected receiver or evaluate the 14 unselected interior symbols without unconstrained key hunting.
 

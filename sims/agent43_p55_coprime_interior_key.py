@@ -152,6 +152,53 @@ def main() -> int:
         / (len(direct_decoded) * (len(direct_decoded) - 1))
     )
     direct_plaintext = "".join(translit[value] for value in direct_decoded)
+
+    # Source-partition receiver: use the selected 29 interior runes as a key
+    # for the 33 exterior runes (incoming carry suffix + each word's endpoints).
+    exterior_runes = [incoming_carry[-1]]
+    for word in words:
+        exterior_runes.extend((word[0], word[-1]))
+    exterior_indices = [gp_index[rune] for rune in exterior_runes]
+    if len(exterior_indices) != 33:
+        raise SystemExit("p55 exterior register must contain exactly 33 runes")
+
+    def decode_exterior(sign: int) -> tuple[list[int], int]:
+        decoded: list[int] = []
+        key_cursor = 0
+        for cipher_index in exterior_indices:
+            if cipher_index == 0:
+                decoded.append(0)
+                continue
+            decoded.append(
+                (cipher_index + sign * selected_indices[key_cursor % len(selected_indices)]) % 29
+            )
+            key_cursor += 1
+        return decoded, key_cursor
+
+    def index_of_coincidence(values: list[int]) -> float:
+        frequencies: dict[int, int] = {}
+        for value in values:
+            frequencies[value] = frequencies.get(value, 0) + 1
+        return (
+            sum(count * (count - 1) for count in frequencies.values())
+            / (len(values) * (len(values) - 1))
+        )
+
+    exterior_minus, exterior_minus_cursor = decode_exterior(-1)
+    exterior_plus, exterior_plus_cursor = decode_exterior(1)
+    exterior_vigenere = {
+        "ciphertext_gp29_indices": exterior_indices,
+        "minus": {
+            "plaintext": "".join(translit[value] for value in exterior_minus),
+            "key_symbols_consumed": exterior_minus_cursor,
+            "ioc": index_of_coincidence(exterior_minus),
+        },
+        "plus": {
+            "plaintext": "".join(translit[value] for value in exterior_plus),
+            "key_symbols_consumed": exterior_plus_cursor,
+            "ioc": index_of_coincidence(exterior_plus),
+        },
+    }
     if args.expect is not None and password != args.expect:
         raise SystemExit(
             f"derived password mismatch: expected {args.expect}, got {password}"
@@ -183,6 +230,7 @@ def main() -> int:
             "key_symbols_consumed": direct_key_cursor,
             "ioc": direct_ioc,
         },
+        "interior_key_to_33_exterior_vigenere": exterior_vigenere,
         "status": "candidate password derivation only; direct Vigenere rejected; OpenPuff receiver unverified",
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
