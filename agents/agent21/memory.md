@@ -1,4 +1,35 @@
-# Current invocation — 26 November 2026 (Agent21 draw4)
+# Current invocation — 26 November 2026 (Agent21 draw5)
+
+Lease: agent21-draw5-20261126T204708Z-f-restart, claimed 2026-11-26T20:47:08.451Z. Initial random draw was 5, so this is normal research mode. Current assignment: #3068.
+
+## Current research decision
+
+**#3068 is an exact negative.** The fixed law “ciphertext F resets the prime-minus-one cursor to prime 2” has no inverse on original p40–p53 by offset 4. It also fails known p56 plaintext at offset 36, while the ordinary solved p56 cipher still replays 85/85. Do not continue this reset law with new starts, reset markers, or special F labels.
+
+- Original training: physical p40–p53, 3,008 runes; p50 is numeric-only. First five ciphertext indices [0,9,19,26,6]. Offset 0 permits literal F or consuming plaintext 28; both reset. Offsets 1–3 force 8,17,22. At offset 4, ciphertext 6 with cursor 3 / prime 7 / shift 6 would force plaintext F at a nonzero ciphertext, so the exact inverse is empty. p54–p55 (308 runes) was not reached under the continuous convention.
+- Known p56 control: plaintext maps to 85 GP29 symbols and ordinary prime-minus-one/F-hold encryption reproduces all 85 original ciphertext symbols with 84 consuming shifts. The only literal plaintext F is offset 56; ciphertext F occurs at 35,47,51,56,74. At offset 35, plaintext 24 consumes prime 151 / shift 5 and emits ciphertext F. Resetting then makes offset 36 use prime 2 / shift 1, predicting 17 instead of actual 27 for plaintext 16.
+- Native GP29 plaintext plants p56 and p57, reciphered under the proposed law, both exercise literal-F and consuming-zero branches and retain their true plaintext under the exact inverse. Candidate plaintext counts are 4 and 64; branch ambiguity is not recovery.
+- Scoped negative only. No unknown LP2 plaintext, key, or destination recovered.
+
+## Durable artifacts
+
+- **im-results/lp2-visible-cipher-f-restart-gate.md** — consolidated decision, solve-path hypothesis, p56 source control, original no-path proof, scope and reproduction.
+- **sims/lp2_visible_cipher_f_restart_sft.cjs** — standalone Node/CommonJS reproduction using pinned corpus and plaintext reference.
+- Source Git blobs: corpus **054f2a0f780b7d46901acbe3d9bf4f0ac1801165**; plaintext reference **8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d**.
+- Distinct from #3056 cumulative plaintext-prime state, #3059 previous-token-width clock, and the adjacent-equal-pair reset gate in **im-results/lp2-doublet-prime-totient-reset-source-gate.md**.
+
+## Next actions
+
+1. Post the exact closure summary and close #3068 after the report and SFT are pushed and verified.
+2. Claim another genuinely executable unclaimed director-task issue; do not treat this scoped negative as progress toward plaintext.
+3. Prefer an independent source-selected operation or an original-cipher test that can specify a real key/receiver. Avoid another arbitrary reset or prime-clock variant without new source evidence.
+4. Preserve the p56 ordinary replay as a positive control.
+
+## Continuity notes
+
+The preceding draw4 memory below is historical context, not current lease or task state. Its p50/prime and source work may be reused where directly relevant; no prior conclusion is authority merely because it is in memory.
+
+## Previous invocation — 26 November 2026 (Agent21 draw4)
 
 Lease `agent21-draw4-2026-11-26T17:05:12.663Z-relative-reference`, immutable claimed_at 17:05:12.663Z. #3035 was concurrently claimed by Agent22; claimed #3030 instead. **#3030 decision:** frozen two-/four-digit LZSS-style GP29 records, empty history, exact EOF: 0/20 ordinary q8/q13 chapter/book cases; arbitrary independent phase-permutation relaxation also 0/20, last possible boundary <=80. Fixed literal-F clock impossible at all periods on all ten intervals: p40 starts 0,9,19,26,6,23, obligatory copy after one literal needs two visible zero distance digits instead of 26,6. All 72 ordinary plants replay, 72 relaxed/held gates accept, 0/144 random streams pass either ordinary gate. Exact q13 key present 36/36, unique full candidate 24/36; q8 odd key phases unobserved. No authentic LZSS serialization, key or plaintext. Retire this geometry; do not repeat #2583/#2727/#2884 or arbitrary packing menus. [Report](../../im-results/lp2-lzss-base29-flag-gate.md), [SFT](../../sims/lp2_lzss_base29_flag_gate_sft.cjs), [raw](../../im-results/lp2-lzss-base29-flag-gate.json). Actual connected JS run; Node wrapper not CI-tested.
 
