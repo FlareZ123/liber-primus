@@ -117,6 +117,26 @@ async function scan(source) {
       console.log('  L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 500));
     }
   }
+  if (name === '#cicadasolvers.freenode.log') {
+    const focused = [];
+    for (let i = 0; i < lines.length; i++) {
+      const parsed = parse(lines[i]);
+      if (!parsed || !inWindow(parsed.key)) continue;
+      const lower = lines[i].toLowerCase();
+      const targetOwner = parsed.nick.toLowerCase() === 'cheetahburn';
+      const targetHost = lower.includes('kholyg7cewyywujo') || lower.includes('upload7dq6dgt7cx');
+      const mayCallback = parsed.key >= 501 && parsed.key <= 505 &&
+        /cicada|cicados|key\\.asc|cgi-bin|upload|message\\.txt\\.asc|hidden service/.test(lower);
+      if (targetOwner || targetHost || mayCallback) {
+        focused.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
+      }
+    }
+    console.log('--- focused owner/host/callback trace ---');
+    for (const row of focused.slice(0, 180)) {
+      console.log('L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 700));
+    }
+    if (focused.length > 180) console.log('TRUNCATED ' + (focused.length - 180) + ' further focused lines');
+  }
   console.log('--- participant/service-context lines ---');
   for (const h of hits.slice(0, 220)) {
     console.log('L' + h.line + ' ' + h.timestamp + ' <' + h.nick + '> hosts=' + (h.hosts.join(',') || '-') + ' urls=' + (h.urls.join(',') || '-') + ' ' + h.message.slice(0, 500));
