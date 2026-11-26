@@ -62,7 +62,7 @@ function makeDecoder(raw,encoding="native",contextual=true){
  return {decode,encodeWords:words,lexicon:lex.size,supp};
 }
 function edit(a,b){let d=Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){const q=[i+1];for(let j=0;j<b.length;j++)q.push(Math.min(d[j+1]+1,q[j]+1,d[j]+(a[i]!==b[j])));d=q}return d.at(-1)}
-function experiment(raw,seed=0x47f0a11,N=60,holdout=false){
+function experiment(raw,seed=0x47f0a11,N=60,holdout=false,start=0){
  const {decode,encodeWords:words,lexicon,supp}=makeDecoder(raw),rng=makeRng(seed),mod=x=>(x%29+29)%29,prime=primes(2000).map(p=>mod(p-1)),kw=["WELCOME","DIUINITY","FIRFUMFERENFE"].map(w=>words(w).flat()),native=JSON.parse(raw[5]),rm=new Map(native.runes.map((r,i)=>[r,i])),ns=native.sections.map(s=>({name:s.name,P:[...s.source_text].filter(r=>rm.has(r)).map(r=>rm.get(r))})).filter(x=>x.P.length>=240);
  const seq=[raw[0],raw[1],raw[3]].map(t=>words(t).flat()),lp=train(seq.map(a=>a.slice(0,Math.floor(a.length*.7)))),other=words(raw[4]).flat(),out=[];
  function score(d,P){return d?{pos:d.P.reduce((n,x,i)=>n+(x===P[i]),0)/P.length,edit:edit(d.P,P),len:d.P.length,ll:d.ll,states:d.states}:null}
@@ -70,12 +70,13 @@ function experiment(raw,seed=0x47f0a11,N=60,holdout=false){
   const donor=i%2===0?ns[rng(ns.length)].P:holdout?other:seq[i%3].slice(Math.floor(seq[i%3].length*.7));
   const at=rng(donor.length-239),P=donor.slice(at,at+240),kind=i%5,K=kind===0?Array.from({length:600},()=>rng(29)):kind===1?prime.slice(0,600):Array.from({length:600},(_,j)=>kw[kind-2][j%kw[kind-2].length]);
   const {C}=encode(P,K,rng),W=Array.from({length:600},()=>rng(29));
+  if(i<start)continue;
   const char=characterDecode(C,K,lp),blind=decode(C,K),fixed=decode(C,K,240),wrong=decode(C,W);
   if(!blind||!fixed||!char.possible)throw Error("true path lost");
   out.push({i,kind,at,n:C.length,char:score(char,P),blind:score(blind,P),fixed:score(fixed,P),wrong:wrong?wrong.ll:null});
  }
- function summary(k){const a=out.map(x=>x[k]);return {exact:a.filter(x=>x.edit===0).length,pass:a.filter(x=>x.pos>=.85).length,meanPos:a.reduce((n,x)=>n+x.pos,0)/N,meanEdit:a.reduce((n,x)=>n+x.edit,0)/N,minLL:Math.min(...a.map(x=>x.ll)),maxStates:Math.max(...a.map(x=>x.states))}}
- return {seed:"0x"+seed.toString(16),holdout,N,lexicon,summary:{char:summary("char"),blind:summary("blind"),fixed:summary("fixed"),wrongFeasible:out.filter(x=>x.wrong!==null).length,wrongMax:Math.max(...out.filter(x=>x.wrong!==null).map(x=>x.wrong))},rows:out};
+ function summary(k){const a=out.map(x=>x[k]);return {exact:a.filter(x=>x.edit===0).length,pass:a.filter(x=>x.pos>=.85).length,meanPos:a.reduce((n,x)=>n+x.pos,0)/a.length,meanEdit:a.reduce((n,x)=>n+x.edit,0)/a.length,minLL:Math.min(...a.map(x=>x.ll)),maxStates:Math.max(...a.map(x=>x.states))}}
+ return {seed:"0x"+seed.toString(16),holdout,N,start,lexicon,summary:{char:summary("char"),blind:summary("blind"),fixed:summary("fixed"),wrongFeasible:out.filter(x=>x.wrong!==null).length,wrongMax:Math.max(...out.filter(x=>x.wrong!==null).map(x=>x.wrong))},rows:out};
 }
 if(require.main===module){const raw=paths.map(p=>fs.readFileSync(p,"utf8"));console.log(JSON.stringify({development:experiment(raw),holdout:experiment(raw,0x47a91c2,40,true)},null,2))}
 module.exports={makeDecoder,experiment,paths};
