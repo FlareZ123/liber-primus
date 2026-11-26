@@ -1,0 +1,90 @@
+{
+  "tag": "donor0",
+  "cycles": 141457,
+  "align": 3662437,
+  "full": 90766,
+  "truthKey": [
+    0,
+    25,
+    3,
+    21,
+    9
+  ],
+  "truthRank": 1,
+  "correct": true,
+  "selected": [
+    0,
+    25,
+    3,
+    21,
+    9
+  ],
+  "fit": -2.8080976299668126,
+  "held": -2.8497386351826046,
+  "heldAccuracy": 0.7661691542288557,
+  "heldBoundaryF1": 0.803921568627451,
+  "decoded": "DANCNG HAND THE HAND UERILY YOU OFTEN MACE MERRY WITHOUT CNOWNG OTHERS HAUE COME THE YOU THE WHOM FOR GOLDEN PROMISES MADE UNTO YOUR YOUTH YOU HAUE GIUEN BUT RICHES AND POWER AND GLORY LESS THANC PROMISE HAUE A GIUEN AND YET MORE GENEROUS HAUE YOU BEEN THE IN YOU HAUE GIUEN IN THE DEEPER THIRSTNG AFTER LIFE SURELY THERE IS THE GREATER GIFT THEM MAN THAN THAT WHICH TURNS ALL HIS RISE INTO HIS A OF LIPS AND ALL LIFE INTO A FOUNTAIN ILLUSTRATIAN AND THE THIS LIES IN HONOUR AND MY REWARD THAT WHENEUER A COME THE THE FOUNTAIN THE DRINC A FIND THE LIUNG WATER ITSELF THIRSTY AND IN DRINCS IN WHILE A DRINC IT SOME OF YOU HAUE DEEMED IN PROUD AND OUER IN FEAR RECEIUE GIFTS THEE PROUD INDEED HOW THE RECEIUES AGES BUT NOT GIFTS AND THOUGH A HAUE A COURT MEAN OF AMONG THE HILLS WHEN YOU WOULD HAUE EARLY THE HUMS YOUR BOARD AND SLEPT FEAR SPORT A THE OF THE TEMPLE WHEN YOU WOULD GLADLY HAUE SHELTERED WORM EUEN IT NOT YOUR TILL MINDFULNESS",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        0,
+        25,
+        3,
+        21,
+        9
+      ],
+      "score": 113.61618399596698,
+      "support": 23,
+      "fit": -2.8080976299668126
+    },
+    {
+      "key": [
+        1,
+        9,
+        10,
+        21,
+        17
+      ],
+      "score": 57.47421244740672,
+      "support": 2,
+      "fit": -3.5485643585491067
+    },
+    {
+      "key": [
+        0,
+        16,
+        27,
+        26,
+        18
+      ],
+      "score": 63.0585193404765,
+      "support": 4,
+      "fit": -3.5487779203886705
+    },
+    {
+      "key": [
+        3,
+        11,
+        14,
+        18,
+        12
+      ],
+      "score": 55.1605987446679,
+      "support": 3,
+      "fit": -3.5521247523795796
+    },
+    {
+      "key": [
+        3,
+        26,
+        4,
+        8,
+        17
+      ],
+      "score": 63.01726237884478,
+      "support": 1,
+      "fit": -3.552609349685362
+    }
+  ]
+}
