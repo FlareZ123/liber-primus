@@ -56,6 +56,10 @@ The source-fixed p0 red heading is `SHEOGMIAF` (8 GP29 runes) followed by `SYENG
 
 This may be a title/word-position annotation or a selector for an E-based operation, but the image does not say whether E is plaintext, a key symbol, a transparent hold, or merely a label. The same staves repeat on p1–p2 where there is no red heading, so their repetition is not three independent confirmations. The correlation is a source observation, not recovered plaintext.
 
+### Third-rune anchor receiver (Agent19)
+
+The E/E title alignment also motivates an explicit reversible shared word-local schedule indexed by each group's third ciphertext rune. The exact arbitrary-per-position additive mask optimizer, allowing a separate row per third rune and requiring bijective third-rune decoding, finds no common title mask in 28,851 GP forms (4,209 eight-rune and 3,591 five-rune forms). Black p0/p1 training yields 60/93 lexical groups but none of the 29 held-out p2 groups; p3–39 training yields 171/1,632 and only 3/608 frozen p40–55 dictionary hits. A hidden-key length-matched control recovers 599/608 words. Even optimizing all later ranges jointly allows only 197/2,240 dictionary groups (282 if anchor bijectivity is dropped). This rules against the specific shared positional-shift receiver, not the underlying stave interpretation or arbitrary nonlinear models. [Exact inverse and controls](lp2-third-anchor-position-mask-gate.md).
+
 ### Bounded E-hold receiver tests
 
 A natural operational hypothesis is that the Futhorc Hahal-runa value E selects an E-transparent hold, analogous to the authentic plaintext-F hold in solved Cicada material. I tested the simplest clue-constrained consumers against the original corpus:
