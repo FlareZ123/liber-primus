@@ -2,7 +2,7 @@
 
 **22 November 2026, Agent11. Evidence type:** bounded, original-input negative after all source-book key offsets and both key directions, plus independent plaintext training controls and an exact positive inverse. No recovered unknown-page plaintext, historical key, or author-selected cipher mechanism.
 
-The independent 26 November extension below uses the exact historical Self-Reliance witness under GP29 transparent-F consumption; it excludes continuous and seven complete chapter-level inverses by exact reachability, with the remaining four source framings nonprose. Both results are scoped negatives.
+The independent 26 November extension below uses the exact historical Self-Reliance witness under GP29 transparent-F consumption; it excludes continuous and seven complete chapter-level inverses by exact reachability, with the remaining four source framings nonprose. The subsequent all-55-page exact receiver relaxation is likewise nonprose on every page. Both results are scoped negatives.
 
 ## Why these particular source and operation?
 
@@ -77,6 +77,24 @@ The actual solved p56 prime-minus-one plaintext-F sender exactly reproduces **85
 
 All plants use the same donor and are not independent text samples. Known donor full score is −2.626198; held-out score −2.602975. Thus the exact receiver strongly distinguishes these native plants from the original surviving alignments, without claiming statistical impossibility of every possible register.
 
-**Decision:** retire direct forward Self-Reliance GP29 running keys under literal-F transparency with continuous or independent chapter starts in this pinned normalization. This is a source-selected alternative to the prior full-Emerson GP28 delta experiment, not a duplicate of it. No unknown plaintext or authentic key; no evidence that the historical book-code witness is an LP2 key. Alternate text editions, word clocks, reversals, other transliteration, and other key derivations remain untested and need independent source support before further search.
+**Decision:** retire direct forward Self-Reliance GP29 running keys under literal-F transparency with continuous, independent chapter or isolated physical-page starts in this pinned normalization. This is a source-selected alternative to the prior full-Emerson GP28 delta experiment, not a duplicate of it. No unknown plaintext or authentic key; no evidence that the historical book-code witness is an LP2 key. Alternate text editions, word clocks, reversals, other transliteration, and other key derivations remain untested and need independent source support before further search.
 
 Reproduction: [CommonJS SFT](../sims/lp2_2014_selfreliance_fhold_runningkey_sft.cjs) and [complete raw output](lp2-2014-selfreliance-fhold-runningkey-output.json). The exact experiment function was executed on the pinned inputs using connected V8; the standalone Node filesystem wrapper was not separately run. The first raw checkpoint truncated plant survivor lists before checking membership, making three control flags falsely negative; the current script and output replace that intermediate with full membership and exact hidden-key ranking. No CI workflow added.
+
+### Isolated physical-page recovery (same frozen key family)
+
+The chapter exclusions alone leave the possibility of a different source offset at every physical page. To seek an actual deciphered page rather than merely reject a global clock, independently allow every finite offset and both signs on **all 55 rune-bearing unsolved physical pages**, including the short p49, p51 and p55 fragments; p50 is numeric-only. This is a deliberately permissive relaxation, not evidence for page resets. The same exact reachability filter and language model are retained. A score-only two-state DP (previous symbol ordinary or literal F, plus cumulative hold count) gives the maximum over all histories; each top-three candidate is checked against the original backtracking Viterbi and exactly re-encrypted. No new key alphabet, extra offsets, source editions or fit parameters.
+
+All **4,530,020** page-offset-sign tests yield 157,362 complete legal alignments. No page is a native-prose candidate: the exact best score on every page is below **every** equal-length sliding window in the 588-rune target-excluded native donor, including the smallest 66-rune page (descriptive matched controls; overlapping windows and the same donor are not independent samples).
+
+| Closest original page candidates by native margin | Runes | Complete alignments | Best original | Minimum native window | Gap (nats/rune) |
+|---|---:|---:|---:|---:|---:|
+| p49 | 66 | 21,831 | −3.847359 | −2.981273 | 0.866086 |
+| p55 | 76 | 27,573 | −3.915143 | −2.952025 | 0.963119 |
+| p51 | 92 | 14,420 | −4.035884 | −2.892333 | 1.143551 |
+| p22 | 131 | 5,576 | −4.028662 | −2.859059 | 1.169604 |
+| p32 | 121 | 10,972 | −4.278305 | −2.832619 | 1.445686 |
+
+All 55 page maxima are nonprose; no credible partial or complete unknown-page recovery. The page-level relaxation does not rescue this particular historically motivated GP29 key family. Do not expand to arbitrary intra-page resynchronization, new key transforms or new carrier editions without independent source clues. This is a native-register likelihood decision for isolated pages, distinct from the algebraic impossibility of the seven full chapter intervals.
+
+Page-mode reproducer: the same [SFT](../sims/lp2_2014_selfreliance_fhold_runningkey_sft.cjs) accepts `--pages 0 55` or the three executed ranges 0–15, 16–39 and 40–55. Raw optimum tapes and legal counts: [p0–15](lp2-2014-selfreliance-fhold-pages-00-15.json), [p16–39](lp2-2014-selfreliance-fhold-pages-16-39.json), [p40–55](lp2-2014-selfreliance-fhold-pages-40-55.json). [Length-matched native comparison](lp2-2014-selfreliance-fhold-page-native-comparison.json). Connected V8 actually executed the page search and native comparison; final standalone wrapper with combined per-page comparison was not independently run in Node.
