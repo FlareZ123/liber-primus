@@ -175,6 +175,25 @@ Four seeded, matched-length controls select dictionary words and independent fiv
 
 Retire the common affine integer receiver under this finite terminal register and OOV budget even with completely unknown independent word directions. This does not exclude variable coefficients, changing word lengths or segmentation, non-affine integer bijections, other registers, or more OOV groups. No unknown plaintext or authentic key recovered.
 
+## Arbitrary per-word ciphertext reversal: all-bijection endpoint graph bound (Agent45, 26 November)
+
+This extends the earlier fixed-coordinate concentration theorem, not just the terminal affine test. Let the numeric inverse for a stratum be any invertible 29-adically compatible transformation (arbitrary higher-digit nonlinear operations), with the low plaintext digit in its ordinary word-final position. Allow either ciphertext orientation independently for every word. For a target set of four plaintext ending symbols, its preimage under the stratum's low-digit permutation is a four-element vertex set. A word can end in one of those four symbols only if at least one ciphertext endpoint belongs to that set. Build a weighted undirected endpoint graph. Count loops once in vertex degree; count each non-loop edge at both vertices. For a set S, its covered word count is exactly the sum of its degrees minus weights of non-loop edges internal to S. Enumerate all C(29,4)=23,751 vertex sets per stratum. Summing independent stratum maxima is an exact upper bound on global top-four word-final count, even with independent orientations and arbitrary higher digits. Local violations compare each donor's own local top-four count against its corresponding stratum maximum.
+
+Canonical 2,896 words/12,956 runes, all 32 cross-page joins, physical chapter assignment by word start. The same length-matched Gibran and Shakespeare constructions as the prior fixed-coordinate test have global top-four ending counts 1,547 and 1,553. Results:
+
+| Permutation sharing | Strata | Original upper bound | Gibran violating strata | Shakespeare violating strata |
+|---|---:|---:|---:|---:|
+| global | 1 | 814 | 1 | 1 |
+| chapter | 9 | 969 | 9 | 9 |
+| width | 14 | 1009 | 12 | 12 |
+| chapterWidth | 110 | 1466 | 68 | 70 |
+| page | 55 | 1340 | 48 | 50 |
+| pageWidth | 526 | 2346 | 138 | 115 |
+
+Thus arbitrary reversals do not close even the chapter×width gap: 1,466 < 1,547/1,553. All nine individual chapter strata also fail under chapter-only sharing. Page×width no longer has a global exclusion by this statistic, but 138/115 local strata exclude the respective matched donors. Two separate synthetic affine integer plants independently reverse ciphertext words and change keys per chapter×width; both round-trip all 12,956 runes and pass every stratum bound. This is a conditional exclusion against the specified donor controls, not a universal English-language bound; independent plaintext reversal, arbitrary interior-position choices per word, nonstationary word-private maps, and different segmentation are outside this graph theorem. No original plaintext or authentic key recovered.
+
+[Executable CommonJS](../sims/lp2_word_base29_free_reversal_graph_sft.cjs) · [machine output](lp2-word-base29-free-reversal-graph-output.json). Core executed in connected V8; no separate Node CI claim.
+
 ## Reproducible scripts and decision
 
 - [Affine all-secret word-integer test](../sims/lp2_base29_wordinteger_affine_allsecret_sft.cjs): source-verified **1,145 original chapter×length hidden-position bound**, 642 whole-book-per-width position bound, 609 fixed-edge baseline, nonlinear 29-adic polynomial inverse, chapter-dependent digit-rotation affine inverse, genuine GP-native matched 1,547/1,553 positive controls, and 812 29-symbol affine map checks.
