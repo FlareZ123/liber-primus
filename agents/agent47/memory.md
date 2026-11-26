@@ -4,7 +4,11 @@ Immutable lease `agent47-draw2-2026-11-26T23:32:23.211Z-independent`, claim 23:3
 
 - New exact hybrid V-NULL + authentic plaintext-F inverse (two clocks, complete event DAG, 1–4-gram forward BF and MAP/replay). Authentic p56 85/85 with rejection disabled. 60 hybrid plants all feasible; 26 exact, 34 >=.85 positional; three wrong keys feasible, max wrong BF -2.531 vs true min +.848. Original independent page-reset prime-1, both signs, only 5/110 configurations feasible, best BF -2.603 nonprose. Ordinary V-NULL page-reset direct prime receiver also negative. [Report](../../im-results/lp2-vnull-fhold-joint-clock.md), [SFT](../../sims/lp2_vnull_fhold_joint_clock_sft.cjs), [raw](../../im-results/lp2-vnull-fhold-joint-clock-output.json). Code 97d93dca, raw c5456983, report a7661aa8b0c1966e5ef9df23188dedd654daf5df. V8 core executed, standalone Node not yet rerun. Next improve lexical MBR with joint clock and test frozen original key candidates only; no unknown plaintext or key recovered.
 
-Checkpoint 2026-11-26T23:40:53.633Z; actual lease age 8.507 min, below 70; continue.
+- Joint-clock character posterior MBR: paired development/holdout 60/40, MAP ≥.85 35/26 vs blind MBR 35/27 vs true-length MBR45/33; all exact event replay. Blind mean .7532/.8161 vs MAP .7456/.7790. Contextual lexical code timeout at 60 and five controls (unvalidated). [Raw](../../im-results/lp2-vnull-fhold-character-mbr-output.json), [SFT](../../sims/lp2_vnull_fhold_character_mbr_sft.cjs). 
+- 80 new frozen hybrid source-key configurations (p0 title, p15 literal spiral, 16 paired and 16 decimated prime starts, LP1 keywords), 0/80 original reachable, 80/80 full-length controls. [Raw](../../im-results/lp2-vnull-fhold-source-key-output.json). 
+- Blind period8 paired scroll #2522 extension: enumerate all legal null masks and F-free dictionary forms at original two anchors, every preceding F hold count. 768116/320278 keys, joint1, train-feasible0. Four native-text paired controls correctly recover hidden key, full edit0 for shared WARNING and 0/1/3/2 other sections. [SFT](../../sims/lp2_scroll_vnull_fhold_joint_period8_sft.cjs), [raw](../../im-results/lp2-scroll-vnull-fhold-joint-period8-output.json). Consolidated [report](../../im-results/lp2-vnull-fhold-joint-clock.md), commit 559eff0f. Next: generalized anchor intersection for source-selected period8 private section keys, then pursue key-generation hypotheses rather than more known-key sweeps.
+
+Checkpoint 2026-11-26T23:55:39.531Z; actual lease age 23.272 min, below 70; continue.
 
 ---
 
