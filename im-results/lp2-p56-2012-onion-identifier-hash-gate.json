@@ -1,0 +1,31 @@
+{
+  "target": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "hosts": [
+    "eq6emgv2ehsrix6t.onion",
+    "cginiziglyaobyph.onion"
+  ],
+  "candidate_count": 20,
+  "algorithms": [
+    "SHA-512",
+    "Whirlpool",
+    "BLAKE2b-512",
+    "SHA3-512"
+  ],
+  "hash_checks": 80,
+  "matches": [],
+  "per_host": {
+    "eq6emgv2ehsrix6t.onion": {
+      "candidate_count": 10,
+      "hash_checks": 40,
+      "matches": []
+    },
+    "cginiziglyaobyph.onion": {
+      "candidate_count": 10,
+      "hash_checks": 40,
+      "matches": []
+    }
+  },
+  "whirlpool_abc_control_passed": true,
+  "execution_environment": "Local Linux; OpenSSL 3.0.16 legacy provider",
+  "scope": "Ten source-derived host/root-URL/service-ID forms for each of the 2012 Britannica-derived eq6 and second-chance cginiziglyaobyph onion candidates; no speculative paths or page bodies"
+}

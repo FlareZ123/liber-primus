@@ -341,13 +341,18 @@ A bounded test hashes **38 exact source-derived byte strings** under SHA-512 and
 The exact candidate bytes, lengths, DER construction, target, algorithms, and positive control are reproducible in [`sims/lp2_p56_sq6_identifier_hash_gate.py`](../sims/lp2_p56_sq6_identifier_hash_gate.py). This is a deliberately finite test of source-located identifiers and key/path representations, not a search over arbitrary strings. It does not test the missing initial `/NUM` token, a successful response body, unarchived page content, other participant-specific RSA moduli, or every possible serialization/algorithm. Therefore it excludes only these exact candidates; it does **not** disprove a relationship between p56 and the 2012 sq6 route.
 
 
-### Britannica-derived eq6 identifier-as-preimage gate (Agent50, 26 November 2026)
+### 2012 onion identifier-as-preimage gate (Agent50, 26 November 2026)
 
-The 2012 Britannica 11th-edition book-code route supplies the historical candidate `eq6emgv2ehsrix6t.onion`. The p56 target is the exact 128-hex-character value above. A bounded test compared ten source-located identifier representations—full host, bare 16-character label, host with trailing slash, HTTP and HTTPS root URLs with and without slash, and the v2 service ID as raw 10 bytes, lowercase hex, and base64—under four common 512-bit digests: SHA-512, Whirlpool, BLAKE2b-512, and SHA3-512.
+Two source-derived 2012 v2 onion candidates are now tested against the p56 target:
 
-**Result: 0/40 matches.** The Whirlpool implementation passed the standard `abc` known-answer control. Exact candidates, input lengths, all digest outputs, the target, and the scope are reproducible in [`sims/lp2_p56_eq6_identifier_hash_gate.py`](../sims/lp2_p56_eq6_identifier_hash_gate.py); the compact result is preserved in [`lp2-p56-eq6-identifier-hash-gate.json`](lp2-p56-eq6-identifier-hash-gate.json).
+- `eq6emgv2ehsrix6t.onion`, from the 29-volume Britannica book-code route.
+- `cginiziglyaobyph.onion`, from the second-chance route: the PGP-signed `NHYLD.jpg.asc` message gives 22 coordinates into William Blake's *The Marriage of Heaven and Hell*, and the pinned community reconstruction's book-code script yields this onion. Its README reports that users then received the same message as at `sq6wmgv2zcsrix6t.onion`; this is secondary reconstruction, not an archived byte-identical page response.
 
-This rejects only the tested **identifier-as-preimage** interpretations. It does not test the unavailable page body, unknown URL paths, HTTP headers, or an unspecified page serialization; it does not establish that `eq6` is the p56 destination. Do not expand this into guessed paths or an unconstrained hash-family sweep.
+For each host, ten source-located forms were tested: full host, bare label, host with trailing slash, HTTP/HTTPS root URL with and without slash, and the v2 service ID as raw 10 bytes, lowercase hex, and base64. Four common 512-bit digests were applied: SHA-512, Whirlpool, BLAKE2b-512, and SHA3-512.
+
+**Result: 0/80 matches** (0/40 for each host). The Whirlpool implementation passed the standard `abc` known-answer control. Exact candidates, input lengths, all digest outputs, the target and scope are reproducible in [`sims/lp2_p56_2012_onion_identifier_hash_gate.py`](../sims/lp2_p56_2012_onion_identifier_hash_gate.py); the compact result is preserved in [`lp2-p56-2012-onion-identifier-hash-gate.json`](lp2-p56-2012-onion-identifier-hash-gate.json).
+
+The second-chance page's own bytes remain unavailable. A third-party archive corpus contains empty CDX results for the cginiziglyaobyph host across its tracked archive variants; this is not proof that no capture exists. The test rejects only the **identifier-as-preimage** interpretation for these exact forms. It does not hash either page body, unknown paths, headers, or alternate page serializations, and it does not establish either host as the p56 destination. Do not expand this into guessed paths or an unconstrained hash-family sweep.
 
 ## 2013 xsxnaks second-onion HTML pages (source-selected candidates; bounded negatives)
 
@@ -378,7 +383,7 @@ The source-supported p56 contract remains:
 
 The adjacent final p57 scan and its seven source-grounded SHA-512 serializations are also negative. The 2012 route supplies a concrete original hidden-service root page and a known `/NUMBER` interaction, but not the participant-specific response bytes. The 2016 InfoTomb clue carrier and the 2014 Stage11 index/images are also exact negative candidates under their tested SHA-512 semantics. No target preimage or authenticated digest convention has been recovered.
 
-Still unknown: the actual target page and path, digest family, whether the preimage is raw HTTP entity bytes or another representation, whether headers are included, content decoding, newline/character encoding, HTML/text normalization, and whether an untested URL/path serialization participates; the exact eq6 host/root URL and decoded service-ID forms above do not match under the four tested 512-bit algorithms. A future destination claim requires the original `/NUMBER`/second-chance response or another independently period-linked page object, plus source-authenticated digest semantics. Do not guess wrappers or launch hash-family sweeps.
+Still unknown: the actual target page and path, digest family, whether the preimage is raw HTTP entity bytes or another representation, whether headers are included, content decoding, newline/character encoding, HTML/text normalization, and whether an untested URL/path serialization participates; the exact eq6 and cginiziglyaobyph host/root-URL and decoded service-ID forms above do not match under the four tested 512-bit algorithms. A future destination claim requires the original `/NUMBER`/second-chance response or another independently period-linked page object, plus source-authenticated digest semantics. Do not guess wrappers or launch hash-family sweeps.
 
 ## Independent period academic/search corpora: raw-body availability gate (#2980, Agent14, 26 November 2026)
 

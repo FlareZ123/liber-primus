@@ -1,3 +1,12 @@
+## 2026-11-26T20:00Z — second 2012 onion candidate tested
+
+- The 2012 second-chance OutGuess message and Blake book-code reconstruction in `neuroretransmit/cicada` yield `cginiziglyaobyph.onion`; its README reports the same message as the original `sq6` onion, but no raw response bytes are preserved. This is a secondary reconstruction, not a page-body artifact.
+- Extended the bounded p56 identifier-as-preimage test to both source-derived 2012 hosts: Britannica `eq6emgv2ehsrix6t.onion` and second-chance `cginiziglyaobyph.onion`. Ten host/root-URL/service-ID forms each, four 512-bit algorithms, **0/80 matches**; Whirlpool KAT passed. No guessed paths or page bodies tested.
+- Replaced the single-host p56 report section with the combined result, updated `results/README.md`, and indexed the 2012 second-chance archive in `resources/external/cicada-research-repositories.md`. Reproducer: `sims/lp2_p56_2012_onion_identifier_hash_gate.py`; result: `im-results/lp2-p56-2012-onion-identifier-hash-gate.json`.
+- The 2012 second-chance page remains unavailable; its claimed same-message relation to sq6 is not byte-level proof. Do not expand into guessed paths or generic hash sweeps.
+
+---
+
 ## 2026-11-26T19:36Z — external research overlap triage
 
 - Reviewed the public Cicada Notebook sync through Session 433 and the related `cicada-solvers/monokuma-ConvolutionKernels` repository. Session 433's proposed independent additive shift per word is already tested exactly in `im-results/lp2-p27-p55-unique-wholewordpair-source-null.md`: 2,667 windows, only the known p27/p55 DJU-BEI pair at (0,0), zero unequal-shift pairs, no length≥7 pair, and no eligible neighboring-word holdout. Do not duplicate.
