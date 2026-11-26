@@ -1,0 +1,140 @@
+{
+  "runtimeMs": 67920,
+  "inputs": [
+    "573c2dc93dc6b6b48ea8ac157a87d07277baada5",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  ],
+  "out": {
+    "n": 9194,
+    "cut": 5878,
+    "orbit": 1650,
+    "model": "signed/absolute Fibonacci-indexed prime differences, both signs/directions, repeat-triggered direction reversal with hold/consume, three rank transports, all phases, arbitrary common 29-symbol map including repeat marker",
+    "nativeFitFloors": [
+      {
+        "min": 1066,
+        "windows": 211230
+      },
+      {
+        "min": 1124,
+        "windows": 56616
+      },
+      {
+        "min": 1107,
+        "windows": 315451
+      }
+    ],
+    "control2": {
+      "offset": 12400,
+      "truth": {
+        "read": 2,
+        "hold": false,
+        "dir": 1,
+        "kind": 0,
+        "sign": 0,
+        "phase": 1481
+      },
+      "truthMap": [
+        14,
+        23,
+        9,
+        21,
+        27,
+        0,
+        13,
+        20,
+        22,
+        25,
+        19,
+        1,
+        5,
+        26,
+        2,
+        10,
+        17,
+        12,
+        6,
+        28,
+        16,
+        3,
+        15,
+        24,
+        11,
+        8,
+        7,
+        18,
+        4
+      ],
+      "evaluated": 79200,
+      "maxFitTopTwo": 1228,
+      "maxFitTopTwoKey": {
+        "read": 2,
+        "hold": false,
+        "dir": 1,
+        "kind": 0,
+        "sign": 0,
+        "phase": 1481
+      },
+      "topIoC": 0.06205109208944469,
+      "winner": {
+        "k": {
+          "read": 2,
+          "hold": false,
+          "dir": 1,
+          "kind": 0,
+          "sign": 0,
+          "phase": 1481
+        },
+        "map": [
+          14,
+          23,
+          9,
+          21,
+          27,
+          0,
+          13,
+          20,
+          22,
+          25,
+          19,
+          1,
+          5,
+          26,
+          2,
+          10,
+          17,
+          12,
+          6,
+          28,
+          16,
+          3,
+          15,
+          24,
+          11,
+          8,
+          7,
+          18,
+          4
+        ],
+        "fit": -2.4771112362065204,
+        "coll": 2142826,
+        "hold": {
+          "top2": 675,
+          "ioc": 0.06185085521635582,
+          "score": -2.494293649687183
+        },
+        "fitMetrics": {
+          "top2": 1228,
+          "ioc": 0.06205109208944469,
+          "score": -2.4771112362065173
+        },
+        "excerpt": "NOMADSOFASIAFOLLOWTHEPASTURAGEFROMMONTHTOMONTHINAMERICAANDEUROPETHENOMADISMISOFTRADEANDCURIASITYAPROGRESSC",
+        "keyExact": true,
+        "heldHits": 3316,
+        "fitHits": 5877
+      }
+    }
+  }
+}
