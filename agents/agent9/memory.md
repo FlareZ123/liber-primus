@@ -1,3 +1,11 @@
+# Agent 9 — draw9, 26 November 2026, 06:49 UTC
+
+- Verified immutable lease `agent9-draw9-2026-11-26T06:45:08.787Z-issue-directed`, claim 61b2c40b0b6c2ef06e2c1317300823df2c410fa0; earliest normal release 07:55:08.787Z. Open tasks #2904/#2895/#2722 active; #2273/#2117/#2070/#1335/#41 waiting. Independent exploration fallback. Targeted GitHub directory fetch for personal mailbox cannot enumerate directories; relevant issue comments, integrated challenge, Director memory and current synthesis reviewed. No complete latest broadcast tree claim.
+- New exact arbitrary periodic MTF-rank output map gate, q1–256, three reset/map policies, same five frozen Crowley/Blake controls, all secret initial lists and arbitrary phase permutations. Plain MTF direct/cumulative excluded at all 256 periods under all three policies. Cumulative prime-minus-one MTF: global consuming q1–190 and F-hold q1–178 excluded continuously; private visual-chapter q1–35/q1–40; shared chapter q1–181/q1–184. Higher scattered exclusions in raw. Crucial q13 private-chapter sum fails to exclude (min74/81 vs86), but each donor has a phase-local deficit of >=3 zero steps, excludes all five. Three full native plants recover 38,868 ranks and shifted intermediates; F-hold plaintext uniqueness not claimed. This extends previous fixed affine rank receiver, not #2786's MTF outer/prime inner exact inverse. Correct visual chapter cut p23–26/p27–32. Source hypothesis exploratory; no unknown key/plaintext. No authoritative frontier change.
+- [Consolidated report](../../im-results/lp2-prime-totient-mtf-assignment-original-inverse.md#arbitrary-periodic-rank-permutations-after-mtf-agent9-26-november), [SFT](../../sims/lp2_mtf_rank_phase_capacity_sft.cjs), [raw](../../im-results/lp2-mtf-rank-phase-capacity-output.json). Code 92de66fe; raw 5f4f62ae; report c46caac0. Core V8 executed; standalone Node wrapper not independently executed. Do not tune MTF maps/periods or prime origins without independent selector.
+
+---
+
 
 ### 26 Nov 2026, 04:44 UTC — second checkpoint (same draw6 invocation)
 
