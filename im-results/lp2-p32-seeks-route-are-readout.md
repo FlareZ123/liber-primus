@@ -272,6 +272,18 @@ rather than the following source word THE. This is a clean negative holdout agai
 
 A complete terminal-route audit gives 14 signed-word/DH-depth/radix routes ending on p32. All 14 are base60. Applying the frozen row29/column-state gate to every one produces no new coordinate set: the only state sets are `[146,92]` and `[125,20,102]`. MEANING and FALSE reach the latter because their shorter routes share the same tail. The held-out family therefore supplies no second independent cell set yet.
 
+## Exact coverage obstruction and independent second route (26 November 2026)
+
+Agent28's independent navigation follows the signed message's zero-based word indices: FOUND at 35 maps via p50[35]=39 to PATH at 39; p50[39]=5 selects EPIPHANY, whose GP0 sum is121. With the previously reconstructed K=2, the forward path 121→237→32 reaches the same target page. Keeping the published natural projection unchanged, its three states give offsets [45,82,44], GP indices [17,27,21], or B IA NG. This is not an authenticated source word. The new route is an independent navigation control relative to the SEEKS tail, not a second positive readout. See [Agent28's report](../communications/agent15/20261126T095432Z_agent28_second-p32-route-projection-control.md).
+
+Agent15 then tested the frozen projection itself as a candidate full-page receiver. For every address s in 0..255 the target is floor(s/8) mod11, s mod8. Hence even granting **every possible p50 starting state** and unlimited path length, only columns0..7 can be visited. The 256 addresses reach exactly **88/121** cells, leaving 33 permanently inaccessible. Using only the 27 distinct GP0 sums of the 43 signed words and following the base60 map until the first repeated state reaches 100 distinct table states and **70/121** distinct target cells. All these signed-word trajectories enter the same 11-state graph cycle. Their full raw readouts contain no evident continuous native prose; this is a visual reading observation, not a calibrated language exclusion.
+
+The projection has rank88 as a linear observation over GF29, with nullity33. Even if its source axis sums (563,569), the complete original rune histogram, and the original printed segmentation are supplied as additional constraints, there are **153502812391314270044160000000** distinct tapes with identical all-address readouts: hold the first row fixed and arbitrarily permute the 30 inaccessible off-axis cells, dividing 30! by factorials of repeated rune multiplicities. This is a lower bound, since no other ambiguity is counted. An explicit witness swaps offsets19 and20, whose original values are IA and OE, preserving both prime-axis sums and the complete histogram, and leaves every p50-address readout unchanged. The word boundaries are held fixed.
+
+**Consequence:** the current projection is a partial extraction, not a reversible decipherment of the 121-rune page; neither longer routes nor searching further start states can recover the omitted cells. A genuine full-page decoder requires an independent operation accounting for the three omitted columns, or a distinct value-changing receiver. The failed independent second readout also removes the positive basis for generalizing ARE to every source-selected navigation path. This does not rule out a deliberately sparse hidden clue. It does rule out the frozen natural projection as a complete plaintext mechanism.
+
+Reproducer: [coverage and held-out route SFT](../sims/lp2_p32_route_projection_capacity_sft.cjs). The numerical core was executed against the current canonical corpus, base60 table and signed source in the connected JS runtime; standalone Node wrapper not yet executed.
+
 ## Decision
 
 Preserve the following as the leading p32 readout candidate:
@@ -289,9 +301,9 @@ EPIPHANY SEEKS THE DEVOTED
   -> ARE THE MAP reconnects to frozen MAP -> HERE.
 ```
 
-This is a materially tighter human solve path than direct p32 cipher fitting. It extracts a real authenticated instruction word from unknown-page source runes with source-selected navigation and a bounded family. The coordinate moduli are now fixed by source geometry and state, `A=8` for p50 width and `A+e=11` for p32 side. The remaining weakness is that reusing the p50 quotient/remainder coordinates on p32 was recognized retrospectively. Do not promote the whole p32 page as decrypted.
+This is a retrospective three-rune extraction that coincides with an authenticated instruction word; its navigation has a bounded family but the independent second route does not validate the readout. The coordinate moduli are now fixed by source geometry and state, `A=8` for p50 width and `A+e=11` for p32 side. The remaining weakness is that reusing the p50 quotient/remainder coordinates on p32 was recognized retrospectively. Do not promote the whole p32 page as decrypted.
 
-The next useful test should keep this projection completely frozen and seek an independently selected second p32 state/window. Do not add coordinate shifts, alternative modular reductions, or language-optimized paths.
+The independently selected second route has now failed the unchanged readout, and all-address coverage is exactly limited to 88 cells. Do not extend this partial projection into a full-page decoder without an independent operation for the inaccessible columns. Do not add coordinate shifts, alternative modular reductions, or language-optimized paths.
 
 ## Reproduction
 
