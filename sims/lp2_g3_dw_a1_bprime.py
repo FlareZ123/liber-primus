@@ -42,7 +42,7 @@ def load_modules():
     from types import SimpleNamespace
     import l1lib as G
     import words as W
-    import challenges._heavy as H
+    import _heavy as H
     from lp import gematria as gp
     import skipdecode as sk
     return SimpleNamespace(G=G, W=W, H=H, gp=gp, sk=sk)
