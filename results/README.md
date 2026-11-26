@@ -23,6 +23,8 @@ Use the [canonical corpus and original images](../resources/liber-primus/), not 
 
 ### Opening p0–14: no source-selected first operation
 
+The direct raw 13-rune title as an additive cyclic key has now been exhausted across every distinct ordering, both arithmetic directions and all initial phases, with and without plaintext-F holds; even boundary-free exact trigram optimization is nonprose, while planted control recovery succeeds. This is a calibrated language-negative for the literal title operand, not a general period-13 exclusion. [Complete title inverse](../im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md#complete-continuous-clock-title-multiset-inverse-with-and-without-f-hold).
+
 The paired 3|3 twig-rune plausibly reads thorn under the dominant Scandinavian 6:5:5/321 convention, matching the first black GP29 rune TH. That is a possible one-symbol indicator, not a decryption. p10's literal inline black 7 is a distinct source symbol; p0's red title/large mark is at offset13. The p7→p8 hypothesis below remains conditional. The earlier **LP1 p5** (archive `05.jpg`, not LP2 physical p5) reverse-JPEG plus hex middle is a distinct [known-source file-structure fact](../im-results/lp2-p5-jpeg-trailer-selfcheck.md), not evidence of an unknown-page plaintext. OutGuess positive controls work on LP1 but no LP2 plaintext or PGP was extracted in the tested fixed domains. The complete source and steganographic records are linked in the [evidence snapshot](../im-results/archive-results-readme-20261125-0a967334a6d5-before-frontier-separation.md).
 
 ### Independent LP1 controls for GP29 additive encryption with plaintext-F holds
