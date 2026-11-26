@@ -1,0 +1,96 @@
+{
+  "trainRunes": 4647,
+  "sourceRunes": 1744,
+  "sourceRepeats": 10,
+  "searchKeys": 35650048,
+  "plants": [
+    {
+      "truth": {
+        "e": 28,
+        "k": [
+          3,
+          9,
+          17,
+          22
+        ],
+        "t": "cyclic"
+      },
+      "truthTrain": -2.7705851820261613,
+      "truthHeld": -2.7414341848186905,
+      "repeats": 8,
+      "fit": {
+        "t": "cyclic",
+        "e": 28,
+        "key": [
+          3,
+          9,
+          17,
+          22
+        ],
+        "train": -2.7705851820261613,
+        "held": -2.7414341848186905,
+        "cut": 1005,
+        "nonzero": 1735,
+        "preview": "T E N D S I N A W O N D E R F U L M A N N E R T O A B B R E U IA T E I T S E L F A N D Y I E L D I T S O W N U I R T U E T O H I M H E S H O U L D S E E TH A T H E C A N L I U E A L L H I S T O R Y I N H I S O W N P E R S O N H E M U S T S I",
+        "replay": true,
+        "matches": 1743,
+        "heldMatches": 738,
+        "heldLength": 738,
+        "candidates": 58
+      }
+    },
+    {
+      "truth": {
+        "e": 11,
+        "k": [
+          25,
+          2,
+          14,
+          8
+        ],
+        "t": "log"
+      },
+      "truthTrain": -2.6134388131676767,
+      "truthHeld": -2.7033835558461097,
+      "repeats": 0,
+      "fit": {
+        "t": "log",
+        "e": 11,
+        "key": [
+          25,
+          2,
+          14,
+          8
+        ],
+        "train": -2.6134388131676767,
+        "held": -2.7033835558461097,
+        "cut": 1000,
+        "nonzero": 1743,
+        "preview": "E L L Y S M I L E A S W E L L A S S P EA C I T T A U N T NG L Y R E P L I E D T O TH E D I S C O N T E N T E D M E M B E R S TH E M U T I N O U S P A R T S TH A T E N U I E D H I S R E C E I P T E U E N S O M O S T F I T L Y A S Y O U M A L I G",
+        "replay": true,
+        "matches": 1743,
+        "heldMatches": 743,
+        "heldLength": 743,
+        "candidates": 58
+      }
+    }
+  ],
+  "original": {
+    "t": "cyclic",
+    "e": 22,
+    "key": [
+      27,
+      10,
+      11,
+      5
+    ],
+    "train": -4.089676667410198,
+    "held": -4.377906076238271,
+    "cut": 1006,
+    "nonzero": 1733,
+    "preview": "H S Y U I C E L T E NG W IA EO L IA U L T EA O NG R NG R M AE N D M E B U EO H AE IA O N W NG J C R TH W O R F E A O C IA EA EO E A W O U E U EO G P R L H TH W M IA F I H M U E X P IA L P P H O M IA OE B I R G I TH NG G E EA X EA B T B P M EA P G H IA G U J F T A C W",
+    "replay": true,
+    "candidates": 58,
+    "allKeyHeldUpper": -4.059342885980032
+  }
+}
