@@ -1,6 +1,6 @@
 # P0–p2: 729 full runes and 716 black runes as candidate page-key rows
 
-**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct and one source-anchored two-layer reversible cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
+**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct and one source-anchored two-layer reversible cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. The exact modular lift extension also rules out up to six prime phrase sums modulo 29^13, and permits at most 24/224 distinct rows for six arbitrary composite-or-prime sums under a generous universal page-length bound. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
 
 ## Source-visible alignment
 
@@ -82,3 +82,25 @@ All 520 assigned tests fail the large-prime-factor condition; all 224 distinct r
 [Node reproducer](../sims/lp2_p0_13row_gp_phrase_product_gate.cjs) derives the inputs directly from the corpus. The connector-side equivalent returned these exact counts; the committed SFT also asserts the historical p57 control sums.
 
 **Decision:** reject the literal per-page disjoint-phrase GP sum product hypothesis, even with arbitrary row assignment. Encrypted/reduced checksums, overlapping/reused phrases and length-changing representations remain outside scope; require an independent source selector. This algebraic exclusion is not evidence for a different key.
+
+## Exact modular lift extension (Agent42, 26 November)
+
+The historical three-prime phrase-product grammar suggests an alternative to a cipher key: a compact page checksum. The raw integer decision above left modular reduction open. For a fixed 13-GP29-digit field the natural place-value modulus is M=29^13=10,260,628,712,958,602,189. This modulus is a hypothesis, not a first-party instruction. Test all possible modular lifts under the same page-length-preserving/disjoint-phrase assumptions, without choosing language or boundaries.
+
+For k positive integer phrase sums with total at most B=30,193, the exact product maximum is floor(B/k)^(k−r) × ceil(B/k)^r, r=B mod k, attained by balancing all k parts. At k=5 it is 8,029,366,952,648,952,636, smaller than M; all smaller k also cannot wrap. The q=0 lift is already excluded for all 224 distinct source rows (the new implementation independently finds no q=0 completely factored lift). Thus modulo M does not rescue the authentic three-factor grammar, or any k≤5. At k=6 the maximum is 16,237,908,602,441,954,656,256, permitting up to 1,582 positive lifts per row.
+
+Enumerate every nonnegative integer q for which row+qM is positive and no larger than the six-factor maximum. For each prime p≤B, divide all powers of p from precisely the lifts whose q solves qM=−row (mod p); p=29 divides M and is handled separately. Residual >1 excludes the candidate. For completely factored lifts, require the sum of prime factors with multiplicity ≤B; this is necessary even for composite phrase sums. Finally exactly minimize the sum of six nonempty integer factors by assigning all prime factors to six unlabeled multiplicative bins. Symmetry-quotient sorted bins and monotone sum bounds preserve every partition. For the assigned page, require this minimum ≤109 times its actual rune count. This is a relaxation of the unknown GP representation: it does not require an actual partition of a particular plaintext, correct individual phrase lengths, or authentic clause boundaries.
+
+| Registration | Rows with any six-factor witness under universal cap, printed/reversed | Assigned independent pages passing, printed/reversed (each denominator 52) |
+| --- | ---: | ---: |
+| Full, residual last | 5/6 | 4/2 |
+| Full, residual first | 10/3 | 4/2 |
+| Black, residual last | 5/6 | 4/2 |
+| Black, residual first | 10/3 | 5/2 |
+| Title + TH sentinel | 10/3 | 4/2 |
+
+Across 224 distinct row values and 354,485 nonnegative lifts, 55 rows have 66 completely factored, prime-factor-sum-compatible lifts. **None has exactly six prime factors.** Only 24 distinct rows have any partition into six factors with total ≤30,193 (26 lifts). Just 31/520 assigned tests survive the relaxed six-factor bound; at least 489 fail. No registration can form a whole-page checksum table under these assumptions, even granting arbitrary page assignment. The surviving factors do not decode any text.
+
+Arithmetic controls: the authentic 2013 p57 clause product 1,595,277,641 is recovered at q=0 with prime sums 1259/1031/1229. An independent wrapped six-prime plant has factors [4967,4969,4973,4987,4993,4999], sum29,888 and quotient1,488; a wrapped composite plant [4954,4969,4973,4987,4993,4999] has sum29,875 and quotient1,485. Both exact planted factorizations are retained and replay their residue. These are numerical plants, not literary controls. The first version's deliberately very smooth composite plant exceeded the JavaScript Set capacity; the revised control has seven prime factors and retains a nontrivial composite factor. The original 224-row decision is unchanged and the complete revised SFT ran through the connector's V8 environment with Node filesystem/assert adapters using the exact remote corpus and script. No native Node/Windows CI run is claimed.
+
+Reproducer: [modular lift SFT](../sims/lp2_p0_13row_modular_phrase_product_gate.cjs). **Decision:** retire the direct and modulo-29^13 checksum branches with up to six disjoint phrase sums, including arbitrary composite sums as a whole table. This is not an exclusion of seven-or-more factors, overlapping phrases, shorter moduli, or encrypted checksums. Neither the modular extension nor those escape hatches supplies a decipherment operation. Do not invest in extending k without an independent source selector.
