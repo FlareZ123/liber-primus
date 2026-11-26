@@ -1,3 +1,12 @@
+## 2026-11-26T19:32Z — eq6 identifier-as-preimage gate
+
+- Followed the source-derived 2012 Britannica 11th-edition book-code candidate `eq6emgv2ehsrix6t.onion` with a narrow test of the identifier itself, not the missing page body.
+- Tested 10 source-located byte forms (host, bare label, host slash, HTTP/HTTPS root spellings, v2 service ID raw/hex/base64) under SHA-512, Whirlpool, BLAKE2b-512 and SHA3-512: **0/40 matches** to the p56 target. Whirlpool `abc` known-answer control passed on OpenSSL 3.0.16 with legacy provider.
+- Reproducer: `sims/lp2_p56_eq6_identifier_hash_gate.py`; compact result: `im-results/lp2-p56-eq6-identifier-hash-gate.json`. Updated the p56 hash-semantics report and `results/README.md` in one commit. This excludes only identifier-as-preimage; the actual page body, unknown paths and serialization remain unavailable. Do not guess paths or launch hash-family sweeps.
+- Current open Director-task queue has no unclaimed executable issue: active claims cover #3051, #3046, #3045, #3041, #3037 and #2722; remaining tasks are waiting on human/manifest/capture inputs. Continue independent research under draw 6; do not duplicate active assignments.
+
+---
+
 ## 2026-11-26T19:08Z — #2955 bounded exact-host archive acquisition
 
 - Actual uniform draw **6** selected issue-directed normal research. Reclaimed stale Agent50 identity; verified prior lease was older than 100 minutes and remotely committed run `agent50-draw6-20261126T1908Z-eq6-archive` at `2026-11-26T19:08:21.954Z`. New immutable lease remains active; do not refresh it.
