@@ -384,5 +384,146 @@
       ]
     }
   ],
-  "controls": 64
+  "controls": 64,
+  "chapters": [
+    {
+      "chapter": 0,
+      "words": 158,
+      "runes": 729,
+      "maxNativeRunes": 705,
+      "requiredNulls": 24,
+      "log10Upper": -0.5907317278282688,
+      "best": {
+        "mode": "checker",
+        "donor": 1,
+        "offset": 21057
+      },
+      "windows": 508395,
+      "compatible": 131259
+    },
+    {
+      "chapter": 1,
+      "words": 255,
+      "runes": 1145,
+      "maxNativeRunes": 1102,
+      "requiredNulls": 43,
+      "log10Upper": -1.3809032638114196,
+      "best": {
+        "mode": "prior-native",
+        "donor": 1,
+        "offset": 30321
+      },
+      "windows": 507231,
+      "compatible": 159695
+    },
+    {
+      "chapter": 2,
+      "words": 383,
+      "runes": 1729,
+      "maxNativeRunes": 1682,
+      "requiredNulls": 47,
+      "log10Upper": -0.1960628055331368,
+      "best": {
+        "mode": "checker",
+        "donor": 1,
+        "offset": 29579
+      },
+      "windows": 505695,
+      "compatible": 250167
+    },
+    {
+      "chapter": 3,
+      "words": 437,
+      "runes": 1903,
+      "maxNativeRunes": 1842,
+      "requiredNulls": 61,
+      "log10Upper": -0.7371790781268137,
+      "best": {
+        "mode": "checker",
+        "donor": 1,
+        "offset": 7583
+      },
+      "windows": 505047,
+      "compatible": 110482
+    },
+    {
+      "chapter": 4,
+      "words": 224,
+      "runes": 1021,
+      "maxNativeRunes": 983,
+      "requiredNulls": 38,
+      "log10Upper": -1.2358151352936348,
+      "best": {
+        "mode": "checker",
+        "donor": 2,
+        "offset": 71941
+      },
+      "windows": 507603,
+      "compatible": 147605
+    },
+    {
+      "chapter": 5,
+      "words": 326,
+      "runes": 1433,
+      "maxNativeRunes": 1405,
+      "requiredNulls": 28,
+      "log10Upper": -0.006187938613203186,
+      "best": {
+        "mode": "checker",
+        "donor": 1,
+        "offset": 47853
+      },
+      "windows": 506379,
+      "compatible": 128190
+    },
+    {
+      "chapter": 6,
+      "words": 378,
+      "runes": 1680,
+      "maxNativeRunes": 1628,
+      "requiredNulls": 52,
+      "log10Upper": -0.5513573524274498,
+      "best": {
+        "mode": "checker",
+        "donor": 2,
+        "offset": 35236
+      },
+      "windows": 505755,
+      "compatible": 168547
+    },
+    {
+      "chapter": 7,
+      "words": 669,
+      "runes": 3008,
+      "maxNativeRunes": 2912,
+      "requiredNulls": 96,
+      "log10Upper": -0.8747546324002584,
+      "best": {
+        "mode": "checker",
+        "donor": 1,
+        "offset": 20956
+      },
+      "windows": 502263,
+      "compatible": 259005
+    },
+    {
+      "chapter": 8,
+      "words": 66,
+      "runes": 308,
+      "maxNativeRunes": 300,
+      "requiredNulls": 8,
+      "log10Upper": -0.19064133225505867,
+      "best": {
+        "mode": "prior-native",
+        "donor": 1,
+        "offset": 47095
+      },
+      "windows": 509499,
+      "compatible": 208222
+    }
+  ],
+  "privateMax": 12559,
+  "privateRequiredNulls": 397,
+  "privateTotalLog10Upper": -1.1844700298129012,
+  "privateJointTailLog10Upper": -5.763633266289243
 }
