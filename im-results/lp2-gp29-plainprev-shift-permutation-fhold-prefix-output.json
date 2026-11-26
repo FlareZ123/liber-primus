@@ -1,0 +1,11 @@
+{
+  "frames": 55,
+  "totalPrefixTransitions": 1428,
+  "nodes": 2000001,
+  "pruned": 5252327,
+  "maxDepth": 28,
+  "limited": true,
+  "found": false,
+  "witness": null,
+  "exhaustiveExclusion": false
+}
