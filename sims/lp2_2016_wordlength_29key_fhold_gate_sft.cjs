@@ -117,6 +117,17 @@ const latin = sweep(latinKey);
 const gp29 = sweep(gpKey);
 const rawGp = sweep(rawGpKey);
 const dh23 = sweep(dhOrderedKey);
+const dhSelectedOffsets = [0, 2, 8, 19].map(offset => ({
+  offset,
+  minus: score(dhOrderedKey, 1, offset).hits,
+  plus: score(dhOrderedKey, -1, offset).hits
+}));
+assert.deepEqual(dhSelectedOffsets, [
+  { offset: 0, minus: 98, plus: 90 },
+  { offset: 2, minus: 84, plus: 90 },
+  { offset: 8, minus: 99, plus: 96 },
+  { offset: 19, minus: 90, plus: 104 }
+]);
 assert.equal(unkeyed, 88);
 assert.deepEqual({ min: latin.min, median: latin.median, mean: latin.mean, max: latin.max, sign: latin.best.sign, offset: latin.best.offset },
   { min: 71, median: 93, mean: 93.47, max: 117, sign: 1, offset: 18 });
@@ -135,6 +146,7 @@ console.log(JSON.stringify({
   rawGp29CoreKey: rawGp,
   dh23ColumnOrder: dhColumnOrder,
   dh23OrderedCoreKey: dh23,
+  dh23SourceSelectedOffsets: dhSelectedOffsets,
   originalGroups: groups.length,
   controlDictionarySize: dictionary.size,
   unkeyedHits: unkeyed,

@@ -54,7 +54,7 @@ The same 29-word core tokenizes to **115 GP29 symbols**. The signed 2013 TCP/DH 
 | Raw GP29 core sequence | 73 / 93 / 94.23 | (+1, r=49) | **118/2,896 (4.07%)** |
 | DH23-ordered 5×23 sequence | 75 / 94 / 93.67 | (-1, r=82) | **119/2,896 (4.11%)** |
 
-Neither output is English. The 5×23 count is a real cross-source alignment, but the signed DH example does not explicitly instruct this tokenization or matrix reading; the locked candidate fails as a repeating additive key. Do not promote the factorization itself to a decryption claim or search arbitrary zero-column positions/readouts without new evidence.
+Neither output is English. The DH example's explicit shared/public values also fail as phase selectors: offsets 0, 2 (shared), 8 (server public) and 19 (client public) give, for the DH-ordered key, 98/90, 84/90, 99/96 and 90/104 dictionary hits for the two signs respectively. The 5×23 count is a real cross-source alignment, but the signed DH example does not explicitly instruct this tokenization or matrix reading; the locked candidate fails as a repeating additive key. Do not promote the factorization itself to a decryption claim or search arbitrary zero-column positions/readouts without new evidence.
 
 
 Neither is lexical English. Even the best phase leaves more than 95% of original groups outside the broad control lexicon. The slight lift over the unkeyed 3.04% baseline is not plaintext evidence; the mean across the 58 trials is only 3.23% (Latin) or 3.26% (GP29).
