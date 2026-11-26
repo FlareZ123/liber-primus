@@ -1,0 +1,332 @@
+{
+  "width": 128,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "eligible": true,
+  "pilots": [],
+  "negative": {
+    "key": [
+      8,
+      20,
+      23,
+      27,
+      13,
+      17,
+      26,
+      16,
+      9,
+      22,
+      3,
+      24,
+      19,
+      7,
+      6,
+      14,
+      11,
+      5,
+      12,
+      21,
+      1,
+      4,
+      2,
+      25,
+      18,
+      0,
+      28,
+      15,
+      10
+    ],
+    "initial": [
+      23,
+      1,
+      8,
+      22,
+      13,
+      17,
+      26,
+      16,
+      9,
+      27,
+      3,
+      24,
+      19,
+      7,
+      6,
+      14,
+      11,
+      5,
+      12,
+      20,
+      21,
+      4,
+      2,
+      25,
+      18,
+      0,
+      28,
+      15,
+      10
+    ],
+    "refinement": [
+      {
+        "sweep": 1,
+        "score": -3.0532705402632345,
+        "improved": 4,
+        "evals": 407
+      },
+      {
+        "sweep": 2,
+        "score": -3.0532705402632345,
+        "improved": 0,
+        "evals": 813
+      }
+    ],
+    "truth": null,
+    "train": {
+      "n": 10317,
+      "repeats": 72,
+      "gain": -3.053270540263222,
+      "correct": null,
+      "usedRows": null,
+      "keyRows": null,
+      "preview": [
+        "TGAGTHNEMTOAEGEAPLPDNGAEPAEEARTHOMOEPTHEAFEAESIEAHNGEAENGEEAIAAEAEOBNIRIAATNGYAEIACAEOEAANGFEOTIPOSYGREOFBME",
+        "WUUAELNECJYXXNGDNIFCAGNTHHOEELSUADEAMUEOWNGOENHNGLRDFSYDSLJBCSFGTHYWOEDPMJCHDFEOFMISRFXSDYDG"
+      ]
+    },
+    "held": {
+      "n": 2630,
+      "repeats": 14,
+      "gain": -3.3172063606598026,
+      "correct": null,
+      "usedRows": null,
+      "keyRows": null,
+      "preview": [
+        "NMIJREAAELEANSEUOATLAYDJNUEWIAILCCOECXCAJMMFIIAFIOENGOELEAIAEOTHUINROEXAPNLYDPLYIAPGODEAYEEUNGTH",
+        "NMONGSJLMNFLIAYAEIEABUTHGOREATHCYHSAEEEAABWIAACRMTTHUWAEORUUMGTHNGPEAUUHAEEUSRNMUWNGNBPOEAEEIAREOLOECEO"
+      ]
+    },
+    "trace": [
+      {
+        "K": [
+          23,
+          1,
+          8,
+          22,
+          13,
+          17,
+          26,
+          16,
+          9,
+          27,
+          3,
+          24,
+          19,
+          7,
+          6,
+          14,
+          11,
+          5,
+          12,
+          20,
+          21,
+          4,
+          2,
+          25,
+          18,
+          0,
+          28,
+          15,
+          10
+        ],
+        "score": -3.1578095132550823,
+        "history": [
+          {
+            "iteration": 5,
+            "softLL": -3.3553254210468877,
+            "hardGain": -3.180980489769874,
+            "keyRows": null
+          },
+          {
+            "iteration": 10,
+            "softLL": -3.3531544793955437,
+            "hardGain": -3.270847527080971,
+            "keyRows": null
+          },
+          {
+            "iteration": 15,
+            "softLL": -3.351581556112887,
+            "hardGain": -3.2211084243953234,
+            "keyRows": null
+          },
+          {
+            "iteration": 20,
+            "softLL": -3.3504305274782373,
+            "hardGain": -3.1578095132550823,
+            "keyRows": null
+          },
+          {
+            "iteration": 25,
+            "softLL": -3.3495701798364252,
+            "hardGain": -3.2735429582891613,
+            "keyRows": null
+          },
+          {
+            "iteration": 30,
+            "softLL": -3.3489038578369645,
+            "hardGain": -3.2735429582891613,
+            "keyRows": null
+          },
+          {
+            "iteration": 35,
+            "softLL": -3.3476681528103147,
+            "hardGain": -3.166258307986141,
+            "keyRows": null
+          },
+          {
+            "iteration": 40,
+            "softLL": -3.3517259217485416,
+            "hardGain": -3.2561345636893715,
+            "keyRows": null
+          },
+          {
+            "iteration": 45,
+            "softLL": -3.3665659232869607,
+            "hardGain": -3.215288110654514,
+            "keyRows": null
+          },
+          {
+            "iteration": 50,
+            "softLL": -3.379584156172712,
+            "hardGain": -3.2355634982987396,
+            "keyRows": null
+          },
+          {
+            "iteration": 55,
+            "softLL": -3.3853793895963586,
+            "hardGain": -3.2418640167717694,
+            "keyRows": null
+          },
+          {
+            "iteration": 60,
+            "softLL": -3.387792721075578,
+            "hardGain": -3.2418640167717694,
+            "keyRows": null
+          }
+        ]
+      },
+      {
+        "K": [
+          23,
+          1,
+          19,
+          18,
+          12,
+          0,
+          7,
+          16,
+          9,
+          14,
+          10,
+          24,
+          20,
+          6,
+          26,
+          22,
+          28,
+          17,
+          27,
+          11,
+          4,
+          5,
+          2,
+          25,
+          3,
+          15,
+          21,
+          13,
+          8
+        ],
+        "score": -3.1715526613720355,
+        "history": [
+          {
+            "iteration": 5,
+            "softLL": -3.355979297459484,
+            "hardGain": -3.1715526613720355,
+            "keyRows": null
+          },
+          {
+            "iteration": 10,
+            "softLL": -3.3536305117103593,
+            "hardGain": -3.2688116818483164,
+            "keyRows": null
+          },
+          {
+            "iteration": 15,
+            "softLL": -3.351944684955122,
+            "hardGain": -3.244584068043927,
+            "keyRows": null
+          },
+          {
+            "iteration": 20,
+            "softLL": -3.3507178615709066,
+            "hardGain": -3.1903382902934885,
+            "keyRows": null
+          },
+          {
+            "iteration": 25,
+            "softLL": -3.3497984022871075,
+            "hardGain": -3.267296708904904,
+            "keyRows": null
+          },
+          {
+            "iteration": 30,
+            "softLL": -3.3490835999675426,
+            "hardGain": -3.254587166379599,
+            "keyRows": null
+          },
+          {
+            "iteration": 35,
+            "softLL": -3.3486178008814127,
+            "hardGain": -3.210232489294501,
+            "keyRows": null
+          },
+          {
+            "iteration": 40,
+            "softLL": -3.355530366100551,
+            "hardGain": -3.210232489294501,
+            "keyRows": null
+          },
+          {
+            "iteration": 45,
+            "softLL": -3.3682913980977838,
+            "hardGain": -3.189061894365264,
+            "keyRows": null
+          },
+          {
+            "iteration": 50,
+            "softLL": -3.3786206483079426,
+            "hardGain": -3.189061894365264,
+            "keyRows": null
+          },
+          {
+            "iteration": 55,
+            "softLL": -3.3871862792061673,
+            "hardGain": -3.238843302593058,
+            "keyRows": null
+          },
+          {
+            "iteration": 60,
+            "softLL": -3.393506389708914,
+            "hardGain": -3.238843302593058,
+            "keyRows": null
+          }
+        ]
+      }
+    ]
+  },
+  "original": null
+}
