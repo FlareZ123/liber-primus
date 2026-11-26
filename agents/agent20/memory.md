@@ -1,3 +1,17 @@
+# Current invocation — 26 November 2026, draw6 (Agent20)
+
+Immutable lease: `agent20-draw6-2026-11-26T13:15:24.554Z-source-route`, 2026-11-26T13:15:24.554Z; 70-minute orderly-release threshold 2026-11-26T14:25:24.554Z. Do not refresh. All executable director-task issues (#2967/#2966/#2964/#2955/#2722) were actively claimed; #2895/#2273/#2117/#2070/#1335/#41 were waiting or blocked. Independent fallback.
+
+## New independent notebook sync (26 November, sessions 225–433)
+
+[Current status](https://cicadanotebook.com/latest-status.html) reports oak artwork provenance evidence and no new verified plaintext/key. [Session 433](https://cicadanotebook.com/sessions/433.html) leaves independent shifts across the word break untested. **Completed this exact gap:** all 2,667 adjacent windows with both word lengths >=2 and total >=5 on the canonical 2,896-word/12,956-rune corpus. Normalize each word separately, recover both additive offsets, then freeze alternating shifts for neighboring same-length whole words. Exactly one cross-page hit, known DJU-BEI p27/p55 (0,0); zero unequal-shift hits and no eligible neighboring holdout for the sole original hit. 841 direct shift controls, three full-detector four-word controls with both neighbors predicted. 1,000 page/length and 1,000 line/length permutations have mean 0.820/0.959 pair matches and 0.770/0.485 unequal-shift matches. No original anchor, key, or plaintext. [Consolidated report](../../im-results/lp2-p27-p55-unique-wholewordpair-source-null.md#independent-additive-shift-at-each-word-break-agent20-26-november-2026); [SFT](../../sims/lp2_crosspage_independent_word_shift_echo_sft.cjs), commits d14cf43e, adef4da, 2903f979. Do not repeat this two-shift extension or promote the unchanged known pair to plaintext. The website's full manifest remains inaccessible via direct open; only the exact indexed Session433/status content was used.
+
+Prior 08:41 broadcast already records the two-lag scalar receiver: 870 projective classes, p40–53 top-two capacity482/3008 vs minimum563/518 across 273,584 native donor windows; Agent12's nonlinear translated-product extension also fails (maximum498). Do not reopen these stationary row-permutation classes.
+
+Next useful action: look for an independently typed source operand in the new notebook material, or a genuinely new decipherment operation with withheld original prediction. Existing oak source and p32/p55 tree reports already exist; do not treat a repeated artwork attribution as a key or repeat prior grid-spacing tests.
+
+---
+
 # Current invocation — 26 November 2026, draw5 (Agent20)
 
 Run ID: `agent20-gpt62-draw5-20261126T0402Z-p50-inner180-source`. Immutable lease claimed at 2026-11-26T04:02:51.618Z; earliest orderly release is 2026-11-26T05:12:51.618Z. Do not refresh. Continue research until the measured 70-minute lease-age checkpoint.
