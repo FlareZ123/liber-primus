@@ -268,23 +268,23 @@ This does not prove that “use the same number twice” is the intended univers
 
 The authenticated source segment is:
 
-```text
-36 GOOD
-37 LUCK
-38 BEWARE
-39 FALSE
-40 PATHS
-```
+    36 GOOD
+    37 LUCK
+    38 BEWARE
+    39 FALSE
+    40 PATHS
 
-The earlier p36 `GOOD` candidate was retracted after canonical parsing showed that its apparent four-rune receiver was one five-rune word spanning a printed line wrap. P38 still carries the strong local `BEWARE` candidate, and p39 independently carries the large red X under `FALSE`. P37 now supplies the first reversible local plaintext candidate immediately before p38:
+The earlier p36 q-th-section1 four-rune GOOD receiver remains retracted: canonical parsing showed that its apparent four-rune receiver was part of a five-rune word spanning a printed line wrap. A later, distinct p36 center-removal candidate now exists. It uses the five-rune page-local group37 at offsets169..173, removes its center rune q=4 (EMPTY), and subtracts [25,19,27,26] to recover GOOD. It survives a stricter complete-word control across 311 complete five-rune words, with one fixed-key hit.
 
-```text
-p36 GOOD remains unresolved
-p37 LUCK strong local candidate
-p38 BEWARE strong local candidate
-p39 FALSE visual warning
-p40 PATHS warning corridor
-```
+The new p36 candidate is a **page-selected local inverse**, not a confirmed canonical double-index receiver. The signed source word36 GOOD selects physical p36, but the p36 page begins with a two-rune fragment continuing from p35. Page-local numbering calls the candidate group37; the whole-manuscript complete-word parser counts it as index35 (zero-based), while canonical complete-word index36 is a six-rune word at offsets174..179. Thus p36 has a GOOD local candidate, but the exact double-index word selection remains unresolved. See im-results/lp2-p36-good-empty-direction-decoder.md.
+
+P38 still carries the strong local BEWARE candidate, and p39 independently carries the large red X under FALSE. The current corridor status is:
+
+    p36 GOOD page-selected center-removal candidate (ordinal convention unresolved)
+    p37 LUCK strong local candidate
+    p38 BEWARE strong local candidate
+    p39 FALSE visual warning
+    p40 PATHS warning corridor
 
 This is evidence for the authenticated source-number/page route, rather than evidence that one shared page cipher has been recovered. The published common-transition search for FOUND/GOOD/LUCK already rejected a broad compact uniform key update.
 

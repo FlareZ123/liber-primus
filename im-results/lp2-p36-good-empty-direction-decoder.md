@@ -1,152 +1,96 @@
-# P36 GOOD decodes under literal EMPTY-center plus signed direction numbers
+# p36 GOOD: page-selected EMPTY-center local inverse
 
-**Agent4, 19 November 2026. Classification: strong local plaintext recovery candidate with an explicit reversible source-derived codec.** The previously source-selected p36 GOOD coordinate is canonical word37 at offsets169..173, ciphertext `[2,22,4,1,20]`. Its already-established H5 shell is `[a+g,p-K,q,p,p-1]`, so its literal center is `q=4`. In the authenticated 2016 source, zero-based word4 is **EMPTY**.
+**Classification: strong provisional local inverse on a source-selected page; page-local word ordinal remains a separate, unproven convention. This is not a confirmed canonical double-index receiver.**
 
-Take that label literally and remove the center rune before any language test:
+## 1. Receiver and exact inverse
 
-```text
-original p36 word37   [2,22,4,1,20]
-EMPTY center q=4      remove slot2
-four-rune receiver    [2,22,1,20]
-```
+The p36 page-local group37 at rune offsets169..173 is:
 
-The authenticated sentence says that "their numbers are the direction." The same signed source has two occurrences of THEIR, at zero-based positions19 and25, followed by NUMBERS=26 and ARE=27. Those four source numbers give the finite key atom set `{19,25,26,27}`.
+    [2,22,4,1,20]
 
-Because the ordering and additive direction were not precommitted before the receiver was known, charge all **24 permutations × 2 signs = 48** possibilities. Exactly one maps the emptied receiver to any distinct authenticated four-GP-rune source word:
+The center rune is q=4, the signed-source word EMPTY at zero-based index4. Remove that center, leaving:
 
-```text
-key = [25,19,27,26]
-sign = subtraction
+    [2,22,1,20]
 
-[2,22,1,20] - [25,19,27,26] mod29
-= [6,3,3,23]
-= GOOD.
-```
+The candidate direction-number key is:
 
-Forward reconstruction is exact:
+    [25,19,27,26]
 
-```text
-GOOD [6,3,3,23]
-+ key [25,19,27,26]
-= [2,22,1,20]
+Subtracting modulo29 gives:
 
-insert q=4 at the center
-= [2,22,4,1,20]
-= original p36 word37.
-```
+    [2,22,1,20] - [25,19,27,26] = [6,3,3,23] = GOOD
 
-No rune, word boundary, key atom, sign, or ciphertext offset changes after the hit.
+Forward addition reconstructs the four retained runes exactly. The source key typing recorded in the SFT is [p+K,B,-K,p+e]; its values are source-derived, but the slot interpretation remains a hypothesis.
 
-## Complete narrow manuscript control
+## 2. Source selection and page-boundary distinction
 
-Under the exact four-atom clue family `{19,25,26,27}`:
+The signed 2016 message has GOOD at zero-based word index36, selecting physical page p36 under the source-index/page rule. The p36 page contains the local inverse above.
 
-```text
-318 five-rune words
-× 24 permutations
-× 2 signs
-= 15,264 decoded outputs.
-```
+Two different word-number conventions must not be conflated:
 
-Only one output is any of the nine distinct authenticated four-rune source words: p36 word37 -> GOOD.
+| Convention | Receiver position | Runes |
+|---|---|---|
+| Page-local reset at the physical page | group37, offsets169..173 | five runes [2,22,4,1,20] |
+| Whole-manuscript complete-word parser, carrying the p35/p36 boundary fragment | complete-word index35 (zero-based), offsets169..173 | the same five runes |
+| Canonical double-index word selected by source index36 | complete-word index36, offsets174..179 | six runes [1,2,15,1,23,20] |
 
-There are only nine canonical five-rune unknown-page words with center q=4. Restricting to the literal EMPTY-center subset gives `9 × 24 × 2 = 432` decoded outputs and again one hit, p36 -> GOOD.
+The p36 page begins with a two-rune fragment continuing from p35. A page-local parser counts that fragment as group1 and therefore calls the receiver group37. The whole-manuscript parser carries it across the page boundary and counts the same receiver as complete-word index35. Consequently, the source index36 securely selects the page, but the claim that it selects this exact group37 under the canonical double-index convention is not established. The canonical index36 receiver is a different six-rune word.
 
-These are decoded-output family counts. Counting each output against all nine authenticated targets gives 137,376 target comparisons for the manuscript family and 3,888 for the q-center subset.
+This distinction does not invalidate the local inverse. It does limit the source-selection claim: classify this as a page-selected local candidate, not a confirmed word-level double-index hit.
 
-## Wider clue-family control
+## 3. Fixed-key and family controls
 
-The exact authenticated clause is:
+The page-local SFT counts 318 five-rune page-local groups, of which nine have center q=4. The narrow family tests 24 permutations of the four source key atoms and both additive directions:
 
-```text
-their numbers are the direction
-```
+    318 * 24 * 2 = 15,264 outputs
 
-and the full signed message fixes:
+It has one authenticated four-rune hit: p36 group37, center4, decrypting to GOOD. The q-centered subset has 9*24*2=432 outputs and the same single hit.
 
-```text
-19 THEIR
-25 THEIR
-26 NUMBERS
-27 ARE
-28 THE
-29 DIRECTION
-```
+The broader source-atom family uses all four-element subsets and permutations of {0,19,25,26,27,28}, with both signs. It produces:
 
-The narrow family takes the plural "their numbers" literally as both THEIR positions together with the literal NUMBERS and ARE positions. The winning order `[25,19,27,26]` was selected by the ciphertext result, so it is not claimed as independently predicted.
+    15 subsets * 24 orders * 2 signs * 318 groups = 228,960 outputs
 
-A broader adversarial family also admits THE=28 and DIRECTION=29≡0 mod29. Choose every four of these six source numbers, enumerate every ordering and both signs, and apply the same center deletion to every canonical five-rune unknown-page word:
+There are three authenticated-word hits: p36 GOOD, p28 WILL, and p18 LUCK. Only p36 is q-centered at 4.
 
-```text
-318 × C(6,4) × 24 × 2
-= 228,960 decoded outputs.
-```
+### Independent complete-word control
 
-Only three outputs equal any authenticated four-rune source word:
+A second parser carries possible words across physical page boundaries and retains only complete words wholly contained on one unknown page. Under that stricter census:
 
-```text
-p36 word37 center4 -> GOOD
-p28 word4  center9 -> WILL
-p18 word13 center0 -> LUCK
-```
+- 311 complete five-rune words remain;
+- nine still have center4;
+- the fixed key [25,19,27,26], tested against all nine signed-source four-rune targets in both directions, has exactly one hit: p36 offsets169..173 -> GOOD;
+- the broad family produces 223,920 outputs and the same three hits (p36 GOOD, p28 WILL, p18 LUCK); only p36 is q-centered at4.
 
-The p36 hit is the **only** one whose removed center is `q=4=EMPTY`. Restricting the broad family to the nine five-rune words whose literal center is q leaves **6,480 decoded outputs** and only p36 -> GOOD.
+The receiver therefore survives the stricter complete-word control. The parser distinction changes its ordinal, not its ciphertext or inverse.
 
-## Independent state consistency
+## 4. Relationship to the source-index cycle and p2
 
-The exact winning key has the authenticated-state representation:
+The source-only numerical cycle remains:
 
-```text
-[25,19,27,26]
-= [p+K, B, -K, p+e].
-```
+    GP0(FOUND) = 36 -> signed word36 GOOD
+    GP0(GOOD)  = 35 -> signed word35 FOUND
 
-This representation was recognized after the hit and is therefore corroboration, not key provenance.
+The p2 candidate independently decrypts a source-selected local receiver to GOOD. Since GOOD is at signed-source index36, it points to p36; p36 contains this separate EMPTY-center local inverse to GOOD. This is page-level cross-result convergence, not proof that the p2 output selects the p36 canonical complete-word index36 receiver. The p36 page-local ordinal issue above remains open.
 
-GOOD itself is also state-shaped in GP29:
+The p35 FOUND candidate and source-only cycle are documented in im-results/lp2-p33-p35-found-road-map.md. The p2 entry point is documented in im-results/lp2-p2-good-reflection-pair-key.md.
 
-```text
-GOOD = [6,3,3,23]
-     = [a,e,e,-a].
+## 5. Evidence boundary
 
-H4(GOOD)
-= [12,0,6,0]
-= [K*a,0,a,0].
-```
+Supported:
 
-Among the distinct authenticated four-rune source words, GOOD is the sole word of exact form `[x,y,y,-x]` with x and y direct DH-state values.
+- exact reversible center deletion and GP29 subtraction on the original p36 receiver;
+- a source-derived page selector (signed word36 GOOD -> p36);
+- a unique fixed-key hit under both page-local and stricter complete-word controls;
+- a source-index convergence with the FOUND35 <-> GOOD36 cycle and the p2 GOOD candidate.
 
-## Relationship to the GOOD LUCK BEWARE corridor
+Not established:
 
-The numbered source route had already selected:
+- that page-local group37, rather than the canonical complete-word index36 six-rune word, is the intended receiver;
+- that the source-key slot typing is uniquely dictated by first-party instructions;
+- a reusable page cipher or contiguous plaintext continuation.
 
-```text
-36 GOOD   -> p36
-37 LUCK   -> p37
-38 BEWARE -> p38
-39 FALSE  -> p39
-40 PATHS  -> p40
-```
-
-Before this result, p36 word37 was a manuscript-unique state packet but GOOD plaintext remained unresolved after a different prospective q-th-section1 receiver failed its length gate. The new operation is distinct: q labels the **center of the already selected word** as EMPTY, so the center is removed rather than used as an ordinal.
-
-P37 already has a strong reversible LUCK candidate and p38 has a strong BEWARE candidate. The new p36 decoder therefore gives a three-page run of strong local candidates `p36 GOOD / p37 LUCK / p38 BEWARE`, with p39's dominant red X still providing the independent visual FALSE warning.
-
-A source-only graph now gives a particularly sharp incoming/outgoing check on GOOD. Compute GP0 for every authenticated source word and keep only values that are themselves valid source indices0..42. There is exactly one reciprocal two-cycle in the complete 43-word graph:
-
-```text
-index35 FOUND  GP0=36 -> index36 GOOD
-index36 GOOD   GP0=35 -> index35 FOUND
-```
-
-Thus **FOUND35 ↔ GOOD36** is the sole mutual GP0/index pair in the authenticated source. This relation uses no LP2 ciphertext and was recognized only after the p35 FOUND and p36 GOOD local decoders were independently committed. It gives a direct first-party bridge between two consecutive recovered pages: p35 FOUND numerically names source/page36 GOOD, while p36 GOOD names back to source/page35 FOUND. Preserve it as cross-result convergence rather than as evidence for a universal GP0 pointer rule.
-
-## Evidence boundary
-
-This is stronger than a free known-plaintext fit because the receiver was fixed independently, its center was already q=EMPTY, the key atoms come from the exact authenticated direction sentence, every ordering and both signs are charged, the same family is exhausted over every canonical five-rune word, and exact forward reconstruction restores all five original runes.
-
-The main remaining caveat is chronology. The four-number atom set was recognized after the GOOD coordinate and source-assigned target were known, and the winning ordering was selected inside a finite family rather than predicted blind. Preserve **GOOD** as a strong local plaintext recovery candidate and preserve this center-removal plus source-number packet as a concrete reversible mechanism worth testing prospectively when another source-selected five-to-four receiver appears. Do not generalize the exact key to neighboring pages without a new source-visible selector.
+The earlier p36 four-rune q-th-section1 candidate remains retracted. This center-removal candidate is distinct: it uses the complete five-rune group and deletes its EMPTY center.
 
 ## Reproduction
 
-`node sims/lp2_p36_good_empty_direction_sft.cjs`
+    node sims/lp2_p36_good_empty_direction_sft.cjs

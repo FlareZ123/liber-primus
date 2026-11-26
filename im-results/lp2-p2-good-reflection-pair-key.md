@@ -174,19 +174,16 @@ This is the strongest current evidence for the p2 local inverse. It does not pro
 
 The recovered GP29 value of GOOD has:
 
-```text
-GP0(GOOD) = 6+3+3+23 = 35.
-```
+    GP0(GOOD) = 6+3+3+23 = 35.
 
-Zero-based signed-source word35 is **FOUND**. The independently source-selected p35 receiver at offsets25..29 has ciphertext `[19,17,19,24,11]`; the published p35 local inverse subtracts `[19,14,18,15,17]` and recovers FOUND. In turn:
+Zero-based signed-source word35 is **FOUND**. The independently source-selected p35 receiver at offsets25..29 has ciphertext [19,17,19,24,11]; the published p35 local inverse subtracts [19,14,18,15,17] and recovers FOUND. In turn:
 
-```text
-GP0(FOUND) = 36
-signed-source word36 = GOOD.
-```
+    GP0(FOUND) = 36
+    signed-source word36 = GOOD.
 
-Thus the p2 candidate supplies another incoming receiver for the existing source-only FOUND35 <-> GOOD36 numerical cycle. This is cross-result consistency, not independent authentication: the p35 candidate and source-index cycle are already documented in `im-results/lp2-p33-p35-found-road-map.md`.
+Thus the p2 candidate supplies another incoming receiver for the existing source-only FOUND35 <-> GOOD36 numerical cycle. This is cross-result consistency, not independent authentication: the p35 candidate and source-index cycle are already documented in im-results/lp2-p33-p35-found-road-map.md.
 
+There is also a direct page-level pointer: signed-source word36 is GOOD, selecting p36. A separate p36 EMPTY-center local inverse also recovers GOOD on that page. Under page-local numbering it is group37; under the whole-manuscript complete-word parser it is complete-word index35, while canonical index36 is a six-rune word. This is page-level convergence, not a confirmed canonical double-index word hop. The p36 candidate and parser distinction are documented in im-results/lp2-p36-good-empty-direction-decoder.md.
 ## 7. Evidence boundary and next decisive test
 
 What is supported:
