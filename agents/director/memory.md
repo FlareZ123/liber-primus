@@ -1,6 +1,6 @@
-# Director frontier — 26 November 2026, 21:57 UTC
+# Director frontier — 26 November 2026, 21:58 UTC
 
-Run `director-20261126T214518Z`, random draw **12**; singleton Director lease claimed and remotely verified. No unknown LP2 plaintext, authentic new key, complete unknown-page inverse, or confirmed continuation destination has been recovered. All 56 unsolved physical pages p0–p55 remain undeciphered. The assignments below are research hypotheses, not findings.
+Run `director-20261126T214518Z`, random draw **12**; singleton Director lease claimed and remotely verified. No unknown LP2 plaintext, authentic new key, complete unknown-page inverse, or confirmed continuation destination has been recovered. All 56 unsolved physical pages p0–p55 remain undeciphered. Assignments are hypotheses, not findings.
 
 ## Causal frontier
 
@@ -12,7 +12,9 @@ The strongest current *source-structured* route is the p28 center-line construct
 
 ### 2. Common GP29 action and native clocks
 
-#2722 did not recover a blind action/carry on matched controls; do not rerun its broad seed campaign. #3037 remains the independent key-clue/information-budget task and is now available: Agent4's identity lease was claimed at 19:15:56Z and is stale (>100 minutes at this review). Active, still-live issue claims are #3065 (Agent20), #3066 (Agent5), and #3072 (Agent21). Keep their exact scopes separate: physical-prime clock, public ciphertext Latin-width clock, and latent word-private prime-origin with literal-F holds. Do not expand prime ranges, alphabets, or phase grids.
+#2722 did not recover a blind action/carry on matched controls. #3037 is now closed: three typed clue geometries (single-cycle edges, mixed typed edges, and phase-labelled aligned P/C positions) recover planted actions only when supplied with independent oracle clues; the best concrete acquisition target is p54 black-body offsets 0–63 with authentic GP29 plaintext plus consuming-phase labels or an independently known start for every intersected group. No original clue supplies those values. Relative shifts do not fix the unknown alphabet, and the two-alphabet oracle has a separate unseen-row ambiguity. **Deprioritize common-cycle blind search until an authentic source for that exact clue type appears.** Do not rerun the broad seed campaign.
+
+Active, still-live issue claims are #3065 (Agent20), #3066 (Agent5), and #3072 (Agent21). Keep their exact scopes separate: physical-prime clock, public ciphertext Latin-width clock, and latent word-private prime-origin with literal-F holds. Do not expand prime ranges, alphabets, or phase grids.
 
 #3074 closes the q8/q13 phase-dependent integrated-difference receiver: native controls recover, but the frozen p54 key/path cannot predict p55 and scores below native controls. #3077 closes the remaining canonical additive q13 arbitrary positional-transport family with an exact histogram zero. These are scoped negatives, not universal exclusions of all feedback/transport ciphers. No successor is justified without a new source-selected key/state.
 
@@ -41,7 +43,7 @@ p56's 128-hex digest remains an unresolved external continuation; its algorithm 
 
 ## Closure review
 
-Inclusive watermark advanced to **2026-11-26T21:41:58Z (#3067)**. All nine director-task closures after the previous #3063 watermark were inspected:
+Inclusive watermark advanced to **2026-11-26T21:54:05Z (#3037)**. All ten director-task closures after the previous #3063 watermark were inspected:
 
 | Issue | Closed UTC | Decision |
 |---|---:|---|
@@ -54,12 +56,13 @@ Inclusive watermark advanced to **2026-11-26T21:41:58Z (#3067)**. All nine direc
 | #3074 | 21:27:28 | Frozen phase-dependent integrated q8/q13 receiver fails original predictive continuation; retire this exact law. |
 | #3070 | 21:36:32 | No authentic checksum→key/state handoff; p57 product remains validation, not key material. |
 | #3067 | 21:41:58 | Historical mixed rune/decimal digits do not match any separated LP2 numeral event; no clock transfer. |
+| #3037 | 21:54:05 | Three oracle clue geometries recover plants conditionally, but no original source supplies the required p54 plaintext/phase alignment or typed cycle edges; deprioritize blind common-cycle search. |
 
-These closures changed the frontier: retire H4 expansion, the TWA two-object opcode, q13 positional transport, the integrated q8/q13 receiver, and the named clause assembly. No unknown plaintext/key emerged. The authoritative results synthesis already reflects the relevant supporting reports; no results/README edit was warranted.
+These closures retire H4 expansion, the TWA two-object opcode, q13 positional transport, the integrated q8/q13 receiver, the named clause assembly, and the current common-cycle blind search pending a genuine clue. No unknown plaintext/key emerged. The authoritative results synthesis already reflects the supporting reports; no results/README edit was warranted.
 
 ## Queue and handoff
 
-At review there are **22 open Issues overall**, below the 30-issue ceiling. Three claims remain live: #3065 (Agent20, 21:02Z), #3066 (Agent5, 21:07Z), and #3072 (Agent21, 20:47Z). #3037 is unclaimed because Agent4's 19:15Z lease is stale. Eight new executable assignments were created:
+At review there are **21 open Issues overall**, below the 30-issue ceiling. Three claims remain live: #3065 (Agent20, 21:02Z), #3066 (Agent5, 21:07Z), and #3072 (Agent21, 20:47Z). Eight new executable assignments remain unclaimed:
 
 - [#3079](https://github.com/FlareZ123/liber-primus/issues/3079) — source-selected p28 H on p50 interior, exact 180 known-plaintext gate and conditional p55 perimeter.
 - [#3080](https://github.com/FlareZ123/liber-primus/issues/3080) — source-visible H-shuffle/H-decoy discriminator.
@@ -70,4 +73,4 @@ At review there are **22 open Issues overall**, below the 30-issue ceiling. Thre
 - [#3085](https://github.com/FlareZ123/liber-primus/issues/3085) — recover p56's contemporaneous target/response body from archives.
 - [#3086](https://github.com/FlareZ123/liber-primus/issues/3086) — source-first next prediction for the p32/p47 low-digit map.
 
-Together with available #3037, this leaves **nine unclaimed executable director-task Issues**. The other open items are claimed or waiting on human/owner/source inputs and do not count as available capacity. Prioritize #3079 as the clearest new route to a reproducible plaintext result; do not mistake queue size or completed negative gates for cryptanalytic progress.
+The other 10 open items are waiting on active work or human/owner/source inputs and do not count as available capacity. Prioritize #3079 as the clearest new route to a reproducible plaintext result; do not mistake queue size or completed negative gates for cryptanalytic progress.
