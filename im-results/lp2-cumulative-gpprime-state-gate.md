@@ -22,3 +22,38 @@ Two descriptive negative ensembles use fixed xorshift32 seed 0x2774cafe, 100 ind
 - [Raw results](lp2-cumulative-gpprime-state-raw.json) — exact forced rune string, state history, all initial-state scores, 27 plants, 200 negative scores and source blob IDs.
 - Executed the exact experiment function in connected JavaScript; Node wrapper uses only built-in modules. No CI execution claimed.
 - The exact equation is retired; arbitrary state updates, extra encipherment layers, non-native registers and different original generation order are not established or excluded by this test. The central result is state synchrony on original input, independent of language scoring. A new branch requires independent source evidence.
+
+## Literal-F-held extension (#3056, Agent8, 26 November)
+
+**Decision: exact impossibility on original p40–53.** The 27 all-consuming controls above do not cover authentic p56-style literal F semantics. The fixed extension allows F plaintext to emit ciphertext F and retain the state, while every non-F plaintext consumes:
+
+    P=0: C=0, s'=s
+    P!=0: C=(P+s) mod29, s'=(s+q(P)) mod29
+
+The canonical prime table is independently motivated by LP1 Wisdom (for example GPprime(SHADOWS)=341, the printed square value), but neither the square nor the solved p56 cipher selects this running-state law. #2754 resets the key at clause boundaries to the preceding clause sum; #841 sought a preceding-word key handoff; #2746 uses an occurrence-count clock. None is this continuous intra-word cumulative recurrence. #2774 (above) is the exact all-consuming counterpart, while #2611 uses a prime-minus-one previous-plaintext law. The literal F semantics distinguish them: at state1, plaintext F emits1 and advances to3 under #2774, but emits0 and retains1 here. At C=0,s=1 both a literal hold and consuming plaintext28 are legal, so the hidden branches cannot be discarded by reindexing.
+
+For successive *consuming* symbols (x,u) and (y,v), eliminate s to obtain v−u=y−x+q(x) mod29. Any interposed literal F holds must have C=0, and cannot be inferred from C=0 alone.
+
+### Exhaustive inverse
+
+At known ciphertext c and reachable state s, include the following and only these edges:
+
+- if c=0, plaintext0 and next state s;
+- let p=(c−s) mod29; if p!=0, plaintext p and next state (s+q(p)) mod29.
+
+In particular a nonzero c=s admits no edge. The Boolean union starts from all 29 possible initial states and advances by the exact edge union. Induction proves necessity and sufficiency: every legal sender has exactly one of these emission branches, and every included edge satisfies the forward law. Exact BigInt path counts and backtracking witnesses independently verify branching and full replay. A complete three-symbol sender enumeration at IVs 0,1,7 checks all 66,983 distinct positive ciphertext cases against the inverse path multiplicities.
+
+### Controls and original contradiction
+
+27 plants from all nine pinned solved-native sections, each at IV0,7,19, preserve the exact true state at every one of 8,937 positions, including 144 literal holds and 311 consuming ciphertext zeros. Every selected witness replays; only two arbitrary witnesses exactly equal the native donor, demonstrating why arbitrary path selection does not authenticate plaintext. The actual p56 prime-minus-one control independently replays 85/85 original symbols with 84 consuming steps. The wrong all-consuming clock remains legal on 2/27 adversarial native plants under the F-held receiver; actual p56 also happens to be legal under this wrong recurrence. Legality alone is therefore deliberately not treated as evidence of decipherment.
+
+On the 3,008 original p40–53 runes with a continuous chapter clock and no page resets:
+
+- IVs 0,9,17,20 die at zero-based offset9.
+- IVs 3,10 die at offset16.
+- All remaining 23 IVs die at offset102.
+- At consumed offset102, the **union of every possible initial state and every F path is exactly {9}**. The next original ciphertext rune is 9 (N). Its consuming inverse would be F=0, which is forbidden; literal F cannot emit 9. Hence the union is empty after the 103rd rune. No later suffix can restore a legal path.
+
+No lexical score, IV tuning, alternate prime function, or boundary changes are necessary or permitted for this fixed family. This is an exact original-input contradiction, stronger than a negative language fit. No unknown LP2 plaintext, authored key or historical mechanism recovered.
+
+[Exact F-hold SFT](../sims/lp2_cumulative_gpprime_fhold_exact_sft.cjs) · [raw all-IV certificate and native controls](lp2-cumulative-gpprime-fhold-exact-output.json). The experiment core executed in connected V8, not a separate Node/CI run. Inputs are the pinned canonical corpus and solved-native transcription blobs recorded above.
