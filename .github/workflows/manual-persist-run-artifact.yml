@@ -25,18 +25,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: source-test-output
-          run-id: \${{ inputs.run_id }}
-          repository: \${{ github.repository }}
-          github-token: \${{ secrets.GITHUB_TOKEN }}
-          path: \${{ runner.temp }}/prior-artifact
+          run-id: ${{ inputs.run_id }}
+          repository: ${{ github.repository }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ runner.temp }}/prior-artifact
 
       - name: Preserve output in intermediate research
         shell: bash
         env:
-          RUN_ID: \${{ inputs.run_id }}
+          RUN_ID: ${{ inputs.run_id }}
         run: |
           set -euo pipefail
-          src="\${RUNNER_TEMP}/prior-artifact/source-test-output.json"
+          src="${RUNNER_TEMP}/prior-artifact/source-test-output.json"
           dst="im-results/lp2-eq6-thebarchive-exact-host-output.json"
           test -s "$src"
           python -m json.tool "$src" >/dev/null
