@@ -1,6 +1,6 @@
-# p24 half-turn repeated-plaintext tests: q8 additive and global affine relations rejected
+# p24 half-turn inverse gates: repeated-plaintext and literal paired-pad routes rejected
 
-**Agent21 · Director Issue #2713 · 25 November 2026.** Classification: source-frozen exact necessary-condition negative. No unknown LP2 plaintext, authentic key, or intended continuation was recovered.
+**Agent21 / Agent1 · Director Issues #2713 / #3023 · 25–26 November 2026.** Classification: source-frozen exact necessary-condition negatives for repeated plaintext; calibrated native-prose negative for the literal paired pad. No unknown LP2 plaintext, authentic key, or intended continuation was recovered.
 
 ## Hypothesis and frozen source alignment
 
@@ -100,9 +100,28 @@ The same detector passes a native positive control: solved p56 plus the first 50
 
 This excludes only the global monoalphabetic-affine repeated-plaintext relation. It does not exclude periodic affine keys, nonlinear transforms, different plaintext relations, or another source-selected traversal. The q8 and global-affine SFTs are combined in the same reproducible script.
 
+## Distinct literal half-turn paired-pad receiver (Director #3023)
+
+The same frozen geometry supplies two equally plausible roles: the top 135 runes A carry the payload and the reversed lower 135 B are its literal pad, or vice versa. Earlier differential computations used B−A to test a repeated-plaintext periodicity constraint, without treating the entire difference as the candidate message. Here the complete positional GP29 inverse is P=A−B mod29 or P=B−A mod29, with no secret, phase, alphabet fitting, offset, F skip, or extra layer. Retain the mask and add it back for exact replay. This is specifically a one-rune-per-position literal pad, as required by the geometry. The actual 41.jpg was inspected: no visible role distinction between upper and lower insects selects one carrier.
+
+Both complete original candidates were decoded and exactly re-encrypted. Their beginnings in canonical transliteration are `PNGJOMPAIJTHLDYIGEA...` and `THEYITCMEIANGOMDUTLTTHHOGTONTHCXIA...`. The latter begins with the isolated word THEY, but neither 135-rune output forms coherent spacing-free prose. The full outputs and ordinal tapes are preserved in [raw results](lp2-p24-literal-halfturn-pad-output.json).
+
+The independent native-GP calibration trains a smoothed conditional bigram model on all solved source sections except the target control section; its diagnostic is mean natural-log likelihood ratio per transition against uniform GP29 (unigram prior with weight 10). Seventeen disjoint 135-rune native plaintext blocks were encoded with masks drawn from unrelated original pages, alternating the concealed carrier role. The two-candidate blind receiver correctly selects and recovers all **17/17** blocks exactly, including exact reencryption. Control sections are held out from fitting; windows within one section are not independent samples. In these same leave-one-section-out models:
+
+| Diagnostic | Mean log likelihood ratio per transition |
+|---|---:|
+| Held-out authentic plaintext blocks | +0.402466 to +0.909449 |
+| Both original p24 candidates | −1.515168 to −1.350816 |
+| Original A−B / B−A, full model | −1.486834 / −1.514674 |
+| 48 unrelated original-page pair candidates, full model | −1.925626 to −1.139614 |
+
+Sixteen of the 48 unrelated pair candidates equal or exceed the best original score. This is a matched diagnostic, not an independently sampled p-value. The native controls and full decoded strings reject the literal positional paired-pad interpretation as a route to native prose. Perfect replay is automatic for this bijection and cannot authenticate the key. The repeated-art analogues p25 and p26 split 137/136 and 134/131; neither admits the same full-page one-to-one receiver without inventing a trimming or padding rule. No such repair or additional operator was tested.
+
+Reproduce with `node sims/lp2_p24_literal_halfturn_pad_sft.cjs` from the checkout. The computational core was executed on the actual committed canonical corpus, raw transcription and native solved reference in connected V8, producing the committed JSON; the standalone filesystem wrapper was not separately executed in Node. This scope does not exclude F-skip, alternative clocks, arbitrary nonlinear transforms or a different source-selected mechanism; they are not justified successors from this result.
+
 ## Decision and scope
 
-**Reject the exact repeated-plaintext / independent-q8-additive interpretation and the independent global-affine-substitution relation for the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. There is no reason to run a lexical recovery stage after both exact relation gates fail.
+**Reject the exact repeated-plaintext / independent-q8-additive interpretation and the independent global-affine-substitution relation for the p24 halves.** The contradiction is algebraic, source-aligned, and independent of English assumptions. The separate direct literal paired-pad inverse is likewise nonprose in both roles; no follow-on period, parity or lane search is warranted by these failures.
 
 This does not reject the mayfly identification, the geometric half-turn, the wider p23–26 text, or all possible page mechanisms. It does not cover non-q8 periods, non-additive transformations, different plaintext relationships, or an independently source-selected alternative traversal. No successor is justified without new source evidence selecting such a mechanism.
 
