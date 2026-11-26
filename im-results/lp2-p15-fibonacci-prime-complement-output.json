@@ -1,0 +1,139 @@
+{
+  "ord": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    9,
+    14,
+    22,
+    35,
+    56,
+    90,
+    145,
+    234,
+    378,
+    611,
+    988
+  ],
+  "plate": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "firstKeys": [
+    10,
+    16,
+    18,
+    28,
+    1,
+    7,
+    11,
+    17,
+    23,
+    0,
+    2,
+    8,
+    12,
+    14,
+    24,
+    1,
+    9,
+    13,
+    15,
+    19
+  ],
+  "genuineP56": {
+    "runes": 85,
+    "consumed": 84
+  },
+  "plants": [
+    {
+      "name": "0_warning",
+      "n": 184,
+      "truth": 181,
+      "legalEndStates": [
+        180,
+        181,
+        182
+      ],
+      "peak": 4
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "truth": 504,
+      "legalEndStates": [
+        502,
+        503,
+        504,
+        505,
+        506
+      ],
+      "peak": 9
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "truth": 152,
+      "legalEndStates": [
+        151,
+        152,
+        153
+      ],
+      "peak": 5
+    }
+  ],
+  "original": [
+    {
+      "name": "p15_black_through_p22",
+      "n": 1883,
+      "baseline": {
+        "prefix": 21,
+        "peak": 2,
+        "end": []
+      },
+      "complement": {
+        "prefix": 0,
+        "peak": 1,
+        "end": []
+      },
+      "ordinaryIoC": 0.034558889510317436,
+      "ordinaryGain": -0.8145163345213479,
+      "cipherIoC": 0.0345092253921349,
+      "ordinaryPrefix": "F X NG TH NG E F EO TH U R G F EA M AE M W N A U E B B B G R P B N H C W TH L N H D L R"
+    },
+    {
+      "name": "p16_through_p22",
+      "n": 1744,
+      "baseline": {
+        "prefix": 7,
+        "peak": 1,
+        "end": []
+      },
+      "complement": {
+        "prefix": 36,
+        "peak": 1,
+        "end": []
+      },
+      "ordinaryIoC": 0.03426879207524725,
+      "ordinaryGain": -0.7868257951486948,
+      "cipherIoC": 0.034509598025128034,
+      "ordinaryPrefix": "H W G Y S AE B U C X O L R E EA R M AE M EO IA IA AE AE X X B P P AE W NG AE B Y R F N EO D"
+    }
+  ]
+}
