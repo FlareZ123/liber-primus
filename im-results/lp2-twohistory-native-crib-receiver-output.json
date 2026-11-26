@@ -1,0 +1,1632 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/blake_song_of_liberty_train.txt",
+      "sha": "c8d8afda002f2585ce64a959c26c20d24a5c990b"
+    }
+  ],
+  "donorLengths": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "n": 62492
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "n": 217106
+    },
+    {
+      "name": "resources/control/emerson_essays_2944.txt",
+      "n": 321327
+    },
+    {
+      "name": "resources/control/blake_song_of_liberty_train.txt",
+      "n": 2001
+    }
+  ],
+  "controls": [
+    {
+      "affine": false,
+      "knownOffset": 4013,
+      "n": 3008,
+      "windows": 59485,
+      "fit": 1,
+      "all": 1,
+      "best": {
+        "offset": 4013,
+        "eligible": 993,
+        "covered": 152,
+        "correct": 152,
+        "preview": "IDINWORDSBUTMUCHINHISHEARTREMAINEDUNSAIDFORHEHIMSELFCOULDNOTSPEACHISDEEPERSECRETIL"
+      },
+      "trainConstraints": {
+        "equal": 164,
+        "unequal": 1909,
+        "affine": 518
+      },
+      "fullConstraints": {
+        "equal": 344,
+        "unequal": 4080,
+        "affine": 1111
+      }
+    },
+    {
+      "affine": true,
+      "knownOffset": 12029,
+      "n": 3008,
+      "windows": 59485,
+      "fit": 1,
+      "all": 1,
+      "best": {
+        "offset": 12029,
+        "eligible": 993,
+        "covered": 675,
+        "correct": 675,
+        "preview": "NYOURHEARTASONGFOREACHCUPANDLETTHEREBEINTHESONGAREMEMBRANCEFORTHEAUTUMNDAYSANDFORTHEUINE"
+      },
+      "trainConstraints": {
+        "equal": 176,
+        "unequal": 1901,
+        "affine": 524
+      },
+      "fullConstraints": {
+        "equal": 355,
+        "unequal": 4002,
+        "affine": 1107
+      }
+    }
+  ],
+  "original": [
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 61764,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 61764,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 216378,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 216378,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 320599,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 320599,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 1273,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p0-2",
+      "n": 729,
+      "cut": 486,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 1273,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 3,
+        "unequal": 129,
+        "affine": 16
+      },
+      "fullConstraints": {
+        "equal": 8,
+        "unequal": 299,
+        "affine": 55
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 61348,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 61348,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 215962,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 215962,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 320183,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 320183,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 857,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p3-7",
+      "n": 1145,
+      "cut": 763,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 857,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 11,
+        "unequal": 302,
+        "affine": 55
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 710,
+        "affine": 165
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 60764,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 60764,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 215378,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 215378,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 319599,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 319599,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 273,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p8-14",
+      "n": 1729,
+      "cut": 1152,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 273,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 27,
+        "unequal": 659,
+        "affine": 152
+      },
+      "fullConstraints": {
+        "equal": 60,
+        "unequal": 1545,
+        "affine": 426
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 60590,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 60590,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 215204,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 215204,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 319425,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 319425,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 99,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p15-22",
+      "n": 1903,
+      "cut": 1268,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 99,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 33,
+        "unequal": 887,
+        "affine": 215
+      },
+      "fullConstraints": {
+        "equal": 76,
+        "unequal": 1939,
+        "affine": 524
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 61472,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 61472,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 216086,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 216086,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 320307,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 320307,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 981,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p23-26",
+      "n": 1021,
+      "cut": 680,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 981,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 6,
+        "unequal": 260,
+        "affine": 46
+      },
+      "fullConstraints": {
+        "equal": 15,
+        "unequal": 540,
+        "affine": 112
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 61060,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 61060,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 215674,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 215674,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 319895,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 319895,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 569,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p27-32",
+      "n": 1433,
+      "cut": 955,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 569,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 16,
+        "unequal": 465,
+        "affine": 100
+      },
+      "fullConstraints": {
+        "equal": 32,
+        "unequal": 1087,
+        "affine": 283
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 60813,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 60813,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 215427,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 215427,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 319648,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 319648,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 322,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p33-39",
+      "n": 1680,
+      "cut": 1120,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 322,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 24,
+        "unequal": 681,
+        "affine": 160
+      },
+      "fullConstraints": {
+        "equal": 56,
+        "unequal": 1512,
+        "affine": 399
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 59485,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 59485,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 214099,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 214099,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 318320,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 318320,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 0,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p40-53",
+      "n": 3008,
+      "cut": 2005,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 0,
+      "fit": 0,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 82,
+        "unequal": 2215,
+        "affine": 605
+      },
+      "fullConstraints": {
+        "equal": 188,
+        "unequal": 4617,
+        "affine": 1272
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": false,
+      "windows": 62185,
+      "fit": 17449,
+      "all": 57,
+      "best": {
+        "offset": 750,
+        "eligible": 101,
+        "covered": 1,
+        "correct": 1,
+        "preview": "LDNOTHAUEBEENSOUNIUERSALANDSOPOTENTBUTTHEMAJESTYANDBEAUTYOFTHELANGUAGEWITHWHICHHECLOTH"
+      },
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/gibran_prophet_58585.txt",
+      "affine": true,
+      "windows": 62185,
+      "fit": 17449,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": false,
+      "windows": 216799,
+      "fit": 62454,
+      "all": 216,
+      "best": {
+        "offset": 694,
+        "eligible": 101,
+        "covered": 1,
+        "correct": 1,
+        "preview": "THISINHUNGERFORBREADNOTINTHIRSTFORREUENGESECONDCITISENWOULDYOUPROCEEDESPECIALLYAGAINST"
+      },
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/shakespeare_first300k.txt",
+      "affine": true,
+      "windows": 216799,
+      "fit": 62454,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": false,
+      "windows": 321020,
+      "fit": 88804,
+      "all": 312,
+      "best": {
+        "offset": 1146,
+        "eligible": 101,
+        "covered": 1,
+        "correct": 1,
+        "preview": "TRESTTHEHUMANSPIRITGOESFORTHFROMTHEBEGINNNGTOEMBODYEUERYFACULTYEUERYTHOUGHTEUERYEMOTIAN"
+      },
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/emerson_essays_2944.txt",
+      "affine": true,
+      "windows": 321020,
+      "fit": 88804,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": false,
+      "windows": 1694,
+      "fit": 485,
+      "all": 3,
+      "best": {
+        "offset": 530,
+        "eligible": 101,
+        "covered": 1,
+        "correct": 1,
+        "preview": "INSOURCETEXTTHEETERNALFEMALEGROANDITWASHEARDOUERALLTHEEARTHALBIANSCOASTISSICCSILENTTHEA"
+      },
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    },
+    {
+      "chapter": "p54-55",
+      "n": 308,
+      "cut": 205,
+      "donor": "resources/control/blake_song_of_liberty_train.txt",
+      "affine": true,
+      "windows": 1694,
+      "fit": 485,
+      "all": 0,
+      "best": null,
+      "trainConstraints": {
+        "equal": 0,
+        "unequal": 20,
+        "affine": 0
+      },
+      "fullConstraints": {
+        "equal": 1,
+        "unequal": 63,
+        "affine": 8
+      }
+    }
+  ]
+}
