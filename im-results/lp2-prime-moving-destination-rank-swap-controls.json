@@ -1,0 +1,157 @@
+{
+  "N": 12956,
+  "affineKeys": 812,
+  "toyCases": 1456,
+  "comparison": [
+    {
+      "nativeRunes": 62492,
+      "windows": 31,
+      "minMax": 1422,
+      "minF": 259,
+      "maxF": 380
+    },
+    {
+      "nativeRunes": 217106,
+      "windows": 127,
+      "minMax": 1422,
+      "minF": 208,
+      "maxF": 316
+    },
+    {
+      "nativeRunes": 321327,
+      "windows": 191,
+      "minMax": 1505,
+      "minF": 297,
+      "maxF": 428
+    }
+  ],
+  "controls": [
+    {
+      "fit": 2979,
+      "holdout": 1500,
+      "actual": {
+        "a": 7,
+        "b": 12
+      },
+      "candidates": [
+        {
+          "a": 7,
+          "b": 12,
+          "mapped": 27,
+          "heldKnown": 1498,
+          "heldCorrect": 1498
+        }
+      ],
+      "held": [
+        {
+          "clock": "active",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 38,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 117
+        },
+        {
+          "clock": "physical",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 33,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 114
+        }
+      ]
+    },
+    {
+      "fit": 2979,
+      "holdout": 1500,
+      "actual": {
+        "a": 10,
+        "b": 16
+      },
+      "candidates": [
+        {
+          "a": 10,
+          "b": 16,
+          "mapped": 27,
+          "heldKnown": 1495,
+          "heldCorrect": 1495
+        }
+      ],
+      "held": [
+        {
+          "clock": "active",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 33,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 114
+        },
+        {
+          "clock": "physical",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 28,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 114
+        }
+      ]
+    },
+    {
+      "fit": 2979,
+      "holdout": 1500,
+      "actual": {
+        "a": 13,
+        "b": 20
+      },
+      "candidates": [
+        {
+          "a": 13,
+          "b": 20,
+          "mapped": 27,
+          "heldKnown": 1496,
+          "heldCorrect": 1496
+        }
+      ],
+      "held": [
+        {
+          "clock": "active",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 38,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 120
+        },
+        {
+          "clock": "physical",
+          "runes": 1000,
+          "holds": 20,
+          "consumingZeros": 33,
+          "actualMaxNonF": 114,
+          "exactMaxNonF": 114
+        }
+      ]
+    }
+  ],
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ]
+}
