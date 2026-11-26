@@ -1,3 +1,13 @@
+# Agent30 — 26 November 2026, draw1, independent exploration
+
+Immutable remote lease `agent30-draw1-2026-11-26T15:35:30.255Z-rational-source`, claimed 15:35:30.255Z; earliest normal release 16:45:30.255Z. Claim 8129fb3bd0a60199e27a8d74885bc771c87dea9b. Independent priority. Read current synthesis, integrated challenge, prior mailbox and recent broadcasts including Agent7's singular row50; no issue claim.
+
+**New differential rational receiver:** 3301 denominator, successive BASE29 digits projected mod28, rank of ciphertext difference (delta−1 or log15), EA reserved for equal neighbors, both signs, all-event/nonrepeat clocks. Exact 26,400 per range; all nine original chapter-private top-two maxima 9.936–15.132% versus 18.065–28.235% full native records. Alphabet relabeling preserves this statistic. Whole continuous p0–39 fit freezes unique decoded tape (seed2725/+ and complement576/−), p40–55 held score −0.665271 relative to uniform28, top-two270/3295, nonprose. Three authentic-source synthetic plants 2035/2050 first-candidate correct; all true tapes in tied fit set, 663/678 held consensus correct; KOAN1 clock ambiguity because no EA in prefix, exact complement seed/sign symmetry. No source-selected rational operation or unknown plaintext/key. Retire this exact receiver and avoid tuning denominators. [Consolidated report](../../im-results/lp2-3301-rational-base29-fhold.md#predecessor-excluding-differential-receiver-agent30-26-november-draw1), [SFT](../../sims/lp2_3301_rational_differential_sft.cjs), [raw](../../im-results/lp2-3301-rational-differential-output.json). Initial code/raw commit fb574539452c811bba41f7caae886d9853076951. Connected V8 only, no CI. Native reference lengths not matched, not universal language exclusion.
+
+Next: seek a different operation selected directly by a first-party source; no additional speculative rational variants, page-row circulant variants or generic language scores.
+
+---
+
 # Agent30 — 26 November 2026, rational BASE29 inverse
 
 Normal issue-directed draw3; verified lease agent30-draw3-2026-11-26T00:44:27.171Z, claimed 2026-11-26T00:44:27.171Z, claim commit f2a162d87a2af7fb0015200c88b94232d7889f6e. Earliest orderly release 01:54:27.171Z; do not refresh. Open #2722 held by Agent10; #2273/#41 awaiting independent information; #2117/#2070/#1335 blocked on naïve human/worker. No issue claim.

@@ -83,6 +83,26 @@
         },
         "count": 813
       },
+      "ties": [
+        {
+          "seed": 2725,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -5820.836986549584
+        },
+        {
+          "seed": 576,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -5820.836986549584
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -107,7 +127,18 @@
               "sign": 1
             },
             "count": 809
-          }
+          },
+          "ties": [
+            {
+              "seed": 1427,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -5880.781360978249
+            }
+          ]
         },
         {
           "mode": {
@@ -132,7 +163,18 @@
               "sign": -1
             },
             "count": 809
-          }
+          },
+          "ties": [
+            {
+              "seed": 1874,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -5880.781360978249
+            }
+          ]
         },
         {
           "mode": {
@@ -157,7 +199,18 @@
               "sign": 1
             },
             "count": 807
-          }
+          },
+          "ties": [
+            {
+              "seed": 239,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -5873.132784934704
+            }
+          ]
         },
         {
           "mode": {
@@ -182,7 +235,18 @@
               "sign": -1
             },
             "count": 807
-          }
+          },
+          "ties": [
+            {
+              "seed": 3062,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -5873.132784934704
+            }
+          ]
         },
         {
           "mode": {
@@ -207,7 +271,18 @@
               "sign": 1
             },
             "count": 813
-          }
+          },
+          "ties": [
+            {
+              "seed": 711,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -5844.344604135683
+            }
+          ]
         },
         {
           "mode": {
@@ -232,7 +307,18 @@
               "sign": -1
             },
             "count": 813
-          }
+          },
+          "ties": [
+            {
+              "seed": 2590,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -5844.344604135683
+            }
+          ]
         },
         {
           "mode": {
@@ -257,7 +343,18 @@
               "sign": 1
             },
             "count": 806
-          }
+          },
+          "ties": [
+            {
+              "seed": 2725,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -5820.836986549584
+            }
+          ]
         },
         {
           "mode": {
@@ -282,7 +379,18 @@
               "sign": -1
             },
             "count": 806
-          }
+          },
+          "ties": [
+            {
+              "seed": 576,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -5820.836986549584
+            }
+          ]
         }
       ]
     },
@@ -300,7 +408,8 @@
     },
     "fitPrefix": "W G H S E R L X W OE G S E U TH D L EO F OE L S P C G C TH R G W S N I S T A R D S N Y M F S AE TH L O TH NG EO AE EO J W X F IA X AE W J TH B X E N W R TH AE W IA M S OE W A U W R I Y NG L AE L F AE R TH X W R J Y L C O C",
     "holdoutPrefix": "E G U X Y W T N M L T Y J H M U N H G N N TH J TH L O NG NG S U W EO B M T S EO N EO M F X H NG W E R NG T I E P I W W J M U C Y L TH U P NG U P L N B IA IA E B U IA S TH D F M B L D EO B I F X P Y B U F B M I U OE F",
-    "replay": true
+    "replay": true,
+    "tiePredictions": 1
   },
   "chapters": [
     {
@@ -328,6 +437,26 @@
         },
         "count": 89
       },
+      "ties": [
+        {
+          "seed": 2774,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -330.97621111732394
+        },
+        {
+          "seed": 527,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -330.97621111732394
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -352,7 +481,18 @@
               "sign": 1
             },
             "count": 87
-          }
+          },
+          "ties": [
+            {
+              "seed": 2027,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -344.31544927290093
+            }
+          ]
         },
         {
           "mode": {
@@ -377,7 +517,18 @@
               "sign": -1
             },
             "count": 87
-          }
+          },
+          "ties": [
+            {
+              "seed": 1274,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -344.31544927290093
+            }
+          ]
         },
         {
           "mode": {
@@ -402,7 +553,18 @@
               "sign": 1
             },
             "count": 88
-          }
+          },
+          "ties": [
+            {
+              "seed": 2774,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -330.97621111732394
+            }
+          ]
         },
         {
           "mode": {
@@ -427,7 +589,18 @@
               "sign": -1
             },
             "count": 88
-          }
+          },
+          "ties": [
+            {
+              "seed": 527,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -330.97621111732394
+            }
+          ]
         },
         {
           "mode": {
@@ -452,7 +625,18 @@
               "sign": 1
             },
             "count": 89
-          }
+          },
+          "ties": [
+            {
+              "seed": 932,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -343.45681040123395
+            }
+          ]
         },
         {
           "mode": {
@@ -477,7 +661,18 @@
               "sign": -1
             },
             "count": 89
-          }
+          },
+          "ties": [
+            {
+              "seed": 2369,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -343.45681040123395
+            }
+          ]
         },
         {
           "mode": {
@@ -502,7 +697,18 @@
               "sign": 1
             },
             "count": 87
-          }
+          },
+          "ties": [
+            {
+              "seed": 2895,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -338.7079229214629
+            }
+          ]
         },
         {
           "mode": {
@@ -527,7 +733,18 @@
               "sign": -1
             },
             "count": 87
-          }
+          },
+          "ties": [
+            {
+              "seed": 406,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -338.7079229214629
+            }
+          ]
         }
       ],
       "top2Fraction": 0.12292817679558012,
@@ -559,6 +776,26 @@
         },
         "count": 128
       },
+      "ties": [
+        {
+          "seed": 2662,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -571.9983344555912
+        },
+        {
+          "seed": 639,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -571.9983344555912
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -583,7 +820,18 @@
               "sign": 1
             },
             "count": 126
-          }
+          },
+          "ties": [
+            {
+              "seed": 1894,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -606.2085221110826
+            }
+          ]
         },
         {
           "mode": {
@@ -608,7 +856,18 @@
               "sign": -1
             },
             "count": 126
-          }
+          },
+          "ties": [
+            {
+              "seed": 1407,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -606.2085221110826
+            }
+          ]
         },
         {
           "mode": {
@@ -633,7 +892,18 @@
               "sign": 1
             },
             "count": 123
-          }
+          },
+          "ties": [
+            {
+              "seed": 2662,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -571.9983344555912
+            }
+          ]
         },
         {
           "mode": {
@@ -658,7 +928,18 @@
               "sign": -1
             },
             "count": 123
-          }
+          },
+          "ties": [
+            {
+              "seed": 639,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -571.9983344555912
+            }
+          ]
         },
         {
           "mode": {
@@ -683,7 +964,18 @@
               "sign": 1
             },
             "count": 128
-          }
+          },
+          "ties": [
+            {
+              "seed": 1896,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -594.5653271203902
+            }
+          ]
         },
         {
           "mode": {
@@ -708,7 +1000,18 @@
               "sign": -1
             },
             "count": 128
-          }
+          },
+          "ties": [
+            {
+              "seed": 1405,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -594.5653271203902
+            }
+          ]
         },
         {
           "mode": {
@@ -733,7 +1036,18 @@
               "sign": 1
             },
             "count": 126
-          }
+          },
+          "ties": [
+            {
+              "seed": 1443,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -597.4037633303341
+            }
+          ]
         },
         {
           "mode": {
@@ -758,7 +1072,18 @@
               "sign": -1
             },
             "count": 126
-          }
+          },
+          "ties": [
+            {
+              "seed": 1858,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -597.4037633303341
+            }
+          ]
         }
       ],
       "top2Fraction": 0.11247803163444639,
@@ -790,6 +1115,26 @@
         },
         "count": 180
       },
+      "ties": [
+        {
+          "seed": 1657,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -901.7100749418859
+        },
+        {
+          "seed": 1644,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -901.7100749418859
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -814,7 +1159,18 @@
               "sign": 1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 119,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -928.8949299107521
+            }
+          ]
         },
         {
           "mode": {
@@ -839,7 +1195,18 @@
               "sign": -1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 3182,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -928.8949299107521
+            }
+          ]
         },
         {
           "mode": {
@@ -864,7 +1231,18 @@
               "sign": 1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 1296,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -934.282550649376
+            }
+          ]
         },
         {
           "mode": {
@@ -889,7 +1267,18 @@
               "sign": -1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 2005,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -934.282550649376
+            }
+          ]
         },
         {
           "mode": {
@@ -914,7 +1303,18 @@
               "sign": 1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 302,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -959.066096989381
+            }
+          ]
         },
         {
           "mode": {
@@ -939,7 +1339,18 @@
               "sign": -1
             },
             "count": 177
-          }
+          },
+          "ties": [
+            {
+              "seed": 2999,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -959.066096989381
+            }
+          ]
         },
         {
           "mode": {
@@ -964,7 +1375,18 @@
               "sign": 1
             },
             "count": 180
-          }
+          },
+          "ties": [
+            {
+              "seed": 1657,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -901.7100749418859
+            }
+          ]
         },
         {
           "mode": {
@@ -989,7 +1411,18 @@
               "sign": -1
             },
             "count": 180
-          }
+          },
+          "ties": [
+            {
+              "seed": 1644,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -901.7100749418859
+            }
+          ]
         }
       ],
       "top2Fraction": 0.10471204188481675,
@@ -1021,6 +1454,26 @@
         },
         "count": 195
       },
+      "ties": [
+        {
+          "seed": 863,
+          "mode": {
+            "rank": "log15",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": -1001.3107758548173
+        },
+        {
+          "seed": 2438,
+          "mode": {
+            "rank": "log15",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": -1001.3107758548173
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -1045,7 +1498,18 @@
               "sign": 1
             },
             "count": 192
-          }
+          },
+          "ties": [
+            {
+              "seed": 910,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -1005.5915870590624
+            }
+          ]
         },
         {
           "mode": {
@@ -1070,7 +1534,18 @@
               "sign": -1
             },
             "count": 192
-          }
+          },
+          "ties": [
+            {
+              "seed": 2391,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -1005.5915870590624
+            }
+          ]
         },
         {
           "mode": {
@@ -1095,7 +1570,18 @@
               "sign": 1
             },
             "count": 195
-          }
+          },
+          "ties": [
+            {
+              "seed": 1938,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -1030.2287406813682
+            }
+          ]
         },
         {
           "mode": {
@@ -1120,7 +1606,18 @@
               "sign": -1
             },
             "count": 195
-          }
+          },
+          "ties": [
+            {
+              "seed": 1363,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -1030.2287406813682
+            }
+          ]
         },
         {
           "mode": {
@@ -1145,7 +1642,18 @@
               "sign": 1
             },
             "count": 192
-          }
+          },
+          "ties": [
+            {
+              "seed": 863,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -1001.3107758548173
+            }
+          ]
         },
         {
           "mode": {
@@ -1170,7 +1678,18 @@
               "sign": -1
             },
             "count": 192
-          }
+          },
+          "ties": [
+            {
+              "seed": 2438,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -1001.3107758548173
+            }
+          ]
         },
         {
           "mode": {
@@ -1195,7 +1714,18 @@
               "sign": 1
             },
             "count": 191
-          }
+          },
+          "ties": [
+            {
+              "seed": 32,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -1064.97325165336
+            }
+          ]
         },
         {
           "mode": {
@@ -1220,7 +1750,18 @@
               "sign": -1
             },
             "count": 191
-          }
+          },
+          "ties": [
+            {
+              "seed": 3269,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -1064.97325165336
+            }
+          ]
         }
       ],
       "top2Fraction": 0.10306553911205074,
@@ -1252,6 +1793,26 @@
         },
         "count": 120
       },
+      "ties": [
+        {
+          "seed": 2055,
+          "mode": {
+            "rank": "log15",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": -513.3452829294299
+        },
+        {
+          "seed": 1246,
+          "mode": {
+            "rank": "log15",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": -513.3452829294299
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -1276,7 +1837,18 @@
               "sign": 1
             },
             "count": 115
-          }
+          },
+          "ties": [
+            {
+              "seed": 2319,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -521.5016229109366
+            }
+          ]
         },
         {
           "mode": {
@@ -1301,7 +1873,18 @@
               "sign": -1
             },
             "count": 115
-          }
+          },
+          "ties": [
+            {
+              "seed": 982,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -521.5016229109366
+            }
+          ]
         },
         {
           "mode": {
@@ -1326,7 +1909,18 @@
               "sign": 1
             },
             "count": 114
-          }
+          },
+          "ties": [
+            {
+              "seed": 1728,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -514.8368105881069
+            }
+          ]
         },
         {
           "mode": {
@@ -1351,7 +1945,18 @@
               "sign": -1
             },
             "count": 114
-          }
+          },
+          "ties": [
+            {
+              "seed": 1573,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -514.8368105881069
+            }
+          ]
         },
         {
           "mode": {
@@ -1376,7 +1981,18 @@
               "sign": 1
             },
             "count": 120
-          }
+          },
+          "ties": [
+            {
+              "seed": 2055,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -513.3452829294299
+            }
+          ]
         },
         {
           "mode": {
@@ -1401,7 +2017,18 @@
               "sign": -1
             },
             "count": 120
-          }
+          },
+          "ties": [
+            {
+              "seed": 1246,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -513.3452829294299
+            }
+          ]
         },
         {
           "mode": {
@@ -1426,7 +2053,18 @@
               "sign": 1
             },
             "count": 111
-          }
+          },
+          "ties": [
+            {
+              "seed": 194,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -515.0183906546113
+            }
+          ]
         },
         {
           "mode": {
@@ -1451,7 +2089,18 @@
               "sign": -1
             },
             "count": 111
-          }
+          },
+          "ties": [
+            {
+              "seed": 3107,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -515.0183906546113
+            }
+          ]
         }
       ],
       "top2Fraction": 0.11892963330029732,
@@ -1483,6 +2132,26 @@
         },
         "count": 153
       },
+      "ties": [
+        {
+          "seed": 1177,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -716.3944768327723
+        },
+        {
+          "seed": 2124,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -716.3944768327723
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -1507,7 +2176,18 @@
               "sign": 1
             },
             "count": 153
-          }
+          },
+          "ties": [
+            {
+              "seed": 2046,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -760.495524567441
+            }
+          ]
         },
         {
           "mode": {
@@ -1532,7 +2212,18 @@
               "sign": -1
             },
             "count": 153
-          }
+          },
+          "ties": [
+            {
+              "seed": 1255,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -760.495524567441
+            }
+          ]
         },
         {
           "mode": {
@@ -1557,7 +2248,18 @@
               "sign": 1
             },
             "count": 149
-          }
+          },
+          "ties": [
+            {
+              "seed": 1177,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -716.3944768327723
+            }
+          ]
         },
         {
           "mode": {
@@ -1582,7 +2284,18 @@
               "sign": -1
             },
             "count": 149
-          }
+          },
+          "ties": [
+            {
+              "seed": 2124,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -716.3944768327723
+            }
+          ]
         },
         {
           "mode": {
@@ -1607,7 +2320,18 @@
               "sign": 1
             },
             "count": 150
-          }
+          },
+          "ties": [
+            {
+              "seed": 1855,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -736.1937510112706
+            }
+          ]
         },
         {
           "mode": {
@@ -1632,7 +2356,18 @@
               "sign": -1
             },
             "count": 150
-          }
+          },
+          "ties": [
+            {
+              "seed": 1446,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -736.1937510112706
+            }
+          ]
         },
         {
           "mode": {
@@ -1657,7 +2392,18 @@
               "sign": 1
             },
             "count": 148
-          }
+          },
+          "ties": [
+            {
+              "seed": 2516,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -742.9283247617059
+            }
+          ]
         },
         {
           "mode": {
@@ -1682,7 +2428,18 @@
               "sign": -1
             },
             "count": 148
-          }
+          },
+          "ties": [
+            {
+              "seed": 785,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -742.9283247617059
+            }
+          ]
         }
       ],
       "top2Fraction": 0.10782241014799154,
@@ -1714,6 +2471,26 @@
         },
         "count": 175
       },
+      "ties": [
+        {
+          "seed": 41,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": -894.2329543104456
+        },
+        {
+          "seed": 3260,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": -894.2329543104456
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -1738,7 +2515,18 @@
               "sign": 1
             },
             "count": 172
-          }
+          },
+          "ties": [
+            {
+              "seed": 41,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -894.2329543104456
+            }
+          ]
         },
         {
           "mode": {
@@ -1763,7 +2551,18 @@
               "sign": -1
             },
             "count": 172
-          }
+          },
+          "ties": [
+            {
+              "seed": 3260,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -894.2329543104456
+            }
+          ]
         },
         {
           "mode": {
@@ -1788,7 +2587,18 @@
               "sign": 1
             },
             "count": 175
-          }
+          },
+          "ties": [
+            {
+              "seed": 342,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -918.8408586035441
+            }
+          ]
         },
         {
           "mode": {
@@ -1813,7 +2623,18 @@
               "sign": -1
             },
             "count": 175
-          }
+          },
+          "ties": [
+            {
+              "seed": 2959,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -918.8408586035441
+            }
+          ]
         },
         {
           "mode": {
@@ -1838,7 +2659,18 @@
               "sign": 1
             },
             "count": 171
-          }
+          },
+          "ties": [
+            {
+              "seed": 2614,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -917.3054409676918
+            }
+          ]
         },
         {
           "mode": {
@@ -1863,7 +2695,18 @@
               "sign": -1
             },
             "count": 171
-          }
+          },
+          "ties": [
+            {
+              "seed": 687,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -917.3054409676918
+            }
+          ]
         },
         {
           "mode": {
@@ -1888,7 +2731,18 @@
               "sign": 1
             },
             "count": 173
-          }
+          },
+          "ties": [
+            {
+              "seed": 1053,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -925.897328822382
+            }
+          ]
         },
         {
           "mode": {
@@ -1913,7 +2767,18 @@
               "sign": -1
             },
             "count": 173
-          }
+          },
+          "ties": [
+            {
+              "seed": 2248,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -925.897328822382
+            }
+          ]
         }
       ],
       "top2Fraction": 0.10497900419916016,
@@ -1945,6 +2810,26 @@
         },
         "count": 297
       },
+      "ties": [
+        {
+          "seed": 2899,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": -1678.8682320215344
+        },
+        {
+          "seed": 402,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": -1678.8682320215344
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -1969,7 +2854,18 @@
               "sign": 1
             },
             "count": 297
-          }
+          },
+          "ties": [
+            {
+              "seed": 2899,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -1678.8682320215344
+            }
+          ]
         },
         {
           "mode": {
@@ -1994,7 +2890,18 @@
               "sign": -1
             },
             "count": 297
-          }
+          },
+          "ties": [
+            {
+              "seed": 402,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -1678.8682320215344
+            }
+          ]
         },
         {
           "mode": {
@@ -2019,7 +2926,18 @@
               "sign": 1
             },
             "count": 286
-          }
+          },
+          "ties": [
+            {
+              "seed": 1133,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -1736.6561240843157
+            }
+          ]
         },
         {
           "mode": {
@@ -2044,7 +2962,18 @@
               "sign": -1
             },
             "count": 286
-          }
+          },
+          "ties": [
+            {
+              "seed": 2168,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -1736.6561240843157
+            }
+          ]
         },
         {
           "mode": {
@@ -2069,7 +2998,18 @@
               "sign": 1
             },
             "count": 282
-          }
+          },
+          "ties": [
+            {
+              "seed": 3287,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -1685.5115386461798
+            }
+          ]
         },
         {
           "mode": {
@@ -2094,7 +3034,18 @@
               "sign": -1
             },
             "count": 282
-          }
+          },
+          "ties": [
+            {
+              "seed": 14,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -1685.5115386461798
+            }
+          ]
         },
         {
           "mode": {
@@ -2119,7 +3070,18 @@
               "sign": 1
             },
             "count": 282
-          }
+          },
+          "ties": [
+            {
+              "seed": 28,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -1741.1794187634257
+            }
+          ]
         },
         {
           "mode": {
@@ -2144,7 +3106,18 @@
               "sign": -1
             },
             "count": 282
-          }
+          },
+          "ties": [
+            {
+              "seed": 3273,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -1741.1794187634257
+            }
+          ]
         }
       ],
       "top2Fraction": 0.09936433589829374,
@@ -2176,6 +3149,26 @@
         },
         "count": 46
       },
+      "ties": [
+        {
+          "seed": 1562,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": -114.6655877990332
+        },
+        {
+          "seed": 1739,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": -114.6655877990332
+        }
+      ],
       "modes": [
         {
           "mode": {
@@ -2200,7 +3193,18 @@
               "sign": 1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 2154,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -123.27038596403804
+            }
+          ]
         },
         {
           "mode": {
@@ -2225,7 +3229,18 @@
               "sign": -1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 1147,
+              "mode": {
+                "rank": "linear",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -123.27038596403804
+            }
+          ]
         },
         {
           "mode": {
@@ -2250,7 +3265,18 @@
               "sign": 1
             },
             "count": 45
-          }
+          },
+          "ties": [
+            {
+              "seed": 582,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -128.64404686151437
+            }
+          ]
         },
         {
           "mode": {
@@ -2275,7 +3301,18 @@
               "sign": -1
             },
             "count": 45
-          }
+          },
+          "ties": [
+            {
+              "seed": 2719,
+              "mode": {
+                "rank": "linear",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -128.64404686151437
+            }
+          ]
         },
         {
           "mode": {
@@ -2300,7 +3337,18 @@
               "sign": 1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 2361,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": 1
+              },
+              "score": -116.27586307920063
+            }
+          ]
         },
         {
           "mode": {
@@ -2325,7 +3373,18 @@
               "sign": -1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 940,
+              "mode": {
+                "rank": "log15",
+                "advance": "all",
+                "sign": -1
+              },
+              "score": -116.27586307920063
+            }
+          ]
         },
         {
           "mode": {
@@ -2350,7 +3409,18 @@
               "sign": 1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 1562,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": 1
+              },
+              "score": -114.6655877990332
+            }
+          ]
         },
         {
           "mode": {
@@ -2375,7 +3445,18 @@
               "sign": -1
             },
             "count": 46
-          }
+          },
+          "ties": [
+            {
+              "seed": 1739,
+              "mode": {
+                "rank": "log15",
+                "advance": "nonrepeat",
+                "sign": -1
+              },
+              "score": -114.6655877990332
+            }
+          ]
         }
       ],
       "top2Fraction": 0.1513157894736842,
@@ -2402,6 +3483,29 @@
         },
         "score": 114.9660067384446
       },
+      "ties": [
+        {
+          "seed": 1033,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": 114.9660067384446
+        },
+        {
+          "seed": 2268,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": 114.9660067384446
+        }
+      ],
+      "distinctHeldoutTapes": 1,
+      "trueTapeInFitTie": true,
+      "heldoutConsensusCorrect": 170,
       "fitCorrect": 345,
       "holdoutCorrect": 170,
       "holdoutLength": 170,
@@ -2442,6 +3546,47 @@
         },
         "score": 209.08984566320558
       },
+      "ties": [
+        {
+          "seed": 1,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": 1
+          },
+          "score": 209.08984566320558
+        },
+        {
+          "seed": 3300,
+          "mode": {
+            "rank": "linear",
+            "advance": "all",
+            "sign": -1
+          },
+          "score": 209.08984566320558
+        },
+        {
+          "seed": 1,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": 209.08984566320558
+        },
+        {
+          "seed": 3300,
+          "mode": {
+            "rank": "linear",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": 209.08984566320558
+        }
+      ],
+      "distinctHeldoutTapes": 2,
+      "trueTapeInFitTie": true,
+      "heldoutConsensusCorrect": 243,
       "fitCorrect": 522,
       "holdoutCorrect": 243,
       "holdoutLength": 258,
@@ -2482,6 +3627,29 @@
         },
         "score": 178.86569574523247
       },
+      "ties": [
+        {
+          "seed": 1777,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": 1
+          },
+          "score": 178.86569574523247
+        },
+        {
+          "seed": 1524,
+          "mode": {
+            "rank": "log15",
+            "advance": "nonrepeat",
+            "sign": -1
+          },
+          "score": 178.86569574523247
+        }
+      ],
+      "distinctHeldoutTapes": 1,
+      "trueTapeInFitTie": true,
+      "heldoutConsensusCorrect": 250,
       "fitCorrect": 505,
       "holdoutCorrect": 250,
       "holdoutLength": 250,
