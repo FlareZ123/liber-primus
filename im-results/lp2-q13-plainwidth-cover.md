@@ -26,3 +26,17 @@ Native C++17/O3 original + controls executed locally. Source blob 05472d5d640957
 - `sims/lp2_q13_plainwidth_cover_score_sft.cjs`: run with C++ original stdout file path. `im-results/lp2-q13-plainwidth-cover-score.json`: every candidate's exact optimal plaintext/path score and all donor floors.
 
 **Boundary correction:** exact original search was recompiled and rerun with p27 starting at 6527. All 73 candidate rows (including keys and positions) are identical to the earlier run. The original incorrect middle cut changed only search counts; the terminal language-floor score is unchanged. The standalone bank runner now checks the frozen bank rather than selecting a different one.
+
+## Stronger exact exclusion, with terminal chapter completely unconstrained
+
+The 57-word bank was fixed before this extension. Restrict every reference occurrence to one of the first eight true physical chapters, with the final 308 runes ignored. Exact interval coverage of the same 532,345 full-book windows leaves only 10 uncovered, all Shakespeare starts 135600..135609. Gibran and Emerson have no uncovered start. Among eligible dictionary words in those ten reference windows (wholly in an early chapter, >=11 consuming phases), three cover all ten. Deterministic ranking by coverage, phase count, length, then earliest donor position selects EXECUTIANERS (native GP rendering of executioners), encoded `iei51gr9i4f`, at donor offset 137463. Neither original cipher values nor any score select this word.
+
+Exact extension: 12,866 original placements; 10,820,306 complete key-anchor cases; 8,741,354 relaxed-reachability exclusions; 2,078,952 complete assignments tested; 17 legal local assignments, all in the final chapter. **No original early-chapter survivor.** Every one of the 58 bank words now has zero early-chapter survivors. Reference coverage after addition is complete: 33,879 Gibran + 204,151 Shakespeare + 294,315 Emerson = 532,345, minimum early-chapter anchors 1 in each. Together the original 57 and new word account for 41,695,096 complete key-anchor cases, zero in the first eight chapters. All windows therefore fail by exact anchored reachability, with no language-score threshold, even independent chapter-private keys and arbitrary terminal chapter. This proves the finite ordered reference population is excluded; texts outside the selected bank-coverage condition are not universally excluded.
+
+Reproduce the extension from repository root:
+```sh
+node sims/lp2_q13_plainwidth_early_chapter_cover_sft.cjs bank > extra.txt
+g++ -O3 -std=c++17 sims/lp2_q13_plainwidth_cover_sft.cpp -o width-cover
+./width-cover original book.txt extra.txt
+```
+`book.txt` is the same base36 canonical original tape described above. The generalized exact C++ source blob is `4e90fcaa38a53e91219a10b0b7deef7346143b81`; no algorithm change beyond allowing a nonempty single-word bank. Original 20000 exact toy transition controls passed again. Exact coverage and extension totals in `im-results/lp2-q13-plainwidth-early-chapter-cover.json`. C++ compiled/run locally, coverage core executed V8. The earlier terminal score comparison remains a diagnostic, no longer needed for exclusion.
