@@ -54,17 +54,19 @@ function study(data, restarts=48, iterations=42){
  }
  // Exact Viterbi: at a fixed emitted position and hold count, last rune is
  // determined by whether the last event consumed or held. Two state types suffice.
- function decode(S,A,B,prev=-1,bigram=true){const {C,n,H,lim,sh,start}=S,IA=inv(A),N=2*H,back=new Int8Array(n*N).fill(-1),last=new Int8Array(N).fill(-1),nl=new Int8Array(N).fill(-1);let v=new Float64Array(N).fill(-Infinity),nv=new Float64Array(N).fill(-Infinity);v[0]=0;last[0]=prev;
+ function decode(S,A,B,prev=-1,bigram=true,allEnds=false){const {C,n,H,lim,sh,start}=S,IA=inv(A),N=2*H,back=new Int8Array(n*N).fill(-1),last=new Int8Array(N).fill(-1),nl=new Int8Array(N).fill(-1);let v=new Float64Array(N).fill(-Infinity),nv=new Float64Array(N).fill(-Infinity);v[0]=0;last[0]=prev;
    for(let i=0;i<n;i++){nv.fill(-Infinity);nl.fill(-1);const c=C[i],o=i*H;
      for(let h=0;h<=lim[i];h++)for(let ty=0;ty<2;ty++){const a=h*2+ty,base=v[a];if(!Number.isFinite(base))continue;const lastp=last[a];
        const r=(B[c]+Q-sh[o+h])%Q;if(r!==0){const p=IA[r],b=h*2,score=base+(bigram&&lastp>=0?LM[lastp*Q+p]:Math.log(freq[p]));if(score>nv[b]){nv[b]=score;nl[b]=p;back[i*N+b]=ty}}
        if(c===0){const b=(h+1)*2+1,score=base+(bigram&&lastp>=0?LM[lastp*Q]:Math.log(freq[0]));if(score>nv[b]){nv[b]=score;nl[b]=0;back[i*N+b]=ty}}
      }[v,nv]=[nv,v];last.set(nl);
    }
-   let a=0;for(let j=1;j<N;j++)if(v[j]>v[a])a=j;if(!Number.isFinite(v[a]))return null;
-   const score=v[a],endH=a>>1,endLast=last[a],P=new Int8Array(n);
-   for(let i=n-1;i>=0;i--){const h=a>>1,ty=a&1,pt=back[i*N+a];assert(pt>=0,"backtrack");if(ty){P[i]=0;a=(h-1)*2+pt}else{P[i]=IA[(B[C[i]]+Q-sh[i*H+h])%Q];a=h*2+pt}}
-   return {score,P:Array.from(P),end:start+n-endH,last:endLast}
+   function trace(a){const score=v[a],endH=a>>1,endLast=last[a],P=new Int8Array(n);
+     for(let i=n-1;i>=0;i--){const h=a>>1,ty=a&1,pt=back[i*N+a];assert(pt>=0,"backtrack");if(ty){P[i]=0;a=(h-1)*2+pt}else{P[i]=IA[(B[C[i]]+Q-sh[i*H+h])%Q];a=h*2+pt}}
+     return {score,P:Array.from(P),end:start+n-endH,last:endLast}
+   }
+   if(allEnds){const out=[];for(let a=0;a<N;a++)if(Number.isFinite(v[a]))out.push(trace(a));return out.sort((a,b)=>b.score-a.score)}
+   let a=0;for(let j=1;j<N;j++)if(v[j]>v[a])a=j;if(!Number.isFinite(v[a]))return null;return trace(a);
  }
  // Maximize a fixed rank tape's bigram objective over the unknown inner alphabet.
  function refineAlpha(A,P,rand){const rank=P.map(p=>A[p]),M=new Int32Array(Q*Q);for(let i=1;i<rank.length;i++)M[rank[i-1]*Q+rank[i]]++;
@@ -170,7 +172,7 @@ function study(data, restarts=48, iterations=42){
        const final=pooled(full,structured(A,B,0));
        const record={start,kind:item.kind,initBeta,fitBeta:truthB?B.reduce((s,v,i)=>s+(v===truthB[i]),0):null,strictLL:Number.isFinite(final.ll)?final.ll:null};
        records.push(record);
-       if(Number.isFinite(final.ll)){candidates.push({ll:final.ll,A:Array.from(A),B:Array.from(B),record});candidates.sort((a,b)=>b.ll-a.ll);if(candidates.length>4)candidates.pop()}
+       if(Number.isFinite(final.ll)){const q={ll:final.ll,A:Array.from(A),B:Array.from(B),record};if(!candidates.some(x=>x.A.join()===q.A.join()&&x.B.join()===q.B.join())){candidates.push(q);candidates.sort((a,b)=>b.ll-a.ll);if(candidates.length>4)candidates.pop()}}
      }
    }
    let best=null;
@@ -184,10 +186,12 @@ function study(data, restarts=48, iterations=42){
    }
    function evaluate(A,B,D){if(D.some(x=>!x))return null;let fit=0,held=0,nheld=0,ok=true,legal=true,fitScore=0,heldScore=0,scopes=[];
      for(let i=0;i<C.length;i++){
-       const d=D[i],cut=cuts[i],h=decode(setup(C[i].slice(cut),K,d.end),A,B,d.last);
+       const d=D[i],cut=cuts[i],ends=decode(full[i],A,B,-1,true,true);let joint=null;
+       for(const e of ends){const h=decode(setup(C[i].slice(cut),K,e.end),A,B,e.last);if(h&&(!joint||e.score+h.score>joint.e.score+joint.h.score))joint={e,h}}
+       const h=joint?joint.h:null;
        const fitCorrect=truth?d.P.reduce((s,v,j)=>s+(v===truth[i][j]),0):null,heldCorrect=truth&&h?h.P.reduce((s,v,j)=>s+(v===truth[i][cut+j]),0):null;
-       const replay=!!h&&encrypt(d.P.concat(h.P),K,A,B).join()===C[i].join();
-       fit+=fitCorrect||0;held+=heldCorrect||0;nheld+=C[i].length-cut;fitScore+=d.score;heldScore+=h?h.score:0;ok=ok&&replay;legal=legal&&!!h;scopes.push({fit:cut,fitCorrect,held:C[i].length-cut,heldCorrect,replay,fitEnd:d.end,fitScore:d.score,heldScore:h?h.score:null,...(!truth?{fitP:d.P,heldP:h?h.P:null}:{} )})
+       const replay=!!h&&encrypt(joint.e.P.concat(h.P),K,A,B).join()===C[i].join();
+       fit+=fitCorrect||0;held+=heldCorrect||0;nheld+=C[i].length-cut;fitScore+=d.score;heldScore+=h?h.score:0;ok=ok&&replay;legal=legal&&!!h;scopes.push({fit:cut,fitCorrect,held:C[i].length-cut,heldCorrect,replay,fitEnd:d.end,continuationEnd:joint?joint.e.end:null,possibleFitEnds:ends.length,fitScore:d.score,heldScore:h?h.score:null,...(!truth?{fitP:joint?joint.e.P:d.P,heldP:h?h.P:null}:{} )})
      }
      return {fit:truth?fit:null,fitLength:poolLength,held:truth?held:null,heldLength:nheld,fitScore,heldScore:legal?heldScore:null,legal,exactReplay:ok,A,B,betaCorrect:truthB?B.reduce((s,v,i)=>s+(v===truthB[i]),0):null,alphaCorrect:truthA?A.reduce((s,v,i)=>s+(v===truthA[i]),0):null,scopes}
    }
@@ -201,7 +205,7 @@ function study(data, restarts=48, iterations=42){
    const gate=controls.every(c=>c.result.best&&c.result.best.fit>=.9*c.result.best.fitLength&&c.result.best.held>=.9*c.result.best.heldLength&&c.result.best.exactReplay);
    const tape=c.pages.slice(0,56).flatMap(p=>p.indices),rows=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
    const original=gate?curriculum(rows,K,0x44f155):null;
-   return {model:'authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver, gate requires >=90% fit and frozen suffix on two fresh plants',controls,gate,original}
+   return {model:'authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver retaining all legal prefix Viterbi end states, keys frozen; gate requires >=90% fit and frozen suffix on two fresh plants',controls,gate,original}
  }
  return multi();
 
