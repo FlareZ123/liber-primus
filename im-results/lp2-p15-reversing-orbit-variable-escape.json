@@ -1,0 +1,99 @@
+{
+  "blobs": [
+    "4f2a421c1875be06215dd905784fa8a1ecf574fd",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  ],
+  "n": 9194,
+  "cut": 5878,
+  "orbit": 1650,
+  "nativeMax": [
+    {
+      "max": 24,
+      "topTwoFloor": 1066,
+      "windows": 211230,
+      "example": 125497
+    },
+    {
+      "max": 46,
+      "topTwoFloor": 1124,
+      "windows": 56616,
+      "example": 49173
+    },
+    {
+      "max": 47,
+      "topTwoFloor": 1107,
+      "windows": 315451,
+      "example": 307740
+    }
+  ],
+  "globalNativeMinAdjacentPairMax": 47,
+  "topTwoFloor": 1066,
+  "maxTop4PlusRepeat": 1038,
+  "maxTop4Config": {
+    "read": 0,
+    "hold": true,
+    "dir": -1,
+    "kind": 0,
+    "sign": -1,
+    "phase": 283
+  },
+  "fullShiftEvals": 79200,
+  "evaluated": 26400,
+  "equivalentFullConfigurations": 79200,
+  "minBound": 0,
+  "minBoundConfig": {
+    "read": 0,
+    "hold": false,
+    "dir": -1,
+    "kind": 0,
+    "phase": 0
+  },
+  "needExact": 26400,
+  "minExact": 89,
+  "minExactConfig": {
+    "read": 0,
+    "hold": true,
+    "dir": -1,
+    "kind": 1,
+    "phase": 862
+  },
+  "survivors": 0,
+  "samples": [],
+  "controls": [
+    {
+      "donor": 1,
+      "config": {
+        "read": 0,
+        "hold": true,
+        "dir": -1,
+        "kind": 1,
+        "phase": 763
+      },
+      "escape": 27,
+      "knownKeyFitHits": 5877,
+      "knownKeyHeldHits": 3316,
+      "parityBound": 0,
+      "assignmentBound": 0,
+      "minAdjacentPair": 5
+    },
+    {
+      "donor": 2,
+      "config": {
+        "read": 1,
+        "hold": false,
+        "dir": 1,
+        "kind": 0,
+        "phase": 1481
+      },
+      "escape": 25,
+      "knownKeyFitHits": 5877,
+      "knownKeyHeldHits": 3316,
+      "parityBound": 0,
+      "assignmentBound": 0,
+      "minAdjacentPair": 5
+    }
+  ]
+}
