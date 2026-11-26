@@ -58,7 +58,22 @@ Treating these values as one-based positions in the full signed message, then re
 
 **PATH THE WAY THE MAP THE ROAD THEIR NUMBERS.**
 
-This is closely aligned with the signed message's own path/way/map/road/numbers instruction. As a secondary check, the existing p0 DEVOTED crib has residual key **[21,4,15,19,5,12,10]**, whose distinct source-ordered positions give **LIES EMPTY LIBER IS ITS MAP MEANING**.
+This is closely aligned with the signed message's own path/way/map/road/numbers instruction.
+
+The candidate comparison is bounded by the signed source rather than open-ended English: EPIPHANY is the only 8-rune source word, and the source contains exactly eight 5-rune words. For each possible 8+5 title, compute the residual key and compare its distinct one-based source positions with the source-defined instruction spine at positions [3,8,14,18,19,23,24,26,27] (PATH / THE / WAY / THE / MAP / THE / ROAD / THEIR / NUMBERS):
+
+| Second word | Zeroes in residual | Unique valid positions | Spine overlap | Exact spine set |
+| --- | ---: | ---: | ---: | --- |
+| HELLO | 0 | 10 | 7/9 | no |
+| EMPTY | 0 | 9 | 7/9 | no |
+| SEEKS | 2 | 8 | 7/9 | no |
+| LIBER | 0 | 9 | 7/9 | no |
+| **WORDS** | **0** | **9** | **9/9** | **yes** |
+| MEANING | 0 | 11 | 7/9 | no |
+| FOUND | 0 | 12 | 8/9 | no |
+| FALSE | 0 | 11 | 7/9 | no |
+
+Thus WORDS is the unique member of this eight-candidate family whose residual selects exactly the source-defined spine. As a secondary check, the existing p0 DEVOTED crib has residual key **[21,4,15,19,5,12,10]**, whose distinct source-ordered positions give **LIES EMPTY LIBER IS ITS MAP MEANING**.
 
 These projections are **not independent decryptions**: the residual keys depend on the proposed plaintexts, and sorting/deduplicating selected positions is an interpretive readout. They are useful consistency observations, not proof of the key schedule.
 

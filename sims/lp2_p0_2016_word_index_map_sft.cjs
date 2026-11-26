@@ -114,6 +114,28 @@ assert.deepEqual(devotedCipher, [15,22,16,22,21,1,4]);
 assert.deepEqual(devotedPlain, [23,18,1,3,16,18,23]);
 assert.deepEqual(devotedKey, [21,4,15,19,5,12,10]);
 
+const eightRuneWords = sourceWords.filter((word) => gpWord(word).length === 8);
+const fiveRuneWords = sourceWords.filter((word) => gpWord(word).length === 5);
+const corePositions = [3,8,14,18,19,23,24,26,27];
+assert.deepEqual(eightRuneWords, ["EPIPHANY"]);
+assert.deepEqual(fiveRuneWords, ["HELLO","EMPTY","SEEKS","LIBER","WORDS","MEANING","FOUND","FALSE"]);
+const boundedTitleScan = fiveRuneWords.map((candidate) => {
+  const candidatePlain = [...epiphany, ...gpWord(candidate)];
+  const candidateKey = residual(titleCipher, candidatePlain);
+  const positions = [...new Set(candidateKey.filter((v) => v >= 1 && v <= sourceWords.length))]
+    .sort((a, b) => a - b);
+  const overlap = positions.filter((v) => corePositions.includes(v)).length;
+  return {
+    candidate,
+    zeroCount: candidateKey.filter((v) => v === 0).length,
+    uniqueValidPositions: positions.length,
+    coreOverlap: overlap + "/9",
+    exactCoreSet: positions.length === corePositions.length && positions.every((v, i) => v === corePositions[i])
+  };
+});
+assert.equal(boundedTitleScan.filter((row) => row.exactCoreSet).length, 1);
+assert.equal(boundedTitleScan.find((row) => row.exactCoreSet).candidate, "WORDS");
+
 const bodyWords = sourceWords.slice(1, 30);
 const output = {
   signedSource: {
@@ -135,6 +157,13 @@ const output = {
     zeroBasedFullMessagePointers: project(p0THE.key, 0),
     oneBasedBodyPointers: p0THE.key.map((v) => bodyWords[v - 1] || null),
     selectedOneBasedSourceWordLengths: p0THE.key.map((v) => sourceLengths[v - 1])
+  },
+  boundedTitleScan: {
+    uniqueEightRuneSourceWord: eightRuneWords,
+    fiveRuneCandidates: fiveRuneWords,
+    corePositions,
+    coreWords: corePositions.map((v) => sourceWords[v - 1]),
+    candidates: boundedTitleScan
   },
   p0Title: {
     cipher: titleCipher,
