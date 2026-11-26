@@ -24,7 +24,7 @@ int bb(int i){return i%Q;}
 int inv[Q],cls[Q],lens[3],floorScore[3];
 array<int16_t,TRI> sc;
 array<array<uint16_t,M>,M> nxt;
-array<array<uint8_t,M>,Q> dec,enc;
+array<array<uint8_t,M>,Q> decodeTable,enc;
 array<array<int,Q*Q>,33> tail;
 struct Data{string name;vector<int> c,p;int train;bool plant;array<int,3> truth;};
 struct Key{int u=-1,v=-1,iv=-1;bool valid()const{return u>=0;}};
@@ -36,7 +36,7 @@ void init(){
  for(int a=1;a<Q;a++)for(int b=1;b<Q;b++)if(md(a*b)==1)inv[a]=b;
  for(int s=0;s<M;s++){
   int A=aa(s),B=bb(s);
-  for(int x=0;x<Q;x++){dec[x][s]=md(inv[A]*(x-B));enc[x][s]=md(A*x+B);}
+  for(int x=0;x<Q;x++){decodeTable[x][s]=md(inv[A]*(x-B));enc[x][s]=md(A*x+B);}
   for(int k=0;k<M;k++)nxt[k][s]=id(md(A*aa(k)),md(A*bb(k)+B));
  }
  tail[0].fill(0);
@@ -46,7 +46,7 @@ void init(){
 }
 bool noncomm(int u,int v){return md(aa(u)*bb(v)+bb(u))!=md(aa(v)*bb(u)+bb(v));}
 vector<int> transform(const vector<int>& t,Key k,bool encrypt){
- int s=k.iv;vector<int> out;out.reserve(t.size());for(int x:t){int p=encrypt?x:dec[x][s];out.push_back(encrypt?enc[p][s]:p);s=nxt[cls[p]?k.v:k.u][s];}return out;
+ int s=k.iv;vector<int> out;out.reserve(t.size());for(int x:t){int p=encrypt?x:decodeTable[x][s];out.push_back(encrypt?enc[p][s]:p);s=nxt[cls[p]?k.v:k.u][s];}return out;
 }
 int rangeScore(const vector<int>& p,int start,int end){int sum=0;for(int i=start+2;i<end;i++)sum+=sc[(p[i-2]*Q+p[i-1])*Q+p[i]];return sum;}
 void rankOne(Stats& st,int score,Key k){
@@ -63,21 +63,21 @@ Stats run(const Data& d){
     if(!noncomm(u,v))continue;const uint16_t* t1=nxt[v].data();const uint16_t* ts[2]={t0,t1};
     for(int iv=0;iv<M;iv++){
      st.tested++;int state=iv;
-     int x=dec[d.c[0]][state];state=ts[cls[x]][state];
-     int y=dec[d.c[1]][state];state=ts[cls[y]][state];
+     int x=decodeTable[d.c[0]][state];state=ts[cls[x]][state];
+     int y=decodeTable[d.c[1]][state];state=ts[cls[y]][state];
      int sum=0,i=2;
      // Exact unconstrained suffix upper bound. No admissible prefix is pruned.
      for(;i<32;i++){
-      int z=dec[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;st.steps32++;
+      int z=decodeTable[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;st.steps32++;
       if(sum+tail[31-i][x*Q+y]<floorScore[0])break;
      }
      if(i<32)continue;
      st.pass32++;st.max32=max(st.max32,sum);
-     for(;i<64;i++){int z=dec[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
+     for(;i<64;i++){int z=decodeTable[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
      st.max64=max(st.max64,sum);if(sum<floorScore[1])continue;st.pass64++;
-     for(;i<128;i++){int z=dec[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
+     for(;i<128;i++){int z=decodeTable[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
      st.max128=max(st.max128,sum);if(sum<floorScore[2])continue;st.pass128++;
-     for(;i<d.train;i++){int z=dec[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
+     for(;i<d.train;i++){int z=decodeTable[d.c[i]][state];state=ts[cls[z]][state];sum+=sc[(x*Q+y)*Q+z];x=y;y=z;}
      rankOne(st,sum,{u,v,iv});
     }
    }
