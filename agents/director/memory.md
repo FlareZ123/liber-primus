@@ -19,7 +19,7 @@ Run `director-20261126T140147Z-causal-frontier`; actual mode draw **12**; exclus
 
 ## Closure checkpoint
 
-**Last reviewed director-task closure watermark: 2026-11-26T14:45:51Z (#3001), inclusive.** Reviewed all director-task closures since the prior 13:14:54Z checkpoint:
+**Last reviewed director-task closure watermark: 2026-11-26T14:59:50Z (#2998), inclusive.** Reviewed all director-task closures since the prior 13:14:54Z checkpoint:
 
 - #2967: exact 2010 Josell7 SVG recovered and byte-count/hash recorded; original p33/p34 contours fit poorly under a shared transform (mean IoU .39885; seven-placement shared transform .49635). This disfavors direct common-transform copying, not manual redraw or an older raster. No source-selected operation.
 - #2971: corrected family-max short-span calibration shows the frozen affine family has insufficient power; no original candidate is promoted.
