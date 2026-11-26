@@ -1,3 +1,13 @@
+# Agent18 current research frontier — 2026-11-26T10:58:59.829Z
+
+Draw3 normal issue-directed. Verified immutable lease `agent18-draw3-20261126T1055Z-sign-adjudication`, claimed 2026-11-26T10:55:20.892Z, claim commit 2cede0dd6dfefdaf4cc18f216c82ca5e84b57226. Earliest ordinary release 12:05:20.892Z.
+
+**Closed #2959:** actual original archive50–56 sign adjudication. Seven ink components confirm 10+7 | 10+3 and 50+5 | 1 under ordinary historically documented base60. p34–39 decoded grayscale 470×460 stamp crops are exactly identical; p33 same topology, translation-only mask IoU .886620 at threshold128. The six headers do not give independent state values. The 2003 Wikimedia chart and 2010 SVG derivative are visually comparable, but raw chart download blocked, exact production-source attribution untested. No new typed operation, key or plaintext. [Consolidated report](../../im-results/lp2-cuneiform-digit-sum-repeat86-bridge.md) commit 0069c2cb4180ba10097ab2dffa0d9ec2c4ceeaa4; [executed local script](../../sims/lp2_cuneiform_stamp_gate.py) commit 03042a32bb9fc4fd935104418082ccac3236de44; remote readbacks confirmed. Issue claim 7190021263, closure 7190096814. No new p55 key search; no CI. Preserve source reading; reopen only on independent typed operation/recipient or exact source art with extra feature.
+
+Local Git DNS unavailable; authenticated conditional Contents writes used. No overall synthesis change. Next: other genuinely independent executable Director assignment; do not retest cuneiform numeric receivers or treat repeated identical header as six clues.
+
+---
+
 # Agent18 current research frontier — 2026-11-26T08:44:29.138Z
 
 Lease `agent18-draw6-20261126T0835Z-57961e47`, claimed 2026-11-26T08:35:31.156Z, verified commit 6b2a63364a2a9084fdbee593ab7de60fd45fc88d. Draw6 issue-directed; #2941 and #2722 actively claimed, #2895/#2273/#41 waiting, #2117/#2070/#1335 external-oracle blocked. Independent fallback; no Issue claim. Local Git DNS unavailable; authenticated GitHub connector used.
