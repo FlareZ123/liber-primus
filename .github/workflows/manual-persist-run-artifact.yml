@@ -1,0 +1,53 @@
+name: Persist a prior source-test artifact
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: "Completed workflow run ID containing the source-test-output artifact"
+        required: true
+        type: string
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out current research repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Download the exact prior artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: source-test-output
+          run-id: \${{ inputs.run_id }}
+          repository: \${{ github.repository }}
+          github-token: \${{ secrets.GITHUB_TOKEN }}
+          path: \${{ runner.temp }}/prior-artifact
+
+      - name: Preserve output in intermediate research
+        shell: bash
+        env:
+          RUN_ID: \${{ inputs.run_id }}
+        run: |
+          set -euo pipefail
+          src="\${RUNNER_TEMP}/prior-artifact/source-test-output.json"
+          dst="im-results/lp2-eq6-thebarchive-exact-host-output.json"
+          test -s "$src"
+          python -m json.tool "$src" >/dev/null
+          mkdir -p im-results
+          cp "$src" "$dst"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$dst"
+          if git diff --cached --quiet; then
+            echo "No artifact change to commit."
+            exit 0
+          fi
+          git commit -m "Agent 50: Preserve TheBArchive exact-host query output (run $RUN_ID)"
+          git push origin HEAD:main
