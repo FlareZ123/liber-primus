@@ -1,6 +1,6 @@
 "use strict";
 /** Exact shared multiplicative GP29 pad with held-out fourth lane, both native clocks. */
-function experiment(corpus,raw,order=3,mode="all"){
+function experiment(corpus,raw,order=3,mode="all",joint=false,only=-1){
  const R=29,B=28,N=76,mod=x=>(x%R+R)%R,assert=(x,m)=>{if(!x)throw Error(m)};
  const tokens=new Map(corpus.translit.map((x,i)=>[x,i]));
  function tokenize(s){const out=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/[KQ]/g,"C").replace(/V/g,"U").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");for(let i=0;i<w.length;){const t=w.slice(i,i+2);if(tokens.has(t)){out.push(tokens.get(t));i+=2}else{assert(tokens.has(w[i]),"unmapped token");out.push(tokens.get(w[i++]));}}}return out}
@@ -33,7 +33,9 @@ function experiment(corpus,raw,order=3,mode="all"){
    const es=events[i],bases=es.map(e=>{const a=new Int32Array(states);for(let d=1;d<e.tab.length;d++){const v=e.tab[d],ix=digits[d-1];for(let s=0;s<states;s++)a[s]+=v[ix[s]]}return a});
    next.fill(-Infinity);const bt=back[i];
    for(let s=0;s<states;s++){const prior=dp[s];if(!Number.isFinite(prior))continue;const q=(s%tail)*B;
-    for(let k=0;k<B;k++){let val=prior;for(let e=0;e<es.length;e++)val+=es[e].l[bases[e][s]+es[e].tab[0][k]];if(val>next[q+k]){next[q+k]=val;bt[q+k]=s}}
+    if(es.length===3){const a=es[0],b=es[1],c=es[2],la=a.l,lb=b.l,lc=c.l,xa=a.tab[0],xb=b.tab[0],xc=c.tab[0],ba=bases[0][s],bb=bases[1][s],bc=bases[2][s];for(let k=0;k<B;k++){const val=prior+la[ba+xa[k]]+lb[bb+xb[k]]+lc[bc+xc[k]];if(val>next[q+k]){next[q+k]=val;bt[q+k]=s}}}
+    else if(es.length===4){const a=es[0],b=es[1],c=es[2],d=es[3],la=a.l,lb=b.l,lc=c.l,ld=d.l,xa=a.tab[0],xb=b.tab[0],xc=c.tab[0],xd=d.tab[0],ba=bases[0][s],bb=bases[1][s],bc=bases[2][s],bd=bases[3][s];for(let k=0;k<B;k++){const val=prior+la[ba+xa[k]]+lb[bb+xb[k]]+lc[bc+xc[k]]+ld[bd+xd[k]];if(val>next[q+k]){next[q+k]=val;bt[q+k]=s}}}
+    else {for(let k=0;k<B;k++){let val=prior;for(let e=0;e<es.length;e++)val+=es[e].l[bases[e][s]+es[e].tab[0][k]];if(val>next[q+k]){next[q+k]=val;bt[q+k]=s}}}
    }
    [dp,next]=[next,dp];
   }
@@ -57,7 +59,7 @@ function experiment(corpus,raw,order=3,mode="all"){
  ["triple-outer-trim",[0,1,2].map(j=>I.map(i=>p27[3*(i+1)+j])).concat([p55])]];
  let seed=0x5eeda331;const rnd=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return 1+Math.floor(seed/4294967296*B)};
  const fmt=t=>t.map(i=>corpus.translit[i]).join("");
- const out={order,cuts,control:[],original:[]};
+ const out={order,cuts,joint,only,control:[],original:[]};
  for(const hold of [false,true]){
   if(mode==="all"||mode==="controls")for(let j=0;j<4;j++){
    const p=Array.from({length:4},(_,t)=>{const d=(j+t)%donors.length,off=cuts[d]+1000+j*1500+t*350;return donors[d].slice(off,off+N)});
@@ -65,13 +67,15 @@ function experiment(corpus,raw,order=3,mode="all"){
    // If needed, rotate lane roles so the largest consuming length is in the fit.
    const longest=p.reduce((best,t,i)=>act(t,hold)>act(p[best],hold)?i:best,0);if(longest===3)[p[0],p[3]]=[p[3],p[0]];
    const key=Array.from({length:N},rnd),ct=p.map(t=>encrypt(t,key,hold));
-   const hit=exact(ct.slice(0,3),hold),q=decrypt(ct[3],hit.key,hold);
-   assert(hit.score+1e-7>=p.slice(0,3).reduce((a,t)=>a+score(t),0),"MAP below truth");
+   if(only>=0&&only!==j+4*Number(hold))continue;
+   const hit=exact(joint?ct:ct.slice(0,3),hold),q=decrypt(ct[3],hit.key,hold);
+   assert(hit.score+1e-7>=p.slice(0,joint?4:3).reduce((a,t)=>a+score(t),0),"MAP below truth");
    const good=hit.key.filter((v,i)=>v===key[i]).length,match=(a,b)=>a.filter((v,i)=>v===b[i]).length;
-   out.control.push({hold,j,fitKeyLength:hit.key.length,fitKeyExact:good,fitRunes:hit.p.reduce((a,t,i)=>a+match(t,p[i]),0),heldExact:match(q,p[3]),heldMean:score(q)/N,trueHeldMean:score(p[3])/N,fitMean:hit.mean,held:fmt(q),truth:fmt(p[3])})
+   out.control.push({hold,j,truthFitMean:p.slice(0,joint?4:3).reduce((a,t)=>a+score(t),0)/(N*(joint?4:3)),fitKeyLength:hit.key.length,fitKeyExact:good,fitRunes:hit.p.reduce((a,t,i)=>a+match(t,p[i]),0),heldExact:match(q,p[3]),heldMean:score(q)/N,trueHeldMean:score(p[3])/N,fitMean:hit.mean,held:fmt(q),truth:fmt(p[3])})
   }
-  if(mode==="all"||mode==="original")for(const [name,ct] of layouts){
-   const hit=exact(ct.slice(0,3),hold),q=decrypt(ct[3],hit.key,hold);
+  if(mode==="all"||mode==="original")for(const [ix,[name,ct]] of layouts.entries()){
+   if(only>=0&&only!==ix+4*Number(hold))continue;
+   const hit=exact(joint?ct:ct.slice(0,3),hold),q=decrypt(ct[3],hit.key,hold);
    assert(String(encrypt(q,hit.key,hold))===String(ct[3]),"held replay");
    out.original.push({hold,name,fitMean:hit.mean,heldMean:score(q)/N,key:hit.key,fit:hit.p.map(fmt),held:fmt(q),heldIndices:q,active:ct.map(t=>act(t,hold))});
   }
@@ -79,4 +83,4 @@ function experiment(corpus,raw,order=3,mode="all"){
  return out;
 }
 module.exports={experiment};
-if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.join(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),["shakespeare_first300k.txt","gibran_prophet_58585.txt","emerson_essays_2944.txt"].map(x=>read("resources/control/"+x)),Number(process.argv[2]||3),process.argv[3]||"all"),null,2));}
+if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.join(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),["shakespeare_first300k.txt","gibran_prophet_58585.txt","emerson_essays_2944.txt"].map(x=>read("resources/control/"+x)),Number(process.argv[2]||3),process.argv[3]||"all",process.argv[4]==="joint",Number(process.argv[5]??-1)),null,2));}
