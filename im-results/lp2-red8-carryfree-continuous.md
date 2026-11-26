@@ -1,6 +1,6 @@
 # Carry-free source-red8 continuous common-cycle receiver (Agent11)
 
-**Status:** 24/128 original fixed key/clock/history configurations exactly excluded, 104 capped, no candidate with at most three OOV complete groups. Two genuine OOV native positive controls recovered their hidden alphabet, exact training plaintext and legal continuation replay. This is a partial negative result, not an original plaintext recovery or a general q8 exclusion.
+**Status:** 89/128 original fixed key/clock/history configurations exactly excluded, 39 capped, no candidate with at most three OOV complete groups. Two genuine OOV native positive controls recovered their hidden alphabet, exact training plaintext and legal continuation replay. This is a partial negative result, not an original plaintext recovery or a general q8 exclusion.
 
 ## Motivation and locked scope
 
@@ -25,7 +25,7 @@ Initial JS search timed out; compiled word-domain branch order was developed aga
 
 ## Original test
 
-Input: resources/liber-primus/lp2-page-groups-54-55-derived.json, complete black groups only. ID = 64*key + 8*Fmask + start. All 128 attempted at 3 seconds each; 15,088,898 nodes and 95 completed permutations across searches (possible duplicate permutations within configurations). Zero qualifying. **Completed/excluded IDs:** 13,24,28,29,31,40,44,45,47,48,51,53,55,56,57,60,61,62,63,112,115,117,119,126. Remaining 104 are unresolved, not excluded. Ordinal 19 complete; prime 5 complete.
+Input: resources/liber-primus/lp2-page-groups-54-55-derived.json, complete black groups only. ID = 64*key + 8*Fmask + start. All 128 attempted at 3 seconds each; 15,088,898 nodes and 95 completed permutations across searches (possible duplicate permutations within configurations). Zero qualifying. **Completed/excluded IDs:** 13,24,28,29,31,40,44,45,47,48,51,53,55,56,57,60,61,62,63,112,115,117,119,126. Initial pass: ordinal 19 complete; prime 5 complete. The 104 initially capped IDs were extended at 45 seconds each in [CI run 45808819275](https://github.com/FlareZ123/liber-primus/actions/runs/45808819275). All 16 jobs succeeded; all 104 distinct IDs have result rows ([raw logs parsed into JSON](lp2-red8-carryfree-continuous-extended.json)). 65 additional configurations were exactly exhausted with zero qualifying solutions. Combined: 89/128 excluded, 39 capped, zero qualifying. Ordinal: 49/64 excluded; prime: 40/64 excluded. Remaining unresolved IDs: 0,1,2,5,6,7,8,10,14,16,17,18,22,23,39,64,65,66,68,69,70,72,73,74,75,78,79,80,82,86,95,96,97,98,101,102,105,106,107.
 
 Dictionary source resources/control/english_wordfreq_textblob.txt, blob 140e1d22b5f8c45deddd2e8b25549d9d6307d938. The locally installed spelling file had identical 29,157 recognized lines by FNV-1a 3351310445 and reproduced 38,910 forms. Source embedding in test is explicit.
 
@@ -52,4 +52,4 @@ g++ -O3 -march=native -std=c++17 sims/lp2_red8_carryfree_anneal_sft.cpp -o annea
 
 ## Decision
 
-Keep the mandatory-carry exclusion clearly conditional. The missing-carry escape is now executable with true native OOV examples, without widening source keys or changing the clock. A complete no-carry-free fit exclusion would remove this particular escape from the fixed-source-key/continuous-clock branch, but it would not address arbitrary key residues, alternate clocks, different lexical coverage, or unknown plaintext generally. The 24 completed configurations are a reproducible partial constraint. Continue only if a stronger solver materially advances actual candidate recovery or completion.
+Keep the mandatory-carry exclusion clearly conditional. The missing-carry escape is now executable with true native OOV examples, without widening source keys or changing the clock. A complete no-carry-free fit exclusion would remove this particular escape from the fixed-source-key/continuous-clock branch, but it would not address arbitrary key residues, alternate clocks, different lexical coverage, or unknown plaintext generally. The 89 completed configurations are a reproducible partial constraint. Continue only if a stronger solver materially advances actual candidate recovery or completion.

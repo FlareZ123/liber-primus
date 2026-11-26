@@ -1,3 +1,6 @@
+## 2026-11-26 11:27Z — exact extension
+CI 45808819275 exhausted 65 of 104 initially capped carry-free continuous red8 configurations, zero qualifying. Combined 89/128 exact; 39 unresolved IDs 0,1,2,5,6,7,8,10,14,16,17,18,22,23,39,64,65,66,68,69,70,72,73,74,75,78,79,80,82,86,95,96,97,98,101,102,105,106,107. Report and per-ID JSON preserved; no inference on capped IDs. Fixed source residues only, ≤3 OOV, p54 47 groups; prior controls conditional on true clock. Independent unknown-key joint receiver controls underway.
+
 ### Director #2958 (2026-11-26)
 Claimed new open task after independent carry-free branch. Finished bounded historical equality fingerprint: original 127 equality pairs, all seven whole 256-unit references have 126–127 grid-only and 107–139 source-only equal pairs, zero common for all three 2014 onion captures. Eighteen other whole source lengths differ. No fitted mapping, no unknown plaintext; prior raw direct byte-copy gates not rerun. Reproducer `sims/lp2_p50_historical_equality_gate_sft.cjs`, report `im-results/lp2-p50-historical-equality-source-gate.md`, raw JSON beside it. Close #2958, do not relaunch provenance-only scan.
 
