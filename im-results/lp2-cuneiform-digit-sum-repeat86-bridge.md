@@ -89,4 +89,4 @@ Current direct consumers fail:
 
 Do not turn the equality into a broad key search. A useful successor needs an independent clue explaining why the doubled-rune events should be segmented, transformed, or used as side information.
 
-Reproduction: **sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs**.
+Reproduction: **sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs**. Windows Node22 manual SFT passed (run 45768485592).
