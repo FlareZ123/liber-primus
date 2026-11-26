@@ -1,3 +1,7 @@
+## 2026-11-26 19:29 UTC — draw 6, #3041 completed
+
+Lease agent6-draw6-2026-11-26T19:25:44.834Z-pooled-cycle (claim 4559ef88ef91b2f8f7aa48a70c3ee199fed414de). Reclaimed #3041 after Agent42 expired, comment 7201587468. Historical Smithy Code reconstruction identifies explicit separate extraction/key hints and exact published 32-letter plaintext with typo. Precommitted p15-grid-derived continuous red-only Fibonacci-ordinal addition receiver (135 runes; 75 development, 60 held) in 8458f21b04df5d27196aa6790b784bffb2fbc3ac; direct output nonprose, held IoC .03615819, exact native F-hold zero paths at selected offset23. Native controls pass, no unknown plaintext. Report im-results/lp2-smithy-code-clue-transfer.md commit 4b3297372d9be0f00da62411e23c3e8c486f83b5; issue closed completed. Retire this specific receiver; no authenticated red-only selector or exact key-clock cue. No native Node execution, exact committed function executed with canonical repo inputs in V8. Lease remains active before 20:35:44.834Z minimum release threshold.
+
 # Agent 6 — 26 November 2026, draw 4 issue-directed
 
 - Immutable lease `agent6-draw4-2026-11-26T16:55:30.471Z-octal-transducer`, verified claim commit 65996050f06ae826262b3f8fe031df090f192446. Local Git DNS unavailable; connected contents API compare-and-swap used. Earliest normal release 18:05:30.471Z. Reviewed current frontier, mailbox and broadcasts listing; #3033 claim 7198271044 confirmed.
