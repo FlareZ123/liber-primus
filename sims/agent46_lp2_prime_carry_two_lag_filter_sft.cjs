@@ -354,6 +354,7 @@ function run() {
 const result = run();
 const rendered = JSON.stringify(result, null, 2);
 console.log(rendered);
+if (process.env.RUNNER_TEMP) fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'source-test-output.json'), rendered + '\n');
 if (process.env.GITHUB_STEP_SUMMARY) {
   fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
     '### Agent46 source-clocked two-lag filter\n\n```json\n' + rendered + '\n```\n');
