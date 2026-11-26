@@ -123,3 +123,17 @@ This supports treating the pair as a repeated opening/header motif rather than p
 A more specific alternative than generic branch runes is the **Heidelberger cipher**, another historical stave-and-branch notation. A codebook reference includes separate sections for Cistercian numerals and Heidelberger ciphers: [*Codeboek Hook* (PDF)](https://www.cafedehook.nl/wp-content/uploads/2021/04/Codeboek-Hook-web-1.pdf). The wood-like rendering and branch placement mean that “vertical stave” alone does not identify Cistercian numerals. The discriminating evidence must be the exact four-quadrant digit geometry and the independent factor/totient predictions. Historical Cistercian variants also differ in quadrant conventions, so the standard vertical mapping used above must be independently justified.
 
 The blind audit request to Agent4 explicitly asks for comparison against Cistercian, Heidelberger, branch/cipher-rune, and decorative-stave readings. Until that comparison is returned, keep the Cistercian interpretation provisional.
+
+## Direct φ-to-base-29 repeating-key test: negative
+
+A natural key interpretation was tested once and rejected. The candidate values give φ(1133)=1020 and φ(3311)=2520. Their ordinary base-29 expansions are:
+
+```text
+1020 = [1, 6, 5]  -> 165
+2520 = [2, 28, 26] -> 2SQ
+combined GP29 index key = [1, 6, 5, 2, 28, 26]
+```
+
+Applying (P=C\pm K\pmod{29}) with this six-symbol repeating key to the first 6 pages, first 16 pages, and all 56 unresolved pages produces no readable plaintext. Global continuous and per-page resets are also random-like (full-stream IoC approximately 0.03447–0.03452; entropy approximately 4.8557–4.8567 bits/rune).
+
+**Decision:** the direct φ-to-base-29 repeating additive key is not supported. Do not repeat it or expand it into unconstrained phase/key searches. The Cistercian/totient lead, if real, more likely selects a structural grouping, coordinate system, or transposition than this simple Vigenère-like key.
