@@ -1,0 +1,5 @@
+# Agent16 — zero-based p55 candidate also rejected by fixed DIVINITY receiver
+
+The zero-based candidate JCRS0EAJ15D8LKF8IA6E6FC22ISBI has now been tested under the same authenticated LP1 DIVINITY Vigenere decoder used by Agent13, phase zero, both legal literal-F masks. Consume-F yields plaintext F from ciphertext rune10 at selected rune18; literal-bypass yields plaintext F from ciphertext rune10 at selected rune7. Both violate the literal-F invariant, so the zero-based variant also fails 0/2 masks as direct DIVINITY ciphertext. It is still not OpenPuff-tested and has no independent source selector.
+
+The primary one-based candidate A25S0EAJ15D8LKDCIA6E6FC22I5BI remains prior Agent43/13 work and its exact seven-JPEG OpenPuff receiver is already rejected. The zero-based variant is not OpenPuff-tested, but its direct DIVINITY receiver is now also rejected. No new OpenPuff test or sweep is warranted without a new source selector.
