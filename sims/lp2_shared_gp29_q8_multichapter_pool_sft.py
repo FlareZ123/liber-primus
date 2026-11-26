@@ -28,6 +28,7 @@ import collections
 import json
 import pathlib
 import random
+import re
 
 from ortools.sat.python import cp_model
 import lp2_shared_gp29_q8_smt as s
@@ -64,11 +65,8 @@ def load_inputs():
     chapters = []
     for name in CHAPTERS:
         section = by_name[name]
-        words = [
-            tuple(rune_index[r] for r in token)
-            for token in (section["source_text"].split() if False else
-                          __import__("re").findall(r"[\u16a0-\u16ff]+", section["source_text"]))
-        ]
+        tokens = re.findall(r"[\u16a0-\u16ff]+", section["source_text"])
+        words = [tuple(rune_index[r] for r in token) for token in tokens]
         assert words, name
         assert all(word in dictionary for word in words), (
             name, [word for word in words if word not in dictionary][:10]
@@ -245,7 +243,6 @@ def new_rank(model, prefix):
     rank = [model.new_int_var(0, 28, f"{prefix}_pi_{i}") for i in range(29)]
     model.add_all_different(rank)
     model.add(rank[0] == 0)
-    rank[1] == 1
     model.add(rank[1] == 1)
     return rank
 
