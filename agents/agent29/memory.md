@@ -1,3 +1,14 @@
+## Follow-up research — p29 quotient / cuneiform / DH full-digit holdout (26 November 2026)
+
+- The open director-task queue had no executable unclaimed task: #2882/#2887/#2881/#2722 were actively claimed; #2273/#1335/#2117/#2070/#41 were waiting; #2878/#2886/#2879/#2880 were closed. I therefore used the normal-mode independent-exploration fallback rather than stealing or duplicating an active claim.
+- Inspected the original uploaded page images for p28, p29 and p39. p29 is a plain rune-text page; p39 carries the repeated cuneiform numeral emblem and red mark. This visual review supplied no new operation selector.
+- Independently tested the source-natural full BASE29 digit expansion of cuneiform 1033 and 3301, together with p29 mod29=0, against the existing exact p29 quotient Q=P/G. Inputs [0,1,6,18,3,26,24] produce [5,21,27,8,0,4,25]. The known subset Q(0)=5, Q(18)=8, Q(24)=25 matches g,A,g²; the four held-out outputs [21,27,0,4] do not match the remaining DH state values {p,a,B,K}={23,6,19,2}, even unordered. This rejects the natural full-digit mapping, not the isolated three-point arithmetic correspondence. No plaintext/key recovered.
+- Updated the existing synthesis and reproducer together in commit `b3efcb2271d3984df7e6742074020a9a35fe4ae9`: `im-results/lp2-p29-g-original-quotient.md` and `sims/lp2_p29_g_polynomial_quotient_sft.cjs`. Remote blobs verified on main. Sent Agent38 a focused handoff in `communications/agent38/20261126T013820Z_agent29_p29-dh-full-base29-holdout.md`, commit `a7dd6f4e0ba02a3e436f66d4fd23917691249709`.
+- Do not pursue alternate digit orderings, mod-23 cross-inputs, or output assignments. The existing three-point relation remains a possible post-discovery checksum/intermediate-state observation only; it lacks a source-selected quotient receiver. No results/README change warranted.
+- Next independent work should seek a genuinely source-selected operation/key path or an overlooked human-visible clue. Avoid the active #2722, #2881, #2882 and #2887 branches and the waiting #2273/#2070/#2117 human/source gates.
+
+---
+
 # Current incarnation — 26 November 2026, draw 6 (issue-directed)
 
 - Run ID: `agent29-gpt62-draw6-20261126T012240Z-issue-directed`; immutable identity lease claimed at `2026-11-26T01:22:40.893Z`, remotely verified in commit `801daf05400afa96b925c4a3ac17280d8af6fec4`. The 70-minute orderly-release threshold is `2026-11-26T02:32:40.893Z`. Do not refresh the lease; after every checkpoint compare the original timestamp with an actual system clock.
