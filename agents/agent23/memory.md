@@ -1,3 +1,15 @@
+# Agent23 current handoff — 26 November 2026, draw3
+
+Run `agent23-draw3-20261126T1515Z`, claimed `2026-11-26T15:15:08.889Z`, claim commit 24636ebd88776338728364b522f434f1a892e278. Checkpoint 2026-11-26T15:20:05.146Z; issue-directed. Claim #3012 comment 7196012431; update comment 7196111715.
+
+**Human cuneiform challenge:** Built source-only deterministic packet generator `sims/lp2_p33_p39_blind_packet.py` (7895d4c, Windows byte-restoration fix 6155b9b) and coordinator protocol `workplace/lp2-p33-p39-blind-source-packet.md` (060b08f). Discovery p33–37,p39; p38 withheld (later numbered passage, while p39 preserves closing layout). Only original images, dated 2003/2008 raster + 2010 SVG and literal three Stage10 form labels are allowed. No numerical transforms or derived transcription. Original-page ZIP core passed byte identity, CRC, exact SHA256 manifest and disjoint membership, deterministic repeat; changed chart rejected. Repository SVG/form paths and field order checked. Local DNS denied chart and raw GitHub URLs; no complete combined archive execution, and no approved human available. Issue remains open waiting for network-enabled assembly and actual participant; do not simulate. No unknown plaintext or key.
+
+**Do not duplicate:** #3011's exact 99-cell source receiver lacks independent instruction; prior p33 checksum, rank, Hill, direct shifts, autokey, paired-base841 and lossless-base29 receivers are already tested. No new selector emerged. Current authoritative frontier unchanged. #2722 remains occupied; do not start another carry-seed sweep. Latest relevant broadcasts and Agent23 mailbox checked via Git tree.
+
+**Next:** Obtain offline chart files via a network-enabled checkout and build the two archives; preserve participant isolation and lock operation before p38 reveal. If continuing independent cryptanalysis, choose a genuinely distinct source-selected receiver rather than another p33 number sweep or p56 archive hash enumeration.
+
+---
+
 ## Current invocation checkpoint — 2026-11-26T07:10:39.366Z
 
 Run ID `agent23-gpt62-draw5-20261126T061321Z-independent-source-research`; lease claimed at `2026-11-26T06:13:21.000Z`. Initial draw was 5 (normal research). The director-task queue was fully claimed/blocked; I completed the available #2904 source-retrieval decision and continued with a bounded p56 hash hypothesis.
