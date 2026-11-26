@@ -1,0 +1,358 @@
+{
+  "width": 128,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "eligible": false,
+  "pilots": [
+    {
+      "key": [
+        21,
+        3,
+        0,
+        18,
+        4,
+        16,
+        17,
+        1,
+        5,
+        14,
+        26,
+        2,
+        27,
+        9,
+        15,
+        22,
+        23,
+        13,
+        25,
+        20,
+        6,
+        28,
+        10,
+        12,
+        8,
+        19,
+        11,
+        24,
+        7
+      ],
+      "initial": [
+        21,
+        3,
+        0,
+        18,
+        4,
+        16,
+        17,
+        1,
+        5,
+        14,
+        26,
+        2,
+        27,
+        9,
+        15,
+        22,
+        23,
+        13,
+        25,
+        20,
+        6,
+        28,
+        10,
+        12,
+        8,
+        19,
+        11,
+        24,
+        7
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 1.1485827480232604,
+          "improved": 0,
+          "evals": 407
+        }
+      ],
+      "truth": [
+        21,
+        3,
+        0,
+        18,
+        4,
+        16,
+        17,
+        1,
+        5,
+        14,
+        26,
+        2,
+        27,
+        9,
+        15,
+        22,
+        23,
+        13,
+        25,
+        20,
+        6,
+        28,
+        10,
+        12,
+        8,
+        19,
+        11,
+        24,
+        7
+      ],
+      "train": {
+        "n": 10317,
+        "repeats": 47,
+        "gain": 1.148582748023255,
+        "correct": 10317,
+        "usedRows": 27,
+        "keyRows": 27,
+        "preview": [
+          "ORWHATISPRAYERBUTTHEEXPANSIANOFYOURSELFINTOTHELIUNGETHERANDIFITISFORYOURCOMFORTTOPOUR",
+          "DSBEFORETHEYAREBORNINUSTHOUARTOURNEEDANDINGIUNGUSMOREOFTHYSELFTHOUGIUESTUSALLILLUSTRA"
+        ]
+      },
+      "held": {
+        "n": 2630,
+        "repeats": 11,
+        "gain": 1.1267433799955242,
+        "correct": 2630,
+        "usedRows": 28,
+        "keyRows": 28,
+        "preview": [
+          "IFTSEETHATYOUDONOTLIMPBEFORETHELAMEDEEMNGITCINDNESSYOUAREGOODINCOUNTLESSWAYSANDYOUA",
+          "CHISNOTGOODGOTOYOURFIELDSANDYOURGARDENSANDYOUSHALLLEARNTHATITISTHEPLEASUREOFTHEBEETOG"
+        ]
+      },
+      "trace": [
+        {
+          "K": [
+            21,
+            3,
+            0,
+            18,
+            4,
+            16,
+            17,
+            1,
+            5,
+            14,
+            26,
+            2,
+            27,
+            9,
+            15,
+            22,
+            23,
+            13,
+            25,
+            20,
+            6,
+            28,
+            10,
+            12,
+            8,
+            19,
+            11,
+            24,
+            7
+          ],
+          "score": 1.148582748023255,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.313145751107519,
+              "hardGain": -3.1207902040989017,
+              "keyRows": 5
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.2872844855380627,
+              "hardGain": -3.166883463184689,
+              "keyRows": 8
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.233981909282553,
+              "hardGain": -3.109296890812586,
+              "keyRows": 13
+            },
+            {
+              "iteration": 20,
+              "softLL": -2.671423184924929,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.57124123376453,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.571094813478848,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.5706076333244186,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.570607541223682,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.570607541211223,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            }
+          ]
+        },
+        {
+          "K": [
+            21,
+            3,
+            0,
+            18,
+            4,
+            16,
+            17,
+            1,
+            5,
+            14,
+            26,
+            2,
+            27,
+            9,
+            15,
+            22,
+            23,
+            13,
+            25,
+            20,
+            6,
+            28,
+            10,
+            12,
+            8,
+            19,
+            11,
+            24,
+            7
+          ],
+          "score": 1.148582748023255,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.3153086411748625,
+              "hardGain": -3.1155979235392453,
+              "keyRows": 5
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.288780522677519,
+              "hardGain": -3.155326513749266,
+              "keyRows": 11
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.222299180312738,
+              "hardGain": -3.161013864011253,
+              "keyRows": 17
+            },
+            {
+              "iteration": 20,
+              "softLL": -2.60443786770202,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.5711723456348814,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.5710903983467572,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.57060763236961,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.5706075412237235,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.570607541211223,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.5706075412112215,
+              "hardGain": 1.148582748023255,
+              "keyRows": 29
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "negative": null,
+  "original": null
+}
