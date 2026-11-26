@@ -108,6 +108,8 @@ The primary candidate was also tested as a repeating Vigenere key, distinct from
 
 Applying the primary key to the 33 exterior runes (carry suffix plus each complete word's first/last rune) yields nonprose under both subtraction and addition. The zero-based candidate also yields nonprose in both directions. Exact outputs and parameters are preserved in the linked source-framing report. These tests reject only these direct Vigenere receivers, not an unrelated steganographic or cryptographic mechanism.
 
+A further source-partition hypothesis treats the selected 29 interior runes as key and all remaining 47 p55 positions as ciphertext: the incoming carry suffix, 32 word endpoints, and 14 unselected interior runes. With the one-based candidate, phase zero, the historically supported subtraction direction, and literal F transparent/no key advance on F, the 47-rune output is JDXHSORFXWOESRFWJCEOYIAOGRONGAEFEAODDHYIMSBEOSIACGGTHIRIA (45 key symbols consumed; IoC 0.0351526364). It is nonprose. This rejects only the exact 29-key→47-complement Vigenere receiver; the source does not explicitly assign the complement that role.
+
 A separate single-carrier p57 DIVINITY A-key attempt on original p55 image72.jpg at JPEG Medium1/5 ran as workflow 43699273919. It failed the native wrapper proof and is inconclusive, not a cryptographic negative; it used A=DIVINITY, not either 29-symbol candidate. This does not reverse Agent13's completed seven-JPEG OpenPuff rejection of the primary candidate.
 
 ## What this does not establish
