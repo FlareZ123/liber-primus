@@ -76,10 +76,10 @@ GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base){
 }
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
- Graph base;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;
+ Graph base;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
  atomic<bool> found{false},timed{false};atomic<size_t>next{0},done{0};Clock::time_point deadline;mutex answerMutex;
  fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;
- GSearch(const vector<string>&g):train(g){
+ GSearch(const vector<string>&g,int budget=3):train(g),maxOov(budget){
   vector<string> pre(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(pre.begin(),pre.end());
   for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],i==47?pre:fixed::by[g[i].size()],base));if(i!=47)order.push_back(i);}
   sort(order.begin(),order.end(),[&](int a,int b){auto s=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=s(a),y=s(b);return x==y?a<b:x<y;});
@@ -95,7 +95,7 @@ struct GSearch{
  }
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
   c.perms++;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
-  int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>3)return;
+  int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov)return;
   lock_guard<mutex>l(answerMutex);if(!found){answer=pi;answerKey=k;answerOov=n;found=true;}
  }
  void pack(const Graph&g,const fixed::Key&k,GStats&c){
@@ -119,7 +119,7 @@ struct GSearch{
   if(b)dfs(g,rem,b-1,c);
  }
  void run(int seconds){deadline=Clock::now()+chrono::seconds(seconds);unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<GStats>stats(n);vector<thread>pool;
-  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seeds.size())break;dfs(seeds[i],order,3,c);if(!found&&!timed)done++;}});
+  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seeds.size())break;dfs(seeds[i],order,maxOov,c);if(!found&&!timed)done++;}});
   for(auto&t:pool)t.join();for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
   cout<<"GRAPH SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<seeds.size()<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" OOV="<<answerOov<<endl;
  }
