@@ -66,6 +66,28 @@ The browser capture is at `/cgi-bin/get_email`. Its signed page text asks the pa
 
 The exact screenshot bytes were tested under SHA-512 and Whirlpool; neither matches the p56 target. The three preserved page/source objects were also rechecked in the same run. [Workflow 45800628837](https://github.com/FlareZ123/liber-primus/actions/runs/45800628837) · [raw hash results](lp2-p56-whirlpool-2012-onion-pages.json) · [source note](../resources/external/2012-sq6wmgv2zcsrix6t-onion-get-email-screenshot.source.md).
 
+## Exact p56 digest decision for three participant-specific page copies (Director #2987)
+
+The original pinned [2012/008-rsa-emails directory](https://github.com/neuroretransmit/cicada/tree/b13600373d3400d75ec4208198019f3d92a304dd/2012/008-rsa-emails) was reopened. All three original archive blob IDs and lengths match the local mirrored .asc files; the valid-participant copy is archive-qualified as signed, the other two are redacted. These are distinct from the three earlier enrollment/post/congratulations objects in the existing SHA-512/Whirlpool report.
+
+For each exact archived byte object, test SHA-512 over the full armor; the literal bytes between the first empty header line and the signature marker (preserving trailing line separator); and the OpenPGP cleartext extraction (only dash-unescape at line starts and omit the final line separator before the signature). No LF/CRLF conversion, whitespace stripping, inferred /NUM token, or HTTP wrapper is introduced. The target is the exact p56 digest in the [consolidated hash semantics report](lp2-p56-source-defined-hash-semantics-gate.md).
+
+| Archive blob / form | Bytes | SHA-512 |
+| --- | ---: | --- |
+| Valid participant / full armor | 2500 | `636d263618569bb1e34b0c27a7e5c230aa2639e5aa890479a89d2331b01bbf5ad745dd9c9312ba03ea7911acb5bf7b9c8b82528d3e18e607f6234739d9fd67b5` |
+| Valid participant / literal body | 1617 | `5d2bbe19121d204acec36f0fa9b00faed1aa1750626c8a2e6c65c3f32032779289a375b5d178fe438249f5fd971a04927fc020ce80d0e5b17c5b322d42157392` |
+| Valid participant / extracted cleartext | 1612 | `ba52987a82649edbaa0935f54ba6dcf5650222f27a10a2cf6366efd492665af87474ac108cb6a2aa27fa193489dba9ea6dbc0596486c9e92cd6a5f9b3228c441` |
+| Unknown / full armor | 2537 | `d2f227ba5f26703362a23b1fb4c4840d46725040a1a231c9ad0b8b2a010b4951afcb209f0a68fe8a46a38080ac1266d480d74fd5593ea4221c9302428f037e98` |
+| Unknown / literal body | 1636 | `8b55084cf571bdca0bcb738cd4c0a470356315316f89bf7e43cac98ad051c70f50efe4a2bc808f48ec7504be649e965de5ee460f6d13abfbbc929f42f7d0a3ad` |
+| Unknown / extracted cleartext | 1630 | `735be3d97fd69b8e92536e36edbb517614483cf325a954a2d9991a6c38d61ebda5a2697d069453a7cf56a62d5a53b1cc063a8992ae0cadbc0c088702552ea4d3` |
+| Another unknown / full armor | 2476 | `c48d28701e8bef1ee797a868d6d5e7f68be6f863ea86192bccbab602d3c94fcdd4b49040b90aca222ac87aaa696e74a5a9b64655cd2f665d74e1145be3e491d7` |
+| Another unknown / literal body | 1593 | `bd66e077eb880a7cb480a2a02b5aec17bddc3a390593bd53e3d5cfe416930cc2e67f237c892db0ecf4a6e0efb363aed2f95178cbcbe1e5cf5944aec3e20254e4` |
+| Another unknown / extracted cleartext | 1588 | `1e340c8dfd6abf64d635df6ecab953cc8822492034159dd8b3b8d98c8ab94c40b4aefe546a7cd1223684406833ecc2319f1461b3c55a91c4c75f7cc5968aac5b` |
+
+**0/9 matches.** The unknown source has 59 CRLF line endings and the other two have 60 LF each. The SHA-512 implementation ran in the connector V8 isolate against raw base64-decoded bytes with empty-string and abc standard known-answer controls and the independent 1788-byte enrollment HTML's previously recorded SHA-512 (71ae971c27c3852b…719e9fbb). A standard-library [Python reproduction](../sims/lp2_p56_sq6_participant_message_hash_sft.py) uses the local exact Git blobs and the same frozen boundaries; its standalone execution is not yet claimed. No independent period-authored Whirlpool selector was found, so no extra hash family was added.
+
+The pinned directory README reports a 500 error screenshot and later successful text “Correct. We’ll email you.” at approximately 02:49 UTC on 17 January. Neither is a byte-preserving successful HTTP response. The directory contains the three .asc files and derived cryptographic/solver materials, not an initial /NUM email or exact successful response body. The separately archived disqualification email is not a one-time page. Therefore the specific recovered copies are retired as direct SHA-512 preimages; the missing actual onion response and distinct eq6 route remain open. No unknown plaintext, key or destination recovered.
+
 ## Exact missing artifact and stopping boundary
 
 Recovered:
@@ -82,7 +104,7 @@ Still missing:
 
 The Wayback timestamp above is for the Pastebin mirror, **not** the original onion URL. The missing record is specifically the initial per-recipient email with the path number (or an equivalent server log); the RSA plaintext is not that number. No public source found in this bounded task supplies it. Do not brute-force or guess the token.
 
-This historical recovery does not establish an LP2 key, unknown plaintext, p56 preimage, or intended 2016 dependency.
+The nine exact archived participant page representations have no SHA-512 match to p56. This historical recovery does not establish an LP2 key, unknown plaintext, p56 preimage, or intended 2016 dependency.
 
 ## Reproduction
 
