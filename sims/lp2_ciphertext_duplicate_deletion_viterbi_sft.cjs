@@ -1,6 +1,6 @@
 "use strict";
 const fs=require("node:fs");
-function experiment(solved,corpus){
+function buildDecoder(solved,corpus){
 const Q=29,{runes,translit}=corpus,mod=x=>(x+Q)%Q;
 const parse=s=>Array.from(s).map(x=>runes.indexOf(x)).filter(x=>x>=0);
 const controls=solved.sections.map(s=>({name:s.name,p:parse(s.source_text)}));
@@ -38,6 +38,10 @@ function inverse(c,key,supp){
  const p=path.map(x=>x.p);
  return {p,hidden:path.filter(x=>x.h).length,start:best.start,end:best.s,v:best.v/c.length,lm:score(p),maxStates,steps,preview:p.slice(0,110).map(x=>translit[x]).join("")};
 }
+return {inverse,controls,score,mod};
+}
+function experiment(solved,corpus){
+const {inverse,controls,score,mod}=buildDecoder(solved,corpus);
 function edit(a,b){let d=Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){const z=[i+1];for(let j=0;j<b.length;j++)z.push(Math.min(d[j]+(a[i]!==b[j]),d[j+1]+1,z[j]+1));d=z;}return d[b.length];}
 let seed=0x3301;function rand(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)/2**32;}
 const keys={WELCOME:[23,10,1,10,9,10,16,26],KOAN:[0,10,4,0,1,19,0,18,4,18,9,0,18]};
@@ -53,4 +57,4 @@ for(const [name,key] of Object.entries(keys)){
 return results;
 }
 if(require.main===module)console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync("resources/external/relikd-solved-gp29-native-v1.json","utf8")),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"))),null,2));
-module.exports={experiment};
+module.exports={experiment,buildDecoder};
