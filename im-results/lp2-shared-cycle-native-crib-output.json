@@ -1,0 +1,113 @@
+{
+  "sourceLengths": [
+    [
+      "0_warning",
+      184
+    ],
+    [
+      "0_welcome",
+      515
+    ],
+    [
+      "0_wisdom",
+      157
+    ],
+    [
+      "0_koan_1",
+      780
+    ],
+    [
+      "0_loss_of_divinity",
+      755
+    ],
+    [
+      "jpg107-167",
+      319
+    ],
+    [
+      "jpg229",
+      89
+    ],
+    [
+      "p56_an_end",
+      85
+    ],
+    [
+      "p57_parable",
+      95
+    ]
+  ],
+  "cipher": 12956,
+  "controls": [
+    {
+      "q": 8,
+      "source": "0_welcome",
+      "sourceOffset": 101,
+      "seed": 6304154,
+      "fit": 160,
+      "hold": 64,
+      "phase": 4,
+      "feasible": 1,
+      "rank": 36,
+      "normalizedKeyCount": 1,
+      "exactKey": true,
+      "heldoutPaths": 2,
+      "heldoutTruth": true,
+      "uniqueHeldout": false
+    },
+    {
+      "q": 13,
+      "source": "0_koan_1",
+      "sourceOffset": 151,
+      "seed": 8587163,
+      "fit": 160,
+      "hold": 64,
+      "phase": 2,
+      "feasible": 1,
+      "rank": 41,
+      "normalizedKeyCount": 1,
+      "exactKey": true,
+      "heldoutPaths": 3,
+      "heldoutTruth": true,
+      "uniqueHeldout": false
+    }
+  ],
+  "outputs": [
+    {
+      "q": 8,
+      "L": 48,
+      "windows": 2556,
+      "maskTypes": 458,
+      "maskLookups": 38462,
+      "maxF": 7,
+      "relaxed": 474,
+      "count": 74,
+      "max": 50,
+      "hist": {
+        "forced_equal_labels": 18,
+        "inconsistent": 56
+      },
+      "feasible": [],
+      "unresolved": [],
+      "alignments": 32995404
+    },
+    {
+      "q": 13,
+      "L": 48,
+      "windows": 2556,
+      "maskTypes": 458,
+      "maskLookups": 38462,
+      "maxF": 7,
+      "relaxed": 12917,
+      "count": 2500,
+      "max": 57,
+      "hist": {
+        "inconsistent": 2115,
+        "forced_equal_labels": 385
+      },
+      "feasible": [],
+      "unresolved": [],
+      "alignments": 32995404
+    }
+  ]
+}
