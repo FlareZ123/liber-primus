@@ -8,19 +8,8 @@ const crypto = require('node:crypto');
 const host = 'eq6emgv2ehsrix6t.onion';
 const queries = [
   {
-    label: 'opensearch-exact-host',
+    label: 'opensearch-exact-host-after-cooldown',
     url: 'https://archive-it.org/search-master/opensearch?q=%22' + encodeURIComponent(host) + '%22&n=99'
-  },
-  {
-    label: 'opensearch-unique-host-token',
-    url: 'https://archive-it.org/search-master/opensearch?q=' + encodeURIComponent('eq6emgv2ehsrix6t') + '&n=99'
-  },
-  {
-    label: 'cdx-domain-2012-2014',
-    url: 'https://wayback.archive-it.org/all/timemap/cdx?url=' +
-      encodeURIComponent('http://' + host + '/') +
-      '&matchType=domain&from=2012&to=2014&output=json&fl=' +
-      encodeURIComponent('timestamp,original,mimetype,statuscode,digest,length')
   }
 ];
 
