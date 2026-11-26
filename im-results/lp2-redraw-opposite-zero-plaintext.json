@@ -1,0 +1,501 @@
+{
+  "fitOnlyRanking": [
+    {
+      "D": [
+        2,
+        13,
+        17,
+        0,
+        25,
+        2,
+        28,
+        0
+      ],
+      "K": [
+        27,
+        0,
+        13,
+        1,
+        1,
+        26,
+        28,
+        27
+      ],
+      "fitScore": -0.7322712716281823,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 5,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        2,
+        2,
+        21,
+        0,
+        14,
+        9,
+        10,
+        0
+      ],
+      "K": [
+        20,
+        22,
+        24,
+        16,
+        16,
+        1,
+        10,
+        20
+      ],
+      "fitScore": -0.7341925968806378,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 1,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        25,
+        4,
+        1,
+        0,
+        27,
+        2,
+        28,
+        0
+      ],
+      "K": [
+        19,
+        15,
+        19,
+        20,
+        20,
+        18,
+        20,
+        19
+      ],
+      "fitScore": -0.7378924684682512,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 0,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        6,
+        22,
+        6,
+        0,
+        21,
+        2,
+        1,
+        0
+      ],
+      "K": [
+        7,
+        13,
+        6,
+        12,
+        12,
+        4,
+        6,
+        7
+      ],
+      "fitScore": -0.738301353625164,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 5,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        2,
+        2,
+        6,
+        0,
+        9,
+        9,
+        1,
+        0
+      ],
+      "K": [
+        27,
+        0,
+        2,
+        8,
+        8,
+        17,
+        26,
+        27
+      ],
+      "fitScore": -0.7413184634302047,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 4,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        19,
+        4,
+        1,
+        0,
+        28,
+        2,
+        4,
+        0
+      ],
+      "K": [
+        24,
+        14,
+        18,
+        19,
+        19,
+        18,
+        20,
+        24
+      ],
+      "fitScore": -0.7442465141951601,
+      "heldScore": -0.7996079600697649,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 5,
+      "heldN": 3316,
+      "heldPreview": "J E A TH NG C G E G OE M TH D D N P F AE Y R G NG Y EO J EA F I R C S Y S TH J R A W IA J F Y G W S R T AE R M E IA F AE IA E T OE EO U J N S M G IA Y NG F F C N L F O N D TH O H AE AE AE N TH F P X E R E H M OE AE TH L E Y Y"
+    },
+    {
+      "D": [
+        2,
+        1,
+        7,
+        0,
+        11,
+        2,
+        6,
+        0
+      ],
+      "K": [
+        10,
+        12,
+        13,
+        20,
+        20,
+        2,
+        4,
+        10
+      ],
+      "fitScore": -0.7457076173566171,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 5,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        2,
+        2,
+        28,
+        0,
+        18,
+        20,
+        17,
+        0
+      ],
+      "K": [
+        27,
+        0,
+        2,
+        1,
+        1,
+        19,
+        10,
+        27
+      ],
+      "fitScore": -0.7459981205801632,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 4,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        15,
+        9,
+        12,
+        0,
+        21,
+        2,
+        28,
+        0
+      ],
+      "K": [
+        12,
+        27,
+        7,
+        19,
+        19,
+        11,
+        13,
+        12
+      ],
+      "fitScore": -0.7470719471863991,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 0,
+      "heldN": 0,
+      "heldPreview": ""
+    },
+    {
+      "D": [
+        2,
+        2,
+        28,
+        0,
+        14,
+        23,
+        18,
+        0
+      ],
+      "K": [
+        24,
+        26,
+        28,
+        27,
+        27,
+        12,
+        6,
+        24
+      ],
+      "fitScore": -0.7493412138993604,
+      "heldScore": null,
+      "fitCorrect": null,
+      "heldCorrect": null,
+      "fitEnd": 4,
+      "heldN": 0,
+      "heldPreview": ""
+    }
+  ],
+  "original": {
+    "D": [
+      19,
+      4,
+      1,
+      0,
+      28,
+      2,
+      4,
+      0
+    ],
+    "fullK": [
+      12,
+      2,
+      6,
+      7,
+      7,
+      6,
+      8,
+      12
+    ],
+    "fullScore": -0.7543381657814934,
+    "fullPreview": "H TH I L D B NG OE H L I N OE F C EA E D O I L W AE TH J U N EO O L G O X A U P D H AE U I O M U C W G R A E P X TH S B G J NG NG TH D IA N G N D C E N A S W L L F C E R Y G X M D IA P G H A G F E B N O C A B P TH N IA AE L U C I F P S EO L J D S Y B Y I AE R",
+    "top2Selected": 0.07780179067613462,
+    "exact": {
+      "pathCount": "1166000275817173343890320036536833885958342837230301394542856177230807040000000000",
+      "pathLog2": 269,
+      "top2Count": 1184,
+      "top2Rate": 0.09138623031799938,
+      "pair": [
+        1,
+        22
+      ]
+    }
+  },
+  "control": {
+    "frozen": {
+      "D": [
+        16,
+        25,
+        7,
+        0,
+        28,
+        17,
+        23,
+        0
+      ],
+      "K": [
+        11,
+        27,
+        23,
+        1,
+        1,
+        0,
+        17,
+        11
+      ],
+      "fitScore": 0.6480716895364256,
+      "heldScore": 0.6398600154652538,
+      "fitCorrect": 9633,
+      "heldCorrect": 3314,
+      "fitEnd": 3,
+      "heldN": 3316,
+      "heldPreview": "W H E N Y O U R F R I E N D S P EA C S H I S M I N D Y O U F EA R N O T TH E N A Y I N Y O U R O W N M I N D N O R D O Y O U W I TH H O L D TH E A Y A N D W H E N H E I S S I L E N T Y O U R H EA R T C EA S"
+    },
+    "fullK": [
+      11,
+      27,
+      23,
+      1,
+      1,
+      0,
+      17,
+      11
+    ],
+    "fullCorrect": 12947,
+    "fullScore": 0.6459698052276609,
+    "plainTop2": 0.202994751466502,
+    "exact": {
+      "pathCount": "299568655453686328258588081102273679273047336699894518597516748872290980698531693173145600000000000",
+      "pathLog2": 327,
+      "top2Count": 2663,
+      "top2Rate": 0.20554183389935166,
+      "pair": [
+        0,
+        14
+      ]
+    }
+  },
+  "native": [
+    {
+      "name": "0_warning",
+      "n": 184,
+      "top2": 0.2554347826086957,
+      "score": 0.7923355514356165
+    },
+    {
+      "name": "0_welcome",
+      "n": 515,
+      "top2": 0.1883495145631068,
+      "score": 0.8831997088619189
+    },
+    {
+      "name": "0_wisdom",
+      "n": 157,
+      "top2": 0.17834394904458598,
+      "score": 0.7060412940887704
+    },
+    {
+      "name": "0_koan_1",
+      "n": 780,
+      "top2": 0.22435897435897437,
+      "score": 1.024434738943028
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "top2": 0.22913907284768212,
+      "score": 0.8841361251550135
+    },
+    {
+      "name": "jpg107-167",
+      "n": 319,
+      "top2": 0.23510971786833856,
+      "score": 0.9557772986779618
+    },
+    {
+      "name": "jpg229",
+      "n": 89,
+      "top2": 0.21348314606741572,
+      "score": 0.946734682631739
+    },
+    {
+      "name": "p56_an_end",
+      "n": 85,
+      "top2": 0.2823529411764706,
+      "score": 0.8506628353343324
+    },
+    {
+      "name": "p57_parable",
+      "n": 95,
+      "top2": 0.25263157894736843,
+      "score": 0.8871449449078453
+    }
+  ],
+  "lengthMatched": [
+    {
+      "name": "gibran",
+      "start": 0,
+      "top2": 0.20538746526705773,
+      "score": 0.6262189739448322
+    },
+    {
+      "name": "gibran",
+      "start": 5000,
+      "top2": 0.21001852423587528,
+      "score": 0.6751851585542951
+    },
+    {
+      "name": "gibran",
+      "start": 10000,
+      "top2": 0.20230009262117937,
+      "score": 0.6708699943747466
+    },
+    {
+      "name": "gibran",
+      "start": 19000,
+      "top2": 0.202994751466502,
+      "score": 0.6456909947623801
+    },
+    {
+      "name": "gibran",
+      "start": 30000,
+      "top2": 0.2045384377894412,
+      "score": 0.6403986415993542
+    },
+    {
+      "name": "shakespeare",
+      "start": 0,
+      "top2": 0.19689719049089224,
+      "score": 0.6022697078032613
+    },
+    {
+      "name": "shakespeare",
+      "start": 5000,
+      "top2": 0.19543068848410003,
+      "score": 0.5521629500130778
+    },
+    {
+      "name": "shakespeare",
+      "start": 10000,
+      "top2": 0.20175980240815067,
+      "score": 0.5403469690511064
+    },
+    {
+      "name": "shakespeare",
+      "start": 19000,
+      "top2": 0.20878357517752394,
+      "score": 0.5702166476864049
+    },
+    {
+      "name": "shakespeare",
+      "start": 30000,
+      "top2": 0.20847483791293608,
+      "score": 0.5686923193697461
+    }
+  ]
+}
