@@ -220,6 +220,7 @@ bool graphControl(const vector<string>&train,const vector<string>&held,unsigned 
 using DomainPointers=array<const vector<int>*,48>;
 
 struct NTNode { array<int,N> child; NTNode(){child.fill(-1);} };
+struct NTWitness{array<uint8_t,16> word{};int phase=-1;};
 struct NumericTrie {
  vector<NTNode> nodes; vector<int> roots;
  NumericTrie():roots(fixed::by.size(),-1){
@@ -231,30 +232,38 @@ struct NumericTrie {
    }
   }
  }
- bool walk(const vector<int>&cipher,size_t i,int j,int node,const fixed::Graph&g,const fixed::Key&k)const{
+ bool walk(const vector<int>&cipher,size_t i,int j,int node,const fixed::Graph&g,const fixed::Key&k,NTWitness* witness)const{
   if(i==cipher.size())return true;
   int c=cipher[i],hold=nodes[node].child[0];
-  if(!c&&hold>=0&&walk(cipher,i+1,j,hold,g,k))return true;
+  if(!c&&hold>=0){if(witness)witness->word[i]=0;if(walk(cipher,i+1,j,hold,g,k,witness))return true;}
   int target=fixed::md(g.o[c]-k[j]),rc=g.r[c];
   // An occupied target coordinate forces the plaintext rune; aligning
   // another component to that coordinate would violate bijectivity.
   if(g.m[rc]&(1u<<target)){
    for(int p=0;p<N;p++)if(g.r[p]==rc&&g.o[p]==target){
     int n=nodes[node].child[p];
-    return p!=0&&n>=0&&walk(cipher,i+1,(j+1)%Q,n,g,k);
+    if(witness)witness->word[i]=p;
+    return p!=0&&n>=0&&walk(cipher,i+1,(j+1)%Q,n,g,k,witness);
    }
    throw runtime_error("numeric mask/offset inconsistency");
   }
   for(int p=1;p<N;p++){
    int n=nodes[node].child[p];if(n<0||!g.allow(p,c,k[j]))continue;
    fixed::Graph h=g;if(!h.add(p,c,k[j]))throw runtime_error("numeric merge inconsistency");
-   if(walk(cipher,i+1,(j+1)%Q,n,h,k))return true;
+   if(witness)witness->word[i]=p;
+   if(walk(cipher,i+1,(j+1)%Q,n,h,k,witness))return true;
   }
   return false;
  }
- bool support(const vector<int>&cipher,const fixed::Graph&g,const fixed::Key&k)const{
-  for(int j=0;j<Q;j++)if(walk(cipher,0,j,roots[cipher.size()],g,k))return true;
+ bool support(const vector<int>&cipher,const fixed::Graph&g,const fixed::Key&k,NTWitness* witness=nullptr)const{
+  if(witness){fixed::require(cipher.size()<=witness->word.size(),"witness length");witness->phase=-1;}
+  for(int j=0;j<Q;j++)if(walk(cipher,0,j,roots[cipher.size()],g,k,witness)){if(witness)witness->phase=j;return true;}
   return false;
+ }
+ bool replay(const vector<int>&cipher,const fixed::Graph&g,const fixed::Key&k,const NTWitness&w)const{
+  if(w.phase<0)return false;fixed::Graph h=g;int j=w.phase;
+  for(size_t i=0;i<cipher.size();i++){int p=w.word[i],c=cipher[i];if(!p){if(c)return false;continue;}if(!h.add(p,c,k[j]))return false;j=(j+1)%Q;}
+  return true;
  }
 };
 const NumericTrie& numericTrie(){static const NumericTrie t;return t;}
@@ -267,6 +276,7 @@ bool numericGraph(const Graph&g,const fixed::Key&k,fixed::Graph&out){
  return true;
 }
 bool usePostingMasks=true;
+bool useCoordinatePacking=false;
 int numericCutoff=1;
 struct ExactMask { vector<uint64_t> bits; size_t count=0; };
 using MaskPointers=array<const ExactMask*,48>;
@@ -276,7 +286,7 @@ struct FastSearch : GSearch {
  using GSearch::GSearch;
  vector<uint8_t> completed;
  mutex checkpointMutex;
- atomic<uint64_t> inheritedCount{0},earlyPackCount{0},numericAssignments{0},numericSurvivors{0},numericSplits{0};
+ atomic<uint64_t> inheritedCount{0},earlyPackCount{0},numericAssignments{0},numericSurvivors{0},numericSplits{0},coordinateNodes{0},witnessHits{0};
 
  ExactMask maskDomain(int id,GFilter&f,GStats&c,const ExactMask*parent){
   const auto&d=ds[id];size_t n=d.opts.size(),nw=(n+63)/64;
@@ -320,12 +330,55 @@ struct FastSearch : GSearch {
   }
   return true;
  }
+
+ // Exact fixed-key search over component placements. Anchor translation
+ // is gauge; every other component is placed in a free cyclic coordinate
+ // set. A cached witness is rechecked before use, and failed witnesses
+ // are replaced by a complete trie search. No word is committed by a
+ // witness; only proven unsupported words consume the local OOV budget.
+ bool coordinateSearch(const fixed::Graph&g,const fixed::Key&k,vector<int>rem,int budget,GStats&c,array<NTWitness,48> witnesses){
+  if(stop())return false;
+  coordinateNodes.fetch_add(1,memory_order_relaxed);
+  if(g.comps==1){
+   fixed::Perm pi{};for(int x=0;x<N;x++)pi[x]=fixed::md(g.o[x]-g.o[0]);check(pi,k,c);return true;
+  }
+  int anchor=0;for(int r=1;r<N;r++)if(g.r[r]==r&&g.s[r]>g.s[anchor])anchor=r;
+  // Root indices of merged-away components retain their old size in
+  // fixed::Graph, so choose the anchor only among current roots.
+  if(g.r[anchor]!=anchor){for(int r=0;r<N;r++)if(g.r[r]==r){anchor=r;break;}for(int r=0;r<N;r++)if(g.r[r]==r&&g.s[r]>g.s[anchor])anchor=r;}
+  int pick=-1;vector<int>shifts;
+  for(int r=0;r<N;r++)if(g.r[r]==r&&r!=anchor){
+   vector<int>v;for(int t=0;t<N;t++)if(!(g.m[anchor]&fixed::rot(g.m[r],t)))v.push_back(t);
+   if(v.empty())return false;
+   if(pick<0||v.size()<shifts.size()||(v.size()==shifts.size()&&g.s[r]>g.s[pick])){pick=r;shifts=move(v);}
+  }
+  for(size_t i=0;i<rem.size();){
+   int id=rem[i];vector<int>cipher;for(char ch:train[id])cipher.push_back(fixed::val(ch));
+   if(numericTrie().replay(cipher,g,k,witnesses[id])){witnessHits.fetch_add(1,memory_order_relaxed);i++;continue;}
+   if(numericTrie().support(cipher,g,k,&witnesses[id])){i++;continue;}
+   if(!budget)return false;
+   budget--;rem.erase(rem.begin()+i);
+  }
+  for(int t:shifts){
+   if(stop())break;fixed::Graph h=g;
+   int shift=fixed::md(t+g.o[pick]-g.o[anchor]);
+   fixed::require(h.add(anchor,pick,shift),"allowed coordinate packing failed");
+   coordinateSearch(h,k,rem,budget,c,witnesses);
+  }
+  return true;
+ }
+
  void splitNumeric(const Graph&g,const vector<int>&rem,int budget,GStats&c,MaskPointers inherited){
   Vec param{};int examined=0,survived=0;
   auto visit=[&](auto&&self,int i)->void{
    if(stop())return;
    if(i<g.k.d){for(int v=0;v<N;v++){param[i]=v;self(self,i+1);if(stop())return;}return;}
    auto k=g.k.evaluate(param);examined++;
+   if(useCoordinatePacking&&g.comps<=12){
+    bool primitive=false;for(int j=0;j<4;j++)primitive|=k[j]!=k[j+4];if(!primitive)return;
+    fixed::Graph h;if(!numericGraph(g,k,h))return;
+    if(coordinateSearch(h,k,rem,budget,c,{}))survived++;return;
+   }
    if(!numericBudget(g,k,rem,budget))return;
    survived++;Graph h=g;
    for(int j=1;j<Q;j++){Vec eq=unit(j);eq[0]=(N-k[j])%N;if(!h.k.impose(eq))throw runtime_error("numeric assignment vanished");}
@@ -340,6 +393,7 @@ struct FastSearch : GSearch {
   if(stop())return;c.nodes++;
   if(g.dimension()<=3||int(rem.size())<=budget){fastEnumerate(g,c);return;}
   if(packingBound(g)<=8192){earlyPackCount.fetch_add(1,memory_order_relaxed);fastEnumerate(g,c);return;}
+  if(useCoordinatePacking&&g.k.d==0&&g.comps<=12){Vec p{};fixed::Graph h;auto k=g.k.evaluate(p);if(numericGraph(g,k,h))coordinateSearch(h,k,rem,budget,c,{});return;}
   if(g.k.d>0&&g.k.d<=numericCutoff){splitNumeric(g,rem,budget,c,inherited);return;}
   GFilter f(g);if(f.saturated)return;
   array<ExactMask,48>storage;
@@ -388,7 +442,7 @@ struct FastSearch : GSearch {
    bool want=false;for(const auto&o:ds[id].opts){fixed::Graph h=g;bool ok=true;for(int i=0;i<o.n;i++){auto e=o.e[i];if(!h.add(e.p,e.c,k[e.j])){ok=false;break;}}if(ok){want=true;break;}}
    bool got=numericTrie().support(cipher,g,k);fixed::require(got==want,"numeric trie versus complete word-option mismatch");trieComparisons++;
    const auto&words=fixed::by[cipher.size()];const auto&w=words[rng()%words.size()];string enc=fixed::encode(w,pi,k,rng()%Q);cipher.clear();for(char ch:enc)cipher.push_back(fixed::val(ch));
-   fixed::require(numericTrie().support(cipher,g,k),"numeric trie lost planted word");trieComparisons++;
+   NTWitness witness;fixed::require(numericTrie().support(cipher,g,k,&witness),"numeric trie lost planted word");fixed::require(numericTrie().replay(cipher,g,k,witness),"numeric witness replay");trieComparisons++;
   }
   cout<<"AGENT18 POSTING comparisons="<<comparisons<<" numeric-trie="<<trieComparisons<<endl;
  }
@@ -560,7 +614,7 @@ struct FastSearch : GSearch {
   });
   for(auto&t:pool)t.join();
   for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
-  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" numeric_splits="<<numericSplits<<" numeric_assignments="<<numericAssignments<<" numeric_survivors="<<numericSurvivors<<" OOV="<<answerOov<<endl;
+  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" numeric_splits="<<numericSplits<<" numeric_assignments="<<numericAssignments<<" numeric_survivors="<<numericSurvivors<<" coordinate_nodes="<<coordinateNodes<<" witness_hits="<<witnessHits<<" OOV="<<answerOov<<endl;
  }
 };
 
@@ -614,6 +668,7 @@ int main(int argc,char**argv){try{
   else if(arg=="--legacy")usePostingMasks=false;
   else if(arg=="--mask-only")numericCutoff=0;
   else if(arg=="--numeric-d2")numericCutoff=2;
+  else if(arg=="--coordinate-pack")useCoordinatePacking=true;
   else throw runtime_error("unknown argument: "+arg);
  }
  if(skipControls&&controlsOnly)throw runtime_error("--skip-controls conflicts with --controls-only");
