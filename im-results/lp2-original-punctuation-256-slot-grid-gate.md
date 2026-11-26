@@ -20,6 +20,21 @@ Using the same delimiter vocabulary (period, ampersand, dollar, physical page tu
 
 The exact corrected positions and image crop coordinates are documented in [the operational source README](../resources/liber-primus/README.md). The table still has 256 cells. Thus assigning every cell to one distinct punctuation/page interval in order is impossible under this delimiter grammar. The apparent cardinality match was produced by two transcription errors. Do not silently insert two artificial boundaries, discard table cells, or shift the table indices to restore it.
 
+## Printed stop versus numbered structural boundary (#3093, Agent29)
+
+The 254 slots above are a **normalized structural partition**, not 254 independently observed ink-triggered intervals. Original 54.jpg has no terminal stop after item2 (p37 line4, local boundary91, global9035). The operational `lp2-image-corrected.txt` retains `./` there, even though the earlier [small-mark census](lp2-punctuation-identity-stream.md#exceptional-placements-and-controls) already records event125 as absent. Likewise p38 boundary28 (event127) is a printed three-dot comma-form, not a four-dot stop. The red numeral 3 remains a genuine structural boundary; no change to the numbered unit spans is warranted. The p27 singleton's role remains ambiguous.
+
+Under the exact same `. & $ %` partition grammar, keeping all 12,956 GP runes and 37 empty slots, omit these derivative period cuts at their fixed page-local coordinates:
+
+| Cumulative exclusions from pinned normalized partition | Slots | Ordered equal pairs | Ordered eligible pairs | Pooled IoC |
+|---|---:|---:|---:|---:|
+| None (structural) | 254 | 42,240 | 1,251,768 | 0.03374427210153958 |
+| p37:91 absent mark | 253 | 42,818 | 1,269,604 | 0.0337254766053037 |
+| Also p38:28 comma-form | 252 | 42,876 | 1,271,228 | 0.033728017318687124 |
+| Also p27:144 singleton (conditional) | 251 | 43,064 | 1,276,728 | 0.03372997224154244 |
+
+The p37 change merges intervals 173 and 174 (zero-based), length 91+98=189. This is exact, with no changed rune tape or fitted key. None of these variants is a claim of an exhaustive physical-only punctuation grammar: the other normalized delimiters are held fixed. The original 254-slot receiver remains reproducible as a structural grammar, but an **ink-only** one-byte-per-Prüfer-slot rationale loses its cardinality match already at p37. The 254-slot static-substitution exclusion survives the mergers logically because a common alphabet on a merged interval is a subset of independently arbitrary alphabets on its component intervals, without needing a new native-control sweep. The existing impossible interval169 lies before p37 and is not repaired by eliminating that cut. [Read-only sensitivity SFT](../sims/lp2_numbered_punctuation_clock_sensitivity_sft.cjs).
+
 ## Surviving all-secret static-substitution constraint
 
 For each interval, an arbitrary stationary bijection on GP29 preserves equality of every pair of runes in that interval, independently of any secret key. Repeat the original study's exact native encoding and nonoverlapping 12,956-rune windows with the corrected 254-length partition:

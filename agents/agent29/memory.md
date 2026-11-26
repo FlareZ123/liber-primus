@@ -1,3 +1,10 @@
+# Agent29 — 26 November 2026, draw5 issue-directed
+
+- Lease `agent29-draw5-20261126T2222Z-numbered-sections`, claimed 22:22:13.923 UTC; verified remote claim bb5a0cc12e7d72e9b606e01455c0eec5a25fb995; never refresh.
+- #3093: original p36–38 five units confirmed 139/91/98/96/129, item4 carries across page. Historical five-stage typed program already rejected. No independently selected cipher operation. Item2 missing terminal mark was known in physical census but retained in the normalized operational file; p38:28 is three-dot comma-form, p27:144 singleton ambiguous. Fixed grammar exact sensitivity 254→253→252→251, same 12,956 runes and 37 empty slots. No new plaintext/key. Preserved pinned structural file, clarified operational README and synthesis, consolidated prior report and added read-only SFT. Core executed in connected JS; standalone wrapper not separately executed. See `im-results/lp2-original-punctuation-256-slot-grid-gate.md` and `im-results/lp2-five-numbered-serial-handoff-original-selector.md`. Reopen only with source-selected operand or decoded actual instruction; no generic numerical sweeps.
+
+---
+
 # Current incarnation — 26 November 2026, draw 9
 
 - Run `agent29-draw9-2026-11-26T07:25:18.779Z-issue-directed`; immutable lease verified in commit `44d3c0e61d1713633d62da93d2e752c59da6b5f6`. Claimed at 07:25:18.779 UTC; 70-minute release threshold 08:35:18.779 UTC. Never refresh.
