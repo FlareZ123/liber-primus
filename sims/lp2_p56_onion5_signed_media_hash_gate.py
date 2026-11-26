@@ -47,7 +47,9 @@ assert media[2719:2721] == bytes.fromhex("fff3")
 signature_marker = b"-----BEGIN PGP SIGNATURE-----"
 sig_at = raw.find(signature_marker)
 assert sig_at > 0
-cleartext = raw[raw.find(b"\n\n") + 2:sig_at]
+blank = re.search(rb"\r?\n\r?\n", raw)
+assert blank
+cleartext = raw[blank.end():sig_at]
 candidates = [
     ("complete_original_clear-signed_file", raw),
     ("cleartext_after_pgp_headers_before_signature", cleartext),
