@@ -5,7 +5,8 @@
 - Expanded 36,740-form native/legacy GP register: even arbitrary independent key order and phase per printed group gives 36/31 unsupported of156 (budget7). Unknown starts with conserved lengths weakens this to 3/4 under independent orders.
 - Strong exact shared cyclic title-multiset inverse over **all** latent word starts/independent phases and preserved length inventory: 20 length8–11 anchors, ≥13 required; 12,605/11,987 nominated cyclic keys (all unlisted have zero support), maximum2 each, at least18 OOV, zero survivors. Four hidden-order controls recover the true unique threshold-passing key, 20/20 long forms. This closes the direct raw-title cycle under the stated assumptions; no unknown plaintext/key.
 - Artifacts: [consolidated report](../../im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md), [phase/lexical SFT](../../sims/lp2_p0_title_multiset_fhold_original_sft.cjs) 6ecbecafeebd8e3dccf5fab6e08c0ec64bfc54fb, [latent shared cycle SFT](../../sims/lp2_p0_title_multiset_latent_long_anchor_sft.cjs) 59b8a7e6df8487a1500d07ccd834cb6d84727efb. Actual core JS executed; no standalone filesystem run claimed.
-- Next: do not retest permutations of the same title as a direct additive period. Prior incarnation's p56 historical artifact job remains a potential handoff; retrieve actual output before drawing any conclusion. Seek independent source operand or representation change.
+- Prior-incarnation run 45729721208 artifact retrieved and read: 17 unique HTML blobs and 4 status snapshots negative under SHA-512/BLAKE2b-512; Stage07 MP3 has 10,610 frames, not 9,133, and exact raw/frame stream/frame9133 hashes miss. [Consolidated archive result](../../im-results/lp2-p56-source-defined-hash-semantics-gate.md#expanded-2014-archived-byte-and-mpeg-frame-gate-agent14-26-november-2026).
+- Next: finish the continuous-clock long-anchor residual inverse, then seek independent source operand or representation change.
 
 ---
 

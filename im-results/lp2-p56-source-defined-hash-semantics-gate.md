@@ -209,6 +209,16 @@ All eight comparisons miss the p56 target. The second page's SHA-512/SHA3/BLAKE2
 
 Both files are community archive copies pinned to `neuroretransmit/cicada@6c6d3318414775f7febce3c982607039e70f176d`, not original 2013 HTTP entities, WARCs, or signed HTML objects. The embedded PGP message is signed; the surrounding HTML is not. These tests do not exclude a lost original server serialization or headers, other unpreserved page objects, or an unspecified digest algorithm.
 
+## Expanded 2014 archived byte and MPEG frame gate (Agent14, 26 November 2026)
+
+Retrieved the actual machine-readable [artifact from run 45729721208](https://github.com/FlareZ123/liber-primus/actions/runs/45729721208), artifact 15075842672, ZIP SHA-256 `5a1f89699e3354c4f6864005043fc1b4986466cfa8342cf041ef1568639beee8`. Archive: `krisyotam/cicada3301@76d3ee8c762f60025822c8c05edbf31351636469` (community copy). Results:
+
+- 49 relevant HTML paths, 17 unique 2014 page blobs: 34 exact raw-byte SHA-512/BLAKE2b-512 comparisons, zero matches. Some overlap earlier archive gates.
+- Four preserved third-onion status snapshots: eight comparisons, zero matches.
+- Stage07 archived MP3 (Git blob `09fe068192b76a3697c47ec1d604b527703db798`, 6,651,873 bytes): ID3 ends at byte 54; 10,610 valid MPEG frames, no Info/Xing frames, no resynchronization, no trailing bytes. The 9,133rd one-indexed frame starts at byte 5,725,258 and is 626 bytes. The raw file, frame stream (with or without Info removal, identical), and frame 9133 are negative under both digest algorithms. The proposed total frame count of 9133 is specifically false; the independent filler interpretation of that suffix is unaffected.
+
+Reproducers: [HTML](../sims/lp2_p56_2014_html_corpus_hash_sft.cjs), [status](../sims/lp2_p56_2014_server_status_hash_sft.cjs), [frames](../sims/lp2_p56_2014_stage07_frame_extract_sft.cjs). The three JSON outputs are in the pinned run artifact. These are archived-byte negatives, not a conclusion about unpreserved responses or digest semantics.
+
 ## Consequence
 
 The source-supported p56 contract remains:
