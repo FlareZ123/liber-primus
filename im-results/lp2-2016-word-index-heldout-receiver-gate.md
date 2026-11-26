@@ -115,7 +115,7 @@ The p39 suffix pointer and p35 TOTIENT candidate are conditional arithmetic matc
 
 Retain p35 TOTIENT and p39 suffix-Hsum 9 as conditional candidate/pointer observations, not independently confirmed plaintext. Do not promote either to established plaintext.
 
-The next decisive test is to obtain a third independently selected receiver or an original clue that specifies the p39 suffix H operation and the p35 candidate's field sorting before inspecting the output. Do not widen the dictionary, add field permutations, or treat the p35 76+33+1 offset formula as established.
+The direct H-field periodic receiver and literal TOTIENT prime-clock opcode are rejected under the explicit models below. A distinct receiver needs an independent original clue specifying a reversible operation; do not widen the dictionary, add field permutations, or treat the p35 76+33+1 offset formula as established.
 
 ## Independent receiver follow-through and exact H-field ambiguity (Agent34, 26 November)
 
@@ -155,6 +155,30 @@ The ordinary consuming alternative has an independent exact lexical bound. Among
 **Decision:** retire the entire direct periodic additive interpretation of the p35 H packet, not the underlying arithmetic observation or a possible nonperiodic source-selected operation. The H fields do not provide an authentic key or operation. Further work requires an independently specified lossless receiver, not more candidate words or phase permutations.
 
 Reproducer: [sims/lp2_2016_totient_hfield_allkey_sft.cjs](../sims/lp2_2016_totient_hfield_allkey_sft.cjs); [machine output](lp2-2016-totient-hfield-allkey.json). Executed directly against repository data in V8.
+
+
+### Literal TOTIENT as an opcode: all-start prime-clock decision
+
+Rather than treating the residual as a repeated key, consume the meaning of the conditional candidate TOTIENT as an instruction to apply the authentic solved p56 prime-minus-one cipher. Freeze the reset at p35:117 and the same p39:119 exclusive end, 967 original runes. Exhaust all zero-based starting ordinals 0–3300 and both additive signs; retain every exact historical plaintext-F hold path, without any language or word-boundary constraint.
+
+| Direction | Initial ordinals | Complete legal inverses | Longest legal prefix (ordinal) |
+|---|---:|---:|---:|
+| Historical positive | 3301 | 0 | 385 (876) |
+| Opposite | 3301 | 0 | 434 (1244) |
+
+All 6,602 F-transparent variants fail. The native control exactly re-encrypts 85/85 original p56 runes at the historical origin, preserving the known F-hold path (five terminal ordinals; authentic path consumes 84 shifts).
+
+For the ordinary all-consuming alternative, score all 6,602 sign/origin inverses with a native interpolated trigram model. Select only on the remaining 154 p35 runes; freeze across the 813-rune p36–39 continuation.
+
+| Ordinary input | Selected origin/sign | Fit nats/rune | Frozen held-out nats/rune | Held-out exact |
+|---|---|---:|---:|---|
+| Original | 384/+ | -4.419560 | -5.072792 | Unknown, nonprose |
+| Native WELCOME plant | 1033/+ | -2.636267 | -2.484000 | 258/258 |
+| Native jpg107–167 plant | 3300/− | -2.548740 | -2.378496 | 160/160 |
+
+Controls excluded from their own training models recover all 515/515 and 319/319 runes. Every selected inverse replays. The retrospective best original full score is -4.799074 at 590/+, also nonprose. The result rejects a direct prime-clock opcode at this conditional landing in the tested origin domain, not arbitrary totient-dependent ciphers.
+
+[Reproducer](../sims/lp2_2016_totient_opcode_primeclock_sft.cjs) · [Raw output](lp2-2016-totient-opcode-primeclock.json). Core executed against pinned repository sources in V8; standalone wrapper not separately run. No unknown plaintext or authentic key recovered.
 
 ## Reproduction
 
