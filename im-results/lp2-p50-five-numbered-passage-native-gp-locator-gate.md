@@ -69,3 +69,22 @@ A second fixed receiver test treats the lookup as ciphertext under the *same* es
 ## Decision and next useful action
 
 The five-unit numeral→rune reading remains a fully specified *candidate locator* if an original source independently names the numbered messages as a keybook. The printed-digit domain itself strongly favors ordinary 8-bit radix60 representation over an unweighted five-passage address model, so the shared number five cannot justify treating those passages as a source-selected receiver. The new terminal-256 holdout also rejects direct use as the p56 key/plaintext and the same p56 prime-totient cipher as a second layer. **For now this is a bounded negative on the simple locator, direct-key and same-cipher receiver interpretations.** The task of finding an externally hosted named key and a first-party p50 table-address rule remains unsatisfied. Prefer source instructions that supply a genuine operand and cipher consumption rule over reinterpreting this 256-rune output through freely chosen further transforms.
+
+## Exact historical first-occurrence coordinate constraint (#3061, Agent8, 26 November 2026)
+
+The 2013 signed Book of the Law sender supplies a *different* discontinuous coordinate convention from a direct row/column sweep: search cyclically from the verse after the previous chosen verse, use the first verse containing the desired character and its first occurrence within that verse; an absent character is emitted literally and resets the cursor. The independent reconstruction in [the organizer convention study](cicada-organizer-bookcode-consumption-convention-gate.md#2892--exact-2013-forward-sender-reconstruction-not-just-decoding-agent15-26-november-2026) is reproduced on the actual signed sample and three pinned verse witnesses: **46/46 original records** predicted, including both literals. This establishes a compatible historical sender, not its uniqueness.
+
+Transfer only the first-occurrence property and the exact sequential greedy cursor to the already-established five explicitly numbered passages, with the existing zero-based high/low p50 coordinate representation frozen. This is a conditional source transfer, not an authenticated LP2 encoder. Unlike the original lookup, it imposes a local necessary condition at *each* address, independent of the intended plaintext, any starting cursor, and any permutation of record order. The addressed rune must occur at that passage offset for the **first time**. A bijective relabeling of rune identities cannot change the first-occurrence property.
+
+| Numbered passage | Original addresses | First occurrence |
+|---|---:|---:|
+| 1 | 60 | 22 |
+| 2 | 58 | 19 |
+| 3 | 65 | 29 |
+| 4 | 56 | 21 |
+| 5 | 17 | 12 |
+| Total | 256 | 103 |
+
+**153/256 addresses are noncanonical** even before checking any cursor. For example the very first printed cell 3N is passage 4, zero-based offset 23, D; the same rune already occurs at offset 12 of that passage. This is an exact contradiction for the historical greedy sender under *every* initial cursor and every record ordering, not a language score. Even discarding the 153 invalid addresses (an unsupported relaxation) leaves only 28 distinct GP symbols, missing B, so the surviving addresses cannot supply the sought complete 29-coordinate alphabet. The full row-major direct-lookup tape, re-encoded with the historical cursor starting before passage 1, reproduces only 17/256 records and already fails on cell 0. No q8 fit was attempted because the independent coordinate selector is absent; the alternative ordinary byte interpretation predicts the observed high-digit range and is not subject to this first-occurrence condition.
+
+[Exact source-pinned SFT](../sims/lp2_p50_five_passage_first_occurrence_sft.cjs) · [all 153 witness records](lp2-p50-five-passage-first-occurrence-output.json). Actual historical replay and original calculation executed in connected V8; standalone Node wrapper not separately run. This rules out only the fixed five-unit locator as an exact historical first-occurrence sender and does not exclude an unrelated coordinate convention or a different independent alphabet source. No unknown plaintext or key was recovered.
