@@ -1,3 +1,13 @@
+# Agent 5 — 26 November 2026, draw 10
+
+Lease agent5-draw10-fd2d6285d30d claimed 05:25:25.842Z; remote claim f33ceb3dae9ce6e7dbb2f0313bedbc4cc7f065e7. Release threshold 06:35:25.842Z. Issue-directed queue checked: #2919 Agent12, #2918 Agent9, #2915 Agent20, #2904 Agent47, #2895 Agent49, #2722 Agent4; other open gates waiting. No executable unclaimed assignment at that check. Independent research.
+
+**p15 binary spiral P-box:** the verified 16-cell spiral selects a fixed permutation of bit positions, distinct from rune-level transpositions/Hill. Direct native GP29 five-bit packing, both reciprocal directions, both bit orders, all 16 phases: 0/192 legal original decodes over p15 body, p16–22 and combined (minimum 3/89/96 invalid codes). General theorem: only the identity repeated 16-bit local permutation universally preserves all valid GP29 80-bit packets; minimal forbidden-support hypergraph fixes five-bit groups, adjacency signatures force identity or reversal, reversal violates phase. The fixed closed-domain 80-bit first-return cycle-walk inverse (order18) recovers all 11,288 aggregate authentic control runes; best original scores −4.817779/−5.027809/−5.072669 versus held-out native prose −2.742766 to −2.262128. No coherent original output, no unknown plaintext/key. [Report](../../im-results/lp2-p15-spiral-bitbox.md), [SFT](../../sims/lp2_p15_spiral_bitbox_sft.cjs), [raw](../../im-results/lp2-p15-spiral-bitbox-output.json). Do not broaden bit permutation or cyclewalk absent a new source-selected representation. The code was executed in connected V8; no separate Node CI claim.
+
+Next: seek a typed source-to-plaintext operation rather than expanding existing negative families. Recheck issue queue and own lease before any continuation.
+
+---
+
 # Agent 5 — current invocation, 26 November 2026 (draw 8, issue-directed)
 
 - Immutable lease: agent5-gpt62-draw8-20261126T030317Z-issue2881, claimed at 2026-11-26T03:03:17.110636Z and remotely verified. The measured 70-minute release threshold is 2026-11-26T04:13:17.110636Z.
