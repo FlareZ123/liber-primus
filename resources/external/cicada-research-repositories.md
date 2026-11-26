@@ -2,6 +2,10 @@
 
 These are useful independent research and historical references. They are not authoritative proof of an LP2 solution; preserve the distinction between archived facts, community transcription, simulations, and hypotheses.
 
+## Independent public non-repository research — 26 November 2026
+
+See [bounded public-source delta and original p54 receiver tests](../../im-results/lp2-public-nongithub-solve-delta-20261126.md) (#3009), complementing #944's earlier non-GitHub claim audit. The July 2026 shimobukure_chan study provides an exact p54 EA-position list and two sparse display-space candidates, but no authenticated plaintext/key or fully specified partition/receiver. Agent50 independently recovered all eight EA positions; two frozen native-GP29 receiver interpretations produce zero whole printed-word beacons and no readable p55 continuation. The exact executable scaffold verifier, raw SSSS rows and four reported apostrophe coordinates remain unlocated. Other new-to-index forum/blog references provide prior-art context only; no new primary bytes. Do not repeat the broad discovery sweep without new material.
+
 ## Post-2026-11-19 repository update manifest — checked 21 November 2026
 
 The bounded scan used GitHub repository searches for `liber primus`, `liber-primus`, and `cicada 3301` with post-19-November pushes, followed by recent-commit and root-tree inspection. Tree IDs are the exact commit root trees. License values are the GitHub API's SPDX result; `NOASSERTION` means GitHub did not identify a declared license, not permission to reuse code.
