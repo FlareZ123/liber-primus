@@ -42,9 +42,9 @@ Fit (A) uniquely from the first 13 transitions (s_0\to s_1,\ldots,s_{12}\to s_{1
 | Held-out symbol matches | 19 / 546 |
 | Random-coordinate match expectation | 546 / 29 = 18.83 |
 
-The first held-out transition fails in all 13 coordinates. Across the 546 held-out coordinates, only 19 match the prediction, essentially the random expectation. The fitted (A) is invertible, so the failure is not caused by an accidentally singular transition.
+The first held-out transition fails in all 13 coordinates. Across the 546 held-out coordinates, only 19 match the prediction, essentially the random expectation. The fitted `A` is invertible, so the failure is not caused by an accidentally singular transition.
 
-**Decision:** the 13-rune title plus 55×13 opening does not form a single fixed linear state trajectory over (GF(29)). This rejects the specific linear-register interpretation; it does not establish a different receiver and does not decrypt any LP2 page.
+**Decision:** the 13-rune title plus 55×13 opening does not form a single fixed linear state trajectory over `GF(29)`. This rejects the specific linear-register interpretation; it does not establish a different receiver and does not decrypt any LP2 page.
 
 ## Reproduction
 
@@ -54,7 +54,7 @@ Run from the repository root:
 node sims/lp2_p0_13state_linear_transition_gate.cjs
 ```
 
-The script reads the original-derived canonical GP29 corpus, asserts the 13 + 1 + 715 source partition, fits (A) over (GF(29)), and prints the full matrix and held-out mismatches.
+The script reads the original-derived canonical GP29 corpus, asserts the 13 + 1 + 715 source partition, fits `A` over `GF(29)`, and prints the full matrix and held-out mismatches.
 
 ## Relation to existing work
 
