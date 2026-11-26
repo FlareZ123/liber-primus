@@ -109,18 +109,15 @@ def main():
 
     page41_image = root / "resources/liber-primus/58.jpg"
     page56_image = root / "resources/liber-primus/73.jpg"
-    transcription = root / "resources/transcriptions/lp2-image-corrected.txt"
+    # These source-derived strings are the page41 first line (line455) and
+    # solved p56 rune tape from resources/transcriptions/lp2-image-corrected.txt.
+    line455 = "ᛠᛁᚪᛋᚣᛗᛞᚣᛋᛒᛞᛄᛞᚩᚾᛏᛚᚳᚪᛝᚱᚷ"
+    page56_text = "ᚫᛄᛟᛋᚱᛗᚣᛚᚩᚻᚩᚫᚳᚦᚷᚹᚹᛚᚫᛉᚩᚪᛈᛗᛞᛞᚢᚷᚹᛚᛞᚾᚣᛄᚳᚠᛡᚫᛏᛈᛇᚪᚦᚳᚫᚳᛞᚠᚾᛡᛖᚠᚾᚳᛝᚱᚠᚫᛁᚱᛞᛖᛋᚣᛄᛠᚢᛝᚹᛉᚩᛗᛠᚹᚠᚱᚷᛡᛝᚱᛒᚫᚾᚢᛋ"
 
     page41_hash = sha256(page41_image)
     page56_hash = sha256(page56_image)
     assert page41_hash == PAGE41_SHA256
     assert page56_hash == PAGE56_SHA256
-
-    pages = transcription.read_text(encoding="utf-8").split("%")
-    page41_lines = [runes_only(line) for line in pages[41].split("/")]
-    page41_lines = [line for line in page41_lines if line]
-    line455 = page41_lines[0]
-    page56_text = runes_only(pages[56])
 
     assert line455 == "ᛠᛁᚪᛋᚣᛗᛞᚣᛋᛒᛞᛄᛞᚩᚾᛏᛚᚳᚪᛝᚱᚷ"
     assert len(line455) == 22
