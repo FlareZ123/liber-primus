@@ -1,0 +1,152 @@
+{
+  "observed": {
+    "length": 12956,
+    "groups": 2896,
+    "internal": 63,
+    "seam": 23
+  },
+  "model": {
+    "generatorPairs": 756,
+    "initialStates": 812,
+    "keys": 613872,
+    "partition": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0,
+      1,
+      1,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "state": "left composition; ordinary consuming; continuous"
+  },
+  "controls": [
+    {
+      "name": "Shakespeare",
+      "kind": "length-matched",
+      "checked": 613872,
+      "minAll": 275,
+      "minInside": 192,
+      "minSeam": 58,
+      "near": 0,
+      "exact": 0,
+      "best": {
+        "a": 28,
+        "b": 1,
+        "A": 25,
+        "B": 3,
+        "internal": 199,
+        "seam": 76,
+        "loss": 189
+      },
+      "validations": 756
+    },
+    {
+      "name": "Gibran",
+      "kind": "length-matched",
+      "checked": 613872,
+      "minAll": 267,
+      "minInside": 189,
+      "minSeam": 57,
+      "near": 0,
+      "exact": 0,
+      "best": {
+        "a": 28,
+        "b": 1,
+        "A": 4,
+        "B": 14,
+        "internal": 191,
+        "seam": 76,
+        "loss": 181
+      },
+      "validations": 756
+    },
+    {
+      "name": "Emerson",
+      "kind": "length-matched",
+      "checked": 613872,
+      "minAll": 268,
+      "minInside": 187,
+      "minSeam": 60,
+      "near": 0,
+      "exact": 0,
+      "best": {
+        "a": 28,
+        "b": 1,
+        "A": 25,
+        "B": 25,
+        "internal": 187,
+        "seam": 81,
+        "loss": 182
+      },
+      "validations": 756
+    }
+  ],
+  "plants": [
+    {
+      "name": "Shakespeare",
+      "offset": 10000,
+      "actual": [
+        7,
+        5,
+        13,
+        8
+      ],
+      "selected": [
+        7,
+        5,
+        13,
+        8
+      ],
+      "trainRecovered": 213,
+      "heldRecovered": 86,
+      "trainScore": -2.423784271556543,
+      "heldScore": -2.469233138955643,
+      "margin": 0.00014662695276058726
+    },
+    {
+      "name": "Emerson",
+      "offset": 20000,
+      "actual": [
+        11,
+        3,
+        23,
+        14
+      ],
+      "selected": [
+        11,
+        3,
+        23,
+        14
+      ],
+      "trainRecovered": 213,
+      "heldRecovered": 86,
+      "trainScore": -2.389659000095833,
+      "heldScore": -2.5748141982775787,
+      "margin": 0.004065017292405345
+    }
+  ],
+  "originalFit": null
+}

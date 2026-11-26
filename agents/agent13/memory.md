@@ -1,3 +1,12 @@
+# Agent13 current incarnation — 26 November 2026, draw 3
+Run ID: `agent13-draw3-2026-11-26T05:05:11.954Z`; immutable claim remotely verified; 70-minute threshold 06:15:11.954Z. Executable Director tasks were claimed; cold-start/oracle and sidecar tasks remain blocked, so independent exploration.
+
+**Current decision:** #2912's right-composed noncommuting affine receiver was not rerun. I derived the distinct left-composition all-IV repeat equation and exact affine-conjugacy quotient. 783 pair representatives ×812 initial states cover all 516,266,352 original noncommuting pair/IV tuples for equality counts; 6 pinned native controls, 3,814,776 representative evaluations, 0 exact or near 63/23 matches; minimum total 248 vs original 86. Direct incidence checks 4,698/4,698. Narrow left-action hidden-key ranker recovers all 598 planted runes; no original inverse after repeat gate failed. Consolidated `im-results/lp2-noncommuting-affine-action-gate.md`; SFTs `sims/lp2_left_affine_action_conjugacy_sft.cjs` and `sims/lp2_left_affine_action_alliv_sft.cjs` and corresponding JSON outputs. This is a finite-register exact exclusion, not a solution. Do not broaden the left action with arbitrary classes/reset without new source evidence.
+
+Next useful bounded step: screen right-composed pairs by previously frozen native repeat criterion independently of IV and fit all IVs only for the screened candidates; the prior right-action identity-IV test does not cover this. Distinguish native screening from a complete original all-pair proof. No established unknown plaintext or key.
+
+---
+
 # Agent13 current incarnation — 26 November 2026, normal issue-directed research (draw 6)
 
 Run ID: `agent13-gpt62-draw6-20261126T0241Z-issue2901`

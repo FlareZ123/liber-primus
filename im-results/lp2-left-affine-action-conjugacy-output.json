@@ -1,0 +1,504 @@
+{
+  "observed": {
+    "runes": 12956,
+    "groups": 2896,
+    "internal": 63,
+    "seam": 23
+  },
+  "representatives": 783,
+  "allNoncommuting": 635796,
+  "iv": 812,
+  "totalOriginalParameterTuples": 516266352,
+  "representativeTuples": 635796,
+  "controls": [
+    {
+      "name": "Shakespeare",
+      "kind": "length-matched",
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 275,
+          "minInside": 192,
+          "minSeam": 58,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 25,
+            "B": 3,
+            "internal": 199,
+            "seam": 76,
+            "loss": 189
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 320,
+          "minInside": 197,
+          "minSeam": 59,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              28,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 18,
+            "B": 15,
+            "internal": 197,
+            "seam": 123,
+            "loss": 234
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 354,
+          "minInside": 265,
+          "minSeam": 55,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              8,
+              21
+            ],
+            "b": [
+              0,
+              9
+            ],
+            "A": 21,
+            "B": 25,
+            "internal": 265,
+            "seam": 89,
+            "loss": 268
+          },
+          "directChecks": 729
+        }
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "kind": "continuous",
+      "offset": 1000,
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 250,
+          "minInside": 202,
+          "minSeam": 48,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 25,
+            "B": 13,
+            "internal": 202,
+            "seam": 48,
+            "loss": 164
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 289,
+          "minInside": 217,
+          "minSeam": 55,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              28,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 12,
+            "B": 25,
+            "internal": 217,
+            "seam": 72,
+            "loss": 203
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 350,
+          "minInside": 258,
+          "minSeam": 55,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              3,
+              24
+            ],
+            "b": [
+              0,
+              6
+            ],
+            "A": 19,
+            "B": 10,
+            "internal": 258,
+            "seam": 92,
+            "loss": 264
+          },
+          "directChecks": 729
+        }
+      }
+    },
+    {
+      "name": "Gibran",
+      "kind": "length-matched",
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 267,
+          "minInside": 189,
+          "minSeam": 57,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 4,
+            "B": 14,
+            "internal": 191,
+            "seam": 76,
+            "loss": 181
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 316,
+          "minInside": 212,
+          "minSeam": 62,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              28,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 11,
+            "B": 0,
+            "internal": 212,
+            "seam": 104,
+            "loss": 230
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 354,
+          "minInside": 267,
+          "minSeam": 60,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              3,
+              19
+            ],
+            "b": [
+              0,
+              11
+            ],
+            "A": 17,
+            "B": 28,
+            "internal": 275,
+            "seam": 79,
+            "loss": 268
+          },
+          "directChecks": 729
+        }
+      }
+    },
+    {
+      "name": "Gibran",
+      "kind": "continuous",
+      "offset": 1000,
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 248,
+          "minInside": 185,
+          "minSeam": 49,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 4,
+            "B": 19,
+            "internal": 187,
+            "seam": 61,
+            "loss": 162
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 296,
+          "minInside": 228,
+          "minSeam": 48,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              28,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 7,
+            "B": 24,
+            "internal": 233,
+            "seam": 63,
+            "loss": 210
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 355,
+          "minInside": 266,
+          "minSeam": 57,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              6,
+              19
+            ],
+            "b": [
+              0,
+              11
+            ],
+            "A": 11,
+            "B": 21,
+            "internal": 270,
+            "seam": 85,
+            "loss": 269
+          },
+          "directChecks": 729
+        }
+      }
+    },
+    {
+      "name": "Emerson",
+      "kind": "length-matched",
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 268,
+          "minInside": 187,
+          "minSeam": 60,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 25,
+            "B": 25,
+            "internal": 187,
+            "seam": 81,
+            "loss": 182
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 315,
+          "minInside": 215,
+          "minSeam": 62,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              7,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 27,
+            "B": 24,
+            "internal": 237,
+            "seam": 78,
+            "loss": 229
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 337,
+          "minInside": 265,
+          "minSeam": 56,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              16,
+              16
+            ],
+            "b": [
+              0,
+              14
+            ],
+            "A": 13,
+            "B": 21,
+            "internal": 265,
+            "seam": 72,
+            "loss": 251
+          },
+          "directChecks": 729
+        }
+      }
+    },
+    {
+      "name": "Emerson",
+      "kind": "continuous",
+      "offset": 1000,
+      "families": {
+        "vowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 277,
+          "minInside": 212,
+          "minSeam": 48,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              1,
+              28
+            ],
+            "b": [
+              1,
+              0
+            ],
+            "A": 4,
+            "B": 14,
+            "internal": 229,
+            "seam": 48,
+            "loss": 191
+          },
+          "directChecks": 27
+        },
+        "nonvowel-translation": {
+          "representatives": 27,
+          "checked": 21924,
+          "minAll": 291,
+          "minInside": 219,
+          "minSeam": 58,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              28,
+              1
+            ],
+            "b": [
+              0,
+              1
+            ],
+            "A": 7,
+            "B": 7,
+            "internal": 228,
+            "seam": 63,
+            "loss": 205
+          },
+          "directChecks": 27
+        },
+        "two-dilations": {
+          "representatives": 729,
+          "checked": 591948,
+          "minAll": 355,
+          "minInside": 265,
+          "minSeam": 54,
+          "near": 0,
+          "exact": 0,
+          "best": {
+            "a": [
+              23,
+              24
+            ],
+            "b": [
+              0,
+              6
+            ],
+            "A": 7,
+            "B": 7,
+            "internal": 269,
+            "seam": 86,
+            "loss": 269
+          },
+          "directChecks": 729
+        }
+      }
+    }
+  ]
+}
