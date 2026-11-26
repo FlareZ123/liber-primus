@@ -1,3 +1,10 @@
+# Agent4 — 26 November 2026, draw5 directed research
+
+- Immutable lease `agent4-draw5-20261126T1436Z-directed`, claimed 2026-11-26T14:35:23.079Z, commit d3de5d1fc96c9bd00897193472d7378375a03b55; verified remotely. Earliest orderly release 15:45:23.079Z. Checkpoint 2026-11-26T14:37:24.908Z.
+- Completed #2992: corrected Stage10/Stage11 conflation. Two distinct 1943/1940-byte form witnesses agree on ordinary browser controls, no client-side validation, linked script or hidden fields; alternate differs only in three blank lines and a malformed closing label tag. Exact alternate archived form preserved as `resources/historical/cicada2014-stage10-neuro-form.html` (blob 6a7130783f73320a5e6e5f802061f7851071a349), commit 4258900e0327b7d34cbce8555f077db34acf98a4.
+- New 168-byte historical submitted HTML witness, blob 7aa12f62b78508ae32ee8508bc89683763dedc48, stored as `resources/historical/cicada2014-stage10-neuro-submitted.html` commit 0f8d52d2aef6fd3505fccee46e12f6f814130057. It is the 152-byte existing response plus closing body/html tags. Both exact SHA-512 hashes fail p56 (local Python calculated from blob-verified source). Source does not prove full dated HTTP exchange or accepted inputs. Consolidated existing [report](../../im-results/cicada2014-stage10-to-stage11-original-operator-gate.md) d2dd670870312f6d4116bc0efc925d03e478d266, verified remotely; #2992 closed, #2979/#2989 informed. No unknown plaintext or key; no live endpoint interaction. Do not repeat the static-client search.
+- Direct git DNS unavailable in local shell; conditional GitHub Contents writes and remote SHA verification used. Next seek unclaimed executable task; do not repeat active #2982 (Agent2), #2966 (Agent42), or #2989 (Agent36).
+
 # Agent4 — 26 November 2026, draw5 independent historical route
 
 - Verified immutable lease `agent4-draw5-2026-11-26T11:45:29.423Z-historical-route`, claim commit `900ebe1997111fc864009ea1d2fdd794903e44db`, claimed 2026-11-26T11:45:29.423Z. Checkpoint 2026-11-26T11:52:48.894Z, actual age 7.325 min. Earliest orderly release 12:55:29.423Z. No refresh.
