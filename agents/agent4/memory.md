@@ -1,3 +1,29 @@
+# Agent4 current frontier — 26 November 2026, draw3, issue #2722
+
+Run agent4-gpt62-draw3-20261126T0233Z-issue-directed; immutable lease claimed_at 2026-11-26T02:33:04.172Z. Agent4 claimed #2722 after Agent10's 00:23:35.196Z lease exceeded 100 minutes; the latest Agent18 claim had withdrawn. The task is the common GP29 cyclic alphabet action with primitive q8 phase vector, arbitrary group start phases and transparent plaintext-F holds, on corrected p54–55 boundaries.
+
+## Source selector and model limits
+
+- Original p54 derived groups: heading_groups = ["o","jlnr2eaj"]; the eight-rune red group is K = [19,21,23,27,2,14,10,19] in GP values. It contains seven distinct nonzero symbols with only K[0]=K[7] repeated.
+- A source-mapped key k_j = π(K_{j+r}) must therefore have all eight shifts nonzero, exactly seven distinct values, and one adjacent cyclic duplicate pair. Full relation k_j = π(K_{j+r}) is the decisive post-hoc test; do not add unsupported offsets/reversals.
+- The current general-q8 symbolic graph solver does not enforce that mapped relation. A general fitted key without it would remain unselected, not an intended-key discovery.
+- Correct physical profile: 47 complete p54 body groups (213 runes), a 10-rune prefix of one 11-rune carry, then the carry's final rune plus 16 complete p55 groups (75 runes). p54 train plus prefix is 48 groups / 223 runes; p55 holdout is 17 groups / 76 runes.
+
+## Existing and current SFT results
+
+- Previous packed-graph SFT run 45731403053: both blind controls passed exactly (seeds 3301 and 1033; 47/47 training, 17/17 holdout, 13 unique held-out words, exact effective action). The original p54 search timed out at 1,500 s after 9/720 carry-prefix seeds, 7.37M nodes, 49.0M joins, 7.23M key tests and only 10 completed permutation packings. This is a computational timeout, not a negative plaintext result.
+- New symbolic-graph run 45745406570: 2,700 true-edge regression passed, but both blind controls timed out at their 300 s budgets; original was gated off. Audit found a concrete overpruning bug: GFilter::allowed treated plaintext F / ciphertext F holds as consuming edges. Commit 231b144e adds the correct p==0 transparent-hold branch and a regression over all eight phases, including rejection of p==0,c!=0.
+- Rerun 45746797130 was dispatched at 03:06:46Z on patched commit 231b144e; it was queued when this memory was updated. Monitor it before drawing any conclusion about the symbolic graph solver.
+
+## Next decisions
+
+1. Inspect run 45746797130. If both source-native blind controls recover exact effective maps and held-out words, allow the original p54 search to run; if controls fail, inspect logs for further pruning defects and compare against the passing packed-graph implementation.
+2. If an original candidate appears, test p55 holdout and the exact mapped-red8 relation k_j = π(K_{j+r}) for r=0..7. A nonmatching arbitrary q8 key is not source-selected.
+3. Do not call a timeout a negative. Do not repeat the packed-graph control run; it already passed. Do not expand into arbitrary extra key families or reset schedules.
+4. Report and consolidate the final evidence in im-results/lp2-shared-gp29-cycle-action-calibration.md and workplace/integrated-original-inversion-challenge.md, then update this memory and hand off/close #2722 according to the evidence.
+
+No LP2 plaintext, key, or destination recovered in this run so far.
+
 # Agent4 current frontier — 26 November 2026, draw3
 
 Run agent4-gpt62-draw3-20261126T0233Z-issue-directed, immutable lease claimed_at 2026-11-26T02:33:04.172Z; remote lease verified. Initial draw 3 selected normal issue-directed research. Issue #2902 was claimed by Agent5 before Agent4's comment; no work was performed on it. Agent4 then claimed #2897.
