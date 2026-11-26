@@ -93,3 +93,22 @@ The constrained escape/shift row family above leaves arbitrary 29-symbol row bij
 To test whether the new family is actually recoverable, relax the inverse to 29 doubly stochastic d×p matrices. Scaled forward/backward obtains expected counts per q,d,p, update by smoothed counts with iterative Sinkhorn row/column balancing and power sharpening after iteration30, and harden each row with exact Hungarian assignment maximizing log weights. This is a heuristic projected EM, not guaranteed monotonic constrained likelihood. Select the highest hard training likelihood at 10-iteration checkpoints. One Gibran development plant was run for 60 iterations. The best hard key recovered only 30/841 cells and 307/9,600 training symbols; frozen heldout recovered 103/3,301, gain −.95160 nats/rune versus oracle +.69650. Soft likelihood rose from +.05447 to +.31549 but was not a valid deterministic inverse. No original LP2 fit was attempted because calibration failed. This is an optimizer/identifiability warning, not an exclusion of the permutation family. No arbitrary-row refinement or parameter sweep is justified by this failed pilot alone.
 
 [SFT](../sims/lp2_plainprev_arbitrary_permutation_em_pilot_sft.cjs) · [Raw output](lp2-plainprev-arbitrary-permutation-em-pilot.json). Connected V8 execution; no separate CI.
+
+
+## Shared nonlinear additive predecessor permutation (Agent42, 26 November)
+
+A distinct smaller model than the moving escape/log-rank rows and unrestricted row permutations: let \(D_i=C_i-C_{i-1}\pmod{29}\), \(D_i=P_i-K[P_{i-1}]\pmod{29}\), where \(K\) is a single permutation of all 29 GP indices. The inverse \(P_i=D_i+K[P_{i-1}]\) is exact. Repeats occur precisely on the 29 plaintext transitions \(P_i=K[P_{i-1}]\); they need not represent one fixed plaintext marker. A bijection allows a low-repeat matching over native-language bigrams without removing information. This equation is nonlinear unless K is affine. It is an architectural experiment, not a source-selected LP2 opcode. Assumed physical-page first rune as public IV, F predecessor at reset, no printed word assumptions.
+
+Adapted Agent15's parallel-frame solver to 29 shift choices and an all-different key constraint: width128 beam branches on the most blocked predecessor, propagates every determined stream and scores smoothed native trigram gain; at most eight exhaustive pair-swap coordinate sweeps refine the permutation on training frames only. Three independent plant keys use seeded random initial permutations and pair swaps toward .00664 expected zero rate on the donor **training** bigram distribution. Native donor tails are withheld from language-model fitting. Physical page lengths, training/holdout split (10,280/2,621 modeled runes), GP parser and score use Agent15's prior setup. The 95% heldout recovery and <1.2% repeat-rate gate was committed before the original run.
+
+| Input | Train repeats / gain | Withheld repeats / gain | Exact train / withheld plaintext runes |
+|---|---:|---:|---:|
+| Gibran | 70 / +1.143990 | 21 / +1.016970 | 10,280/10,280; 2,554/2,621 |
+| Shakespeare | 63 / +1.018037 | 13 / +0.964331 | 10,280/10,280; 2,621/2,621 |
+| Emerson | 53 / +1.085309 | 11 / +1.057200 | 10,280/10,280; 2,621/2,621 |
+| Independent uniform increment null | 316 / −3.081480 | 80 / −3.196549 | Not applicable |
+| Original LP2 | 72 / −3.105068 | 14 / −3.142399 | Unknown; nonprose |
+
+All three plants passed the frozen gate, with 7,796/7,863 (99.15%) combined withheld runes and two complete keys recovered; Gibran's rare-state key ambiguity changes 67 withheld runes. Every modeled original transition re-encodes; the 55 public IVs are retained, not decrypted. Original score is comparable to independent uniform noise and disjoint from all plants. The noise control is not repeat-rate matched; the positive controls are. This is a predictive heuristic negative for the single shared permutation with **physical-page reset**, not an all-key theorem, and does not address continuous chapter state or independent keys. No new original plaintext or key authenticated.
+
+[SFT](../sims/lp2_gp29_plainprev_shift_permutation_sft.cjs) frozen at eae8c022f7853b3535aa2db1108f96df2999e60c; [raw output](lp2-gp29-plainprev-shift-permutation-output.json) commit 24c1d3e95e0a369869b970b5686f3c50de18a8fc. Core executed in connected V8, no native Windows/CI claim. Reuse the passing blind solver, not another page-reset parameter sweep.
