@@ -43,6 +43,30 @@ function experiment(corpus, transcription, trials=1000) {
  // Exhaustive 29^2 direct pattern-identity controls including equal and unequal offsets.
  const controlA=[23,11,1],controlB=[17,18,10];let controls=0;
  for(let a=0;a<29;a++)for(let b=0;b<29;b++){let x=controlA.map(z=>mod(z+a)),y=controlB.map(z=>mod(z+b));if(normalize(x)!==normalize(controlA)||normalize(y)!==normalize(controlB)||mod(x[0]-controlA[0])!==a||mod(y[0]-controlB[0])!==b)throw Error("control");controls++}
+ // Full-detector controls: copy four complete words to another physical page
+ // with the same four word lengths, translating by alternating known shifts.
+ let shapeMap=new Map(),pair=null;
+ for(let i=1;i<words.length-2&&!pair;i++){
+  const seg=words.slice(i-1,i+3);
+  if(seg.some(w=>w.page!==words[i].page||w.v.length<2)||seg[1].v.length+seg[2].v.length<5)continue;
+  const shape=seg.map(w=>w.v.length).join(",");
+  const prev=shapeMap.get(shape);
+  if(prev!==undefined&&words[prev].page!==words[i].page)pair=[prev,i];
+  else if(prev===undefined)shapeMap.set(shape,i);
+ }
+ if(!pair)throw Error("no matched four-word plant slots");
+ const planted=[];
+ for(const shifts of [[0,0],[7,13],[28,1]]){
+  const ids=v.slice();
+  for(const step of [-1,0,1,2]){
+   const q=types[v[pair[0]+step]],k=(step===0||step===2)?shifts[0]:shifts[1];
+   const r=q.r.map(x=>mod(x+k));
+   ids[pair[1]+step]=types.length;types.push({r,n:q.n,len:q.len,head:r[0],sig:q.sig});
+  }
+  const hit=scan(ids,true).details.find(d=>d.i===pair[0]&&d.j===pair[1]);
+  if(!hit||hit.shifts.some((x,i)=>x!==shifts[i])||hit.passed.join(",")!=="-1,2")throw Error("full detector plant failed");
+  planted.push(hit);
+ }
  function nullTest(field,seed){
   const bins=new Map();for(let i=0;i<words.length;i++){const w=words[i],key=w[field]+":"+w.v.length;if(!bins.has(key))bins.set(key,[]);bins.get(key).push(i)}
   let state=seed>>>0;const rng=()=>{state^=state<<13;state^=state>>>17;state^=state<<5;return(state>>>0)/4294967296};
@@ -51,7 +75,7 @@ function experiment(corpus, transcription, trials=1000) {
    let res=scan(ids);for(let k of keys){sums[k]+=res[k];if(res[k]>=observed[k])hits[k]++}hist[res.splitNeighborMatches]=(hist[res.splitNeighborMatches]||0)+1;
   }return {field,seed,trials,means:Object.fromEntries(keys.map(k=>[k,sums[k]/trials])),addOneTails:Object.fromEntries(keys.map(k=>[k,(hits[k]+1)/(trials+1)])),splitNeighborHistogram:hist};
  }
- return {words:words.length,runes:tape.length,eligible:eligible.length,controls,observed,nulls:[nullTest("page",0x33012611),nullTest("line",0x27115526)]};
+ return {words:words.length,runes:tape.length,eligible:eligible.length,controls,planted,observed,nulls:[nullTest("page",0x33012611),nullTest("line",0x27115526)]};
 }
 const root=path.join(__dirname,'..','resources','liber-primus');
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(path.join(root,'lp2-corpus.json'),'utf8')),fs.readFileSync(path.join(root,'lp2-transcription.txt'),'utf8')),null,2));
