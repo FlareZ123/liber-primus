@@ -57,8 +57,8 @@ bool affineControl(const vector<string>&train,const vector<string>&held,const ve
  cout<<"AFFINE CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17 unique="<<unique<<" pass="<<pass<<endl;return pass;
 }
 int main(int argc,char**argv){try{
- bool controls=false,inventory=false;size_t first=0,last=93;int seconds=600;set<size_t>excluded;string family="both";set<int>offsets;
- for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--seconds")seconds=stoi(v);else if(a=="--family")family=v;else if(a=="--offset")offsets.insert(aff::mod(stoi(v)));else if(a=="--exclude")excluded.insert(stoull(v));else throw runtime_error("unknown argument "+a);}
+ bool controls=false,inventory=false;size_t first=0,last=93;int seconds=600;set<size_t>excluded;string family="both";set<int>offsets,excludedOffsets;
+ for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--seconds")seconds=stoi(v);else if(a=="--family")family=v;else if(a=="--offset")offsets.insert(aff::mod(stoi(v)));else if(a=="--exclude-offset")excludedOffsets.insert(aff::mod(stoi(v)));else if(a=="--exclude")excluded.insert(stoull(v));else throw runtime_error("unknown argument "+a);}
  aff::init();fixed::dictionary();frequencyOrderEnabled=true;exactMrvEnabled=true;buildPrior7();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));fixed::require(train.size()==48&&held.size()==17,"profile");
  const vector<int>ord{19,21,23,27,2,14,10,19},prime{13,21,2,20,5,18,2,13};
@@ -74,6 +74,7 @@ int main(int argc,char**argv){try{
   for(const auto&v:{ord,prime}){if((v==ord&&family=="prime")||(v==prime&&family=="ordinal"))continue;for(int b:offsets)for(int r=0;r<Q;r++){int z=aff::mod(v[r]+b);if(!z)continue;KV k{};for(int j=0;j<Q;j++)k[j]=aff::mul[aff::mod(v[(r+j)%Q]+b)][aff::inv[z]];if(ks.count(k))selected.insert(k);}}
   ks=move(selected);
  }
+ for(const auto&v:{ord,prime})for(int b:excludedOffsets)for(int r=0;r<Q;r++){int z=aff::mod(v[r]+b);if(!z)continue;KV k{};for(int j=0;j<Q;j++)k[j]=aff::mul[aff::mod(v[(r+j)%Q]+b)][aff::inv[z]];ks.erase(k);}
  Affine7 s(train);fixed::require(s.seeds.size()==93&&first<last&&last<=93&&seconds>0,"seed range");
  s.split(first,last,ks,excluded);if(inventory)return 0;s.runAffine(seconds);
  if(s.found){auto m=fixed::maps(s.answer,s.answerKey);cout<<"ORIGINAL AFFINE candidate pi";for(int x:s.answer)cout<<" "<<x;cout<<" k";for(int x:s.answerKey)cout<<" "<<x;cout<<endl;for(int i=0;i<47;i++){auto z=fixed::decode(train[i],m,fixed::dict);cout<<"TRAIN "<<i;for(auto&w:z)cout<<" "<<w;cout<<endl;}held[0]=train.back()+held[0];for(int i=0;i<int(held.size());i++){auto z=fixed::decode(held[i],m,fixed::dict);cout<<"HOLD "<<i;for(auto&w:z)cout<<" "<<w;cout<<endl;}}
