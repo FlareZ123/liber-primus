@@ -15,7 +15,7 @@ function experiment(raw,book){
 
 
  const K=book.key,L=K.length,modK=x=>(x%L+L)%L;
- function plant(ws,sgn,stride,seed,need=100,extra=40,maxNodes=2e6){
+ function plant(ws,sgn,stride,seed,need=100,extra=40,maxNodes=2e6,flexible=false){
   const P=ws.flat(),bounds=[0];for(const w of ws)bounds.push(bounds.at(-1)+w.length);
   const word=new Int32Array(P.length);for(let q=0;q<ws.length;q++)word.fill(q,bounds[q],bounds[q+1]);
   const C=new Int16Array(P.length),D=new Int16Array(ws.length);D.fill(-1);D[0]=0;const J=new Int32Array(ws.length),consumed=new Int32Array(P.length),skips=new Uint8Array(P.length);
@@ -27,12 +27,11 @@ function experiment(raw,book){
    if(++nodes>maxNodes){halt=true;return false}
    if(i>=need+extra){
     const last=word[consumed[need-1]];
-    if(i>=bounds[last+1]){answer={C:Array.from(C.slice(0,i)),P:P.slice(0,i),lens:ws.map(w=>w.length),skips:Array.from(skips.slice(0,i)),consumed:Array.from(consumed.slice(0,i)),D:Array.from(D),lastUsedKeyWord:last,nodes,seed,sgn,stride,need};return true}
+    if(i>=bounds[last+1]&&skips.slice(0,need).some(x=>x>0)){answer={C:Array.from(C.slice(0,i)),P:P.slice(0,i),lens:ws.map(w=>w.length),skips:Array.from(skips.slice(0,i)),consumed:Array.from(consumed.slice(0,i)),D:Array.from(D),lastUsedKeyWord:last,nodes,seed,sgn,stride,need};return true}
    }
    if(i>=P.length||j>=P.length||rejects>10||j-i>36)return false;
-   const q=word[j];
-   if(D[q]===-1){
-    let v=0;const a=bounds[q-1],b=bounds[q],end=Math.min(i,b);
+   const target=word[j];let q=1;while(q<=target&&D[q]!==-1)q++;if(q<=target){
+    let v=0;const a=bounds[q-1],b=bounds[q],end=Math.max(a,Math.min(i,b));
     for(let t=a;t<end;t++)v+=gp.prime[C[t]];
     const rem=b-end,options=rem<=0?[mod(v)]:[...possible[rem]].map(z=>mod(z+v));
     // fixed seed order, no tuning to any original; choose candidate hypothesis and enforce when actual cipher word closes.
@@ -40,8 +39,8 @@ function experiment(raw,book){
     for(const d of options){D[q]=d;J[q]=modK(J[q-1]+sgn*d);if(go(i,j,rejects))return true;D[q]=-1;if(halt)return false;}
     return false;
    }
-   const k=K[modK(j+J[q])],c=mod(P[i]+k),prev=i?C[i-1]:-1;
-   if(c===prev&&coin(i,j)<.83)return go(i,j+stride,rejects+1);
+   q=target;const k=K[modK(j+J[q])],c=mod(P[i]+k),prev=i?C[i-1]:-1;
+   if(c===prev&&coin(i,j)<.83){if(go(i,j+stride,rejects+1))return true;if(!flexible||halt)return false;}
    C[i]=c;consumed[i]=j;skips[i]=rejects;
    const oq=word[i];
    if(i+1===bounds[oq+1]&&oq+1<ws.length&&D[oq+1]!==-1){let v=0;for(let t=bounds[oq];t<=i;t++)v+=gp.prime[C[t]];if(mod(v)!==D[oq+1])return false;}
@@ -60,7 +59,7 @@ function experiment(raw,book){
  const plants=[];
  for(let donor=0;donor<3;donor++){
   const ws=donors[donor].slice(Math.floor(donors[donor].length*.85),Math.floor(donors[donor].length*.85)+100);
-  for(const stride of [1,2]){const seed=5191+donor*409+stride*173,sgn=donor===1?-1:1;let b=plant(ws,sgn,stride,seed,80,30,5e5);plants.push({donor,...b});}
+  for(const stride of [1,2]){const seed=5191+donor*409+stride*173,sgn=donor===1?-1:1;let b=plant(ws,sgn,stride,seed,80,30,5e5);plants.push({donor,mode:'fixed-coins',...b});let c=plant(ws,sgn,stride,seed,80,30,5e5,true);plants.push({donor,mode:'legal-branch',...c});}
  }
  return {keyLength:L,plants};
 }
