@@ -34,3 +34,16 @@ A separate receiver eliminates the intact-word premise. Gauge alpha(F)=0, allow 
 Under 48 starts ×42 iterations, the two hidden-key LP1-ordinal/prime controls produce only 1 and 3 legal fits, respectively; best fit correctness is 67/1,200 and 198/1,200, and neither has a legal frozen suffix. Given the true alphabets, the same Viterbi receiver recovers 1,200/1,200 +701/703 and 1,198/1,200 +703/703 with exact forward replay. Thus the decoder has an effective oracle, but blind joint EM fails; no original was scored. This is an optimizer failure, not a spacing-free exclusion or a reason to repeat unconstrained starts.
 
 [Reproducer](../sims/lp2_nonperiodic_two_alphabet_spacingfree_sft.cjs) · [Raw output](lp2-nonperiodic-two-alphabet-spacingfree-output.json). Connected V8 core executed; standalone wrapper not independently run.
+
+### Exact spacing-free whole-manuscript exclusion (supersedes lexical premise)
+
+For a fixed schedule, the existence of any pair of independent input/output permutations reduces to a language-free Boolean satisfiability problem. Normalize alpha(F)=0 by simultaneous translation; at position i with h previous literal F holds, a consuming event is legal iff beta(C_i) differs from K[(i−h) mod L]. A visible F may instead hold and increment h. At each visible-F boundary exactly one cumulative-hold count is selected. The intervening deterministic consuming segment forbids its corresponding (cipher label, key residue) pairs. The outer alphabet is a 29×29 one-hot permutation; there are no word, language, or inner-alphabet constraints. Conversely any satisfying outer permutation and clock path permits an arbitrary inner permutation fixing F, so this is an exact existence test.
+
+[Standalone solver](../sims/lp2_nonperiodic_fhold_outer_sat.py), [CI run 45885068310](https://github.com/FlareZ123/liber-primus/actions/runs/45885068310), all four artifacts downloaded and inspected. Each job passes 24 exhaustive four-symbol comparisons. Both native literary controls are SAT and retain the planted outer alphabet under independent reachability; a different outer permutation is also SAT in each, so feasibility alone does not recover the key.
+
+| Schedule | Original variables | Original clauses | Original exact result | Control |
+|---|---:|---:|---|---|
+| LP1 ordinal | 34,445 | 535,549 | UNSAT (0.771 s) | SAT; alternate SAT; first outer match 3/29 |
+| LP1 sacred-prime residue | 34,445 | 531,849 | UNSAT (0.443 s) | SAT; alternate SAT; first outer match 3/29 |
+
+This rejects both specific corrected LP1 schedules with zero reset origin per illustrated chapter and a shared arbitrary input/output alphabet pair, both signs, **without any assumption about printed word boundaries or plaintext language**. All 12,956 runes and 458 visible F events are included. It does not reject arbitrary chapter origins or chapter-private alphabets. Four experiment jobs succeeded; the overall run was marked failed by an unrelated q8 gate job whose selector did not guard its unconditional execution. No unknown plaintext or key.
