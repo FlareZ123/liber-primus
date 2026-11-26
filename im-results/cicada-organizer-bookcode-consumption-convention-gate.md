@@ -83,7 +83,7 @@ All four yield identical results: literal paragraph indexing gives `au?gn?jtvdbl
 [Edition replay](../sims/cicada2014_book_edition_equivalence_sft.cjs). Core calculations ran in connected V8 on fetched exact sources before the script commit; standalone network-fetching Node wrapper not separately CI-run.
 
 
-## Agent 2 — compact cyclic first-occurrence rank receiver (2026-11-26)
+## Compact cyclic first-occurrence rank receivers (26 November)
 
 A distinct executable adaptation of the authentic moving-cursor first-occurrence convention is to transmit the rank of a character's first appearance among the distinct symbols encountered in a cyclic book walk. The signed 2016 wording makes a book-based operand worth considering; it does **not** authenticate this particular rank serialization. Use the printed LP1 canonical GP29 tape in source order, 2,797 runes and all 29 symbols, with no punctuation, arbitrary alphabet or added key. Starting at cursor s, list distinct symbols in order of first occurrence while walking forward cyclically. Emit the GP29 ordinal of the intended symbol in this list, then advance to the cell after its first occurrence. This is bijective for a fixed cursor; the decoder uses the same list and update. The solved LP1 alternative (2,799 runes in the supplied solved-source records) lacks EO and OE, so it cannot supply an unmodified 29-rank codebook.
 
@@ -92,3 +92,19 @@ All 2,797 starting cursors were enumerated. A smoothed native rune trigram model
 Controls plant the same reversible encoder with start 1033 on four native solved records omitted from language-model fitting. Prefix fitting recovers every held-out rune in all four controls, although the original start is not identifiable due to state coalescence. Whole-record exact counts are jpg107-167 317/319; jpg229 89/89; p56_an_end 85/85; p57_parable 93/95. Held-out scores range -2.5290 to -2.0628. These controls establish receiver behavior, not historical authenticity. The original continuation is substantially worse under every allowed start; no key or unknown plaintext recovered. Retire this fixed cyclic book-walk receiver rather than fit arbitrary book order, alphabet, rank offsets or reset schedules without an independent clue.
 
 Reproducer: `node sims/lp2_cyclic_first_occurrence_rank_sft.cjs` (executed equivalent experiment function in connected V8 on exact repository inputs; standalone wrapper not separately run).
+
+
+### Line-clock counterpart of the historical 2012/2013 sender (Agent17)
+
+The exact historical forward encoders move by line/verse, not by individual source character. This motivates two distinct, completely parameterized alternatives to Agent2's rune-cursor rank receiver. Preserve the same pinned **printed LP1** source, now partitioned into its 147 nonempty rune-bearing printed lines (2,797 runes). At line state s, scan source lines cyclically in order; within each line list each newly encountered GP symbol once, until all 29 have appeared. Emit its zero-based rank. The inverse maps rank to that symbol. In **greedyLine** the next state is the line immediately after the first occurrence of the decoded symbol; in **nextLine** it is s+1 regardless of symbol. The former is the 2013 verse-cursor analogue and the latter the 2012 successive-line analogue. The 29-symbol rank encoding and use of printed LP1 as carrier remain exploratory rather than authenticated. No literal-F holds, alternative carriers, sign, alphabet, or reset tuning.
+
+Both maps pass every 147×29 one-step forward/inverse/state test, and exactly re-encode all tested complete sequences. Fit only the original p0 black body (249 runes after the corrected red13 title) across all 147 line origins; freeze state and test p1–2 (467 runes). The same native trigram estimator as Agent2 is fitted on the first five solved records; the four other records are independent text controls. Four hidden origins per model, one per withheld native record, recover all 588/588 runes, including 296/296 held-out runes; greedyLine's p56 prefix has two tied origins but the selected origin is the planted one. No claim that the real p56 uses this mechanism.
+
+| Receiver | Opening prefix | Frozen continuation | Best continuation among all possible origins (oracle only) | Distinct states at cut |
+| --- | ---: | ---: | ---: | ---: |
+| Greedy line jump | -4.817318 | -5.159978 | -5.085213 | 2 |
+| Fixed next line | -4.685328 | -4.917287 | -4.797227 | 147 |
+
+Scores are natural-log likelihood per rune. Independent plant continuation scores span -2.5290 to -2.0628. Neither original continuation contains recognizable prose; the original decoded IoC is .03403/.03479. The all-origin oracle is not a valid selected result but bounds this finite origin ambiguity. The original opening ciphertext has four adjacent equalities in 715 transitions; the short plants range 0–16 repeats and do not constitute a manuscript-length statistical exclusion. Both line-clock alternatives fail the predictive decoder test. Together with the prior rune-cursor result, there is no plaintext or key from these three fixed first-occurrence rank receivers. Do not expand to arbitrary carrier schedules, private rank alphabets or word clocks without independently motivated new evidence.
+
+[Reproducer](../sims/lp2_cyclic_first_occurrence_line_rank_sft.cjs) and [all-origin raw result](lp2-cyclic-first-occurrence-line-rank-output.json); core ran on the exact three pinned source blobs in connected V8, standalone CommonJS wrapper not separately CI-run.
