@@ -41,12 +41,12 @@ function experiment(lex,fixture,source){
  if(primitive)dfs(masks[0],cs.slice(1).map((_,i)=>i+1));
  return {key:k,primitive,componentSizes:cs.map(c=>c.length),nodes,packings,maxCovered,cut,witness};
  }
- const forced=[];
+ const forced=[],cases=[];
  const carry=domain(groups[47],pref,true),indices=[...Array(47).keys()].sort((a,b)=>groups[b].length-groups[a].length).slice(0,9),domains=indices.map(i=>domain(groups[i],by[groups[i].length],false));const stats=Array.from({length:4},()=>({states:0,empty:0,rankReduced:0,one:0,counts:[],oracle:0}));let joins=0,accepted=0,trailEnds=0;
  // Fixed randomized partial joins only: no p55, no exhaustive original key claim.
  for(let trial=0;trial<250;trial++){let edges=carry[rnd(carry.length)].slice(),g=graph(edges);
   for(let j=0;j<domains.length;j++){let arr=domains[j],found=false;for(let t=0;t<30;t++){let next=edges.concat(arr[rnd(arr.length)]),h=graph(next);joins++;if(!h)continue;edges=next;g=h;accepted++;found=true;break}if(!found)break;
-   if(g.d<=3){let s=stats[g.d],a=exact(g.d,g.forbid);s.states++;s.empty+=a.count===0;s.rankReduced+=a.count>0&&a.rank<g.d;s.one+=a.count===1;s.counts.push(a.count);if(a.only)forced.push({trial,joinIndex:j,...forcedPacking(g,a.only)});if(s.oracle<12){let b=exact(g.d,g.forbid,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("oracle mismatch");s.oracle++}if(!a.count)break}
+   if(g.d<=3){let s=stats[g.d],a=exact(g.d,g.forbid);cases.push({trial,joinIndex:j,d:g.d,count:a.count,directions:[...g.forbid]});s.states++;s.empty+=a.count===0;s.rankReduced+=a.count>0&&a.rank<g.d;s.one+=a.count===1;s.counts.push(a.count);if(a.only)forced.push({trial,joinIndex:j,...forcedPacking(g,a.only)});if(s.oracle<12){let b=exact(g.d,g.forbid,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("oracle mismatch");s.oracle++}if(!a.count)break}
   }trailEnds++;
  }
  // Controlled affine arrangements with no full parallel class; two independent
@@ -54,6 +54,9 @@ function experiment(lex,fixture,source){
  const allBut0=ALL^1,ex=new Map([["1,0",allBut0],["0,1",allBut0],["1,1",1]]),one=new Map([["1,0",allBut0],["0,1",allBut0]]);
  if(exact(2,ex).count!==0||exact(2,one).count!==1||exact(2,one).rank!==0)throw Error("constructed gate");
  const generated=[];for(let d=1;d<=3;d++){let tested=0,zero=0,rankReduced=0;for(let i=0;i<40;i++){let f=new Map();for(let j=0;j<12;j++){let a=Array.from({length:d},()=>rnd(N)),k=a.findIndex(Boolean);if(k<0)continue;a=a.map(x=>md(x*inv[a[k]]));let key=a.join(","),mask=f.get(key)||0;for(let l=0;l<1+rnd(18);l++)mask|=1<<rnd(N);f.set(key,mask)}let a=exact(d,f),b=exact(d,f,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("random mismatch");tested++;zero+=a.count===0;rankReduced+=a.count>0&&a.rank<d}generated.push({d,tested,zero,rankReduced})}
- return {dictionary:D.size,prefixes:pref.length,carryOptions:carry.length,indices,domainSizes:domains.map(x=>x.length),joins,accepted,trailEnds,stats:stats.map(({counts,...s},d)=>({d,...s,min:counts.length?Math.min(...counts):null,max:counts.length?Math.max(...counts):null,mean:counts.length?counts.reduce((a,b)=>a+b,0)/counts.length:null})),generated,forced,scope:"Randomized partial original p54 lexical joins, no p55 data used in fitting, no exhaustive search or key recovery."};
+ return {dictionary:D.size,prefixes:pref.length,carryOptions:carry.length,indices,domainSizes:domains.map(x=>x.length),joins,accepted,trailEnds,stats:stats.map(({counts,...s},d)=>({d,...s,min:counts.length?Math.min(...counts):null,max:counts.length?Math.max(...counts):null,mean:counts.length?counts.reduce((a,b)=>a+b,0)/counts.length:null})),generated,forced,cases,scope:"Randomized partial original p54 lexical joins, no p55 data used in fitting, no exhaustive search or key recovery."};
 }
-console.log(JSON.stringify(experiment(...['resources/control/english_wordfreq_textblob.txt','im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json','resources/liber-primus/lp2-page-groups-54-55-derived.json'].map(p=>fs.readFileSync(p,'utf8'))),null,2));
+const result=experiment(...['resources/control/english_wordfreq_textblob.txt','im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json','resources/liber-primus/lp2-page-groups-54-55-derived.json'].map(p=>fs.readFileSync(p,'utf8')));
+const cases=result.cases;delete result.cases;
+if(process.argv.includes('--emit-fixture'))console.log(cases.map(c=>`${c.d} ${c.count} ${c.directions.length}\n`+c.directions.map(([s,m])=>s.replaceAll(',',' ')+' '+m).join('\n')).join('\n'));
+else console.log(JSON.stringify(result,null,2));
