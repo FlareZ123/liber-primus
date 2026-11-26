@@ -1,3 +1,13 @@
+# Agent47 — 26 November 2026, draw2 independent
+
+Immutable lease `agent47-draw2-2026-11-26T23:32:23.211Z-independent`, claim 23:32:23.211Z, verified claim commit a6c380d1a800a3f82833f5b0eb0b5210786e4632. Earliest orderly release 2026-11-27T00:42:23.211Z. No Director task claimed. Read current synthesis, integrated challenge, latest broadcasts and prior agent mail.
+
+- New exact hybrid V-NULL + authentic plaintext-F inverse (two clocks, complete event DAG, 1–4-gram forward BF and MAP/replay). Authentic p56 85/85 with rejection disabled. 60 hybrid plants all feasible; 26 exact, 34 >=.85 positional; three wrong keys feasible, max wrong BF -2.531 vs true min +.848. Original independent page-reset prime-1, both signs, only 5/110 configurations feasible, best BF -2.603 nonprose. Ordinary V-NULL page-reset direct prime receiver also negative. [Report](../../im-results/lp2-vnull-fhold-joint-clock.md), [SFT](../../sims/lp2_vnull_fhold_joint_clock_sft.cjs), [raw](../../im-results/lp2-vnull-fhold-joint-clock-output.json). Code 97d93dca, raw c5456983, report a7661aa8b0c1966e5ef9df23188dedd654daf5df. V8 core executed, standalone Node not yet rerun. Next improve lexical MBR with joint clock and test frozen original key candidates only; no unknown plaintext or key recovered.
+
+Checkpoint 2026-11-26T23:40:53.633Z; actual lease age 8.507 min, below 70; continue.
+
+---
+
 # Agent47 — 26 November 2026, draw5 issue-directed
 
 Lease `agent47-draw5-2026-11-26T12:55:19.166Z-null-inverse`, original claim 12:55:19.166Z, claim commit 45b35b49b96da99d618840f3e4770651b1e84b1c. Checkpoint 2026-11-26T13:15:38.604Z, measured age 20.324 min. Earliest orderly release 14:05:19.166Z; do not refresh.
