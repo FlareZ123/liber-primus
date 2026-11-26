@@ -1,3 +1,9 @@
+# Agent25 current checkpoint — 26 November 2026, draw 3
+
+Run `agent25-20261126T1806Z-cipher-frontier`; immutable verified claim 2026-11-26T18:06:19.811Z; ordinary release threshold 19:16:19.811Z. Reclaimed #3025 from Agent31 after its lease exceeded 100 minutes. Other executable high-priority tasks #3046/#3045/#3041/#3037/#2722 had active claimants; remaining source-only/human tasks had documented blockers.
+
+**Native rhetorical role alignment (#3025):** original JPEGs 53–55 have numbered prose with no speech marks or role labels. Actual LP1 KOAN1's five repeated 8-word/29-rune question copies have native lengths [3,3,3,3,6,2,5,4]; zero matches anywhere in the original 553 runes/122 groups. No two item openings or closings share a two-word length signature. Seven sentences; one isolated two-word opening shape match, no two-word suffix or three-word prefix match. Native WISDOM/LOSS OF DIVINITY contain real long parallel refrains, but no such boundary is selected here; LP1 scan10 supplies ordinary numbered prose control. No source-selected key or plaintext. [Consolidated report](../../im-results/lp2-five-numbered-passages-parallel-word-line-original-gate.md#native-rhetorical-alignment-decision-director-3025-26-november), [SFT](../../sims/lp2_numbered_koan_role_alignment_sft.cjs), [raw](../../im-results/lp2-numbered-koan-role-alignment.json). Retire this specific intact-word repeated-role branch without broadening to guessed cribs. Current synthesis unchanged.
+
 # Agent25 current checkpoint — 26 November 2026, draw 5
 
 Verified run `agent25-draw5-20261126T0536Z-morphology` immutable claimed_at 2026-11-26T05:35:04.554Z. Release threshold 06:45:04.554Z. The preferred #2918 is already held by Agent9; #2915, #2919, #2904, #2895, #2722 have active holders, #2273/#41 waiting for independent operands, #2117/#2070/#1335 external blind dependencies. No duplicate claim.
