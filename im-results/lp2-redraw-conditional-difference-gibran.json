@@ -1,0 +1,196 @@
+{
+  "Z": [
+    0,
+    0,
+    0,
+    1,
+    0,
+    0,
+    0,
+    1
+  ],
+  "seed": "0x3f910aaa",
+  "restarts": 32,
+  "iterations": 48,
+  "controls": [
+    {
+      "name": "gibran",
+      "n": 12956,
+      "cut": 9640,
+      "skips": 440,
+      "repeats": 141,
+      "truth": [
+        16,
+        25,
+        7,
+        0,
+        28,
+        17,
+        23,
+        0
+      ],
+      "correctD": false,
+      "trueLL": 170.7906043614336,
+      "fit": {
+        "best": {
+          "D": [
+            14,
+            15,
+            23,
+            0,
+            2,
+            2,
+            2,
+            0
+          ],
+          "ll": null,
+          "steps": 0,
+          "rounds": 1,
+          "initialLL": null
+        },
+        "distinctRounded": 34,
+        "topRounded": [
+          {
+            "D": [
+              14,
+              15,
+              23,
+              0,
+              2,
+              2,
+              2,
+              0
+            ],
+            "ll": null,
+            "tag": "soft-0-12"
+          },
+          {
+            "D": [
+              2,
+              15,
+              23,
+              0,
+              2,
+              14,
+              2,
+              0
+            ],
+            "ll": null,
+            "tag": "soft-0-24"
+          },
+          {
+            "D": [
+              28,
+              15,
+              8,
+              0,
+              1,
+              14,
+              21,
+              0
+            ],
+            "ll": null,
+            "tag": "soft-0-48"
+          },
+          {
+            "D": [
+              1,
+              14,
+              2,
+              0,
+              2,
+              2,
+              8,
+              0
+            ],
+            "ll": null,
+            "tag": "soft-1-12"
+          },
+          {
+            "D": [
+              2,
+              14,
+              13,
+              0,
+              16,
+              14,
+              28,
+              0
+            ],
+            "ll": null,
+            "tag": "soft-2-12"
+          }
+        ],
+        "refined": [
+          {
+            "D": [
+              14,
+              15,
+              23,
+              0,
+              2,
+              2,
+              2,
+              0
+            ],
+            "ll": null,
+            "steps": 0,
+            "rounds": 1,
+            "initialLL": null
+          },
+          {
+            "D": [
+              2,
+              15,
+              23,
+              0,
+              2,
+              14,
+              2,
+              0
+            ],
+            "ll": null,
+            "steps": 0,
+            "rounds": 1,
+            "initialLL": null
+          },
+          {
+            "D": [
+              28,
+              15,
+              8,
+              0,
+              1,
+              14,
+              21,
+              0
+            ],
+            "ll": null,
+            "steps": 0,
+            "rounds": 1,
+            "initialLL": null
+          }
+        ]
+      },
+      "heldLL": null,
+      "decoded": {
+        "K": [
+          0,
+          14,
+          0,
+          23,
+          23,
+          25,
+          27,
+          0
+        ],
+        "fitScore": null,
+        "heldScore": null,
+        "fitCorrect": 0,
+        "heldCorrect": 0,
+        "preview": ""
+      }
+    }
+  ],
+  "nativeRunes": 2979
+}
