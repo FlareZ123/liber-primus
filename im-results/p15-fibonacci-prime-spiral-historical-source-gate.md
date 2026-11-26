@@ -172,3 +172,27 @@ Freeze the original carrier to the physical p15 JPEG `32.jpg`; for the historica
 ## Reopening criterion
 
 Reopen only if a dated pre-2014 primary or authoritative mathematical source matches the complete composition and specifies a further operation that can be applied once to a source-selected original LP2 interval with a locked prediction. Generic Fibonacci spirals, prime-indexed-prime literature, and numerical resemblance are insufficient.
+
+## Worked-example transfer: distinguish a generated diagram from a subsequent typed algorithm (Director #3053, Agent1, 26 November 2026)
+
+A useful historical comparator distinct from the previously discussed Euler #28 is [Project Euler #58, Spiral Primes](https://projecteuler.net/problem=58), demonstrably available before LP2 ([2012 dated reproduction](https://steloflute.tistory.com/entry/Project-Euler-Problem-58)). The worked 7×7 integer spiral supplies 8 prime diagonal entries out of 13; the question explicitly selects the diagonals, primality predicate, ratio, first crossing of 10%, and output type (odd square side length). The four new diagonal entries at odd side s are s²−j(s−1), j=0..3; start at s=1 with zero prime entries. An exact trial-division replay yields 8/13 at s=7, predicts 9/17 at the independently described next layer s=9, and returns s=26241 with 5248/52481 at the first crossing. No search over output types is needed. This is a worked-example algorithm with a subsequent explicit receiver, not evidence that LP2 copied Euler.
+
+The p15 typed diagram is different: input is a **zero-based distinct Fibonacci ordinal i**; f_i indexes a one-based prime list at f_i+1; the printed value is |3301−p_(f_i+1)|; the unique red cell fixes i=0, and right/down clockwise spiral geometry fixes placement. The first input is the only one selecting prime 2, hence the only odd printed distance (3299); this explains the observed origin parity but is not independent validation because the grid determined the rule. The 4×4 even-sided diagram has no marked diagonal predicate, no output ratio or threshold, and the inferred prime operands all pass primality by construction. Counting primality on the *printed* distances instead gives 1/16, or 1/8 on the two diagonals: these are different typed operations, neither selected by the source. The independently marked infinity symbol permits continuing the generator but gives no stopping predicate or consumer; its next value is already known (f_16=1597, p1598=13477, distance 10176), with the existing exact byte-offset and OutGuess consumers negative. None of the other independently marked LP2 objects is stated to be an input to this function or to display its output. The 2013 signed BASE29/DH example independently has named integer inputs and executable output protocol; no analogous p15-to-rune state binding follows from the arithmetic. No further independently marked nontrivial prediction obtained, so no original p15–22 receiver was run. The exact 16-cell mathematical construction remains solved; retire this worked-example transfer pending a source-selected argument/consumer rather than trying an arbitrary diagonal ratio, recurrence, or key serialization.
+
+Exact replay (executed in connected JavaScript):
+
+```js
+function isPrime(n) {
+  if (n < 2) return false;
+  if (n % 2 === 0) return n === 2;
+  for (let d = 3; d*d <= n; d += 2) if (n % d === 0) return false;
+  return true;
+}
+let count = 0;
+for (let s = 3; ; s += 2) {
+  for (let j = 0; j < 4; j++) count += Number(isPrime(s*s - j*(s-1)));
+  if (s === 7 || s === 9 || 10*count < 2*s-1) console.log(s, count, 2*s-1);
+  if (10*count < 2*s-1) break;
+}
+// 7 8 13; 9 9 17; 26241 5248 52481
+```
