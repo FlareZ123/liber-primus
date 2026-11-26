@@ -42,6 +42,15 @@ jobs:
           & python -- $env:TEST_SCRIPT
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+      - name: Preserve Middle English C7/C8 evidence
+        if: ${{ always() && inputs.script == 'sims/lp2_middle_english_register_gate_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-middle-english-register-gate
+          path: im-results/lp2-middle-english-register-gate/
+          if-no-files-found: warn
+
+
   r4-composite-h1:
     if: ${{ inputs.script == 'sims/lp2_r4_composite_h1_sft.py' }}
     runs-on: ubuntu-latest
