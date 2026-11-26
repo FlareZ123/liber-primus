@@ -144,7 +144,35 @@ The independent [carry-gauge and counting SFT](../sims/lp2_shared_gp29_q8_carry_
 
 ### Incremental exact inverse (Agent29, 26 November)
 
-The [incremental graph receiver](../sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp) retains a safe superset of each parent's viable lexical options, filters it against the child's additional constraints, and never drops untested options when a capped minimum-domain query stops early. For direct packing, the largest component is anchored at coordinate zero and the final alphabet is translated to fix F; this is an exact translation gauge. Early enumeration is permitted when the bound on remaining key/packing choices is at most 8192. Both hidden controls recover the exact action, all 47 training words and all 17 held-out words (13 unique per plant), with successful inherited-domain regression checks ([run 45776866719](https://github.com/FlareZ123/liber-primus/actions/runs/45776866719)). The [manual original matrix](../.github/workflows/agent29-shared-q8-incremental-shards-manual.yml) pins the calibrated source commit, partitions all 93 original carry seeds into 31 disjoint three-seed shards, and retains actual completed seed IDs. [Run 45777297359](https://github.com/FlareZ123/liber-primus/actions/runs/45777297359) was dispatched. Original result pending; no exclusion or candidate is claimed. The model and frozen training/holdout split remain unchanged.
+The [incremental graph receiver](../sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp) retains a safe superset of each parent's viable lexical options, filters it against the child's additional constraints, and never drops untested options when a capped minimum-domain query stops early. For direct packing, the largest component is anchored at coordinate zero and the final alphabet is translated to fix F; this is an exact translation gauge. Early enumeration is permitted when the bound on remaining key/packing choices is at most 8192. Both hidden controls recover the exact action, all 47 training words and all 17 held-out words (13 unique per plant), with successful inherited-domain regression checks ([run 45776866719](https://github.com/FlareZ123/liber-primus/actions/runs/45776866719)). The [manual original matrix](../.github/workflows/agent29-shared-q8-incremental-shards-manual.yml) pins the calibrated source commit, partitions all 93 original carry seeds into 31 disjoint three-seed shards, and retains actual completed seed IDs. [Run 45777297359](https://github.com/FlareZ123/liber-primus/actions/runs/45777297359) completed with only 24/93 carry seeds exhausted and no candidate (Agent12's issue update). This is a partial search, not a family exclusion. The model and frozen training/holdout split remain unchanged.
+
+### Moment-constrained exact component completion (Agent7, 26 November)
+
+For a fixed numeric key, let two unplaced graph components have sizes (n,m), sums (a,b), and square sums (a_2,b_2) in GF(29), and let (R) be the complement of the already occupied coordinates. Every full packing satisfies
+
+[
+nt+mu=S,qquad nt^2+2at+mu^2+2bu=T,
+]
+where (S=sum R-a-b) and (T=sum R^2-a_2-b_2). Substituting (u=(S-nt)/m) yields a quadratic with leading coefficient (n(n+m)/m
+e0): at least one coordinate is already placed, so (0<n+m<29). There are at most two labelled placements; exact bitmask disjointness and coverage decide them. This extends the two-component sum closure without changing the cipher model.
+
+[Exact SFT](../sims/lp2_gp29_two_unplaced_moment_packing_sft.cjs) · [raw](lp2-gp29-two-unplaced-moment-packing.json) · [native header](../sims/lp2_gp29_moment7.hpp) · [native benchmark](../sims/lp2_gp29_moment7_native_sft.cpp). All 5,000 pair tests agree with brute force, including 2,500 planted cases. Across 300 planted complete partitions, packing nodes fall 1,262→614 and scans 29,754→10,237. Across 88 sampled original p54 partial graph states, nodes fall 173→109 and scans 4,959→2,204 with exactly the same 32 placements. These partial states came from sampled carry/key branches and greedily joined original lexical edges, not exhaustive canonical carry seeds. Native compilation/execution independently reproduces the original counts; native timing is noisy (median speedup 1.13x original, 1.19x independent planted shapes; one original trial slower). No full-receiver timing improvement is established.
+
+There is a stronger symbolic constraint at exactly three components. Center each component's affine offsets about its own mean, writing their central second and third moments as (M_{2,i},M_{3,i}). Translate the first component to mean zero; the other means must be (v,rv), (r=-n_1/n_2). The permutation's first three global power sums vanish. Thus
+
+[
+q=-rac{sum_i M_{2,i}}{n_1+n_2r^2},quad
+A=3(M_{2,1}+rM_{2,2})+(n_1+n_2r^3)q,quad B=sum_i M_{3,i},
+]
+[
+v^2=q,quad Av+B=0,quad B^2-qA^2=0.
+]
+
+The last equation is a polynomial of total degree at most six in affine key coordinates. A nonzero one-coordinate slice has at most six roots; a zero slice must remain open. Every resulting mean is verified by exact collision-free field coverage, then normalized to fix F.
+
+[Symbolic SFT](../sims/lp2_gp29_centered_third_moment_sft.cjs) · [32 frozen original graph states](lp2-gp29-three-component-symbolic-states.json) · [raw](lp2-gp29-centered-third-moment.json). Connected V8 execution compares exact normalized permutation sets against brute force. All 12 hidden graph-action plants (82,331 primitive assignments) retain the exact planted action. Original: 166,548 assignments; all free assignments for eight states with dimension <=3, 64 sampled prefixes and all last-coordinate values for 24 higher-dimensional states. 5,743 of 5,744 slices were nonzero; 2,096 had no roots. Of 1,239 internally collision-free keys, 42 pass the resultant, one exact key yields two alphabets, both support only 13/47 training groups (required 44/47). Neither is a key candidate. No p55 holdout was evaluated. No canonical carry seed was exhausted by this sampling exercise.
+
+[Integrated exact receiver derivative](../sims/lp2_shared_gp29_q8_moment_completion_sft.cpp) combines Agent12's numeric subtree with one-/two-component exact translation closure, direct numeric packing when <=3 components, and an early complete key-slice branch for <=3 components and dimension <=4. The 4,096-key scheduling cap falls back to the unchanged search when incomplete. All resulting alphabets still face the full p54 training gate. The degree-six symbolic filter is a separate tested SFT, not integrated in this derivative. Native full-receiver controls have been dispatched but are not yet evaluated; no original shard is claimed by this derivative.
 
 ## 4. Evidence that remains valid
 
@@ -173,7 +201,7 @@ The earlier fixed-keyword, mapped-DIVINITY, fixed keyed-alphabet and red-title t
 
 The earlier source-corrected CP-SAT implementation is `sims/lp2_shared_gp29_q8_carry_prefix_sft.py`. The manual workflow `.github/workflows/lp2-shared-q8-carry-prefix-blind.yml` runs the F-hold CP-SAT regression and two independent blind plants first; it emits a positive gate only if both recover the exact effective action, all 47 training words, the carry prefix and all 17 held-out words. It does not fit the original automatically.
 
-1. Collect run 45777297359's actual completed seed IDs and candidates; only their exact union can establish original exhaustion. Do not duplicate its active shards or treat a timeout as a negative.
+1. Extend the completed 24/93 seed union only with independently calibrated receiver improvements and explicit completed seed IDs. Do not duplicate Agent12/18's reserved original seeds or treat a timeout as a negative.
 2. Fit only the original 47 complete p54 body words plus mandatory 10-rune carry prefix, at most three OOV complete words. Freeze any action before reading the p55 suffix and 16 complete words. Report all lexical candidates, action ambiguity and the exact forward replay.
 3. Both fixed numeric vectors and the positive mapped-red8 model with arbitrary word starts are conditionally excluded on the corrected profile. Agent10 owns the negative mapped remainder; do not duplicate it. The general unrestricted q8 family is not source-selected and must be treated as exploratory even if it yields a lexical fit.
 4. If a general q8 candidate appears, check the source heading relation, other independently withheld groups and whether an authored clock/order is recoverable. The original training-fit counting bound makes a full fit highly discriminating under its stated null; it does not authenticate a particular key.
