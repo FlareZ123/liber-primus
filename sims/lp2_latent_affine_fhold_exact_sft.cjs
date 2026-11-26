@@ -42,6 +42,52 @@ function witness(C,E,K,lens,cap,vocab,gp,sig,key,mod,inverse,encode,assert){
  assert(totalOov===cost,"trace cost");
  return {cost,groups:K,runes:N,hist,targetHist,changedLengthSlots:targetHist.reduce((s,v,l)=>s+Math.max(0,v-hist[l]),0),ambiguousLexicalGroups:ambiguous,log10DistinctPlaintexts:log10,heldFInWitness:held,candidateHist,example:segments.slice(0,25).map(z=>z.p.map(x=>gp.translit[x]).join("")).join(" "),segments};
 }
+function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact){
+ const started=Date.now(),ALL=(1<<29)-2,CAP=24,M=4096;
+ function delta(x,off,l,m=0){let base=-1;for(let i=0;i<l;i++)if(!(m&(1<<i))){const v=x[off+i];if(base<0)base=v;else if(v!==base)return mod(v-base)}return 0}
+ function make(v){const ordinary=Array.from({length:25},()=>new Map()),hold=Array.from({length:25},()=>new Map());for(const s of v){const p=Array.from(s,c=>c.charCodeAt(0)-65),l=p.length,ss=sig(p,0,l),d=delta(p,0,l);ordinary[l].set(ss,(ordinary[l].get(ss)||0)|(1<<d));let m=0;for(let i=0;i<l;i++)if(p[i]===0)m|=1<<i;let group=hold[l].get(m);if(!group)hold[l].set(m,group=new Map());const hs=sig(p,0,l,m),hd=delta(p,0,l,m);group.set(hs,(group.get(hs)||0)|(1<<hd))}return {ordinary,hold}}
+ const conv=Array.from({length:29},(_,d)=>Array.from({length:29},(_,p)=>d&&p?1<<mod(d*inverse[p]):0));
+ function translate(mask,d){if(!mask)return 0;if(d===0)return mask&1?ALL:0;let result=0;for(let x=mask&~1;x;){const bit=x&-x,p=31-Math.clz32(bit);result|=conv[d][p];x^=bit}return result}
+ function scan(C,idx,cap){const N=C.length,E=Array.from({length:29},()=>new Uint32Array(N+1));let unionCounts=Array(25).fill(0);
+ for(let i=0;i<N;i++){let zero=0;for(let l=1;l<=cap&&i+l<=N;l++){if(C[i+l-1]===0)zero|=1<<(l-1);
+ const mask=idx.ordinary[l].get(sig(C,i,l))||0;let a=translate(mask,delta(C,i,l));
+ if(a!==ALL)for(let m=zero;;m=(m-1)&zero){const g=idx.hold[l].get(m);if(g){const pm=g.get(sig(C,i,l,m))||0;a|=translate(pm,delta(C,i,l,m));if(a===ALL)break}if(m===0)break}
+ if(a){unionCounts[l]++;const bit=1<<(l-1);for(let x=a;x;){const lo=x&-x,j=31-Math.clz32(lo);E[j][i+l]|=bit;x^=lo;}}
+ }}return{E,unionCounts}}
+ function optimum(ends,lambda,cap=CAP){const N=ends.length-1,dp=new Float64Array(N+1),counts=new Int32Array(N+1),dq=new Int32Array(N+1);let head=0,tail=0;
+ for(let i=1;i<=N;i++){let j=i-1;while(tail>head){const z=dq[tail-1];if(dp[z]>dp[j]||dp[z]===dp[j]&&counts[z]>=counts[j])tail--;else break}dq[tail++]=j;while(dq[head]<i-cap)head++;
+ let cost=dp[dq[head]]+lambda+M,k=counts[dq[head]]+1,b=ends[i]&((1<<Math.min(i,cap))-1);
+ while(b){const low=b&-b,l=32-Math.clz32(low),z=i-l,v=dp[z]+lambda,q=counts[z]+1;if(v<cost||v===cost&&q<k){cost=v;k=q}b^=low}dp[i]=cost;counts[i]=k}
+ const oov=(dp[N]-lambda*counts[N])/M;assert(Number.isInteger(oov),"cost arithmetic");return{lambda,cost:dp[N],groups:counts[N],oov}}
+ function dual(ends,K,cap=CAP){let lo=0,hi=24*M,best=null;function check(l){const x=optimum(ends,l,cap),lb=Math.max(0,Math.ceil((x.cost-l*K)/M));if(!best||lb>best.lb||lb===best.lb&&Math.abs(x.groups-K)<Math.abs(best.groups-K))best={...x,lb};return x}
+ if(check(lo).groups<=K)return best;
+ assert(check(hi).groups<=K,"lambda range");while(hi-lo>1){let m=(hi+lo)>>1;if(check(m).groups>K)lo=m;else hi=m}check(lo);check(hi);return best}
+ // Exhaustive toy affine image comparison, testing each slope independently.
+ const toy=new Set([[0],[1],[2],[0,1],[1,0],[2,0,2],[1,2,1],[0,0],[0,3,0,4],[2,4,3,4],[0,3,4,0]].map(key)),ti=make(toy),images=new Map();
+ for(const s of toy){const p=Array.from(s,c=>c.charCodeAt(0)-65);for(let a=1;a<=28;a++)for(let b=0;b<29;b++)for(let h=0;h<2;h++){const x=key(encode(p,a,b,h));images.set(x,(images.get(x)||0)|(1<<a))}}
+ let toyIntervals=0;for(let t=0;t<100;t++){const C=Array.from({length:5+rand(5)},()=>rand(8)),R=scan(C,ti,4);for(let i=0;i<C.length;i++)for(let l=1;l<=4&&i+l<=C.length;l++){let m=0;for(let a=1;a<=28;a++)if(R.E[a][i+l]&(1<<(l-1)))m|=1<<a;assert(m===(images.get(key(C.slice(i,i+l)))||0),"slope brute mismatch");toyIntervals++}}
+ // A finite dual certificate must never exceed exact minimum on random short interval DAGs.
+ let dualControls=0;for(let t=0;t<160;t++){const N=6+rand(18),K=1+rand(N),ends=new Uint32Array(N+1);for(let i=1;i<=N;i++){ends[i]=1;for(let l=2;l<=Math.min(6,i);l++)if(rand(2))ends[i]|=1<<(l-1)}if(K*6<N)continue;const d=dual(ends,K,6),e=exact({starts:new Uint32Array(N),ends},K,6);assert(d.lb<=e,"invalid lower bound");dualControls++}
+ const idx=make(vocab),S=scan(tape,idx,CAP),K=words.length,budget=Math.floor(K*.05),all=[];
+ for(let a=1;a<=28;a++)all.push({slope:a,...dual(S.E[a],K)});
+ const best=Math.min(...all.map(x=>x.lb)),bestSlopes=all.filter(x=>x.lb===best).map(x=>x.slope);
+ // Compute exact OOV only at slope 1 (independent prior baseline) and the most promising slope.
+ const exactSlopes=Array.from(new Set([1,...bestSlopes])).map(a=>({slope:a,minOov:exact({starts:new Uint32Array(tape.length),ends:S.E[a]},K,CAP)}));
+ const offsets=[0,3,8,15,23,27,33,40,54,56].map(n=>gp.pages.slice(0,n).reduce((a,p)=>a+p.indices.length,0)),wo=[0];for(const p of words)wo.push(wo.at(-1)+p.length);
+ const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1],k=wo.indexOf(stop)-wo.indexOf(start),B=Math.floor(k*.05),res=[];assert(k>0,"chapter seam");for(let a=1;a<=28;a++)res.push({slope:a,...dual(S.E[a].subarray(start,stop+1),k)});const m=Math.min(...res.map(x=>x.lb));chapters.push({page:[0,3,8,15,23,27,33,40,54][j],runes:stop-start,groups:k,budget:B,minLowerBound:m,bestSlopes:res.filter(x=>x.lb===m).map(x=>x.slope),all:res})}
+ // Source-length-matched planted words selected from donor-held material, not fit to original.
+ const held=Array.from({length:25},()=>[]),fallback=Array.from({length:25},()=>[]);
+ for(const ws of donors)for(const p of ws.slice(Math.floor(ws.length*.8)))held[p.length].push(p);
+ for(const s of vocab)fallback[s.length].push(Array.from(s,c=>c.charCodeAt(0)-65));
+ const controls=[];
+ for(const [a,mixed] of [[13,true],[7,false]]){const C=[],truth=[];let actual=0,fallbackN=0,heldF=0;
+  for(const p0 of words){const l=p0.length,choices=held[l].length?held[l]:fallback[l],p=choices[rand(choices.length)],b=rand(29),h=mixed&&rand(2)===1,lex=vocab.has(key(p));if(!held[l].length)fallbackN++;if(!lex)actual++;if(h)heldF+=p.filter(x=>x===0).length;truth.push({offset:C.length,l,lex});C.push(...encode(p,a,b,h))}
+  const R=scan(C,idx,CAP),missing=truth.filter(x=>x.lex&&!(R.E[a][x.offset+x.l]&(1<<(x.l-1)))).length;assert(!missing,"true slope missing");
+  const r=[];for(let b=1;b<=28;b++)r.push({slope:b,...dual(R.E[b],K)});
+  const t=r.find(x=>x.slope===a);assert(t.lb<=actual,"plant OOV bound");controls.push({trueSlope:a,mixed,actualOov:actual,fallbackN,heldF,missing,viableAt5Percent:r.filter(x=>x.lb<=budget).map(x=>x.slope),lowest:r.reduce((x,y)=>x.lb<=y.lb?x:y),all:r});
+ }
+ return {vocab:vocab.size,toyIntervals,dualControls,cap:CAP,scale:M,original:{runes:tape.length,groups:K,budget,unionCounts:S.unionCounts,all,bestLowerBound:best,bestSlopes,exactSlopes,chapters,chapterPrivateSum:chapters.reduce((s,x)=>s+x.minLowerBound,0)},controls,elapsedMs:Date.now()-started}
+}
 function experiment(raw,options={}){
  const gp=JSON.parse(raw[0]),gold=JSON.parse(raw[2]),rune=new Map(gp.runes.map((x,i)=>[x,i])),mod=x=>(x%29+29)%29,key=w=>String.fromCharCode(...w.map(x=>65+x));
  const assert=(x,m)=>{if(!x)throw Error(m)};
@@ -71,6 +117,7 @@ function experiment(raw,options={}){
  }}return{A,H,starts:Uint32Array.from(A,(x,i)=>x|H[i]),ends}}
  function encode(w,a,b,hold){return w.map(p=>hold&&p===0?0:mod(a*p+b))}
  let seed=0x48061126;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return(seed>>>0)%n}
+ if(options.slopeOnly)return slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,assert,rand,exact);
  const toy=new Set([[0],[1],[2],[0,1],[1,0],[2,0,2],[1,2,1],[0,0],[0,3,0,4],[2,4,3,4],[0,3,4,0]].map(key)),ti=makeIndex(toy),toyImages=[new Set(),new Set()];
  for(const s of toy){const p=Array.from(s,c=>c.charCodeAt(0)-65);for(let a=1;a<29;a++)for(let b=0;b<29;b++)for(let h=0;h<2;h++)toyImages[h].add(key(encode(p,a,b,h)))}
  let toyIntervals=0;
@@ -91,5 +138,5 @@ function experiment(raw,options={}){
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
  return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")}),null,2));
 module.exports={experiment};
