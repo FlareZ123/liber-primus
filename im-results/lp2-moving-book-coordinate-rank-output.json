@@ -168,7 +168,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.04653279681212642,
             "repeat": 0.044755244755244755,
@@ -181,6 +181,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.603085661315186,
+          "origin": 17,
           "fitEnd": 66,
           "fitTerminalStates": 2,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -198,7 +199,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 84,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.04483728561940852,
             "repeat": 0.04755244755244755,
@@ -211,6 +212,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.636568390108163,
+          "origin": 84,
           "fitEnd": 18,
           "fitTerminalStates": 1,
           "fitExcerpt": "U I T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
@@ -225,6 +227,151 @@
           },
           "heldEnd": 4,
           "heldExact": 467
+        }
+      ],
+      "rankScopes": [
+        {
+          "scope": "continuous-p0-55",
+          "n": 12956,
+          "score": -5.613299277360238,
+          "origin": 68,
+          "end": 54,
+          "stats": {
+            "ioc": 0.03447688456336317,
+            "repeat": 0.031493631802392896,
+            "maxFreq": 0.0379746835443038
+          },
+          "excerpt": "H A T I I L J A D J D M O U Y Y B C L OE N F C D NG G P IA N OE EO O I X A H W D S P W R X A I C EO TH C B J J G F P R W X TH X A TH C I NG C F X A IA EA L X IA L P N E P I"
+        },
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "score": -5.497450784197509,
+          "origin": 68,
+          "end": 1,
+          "stats": {
+            "ioc": 0.03428224724521021,
+            "repeat": 0.03296703296703297,
+            "maxFreq": 0.04801097393689986
+          },
+          "excerpt": "H A T I I L J A D J D M O U Y Y B C L OE N F C D NG G P IA N OE EO O I X A H W D S P W R X A I C EO TH C B J J G F P R W X TH X A TH C I NG C F X A IA EA L X IA L P N E P I"
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "score": -5.628878254286443,
+          "origin": 88,
+          "end": 37,
+          "stats": {
+            "ioc": 0.03474058692399304,
+            "repeat": 0.032342657342657344,
+            "maxFreq": 0.050655021834061134
+          },
+          "excerpt": "F P EO I I N N B H N F E P NG I OE S B C U J P P Y EO Y D R E IA W D X NG L I J IA N J W X AE X N N R S R P AE U Y P C TH U U L C A OE X A M NG AE A OE EO C G C EA EO T J R X N"
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "score": -5.584250723153346,
+          "origin": 66,
+          "end": 15,
+          "stats": {
+            "ioc": 0.03443102949681897,
+            "repeat": 0.029513888888888888,
+            "maxFreq": 0.04164256795835743
+          },
+          "excerpt": "NG M S TH O C H D I L N C F I M AE D S T X S S AE T B N TH B A F S E O T C IA B F N EA I N EO EA E Y Y R S S IA M F G X T G C OE X AE U EO F I X S E TH G IA O OE NG Y E NG M IA P"
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "score": -5.59563109477542,
+          "origin": 13,
+          "end": 37,
+          "stats": {
+            "ioc": 0.03438756559596807,
+            "repeat": 0.028391167192429023,
+            "maxFreq": 0.040987913820283765
+          },
+          "excerpt": "A L Y D D J EA OE G B R J P E L D W NG W IA S O T L OE EA TH O H L E E EO F R J X P NG F OE M IA T H X M J S N N TH S P D N R O T AE U C S C EO B E O D P J B D O AE E D S I U"
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "score": -5.477001688973611,
+          "origin": 62,
+          "end": 15,
+          "stats": {
+            "ioc": 0.03448368573678247,
+            "repeat": 0.027450980392156862,
+            "maxFreq": 0.04505386875612145
+          },
+          "excerpt": "E D R U I C IA Y Y I N EO C L E IA X C P F S A H AE EO TH EO L Y G U AE E A X R NG X W I I M R AE O X AE H OE R H N TH T Y S C M EO B NG I L OE W TH T R H L U W B R J X D G F Y"
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "score": -5.673092135025912,
+          "origin": 74,
+          "end": 0,
+          "stats": {
+            "ioc": 0.034407443071729035,
+            "repeat": 0.03212290502793296,
+            "maxFreq": 0.0418702023726448
+          },
+          "excerpt": "L L F EA G A B M N N D EO O G B EA E E C P P S I X R H R TH P E X X U W H A C F EA R T IA AE R B E X X AE E EA N C NG W J AE R B E EA TH L H N A U EA I U E EO NG AE U J T F X EO"
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "score": -5.592482830740984,
+          "origin": 20,
+          "end": 40,
+          "stats": {
+            "ioc": 0.03435434924416461,
+            "repeat": 0.030970815961882073,
+            "maxFreq": 0.04047619047619048
+          },
+          "excerpt": "P EO M W T E J Y U E EO OE A P P OE AE P J C N J X M E F Y O IA H D G C G NG D I S H R D G OE IA EA D A T Y X P O Y L C R W M NG TH G B U R X F U NG Y EA R IA H D EA Y X T Y O"
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "score": -5.669014591616338,
+          "origin": 77,
+          "end": 17,
+          "stats": {
+            "ioc": 0.034459045914143595,
+            "repeat": 0.035583638177585634,
+            "maxFreq": 0.04188829787234043
+          },
+          "excerpt": "N Y E IA N H M N B D R IA R EO AE C T I B AE Y M N T W Y IA M B B F IA U OE E AE I NG D F NG F F I D OE E S OE O B OE M S A G B EA J D O J E E I OE TH U EA U H TH N E M J G P D D"
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "score": -5.36455250362968,
+          "origin": 66,
+          "end": 54,
+          "stats": {
+            "ioc": 0.034286560345192264,
+            "repeat": 0.03908794788273615,
+            "maxFreq": 0.05519480519480519
+          },
+          "excerpt": "EA F P F F L B U EA AE H C B A U W C N W D P P J U D TH C B M F H W I J O IA T NG B F O C X E L Y M I AE EA N G AE R J O Y O N M EA C C P NG U B E Y O S E X AE N F Y L G E"
+        },
+        {
+          "scope": "p0-2-black-body",
+          "n": 716,
+          "score": -5.507240751881926,
+          "origin": 6,
+          "end": 1,
+          "stats": {
+            "ioc": 0.03429698792827284,
+            "repeat": 0.03076923076923077,
+            "maxFreq": 0.04748603351955307
+          },
+          "excerpt": "N I D H A S OE N F C D NG G P IA N OE EO O I X A H W D S P W R X A I C EO TH C B J J G F P R W X TH X A TH C I NG C F X A IA EA L X IA L P N E P I G H O D F N R I L D G C B"
         }
       ]
     },
@@ -334,7 +481,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.03534789233113256,
             "repeat": 0.026573426573426574,
@@ -347,6 +494,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.579273489121131,
+          "origin": 17,
           "fitEnd": 66,
           "fitTerminalStates": 1,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A M A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -364,7 +512,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.035429933195296325,
             "repeat": 0.039160839160839164,
@@ -377,13 +525,15 @@
           },
           "fitLegal": 249,
           "fitScore": -2.6136479734861595,
+          "origin": 83,
           "fitEnd": 16,
           "fitTerminalStates": 2,
           "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I T E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
           "heldLegal": 9,
           "fitExact": 243
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "LP1-native-lines",
@@ -491,7 +641,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.05280306285892878,
             "repeat": 0.03636363636363636,
@@ -504,6 +654,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.5735670057159017,
+          "origin": 17,
           "fitEnd": 66,
           "fitTerminalStates": 10,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A M A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -521,7 +672,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.05308825252959331,
             "repeat": 0.04895104895104895,
@@ -534,6 +685,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.592687475188508,
+          "origin": 83,
           "fitEnd": 18,
           "fitTerminalStates": 1,
           "fitExcerpt": "A Y T O H I W H E W I L L T R Y TH E D A S E I F N O T L E T TH E M F O R E U E R B E S I T E N T H E M U S T A T T A I N A N D M A I N O F O M TH A T L O F T Y S",
@@ -549,7 +701,8 @@
           "heldEnd": 4,
           "heldExact": 425
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "LP1-native-lines",
@@ -657,7 +810,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.5082587803258194,
             "repeat": 0.5258741258741259,
@@ -670,6 +823,7 @@
           },
           "fitLegal": 249,
           "fitScore": -1.9148045234346625,
+          "origin": 17,
           "fitEnd": 66,
           "fitTerminalStates": 158,
           "fitExcerpt": "S H A N D O U E N O U R E R E N D S T O U S T O U S H A N D W I C H A T M Y O U R A N D Y O U S H A U S A N D B U E N I N O U S T O U S T O U S T O U S H A N O",
@@ -687,7 +841,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.47500097667695435,
             "repeat": 0.4825174825174825,
@@ -700,6 +854,7 @@
           },
           "fitLegal": 249,
           "fitScore": -1.940953339902895,
+          "origin": 83,
           "fitEnd": 18,
           "fitTerminalStates": 5,
           "fitExcerpt": "S T O U S T M Y O M E R E N D W H A L L L L L O U S T L L A N D TH E S T O U S T O U S T O R E S H T O U E S T O U S A N O U S T O U S T A N O W H A L O U S T O",
@@ -715,7 +870,8 @@
           "heldEnd": 4,
           "heldExact": 126
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "LP1-native-lines",
@@ -823,7 +979,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.04508340821189983,
             "repeat": 0.03076923076923077,
@@ -836,6 +992,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.578037683366313,
+          "origin": 17,
           "fitEnd": 66,
           "fitTerminalStates": 32,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A M A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -853,7 +1010,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.042020549283119116,
             "repeat": 0.03776223776223776,
@@ -866,6 +1023,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.619395952195538,
+          "origin": 83,
           "fitEnd": 16,
           "fitTerminalStates": 4,
           "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I T E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T E L D T Y S",
@@ -881,7 +1039,8 @@
           "heldEnd": 4,
           "heldExact": 403
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "2013-law-verses",
@@ -999,7 +1158,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.04582177598937375,
             "repeat": 0.043356643356643354,
@@ -1012,6 +1171,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.603085661315186,
+          "origin": 17,
           "fitEnd": 91,
           "fitTerminalStates": 17,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T I D E H A U E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -1029,7 +1189,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.04784545063874673,
             "repeat": 0.04055944055944056,
@@ -1042,6 +1202,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.638193354837015,
+          "origin": 83,
           "fitEnd": 183,
           "fitTerminalStates": 3,
           "fitExcerpt": "A Y T O H I M H E W I L L T R Y TH E C A S E I F N O T L E T TH E M F O R E U E R B E S I L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
@@ -1056,6 +1217,151 @@
           },
           "heldEnd": 15,
           "heldExact": 467
+        }
+      ],
+      "rankScopes": [
+        {
+          "scope": "continuous-p0-55",
+          "n": 12956,
+          "score": -5.5991395660089225,
+          "origin": 11,
+          "end": 47,
+          "stats": {
+            "ioc": 0.03446424194515677,
+            "repeat": 0.035584716325742956,
+            "maxFreq": 0.036894103118246376
+          },
+          "excerpt": "A N H Y S F J F EA J M M A R G R J M TH EA M O M S S R F J NG EA N N C E E EO E A A T U P IA L C R H T R X EA EO S P NG H F AE F D L O U L Y A O E IA EO J P OE IA O M I W E TH"
+        },
+        {
+          "scope": "p0-2",
+          "n": 729,
+          "score": -5.571609506733342,
+          "origin": 11,
+          "end": 88,
+          "stats": {
+            "ioc": 0.03454981232759011,
+            "repeat": 0.04807692307692308,
+            "maxFreq": 0.05212620027434842
+          },
+          "excerpt": "A N H Y S F J F EA J M M A R G R J M TH EA M O M S S R F J NG EA N N C E E EO E A A T U P IA L C R H T R X EA EO S P NG H F AE F D L O U L Y A O E IA EO J P OE IA O M I W E TH"
+        },
+        {
+          "scope": "p3-7",
+          "n": 1145,
+          "score": -5.662366083383995,
+          "origin": 92,
+          "end": 99,
+          "stats": {
+            "ioc": 0.03434971142394723,
+            "repeat": 0.033216783216783216,
+            "maxFreq": 0.043668122270742356
+          },
+          "excerpt": "P D I S P I R Y NG T N I E P E W N W S F EO P EO EA S G G G F J R B OE EO T E X J C F U IA OE EO W G I U G P AE A Y EA N EA I E A U TH Y W X E NG OE R EO Y H N N B H M J O OE L"
+        },
+        {
+          "scope": "p8-14",
+          "n": 1729,
+          "score": -5.536708264594497,
+          "origin": 217,
+          "end": 162,
+          "stats": {
+            "ioc": 0.03436274982327614,
+            "repeat": 0.041087962962962965,
+            "maxFreq": 0.04337767495662233
+          },
+          "excerpt": "N O M S U S W B R C A B J A S OE EA U G IA I U OE G NG M D EA E C O J TH F A F D L N IA O W D IA Y H I EA Y T EO S F EO OE D Y F C M OE M D L EA E C O T U M I J B P H N C EO H"
+        },
+        {
+          "scope": "p15-22",
+          "n": 1903,
+          "score": -5.614694026334817,
+          "origin": 80,
+          "end": 100,
+          "stats": {
+            "ioc": 0.034280921208584815,
+            "repeat": 0.030494216614090432,
+            "maxFreq": 0.04203888596952181
+          },
+          "excerpt": "F A T B J AE AE X NG G E X N N E U Y C M NG TH T L A X NG U B IA E N B L D O X OE J AE D J O OE P E OE F AE TH O W D L M U R A F T OE W G R D N O A R S EA NG I M E AE T M TH F H"
+        },
+        {
+          "scope": "p23-26",
+          "n": 1021,
+          "score": -5.511166823433474,
+          "origin": 128,
+          "end": 132,
+          "stats": {
+            "ioc": 0.03447216300820034,
+            "repeat": 0.026470588235294117,
+            "maxFreq": 0.04701273261508325
+          },
+          "excerpt": "O B U NG D Y P R O U C W G W NG J OE R U X S T F AE TH F W H F O U OE U N IA O J EA U A D B E AE F X AE OE A N Y E A U G TH C F F Y NG B D J I T I D W F TH P EO R AE G L IA H G"
+        },
+        {
+          "scope": "p27-32",
+          "n": 1433,
+          "score": -5.557074792167061,
+          "origin": 12,
+          "end": 93,
+          "stats": {
+            "ioc": 0.03430803058006214,
+            "repeat": 0.034217877094972066,
+            "maxFreq": 0.041172365666434056
+          },
+          "excerpt": "F R AE NG T Y AE IA D H M O U R G H TH E NG I U L O OE S L EO L X W F L IA T IA O C IA TH O I M G L Y B EO P OE C X F P F TH OE OE P EA A X B B D S A Y NG C T O S C AE A EO EA C O S"
+        },
+        {
+          "scope": "p33-39",
+          "n": 1680,
+          "score": -5.577186974740002,
+          "origin": 21,
+          "end": 35,
+          "stats": {
+            "ioc": 0.03443872486457358,
+            "repeat": 0.0357355568790947,
+            "maxFreq": 0.04404761904761905
+          },
+          "excerpt": "X S F I N S B H F A D G TH NG M B AE B EO U T X AE L S IA B A OE G P F Y EO X S F B A TH O IA P AE J M T U B EO H U M U TH F R A A S NG B C T OE H A AE N IA W EO B D B L X J G R"
+        },
+        {
+          "scope": "p40-53",
+          "n": 3008,
+          "score": -5.620159248248302,
+          "origin": 157,
+          "end": 78,
+          "stats": {
+            "ioc": 0.034495529933700794,
+            "repeat": 0.035583638177585634,
+            "maxFreq": 0.03956117021276596
+          },
+          "excerpt": "B U P EO H EA J H EA D W X P L EO A C H EA AE NG D S N B P AE TH M EA H C S IA N AE L G EA U H C E W W NG E TH B A W J C Y D O R P EO B EA AE A O O A A O P F X E N N F AE H Y G P"
+        },
+        {
+          "scope": "p54-55",
+          "n": 308,
+          "score": -5.377618861685911,
+          "origin": 30,
+          "end": 47,
+          "stats": {
+            "ioc": 0.034773044545031516,
+            "repeat": 0.029315960912052116,
+            "maxFreq": 0.05519480519480519
+          },
+          "excerpt": "NG M I P OE P W S F AE OE TH NG L C AE G I M M F R OE A D C R I IA L IA T TH EA N G J EA D N L O J O C C S T OE N I TH OE E OE N R S I TH IA S S Y U B NG A P F H TH OE OE L Y M B NG E"
+        },
+        {
+          "scope": "p0-2-black-body",
+          "n": 716,
+          "score": -5.570954971579974,
+          "origin": 170,
+          "end": 88,
+          "stats": {
+            "ioc": 0.03456655076766808,
+            "repeat": 0.043356643356643354,
+            "maxFreq": 0.051675977653631286
+          },
+          "excerpt": "S T H IA A N IA L R M E C R F J L NG B C NG O L IA S G R IA Y F EO T J R S O M J J X TH P B T F AE F D L O U L Y A O E IA EO J P OE IA O M I W E TH H IA TH H IA F U L N TH J F W"
         }
       ]
     },
@@ -1162,7 +1468,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.034597804430206665,
             "repeat": 0.039160839160839164,
@@ -1175,6 +1481,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.5710283558191693,
+          "origin": 17,
           "fitEnd": 91,
           "fitTerminalStates": 1,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T S H E H A R E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -1192,7 +1499,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.03526194475915146,
             "repeat": 0.04195804195804196,
@@ -1205,6 +1512,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.615349118771983,
+          "origin": 83,
           "fitEnd": 183,
           "fitTerminalStates": 2,
           "fitExcerpt": "A Y T O TH I M H E W I L L T R Y TH E C A S E L F N A T L E T TH E M F O R E L E R B E S A L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
@@ -1220,7 +1528,8 @@
           "heldEnd": 15,
           "heldExact": 433
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "2013-law-verses",
@@ -1325,7 +1634,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.043825448294722034,
             "repeat": 0.05314685314685315,
@@ -1338,6 +1647,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.5708544394259225,
+          "origin": 17,
           "fitEnd": 91,
           "fitTerminalStates": 6,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T S H E H A R E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -1355,7 +1665,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.045685041215767476,
             "repeat": 0.043356643356643354,
@@ -1368,6 +1678,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.5973249269600456,
+          "origin": 83,
           "fitEnd": 183,
           "fitTerminalStates": 2,
           "fitExcerpt": "A Y T O TH I M H E W I L L T R Y TH E C A S E L F N A T L E T TH E M F O R E L E R B E S A L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
@@ -1383,7 +1694,8 @@
           "heldEnd": 15,
           "heldExact": 435
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "2013-law-verses",
@@ -1488,7 +1800,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.7659999218658436,
             "repeat": 0.772027972027972,
@@ -1501,6 +1813,7 @@
           },
           "fitLegal": 249,
           "fitScore": -1.8027297262742548,
+          "origin": 17,
           "fitEnd": 91,
           "fitTerminalStates": 694,
           "fitExcerpt": "S H A N D I S H A N O U S H A N O U S T O U E S T O U S T O U S T O U S T O U S T O U S T O U S T O U S T O U S T O U S T O U S H A N D I G A N O U S T O U S T",
@@ -1518,7 +1831,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.7547525100597726,
             "repeat": 0.7482517482517482,
@@ -1531,6 +1844,7 @@
           },
           "fitLegal": 249,
           "fitScore": -1.8140340003809061,
+          "origin": 83,
           "fitEnd": 183,
           "fitTerminalStates": 227,
           "fitExcerpt": "O U S H A N D I S H A N D I M Y O U C H A N O U S H A N O U S H A N O U S T O U S T O U R E N D TH E M A N O U S T O U E S T O U S T O U S T O U S T O U S T O U",
@@ -1546,7 +1860,8 @@
           "heldEnd": 15,
           "heldExact": 78
         }
-      ]
+      ],
+      "rankScopes": null
     },
     {
       "carrier": "2013-law-verses",
@@ -1651,7 +1966,7 @@
       "controls": [
         {
           "donor": "Gibran",
-          "origin": 17,
+          "plantOrigin": 17,
           "cipherStats": {
             "ioc": 0.043598859241317345,
             "repeat": 0.05034965034965035,
@@ -1664,6 +1979,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.5710283558191693,
+          "origin": 17,
           "fitEnd": 91,
           "fitTerminalStates": 3,
           "fitExcerpt": "E C I T Y S T O O D F O R TH A N D S A I D G O N O T Y E T A W A Y F R O M U S A N O O N T S H E H A R E Y O U B E E N I N O U R T W I L I G H T A N D Y O U R Y",
@@ -1681,7 +1997,7 @@
         },
         {
           "donor": "Emerson",
-          "origin": 83,
+          "plantOrigin": 83,
           "cipherStats": {
             "ioc": 0.04333710981755674,
             "repeat": 0.043356643356643354,
@@ -1694,6 +2010,7 @@
           },
           "fitLegal": 249,
           "fitScore": -2.6109563249653664,
+          "origin": 83,
           "fitEnd": 183,
           "fitTerminalStates": 21,
           "fitExcerpt": "A Y T O TH I M H E W I L L T R Y TH E C A S E L F N A T L E T TH E M F O R E L E R B E S A L E N T H E M U S T A T T A I N A N D M A I N T A I N TH A T L O F T Y S",
@@ -1709,7 +2026,8 @@
           "heldEnd": 15,
           "heldExact": 438
         }
-      ]
+      ],
+      "rankScopes": null
     }
   ]
 }
