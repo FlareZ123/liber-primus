@@ -19,7 +19,6 @@ function experiment(corpus,native){
     const C=[];for(const p of P){if(p===0)C.push(0);else{C.push(mod(p+K[s]));s=s*g[p]%N;}}
     return C;
   }
-  const initial=()=>new Map(Array.from({length:N-1},(_,i)=>[(i+1)*A+A,{m:-Math.log(N-1),v:0,rare:0,prev:null,p:-1,iv:i+1,s:i+1}]));
   // Use 30 slots per state to distinguish start from preceding plaintext F.
   const key=(s,p)=>s*30+p+1;
   function start(){const m=new Map();for(let s=1;s<N;s++)m.set(key(s,-1),{m:-Math.log(N-1),v:0,rare:0,prev:null,p:-1,iv:s,s});return m}
