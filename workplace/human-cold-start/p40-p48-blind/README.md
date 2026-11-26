@@ -6,10 +6,10 @@
 
 - [Participant folder on sealed branch](https://github.com/FlareZ123/liber-primus/tree/human-packet-20261126-3091/participant)
 - [Complete sealed branch archive](https://github.com/FlareZ123/liber-primus/archive/refs/heads/human-packet-20261126-3091.zip)
-- Frozen branch commit: `6fcc9b4ed54701b7688e4676182d79d369691b5a`
+- Frozen branch commit: `b9e37a1931cfe9b5e5729bfaca66ffef2181978f`
 - Local participant ZIP: `p40-p48-human-cold-start-participant.zip`
-- Local ZIP SHA-256: `cd89c0ce7fea0d84469dab89a49ea8fdd8e282681522b9e6510f404bfc353b00`
-- Local ZIP size: 35,376,561 bytes
+- Local ZIP SHA-256: `ade20bf97895cfffe00462d83c471544fd0a5f5f23615cda3b6b14fca1c31834`
+- Local ZIP size: 35,376,961 bytes
 
 The sealed branch tree contains only `participant/`: 58 original 2400×3600 JPEG blobs in release order, neutral sequence filenames, a neutral prompt, a period-source index, and per-image SHA-256 checksums. The branch images reference the canonical `resources/liber-primus` blobs directly; no image is recompressed, cropped, resized or annotated.
 
