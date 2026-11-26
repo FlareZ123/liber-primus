@@ -35,7 +35,7 @@ A literal **independent** GP29 prose running key, even as long as the entire man
 Let A(a,b) and B(k,l) be the empirical adjacent-pair probabilities of independently chosen native plaintext and key sources, and p_a and q_k their single-rune marginals. Under independent stationary streams, the key position is a function of plaintext, so the held/nonheld transition types yield the following predictions (indices modulo29):
 
 - Visible F: p_0 + sum over a=1..28 of p_a q_(-a).
-- Adjacent equal: A(0,0) + sum over a=1..28 of [A(0,a)+A(a,0)] q_(-a) + sum over nonzero a,b,k,l with l-k=a-b of A(a,b) B(k,l).
+- Adjacent equal: A(0,0) + sum over a=1..28 of [A(0,a)+A(a,0)] q_(-a) + sum over nonzero a,b and all k,l with l-k=a-b of A(a,b) B(k,l).
 
 The last sum allows **k,l=0..28**; only a,b must be nonzero. The printed-F support is not simply the number of plaintext F holds. Empirical stationarity is a model, not a claim that finite literary passages are iid.
 
