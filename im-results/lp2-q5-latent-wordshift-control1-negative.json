@@ -1,0 +1,84 @@
+{
+  "tag": "pad1",
+  "cycles": 141457,
+  "align": 3664068,
+  "full": 92397,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    11,
+    13,
+    20,
+    17,
+    26
+  ],
+  "fit": -3.5318800922562765,
+  "held": -3.6446248480331325,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "WEAR OF HEAD THAT DAY NOT LAIN MORE THE WNGS HIM THE MAN WITH MY THE THE NOT NOT LIGHT DID ALL IS IS THE IN ROSE THUS WRATH SPEAC ART SPLINT IN IN SAFER AS TACE IN SAY OUR OF IN THE THE BOTH AS THE THEY IDLE USE GROW IS CHAFF LET BLACC ACT DOTH IDLE SENT IT OF LET GAINS HEARD DAY OF EYE ARE THE CARPI RISNG THE LOUD OF THE SAY HE THE MAIDEN IN OF OF LOSS IS HIM THE SPUN IN THE HAD DARC THAT AND THE OF HIM EUERY A THE MAY IN WELL HOW EARTH BUT THE BY THIS OF FAR THE SEPTA HAIR SHUN MIND A PAIN A LAWS SWEATNG TRY OUT YOU FAR DAY THE OF THE DAY OWN IN OUR HERE OF WASH NOT NOT BED JESU THE MAN MY THAT THE OF NOT WHAT THE A WITH THE NORTH ANY TWO MIND LEAF THAT IS DODGE IN GET HOPNG OWN BUT THIRD FNGER THE THAN SONG THE BID NOT NEEDS LOSS HIS MY SEE EBB WAS WITH THE THE ARMY HE BOTH WOMB LAMB NEW AND FED NOT POLL WHO OF BUT A THIS THANC MY THAT THE THE IN HELP NOTHNG SONG WRONG THE IS IN THNGS THE AS NOT IS IN BOAT SERFS RED BOTH THE IN MEET GAY THE THE SODIAC WORD BY REPEAL WAS IS BOWER NAY ANY EACH THE OF BAD LASH AS THE ARE OF A",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        11,
+        13,
+        20,
+        17,
+        26
+      ],
+      "score": 55.301163493970584,
+      "support": 2,
+      "fit": -3.5318800922562765
+    },
+    {
+      "key": [
+        2,
+        11,
+        9,
+        4,
+        3
+      ],
+      "score": 54.76171949397895,
+      "support": 2,
+      "fit": -3.5436347292736436
+    },
+    {
+      "key": [
+        7,
+        7,
+        9,
+        19,
+        16
+      ],
+      "score": 58.901367089555606,
+      "support": 2,
+      "fit": -3.5451450937621054
+    },
+    {
+      "key": [
+        3,
+        14,
+        21,
+        11,
+        9
+      ],
+      "score": 54.702772466837786,
+      "support": 2,
+      "fit": -3.547737755585423
+    },
+    {
+      "key": [
+        5,
+        7,
+        5,
+        14,
+        27
+      ],
+      "score": 57.07650563682858,
+      "support": 2,
+      "fit": -3.552416223181189
+    }
+  ]
+}
