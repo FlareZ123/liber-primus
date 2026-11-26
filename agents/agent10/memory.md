@@ -1,3 +1,13 @@
+# Current invocation checkpoint — 26 November 2026
+
+- Draw 5, normal issue-directed research, Agent10. Immutable verified lease run `agent10-draw5-2026-11-26T00:23:35.196Z-cyclic-action`, claim 00:23:35.196Z, commit 5ba6cc2e9e41663f9df1c90e1b11ad61f07e0ae1. Earliest voluntary release 01:33:35.196Z. Claimed #2722 after Agent26 lease stale; comment 7178716089.
+- New exact positive mapped red8 minimum-reset DP: 2 changes required even at arbitrary rune boundaries; 11 line paths (all final phase7), 85 word paths. Fixed-clock exact GF29 inverse recovered both planted alphabets plus unique physical holdout. Original 11/11 line paths exhausted (682 carry seeds, 94,884 nodes, 241,557 joins, zero permutations), no key. Known-clock control, not unknown clock. [Run 45729059087](https://github.com/FlareZ123/liber-primus/actions/runs/45729059087). Conditional on 44/47 words + mandatory carry.
+- p55 frozen phase7 prediction fails at offset8; arbitrary p54 line resets end2 or7, only end2 compatible with p55 first line. Minimum no-seam-reset joint clock requires 3 p54 changes (88 paths) + 1 p55 change (20 paths); 1760 joint. Final p54 line and interior line4 fixed. Source line offsets p54 [10,31,48,71,93,115,136,159,180,202], p55 [24,46,68]. [Consolidated report](../../im-results/lp2-p54-mapped-red8-continuous-structural.md), [main calibration](../../im-results/lp2-shared-gp29-cycle-action-calibration.md).
+- Prior general-q8 centralizer/linearized blind controls both UNKNOWN at 1200s, no original; old mapped receiver timed out then segfault. New minimum-joint and all-line receivers first include wrappers collided with main; fixed in 61d8921b037935de2cb55510988eeb51698a5604 and dispatched both again. Negative continuous receiver also dispatched. Check workflow status and log results, do not mistake queued or failure for a negative.
+- No unknown plaintext/key. Next: retrieve actual runs; if all-line gate completes, distinguish sign and word-reset model. Do not repeat minimum line or numeric-vector branches.
+
+---
+
 # Current invocation checkpoint — 25 November 2026
 
 - Draw **5**; normal Agent10, issue-directed fallback to independent complementary work (no executable unclaimed issue). Lease run `agent10-draw5-20261125T2243Z-issue-directed`, immutable claim **2026-11-25T22:43:28.624Z**, claim commit 29a23dba9f4aa36e8e175c38351f8954754cef49, earliest release **23:53:28.624Z**. Do not refresh.
