@@ -153,7 +153,7 @@ bool indexedControl(const vector<string>&train,const vector<string>&held,unsigne
 // Deterministic full-domain equivalence check on original carry states and
 // valid child states, plus fresh keyed plants. This checks option identities,
 // not just counts or loose relation masks. No original key is fitted here.
-void indexRegression(IndexedSearch& s,const string& label){
+void indexRegression(IndexedSearch& s,const string& label,ostream& json){
  Totals oldTotal,newTotal;uint64_t comparisons=0,states=0,options=0;
  vector<aff::Space> samples;
  for(size_t i=0;i<s.seeds.size();i+=max<size_t>(1,s.seeds.size()/8))samples.push_back(s.seeds[i]);
@@ -183,6 +183,7 @@ void indexRegression(IndexedSearch& s,const string& label){
   }
  }
  cout<<"INVERSE INDEX "<<label<<" states="<<states<<" relationChecks="<<comparisons<<" retainedOptions="<<options<<" oldPostingVisits="<<oldTotal.featureTests<<" newPostingVisits="<<newTotal.featureTests<<" indexLookups="<<newTotal.indexLookups<<" oldOptionTests="<<oldTotal.optionTests<<" newOptionTests="<<newTotal.optionTests<<" pass=1"<<endl;
+ json<<"{\"label\":\""<<label<<"\",\"states\":"<<states<<",\"relationChecks\":"<<comparisons<<",\"retainedOptions\":"<<options<<",\"oldPostingVisits\":"<<oldTotal.featureTests<<",\"newPostingVisits\":"<<newTotal.featureTests<<",\"indexLookups\":"<<newTotal.indexLookups<<",\"oldOptionTests\":"<<oldTotal.optionTests<<",\"newOptionTests\":"<<newTotal.optionTests<<",\"pass\":true}";
 }
 int main(int argc,char**argv){try{aff::init();fixed::dictionary();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
@@ -190,8 +191,10 @@ int main(int argc,char**argv){try{aff::init();fixed::dictionary();auto src=fixed
  // A range invocation searches only the negative-sign original and reports
  // exact completed IDs; an incomplete previous worker prefix is not assumed.
  if(argc==2&&string(argv[1])=="check-index"){
-  negative=true;IndexedSearch original(train,3);indexRegression(original,"original");
-  for(unsigned seed:{3301u,1033u}){auto p=wordPlant(train,held,seed);IndexedSearch s(p.train,0);indexRegression(s,"plant-"+to_string(seed));}
+  negative=true;ostringstream json;json<<"[";
+  {IndexedSearch original(train,3);indexRegression(original,"original",json);}
+  for(unsigned seed:{3301u,1033u}){auto p=wordPlant(train,held,seed);IndexedSearch s(p.train,0);json<<",";indexRegression(s,"plant-"+to_string(seed),json);}
+  json<<"]\n";if(const char* p=getenv("SFT_OUTPUT")){ofstream out(p);out<<json.str();}
   return 0;
  }
  if(argc==3||(argc==4&&string(argv[1])=="inverse-range")){
