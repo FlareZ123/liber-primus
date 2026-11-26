@@ -1,6 +1,8 @@
 // Carry-independent fixed-red8 numeric common-cycle receiver.
 // Four complete-word anchors cover all actions with <=3 missing dictionary supports.
 // The entire p54/p55 spanning word and all p55 words are held out.
+// Optional paired mode uses four disjoint pairs of eight complete groups.
+// At most three omissions can hit at most three pairs, so one entire pair survives.
 // Reuses the 38,938-form lexicon and source profile. No target suffix/p55 glyph
 // enters the fit. Existing manual C++17 workflow; no dependencies.
 #include <bits/stdc++.h>
@@ -67,9 +69,9 @@ set<string> decode(const string&c,const Maps&m,const unordered_set<string>&D){st
 string encode(const string&w,const Perm&pi,const Key&k,int j){Perm inv;for(int i=0;i<N;i++)inv[pi[i]]=i;string c;for(char a:w){int p=val(a);if(!p)c+='0';else{c+=SYM[inv[md(pi[p]+k[j])]];j=(j+1)&7;}}return c;}
 bool sameAction(const Perm&a,const Perm&b,const Key&k){auto x=maps(a,k),y=maps(b,k);for(int j=0;j<Q;j++){bool yes=true;for(int i=0;i<Q;i++)yes&=x[i]==y[(i+j)&7];if(yes)return true;}return false;}
 struct Search{
- const Key key;vector<Group> g;Group carry;vector<int> order;vector<int> anchors;Clock::time_point start,end;bool found=false,timed=false;Perm answer{};int answerOov=-1;uint64_t nodes=0,edges=0,perms=0,packingClipped=0,residual=0,seedDone=0,seedTotal=0;
- Search(Key k,const vector<string>&train,const string&prefix):key(k){require(prefix.empty(),"carry cannot enter training");for(const auto&c:train)g.push_back(build(c,by[c.size()],key));order.resize(g.size());iota(order.begin(),order.end(),0);
-  sort(order.begin(),order.end(),[&](int a,int b){auto score=[&](int i){return log2(double(max<size_t>(1,g[i].opts.size()*8)))/max(1,int(g[i].c.size()-count(g[i].c.begin(),g[i].c.end(),'0')));};double x=score(a),y=score(b);return x==y?a<b:x<y;});anchors=order;sort(anchors.begin(),anchors.end(),[&](int a,int b){return g[a].c.size()==g[b].c.size()?a<b:g[a].c.size()>g[b].c.size();});anchors.resize(4);}
+ const Key key;vector<Group> g;Group carry;vector<int> order;vector<int> anchors;const bool paired;Clock::time_point start,end;bool found=false,timed=false;Perm answer{};int answerOov=-1;uint64_t nodes=0,edges=0,perms=0,packingClipped=0,residual=0,seedDone=0,seedTotal=0;
+ Search(Key k,const vector<string>&train,const string&prefix,bool pairMode=false):key(k),paired(pairMode){require(prefix.empty(),"carry cannot enter training");for(const auto&c:train)g.push_back(build(c,by[c.size()],key));order.resize(g.size());iota(order.begin(),order.end(),0);
+  sort(order.begin(),order.end(),[&](int a,int b){auto score=[&](int i){return log2(double(max<size_t>(1,g[i].opts.size()*8)))/max(1,int(g[i].c.size()-count(g[i].c.begin(),g[i].c.end(),'0')));};double x=score(a),y=score(b);return x==y?a<b:x<y;});anchors=order;sort(anchors.begin(),anchors.end(),[&](int a,int b){return g[a].c.size()==g[b].c.size()?a<b:g[a].c.size()>g[b].c.size();});anchors.resize(paired?8:4);}
  bool stop(){if(found)return true;if(Clock::now()>=end){timed=true;return true;}return false;}
  bool check(const Perm&pi){perms++;auto m=maps(pi,key);int bad=0;for(int i:order)if(!support(g[i].c,m,dict)&&++bad>3)return false;found=true;answer=pi;answerOov=bad;return true;}
  // Enumerate exact disjoint translates of graph components, with pi(F)=0.
@@ -98,11 +100,16 @@ struct Search{
   for(auto [i,j]:best.entries){if(found||timed)return;if((++edges&4095)==0&&stop())return;Graph x=a;if(!extend(x,b.opts[i],j,key))continue;auto sig=x.sig();if(!seen.insert(sig).second)continue;dfs(x,rem,budget,level+1);}
   if(budget>0)dfs(a,rem,budget-1,level+1);
  }
- void run(int seconds,size_t resume=0){start=Clock::now();end=start+chrono::seconds(seconds);vector<pair<Graph,int>> seeds;unordered_set<string> seen;
-  for(int gid:anchors)for(const auto&o:g[gid].opts)for(int j=0;j<Q;j++){Graph a;if(extend(a,o,j,key)&&seen.insert(a.sig()).second)seeds.push_back({a,gid});}
+ void run(int seconds,size_t resume=0){start=Clock::now();end=start+chrono::seconds(seconds);vector<pair<Graph,vector<int>>> seeds;unordered_set<string> seen;
+  if(!paired){for(int gid:anchors)for(const auto&o:g[gid].opts)for(int j=0;j<Q;j++){Graph a;if(extend(a,o,j,key)&&seen.insert(a.sig()).second)seeds.push_back({a,{gid}});}}
+  else for(int z=0;z<4;z++){int i=anchors[z],j=anchors[7-z];if(g[i].opts.size()>g[j].opts.size())swap(i,j);size_t before=seeds.size();unordered_set<string> local;
+   for(const auto&o:g[i].opts){for(int phase=0;phase<Q;phase++){if(stop())break;Graph a;if(!extend(a,o,phase,key)||!local.insert(a.sig()).second)continue;
+    Filter fl(a,key);auto d=domain(g[j],fl);require(!d.clipped,"pair domain clipped");for(auto [w,k]:d.entries){if((++edges&4095)==0&&stop())break;Graph b=a;if(extend(b,g[j].opts[w],k,key)&&seen.insert(b.sig()).second)seeds.push_back({b,{i,j}});}
+   }if(timed)break;}cout<<"pair "<<i<<","<<j<<" local="<<local.size()<<" newSeeds="<<seeds.size()-before<<endl;if(timed)break;}
+  if(timed){cout<<"PAIR ANCHOR GENERATION TIMED OUT; no exclusion"<<endl;return;}
   sort(seeds.begin(),seeds.end(),[](const auto&a,const auto&b){if(a.first.comps!=b.first.comps)return a.first.comps<b.first.comps;return a.first.sig()<b.first.sig();});seedTotal=seeds.size();
   cout<<"complete-anchor seeds "<<seedTotal<<" anchor IDs";for(int i:anchors)cout<<" "<<i;cout<<" group options";for(int i:order)cout<<" "<<i<<":"<<g[i].opts.size();cout<<endl;
-  require(resume<=seeds.size(),"resume seed index");seedDone=resume;for(size_t i=resume;i<seeds.size();i++){const auto&[a,gid]=seeds[i];if(stop())break;auto rem=order;rem.erase(find(rem.begin(),rem.end(),gid));dfs(a,rem,3,0);if(!timed&&!found)seedDone++;if(seedDone&&seedDone%20==0)cout<<"progress "<<seedDone<<"/"<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<endl;}
+  require(resume<=seeds.size(),"resume seed index");seedDone=resume;for(size_t i=resume;i<seeds.size();i++){const auto&[a,ids]=seeds[i];if(stop())break;auto rem=order;for(int gid:ids)rem.erase(find(rem.begin(),rem.end(),gid));dfs(a,rem,3,0);if(!timed&&!found)seedDone++;if(seedDone&&seedDone%20==0)cout<<"progress "<<seedDone<<"/"<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<endl;}
   cout<<"search found="<<found<<" timed="<<timed<<" seedDone="<<seedDone<<" seedTotal="<<seedTotal<<" nodes="<<nodes<<" edges="<<edges<<" perms="<<perms<<" packingClipped="<<packingClipped<<" residual="<<residual<<" oov="<<answerOov<<" seconds="<<chrono::duration<double>(Clock::now()-start).count()<<endl;
   if(found){cout<<"pi";for(int x:answer)cout<<" "<<x;cout<<endl;}
  }
@@ -120,22 +127,22 @@ Fixture plant(const vector<string>& train,const vector<string>&hold,const Key&k,
  require(ok,"unable to plant unsupported carry prefix");
  for(const auto&c:hold){auto w=choose(c.size());x.truthHold.push_back(w);x.hold.push_back(encode(w,x.pi,k,rng()%8));}
  return x;}
-bool control(const vector<string>&train,const vector<string>&hold,const Key&k,unsigned seed,size_t resume=0,int seconds=180){
+bool control(const vector<string>&train,const vector<string>&hold,const Key&k,unsigned seed,size_t resume=0,int seconds=180,bool paired=false){
  auto p=plant(train,hold,k,seed);auto m=maps(p.pi,k);require(!support(p.prefix,m,prefixDict),"planted carry must be unsupported");int missing=0;for(const auto&c:p.train)missing+=!support(c,m,dict);require(missing==3,"control must have three actual omissions");
  // Check graph compatibility of the true action on all synthetic groups.
- Search s(k,p.train,"");s.run(seconds,resume);if(!s.found){cout<<"CONTROL "<<seed<<" failed no key"<<endl;return false;}
+ Search s(k,p.train,"",paired);s.run(seconds,resume);if(!s.found){cout<<"CONTROL "<<seed<<" failed no key"<<endl;return false;}
  auto got=maps(s.answer,k);int hit=0,unique=0;bool carryTruth=false;for(int j=0;j<Q;j++)carryTruth|=encode(p.truthCarry,s.answer,k,j)==p.carry;hit+=carryTruth;set<string> d;
  for(size_t i=0;i<p.hold.size();i++){d=decode(p.hold[i],got,dict);hit+=d.count(p.truthHold[i]);unique+=d.size()==1&&d.count(p.truthHold[i]);}
  bool exact=sameAction(p.pi,s.answer,k),pass=exact&&s.answerOov==3&&hit==17&&unique>=8;
  cout<<"CONTROL "<<seed<<" exact="<<exact<<" holdTruth="<<hit<<"/17 unique="<<unique<<" passed="<<pass<<endl;return pass;}
-int main(int argc,char**argv){try{require(argc==2,"argument 0=ordinal, 1=prime");int selected=stoi(argv[1]);require(selected==0||selected==1,"variant");dictionary();string src=read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto body=strings(src,"body_groups",src.find("\"heading_groups\": [")),p55=strings(src,"groups",src.rfind("\"p55\""));
+int main(int argc,char**argv){try{require(argc==2||argc==3,"argument 0=ordinal, 1=prime; optional paired");bool paired=argc==3;require(!paired||string(argv[2])=="paired","optional paired");int selected=stoi(argv[1]);require(selected==0||selected==1,"variant");dictionary();string src=read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto body=strings(src,"body_groups",src.find("\"heading_groups\": [")),p55=strings(src,"groups",src.rfind("\"p55\""));
  require(body.size()==48&&body.back()=="63g2eis46q"&&p55.size()==17&&p55[0]=="l","physical carry");
  vector<string> train(body.begin(),body.end()-1),hold(p55.begin()+1,p55.end());require(accumulate(train.begin(),train.end(),size_t(0),[](size_t a,const string&b){return a+b.size();})==213,"train count");require(accumulate(hold.begin(),hold.end(),size_t(0),[](size_t a,const string&b){return a+b.size();})==75,"hold count");
  auto a=numbers(src,"gp29_indices"),b=numbers(src,"prime_mod29");require(a==Key{19,21,23,27,2,14,10,19}&&b==Key{13,21,2,20,5,18,2,13},"red8 key");
  for(int variant=selected;variant<=selected;variant++){Key k=variant?b:a;cout<<"VARIANT "<<(variant?"prime":"ordinal")<<endl;
-  bool p1=control(train,hold,k,7011+variant*100,0,150),p2=control(train,hold,k,8113+variant*100,0,150);
+  bool p1=control(train,hold,k,7011+variant*100,0,150,paired),p2=control(train,hold,k,8113+variant*100,0,150,paired);
   if(!p1||!p2){cout<<"ORIGINAL GATED OFF: blind controls failed"<<endl;continue;}
-  Search s(k,train,"");s.run(300);
+  Search s(k,train,"",paired);s.run(300);
   if(!s.found){cout<<"ORIGINAL no key; exact exclusion only if !timed and residual==0 and all seeds completed"<<endl;continue;}
   auto m=maps(s.answer,k);vector<string> held{body.back()+p55[0]};held.insert(held.end(),hold.begin(),hold.end());cout<<"ORIGINAL frozen holdout"<<endl;
   for(size_t i=0;i<held.size();i++){auto d=decode(held[i],m,dict);cout<<i<<" "<<held[i]<<" candidates="<<d.size();int n=0;for(const auto&w:d){if(n++>=5)break;cout<<" "<<w;}cout<<endl;}
