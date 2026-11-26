@@ -1,0 +1,176 @@
+{
+  "p": 29,
+  "summary": [
+    {
+      "k": 2,
+      "cases": 240,
+      "positive": 128,
+      "exactPlacements": 144,
+      "largest": 2,
+      "directNodes": 528,
+      "mitmNodes": 862,
+      "directProbes": 1253,
+      "mitmProbes": 606,
+      "mitmFewerProbes": 163,
+      "mitmMoreProbes": 0,
+      "maxStored": 16
+    },
+    {
+      "k": 3,
+      "cases": 240,
+      "positive": 133,
+      "exactPlacements": 237,
+      "largest": 6,
+      "directNodes": 887,
+      "mitmNodes": 1390,
+      "directProbes": 4604,
+      "mitmProbes": 1535,
+      "mitmFewerProbes": 195,
+      "mitmMoreProbes": 0,
+      "maxStored": 16
+    },
+    {
+      "k": 4,
+      "cases": 240,
+      "positive": 138,
+      "exactPlacements": 716,
+      "largest": 24,
+      "directNodes": 2300,
+      "mitmNodes": 2857,
+      "directProbes": 16121,
+      "mitmProbes": 4062,
+      "mitmFewerProbes": 217,
+      "mitmMoreProbes": 1,
+      "maxStored": 30
+    },
+    {
+      "k": 5,
+      "cases": 240,
+      "positive": 141,
+      "exactPlacements": 3187,
+      "largest": 120,
+      "directNodes": 9131,
+      "mitmNodes": 10752,
+      "directProbes": 63544,
+      "mitmProbes": 15281,
+      "mitmFewerProbes": 209,
+      "mitmMoreProbes": 10,
+      "maxStored": 240
+    },
+    {
+      "k": 6,
+      "cases": 240,
+      "positive": 157,
+      "exactPlacements": 17309,
+      "largest": 720,
+      "directNodes": 48012,
+      "mitmNodes": 38263,
+      "directProbes": 354485,
+      "mitmProbes": 59234,
+      "mitmFewerProbes": 190,
+      "mitmMoreProbes": 38,
+      "maxStored": 380
+    }
+  ],
+  "tight": [
+    {
+      "k": 2,
+      "solutions": 2,
+      "mitmNodes": 6
+    },
+    {
+      "k": 3,
+      "solutions": 6,
+      "mitmNodes": 14
+    },
+    {
+      "k": 4,
+      "solutions": 24,
+      "mitmNodes": 34
+    },
+    {
+      "k": 5,
+      "solutions": 120,
+      "mitmNodes": 112
+    },
+    {
+      "k": 6,
+      "solutions": 720,
+      "mitmNodes": 314
+    },
+    {
+      "k": 7,
+      "solutions": 5040,
+      "mitmNodes": 1360
+    }
+  ],
+  "totalPartitions": 4565,
+  "packingThreshold": 8192,
+  "boundComparison": [
+    {
+      "d": 0,
+      "partitions": 4565,
+      "oldEligible": 1006,
+      "newEligible": 2104,
+      "newOnly": 1098,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 1,
+      "partitions": 4565,
+      "oldEligible": 285,
+      "newEligible": 1057,
+      "newOnly": 772,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 2,
+      "partitions": 4565,
+      "oldEligible": 21,
+      "newEligible": 270,
+      "newOnly": 249,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 3,
+      "partitions": 4565,
+      "oldEligible": 0,
+      "newEligible": 0,
+      "newOnly": 0,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 4,
+      "partitions": 4565,
+      "oldEligible": 0,
+      "newEligible": 0,
+      "newOnly": 0,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 5,
+      "partitions": 4565,
+      "oldEligible": 0,
+      "newEligible": 0,
+      "newOnly": 0,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 6,
+      "partitions": 4565,
+      "oldEligible": 0,
+      "newEligible": 0,
+      "newOnly": 0,
+      "maxOldOverNew": "8192"
+    },
+    {
+      "d": 7,
+      "partitions": 4565,
+      "oldEligible": 0,
+      "newEligible": 0,
+      "newOnly": 0,
+      "maxOldOverNew": "8192"
+    }
+  ],
+  "scope": "Synthetic cyclic-shape controls and all integer partitions of 29; no LP2 key search, no runtime speedup inferred from probes."
+}

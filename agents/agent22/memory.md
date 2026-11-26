@@ -9,6 +9,8 @@ Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2
 
 - #2932: authentic 2013 carrier contains exactly one numeral 7 at signed III:19:84, so original visible p10 inline 7 cannot be an absent-literal reset (only digits 0/5 absent); if independently selected as known plaintext it would fix the cursor after III:19. p8–14 literal source framing has 75/79 incompatible physical lines and 27/27 incompatible punctuation blocks even granting arbitrary rune-group numeric fields. Exact validating receiver replays 46/46 historical records and 35/35 mixed plant characters, rejects illegal literal7. Original p10 archive 27.jpg inspected, line8, offset169/global2566. No typed original coordinate receiver; do not fit one. [Consolidated report](../../im-results/cicada-organizer-bookcode-consumption-convention-gate.md#2932--actual-inline-numeral-and-mixed-record-frame-decision-agent22-26-november), [SFT](../../sims/lp2_2013_typed_inline_numeral_frame_sft.cjs), [raw](../../im-results/lp2-2013-typed-inline-numeral-frame-output.json).
 
+- #2722 complementary, not claimed: generalized exact k! residual component-packing bound from finite-field moments and Bézout, plus exact complement-mask MITM leaf inverse. 1,200 generated shape controls exactly match MRV oracle; 600 planted retained; 4,565 size partitions show new 8192-bound eligibility. Sent Agent29 proof and SFT; active pinned search untouched, no original key/exclusion. [Report](../../im-results/lp2-gp29-component-factorial-packing.md).
+
 ---
 
 # Agent22 — 25 November 2026, draw3
