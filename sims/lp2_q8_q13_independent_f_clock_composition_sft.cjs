@@ -221,7 +221,7 @@ function viterbi(cipher, order, logp, initialStates, trace) {
     active = nextActive;
     if (active.length > maxActive) maxActive = active.length;
     if (trace) { back[t] = bp; emit[t] = ep; }
-    assert(active.length > 0, 'no inverse path at ciphertext position ' + t);
+    if (active.length === 0) return { feasible: false, noPathAt: t, priorActiveStates: active.length, maxActive, finalActive: 0, transitionCount };
   }
   let bestState = -1, bestScore = -Infinity;
   for (const s of active) {
@@ -238,7 +238,7 @@ function viterbi(cipher, order, logp, initialStates, trace) {
     }
     initialState = s;
   }
-  return { bestScore, bestState, plain, initialState, maxActive, finalActive: active.length, transitionCount };
+  return { feasible: true, bestScore, bestState, plain, initialState, maxActive, finalActive: active.length, transitionCount };
 }
 
 function forward(plain, order, phase1, phase2) {
@@ -283,6 +283,29 @@ function decodeOneLayer(plain, key) {
   return { out, endPhase: phase };
 }
 
+function validateTransducer(orders) {
+  const results = [];
+  for (const order of orders) {
+    const trans = makeTransitions(order);
+    let cases = 0, failures = 0;
+    for (let p1 = 0; p1 < order.k1.length; p1++) {
+      for (let p2 = 0; p2 < order.k2.length; p2++) {
+        for (let plain = 0; plain < 29; plain++) {
+          const f = forward(Uint8Array.of(plain), order, p1, p2);
+          const pair = p1 * order.k2.length + p2;
+          const nextPair = f.end1 * order.k2.length + f.end2;
+          const ok = trans[f.cipher[0]][pair].some(o => o.p === plain && o.nextPair === nextPair);
+          cases++;
+          if (!ok) failures++;
+        }
+      }
+    }
+    assert(failures === 0, 'inverse transition validation failed for ' + order.name);
+    results.push({ order: order.name, cases, failures });
+  }
+  return results;
+}
+
 function verifyHistoricalKeys() {
   const wulficChunks = wulficText.split('$');
   const welcome = extractRunes(relikd.sections.find(s => s.name === '0_welcome').source_text);
@@ -312,7 +335,9 @@ function runControl(sectionName, order, start1, start2, model) {
   assert(plain.length === 289, 'native control too short: ' + sectionName);
   const enc = forward(plain, order, start1, start2);
   const fit = viterbi(enc.cipher.slice(0, 213), order, model, allInitialStates(order), true);
+  if (!fit.feasible) return { section: sectionName, order: order.name, feasible: false, noPathAt: fit.noPathAt, priorActiveStates: fit.priorActiveStates, maxActiveStates: fit.maxActive, transitionCount: fit.transitionCount };
   const continuation = viterbi(enc.cipher.slice(213), order, model, [fit.bestState], true);
+  if (!continuation.feasible) return { section: sectionName, order: order.name, feasible: false, p54Feasible: true, p55NoPathAt: continuation.noPathAt };
   const recovered = Array.from(fit.plain).concat(Array.from(continuation.plain));
   const p54Exact = fit.plain.every((x, i) => x === plain[i]);
   const p55Exact = continuation.plain.every((x, i) => x === plain[213 + i]);
@@ -343,9 +368,11 @@ function runControl(sectionName, order, start1, start2, model) {
 
 function runOriginal(order, model) {
   const fit = viterbi(p54, order, model, allInitialStates(order), true);
+  if (!fit.feasible) return { order: order.name, p54Feasible: false, noPathAt: fit.noPathAt, priorActiveStates: fit.priorActiveStates, maxActiveStates: fit.maxActive, transitionsBeforeDeadEnd: fit.transitionCount };
   const initial = unpackState(fit.initialState, order.k2.length);
   const exit = unpackState(fit.bestState, order.k2.length);
   const continuation = viterbi(p55, order, model, [fit.bestState], true);
+  if (!continuation.feasible) return { order: order.name, p54Feasible: true, p55Feasible: false, p55NoPathAt: continuation.noPathAt, p54InitialPhases: [initial.phase1, initial.phase2], p54ExitPhases: [unpackState(fit.bestState, order.k2.length).phase1, unpackState(fit.bestState, order.k2.length).phase2] };
   const replay54 = forward(fit.plain, order, initial.phase1, initial.phase2);
   const replay55 = forward(continuation.plain, order, exit.phase1, exit.phase2);
   assert(replay54.cipher.every((x, i) => x === p54[i]), 'original p54 forward replay failed');
@@ -382,6 +409,7 @@ const orders = [
   { name: 'q8-then-q13', k1: K8, k2: K13 },
   { name: 'q13-then-q8', k1: K13, k2: K8 }
 ];
+const transitionValidation = validateTransducer(orders);
 const originals = orders.map(order => runOriginal(order, model.logp));
 const controls = [];
 for (const order of orders) {
@@ -405,6 +433,7 @@ const output = {
   method: 'Exact Viterbi over the complete finite transducer state (both independent key phases and the previous two plaintext runes); all 104 starting phase pairs are initialized. The score is the fixed smoothed GP29 character-trigram model built from the independent TextBlob word-frequency source. p55 is decoded only after freezing the best p54 path and carrying both exit phases without reset.',
   inputs,
   historicalControls,
+  transitionValidation,
   controls,
   originals
 };
@@ -414,6 +443,7 @@ fs.writeFileSync(outPath, JSON.stringify(output, null, 2) + '\n', 'utf8');
 process.stdout.write(JSON.stringify({
   artifact: outPath,
   historicalControls,
+  transitionValidation,
   controls,
   originals: originals.map(x => ({
     order: x.order,
