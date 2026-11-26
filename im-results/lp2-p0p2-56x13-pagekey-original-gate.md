@@ -1,6 +1,6 @@
 # P0–p2: 729 full runes and 716 black runes as candidate page-key rows
 
-**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct, one source-anchored two-layer and fixed integer-seeded RAND and consecutive-prime-value cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. The exact modular lift extension also rules out up to six prime phrase sums modulo 29^13, and permits at most 24/224 distinct rows for six arbitrary composite-or-prime sums under a generous universal page-length bound. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
+**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct, one source-anchored two-layer and fixed integer-seeded RAND, consecutive-prime-value and prime-factor-derived cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. The exact modular lift extension also rules out up to six prime phrase sums modulo 29^13, and permits at most 24/224 distinct rows for six arbitrary composite-or-prime sums under a generous universal page-length bound. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
 
 ## Source-visible alignment
 
@@ -138,3 +138,25 @@ A separate, more historically grounded receiver uses the same frozen raw BASE29 
 The only F-hold legal original is p49 with three paths, IoC .033566 and nonprose preview `AWIAFUYXSTNJUEOMOHWHIYOXEALGBSAEJIAOEDUNIAJGTOEOXEOCSUDADDIJRPOIAJOEGGX`. The same two held native controls recover all 180 runes under both consumption laws (11 and 8 legal F paths; highest-scoring path is the actual plaintext in each). The fixed exact prime-value producer therefore fails on the unknown pages even though it reproduces the original solved p56 at its known origin.
 
 [CommonJS SFT](../sims/lp2_p0_base29_primevalue_pagekey_sft.cjs), frozen commit 8d5a5e335cd6006c0d84d16974b55d3dc8e8b247. The committed experiment function executed in the connector V8 runtime with filesystem/assert adapters on the exact original and control blobs listed above; native Node/Windows execution is not claimed. Retire this literal raw-row starting-prime-value receiver. This is not an exclusion of encrypted seeds, a different prime-indexing law or any other keybook semantics. The two integer-seed experiments both fail, including the authentic p56-style F-hold law on 51/52 independent pages in each, and provide no positive selector for further keybook seed sweeps.
+
+
+## Prime-factor-derived page-key receiver (Agent42, 26 November)
+
+The preceding raw and modular checksum tests only reject products of bounded native phrase sums. A distinct literal numeric inverse treats the same 56 source-ordered BASE29 rows as *products of primes without the phrase-sum bound*. The historical 2013 PARABLE ID3 product supplies an actual cross-era factorization example, and solved p56 supplies an authentic prime-minus-one shift operator. Neither source selects the proposed p0 row interpretation, factor sorting, cyclic reuse, or page-local clock; these are explicit exploratory decisions.
+
+Freeze the red title as row0, black TH as sentinel, and the next 715 opening runes as 55 rows in physical-page order. Read each 13-rune row big-endian in the historical BASE29 alphabet. Completely factor it into ascending primes (with multiplicity); also test the reverse order because the literal product does not encode factor ordering. Set k_j=(prime_j−1) mod29 and consume cyclically from phase zero at each receiver page, using either ordinary consumption or the authentic plaintext-F hold law. No free key, sign, offset, or factor regrouping. p3–39 is the development receiver; p40–55 remains untouched by this experiment.
+
+All 56 row integers were exactly factored and checked by deterministic uint64 Miller–Rabin and multiplication. Factor multiplicity counts are heterogeneous: 1:1, 2:3, 3:10, 4:14, 5:5, 6:9, 7:5, 8:4, 10:2, 13:1, 14:2. Thus this row framing is not uniformly semiprime either. The row3 number 6136212257384545818 factors as 2×3×3×340900680965808101; its ascending residue key is [1,2,2,3].
+
+| Frozen receiver | Legal original pages /37 | Legal runes | Mean native bigram log gain vs uniform |
+| --- | ---: | ---: | ---: |
+| Ascending factors, ordinary | 37 | 8911 | −0.640506 |
+| Descending factors, ordinary | 37 | 8911 | −0.645066 |
+| Ascending factors, F hold | 0 | 0 | impossible |
+| Descending factors, F hold | 0 | 0 | impossible |
+
+The best ordinary pages still score negatively: p20 at −0.510023 ascending and p32 at −0.495514 descending, with IoCs .034511 and .041185. Their outputs are nonprose. Every legal inverse replays the input exactly. The DP counts every legal F path and retains the best native-bigram plaintext by (key phase, previous plaintext symbol); its zero-path result is exact for these keys. The scorer trains on seven solved-native records excluding AN END/PARABLE. The historical p56 forward cipher replays 85/85 original runes; the original PARABLE integer factors exactly into 1031,1229,1259 (sorted, not clause order). Two independent held native tapes, encrypted under the actual page3/page4 derived keys, recover 85/85 and 95/95 runes for each of the four receivers; true log gains +.702761/+.744569. F paths per plant are 2/2 (ascending) and 3/4 (descending). All plant winners replay exactly. Native Node/Windows execution is not claimed: the exact committed computational core ran in connector V8 with the Node imports replaced by strict assertion/input adapters.
+
+[CommonJS SFT](../sims/lp2_p0_base29_factor_primekey_sft.cjs) (frozen commit f41e56d49419d028771e65a1f661451c1f4fa9dd) · [complete factorizations, keys, scores and path counts](lp2-p0-base29-factor-primekey-output.json) (ee8114f8f205796a60f0c23e1716c174f26882e8). Original corpus and native control blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and 1b064ef6d85819b7d96adaff31a82d1ec551598f.
+
+**Decision:** reject these specific factor-derived receivers on p3–39, without invoking the withheld original p40–55. This neither recovers a key nor excludes every use of the factorization. A factor permutation/offset sweep or arbitrary KDF is not justified by this negative. The opening row framing still lacks an independently selected consumer.
