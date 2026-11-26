@@ -22,17 +22,14 @@ function matches(buf){const out=[];for(const [rep,b] of [['raw',buf],['normalize
  const unique=[...new Map(all.map(r=>[r.original+'|'+r.timestamp,r])).values()];
  const selected=unique.slice(0,1000);
  const matchesFound=[];
- const fetches=[];
- for(let i=0;i<selected.length;i++){
-  const r=selected[i];
-  try{
-   const page=await getBytes('https://web.archive.org/web/'+r.timestamp+'id_/'+r.original);
-   if(page.status!==200){fetches.push({status:page.status,url:r.original,timestamp:r.timestamp});continue;}
-   const found=matches(page.bytes);
-   if(found.length)matchesFound.push({url:r.original,timestamp:r.timestamp,mimetype:r.mimetype,matches:found});
-   fetches.push({status:page.status,url:r.original,timestamp:r.timestamp,bytes:page.bytes.length,matches:found.length});
-  }catch(e){fetches.push({error:String(e),url:r.original,timestamp:r.timestamp});}
- }
+ async function mapLimit(items,limit,fn){const out=new Array(items.length);let next=0;await Promise.all(Array.from({length:Math.min(limit,items.length)},async()=>{while(true){const i=next++;if(i>=items.length)return;try{out[i]=await fn(items[i])}catch(e){out[i]={error:String(e),url:items[i].original,timestamp:items[i].timestamp}}}}));return out;}
+ const fetches=await mapLimit(selected,8,async r=>{
+  const page=await getBytes('https://web.archive.org/web/'+r.timestamp+'id_/'+r.original);
+  if(page.status!==200)return {status:page.status,url:r.original,timestamp:r.timestamp};
+  const found=matches(page.bytes);
+  if(found.length)matchesFound.push({url:r.original,timestamp:r.timestamp,mimetype:r.mimetype,matches:found});
+  return {status:page.status,url:r.original,timestamp:r.timestamp,bytes:page.bytes.length,matches:found.length};
+ });
  console.log(JSON.stringify({
   target:TARGET,algorithms:ALGS,scope:'onion.to proxy host/domain captures, 2014 only, text/html or text/plain, status 200',
   querySummary:queries.map(q=>({name:q.name,status:q.status,count:q.count,error:q.error||null})),
