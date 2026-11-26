@@ -67,12 +67,27 @@ function experiment(raw,opts={}){
     const a=assign(S);changes+=a.filter((x,k)=>x!==K[j][k]).length;K[j]=a;for(const i of positions[j])plain[i]=a[c[i]]}
    let score=lp[plain[0]];for(let i=1;i<T;i++)score+=lb[plain[i-1]][plain[i]];history.push({sweep,changes,score,...(mode==="plant"?{match:match(K)}:{})});if(!changes)break}
   return {K,history}}
+ // Joint phase posterior under an independent deletion clock and native bigram emissions.
+ const bprob=lb.map(r=>Float64Array.from(r,Math.exp)),edge=new Float64Array(q*3*M*M),initial=new Float64Array(q);
+ function fbBigram(K){let ll=0,z=0;for(let j=0;j<q;j++){const w=p[K[j][c[0]]]/q;alpha[j]=w;z+=w}scale[0]=z;ll+=Math.log(z);for(let j=0;j<q;j++)alpha[j]/=z;
+  for(let i=1;i<T;i++){const a=i*q,b=a-q,x=c[i-1],y=c[i];z=0;for(let j=0;j<q;j++){let w=0;const py=K[j][y];for(let r=0;r<3;r++){const h=prev[r][j];w+=jump[r]*alpha[b+h]*bprob[K[h][x]][py]}alpha[a+j]=w;z+=w}scale[i]=z;ll+=Math.log(z);for(let j=0;j<q;j++)alpha[a+j]/=z}
+  edge.fill(0);beta.fill(1);
+  for(let i=T-1;i>0;i--){const x=c[i-1],y=c[i],a=(i-1)*q,off=x*M+y;for(let h=0;h<q;h++){const px=K[h][x];let sum=0;for(let r=0;r<3;r++){const j=next[r][h],w=jump[r]*bprob[px][K[j][y]]*beta[j]/scale[i];sum+=w;edge[(h*3+r)*M*M+off]+=alpha[a+h]*w}bb[h]=sum}beta.set(bb)}
+  for(let j=0;j<q;j++)initial[j]=alpha[j]*beta[j];return ll
+ }
+ function bigramRefine(K,rounds){K=copyK(K);const hist=[];
+  for(let it=0;it<rounds;it++){const ll=fbBigram(K);let changes=0;for(let j=0;j<q;j++){const S=new Float64Array(M*M);for(let k=0;k<M;k++)S[c[0]*M+k]+=initial[j]*lp[k];
+   for(let r=0;r<3;r++){const h=prev[r][j],n=next[r][j],oi=(h*3+r)*M*M,oo=(j*3+r)*M*M;for(let x=0;x<M;x++)for(let y=0;y<M;y++){const wi=edge[oi+x*M+y],wo=edge[oo+x*M+y];if(wi>1e-10){const l=lb[K[h][x]];for(let k=0;k<M;k++)S[y*M+k]+=wi*l[k]}if(wo>1e-10){const py=K[n][y];for(let k=0;k<M;k++)S[x*M+k]+=wo*lb[k][py]}}}
+   const a=assign(S);changes+=a.filter((x,k)=>x!==K[j][k]).length;K[j]=a}
+   hist.push({it,ll,changes,...(mode==="plant"?{match:match(K)}:{})});if(!changes)break
+  }return {K,history:hist}
+ }
  function exactRefine(K,rounds){const history=[];for(let it=0;it<rounds;it++){const d=decode(K,c),J=d.cursors.map((j,i)=>(j+d.skips[i])%q),constraints=Array.from({length:q},()=>new Int16Array(M).fill(-1));for(let i=0;i<T;i++)if(d.skips[i]){const z=d.plain[i];constraints[J[i]][c[i]]=z;for(let h=0;h<d.skips[i];h++)constraints[(d.cursors[i]+h)%q][c[i-1]]=z}
-   const r=refine(K,J,constraints,opts.exactSweeps??3);K=r.K;const after=decode(K,c);history.push({it,before:d.score,after:after.score,refine:r.history,...(mode==="plant"?{match:match(K)}:{})});if(after.score<=d.score+1e-7)break}return {K,history}}
+   const r=refine(K,J,constraints,opts.exactSweeps??3);const after=decode(r.K,c);if(after.score>=d.score)K=r.K;history.push({it,before:d.score,after:after.score,refine:r.history,...(mode==="plant"?{match:match(K)}:{})});if(after.score<=d.score+1e-7)break}return {K,history}}
  const seedStarts=opts.seedStarts??Array.from({length:width},(_,i)=>Math.floor((T-anchorLen)*(i+.5)/width)),beam=[],layers=[];
  for(const start of seedStarts){for(let j=0;j<q;j++)for(let x=0;x<M;x++)for(let k=0;k<M;k++)Q[(j*M+x)*M+k]=j<anchorLen?(x===c[start+j]?p[k]:(1-p[k])/(M-1)):1/M;const history=[];let K;
   for(let it=0;it<iterN;it++){const ll=fb(start,it<anchorN),temp=Math.max(opts.endTemp??1,(opts.startTemp??8)*(1-it/Math.max(1,iterN-1)));update(temp,opts.damping??.2);K=hard();history.push({it,ll,exact:(it===iterN-1||opts.scoreEvery&&it%opts.scoreEvery===0)?exact(K,c).ll:undefined,...(mode==="plant"?{match:match(K)}:{})})}
-  const ll=fb(start,false);K=hard();const h0=mode==='plant'?match(K):undefined;const r=refine(K,approxPath(),null,opts.sweeps??8);const er=exactRefine(r.K,opts.exactRounds??3);K=er.K;const score=decode(K,c).score;beam.push({K,ll,score});layers.push({start,history,final:history.at(-1),initialMatch:h0,refine:r.history,exactRefine:er.history,finalMatch:mode==='plant'?match(K):undefined})}
+  const ll=fb(start,false);K=hard();const h0=mode==='plant'?match(K):undefined;const r=refine(K,approxPath(),null,opts.sweeps??8);const br=bigramRefine(r.K,opts.bigramRounds??40);const er=exactRefine(br.K,opts.exactRounds??3);K=er.K;const score=decode(K,c).score;beam.push({K,ll,score});layers.push({start,history,final:history.at(-1),initialMatch:h0,refine:r.history,bigramRefine:br.history,exactRefine:er.history,finalMatch:mode==='plant'?match(K):undefined})}
  const can=K=>Array.from({length:q},(_,j)=>K.slice(j).concat(K.slice(0,j)).join(",")).sort()[0],seen=new Set(),candidates=[];
  for(const x of beam){const key=can(x.K);if(seen.has(key))continue;seen.add(key);const a=exact(x.K,c);candidates.push({K:x.K,ll:x.ll,score:x.score,exact:a.ll,fitGain:a.ll-nullLL(c),end:a.end,...(mode==="plant"?{match:match(x.K)}:{})})}
  candidates.sort((a,b)=>b.score-a.score);
