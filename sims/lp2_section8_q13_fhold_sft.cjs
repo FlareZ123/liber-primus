@@ -1,0 +1,37 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path"),os=require("node:os");
+const assert=require("node:assert/strict"),{spawnSync}=require("node:child_process"),{createHash}=require("node:crypto");
+const root=path.join(__dirname,"..");
+const [search,rank]=process.argv.slice(2);
+if(!search||!rank)throw Error("Usage: node sims/lp2_section8_q13_fhold_sft.cjs <search-exe> <rank-exe>");
+const gp=JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8"));
+const native=JSON.parse(fs.readFileSync(path.join(root,"resources/external/relikd-solved-gp29-native-v1.json"),"utf8"));
+const c=gp.pages.filter(p=>p.page>=40&&p.page<=55).flatMap(p=>p.indices);
+let h=14695981039346656037n;for(const x of c)h=BigInt.asUintN(64,(h^BigInt(x))*1099511628211n);
+assert.equal(c.length,3316);assert.equal(h.toString(16),"be6c056ed7b1bd0a");
+const ix=new Map(gp.runes.map((x,i)=>[x,i]));
+const texts=native.sections.map(s=>[...s.source_text].filter(x=>ix.has(x)).map(x=>ix.get(x).toString(29)).join(""));
+assert.deepEqual(texts.map(s=>s.length),[184,515,157,780,755,319,89,85,95]);
+const dir=fs.mkdtempSync(path.join(os.tmpdir(),"lp2-q13-"));
+const cfile=path.join(dir,"cipher.txt"),nfile=path.join(dir,"native.txt"),kfile=path.join(dir,"keys.txt");
+fs.writeFileSync(cfile,c.map(x=>x.toString(29)).join("")+"\n");
+fs.writeFileSync(nfile,texts.join("\n")+"\n");
+const keys=[],stats=[];
+for(let i=0;i<29;i++){
+ const z=spawnSync(path.resolve(search),[String(i),String(i)],{input:fs.readFileSync(cfile),encoding:"utf8",maxBuffer:8*1024*1024});
+ if(z.error||z.status!==0)throw Error(String(z.error||z.stderr));
+ assert.match(z.stderr,/complete=1/);stats.push(z.stderr.trim());console.error(z.stderr.trim());
+ keys.push(...z.stdout.trim().split("\n").map(s=>s.trim()).filter(Boolean));
+}
+keys.sort();assert.equal(keys.length,10418);assert.equal(new Set(keys).size,keys.length);
+const keyText=keys.join("\n")+"\n";
+assert.equal(createHash("sha256").update(keyText).digest("hex"),"03e0178a8d7bf59d9cbee8bba25c0994650d81024936bbdc895625d145599674");
+fs.writeFileSync(kfile,keyText);
+const z=spawnSync(path.resolve(rank),[cfile,nfile,kfile],{encoding:"utf8",maxBuffer:8*1024*1024});
+if(z.error||z.status!==0)throw Error(String(z.error||z.stderr));
+const lines=z.stdout.trim().split(/\r?\n/),total=lines.find(s=>s.startsWith("TOTAL "));
+assert.match(total,/TOTAL 10418 .* E=164 .* any=179 target=10 /);
+const p=lines.find(s=>s.startsWith("PLAIN ")).slice(6);
+assert.equal(createHash("sha256").update(p).digest("hex"),"ab6da164e72c9011c2a64cd7b36a4e6d88b45b4ca563e64b1bf44b88812e1839");
+console.log(z.stdout);fs.writeFileSync(path.join(dir,"rank.txt"),z.stdout);
+console.error("Artifacts retained in "+dir);
