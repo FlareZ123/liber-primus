@@ -1,0 +1,226 @@
+{
+  "config": {
+    "sizes": [
+      262,
+      266,
+      201
+    ],
+    "period": 13,
+    "phaseShortlist": 8,
+    "rowShortlist": 24,
+    "trainPages": [
+      0,
+      1
+    ],
+    "holdoutPage": 2
+  },
+  "controls": [
+    {
+      "name": "Gibran-A",
+      "rows": [
+        [
+          1,
+          3
+        ],
+        [
+          24,
+          28
+        ]
+      ],
+      "keys": [
+        [
+          7,
+          24,
+          10,
+          7,
+          19,
+          23,
+          25,
+          15,
+          22,
+          28,
+          28,
+          24,
+          7
+        ],
+        [
+          12,
+          25,
+          0,
+          12,
+          27,
+          10,
+          20,
+          7,
+          25,
+          20,
+          6,
+          3,
+          22
+        ]
+      ],
+      "rowMatch": true,
+      "keyMatch": true,
+      "heldoutMatch": 201,
+      "heldoutLength": 201,
+      "trainGain": 0.6358020325883347,
+      "holdoutGain": 0.7074730890263181,
+      "replay": true
+    },
+    {
+      "name": "Gibran-B",
+      "rows": [
+        [
+          6,
+          26
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "keys": [
+        [
+          15,
+          24,
+          5,
+          23,
+          28,
+          25,
+          27,
+          10,
+          2,
+          28,
+          25,
+          15,
+          20
+        ],
+        [
+          11,
+          9,
+          9,
+          10,
+          16,
+          23,
+          14,
+          15,
+          22,
+          15,
+          4,
+          14,
+          6
+        ]
+      ],
+      "rowMatch": true,
+      "keyMatch": true,
+      "heldoutMatch": 201,
+      "heldoutLength": 201,
+      "trainGain": 0.7827057610212789,
+      "holdoutGain": 0.6976636329123118,
+      "replay": true
+    },
+    {
+      "name": "Shakespeare",
+      "rows": [
+        [
+          4,
+          18
+        ],
+        [
+          27,
+          18
+        ]
+      ],
+      "keys": [
+        [
+          24,
+          9,
+          11,
+          22,
+          18,
+          20,
+          16,
+          11,
+          22,
+          24,
+          25,
+          8,
+          13
+        ],
+        [
+          24,
+          2,
+          11,
+          20,
+          20,
+          1,
+          7,
+          15,
+          24,
+          9,
+          9,
+          10,
+          26
+        ]
+      ],
+      "rowMatch": true,
+      "keyMatch": true,
+      "heldoutMatch": 201,
+      "heldoutLength": 201,
+      "trainGain": 0.7717719033785806,
+      "holdoutGain": 0.6493882890635398,
+      "replay": true
+    }
+  ],
+  "original": {
+    "rows": [
+      [
+        11,
+        8
+      ],
+      [
+        4,
+        28
+      ]
+    ],
+    "keys": [
+      [
+        5,
+        11,
+        1,
+        7,
+        11,
+        5,
+        24,
+        9,
+        23,
+        19,
+        24,
+        17,
+        26
+      ],
+      [
+        6,
+        4,
+        17,
+        10,
+        8,
+        2,
+        15,
+        16,
+        11,
+        28,
+        6,
+        6,
+        16
+      ]
+    ],
+    "score": -1979.7435274144377,
+    "trainGain": -0.38221842648026394,
+    "holdoutGain": -1.9702495344072406,
+    "replay": true,
+    "decodedOpening": "D S O F F C C T J S C E S AE S R NG S P P W H A N T IA A Y A D G R IA B E E G M C F Y O H M A T B D M H E P A R E U F M T OE L O E S G EA D IA S X E D T T O B Y L N C M N U A N TH E E A Y O NG O S A N B T IA AE X N O NG I D A Y C R T A A R G E U L E E H R E O U R EA E D B J F T NG T W O M S OE T TH T O W A A B C N P E D IA Y I T U IA B H EA R A P EA M N A L R I M W EA E L EA EA L I H P E L O R S O H W M G A U E X O F R U J EA T R U M H TH I T I NG B D W I R H I E NG B R T Y O TH A Y T Y O S Y H I C L L AE W S P OE D N U W H I F T B Y O EA N IA EO O U",
+    "decodedHoldout": "P AE T AE NG TH AE W NG EO H J T J P AE R O J R T U AE J EA X A N U O Y OE TH M D W AE OE Y OE I F P OE EA EA C R E Y B TH OE TH G E EO H C IA B NG W N W O H TH J EO U R IA R B F Y AE NG A TH AE EO M L IA C E X P N OE C M J X F J L NG N O X J T L N E F EA F W R EA AE O O N L EA A I O G M W P C J N A S IA I L IA OE I T U U R F TH R L TH L I OE F P U O J U OE EA I N N A U IA R F X F EA D H P TH A U X OE N Y AE E EA J B EA H M C U J T O H S AE X P F G NG F"
+  },
+  "note": "Compact capture of connected V8 run. Full decoded arrays are reproducible from SFT. A single odd central rune is left unchanged by definition, so 600/600 keyed holdout runes and 3 identity-fringe runes match."
+}
