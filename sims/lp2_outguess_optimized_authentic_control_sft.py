@@ -69,11 +69,58 @@ def main():
         compile_c(compiler, source, transcode)
         compile_c(compiler, SIMS/'outguess_bitmap_dump.c', reader)
         positives = 0
+        lp2_bitmaps = {}
+        lp2_prefix = None
+        lp2_default_success = []
+        lp2_default_failures = []
+        for i in range(17, 75):
+            image = directory/f'{i:02d}.jpg'
+            original_bitmap, original_count = bitmap(reader, image)
+            if not og.header_is_source_forced(original_bitmap, original_count):
+                raise AssertionError(f'{i:02d}: LP2 OutGuess header is not source-forced')
+            prefix = original_bitmap[:128]
+            if prefix != bytes([255]) * 128:
+                raise AssertionError(f'{i:02d}: first 1,024 retrieval bits are not all one')
+            if lp2_prefix is None:
+                lp2_prefix = prefix
+            elif prefix != lp2_prefix:
+                raise AssertionError(f'{i:02d}: LP2 first 128 bitmap bytes differ')
+            lp2_bitmaps[i] = (original_bitmap, original_count)
+            try:
+                _, evidence = og.extract(original_bitmap, original_count, 'Default key')
+            except ValueError as exc:
+                lp2_default_failures.append((i, str(exc)))
+            else:
+                if (evidence['header_hex'] != 'c0a128e3' or evidence['seed'] != 41408
+                        or evidence['length'] != 58152):
+                    raise AssertionError(f'{i:02d}: default-key source-forced header changed')
+                if (evidence['entropy'] < 7.9 or evidence['printable_fraction'] > 0.5
+                        or evidence['magic']):
+                    raise AssertionError(f'{i:02d}: default-key pseudo-extraction unexpectedly looks structured')
+                lp2_default_success.append((i, evidence))
+        if len(lp2_default_success) != 16 or len(lp2_default_failures) != 42:
+            raise AssertionError('LP2 default-key completion/failure counts changed')
+        failure_types = {}
+        for _, reason in lp2_default_failures:
+            key = ('zero skip modulus' if reason.startswith('zero skip modulus')
+                   else 'length exceeds bitmap' if reason.startswith('OutGuess length exceeds bitmap')
+                   else reason)
+            failure_types[key] = failure_types.get(key, 0) + 1
+        entropy_values = [e['entropy'] for _, e in lp2_default_success]
+        printable_values = [e['printable_fraction'] for _, e in lp2_default_success]
+        prefix_sha256 = hashlib.sha256(lp2_prefix).hexdigest()
+        if prefix_sha256 != 'e9175db65a9789096ca9cb5524d3abc2107df03e3c9ba3af1aca628f9c5d3bd2':
+            raise AssertionError('LP2 all-one prefix digest changed')
+        print(f'LP2 ORIGINAL CENSUS 58/58 source-forced; first-128-byte SHA256={prefix_sha256}')
+        print(f'LP2 DEFAULT KEY 16/58 complete; header=c0a128e3 seed=41408 length=58152; '
+              f'entropy={min(entropy_values):.6f}..{max(entropy_values):.6f}; '
+              f'printable={min(printable_values):.6f}..{max(printable_values):.6f}; '
+              f'failures={failure_types}')
         for i in [*POSITIVES, *COVERS, *LP2_SAMPLES]:
             image = directory/f'{i:02d}.jpg'
             repacked = temp/f'optimized_{i:02d}.jpg'
             subprocess.run([str(transcode),str(image),str(repacked)],check=True)
-            original_bitmap, original_count = bitmap(reader,image)
+            original_bitmap, original_count = (lp2_bitmaps[i] if i in lp2_bitmaps else bitmap(reader,image))
             optimized_bitmap, optimized_count = bitmap(reader,repacked)
             if original_count != optimized_count or original_bitmap != optimized_bitmap:
                 raise AssertionError(f'{i:02d}: source DCT bitstream changed by optimizer')
@@ -100,7 +147,7 @@ def main():
         assert positives==8
         print('PASS: all 8 authentic historical LP1 OutGuess messages recovered byte-for-byte after '
               'coefficient-preserving optimized-Huffman recoding; seven LP1 source covers '
-              'and three LP2 source contrasts keep identical complete coefficient bitmaps')
+              'and all 58 LP2 original images have source-forced OutGuess headers')
         print('NO unknown LP2 plaintext, password, or payload authenticated')
 
 if __name__ == '__main__': main()
