@@ -1,0 +1,525 @@
+{
+  "sourceBlobs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "grid": "2550eae357442912220e05dc51147523a61dd75a"
+  },
+  "sourcePartition": 729,
+  "row": [
+    20,
+    11,
+    11,
+    5,
+    20,
+    7,
+    28,
+    23,
+    1,
+    23,
+    12,
+    28,
+    14
+  ],
+  "rowSums": [
+    140,
+    165,
+    202,
+    162,
+    184,
+    165,
+    196,
+    182,
+    194,
+    185,
+    190,
+    185,
+    186,
+    155,
+    218,
+    227,
+    166,
+    150,
+    216,
+    168,
+    224,
+    147,
+    153,
+    202,
+    237,
+    147,
+    178,
+    191,
+    187,
+    169,
+    195,
+    183,
+    176,
+    184,
+    164,
+    201,
+    190,
+    179,
+    139,
+    186,
+    200,
+    184,
+    126,
+    198,
+    172,
+    170,
+    189,
+    134,
+    173,
+    203,
+    196,
+    159,
+    190,
+    200,
+    156
+  ],
+  "headerCheck": [
+    {
+      "radix": 60,
+      "header": "3N",
+      "value": 203,
+      "matchingOpeningRows": [
+        50
+      ],
+      "pageLocalHeaders": [
+        {
+          "page": 49,
+          "rowSum": 173,
+          "header": "3N",
+          "value": 203
+        },
+        {
+          "page": 50,
+          "rowSum": 203,
+          "header": "2M",
+          "value": 142
+        },
+        {
+          "page": 51,
+          "rowSum": 196,
+          "header": "28",
+          "value": 128
+        }
+      ]
+    },
+    {
+      "radix": 59,
+      "header": "3N",
+      "value": 200,
+      "matchingOpeningRows": [
+        41,
+        54
+      ],
+      "pageLocalHeaders": [
+        {
+          "page": 49,
+          "rowSum": 173,
+          "header": "3N",
+          "value": 200
+        },
+        {
+          "page": 50,
+          "rowSum": 203,
+          "header": "2M",
+          "value": 140
+        },
+        {
+          "page": 51,
+          "rowSum": 196,
+          "header": "28",
+          "value": 126
+        }
+      ]
+    }
+  ],
+  "packedLimit": "10260628712958602189",
+  "fraction": 0.556229797082843,
+  "controls": [
+    {
+      "mode": "uint64",
+      "order": "BE",
+      "sign": 1,
+      "recovered": 169
+    },
+    {
+      "mode": "uint64",
+      "order": "LE",
+      "sign": 1,
+      "recovered": 169
+    },
+    {
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": 1,
+      "recovered": 169
+    },
+    {
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": 1,
+      "recovered": 169
+    },
+    {
+      "mode": "uint64",
+      "order": "BE",
+      "sign": -1,
+      "recovered": 169
+    },
+    {
+      "mode": "uint64",
+      "order": "LE",
+      "sign": -1,
+      "recovered": 169
+    },
+    {
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": -1,
+      "recovered": 169
+    },
+    {
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": -1,
+      "recovered": 169
+    }
+  ],
+  "results": [
+    {
+      "radix": 60,
+      "mode": "uint64",
+      "order": "BE",
+      "sign": 1,
+      "packedLegal": 5,
+      "invalidRows": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        11,
+        12,
+        13
+      ],
+      "directLegal": 6,
+      "printable": 35,
+      "gpOrdinalBytes": 10,
+      "hex": "95fb170470a13ea9c7f7a78a545665b1db3c57a1fe03067c4988277cc881b394e69af67f59ff544dbf1c7178951ecc5f4463964a67d9c7e9556aa5fac7f5da0c64d31ebe00fe759c897bf6d47cb19b16a3a116cbd19d5574eeb185a76d37eca5f61c2aa96c69f45d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "uint64",
+      "order": "BE",
+      "sign": 1,
+      "packedLegal": 8,
+      "invalidRows": [
+        1,
+        2,
+        3,
+        8,
+        9
+      ],
+      "directLegal": 6,
+      "printable": 43,
+      "gpOrdinalBytes": 6,
+      "hex": "c52816d966dbb566acd051dfa8553225adfafcd361c16ad5222ed9a5f4f8c2fa892b5f2ca9ec4b1e0a1735efeae7ea2c6be133a6fa82925fe00f6fa24b2964a1a9d4e963305d2aec844a2aff6f6d389d2e938a93ef6641fb4a4fd1a9b67a33f121050dbbfb28b463",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "uint64",
+      "order": "LE",
+      "sign": 1,
+      "packedLegal": 10,
+      "invalidRows": [
+        5,
+        6,
+        13
+      ],
+      "directLegal": 5,
+      "printable": 39,
+      "gpOrdinalBytes": 11,
+      "hex": "b5ddc4357ac40f81de77b88357ee87724a74b1ab13546c1da61f486823ba9a4a6319029d2cfa9ca930635a03003bd0f10e91f4d9eda11f5896c8e79236396226ed9d7696a8e51d342e49bd97dc01860bf24a9bfc12711a5d52726d8b7e86b7457cbcb7ba23a0399d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "uint64",
+      "order": "LE",
+      "sign": 1,
+      "packedLegal": 10,
+      "invalidRows": [
+        1,
+        7,
+        10
+      ],
+      "directLegal": 5,
+      "printable": 37,
+      "gpOrdinalBytes": 11,
+      "hex": "2a41c8679a48eec9aab852b8a855b22222b403c28dd0e415dd3d2935e5f9e255705242b0423db64be2fdde6f0dda85326b1ba771e115c1b56ecf18a49b10988a548191ea82b247270af56b10b774359244929f0cd176b0364e01eddbbcd68c2081efff2e28de886d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": 1,
+      "packedLegal": 7,
+      "invalidRows": [
+        1,
+        2,
+        4,
+        8,
+        9,
+        11
+      ],
+      "directLegal": 6,
+      "printable": 40,
+      "gpOrdinalBytes": 9,
+      "hex": "b5dfed18efc5bfa9de2bacd74d482cb14a8846551772c67ca6afd7647efeb29463d4629278ccbb4d30a36cc0756af15f0e529847a77b19e996bcffe2a811bc0ceda3e45196ba809c2e3d10612e792516f29baf92acab627452c39564d94b02a57ca647912055be5d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": 1,
+      "packedLegal": 10,
+      "invalidRows": [
+        2,
+        4,
+        6
+      ],
+      "directLegal": 6,
+      "printable": 32,
+      "gpOrdinalBytes": 15,
+      "hex": "2ab9f0febafda966aaa7884b792a54252271b2f59fdf85d5ddb4131b0740befa707bea1b1aa7ad1ee2974287ad6d0a2c6b05e60221adaa5f6e13d019df436aa154a5ca1cc7e88aec0a9300dced07319d44d935e41ba5a5fb4e6c1d285fd7d9f181e46efab7a33c63",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": 1,
+      "packedLegal": 7,
+      "invalidRows": [
+        1,
+        2,
+        4,
+        7,
+        9,
+        12
+      ],
+      "directLegal": 5,
+      "printable": 40,
+      "gpOrdinalBytes": 9,
+      "hex": "b5dfed18efc5bfa9de2bacd74d482cb14a8846551772c67ca6afd7647efeb29463d4629278ccbb4d30a36cc0756af15f0e529847a77b19e996bcffe2a811bc0ceda3e45196ba809c2e3d10612e792516f29baf92acab627452c39564d94b02a57ca647912055be5d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": 1,
+      "packedLegal": 6,
+      "invalidRows": [
+        3,
+        4,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "directLegal": 5,
+      "printable": 32,
+      "gpOrdinalBytes": 15,
+      "hex": "2ab9f0febafda966aaa7884b792a54252271b2f59fdf85d5ddb4131b0740befa707bea1b1aa7ad1ee2974287ad6d0a2c6b05e60221adaa5f6e13d019df436aa154a5ca1cc7e88aec0a9300dced07319d44d935e41ba5a5fb4e6c1d285fd7d9f181e46efab7a33c63",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "uint64",
+      "order": "BE",
+      "sign": -1,
+      "packedLegal": 9,
+      "invalidRows": [
+        2,
+        4,
+        10,
+        13
+      ],
+      "directLegal": 6,
+      "printable": 34,
+      "gpOrdinalBytes": 13,
+      "hex": "7b87034cac5e6688f4d87b98937e5b995f1600d45dcba1c3b0b3ac9d15dcfb912cdc05e09d88f23a5a758fc831ec254a1d3a65b1fdfa52b61475690a5bff43ac2684c0ea38c919ffa7181ec518fdcfc15472899061b1ec4f0ab6a72ea46c0835d30a1d6f9e807c94",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "uint64",
+      "order": "BE",
+      "sign": -1,
+      "packedLegal": 2,
+      "invalidRows": [
+        1,
+        2,
+        4,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "directLegal": 6,
+      "printable": 32,
+      "gpOrdinalBytes": 11,
+      "hex": "e99f8d496a838490e5a2810b14930c6638dec92b1c92b13ad4ffdd82be444367d4d9b1330bebb40552edec23618f102ed0a7f0daee626e6fe2cba6fc2760a09dc8ba6c61e1527b57b6b0032be05a18c9e797e6fc15c8e158d4ac94a8810b96f1f55220924b926a3d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "uint64",
+      "order": "LE",
+      "sign": -1,
+      "packedLegal": 5,
+      "invalidRows": [
+        1,
+        2,
+        5,
+        7,
+        8,
+        10,
+        11,
+        13
+      ],
+      "directLegal": 5,
+      "printable": 48,
+      "gpOrdinalBytes": 9,
+      "hex": "58f7b9ed277557e74b2b5e795399d0c73ea071b9da311a389448555938658b704ac884f77e76a2b39dd7796192692f380e7c288920c17091fe79766b0a7fabb2d6062080876f791bd85faa971455c1b9d12ca844134bafb85aa59e4a86cd7a20544616dd93ad1cbf",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "uint64",
+      "order": "LE",
+      "sign": -1,
+      "packedLegal": 6,
+      "invalidRows": [
+        1,
+        3,
+        5,
+        6,
+        7,
+        8,
+        11
+      ],
+      "directLegal": 5,
+      "printable": 36,
+      "gpOrdinalBytes": 14,
+      "hex": "1b05a22599d59a90e8b7bfd54bff874fe4b9b31b8a6c9eb4b74cd94ea3604b0a2ac001b6d10f59fcc8e8293711afbfd038e13ea81b47cbd912065dae55e426b04ae2ba00b754b50f7f5e6240cdfdeb46329604567b5325fb5eee9dc14a1ecd253c073d5dc2a89527",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": -1,
+      "packedLegal": 7,
+      "invalidRows": [
+        4,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "directLegal": 6,
+      "printable": 36,
+      "gpOrdinalBytes": 12,
+      "hex": "584dd328d6ce9c884b0ab4b4e03ab3993ecfd802c1dec5c394f46a0329b575914af2b398b469643a9de99ae54230164a0ebf701f7a7123b6fefb656ef29352acd609691c595b0effd816db139e9d9cc1d1c70fdad50bf94f5a2390f92f3ce63554f2cc6f7946aa94",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "byte-lanes",
+      "order": "BE",
+      "sign": -1,
+      "packedLegal": 9,
+      "invalidRows": [
+        2,
+        3,
+        4,
+        6
+      ],
+      "directLegal": 6,
+      "printable": 45,
+      "gpOrdinalBytes": 9,
+      "hex": "1bd4318f2538e490e879be2ba6e5b166e473b031a90f923ab749401cd7b38a672a474e6d97610c05c8ffb8cae35a562e3873a26c3dc5e76f128f57cad3e7559d4a58757ea9bbe7577fe402fa334324c932e340a6ee0fbb585e91e63bafe894f13c0f2e47371dd73d",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 60,
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": -1,
+      "packedLegal": 5,
+      "invalidRows": [
+        2,
+        3,
+        4,
+        7,
+        8,
+        9,
+        10,
+        13
+      ],
+      "directLegal": 5,
+      "printable": 36,
+      "gpOrdinalBytes": 12,
+      "hex": "584dd328d6ce9c884b0ab4b4e03ab3993ecfd802c1dec5c394f46a0329b575914af2b398b469643a9de99ae54230164a0ebf701f7a7123b6fefb656ef29352acd609691c595b0effd816db139e9d9cc1d1c70fdad50bf94f5a2390f92f3ce63554f2cc6f7946aa94",
+      "roundtrip": 104,
+      "plain": null
+    },
+    {
+      "radix": 59,
+      "mode": "byte-lanes",
+      "order": "LE",
+      "sign": -1,
+      "packedLegal": 9,
+      "invalidRows": [
+        1,
+        8,
+        10,
+        12
+      ],
+      "directLegal": 5,
+      "printable": 45,
+      "gpOrdinalBytes": 9,
+      "hex": "1bd4318f2538e490e879be2ba6e5b166e473b031a90f923ab749401cd7b38a672a474e6d97610c05c8ffb8cae35a562e3873a26c3dc5e76f128f57cad3e7559d4a58757ea9bbe7577fe402fa334324c932e340a6ee0fbb585e91e63bafe894f13c0f2e47371dd73d",
+      "roundtrip": 104,
+      "plain": null
+    }
+  ]
+}
