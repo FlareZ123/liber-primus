@@ -1,0 +1,98 @@
+{
+  "run_id": 45772040177,
+  "workflow": "LP2 p56 Whirlpool against exact 2016 signed-source candidates",
+  "workflow_url": "https://github.com/FlareZ123/liber-primus/actions/runs/45772040177",
+  "algorithm": "Whirlpool (OpenSSL 3 legacy provider)",
+  "openssl_version": "OpenSSL 3.5.5 27 Jan 2026",
+  "positive_control": {
+    "input": "abc",
+    "digest": "4e2448a4c6f486bb16b6562c73b4020bf3043e3a731bce721ae1b303d97e6d4c7181eebdb6c57e277d0e34957114cbd6c797fc9d95d8b582d225292076d4eef5",
+    "passed": true
+  },
+  "target_p56_digest": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "source_2016_http_body": {
+    "byte_length": 26441,
+    "sha256": "2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4",
+    "prefix_bytes": 99,
+    "jpeg_bytes": 26342
+  },
+  "forms": [
+    {
+      "source": "signed 2016 JPEG raw bytes",
+      "byte_length": 26342,
+      "sha256": "a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe",
+      "whirlpool": "788c73f4a9d8aab0078eb4afc9cb48149a78ecc4047747410c2f6fbfff102089af4c135b933a77d46a1d00e22411c86ba1c930280a1e0ddccdc7f6bca61bd2bb",
+      "matches_p56_target": false
+    },
+    {
+      "source": "signed 2016 OutGuess ASCII raw bytes",
+      "byte_length": 1136,
+      "sha256": "fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010",
+      "whirlpool": "9e5ab43b230bdfb994f4d6f39e9422e8f5e4b3c902fa2de8febb29d2dbf0ab24dd5705c28dcafc780fdc73c930199114852d3698d40a8ac711f09375b0dcc4d1",
+      "matches_p56_target": false
+    },
+    {
+      "source": "original LP2 p14 scan 31.jpg",
+      "byte_length": 436699,
+      "sha256": "861037ea304b4d3b347cce18d97f25146f6f318cb748e59e6140d9eeaef6abd4",
+      "whirlpool": "6d67ed216175530669064ca8939a320da7de7bf17777975239162f4c4baa39586cbc46c403d75b421d3828a994406f7f2630543dcd02ba756eef3b6574de54c9",
+      "matches_p56_target": false
+    },
+    {
+      "source": "original LP2 p32 scan 49.jpg",
+      "byte_length": 362637,
+      "sha256": "c0f778187a8e9ddbfc667a65929ac567430a2e38278a2022377984ac084e5f72",
+      "whirlpool": "bbfa0ccf546a09e65d7fe6c96ed32a94468f45cbef99a661a301e95fb871b54e2f2bd30dc74b1ddd336d3f9bf1a50b2f35cf75eeb0472444290a96e4e5d65564",
+      "matches_p56_target": false
+    },
+    {
+      "source": "original LP2 p55 scan 72.jpg",
+      "byte_length": 614928,
+      "sha256": "a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba",
+      "whirlpool": "2f51d1a49efe9dd3d16c93816c122778b3be4ec5530415c9c67aed743f6a072e7aca9b726f833fd43c79b8de1b2b02b6ec426ab0d80604b1fcde733932341bba",
+      "matches_p56_target": false
+    },
+    {
+      "source": "2016 cleartext exact on-disk line endings",
+      "byte_length": 270,
+      "sha256": "da99a8e682cb5c757fd3fab62efd5f19f1fa6850e71fe334cf7a10bdbfe12e5e",
+      "whirlpool": "c2812d1c21890a42a04ecf87e566b62cfec8d84b335311c90df51f5efa2c9ad3741515e4c073a64dbc1b5de810d360cd7a2e6f7996af1dcd61246bc8c9befd24",
+      "matches_p56_target": false
+    },
+    {
+      "source": "2016 cleartext canonical CRLF",
+      "byte_length": 287,
+      "sha256": "19f5dccb7e188db0ef181eeeb85fef51defdb5667bf0b0393c28e638d871801a",
+      "whirlpool": "c93e8df636d00c57b576fce895fdfb2a7c4466706d0172c64b006cdf9b53b8091a2ff9c75f0774c10bcba18d06100f807515b4e686ca0f4e3f06b903f4f6bf58",
+      "matches_p56_target": false
+    },
+    {
+      "source": "2016 OpenPGP signature packet",
+      "byte_length": 543,
+      "sha256": "6dc34cea157767330cd34ecbcf52dee1a8cf2fb5694899036b6236c390b44f2d",
+      "whirlpool": "a1a7a28a17305d76f95a43c70322a42c5a8d491a8781b81d50c3fa05583604bb0de0da15db0258ffa2bcbd305a99e9e9c496ba09fd5a541b6f3531d72e20bcff",
+      "matches_p56_target": false
+    },
+    {
+      "source": "2016 OpenPGP signature RSA MPI",
+      "byte_length": 512,
+      "sha256": "56df8e344000f59e31a11a5db2e12dccdaf40227ad7f09411ee21cf47fb680ae",
+      "whirlpool": "b5c0a34a255bc05d82712b91f4e8a68ef6e27d6b3d77aa8b415f1e356530948046da648917a497c8ea577dd1c28e55288ecf216072b060f8980c1d96d402d1c5",
+      "matches_p56_target": false
+    },
+    {
+      "source": "2016-01-09 exact HTTP body: 99-byte preamble + JPEG",
+      "byte_length": 26441,
+      "sha256": "2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4",
+      "whirlpool": "9d448add78de453f2f8a92cbc39f4efcc14b1b766a8a928fd02337dade536909daed6c4d16035ec0a69a79b6da4718c3652268cb37c3359090462914380bde3e",
+      "matches_p56_target": false
+    }
+  ],
+  "matches": [],
+  "decision": "NO_DIRECT_WHIRLPOOL_MATCH_IN_TEN_FROZEN_2016_SOURCE_FORMS",
+  "limits": [
+    "This tests only the ten exact source forms also used by the SHA-512 gate.",
+    "It does not test guessed HTML wrappers, URL serializations, passwords, KDFs, or arbitrary hash families.",
+    "A negative result does not exclude an unavailable deep-web page or a historically different response body."
+  ]
+}
