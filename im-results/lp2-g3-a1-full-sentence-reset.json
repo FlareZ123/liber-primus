@@ -232,6 +232,7 @@
       "domainPass": 20,
       "oldDomainPass": 0,
       "wrongSignFeasible": 0,
+      "wrongRuleFeasible": 0,
       "totalRunes": 14580
     },
     {
@@ -241,11 +242,25 @@
       "domainPass": 14,
       "oldDomainPass": 0,
       "wrongSignFeasible": 0,
+      "wrongRuleFeasible": 0,
       "totalRunes": 9961
     }
   ],
   "rows": [
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          7
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 0,
       "origin": "held Gibran/Emerson word pool",
@@ -277,6 +292,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 1,
       "origin": "held Gibran/Emerson word pool",
@@ -308,6 +336,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          5
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 2,
       "origin": "held Gibran/Emerson word pool",
@@ -339,6 +380,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          4
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 3,
       "origin": "held Gibran/Emerson word pool",
@@ -370,6 +424,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 4,
       "origin": "held Gibran/Emerson word pool",
@@ -401,6 +468,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 5,
       "origin": "held Gibran/Emerson word pool",
@@ -432,6 +512,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 6,
       "origin": "held Gibran/Emerson word pool",
@@ -463,6 +556,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 7,
       "origin": "held Gibran/Emerson word pool",
@@ -494,6 +600,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          5
+        ],
+        [
+          1,
+          "no-registered-path",
+          4
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 8,
       "origin": "held Gibran/Emerson word pool",
@@ -525,6 +644,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 9,
       "origin": "held Gibran/Emerson word pool",
@@ -556,6 +688,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          5
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 10,
       "origin": "held Gibran/Emerson word pool",
@@ -587,6 +732,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 11,
       "origin": "held Gibran/Emerson word pool",
@@ -618,6 +776,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 12,
       "origin": "held Gibran/Emerson word pool",
@@ -649,6 +820,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 13,
       "origin": "held Gibran/Emerson word pool",
@@ -680,6 +864,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 14,
       "origin": "held Gibran/Emerson word pool",
@@ -711,6 +908,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 15,
       "origin": "held Gibran/Emerson word pool",
@@ -742,6 +952,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 16,
       "origin": "held Gibran/Emerson word pool",
@@ -773,6 +996,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          5
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 17,
       "origin": "held Gibran/Emerson word pool",
@@ -804,6 +1040,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 18,
       "origin": "held Gibran/Emerson word pool",
@@ -835,6 +1084,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "exact-original-profile-assembled",
       "i": 19,
       "origin": "held Gibran/Emerson word pool",
@@ -866,6 +1128,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          7
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 0,
       "origin": "0:550-560",
@@ -897,6 +1172,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          8
+        ],
+        [
+          1,
+          "no-registered-path",
+          14
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 1,
       "origin": "0:578-586",
@@ -928,6 +1216,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          6
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 2,
       "origin": "0:613-623",
@@ -959,6 +1260,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          5
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 3,
       "origin": "0:648-657",
@@ -990,6 +1304,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          8
+        ],
+        [
+          1,
+          "no-registered-path",
+          8
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 4,
       "origin": "1:2941-2950",
@@ -1021,6 +1348,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          3
+        ],
+        [
+          1,
+          "no-registered-path",
+          5
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 5,
       "origin": "1:3252-3261",
@@ -1052,6 +1392,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          4
+        ],
+        [
+          1,
+          "no-registered-path",
+          2
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 6,
       "origin": "1:3266-3275",
@@ -1083,6 +1436,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          9
+        ],
+        [
+          1,
+          "no-registered-path",
+          13
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 7,
       "origin": "1:3325-3329",
@@ -1114,6 +1480,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          4
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 8,
       "origin": "1:3330-3338",
@@ -1145,6 +1524,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          4
+        ],
+        [
+          1,
+          "no-registered-path",
+          5
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 9,
       "origin": "1:3341-3347",
@@ -1176,6 +1568,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          23
+        ],
+        [
+          1,
+          "no-registered-path",
+          13
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 10,
       "origin": "1:3348-3355",
@@ -1207,6 +1612,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          10
+        ],
+        [
+          1,
+          "no-registered-path",
+          13
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 11,
       "origin": "1:3363-3370",
@@ -1238,6 +1656,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          4
+        ],
+        [
+          1,
+          "no-registered-path",
+          3
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 12,
       "origin": "1:3389-3397",
@@ -1269,6 +1700,19 @@
       ]
     },
     {
+      "wrongRuleStatuses": [
+        [
+          -1,
+          "no-registered-path",
+          2
+        ],
+        [
+          1,
+          "no-registered-path",
+          5
+        ]
+      ],
+      "wrongRuleFeasible": false,
       "kind": "natural-held-donor-sentences",
       "i": 13,
       "origin": "1:3476-3481",
