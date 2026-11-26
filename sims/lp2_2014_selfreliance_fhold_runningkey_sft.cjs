@@ -1,6 +1,6 @@
 "use strict";
 const fs=require("node:fs");
-function experiment(raw,gp,known){
+function experiment(raw,gp,known,pageRange=null){
  const mod=x=>(x+29)%29;
  const tokens=gp.translit.map((s,i)=>[s,i]).sort((a,b)=>b[0].length-a[0].length);
  function encode(raw){const result=[];for(let w of raw.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");for(let i=0;i<w.length;){const t=tokens.find(([s])=>w.startsWith(s,i));if(!t)throw Error("unmapped "+w.slice(i));result.push(t[1]);i+=t[0].length;}}return result;}
@@ -33,7 +33,7 @@ function experiment(raw,gp,known){
  if(p56replay.some((x,i)=>x!==p56[i]))throw Error("real p56 replay failed");
  const full=gp.pages.slice(0,56).flatMap(p=>p.indices);
  const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55]];
- const cases=[{name:"full p0-55",c:full},{name:"black opening p0-2",c:full.slice(13,729)},{name:"black terminal p54-55",c:gp.pages.slice(54,56).flatMap(p=>p.indices).slice(9)},...ranges.map(([a,b])=>({name:`p${a}-${b}`,c:gp.pages.slice(a,b+1).flatMap(p=>p.indices)}))];
+ const cases=pageRange?gp.pages.slice(pageRange[0],pageRange[1]+1).filter(p=>p.indices.length).map(p=>({name:`p${p.page}`,c:p.indices})):[{name:"full p0-55",c:full},{name:"black opening p0-2",c:full.slice(13,729)},{name:"black terminal p54-55",c:gp.pages.slice(54,56).flatMap(p=>p.indices).slice(9)},...ranges.map(([a,b])=>({name:`p${a}-${b}`,c:gp.pages.slice(a,b+1).flatMap(p=>p.indices)}))];
  const results=cases.map(({name,c})=>({name,length:c.length,zeros:c.filter(x=>x===0).length,runs:[1,-1].map(sign=>sweep(c,key,sign))}));
  
  // Independent GP-native language model, trained only on first five solved sections.
@@ -57,6 +57,38 @@ function experiment(raw,gp,known){
   return {start,sign,score:best.s/c.length,holds:best.h,p};
  }
  function rank(c,runs){const out=[];for(const run of runs)for(const {start} of run.survivors){const d=bestPath(c,start,run.sign);if(!d)throw Error("reachability discrepancy");out.push(d);}return out.sort((a,b)=>b.score-a.score);}
+ function scoreOnly(c,start,sign){
+  const m=c.filter(x=>x===0).length+1;
+  let A=new Float64Array(m),B=new Float64Array(m),NA=new Float64Array(m),NB=new Float64Array(m);
+  A.fill(-Infinity);B.fill(-Infinity);
+  let z=0;
+  if(start<key.length){const p=mod(c[0]-sign*key[start]);if(p)A[0]=ul[p];}
+  if(c[0]===0){B[1]=ul[0];z=1;}
+  for(let i=1;i<c.length;i++){
+   const nz=z+(c[i]===0?1:0);
+   NA.fill(-Infinity,0,nz+1);NB.fill(-Infinity,0,nz+1);
+   for(let h=0;h<=z;h++){
+    const a=A[h],b=B[h];if(a===-Infinity&&b===-Infinity)continue;
+    const j=start+i-h;
+    const last=a===-Infinity?0:mod(c[i-1]-sign*key[j-1]);
+    if(j<key.length){const p=mod(c[i]-sign*key[j]);if(p)NA[h]=Math.max(a+logp[last][p],b+logp[0][p]);}
+    if(c[i]===0)NB[h+1]=Math.max(a+logp[last][0],b+logp[0][0]);
+   }
+   [A,NA]=[NA,A];[B,NB]=[NB,B];z=nz;
+  }
+  let best=-Infinity;for(let h=0;h<=z;h++)best=Math.max(best,A[h],B[h]);
+  return best/c.length;
+ }
+ if(pageRange){
+  const pages=results.map((v,i)=>{
+   const c=cases[i].c;let ranks=[];
+   for(const run of v.runs)for(const {start} of run.survivors){const score=scoreOnly(c,start,run.sign);if(!Number.isFinite(score))throw Error("scoreOnly reachability discrepancy");ranks.push({start,sign:run.sign,score});}
+   ranks.sort((a,b)=>b.score-a.score);
+   const best=ranks.slice(0,3).map(x=>{const d=bestPath(c,x.start,x.sign);if(Math.abs(d.score-x.score)>1e-10)throw Error("scoreOnly Viterbi mismatch");return {...x,holds:d.holds,runes:d.p.map(k=>gp.runes[k]).join(""),text:d.p.map(k=>gp.translit[k]).join("")};});
+   return {name:v.name,length:v.length,zeros:v.zeros,signs:v.runs.map(({sign,starts,max,survivorCount})=>({sign,starts,max,survivorCount})),best};
+  });
+  return {keyLength:key.length,p56Control:plain56.length,pages};
+ }
  const render=p=>p.map(x=>gp.runes[x]).join("");
  const decoded=results.map((v,i)=>{const c=cases[i].c,b=rank(c,v.runs);return {name:v.name,count:b.length,best:b.slice(0,5).map(x=>({...x,p:undefined,preview:render(x.p.slice(0,120)),fullRunes:render(x.p)}))};});
  const donor=known.sections.slice(5).flatMap(s=>parse(s.source_text));
@@ -75,4 +107,4 @@ function experiment(raw,gp,known){
  return {decoded, keyLength:key.length,rawWords:(raw.toUpperCase().match(/[A-Z]+/g)||[]).length,p56Control:plain56.length,results,plants};
 }
 const paths=["resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt","resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json"];
-console.log(JSON.stringify(experiment(fs.readFileSync(paths[0],"utf8"),JSON.parse(fs.readFileSync(paths[1],"utf8")),JSON.parse(fs.readFileSync(paths[2],"utf8"))),null,2));
+console.log(JSON.stringify(experiment(fs.readFileSync(paths[0],"utf8"),JSON.parse(fs.readFileSync(paths[1],"utf8")),JSON.parse(fs.readFileSync(paths[2],"utf8")),process.argv[2]==='--pages'?[Number(process.argv[3]),Number(process.argv[4])]:null),null,2));
