@@ -88,6 +88,14 @@ async function main(){
     if(numeric.length) console.log('LONG NUMBERS IN RELEVANT CONTEXT '+JSON.stringify(numeric.map(x=>({line:x.line,value:x.value,context:redact(x.context).slice(0,500)}))));
     const media=[...entries.entries()].filter(([name])=>/^word\/media\//.test(name));
     console.log('EMBEDDED MEDIA '+JSON.stringify(media.map(([name,data])=>({name,bytes:data.length,sha256:crypto.createHash('sha256').update(data).digest('hex')}))));
+    if(path.includes('unverified claims') || path.includes('the subreddit')) {
+      for(const [name,data] of media) {
+        if(data.length>8000 && data.length<=130000) {
+          const mime=data[0]===0xff&&data[1]===0xd8?'image/jpeg':data.subarray(0,8).toString('hex')==='89504e470d0a1a0a'?'image/png':name.endsWith('.gif')?'image/gif':'application/octet-stream';
+          console.log('MEDIA_BASE64 '+JSON.stringify({source:path,name,bytes:data.length,mime,base64:data.toString('base64')}));
+        }
+      }
+    }
     if(path.includes('what happend part 1') || path.includes('scream314 git pages')) {
       for(const [name,data] of media) {
         if(data.length<=60000) {
