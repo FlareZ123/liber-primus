@@ -1,0 +1,263 @@
+{
+  "schema": "gp29-numeric-trie-gate-v1",
+  "original": [
+    {
+      "detail": {
+        "si": 19,
+        "chosen": [
+          [
+            31,
+            24831
+          ],
+          [
+            34,
+            10720
+          ]
+        ]
+      },
+      "d": 4,
+      "trieNodes": 3793285,
+      "wordTests": 18923,
+      "keys": 4730,
+      "survivors": 0,
+      "trieMs": 13383,
+      "scalarTests": 752,
+      "scalarMs": 2053
+    },
+    {
+      "detail": {
+        "si": 65,
+        "chosen": [
+          [
+            9,
+            14076
+          ],
+          [
+            0,
+            28757
+          ]
+        ]
+      },
+      "d": 4,
+      "trieNodes": 172529,
+      "wordTests": 4475,
+      "keys": 895,
+      "survivors": 0,
+      "trieMs": 714,
+      "scalarTests": 752,
+      "scalarMs": 2397
+    },
+    {
+      "detail": {
+        "si": 43,
+        "chosen": [
+          [
+            41,
+            31667
+          ],
+          [
+            42,
+            34858
+          ],
+          [
+            2,
+            11397
+          ]
+        ]
+      },
+      "d": 3,
+      "trieNodes": 5976,
+      "wordTests": 148,
+      "keys": 37,
+      "survivors": 0,
+      "trieMs": 22,
+      "scalarTests": 752,
+      "scalarMs": 2338
+    },
+    {
+      "detail": {
+        "si": 75,
+        "chosen": [
+          [
+            2,
+            26800
+          ],
+          [
+            45,
+            22033
+          ]
+        ]
+      },
+      "d": 3,
+      "trieNodes": 75153,
+      "wordTests": 2150,
+      "keys": 430,
+      "survivors": 0,
+      "trieMs": 358,
+      "scalarTests": 752,
+      "scalarMs": 2504
+    },
+    {
+      "detail": {
+        "si": 40,
+        "chosen": [
+          [
+            41,
+            34761
+          ],
+          [
+            42,
+            28730
+          ],
+          [
+            2,
+            36226
+          ]
+        ]
+      },
+      "d": 3,
+      "trieNodes": 17159,
+      "wordTests": 380,
+      "keys": 95,
+      "survivors": 0,
+      "trieMs": 79,
+      "scalarTests": 752,
+      "scalarMs": 2448
+    },
+    {
+      "detail": {
+        "si": 59,
+        "chosen": [
+          [
+            16,
+            8419
+          ],
+          [
+            41,
+            13020
+          ]
+        ]
+      },
+      "d": 3,
+      "trieNodes": 93234,
+      "wordTests": 1144,
+      "keys": 286,
+      "survivors": 0,
+      "trieMs": 465,
+      "scalarTests": 752,
+      "scalarMs": 2179
+    },
+    {
+      "detail": {
+        "si": 10,
+        "chosen": [
+          [
+            16,
+            11532
+          ],
+          [
+            34,
+            26237
+          ]
+        ]
+      },
+      "d": 3,
+      "trieNodes": 1115,
+      "wordTests": 24,
+      "keys": 6,
+      "survivors": 0,
+      "trieMs": 4,
+      "scalarTests": 282,
+      "scalarMs": 866
+    },
+    {
+      "detail": {
+        "si": 41,
+        "chosen": [
+          [
+            45,
+            19997
+          ],
+          [
+            13,
+            8341
+          ]
+        ]
+      },
+      "d": 2,
+      "trieNodes": 162,
+      "wordTests": 6,
+      "keys": 1,
+      "survivors": 0,
+      "trieMs": 1,
+      "scalarTests": 47,
+      "scalarMs": 153
+    },
+    {
+      "detail": {
+        "si": 47,
+        "chosen": [
+          [
+            34,
+            29118
+          ],
+          [
+            9,
+            11915
+          ]
+        ]
+      },
+      "d": 2,
+      "trieNodes": 49847,
+      "wordTests": 97,
+      "keys": 24,
+      "survivors": 0,
+      "trieMs": 170,
+      "scalarTests": 752,
+      "scalarMs": 1893
+    }
+  ],
+  "plants": [
+    {
+      "d": 3,
+      "keys": 250,
+      "survivors": 1,
+      "joins": 2,
+      "ms": 688,
+      "trieNodes": 157732,
+      "wordTests": 1541,
+      "trueKeyRetained": true
+    },
+    {
+      "d": 3,
+      "keys": 1,
+      "survivors": 1,
+      "joins": 2,
+      "ms": 7,
+      "trieNodes": 2140,
+      "wordTests": 47,
+      "trueKeyRetained": true
+    },
+    {
+      "d": 3,
+      "keys": 41,
+      "survivors": 1,
+      "joins": 2,
+      "ms": 59,
+      "trieNodes": 12904,
+      "wordTests": 287,
+      "trueKeyRetained": true
+    },
+    {
+      "d": 2,
+      "keys": 3,
+      "survivors": 1,
+      "joins": 2,
+      "ms": 14,
+      "trieNodes": 3531,
+      "wordTests": 59,
+      "trueKeyRetained": true
+    }
+  ],
+  "scope": "Exact same-key local word compatibility, <=3 OOV. Sparse original graph states from prior fixed sample, no p55. Not global permutation consistency."
+}
