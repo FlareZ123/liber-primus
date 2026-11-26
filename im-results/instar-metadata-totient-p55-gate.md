@@ -63,11 +63,23 @@ Raw p55 interior IoC is **0.03433001**. The same-length solved p57 control has I
 
 None of the twelve outputs is recognizable GP29 prose. The strongest IoC is 0.04651163, still below the solved p57 control, and the corresponding transliteration remains nonlinguistic. Constant shifts preserve IoC by construction; their outputs were inspected directly rather than treated as a statistical test.
 
+## Separate OpenPuff consumer test — 26 November 2026
+
+The whole-number totient's BASE29 digits `[2,19,16,20,7,2,26]` transliterate through the canonical GP29 map to the nine-character ASCII password `THMTLWTHY`. This is distinct from the direct additive receiver above. Because Cicada used OpenPuff in its 2014 puzzle and the LP2 source consists of original JPEG carriers, one narrowly specified A-only Unhide was tested on the original p55 image:
+
+- Original carrier: `resources/liber-primus/72.jpg`, SHA-256 `a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba`
+- Receiver: pinned OpenPuff v4.00; A=`THMTLWTHY`; B/C disabled
+- Format/level: JPEG, Maximum 1/2; one carrier only
+- Calibration: the same run successfully recovered the published 35-byte single-JPEG positive control at the same native JPEG level
+- Original p55 result: the GUI showed `72.jpg` selected (1,216 source bytes; 3,040-byte selected capacity at this level), verified the bit selection, and returned **`Task stopped: corrupted stream`**. No completion dialog or extracted output was produced.
+
+The exact native run and retained evidence are [GitHub Actions run 45739957527](https://github.com/FlareZ123/liber-primus/actions/runs/45739957527); the reproducible workflow is [`.github/workflows/agent39-phi-n-base29-p55-openpuff.yml`](../.github/workflows/agent39-phi-n-base29-p55-openpuff.yml). This rejects only the `THMTLWTHY` / original-p55-JPEG / OpenPuff-v4.00 / JPEG-Maximum1/2 combination. The native error does not distinguish a wrong password from an incompatible carrier or bit level.
+
 ## Decision
 
-Retire these exact direct additive uses of the 2013 number, its whole-number totient, and the p57 clause factors/totients on p55's 43 strict interiors. The historical cross-round link remains real and potentially useful, but it has not yielded a key under the tested natural GP29 encodings.
+The six fixed direct additive key representations above fail on p55's 43 strict interiors. The separate source-motivated OpenPuff consumer for `phi(N)) in BASE29 also fails on one original p55 JPEG at the single tested native setting. Neither result refutes the 2013 ID3/p57 checksum relationship or the totient arithmetic; neither yields unknown plaintext or a new key.
 
-Do not rescue this branch with arbitrary phase changes, reversed digits, ad hoc KDFs, or unrelated cipher families. Reopen it only if a separate source selects a different operation or identifies how the original audio bytes themselves enter a reversible process.
+Do not rescue this branch with arbitrary phase changes, reversed digits, ad hoc KDFs, carrier-order permutations, or bit-level/password sweeps. Reopen it only if a separate first-party source selects a different reversible receiver or identifies how the original audio bytes themselves enter that process.
 
 ## Reproduction
 
