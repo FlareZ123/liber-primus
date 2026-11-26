@@ -1,0 +1,263 @@
+{
+  "schema": "agent46-lexical-slice-ancestor-fixture-v1",
+  "source": "im-results/lp2-gp29-three-component-symbolic-states.json",
+  "rule": "Earliest edge-history prefix >=10 with d+c-2<=9; state IDs are sampled branch IDs, not canonical carry seeds.",
+  "rows": [
+    {
+      "i": 0,
+      "n": 28,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51n817p28j3h34lf50g6oo75f0ba11f2ld3214r457i6ff78g09d5ko6"
+    },
+    {
+      "i": 1,
+      "n": 29,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51nf17528a3ho4l65046oo75d0b811q25576o00j1ni24k3ir4m608i1c32"
+    },
+    {
+      "i": 2,
+      "n": 31,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51nj47i58j6hh7l400o1o92533b141f53h3b14rk5s56aa7ki06f18g2q51r12md3"
+    },
+    {
+      "i": 3,
+      "n": 29,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q518f5s56oo7590an1jo2ek3b34j15if6nn7i107j13d2ca3ml4j54lk5q36"
+    },
+    {
+      "i": 4,
+      "n": 27,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51nd17i2853h14lk50a6oo7540bk11q2mi1892co39j4di5gk6q83"
+    },
+    {
+      "i": 5,
+      "n": 28,
+      "d": 4,
+      "c": 7,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51n107918d2h43l34015o36557bi01n1jf5316dd7qd0n31r42kg3df4"
+    },
+    {
+      "i": 6,
+      "n": 28,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6o0341ga22f3eg4i35s564476o0q51no17128g3h34l55046oo75g0ba11529456i6337id0ki1j92hi32n4"
+    },
+    {
+      "i": 7,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6o03d1gd2243e34id5s464a76o0qg1ni6797820h11lf20r3of45g5ba6157n53ik47a53j6ch7ml0"
+    },
+    {
+      "i": 8,
+      "n": 26,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6o03d1gd2243e34id5s464a76o0qg1nd47858k6hi7lh0031ok25a3b241f5mj18a2c939a4dj5gf6"
+    },
+    {
+      "i": 9,
+      "n": 26,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6o03d1gd2243e34id5s464a76o0qg1n547358j6hj7la0091o125g3bi41n5m878i0cf19f2dr3g94"
+    },
+    {
+      "i": 10,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6o03d1gd2243e34id5s464a76o0qg1no47158f6hd7la0051oa2533b141f5mn48a5co69n7di0gj1"
+    },
+    {
+      "i": 11,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6o03d1gd2243e34id5s464a76o0qg1n527338g4ha5lk60k7oa0531b921f3nf0i117j2393ci4m45"
+    },
+    {
+      "i": 12,
+      "n": 27,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6a0391gf22g3ea4ig5s164g76a0q31n757o68k7hf0la1092o63584bo51j6m458s6c57980di1gf26f3"
+    },
+    {
+      "i": 13,
+      "n": 26,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6a0391gf22g3ea4ig5s164g76a0q31no07n18j2ha3l440a5o96567bk01q1m628o3c94965dk6gr7"
+    },
+    {
+      "i": 14,
+      "n": 27,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a0391gf22g3ea4ig5s164g76a0q31nd47i58g6ha7lg00a1o32593bi4145nf3ij47i53k6ck7ml06h1"
+    },
+    {
+      "i": 15,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a0391gf22g3ea4ig5s164g76a0q31n32743894ho5lj60i7o905g1bo21k3ma18j2cj3914d95gi6"
+    },
+    {
+      "i": 16,
+      "n": 27,
+      "d": 4,
+      "c": 7,
+      "m": 9,
+      "tape": "6a0391gf22g3ea4ig5s164g76a0q318f5s16od75d0ak1jo2e93bg4ji5in6ls3244r457a6fl78f0e75"
+    },
+    {
+      "i": 17,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1n337f48g5hi6l970f0oa15h2bk31q4no7il07k13a2c93m64"
+    },
+    {
+      "i": 18,
+      "n": 27,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1n177908f1ho2ln30n4ok55a6b97160mo08f1cg2933d44gr5cg7"
+    },
+    {
+      "i": 19,
+      "n": 27,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1no2713824h35l460a7of05a1b92163jn0d31b92m33n44co4ak5"
+    },
+    {
+      "i": 20,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1n657468o7hg0li1o125k3bk41q5n31i527s3394ca5m56673"
+    },
+    {
+      "i": 21,
+      "n": 28,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1nd57468i7hf0l51042oa35h4ba51l6mj68i7c90921d32gk3hf01r1"
+    },
+    {
+      "i": 22,
+      "n": 28,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg18f3sk4o355h6ah7ji0e41ba2j93i64n96i377403j1co2mk3eg4fp5"
+    },
+    {
+      "i": 23,
+      "n": 29,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6a03j1gd22i3eg4i15s364f76a0qg1895s36o475j0ao1jk2ea3bf4ji5in6l422i3ro4755f868l7jh1l42ql3"
+    },
+    {
+      "i": 24,
+      "n": 26,
+      "d": 5,
+      "c": 6,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1n857i68k7ha0l51032od35g4bi5146nf7id07a1352ca3ml4"
+    },
+    {
+      "i": 25,
+      "n": 26,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1ng7780841h32lg30g4ok55a6b97160no1i927633k4ca5ml6"
+    },
+    {
+      "i": 26,
+      "n": 29,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1n957a68f7h80li1062o33544b351n6ng4io57a63k7ca0ml1jg3544mi5"
+    },
+    {
+      "i": 27,
+      "n": 27,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1n467i7860ho1l420n3ok45i5bf61f7lj4235rn67i7f408916f5"
+    },
+    {
+      "i": 28,
+      "n": 27,
+      "d": 6,
+      "c": 5,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1nd67i7890ho1lk20a3of45a5b96167n64io57j63h7ck0mi1681"
+    },
+    {
+      "i": 29,
+      "n": 26,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1nd0781832hg3l340d5o86537bh01r1m478s0ck19a2df3gj4"
+    },
+    {
+      "i": 30,
+      "n": 27,
+      "d": 4,
+      "c": 7,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1871s82oa35f4ad5ji6e47ba0j91i62037qg0181gi2b43jh2lo3"
+    },
+    {
+      "i": 31,
+      "n": 26,
+      "d": 7,
+      "c": 4,
+      "m": 9,
+      "tape": "6f03d1gi2253ea4io5sk64a76f0qg1ng27438s4h55l860i7o40531b121f3mf48i5cd69g7d10gj1"
+    }
+  ]
+}
