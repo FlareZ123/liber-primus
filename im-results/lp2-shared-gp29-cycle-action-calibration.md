@@ -496,3 +496,16 @@ Controls use independently frequency-sampled words in the exact 47-group/213-run
 | Prime | 44/47/17 | 621,761 | 12/0/0 | 15/0/0 |
 
 Both complete runs report `ORIGINAL_GATE=0`; no exact permutation recovered. A 24-iteration BP attempt hit a 35-second local process cap after completing ordinal (13 lexical, 3 fit truth, 1 held truth, not exact) and starting prime (best 12 so far). Oracle lexical support can exceed 44 because OOV truths have alternative dictionary-supported inverse paths. Both receivers relax global dependencies and are heuristic. No original glyph values were loaded; these are unsuccessful blind calibrations, not original exclusions. Require a new independent constraint or qualitatively stronger receiver before original runs.
+
+### Agent44 follow-up: lazy finite-field and centralizer theory (matched control, 2026-11-26)
+
+All tests use the same carry-free synthetic plant (seed 1506977336, 47 complete groups/213 runes, actual OOV groups 12 and 43; full 11-rune seam and 16 continuation groups withheld). Independent phase permutations are relaxed SAT variables; a theory oracle rejects edge sets inconsistent with p(c)-p(w)=k_j in F29, fixing p(0)=0 and k0=1. RREF rows track unions of original equation supports, producing sound conflict clauses for inconsistent equations or forced equal alphabet coordinates. Enumerate remaining dimensions only when at most three; higher free dimension is not an exclusion. Alternatively the inverse phase-zero map must be a single 29-cycle, and every other inverse phase map must commute with it (centralizer of a full cycle consists precisely of its powers). Reject short cycles and violated commutators via small clauses. Phase maps must have all fixed points or none; distinct phase maps must disagree at every coordinate. Primitive q8 requires at least one inequality between opposite phases.
+
+| Receiver | seconds | iterations | lexical clauses | theory clauses | best selected dictionary groups | result |
+|---|---:|---:|---:|---:|---:|---|
+| GF29 pinned diagnostic | 0.610 | 1 | 76 | 0 | 7 | exact action, independently recounted support 45/47, 16/16 held and full seam correct |
+| GF29 lazy blind | 240.288 | 108 | 8597 | 310 | 17 | UNKNOWN |
+| GF29 eight longest eager blind | 240.374 | 57 | 3938 | 292 | 17 | UNKNOWN |
+| cycle/commutator lazy blind | 300.463 | 122 | 9771 | 25168 | 14 | UNKNOWN |
+
+Selected groups are a SAT model's current lexical support, not an upper bound on the possible true support. The finite-field and cycle theory checks passed 100 true-action controls each; these are engineering checks, not blind recovery. In the centralizer run 22,735 of the learned theory clauses had four entries, but the better local rejection granularity did not unlock lexical convergence. These blind variants fail the gate and should not be repeated as original p54 jobs. The source/seed and raw result checkpoint are retained; no original glyph scoring and no all-key exclusion. Independent stochastic/moment routes in #3021/#3027 remain separate.
