@@ -76,7 +76,7 @@ def main():
     )
     args = parser.parse_args()
 
-    source = args.input_dir / f"lp2-semantic-running-key-recovery-{args.index}.json"
+    source = args.input_dir.resolve() / f"lp2-semantic-running-key-recovery-{args.index}.json"
     data = json.loads(source.read_text(encoding="utf-8"))
     control = data["control"]
     summary = data["summary"]
