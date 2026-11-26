@@ -1,6 +1,6 @@
 # p32–p47 low-digit road-map cross-link
 
-**Status:** intermediate structural hypothesis. No plaintext, key, or complete decipherment recovered. Keep this in im-results; do not promote it to results/README.
+**Status:** exact intermediate arithmetic; actionable navigation interpretation retired by source-first gate #3086. No plaintext, key, or complete decipherment recovered.
 
 ## Source-selected inputs
 
@@ -58,22 +58,27 @@ Eight of 59 parsed words enter the same cycle:
 | 58 | AOAAE | 4 | 76 | 302 |
 | **Total** | | **32** | **534** | **2013** |
 
-The selected rune length 32 points back to p32. The selected GP-prime sum is exactly 2013, the year of Cicada's first round. That historical-year match was observed after computing the selection and is therefore supporting context, not an independently pre-registered prediction.
+The selected rune length 32 points back to p32. The selected GP-prime sum is exactly 2013, the year of Cicada's second public round (the first was in 2012). That historical-year match was observed after computing the selection and is therefore supporting context, not an independently pre-registered prediction.
 
 ## Interpretation and limits
 
 The strongest provisional structure is a p32/p47 pair: the p32 selected-word sums independently point to 47 through both 13×47 and 47², while p47's selected-word rune length points back to 32. The p32 selected-word length 42 also meets the existing FIND -> p28 low-digit route. The 11-cycle's 47 and 76 states align with p47's page number and p55's marked 76-rune endpoint.
 
-This is a navigation/readout hypothesis, not a cipher solution. The 54/36 cycle is source-anchored, but applying it to every page word and aggregating selected word lengths/sums is an inferred extension. The 28/256 basin and p32's 6/22 selected words are not, by themselves, decisive statistical evidence; the simple uniform-address binomial tail for at least six hits is about 0.027 before accounting for page-wide selection. Word segmentation is transcription-derived and p47 has not yet had a dedicated original-image adjudication. The 2013-year match is post hoc.
+This is a navigation/readout hypothesis, not a cipher solution. The 54/36 cycle is source-anchored, but applying it to every page word and aggregating selected word lengths/sums is an inferred extension. The 28/256 basin and p32's 6/22 selected words are not, by themselves, decisive statistical evidence; the simple uniform-address binomial tail for at least six hits is about 0.027 before accounting for page-wide selection. The p47 printed-group segmentation has been independently adjudicated against original scan 64; the 59 groups and eight selected spans agree. See [source check](lp2-p43-p48-source-first-human-solve-path-gate.md#p47-original-image-word-boundary-adjudication). This establishes the printed groups, not their identity as plaintext words. The 2013-year match is post hoc.
 
 Several direct key transfers have already failed: using the p50 11-cycle as an additive GP29 key on p55 (full 76 and inner 23), using the p47 selected 32-rune stream as an additive key on p32, concatenating the p32/p47 selected streams plus the two cycle states as a 76-symbol key for p55, and applying the p56 prime-totient clock to p47 from prime ordinals 47 or 115. None yielded plaintext. Do not repeat generic Vigenere/prime-totient variants without a new source instruction.
 
-## Next decisive work
+## Source-first continuation decision (#3086, Agent12, 26 November 2026)
 
-1. Independently verify p47's word segmentation against original scan 64; no p47-specific result report was present in the repository inventory.
-2. Look for a first-party operation that consumes the 32-rune p47 selected stream. The 2013 XOR method is historically real, but do not transfer it to GP29 without a source-supported byte serialization.
-3. Test whether the p32/p47 reciprocal aggregate is a deliberate human-readable map, using a locked prediction from the original page art or historical wording rather than further numerical fitting.
-4. Treat p55's marked offset 76 as a plausible later receiver, not as a proven decryption target; the direct 11-cycle additive key test is negative.
+Direct inspection of original scans 49 (physical p32), 64 (p47) and the already documented adjacent artwork shows the following player-visible distinctions, independently of any selected-word arithmetic:
+
+* p32 is a six-line terminating page with a single blurred tree below its text and a terminal red punctuation mark. No selected group is individually addressed by that tree, colored, numbered or connected to a line/path.
+* p47 is a twelve-line page within the bilateral botanical frame. [The previous original-raster gate](lp2-p43-p48-source-first-human-solve-path-gate.md) establishes pixel-identical framing across p42–49; it is not a unique visual pointer to p47 or a group selector. The existing p47 source segmentation is accepted; it was not re-adjudicated here.
+* The stronger independently visible art link is **p32 ↔ p55**, the blurred and pale detailed renditions of a specific tree, with a known source-raster correspondence. [Existing held-out crown/whole-atlas tests](lp2-p32-p55-blurred-tree-correspondence.md) already establish this and separately reject the 2013 forest wording as a complete decoding opcode. It does not choose p47 as an intermediate receiver. The paired red13 terminal marks likewise do not choose a per-word aggregate or graph traversal direction.
+
+The [signed 2016 original](../resources/historical/cicada2016-4gq25-outguess.asc) associates words, meaning and numbers with navigation. Even granting the existing ROAD/FOUND two-cycle, that instruction does not say to retain every word entering its basin, to use GP0 as the initial address rather than prime sum, to add rather than concatenate the selected values, or to carry any one of rune length / GP0 sum / GP-prime sum into another page. On a two-cycle terminal *membership* also does not identify a stopping phase. The displayed p32→47 and p47→32 arithmetic was already observed, so neither can serve as an untouched prediction. The previous [p48 word→grid direction test](lp2-p48-word-prime-coordinate-p50-grid-gate.md) failed its locked adjacent-address prediction; another unconstrained graph aggregation is not a substitute.
+
+**Decision:** no independently visible cue fixes a unique continuation, group selection and receiver. Preserve the original exact 611=13×47, 2209=47² and 32-return arithmetic as an unpromoted observation; retire it as an actionable route. Do not construct a new page scan, product/square search, cycle variant, XOR or additive consumer. Only a new independently specified source operation on a fixed unseen receiver would reopen it. No new candidate plaintext or key, and no new computation is warranted on this premise.
 
 ## Reproduction
 
