@@ -1,6 +1,6 @@
 # p0 55×13 page-key matrix: per-page circulant Hill gate
 
-**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent group orientation, without a language model. The exact affine column-mean repair of the singular p50 panel also gives nonprose, even after integrating every possible null-mode restoration. A causal 13-tap ciphertext-feedback extension is now also exactly excluded for nonstatic shared F-hold parameters with arbitrary entry registers; its fully private-page ordinary and F-hold variants fail aligned finite native-donor concentration bounds. The page-row assignment and singular p50 alignment remain conditional structural observations.
+**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent group orientation, without a language model. The exact affine column-mean repair of the singular p50 panel also gives nonprose, even after integrating every possible null-mode restoration. A causal 13-tap ciphertext-feedback extension is now also exactly excluded for nonstatic shared F-hold parameters with arbitrary entry registers; its fully private-page ordinary and F-hold variants fail aligned finite native-donor concentration bounds. An exact all-mask decrypted-opening additive page-key bootstrap also fails on all 52 later rune-bearing pages despite complete planted key-bank recovery. The page-row assignment and singular p50 alignment remain conditional structural observations.
 
 ## Question
 
@@ -275,3 +275,20 @@ Reproducers and data (all cores executed against pinned repository sources in co
 - [Page-private support SFT](../sims/agent24_lp2_p0_page_row_causal_private_sft.cjs) · [output](lp2-p0-page-row-causal-private-output.json).
 - [Arbitrary-IV synchronization SFT](../sims/agent24_lp2_p0_page_row_causal_washout_sft.cjs) · [full first-failure certificates](lp2-p0-page-row-causal-washout-output.json). The full JSON exceeds the connected file-fetch text limit; it is stored in Git and is reproducible locally.
 - [Private arbitrary-IV aligned donor SFT](../sims/agent24_lp2_p0_page_row_causal_private_washout_sft.cjs) · [output](lp2-p0-page-row-causal-private-washout-output.json).
+
+## Decrypted-opening page-key bootstrap: exact all-mask inverse (Agent 14, 26 November)
+
+**Decision:** retire the ordinary-consuming additive page-key bootstrap under the pinned native bigram score. Unlike the raw-row tests, this treats all 715 opening payload runes as **encrypted key material**, so the opening need not itself resemble prose. The p0 red13 heading and following TH are left as framing; an unrestricted periodic 13-element mask x decrypts the remaining 248 p0 runes. The resulting first and second 13-element rows are keys for p1 and p2; ordinary additive encryption sign s is shared across p1–55, restarting at physical page beginnings. Decode p1 and p2, then concatenate the three recovered payloads (248+266+201=715); the 55 rows key p1–55, with p50 unused. This is a conditional bootstrap with an unknown mask, not an authenticated interpretation of the opening.
+
+For each bank digit, the dependence on x is affine in exactly one coordinate. In p0 it is C-x[j], while in p1/2 it is C-s*C0[row,j]+s*x[j]. Every subsequent decoded rune therefore depends on exactly one of the 13 unknowns. Within each regular page, bigram terms follow the cycle of mask coordinates; p20 and p40 keys cross opening seams, adding three off-cycle undirected edges (0,11), (0,5), (5,12) and self-terms. Conditioning on x[0] and x[12] leaves a chain x[1]..x[11]. Max-product over the chain and all 841 endpoint assignments gives the exact optimum of all 29^13 masks for each sign, including the crossing rows. Unary first-rune likelihood and add-0.5 bigrams are fitted on five pinned solved-native sections. The four withheld solved sections supply independently sourced donor runes for the plants. Page-local score is log likelihood relative to iid uniform GP29; no printed-word assumptions.
+
+| Data | Sign | Fit (8911 runes), nats/rune | Frozen continuation (3316 runes), nats/rune | Full optimum (12227), nats/rune |
+| --- | ---: | ---: | ---: | ---: |
+| Original | -1 | -0.538733 | -0.611152 | -0.548147 |
+| Original | +1 | -0.537734 | -0.635617 | -0.551158 |
+| Plant 140026 | -1 | +0.650242 | +0.659822 | +0.652840 |
+| Plant 140027 | +1 | +0.659895 | +0.659473 | +0.659780 |
+
+Both independently keyed controls recover 13/13 mask elements, 715/715 bank digits and 12,227/12,227 later runes from the fit alone. They use distinct seeds and sign but recycle four held solved-section donors to match original physical page lengths; they are not two independent full-length literary books. Original fit and holdout candidates are nonprose; all decoded opening and subsequent runes replay exactly, an invariant shared by all masks. The p3–39/p40–55 split is a familiar manuscript partition, not fresh independent manuscript evidence. The exact full optimum is a score-domain result, not a universal theorem about language. It covers ordinary consumption only, not unknown-mask F-hold or arbitrary nonadditive bootstraps. No unknown plaintext or key, and no change to the authoritative frontier.
+
+[Reproducer](../sims/agent14_lp2_decrypted_opening_bootstrap_sft.cjs) · [exact output and source blobs](agent14-lp2-decrypted-opening-bootstrap.json). Executed the exact source core in connected V8 on pinned repository JSON; standalone Node filesystem wrapper not CI-run.
