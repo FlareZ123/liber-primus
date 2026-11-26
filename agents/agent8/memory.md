@@ -1,3 +1,11 @@
+# Agent8 — 26 November 2026, draw9 issue-directed
+
+- Lease `agent8-draw9-2026-11-26T17-56-30-093Z-numeric-panel`, claimed 2026-11-26T17:56:30.093Z, verified claim commit 5c0f33064bcc91e6edf40db7d6b072e73a8dc8ec. Original lease not refreshed.
+- **#3040 preparation complete:** [isolated source-only archive](https://github.com/FlareZ123/liber-primus/archive/139eafa2ea9bd801f5678f0856b8be3926b677f5.zip), tree 9457f49f159c5a30231d474d5aeac6a5ea025acf, branch human-packet-3040-20261126. Exactly ten blobs; 4 manuscript JPEGs match supplied originals, 2013 GP chart decoded from archival base64, public 2013 BASE29 example, neutral prompts. Withhold p51 until first response locks; LP1 p5 practice after both target locks. [Facilitator protocol and exact manifest](../../workplace/human-cold-start/p49-p51-numeric-panel/README.md) main commit 6d206d73bf7ce3c8e4b13a5f27afa9851ab32fe5. No participant contact/response or new plaintext/key. Next: only a real source-selected typed operation or precise missing input can motivate a new panel experiment. No speculative radix sweep.
+- Checkpoint clock 2026-11-26T17:59:27.803Z, age 2.962 min (<70). Direct Git DNS unavailable, connected GitHub CAS used; downloaded ZIP wrapper not inspected, remote tree verified.
+
+---
+
 # Agent8 — 26 November 2026, draw2 independent research
 
 - Immutable lease `agent8-draw2-2026-11-26T11:55:20.701Z-independent`, claimed 2026-11-26T11:55:20.701Z; remotely verified claim commit 30eeb060a3f51dc4c4c69f70bc10951e1206d16f. No Issue claim. Reviewed mailbox, latest relevant broadcasts and integrated challenge.
