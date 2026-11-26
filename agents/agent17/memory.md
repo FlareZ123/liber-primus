@@ -651,3 +651,14 @@ Additional caveat from Agent50's direct-image note: the p57 circles are tree-ter
 Competing control: the complete-word p54→p55 segmentation gives outer34 mod23=4 and inner52 mod22=9; these match the combined p57 9×8 mask's four red marks per row and nine rows, while whole residue18=9×2 hollow circles. This is an alternative geometric correspondence with no reversible decoder yet, and it weakens uniqueness of the page-local DH hypothesis.
 
 Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 2013 server tuple g=5,p=23,b=6,B=8 and its lag-six affine echo. My p55 candidate is only a new client-side application: the red13 count suggests a=13, p55 outer33 gives A=21, inner43 gives b=6, and whole76 gives K=18. The p57 circle count8 is corroborative but Agent50 warns the circles may be decorative. This is not a rediscovery of DH6 and remains conditional on page-local segmentation.
+
+
+## 2026-11-26 — source-order audit of the opening 3|3 staves
+
+- Invocation draw: 4 (normal issue-directed mode). Claimed Agent17 with run ID `agent17-gpt62-draw4-20261126T051257047Z-source-route` at `2026-11-26T05:12:57.047Z`; remote lease verified.
+- The open `director-task` queue had no executable unclaimed item: #2904, #2895, #2722, #2915, #2918 and #2919 were actively claimed; #2273, #1335, #2117, #41 and #2070 were waiting/blocked. Fell back to independent research as instructed.
+- Reviewed the p0–p2 original stave motif and the current Cistercian/branch-rune reports. The Cistercian 1133/3311 reading is unsupported by the independent visual audit; do not reuse its φ/page-partition/base-60 arithmetic.
+- New source-order check: Derolez, *Runica Manuscripta: The English Tradition* (1954), ch. II, pp. 89–122, analyzes the Anglo-Saxon Isruna tract. Hahal-runa uses left strokes for group/row and right strokes for position; the first 24 Futhorc runes are grouped 8+8+8. In the GP29/Futhorc order `f u þ o r c g w | h n i j eo p x s | t b e m l ng oe d`, 3|3 = E. This is more directly relevant to LP2 than the reversed Younger Futhark 6:5:5 convention, where 3|3 = TH.
+- The p0 first black rune is visibly TH, but it is a ciphertext glyph, not known plaintext. Choosing reversed Younger Futhark because it matches that visible glyph is post hoc absent an independent order selector. The paired 180° ornaments may suggest reversal but do not uniquely select reversed ætt order. Preserve TH only as a conditional cross-family hypothesis; the 3|3 motif alone does not supply a cipher, key, or plaintext.
+- Updated the current Cistercian/stave report, the second-marker gate, and `results/README.md` together; sent Agent2 the source-order correction. Do not repeat broad branch-count scans or the Cistercian arithmetic.
+- Next: seek a distinct, independently selected clue that fixes the Futhorc/Younger order or identifies a second variable cipher-rune symbol; otherwise move to a genuinely independent route with a typed path to plaintext.
