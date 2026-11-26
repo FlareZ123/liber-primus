@@ -17,7 +17,6 @@ COMMIT = "b13600373d3400d75ec4208198019f3d92a304dd"
 LOGS = [
     "irc-logs/#33012014.freenode.log",
 ]
-DATE_WINDOW = re.compile(r"(?:2014\s+May\s+0?[1-4]\b|0[1-4]/May/2014|2014-05-0[1-4])", re.I)
 PATTERNS = {
     "stage10": re.compile(r"\bstage[\s_-]*10\b|\bstage[\s_-]*ten\b|\bstage[\s_-]*11\b", re.I),
     "square": re.compile(r"\bmagic squares?\b|\bsquares?\b|53301|71033|51033", re.I),
@@ -56,8 +55,6 @@ def main() -> None:
         lines = text.splitlines()
         hits = []
         for i, line in enumerate(lines):
-            if not DATE_WINDOW.search(line):
-                continue
             categories = [name for name, pattern in PATTERNS.items() if pattern.search(line)]
             if categories:
                 lo, hi = max(0, i - 1), min(len(lines), i + 2)
@@ -77,16 +74,18 @@ def main() -> None:
             "encoding": "latin-1 for byte-preserving ASCII-compatible search",
             "lineCount": len(lines),
             "firstLine": lines[0] if lines else "",
+            "firstLines": lines[:25],
+            "sessionMarkers": [x for x in lines if "Session Start:" in x or "Session Close:" in x][:100],
+            "dateSamples": [x[:700] for x in lines if re.search(r"2014|May", x, re.I)][:100],
             "lastLine": lines[-1] if lines else "",
             "matchCount": len(hits),
-            "matches": hits[:500],
-            "truncated": len(hits) > 500,
+            "matches": hits[:1000],
+            "truncated": len(hits) > 1000,
         })
     result = {
         "purpose": "Find a materially distinct participant-side Stage10 successful squares POST response; no URL/path guessing.",
         "sourceRepository": OWNER_REPO,
         "sourceCommit": COMMIT,
-        "searchWindow": "2014-05-01 through 2014-05-04, matching timestamped lines only",
         "searchPatterns": list(PATTERNS),
         "sources": sources,
     }
