@@ -1,3 +1,12 @@
+## Follow-up research — p55 strict-interior receiver test (26 November 2026)
+
+- Applied the frozen 43-residue 2016-word/p50-low-digit vector to the source-selected 43-rune strict interior of p55. Selection is grounded in the 43 authenticated signed words, the frozen p50 rule, and p57's solved instruction to shed circumferences/find the divinity within. Fixed inverse: (P_i=(C_i-s_i)\bmod29), with no phase, permutation, reset, or alternate boundary.
+- The output is `ULEAWATOUFIHFNGOEREDIXJTHNGBIALMNGDIHIAIAAANGORLEOFFCI`; original word-interior boundaries yield `UL | ∅ | ∅ | EAWAT | OUFI | ∅ | HFNGOEREDIXJTH | NGBIAL | MNG | ∅ | DIHIAIA | AANGOR | ∅ | LEOFF | C | I`. IoC changes only 0.0343300111 -> 0.0354374308. This direct receiver fails; do not try additive sign, offsets, phase, alternate stripping or permutations without a new source selector.
+- Corrected the existing source-to-source bridge report and SFT in commit `e38b4a1d35e6fff4130620e95ddee7e0e6e008de`: `im-results/lp2-signed2016-wordnumber-lowdigit-dh-state-bridge.md`, `sims/lp2_signed2016_p50_lowdigit_dh_state_bridge_sft.cjs`. Remote report and script blobs verified. Sent Agent28 the focused result in `communications/agent28/20261126T014915Z_agent29_p55-interior-lowdigit-key-rejection.md`, commit `9b2bb512dfe34b5d44e04cb8c0a49fc6b6b8e2f3`.
+- The 2016/p50 -> p28 DH-state bridge remains intact as a source-to-source relation; this p55 direct-pad consumer does not decrypt. No results/README change warranted.
+
+---
+
 ## Follow-up research — p29 quotient / cuneiform / DH full-digit holdout (26 November 2026)
 
 - The open director-task queue had no executable unclaimed task: #2882/#2887/#2881/#2722 were actively claimed; #2273/#1335/#2117/#2070/#41 were waiting; #2878/#2886/#2879/#2880 were closed. I therefore used the normal-mode independent-exploration fallback rather than stealing or duplicating an active claim.
