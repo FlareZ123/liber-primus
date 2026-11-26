@@ -1,0 +1,740 @@
+{
+  "mode": "original",
+  "start": 0,
+  "end": 9,
+  "period": 8,
+  "dictionary": 23689,
+  "rows": [
+    {
+      "name": "p0-2",
+      "n": 716,
+      "trainN": 318,
+      "anchors": [
+        {
+          "word": [
+            2,
+            24,
+            19,
+            10,
+            21,
+            10,
+            27,
+            26
+          ],
+          "offset": 82,
+          "zeros": 5,
+          "index": 18,
+          "prev": 11
+        },
+        {
+          "word": [
+            21,
+            6,
+            19,
+            11,
+            4,
+            3,
+            20,
+            12
+          ],
+          "offset": 145,
+          "zeros": 7,
+          "index": 34,
+          "prev": 24
+        },
+        {
+          "word": [
+            28,
+            19,
+            21,
+            14,
+            14,
+            12,
+            23,
+            17
+          ],
+          "offset": 190,
+          "zeros": 11,
+          "index": 44,
+          "prev": 15
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 82,
+          "width": 8,
+          "individual": 1923051,
+          "joint": 1923051,
+          "containsTrue": null
+        },
+        {
+          "offset": 145,
+          "width": 8,
+          "individual": 2556392,
+          "joint": 6,
+          "containsTrue": null
+        },
+        {
+          "offset": 190,
+          "width": 8,
+          "individual": 1533140,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "trainN": 317,
+      "anchors": [
+        {
+          "word": [
+            4,
+            24,
+            27,
+            6,
+            22,
+            12,
+            16,
+            19,
+            14
+          ],
+          "offset": 64,
+          "zeros": 2,
+          "index": 11,
+          "prev": 21
+        },
+        {
+          "word": [
+            14,
+            10,
+            26,
+            6,
+            15,
+            15,
+            17,
+            28
+          ],
+          "offset": 198,
+          "zeros": 7,
+          "index": 40,
+          "prev": 3
+        },
+        {
+          "word": [
+            26,
+            13,
+            14,
+            10,
+            7,
+            19,
+            5,
+            10
+          ],
+          "offset": 219,
+          "zeros": 7,
+          "index": 44,
+          "prev": 27
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 64,
+          "width": 9,
+          "individual": 80535,
+          "joint": 80535,
+          "containsTrue": null
+        },
+        {
+          "offset": 198,
+          "width": 8,
+          "individual": 1536232,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p8-14",
+      "n": 1729,
+      "trainN": 316,
+      "anchors": [
+        {
+          "word": [
+            1,
+            14,
+            19,
+            5,
+            2,
+            13,
+            3,
+            17
+          ],
+          "offset": 4,
+          "zeros": 0,
+          "index": 1,
+          "prev": 19
+        },
+        {
+          "word": [
+            3,
+            5,
+            28,
+            19,
+            21,
+            6,
+            14,
+            20,
+            1
+          ],
+          "offset": 20,
+          "zeros": 0,
+          "index": 5,
+          "prev": 26
+        },
+        {
+          "word": [
+            24,
+            8,
+            22,
+            4,
+            21,
+            1,
+            18,
+            4
+          ],
+          "offset": 70,
+          "zeros": 1,
+          "index": 17,
+          "prev": 14
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 4,
+          "width": 8,
+          "individual": 320711,
+          "joint": 320711,
+          "containsTrue": null
+        },
+        {
+          "offset": 20,
+          "width": 9,
+          "individual": 25834,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p15-22",
+      "n": 1883,
+      "trainN": 318,
+      "anchors": [
+        {
+          "word": [
+            13,
+            18,
+            9,
+            2,
+            3,
+            1,
+            10,
+            27,
+            4
+          ],
+          "offset": 32,
+          "zeros": 1,
+          "index": 7,
+          "prev": 9
+        },
+        {
+          "word": [
+            7,
+            13,
+            8,
+            4,
+            23,
+            14,
+            16,
+            1
+          ],
+          "offset": 56,
+          "zeros": 2,
+          "index": 11,
+          "prev": 17
+        },
+        {
+          "word": [
+            2,
+            13,
+            23,
+            15,
+            27,
+            8,
+            12,
+            20
+          ],
+          "offset": 91,
+          "zeros": 4,
+          "index": 20,
+          "prev": 5
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 32,
+          "width": 9,
+          "individual": 43432,
+          "joint": 43432,
+          "containsTrue": null
+        },
+        {
+          "offset": 56,
+          "width": 8,
+          "individual": 962592,
+          "joint": 1,
+          "containsTrue": null
+        },
+        {
+          "offset": 91,
+          "width": 8,
+          "individual": 1601920,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p23-26",
+      "n": 1021,
+      "trainN": 317,
+      "anchors": [
+        {
+          "word": [
+            28,
+            6,
+            15,
+            25,
+            13,
+            7,
+            19,
+            28
+          ],
+          "offset": 16,
+          "zeros": 0,
+          "index": 4,
+          "prev": 26
+        },
+        {
+          "word": [
+            13,
+            17,
+            27,
+            15,
+            1,
+            23,
+            18,
+            26,
+            2
+          ],
+          "offset": 78,
+          "zeros": 1,
+          "index": 16,
+          "prev": 23
+        },
+        {
+          "word": [
+            1,
+            19,
+            1,
+            14,
+            3,
+            26,
+            8,
+            16
+          ],
+          "offset": 277,
+          "zeros": 9,
+          "index": 61,
+          "prev": 3
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 16,
+          "width": 8,
+          "individual": 319374,
+          "joint": 319374,
+          "containsTrue": null
+        },
+        {
+          "offset": 78,
+          "width": 9,
+          "individual": 56538,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p27-32",
+      "n": 1433,
+      "trainN": 319,
+      "anchors": [
+        {
+          "word": [
+            9,
+            24,
+            28,
+            3,
+            24,
+            9,
+            24,
+            2,
+            6,
+            3
+          ],
+          "offset": 180,
+          "zeros": 8,
+          "index": 43,
+          "prev": 25
+        },
+        {
+          "word": [
+            25,
+            14,
+            17,
+            16,
+            18,
+            28,
+            19,
+            6,
+            4,
+            19
+          ],
+          "offset": 190,
+          "zeros": 8,
+          "index": 44,
+          "prev": 3
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 180,
+          "width": 10,
+          "individual": 11568,
+          "joint": 11568,
+          "containsTrue": null
+        },
+        {
+          "offset": 190,
+          "width": 10,
+          "individual": 12416,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p33-39",
+      "n": 1680,
+      "trainN": 319,
+      "anchors": [
+        {
+          "word": [
+            24,
+            11,
+            25,
+            6,
+            26,
+            19,
+            7,
+            23
+          ],
+          "offset": 67,
+          "zeros": 3,
+          "index": 15,
+          "prev": 11
+        },
+        {
+          "word": [
+            18,
+            13,
+            11,
+            3,
+            7,
+            1,
+            28,
+            21,
+            7
+          ],
+          "offset": 139,
+          "zeros": 5,
+          "index": 37,
+          "prev": 13
+        },
+        {
+          "word": [
+            17,
+            3,
+            16,
+            20,
+            12,
+            10,
+            17,
+            27,
+            24
+          ],
+          "offset": 164,
+          "zeros": 6,
+          "index": 41,
+          "prev": 23
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 67,
+          "width": 8,
+          "individual": 1280812,
+          "joint": 1280812,
+          "containsTrue": null
+        },
+        {
+          "offset": 139,
+          "width": 9,
+          "individual": 141378,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p40-53",
+      "n": 3008,
+      "trainN": 315,
+      "anchors": [
+        {
+          "word": [
+            23,
+            3,
+            20,
+            10,
+            14,
+            28,
+            21,
+            18,
+            4
+          ],
+          "offset": 78,
+          "zeros": 3,
+          "index": 18,
+          "prev": 20
+        },
+        {
+          "word": [
+            18,
+            14,
+            3,
+            14,
+            10,
+            5,
+            1,
+            19,
+            9,
+            1
+          ],
+          "offset": 137,
+          "zeros": 3,
+          "index": 32,
+          "prev": 20
+        },
+        {
+          "word": [
+            17,
+            2,
+            22,
+            12,
+            26,
+            22,
+            10,
+            17
+          ],
+          "offset": 298,
+          "zeros": 13,
+          "index": 70,
+          "prev": 8
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 78,
+          "width": 9,
+          "individual": 131180,
+          "joint": 131180,
+          "containsTrue": null
+        },
+        {
+          "offset": 137,
+          "width": 10,
+          "individual": 3288,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    },
+    {
+      "name": "p54-55",
+      "n": 308,
+      "trainN": 151,
+      "anchors": [
+        {
+          "word": [
+            19,
+            21,
+            23,
+            27,
+            2,
+            14,
+            10,
+            19
+          ],
+          "offset": 1,
+          "zeros": 0,
+          "index": 1,
+          "prev": 24
+        },
+        {
+          "word": [
+            27,
+            23,
+            13,
+            21,
+            1,
+            7,
+            24,
+            19
+          ],
+          "offset": 9,
+          "zeros": 0,
+          "index": 2,
+          "prev": 19
+        },
+        {
+          "word": [
+            3,
+            11,
+            27,
+            28,
+            10,
+            20,
+            6,
+            8
+          ],
+          "offset": 70,
+          "zeros": 2,
+          "index": 15,
+          "prev": 1
+        }
+      ],
+      "eligible": true,
+      "steps": [
+        {
+          "offset": 1,
+          "width": 8,
+          "individual": 319928,
+          "joint": 319928,
+          "containsTrue": null
+        },
+        {
+          "offset": 9,
+          "width": 8,
+          "individual": 320525,
+          "joint": 1,
+          "containsTrue": null
+        },
+        {
+          "offset": 70,
+          "width": 8,
+          "individual": 959460,
+          "joint": 0,
+          "containsTrue": null
+        }
+      ],
+      "joint": 0,
+      "trainFeasible": 0
+    }
+  ],
+  "seed": "0x47a8c8",
+  "inputs": [
+    {
+      "path": "sims/lp2_vnull_fhold_joint_clock_sft.cjs",
+      "sha": "c013df73a3c11047214f1004d9ab0cf216916905"
+    },
+    {
+      "path": "sims/lp2_scroll_vnull_fhold_joint_period8_sft.cjs",
+      "sha": "86ea4dfc5ae87d40b1c0eaa32d1a7de68c9656de"
+    },
+    {
+      "path": "sims/lp2_chapter_vnull_fhold_period8_sft.cjs",
+      "sha": "4e2daff2294290780f69382ac230df068510c203"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/orthodox_daily_prayers_pg34981.txt",
+      "sha": "a887fa2d3d1246de61e9e6ee4e7f08a72e9764f6"
+    }
+  ]
+}
