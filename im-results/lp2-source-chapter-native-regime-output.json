@@ -5,6 +5,33 @@
       "trueOp": "atbash",
       "length": 184,
       "cut": 110,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 184,
+          "avg": -5.028768437782176
+        },
+        {
+          "id": "atbash",
+          "legal": 184,
+          "avg": -2.673919370936877
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 15,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 2,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 2,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -46,6 +73,33 @@
       "trueOp": "DIUINITY",
       "length": 515,
       "cut": 309,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 515,
+          "avg": -5.1350464610403765
+        },
+        {
+          "id": "atbash",
+          "legal": 515,
+          "avg": -4.770077676656041
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 515,
+          "avg": -2.6448863213533187
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 45,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 0,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -87,6 +141,33 @@
       "trueOp": "clear",
       "length": 157,
       "cut": 94,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 157,
+          "avg": -2.9367951550460965
+        },
+        {
+          "id": "atbash",
+          "legal": 157,
+          "avg": -4.864237707827409
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 5,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 14,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 22,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -128,6 +209,33 @@
       "trueOp": "FIRFUMFERENFE",
       "length": 319,
       "cut": 191,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 319,
+          "avg": -4.950984914452138
+        },
+        {
+          "id": "atbash",
+          "legal": 319,
+          "avg": -4.598938164388194
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 29,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 319,
+          "avg": -2.473929568526581
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 4,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -169,6 +277,33 @@
       "trueOp": "prime-minus-one",
       "length": 85,
       "cut": 51,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 85,
+          "avg": -5.110442917231946
+        },
+        {
+          "id": "atbash",
+          "legal": 85,
+          "avg": -4.9265425539428165
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 24,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 5,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 85,
+          "avg": -2.4742193516634945
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -210,6 +345,33 @@
       "trueOp": "clear",
       "length": 95,
       "cut": 57,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 95,
+          "avg": -2.484031219890738
+        },
+        {
+          "id": "atbash",
+          "legal": 95,
+          "avg": -4.723845762676973
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 13,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 2,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 2,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -254,6 +416,33 @@
       "whole": {
         "length": 729,
         "cut": 262,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 729,
+            "avg": -5.05037201490968
+          },
+          {
+            "id": "atbash",
+            "legal": 729,
+            "avg": -5.064847331450174
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 37,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 5,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 235,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -293,6 +482,33 @@
       "body": {
         "length": 716,
         "cut": 249,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 716,
+            "avg": -5.063446585710357
+          },
+          {
+            "id": "atbash",
+            "legal": 716,
+            "avg": -5.066351247954758
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 28,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 131,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 43,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -336,6 +552,33 @@
       "whole": {
         "length": 1145,
         "cut": 217,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1145,
+            "avg": -5.156970097665827
+          },
+          {
+            "id": "atbash",
+            "legal": 1145,
+            "avg": -5.006019333181245
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 73,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 117,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 22,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -375,6 +618,33 @@
       "body": {
         "length": 1129,
         "cut": 201,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1129,
+            "avg": -5.144895125138834
+          },
+          {
+            "id": "atbash",
+            "legal": 1129,
+            "avg": -4.998775720253033
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 57,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 2,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 2,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -418,6 +688,33 @@
       "whole": {
         "length": 1729,
         "cut": 255,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1729,
+            "avg": -5.065581196617092
+          },
+          {
+            "id": "atbash",
+            "legal": 1729,
+            "avg": -5.11378592724177
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 1,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 1,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 30,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -457,6 +754,33 @@
       "body": {
         "length": 1717,
         "cut": 243,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1717,
+            "avg": -5.063257185587336
+          },
+          {
+            "id": "atbash",
+            "legal": 1717,
+            "avg": -5.1175556647696725
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 7,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 64,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 66,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -500,6 +824,33 @@
       "whole": {
         "length": 1903,
         "cut": 159,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1903,
+            "avg": -5.071166075394588
+          },
+          {
+            "id": "atbash",
+            "legal": 1903,
+            "avg": -5.036496211644697
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 46,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 179,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 10,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -539,6 +890,33 @@
       "body": {
         "length": 1883,
         "cut": 139,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1883,
+            "avg": -5.077107331399493
+          },
+          {
+            "id": "atbash",
+            "legal": 1883,
+            "avg": -5.031085268064276
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 38,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 156,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 21,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -582,6 +960,33 @@
       "whole": {
         "length": 1021,
         "cut": 213,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1021,
+            "avg": -4.903205511968844
+          },
+          {
+            "id": "atbash",
+            "legal": 1021,
+            "avg": -5.133168726103862
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 15,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 14,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 0,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -621,6 +1026,33 @@
       "body": {
         "length": 1005,
         "cut": 197,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1005,
+            "avg": -4.900085716028444
+          },
+          {
+            "id": "atbash",
+            "legal": 1005,
+            "avg": -5.125026691933092
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 13,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 17,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 11,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -664,6 +1096,33 @@
       "whole": {
         "length": 1433,
         "cut": 234,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1433,
+            "avg": -5.008643813959503
+          },
+          {
+            "id": "atbash",
+            "legal": 1433,
+            "avg": -5.04351735726438
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 133,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 87,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 95,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -703,6 +1162,33 @@
       "body": {
         "length": 1414,
         "cut": 215,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1414,
+            "avg": -5.012833386268047
+          },
+          {
+            "id": "atbash",
+            "legal": 1414,
+            "avg": -5.049737104130483
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 85,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 14,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 28,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -746,6 +1232,33 @@
       "whole": {
         "length": 1680,
         "cut": 214,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1680,
+            "avg": -5.032327154388874
+          },
+          {
+            "id": "atbash",
+            "legal": 1680,
+            "avg": -5.0320857854128525
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 0,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 32,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 58,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -785,6 +1298,33 @@
       "body": {
         "length": 1670,
         "cut": 204,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 1670,
+            "avg": -5.033250313547266
+          },
+          {
+            "id": "atbash",
+            "legal": 1670,
+            "avg": -5.03342373257079
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 23,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 129,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 96,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -828,6 +1368,33 @@
       "whole": {
         "length": 3008,
         "cut": 231,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 3008,
+            "avg": -5.066743902840292
+          },
+          {
+            "id": "atbash",
+            "legal": 3008,
+            "avg": -4.990278688240367
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 60,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 67,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 38,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -867,6 +1434,33 @@
       "body": {
         "length": 3000,
         "cut": 223,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 3000,
+            "avg": -5.067862296659064
+          },
+          {
+            "id": "atbash",
+            "legal": 3000,
+            "avg": -4.98983841931005
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 13,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 31,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 5,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -910,6 +1504,33 @@
       "whole": {
         "length": 308,
         "cut": 232,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 308,
+            "avg": -4.957601763137894
+          },
+          {
+            "id": "atbash",
+            "legal": 308,
+            "avg": -4.958879767428117
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 38,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 49,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 105,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -949,6 +1570,33 @@
       "body": {
         "length": 299,
         "cut": 223,
+        "full": [
+          {
+            "id": "clear",
+            "legal": 299,
+            "avg": -4.956418081326795
+          },
+          {
+            "id": "atbash",
+            "legal": 299,
+            "avg": -4.965293753170912
+          },
+          {
+            "id": "DIUINITY",
+            "legal": 17,
+            "avg": null
+          },
+          {
+            "id": "FIRFUMFERENFE",
+            "legal": 4,
+            "avg": null
+          },
+          {
+            "id": "prime-minus-one",
+            "legal": 53,
+            "avg": null
+          }
+        ],
         "ranked": [
           {
             "id": "clear",
@@ -990,6 +1638,33 @@
   "globalResult": {
     "length": 12956,
     "cut": 262,
+    "full": [
+      {
+        "id": "clear",
+        "legal": 12956,
+        "avg": -5.048494579021474
+      },
+      {
+        "id": "atbash",
+        "legal": 12956,
+        "avg": -5.0419788499258384
+      },
+      {
+        "id": "DIUINITY",
+        "legal": 37,
+        "avg": null
+      },
+      {
+        "id": "FIRFUMFERENFE",
+        "legal": 5,
+        "avg": null
+      },
+      {
+        "id": "prime-minus-one",
+        "legal": 235,
+        "avg": null
+      }
+    ],
     "ranked": [
       {
         "id": "clear",
@@ -1159,6 +1834,33 @@
       "name": "p33-36 before first number",
       "length": 845,
       "cut": 214,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 845,
+          "avg": -5.1140483398925465
+        },
+        {
+          "id": "atbash",
+          "legal": 845,
+          "avg": -5.020923100211316
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 0,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 32,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 58,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1199,6 +1901,33 @@
       "name": "numbered item1",
       "length": 139,
       "cut": 69,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 139,
+          "avg": -5.043128877644963
+        },
+        {
+          "id": "atbash",
+          "legal": 139,
+          "avg": -5.132650095385153
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 29,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 88,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 1,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1239,6 +1968,33 @@
       "name": "numbered item2",
       "length": 91,
       "cut": 45,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 91,
+          "avg": -4.5277594977626645
+        },
+        {
+          "id": "atbash",
+          "legal": 91,
+          "avg": -4.967986179116942
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 4,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 34,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 11,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1279,6 +2035,33 @@
       "name": "numbered item3",
       "length": 98,
       "cut": 49,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 98,
+          "avg": -5.1053701199098285
+        },
+        {
+          "id": "atbash",
+          "legal": 98,
+          "avg": -4.934632545256549
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 0,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 98,
+          "avg": -4.900502158613661
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 60,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1319,6 +2102,33 @@
       "name": "numbered item4",
       "length": 96,
       "cut": 39,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 96,
+          "avg": -4.9461095538788955
+        },
+        {
+          "id": "atbash",
+          "legal": 96,
+          "avg": -4.802592000632489
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 77,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 31,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 18,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1359,6 +2169,33 @@
       "name": "numbered item5",
       "length": 129,
       "cut": 64,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 129,
+          "avg": -4.964751308827947
+        },
+        {
+          "id": "atbash",
+          "legal": 129,
+          "avg": -5.000746932009209
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 6,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 28,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 6,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1399,6 +2236,33 @@
       "name": "after item5 to chapter end",
       "length": 282,
       "cut": 42,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 282,
+          "avg": -4.968858034291066
+        },
+        {
+          "id": "atbash",
+          "legal": 282,
+          "avg": -5.143472919850375
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 15,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 5,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 132,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1439,6 +2303,33 @@
       "name": "p40-48 before numeric panel",
       "length": 2408,
       "cut": 231,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 2408,
+          "avg": -5.050385963256007
+        },
+        {
+          "id": "atbash",
+          "legal": 2408,
+          "avg": -4.987810043933094
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 60,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 67,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 38,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1479,6 +2370,33 @@
       "name": "p49-51 numeric panel text",
       "length": 158,
       "cut": 66,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 158,
+          "avg": -5.069706570099168
+        },
+        {
+          "id": "atbash",
+          "legal": 158,
+          "avg": -4.800919887925186
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 19,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 158,
+          "avg": -4.816459558540538
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 102,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1519,6 +2437,33 @@
       "name": "p52-53 after numeric panel",
       "length": 442,
       "cut": 263,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 442,
+          "avg": -5.145421444095325
+        },
+        {
+          "id": "atbash",
+          "legal": 442,
+          "avg": -5.068527410088397
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 198,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 245,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 73,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
@@ -1559,6 +2504,33 @@
       "name": "p55 terminal tree",
       "length": 76,
       "cut": 38,
+      "full": [
+        {
+          "id": "clear",
+          "legal": 76,
+          "avg": -5.260097198736563
+        },
+        {
+          "id": "atbash",
+          "legal": 76,
+          "avg": -4.881944187927026
+        },
+        {
+          "id": "DIUINITY",
+          "legal": 3,
+          "avg": null
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "legal": 74,
+          "avg": null
+        },
+        {
+          "id": "prime-minus-one",
+          "legal": 39,
+          "avg": null
+        }
+      ],
       "ranked": [
         {
           "id": "clear",
