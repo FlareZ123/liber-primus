@@ -1,7 +1,48 @@
 "use strict";
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw){
+function witness(C,E,K,lens,cap,vocab,gp,sig,key,mod,inverse,encode,assert){
+ const N=C.length,INF=30000,W=N+1,mask=(1<<cap)-1;
+ let prev=new Int16Array(W),cur=new Int16Array(W);prev.fill(INF);prev[0]=0;
+ const dq=new Int32Array(W),choices=new Uint8Array((K+1)*W);
+ for(let k=1;k<=K;k++){
+  cur.fill(INF);let head=0,tail=0;
+  for(let i=k;i<=Math.min(N,k*cap);i++){
+   const j=i-1;while(tail>head&&prev[dq[tail-1]]>=prev[j])tail--;
+   dq[tail++]=j;while(tail>head&&dq[head]<i-cap)head++;
+   let v=tail>head?Math.min(INF,prev[dq[head]]+1):INF,choice=v<INF?32+i-dq[head]:0,b=E.ends[i]&mask;
+   while(b){const low=b&-b,l=32-Math.clz32(low),z=prev[i-l];if(z<INF&&z<=v){v=z;choice=l;}b^=low;if(v===0)break;}
+   cur[i]=v;choices[k*W+i]=choice;
+  }[prev,cur]=[cur,prev]
+ }
+ assert(prev[N]<INF,"no count witness");const cost=prev[N],segments=[];
+ let i=N;for(let k=K;k>=1;k--){const z=choices[k*W+i],len=z&31;assert(len>0,"bad trace");segments.push({offset:i-len,len,oov:z>=32});i-=len}assert(i===0,"trace start");segments.reverse();
+ const O=new Map(),H=new Map();
+ function add(m,k,w){let a=m.get(k);if(!a)m.set(k,a=[]);a.push(w)}
+ for(const s of vocab){const p=Array.from(s,c=>c.charCodeAt(0)-65),l=p.length;add(O,l+"|"+sig(p,0,l),s);let m=0;for(let j=0;j<l;j++)if(p[j]===0)m|=1<<j;add(H,l+"|"+m+"|"+sig(p,0,l,m),s)}
+ let log10=0,ambiguous=0,totalOov=0,held=0;
+ const hist=Array(25).fill(0),targetHist=Array(25).fill(0),candidateHist={};for(const l of lens)targetHist[l]++;
+ for(const z of segments){const c=C.slice(z.offset,z.offset+z.len),options=new Map(),l=c.length;hist[l]++;
+  for(const s of O.get(l+"|"+sig(c,0,l))||[])options.set(s,0);
+  let zero=0;for(let j=0;j<l;j++)if(c[j]===0)zero|=1<<j;
+  for(let m=zero;;m=(m-1)&zero){for(const s of H.get(l+"|"+m+"|"+sig(c,0,l,m))||[])if(!options.has(s))options.set(s,1);if(m===0)break}
+  assert(z.oov===(options.size===0),"trace OOV mismatch");
+  let p,a=1,b=0,hold=false;
+  if(z.oov){p=c;totalOov++;}else{
+   const s=Array.from(options.keys()).sort()[0];p=Array.from(s,x=>x.charCodeAt(0)-65);hold=!!options.get(s);
+   let j=0;while(j<l&&hold&&p[j]===0)j++;
+   if(j<l){let k=j+1;while(k<l&&(p[k]===p[j]||hold&&p[k]===0))k++;if(k<l)a=mod((c[k]-c[j])*inverse[mod(p[k]-p[j])]);b=mod(c[j]-a*p[j]);}
+   assert(a!==0,"bad affine key");
+   log10+=Math.log10(options.size);if(options.size>1)ambiguous++;candidateHist[options.size]=(candidateHist[options.size]||0)+1;
+  }
+  if(hold)held+=p.filter(x=>x===0).length;
+  assert(encode(p,a,b,hold).join(",")===c.join(","),"replay mismatch");
+  Object.assign(z,{p,a,b,hold,candidates:options.size});
+ }
+ assert(totalOov===cost,"trace cost");
+ return {cost,groups:K,runes:N,hist,targetHist,changedLengthSlots:targetHist.reduce((s,v,l)=>s+Math.max(0,v-hist[l]),0),ambiguousLexicalGroups:ambiguous,log10DistinctPlaintexts:log10,heldFInWitness:held,candidateHist,example:segments.slice(0,25).map(z=>z.p.map(x=>gp.translit[x]).join("")).join(" "),segments};
+}
+function experiment(raw,options={}){
  const gp=JSON.parse(raw[0]),gold=JSON.parse(raw[2]),rune=new Map(gp.runes.map((x,i)=>[x,i])),mod=x=>(x%29+29)%29,key=w=>String.fromCharCode(...w.map(x=>65+x));
  const assert=(x,m)=>{if(!x)throw Error(m)};
  const tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
@@ -42,10 +83,13 @@ function experiment(raw){
  const bounds=[];for(let min=4;min<=14;min++){const dp=new Int32Array(N+1);for(let i=N-1;i>=0;i--){dp[i]=dp[i+1];for(let l=min;l<=cap&&i+l<=N;l++)if(hist[l]&&(E.starts[i]&(1<<(l-1))))dp[i]=Math.max(dp[i],1+dp[i+l])}const need=hist.slice(min).reduce((s,v)=>s+v,0),upper=Math.min(dp[0],hist.slice(min).reduce((s,v,j)=>s+Math.min(v,counts[j+min]),0));bounds.push({min,need,disjoint:dp[0],upper,minimumOov:need-upper})}
  return{runes:N,groups:lens.length,budget:Math.floor(lens.length*.05),hist,counts,ordinaryCounts:a,holdCounts:h,bounds,minOovCountOnly:exact(E,lens.length,cap)}}
  const controls=[];for(let d=0;d<donors.length;d++){const ws=[];let n=0;for(const p of donors[d].slice(Math.floor(donors[d].length*.96))){if(n+p.length>350)break;ws.push(p);n+=p.length}for(const mode of ["ordinary","hold","mixed"]){const C=[],truth=[];let fs=0;for(const p of ws){const a=1+rand(28),b=rand(29),hold=mode==="hold"||(mode==="mixed"&&rand(2)===1);truth.push({offset:C.length,len:p.length,lex:vocab.has(key(p)),hold});if(hold)fs+=p.filter(x=>x===0).length;C.push(...encode(p,a,b,hold))}const E=scan(C,index,24),missing=truth.filter(x=>x.lex&&!((x.hold?E.H[x.offset]:E.A[x.offset])&(1<<(x.len-1)))).length,actual=truth.filter(x=>!x.lex).length,min=exact(E,ws.length,24);assert(missing===0&&min<=actual,"plant failure");controls.push({donor:d,mode,runes:n,groups:ws.length,fs,actualOov:actual,minOov:min,missing})}}
- const started=Date.now(),E=scan(tape,index,24),lens=words.map(w=>w.length),original=summary(E,lens,24);
+ const started=Date.now(),E=scan(tape,index,24),lens=words.map(w=>w.length);
+ const proof=witness(tape,E,lens.length,lens,24,vocab,gp,sig,key,mod,inverse,encode,assert);
+ if(options.witnessOnly)return {witness:proof,elapsedMs:Date.now()-started};
+ const original=summary(E,lens,24);
  const offsets=[0,3,8,15,23,27,33,40,54,56].map(n=>gp.pages.slice(0,n).reduce((a,p)=>a+p.indices.length,0)),wo=[0];for(const p of words)wo.push(wo.at(-1)+p.length);
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
- return{vocab:vocab.size,toyIntervals,controls,original,chapters,elapsedMs:Date.now()-started};
+ return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
 if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
 module.exports={experiment};
