@@ -1,0 +1,82 @@
+{
+  "inputs": [
+    {
+      "path": "sims/lp2_latent_affine_fhold_exact_sft.cjs",
+      "sha": "bb9d5aa5294eccf12c572b4a0f463a982c2967b3"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ],
+  "vocab": 35938,
+  "runes": 12956,
+  "groups": 2896,
+  "budget": 144,
+  "pairCount": 378,
+  "pairMin": {
+    "slopes": [
+      7,
+      13
+    ],
+    "lb": 151,
+    "lambda": 512,
+    "cost": 2100736,
+    "groups": 3759,
+    "oov": 43
+  },
+  "pairViable": 0,
+  "signPair": {
+    "slopes": [
+      1,
+      28
+    ],
+    "lb": 156,
+    "lambda": 512,
+    "cost": 2120704,
+    "groups": 3638,
+    "oov": 63
+  },
+  "tripleCount": 3276,
+  "triplesMin": {
+    "slopes": [
+      4,
+      6,
+      7
+    ],
+    "lb": 146,
+    "lambda": 586,
+    "cost": 2293032,
+    "groups": 2564,
+    "oov": 193
+  },
+  "candidateCount": 0,
+  "candidates": [],
+  "feasible": null,
+  "elapsedMs": 52779,
+  "scope": "Condensed exact dual minima; full per-palette rows reproducible with --small-slope."
+}
