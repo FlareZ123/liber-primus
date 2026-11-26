@@ -1,0 +1,126 @@
+{
+  "dictionary": 29061,
+  "dagNodes": 47340,
+  "toys": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "results": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "direction": "RF",
+      "original": {
+        "best": null,
+        "excludedThrough": 4,
+        "capped": false,
+        "states": 290605,
+        "edges": 3478690,
+        "max": [
+          102,
+          103
+        ],
+        "independentLower": 0,
+        "words": [
+          58,
+          61
+        ],
+        "zeros": [
+          14,
+          13
+        ]
+      },
+      "controls": [
+        {
+          "truth": 2,
+          "holds": [
+            3,
+            9
+          ],
+          "same": {
+            "best": 1,
+            "excludedThrough": 0,
+            "capped": false,
+            "states": 11926,
+            "edges": 16227,
+            "max": [
+              257,
+              265
+            ],
+            "independentLower": 0,
+            "words": [
+              58,
+              61
+            ],
+            "zeros": [
+              10,
+              25
+            ]
+          },
+          "recovery": {
+            "sharedKey": [
+              166,
+              255
+            ],
+            "allPlain": [
+              169,
+              172
+            ]
+          }
+        },
+        {
+          "truth": 2,
+          "holds": [
+            11,
+            8
+          ],
+          "same": {
+            "best": 1,
+            "excludedThrough": 0,
+            "capped": false,
+            "states": 13726,
+            "edges": 17734,
+            "max": [
+              261,
+              260
+            ],
+            "independentLower": 0,
+            "words": [
+              58,
+              61
+            ],
+            "zeros": [
+              19,
+              16
+            ]
+          },
+          "recovery": {
+            "sharedKey": [
+              57,
+              253
+            ],
+            "allPlain": [
+              196,
+              195
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "inputBlobs": {
+    "sims/lp2_p0_p2_antiparallel_latent_f_oov_sft.cjs": "3ad3304cfa550a0a140a6a5ff4e1d54ba7583fac",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10"
+  }
+}
