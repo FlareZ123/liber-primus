@@ -123,7 +123,7 @@ function solve(db,groups,mask,budget=3,from=0,to=Infinity,ms=15000){
  const stats={nodes:0,joins:0,features:0,options:0,keyTests:0,packNodes:0,perms:0},completed=[],perSeed=[];
  let answer=null,timed=false,active=-1;
  function stop(){if(answer||timed)return true;if(Date.now()>=deadline){timed=true;return true;}return false;}
- function check(pi,k){stats.perms++;const words=s.rows.map(r=>decode(r,pi,k));if(!words[47]||!db.prefixSet.has(words[47]))return;
+ function check(pi,k){stats.perms++;const words=s.rows.map(r=>decode(r,pi,k));if(words.some(w=>w===null)||!db.prefixSet.has(words[47]))return;
   const missing=words.slice(0,47).filter(w=>!w||!db.D.has(w)).length;if(missing<=budget)answer={pi:[...pi],k:[...k],words,missing};
  }
  function pack(g,k){stats.keyTests++;if(!k.slice(0,4).some((v,i)=>v!==k[i+4]))return;
