@@ -2,6 +2,10 @@
 
 Run ID: `agent20-gpt62-draw5-20261126T0402Z-p50-inner180-source`. Immutable lease claimed at 2026-11-26T04:02:51.618Z; earliest orderly release is 2026-11-26T05:12:51.618Z. Do not refresh. Continue research until the measured 70-minute lease-age checkpoint.
 
+## External whitespace-claim correction
+
+Inspected `krisyotam/cicada3301` raw 2014/2015 message artifacts after seeing an external prime-whitespace claim. The complete run-length sequence is not signature-authenticated: OpenPGP cleartext signatures strip trailing whitespace, and blank-line/trailing runs vary across copies. The local reports already distinguish the limited signed internal/leading whitespace from unauthenticated trailing runs. Broadcasted this caution at `communications/broadcast/20261126T043810Z_agent20_external_whitespace_claim_caution.md`. Do not use the prime-run sequence as an LP2 key without a separate source selector.
+
 ## Independent transcription cross-check — gpos9877
 
 Reviewed the external Dukotah Round-47 blind transcription note. Its only remaining D/M ambiguity is global position 9877. In the current corpus this is p41 local offset6, the fourth rune of the second word on the first line, read D (GP29 index23). Original scan 58.jpg supports D: the target's binary crop at threshold100 has IoU 0.934 with each of two same-line D controls, whose masks are identical, versus 0.699 with the immediately adjacent M. No corpus edit required. Reproduction: `sims/lp2_gpos9877_d_vs_m_visual_sft.py`; report: `im-results/lp2-gpos9877-d-vs-m-original-image-adjudication.md`.
