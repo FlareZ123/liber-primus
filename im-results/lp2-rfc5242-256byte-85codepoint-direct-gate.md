@@ -38,3 +38,17 @@ The reproducer is `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`. It tests row-
 ## Decision
 
 Keep the RFC/base-60 coordinate observation as a low-confidence lead for Director review. Do not launch broad RFC mining or arbitrary table permutations from it. A worthwhile successor requires independent evidence that the four RFC identifiers are intentional and a specific, source-selected operation that consumes their contents or the numeric panel.
+
+
+## External RFC references
+
+The identifier reading points to these documents, but their relevance to LP2 remains unproved:
+
+- [RFC 133 — File Transfer and Error Recovery](https://www.rfc-editor.org/rfc/rfc133)
+- [RFC 331 — IMP System Change Notification](https://www.rfc-editor.org/rfc/rfc331)
+- [RFC 1033 — Domain Administrators Operations Guide](https://www.rfc-editor.org/rfc/rfc1033)
+- [RFC 3301 — Layer Two Tunnelling Protocol (L2TP): ATM Access Network Extensions](https://www.rfc-editor.org/rfc/rfc3301)
+- [RFC 5242 — A Generalized Unified Character Code: Western European and CJK Sections](https://www.rfc-editor.org/rfc/rfc5242)
+- [RFC 5243 — OSPF Database Exchange Summary List Optimization](https://www.rfc-editor.org/rfc/rfc5243)
+
+The first four titles span file transfer, IMP notification, DNS administration, and L2TP; the 5242/5243 documents concern character encoding and OSPF. This thematic overlap is insufficient to establish a common operation or a route to plaintext.
