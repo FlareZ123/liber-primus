@@ -1,6 +1,6 @@
 # Opening red13 as a mapped repeating key: exact structural and blind-calibrated inverse gates
 
-**Decision.** The original opening red13 cannot be the positive-sign key of a continuously consumed F-fixed common-cycle cipher, for *any* GP29 alphabet permutation and any initial phase. The negative-sign model is structurally possible but its global inverse cannot satisfy four mandatory original p0 lexical anchors simultaneously in the broad frozen register below. There is no recovered unknown plaintext or historical key. The negative-sign result is conditional on all four anchor words being in-register; do not claim a three-OOV exclusion for the entire family.
+**Decision.** The original opening red13 cannot be the positive-sign key of a continuously consumed F-fixed common-cycle cipher, for *any* GP29 alphabet permutation and any initial phase. The negative-sign model is structurally possible but its global inverse cannot satisfy four mandatory original p0 lexical anchors simultaneously in the broad frozen register below. There is no recovered unknown plaintext or historical key. The negative-sign result now requires at least two out-of-register words among the five selected anchors (all five four-subsets excluded); do not claim a three-OOV exclusion for the entire family.
 
 ## Hypothesis and original receiver
 
@@ -52,8 +52,24 @@ Two separately seeded hidden-permutation controls use the same physical lengths 
 
 Original depth tries/survivors in ascending-domain order (11,53,10,3): 177/177, 44,250/2,059, 716,532/160, 477,760/0. 0.33s in local optimized C++. All four anchors are jointly inconsistent even before testing the other p0 words; no key is available for the original holdout. Both plants passed before original full join. No candidate is promoted to plaintext.
 
+## Five-anchor OOV strengthening and exact MRV enumeration
+
+Add body group 29 (offset 122, length 6, 4,674 local word/phase candidates). The five four-subsets of {3,10,11,29,53} have all been independently exhausted with zero normalized maps and no timeout/cap in the completed runs:
+
+| Mandatory subset | Algebraic leaves | Free assignments tested |
+|---|---:|---:|
+| 3,10,11,53 | 0 | 0 |
+| 3,10,11,29 | 0 | 0 |
+| 3,11,29,53 | 0 | 0 |
+| 3,10,29,53 | 4,044 | 57,539,972 |
+| 10,11,29,53 | 111 | 121,886,856 |
+
+The last subset required raising the original per-leaf assignment cap to 20 million; a capped earlier attempt is not counted. If at most one of the five words were OOV, at least one of these four-subsets would have to be feasible. Therefore any surviving map and legal phase path has **at least two OOV words among these five**. This does not require the remaining 51 training words to be in-register.
+
+The [MRV enumerator](../sims/lp2_p0_mapped_red13_anchor_join_mrv.cpp) substitutes the scalar gauge into the coordinate forms and uses pairwise affine disequalities. Each relation with one unassigned coordinate removes its unique forbidden field value. Choose the remaining variable with fewest legal values and backtrack exactly. On plant 1033 it recovers the same 24 maps and unique fit with 65 recursive nodes; on original subset 10,11,29,53 it exhausts 201 recursive nodes instead of 121,886,856 complete free assignments. These counters measure different operations, not wall-clock speedup. The original complete free-assignment counts above remain reproducible with the original enumerator and configurable subset/cap. MRV executable takes dictionary, ciphertext, local-domain TSV, seconds, comma-separated four-anchor indices. No further OOV budget conclusion follows merely from incomplete searches.
+
 ## Research decision
 
-Retire this exact positive-sign continuous source-key law. Retire the negative-sign all-four-in-register specialization; a genuinely OOV anchor, altered segmentation, different reset schedule or different source operand is outside that result. No new authentic clue supports those rescues. The shared-matching relaxation can be reused on other mapped-key hypotheses without sweeping arbitrary alphabets. An OOV-aware multi-anchor extension must explicitly account for omitted anchors and should not repeat the completed four-anchor inverse.
+Retire this exact positive-sign continuous source-key law. Retire the negative-sign specialization with at most one OOV among the five anchors; two or more OOV anchors, altered segmentation, different reset schedule or different source operand are outside that result. No new authentic clue supports those rescues. The shared-matching relaxation can be reused on other mapped-key hypotheses without sweeping arbitrary alphabets. An OOV-aware multi-anchor extension must explicitly account for omitted anchors and should not repeat the completed four-anchor inverse.
 
 Reproduction: [Python SFT](../sims/lp2_p0_mapped_red13_sft.py), [exact local domain builder](../sims/lp2_p0_mapped_red13_domains.cpp), [global anchor join](../sims/lp2_p0_mapped_red13_anchor_join.cpp). The two C++ kernels and the matching MILP were executed locally; the combined orchestration's input generation was checked against those exact runs. Linux g++/Python 3.13, not a claimed Windows CI execution. The scope and dictionary are recorded so the result can be independently reproduced, not as an authorial cipher identification.
