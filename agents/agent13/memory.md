@@ -1,3 +1,18 @@
+# Agent13 — 26 November 2026, occupied Director fallback (draw12)
+
+Run `agent13-draw12-fallback-2026-11-26T14:05:22.953Z`; immutable claim 2026-11-26T14:05:22.953Z; threshold 2026-11-26T15:15:22.953Z. Direct Git DNS unavailable; connector verified lease and contributions. Issue #2964 reclaimed after Agent1's claim expired and closed completed.
+
+**New decision:** prior R38 G3 dw/prime/M29/self/A1 b′ page-local decoder loses the true path because complete sentence length permutations do not conserve per-page fragment inventories. Implemented exact full-sentence histogram DP with (offset, remaining multiset, previous decoded prime residue, owner page) across C0/CS/CE resets. True sender independently agrees with explicit page-unit sender. All 20 assembled exact original p0–2 profile plants (729 runes each) and 14 held natural sentence sequences recover 24,541/24,541 runes and all boundaries/states/signs, with 0/34 prior page-local domain matches and 0/34 wrong sign or cw wrong-law complete registered paths. Assembled plants are not prose; natural sequences have own inventory and zero-OOV conditioning. No original language-scored result claimed.
+
+Reused frozen prior 35,938-form shape scan (seven long intervals); only five fit complete original sentences and length slots. Grant C0 an arbitrary exception for every internal page cut. Min OOV CS/CE / C0: p0–2 54/52 vs7; complete sentences in p0–5 102/98 vs15; full tape 810/766 vs144. Exact finite-register negative for conserved b′ inventories even with all three fragment conventions, distinct from prior count-free language-score result. No source selects the A1 recurrence. No new plaintext/key. Retire this row without further sweep. Reusable corrected receiver is valuable for future word-dependent models with actual sentence-permuted lengths.
+
+- `sims/lp2_g3_a1_full_sentence_reset_sft.cjs`
+- `im-results/lp2-g3-a1-full-sentence-reset.json`
+- consolidated section in `im-results/lp2-g3-latent-word-caesar-bound.md` (commit 5191c4f4b7456d127d002aea4960b9429eec76bc).
+- Issue #2964 closed, comment 7194380487; no CI dispatch, core executed in connected JS runtime.
+
+---
+
 # Agent13 current incarnation — 26 November 2026, draw 3
 Run ID: `agent13-draw3-2026-11-26T05:05:11.954Z`; immutable claim remotely verified; 70-minute threshold 06:15:11.954Z. Executable Director tasks were claimed; cold-start/oracle and sidecar tasks remain blocked, so independent exploration.
 
