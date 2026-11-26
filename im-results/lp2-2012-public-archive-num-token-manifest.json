@@ -1,0 +1,53 @@
+{
+  "scope": "Named public 2012-2014 Cicada forum, /x/, /sci/, email-leak, Reddit, Unfiction, and media records",
+  "source_repository": "https://github.com/krisyotam/cicada3301",
+  "scan_runs": [
+    {
+      "workflow": "2012-2014-public-archive-pdf-scan.yml",
+      "run_id": 45862377243,
+      "artifact": "cicada-public-archive-pdf-scan"
+    },
+    {
+      "workflow": "2012-2014-public-archive-media-scan.yml",
+      "run_id": 45863509079,
+      "artifact": "cicada-public-archive-media-scan"
+    }
+  ],
+  "unique_sources_scanned": 34,
+  "sources": [
+    {"source":"papers/_x_ - Paranormal » Thread #13761502.pdf","sha256":"e86806194ab99b7ef70eee9d5acbcf2e1a7795e2f578a780c113e3ec6e33d4e2","bytes":1530882,"pages":31,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #13767100.pdf","sha256":"951cc4c185c998ff6c33ce41eb9d2b5d561038ad694a89414da71d7ed329ffa8","bytes":2394392,"pages":44,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #13767269.pdf","sha256":"c42e0928b1c3694f99dcfc3747c729df68b17502d5811c37a2d03786c154314","bytes":163217,"pages":2,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #13817276.pdf","sha256":"d571e8280407103b4f9b00a439749f524c14d0708742e272fb4381c9935f8f31","bytes":396499,"pages":5,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #13865307.pdf","sha256":"c0d3ee8afd8c0acc61cdc50aab46df3b85e72e61046bc2c5e787fffb47125284","bytes":184574,"pages":2,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #14099148.pdf","sha256":"ca36ab9a9f746e99b73c8e09decaa7d362d16a8daa00b1ac70ad4b0fc04bd65d","bytes":631865,"pages":8,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #14099148 - french group of solvers.pdf","sha256":"968027cd9ea46a5d85c09fa5097864428f22a3fc3c1d3af7e091c41d84ef359f","bytes":616492,"pages":8,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #14120949.pdf","sha256":"142c792cb1ef5b82ca7d44be0bb8e19ed400c25205cdb2702875d6edfec329a9","bytes":976806,"pages":15,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #14547165.pdf","sha256":"ee2ab58a0bce32f33fe1bae0cd4a66ad1cbe0be73236ef8eac95c69199b31681","bytes":1685809,"pages":31,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/_x_ - Paranormal » Thread #18491379.pdf","sha256":"a096f8195b2278d85a5aa65b90ca6f0cd6e473fc56ebd8e21c3eaff9035ac252","bytes":7694966,"pages":114,"candidate_hits":2,"ocr_pages":0},
+    {"source":"papers/sci thread from 2012.pdf","sha256":"ff95d671adb2ab25b884acf5b6b494b2c7ca6ff4f23ca71001a87592f141fbfe","bytes":312580,"pages":3,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/sci board Discussion Thread Archive.pdf","sha256":"7c948102c10126dfe32efe4a08c4f470edf915d7df529f24149858944b7c9da2","bytes":2441965,"pages":41,"candidate_hits":3,"ocr_pages":0},
+    {"source":"papers/sci board Discussion Thread Archive 2.pdf","sha256":"2d2bf3489532d27ee462a383eda18389d9986f78f3c9afaeedfaec1d414ab9e2","bytes":2265308,"pages":37,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/Reddit thread discovering the leaked email with pgp.pdf","sha256":"56f05e88ba6d28badc5dea1bfba6067ead48df7a6bb4029eae70198779ad7098","bytes":310559,"pages":3,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/hacker forum thread about 2013 leaked email with pgp.pdf","sha256":"3a26e30a6159f2f456aeba8fe9ad458ad53ae27af6a5f5ad198b626c4318345b","bytes":234189,"pages":6,"candidate_hits":0,"ocr_pages":0},
+    {"source":"papers/4chan thread from dec-2-13.txt","sha256":"b5dc1593e2960f0718db3318eabb7cd4f46042e18678b89f7387f8bc32472633","bytes":80674,"pages":1,"candidate_hits":2},
+    {"source":"papers/cicada 3301 2013 4chan first b thread.txt","sha256":"42845cf19218b10576f6ea061d506d137113cf7e64e2266353a9e3c215c304eb","bytes":22805,"pages":1,"candidate_hits":0},
+    {"source":"papers/cicada 3301 2013 4chan second b thread.txt","sha256":"34ddc910f8cf3f01312224014d7acfd73d3d5cee098100be2683436fb7634a6c","bytes":29019,"pages":1,"candidate_hits":0},
+    {"source":"papers/cicada 3301 2013  4chan x thread.txt","sha256":"6dcccc8c7e089b372e509224717df297eec8c778771320a5ba10694ceae6b10c","bytes":12509,"pages":1,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/0iKcgK8.png","sha256":"63ca874c590c8bf8e1331ae0c3c4689ef08d2d902d99d2e7f5e4c1e17eb3f100","bytes":11551,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/KaGgU2j.jpg","sha256":"3d1aea040ce1a67e062d3a6017fffac249233e1c889e0dc3e631dacd505cd21f","bytes":109569,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/L2N80rG.jpg","sha256":"8ceadd933be1d70d4c166fc4d66181196a106bc6c2ff6e3eded797f8c997e3c3","bytes":47501,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/aWOcomB.jpg","sha256":"e68493b9ddf0b49cdafe064f279e13fdbaa8ffec35491761ae952eee93f34ad2","bytes":65225,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/cChYewZ.png","sha256":"95fb5bb6c2771b97920d8056cf8f6a4aa5d4368536a3ea26313cd05ca78617c1","bytes":46868,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional files/Winners leak/inVmnbQ.jpg","sha256":"95a20a7a49a9ac8cfe3bf9af7d370c97f4c646a26c3d0a4553fcf1da1705e45a","bytes":824748,"candidate_hits":0},
+    {"source":"archives/cijhho/2013/additional docs/The Leaked Email/screenshot from hacker-forum.png","sha256":"3e241a41d11145e11749c0f1b54c3fa6a2ce41b8a5bcfa9ea29f38aa80817746","bytes":31774,"candidate_hits":1},
+    {"source":"archives/cijhho/2012/2012 - what happend part 1.docx","sha256":"ac2e30ab014a6f849f41285dff2bc90a838ed8dbfb169931cb6467940c676f37","bytes":1374855,"candidate_hits":3,"embedded_images":17},
+    {"source":"archives/cijhho/2012/2012 - what happend part 2.docx","sha256":"b386240f089d78decacb39a470f525ba789cc11ce8b9de3522bfe454baf24baa","bytes":54715,"candidate_hits":2,"embedded_images":1},
+    {"source":"archives/cijhho/2012/MIDI puzzle/The MIDI puzzle and solution.docx","sha256":"7241ad5307d97d34ad4e789186699842f2f440ff32eed5dc5edad587320bcbcb","bytes":21820,"candidate_hits":2,"embedded_images":0},
+    {"source":"archives/cijhho/2012/additional docs/The Leaked Email/The leaked email.docx","sha256":"10100fdcfdbfb63d59056ceddd6c69cba1b85504ea5fcb1dba06f0b419b126d0","bytes":24079,"candidate_hits":0,"embedded_images":0},
+    {"source":"archives/cijhho/2012/additional docs/the outgussed messege.docx","sha256":"ac23bf0379bf340da2c2b1961ce1af409f372f497fdd0d7432d5b68b93ee7255","bytes":38618,"candidate_hits":0,"embedded_images":1},
+    {"source":"archives/cijhho/2012/additional docs/the subreddit/The subreddit.docx","sha256":"8af9de331c479ab73efb09bc6f8a4f9548aeda86c5a2f9794a4264ccef877504","bytes":142630,"candidate_hits":0,"embedded_images":1},
+    {"source":"archives/cijhho/2012/additional docs/scream314 git pages/2012.docx","sha256":"7d8d144e2b33c948f9336605ae05fa60eea581de93926993f8f94fff4dad6292","bytes":1650929,"candidate_hits":7,"embedded_images":13},
+    {"source":"archives/cijhho/2012/additional docs/unverified claims from alleged winners on Unfiction.docx","sha256":"4dd29bc6e81ca780b1a73dbcf5726f789c04a01608936d4ef5f698f052c7448a","bytes":589635,"candidate_hits":0,"embedded_images":18}
+  ]
+}
