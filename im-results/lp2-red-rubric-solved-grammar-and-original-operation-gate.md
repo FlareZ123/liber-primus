@@ -47,4 +47,26 @@ A literal three-role grammar grounded in solved source behavior is:
 
 The grammar independently predicts the title roles of solved p56 **AN END** and p57 **PARABLE**, and it correctly classifies p3/p39 red triplets as short insets without claiming to read them. It **cannot assign an executable opcode, authentic operand, key reset rule and black-text receiver to any complete unsolved chapter**. Source-rune opacity matters: in the only solved encrypted red example, the red title cannot be read until the black-text cipher is already known.
 
-No original-input decryption is licensed, hence no adjustable parameter sweep or invented 150-rune plaintext trial is run. This closes #2423 at the missing-typed-operation gate. A successor should be triggered only by an authenticated *reader instruction* specifying an actual operation or by genuinely recovered red plaintext under an independently established cipher; another red13 permutation or red-word anagram is not such evidence.
+The original #2423 decision remains: a new executable operation requires an authenticated reader instruction or independently recovered red plaintext. The following #2927 result tests the separate semantic-crib possibility without assuming an opcode.
+## Exact semantic title-to-body constraints: Director #2927
+
+The solved-title corpus now permits a direct lexical test, independent of cipher selection. The [executable SFT](../sims/lp2_solved_title_body_exact_grammar_sft.cjs) and [executed JSON output](lp2-solved-title-body-exact-grammar-output.json) use the nine GP-native solved transcription records, explicitly enumerate their 19 semantic rubrics, and preserve native spellings (including WIDSOM in the reference). Subheadings delimit local bodies; the ADHERENCE body includes the subsequent synthesis before SOME WISDOM. Numeric cells and the p56 hexadecimal digest are not GP words. Original JPEGs 01,03–16,32,39,66–70,73–74 were visually compared for layout; this is a retrospective fixed-rule split, not a blinded experiment with human subjects.
+
+| Exact word-token rule | Earlier LP1 records (8 rubrics) | Later LP1 plus LP2 p56–57 (11 rubrics) |
+|---|---:|---:|
+| Body begins with complete title | 1 | 0 |
+| Complete title occurs in first source sentence/line | 1 | 1 |
+| Complete title occurs anywhere in local body | 1 | 2 |
+| Longest title word occurs in first source sentence/line | 1 | 1 |
+| Longest title word occurs anywhere in local body | 1 | 2 |
+
+The three local body echoes are WELCOME, THE LOSS OF DIVINITY, and ADHERENCE (the last in the summary). This rejects a general exact title-echo crib. Repeated title classes give more specific positive semantic controls:
+
+- **A KOAN**: the first narrative sentence contains native MASTER (six runes) in both koans. It is word 10 (the only six-rune slot) in the first and word 5 (one of two six-rune slots) in the second. Thus a motivated exact word crib can constrain a short receiver if a koan title is independently recovered, but its position is not invariant.
+- **AN INSTRUCTION**: all four semantic occurrences begin an imperative, but their initial words are COMMAND, DO, PROGRAM and CWESTIAN. Their first-sentence token intersection is empty. This gives a genre prior, not a fixed plaintext word.
+- **KNOW THIS**: both examples introduce an exact 5×5 printed square (one mixed text/number, the other numeric). This is a genuine visible operand-type prediction on the second occurrence, not evidence that every later table uses that heading. LP2 p15 has a 4×4 graphic preceded by nine red runes, while p49's table follows black prose and a red ten-dot mark. Neither supplies an exact seven-rune KNOW THIS rubric.
+- **SOME WISDOM**: the first sentences have no shared exact word.
+
+The unknown-cipher eligibility test masks rune identities and compares the exact word-length tuples of all 16 red spans with all 19 solved rubrics (14 unique title texts). **Zero matches.** Even discarding all word divisions, only eight unknown spans match a known title length: p3@0, p6@71, p8@0, p15@0, p15@9, p23@0, p33@0 and p54@0. None matches the independently stronger A KOAN (5) or KNOW THIS (7) total rune length. In particular the p22 mirrored-koan illustration cannot independently fix a complete A KOAN crib in the red rubrics of its p15–22 chapter. The first-run output records all exact tuples and relaxed candidates; no key fitting was conducted. This generalizes the earlier single-title AN INSTRUCTION eligibility result (#2502), rather than repeating its cipher tests.
+
+**Decision:** the finite direct title-reuse receiver has no complete source-selected unknown rubric. The strongest transferable control is a semantic operand class, not a general exact title/body plaintext grammar. Keep the MASTER and 5×5 table predictions only for a future independently decoded or source-selected title. No unknown plaintext, key or cipher mechanism follows. Reopen only if a new source fixes a complete title spelling and a body prediction before ciphertext fitting.
