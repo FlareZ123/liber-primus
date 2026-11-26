@@ -1,5 +1,7 @@
 # p0 55×13 page-key matrix: per-page circulant Hill gate
 
+**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent page orientation, without a language model. The page-row assignment and singular p50 alignment remain conditional structural observations.
+
 ## Question
 
 Can the 715-symbol opening payload be read as 55 per-page 13-symbol keys, with each row defining a 13×13 circulant Hill matrix for the corresponding LP2 page?
@@ -152,3 +154,31 @@ Original winner: phase6, right-shift orientation (sign -1), CBC, lambda2, b=[3,2
 The 8 Gibran and 33 Shakespeare contiguous full-layout reference windows (stride6,400 GP runes) preserve actual page lengths and omit precisely the same phase-specific IV/fringe positions. Exact source maxima and finite native comparisons strongly reject the entire named shared phase-bijection family for these ordinary GP29 registers. This is not a universal language theorem and does not cover arbitrary page-private phase tables, changing feedback clocks, non-GP registers, or state-dependent nonlinear modes. Both genuine literary hidden-key plants recover the full receiver and all 13 offsets from fit alone; all held symbols replay exactly. The synthetic controls do not establish historical use.
 
 **Decision:** retire these CBC/CFB consumers of the fixed 55x13 row mapping. The p50 rank exception remains an arithmetic observation with no authenticated consumer or plaintext; do not keep searching these feedback scalars or offsets. Source model/controls, raw candidate outputs, and exact runnable CommonJS test: [SFT](../sims/agent38_p0_page_circulant_chained_inverse_sft.cjs), [results](./agent38-p0-page-circulant-chained-inverse.json). Executed directly in connected V8 twice (second run required after a concurrent GitHub write conflict); no CI or standalone Node run claimed.
+
+## Word-local cyclic convolution: exact shared-output-alphabet obstruction (Agent 31)
+
+The fixed p1–55 row assignment and p50's sole zero-sum row motivate a different recipient from the prior 13-block and whole-page circulants: each complete printed group of length L is a polynomial in GF(29)[x]/(x^L−1), and the page's original 13 coefficients act by cyclic convolution. This grants arbitrary group-local cyclic rotations and scalar offsets; because the page rows for rune-bearing pages have nonzero sums, the constant vector lies in every matrix image. Neither a printed group being a plaintext word nor the keybook mapping is authenticated. The test does not assume any English vocabulary, word order or plaintext register: it permits arbitrary vectors in GF(29)^L.
+
+For each contained original group, let M be the exact L×L circulant made by reducing the page row modulo x^L−1. The broader hypothesis is
+
+    pi(C) = a * rotate(M X) + b * 1
+
+where pi is any one shared permutation of all 29 output symbols, X is any vector (even a secret input relabeling or additional arbitrary preceding operation), a is any nonzero field element and b and rotation are arbitrary per group. Every z in the left nullspace of M must satisfy z·pi(C)=0; a cyclic shift does not change the image and the constant vector is already in the image. Collect each equation by observed ciphertext symbol, giving a homogeneous linear system on the 29 values of pi. The constant function always satisfies it; rank 28 forces *every* function to be constant, excluding every permutation, without using a plaintext model. Additional arbitrary circulant factors cannot enlarge the image.
+
+Input: canonical p0–2 (729 runes; first black TH removed), 55 rows of 13, exact p3–55 contained groups only. The canonical parser gives 2,896 groups/12,956 unknown runes in the entire book and the input receiver comprises 2,708 groups/12,029 runes; all cross-page groups are omitted rather than assigned a guessed key. The two directions use M[i,j] = sum of row[t] for j=i±t mod L. No original plaintext, key or extra sidecar is fitted.
+
+| Receiver | Original singular groups | Original image failures with identity pi | Equations, p3–39 | Rank, p3–39 | Native planted rank (fit) |
+|---|---:|---:|---:|---:|---:|
+| Negative direction | 55 | 54 | 55 | 28 | 27 |
+| Positive direction | 55 | 54 | 55 | 28 | 27 |
+
+There are 58 equations per fixed direction on the full receiver. For example the p7 group ordinal 381 (zero-based), C=[25,5,27,4,27,20,23], has left-null witness z=[22,10,14,26,14,1,0] for the negative direction; z·C=1 mod29. The positive-direction witness [4,27,17,27,11,1,0] gives 17. The shared unknown pi is excluded by the full rank certificate, not by those individual identity-alphabet examples.
+
+**Independent page orientations:** all 1,024 assignments of the two signs to the ten singular-bearing fit pages yield rank 28; all 4,096 assignments across twelve singular-bearing pages likewise yield rank 28. The other page directions do not enter a necessary image equation. Thus no shared alphabet can rescue this word-local convolution even with a freely chosen direction on each page. If directions are allowed to change separately within each group, the intersection of the two left nullspaces is zero on every group, so this particular orientation-independent linear relaxation provides no obstruction. The disjunctive arbitrary-per-group direction problem was not searched.
+
+**Controls:** for each fixed direction, all 55 singular source-shaped groups are planted using same-length GP29 words from the pinned solved-page register, independent seeded arbitrary output permutations, deterministic per-group rotations and offsets. Each original-shape control produces rank 27 from the fit alone; the only ambiguity is the unavoidable affine coordinate gauge. Normalize the first two alphabet coordinates to 0 and 1: both controls recover all 29 true normalized coordinates and satisfy all three untouched held equations. These are image/alphabet-identification controls, not full plaintext-recovery controls: singular convolution itself loses dimensions and would need real restoration information. They demonstrate the rank test does not exclude a true planted alphabet. The fit/held page ranges are familiar manuscript ranges, not new unseen data.
+
+**Decision:** retire this exact word-local cyclic receiver, including arbitrary shared output alphabet, arbitrary input vectors, per-group nonzero scaling/offsets/rotations and page-private sign. It cannot be an encoding of original contained groups at all under the fixed opening rows. This is distinct from arbitrary word-level Hill matrices, previous page-wide polynomial inverse, changing per-group orientation, decoy segmentation, page-private alphabets, or externally restored state. No new plaintext or authentic key; the row50 coincidence remains unexplained. Do not expand the row family without an independent operation selector.
+
+Reproducer: [CommonJS SFT](../sims/agent31_lp2_page_row_word_circulant_sft.cjs); [full rank bases and orientation certificates](agent31-lp2-page-row-word-circulant.json). Executed against pinned repository inputs in connected V8, including the final pagewise extension; standalone Node/CI not run.
+
