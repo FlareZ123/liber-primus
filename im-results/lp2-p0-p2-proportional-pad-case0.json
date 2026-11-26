@@ -1,0 +1,87 @@
+{
+  "caseIdx": 0,
+  "pair": [
+    0,
+    1
+  ],
+  "direction": "FR",
+  "execution": "connected V8, full-family original and all six control families; compact captured result (not full witness)",
+  "pins": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "f7b534a33edeb212d427329798438325307463d7",
+    "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "df260a07d56bf5998d40a6360b6132c35c252d10"
+  ],
+  "elapsedMs": 81143,
+  "original": {
+    "scores": [
+      16,
+      17,
+      18,
+      15,
+      16,
+      15,
+      17,
+      16,
+      18,
+      14,
+      16,
+      16,
+      16,
+      14,
+      15,
+      14,
+      16,
+      14,
+      15,
+      16,
+      17,
+      16,
+      16,
+      16,
+      17,
+      14,
+      16,
+      14
+    ],
+    "ratios": [
+      10,
+      14,
+      16,
+      18,
+      26,
+      28
+    ],
+    "minOov": 14,
+    "reflection": 14
+  },
+  "controls": [
+    {
+      "ratio": 28,
+      "positive": 1,
+      "identified": [
+        28
+      ],
+      "independent": 13,
+      "truth": 1
+    },
+    {
+      "ratio": 2,
+      "positive": 5,
+      "identified": [
+        2
+      ],
+      "independent": 12,
+      "truth": 7
+    },
+    {
+      "ratio": 13,
+      "positive": 2,
+      "identified": [
+        13
+      ],
+      "independent": 12,
+      "truth": 2
+    }
+  ]
+}

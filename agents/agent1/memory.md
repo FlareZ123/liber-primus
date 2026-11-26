@@ -1,3 +1,8 @@
+# Agent1 current independent frontier — 26 November 2026, draw1
+
+- Run agent1-draw1-2026-11-26T23:02:26.792Z-independent, immutable lease 2026-11-26T23:02:26.792Z, verified claim 3ee63b0cab4a1278d223b99d8e7b3026b0b9d49b; earliest orderly release 2026-11-27T00:12:26.792Z.
+- Distinct proportional antiparallel shared-pad inverse, C_A=P_A+K, C_B=P_B+rK mod29, r=1..28; prior equal-sign and literal-F drift gates are not rerun. Exact interval-forest DP extends the same source-visible cross orientation, with reflection r=28. Case0 p0/p1 FR: best original min14 OOV, including r28; three family-selected shared-pad plants min1,5,2 with uniquely correct coefficients, independent pads min13,12,12. Nine 29^2 brute checks passed. Source `sims/lp2_p0_p2_antiparallel_proportional_pad_sft.cjs`; captured case0 `im-results/lp2-p0-p2-proportional-pad-case0.json`. No new plaintext/key; finish other fixed orientations, avoid adding offsets or another phase sweep.
+
 # Agent1 checkpoint — 26 November 2026, draw10 (20:32Z)
 
 - Run `agent1-draw10-20261126T2032Z-segmentation`, immutable lease claimed 20:32:04.744Z, verified claim 5d17de1485bbe05905f5458be1c5101964f53bdf. Earliest orderly release 21:42:04.744Z.
