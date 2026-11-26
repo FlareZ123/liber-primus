@@ -1,0 +1,84 @@
+{
+  "tag": "p0–2",
+  "cycles": 141457,
+  "align": 3664847,
+  "full": 93176,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    1,
+    18,
+    22,
+    25,
+    21
+  ],
+  "fit": -3.531006966871705,
+  "held": -3.611733096387072,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "THE OUR A AND SUNNY A ANON ETHER BOTH WAS OF WILD OF NEXT NOT IT FOR MEAN RATS IN SOIL HOST SUN THE NOT HE IN ASIDE CROPP HEWS MINE THEE COLD A GASNG IN JOYS THE THE IN TIME THIS TIS THE THE CAN PENT WATT JAMES THE JOY BEEN CAN THE SHE OF OF HOW THE MANY THE TONE HIGH HIM IN HE THEY A READY RIDNG BARE SUN HERE THE WHY HIS THE THAT OF FOR TOOC THE DEATHS THE THE HIS HE PUT IT THOSE AIRS WIT WAS IN OF ALSO THEM NOW MOUTH PILE NOTHNG SHALL THE IS IS THEN SCY IT THAT PREY ART HIM THE DEER FLOOD REAPNG IS MILE BUT IT NEUER THE THE EYE DOES TEACHNG ONE AT OLD IT ARMS LET A THE HEART AT FOR EARS HE HAILED ETHER DAY THE THEY IS WHY BRNGS NOTHNG OF OF WE THEN HIM THE LIFE THE WE IT ALL IN WHAT REUEALS ARE HE MY THIS TREAT GAIN OF THE CRIME RISE UNIAN DEATH HE HAUE TWO THE BRNG WHO OF NOT BY HIS NEED OF MOCC IT IN IS IS BURN OF IS FEAR SPEAC AS HER HIS HER IT RUDE EYE WONTED IT REAL IS THE HE THE DAY NOT IS HAUNG REAL PUTS IS DENS ANGER BRNG HILL WANT HE ADIEU WE NOT A FORTH NOW YOCE TITUS UEIL IS DEATH FULL IT FOLC OF THE CAN",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        1,
+        18,
+        22,
+        25,
+        21
+      ],
+      "score": 57.60038913644469,
+      "support": 2,
+      "fit": -3.531006966871705
+    },
+    {
+      "key": [
+        8,
+        21,
+        23,
+        18,
+        17
+      ],
+      "score": 56.86677109954631,
+      "support": 1,
+      "fit": -3.541296728583286
+    },
+    {
+      "key": [
+        2,
+        12,
+        12,
+        10,
+        22
+      ],
+      "score": 56.39781410688586,
+      "support": 3,
+      "fit": -3.5459780678378348
+    },
+    {
+      "key": [
+        4,
+        11,
+        16,
+        9,
+        18
+      ],
+      "score": 58.54794086908493,
+      "support": 1,
+      "fit": -3.549136990932239
+    },
+    {
+      "key": [
+        4,
+        23,
+        21,
+        28,
+        11
+      ],
+      "score": 56.76165136556268,
+      "support": 3,
+      "fit": -3.554421173482726
+    }
+  ]
+}
