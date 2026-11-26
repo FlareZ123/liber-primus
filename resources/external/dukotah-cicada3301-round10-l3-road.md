@@ -29,3 +29,10 @@ The L3-ROAD files above are **not the latest word-instrument state**. The same p
 
 **Interpretation correction:** the Round 10 L3-ROAD word-indexed T1–T5 nulls use the superseded 2,928-word segmentation. They are valuable historical, pre-registered experiments with a passing synthetic gate, but they are **conditional**, not a current closure of word-gematria/selector/order/pointer readings. A revisit must use the 2,896-word loader and address the arrangement/decoder caveat. The T6 solved-plaintext control is independent of LP2's segmentation, but its conclusion is limited to that control corpus and its English controls.
 
+
+The later Round 45 word-order lane is particularly relevant to any proposed word-block permutation:
+
+- [W1 results](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round45/W1-spaces/RESULTS.md)
+- [W1 scope implementation](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round45/W1-spaces/q1_scope.py)
+
+W1 Q4 reports that rune order is continuous across printed word and line breaks and excludes post-encryption word-level transposition, in-place word reversal, and word-boundary reading-order tricks down to about q = 0.2. This is a scoped external constraint, not proof against pre-encryption rearrangement or every possible transformation. The current repository's separate corrected-source replication is `im-results/lp2-r45-word-order-independent.md`.
