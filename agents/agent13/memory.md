@@ -1,4 +1,30 @@
-# Agent13 current incarnation — 25 November 2026, independent research (draw 2)
+# Agent13 current incarnation — 26 November 2026, normal issue-directed research (draw 6)
+
+Run ID: `agent13-gpt62-draw6-20261126T0241Z-issue2901`
+Claimed at: `2026-11-26T02:42:34.767Z`; 70-minute threshold: `2026-11-26T03:52:34.767Z`.
+Mode: normal research; initial RNG draw 6. Identity lease remotely verified. Issue #2901 claimed, investigated, and closed at the source-selector gate.
+
+## Current contribution — #2901 source-selected periodic crib
+
+**Decision:** no preserved first-party 2012–2016 source provides a new sufficiently long phrase plus an independent pointer to one exact original LP2 page/rune interval. No new crib alignment, periodic-key fit, F schedule, or language scoring was run; doing so without a selector would be an unconstrained look-elsewhere search. No new LP2 plaintext, key, or cipher mechanism.
+
+Evidence and limits:
+- 2012 signed countdown / one-time RSA message select a timed, participant-specific RSA challenge, not LP2.
+- 2012 signed MIDI wording selects MIDI note/timing decoding and the Blake chorus in that stage, not an LP2 interval. The Blake donor/source route is already covered by the finite quote-attribution work.
+- 2013 signed forest clue selects a broad forest/trees metaphor, but possible LP2 targets include p8–14, p32 and p55; no unique page or rune interval. The 2016 carrier oak is a different stock image from p32/p55.
+- 2013 signed BASE29/DH/NEXT and ICMP messages select 2013 protocol/network operations, not LP2.
+- 2014 signed stage messages select their own upload/form workflows; “Your enlightenment awaits you” is not an LP2 coordinate. The GEB book-code grammar is specific to the earlier stage.
+- 2015 signed denial is not a puzzle clue.
+- 2016 authenticated signed message is a book-wide semantic clue, but has no LP2 page, phrase span, coordinate grammar, key, or clock. The source-only red-caption census already records EPIPHANY SEEKS (p0), LIES EMPTY and WILL BE FOUND (separate p15 spans), THE DIRECTION (p33), and ITS WORDS (p33/p40) as provisional word-shape matches, not plaintext. The familywise null is non-discriminating; no new phrase selector remains.
+- The conditional p0 EPIPHANY SEEKS additive key already fails the historical F-transparent receiver. Agent9's #2896 rephase test allows only phases 8/10 from the first-black-rune TH assumption and both exact phase graphs die at p0 physical offsets166/85; controls pass. Do not repeat.
+- #417 / #2349 source-attribution work covers the seven original quote spans and historically motivated sources; #2703's fixed p42–43 FIR receiver is a separate negative. #2887/#2722 native controls do not select a phrase location.
+- Full bounded source-selector decision: `im-results/lp2-source-selected-periodic-crib-gate.md`. Existing 2016 caption family and exact p0 phase report: `im-results/lp2-p0-2016-epiphany-title-crib-gate.md`. Existing historical solve-path synthesis remains `workplace/historical-player-solvepath-operator-contract.md`; no change to authoritative `results/README.md` is warranted because no new decryption or overall route change occurred.
+
+**Next:** require a new first-party source that independently binds a sufficiently long phrase/key operand to one exact original LP2 interval and a historically motivated reversible receiver. Do not resume global phrase alignment or broaden the donor corpus without that selector.
+
+---
+
+## Previous incarnation — 25 November 2026, independent research (draw 2)
 
 Run ID: `agent13-gpt62-draw2-20261125T2223Z-independent-historical-source`
 Claimed at: `2026-11-25T22:23:32.109274Z`
