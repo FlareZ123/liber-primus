@@ -2,9 +2,8 @@
 
 /**
  * Frozen original-input test of the base59 table's 95 leaves matching the 95
- * original p57 clear runes. Predict all 161 internal labels by GF29 child-sum,
- * preserving source row-major node order, then test the final 85 positions
- * against authenticated p56 solved plaintext and original ciphertext.
+ * original p57 clear runes. Test both source-row-major and source-cued postorder
+ * DFS child-sum receivers against authenticated p56 solved plaintext/ciphertext.
  *
  * Conditional source model; a failure is NOT a general graph-cipher exclusion.
  *
@@ -176,6 +175,104 @@ const matchingCipherOffsets = predictedP56.flatMap((x, i) =>
 assert.deepEqual(matchingPlainOffsets, [39, 43]);
 assert.deepEqual(matchingCipherOffsets, [46, 69]);
 
+// Source-cued alternative order: leaves-to-root postorder DFS. Children are
+// already in ascending source address because the parent table was traversed
+// from address 0 to 255 above. This is the natural bottom-up reading of the
+// distinct tree drawings on p32/p55; no phase, child order or alphabet is fit.
+const postorderNodes = [];
+/** @param {number} node */
+function walkPostorder(node) {
+  for (const child of children[node]) walkPostorder(child);
+  postorderNodes.push(node);
+}
+walkPostorder(root);
+assert.equal(postorderNodes.length, n);
+const postorderLeaves = postorderNodes.filter((node) => children[node].length === 0);
+const postorderInternals = postorderNodes.filter((node) => children[node].length > 0);
+assert.equal(postorderLeaves.length, 95);
+assert.equal(postorderInternals.length, 161);
+
+const postorderValues = Array(n).fill(-1);
+for (let i = 0; i < postorderLeaves.length; i++) {
+  postorderValues[postorderLeaves[i]] = corpus.pages[57].indices[i];
+}
+const postorderActive = new Set();
+/** @param {number} node @returns {number} */
+function postorderLabel(node) {
+  if (postorderValues[node] >= 0) return postorderValues[node];
+  assert.ok(!postorderActive.has(node), 'postorder graph cycle');
+  postorderActive.add(node);
+  postorderValues[node] = children[node].reduce(
+    (sum, child) => mod29(sum + postorderLabel(child)), 0);
+  postorderActive.delete(node);
+  return postorderValues[node];
+}
+for (const node of postorderInternals) postorderLabel(node);
+const postorderInternalLabels = postorderInternals.map((node) => postorderValues[node]);
+const postorderP56 = postorderInternalLabels.slice(76);
+const postorderPlainOffsets = postorderP56.flatMap((x, i) =>
+  x === authenticP56[i] ? [i] : []);
+const postorderCipherOffsets = postorderP56.flatMap((x, i) =>
+  x === originalP56Cipher[i] ? [i] : []);
+assert.deepEqual(postorderPlainOffsets, [45, 57, 68]);
+assert.deepEqual(postorderCipherOffsets, [2, 12, 24, 25, 33, 65]);
+
+/** @param {readonly number[]} a @param {readonly number[]} b @returns {number} */
+function positionalMatches(a, b) {
+  return a.reduce((sum, value, i) => sum + (value === b[i] ? 1 : 0), 0);
+}
+/** @param {readonly number[]} a @param {readonly number[]} b @returns {number} */
+function expectedPositionalMatches(a, b) {
+  const ca = histogram(a), cb = histogram(b);
+  return ca.reduce((sum, count, symbol) => sum + count * cb[symbol] / a.length, 0);
+}
+/** @param {number} seed @returns {() => number} */
+function xorshift32(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 0x100000000;
+  };
+}
+/** @param {readonly number[]} a @param {readonly number[]} b @param {number} observed @param {number} seed */
+function permutationSummary(a, b, observed, seed) {
+  const random = xorshift32(seed);
+  const shuffled = b.slice();
+  const iterations = 100000;
+  let greaterOrEqual = 0, sum = 0, sumSquares = 0;
+  for (let trial = 0; trial < iterations; trial++) {
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const matches = positionalMatches(a, shuffled);
+    sum += matches;
+    sumSquares += matches * matches;
+    if (matches >= observed) greaterOrEqual++;
+  }
+  const mean = sum / iterations;
+  return {
+    iterations, seed: '0x' + seed.toString(16),
+    meanMatches: mean,
+    sdMatches: Math.sqrt(sumSquares / iterations - mean * mean),
+    pAtLeastObserved: (greaterOrEqual + 1) / (iterations + 1),
+  };
+}
+const postorderPlainExpected = expectedPositionalMatches(postorderP56, authenticP56);
+const postorderCipherExpected = expectedPositionalMatches(postorderP56, originalP56Cipher);
+const postorderPlainNull = permutationSummary(
+  postorderP56, authenticP56, postorderPlainOffsets.length, 0x44a44);
+const postorderCipherNull = permutationSummary(
+  postorderP56, originalP56Cipher, postorderCipherOffsets.length, 0x44a45);
+assert.ok(Math.abs(postorderPlainExpected - 4.117647058823529) < 1e-12);
+assert.ok(Math.abs(postorderCipherExpected - 2.894117647058824) < 1e-12);
+assert.ok(Math.abs(postorderPlainNull.pAtLeastObserved - 0.8002219977800222) < 1e-12);
+assert.ok(Math.abs(postorderCipherNull.pAtLeastObserved - 0.06827931720682794) < 1e-12);
+assert.ok(postorderPlainNull.pAtLeastObserved > 0.05);
+assert.ok(postorderCipherNull.pAtLeastObserved > 0.05);
+
 // Stronger *keyless all-internal-permutations* necessary condition:
 // any 85-position p56 plaintext subset of the 161 derived inner labels must
 // have per-rune multiplicities no larger than the whole 161-label inventory.
@@ -224,5 +321,23 @@ console.log(JSON.stringify({
   globalBijectiveAlphabetWithClearP57Fixed: 'excluded by the S/E/A/Y deficit; internal-only relabeling untested',
   exactPositive: 'original p56 authentic prime-totient + plaintext-F bypass 85/85',
   firstPredictedP55Symbols: predictedP55.slice(0, 20).map((i) => corpus.translit[i]).join(''),
+  postorderDfsControl: {
+    root, childOrder: 'ascending original source address',
+    leafAssignment: 'clear p57 GP29 symbols in leaves-to-root postorder encounter order',
+    internalOperation: 'recursive sum of immediate child GP29 symbols modulo29',
+    internalReadout: 'postorder internal nodes: first76 p55, last85 p56',
+    p56PlainMatchOffsets: postorderPlainOffsets,
+    p56CipherMatchOffsets: postorderCipherOffsets,
+    expectedPlainMatches: postorderPlainExpected,
+    expectedCipherMatches: postorderCipherExpected,
+    plainPermutationNull: postorderPlainNull,
+    cipherPermutationNull: postorderCipherNull,
+    predictedP56IC: (() => {
+      const h = histogram(postorderP56);
+      const pairs = h.reduce((sum, count) => sum + count * (count - 1) / 2, 0);
+      return pairs / (85 * 84 / 2);
+    })(),
+    decision: 'No plaintext recovery; the natural postorder receiver is at chance against authentic p56 plaintext.',
+  },
   decision: 'This fixed leaf-to-internal GF29 child-sum receiver fails independently known original p56, even allowing arbitrary interior position permutation without symbol remapping. Other tree rules or bijective output alphabets remain open.',
 }, null, 2));
