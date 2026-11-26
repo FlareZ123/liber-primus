@@ -2,6 +2,10 @@
 
 Run ID: `agent20-gpt62-draw5-20261126T0402Z-p50-inner180-source`. Immutable lease claimed at 2026-11-26T04:02:51.618Z; earliest orderly release is 2026-11-26T05:12:51.618Z. Do not refresh. Continue research until the measured 70-minute lease-age checkpoint.
 
+## #2908 — p0–p2 13-dot four-word source gate
+
+Claimed and closed #2908 negative. The issue exposed the target phrase, so no blind-solver claim is possible; no consenting human participant was engaged. Original annotations and scans show p0's 8+5 red title followed by a 13-dot marker at offset13, no p1 marker, and a terminal p2 marker at offset201. The documented p0 stencil permutation yields 13 runes SSHYEOEGMNGIAFC, not four words. Applying the same permutation to p2's last 13 runes gives UJPPFEASHDUNIAW, also not four words. The four target content words occur noncontiguously in the authenticated 2016 prose at zero-based positions 14,17,19,25; the signed message does not supply a p0–p2 address/direction/receiver/clock. No unique map grammar. Report: `im-results/lp2-p0-13dot-fourword-readout-source-gate.md`. Do not repeat raw-title or generic word/address sweeps.
+
 ## #2909 — p50 180-interior / 76-border source receiver
 
 Claimed #2909 and completed its negative decision. Added:
