@@ -48,7 +48,26 @@ Allow `C=P+aK+b mod29` for every nonzero multiplier a and every intercept b, wit
 
 **Zero** anchor nominations across the entire original search. The ordinary anchor has 608 lexical forms; an F-hold mask permits 525 forms when no F inside the word is held or 7 forms when its lone eligible ciphertext zero is held. Two independently hidden affine, arbitrary-order, mixed-edge controls with the exact target word lengths each recover precisely one affine pair and precisely the true long-word form: `(22,2)` UNCOMFORTABLE; `(26,5)` COMPENSATIONS. Every other true word has a local witness under the recovered affine map. This is a constructive affine-parameter nomination on positive controls, not a reconstruction of their global order.
 
-Thus no wholly in-register intact-word decoding exists even after arbitrary global affine remapping of the source pieces. The stronger two-OOV lower bound above applies only to direct signed additive keys; this affine extension by itself forces at least one OOV, specifically the 13-rune group. [SFT](../sims/lp2_p57_reordered_affine_edge_anchor_sft.cjs), [raw](lp2-p57-reordered-affine-edge-anchor-output.json). Numerical core executed in V8; Node wrapper not separately run.
+Thus no wholly in-register intact-word decoding exists even after arbitrary global affine remapping of the source pieces. This anchor alone forces at least one OOV, specifically the 13-rune group. The global completion test below strengthens that to at least two OOVs for every affine map. [SFT](../sims/lp2_p57_reordered_affine_edge_anchor_sft.cjs), [raw](lp2-p57-reordered-affine-edge-anchor-output.json). Numerical core executed in V8; Node wrapper not separately run.
+
+## Exact global completion with the 13-rune group entirely unconstrained (Agent19, 26 November 2026)
+
+Because the thirteen-rune anchor failed for every affine map, allow that entire group to be an arbitrary rune string while requiring the other 15 printed groups in the frozen 36,712-form lexicon. This directly tests whether an unusual single word can rescue the mechanism. The anchor's ciphertext, consumed key pieces, affine mapping and F constraints still participate; only its lexical constraint is removed.
+
+First exhaust all 812 affine maps and all nine clock/mask cases with the independent word witness filter on the other 15 groups, processing longer groups first. Then solve every surviving map jointly using exact DFS over remaining source-chunk subset and the partial current lexical word. Its subset fixes the consuming offset, and the held-F mask fixes the physical offset. Only prefix-compatible decoded pieces are explored; the 13-rune free group is handled without a dictionary prefix. Failed states are memoized; independent source piece assignments are never reused. Each leaf can replay the original entire body, with unused key suffix allowed under F-hold. The fixed 1,000,000-visit per-map guard is never reached on any original candidate.
+
+| Clock | Held offsets | Maps passing all independent word gates | Globally consistent maps |
+| --- | --- | ---: | ---: |
+| Ordinary | None | 15 | 0 |
+| F-hold | None | 13 | 0 |
+| F-hold | 14 | 8 | 0 |
+| F-hold | 24 | 13 | 0 |
+| F-hold | 14,24 | 8 | 0 |
+| F-hold | Any mask containing 40 | 0 | 0 |
+
+All **57** locally feasible affine/clock configurations exhaust exactly, with at most 2,223 DFS visits each. Two independently hidden-order controls (one each clock, same planted lexicon words as the preceding affine nomination experiment) are then globally inverted with all 16 lexical constraints and their uniquely nominated true affine maps. Both recover the exact 75-rune planted plaintext and re-encrypt it; only 874 and 261 DFS visits are required. The controls are frozen lexicon mosaics, not fluent prose.
+
+**Decision:** every affine-remapped arbitrary-order mixed-edge key on the original p55 body requires at least **two OOV groups** if the printed boundaries are intact. This is a complete finite exclusion of the entire at-most-one-OOV family, not a beam score, a proof of universal English impossibility, or an exclusion of H-decoy. No authentic source key or unknown plaintext is recovered. Retire this exact additive source-fragment branch rather than broaden arbitrary parameters again. [SFT](../sims/lp2_p57_reordered_affine_one_oov_sft.cjs), [raw](lp2-p57-reordered-affine-one-oov-output.json). Numerical core executed in V8; no separate Node/CI run.
 
 ## Corrected source-first 75-rune key: shave all twenty printed p57 words (12 November 2026)
 
