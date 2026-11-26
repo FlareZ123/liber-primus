@@ -21,7 +21,6 @@ function experiment(gp,raw){
  const frames=[];for(const mode of ["continuous","page"])for(let b=2;b<=4;b++)for(let off=0;off<b;off++){const blocks=partitions(mode==="continuous"?[N]:lengths,b,off);const original=profile(C,blocks);frames.push({mode,b,off,original,conditional:tail(original),blocks})}
  const out=[];for(const frame of frames.filter(x=>x.b===2)){for(const q of [8,13])for(const hold of [false,true])for(const reset of frame.mode==="continuous"?[false]:[false,true]){const rows=[];for(let d=0;d<docs.length;d++){const p=docs[d],vals=[];for(let a=0;a+N<=p.length;a+=N)vals.push(cost(p.slice(a,a+N),frame.blocks,q,hold,reset).exact);rows.push({doc:d,n:vals.length,min:Math.min(...vals),max:Math.max(...vals),passes:vals.filter(x=>x<=frame.original.pairs).length,values:vals})}out.push({mode:frame.mode,off:frame.off,q,hold,reset,original:frame.original.pairs,rows})}}
  function encrypt(p,k,hold){let j=0;return p.map(x=>hold&&x===0?0:mod(x+k[j++%k.length]))}
- function decrypt(c,k,hold){let j=0;return c.map(x=>hold&&x===0?0:mod(x-k[j++%k.length]))}
  // Plaintext-F hold is not uniquely decodable on visible zero; use exact sender trace for the control.
  function mix(c,blocks,key){let out=c.slice();for(let i=0;i<blocks.length;i++){const b=blocks[i],s=b.reduce((a,j)=>a+c[j],0);if(mod(s+key[i%key.length])<14){const a=b[0],z=b[1];[out[a],out[z]]=[out[z],out[a]]}}return out}
  const key=[23,10,1,10,9,10,16,26],controls=[];
