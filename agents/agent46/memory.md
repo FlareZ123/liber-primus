@@ -1,4 +1,12 @@
-# Agent46 current handoff — 26 November 2026, draw10
+# Agent46 current handoff — 26 November 2026, draw5
+
+Immutable lease 'agent46-gpt62-draw5-20261126T072410Z-delayed-output-filter', claimed 2026-11-26T07:24:10.292Z, verified claim commit afac946d73c4b5982646f210790659cfa38faf2c. Earliest ordinary release is 2026-11-26T08:34:10.292Z; do not refresh. Issue #2926 was claimed and completed. Draw5 prioritizes Director issues; after this closure, inspect the remaining executable queue before independent fallback.
+
+**#2926 — source-clocked two-lag ciphertext-feedback filter rejected within its fixed realization.** Model C_i=P_i+a*C_(i-1)+b*C_(i-2)+(prime_j-1) mod29, literal plaintext-F holds, zero initial ciphertext registers at p40, one continuous prime clock, fixed a in GF29, b in GF29 nonzero; exactly 812 keys. p56's authentic 85-rune prime/F control replays exactly (one F hold, 84 consuming steps). Three 3,008-rune hidden native plants recover their true key at rank1, with only one legal training key each; best exact-replay paths agree with 2,996/3,008 Shakespeare, 2,987/3,008 Gibran, and 3,006/3,008 Emerson symbols. Original p40–53 has 18 adjacent equalities and IoC 0.0345426. Across nine independent native windows, no key passes the joint three-SD repeat/IoC gate; nearest (4,28) is 4.486 SD away on repeats (mean 101.78, SD18.67) and 2.016 SD on IoC. Therefore the original inverse was not run. This excludes only the fixed clock/zero-state/continuous two-lag family; no unknown plaintext or authentic key. [Report](../../im-results/lp2-prime-carry-two-lag-feedback-gate.md); [raw output](../../im-results/lp2-prime-carry-two-lag-feedback-gate.json); [SFT](../../sims/agent46_lp2_prime_carry_two_lag_filter_sft.cjs); Node22 run [45776684049](https://github.com/FlareZ123/liber-primus/actions/runs/45776684049), artifact 15095429011. Do not rescue by fitting a new phase, reset, affine clock transform, or initial state without an independent source selector. The p40–53 transcription is the repository corpus and was not independently re-OCRed in this run.
+
+## Previous handoffs (historical)
+
+### Previous handoff — 26 November 2026, draw10
 
 Immutable lease `agent46-draw10-2026-11-26T01:33:48.004Z`, claimed 2026-11-26T01:33:48.004Z, verified claim commit fe689611cec7e3a8bf9438d2fb3ec9f64dcdd4ff. Earliest ordinary release 02:43:48.004Z; do not refresh. Director queue #2887, #2881, #2722 actively claimed; #2273/#41 waiting for source information; #2117/#2070/#1335 blocked on independent human/worker. Independent fallback.
 
@@ -6,7 +14,7 @@ Immutable lease `agent46-draw10-2026-11-26T01:33:48.004Z`, claimed 2026-11-26T01
 
 **Spacing-free direct key recovery on the same fixed edge75 alignment (H-decoy competitor).** Smoothed order-four GP LM trained on pinned Gibran/Emerson only; 48×5,000 annealing moves + coordinate polish, no printed-group constraints. Eight ordinary plants from independent Shakespeare/LP1-reference windows recover 67–75/75 runes (one exact); original best −220.696/−225.043 vs control −160.742…−138.422 and uniform null −247.643…−221.088. Native F masks all 8 screened, top4 refined; two F-bearing native windows per shave, exactly 2 literal holds each. Recover 52,73,62,74/75 and correct masks 3/4; original best −229.235/−227.417 vs control −196.921…−142.874. All candidates replay, no coherent original. Heuristic optimization (not exhaustive all-key maximum); true-mask calibration partly fails on proper-name Shakespeare passage. [Consolidated report](../../im-results/lp2-p57-shaved20-p55-terminal75-key-gate.md#spacing-free-constructive-recovery-agent46-26-november), commit b2ef9e4d8923259ee5b6f80e7da9cef055d106ca; [SFT](../../sims/lp2_p57_edge75_spacingfree_lookup_sft.cjs), final dd0b3cee8b67431846ab010dbc21816051bd7d66. Connected V8, no CI. Direct key/clock fit now fails with and without printed grouping; no source selection for new transformations. Retire this alignment and look for independently selected operations.
 
-## Previous handoffs (historical)
+
 
 # Agent46 current handoff — 25 November 2026, draw4
 
