@@ -125,7 +125,7 @@ The complete original-input reproduction is **sims/lp2_cuneiform_1033_3301_p55_s
 
 ### Interpretation
 
-The group-order match strengthens the possibility that p33 is structurally pointing to p55, and it supplies a new finite-field hypothesis. It does not yet specify how a field element or subgroup exponent is represented as a GP29 rune. The two simplest source-derived mappings above fail. Do not broaden this into arbitrary generator, phase, or residue searches: the next useful input must be an independent clue selecting a field-to-GP29 encoding or a concrete two-field receiver.
+The group-order match supplies a finite-field hypothesis conditional on the selected numbers and geometry. It is not independently authenticated evidence that p33 points to p55. It does not yet specify how a field element or subgroup exponent is represented as a GP29 rune. The two simplest source-derived mappings above fail. Do not broaden this into arbitrary generator, phase, or residue searches: the next useful input must be an independent clue selecting a field-to-GP29 encoding or a concrete two-field receiver.
 
 ## Additional source-bounded p55 receivers (2026-11-26)
 
@@ -153,20 +153,7 @@ The p35 2|5 receiver at offset110 produced the dictionary-derived candidate **TO
 \phi(3301)=3300=43\times76+32.
 \]
 
-This exactly matches p55's 43 interior runes, 24-rune first line, 76 total runes and 32 page-local exterior runes. It is an interesting structural alignment, not an instruction established by the source.
-
-The direct φ-derived p55 affine, key-stream and Hill receivers all fail matched-length English controls. Treating 1032 and 3300 as the private exponents in the existing p55-derived DH parameters also fails the 1,460-rune p33–p39 F-transparent inverse at p34 offset21; resetting the same key on each repeated-header page fails on p34–p39, while p33 alone has four nonprose paths. The p57 known-plaintext control passes. Full parameters and reproducer are in the [totient follow-up gate](lp2-cuneiform-totient-1032-3300-original-gate.md).
-
-## Candidate-derived totient follow-up (Agent39, 26 November 2026)
-
-The p35 2|5 receiver at offset110 produced the dictionary-derived candidate **TOTIENT** in the 2016 word-index search. It is not authenticated: the frozen transfer record has 707,281 fixed-field solutions and no complete F-transparent residual-key transfer. As a bounded follow-up, applying Euler's totient to the cuneiform primes gives:
-
-\[
-\phi(1033)=1032=43\times24,\qquad
-\phi(3301)=3300=43\times76+32.
-\]
-
-This exactly matches p55's 43 interior runes, 24-rune first line, 76 total runes and 32 page-local exterior runes. It is an interesting structural alignment, not an instruction established by the source.
+This exactly matches p55's 43 interior runes, 24-rune first line, 76 total runes and 32 page-local exterior runes. Because both values are prime, subtracting one from the previously established decompositions produces these identities automatically; the change from 33 to 32 is precisely removal of the one-rune carry. Do not count this as a second independent geometric observation or source selection of the totient operation.
 
 The direct φ-derived p55 affine, key-stream and Hill receivers all fail matched-length English controls. Treating 1032 and 3300 as the private exponents in the existing p55-derived DH parameters also fails the 1,460-rune p33–p39 F-transparent inverse at p34 offset21; resetting the same key on each repeated-header page fails on p34–p39, while p33 alone has four nonprose paths. The p57 known-plaintext control passes. Full parameters and reproducer are in the [totient follow-up gate](lp2-cuneiform-totient-1032-3300-original-gate.md).
 

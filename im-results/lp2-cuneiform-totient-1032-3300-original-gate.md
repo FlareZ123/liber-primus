@@ -22,7 +22,7 @@ Both cuneiform values are prime, so:
 \phi(3301)=3300=43\times76+32
 \]
 
-The totients therefore match the p55 interior count and first-line length, then the interior count, full-page length and page-local exterior count. In particular, subtracting one from the original 33-rune strict exterior leaves the 32-rune complete-page-local shell. This is a real arithmetic/geometry alignment. It does not by itself specify a cipher, a key schedule, or a receiver.
+The totients match the p55 interior count and first-line length, then the interior count, full-page length and page-local exterior count. These matches are algebraically dependent on the earlier identities 1033=43×24+1 and 3301=43×76+33: for prime p, φ(p)=p−1. The 33→32 change is exactly the known one-rune carry exclusion. Thus the totient identities add no independent evidence for selecting φ; the unconfirmed TOTIENT word was the only additional motivation for testing that operation. The bounded receiver tests below remain valid.
 
 ## Frozen direct p55 receivers
 
