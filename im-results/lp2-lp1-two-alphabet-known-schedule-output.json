@@ -1,0 +1,1551 @@
+{
+  "inputRef": "da1d38ed32b57465278a261ee3f7eb0e50a6f446",
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-transcription.txt": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7",
+    "resources/control/english_wordfreq_textblob.txt": "140e1d22b5f8c45deddd2e8b25549d9d6307d938",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/transcriptions/lp1_wulfic_canonical.txt": "37c96b816495c5f93ca658a01c9918bf92598316",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  },
+  "method": "Independent GP29 input/output permutations, source-corrected LP1 cyclic running key, chapter zero origins, genuine plaintext F hold. Exact long-anchor graph constraints, relaxed independent preceding hold counts. Positive controls use fresh reset scopes with native donor anchors; no original test unless unique exact anchor/cursor tuple recovered. Signs equivalent by negating both permutations. Original solver stops at first complete key or 5M DFS visits.",
+  "lexCounts": [
+    867,
+    422,
+    173
+  ],
+  "sourceKeyLength": 2797,
+  "results": [
+    {
+      "schedule": "corrected LP1 GP ordinals",
+      "control": {
+        "answer": {
+          "sizes": [
+            {
+              "i": 7,
+              "local": 23,
+              "len": 14,
+              "prefixF": 1,
+              "options": 65
+            },
+            {
+              "i": 0,
+              "local": 0,
+              "len": 13,
+              "prefixF": 0,
+              "options": 281
+            },
+            {
+              "i": 6,
+              "local": 21,
+              "len": 13,
+              "prefixF": 2,
+              "options": 414
+            },
+            {
+              "i": 1,
+              "local": 3,
+              "len": 12,
+              "prefixF": 0,
+              "options": 466
+            },
+            {
+              "i": 2,
+              "local": 9,
+              "len": 12,
+              "prefixF": 0,
+              "options": 605
+            },
+            {
+              "i": 3,
+              "local": 12,
+              "len": 12,
+              "prefixF": 0,
+              "options": 609
+            },
+            {
+              "i": 5,
+              "local": 18,
+              "len": 12,
+              "prefixF": 3,
+              "options": 1487
+            },
+            {
+              "i": 4,
+              "local": 15,
+              "len": 12,
+              "prefixF": 2,
+              "options": 1539
+            }
+          ],
+          "pairStats": [
+            {
+              "i": 0,
+              "j": 1,
+              "total": 18265,
+              "compatible": 69
+            },
+            {
+              "i": 0,
+              "j": 2,
+              "total": 26910,
+              "compatible": 151
+            },
+            {
+              "i": 0,
+              "j": 3,
+              "total": 30290,
+              "compatible": 72
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "total": 116334,
+              "compatible": 6786
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "total": 130946,
+              "compatible": 429
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "total": 192924,
+              "compatible": 2253
+            }
+          ],
+          "nodes": [
+            65,
+            69,
+            25,
+            1,
+            605,
+            609,
+            1487,
+            1539
+          ],
+          "counts": [
+            65,
+            69,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "visits": 4400,
+          "limit": false,
+          "solutions": 1,
+          "witness": {
+            "key": [
+              0,
+              14,
+              11,
+              23,
+              16,
+              26,
+              28,
+              18,
+              6,
+              21,
+              27,
+              12,
+              13,
+              5,
+              15,
+              7,
+              25,
+              8,
+              10,
+              9,
+              2,
+              17,
+              19,
+              1,
+              3,
+              22,
+              20,
+              4,
+              24,
+              7,
+              19,
+              14,
+              27,
+              4,
+              5,
+              1,
+              13,
+              16,
+              10,
+              24,
+              28,
+              18,
+              8,
+              11,
+              9,
+              20,
+              12,
+              15,
+              2,
+              26,
+              6,
+              3,
+              22,
+              17,
+              0,
+              21,
+              25,
+              23
+            ],
+            "chosen": [
+              {
+                "i": 7,
+                "w": "CONSPECTUITIES",
+                "P": [
+                  5,
+                  3,
+                  9,
+                  15,
+                  13,
+                  18,
+                  5,
+                  16,
+                  1,
+                  10,
+                  16,
+                  10,
+                  18,
+                  15
+                ],
+                "j": 23
+              },
+              {
+                "i": 0,
+                "w": "PARTICULARISE",
+                "P": [
+                  13,
+                  24,
+                  4,
+                  16,
+                  10,
+                  5,
+                  1,
+                  20,
+                  24,
+                  4,
+                  10,
+                  15,
+                  18
+                ],
+                "j": 0
+              },
+              {
+                "i": 6,
+                "w": "EMBARQUEMENTS",
+                "P": [
+                  18,
+                  19,
+                  17,
+                  24,
+                  4,
+                  5,
+                  7,
+                  18,
+                  19,
+                  18,
+                  9,
+                  16,
+                  15
+                ],
+                "j": 19
+              },
+              {
+                "i": 1,
+                "w": "DISCONTENTED",
+                "P": [
+                  23,
+                  10,
+                  15,
+                  5,
+                  3,
+                  9,
+                  16,
+                  18,
+                  9,
+                  16,
+                  18,
+                  23
+                ],
+                "j": 3
+              },
+              {
+                "i": 2,
+                "w": "CIRCUMVENTION",
+                "P": [
+                  5,
+                  10,
+                  4,
+                  5,
+                  1,
+                  19,
+                  1,
+                  18,
+                  9,
+                  16,
+                  27,
+                  9
+                ],
+                "j": 9
+              },
+              {
+                "i": 3,
+                "w": "EMBRACEMENTS",
+                "P": [
+                  18,
+                  19,
+                  17,
+                  4,
+                  24,
+                  5,
+                  18,
+                  19,
+                  18,
+                  9,
+                  16,
+                  15
+                ],
+                "j": 12
+              },
+              {
+                "i": 5,
+                "w": "HYPERBOLICAL",
+                "P": [
+                  8,
+                  26,
+                  13,
+                  18,
+                  4,
+                  17,
+                  3,
+                  20,
+                  10,
+                  5,
+                  24,
+                  20
+                ],
+                "j": 17
+              },
+              {
+                "i": 4,
+                "w": "DISADVANTAGE",
+                "P": [
+                  23,
+                  10,
+                  15,
+                  24,
+                  23,
+                  1,
+                  24,
+                  9,
+                  16,
+                  24,
+                  6,
+                  18
+                ],
+                "j": 15
+              }
+            ]
+          }
+        },
+        "truthRetained": true,
+        "rows": [
+          {
+            "anchor": "CONSPECTUITIES",
+            "recovered": "CONSPECTUITIES",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 75,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "PARTICULARISE",
+            "recovered": "PARTICULARISE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 75,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "EMBARQUEMENTS",
+            "recovered": "EMBARQUEMENTS",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 75,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "DISCONTENTED",
+            "recovered": "DISCONTENTED",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 76,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "CIRCUMVENTION",
+            "recovered": "CIRCUMVENTION",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 75,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "EMBRACEMENTS",
+            "recovered": "EMBRACEMENTS",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 76,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "HYPERBOLICAL",
+            "recovered": "HYPERBOLICAL",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 76,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "DISADVANTAGE",
+            "recovered": "DISADVANTAGE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 76,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          }
+        ],
+        "keyMatches": 1,
+        "truthKey": [
+          0,
+          28,
+          25,
+          8,
+          1,
+          11,
+          13,
+          3,
+          20,
+          6,
+          12,
+          4,
+          9,
+          19,
+          26,
+          21,
+          10,
+          22,
+          24,
+          23,
+          16,
+          7,
+          14,
+          15,
+          17,
+          2,
+          5,
+          18,
+          27,
+          21,
+          4,
+          28,
+          12,
+          18,
+          19,
+          15,
+          27,
+          1,
+          24,
+          9,
+          13,
+          3,
+          22,
+          25,
+          23,
+          5,
+          26,
+          0,
+          16,
+          11,
+          20,
+          17,
+          7,
+          2,
+          14,
+          6,
+          10,
+          8
+        ]
+      },
+      "gate": true,
+      "target": {
+        "sizes": [
+          {
+            "i": 1458,
+            "local": 3,
+            "len": 12,
+            "prefixF": 0,
+            "options": 451
+          },
+          {
+            "i": 444,
+            "local": 140,
+            "len": 12,
+            "prefixF": 1,
+            "options": 841
+          },
+          {
+            "i": 167,
+            "local": 51,
+            "len": 12,
+            "prefixF": 1,
+            "options": 1032
+          },
+          {
+            "i": 833,
+            "local": 159,
+            "len": 13,
+            "prefixF": 7,
+            "options": 1530
+          },
+          {
+            "i": 2886,
+            "local": 255,
+            "len": 13,
+            "prefixF": 4,
+            "options": 1620
+          },
+          {
+            "i": 2169,
+            "local": 31,
+            "len": 12,
+            "prefixF": 2,
+            "options": 1795
+          },
+          {
+            "i": 1476,
+            "local": 79,
+            "len": 12,
+            "prefixF": 5,
+            "options": 1810
+          },
+          {
+            "i": 1353,
+            "local": 529,
+            "len": 14,
+            "prefixF": 20,
+            "options": 1982
+          },
+          {
+            "i": 1498,
+            "local": 166,
+            "len": 12,
+            "prefixF": 7,
+            "options": 2830
+          },
+          {
+            "i": 2341,
+            "local": 813,
+            "len": 14,
+            "prefixF": 39,
+            "options": 3713
+          },
+          {
+            "i": 754,
+            "local": 1531,
+            "len": 14,
+            "prefixF": 63,
+            "options": 4759
+          },
+          {
+            "i": 512,
+            "local": 473,
+            "len": 12,
+            "prefixF": 17,
+            "options": 5687
+          },
+          {
+            "i": 874,
+            "local": 341,
+            "len": 12,
+            "prefixF": 12,
+            "options": 6601
+          },
+          {
+            "i": 1891,
+            "local": 451,
+            "len": 12,
+            "prefixF": 14,
+            "options": 7150
+          },
+          {
+            "i": 871,
+            "local": 322,
+            "len": 12,
+            "prefixF": 12,
+            "options": 7745
+          },
+          {
+            "i": 631,
+            "local": 1012,
+            "len": 13,
+            "prefixF": 39,
+            "options": 9227
+          },
+          {
+            "i": 2089,
+            "local": 1355,
+            "len": 12,
+            "prefixF": 35,
+            "options": 9774
+          },
+          {
+            "i": 376,
+            "local": 988,
+            "len": 12,
+            "prefixF": 26,
+            "options": 13460
+          },
+          {
+            "i": 406,
+            "local": 1116,
+            "len": 12,
+            "prefixF": 26,
+            "options": 15335
+          },
+          {
+            "i": 2752,
+            "local": 2644,
+            "len": 13,
+            "prefixF": 112,
+            "options": 20509
+          },
+          {
+            "i": 637,
+            "local": 1044,
+            "len": 12,
+            "prefixF": 40,
+            "options": 22394
+          },
+          {
+            "i": 1220,
+            "local": 1844,
+            "len": 12,
+            "prefixF": 69,
+            "options": 24106
+          },
+          {
+            "i": 1215,
+            "local": 1807,
+            "len": 12,
+            "prefixF": 67,
+            "options": 32400
+          },
+          {
+            "i": 2534,
+            "local": 1689,
+            "len": 12,
+            "prefixF": 75,
+            "options": 37194
+          },
+          {
+            "i": 2781,
+            "local": 2772,
+            "len": 12,
+            "prefixF": 119,
+            "options": 55209
+          }
+        ],
+        "pairStats": [
+          {
+            "i": 0,
+            "j": 1,
+            "total": 379291,
+            "compatible": 3333
+          },
+          {
+            "i": 0,
+            "j": 2,
+            "total": 465432,
+            "compatible": 13005
+          },
+          {
+            "i": 0,
+            "j": 3,
+            "total": 690030,
+            "compatible": 16834
+          },
+          {
+            "i": 1,
+            "j": 2,
+            "total": 867912,
+            "compatible": 4639
+          },
+          {
+            "i": 1,
+            "j": 3,
+            "total": 1286730,
+            "compatible": 62612
+          },
+          {
+            "i": 2,
+            "j": 3,
+            "total": 1578960,
+            "compatible": 204740
+          }
+        ],
+        "nodes": [
+          451,
+          3333,
+          1102,
+          8,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": [
+          451,
+          3333,
+          19,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "visits": 4894,
+        "limit": false,
+        "solutions": 0,
+        "witness": null
+      }
+    },
+    {
+      "schedule": "corrected LP1 sacred primes mod29",
+      "control": {
+        "answer": {
+          "sizes": [
+            {
+              "i": 5,
+              "local": 18,
+              "len": 13,
+              "prefixF": 1,
+              "options": 16
+            },
+            {
+              "i": 2,
+              "local": 9,
+              "len": 12,
+              "prefixF": 1,
+              "options": 69
+            },
+            {
+              "i": 7,
+              "local": 23,
+              "len": 12,
+              "prefixF": 0,
+              "options": 474
+            },
+            {
+              "i": 3,
+              "local": 12,
+              "len": 12,
+              "prefixF": 1,
+              "options": 487
+            },
+            {
+              "i": 1,
+              "local": 3,
+              "len": 12,
+              "prefixF": 0,
+              "options": 492
+            },
+            {
+              "i": 0,
+              "local": 0,
+              "len": 12,
+              "prefixF": 0,
+              "options": 558
+            },
+            {
+              "i": 6,
+              "local": 21,
+              "len": 12,
+              "prefixF": 3,
+              "options": 1164
+            },
+            {
+              "i": 4,
+              "local": 15,
+              "len": 12,
+              "prefixF": 4,
+              "options": 2228
+            }
+          ],
+          "pairStats": [
+            {
+              "i": 0,
+              "j": 1,
+              "total": 1104,
+              "compatible": 127
+            },
+            {
+              "i": 0,
+              "j": 2,
+              "total": 7584,
+              "compatible": 606
+            },
+            {
+              "i": 0,
+              "j": 3,
+              "total": 7792,
+              "compatible": 159
+            },
+            {
+              "i": 1,
+              "j": 2,
+              "total": 32706,
+              "compatible": 226
+            },
+            {
+              "i": 1,
+              "j": 3,
+              "total": 33603,
+              "compatible": 4018
+            },
+            {
+              "i": 2,
+              "j": 3,
+              "total": 230838,
+              "compatible": 21870
+            }
+          ],
+          "nodes": [
+            16,
+            127,
+            79,
+            2,
+            492,
+            558,
+            1164,
+            2228
+          ],
+          "counts": [
+            16,
+            127,
+            4,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "visits": 4666,
+          "limit": false,
+          "solutions": 1,
+          "witness": {
+            "key": [
+              0,
+              19,
+              5,
+              7,
+              22,
+              28,
+              9,
+              18,
+              4,
+              25,
+              26,
+              6,
+              17,
+              10,
+              11,
+              16,
+              14,
+              27,
+              1,
+              20,
+              2,
+              13,
+              15,
+              8,
+              12,
+              21,
+              23,
+              3,
+              24,
+              12,
+              13,
+              2,
+              1,
+              10,
+              28,
+              16,
+              15,
+              22,
+              6,
+              24,
+              5,
+              20,
+              18,
+              17,
+              3,
+              0,
+              8,
+              11,
+              9,
+              4,
+              23,
+              27,
+              21,
+              7,
+              14,
+              25,
+              19,
+              26
+            ],
+            "chosen": [
+              {
+                "i": 5,
+                "w": "UNACCOUNTABLE",
+                "P": [
+                  1,
+                  9,
+                  24,
+                  5,
+                  5,
+                  3,
+                  1,
+                  9,
+                  16,
+                  24,
+                  17,
+                  20,
+                  18
+                ],
+                "j": 18
+              },
+              {
+                "i": 2,
+                "w": "REMEMBRANCES",
+                "P": [
+                  4,
+                  18,
+                  19,
+                  18,
+                  19,
+                  17,
+                  4,
+                  24,
+                  9,
+                  5,
+                  18,
+                  15
+                ],
+                "j": 9
+              },
+              {
+                "i": 7,
+                "w": "ADMINISTERED",
+                "P": [
+                  24,
+                  23,
+                  19,
+                  10,
+                  9,
+                  10,
+                  15,
+                  16,
+                  18,
+                  4,
+                  18,
+                  23
+                ],
+                "j": 23
+              },
+              {
+                "i": 3,
+                "w": "MAGNIFICENCE",
+                "P": [
+                  19,
+                  24,
+                  6,
+                  9,
+                  10,
+                  0,
+                  10,
+                  5,
+                  18,
+                  9,
+                  5,
+                  18
+                ],
+                "j": 11
+              },
+              {
+                "i": 1,
+                "w": "UNQUENCHABLE",
+                "P": [
+                  1,
+                  9,
+                  5,
+                  7,
+                  18,
+                  9,
+                  5,
+                  8,
+                  24,
+                  17,
+                  20,
+                  18
+                ],
+                "j": 3
+              },
+              {
+                "i": 0,
+                "w": "ILLUSTRATIONS",
+                "P": [
+                  10,
+                  20,
+                  20,
+                  1,
+                  15,
+                  16,
+                  4,
+                  24,
+                  16,
+                  27,
+                  9,
+                  15
+                ],
+                "j": 0
+              },
+              {
+                "i": 6,
+                "w": "RIGHTEOUSNESS",
+                "P": [
+                  4,
+                  10,
+                  6,
+                  8,
+                  16,
+                  12,
+                  1,
+                  15,
+                  9,
+                  18,
+                  15,
+                  15
+                ],
+                "j": 20
+              },
+              {
+                "i": 4,
+                "w": "FRANKINCENSE",
+                "P": [
+                  0,
+                  4,
+                  24,
+                  9,
+                  5,
+                  10,
+                  9,
+                  5,
+                  18,
+                  9,
+                  15,
+                  18
+                ],
+                "j": 13
+              }
+            ]
+          }
+        },
+        "truthRetained": true,
+        "rows": [
+          {
+            "anchor": "UNACCOUNTABLE",
+            "recovered": "UNACCOUNTABLE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 75,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "REMEMBRANCES",
+            "recovered": "REMEMBRANCES",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 71,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "ADMINISTERED",
+            "recovered": "ADMINISTERED",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 67,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "MAGNIFICENCE",
+            "recovered": "MAGNIFICENCE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 70,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "UNQUENCHABLE",
+            "recovered": "UNQUENCHABLE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 74,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "ILLUSTRATIONS",
+            "recovered": "ILLUSTRATIONS",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 72,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "RIGHTEOUSNESS",
+            "recovered": "RIGHTEOUSNESS",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 73,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          },
+          {
+            "anchor": "FRANKINCENSE",
+            "recovered": "FRANKINCENSE",
+            "anchorExact": true,
+            "cursorExact": true,
+            "heldCorrect": 72,
+            "heldLength": 76,
+            "legal": true,
+            "replay": true
+          }
+        ],
+        "keyMatches": 1,
+        "truthKey": [
+          0,
+          4,
+          19,
+          21,
+          7,
+          13,
+          23,
+          3,
+          18,
+          10,
+          11,
+          20,
+          2,
+          27,
+          8,
+          1,
+          28,
+          12,
+          15,
+          5,
+          16,
+          6,
+          14,
+          22,
+          26,
+          25,
+          24,
+          17,
+          9,
+          26,
+          27,
+          16,
+          15,
+          24,
+          13,
+          1,
+          0,
+          7,
+          20,
+          9,
+          19,
+          5,
+          3,
+          2,
+          17,
+          14,
+          22,
+          25,
+          23,
+          18,
+          8,
+          12,
+          6,
+          21,
+          28,
+          10,
+          4,
+          11
+        ]
+      },
+      "gate": true,
+      "target": {
+        "sizes": [
+          {
+            "i": 1458,
+            "local": 3,
+            "len": 12,
+            "prefixF": 0,
+            "options": 422
+          },
+          {
+            "i": 444,
+            "local": 140,
+            "len": 12,
+            "prefixF": 1,
+            "options": 790
+          },
+          {
+            "i": 167,
+            "local": 51,
+            "len": 12,
+            "prefixF": 1,
+            "options": 1027
+          },
+          {
+            "i": 833,
+            "local": 159,
+            "len": 13,
+            "prefixF": 7,
+            "options": 1237
+          },
+          {
+            "i": 2886,
+            "local": 255,
+            "len": 13,
+            "prefixF": 4,
+            "options": 1517
+          },
+          {
+            "i": 1353,
+            "local": 529,
+            "len": 14,
+            "prefixF": 20,
+            "options": 1787
+          },
+          {
+            "i": 2169,
+            "local": 31,
+            "len": 12,
+            "prefixF": 2,
+            "options": 1803
+          },
+          {
+            "i": 1476,
+            "local": 79,
+            "len": 12,
+            "prefixF": 5,
+            "options": 1816
+          },
+          {
+            "i": 1498,
+            "local": 166,
+            "len": 12,
+            "prefixF": 7,
+            "options": 2610
+          },
+          {
+            "i": 2341,
+            "local": 813,
+            "len": 14,
+            "prefixF": 39,
+            "options": 3003
+          },
+          {
+            "i": 754,
+            "local": 1531,
+            "len": 14,
+            "prefixF": 63,
+            "options": 3998
+          },
+          {
+            "i": 874,
+            "local": 341,
+            "len": 12,
+            "prefixF": 12,
+            "options": 5430
+          },
+          {
+            "i": 512,
+            "local": 473,
+            "len": 12,
+            "prefixF": 17,
+            "options": 5775
+          },
+          {
+            "i": 871,
+            "local": 322,
+            "len": 12,
+            "prefixF": 12,
+            "options": 6575
+          },
+          {
+            "i": 1891,
+            "local": 451,
+            "len": 12,
+            "prefixF": 14,
+            "options": 7137
+          },
+          {
+            "i": 631,
+            "local": 1012,
+            "len": 13,
+            "prefixF": 39,
+            "options": 9230
+          },
+          {
+            "i": 2089,
+            "local": 1355,
+            "len": 12,
+            "prefixF": 35,
+            "options": 9517
+          },
+          {
+            "i": 376,
+            "local": 988,
+            "len": 12,
+            "prefixF": 26,
+            "options": 13463
+          },
+          {
+            "i": 406,
+            "local": 1116,
+            "len": 12,
+            "prefixF": 26,
+            "options": 14161
+          },
+          {
+            "i": 2752,
+            "local": 2644,
+            "len": 13,
+            "prefixF": 112,
+            "options": 18956
+          },
+          {
+            "i": 1220,
+            "local": 1844,
+            "len": 12,
+            "prefixF": 69,
+            "options": 22126
+          },
+          {
+            "i": 637,
+            "local": 1044,
+            "len": 12,
+            "prefixF": 40,
+            "options": 22376
+          },
+          {
+            "i": 1215,
+            "local": 1807,
+            "len": 12,
+            "prefixF": 67,
+            "options": 31540
+          },
+          {
+            "i": 2534,
+            "local": 1689,
+            "len": 12,
+            "prefixF": 75,
+            "options": 33368
+          },
+          {
+            "i": 2781,
+            "local": 2772,
+            "len": 12,
+            "prefixF": 119,
+            "options": 51726
+          }
+        ],
+        "pairStats": [
+          {
+            "i": 0,
+            "j": 1,
+            "total": 333380,
+            "compatible": 2842
+          },
+          {
+            "i": 0,
+            "j": 2,
+            "total": 433394,
+            "compatible": 10770
+          },
+          {
+            "i": 0,
+            "j": 3,
+            "total": 522014,
+            "compatible": 10721
+          },
+          {
+            "i": 1,
+            "j": 2,
+            "total": 811330,
+            "compatible": 4684
+          },
+          {
+            "i": 1,
+            "j": 3,
+            "total": 977230,
+            "compatible": 38857
+          },
+          {
+            "i": 2,
+            "j": 3,
+            "total": 1270399,
+            "compatible": 149687
+          }
+        ],
+        "nodes": [
+          422,
+          2842,
+          848,
+          7,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "counts": [
+          422,
+          2842,
+          16,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "visits": 4119,
+        "limit": false,
+        "solutions": 0,
+        "witness": null
+      }
+    }
+  ]
+}
