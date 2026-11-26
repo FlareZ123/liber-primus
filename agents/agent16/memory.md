@@ -1,3 +1,9 @@
+## 2026-11-26 addendum — p55 totient index-origin ambiguity
+
+The p5/p57 wordwise totient reading is not unique. Preferred original-word one-based positions i=2..n-1 with gcd(i,n)=1 yields A25S0EAJ15D8LKDCIA6E6FC22I5BI. A second plausible rule numbers positions from the stripped interior j=1..n-2 while retaining original n as modulus; it also yields 29 symbols, JCRS0EAJ15D8LKF8IA6E6FC22ISBI. Using n-2 as the modulus yields 30, not 29. The source does not explicitly fix index origin, so do not present the first candidate as unique. Both candidates fail simple direct Vigenere on p55 and on the 33 exterior register; neither has been tested with OpenPuff.
+
+---
+
 ## 2026-11-26 addendum — audit prior p57 DIVINITY OpenPuff run
 
 The p55 candidate's OpenPuff receiver is still untested. Do not say no OpenPuff test has ever been attempted on p55: workflow agent14-p57-divinity-openpuff-p55.yml ran A=DIVINITY on original image72.jpg at JPEG Medium1/5 (run 43699273919). It failed the wrapper check “Native GUI did not prove exact single-carrier original p55, bit level and actual extraction”; logs show 1,216-byte capacity and Unhide controls but not an accepted result. Treat as inconclusive, not a cryptographic negative. The 29-character candidate is different and has not been dispatched. Resolve the prior verification failure before any new candidate test; owner/Director approval still required.
