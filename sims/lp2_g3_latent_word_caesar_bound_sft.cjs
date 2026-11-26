@@ -33,7 +33,7 @@ function experiment(raw){
  for(let k=K;k>0;k--){const z=k*dim+i*29+ss,l=trace[z],old=pr[z];if(!l)throw Error("trace");ws.push(C.slice(i-l,i).map(x=>mod(x-sgn*old)));i-=l;ss=old}ws.reverse();
  if(encode(ws,src,sgn).join(",")!==C.join(","))throw Error("replay");return {score:v/N,ws,oov:ws.filter(w=>!vocab.has(key(w))).length}}
  const controls=[];for(let j=0;j<3;j++){const ws=[];let n=0;for(const w of donors[j].slice(Math.floor(donors[j].length*.85))){if(n+w.length>262)break;ws.push(w);n+=w.length}const printed=ws.map(w=>w.length).reverse();
- for(const src of ["dw","cw"]){const sgn=j===1?-1:1,C=encode(ws,src,sgn),res=[-1,1].map(sign=>({sign,...solve(C,printed.length,src,sign)})).sort((a,b)=>b.score-a.score),best=res[0],P=ws.flat(),correct=best.ws.flat().filter((x,i)=>x===P[i]).length;const bounds=arr=>{let n=0;return new Set(arr.map(w=>(n+=w.length)))};const truth=bounds(ws),pred=bounds(best.ws),F1=2*[...truth].filter(x=>pred.has(x)).length/(truth.size+pred.size);controls.push({donor:j,src,trueSign:sgn,selectedSign:best.sign,n,groups:ws.length,correct,F1,score:best.score,oov:best.oov,truthOov:ws.filter(w=>!vocab.has(key(w))).length,hiddenLengthOrderChanged:printed.join(",")!==ws.map(w=>w.length).join(","),relaxedBound:bound(C,printed),recovered:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")})}}
+ for(const src of ["dw","cw"]){const sgn=j===1?-1:1,C=encode(ws,src,sgn),res=[-1,1].map(sign=>({sign,...solve(C,printed.length,src,sign)})).sort((a,b)=>b.score-a.score),best=res[0],P=ws.flat(),correct=best.ws.flat().filter((x,i)=>x===P[i]).length;const bounds=arr=>{let n=0;return new Set(arr.map(w=>(n+=w.length)))};const truth=bounds(ws),pred=bounds(best.ws),F1=2*[...truth].filter(x=>pred.has(x)).length/(truth.size+pred.size);controls.push({donor:j,src,trueSign:sgn,selectedSign:best.sign,n,groups:ws.length,correct,F1,score:best.score,oov:best.oov,truthOov:ws.filter(w=>!vocab.has(key(w))).length,hiddenLengthOrderChanged:printed.join(",")!==ws.map(w=>w.length).join(","),relaxedBound:bound(C,printed),freeBound:freeBound(C,printed.length),recovered:best.ws.map(w=>w.map(x=>gp.translit[x]).join("")).join(" ")})}}
  function freeBound(C,K){
  const N=C.length, caps=[14,24],out=[];
  for(const cap of caps){
@@ -44,7 +44,7 @@ function experiment(raw){
  }
  return out;
 }
-const free={whole:freeBound(tape,words.length),chapter:chapter.map((c,j)=>({page:c.page,bounds:freeBound(tape.slice(offsets[j],offsets[j+1]),c.groups)})),controls:controls.map(c=>({donor:c.donor,src:c.src}))};
+const free={whole:freeBound(tape,words.length),chapter:chapter.map((c,j)=>({page:c.page,bounds:freeBound(tape.slice(offsets[j],offsets[j+1]),c.groups)})),controls:controls.map(c=>({donor:c.donor,src:c.src,bounds:c.freeBound}))};
 return {vocab:vocab.size,shapes:sig.size,whole,chapter,controls,free};
 }
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"))),null,2));
