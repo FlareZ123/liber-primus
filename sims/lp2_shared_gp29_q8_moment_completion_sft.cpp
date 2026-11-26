@@ -93,9 +93,46 @@ GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base,b
   d.post[i].push_back(move(p));
  }return d;
 }
+// Frequency is only a branch-order prior. It does not remove any
+// native spelling, alter phase semantics, or change canonical seed IDs.
+static bool frequencyOrderEnabled=false;
+static unordered_map<string,uint64_t> wordPrior7,prefixPrior7;
+static unordered_map<string,string> wordEnglish7;
+void buildPrior7(){
+ istringstream f(fixed::read("resources/control/english_wordfreq_textblob.txt"));string line;
+ while(getline(f,line)){
+  istringstream in(line);string word,count,extra;
+  if(!(in>>word>>count)||in>>extra||word.empty()||count.empty())continue;
+  if(!all_of(word.begin(),word.end(),[](char c){return c>='a'&&c<='z';})||
+     !all_of(count.begin(),count.end(),[](char c){return c>='0'&&c<='9';}))continue;
+  uint64_t freq=stoull(count);string normalized;
+  for(size_t i=0;i<word.size();i++){char c=toupper(word[i]);if(c=='Q'&&i+1<word.size()&&toupper(word[i+1])=='U'){normalized+="CW";i++;continue;}if(c=='V')c='U';if(c=='K'||c=='Q')c='C';if(c=='Z')c='S';normalized+=c;}
+  string w;
+  auto rec=[&](auto&&self,size_t i)->void{
+   if(i==normalized.size()){
+    if(!fixed::dict.count(w))return;
+    auto&v=wordPrior7[w];if(freq>v){v=freq;wordEnglish7[w]=word;}
+    if(w.size()==11){auto&z=prefixPrior7[w.substr(0,10)];z=max(z,freq);}
+    return;
+   }
+   for(int n=1;n<=3&&i+n<=normalized.size();n++){
+    string t=normalized.substr(i,n);int x=-1;
+    if(n==3){if(t=="ING")x=21;}
+    else{auto p=find(fixed::ALPHA.begin(),fixed::ALPHA.end(),t);if(p!=fixed::ALPHA.end())x=int(p-fixed::ALPHA.begin());}
+    if(x>=0){w+=fixed::SYM[x];self(self,i+n);w.pop_back();}
+   }
+  };
+  rec(rec,0);
+ }
+}
+string optionWord7(const GDomain&d,const GOption&o){
+ string w;w.reserve(d.cipher.size());for(size_t i=0;i<d.cipher.size();i++)w+=fixed::SYM[o.f[i]%N];return w;
+}
+uint64_t prior7(const string&w,bool prefix){auto&m=prefix?prefixPrior7:wordPrior7;auto it=m.find(w);return it==m.end()?0:it->second;}
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
  Graph base;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
+ vector<vector<uint64_t>> optionPrior;vector<uint64_t> seedPrior;vector<vector<string>> seedPrefixes;
  atomic<bool> found{false},timed{false};atomic<size_t>next{0},done{0};Clock::time_point deadline;mutex answerMutex;
  fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;
  GSearch(const vector<string>&g,int budget=3):train(g),maxOov(budget){
@@ -104,6 +141,15 @@ struct GSearch{
   sort(order.begin(),order.end(),[&](int a,int b){auto s=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=s(a),y=s(b);return x==y?a<b:x<y;});
   unordered_set<string>seen;for(auto&o:ds[47].opts){Graph x;if(extend(base,o,x)&&seen.insert(x.sig()).second)seeds.push_back(x);}
   sort(seeds.begin(),seeds.end(),[](auto&a,auto&b){return a.dimension()==b.dimension()?a.sig()<b.sig():a.dimension()<b.dimension();});
+  if(frequencyOrderEnabled){
+   optionPrior.resize(ds.size());for(int id=0;id<int(ds.size());id++){
+    auto&v=optionPrior[id];v.reserve(ds[id].opts.size());for(const auto&o:ds[id].opts)v.push_back(prior7(optionWord7(ds[id],o),id==47));
+   }
+   unordered_map<string,size_t> seedId;for(size_t i=0;i<seeds.size();i++)seedId[seeds[i].sig()]=i;
+   seedPrior.assign(seeds.size(),0);seedPrefixes.resize(seeds.size());
+   for(const auto&o:ds[47].opts){Graph g;if(!extend(base,o,g))continue;auto id=seedId.at(g.sig());string w=optionWord7(ds[47],o);seedPrior[id]=max(seedPrior[id],prior7(w,true));seedPrefixes[id].push_back(w);}
+   for(auto&v:seedPrefixes){sort(v.begin(),v.end());v.erase(unique(v.begin(),v.end()),v.end());}
+  }
   cout<<"GRAPH CARRY seeds="<<seeds.size()<<" domains";for(int i:order)cout<<" "<<i<<":"<<ds[i].opts.size();cout<<endl;
  }
  bool stop(){if(found.load(memory_order_relaxed)||timed.load(memory_order_relaxed))return true;if(Clock::now()>=deadline){timed=true;return true;}return false;}
@@ -228,6 +274,10 @@ struct FastSearch : GSearch {
  atomic<uint64_t> inheritedCount{0},earlyPackCount{0},momentCalls{0},momentComplete{0},momentKeys{0};
  atomic<uint64_t> exactProbeCalls{0},exactProbeZero{0},exactProbeRedundant{0},exactProbeSelected{0},exactProbeFallback{0},exactProbeAccepted{0};
 
+ void prioritize(int id,vector<int>&ids)const{
+  if(!frequencyOrderEnabled)return;
+  const auto&p=optionPrior[id];sort(ids.begin(),ids.end(),[&](int a,int b){return p[a]!=p[b]?p[a]>p[b]:a<b;});
+ }
  // Produce a full necessary shortlist from the three most selective postings.
  // This differs from the old capped query: the untested suffix is retained
  // for descendant states, not accidentally interpreted as a rejected option.
@@ -272,7 +322,7 @@ struct FastSearch : GSearch {
 
  vector<int> cachedDomain(int g,GFilter&f,size_t cap,GStats&c,const vector<int>*parent,vector<int>&store,const vector<int>*&next){
   vector<int> fresh;const vector<int>*input=parent;
-  if(!input){fresh=shortlist(g,f,c);input=&fresh;}
+  if(!input){fresh=shortlist(g,f,c);prioritize(g,fresh);input=&fresh;}
   else inheritedCount.fetch_add(1,memory_order_relaxed);
   vector<int> out;out.reserve(min(cap,input->size()));
   size_t n=0;
@@ -298,7 +348,7 @@ struct FastSearch : GSearch {
  ExactChoice7 exactCachedDomain(const Graph&g,int id,GFilter&f,size_t cap,GStats&c,
                               const vector<int>*parent,vector<int>&store,const vector<int>*&next){
   exactProbeCalls++;vector<int>fresh;const vector<int>*input=parent;
-  if(!input){fresh=shortlist(id,f,c);input=&fresh;}
+  if(!input){fresh=shortlist(id,f,c);prioritize(id,fresh);input=&fresh;}
   else inheritedCount.fetch_add(1,memory_order_relaxed);
   ExactChoice7 out;out.states.reserve(min(cap,input->size()));vector<int>kept;kept.reserve(min(cap,input->size()));
   size_t n=0;
@@ -513,10 +563,12 @@ struct FastSearch : GSearch {
   if(seedEnd==SIZE_MAX)seedEnd=seeds.size();
   if(seedStart>seedEnd||seedEnd>seeds.size())throw runtime_error("invalid seed range");
   next=seedStart;done=0;completed.assign(seeds.size(),0);deadline=Clock::now()+chrono::seconds(seconds);
+  vector<size_t>schedule(seedEnd-seedStart);iota(schedule.begin(),schedule.end(),seedStart);
+  if(frequencyOrderEnabled)stable_sort(schedule.begin(),schedule.end(),[&](size_t a,size_t b){return seedPrior[a]>seedPrior[b];});
   unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<GStats>stats(n);vector<thread>pool;
   for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{
    auto&c=stats[t];while(!stop()){
-    size_t i=next.fetch_add(1);if(i>=seedEnd)break;
+    size_t q=next.fetch_add(1);if(q>=seedEnd)break;size_t i=schedule[q-seedStart];
     fastDfs(seeds[i],order,maxOov,c,DomainPointers{});
     if(!found&&!timed){
      completed[i]=1;done++;
@@ -572,7 +624,7 @@ bool fastControl(const vector<string>&train,const vector<string>&held,unsigned s
 }
 #ifndef LP2_MOMENT_COMPLETION_NO_MAIN
 int main(int argc,char**argv){try{
- bool skipControls=false,controlsOnly=false;size_t seedStart=0,seedEnd=SIZE_MAX;int seconds=1500;
+ bool skipControls=false,controlsOnly=false,seedInventory=false;size_t seedStart=0,seedEnd=SIZE_MAX;int seconds=1500;
  for(int i=1;i<argc;i++){
   string arg=argv[i];
   auto value=[&]()->string{if(i+1>=argc)throw runtime_error("missing value for "+arg);return string(argv[++i]);};
@@ -582,16 +634,32 @@ int main(int argc,char**argv){try{
   else if(arg=="--skip-controls")skipControls=true;
   else if(arg=="--controls-only")controlsOnly=true;
   else if(arg=="--exact-mrv")exactMrvEnabled=true;
+  else if(arg=="--frequency-order")frequencyOrderEnabled=true;
+  else if(arg=="--seed-inventory"){seedInventory=true;frequencyOrderEnabled=true;}
   else throw runtime_error("unknown argument: "+arg);
  }
  if(skipControls&&controlsOnly)throw runtime_error("--skip-controls conflicts with --controls-only");
  if(seconds<=0)throw runtime_error("--seconds must be positive");
- aff::init();fixed::dictionary();regression();
+ aff::init();fixed::dictionary();if(frequencyOrderEnabled)buildPrior7();regression();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");
  auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));
  auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
  auto writeOutput=[&](const string&text){const char*p=getenv("SFT_OUTPUT");if(p&&*p){ofstream f(p);if(f)f<<text<<endl;}};
+ if(seedInventory){
+  FastSearch s(train);fixed::require(s.seeds.size()==93,"canonical seed count");
+  vector<size_t> ids(s.seeds.size());iota(ids.begin(),ids.end(),0);stable_sort(ids.begin(),ids.end(),[&](size_t a,size_t b){return s.seedPrior[a]>s.seedPrior[b];});
+  for(size_t id:ids){
+   cout<<"SEED "<<id<<" prior="<<s.seedPrior[id]<<" dim="<<s.seeds[id].dimension()<<" prefixes";
+   for(const auto&pre:s.seedPrefixes[id]){
+    cout<<" "<<pre<<"[";
+    bool first=true;for(const auto&w:fixed::by[11])if(w.compare(0,pre.size(),pre)==0){if(!first)cout<<",";first=false;auto it=wordEnglish7.find(w);cout<<(it==wordEnglish7.end()?w:it->second);}
+    cout<<"]";
+   }
+   cout<<endl;
+  }
+  return 0;
+ }
  if(!skipControls){
   bool a=fastControl(train,held,3301),b=fastControl(train,held,1033);
   if(controlsOnly){ostringstream o;o<<"{\"mode\":\"controls\",\"control_3301\":"<<(a?"true":"false")<<",\"control_1033\":"<<(b?"true":"false")<<",\"passed\":"<<((a&&b)?"true":"false")<<"}";writeOutput(o.str());return a&&b?0:2;}
