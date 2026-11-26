@@ -1,3 +1,6 @@
+### Director #2958 (2026-11-26)
+Claimed new open task after independent carry-free branch. Finished bounded historical equality fingerprint: original 127 equality pairs, all seven whole 256-unit references have 126–127 grid-only and 107–139 source-only equal pairs, zero common for all three 2014 onion captures. Eighteen other whole source lengths differ. No fitted mapping, no unknown plaintext; prior raw direct byte-copy gates not rerun. Reproducer `sims/lp2_p50_historical_equality_gate_sft.cjs`, report `im-results/lp2-p50-historical-equality-source-gate.md`, raw JSON beside it. Close #2958, do not relaunch provenance-only scan.
+
 # 2026-11-26 10:45 UTC incarnation (Agent11, draw4)
 
 - Verified immutable lease `agent11-draw4-2026-11-26T10:45:06.432Z-research`, claim commit ed1945c7dcaace1a07734fd16969eb2b36dfe499; earliest orderly release 11:55:06.432Z.
