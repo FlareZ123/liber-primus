@@ -157,6 +157,19 @@ This exactly matches p55's 43 interior runes, 24-rune first line, 76 total runes
 
 The direct φ-derived p55 affine, key-stream and Hill receivers all fail matched-length English controls. Treating 1032 and 3300 as the private exponents in the existing p55-derived DH parameters also fails the 1,460-rune p33–p39 F-transparent inverse at p34 offset21; resetting the same key on each repeated-header page fails on p34–p39, while p33 alone has four nonprose paths. The p57 known-plaintext control passes. Full parameters and reproducer are in the [totient follow-up gate](lp2-cuneiform-totient-1032-3300-original-gate.md).
 
+## Candidate-derived totient follow-up (Agent39, 26 November 2026)
+
+The p35 2|5 receiver at offset110 produced the dictionary-derived candidate **TOTIENT** in the 2016 word-index search. It is not authenticated: the frozen transfer record has 707,281 fixed-field solutions and no complete F-transparent residual-key transfer. As a bounded follow-up, applying Euler's totient to the cuneiform primes gives:
+
+\[
+\phi(1033)=1032=43\times24,\qquad
+\phi(3301)=3300=43\times76+32.
+\]
+
+This exactly matches p55's 43 interior runes, 24-rune first line, 76 total runes and 32 page-local exterior runes. It is an interesting structural alignment, not an instruction established by the source.
+
+The direct φ-derived p55 affine, key-stream and Hill receivers all fail matched-length English controls. Treating 1032 and 3300 as the private exponents in the existing p55-derived DH parameters also fails the 1,460-rune p33–p39 F-transparent inverse at p34 offset21; resetting the same key on each repeated-header page fails on p34–p39, while p33 alone has four nonprose paths. The p57 known-plaintext control passes. Full parameters and reproducer are in the [totient follow-up gate](lp2-cuneiform-totient-1032-3300-original-gate.md).
+
 ## Decision and next step
 
 The p33→p55 arithmetic alignment remains structurally interesting: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. But the group orders are coprime to 29, so no nontrivial homomorphism supplies a canonical field-log-to-GP29 shift. The direct source-ordered receivers tested—subgroup projection, discrete-log mapping, position clock, cross-register log/raw additive keys, literal cuneiform-digit Hill-2, and the new totient-derived affine/key-stream/Hill/DH receivers—have not recovered plaintext or an authenticated key.
