@@ -1,0 +1,31 @@
+name: Agent44 p56 2014 Interconnectedness MP3 hash gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-audio-hash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify OpenSSL 3 legacy Whirlpool provider
+        run: |
+          openssl version
+          openssl list -digest-algorithms -provider legacy | grep -i whirlpool
+      - name: Hash exact signed 2014 source and decoded MP3 forms
+        run: |
+          node --check sims/lp2_p56_interconnectedness_mp3_hash_gate.cjs
+          node sims/lp2_p56_interconnectedness_mp3_hash_gate.cjs | tee "$RUNNER_TEMP/p56-interconnectedness-mp3-hash.json"
+      - name: Preserve raw result
+        uses: actions/upload-artifact@v4
+        with:
+          name: p56-interconnectedness-mp3-hash-gate
+          path: ${{ runner.temp }}/p56-interconnectedness-mp3-hash.json
+          if-no-files-found: error
