@@ -1,0 +1,43 @@
+{
+  "lexiconSize": 33394,
+  "clock": "C=P+K[(consumingCount+J_k) mod8] mod29 except literal plaintext F emits F and does not consume",
+  "original": {
+    "N": 299,
+    "W": 64,
+    "B": 3,
+    "visibleZeros": 6,
+    "counts": {
+      "1": 1,
+      "2": 11,
+      "3": 14,
+      "4": 9,
+      "5": 9,
+      "6": 8,
+      "7": 3,
+      "8": 5,
+      "10": 2,
+      "11": 1,
+      "13": 1
+    },
+    "anchorFloor": 10,
+    "anchorMatches": 1047,
+    "phaseJoins": 7962,
+    "partialPairs": 0,
+    "maxMissing": 0,
+    "keys": 7941,
+    "range": [
+      4000,
+      7941
+    ],
+    "truthKeyIndex": null,
+    "truthRetained": null,
+    "truthRelaxed": null,
+    "relaxedSurvivors": 0,
+    "minBudget": null,
+    "states": 3659097,
+    "nodes": 0,
+    "exact": [],
+    "elapsedMs": 19075
+  },
+  "controls": []
+}
