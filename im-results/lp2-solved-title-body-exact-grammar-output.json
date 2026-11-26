@@ -1,0 +1,648 @@
+{
+  "fit": {
+    "n": 8,
+    "fullFirst": 1,
+    "fullAnywhere": 1,
+    "longestFirst": 1,
+    "longestAnywhere": 1,
+    "firstPrefix": 1
+  },
+  "hold": {
+    "n": 11,
+    "fullFirst": 1,
+    "fullAnywhere": 2,
+    "longestFirst": 1,
+    "longestAnywhere": 2,
+    "firstPrefix": 0
+  },
+  "koans": [
+    {
+      "source": "0_koan_1",
+      "masterPositions": [
+        9
+      ],
+      "sixRunePositions": [
+        9
+      ]
+    },
+    {
+      "source": "jpg107-167",
+      "masterPositions": [
+        4
+      ],
+      "sixRunePositions": [
+        2,
+        4
+      ]
+    }
+  ],
+  "repeated": [
+    {
+      "title": "AN INSTRUCTIAN",
+      "count": 4,
+      "firstCommon": [],
+      "firstPrefix": [
+        "COMMAND",
+        "DO",
+        "PROGRAM",
+        "CWESTIAN"
+      ],
+      "allTable": false
+    },
+    {
+      "title": "SOME WISDOM",
+      "count": 2,
+      "firstCommon": [],
+      "firstPrefix": [
+        "THE",
+        "AMASS"
+      ],
+      "allTable": false
+    },
+    {
+      "title": "CNOW THIS",
+      "count": 2,
+      "firstCommon": [],
+      "firstPrefix": [
+        "SHADOWS",
+        null
+      ],
+      "allTable": true
+    },
+    {
+      "title": "A COAN",
+      "count": 2,
+      "firstCommon": [
+        "A",
+        "A",
+        "MASTER"
+      ],
+      "firstPrefix": [
+        "A",
+        "DURING"
+      ],
+      "allTable": false
+    }
+  ],
+  "entries": [
+    {
+      "source": "0_warning",
+      "line": 0,
+      "title": "A WARNING",
+      "pattern": "1+5",
+      "n": 6,
+      "first": [
+        "BELIEUE",
+        "NOTHING",
+        "FROM",
+        "THIS",
+        "BOOC"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_welcome",
+      "line": 0,
+      "title": "WELCOME",
+      "pattern": "7",
+      "n": 7,
+      "first": [
+        "WELCOME",
+        "PILGRIM",
+        "TO",
+        "THE",
+        "GREAT",
+        "JOURNEY",
+        "TOWARD",
+        "THE",
+        "END",
+        "OF",
+        "ALL",
+        "THINGS"
+      ],
+      "fullFirst": true,
+      "fullAnywhere": true,
+      "longestFirst": true,
+      "longestAnywhere": true,
+      "firstPrefix": true,
+      "table": false
+    },
+    {
+      "source": "0_welcome",
+      "line": 8,
+      "title": "WIDSOM",
+      "pattern": "6",
+      "n": 6,
+      "first": [
+        "YOU",
+        "ARE",
+        "A",
+        "BEING",
+        "UNTO",
+        "YOURSELF"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_welcome",
+      "line": 13,
+      "title": "AN INSTRUCTIAN",
+      "pattern": "2+10",
+      "n": 12,
+      "first": [
+        "COMMAND",
+        "YOUR",
+        "OWN",
+        "SELF"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_wisdom",
+      "line": 0,
+      "title": "SOME WISDOM",
+      "pattern": "4+6",
+      "n": 10,
+      "first": [
+        "THE",
+        "PRIMES",
+        "ARE",
+        "SACRED"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_wisdom",
+      "line": 4,
+      "title": "CNOW THIS",
+      "pattern": "4+3",
+      "n": 7,
+      "first": [
+        "SHADOWS"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": true
+    },
+    {
+      "source": "0_koan_1",
+      "line": 0,
+      "title": "A COAN",
+      "pattern": "1+4",
+      "n": 5,
+      "first": [
+        "A",
+        "MAN",
+        "DECIDED",
+        "TO",
+        "GO",
+        "AND",
+        "STUDY",
+        "WITH",
+        "A",
+        "MASTER"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_koan_1",
+      "line": 20,
+      "title": "AN INSTRUCTIAN",
+      "pattern": "2+10",
+      "n": 12,
+      "first": [
+        "DO",
+        "FOUR",
+        "UNREASONABLE",
+        "THINGS",
+        "EACH",
+        "DAY"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 0,
+      "title": "THE LOSS OF DIUINITY",
+      "pattern": "2+4+2+8",
+      "n": 16,
+      "first": [
+        "THE",
+        "CIRCUMFERENCE",
+        "PRACTICES",
+        "THREE",
+        "BEHAUIARS",
+        "WHICH",
+        "CAUSE",
+        "THE",
+        "LOSS",
+        "OF",
+        "DIUINITY"
+      ],
+      "fullFirst": true,
+      "fullAnywhere": true,
+      "longestFirst": true,
+      "longestAnywhere": true,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 2,
+      "title": "CONSUMPTIAN",
+      "pattern": "10",
+      "n": 10,
+      "first": [
+        "WE",
+        "CONSUME",
+        "TOO",
+        "MUCH",
+        "BECAUSE",
+        "WE",
+        "BELEIUE",
+        "THE",
+        "FOLLOWING",
+        "TWO",
+        "ERRORS",
+        "WITHIN",
+        "THE",
+        "DECEPTIAN"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 7,
+      "title": "PRESERUATIAN",
+      "pattern": "11",
+      "n": 11,
+      "first": [
+        "WE",
+        "PRESERUE",
+        "THINGS",
+        "BECAUSE",
+        "WE",
+        "BELIEUE",
+        "WE",
+        "ARE",
+        "WEAC"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 12,
+      "title": "ADHERENCE",
+      "pattern": "9",
+      "n": 9,
+      "first": [
+        "WE",
+        "FOLLOW",
+        "DOGMA",
+        "SO",
+        "THAT",
+        "WE",
+        "CAN",
+        "BELOING",
+        "AND",
+        "BE",
+        "RIGHT"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": true,
+      "longestFirst": false,
+      "longestAnywhere": true,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 18,
+      "title": "SOME WISDOM",
+      "pattern": "4+6",
+      "n": 10,
+      "first": [
+        "AMASS",
+        "GREAT",
+        "WEALTH"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "0_loss_of_divinity",
+      "line": 22,
+      "title": "AN INSTRUCTIAN",
+      "pattern": "2+10",
+      "n": 12,
+      "first": [
+        "PROGRAM",
+        "YOUR",
+        "MIND"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "jpg107-167",
+      "line": 0,
+      "title": "A COAN",
+      "pattern": "1+4",
+      "n": 5,
+      "first": [
+        "DURING",
+        "A",
+        "LESSON",
+        "THE",
+        "MASTER",
+        "EXPLAINED",
+        "THE",
+        "I"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "jpg229",
+      "line": 0,
+      "title": "AN INSTRUCTIAN",
+      "pattern": "2+10",
+      "n": 12,
+      "first": [
+        "CWESTIAN",
+        "ALL",
+        "THINGS"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "jpg229",
+      "line": 5,
+      "title": "CNOW THIS",
+      "pattern": "4+3",
+      "n": 7,
+      "first": [],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": true
+    },
+    {
+      "source": "p56_an_end",
+      "line": 0,
+      "title": "AN END",
+      "pattern": "2+3",
+      "n": 5,
+      "first": [
+        "WITHIN",
+        "THE",
+        "DEEP",
+        "WEB",
+        "THERE",
+        "EXISTS",
+        "A",
+        "PAGE",
+        "THAT",
+        "HASHES",
+        "TO"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    },
+    {
+      "source": "p57_parable",
+      "line": 0,
+      "title": "PARABLE",
+      "pattern": "7",
+      "n": 7,
+      "first": [
+        "LICE",
+        "THE",
+        "INSTAR",
+        "TUNNELING",
+        "TO",
+        "THE",
+        "SURFACE"
+      ],
+      "fullFirst": false,
+      "fullAnywhere": false,
+      "longestFirst": false,
+      "longestAnywhere": false,
+      "firstPrefix": false,
+      "table": false
+    }
+  ],
+  "spans": [
+    {
+      "page": 0,
+      "start": 0,
+      "n": 13,
+      "pattern": "8+5",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 3,
+      "start": 0,
+      "n": 16,
+      "pattern": "2+11+3",
+      "exact": [],
+      "lengthOnly": [
+        "THE LOSS OF DIUINITY"
+      ]
+    },
+    {
+      "page": 3,
+      "start": 119,
+      "n": 3,
+      "pattern": "3",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 6,
+      "start": 71,
+      "n": 11,
+      "pattern": "4+1+4+2",
+      "exact": [],
+      "lengthOnly": [
+        "PRESERUATIAN"
+      ]
+    },
+    {
+      "page": 7,
+      "start": 194,
+      "n": 14,
+      "pattern": "2+4+3+2+3",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 8,
+      "start": 0,
+      "n": 12,
+      "pattern": "4+8",
+      "exact": [],
+      "lengthOnly": [
+        "AN INSTRUCTIAN"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 0,
+      "n": 9,
+      "pattern": "4+5",
+      "exact": [],
+      "lengthOnly": [
+        "ADHERENCE"
+      ]
+    },
+    {
+      "page": 15,
+      "start": 9,
+      "n": 11,
+      "pattern": "4+2+5",
+      "exact": [],
+      "lengthOnly": [
+        "PRESERUATIAN"
+      ]
+    },
+    {
+      "page": 23,
+      "start": 0,
+      "n": 16,
+      "pattern": "2+6+3+5",
+      "exact": [],
+      "lengthOnly": [
+        "THE LOSS OF DIUINITY"
+      ]
+    },
+    {
+      "page": 27,
+      "start": 0,
+      "n": 19,
+      "pattern": "3+12+4",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 33,
+      "start": 0,
+      "n": 10,
+      "pattern": "2+8",
+      "exact": [],
+      "lengthOnly": [
+        "SOME WISDOM",
+        "CONSUMPTIAN"
+      ]
+    },
+    {
+      "page": 33,
+      "start": 91,
+      "n": 8,
+      "pattern": "3+5",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 39,
+      "start": 119,
+      "n": 3,
+      "pattern": "3",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 40,
+      "start": 0,
+      "n": 8,
+      "pattern": "3+5",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 53,
+      "start": 128,
+      "n": 51,
+      "pattern": "5+4+4+11+2+3+2+6+5+5+2+2",
+      "exact": [],
+      "lengthOnly": []
+    },
+    {
+      "page": 54,
+      "start": 0,
+      "n": 9,
+      "pattern": "1+8",
+      "exact": [],
+      "lengthOnly": [
+        "ADHERENCE"
+      ]
+    }
+  ]
+}
