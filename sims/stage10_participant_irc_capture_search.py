@@ -17,15 +17,17 @@ COMMIT = "b13600373d3400d75ec4208198019f3d92a304dd"
 LOGS = [
     "irc-logs/#33012014.freenode.log",
 ]
+DATE_WINDOW = re.compile(r"(?:2014\s+May\s+0?[1-4]\b|0[1-4]/May/2014|2014-05-0[1-4])", re.I)
 PATTERNS = {
-    "stage10": re.compile(r"\bstage[\s_-]*10\b|\bstage[\s_-]*ten\b", re.I),
-    "square": re.compile(r"\bsquares?\b|53301|71033|51033", re.I),
+    "stage10": re.compile(r"\bstage[\s_-]*10\b|\bstage[\s_-]*ten\b|\bstage[\s_-]*11\b", re.I),
+    "square": re.compile(r"\bmagic squares?\b|\bsquares?\b|53301|71033|51033", re.I),
     "submission": re.compile(r"\bsubmit(?:ted|ting|sion)?\b|\baccepted\b|\bsuccess(?:ful)?\b", re.I),
+    "callback": re.compile(r"cgi-bin/upload|key\.asc|Cicada/33\.01|hidden service|user-agent", re.I),
     "http_exchange": re.compile(
-        r"\bPOST\b|HTTP/1\.[01]|Content-Length|Content-Type|Set-Cookie|Location:|Server:",
+        r"\bPOST\b|\bGET /\b|HTTP/1\.[01]|Content-Length|Content-Type|Set-Cookie|Location:|Server:|\b200 OK\b",
         re.I,
     ),
-    "response": re.compile(r"\bresponse\b|\breply\b|\backnowledg(?:e)?ment\b|\bcallback\b", re.I),
+    "response": re.compile(r"\bresponse\b|\breply\b|\backnowledg(?:e)?ment\b|\bcallback\b|\bbody\b|\bupload\b", re.I),
     "onion": re.compile(r"\.onion\b|ut3qtzbrvs7dtvzp", re.I),
     "digest": re.compile(r"\bp56\b|SHA-?512|[0-9a-f]{64,128}", re.I),
     "html": re.compile(r"<(?:html|form|body)\b|</(?:html|form|body)>", re.I),
@@ -54,6 +56,8 @@ def main() -> None:
         lines = text.splitlines()
         hits = []
         for i, line in enumerate(lines):
+            if not DATE_WINDOW.search(line):
+                continue
             categories = [name for name, pattern in PATTERNS.items() if pattern.search(line)]
             if categories:
                 lo, hi = max(0, i - 1), min(len(lines), i + 2)
@@ -82,6 +86,7 @@ def main() -> None:
         "purpose": "Find a materially distinct participant-side Stage10 successful squares POST response; no URL/path guessing.",
         "sourceRepository": OWNER_REPO,
         "sourceCommit": COMMIT,
+        "searchWindow": "2014-05-01 through 2014-05-04, matching timestamped lines only",
         "searchPatterns": list(PATTERNS),
         "sources": sources,
     }
