@@ -1,0 +1,182 @@
+{
+  "test": "p56 digest against exact 2014 Fifth Onion signed-media source forms",
+  "target": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "source_sha256": "55904a90db0b3fb1af059097617ee5d411867c7a940a3f978bf56fe875e82d18",
+  "media_sha256_integrity": "ebe41c78a0471f145e0177ddfa339c32019fa9eca650ca2dc7d589a13550ed3c",
+  "media_components": [
+    {
+      "name": "Godel JPEG",
+      "bytes": 1084
+    },
+    {
+      "name": "Escher JPEG",
+      "bytes": 1635
+    },
+    {
+      "name": "Bach audio",
+      "bytes": 9288
+    }
+  ],
+  "candidates": [
+    {
+      "source_form": "complete_original_clear-signed_file",
+      "bytes": 25994,
+      "sha512": "bb368a2d47f9290c78898c0939b30184694b89531863dd045b97c0849686477adebde0d89400e68c79f1e2795d6a0f47c15aa1d48051f88d6fe9723563ad0572",
+      "sha3_512": "9dd35dea1292eb6823872cc67e96d74fdb69ca60b2b0a4a6fb135fd1e4d4ef2744dfd0a5a7a4601196a7042fc2afbfc20a08bfc1fab6c64af7ccfc42253840ab",
+      "blake2b_512": "dd9f4cd5702d25c940026dd68e2ebf926b5e3e450836c239e6d9da33081f75da1c5af2b9c406814ed9c9d689778575e73ce4a9ebb867f31cb1a0150ad21db96e",
+      "whirlpool": "cc811166f7ecff0dc54e09f103c36f8050419995241c8283d769009fc3845024df59b5f84ce6ca168421a1abe7097050cf9d1d16f8de4808255566ba56365714",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "cleartext_after_pgp_headers_before_signature",
+      "bytes": 25093,
+      "sha512": "09f4934dec66ba4fe67b9bd29efe7caace464e0591d2848f4e298217886d5873551286006b5d87830181db06182a80bff6893a17fd048a438be5c796257b887d",
+      "sha3_512": "fb876e42e46538fcbe1730e30bf74f3a4a4377319276eb28697d968ed52a674b63204953d9d82376423983e79282b879f601a7479ac8a1f77e719e07ef2277d9",
+      "blake2b_512": "54eea02a3677861ce62e76a2de3f1a9a1913b36fd216171e1ba487bdf6b451c55f24c11edc0694c7e683d591d546884bb8f7dc177168a593a79b0f242cf9388b",
+      "whirlpool": "7f1842d1fce68bc627683606b70a1de0d65dcbc3b6a2ee1656a4a569d66b0c071af9b00deff272e52f11e03fc2bbc4670d96f16a9234bd663071e1f16c80df9f",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "media_region_exact_text",
+      "bytes": 24928,
+      "sha512": "fdd33432c76ea3a4fa1946f20327c3bd75ea458cb0b6d834eeb298be6922c7768f04530f85bcc91757aa1aa4e0a490d63044da96a1c3942a96c8c0ac8ed40ee5",
+      "sha3_512": "570e505bd198315e09873e712133c313e5903ba488c2bc4429f191d453295edc715feba34787730823a32feb587d9a4494eb8fe964691003364f7af33dea068a",
+      "blake2b_512": "626a4515332cbcb74e5bd70188c8e3b2e16e58836c0ad9ea5bd9c57a81c8b793623881c5b43584d26632675211e13d49db1bfe09392846a25d481a2d19e017ec",
+      "whirlpool": "9c5dec6781971a1dc897929224d3faa8a41edd24aaf2ab5a399721d99237d03361c01d656009f37c79aead77db456b233de62638c09efa3762b4c66096923b41",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "media_hex_compact_ascii",
+      "bytes": 24014,
+      "sha512": "a460ea6db643de529d38f223cafc9dafd74e89d0176b921be0efb914303505061681a0d55abe9fef6e99cf999d2b05d13e7b26095fa2ec91a0962a499d207bd9",
+      "sha3_512": "feb9ca69f251d62032351fede7c0bb7a8e710b97847c749aec42aa155f12f0cccadb42669a110991560e3dea1de415919f4550c2ee2701f73af79c2f7c658df5",
+      "blake2b_512": "b4bf214a33d05e04bf93535a97e28dff756fcd81a0827b082cb97dab3812ce0d90fc094d9ce789466294ed8b66459d1c22dc34a1511739cfafd75a621655d5da",
+      "whirlpool": "5975e623ec5e73f85b01a5ad8c5cb41ba9d9b24d570445ae54b5b919dca3832090bfa62cdddc60cf526b16b9f20c3d0f65c9cd18fd29405ec1e3291f7c6e7c63",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "media_payload_binary_12007",
+      "bytes": 12007,
+      "sha512": "b85883f051168c35455220815513a4cb93ac9071b2becd173c151869ff4cec54c4153244ebfe301f3dbce8c56c8a281b7130bf12a357a1ad59864bf210fab185",
+      "sha3_512": "c3009b24f85b8ef44b9210416bded4d14070ec94ed5fcbd7975fe9b0b6c87dadca76a598a54656ae08a7f7e2f72c769c0dd911d23162e2ebfaa5b7b86d96519c",
+      "blake2b_512": "c98333bc145291c2106949a3596a365e9241d42a9c04ea2dd20baa78c5dde791e15ad55c4cdb69b4ed8c4eb3a50d9e3808c799694bde783e101e844cb0525490",
+      "whirlpool": "596c3cf19ae7dfff5d9701a9238117ad5f62756d5d184eb339231b41b9ebebc1c88363606c80c7f1bf26c9d6272de3158cbbb7c6cea65d723c051eb35c7dc99a",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "godel_jpeg_binary_1084",
+      "bytes": 1084,
+      "sha512": "379673af3f828e16b231b9aafe13c00021efaa9464811a8287b360278dfa02ebaf56d34d8027ef124035723712b27d20c820bdc5e095a5f7c75d5d88ddebfea7",
+      "sha3_512": "1abfaaa155abede84cfda8a7454325f778c5c15783c20d759f546ed0aab2dfd5d98b26327da87c1c92765c882962b884a4fece14c3d60a503661ce16138b4afb",
+      "blake2b_512": "6f6d1842fd085996ab7236907a3f1bfb3d69219a4afc63827319c709b1a8e53d01a8b9e95495b73b7e734c8508a77a4f9f3fbe693192dc7ef5ca94a9a539aac0",
+      "whirlpool": "e80acf3b4d6ee7bba4212a45fc2a75a68f51c3d3d80ae19f1a7fb4b9898e5402a6faf8b05d447c03c9961f243844e11f87cf35d9d75a0cb2c33aed418d0a5aa6",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "escher_jpeg_binary_1635",
+      "bytes": 1635,
+      "sha512": "fbfb2794128d0916805b22cff73d01c7b722ab2af33186ebd9e107f397ba752ba617c5e795ca1c939d5d024379f290dabe3212c87c7ca28ec8993ba6499caf3a",
+      "sha3_512": "f89b1a36b4fb594398b85b0f88a37b700764526465b73de2d5706a0502c3ec10986bd020ce2df4389511a2d1bfc45864187df611d0f97d52fe68e37640996e88",
+      "blake2b_512": "cb602e946eced976fc479c918a7190e8bf3ee16552b632b15b51646229f97b2ee56aa9cd9af2be4db47a68c634c894c16c11b140d804e409e7cdb4535203fdf4",
+      "whirlpool": "f64ef88098ed44439adb992086d27c060bdedce3524b57bfe7ba5e10285cf14db550047932619488c85b3293f268795805c265baccb216f5aac1e3e977590283",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "bach_audio_binary_9288",
+      "bytes": 9288,
+      "sha512": "0dd16d3cac01767eeea3e415dffaa8885870b44b7d755857b47752ea82ed7455802e9fc1fbedd1e4dda368f2655d72b3f4a2bb987e7a015066ca49a03db86451",
+      "sha3_512": "7f15624294e3b7808f3e4bfefef5d424fd3f5b7fd31e4bf3b852255da3859389f4b10b4d1bd9c8c86fe906c2a24401fa2cc1dc2c10f921d702595185d9d60e55",
+      "blake2b_512": "c4525b124b321879d6c867bc658cfb48a25e317888c9bce0508749c8e58514015e9ba5c211d0903c4f7c1008efd989f5b3e415d60e625114c0df186cd73aa61b",
+      "whirlpool": "b312e019df5f335e0fb79c70f3274a223ed7448896f194df07bb181c21b7a5958220a94dfde97b74096042d990cf74160d50c359bdbf4f40b31c84a00a6da3c8",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "godel_jpeg_hex_ascii",
+      "bytes": 2168,
+      "sha512": "2ff536456bd1381c6dc3d5e9ec0b02359c5d46389ed0ade96b373d209e701cdd6e7d8a2ff05548caea9da88af2ed7f9105c6d204dc9f3ca14caee16617f33679",
+      "sha3_512": "256591e75d476b3b66e179c1a3bbf5438626beca08e767173f66689369119366e8bf01240a40fa112216815771357a0b7d8cb67fcb507af0cdba54f2487cf6b7",
+      "blake2b_512": "f4409061fb906acd76c69e1fa6afc83192d18034395969683e0d21bdd9872818653b4dc1f8dca5d7a6eec6226719875c096e4aa98d1986fc7a8bc7a3978cac97",
+      "whirlpool": "43afd9e7c9d82e5555e3a349d429d26d6a122e5d54924d0090a8282c558a8c7cbbabe063a551f8a9953d2cc9551557b4543c0fff8cdc3fa8dc7c52721d3b758f",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "escher_jpeg_hex_ascii",
+      "bytes": 3270,
+      "sha512": "2f244dba8e875ea3a3110f762fc138c571c651ef8ff40d5940e6b7fef3aac357bc30153d0b6a346b181ca793782b62ad05ce41b5785b275cc6d2b0e43e89ec9a",
+      "sha3_512": "768053126eeea581f17f99e3b0f58573480a5f7ef01e83d3cc0d2738be7a87e667a6283a0aa75d0b3f0e855dc0a1763460d0210eb5ca1def9f3884437f3836e6",
+      "blake2b_512": "3b926ded75e1f3087470dec4de051c4e270f3a250b98c20703e2e7e8623e93c2ebacf0f15153e9c230a1d836dc6a5332f71b418964ca8ad9932c4035ecc5921a",
+      "whirlpool": "7b67c824d6906aae1b1b7b54840fb99a93d0c4162e9763eef4788e30d85c06c56c5f48626d9aa431dd652d60f901eedad9dc3faaced718f900d360dda6ba0ef0",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "bach_audio_hex_ascii",
+      "bytes": 18576,
+      "sha512": "cc5d30bb2b2d5fd81bb9a0cb134e2a9039c93c3efa44ce8fdd3f5f9b7e8e1728d2e269b95f2c5fc2a39fdc9c0881f41ed06ee26ee62a8e572474c94a053724c3",
+      "sha3_512": "b8453c38b601b45d7480ea421cd2f279139ed07391b6314c52a462a2dce355cff690faaa3f79938c7ade98443b896573c24f57559772d7bc3e8e4aabd3953606",
+      "blake2b_512": "2db2ffe60a3720b007d4fd7c8b4c9eab15f7ef7251f7fdcdceab8c036c0e8ce2310b17927c66074feee379660337b60908dd58f3d0c31a184e8974ec95e1b3ef",
+      "whirlpool": "67a8f5516b98923e2d93c4227e03faf632371f8a31e56c0e5c2040afbac2eb7fef37f432a7cdba01995fe7c9051049839b223096e8d3299de8429c47c5c6b4e5",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    }
+  ],
+  "matches": [],
+  "conclusion": "No tested Fifth Onion signed-media source form matches the p56 digest",
+  "workflow_run_id": 45789016059,
+  "workflow_url": "https://github.com/FlareZ123/liber-primus/actions/runs/45789016059",
+  "script": "sims/lp2_p56_onion5_signed_media_hash_gate.py",
+  "workflow": ".github/workflows/agent44-p56-onion5-signed-media-hash-gate.yml"
+}
