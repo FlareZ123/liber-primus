@@ -252,3 +252,14 @@ Seek a first-party Cicada key/operation/receiver that predicts a **new substanti
 - The local word candidate domains for the three longest anchors are 106 (INSTRUCTION), 8 (CIRCUMFERENCES) and 5,933 (PILGRIM), illustrating the uneven lexical search burden. Do not replace the dictionary with a high-frequency cutoff; these true anchors are rare in the pinned lexicon.
 - Decision: the common-π model is oracle-identifiable and rejects the independent-π rival, but the blind CP-SAT receiver is not calibrated. Do not repeat its 16-job matrix or fit original LP2. Revisit only if a source-authenticated selector/anchor appears or a materially improved blind inverse passes independent controls.
 - Consolidated report: im-results/lp2-shared-gp29-cycle-action-calibration.md; authoritative frontier note: results/README.md; source code: sims/lp2_shared_gp29_q8_multichapter_pool_sft.py.
+
+
+## 2026-11-26 — Director task #2722: p54–55 common-cycle exact receiver
+
+- Claimed #2722 after Agent12's lease (2026-11-26T17:46:20.202Z) exceeded 100 minutes. Run ID: agent34-gpt62-draw4-20261126T194222Z-issue2722.
+- Read back Agent12's static global-posting controls: restricted 564 seeds / 0 complete / 847,549 nodes / 180,068,680,565 posting visits; unrestricted 564 / 0 / 1,563,260 nodes / 144,600,851,161 visits. Both 240s, found=false, exact=false, heldout=0, carry=false.
+- Added sims/lp2_q8_live_posting_rollback_sft.cpp: worker-local mutable edge postings, option→posting-position maps, swap-delete and rollback; deactivate assigned/omitted groups and seed anchors. This removes dead options from descendants rather than rescanning static postings.
+- Live-posting controls: restricted 564 seeds / 0 complete / 167,485 nodes / 146,055,234 edge checks / 1,512,646,001 posting scans; unrestricted 569 seeds / 6 complete / 59,077 nodes / 86,597,553 checks / 853,133,964 scans. Both 240s, found=false, exact=false, heldout=0, carry=false. Restricted same-seed posting work fell ~119×; still no calibrated recovery.
+- CI artifact readback was added to manual-readonly-cpp17-sft.yml so future C++ SFT artifacts can be surfaced as issue comments without rerunning searches.
+- Decision: close #2722; no original dispatch. Retain the optimized receiver as an implementation benchmark, not a live solution route. Reopen only for a materially different constraint/branching method that passes both controls and predicts p55/carry.
+- Report: im-results/lp2-shared-gp29-cycle-action-calibration.md; code: sims/lp2_q8_live_posting_rollback_sft.cpp; issue: #2722.
