@@ -72,7 +72,7 @@ SPARSE = [
     "/liber-primus/analysis/latin/latin_218.txt",
     "/liber-primus/analysis/round10b/B6-non-english-plaintext/corpora/de_faust.txt",
     "/liber-primus/analysis/round10b/B6-non-english-plaintext/corpora/de_2.txt",
-    "/liber-primus/data/keys/welsh/welsh_mabinogion.txt",
+    "/liber-primus/analysis/round36/P1-panel-r36/inputs_frozen/welsh_mabinogion.txt",
     "/liber-primus/analysis/round10b/B6-non-english-plaintext/corpora/oe_beowulf.txt",
     "/liber-primus/dataset/liber_primus.json",
     "/liber-primus/PROBLEM.json",
@@ -97,6 +97,14 @@ def acquire_ref(dest: Path) -> None:
     git(dest, "sparse-checkout", "set", "--no-cone", *SPARSE)
     git(dest, "checkout", "--detach", REF)
     assert git(dest, "rev-parse", "HEAD") == REF
+    # R36 explicitly documents restoring this gitignored input from its frozen copy.
+    # Use the exact pinned Git blob; newline normalization has no effect on rune input.
+    frozen = dest / "liber-primus/analysis/round36/P1-panel-r36/inputs_frozen/welsh_mabinogion.txt"
+    raw = frozen.read_bytes()
+    assert hashlib.sha1(f"blob {len(raw)}\0".encode() + raw).hexdigest() == "b51109cbd939b75b1ea33d09879fcd5a3a9bb0d0"
+    expected = dest / "liber-primus/data/keys/welsh/welsh_mabinogion.txt"
+    expected.parent.mkdir(parents=True, exist_ok=True)
+    expected.write_bytes(raw)
 
 
 def manifest(which: str) -> Path:
