@@ -1,0 +1,7195 @@
+{
+  "N": 12956,
+  "frames": {
+    "book": {
+      "rows": [
+        {
+          "id": "p0–55",
+          "n": 12956,
+          "h": [
+            458,
+            450,
+            455,
+            458,
+            424,
+            443,
+            438,
+            401,
+            414,
+            446,
+            471,
+            450,
+            399,
+            445,
+            458,
+            434,
+            442,
+            445,
+            439,
+            436,
+            460,
+            454,
+            492,
+            439,
+            482,
+            445,
+            448,
+            470,
+            460
+          ],
+          "min": 399,
+          "max": 492,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 208,
+          "exactEdits": 213,
+          "log2AnyBalancedProbability": -137.38140682591134,
+          "capacityBits": 62782.04653028127
+        }
+      ],
+      "summary": {
+        "count": 1,
+        "long": 1,
+        "exact": 0,
+        "relaxed": 0,
+        "longRelaxed": 0,
+        "minEdits": 208,
+        "exactEdits": 213,
+        "relaxedIds": [],
+        "sameLengthConflicts": [],
+        "sharedProbabilityContradictions": [],
+        "longSharedProbabilityContradictions": []
+      }
+    },
+    "page": {
+      "rows": [
+        {
+          "id": "p0",
+          "n": 262,
+          "h": [
+            14,
+            7,
+            12,
+            6,
+            7,
+            5,
+            12,
+            5,
+            10,
+            12,
+            8,
+            8,
+            9,
+            9,
+            12,
+            8,
+            8,
+            9,
+            8,
+            10,
+            7,
+            18,
+            8,
+            9,
+            6,
+            9,
+            13,
+            7,
+            6
+          ],
+          "min": 5,
+          "max": 18,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 31,
+          "log2AnyBalancedProbability": -74.74618127058682,
+          "capacityBits": 1193.1868584577096
+        },
+        {
+          "id": "p1",
+          "n": 266,
+          "h": [
+            13,
+            6,
+            11,
+            9,
+            9,
+            15,
+            11,
+            9,
+            7,
+            8,
+            8,
+            8,
+            3,
+            11,
+            12,
+            12,
+            6,
+            4,
+            6,
+            5,
+            14,
+            7,
+            14,
+            8,
+            8,
+            11,
+            10,
+            9,
+            12
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 33,
+          "exactEdits": 36,
+          "log2AnyBalancedProbability": -63.27772580051546,
+          "capacityBits": 1212.0875901717627
+        },
+        {
+          "id": "p2",
+          "n": 201,
+          "h": [
+            7,
+            8,
+            7,
+            5,
+            6,
+            8,
+            6,
+            8,
+            13,
+            8,
+            8,
+            8,
+            5,
+            7,
+            4,
+            3,
+            9,
+            10,
+            10,
+            3,
+            9,
+            4,
+            3,
+            14,
+            5,
+            4,
+            2,
+            7,
+            10
+          ],
+          "min": 2,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 32,
+          "exactEdits": 34,
+          "log2AnyBalancedProbability": -65.81960804218515,
+          "capacityBits": 901.9692360612717
+        },
+        {
+          "id": "p3",
+          "n": 217,
+          "h": [
+            7,
+            3,
+            7,
+            6,
+            6,
+            10,
+            7,
+            5,
+            11,
+            10,
+            9,
+            6,
+            9,
+            6,
+            6,
+            9,
+            9,
+            8,
+            5,
+            9,
+            10,
+            6,
+            5,
+            8,
+            4,
+            6,
+            8,
+            9,
+            13
+          ],
+          "min": 3,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 20,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -50.25125079523924,
+          "capacityBits": 977.7218387452357
+        },
+        {
+          "id": "p4",
+          "n": 261,
+          "h": [
+            7,
+            10,
+            10,
+            4,
+            11,
+            11,
+            16,
+            9,
+            4,
+            7,
+            8,
+            9,
+            10,
+            12,
+            16,
+            7,
+            6,
+            9,
+            7,
+            12,
+            12,
+            11,
+            10,
+            3,
+            6,
+            7,
+            6,
+            9,
+            12
+          ],
+          "min": 3,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 36,
+          "exactEdits": 36,
+          "log2AnyBalancedProbability": -79.45767617723705,
+          "capacityBits": 1188.4753635510594
+        },
+        {
+          "id": "p5",
+          "n": 263,
+          "h": [
+            8,
+            10,
+            6,
+            8,
+            8,
+            11,
+            7,
+            3,
+            9,
+            5,
+            10,
+            13,
+            15,
+            11,
+            10,
+            6,
+            8,
+            3,
+            9,
+            4,
+            8,
+            12,
+            11,
+            12,
+            9,
+            13,
+            18,
+            7,
+            9
+          ],
+          "min": 3,
+          "max": 18,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 36,
+          "exactEdits": 37,
+          "log2AnyBalancedProbability": -71.07981644925175,
+          "capacityBits": 1197.9038493521145
+        },
+        {
+          "id": "p6",
+          "n": 196,
+          "h": [
+            3,
+            6,
+            3,
+            6,
+            9,
+            5,
+            9,
+            7,
+            7,
+            5,
+            7,
+            8,
+            6,
+            5,
+            9,
+            8,
+            9,
+            6,
+            4,
+            7,
+            9,
+            4,
+            7,
+            9,
+            10,
+            7,
+            7,
+            9,
+            5
+          ],
+          "min": 3,
+          "max": 10,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 19,
+          "exactEdits": 25,
+          "log2AnyBalancedProbability": -53.76736954882268,
+          "capacityBits": 877.8230697305261
+        },
+        {
+          "id": "p7",
+          "n": 208,
+          "h": [
+            1,
+            5,
+            8,
+            6,
+            2,
+            15,
+            4,
+            6,
+            7,
+            10,
+            9,
+            7,
+            9,
+            10,
+            8,
+            4,
+            5,
+            5,
+            7,
+            7,
+            11,
+            9,
+            7,
+            6,
+            6,
+            8,
+            3,
+            12,
+            11
+          ],
+          "min": 1,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 35,
+          "log2AnyBalancedProbability": -58.49201199348532,
+          "capacityBits": 935.1104062613938
+        },
+        {
+          "id": "p8",
+          "n": 255,
+          "h": [
+            8,
+            11,
+            8,
+            13,
+            10,
+            7,
+            5,
+            4,
+            7,
+            15,
+            6,
+            8,
+            7,
+            13,
+            13,
+            9,
+            8,
+            8,
+            7,
+            10,
+            14,
+            11,
+            11,
+            5,
+            7,
+            7,
+            9,
+            5,
+            9
+          ],
+          "min": 4,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 33,
+          "log2AnyBalancedProbability": -60.51654536806401,
+          "capacityBits": 1159.4109796578111
+        },
+        {
+          "id": "p9",
+          "n": 268,
+          "h": [
+            11,
+            6,
+            12,
+            8,
+            7,
+            7,
+            13,
+            10,
+            8,
+            8,
+            9,
+            9,
+            7,
+            11,
+            8,
+            11,
+            6,
+            6,
+            6,
+            12,
+            6,
+            9,
+            10,
+            11,
+            8,
+            10,
+            15,
+            15,
+            9
+          ],
+          "min": 6,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -59.794551824400614,
+          "capacityBits": 1221.5705191041336
+        },
+        {
+          "id": "p10",
+          "n": 263,
+          "h": [
+            7,
+            12,
+            10,
+            9,
+            7,
+            8,
+            8,
+            7,
+            9,
+            12,
+            9,
+            5,
+            7,
+            8,
+            16,
+            11,
+            7,
+            9,
+            10,
+            10,
+            8,
+            8,
+            17,
+            10,
+            7,
+            8,
+            8,
+            8,
+            8
+          ],
+          "min": 5,
+          "max": 17,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 25,
+          "exactEdits": 26,
+          "log2AnyBalancedProbability": -71.07981644925175,
+          "capacityBits": 1197.9038493521145
+        },
+        {
+          "id": "p11",
+          "n": 273,
+          "h": [
+            14,
+            16,
+            13,
+            8,
+            9,
+            16,
+            4,
+            10,
+            7,
+            11,
+            8,
+            5,
+            12,
+            5,
+            12,
+            6,
+            10,
+            10,
+            11,
+            6,
+            11,
+            9,
+            9,
+            7,
+            14,
+            8,
+            4,
+            10,
+            8
+          ],
+          "min": 4,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 32,
+          "exactEdits": 38,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p12",
+          "n": 261,
+          "h": [
+            12,
+            10,
+            7,
+            6,
+            7,
+            11,
+            13,
+            11,
+            9,
+            12,
+            10,
+            6,
+            8,
+            9,
+            11,
+            6,
+            16,
+            9,
+            8,
+            5,
+            7,
+            8,
+            9,
+            4,
+            9,
+            6,
+            8,
+            10,
+            14
+          ],
+          "min": 4,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 31,
+          "log2AnyBalancedProbability": -79.45767617723705,
+          "capacityBits": 1188.4753635510594
+        },
+        {
+          "id": "p13",
+          "n": 272,
+          "h": [
+            12,
+            10,
+            13,
+            13,
+            6,
+            7,
+            10,
+            10,
+            6,
+            5,
+            7,
+            9,
+            8,
+            4,
+            10,
+            9,
+            11,
+            10,
+            11,
+            12,
+            12,
+            8,
+            5,
+            10,
+            14,
+            9,
+            10,
+            11,
+            10
+          ],
+          "min": 4,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 25,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -55.72597840746817,
+          "capacityBits": 1240.6006965667962
+        },
+        {
+          "id": "p14",
+          "n": 137,
+          "h": [
+            2,
+            4,
+            6,
+            4,
+            4,
+            7,
+            5,
+            3,
+            6,
+            6,
+            1,
+            2,
+            3,
+            5,
+            8,
+            9,
+            3,
+            3,
+            3,
+            2,
+            5,
+            5,
+            6,
+            4,
+            5,
+            4,
+            7,
+            9,
+            6
+          ],
+          "min": 1,
+          "max": 9,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 20,
+          "exactEdits": 26,
+          "log2AnyBalancedProbability": -45.577715041542724,
+          "capacityBits": 597.9324139066421
+        },
+        {
+          "id": "p15",
+          "n": 159,
+          "h": [
+            7,
+            13,
+            7,
+            5,
+            4,
+            4,
+            4,
+            1,
+            7,
+            6,
+            7,
+            2,
+            3,
+            7,
+            9,
+            3,
+            5,
+            7,
+            1,
+            3,
+            9,
+            7,
+            5,
+            5,
+            7,
+            3,
+            5,
+            8,
+            5
+          ],
+          "min": 1,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -44.35667004609347,
+          "capacityBits": 701.8535217769822
+        },
+        {
+          "id": "p16",
+          "n": 267,
+          "h": [
+            10,
+            8,
+            8,
+            11,
+            8,
+            13,
+            13,
+            5,
+            4,
+            6,
+            9,
+            12,
+            4,
+            11,
+            10,
+            9,
+            9,
+            11,
+            9,
+            7,
+            7,
+            9,
+            13,
+            10,
+            11,
+            9,
+            7,
+            14,
+            10
+          ],
+          "min": 4,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -61.396938958842874,
+          "capacityBits": 1216.826358008563
+        },
+        {
+          "id": "p17",
+          "n": 273,
+          "h": [
+            12,
+            7,
+            14,
+            7,
+            13,
+            8,
+            9,
+            6,
+            8,
+            13,
+            15,
+            10,
+            10,
+            9,
+            8,
+            5,
+            13,
+            8,
+            8,
+            9,
+            6,
+            10,
+            11,
+            4,
+            12,
+            12,
+            10,
+            9,
+            7
+          ],
+          "min": 4,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 32,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p18",
+          "n": 260,
+          "h": [
+            10,
+            10,
+            6,
+            11,
+            9,
+            12,
+            7,
+            6,
+            6,
+            6,
+            8,
+            7,
+            10,
+            10,
+            8,
+            6,
+            9,
+            9,
+            10,
+            7,
+            8,
+            11,
+            14,
+            17,
+            6,
+            6,
+            7,
+            10,
+            14
+          ],
+          "min": 6,
+          "max": 17,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 32,
+          "log2AnyBalancedProbability": -74.59969518210949,
+          "capacityBits": 1183.6173825559317
+        },
+        {
+          "id": "p19",
+          "n": 271,
+          "h": [
+            12,
+            5,
+            6,
+            15,
+            9,
+            8,
+            9,
+            11,
+            10,
+            10,
+            9,
+            16,
+            7,
+            9,
+            6,
+            10,
+            8,
+            7,
+            5,
+            8,
+            8,
+            10,
+            9,
+            15,
+            12,
+            14,
+            5,
+            7,
+            11
+          ],
+          "min": 5,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 28,
+          "exactEdits": 33,
+          "log2AnyBalancedProbability": -56.422028053510175,
+          "capacityBits": 1235.8351618204329
+        },
+        {
+          "id": "p20",
+          "n": 269,
+          "h": [
+            7,
+            11,
+            11,
+            5,
+            11,
+            10,
+            11,
+            5,
+            6,
+            1,
+            12,
+            11,
+            11,
+            8,
+            12,
+            12,
+            6,
+            9,
+            7,
+            14,
+            14,
+            9,
+            10,
+            9,
+            10,
+            10,
+            8,
+            11,
+            8
+          ],
+          "min": 1,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 29,
+          "exactEdits": 32,
+          "log2AnyBalancedProbability": -58.44356693322139,
+          "capacityBits": 1226.320053371803
+        },
+        {
+          "id": "p21",
+          "n": 273,
+          "h": [
+            8,
+            6,
+            12,
+            17,
+            5,
+            10,
+            12,
+            10,
+            7,
+            9,
+            11,
+            10,
+            4,
+            17,
+            7,
+            9,
+            7,
+            5,
+            8,
+            9,
+            8,
+            9,
+            11,
+            9,
+            10,
+            12,
+            10,
+            12,
+            9
+          ],
+          "min": 4,
+          "max": 17,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 25,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p22",
+          "n": 131,
+          "h": [
+            6,
+            4,
+            11,
+            4,
+            5,
+            5,
+            6,
+            6,
+            4,
+            6,
+            2,
+            8,
+            3,
+            1,
+            3,
+            2,
+            3,
+            7,
+            6,
+            6,
+            4,
+            4,
+            2,
+            1,
+            7,
+            1,
+            3,
+            6,
+            5
+          ],
+          "min": 1,
+          "max": 11,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 20,
+          "exactEdits": 26,
+          "log2AnyBalancedProbability": -40.75081775011654,
+          "capacityBits": 569.4359062093873
+        },
+        {
+          "id": "p23",
+          "n": 213,
+          "h": [
+            7,
+            10,
+            10,
+            8,
+            9,
+            5,
+            9,
+            11,
+            6,
+            6,
+            6,
+            6,
+            5,
+            6,
+            4,
+            7,
+            7,
+            7,
+            7,
+            8,
+            4,
+            7,
+            7,
+            8,
+            8,
+            9,
+            8,
+            10,
+            8
+          ],
+          "min": 4,
+          "max": 11,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 15,
+          "exactEdits": 19,
+          "log2AnyBalancedProbability": -51.778551981906844,
+          "capacityBits": 958.7157401746371
+        },
+        {
+          "id": "p24",
+          "n": 270,
+          "h": [
+            12,
+            14,
+            8,
+            10,
+            8,
+            9,
+            4,
+            12,
+            11,
+            10,
+            10,
+            5,
+            4,
+            10,
+            10,
+            13,
+            10,
+            9,
+            10,
+            7,
+            8,
+            10,
+            11,
+            5,
+            9,
+            11,
+            10,
+            11,
+            9
+          ],
+          "min": 4,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 27,
+          "log2AnyBalancedProbability": -57.32426800484922,
+          "capacityBits": 1231.0749408739664
+        },
+        {
+          "id": "p25",
+          "n": 273,
+          "h": [
+            9,
+            10,
+            9,
+            12,
+            9,
+            10,
+            14,
+            7,
+            6,
+            12,
+            9,
+            8,
+            6,
+            8,
+            10,
+            13,
+            9,
+            10,
+            14,
+            8,
+            15,
+            8,
+            9,
+            6,
+            10,
+            8,
+            9,
+            5,
+            10
+          ],
+          "min": 5,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 20,
+          "exactEdits": 27,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p26",
+          "n": 265,
+          "h": [
+            9,
+            10,
+            10,
+            10,
+            8,
+            6,
+            10,
+            3,
+            10,
+            11,
+            10,
+            8,
+            6,
+            10,
+            8,
+            10,
+            12,
+            11,
+            11,
+            9,
+            7,
+            12,
+            8,
+            6,
+            14,
+            3,
+            10,
+            9,
+            14
+          ],
+          "min": 3,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 27,
+          "exactEdits": 28,
+          "log2AnyBalancedProbability": -65.47502724088905,
+          "capacityBits": 1207.3542358311493
+        },
+        {
+          "id": "p27",
+          "n": 234,
+          "h": [
+            11,
+            8,
+            4,
+            10,
+            14,
+            8,
+            7,
+            5,
+            5,
+            10,
+            8,
+            5,
+            4,
+            10,
+            3,
+            7,
+            10,
+            12,
+            10,
+            11,
+            9,
+            7,
+            6,
+            7,
+            10,
+            8,
+            9,
+            6,
+            10
+          ],
+          "min": 3,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 30,
+          "exactEdits": 31,
+          "log2AnyBalancedProbability": -68.78295045978263,
+          "capacityBits": 1059.3192664828841
+        },
+        {
+          "id": "p28",
+          "n": 269,
+          "h": [
+            12,
+            6,
+            7,
+            9,
+            6,
+            7,
+            7,
+            11,
+            7,
+            11,
+            14,
+            15,
+            8,
+            11,
+            7,
+            8,
+            6,
+            12,
+            7,
+            11,
+            6,
+            11,
+            10,
+            13,
+            11,
+            6,
+            7,
+            9,
+            14
+          ],
+          "min": 6,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 37,
+          "log2AnyBalancedProbability": -58.44356693322139,
+          "capacityBits": 1226.320053371803
+        },
+        {
+          "id": "p29",
+          "n": 277,
+          "h": [
+            8,
+            8,
+            12,
+            8,
+            8,
+            10,
+            10,
+            9,
+            10,
+            7,
+            15,
+            14,
+            9,
+            7,
+            6,
+            9,
+            7,
+            10,
+            13,
+            10,
+            14,
+            10,
+            13,
+            13,
+            8,
+            10,
+            7,
+            9,
+            3
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 24,
+          "exactEdits": 32,
+          "log2AnyBalancedProbability": -55.137194578592826,
+          "capacityBits": 1264.507399747479
+        },
+        {
+          "id": "p30",
+          "n": 263,
+          "h": [
+            8,
+            9,
+            8,
+            12,
+            12,
+            6,
+            9,
+            8,
+            8,
+            4,
+            6,
+            2,
+            12,
+            8,
+            12,
+            8,
+            8,
+            8,
+            11,
+            6,
+            10,
+            8,
+            14,
+            7,
+            12,
+            11,
+            12,
+            10,
+            14
+          ],
+          "min": 2,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 32,
+          "exactEdits": 34,
+          "log2AnyBalancedProbability": -71.07981644925175,
+          "capacityBits": 1197.9038493521145
+        },
+        {
+          "id": "p31",
+          "n": 269,
+          "h": [
+            9,
+            5,
+            9,
+            8,
+            12,
+            7,
+            7,
+            9,
+            13,
+            6,
+            11,
+            12,
+            10,
+            12,
+            12,
+            8,
+            10,
+            13,
+            11,
+            8,
+            9,
+            8,
+            6,
+            13,
+            9,
+            8,
+            8,
+            10,
+            6
+          ],
+          "min": 5,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -58.44356693322139,
+          "capacityBits": 1226.320053371803
+        },
+        {
+          "id": "p32",
+          "n": 121,
+          "h": [
+            4,
+            6,
+            7,
+            4,
+            3,
+            1,
+            3,
+            10,
+            5,
+            3,
+            1,
+            3,
+            3,
+            2,
+            5,
+            5,
+            5,
+            8,
+            3,
+            4,
+            4,
+            5,
+            4,
+            4,
+            4,
+            3,
+            2,
+            7,
+            3
+          ],
+          "min": 1,
+          "max": 10,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 18,
+          "exactEdits": 21,
+          "log2AnyBalancedProbability": -48.12909963873181,
+          "capacityBits": 522.8289720400485
+        },
+        {
+          "id": "p33",
+          "n": 214,
+          "h": [
+            9,
+            8,
+            8,
+            7,
+            7,
+            4,
+            7,
+            15,
+            6,
+            6,
+            7,
+            10,
+            8,
+            4,
+            6,
+            8,
+            8,
+            7,
+            7,
+            8,
+            5,
+            5,
+            6,
+            11,
+            9,
+            5,
+            7,
+            10,
+            6
+          ],
+          "min": 4,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 17,
+          "exactEdits": 24,
+          "log2AnyBalancedProbability": -51.10657009582706,
+          "capacityBits": 963.4572071610382
+        },
+        {
+          "id": "p34",
+          "n": 261,
+          "h": [
+            6,
+            11,
+            8,
+            8,
+            4,
+            10,
+            10,
+            11,
+            12,
+            11,
+            7,
+            8,
+            9,
+            12,
+            13,
+            11,
+            8,
+            7,
+            8,
+            10,
+            9,
+            9,
+            7,
+            13,
+            12,
+            8,
+            6,
+            3,
+            10
+          ],
+          "min": 3,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 29,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -79.45767617723705,
+          "capacityBits": 1188.4753635510594
+        },
+        {
+          "id": "p35",
+          "n": 271,
+          "h": [
+            4,
+            9,
+            7,
+            7,
+            12,
+            13,
+            10,
+            5,
+            7,
+            4,
+            15,
+            9,
+            11,
+            6,
+            9,
+            9,
+            13,
+            5,
+            11,
+            7,
+            15,
+            8,
+            16,
+            7,
+            11,
+            11,
+            10,
+            12,
+            8
+          ],
+          "min": 4,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 33,
+          "exactEdits": 40,
+          "log2AnyBalancedProbability": -56.422028053510175,
+          "capacityBits": 1235.8351618204329
+        },
+        {
+          "id": "p36",
+          "n": 238,
+          "h": [
+            8,
+            12,
+            8,
+            11,
+            11,
+            3,
+            6,
+            4,
+            6,
+            12,
+            14,
+            9,
+            6,
+            9,
+            12,
+            5,
+            6,
+            6,
+            4,
+            7,
+            7,
+            7,
+            14,
+            7,
+            8,
+            13,
+            14,
+            5,
+            4
+          ],
+          "min": 3,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 37,
+          "exactEdits": 40,
+          "log2AnyBalancedProbability": -59.15956062345828,
+          "capacityBits": 1078.182287485248
+        },
+        {
+          "id": "p37",
+          "n": 228,
+          "h": [
+            6,
+            7,
+            6,
+            6,
+            9,
+            10,
+            7,
+            11,
+            9,
+            7,
+            9,
+            8,
+            3,
+            6,
+            9,
+            9,
+            8,
+            8,
+            10,
+            8,
+            4,
+            10,
+            5,
+            8,
+            16,
+            7,
+            9,
+            6,
+            7
+          ],
+          "min": 3,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 24,
+          "log2AnyBalancedProbability": -62.55382450637209,
+          "capacityBits": 1030.530141745946
+        },
+        {
+          "id": "p38",
+          "n": 228,
+          "h": [
+            3,
+            11,
+            3,
+            6,
+            8,
+            12,
+            7,
+            5,
+            15,
+            8,
+            7,
+            7,
+            5,
+            4,
+            5,
+            7,
+            8,
+            6,
+            7,
+            10,
+            8,
+            11,
+            9,
+            7,
+            6,
+            15,
+            8,
+            10,
+            10
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 35,
+          "log2AnyBalancedProbability": -62.55382450637209,
+          "capacityBits": 1030.530141745946
+        },
+        {
+          "id": "p39",
+          "n": 240,
+          "h": [
+            4,
+            9,
+            13,
+            4,
+            5,
+            10,
+            13,
+            13,
+            6,
+            13,
+            10,
+            4,
+            7,
+            11,
+            3,
+            12,
+            10,
+            14,
+            3,
+            8,
+            10,
+            7,
+            9,
+            6,
+            9,
+            5,
+            7,
+            8,
+            7
+          ],
+          "min": 3,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 36,
+          "exactEdits": 39,
+          "log2AnyBalancedProbability": -56.231976560371756,
+          "capacityBits": 1087.650194885953
+        },
+        {
+          "id": "p40",
+          "n": 231,
+          "h": [
+            10,
+            10,
+            4,
+            12,
+            6,
+            9,
+            8,
+            3,
+            5,
+            9,
+            8,
+            7,
+            5,
+            7,
+            10,
+            9,
+            11,
+            8,
+            10,
+            7,
+            13,
+            6,
+            11,
+            8,
+            5,
+            7,
+            8,
+            6,
+            9
+          ],
+          "min": 3,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 27,
+          "exactEdits": 28,
+          "log2AnyBalancedProbability": -72.26904425293816,
+          "capacityBits": 1045.0665846264035
+        },
+        {
+          "id": "p41",
+          "n": 273,
+          "h": [
+            11,
+            5,
+            7,
+            13,
+            10,
+            10,
+            6,
+            7,
+            8,
+            7,
+            12,
+            12,
+            10,
+            11,
+            9,
+            11,
+            9,
+            11,
+            10,
+            9,
+            10,
+            8,
+            12,
+            7,
+            14,
+            7,
+            13,
+            5,
+            9
+          ],
+          "min": 5,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p42",
+          "n": 272,
+          "h": [
+            14,
+            11,
+            12,
+            8,
+            14,
+            3,
+            5,
+            10,
+            10,
+            15,
+            8,
+            12,
+            9,
+            10,
+            11,
+            7,
+            8,
+            10,
+            7,
+            7,
+            10,
+            10,
+            4,
+            9,
+            9,
+            10,
+            8,
+            13,
+            8
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -55.72597840746817,
+          "capacityBits": 1240.6006965667962
+        },
+        {
+          "id": "p43",
+          "n": 274,
+          "h": [
+            17,
+            7,
+            2,
+            16,
+            7,
+            7,
+            7,
+            6,
+            10,
+            13,
+            11,
+            11,
+            11,
+            6,
+            7,
+            10,
+            10,
+            11,
+            11,
+            8,
+            6,
+            7,
+            16,
+            7,
+            7,
+            17,
+            8,
+            11,
+            7
+          ],
+          "min": 2,
+          "max": 17,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 36,
+          "exactEdits": 42,
+          "log2AnyBalancedProbability": -54.92302173978701,
+          "capacityBits": 1250.1476296009018
+        },
+        {
+          "id": "p44",
+          "n": 273,
+          "h": [
+            12,
+            6,
+            8,
+            6,
+            8,
+            7,
+            8,
+            3,
+            13,
+            6,
+            11,
+            14,
+            7,
+            7,
+            9,
+            9,
+            12,
+            9,
+            13,
+            7,
+            10,
+            8,
+            15,
+            8,
+            14,
+            12,
+            14,
+            11,
+            6
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 31,
+          "exactEdits": 39,
+          "log2AnyBalancedProbability": -55.22816785584223,
+          "capacityBits": 1245.3715256128285
+        },
+        {
+          "id": "p45",
+          "n": 270,
+          "h": [
+            8,
+            11,
+            7,
+            14,
+            8,
+            11,
+            7,
+            13,
+            8,
+            11,
+            10,
+            13,
+            9,
+            5,
+            8,
+            9,
+            12,
+            8,
+            6,
+            10,
+            10,
+            7,
+            13,
+            9,
+            13,
+            6,
+            9,
+            7,
+            8
+          ],
+          "min": 5,
+          "max": 14,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 24,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -57.32426800484922,
+          "capacityBits": 1231.0749408739664
+        },
+        {
+          "id": "p46",
+          "n": 270,
+          "h": [
+            9,
+            8,
+            16,
+            10,
+            5,
+            9,
+            6,
+            8,
+            4,
+            9,
+            10,
+            9,
+            9,
+            11,
+            14,
+            6,
+            11,
+            11,
+            14,
+            7,
+            9,
+            11,
+            7,
+            10,
+            12,
+            10,
+            9,
+            9,
+            7
+          ],
+          "min": 4,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -57.32426800484922,
+          "capacityBits": 1231.0749408739664
+        },
+        {
+          "id": "p47",
+          "n": 274,
+          "h": [
+            9,
+            9,
+            10,
+            12,
+            11,
+            5,
+            9,
+            13,
+            9,
+            8,
+            12,
+            7,
+            10,
+            9,
+            5,
+            15,
+            7,
+            11,
+            12,
+            6,
+            8,
+            10,
+            5,
+            7,
+            7,
+            15,
+            10,
+            12,
+            11
+          ],
+          "min": 5,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 25,
+          "exactEdits": 32,
+          "log2AnyBalancedProbability": -54.92302173978701,
+          "capacityBits": 1250.1476296009018
+        },
+        {
+          "id": "p48",
+          "n": 271,
+          "h": [
+            14,
+            10,
+            11,
+            12,
+            9,
+            7,
+            4,
+            6,
+            8,
+            11,
+            12,
+            10,
+            10,
+            12,
+            3,
+            5,
+            9,
+            10,
+            6,
+            11,
+            9,
+            12,
+            15,
+            9,
+            12,
+            6,
+            8,
+            13,
+            7
+          ],
+          "min": 3,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 30,
+          "exactEdits": 35,
+          "log2AnyBalancedProbability": -56.422028053510175,
+          "capacityBits": 1235.8351618204329
+        },
+        {
+          "id": "p49",
+          "n": 66,
+          "h": [
+            2,
+            2,
+            3,
+            0,
+            1,
+            1,
+            3,
+            2,
+            1,
+            2,
+            4,
+            3,
+            1,
+            2,
+            1,
+            1,
+            3,
+            2,
+            4,
+            4,
+            2,
+            2,
+            3,
+            2,
+            5,
+            2,
+            2,
+            4,
+            2
+          ],
+          "min": 0,
+          "max": 5,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 8,
+          "exactEdits": 14,
+          "log2AnyBalancedProbability": -32.211272425785396,
+          "capacityBits": 266.3822058683417
+        },
+        {
+          "id": "p51",
+          "n": 92,
+          "h": [
+            4,
+            2,
+            1,
+            1,
+            2,
+            2,
+            2,
+            5,
+            1,
+            3,
+            1,
+            5,
+            3,
+            5,
+            1,
+            4,
+            2,
+            5,
+            2,
+            7,
+            5,
+            3,
+            4,
+            5,
+            5,
+            4,
+            3,
+            3,
+            2
+          ],
+          "min": 1,
+          "max": 7,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 17,
+          "exactEdits": 21,
+          "log2AnyBalancedProbability": -43.01194331892896,
+          "capacityBits": 387.0646795011518
+        },
+        {
+          "id": "p52",
+          "n": 263,
+          "h": [
+            10,
+            6,
+            12,
+            10,
+            10,
+            10,
+            11,
+            5,
+            9,
+            9,
+            6,
+            7,
+            8,
+            10,
+            10,
+            9,
+            8,
+            9,
+            7,
+            10,
+            7,
+            13,
+            11,
+            4,
+            7,
+            10,
+            13,
+            7,
+            15
+          ],
+          "min": 4,
+          "max": 15,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 27,
+          "exactEdits": 28,
+          "log2AnyBalancedProbability": -71.07981644925175,
+          "capacityBits": 1197.9038493521145
+        },
+        {
+          "id": "p53",
+          "n": 179,
+          "h": [
+            5,
+            11,
+            6,
+            7,
+            8,
+            4,
+            7,
+            4,
+            5,
+            7,
+            5,
+            10,
+            10,
+            5,
+            4,
+            5,
+            6,
+            4,
+            9,
+            8,
+            3,
+            5,
+            5,
+            10,
+            3,
+            8,
+            6,
+            5,
+            4
+          ],
+          "min": 3,
+          "max": 11,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 24,
+          "exactEdits": 26,
+          "log2AnyBalancedProbability": -55.592544390445184,
+          "capacityBits": 797.1284250057345
+        },
+        {
+          "id": "p54",
+          "n": 232,
+          "h": [
+            3,
+            8,
+            7,
+            11,
+            7,
+            9,
+            11,
+            8,
+            7,
+            4,
+            7,
+            9,
+            6,
+            9,
+            10,
+            5,
+            8,
+            6,
+            10,
+            13,
+            6,
+            9,
+            9,
+            10,
+            9,
+            4,
+            11,
+            8,
+            8
+          ],
+          "min": 3,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 26,
+          "log2AnyBalancedProbability": -77.1270252480657,
+          "capacityBits": 1049.924565621531
+        },
+        {
+          "id": "p55",
+          "n": 76,
+          "h": [
+            3,
+            3,
+            4,
+            0,
+            1,
+            5,
+            3,
+            2,
+            2,
+            0,
+            5,
+            1,
+            5,
+            2,
+            4,
+            6,
+            0,
+            5,
+            5,
+            5,
+            1,
+            2,
+            1,
+            3,
+            1,
+            2,
+            0,
+            2,
+            3
+          ],
+          "min": 0,
+          "max": 6,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 17,
+          "exactEdits": 21,
+          "log2AnyBalancedProbability": -32.042763313303276,
+          "capacityBits": 312.1196366159569
+        }
+      ],
+      "summary": {
+        "count": 55,
+        "long": 55,
+        "exact": 0,
+        "relaxed": 0,
+        "longRelaxed": 0,
+        "minEdits": 1449,
+        "exactEdits": 1667,
+        "relaxedIds": [],
+        "sameLengthConflicts": [
+          [
+            "p4",
+            "p12",
+            261
+          ],
+          [
+            "p4",
+            "p34",
+            261
+          ],
+          [
+            "p5",
+            "p10",
+            263
+          ],
+          [
+            "p5",
+            "p30",
+            263
+          ],
+          [
+            "p5",
+            "p52",
+            263
+          ],
+          [
+            "p10",
+            "p30",
+            263
+          ],
+          [
+            "p10",
+            "p52",
+            263
+          ],
+          [
+            "p11",
+            "p17",
+            273
+          ],
+          [
+            "p11",
+            "p21",
+            273
+          ],
+          [
+            "p11",
+            "p25",
+            273
+          ],
+          [
+            "p11",
+            "p41",
+            273
+          ],
+          [
+            "p11",
+            "p44",
+            273
+          ],
+          [
+            "p12",
+            "p34",
+            261
+          ],
+          [
+            "p13",
+            "p42",
+            272
+          ],
+          [
+            "p17",
+            "p21",
+            273
+          ],
+          [
+            "p17",
+            "p25",
+            273
+          ],
+          [
+            "p17",
+            "p41",
+            273
+          ],
+          [
+            "p17",
+            "p44",
+            273
+          ],
+          [
+            "p19",
+            "p35",
+            271
+          ],
+          [
+            "p19",
+            "p48",
+            271
+          ],
+          [
+            "p20",
+            "p28",
+            269
+          ],
+          [
+            "p20",
+            "p31",
+            269
+          ],
+          [
+            "p21",
+            "p25",
+            273
+          ],
+          [
+            "p21",
+            "p41",
+            273
+          ],
+          [
+            "p21",
+            "p44",
+            273
+          ],
+          [
+            "p24",
+            "p45",
+            270
+          ],
+          [
+            "p24",
+            "p46",
+            270
+          ],
+          [
+            "p25",
+            "p41",
+            273
+          ],
+          [
+            "p25",
+            "p44",
+            273
+          ],
+          [
+            "p28",
+            "p31",
+            269
+          ],
+          [
+            "p30",
+            "p52",
+            263
+          ],
+          [
+            "p35",
+            "p48",
+            271
+          ],
+          [
+            "p37",
+            "p38",
+            228
+          ],
+          [
+            "p41",
+            "p44",
+            273
+          ],
+          [
+            "p43",
+            "p47",
+            274
+          ],
+          [
+            "p45",
+            "p46",
+            270
+          ]
+        ],
+        "sharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "p43",
+              "count": 17,
+              "n": 274
+            },
+            "upper": {
+              "id": "p7",
+              "count": 1,
+              "n": 208
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "p15",
+              "count": 13,
+              "n": 159
+            },
+            "upper": {
+              "id": "p3",
+              "count": 3,
+              "n": 217
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "p22",
+              "count": 11,
+              "n": 131
+            },
+            "upper": {
+              "id": "p43",
+              "count": 2,
+              "n": 274
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "p21",
+              "count": 17,
+              "n": 273
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "p27",
+              "count": 14,
+              "n": 234
+            },
+            "upper": {
+              "id": "p7",
+              "count": 2,
+              "n": 208
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "p7",
+              "count": 15,
+              "n": 208
+            },
+            "upper": {
+              "id": "p42",
+              "count": 3,
+              "n": 272
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "p4",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p11",
+              "count": 4,
+              "n": 273
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "p32",
+              "count": 10,
+              "n": 121
+            },
+            "upper": {
+              "id": "p15",
+              "count": 1,
+              "n": 159
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "p38",
+              "count": 15,
+              "n": 228
+            },
+            "upper": {
+              "id": "p46",
+              "count": 4,
+              "n": 270
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "p8",
+              "count": 15,
+              "n": 255
+            },
+            "upper": {
+              "id": "p20",
+              "count": 1,
+              "n": 269
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "p36",
+              "count": 14,
+              "n": 238
+            },
+            "upper": {
+              "id": "p14",
+              "count": 1,
+              "n": 137
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "p19",
+              "count": 16,
+              "n": 271
+            },
+            "upper": {
+              "id": "p30",
+              "count": 2,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "p5",
+              "count": 15,
+              "n": 263
+            },
+            "upper": {
+              "id": "p1",
+              "count": 3,
+              "n": 266
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "p21",
+              "count": 17,
+              "n": 273
+            },
+            "upper": {
+              "id": "p22",
+              "count": 1,
+              "n": 131
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "p4",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p48",
+              "count": 3,
+              "n": 271
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "p55",
+              "count": 6,
+              "n": 76
+            },
+            "upper": {
+              "id": "p2",
+              "count": 3,
+              "n": 201
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "p12",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "p32",
+              "count": 8,
+              "n": 121
+            },
+            "upper": {
+              "id": "p5",
+              "count": 3,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "p55",
+              "count": 5,
+              "n": 76
+            },
+            "upper": {
+              "id": "p15",
+              "count": 1,
+              "n": 159
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "p51",
+              "count": 7,
+              "n": 92
+            },
+            "upper": {
+              "id": "p5",
+              "count": 4,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "p40",
+              "count": 13,
+              "n": 231
+            },
+            "upper": {
+              "id": "p37",
+              "count": 4,
+              "n": 228
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "p0",
+              "count": 18,
+              "n": 262
+            },
+            "upper": {
+              "id": "p2",
+              "count": 4,
+              "n": 201
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "p10",
+              "count": 17,
+              "n": 263
+            },
+            "upper": {
+              "id": "p42",
+              "count": 4,
+              "n": 272
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "p2",
+              "count": 14,
+              "n": 201
+            },
+            "upper": {
+              "id": "p22",
+              "count": 1,
+              "n": 131
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "p37",
+              "count": 16,
+              "n": 228
+            },
+            "upper": {
+              "id": "p53",
+              "count": 3,
+              "n": 179
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "p38",
+              "count": 15,
+              "n": 228
+            },
+            "upper": {
+              "id": "p26",
+              "count": 3,
+              "n": 265
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "p5",
+              "count": 18,
+              "n": 263
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "p14",
+              "count": 9,
+              "n": 137
+            },
+            "upper": {
+              "id": "p34",
+              "count": 3,
+              "n": 261
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "p3",
+              "count": 13,
+              "n": 217
+            },
+            "upper": {
+              "id": "p29",
+              "count": 3,
+              "n": 277
+            }
+          }
+        ],
+        "longSharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "p43",
+              "count": 17,
+              "n": 274
+            },
+            "upper": {
+              "id": "p7",
+              "count": 1,
+              "n": 208
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "p15",
+              "count": 13,
+              "n": 159
+            },
+            "upper": {
+              "id": "p3",
+              "count": 3,
+              "n": 217
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "p22",
+              "count": 11,
+              "n": 131
+            },
+            "upper": {
+              "id": "p43",
+              "count": 2,
+              "n": 274
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "p21",
+              "count": 17,
+              "n": 273
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "p27",
+              "count": 14,
+              "n": 234
+            },
+            "upper": {
+              "id": "p7",
+              "count": 2,
+              "n": 208
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "p7",
+              "count": 15,
+              "n": 208
+            },
+            "upper": {
+              "id": "p42",
+              "count": 3,
+              "n": 272
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "p4",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p11",
+              "count": 4,
+              "n": 273
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "p32",
+              "count": 10,
+              "n": 121
+            },
+            "upper": {
+              "id": "p15",
+              "count": 1,
+              "n": 159
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "p38",
+              "count": 15,
+              "n": 228
+            },
+            "upper": {
+              "id": "p46",
+              "count": 4,
+              "n": 270
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "p8",
+              "count": 15,
+              "n": 255
+            },
+            "upper": {
+              "id": "p20",
+              "count": 1,
+              "n": 269
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "p36",
+              "count": 14,
+              "n": 238
+            },
+            "upper": {
+              "id": "p14",
+              "count": 1,
+              "n": 137
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "p19",
+              "count": 16,
+              "n": 271
+            },
+            "upper": {
+              "id": "p30",
+              "count": 2,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "p5",
+              "count": 15,
+              "n": 263
+            },
+            "upper": {
+              "id": "p1",
+              "count": 3,
+              "n": 266
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "p21",
+              "count": 17,
+              "n": 273
+            },
+            "upper": {
+              "id": "p22",
+              "count": 1,
+              "n": 131
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "p4",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p48",
+              "count": 3,
+              "n": 271
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "p55",
+              "count": 6,
+              "n": 76
+            },
+            "upper": {
+              "id": "p2",
+              "count": 3,
+              "n": 201
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "p12",
+              "count": 16,
+              "n": 261
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "p32",
+              "count": 8,
+              "n": 121
+            },
+            "upper": {
+              "id": "p5",
+              "count": 3,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "p55",
+              "count": 5,
+              "n": 76
+            },
+            "upper": {
+              "id": "p15",
+              "count": 1,
+              "n": 159
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "p51",
+              "count": 7,
+              "n": 92
+            },
+            "upper": {
+              "id": "p5",
+              "count": 4,
+              "n": 263
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "p40",
+              "count": 13,
+              "n": 231
+            },
+            "upper": {
+              "id": "p37",
+              "count": 4,
+              "n": 228
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "p0",
+              "count": 18,
+              "n": 262
+            },
+            "upper": {
+              "id": "p2",
+              "count": 4,
+              "n": 201
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "p10",
+              "count": 17,
+              "n": 263
+            },
+            "upper": {
+              "id": "p42",
+              "count": 4,
+              "n": 272
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "p2",
+              "count": 14,
+              "n": 201
+            },
+            "upper": {
+              "id": "p22",
+              "count": 1,
+              "n": 131
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "p37",
+              "count": 16,
+              "n": 228
+            },
+            "upper": {
+              "id": "p53",
+              "count": 3,
+              "n": 179
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "p38",
+              "count": 15,
+              "n": 228
+            },
+            "upper": {
+              "id": "p26",
+              "count": 3,
+              "n": 265
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "p5",
+              "count": 18,
+              "n": 263
+            },
+            "upper": {
+              "id": "p55",
+              "count": 0,
+              "n": 76
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "p14",
+              "count": 9,
+              "n": 137
+            },
+            "upper": {
+              "id": "p34",
+              "count": 3,
+              "n": 261
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "p3",
+              "count": 13,
+              "n": 217
+            },
+            "upper": {
+              "id": "p29",
+              "count": 3,
+              "n": 277
+            }
+          }
+        ]
+      }
+    },
+    "section": {
+      "rows": [
+        {
+          "id": "p0–2",
+          "n": 729,
+          "h": [
+            34,
+            21,
+            30,
+            20,
+            22,
+            28,
+            29,
+            22,
+            30,
+            28,
+            24,
+            24,
+            17,
+            27,
+            28,
+            23,
+            23,
+            23,
+            24,
+            18,
+            30,
+            29,
+            25,
+            31,
+            19,
+            24,
+            25,
+            23,
+            28
+          ],
+          "min": 17,
+          "max": 34,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 48,
+          "exactEdits": 50,
+          "log2AnyBalancedProbability": -85.51600451086951,
+          "capacityBits": 3441.4164403003615
+        },
+        {
+          "id": "p3–7",
+          "n": 1145,
+          "h": [
+            26,
+            34,
+            34,
+            30,
+            36,
+            52,
+            43,
+            30,
+            38,
+            37,
+            43,
+            43,
+            49,
+            44,
+            49,
+            34,
+            37,
+            31,
+            32,
+            39,
+            50,
+            42,
+            40,
+            38,
+            35,
+            41,
+            42,
+            46,
+            50
+          ],
+          "min": 26,
+          "max": 52,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 74,
+          "exactEdits": 82,
+          "log2AnyBalancedProbability": -82.94608329168535,
+          "capacityBits": 5453.233369727179
+        },
+        {
+          "id": "p8–14",
+          "n": 1729,
+          "h": [
+            66,
+            69,
+            69,
+            61,
+            50,
+            63,
+            58,
+            55,
+            52,
+            69,
+            50,
+            44,
+            52,
+            55,
+            78,
+            61,
+            61,
+            55,
+            56,
+            57,
+            63,
+            58,
+            67,
+            51,
+            64,
+            52,
+            61,
+            68,
+            64
+          ],
+          "min": 44,
+          "max": 78,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 84,
+          "exactEdits": 90,
+          "log2AnyBalancedProbability": -92.35661243519752,
+          "capacityBits": 8282.04837243994
+        },
+        {
+          "id": "p15–22",
+          "n": 1903,
+          "h": [
+            72,
+            64,
+            75,
+            75,
+            64,
+            70,
+            71,
+            50,
+            52,
+            57,
+            73,
+            76,
+            52,
+            72,
+            63,
+            56,
+            60,
+            63,
+            54,
+            63,
+            64,
+            69,
+            75,
+            70,
+            75,
+            67,
+            55,
+            77,
+            69
+          ],
+          "min": 50,
+          "max": 77,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 96,
+          "exactEdits": 103,
+          "log2AnyBalancedProbability": -94.28054725163027,
+          "capacityBits": 9125.413130775709
+        },
+        {
+          "id": "p23–26",
+          "n": 1021,
+          "h": [
+            37,
+            44,
+            37,
+            40,
+            34,
+            30,
+            37,
+            33,
+            33,
+            39,
+            35,
+            27,
+            21,
+            34,
+            32,
+            43,
+            38,
+            37,
+            42,
+            32,
+            34,
+            37,
+            35,
+            25,
+            41,
+            31,
+            37,
+            35,
+            41
+          ],
+          "min": 21,
+          "max": 44,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 54,
+          "exactEdits": 56,
+          "log2AnyBalancedProbability": -87.95784887917218,
+          "capacityBits": 4853.183118414423
+        },
+        {
+          "id": "p27–32",
+          "n": 1433,
+          "h": [
+            52,
+            42,
+            47,
+            51,
+            55,
+            39,
+            43,
+            52,
+            48,
+            41,
+            55,
+            51,
+            46,
+            50,
+            45,
+            45,
+            46,
+            63,
+            55,
+            50,
+            52,
+            49,
+            53,
+            57,
+            54,
+            46,
+            45,
+            51,
+            50
+          ],
+          "min": 39,
+          "max": 63,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 55,
+          "exactEdits": 61,
+          "log2AnyBalancedProbability": -88.01063914183523,
+          "capacityBits": 6847.8470086748175
+        },
+        {
+          "id": "p33–39",
+          "n": 1680,
+          "h": [
+            40,
+            67,
+            53,
+            49,
+            56,
+            62,
+            60,
+            64,
+            61,
+            61,
+            69,
+            55,
+            49,
+            52,
+            57,
+            61,
+            61,
+            53,
+            50,
+            58,
+            58,
+            57,
+            66,
+            59,
+            71,
+            64,
+            61,
+            54,
+            52
+          ],
+          "min": 40,
+          "max": 71,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 75,
+          "exactEdits": 75,
+          "log2AnyBalancedProbability": -108.09753556926792,
+          "capacityBits": 8044.645200327867
+        },
+        {
+          "id": "p40–53",
+          "n": 3008,
+          "h": [
+            125,
+            98,
+            99,
+            121,
+            99,
+            85,
+            83,
+            85,
+            91,
+            110,
+            110,
+            120,
+            102,
+            100,
+            92,
+            100,
+            108,
+            109,
+            111,
+            101,
+            102,
+            102,
+            121,
+            95,
+            113,
+            114,
+            111,
+            106,
+            95
+          ],
+          "min": 83,
+          "max": 125,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 127,
+          "exactEdits": 132,
+          "log2AnyBalancedProbability": -106.48492334621376,
+          "capacityBits": 14484.288642613232
+        },
+        {
+          "id": "p54–55",
+          "n": 308,
+          "h": [
+            6,
+            11,
+            11,
+            11,
+            8,
+            14,
+            14,
+            10,
+            9,
+            4,
+            12,
+            10,
+            11,
+            11,
+            14,
+            11,
+            8,
+            11,
+            15,
+            18,
+            7,
+            11,
+            10,
+            13,
+            10,
+            6,
+            11,
+            10,
+            11
+          ],
+          "min": 4,
+          "max": 18,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -58.144818646374944,
+          "capacityBits": 1413.069172152482
+        }
+      ],
+      "summary": {
+        "count": 9,
+        "long": 9,
+        "exact": 0,
+        "relaxed": 0,
+        "longRelaxed": 0,
+        "minEdits": 636,
+        "exactEdits": 678,
+        "relaxedIds": [],
+        "sameLengthConflicts": [],
+        "sharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "p0–2",
+              "count": 34,
+              "n": 729
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "p23–26",
+              "count": 44,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p27–32",
+              "count": 42,
+              "n": 1433
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "p0–2",
+              "count": 30,
+              "n": 729
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 34,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "p40–53",
+              "count": 121,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 30,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "p27–32",
+              "count": 55,
+              "n": 1433
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 8,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "p3–7",
+              "count": 52,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p27–32",
+              "count": 39,
+              "n": 1433
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "p54–55",
+              "count": 14,
+              "n": 308
+            },
+            "upper": {
+              "id": "p40–53",
+              "count": 83,
+              "n": 3008
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "p33–39",
+              "count": 64,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 50,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "p0–2",
+              "count": 30,
+              "n": 729
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 52,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "p8–14",
+              "count": 69,
+              "n": 1729
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 4,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "p33–39",
+              "count": 69,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 50,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "p40–53",
+              "count": 120,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 44,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "p3–7",
+              "count": 49,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 21,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "p3–7",
+              "count": 44,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 52,
+              "n": 1680
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "p8–14",
+              "count": 78,
+              "n": 1729
+            },
+            "upper": {
+              "id": "p40–53",
+              "count": 92,
+              "n": 3008
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "p23–26",
+              "count": 43,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 56,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "p23–26",
+              "count": 38,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 8,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "p27–32",
+              "count": 63,
+              "n": 1433
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 31,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "p54–55",
+              "count": 15,
+              "n": 308
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 32,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "p54–55",
+              "count": 18,
+              "n": 308
+            },
+            "upper": {
+              "id": "p0–2",
+              "count": 18,
+              "n": 729
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "p3–7",
+              "count": 50,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 7,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "p0–2",
+              "count": 29,
+              "n": 729
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 58,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "p40–53",
+              "count": 121,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 35,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "p0–2",
+              "count": 31,
+              "n": 729
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 25,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "p33–39",
+              "count": 71,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p0–2",
+              "count": 19,
+              "n": 729
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "p40–53",
+              "count": 114,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "p40–53",
+              "count": 111,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 55,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "p15–22",
+              "count": 77,
+              "n": 1903
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 54,
+              "n": 1680
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "p3–7",
+              "count": 50,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 52,
+              "n": 1680
+            }
+          }
+        ],
+        "longSharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "p0–2",
+              "count": 34,
+              "n": 729
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "p23–26",
+              "count": 44,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p27–32",
+              "count": 42,
+              "n": 1433
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "p0–2",
+              "count": 30,
+              "n": 729
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 34,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "p40–53",
+              "count": 121,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 30,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "p27–32",
+              "count": 55,
+              "n": 1433
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 8,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "p3–7",
+              "count": 52,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p27–32",
+              "count": 39,
+              "n": 1433
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "p54–55",
+              "count": 14,
+              "n": 308
+            },
+            "upper": {
+              "id": "p40–53",
+              "count": 83,
+              "n": 3008
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "p33–39",
+              "count": 64,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 50,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "p0–2",
+              "count": 30,
+              "n": 729
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 52,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "p8–14",
+              "count": 69,
+              "n": 1729
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 4,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "p33–39",
+              "count": 69,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 50,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "p40–53",
+              "count": 120,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 44,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "p3–7",
+              "count": 49,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 21,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "p3–7",
+              "count": 44,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 52,
+              "n": 1680
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "p8–14",
+              "count": 78,
+              "n": 1729
+            },
+            "upper": {
+              "id": "p40–53",
+              "count": 92,
+              "n": 3008
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "p23–26",
+              "count": 43,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 56,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "p23–26",
+              "count": 38,
+              "n": 1021
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 8,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "p27–32",
+              "count": 63,
+              "n": 1433
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 31,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "p54–55",
+              "count": 15,
+              "n": 308
+            },
+            "upper": {
+              "id": "p3–7",
+              "count": 32,
+              "n": 1145
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "p54–55",
+              "count": 18,
+              "n": 308
+            },
+            "upper": {
+              "id": "p0–2",
+              "count": 18,
+              "n": 729
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "p3–7",
+              "count": 50,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 7,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "p0–2",
+              "count": 29,
+              "n": 729
+            },
+            "upper": {
+              "id": "p8–14",
+              "count": 58,
+              "n": 1729
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "p40–53",
+              "count": 121,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 35,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "p0–2",
+              "count": 31,
+              "n": 729
+            },
+            "upper": {
+              "id": "p23–26",
+              "count": 25,
+              "n": 1021
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "p33–39",
+              "count": 71,
+              "n": 1680
+            },
+            "upper": {
+              "id": "p0–2",
+              "count": 19,
+              "n": 729
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "p40–53",
+              "count": 114,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p54–55",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "p40–53",
+              "count": 111,
+              "n": 3008
+            },
+            "upper": {
+              "id": "p15–22",
+              "count": 55,
+              "n": 1903
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "p15–22",
+              "count": 77,
+              "n": 1903
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 54,
+              "n": 1680
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "p3–7",
+              "count": 50,
+              "n": 1145
+            },
+            "upper": {
+              "id": "p33–39",
+              "count": 52,
+              "n": 1680
+            }
+          }
+        ]
+      }
+    },
+    "largeMark": {
+      "rows": [
+        {
+          "id": "0–13",
+          "n": 13,
+          "h": [
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 2,
+          "exactEdits": 8,
+          "log2AnyBalancedProbability": -4.601716660176141,
+          "capacityBits": 32.5358949522165
+        },
+        {
+          "id": "13–729",
+          "n": 716,
+          "h": [
+            33,
+            21,
+            30,
+            19,
+            22,
+            27,
+            28,
+            22,
+            29,
+            28,
+            24,
+            24,
+            17,
+            27,
+            28,
+            21,
+            23,
+            23,
+            22,
+            17,
+            30,
+            28,
+            25,
+            31,
+            19,
+            24,
+            24,
+            22,
+            28
+          ],
+          "min": 17,
+          "max": 33,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 47,
+          "exactEdits": 52,
+          "log2AnyBalancedProbability": -76.51765054561379,
+          "capacityBits": 3378.5410821600985
+        },
+        {
+          "id": "729–745",
+          "n": 16,
+          "h": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2,
+            0,
+            0,
+            2,
+            1,
+            0,
+            1,
+            0,
+            3,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 3,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 4,
+          "exactEdits": 9,
+          "log2AnyBalancedProbability": -7.461414127892731,
+          "capacityBits": 44.25014046988263
+        },
+        {
+          "id": "745–848",
+          "n": 103,
+          "h": [
+            4,
+            0,
+            2,
+            1,
+            4,
+            4,
+            3,
+            3,
+            2,
+            8,
+            3,
+            2,
+            4,
+            4,
+            1,
+            4,
+            3,
+            6,
+            3,
+            6,
+            6,
+            2,
+            4,
+            3,
+            3,
+            0,
+            5,
+            7,
+            6
+          ],
+          "min": 0,
+          "max": 8,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 16,
+          "exactEdits": 23,
+          "log2AnyBalancedProbability": -36.5376830528213,
+          "capacityBits": 437.8182181210529
+        },
+        {
+          "id": "848–851",
+          "n": 3,
+          "h": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 1,
+          "exact": false,
+          "relaxed": true,
+          "minEdits": 0,
+          "exactEdits": 2,
+          "log2AnyBalancedProbability": -0.15371956603407266,
+          "capacityBits": 2.584962500721156
+        },
+        {
+          "id": "851–1541",
+          "n": 690,
+          "h": [
+            19,
+            23,
+            21,
+            18,
+            26,
+            29,
+            29,
+            18,
+            22,
+            15,
+            27,
+            26,
+            30,
+            26,
+            34,
+            20,
+            19,
+            17,
+            19,
+            20,
+            26,
+            27,
+            24,
+            24,
+            20,
+            27,
+            30,
+            22,
+            32
+          ],
+          "min": 15,
+          "max": 34,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 57,
+          "exactEdits": 61,
+          "log2AnyBalancedProbability": -80.13771704103091,
+          "capacityBits": 3253.011540865338
+        },
+        {
+          "id": "1541–1552",
+          "n": 11,
+          "h": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            2,
+            1,
+            1,
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 2,
+          "exactEdits": 10,
+          "log2AnyBalancedProbability": -3.1431425126136463,
+          "capacityBits": 25.250492733354253
+        },
+        {
+          "id": "1552–1860",
+          "n": 308,
+          "h": [
+            3,
+            10,
+            8,
+            10,
+            6,
+            17,
+            9,
+            8,
+            12,
+            14,
+            13,
+            12,
+            13,
+            13,
+            10,
+            9,
+            10,
+            6,
+            10,
+            11,
+            17,
+            12,
+            10,
+            9,
+            11,
+            12,
+            7,
+            16,
+            10
+          ],
+          "min": 3,
+          "max": 17,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 30,
+          "exactEdits": 36,
+          "log2AnyBalancedProbability": -58.144818646374944,
+          "capacityBits": 1413.069172152482
+        },
+        {
+          "id": "1860–1874",
+          "n": 14,
+          "h": [
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            2
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 1,
+          "exactEdits": 8,
+          "log2AnyBalancedProbability": -5.4596976553037235,
+          "capacityBits": 36.34324987427411
+        },
+        {
+          "id": "1874–3603",
+          "n": 1729,
+          "h": [
+            66,
+            69,
+            69,
+            61,
+            50,
+            63,
+            58,
+            55,
+            52,
+            69,
+            50,
+            44,
+            52,
+            55,
+            78,
+            61,
+            61,
+            55,
+            56,
+            57,
+            63,
+            58,
+            67,
+            51,
+            64,
+            52,
+            61,
+            68,
+            64
+          ],
+          "min": 44,
+          "max": 78,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 84,
+          "exactEdits": 90,
+          "log2AnyBalancedProbability": -92.35661243519752,
+          "capacityBits": 8282.04837243994
+        },
+        {
+          "id": "3603–3612",
+          "n": 9,
+          "h": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            2,
+            0,
+            1,
+            0,
+            1
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 1,
+          "exactEdits": 7,
+          "log2AnyBalancedProbability": -1.9970361306894548,
+          "capacityBits": 18.469133019829595
+        },
+        {
+          "id": "3612–3623",
+          "n": 11,
+          "h": [
+            1,
+            2,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 3,
+          "exactEdits": 7,
+          "log2AnyBalancedProbability": -3.1431425126136463,
+          "capacityBits": 25.250492733354253
+        },
+        {
+          "id": "3623–5506",
+          "n": 1883,
+          "h": [
+            70,
+            61,
+            75,
+            75,
+            64,
+            69,
+            71,
+            50,
+            52,
+            55,
+            73,
+            76,
+            52,
+            72,
+            63,
+            56,
+            59,
+            62,
+            54,
+            62,
+            62,
+            67,
+            74,
+            70,
+            73,
+            67,
+            54,
+            77,
+            68
+          ],
+          "min": 50,
+          "max": 77,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 102,
+          "exactEdits": 104,
+          "log2AnyBalancedProbability": -110.39257768072153,
+          "capacityBits": 9028.520300227312
+        },
+        {
+          "id": "5506–5522",
+          "n": 16,
+          "h": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            2,
+            1,
+            0,
+            0,
+            3,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            2,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 3,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 4,
+          "exactEdits": 10,
+          "log2AnyBalancedProbability": -7.461414127892731,
+          "capacityBits": 44.25014046988263
+        },
+        {
+          "id": "5522–6527",
+          "n": 1005,
+          "h": [
+            37,
+            43,
+            37,
+            40,
+            34,
+            30,
+            35,
+            32,
+            33,
+            39,
+            32,
+            27,
+            20,
+            34,
+            31,
+            43,
+            37,
+            35,
+            42,
+            32,
+            34,
+            36,
+            35,
+            24,
+            40,
+            31,
+            36,
+            35,
+            41
+          ],
+          "min": 20,
+          "max": 43,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 51,
+          "exactEdits": 57,
+          "log2AnyBalancedProbability": -82.28158890819543,
+          "capacityBits": 4775.733651389386
+        },
+        {
+          "id": "6527–6546",
+          "n": 19,
+          "h": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            2,
+            0,
+            2,
+            0,
+            0,
+            1,
+            2,
+            4,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 4,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 6,
+          "exactEdits": 11,
+          "log2AnyBalancedProbability": -11.29052327577592,
+          "capacityBits": 56.75545582601886
+        },
+        {
+          "id": "6546–7960",
+          "n": 1414,
+          "h": [
+            52,
+            42,
+            47,
+            50,
+            55,
+            38,
+            43,
+            52,
+            47,
+            41,
+            54,
+            51,
+            45,
+            48,
+            45,
+            43,
+            46,
+            63,
+            54,
+            48,
+            48,
+            49,
+            53,
+            57,
+            53,
+            45,
+            44,
+            51,
+            50
+          ],
+          "min": 38,
+          "max": 63,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 58,
+          "exactEdits": 63,
+          "log2AnyBalancedProbability": -92.7737719014844,
+          "capacityBits": 6755.837519443248
+        },
+        {
+          "id": "7960–7970",
+          "n": 10,
+          "h": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 1,
+          "exact": false,
+          "relaxed": true,
+          "minEdits": 0,
+          "exactEdits": 5,
+          "log2AnyBalancedProbability": -2.5330890309296663,
+          "capacityBits": 21.791061114716957
+        },
+        {
+          "id": "7970–8051",
+          "n": 81,
+          "h": [
+            2,
+            3,
+            3,
+            2,
+            2,
+            0,
+            3,
+            8,
+            3,
+            2,
+            2,
+            5,
+            1,
+            1,
+            1,
+            4,
+            4,
+            1,
+            3,
+            4,
+            3,
+            2,
+            3,
+            2,
+            2,
+            4,
+            3,
+            5,
+            3
+          ],
+          "min": 0,
+          "max": 8,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 13,
+          "exactEdits": 17,
+          "log2AnyBalancedProbability": -38.92626015582016,
+          "capacityBits": 335.7125717178573
+        },
+        {
+          "id": "8051–8059",
+          "n": 8,
+          "h": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 1,
+          "exactEdits": 5,
+          "log2AnyBalancedProbability": -1.5313725583406417,
+          "capacityBits": 15.29920801838728
+        },
+        {
+          "id": "8059–8805",
+          "n": 746,
+          "h": [
+            19,
+            32,
+            22,
+            25,
+            26,
+            25,
+            26,
+            23,
+            24,
+            24,
+            29,
+            26,
+            27,
+            28,
+            31,
+            25,
+            27,
+            19,
+            24,
+            24,
+            28,
+            22,
+            28,
+            29,
+            31,
+            28,
+            28,
+            23,
+            23
+          ],
+          "min": 19,
+          "max": 32,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 34,
+          "exactEdits": 39,
+          "log2AnyBalancedProbability": -78.54502117815545,
+          "capacityBits": 3523.475533802721
+        },
+        {
+          "id": "8805–9358",
+          "n": 553,
+          "h": [
+            12,
+            19,
+            14,
+            17,
+            22,
+            25,
+            16,
+            19,
+            24,
+            22,
+            26,
+            19,
+            11,
+            11,
+            20,
+            20,
+            19,
+            18,
+            19,
+            19,
+            16,
+            25,
+            21,
+            19,
+            24,
+            23,
+            21,
+            16,
+            16
+          ],
+          "min": 11,
+          "max": 26,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 43,
+          "exactEdits": 45,
+          "log2AnyBalancedProbability": -85.82102820033657,
+          "capacityBits": 2591.977126188026
+        },
+        {
+          "id": "9358–9519",
+          "n": 161,
+          "h": [
+            3,
+            8,
+            5,
+            3,
+            5,
+            3,
+            13,
+            5,
+            7,
+            6,
+            3,
+            1,
+            6,
+            7,
+            2,
+            5,
+            5,
+            9,
+            2,
+            9,
+            5,
+            4,
+            9,
+            4,
+            7,
+            7,
+            7,
+            5,
+            6
+          ],
+          "min": 1,
+          "max": 13,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 23,
+          "exactEdits": 30,
+          "log2AnyBalancedProbability": -44.78235714273128,
+          "capacityBits": 711.3364417485419
+        },
+        {
+          "id": "9519–9522",
+          "n": 3,
+          "h": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "min": 0,
+          "max": 1,
+          "exact": false,
+          "relaxed": true,
+          "minEdits": 0,
+          "exactEdits": 3,
+          "log2AnyBalancedProbability": -0.15371956603407266,
+          "capacityBits": 2.584962500721156
+        },
+        {
+          "id": "9522–9640",
+          "n": 118,
+          "h": [
+            2,
+            5,
+            8,
+            2,
+            1,
+            6,
+            1,
+            8,
+            2,
+            7,
+            7,
+            4,
+            1,
+            5,
+            2,
+            6,
+            6,
+            6,
+            2,
+            2,
+            6,
+            3,
+            4,
+            4,
+            6,
+            2,
+            2,
+            4,
+            4
+          ],
+          "min": 1,
+          "max": 8,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 26,
+          "exactEdits": 27,
+          "log2AnyBalancedProbability": -55.50223677934881,
+          "capacityBits": 509.07418472851964
+        },
+        {
+          "id": "9640–12114",
+          "n": 2474,
+          "h": [
+            106,
+            79,
+            80,
+            103,
+            79,
+            69,
+            63,
+            71,
+            76,
+            91,
+            98,
+            98,
+            81,
+            80,
+            77,
+            82,
+            92,
+            91,
+            93,
+            76,
+            87,
+            81,
+            101,
+            76,
+            98,
+            92,
+            89,
+            91,
+            74
+          ],
+          "min": 63,
+          "max": 106,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 131,
+          "exactEdits": 138,
+          "log2AnyBalancedProbability": -101.33429835803653,
+          "capacityBits": 11894.05502378195
+        },
+        {
+          "id": "12114–12648",
+          "n": 534,
+          "h": [
+            19,
+            19,
+            19,
+            18,
+            20,
+            16,
+            20,
+            14,
+            15,
+            19,
+            12,
+            22,
+            21,
+            20,
+            15,
+            18,
+            16,
+            18,
+            18,
+            25,
+            15,
+            21,
+            20,
+            19,
+            15,
+            22,
+            22,
+            15,
+            21
+          ],
+          "min": 12,
+          "max": 25,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 29,
+          "exactEdits": 34,
+          "log2AnyBalancedProbability": -68.35738756629078,
+          "capacityBits": 2500.1753456306765
+        },
+        {
+          "id": "12648–12657",
+          "n": 9,
+          "h": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            1,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "min": 0,
+          "max": 2,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 1,
+          "exactEdits": 8,
+          "log2AnyBalancedProbability": -1.9970361306894548,
+          "capacityBits": 18.469133019829595
+        },
+        {
+          "id": "12657–12956",
+          "n": 299,
+          "h": [
+            6,
+            11,
+            10,
+            11,
+            8,
+            14,
+            14,
+            10,
+            9,
+            4,
+            11,
+            10,
+            11,
+            11,
+            13,
+            11,
+            8,
+            11,
+            15,
+            16,
+            7,
+            10,
+            10,
+            12,
+            9,
+            6,
+            11,
+            9,
+            11
+          ],
+          "min": 4,
+          "max": 16,
+          "exact": false,
+          "relaxed": false,
+          "minEdits": 24,
+          "exactEdits": 29,
+          "log2AnyBalancedProbability": -59.30748028200354,
+          "capacityBits": 1369.973177455512
+        }
+      ],
+      "summary": {
+        "count": 29,
+        "long": 16,
+        "exact": 0,
+        "relaxed": 3,
+        "longRelaxed": 0,
+        "minEdits": 793,
+        "exactEdits": 938,
+        "relaxedIds": [
+          "848–851",
+          "7960–7970",
+          "9519–9522"
+        ],
+        "sameLengthConflicts": [
+          [
+            "729–745",
+            "5506–5522",
+            16
+          ],
+          [
+            "848–851",
+            "9519–9522",
+            3
+          ],
+          [
+            "1541–1552",
+            "3612–3623",
+            11
+          ],
+          [
+            "3603–3612",
+            "12648–12657",
+            9
+          ]
+        ],
+        "sharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "13–729",
+              "count": 33,
+              "n": 716
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 3,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "3612–3623",
+              "count": 2,
+              "n": 11
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 0,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "9522–9640",
+              "count": 8,
+              "n": 118
+            },
+            "upper": {
+              "id": "8805–9358",
+              "count": 14,
+              "n": 553
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "9640–12114",
+              "count": 103,
+              "n": 2474
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 1,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "6546–7960",
+              "count": 55,
+              "n": 1414
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "1552–1860",
+              "count": 17,
+              "n": 308
+            },
+            "upper": {
+              "id": "7970–8051",
+              "count": 0,
+              "n": 81
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "9358–9519",
+              "count": 13,
+              "n": 161
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "7970–8051",
+              "count": 8,
+              "n": 81
+            },
+            "upper": {
+              "id": "3623–5506",
+              "count": 50,
+              "n": 1883
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "729–745",
+              "count": 2,
+              "n": 16
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 2,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "3612–3623",
+              "count": 2,
+              "n": 11
+            },
+            "upper": {
+              "id": "12657–12956",
+              "count": 4,
+              "n": 299
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "5506–5522",
+              "count": 3,
+              "n": 16
+            },
+            "upper": {
+              "id": "12114–12648",
+              "count": 12,
+              "n": 534
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "729–745",
+              "count": 2,
+              "n": 16
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 1,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "8051–8059",
+              "count": 2,
+              "n": 8
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "6527–6546",
+              "count": 2,
+              "n": 19
+            },
+            "upper": {
+              "id": "8805–9358",
+              "count": 11,
+              "n": 553
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "1541–1552",
+              "count": 2,
+              "n": 11
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 2,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "0–13",
+              "count": 2,
+              "n": 13
+            },
+            "upper": {
+              "id": "3623–5506",
+              "count": 56,
+              "n": 1883
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "729–745",
+              "count": 3,
+              "n": 16
+            },
+            "upper": {
+              "id": "851–1541",
+              "count": 19,
+              "n": 690
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "1541–1552",
+              "count": 2,
+              "n": 11
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "0–13",
+              "count": 2,
+              "n": 13
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 2,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "12648–12657",
+              "count": 2,
+              "n": 9
+            },
+            "upper": {
+              "id": "13–729",
+              "count": 17,
+              "n": 716
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "6527–6546",
+              "count": 4,
+              "n": 19
+            },
+            "upper": {
+              "id": "12657–12956",
+              "count": 7,
+              "n": 299
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "3612–3623",
+              "count": 2,
+              "n": 11
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 2,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "9358–9519",
+              "count": 9,
+              "n": 161
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 10,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "13–729",
+              "count": 31,
+              "n": 716
+            },
+            "upper": {
+              "id": "5522–6527",
+              "count": 24,
+              "n": 1005
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "3603–3612",
+              "count": 2,
+              "n": 9
+            },
+            "upper": {
+              "id": "13–729",
+              "count": 19,
+              "n": 716
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "8805–9358",
+              "count": 23,
+              "n": 553
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 0,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "851–1541",
+              "count": 30,
+              "n": 690
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 2,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "745–848",
+              "count": 7,
+              "n": 103
+            },
+            "upper": {
+              "id": "12114–12648",
+              "count": 15,
+              "n": 534
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "1860–1874",
+              "count": 2,
+              "n": 14
+            },
+            "upper": {
+              "id": "9640–12114",
+              "count": 74,
+              "n": 2474
+            }
+          }
+        ],
+        "longSharedProbabilityContradictions": [
+          {
+            "symbol": 0,
+            "lower": {
+              "id": "13–729",
+              "count": 33,
+              "n": 716
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 3,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 1,
+            "lower": {
+              "id": "9358–9519",
+              "count": 8,
+              "n": 161
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 0,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 2,
+            "lower": {
+              "id": "9522–9640",
+              "count": 8,
+              "n": 118
+            },
+            "upper": {
+              "id": "8805–9358",
+              "count": 14,
+              "n": 553
+            }
+          },
+          {
+            "symbol": 3,
+            "lower": {
+              "id": "9640–12114",
+              "count": 103,
+              "n": 2474
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 1,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 4,
+            "lower": {
+              "id": "6546–7960",
+              "count": 55,
+              "n": 1414
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 5,
+            "lower": {
+              "id": "1552–1860",
+              "count": 17,
+              "n": 308
+            },
+            "upper": {
+              "id": "7970–8051",
+              "count": 0,
+              "n": 81
+            }
+          },
+          {
+            "symbol": 6,
+            "lower": {
+              "id": "9358–9519",
+              "count": 13,
+              "n": 161
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 7,
+            "lower": {
+              "id": "7970–8051",
+              "count": 8,
+              "n": 81
+            },
+            "upper": {
+              "id": "3623–5506",
+              "count": 50,
+              "n": 1883
+            }
+          },
+          {
+            "symbol": 8,
+            "lower": {
+              "id": "8805–9358",
+              "count": 24,
+              "n": 553
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 2,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 9,
+            "lower": {
+              "id": "745–848",
+              "count": 8,
+              "n": 103
+            },
+            "upper": {
+              "id": "12657–12956",
+              "count": 4,
+              "n": 299
+            }
+          },
+          {
+            "symbol": 10,
+            "lower": {
+              "id": "9522–9640",
+              "count": 7,
+              "n": 118
+            },
+            "upper": {
+              "id": "12114–12648",
+              "count": 12,
+              "n": 534
+            }
+          },
+          {
+            "symbol": 11,
+            "lower": {
+              "id": "7970–8051",
+              "count": 5,
+              "n": 81
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 1,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 12,
+            "lower": {
+              "id": "851–1541",
+              "count": 30,
+              "n": 690
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 1,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 13,
+            "lower": {
+              "id": "1552–1860",
+              "count": 13,
+              "n": 308
+            },
+            "upper": {
+              "id": "8805–9358",
+              "count": 11,
+              "n": 553
+            }
+          },
+          {
+            "symbol": 14,
+            "lower": {
+              "id": "851–1541",
+              "count": 34,
+              "n": 690
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 2,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 15,
+            "lower": {
+              "id": "9522–9640",
+              "count": 6,
+              "n": 118
+            },
+            "upper": {
+              "id": "3623–5506",
+              "count": 56,
+              "n": 1883
+            }
+          },
+          {
+            "symbol": 16,
+            "lower": {
+              "id": "9522–9640",
+              "count": 6,
+              "n": 118
+            },
+            "upper": {
+              "id": "851–1541",
+              "count": 19,
+              "n": 690
+            }
+          },
+          {
+            "symbol": 17,
+            "lower": {
+              "id": "9358–9519",
+              "count": 9,
+              "n": 161
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 6,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 18,
+            "lower": {
+              "id": "12657–12956",
+              "count": 15,
+              "n": 299
+            },
+            "upper": {
+              "id": "9358–9519",
+              "count": 2,
+              "n": 161
+            }
+          },
+          {
+            "symbol": 19,
+            "lower": {
+              "id": "12657–12956",
+              "count": 16,
+              "n": 299
+            },
+            "upper": {
+              "id": "13–729",
+              "count": 17,
+              "n": 716
+            }
+          },
+          {
+            "symbol": 20,
+            "lower": {
+              "id": "1552–1860",
+              "count": 17,
+              "n": 308
+            },
+            "upper": {
+              "id": "12657–12956",
+              "count": 7,
+              "n": 299
+            }
+          },
+          {
+            "symbol": 21,
+            "lower": {
+              "id": "8805–9358",
+              "count": 25,
+              "n": 553
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 2,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 22,
+            "lower": {
+              "id": "9358–9519",
+              "count": 9,
+              "n": 161
+            },
+            "upper": {
+              "id": "1552–1860",
+              "count": 10,
+              "n": 308
+            }
+          },
+          {
+            "symbol": 23,
+            "lower": {
+              "id": "13–729",
+              "count": 31,
+              "n": 716
+            },
+            "upper": {
+              "id": "5522–6527",
+              "count": 24,
+              "n": 1005
+            }
+          },
+          {
+            "symbol": 24,
+            "lower": {
+              "id": "9522–9640",
+              "count": 6,
+              "n": 118
+            },
+            "upper": {
+              "id": "13–729",
+              "count": 19,
+              "n": 716
+            }
+          },
+          {
+            "symbol": 25,
+            "lower": {
+              "id": "8805–9358",
+              "count": 23,
+              "n": 553
+            },
+            "upper": {
+              "id": "745–848",
+              "count": 0,
+              "n": 103
+            }
+          },
+          {
+            "symbol": 26,
+            "lower": {
+              "id": "851–1541",
+              "count": 30,
+              "n": 690
+            },
+            "upper": {
+              "id": "9522–9640",
+              "count": 2,
+              "n": 118
+            }
+          },
+          {
+            "symbol": 27,
+            "lower": {
+              "id": "745–848",
+              "count": 7,
+              "n": 103
+            },
+            "upper": {
+              "id": "12114–12648",
+              "count": 15,
+              "n": 534
+            }
+          },
+          {
+            "symbol": 28,
+            "lower": {
+              "id": "745–848",
+              "count": 6,
+              "n": 103
+            },
+            "upper": {
+              "id": "9640–12114",
+              "count": 74,
+              "n": 2474
+            }
+          }
+        ]
+      }
+    }
+  },
+  "controls": [
+    {
+      "id": "0_warning",
+      "n": 184,
+      "h": [
+        3,
+        7,
+        11,
+        20,
+        16,
+        9,
+        2,
+        6,
+        2,
+        11,
+        12,
+        0,
+        0,
+        2,
+        2,
+        9,
+        10,
+        5,
+        27,
+        3,
+        4,
+        3,
+        0,
+        8,
+        8,
+        0,
+        3,
+        0,
+        1
+      ],
+      "min": 0,
+      "max": 27,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 66,
+      "exactEdits": 70,
+      "log2AnyBalancedProbability": -48.98243748444522,
+      "capacityBits": 820.6304058133992
+    },
+    {
+      "id": "0_welcome",
+      "n": 515,
+      "h": [
+        11,
+        31,
+        15,
+        44,
+        36,
+        12,
+        11,
+        16,
+        8,
+        35,
+        43,
+        2,
+        0,
+        5,
+        0,
+        30,
+        29,
+        2,
+        53,
+        10,
+        37,
+        5,
+        0,
+        15,
+        33,
+        0,
+        25,
+        2,
+        5
+      ],
+      "min": 0,
+      "max": 53,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 198,
+      "exactEdits": 200,
+      "log2AnyBalancedProbability": -72.63223264955,
+      "capacityBits": 2408.6541440754945
+    },
+    {
+      "id": "0_wisdom",
+      "n": 157,
+      "h": [
+        5,
+        9,
+        6,
+        13,
+        12,
+        8,
+        1,
+        3,
+        2,
+        8,
+        8,
+        0,
+        0,
+        2,
+        0,
+        14,
+        5,
+        5,
+        14,
+        6,
+        9,
+        1,
+        0,
+        8,
+        12,
+        2,
+        1,
+        1,
+        2
+      ],
+      "min": 0,
+      "max": 14,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 50,
+      "exactEdits": 55,
+      "log2AnyBalancedProbability": -44.667114958909316,
+      "capacityBits": 692.4067830749631
+    },
+    {
+      "id": "0_koan_1",
+      "n": 780,
+      "h": [
+        13,
+        34,
+        25,
+        75,
+        50,
+        16,
+        7,
+        27,
+        40,
+        37,
+        33,
+        0,
+        0,
+        8,
+        0,
+        56,
+        61,
+        6,
+        98,
+        26,
+        18,
+        6,
+        0,
+        33,
+        77,
+        0,
+        30,
+        2,
+        2
+      ],
+      "min": 0,
+      "max": 98,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 300,
+      "exactEdits": 301,
+      "log2AnyBalancedProbability": -89.54855663360385,
+      "capacityBits": 3687.841358647275
+    },
+    {
+      "id": "0_loss_of_divinity",
+      "n": 755,
+      "h": [
+        8,
+        39,
+        26,
+        70,
+        50,
+        26,
+        13,
+        35,
+        22,
+        48,
+        38,
+        0,
+        0,
+        14,
+        0,
+        45,
+        49,
+        19,
+        103,
+        19,
+        26,
+        12,
+        0,
+        21,
+        47,
+        0,
+        10,
+        9,
+        6
+      ],
+      "min": 0,
+      "max": 103,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 263,
+      "exactEdits": 264,
+      "log2AnyBalancedProbability": -95.82659663289765,
+      "capacityBits": 3567.0910736932915
+    },
+    {
+      "id": "jpg107-167",
+      "n": 319,
+      "h": [
+        2,
+        18,
+        16,
+        17,
+        11,
+        10,
+        2,
+        3,
+        13,
+        22,
+        27,
+        1,
+        0,
+        4,
+        2,
+        24,
+        25,
+        1,
+        48,
+        7,
+        6,
+        1,
+        0,
+        23,
+        27,
+        0,
+        5,
+        0,
+        4
+      ],
+      "min": 0,
+      "max": 48,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 139,
+      "exactEdits": 139,
+      "log2AnyBalancedProbability": -83.4404897144748,
+      "capacityBits": 1466.2554477312208
+    },
+    {
+      "id": "jpg229",
+      "n": 89,
+      "h": [
+        2,
+        6,
+        6,
+        10,
+        7,
+        4,
+        0,
+        3,
+        0,
+        8,
+        6,
+        0,
+        0,
+        1,
+        0,
+        9,
+        5,
+        0,
+        6,
+        1,
+        5,
+        2,
+        0,
+        2,
+        2,
+        0,
+        2,
+        2,
+        0
+      ],
+      "min": 0,
+      "max": 10,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 37,
+      "exactEdits": 38,
+      "log2AnyBalancedProbability": -50.15350284060236,
+      "capacityBits": 373.54146980856643
+    },
+    {
+      "id": "p56_an_end",
+      "n": 85,
+      "h": [
+        1,
+        3,
+        6,
+        4,
+        3,
+        1,
+        3,
+        2,
+        2,
+        3,
+        8,
+        0,
+        0,
+        4,
+        1,
+        7,
+        7,
+        1,
+        16,
+        1,
+        1,
+        0,
+        0,
+        3,
+        6,
+        0,
+        2,
+        0,
+        0
+      ],
+      "min": 0,
+      "max": 16,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 34,
+      "exactEdits": 34,
+      "log2AnyBalancedProbability": -49.35602715880429,
+      "capacityBits": 354.9070215098542
+    },
+    {
+      "id": "p57_parable",
+      "n": 95,
+      "h": [
+        3,
+        6,
+        4,
+        3,
+        7,
+        5,
+        1,
+        3,
+        1,
+        9,
+        9,
+        0,
+        0,
+        1,
+        0,
+        5,
+        5,
+        1,
+        15,
+        3,
+        3,
+        1,
+        0,
+        4,
+        5,
+        0,
+        1,
+        0,
+        0
+      ],
+      "min": 0,
+      "max": 15,
+      "exact": false,
+      "relaxed": false,
+      "minEdits": 33,
+      "exactEdits": 37,
+      "log2AnyBalancedProbability": -38.746644380558294,
+      "capacityBits": 400.72828277226847
+    }
+  ],
+  "plants": [
+    {
+      "id": "fixed-29",
+      "n": 29,
+      "h": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "min": 1,
+      "max": 1,
+      "exact": true,
+      "relaxed": true,
+      "minEdits": 0,
+      "exactEdits": 0,
+      "log2AnyBalancedProbability": -38.07927211233468,
+      "capacityBits": 102.80217674636492
+    },
+    {
+      "id": "fixed-85",
+      "n": 85,
+      "h": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        2,
+        2
+      ],
+      "min": 2,
+      "max": 3,
+      "exact": true,
+      "relaxed": true,
+      "minEdits": 0,
+      "exactEdits": 0,
+      "log2AnyBalancedProbability": -49.35602715880429,
+      "capacityBits": 354.9070215098542
+    },
+    {
+      "id": "fixed-135",
+      "n": 135,
+      "h": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "min": 4,
+      "max": 5,
+      "exact": true,
+      "relaxed": true,
+      "minEdits": 0,
+      "exactEdits": 0,
+      "log2AnyBalancedProbability": -43.18099936438735,
+      "capacityBits": 588.390775172206
+    },
+    {
+      "id": "fixed-270",
+      "n": 270,
+      "h": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "min": 9,
+      "max": 10,
+      "exact": true,
+      "relaxed": true,
+      "minEdits": 0,
+      "exactEdits": 0,
+      "log2AnyBalancedProbability": -57.32426800484922,
+      "capacityBits": 1231.0749408739664
+    },
+    {
+      "id": "fixed-729",
+      "n": 729,
+      "h": [
+        26,
+        26,
+        26,
+        26,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25,
+        25
+      ],
+      "min": 25,
+      "max": 26,
+      "exact": true,
+      "relaxed": true,
+      "minEdits": 0,
+      "exactEdits": 0,
+      "log2AnyBalancedProbability": -85.51600451086951,
+      "capacityBits": 3441.4164403003615
+    }
+  ]
+}
