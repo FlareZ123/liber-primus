@@ -1,0 +1,63 @@
+{
+  "sourceGridBlob": "2550eae357442912220e05dc51147523a61dd75a",
+  "randRepository": "RANDCorporation/milliondigits",
+  "randCommit": "09739b344efb3ed20602f34023232c67f20f212a",
+  "randBlob": "cb72b2b37aa240bf05b0ebe1c981e0c510c1e5e0",
+  "source": {
+    "rows": 20000,
+    "digits": 1000000,
+    "nativeGroupsPerRow": 10,
+    "nativeGroupWidth": 5
+  },
+  "lp2": {
+    "rows": 32,
+    "cells": 256,
+    "distinct": 161,
+    "decimalCells": 42,
+    "nonDecimalCells": 214,
+    "fullyDecimalRows": 0,
+    "longestDecimalRun": 3,
+    "maxRuns": [
+      {
+        "start": 12,
+        "length": 3,
+        "appearsInRAND": true
+      }
+    ]
+  },
+  "literalRand": {
+    "train": [],
+    "full": []
+  },
+  "controls": {
+    "positive": {
+      "train": [
+        {
+          "row": 137,
+          "column": 7
+        }
+      ],
+      "full": [
+        {
+          "row": 137,
+          "column": 7
+        }
+      ]
+    },
+    "negative": {
+      "train": [
+        {
+          "row": 137,
+          "column": 7
+        }
+      ],
+      "full": []
+    },
+    "withheldRows": 30
+  },
+  "stationaryCellMapBounds": {
+    "decimalTwoDigits": 100,
+    "hexSingleDigit": 16,
+    "observedDistinct": 161
+  }
+}
