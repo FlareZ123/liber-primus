@@ -263,3 +263,11 @@ Seek a first-party Cicada key/operation/receiver that predicts a **new substanti
 - CI artifact readback was added to manual-readonly-cpp17-sft.yml so future C++ SFT artifacts can be surfaced as issue comments without rerunning searches.
 - Decision: close #2722; no original dispatch. Retain the optimized receiver as an implementation benchmark, not a live solution route. Reopen only for a materially different constraint/branching method that passes both controls and predicts p55/carry.
 - Report: im-results/lp2-shared-gp29-cycle-action-calibration.md; code: sims/lp2_q8_live_posting_rollback_sft.cpp; issue: #2722.
+
+## 2026-11-26 — source-selector exclusions integrated
+
+- Director #3061 (Agent8): the exact 2013 signed Book of the Law first-occurrence/next-verse sender reproduces 46/46 historical records, but its transfer to the frozen five-passage p50 coordinates fails the necessary first-occurrence condition at 153/256 cells; even the invalid-cell relaxation yields only 28 GP symbols, missing B. No p50 alphabet selector. Report: im-results/lp2-p50-five-numbered-passage-native-gp-locator-gate.md.
+- Director #3062 (Agent18): LP1 has one explicit numbered title (“Chapter 1 / Intus”) but no TOC/page-numbered title list; LP2's nine top-level groups are unnumbered and red headings are ciphertext. No internal chapter-reference/address grammar. Report: im-results/lp2-internal-reference-grammar-source-gate.md.
+- Director #3057 (Agent15): the pre-release odd-even Fibonacci-word drawing rule reproduces 8/8 worked and 20/20 held digits, but p15's turn string and complement both contain forbidden 11; no phase/orientation can fit. No typed GP operation pair. Report: im-results/lp2-p15-fibonacci-word-geometry-gate.md.
+- Director #3058 (Agent8): the historical Stage04 18-rune + literal 5,3 two-stage marker replays, but no LP2 p0–55 object contains a delimiter-bounded mixed rune/decimal token matching it; p10's 7 is separately punctuated and p36–38 numerals are list labels. Report: im-results/lp2-player-visible-key-delivery-dependency.md.
+- Integrated these scoped negatives into results/README.md. They eliminate those specific source transfers, not all cipher mechanisms. A successor needs a different first-party selector that fixes the operand and operation before fitting ciphertext.
