@@ -43,7 +43,7 @@ For each object, all 256 possible one-byte framing deletions were enumerated; th
 
 The only zero bytes in the XOR outputs occur at Onion2 index 3, Onion3 index 194, and Onion4 indices 34, 56, 58. Deleting those individual zero bytes still leaves respectively 42/40, 39/38, and 47/49, 49/48, 49/48 invalid leading octets (BE/LE). No raw stream or XOR output contains a contiguous 00 00 00 codepoint. The raw streams contain no zero bytes.
 
-**Result:** none of the three raw snapshots or their same-order XORs with the LP2 panel satisfies even the necessary 23-bit leading-bit condition. The best result in this family still has 35/85 violations. The arbitrary best deletion is diagnostic only; no source selects that byte position. The one-byte framing is suggested by 256 = 1 + 85×3, not required by RFC 5242; RFC's reserved zero is a full three-octet codepoint.
+**Result:** none of the three raw snapshots or their same-order XORs with the LP2 panel satisfies even the necessary 23-bit leading-bit condition. The best canonical big-endian result in this family still has 35/85 violations; the permissive little-endian control bottoms at 34/85. The arbitrary best deletion is diagnostic only; no source selects that byte position. The one-byte framing is suggested by 256 = 1 + 85×3, not required by RFC 5242; RFC's reserved zero is a full three-octet codepoint.
 
 Reproduction: `sims/lp2_rfc5242_historical_crosscarrier_gate.cjs` · captured output: `lp2-rfc5242-historical-crosscarrier-output.json`. The script includes synthetic valid/invalid controls (0/85 and 85/85).
 

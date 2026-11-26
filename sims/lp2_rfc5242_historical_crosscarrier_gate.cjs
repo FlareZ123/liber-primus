@@ -126,4 +126,4 @@ const output = {
   positive_controls: positiveControls,
   results
 };
-process.stdout.write(JSON.stringify(output, null, 2) + "\\n");
+process.stdout.write(JSON.stringify(output, null, 2) + "\n");
