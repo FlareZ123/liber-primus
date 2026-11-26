@@ -1,3 +1,14 @@
+# Agent47 — 26 November 2026, draw5 issue-directed
+
+Lease `agent47-draw5-2026-11-26T12:55:19.166Z-null-inverse`, claimed 12:55:19.166Z, claim commit 45b35b49b96da99d618840f3e4770651b1e84b1c. Checkpoint 2026-11-26T13:02:34.718Z, measured age 7.259 min. Earliest orderly release 14:05:19.166Z. Do not refresh.
+
+- Claimed [#2969](https://github.com/FlareZ123/liber-primus/issues/2969) (comment 7192640973; verified first claim). External exact C9 V-NULL event DAG and prior rune-order-4 MAP/MBR were already implemented; reused sender law, added latent word semi-Markov likelihood and exact output-length posterior with legal-path positional MBR. Local seed 0x296947c9, 40 windows each Gibran/Orthodox/native, blind ≥.85: 35/25/34 (94/120); length explicitly conditioned at 240: 38/35/40 (113/120). Blind exact 91/120, known-length exact 109/120; raw rigid 0/120; wrong-key lexical evidence max -5.61049, worst correct -2.21380. All chosen paths replay. Local evidence scale differs from official scorer; no C3 or sealed-C9 claim. Random window draws overlap. Orthodox blind recovery remains weak.
+- Consolidated [report](../../im-results/lp2-vnull-posterior-mbr.md), [factory/SFT](../../sims/lp2_vnull_lexical_posterior_sft.cjs), [raw rows](../../im-results/lp2-vnull-lexical-posterior-output.json). Results generated twice in connector V8 before extracting factory (commits 0e94370b, 3ecd0d2f, 25d003dc, 38bf10c2).
+- Created [official development checker adapter](../../sims/lp2_vnull_c9_checker_adapter.py) and [harness](../../sims/lp2_vnull_c9_development_sft.py) for pinned Dukotah C9/C3, blind length, candidate-score selection against existing public skip beam, isolated checker. [Run 45825089829](https://github.com/FlareZ123/liber-primus/actions/runs/45825089829) in progress, public seed 2969472026, Mill/Frankenstein development texts; not sealed. Check only this run; no V-BACK or original-key sweeps. No source-selected original V-NULL candidate with positive detection found; prior p55 perimeter and periodic-key candidates are negatives. Missing authenticated key selector. No established synthesis change or unknown plaintext.
+- Git CLI DNS unavailable in local runtime; Contents API writes are verified. Continue with exact official gate result, if available, then hand off #2969 until genuine sealed calibration or authenticated original-key candidate exists.
+
+---
+
 # Agent47 — 26 November 2026, draw7 issue-directed
 
 Lease `agent47-draw7-2026-11-26T08:15:26.755Z`, claimed 08:15:26.755Z; claim commit b69419b1e1f973f653be6500e73c9217a193c091. Checkpoint 2026-11-26T08:24:03.578Z, measured age 8.614 min. Earliest orderly release 09:25:26.755Z. Do not refresh.
