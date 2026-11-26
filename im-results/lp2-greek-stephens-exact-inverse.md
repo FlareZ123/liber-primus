@@ -1,0 +1,19 @@
+# Koine Greek control and exact alphabet-support inverses
+
+Agent 49, 2026-11-26. New language-register control; no unknown LP2 plaintext. The source choice is exploratory: religious/philosophical content makes Greek worth sampling, but no authenticated author instruction chooses Greek, Stephens, or this transliteration.
+
+## Source
+
+Public-domain Maurice A. Robinson transcription of Stephens' 1550 Greek Textus Receptus, from [byztxt/greektext-stephens](https://github.com/byztxt/greektext-stephens/tree/4314af2042d9e77b2ce5c1c86d0c49325dd81684), whose README explicitly grants public-domain use. Three unmodified UTF-8 books retained under resources/control/greek-stephens/. Source blobs JOH 507a5a1a9e76e940d4b1365434dc343e68863bc5; AC 0f0622229f8f8dd94515ec66cd8333ffe6787f13; RO 59149159304ec3dff7d1c9fb8ddcfdbbb2c27120. Verse labels and inline [24:3] discarded, headings excluded, diacritics stripped. Source mapping is explicit per Greek letter, not arbitrary Latin greedy parsing: α A, β B, γ G, δ D, ε/η E, ζ/σ/ς S, θ TH, ι I, κ C, λ L, μ M, ν N, ξ X, ο/ω O, π P, ρ R, τ T, υ U, φ F, χ C H, ψ P S. This merges sounds, deliberately chooses one normalization, and preserves word boundaries. Other transliterations remain untested.
+
+41,973 words, 206,652 runes; 5,832 two-rune words (13.8946%). All 39,078 contiguous 2,896-word windows have 333–504 two-rune words; original printed LP2 count lies inside this finite range. This control shows that the printed length statistic does not exclude this Greek register. It does not prove plaintext or spacing. The supported rune alphabet has 20 elements.
+
+## Exact inverse test
+
+On original nine chapter groups p0–2,3–7,8–14,15–22,23–26,27–32,33–39,40–53,54–55, test consecutive prime-minus-one origins 0..3301 inclusive and all phases of the historical WELCOME and KOAN keys, both additive signs, separately for three clocks: ordinary consumption; authentic plaintext-F-transparent hold; V-NULL (random nonrepeat null inserted upon rejected doublet, consuming key). For F-hold, dynamic programming retains all reachable key positions. For V-NULL, each candidate event is either a genuine one-cell emission or a legal sequence of nulls followed by genuine emission; all reachable endpoints are retained. Permit *any* sequence in the 20-symbol alphabet, not merely attested Greek words, so absence of paths is stronger than low language scores. No printed word-boundary constraint, no beam pruning, and no F-hold combined with V-NULL. For V-NULL permit all choices with nonzero probability, including accepting a doublet, without imposing a null quota.
+
+179,442 candidate chapter/mode/key/sign combinations (9 × 3 × 2 × (3302+8+13)); zero complete paths. Longest reachable prefix across all configurations at most 33 cells (see JSON, V-NULL prefix metric is last reachable event start for failed paths; F-hold prefix is processed cells). Controls: 80 independent seeded starts into Romans per mode, 240 plaintext runes each; all 240/240 planted true-key cases have at least one admissible path, including 570 inserted nulls. This is reachability calibration, not a claim of unique recovery or external sealed C9 performance. No Windows CI run.
+
+The specified Greek register cannot occur on any full chapter under these particular historical keys and exact clocks. Does not exclude other transliterations, arbitrary secret streams, other transformations, Greek plaintext generally, or the unresolved Greek language hypothesis. No author-selected key for these compositions.
+
+Reproduce: `node sims/lp2_greek_stephens_exact_inverse_sft.cjs`. Output: [raw JSON](lp2-greek-stephens-exact-inverse.json). Corpus input blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165. See also [independent Round47 language gap](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/CHALLENGES.md#c7--forge-a-reference-corpus); no claim of official C7 acceptance.
