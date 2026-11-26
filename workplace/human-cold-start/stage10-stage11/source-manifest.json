@@ -1,0 +1,481 @@
+{
+  "sourceCommit": "bd630b9817a4f05c963b78617f9dab7933b8580b",
+  "packetCommit": "05ffa10e35aa0126ccc67d08072d29360db856a7",
+  "packetTree": "818fd10c6500ecc4559bd7d8fd02afd9444619cb",
+  "sourceCount": 66,
+  "sourceBytes": 36905962,
+  "generated": [
+    {
+      "path": "README.md",
+      "sha": "695a0c1194e3449739d621c2153af4954c1835b7"
+    },
+    {
+      "path": "response-sheet.md",
+      "sha": "5fd52182a32cb031c73d1aeb5e0415727fb3310f"
+    }
+  ],
+  "sources": [
+    {
+      "dest": "01/form.html",
+      "source": "resources/historical/cicada2014-stage10-original-form.html",
+      "sha": "9d7c35bc8fff24c8079668c9d070d98277502f7c",
+      "size": 1943,
+      "date": "signed body 2014-01-25 08:26:57 UTC; HTML archive witness"
+    },
+    {
+      "dest": "01/magicsquares.txt",
+      "source": "resources/cicada2014-openpuff-magic-squares.txt",
+      "sha": "0cff0a94f16a8603443619b6338def411c9f7bd5",
+      "size": 745,
+      "date": "derived exact 745-byte extraction from signed 2014-01-18 carrier"
+    },
+    {
+      "dest": "02/response.html",
+      "source": "resources/external/2014-stage10-post-square-response.html",
+      "sha": "d71303af76016c8e88ed5dcc8a18b08e6276a437",
+      "size": 152,
+      "date": "archive dated 2014-02-13, not live response time"
+    },
+    {
+      "dest": "02/107.jpg",
+      "source": "resources/liber-primus/14.jpg",
+      "sha": "28a1ac59a2f1f51d272e4e362c0c35b4be241347",
+      "size": 625668,
+      "date": "first-release JPEG; linked response archive dated 2014-02-13"
+    },
+    {
+      "dest": "02/167.jpg",
+      "source": "resources/liber-primus/15.jpg",
+      "sha": "32952b7d28028f5fedffceace4de0e7eb688d3d6",
+      "size": 426945,
+      "date": "first-release JPEG; linked response archive dated 2014-02-13"
+    },
+    {
+      "dest": "02/229.jpg",
+      "source": "resources/liber-primus/16.jpg",
+      "sha": "6f8059f7e8025bf3f51fceefe20be0cce8ce1e20",
+      "size": 485456,
+      "date": "first-release JPEG; linked response archive dated 2014-02-13"
+    },
+    {
+      "dest": "03/message.asc",
+      "source": "resources/historical/cicada2014-stage11-message.asc",
+      "sha": "e2b7382ac2cfb0adfe028cc063fc6048e0ad718e",
+      "size": 1183,
+      "date": "signed 2014-04-02 08:49:51 UTC"
+    },
+    {
+      "dest": "04/index.html",
+      "source": "resources/historical/cicada2014-onion7-original-index.html",
+      "sha": "303db130705f0ef9be2a738f4336d5cfcebde80c",
+      "size": 1640,
+      "date": "archive dated 2014-05-11 18:33:43 UTC"
+    },
+    {
+      "dest": "04/0.jpg",
+      "source": "resources/liber-primus/17.jpg",
+      "sha": "abab573f7a3786f46fe4fab17d5f2dcf2476136b",
+      "size": 695525,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/1.jpg",
+      "source": "resources/liber-primus/18.jpg",
+      "sha": "7b7905574bcc712a9ea8b7ca60c690a1f99314c5",
+      "size": 667228,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/2.jpg",
+      "source": "resources/liber-primus/19.jpg",
+      "sha": "2936b21db3e1fc3ead8915185d58cab351dcb566",
+      "size": 595338,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/3.jpg",
+      "source": "resources/liber-primus/20.jpg",
+      "sha": "3a7badc18e859868ef28d5b8b81bfde38e0ebbde",
+      "size": 599916,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/4.jpg",
+      "source": "resources/liber-primus/21.jpg",
+      "sha": "9cc256b5356a9382713214324dbce89ba02b01b0",
+      "size": 676634,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/5.jpg",
+      "source": "resources/liber-primus/22.jpg",
+      "sha": "d80bf744990eb4263c2137fb3ba13dbe775c0fa5",
+      "size": 667716,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/6.jpg",
+      "source": "resources/liber-primus/23.jpg",
+      "sha": "f442a9333c78e39bef3f53487ca24dac0c7942de",
+      "size": 556991,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/7.jpg",
+      "source": "resources/liber-primus/24.jpg",
+      "sha": "2b4e09dbad1a9c602a2919864b1a84f49d7ff501",
+      "size": 580968,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/8.jpg",
+      "source": "resources/liber-primus/25.jpg",
+      "sha": "504f0e193c393f67e16643cbe9b6288190b5a4e4",
+      "size": 612380,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/9.jpg",
+      "source": "resources/liber-primus/26.jpg",
+      "sha": "87a98edc542fec46bf087efd1446f6bbfa342bf2",
+      "size": 639920,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/10.jpg",
+      "source": "resources/liber-primus/27.jpg",
+      "sha": "1c9fd75320b61e4bed7eb70d8c14d2fad4b87923",
+      "size": 618194,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/11.jpg",
+      "source": "resources/liber-primus/28.jpg",
+      "sha": "df68046a383a4a216841552fdcd3979f25612a0f",
+      "size": 609111,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/12.jpg",
+      "source": "resources/liber-primus/29.jpg",
+      "sha": "594ca9b258b15ac1d32497b869d3fa4ef6805ddf",
+      "size": 609412,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/13.jpg",
+      "source": "resources/liber-primus/30.jpg",
+      "sha": "932313ad53dbc18b435b4c43f0e3c827547948c9",
+      "size": 619368,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/14.jpg",
+      "source": "resources/liber-primus/31.jpg",
+      "sha": "2368c574b645782e8ab8f1a5d0f58d0955cb3025",
+      "size": 436699,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/15.jpg",
+      "source": "resources/liber-primus/32.jpg",
+      "sha": "f380a4771461ad74eddf5b4e3e366c28ebc827c5",
+      "size": 512272,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/16.jpg",
+      "source": "resources/liber-primus/33.jpg",
+      "sha": "a537b6c5f05cd40e4153a00e4397a053b631d325",
+      "size": 550563,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/17.jpg",
+      "source": "resources/liber-primus/34.jpg",
+      "sha": "4d63ba27eb7f91594a665bfd8055d38707df644e",
+      "size": 541530,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/18.jpg",
+      "source": "resources/liber-primus/35.jpg",
+      "sha": "9c28762bc2763d6eb1dcdb02ba988877821df0ca",
+      "size": 541718,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/19.jpg",
+      "source": "resources/liber-primus/36.jpg",
+      "sha": "06005119670c1cc371c60934636ec58d5d4cc114",
+      "size": 540260,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/20.jpg",
+      "source": "resources/liber-primus/37.jpg",
+      "sha": "a042e662cd74554d3f82049aecbe3f6085b4e399",
+      "size": 535883,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/21.jpg",
+      "source": "resources/liber-primus/38.jpg",
+      "sha": "fe6a6f4fec9ae67f49699cfbf6a2824261c9100f",
+      "size": 550964,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/22.jpg",
+      "source": "resources/liber-primus/39.jpg",
+      "sha": "0270e099f35a00dc24a9dc673ce13d4a0a843802",
+      "size": 512143,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/23.jpg",
+      "source": "resources/liber-primus/40.jpg",
+      "sha": "feee4eed2a4f6d66456ff5a977f43c7ef297f8eb",
+      "size": 484095,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/24.jpg",
+      "source": "resources/liber-primus/41.jpg",
+      "sha": "937f224786852ddfdc40704599ce5850e49049cb",
+      "size": 654761,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/25.jpg",
+      "source": "resources/liber-primus/42.jpg",
+      "sha": "f2ead3e5e12ffefbe19b0474eeb0a1a21815ac60",
+      "size": 643754,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/26.jpg",
+      "source": "resources/liber-primus/43.jpg",
+      "sha": "a0be92ee2b6ccda6d2bd6bc39b37d6b061edf8bd",
+      "size": 677224,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/27.jpg",
+      "source": "resources/liber-primus/44.jpg",
+      "sha": "b2fc14497a1def3bb20b0c4ab88d50ebd3a036ff",
+      "size": 580041,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/28.jpg",
+      "source": "resources/liber-primus/45.jpg",
+      "sha": "42a66257fb798d1a41fb23cddcd08a7f3678e233",
+      "size": 542267,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/29.jpg",
+      "source": "resources/liber-primus/46.jpg",
+      "sha": "80306794137aa5406bb4c1918d469b1a2a23fc02",
+      "size": 546105,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/30.jpg",
+      "source": "resources/liber-primus/47.jpg",
+      "sha": "cf4fea86915b8e98bbdac0098878223e89a0595a",
+      "size": 539780,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/31.jpg",
+      "source": "resources/liber-primus/48.jpg",
+      "sha": "dc31a9e3057e9fef10e1a202b663b84f4f1c3a0e",
+      "size": 531046,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/32.jpg",
+      "source": "resources/liber-primus/49.jpg",
+      "sha": "1a8fa8978bad0efc088e5ae247ceba69b2f29c27",
+      "size": 362637,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/33.jpg",
+      "source": "resources/liber-primus/50.jpg",
+      "sha": "68d3e28d8c4161fdfe91a542f5bac8e276bc441e",
+      "size": 525652,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/34.jpg",
+      "source": "resources/liber-primus/51.jpg",
+      "sha": "e6249fa4cf3a1163d2ef3b38dbed59a886a4d94c",
+      "size": 555050,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/35.jpg",
+      "source": "resources/liber-primus/52.jpg",
+      "sha": "aec165a24c007299422e52e3480c70dbca63b9dc",
+      "size": 574580,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/36.jpg",
+      "source": "resources/liber-primus/53.jpg",
+      "sha": "f8ddd9776975cd5d34de96eb8cb35e2de48c6a56",
+      "size": 511099,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/37.jpg",
+      "source": "resources/liber-primus/54.jpg",
+      "sha": "ff7e60c2a574512200bea0f49d76808ecfb3e21f",
+      "size": 503830,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/38.jpg",
+      "source": "resources/liber-primus/55.jpg",
+      "sha": "10ab76d6c31ea348bbc0f906adf6caac61398dc2",
+      "size": 519224,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/39.jpg",
+      "source": "resources/liber-primus/56.jpg",
+      "sha": "819261c833837cbaa2bd200d210ca299d79031f3",
+      "size": 541379,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/40.jpg",
+      "source": "resources/liber-primus/57.jpg",
+      "sha": "83f661b6107587c5d153d6dea3f6bf03090a70bc",
+      "size": 746355,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/41.jpg",
+      "source": "resources/liber-primus/58.jpg",
+      "sha": "cef4a7baf17e31676ec219db99808287a63b6f33",
+      "size": 785555,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/42.jpg",
+      "source": "resources/liber-primus/59.jpg",
+      "sha": "781940e751b879a4fe1a62bdcf4ac518e1e5c6a9",
+      "size": 788795,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/43.jpg",
+      "source": "resources/liber-primus/60.jpg",
+      "sha": "165003151e37729d2b4fde70c92a432ad9c70d00",
+      "size": 792166,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/44.jpg",
+      "source": "resources/liber-primus/61.jpg",
+      "sha": "6aaa4e0d3b89d652ef4eec43af4382d871e9e087",
+      "size": 796475,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/45.jpg",
+      "source": "resources/liber-primus/62.jpg",
+      "sha": "5a29229e871ca21e28a2500b448c5df04b6d5545",
+      "size": 772704,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/46.jpg",
+      "source": "resources/liber-primus/63.jpg",
+      "sha": "b02c15229caaecec339a5614f07396850e3b068c",
+      "size": 782516,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/47.jpg",
+      "source": "resources/liber-primus/64.jpg",
+      "sha": "9cc071ca1f93dd29750deccc11f3a7cc056c94db",
+      "size": 792027,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/48.jpg",
+      "source": "resources/liber-primus/65.jpg",
+      "sha": "a2db4b4363f4a991dc7a2f17855d7b238df9d09e",
+      "size": 803285,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/49.jpg",
+      "source": "resources/liber-primus/66.jpg",
+      "sha": "c5243ea1324cf3b72b79a41366f8d0e434ce3978",
+      "size": 651504,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/50.jpg",
+      "source": "resources/liber-primus/67.jpg",
+      "sha": "f5abe00085811319f5183c2468ea1171d9dbfb82",
+      "size": 581983,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/51.jpg",
+      "source": "resources/liber-primus/68.jpg",
+      "sha": "701e47789abf4401d61420ff938c2b72aa03ad2c",
+      "size": 661727,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/52.jpg",
+      "source": "resources/liber-primus/69.jpg",
+      "sha": "2bb9807409b2536feb788ec0cdf7a0fefb8ea5e6",
+      "size": 792979,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/53.jpg",
+      "source": "resources/liber-primus/70.jpg",
+      "sha": "55791b97f20e57e9f0ffb4f28596712d5db2ed68",
+      "size": 753790,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/54.jpg",
+      "source": "resources/liber-primus/71.jpg",
+      "sha": "5658a7f992c06ac7191f275cf32be2ce35b59754",
+      "size": 774295,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/55.jpg",
+      "source": "resources/liber-primus/72.jpg",
+      "sha": "ee00cd34013fe3a5c6808650abb6d3206b6f1b13",
+      "size": 614928,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/56.jpg",
+      "source": "resources/liber-primus/73.jpg",
+      "sha": "afa3428764199ddf590baf0c055c8caedc079cb1",
+      "size": 389813,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    },
+    {
+      "dest": "04/57.jpg",
+      "source": "resources/liber-primus/74.jpg",
+      "sha": "4397143b4df5ad729b00cfd740a74994052f46d2",
+      "size": 318076,
+      "date": "LP2 release image; index archive dated 2014-05-11"
+    }
+  ]
+}

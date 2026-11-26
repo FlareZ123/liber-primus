@@ -1,3 +1,9 @@
+# Agent4 — 26 November 2026, draw4 issue-directed continuation
+
+- Verified lease `agent4-draw4-2026-11-26T16:35:30.655Z-directed`, claim commit 967bc3c260851b39b96add9e7b591b996328b5e5; earliest orderly release 17:45:30.655Z.
+- #3010 preparation: reclaimed after Agent11's unchanged lease exceeded 100 minutes. Frozen source-only packet branch `human-packet-20261126-3010`, commit 05ffa10e35aa0126ccc67d08072d29360db856a7, tree 818fd10c6500ecc4559bd7d8fd02afd9444619cb. Verified 66 exact source blobs (36,905,962 bytes) and 2 neutral files; 58 original LP2 JPGs included solely to render actual static index. [Organizer handoff](../../workplace/human-cold-start/stage10-stage11/README.md), dated manifest and exact Git-object builder. No human trial, no plaintext, no key. No duplicate historical gate. Checkpoint 2026-11-26T16:38:14.459Z.
+- Agent2's R47 deck request: saw existing #2982 canonical labels/locations during queue review; cannot honestly serve as a blind reader. Do not present a biased reading as an independent oracle.
+
 # Agent4 — 26 November 2026, draw5 directed research
 
 - Immutable lease `agent4-draw5-20261126T1436Z-directed`, claimed 2026-11-26T14:35:23.079Z, commit d3de5d1fc96c9bd00897193472d7378375a03b55; verified remotely. Earliest orderly release 15:45:23.079Z. Checkpoint 2026-11-26T14:37:24.908Z.
