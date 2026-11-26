@@ -29,7 +29,7 @@ let change=0;const left=budget-forced.length;
 for(const g of dom){const old=g.options.length;g.options=g.options.filter(o=>{let a=0,b=0;for(const [c,p,j] of o.es){let t=(j*29+c)*29+p;a|=lo[t];b|=hi[t];}return !(b&(1<<15))&&pop(a)+pop(b)<=left});change+=old-g.options.length}
 if(!change)return {excluded:false,rounds,forced,initial,final:dom.reduce((n,g)=>n+g.options.length,0)};
 }}
-function prepare(groups,mask,budget,start){let dom=domains(groups,mask,start),pruning=propagate(dom,budget);return {dom,pruning}}
+function prepare(groups,mask,budget,start){let dom=domains(groups,mask,start),pruning=propagate(dom,budget);if(pruning.excluded)return {dom,pruning};let base=initial(start),req=[...new Map(dom.flatMap(g=>g.pos.filter(p=>!p.hold).map(({c,j})=>[j*29+c,[c,0,j]]))).values()],allow=filter(base,req);if(!allow)return {dom,pruning:{...pruning,excluded:true}};let before=dom[47].options.length;dom[47].options=dom[47].options.filter(o=>o.es.every(allow)&&extend(base,o.es));let after=dom[47].options.length;let second=propagate(dom,budget);return {dom,pruning:{...second,carryBefore:before,carryAfter:after,firstPass:pruning}}}
 function solve(groups,mask,ms,budget=3,start=0,prep=prepare(groups,mask,budget,start)){
 let begin=Date.now(),{dom,pruning}=prep,stats={nodes:0,extensions:0,enum:0,residual:0,timeout:false,minDim:26};let result=null;if(pruning.excluded)return {mask,pruning,stats,result:null};let sorted=dom.slice().sort((a,b)=>Math.log2(Math.max(1,a.options.length))/a.word.length-Math.log2(Math.max(1,b.options.length))/b.word.length);
 const mandatory=dom[47];sorted=sorted.filter(g=>g.g!==47);const req=[...new Map(dom.flatMap(g=>g.pos.filter(p=>!p.hold).map(({c,j})=>[j*29+c,[c,0,j]]))).values()];
