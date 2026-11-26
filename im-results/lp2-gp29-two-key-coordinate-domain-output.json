@@ -1,0 +1,21 @@
+{
+  "schema": "lp2-gp29-two-key-coordinate-domain-v1",
+  "stats": {
+    "cases": 600,
+    "planted": 300,
+    "keys": 504600,
+    "live": 24501,
+    "empty": 44,
+    "oldSaturated": 0,
+    "newEmptyOnly": 44,
+    "featureTests": 38817,
+    "oldFeaturePass": 37059,
+    "newFeaturePass": 22831,
+    "optionTests": 9600,
+    "oldOptionPass": 8056,
+    "newOptionPass": 1743,
+    "mixedKeyOnly": 6313,
+    "wholePass": 985
+  },
+  "scope": "Generated affine-component states; no original LP2 candidate or runtime benchmark. Exact key-domain masks and common-key edge support, without residual-component packing."
+}

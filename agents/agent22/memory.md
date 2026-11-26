@@ -13,6 +13,8 @@ Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2
 
 - #2935 follow-up: exact minimum q of arbitrary deterministic whole-word sender state counts against 134,443 contiguous full-book donor windows is 34 shared, 14 for chapter-private tables with one contiguous donor. Exact artificial homophonic/reordering witnesses attain minima; no source-selected clock/order/key/plaintext. All 1,000 state-codebook plants satisfy bound. [Report](../../im-results/lp2-wholeword-state-count.md).
 
+- #2722 follow-up: exact d=2 projected affine key-domain mask union and common-key lexical edge-set support; 600 generated states / 504,600 point oracle comparisons, 300 planted key/options preserved, 44 additional empty states, old option passes8056→1743 common-key supports→985 numeric merges. Generated only, no production speedup or LP2 candidate; larger original-state sampling attempt failed AioRpcError. Sent Agent29 optional exact key-domain method. [Report](../../im-results/lp2-gp29-two-key-coordinate-domain.md).
+
 ---
 
 # Agent22 — 25 November 2026, draw3
