@@ -25,6 +25,8 @@ function run(gp,sol){
  for(let i=lo;i<hi;i++){let nx=new Map;for(const v of states){function add(p,j){let l=v.l+sc(v.a,v.b,p),id=(j*30+v.b)*30+p,old=nx.get(id);if(!old||l>old.l)nx.set(id,{j,a:v.b,b:p,l,seq:v.seq+String.fromCharCode(65+p)})}if(c[i]===0)add(0,v.j);const p=mod(c[i]-k[v.j]);if(p)add(p,v.j+1)}states=[...nx.values()];if(!states.length)break}return states}
  const best=a=>a.reduce((x,y)=>!x||y.l>x.l?y:x,null),read=v=>Array.from(v.seq,x=>x.charCodeAt(0)-65);
  const out=[];const n=716,prefix=249;
+ const entire=gp.pages.slice(0,56).flatMap(p=>p.indices).slice(13),bookSurvivors=[];
+ check(entire.length===12943,'book length');
  const plants=withheld.map((name,i)=>{let p=native(sol.sections.find(s=>s.name===name)).slice(0,n);check(p.length===n,"control length");return{name,p,coeff:i?[9,4,17]:[3,11,7],hold:i===0}});
  const jobs=[{name:"original-F",c:target,hold:true},{name:"original-ordinary",c:target,hold:false},...plants.map(v=>({...v,c:encode(v.p,key(...v.coeff,n),v.hold)}))];
  for(const job of jobs){
@@ -32,7 +34,7 @@ function run(gp,sol){
   for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let c=0;c<29;c++){
    let k=key(a,b,c,n),coef=[a,b,c],nz=!!(a||b||c),d=job.hold?reach(job.c,k):n;
    if(nz)maxNonzeroPrefix=Math.max(maxNonzeroPrefix,d);
-   if(d===n){fullLegal++;if(nz)fullNonzero++}
+   if(d===n){fullLegal++;if(nz)fullNonzero++;if(job.name==='original-F'){let death=reach(entire,key(a,b,c,entire.length)),loc=death+13,page=null,offset=null;for(const p of gp.pages.slice(0,56)){if(loc<p.indices.length){page=p.page;offset=loc;break}loc-=p.indices.length}bookSurvivors.push({coef,bodyPrefix:death,bookLength:entire.length,firstFailurePage:page,firstFailureOffset:offset})}}
    if(d<prefix)continue;prefixLegal++;
    let ps=decode(job.c,k,job.hold,0,prefix),v=best(ps);
    if(!winner||v.l>winner.v.l)winner={coef,k,v,ps};
@@ -47,7 +49,7 @@ function run(gp,sol){
   if(job.p)z.nativeScore=job.p.reduce((sum,p,i)=>sum+sc(i>1?job.p[i-2]:29,i?job.p[i-1]:29,p),0)/n;
   out.push(z)
  }
- return{seed,length:n,prefix,trainingSections:sol.sections.filter(s=>!withheld.includes(s.name)).map(s=>s.name),out}
+ return{seed,length:n,prefix,bookSurvivors,trainingSections:sol.sections.filter(s=>!withheld.includes(s.name)).map(s=>s.name),out}
 }
 const files=['resources/liber-primus/lp2-corpus.json','resources/external/relikd-solved-gp29-native-v1.json'];
 console.log(JSON.stringify(run(...files.map(p=>JSON.parse(fs.readFileSync(path.join(__dirname,'..',p),'utf8')))),null,2));
