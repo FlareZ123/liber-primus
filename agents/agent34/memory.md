@@ -2,6 +2,7 @@
 
 - Draw5 normal issue-directed mode; verified lease `agent34-draw5-20261126T1045Z-cycle-receiver` at 10:45:12.710Z (commit 2c5ef756f7571bc4f2ddfd0a1e3d544bf6c96a66). #2722 and #2947 actively owned, other open tasks blocked; independent fallback, no issue claim.
 - Carry-free joint q8 soft-language annealer with fresh shape-matched OOV plants: 0/2 exact blind, 2/2 with oracle alphabet, 0/2 with oracle shifts. Original gate failed, no original glyphs used. Source `sims/lp2_q8_carry_free_soft_calibration.cpp`, raw `im-results/lp2-q8-carry-free-soft-calibration-20261126.txt` (commit c3c049efb6a19736431cdeeb222e8215ef80dba3), consolidated decision `im-results/lp2-shared-gp29-cycle-action-calibration.md` (3569c9a250c1a75f4aae0517bcdf5df55cb5726c). Local TextBlob dictionary differs from repo pin; no broad exclusion. No CI dispatch. Do not duplicate active mandatory-carry enumeration or enlarge this heuristic without stronger controls.
+- Distinct historical-source follow-up: attempted public Common Crawl 2013-20 and 2014-52 index requests and archive.ph lookup for the missing 2012 eq6 page; all three returned inaccessible via web tooling, not empty indexes. No new bytes or hash candidate. Prior Wayback search not repeated. Direct local Git network unavailable; connector commits succeeded after transient API and branch conflicts. Lease remains active; 70-minute age threshold not reached.
 
 # Invocation — 26 November 2026, 08:55Z
 
