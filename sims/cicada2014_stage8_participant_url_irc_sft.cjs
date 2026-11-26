@@ -16,9 +16,9 @@ const sources = [
   ['#33012014.freenode.log', 8629610, 'a2880b1db31ce523599ef30ca2e55291bf295900']
 ];
 const knownCicada = new Set([
-  'auqgnxjtvdbll3pv', 'cu343l33nqaekrnw', 'auowyfgl5lkzfj3n',
-  'fv7lyucmeozzd5j4', 'ut3qtzbrvs7dtvzp', 'ky2khlqdf7qdznac',
-  'p7amjopgric7dfdi', 'xsxnaksict6egxkq', 'pklmx2eeh6fjt7zf'
+  'auqgnxjtvdbll3pv', 'cu343l33nqaekrnw', 'fv7lyucmeozzd5j4',
+  'avowyfgl5lkzfj3n', 'q4utgdi2n4m4uim5', 'ut3qtzbrvs7dtvzp',
+  'ky2khlqdf7qdznac'
 ]);
 const hostRe = /\b([a-z2-7]{16})(?:\.onion)?\b/gi;
 const onionUrlRe = /\b(?:https?:\/\/)?([a-z2-7]{16})\.onion(?:\/[^\s<>()]*)?/gi;
@@ -118,40 +118,24 @@ async function scan(source) {
     }
   }
   if (name === '#cicadasolvers.freenode.log') {
-    const focused = [];
+    const candidateNicks = new Set(['cheetahburn', 'mlehmk', 'nicelurk', 'dynomite27', 'amone', 'jonsmif']);
+    const followups = [];
     for (let i = 0; i < lines.length; i++) {
       const parsed = parse(lines[i]);
       if (!parsed || !inWindow(parsed.key)) continue;
-      const lower = lines[i].toLowerCase();
-      const targetOwner = parsed.nick.toLowerCase() === 'cheetahburn';
-      const targetHost = lower.includes('kholyg7cewyywujo') || lower.includes('upload7dq6dgt7cx');
-      const mayCallback = parsed.key >= 501 && parsed.key <= 505 &&
-        /cicada|cicados|key\\.asc|cgi-bin|upload|message\\.txt\\.asc|hidden service/.test(lower);
-      if (targetOwner || targetHost || mayCallback) {
-        focused.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
+      const nick = parsed.nick.toLowerCase();
+      const isFebFollowup = candidateNicks.has(nick) && parsed.key >= 204 && parsed.key <= 212;
+      const isMayOwner = candidateNicks.has(nick) && parsed.key >= 501 && parsed.key <= 505;
+      const isMayService = parsed.key >= 501 && parsed.key <= 505 &&
+        /kholyg7cewyywujo|upload7dq6dgt7cx|cgi-bin|key\.asc|message\.txt\.asc|CicaDOS|(?:cicada.*(?:server|service|upload|message|request|key))|(?:(?:server|service|upload|message|request|key).*cicada)/i.test(lines[i]);
+      if (isFebFollowup || isMayOwner || isMayService) {
+        followups.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
       }
     }
-    const candidateNicks = new Set(['cheetahburn', 'mlehmk', 'NiceLurk', 'dynomite27', 'amone', 'jonsmif']);
-    const candidateFollowups = [];
-    for (let i = 0; i < lines.length; i++) {
-      const parsed = parse(lines[i]);
-      if (!parsed || !inWindow(parsed.key)) continue;
-      const inFeb4toFeb12 = parsed.key >= 204 && parsed.key <= 212;
-      const inMayCallback = parsed.key >= 501 && parsed.key <= 505;
-      if ((candidateNicks.has(parsed.nick) && (inFeb4toFeb12 || inMayCallback)) ||
-          (inMayCallback && /kholyg7cewyywujo|upload7dq6dgt7cx|cgi-bin|key\\.asc|message\\.txt\\.asc|Cicada|CicaDOS|upload/i.test(lines[i]))) {
-        candidateFollowups.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
-      }
-    }
-    console.log('--- candidate owner follow-ups (Feb 4–12 and May 1–5) ---');
-    for (const row of candidateFollowups) {
+    console.log('--- candidate service-owner/callback lines ---');
+    for (const row of followups) {
       console.log('L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 700));
     }
-    console.log('--- focused owner/host/callback trace ---');
-    for (const row of focused.slice(0, 180)) {
-      console.log('L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 700));
-    }
-    if (focused.length > 180) console.log('TRUNCATED ' + (focused.length - 180) + ' further focused lines');
   }
   console.log('--- participant/service-context lines ---');
   for (const h of hits.slice(0, 220)) {
