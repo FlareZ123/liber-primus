@@ -297,7 +297,7 @@ The pinned [Round44 master snapshot](https://github.com/Dukotah/cicada3301/tree/
 
 
 
-## 2014 primary-source archive crosswalk and acquisition priorities (reviewed 19 November 2026)
+## 2014 primary-source archive crosswalk and acquisition priorities (reviewed 26 November 2026)
 
 This crosswalk separates authenticated Cicada messages from community reconstructions, identifies exact source objects missing from `resources/`, and avoids counting forks or mirrored copies as independent evidence.
 
@@ -334,6 +334,7 @@ The matching blob hashes across these repositories are a byte-identity cross-che
 ### LP2 byte and transcription controls; duplicates to retire
 
 - The 58 `2014onion7/0.jpg`–`57.jpg` originals in cijhho match `resources/liber-primus/17.jpg`–`74.jpg` byte-for-byte (58/58). Its `2014/Liber Primus/runes in text format.txt` is also the exact same Git blob as `resources/transcriptions/lp2_krisyotam_2017.txt` (43,739 bytes; SHA-1 `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`). This archive adds no new LP2 image bytes or rune sequence.
+- The `assets/2014/stage11/ky2khlqdf7qdznac.onion/sexagesimal.bin` object in cijhho and scream314 is the same 256-byte Git blob (`ad3dd7a3d37879d04bd506d2eecea86f27543928`), first committed in scream314 on 24 January 2018 and copied into cijhho's 8 May 2021 `2014 assets` commit. The cijhho companion `decimal.txt` (920 bytes) and `decimaltobyte.pm` (45 bytes) serialize and repack that same binary. It differs from the scan-verified p49-51 256-byte table at zero-based offsets 25, 45, 50, 165, 170, 172, 175, 182, 199 and 246; it is an older community transcription, not a 2014 first-party Onion7 file or independent evidence. The pinned May 2014 participant Stage11 directory remains the index plus 58 images. Exact hashes and the bounded p56 comparison are in [the Stage11/p50 hash gate](../../im-results/lp2-p56-2014-onion-directory-and-stage11-index-hash-gate.md).
 - The 58 Stage 11 images in the cicada-solvers reconstruction are differently encoded variants; do not substitute them for the local originals.
 - iBotPeaches' 2016 `hello-the-path-lies-empty.asc` and 2017 `beware-false-paths.asc` are formatting variants of the already-preserved and authenticated `cicada2016-4gq25-outguess.asc` and `cicada2017-yEiTHhvF.asc`. No new message content or key material was found there. The existing 2012–2013 20-message signature audit also remains the controlling record; do not repeat it.
 - scream314 carries the full 75-page image set; the repository's `resources/liber-primus/` currently tracks the 58 LP2 pages (physical images 17–74), not the first 17 LP1 pages. Those earlier pages are historical context, not new LP2 ciphertext.
