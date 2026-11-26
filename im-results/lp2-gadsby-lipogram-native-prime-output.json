@@ -2369,6 +2369,8 @@
     ]
   },
   "periodic": {
+    "reducedExhaustive": 729,
+    "welcomeReplay": 515,
     "controls": [
       {
         "min": 0,
@@ -2728,18 +2730,11 @@
     "held": 60
   },
   "p56Replay": 85,
-  "periodicReducedCheck": {
-    "tested": 729,
-    "nativeCheck": {
-      "min": 0,
-      "provedAtLeast": 0,
-      "nodes": 5
-    }
-  },
   "inputBlobs": [
     "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
     "1b064ef6d85819b7d96adaff31a82d1ec551598f",
     "f7b534a33edeb212d427329798438325307463d7",
-    "29697b888b340fb64826da07101ec5c62bfcd2c4"
+    "29697b888b340fb64826da07101ec5c62bfcd2c4",
+    "37c96b816495c5f93ca658a01c9918bf92598316"
   ]
 }
