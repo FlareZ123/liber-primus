@@ -2,16 +2,18 @@
 """Reproduce the p55 coprime-interior GP29 key candidate.
 
 Source-directed reading:
-  * p57: "shed our own circumferences; find the divinity within"
-  * p7: the totient function is sacred
-  * p55: 16 complete words begin on the page
+  * LP1 physical p5: "THE TOTIENT FUNCTION IS SACRED"
+  * LP2 p57: "shed our own circumferences; find the divinity within"
+  * LP2 p55: 16 complete words begin on the page
 For each p55 word of rune length n, remove its first and last runes, then
 select interior positions whose one-based index is coprime to n. This yields
-29 runes, matching the GP29 alphabet. Serialize each GP29 index with the
-2013 source's base-29 alphabet 0123456789ABCDEFGHIJKLMNOPQRS.
+29 runes, matching the GP29 alphabet. Serialize each GP29 index as one digit
+from the effective 2013 BASE29 alphabet 0123456789ABCDEFGHIJKLMNOPQRS.
 
-This script derives a candidate password only. It does not establish that
-OpenPuff is the intended receiver or that the candidate decrypts anything.
+The parser preserves words across page markers and attributes each word to
+the page where its first rune appears. The candidate is not plaintext or an
+authenticated key. A direct same-page Vigenere receiver is tested below;
+OpenPuff remains a gated, untested receiver hypothesis.
 """
 from __future__ import annotations
 
@@ -23,14 +25,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TRANSCRIPTION = ROOT / "resources" / "lp2-transcription.txt"
 CORPUS = ROOT / "resources" / "liber-primus" / "lp2-corpus.json"
-PAGE_START_INDEX = 54  # transcription segment 54 is physical LP2 page 55
+PAGE_START_INDEX = 54  # LP2 p55; original archive image 72.jpg
 BASE29 = "0123456789ABCDEFGHIJKLMNOPQRS"
 EXPECTED_LENGTHS = [4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]
 
 
-def parse_words_starting_on_page(raw: str, rune_set: set[str], page_index: int) -> list[str]:
-    segments = raw.split("%")[: page_index + 1]
-    by_start_page: list[list[str]] = [[] for _ in segments]
+def parse_words_by_start_page(raw: str, rune_set: set[str]) -> list[list[str]]:
+    """Parse words by their first-rune page; page markers do not end words."""
+    by_start_page: list[list[str]] = [[] for _ in range(raw.count("%") + 1)]
     current: list[str] = []
     start_page = 0
     page = 0
@@ -41,12 +43,13 @@ def parse_words_starting_on_page(raw: str, rune_set: set[str], page_index: int) 
             by_start_page[start_page].append("".join(current))
             current = []
 
-    for ch in "%".join(segments):
+    for ch in raw:
         if ch in rune_set:
             if not current:
                 start_page = page
             current.append(ch)
         elif ch == "%":
+            # A page break can split a word. Preserve its original start page.
             page += 1
         elif ch == "/" or ch.isspace():
             # Line wraps do not end a printed word.
@@ -54,7 +57,7 @@ def parse_words_starting_on_page(raw: str, rune_set: set[str], page_index: int) 
         else:
             finish()
     finish()
-    return by_start_page[page_index]
+    return by_start_page
 
 
 def main() -> int:
@@ -69,7 +72,15 @@ def main() -> int:
     rune_set = set(runes)
     gp_index = {rune: i for i, rune in enumerate(runes)}
 
-    words = parse_words_starting_on_page(raw, rune_set, PAGE_START_INDEX)
+    words_by_page = parse_words_by_start_page(raw, rune_set)
+    words = words_by_page[PAGE_START_INDEX]
+    if PAGE_START_INDEX == 0 or not words_by_page[PAGE_START_INDEX - 1]:
+        raise SystemExit("missing preceding-page carry word")
+    incoming_carry = words_by_page[PAGE_START_INDEX - 1][-1]
+    target_segment = raw.split("%")[PAGE_START_INDEX]
+    first_target_rune = next((ch for ch in target_segment if ch in rune_set), None)
+    if len(incoming_carry) != 11 or incoming_carry[-1] != first_target_rune:
+        raise SystemExit("p54-to-p55 11-rune carry boundary mismatch")
     lengths = [len(word) for word in words]
     if lengths != EXPECTED_LENGTHS:
         raise SystemExit(
@@ -78,6 +89,7 @@ def main() -> int:
 
     selected: list[str] = []
     selected_indices: list[int] = []
+    excluded_indices: list[int] = []
     selected_positions: list[list[int]] = []
     per_word_counts: list[int] = []
     for word in words:
@@ -85,11 +97,13 @@ def main() -> int:
         positions_for_word: list[int] = []
         # One-based positions 2..n-1 are the strict interior.
         for position in range(2, n):
+            rune = word[position - 1]
             if math.gcd(position, n) == 1:
-                rune = word[position - 1]
                 selected.append(rune)
                 selected_indices.append(gp_index[rune])
                 positions_for_word.append(position)
+            else:
+                excluded_indices.append(gp_index[rune])
         selected_positions.append(positions_for_word)
         per_word_counts.append(len(positions_for_word))
 
@@ -110,16 +124,43 @@ def main() -> int:
             f"coprime-interior count mismatch: expected {selected_count_from_totient}, got {len(selected)}"
         )
 
-    password = "".join(BASE29[i] for i in selected_indices)
     if len(BASE29) != 29:
         raise SystemExit("base29 alphabet must contain exactly 29 symbols")
+    # One BASE29 digit per GP29 symbol; this is not a single large-integer conversion.
+    password = "".join(BASE29[i] for i in selected_indices)
+
+    # Test the simplest source-familiar Vigenere consumer on p55 itself:
+    # subtract the repeated GP29 key and leave literal F runes transparent.
+    page55 = next((page for page in corpus["pages"] if page["page"] == 55), None)
+    if page55 is None or len(page55["indices"]) != 76:
+        raise SystemExit("original LP2 p55 corpus page mismatch")
+    direct_decoded: list[int] = []
+    direct_key_cursor = 0
+    for cipher_index in page55["indices"]:
+        if cipher_index == 0:
+            direct_decoded.append(0)
+            continue
+        direct_decoded.append(
+            (cipher_index - selected_indices[direct_key_cursor % len(selected_indices)]) % 29
+        )
+        direct_key_cursor += 1
+    direct_counts: dict[int, int] = {}
+    for value in direct_decoded:
+        direct_counts[value] = direct_counts.get(value, 0) + 1
+    direct_ioc = (
+        sum(count * (count - 1) for count in direct_counts.values())
+        / (len(direct_decoded) * (len(direct_decoded) - 1))
+    )
+    direct_plaintext = "".join(translit[value] for value in direct_decoded)
     if args.expect is not None and password != args.expect:
         raise SystemExit(
             f"derived password mismatch: expected {args.expect}, got {password}"
         )
 
     result = {
-        "physical_page": 55,
+        "lp2_page": 55,
+        "archive_image": "72.jpg",
+        "incoming_carry_word_length": len(incoming_carry),
         "word_count": len(words),
         "word_lengths": lengths,
         "strict_interior_count": strict_interior_count,
@@ -133,9 +174,16 @@ def main() -> int:
         "selected_gp29_indices": selected_indices,
         "selected_transliteration": [translit[i] for i in selected_indices],
         "selected_count": len(selected),
+        "excluded_interior_count": len(excluded_indices),
+        "excluded_interior_gp29_indices": excluded_indices,
         "base29_alphabet": BASE29,
         "candidate_password": password,
-        "status": "candidate key derivation only; receiver unverified",
+        "direct_p55_vigenere_subtract_f_transparent": {
+            "plaintext": direct_plaintext,
+            "key_symbols_consumed": direct_key_cursor,
+            "ioc": direct_ioc,
+        },
+        "status": "candidate password derivation only; direct Vigenere rejected; OpenPuff receiver unverified",
     }
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return 0

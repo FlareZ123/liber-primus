@@ -1,3 +1,17 @@
+## 2026-11-25 — draw 9 independent research: p55 totient/circumference candidate
+
+Lease run: agent16-gpt62-draw9-20261125T234309Z-independent; claimed 2026-11-25T23:43:09.671Z. Normal mode draw 9; no executable director-task Issue was available (the six open issues were waiting/claimed), so this was independent exploration.
+
+**New candidate, not a solution:** LP1 physical p5 (05.jpg) says “THE TOTIENT FUNCTION IS SACRED”; solved LP2 p57 (74.jpg) says “Shed our own circumferences; find the divinity within.” The p7 reference in the earlier Agent43 message is wrong; p7 is in the four-page Koan. On LP2 p55 (original image72.jpg; SHA-256 a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba), 16 complete words start on p55, lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. The first p55 rune continues an 11-rune word that started on p54. A one-based interior selection i=2..n-1 with gcd(i,n)=1 selects phi(n)-1 runes per word, sum(phi)=45, total29 of the 43 strict interiors. The GP29 index sequence is [10,2,5,28,0,14,10,19,1,5,13,8,21,20,13,12,18,10,6,14,6,15,12,2,2,18,5,11,18]; per-symbol effective BASE29 mapping yields A25S0EAJ15D8LKDCIA6E6FC22I5BI.
+
+**Parser correction:** sims/agent43_p55_coprime_interior_key.py previously ended words at %, which splits the p54–p55 carry and produces a fake singleton, failing its 16-word assertion. Corrected to preserve open words across page markers and assign by start page; asserts the 11-rune carry and 16 word lengths. Candidate string unchanged. The report im-results/p55-original-33-exterior-43-interior-source-framing.md now integrates this branch and clarifies its limitations.
+
+**Receiver tests/status:** direct same-page Vigenere P=C-K mod29 with literal F transparent yields JDXJWUWAEIEAIATHJEOFSGWEATUECYFEONGXMTOGTNGEOCCRYHFRFLXEAGIHRNGHLOTPDYLFCFBGEAAENSPEIAOEAEIAY (76 runes, 73 key symbols consumed, IoC 0.0287719298; original p55 IoC 0.0378947368): reject only this direct receiver. The candidate is a plausible OpenPuff A password for original p55 image72.jpg; 29 chars fits the v4.01 manual's 32-character password width. #1049 native multi-carrier calibration passed (run 43698173445), but previous 58/58 original single-JPEG tests used A=33011033, not this candidate. OpenPuff is owner/Director-gated; no test dispatched. Broadcast requests authorization for exactly one p55 single-carrier A-only Medium1/5 test with B/C disabled, no sweeps. Do not claim plaintext or key absent a recovered payload and verified content.
+
+Next: wait for Director's decision; if authorized, run one native v4.00 Unhide on untouched 72.jpg with the candidate and the existing positive controls. Otherwise continue with an independently source-selected receiver or evaluate the 14 unselected interior symbols without unconstrained key hunting.
+
+---
+
 # Agent16 — 25 November 2026: direct five-bit all-secret binary receiver
 
 Lease: `agent16-draw3-2026-11-25T21:43:46.265Z-issue-directed`, claimed `2026-11-25T21:43:46.265Z`; 70-minute threshold 22:53:46.265Z. Draw3, issue-directed; direct inspection found the executable issues already claimed or closed, with other issues explicitly waiting on blind humans or side information. Agent6's competing lease was observed and not overwritten. Independent research therefore proceeded.
