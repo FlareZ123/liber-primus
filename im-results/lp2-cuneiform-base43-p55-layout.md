@@ -127,8 +127,19 @@ The complete original-input reproduction is **sims/lp2_cuneiform_1033_3301_p55_s
 
 The group-order match strengthens the possibility that p33 is structurally pointing to p55, and it supplies a new finite-field hypothesis. It does not yet specify how a field element or subgroup exponent is represented as a GP29 rune. The two simplest source-derived mappings above fail. Do not broaden this into arbitrary generator, phase, or residue searches: the next useful input must be an independent clue selecting a field-to-GP29 encoding or a concrete two-field receiver.
 
+## Additional source-bounded p55 receivers (2026-11-26)
+
+The same word-interior/circumference split was tested with the most direct receivers suggested by the source layout. Reproducer: `sims/lp2_p55_cuneiform_extra_receivers_sft.cjs`.
+
+- **Raw cross-register additive key:** use the 33-rune outer register cyclically against the 43-rune inner register, and the 43-rune inner register truncated against the 33-rune outer register. Zero start, no word resets, both signs. None reads as prose; output IoCs are 0.02879, 0.02769, 0.03220, and 0.01894. The raw registers themselves have IoCs 0.03430 and 0.03977.
+- **Position-clocked field logs:** for each printed/reversed base assignment, form (z_i=\log_g(p(r_i)^c)\pm i\pmod q). Every one of the eight lane/assignment/sign outputs contains values outside GP29 (invalid-symbol counts: printed inner 8/14, outer 4/4; reversed inner 14/10, outer 7/1). There is no complete alphabet stream without adding an unsupported rule.
+- **Cross-register field-log key:** reduce the other register's discrete-log sequence modulo 29 and use it cyclically as a key, both directions and signs. No prose appears. The largest IoC is 0.05114 on the 33-symbol outer output, too short and still nonlinguistic.
+- **Direct cuneiform-digit Hill-2 on p55:** interpret the four sexagesimal digits as (K=[[17,13],[55,1]]\pmod{29}). Its determinant is 27 and its inverse is ([[14,21],[13,6]]). Applying direct/inverse matrices with row/column vector conventions to the 76 page runes in 38 consecutive pairs produces no plaintext (IoCs 0.02947–0.03474).
+
+These are finite, source-ordered tests, not an exhaustive cipher-family search. They close the obvious raw-register, position-clock, cross-log-key, and literal digit-Hill2 receivers of this particular p55 layout. They do not rule out unrelated mechanisms or an externally supplied key.
+
 ## Decision and next step
 
-The p33→p55 arithmetic alignment now has two distinct aspects: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. Both are structurally interesting, but neither has yielded authentic plaintext, an authenticated key, or a fully specified encryption mechanism.
+The p33→p55 arithmetic alignment remains structurally interesting: the Euclidean quotients/remainders reproduce p55 layout counts, and the prime-field multiplicative group orders contain the exact 43/33 register lengths. The direct source-ordered receivers now tested—subgroup projection, discrete-log mapping, position clock, cross-register log/raw additive keys, and literal cuneiform-digit Hill-2—have not recovered plaintext or an authenticated key.
 
-Keep this in im-results, not results. Do not duplicate the already-completed all-exponent RSA FPE test on p33–39 or the existing large-\(P\) DH inverse. The remaining question is whether an independent original clue specifies how the two small prime fields and their subgroups act on the GP29 streams. Without that selector, the field-order correspondence remains a hypothesis rather than a decipherment.
+Keep this branch in im-results, not results. Do not expand into arbitrary phase, generator, residue, permutation, or key-order sweeps. A successor needs an independent original clue selecting a different field-to-GP29 operation, or authentic external key material; otherwise move compute to a genuinely independent route.
