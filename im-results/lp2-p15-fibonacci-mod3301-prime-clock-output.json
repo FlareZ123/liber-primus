@@ -1,0 +1,577 @@
+{
+  "period": 1650,
+  "grid": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "firstAfterGrid": [
+    1597,
+    2584,
+    880,
+    163,
+    1043,
+    1206
+  ],
+  "nativeP56": 85,
+  "donorLength": 1943,
+  "priorLength": 1036,
+  "targets": [
+    {
+      "skip": 9,
+      "length": 1894,
+      "zeros": 71,
+      "raw": {
+        "ioc": 0.034494896163322776,
+        "bigram": -4.897911348242337,
+        "preview": "L U NG N C U B N T F NG I U I U OE AE J F AE U G X EO P X Y EA L A X OE X IA TH H EA N A C U G N P E N TH O U I IA R T I B EO C F G O"
+      },
+      "fixed": [
+        {
+          "kind": "grid",
+          "sign": 1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 5,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03467172727176376,
+            "bigram": -4.894642250369275,
+            "preview": "IA N TH NG D F W G AE W AE O H IA P U EA I IA S TH T EO AE O IA C IA J IA D W EA AE M J H TH S H S N M E TH T E D R T S IA I D EA X EO NG TH AE"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": 1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 1,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03463379504660922,
+            "bigram": -4.7804318838204045,
+            "preview": "D F M EA G J S OE G P F N NG P I W I N B EA I EA C S IA B W R R TH U P B R M TH OE OE G W H IA C G H J D X N W N OE T IA NG E IA R U C"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 190,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034520556197986135,
+            "bigram": -4.905407190174351,
+            "preview": "P OE J Y T TH IA EO W OE B B D OE E X OE EO TH G F AE T EA D U E F F NG C H F F X C M T R TH T O EA H C TH S EO IA R I I OE Y G I IA H I I"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 71,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034280132829727264,
+            "bigram": -4.8243150655171165,
+            "preview": "B TH D M R L M AE Y T P J I W NG H J P EO OE NG P D N EA J T D W B IA TH J NG X X C AE P O D X P L EA W I NG OE P T S T OE P G EO AE J U"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 29,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034661128561794104,
+            "bigram": -4.907938273824482,
+            "preview": "M EA B O OE H R E P EA D D F EA M W C T R EO H OE E C N R J R B IA F P C TH AE B X H NG X NG S AE A H OE A E I OE NG R T F C L E X H TH"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 0,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034812299635571725,
+            "bigram": -4.948447645864712,
+            "preview": "F G AE AE EO B NG TH EO M G S IA P T P T S D C T C J NG R D P I I H W H D I AE H EA EA EO P X L J EO X B F L S P S EA OE R IA A R I B J"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 7,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03451163096853801,
+            "bigram": -4.866271477386971,
+            "preview": "NG O AE S B D U F M U M Y TH NG EO H T G AE N D M I M B A EO D D NG EA TH D D H EA P I IA AE I Y OE TH EA AE N B NG IA R R T L F R NG S R R"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 221,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034456406111327734,
+            "bigram": -4.8687993649728,
+            "preview": "J AE B OE IA X P T L I W C R W S TH C W G T S W B O OE C I B U J NG W C S H H EA M W Y B NG W X OE U R S T W I N I T W F G M A A"
+          }
+        }
+      ],
+      "phaseSearch": [
+        {
+          "kind": "grid",
+          "sign": 1,
+          "phases": 1650,
+          "max": 554,
+          "phaseAtMax": [
+            392,
+            393
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "phases": 1650,
+          "max": 536,
+          "phaseAtMax": [
+            1505,
+            1507,
+            1508
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "phases": 1650,
+          "max": 587,
+          "phaseAtMax": [
+            1060,
+            1061
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "phases": 1650,
+          "max": 359,
+          "phaseAtMax": [
+            353,
+            354,
+            355
+          ],
+          "train": 0,
+          "full": 0
+        }
+      ]
+    },
+    {
+      "skip": 20,
+      "length": 1883,
+      "zeros": 70,
+      "raw": {
+        "ioc": 0.0345092253921349,
+        "bigram": -4.902138797951896,
+        "preview": "I U I U OE AE J F AE U G X EO P X Y EA L A X OE X IA TH H EA N A C U G N P E N TH O U I IA R T I B EO C F G O TH A I P H IA B W P H R"
+      },
+      "fixed": [
+        {
+          "kind": "grid",
+          "sign": 1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 127,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03439578803128614,
+            "bigram": -4.8219737001186544,
+            "preview": "B N L P J A U Y C H I W M U Y C TH M OE R D A AE S IA EO B D AE R S D IA T Y C EO D U U E M L OE AE EO T Y G H EO R W NG N M X C R Y"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": 1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 1,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03454082983097833,
+            "bigram": -4.914608017455174,
+            "preview": "P F H L D G N P S X X P O T D J P E EO B TH W E C OE TH M F E H OE F T A Y AE Y X NG F J H G I TH W NG B J EA G EA P AE TH D F B O G"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 2,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03436531232240139,
+            "bigram": -4.8681304501637355,
+            "preview": "O OE F E R Y NG O T D TH NG C AE TH E AE NG Y A NG R F E E S U AE X IA Y A EA L NG EA D H M A M P F EO EA IA P S F AE W T M A T S F NG EO J"
+          }
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 68,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03443360048490239,
+            "bigram": -4.858163276048489,
+            "preview": "W TH EO J NG S P T G B IA S NG I C EO X OE W J P NG W EA D AE EA M NG D M E I EO NG H N B EA AE Y A X A OE O H A A C P NG P L D J X N P TH"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 17,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03454534475081311,
+            "bigram": -4.891056653839299,
+            "preview": "N EA G A I O IA N OE F H IA J TH O J H AE EA U F U TH A R E D F TH R NG F R OE O J E F W W A AE Y EA TH E OE NG EO X E I P IA S AE L IA I O"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 4,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.03454421602085442,
+            "bigram": -4.894226689977122,
+            "preview": "M G X B F EO S OE NG L L M N T F B M A E D H P A J EA H AE G A X EA A OE U O TH O L IA G B U EO T H P IA D B C EO C M TH H F G D M EO"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "origin": "distinctStart",
+          "fhold": {
+            "prefix": 86,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034383936366719846,
+            "bigram": -4.798943285637997,
+            "preview": "J O X W C E A L EA TH R U P A AE EO M S L IA S IA D N EO N A M H IA L E OE X S OE B TH P E P W D G OE NG W L D M U I P E I N D EA G C"
+          }
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "origin": "afterGrid",
+          "fhold": {
+            "prefix": 11,
+            "states": 0
+          },
+          "ordinary": {
+            "ioc": 0.034530671261350086,
+            "bigram": -4.8530889240286825,
+            "preview": "U AE G X S N W W F J NG N S I EA G H T U C W S U OE B M OE P S B P D R G S TH O J OE M L TH H E T Y TH E E EA W S W X B C H O Y AE"
+          }
+        }
+      ],
+      "phaseSearch": [
+        {
+          "kind": "grid",
+          "sign": 1,
+          "phases": 1650,
+          "max": 543,
+          "phaseAtMax": [
+            402,
+            403
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "grid",
+          "sign": -1,
+          "phases": 1650,
+          "max": 525,
+          "phaseAtMax": [
+            1516,
+            1518
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": 1,
+          "phases": 1650,
+          "max": 576,
+          "phaseAtMax": [
+            1071
+          ],
+          "train": 0,
+          "full": 0
+        },
+        {
+          "kind": "primeMinusOne",
+          "sign": -1,
+          "phases": 1650,
+          "max": 348,
+          "phaseAtMax": [
+            364,
+            365
+          ],
+          "train": 0,
+          "full": 0
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "skip": 9,
+      "kind": "grid",
+      "sign": 1,
+      "origin": "distinctStart",
+      "holds": 2,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "grid",
+      "sign": 1,
+      "origin": "afterGrid",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "grid",
+      "sign": -1,
+      "origin": "distinctStart",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "grid",
+      "sign": -1,
+      "origin": "afterGrid",
+      "holds": 2,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "primeMinusOne",
+      "sign": 1,
+      "origin": "distinctStart",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "primeMinusOne",
+      "sign": 1,
+      "origin": "afterGrid",
+      "holds": 3,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "primeMinusOne",
+      "sign": -1,
+      "origin": "distinctStart",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 9,
+      "kind": "primeMinusOne",
+      "sign": -1,
+      "origin": "afterGrid",
+      "holds": 5,
+      "truth": {
+        "ioc": 0.0631041613324475,
+        "bigram": -2.793392985161892,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "grid",
+      "sign": 1,
+      "origin": "distinctStart",
+      "holds": 2,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "grid",
+      "sign": 1,
+      "origin": "afterGrid",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "grid",
+      "sign": -1,
+      "origin": "distinctStart",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "grid",
+      "sign": -1,
+      "origin": "afterGrid",
+      "holds": 3,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "primeMinusOne",
+      "sign": 1,
+      "origin": "distinctStart",
+      "holds": 1,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "primeMinusOne",
+      "sign": 1,
+      "origin": "afterGrid",
+      "holds": 3,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "primeMinusOne",
+      "sign": -1,
+      "origin": "distinctStart",
+      "holds": 2,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    },
+    {
+      "skip": 20,
+      "kind": "primeMinusOne",
+      "sign": -1,
+      "origin": "afterGrid",
+      "holds": 5,
+      "truth": {
+        "ioc": 0.06307173699688978,
+        "bigram": -2.7963098291280395,
+        "preview": "A C O A N A M A N D E C I D E D T O G O A N D S T U D Y W I TH A M A S T E R H E W E N T T O TH E D O O R O F TH E M A S T"
+      }
+    }
+  ]
+}
