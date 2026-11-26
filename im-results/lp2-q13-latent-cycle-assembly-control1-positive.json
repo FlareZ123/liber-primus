@@ -1,0 +1,187 @@
+{
+  "tag": "donor1",
+  "stage": [
+    {
+      "length": 5,
+      "seeds": 512,
+      "best": 18.811233737375005
+    },
+    {
+      "length": 6,
+      "seeds": 512,
+      "best": 25.660813444163068
+    },
+    {
+      "length": 7,
+      "seeds": 512,
+      "best": 30.588953092694283
+    },
+    {
+      "length": 8,
+      "seeds": 512,
+      "best": 38.31176791712642
+    },
+    {
+      "length": 9,
+      "seeds": 512,
+      "best": 44.29605674743652
+    },
+    {
+      "length": 10,
+      "seeds": 512,
+      "best": 53.383961990475655
+    },
+    {
+      "length": 11,
+      "seeds": 512,
+      "best": 58.617604058235884
+    },
+    {
+      "length": 12,
+      "seeds": 512,
+      "best": 64.89962701499462
+    },
+    {
+      "length": 13,
+      "seeds": 512,
+      "best": 86.31118662282825
+    }
+  ],
+  "short": 3310889,
+  "long": 11007185,
+  "truthKey": [
+    1,
+    21,
+    18,
+    23,
+    21,
+    2,
+    22,
+    26,
+    9,
+    12,
+    12,
+    2,
+    24
+  ],
+  "truthRank": 1,
+  "correct": true,
+  "selected": [
+    1,
+    21,
+    18,
+    23,
+    21,
+    2,
+    22,
+    26,
+    9,
+    12,
+    12,
+    2,
+    24
+  ],
+  "fit": -2.490597531637872,
+  "held": -2.293296193813557,
+  "heldAccuracy": 1,
+  "heldBoundaryF1": 0.9787234042553191,
+  "decoded": "TO TUMBLE DOWN INTO THE FATAL BOWELS OF THE DEEP LOUE A COME COME DISPATCH TIS BOOT LESS TO EXCLAIM HASTNGS I BLOODY RICHARD MISERABLE ENGLAND I PROPHESYNG D FEARFUL ST TIME TO THEE THAT EUER WRETCHED AGE HATH LOOC I UPON COME LEAD ME TO THE BLOCC LET HIM MY HEAD THEY SMILE AT ME THAT SHORTLY SHALL HE DEAD GLOUCESTER COME COUSIN CANST THOU CWACE AND CHANGE THY COLOUR MURDER THY BREATH IN THE MIDDLE OF A WORD AND THEN BEGIN AGAIN AND STOP AGAIN AS IF THOU WERT DISTRAUGHT AND MAD WITH TERROR BUCCNGHAM TUT I CAN COUNTERFEIT THE DEEP I RAGE DIAN SPEAC AND LOOC BACC AND HE WON EUERY SIDE TREMBLE AND START AT WAGGNG OF A STRAW INTENDNG DEEP SUSPICIAN GHASTLY LOOCS ARE AT MY SERUICE LICE ENFORCED SMILES AND BOTH ARE READY IN THEIR OFFICES AT ANY TIME TO GRACE MY STRATA GEMS BUT WHAT IS CATESBY GONE GLOUCESTER HE IS AND SEE HE BRNGS THE MAYOR ALONG BUCCNGHAM LORD MAYOR GLOUCESTER LOOC TO THE DRAW BRIDGE THERE BUCCNGHAM HARC A DRUM",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        1,
+        21,
+        18,
+        23,
+        21,
+        2,
+        22,
+        26,
+        9,
+        12,
+        12,
+        2,
+        24
+      ],
+      "fragmentScore": 86.31118662282825,
+      "fit": -2.490597531637872
+    },
+    {
+      "key": [
+        1,
+        21,
+        18,
+        23,
+        21,
+        2,
+        22,
+        26,
+        9,
+        12,
+        27,
+        2,
+        24
+      ],
+      "fragmentScore": 68.53448976203799,
+      "fit": -3.0992785879233606
+    },
+    {
+      "key": [
+        1,
+        21,
+        18,
+        23,
+        21,
+        2,
+        22,
+        26,
+        9,
+        12,
+        3,
+        2,
+        24
+      ],
+      "fragmentScore": 69.68501858785748,
+      "fit": -3.1017105083798984
+    },
+    {
+      "key": [
+        1,
+        21,
+        18,
+        23,
+        21,
+        2,
+        22,
+        28,
+        9,
+        12,
+        12,
+        2,
+        24
+      ],
+      "fragmentScore": 68.17146135680377,
+      "fit": -3.107754418042327
+    },
+    {
+      "key": [
+        1,
+        21,
+        18,
+        23,
+        21,
+        2,
+        22,
+        26,
+        9,
+        12,
+        28,
+        2,
+        24
+      ],
+      "fragmentScore": 70.74198661267292,
+      "fit": -3.1236602326917624
+    }
+  ]
+}
