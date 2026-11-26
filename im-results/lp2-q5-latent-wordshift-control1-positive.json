@@ -1,0 +1,90 @@
+{
+  "tag": "donor1",
+  "cycles": 141457,
+  "align": 3664388,
+  "full": 92717,
+  "truthKey": [
+    11,
+    14,
+    13,
+    24,
+    25
+  ],
+  "truthRank": 1,
+  "correct": true,
+  "selected": [
+    11,
+    14,
+    13,
+    24,
+    25
+  ],
+  "fit": -2.7828823431447693,
+  "held": -2.877409382957977,
+  "heldAccuracy": 0.7711442786069652,
+  "heldBoundaryF1": 0.8,
+  "decoded": "TIMOROUS THE CONFESS THE MANNER AND THE PURPOSE THE HIS TREASON THAT YOU MIGHT WELL HAUE SIGNIFIED THE SAME UNTO THE CITISENS WHO HAPLY MAY NOW ROAR TRUE FORTH HIM AND WAIL HIS DEATH LORD MAYOR BUT IS GOOD LORD YOUR GRACE OF HIS SHALL SERUE HE WELL IS ROME SEEN AND HEARD HIM SPEAC AND DOUBT YOU NOT RIGHT NOBLE PRINCE HURT BUT THEE ACCWAINT OUR DUTEOUS CITISENS WITH ALL YOUR JUST PROCEEDNGS IN THIS CAUSE GLOUCESTER AND THE THAT HE FIRE WARP YOUR LORD SHIP HERE THE AUOID DEATH NONE CENSURES THE THE WORLD BUCCNGHAM BUT SINCE YOU COME THEE LATE OF OUR INTENTS YET WITNESS WHAT YOU HEAR OUR OF INTEND AND THE IT GOOD LORD MAY LICE SIR FAREWELL GLOUCESTER OF AFTER AFTER COUSIN BUCCNGHAM THE MAYOR TOWARDS GUILD A LONGNG OF ABODE GALL WAYS THERE IS YOUR MEET BE ADUANTAGE ALSO TIME INFER THE BASTARD A OF EDWARD A CHILDREN TELL THEM OUR EDWARD PUTS NEAR THE CITISEN ONLY FOR SAYNG IN WOULD MACE HIS A FAITH NOSE THE CROWN MEANNG INDEED",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        11,
+        14,
+        13,
+        24,
+        25
+      ],
+      "score": 115.42525888768215,
+      "support": 32,
+      "fit": -2.7828823431447693
+    },
+    {
+      "key": [
+        7,
+        20,
+        13,
+        25,
+        22
+      ],
+      "score": 57.173241163076966,
+      "support": 4,
+      "fit": -3.5203092831078044
+    },
+    {
+      "key": [
+        2,
+        3,
+        6,
+        25,
+        22
+      ],
+      "score": 62.2399425728978,
+      "support": 2,
+      "fit": -3.5223013888849257
+    },
+    {
+      "key": [
+        1,
+        27,
+        7,
+        21,
+        2
+      ],
+      "score": 54.92888786838557,
+      "support": 2,
+      "fit": -3.555086684199595
+    },
+    {
+      "key": [
+        1,
+        28,
+        27,
+        18,
+        13
+      ],
+      "score": 54.9185270169203,
+      "support": 1,
+      "fit": -3.5570856593808893
+    }
+  ]
+}
