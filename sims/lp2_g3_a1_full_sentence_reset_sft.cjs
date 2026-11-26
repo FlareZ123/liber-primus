@@ -4,7 +4,7 @@
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/transcriptions/lp2-image-corrected.txt","resources/control/english_wordfreq_textblob.txt","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/external/relikd-solved-gp29-native-v1.json","im-results/lp2-g3-latent-word-caesar-bound.json"];
 function experiment(raw){
- const RUNES="ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᚚᛝᛟᛞᚪᚫᚣᛡᛠ".replace("ᚚ","ᛚ");
+ const RUNES="ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ";
  const primes=[2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109];
  const tokens=["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"].map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  const mod=x=>(x%29+29)%29, key=w=>String.fromCharCode(...w.map(x=>65+x)), sum=w=>w.reduce((a,x)=>a+primes[x],0)%29;
@@ -73,13 +73,31 @@ function experiment(raw){
  function sender(ss,sgn,conv,pages){
   let c=[],state={prev:0,owner:-1},p=[];for(const s of ss)for(const w of s){const r=transform(w,c.length,state,sgn,conv,pages,false);c.push(...r.w);p.push(...w);state=r}return {c,p};
  }
+ function referenceSender(ss,sign,conv,pages,source="dw"){
+  const segments=[];let at=0;
+  for(const sentence of ss)for(const w of sentence){
+   const end=at+w.length;
+   if(conv==="C0"){
+    const cuts=[at,...pages.filter(p=>at<p&&p<end),end];
+    for(let j=0;j+1<cuts.length;j++)segments.push({p:page(cuts[j],pages),w:w.slice(cuts[j]-at,cuts[j+1]-at)});
+   }else segments.push({p:page(conv==="CS"?at:end-1,pages),w:[...w]});
+   at=end;
+  }
+  let owner=-1,state=0,C=[];
+  for(const s of segments){
+   if(s.p!==owner){state=0;owner=s.p}
+   const c=s.w.map(x=>(x+sign*state+29)%29);
+   C.push(...c);state=sum(source==="dw"?s.w:c);
+  }
+  return C;
+ }
  function solve(C,groups,sign,conv,pages,cap=2000000){
   let base=0,front=[{prev:0,owner:-1,score:0,trace:null}],visits=0,peak=0;
   for(const g of groups){
    let h=new Map();for(const l of g)h.set(l,(h.get(l)||0)+1);
    const ls=[...h.keys()].sort((a,b)=>a-b),counts=ls.map(l=>h.get(l)),mult=[];let size=1;
    for(const n of counts){mult.push(size);size*=n+1}
-   if(!Number.isSafeInteger(size))return {status:"inventory-cap"};
+   if(!Number.isSafeInteger(size*29*(pages.length+1)))return {status:"inventory-cap"};
    const init=size-1,total=g.reduce((a,b)=>a+b,0),buckets=Array.from({length:total+1},()=>new Map());
    const sk=(code,p,o)=>((code*29+p)*(pages.length+1)+o+1);
    for(const s of front)buckets[0].set(sk(init,s.prev,s.owner),{...s,code:init});
@@ -117,7 +135,10 @@ function experiment(raw){
  const rows=[],convs=["C0","CS","CE"];
  function trial(ss,kind,i,origin){
   const conv=convs[i%3],sgn=i%2?1:-1,tl=ss.map(s=>s.map(w=>w.length)),printed=tl.map(shuffle),{c,p}=sender(ss,sgn,conv,starts),r=[-1,1].map(sign=>({sign,...solve(c,printed,sign,conv,starts)})),ok=r.filter(x=>x.status==="ok").sort((a,b)=>b.score-a.score),best=ok[0],trueR=r.find(x=>x.sign===sgn),wrong=r.find(x=>x.sign!==sgn),m=best?metrics(ss,best):{accuracy:0,F1:0};
-  return {kind,i,origin,conv,trueSign:sgn,runes:p.length,words:tl.flat().length,printedChanged:tl.flat().join()!==printed.flat().join(),oldPageInventoryContainsTruth:pageLocal(tl,conv,starts)===pageLocal(printed,conv,starts),truePathInCorrectedDomain:trueR.status==="ok",selectedSign:best?.sign??null,accuracy:m.accuracy,F1:m.F1,correctState:!!best&&best.sign===sgn&&m.F1===1&&m.accuracy===1,wrongSignFeasible:wrong.status==="ok",statuses:r.map(x=>[x.sign,x.status,x.visits??null,x.peak??null])};
+  if(referenceSender(ss,sgn,conv,starts).join()!==c.join())throw Error("independent explicit-unit sender differs");
+  const wrongCipher=referenceSender(ss,sgn,conv,starts,"cw");
+  const wrongRule=[-1,1].map(sign=>({sign,...solve(wrongCipher,printed,sign,conv,starts)}));
+  return {wrongRuleStatuses:wrongRule.map(x=>[x.sign,x.status,x.visits??null]),wrongRuleFeasible:wrongRule.some(x=>x.status==="ok"),kind,i,origin,conv,trueSign:sgn,runes:p.length,words:tl.flat().length,printedChanged:tl.flat().join()!==printed.flat().join(),oldPageInventoryContainsTruth:pageLocal(tl,conv,starts)===pageLocal(printed,conv,starts),truePathInCorrectedDomain:trueR.status==="ok",selectedSign:best?.sign??null,accuracy:m.accuracy,F1:m.F1,correctState:!!best&&best.sign===sgn&&m.F1===1&&m.accuracy===1,wrongSignFeasible:wrong.status==="ok",statuses:r.map(x=>[x.sign,x.status,x.visits??null,x.peak??null])};
  }
  let fallback=0;
  for(let i=0;i<20;i++){
@@ -132,7 +153,7 @@ function experiment(raw){
    if(n>=650){rows.push(trial(cur,"natural-held-donor-sentences",nn,`${d}:${j-cur.length+1}-${j}`));nn++;cur=[];n=0}
   }
  }
- function summary(kind){const a=rows.filter(x=>x.kind===kind);return {n:a.length,correctState:a.filter(x=>x.correctState).length,thresholdPass:a.filter(x=>x.accuracy>=.9&&x.F1>=.9&&x.selectedSign===x.trueSign).length,domainPass:a.filter(x=>x.truePathInCorrectedDomain).length,oldDomainPass:a.filter(x=>x.oldPageInventoryContainsTruth).length,wrongSignFeasible:a.filter(x=>x.wrongSignFeasible).length,totalRunes:a.reduce((n,x)=>n+x.runes,0)}}
+ function summary(kind){const a=rows.filter(x=>x.kind===kind);return {n:a.length,correctState:a.filter(x=>x.correctState).length,thresholdPass:a.filter(x=>x.accuracy>=.9&&x.F1>=.9&&x.selectedSign===x.trueSign).length,domainPass:a.filter(x=>x.truePathInCorrectedDomain).length,oldDomainPass:a.filter(x=>x.oldPageInventoryContainsTruth).length,wrongSignFeasible:a.filter(x=>x.wrongSignFeasible).length,wrongRuleFeasible:a.filter(x=>x.wrongRuleFeasible).length,totalRunes:a.reduce((n,x)=>n+x.runes,0)}}
  return {profile:profile.map(s=>({start:s.start,end:s.end,lens:s.lens})),sourcePages:original.pages.slice(0,7),vocab:vocab.size,controlFallbackWords:fallback,summary:[summary("exact-original-profile-assembled"),summary("natural-held-donor-sentences")],rows,bounds};
 }
 const raw=paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8"));
