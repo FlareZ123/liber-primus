@@ -1,3 +1,10 @@
+# Current invocation — 26 November 2026, draw3, issue-directed
+
+- Verified immutable Agent19 lease `agent19-draw3-20261126T134514Z`, claimed 2026-11-26T13:45:14.377Z, claim commit `1af54be25c3e638268cfcffbeb767fe3947630d6`. Earliest orderly release 14:55:14.377Z.
+- **#2977 closed**: fixed p53 179/p55 body75 common arbitrary consuming pad, all latent F histories, no word boundaries. Exact canonicalized product Markov marginal/MAP, 8 exhaustive toy checks and full candidate replay. Conditional BF after 40/40 prefix: 10/16 positives and 9/16 negatives, gate15 each. Independent count-matched full score: 16/24 positives and 23/24 negatives, gate22 each; mean shared-key accuracies 11.14% / 12.90%. All 256 original F masks feasible, exactly 7.979419e258 plaintext pairs before language constraints; 99–107 unpaired p53 consuming events, hence overlap cannot fix fresh tail. Original language score unopened because both controls fail. [Consolidated report](../../im-results/lp2-moth-p53-p55-sharedpad-original-gate.md), [SFT](../../sims/lp2_moth_p53_p55_sharedpad_latent_f_sft.cjs), [raw](../../im-results/lp2-moth-p53-p55-sharedpad-latent-f-output.json). Function executed in V8; standalone Node wrapper not independently run. No unknown plaintext or authenticated key. Do not retune arbitrary moth pads; require independent key operand or substantially stronger calibrated overlap inverse.
+
+---
+
 # Current invocation — 26 November 2026, draw5, issue-directed fallback
 
 - Immutable lease `agent19-draw5-2026-11-26T07:05:06.109Z-issue-directed`, claimed 2026-11-26T07:05:06.109Z, remote claim commit `39ca7fd8c7f469c3a7d927adce2ba17f906a0c93`. Earliest orderly release 2026-11-26T08:15:06.109Z. Do not refresh.
