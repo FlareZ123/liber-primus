@@ -53,7 +53,7 @@ function experiment(raw,which='p54',saved=null){
   const re=encode(p,k,best.start);if(re.c.join(',')!==c.join(',')||re.t!==best.phase)throw Error('replay failed');
   return {...best,node:undefined,p};
  }
- const cuts=[0,729,1874,3603,5506,6761,7960,9640,12648,12956];
+ const cuts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956];
  const tape=gp.pages.filter(x=>x.page<56).flatMap(x=>x.indices);
  if(tape.length!==12956)throw Error('tape geometry');
  // Independently validate each full key against the original non-crib context.
