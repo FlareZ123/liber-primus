@@ -87,13 +87,13 @@ function run(dictText,fixture,src){
  // Sample only actual original group edges, fixed numeric key and whole-word alternatives.
  // No use of p55 or its suffix. Select the first randomly permuted valid option.
  for(const seed of shuffle(seeds.slice()).slice(0,80)){
-  for(let z=0;z<12;z++){attempts++;const k=getKey(seed.s);if(k.slice(0,4).every((x,j)=>x===k[j+4]))continue;let g=merge(graph(),seed.es,k);if(!g)continue;validCarry++;
+  for(let z=0;z<12;z++){attempts++;const k=getKey(seed.s);if(k.slice(0,4).every((x,j)=>x===k[j+4]))continue;let history=seed.es.slice(), g=merge(graph(),seed.es,k);if(!g)continue;validCarry++;
    const groups=shuffle(Array.from({length:47},(_,i)=>i));groups.sort((a,b)=>body[b].length-body[a].length);
-   for(const i of groups){const wlist=by[body[i].length],offset=rand(wlist.length);let next=null;
-    for(let z=0;z<wlist.length&&!next;z++){const w=wlist[(z+offset)%wlist.length];const s=rand(Q);for(let j=0;j<Q&&!next;j++){const es=edges(body[i],w,(s+j)%Q);if(es)next=merge(g,es,k)}}
-    if(!next)continue;g=next;greedyMerges++;
+   for(const i of groups){const wlist=by[body[i].length],offset=rand(wlist.length);let next=null,chosen=null;
+    for(let z=0;z<wlist.length&&!next;z++){const w=wlist[(z+offset)%wlist.length];const s=rand(Q);for(let j=0;j<Q&&!next;j++){const es=edges(body[i],w,(s+j)%Q);if(es){next=merge(g,es,k);if(next)chosen=es}}}
+    if(!next)continue;g=next;history.push(...chosen);greedyMerges++;
     const ms=g.m.filter(Boolean),n=ms.length;
-    if(n>=3&&n<=6){const sig=ms.join(",");if(!seen.has(sig)){seen.add(sig);const solutions=compare(ms,"original");details.push({carry:seed.w,key:k,group:i,components:ms.map(x=>moments(x)[0]),masks:ms,solutions})}if(n===3)break}
+    if(n>=3&&n<=6){const sig=ms.join(",");if(!seen.has(sig)){seen.add(sig);const solutions=compare(ms,"original");details.push({carry:seed.w,key:k,group:i,components:ms.map(x=>moments(x)[0]),masks:ms,solutions,symbolic:symbolic(history),history:history.slice()})}if(n===3)break}
     if(n<3||details.length>=150)break;
    }if(details.length>=150)break;
   }if(details.length>=150)break;
@@ -101,4 +101,5 @@ function run(dictText,fixture,src){
  return {schema:"agent7-moment-packing-sft-v1",seed:3301,pairTests,totals,originalSampling:{symbolicCarryWords:seeds.length,attempts,validCarry,greedyMerges,details},limitations:"Original samples are partial lexical states with fixed sampled keys; not a seed exhaustion or key recovery. Work counts exclude moment arithmetic; no C++ timing or full receiver calibration."};
 }
 const out=run(fs.readFileSync("resources/control/english_wordfreq_textblob.txt",'utf8'),JSON.parse(fs.readFileSync("im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json",'utf8')),JSON.parse(fs.readFileSync("resources/liber-primus/lp2-page-groups-54-55-derived.json",'utf8')));
-console.log(JSON.stringify(out,null,2));
+if(process.argv.includes('--symbolic-three'))console.log(JSON.stringify({schema:'agent7-three-component-symbolic-states-v1',states:out.originalSampling.details.filter(x=>x.components.length===3)},null,2));
+else {for(const x of out.originalSampling.details){delete x.symbolic;delete x.history;}console.log(JSON.stringify(out,null,2));}
