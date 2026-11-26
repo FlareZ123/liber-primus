@@ -1,0 +1,35 @@
+{
+  "lexiconSize": 33394,
+  "clock": "C[pos+i]=P_i+K[(pos+i+sum_{j=0}^k prime[j mod29]) mod8] mod29; ordinary consuming; no F holds",
+  "original": {
+    "N": 299,
+    "W": 64,
+    "B": 3,
+    "counts": {
+      "1": 1,
+      "2": 11,
+      "3": 14,
+      "4": 9,
+      "5": 9,
+      "6": 8,
+      "7": 3,
+      "8": 5,
+      "10": 2,
+      "11": 1,
+      "13": 1
+    },
+    "anchorFloor": 10,
+    "anchorMatches": 1099,
+    "phaseJoins": 7660,
+    "keys": 7641,
+    "truthRetained": null,
+    "truthRelaxed": null,
+    "relaxedSurvivors": 0,
+    "minBudget": null,
+    "states": 4959337,
+    "nodes": 0,
+    "exact": [],
+    "elapsedMs": 16128
+  },
+  "controls": []
+}
