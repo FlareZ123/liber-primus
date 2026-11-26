@@ -1,0 +1,137 @@
+{
+  "source_path": "resources/liber-primus/19.jpg",
+  "source_sha256": "74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34",
+  "image_width": 2400,
+  "image_height": 3600,
+  "connectivity": 8,
+  "candidate_rule": "largest connected component area>10000 with x<700 and largest with x>1700",
+  "results": [
+    {
+      "threshold": 96,
+      "left": {
+        "x": 57,
+        "y": 1697,
+        "w": 490,
+        "h": 1254,
+        "area": 147271
+      },
+      "right": {
+        "x": 1853,
+        "y": 649,
+        "w": 490,
+        "h": 1254,
+        "area": 147259
+      },
+      "iou_rotation_180_about_page_center": 0.9867116357504215
+    },
+    {
+      "threshold": 128,
+      "left": {
+        "x": 57,
+        "y": 1684,
+        "w": 490,
+        "h": 1276,
+        "area": 153290
+      },
+      "right": {
+        "x": 1853,
+        "y": 640,
+        "w": 490,
+        "h": 1276,
+        "area": 153377
+      },
+      "iou_rotation_180_about_page_center": 0.98833582955658
+    },
+    {
+      "threshold": 144,
+      "left": {
+        "x": 57,
+        "y": 1684,
+        "w": 490,
+        "h": 1276,
+        "area": 155275
+      },
+      "right": {
+        "x": 1853,
+        "y": 640,
+        "w": 490,
+        "h": 1276,
+        "area": 155327
+      },
+      "iou_rotation_180_about_page_center": 0.9888711020042261
+    },
+    {
+      "threshold": 176,
+      "left": {
+        "x": 55,
+        "y": 1684,
+        "w": 494,
+        "h": 1276,
+        "area": 159443
+      },
+      "right": {
+        "x": 1851,
+        "y": 640,
+        "w": 494,
+        "h": 1276,
+        "area": 159472
+      },
+      "iou_rotation_180_about_page_center": 0.9895505162356905
+    },
+    {
+      "threshold": 192,
+      "left": {
+        "x": 55,
+        "y": 1682,
+        "w": 494,
+        "h": 1278,
+        "area": 161473
+      },
+      "right": {
+        "x": 1851,
+        "y": 640,
+        "w": 494,
+        "h": 1278,
+        "area": 161430
+      },
+      "iou_rotation_180_about_page_center": 0.9897524694515137
+    },
+    {
+      "threshold": 208,
+      "left": {
+        "x": 55,
+        "y": 1682,
+        "w": 494,
+        "h": 1278,
+        "area": 163840
+      },
+      "right": {
+        "x": 1851,
+        "y": 640,
+        "w": 494,
+        "h": 1278,
+        "area": 163784
+      },
+      "iou_rotation_180_about_page_center": 0.9893617021276596
+    },
+    {
+      "threshold": 224,
+      "left": {
+        "x": 55,
+        "y": 1682,
+        "w": 494,
+        "h": 1278,
+        "area": 166523
+      },
+      "right": {
+        "x": 1851,
+        "y": 640,
+        "w": 494,
+        "h": 1278,
+        "area": 166416
+      },
+      "iou_rotation_180_about_page_center": 0.9897268255950852
+    }
+  ],
+  "interpretation_limit": "A 180-degree geometric pairing does not by itself assign a key slot, sum/difference sign, or privileged direction."
+}
