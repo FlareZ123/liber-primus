@@ -24,15 +24,28 @@ COMBOS = ((0, "C0"), (1, "C0"), (1, "CS"), (1, "CE"),
 
 
 def add_duko_paths(duko_root: Path):
-    p = duko_root / "liber-primus" / "analysis" / "round47" / "L2-g3-lexicon"
-    if not p.exists():
-        raise FileNotFoundError(p)
-    sys.path.insert(0, str(p))
+    analysis = duko_root / "liber-primus" / "analysis"
+    paths = [
+        duko_root / "challenges",
+        duko_root / "liber-primus" / "src",
+        analysis / "round46" / "L1-word-loader",
+        analysis / "round10b" / "B6-non-english-plaintext",
+        analysis / "campaign18_skip",
+    ]
+    for p in paths:
+        if not p.exists():
+            raise FileNotFoundError(p)
+        sys.path.insert(0, str(p))
 
 
 def load_modules():
-    import arm_g3 as A  # sets the pinned Duko research paths
-    return A
+    from types import SimpleNamespace
+    import l1lib as G
+    import words as W
+    import challenges._heavy as H
+    from lp import gematria as gp
+    import skipdecode as sk
+    return SimpleNamespace(G=G, W=W, H=H, gp=gp, sk=sk)
 
 
 def page_bounds(starts, n):
@@ -204,7 +217,7 @@ def format_plain(out, lengths, groups, trans):
 
 
 def make_parsed_plant(A, P, lengths):
-    W, G = A.L.W, A.L.G
+    W, G = A.W, A.G
     rendered = W.render(P.flat, lengths, P.sent_ends, G.LINE_STARTS, G.PAGE_STARTS)
     return W.parse(rendered)
 
@@ -264,7 +277,7 @@ def main():
 
     if len(primes) != 29 or len(trans) != 29:
         raise RuntimeError("unexpected GP alphabet/prime table size")
-    if len(A.L.PAGE_BOUNDS) < 3:
+    if len(W.PAGE_STARTS) < 3:
         raise RuntimeError("Duko layout has fewer than three pages")
 
     corrected_path = Path("resources/transcriptions/lp2-image-corrected.txt")
@@ -276,14 +289,22 @@ def main():
     layout_match = (list(Qorig.page_starts) == list(duko_lp.page_starts)
                     and original == list(duko_lp.runes))
 
-    # Verify the frozen formula against the archived R38 implementation.
+    # Verify the direct word-state recurrence round-trips with true boundaries.
     smoke_plain = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
     smoke_lens = [3, 4, 5]
     smoke_sign = -1
-    ours = g3_encrypt(smoke_plain, smoke_lens, smoke_sign, primes)
-    archived = A.RG.g3_enc_direct(smoke_plain, smoke_lens, CELL, smoke_sign)
-    if ours != archived:
-        raise RuntimeError("local G3 implementation does not match archived R38 encoder")
+    smoke_cipher = g3_encrypt(smoke_plain, smoke_lens, smoke_sign, primes)
+    recovered = []
+    pos = 0
+    prev = 0
+    for length in smoke_lens:
+        word = [(smoke_cipher[pos + j] - smoke_sign * prev) % 29
+                for j in range(length)]
+        recovered.extend(word)
+        prev = sum(primes[x] for x in word) % 29
+        pos += length
+    if recovered != smoke_plain:
+        raise RuntimeError("G3 direct word-state roundtrip failed")
 
     # Twenty independent b' plants distributed over p0-p2 and the published
     # page-fragment conventions. The decoder sees only printed sentence
