@@ -131,6 +131,22 @@ async function scan(source) {
         focused.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
       }
     }
+    const candidateNicks = new Set(['cheetahburn', 'mlehmk', 'NiceLurk', 'dynomite27', 'amone', 'jonsmif']);
+    const candidateFollowups = [];
+    for (let i = 0; i < lines.length; i++) {
+      const parsed = parse(lines[i]);
+      if (!parsed || !inWindow(parsed.key)) continue;
+      const inFeb4toFeb12 = parsed.key >= 204 && parsed.key <= 212;
+      const inMayCallback = parsed.key >= 501 && parsed.key <= 505;
+      if ((candidateNicks.has(parsed.nick) && (inFeb4toFeb12 || inMayCallback)) ||
+          (inMayCallback && /kholyg7cewyywujo|upload7dq6dgt7cx|cgi-bin|key\\.asc|message\\.txt\\.asc|Cicada|CicaDOS|upload/i.test(lines[i]))) {
+        candidateFollowups.push({ line: i + 1, timestamp: parsed.timestamp, nick: parsed.nick, message: parsed.message });
+      }
+    }
+    console.log('--- candidate owner follow-ups (Feb 4–12 and May 1–5) ---');
+    for (const row of candidateFollowups) {
+      console.log('L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 700));
+    }
     console.log('--- focused owner/host/callback trace ---');
     for (const row of focused.slice(0, 180)) {
       console.log('L' + row.line + ' ' + row.timestamp + ' <' + row.nick + '> ' + row.message.slice(0, 700));
