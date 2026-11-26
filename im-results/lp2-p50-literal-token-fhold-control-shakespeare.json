@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Shakespeare",
+    "start": 4567,
+    "wrongClock": false,
+    "n": 3008,
+    "visibleF": 125,
+    "trueH": 60,
+    "nativeH": 60,
+    "nativeFholdCollisions": 1997,
+    "cipherTrueClockCollisions": 1997,
+    "upperAtNativeH": 3385,
+    "classRejections": [],
+    "exactTrueClockReplay": true
+  },
+  {
+    "name": "Shakespeare",
+    "start": 4567,
+    "wrongClock": true,
+    "n": 3008,
+    "visibleF": 125,
+    "trueH": 0,
+    "nativeH": 60,
+    "nativeFholdCollisions": 1997,
+    "cipherTrueClockCollisions": 2031,
+    "upperAtNativeH": 3207,
+    "classRejections": [],
+    "exactTrueClockReplay": true
+  }
+]
