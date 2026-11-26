@@ -56,3 +56,40 @@ Twelve independently hidden stationary random permutation-row senders (3 donors 
 **Decision:** the unresolved #3045 permutation feasibility is now an unpromising route to ordinary contiguous native GP prose; broader private nonlinear differential memories through four also fail all the full-book reference windows. Do not interpret a hypothetical legal key as native-language recovery. No need to extend the capped SAT search absent an independent different register, nonlocal ordering or state law. Arbitrary new plaintext, arbitrary within-book rearrangement, independent *per-page* donor choices, altered orthography, length changes, a secret output alphabet, memory>4, and clocks beyond the last consuming plaintext runes remain outside these particular exclusions. This is not an unconditional impossibility theorem for the fixed original cipher; it materially narrows the native-register explanation.
 
 [Single-file CommonJS SFT](../sims/lp2_fhold_differential_sync_capacity_sft.cjs) · [complete machine output and source hashes](lp2-fhold-differential-sync-capacity-output.json). Core executed in connected V8; no independent Node/CI run claimed.
+
+
+## Phase-dependent integrated additive receiver: exact trigram MAP on the terminal chapter (Director #3074, Agent25)
+
+This is a **different phase-dependent law** from the stationary plaintext-memory theorem above. Freeze the original black body at p54 offset9 (223 runes) as training, then p55 (76 runes) as holdout. Initial physical predecessor C[-1]=0 and consuming phase t=0; continue both through the page boundary. For non-F plaintext, C[i]=C[i−1]+P[i]+K[t mod q] (mod29), then advance t; plaintext F emits literal zero and holds t. Its emitted zero becomes the next physical predecessor. Therefore at a consuming position, P[i]=(C[i]−C[i−1]−K[t]) mod29 must be nonzero. At a zero ciphertext position, the alternative hold emits F, even when the difference is nonzero. This is not the ordinary F-held receiver on the difference tape; its hold sites belong to the **original C**, not D.
+
+### Exact finite training search
+
+There are three visible zeros at p54 black-body offsets32,56,186. Enumerate all eight masks, independently for q8 and q13. For each mask derive exact non-F shift domains by removing every observed consuming D at its assigned phase. All masks have nonempty domains (q8 sizes8–15; q13 sizes14–20). No all-key feasibility contradiction follows.
+
+Reuse the solved-native GP29 trigram log-likelihood convention with smoothing0.1, per-section training (no cross-section n-grams), and no printed spacing assumption. With a fixed mask, each trigram involves at most three consecutive consuming key phases, including contexts across holds. Assign its factor to the latest consuming phase. This gives a ring of triple potentials F_j(K[j−2],K[j−1],K[j]). Fix the first two variables, eliminate the remaining variables by max-plus dynamic programming on adjacent phase pairs, add the two wrap factors, and traceback. Thus each of the sixteen mask/period optimizations is globally optimal **for that fixed language model**, up to floating arithmetic. Store one maximizer per mask (no claim of enumerating all equal-score or suboptimal keys). For these frozen keys, evaluate every legal prefix mask and every holdout mask without changing K or resetting predecessor/clock. Exact forward replay validates each accepted path.
+
+### Controls matched to the actual zero profile
+
+Train with each native section withheld. Independently select a 299-rune native window and a random hidden key conditional only on the original 3+3 ciphertext-zero profile, with both actual held F and consuming zeros present. No selection by model score/recovery success.
+
+| q | Native source | Prefix recovered | Holdout recovered | Top key rank | Native holdout nats/rune |
+|---|---|---:|---:|---:|---:|
+| 8 | WELCOME | 223/223 | 76/76 | 1 | −2.738272 |
+| 8 | KOAN1 | 223/223 | 76/76 | 1 | −2.771186 |
+| 13 | LOSS OF DIVINITY | 223/223 | 76/76 | 1 | −2.980449 |
+| 13 | Second KOAN | 223/223 | 76/76 | 1 | −2.696808 |
+
+All four hidden keys are recovered, 1,196/1,196 plaintext runes; authentic unintegrated LP1 WELCOME and second KOAN keys independently replay 515/515 and 319/319. Twelve small restricted-domain exhaustive searches match the cycle optimizer. The integrated controls are plants, not evidence that historical LP used integration.
+
+### Original prediction
+
+| Period | Exact best prefix nats/rune | Distinct per-mask optimum keys | Keys with any full legal path | Full paths among those keys | Top training key p55 score |
+|---|---:|---:|---:|---:|---:|
+| 8 | −3.419813 | 8 | 2 | 3 | no continuation |
+| 13 | −3.277665 | 8 | 6 | 29 | −3.608960 |
+
+The original prefix optima are below even the weakest matched native prefix (−2.924447). The q8 best retrospectively selected continuation among all legal frozen keys/paths is −3.665948; q13 is −3.608960. Both are substantially below all four true native holdouts (−2.980449 to −2.696808). No coherent running plaintext. The q13 winning candidate key is [6,22,6,12,16,20,18,12,18,11,16,6,12]; it is a statistical optimum, not a recovered historical key. Its selected p55 output begins EO IA U X X NG J H OE W S W J AE B J NG X G Y W D TH TH A F H P OE IA AE H OE I N E X … (GP tokens; no inferred spaces). Exact replay is automatic given a legal inverse.
+
+**Decision:** close #3074 as a calibrated original prediction failure for this exact canonical integrated q8/q13 receiver. The fixed trigram model admits legal nonprose inverses; this is not a key-independent impossibility theorem, and unenumerated lower-ranked keys or different language registers remain mathematically possible. Do not expand this unselected state law or promote optimized fragments. No authentic key, unknown plaintext, or independent author selector. Core executed in connected V8; no standalone Node/Windows execution claimed.
+
+[Exact cyclic MAP SFT](../sims/lp2_integrated_fhold_periodic_exact_map_sft.cjs) · [Original masks, complete candidate paths, and controls](lp2-integrated-fhold-periodic-exact-map-output.json).
