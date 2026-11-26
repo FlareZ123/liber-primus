@@ -272,7 +272,7 @@ def main():
     A = load_modules()
     W, G = A.W, A.G
     primes = list(A.gp.PRIMES)
-    trans = list(A.sk.idx_to_trans)
+    trans = [A.sk.idx_to_trans([i]) for i in range(29)]
     Q = A.H.Q
 
     if len(primes) != 29 or len(trans) != 29:
