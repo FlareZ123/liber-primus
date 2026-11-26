@@ -41,7 +41,7 @@ jobs:
         with:
           name: agent18-onion6-raw-response-audit
           path: |
-            \${{ runner.temp }}/onion6-input/
-            \${{ runner.temp }}/onion6-output/
+            ${{ runner.temp }}/onion6-input/
+            ${{ runner.temp }}/onion6-output/
           if-no-files-found: error
           retention-days: 14
