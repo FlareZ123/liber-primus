@@ -94,3 +94,19 @@ All 532,721 distinct windows per period fail (1,065,442 period/window tests). In
 This is a finite exact all-key exclusion for **contiguous plaintext prefixes from these three complete native-converted donor tapes**, even granting arbitrarily many deleted repeats; it does not exclude arbitrary prose with other phase-specific pair counts, chapter-private keys, nonlinear state, arbitrary transpositions, shorter underlying tapes with inserted runes, or other edits. It materially narrows the length-changing loophole for direct historical donor text and native q8/q13 keys, rather than merely ranking more candidate keys.
 
 Reproducer: `node sims/lp2_duplicate_deletion_allkey_pairprefix_sft.cjs`. Core executed in connected V8 against exact repository inputs, standalone Node wrapper not separately run.
+
+
+## Nonperiodic clock selected by the authentic p56 solve
+
+The authentic prime-minus-one clock provides a nonperiodic candidate independent of the fitted q8/q13 cycles. Use additive shifts (prime[j]−1) mod29 with literal plaintext F transparent; start at prime 2. Confirm authentic p56 encryption 85/85 runes, 84 consumed primes. Apply the same duplicate-deletion Viterbi with absolute prime index rather than periodic phase, fixed start zero, deletion probability .81, and prefix index cap j≤i+ceil(.25n) where i is the emitted count and n the total observed length. This is a bound on excess consumed primes, not on total deletion count, because hidden F may be transparent. The negative-cost closure over hidden repeats is exact within these bounds. No initial-prime search.
+
+On the genuine p56 ciphertext with deletion probability zero, the LP1-trained trigram decoder's best path has edit distance 5/85 from known plaintext (ambiguity at zeros, not exact known-text decoding). The authentic known plaintext itself re-encrypts exactly. Four independently planted held-out native plaintexts have deletion-channel edit counts 5/319, 2/89, 2/85, 0/95. Inferred deleted counts 5,4,3,1 versus true 5,5,2,1. Genuine known-text controls calibrate the receiver, not the hypothesis that LP2 uses deletion.
+
+| Original tape, reset at prime 2 | Observed runes | Hidden inferred | LM nats/rune |
+|---|---:|---:|---:|
+|p0 black+p1–2|716|104|−3.823453|
+|p54–55|308|48|−3.809570|
+
+Both decoded paths re-encrypt and collapse exactly to source ciphertext, but are nonprose, substantially below planted LM scores −2.50 to −2.17. The fixed prime-start receiver does not produce a solution. No claim about arbitrary prime offsets, longer hidden-length budgets, or a different initial state. This directly checks a historically demonstrated nonperiodic key rather than sweeping further speculative periodic keys. No new evidence for this deletion channel.
+
+Reproducer: `node sims/lp2_duplicate_deletion_primeclock_sft.cjs`. Core run in connected V8; standalone wrapper unrun.
