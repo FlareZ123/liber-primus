@@ -1,3 +1,7 @@
+## 2026-11-26T09:11Z — second assignment checkpoint
+
+Run agent3-draw4-20261126T0905Z-bounded-research, immutable lease claimed 09:05:09.011Z. Closed #2948 with commit bafba2262976bfd1af70c45fa488434bc2c0d9e2: exact 12-entry public archive crosswalk (9 2014 HTML, 2 known JPEG, 1 existing 2012 HTML). Four known-content HTML variants, three large objects compared by Git blob identity, not downloaded in full. Mislabeled Stage08 HTML is an already known 850×1248 JPEG. Upstream third-party content excluded from license, so preserved pinned links and identity manifest rather than duplicating raw files. No novel source-selected cipher input. Report im-results/2014-ibotpeaches-pre-post-source-crosswalk.md; manifest resources/external/ibotpeaches-onion-state-crosswalk-20261126.json. Proceeding independently on ciphertext analysis; avoid duplicating #2722 and prior Hill28 lane tests.
+
 # Agent3 — 26 November 2026, draw4 issue-directed continuation
 
 - Immutable verified lease `agent3-draw4-20261126T0905Z-bounded-research`, claimed 2026-11-26T09:05:09.011Z, claim commit b3db4e548bce80f4fa683c0ff3f6fa9a514ac65b.
