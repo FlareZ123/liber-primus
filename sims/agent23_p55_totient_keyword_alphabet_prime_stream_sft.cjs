@@ -244,6 +244,88 @@ function scoreWithAlphabet(cipher, key, sigma, logp, holdF) {
   return { scorePerRune: decoded.score / decoded.out.length, ioc29: normalizedIoc(decoded.out) };
 }
 
+function decodeRepeatingVigenere(cipher, key, logp) {
+  const stateCount = N * N;
+  const parents = new Int16Array(cipher.length * stateCount);
+  parents.fill(-1);
+  let scores = new Float64Array(stateCount);
+  scores.fill(-Infinity);
+
+  const first = cipher[0];
+  const firstConsumed = mod(first - key[0], N);
+  if (first === 0) scores[0] = Math.log(1 / N); // literal plaintext F, no key advance
+  if (firstConsumed !== 0) scores[N + firstConsumed] = Math.log(1 / N);
+
+  for (let i = 1; i < cipher.length; i++) {
+    const c = cipher[i];
+    const next = new Float64Array(stateCount);
+    next.fill(-Infinity);
+
+    for (let state = 0; state < stateCount; state++) {
+      const score = scores[state];
+      if (!Number.isFinite(score)) continue;
+      const ptr = Math.floor(state / N);
+      const last = state % N;
+
+      if (c === 0) {
+        const nextState = ptr * N;
+        const candidate = score + logp[last][0];
+        if (candidate > next[nextState]) {
+          next[nextState] = candidate;
+          parents[i * stateCount + nextState] = state;
+        }
+      }
+
+      const plain = mod(c - key[ptr], N);
+      if (plain !== 0) {
+        const nextPtr = (ptr + 1) % key.length;
+        const nextState = nextPtr * N + plain;
+        const candidate = score + logp[last][plain];
+        if (candidate > next[nextState]) {
+          next[nextState] = candidate;
+          parents[i * stateCount + nextState] = state;
+        }
+      }
+    }
+
+    let reachable = false;
+    for (const score of next) {
+      if (Number.isFinite(score)) { reachable = true; break; }
+    }
+    if (!reachable) return { failAt: i };
+    scores = next;
+  }
+
+  let best = -Infinity;
+  let state = -1;
+  for (let i = 0; i < stateCount; i++) {
+    if (scores[i] > best) { best = scores[i]; state = i; }
+  }
+  if (state < 0) return { failAt: cipher.length - 1 };
+
+  const out = new Array(cipher.length);
+  for (let i = cipher.length - 1; i >= 1; i--) {
+    out[i] = state % N;
+    state = parents[i * stateCount + state];
+  }
+  out[0] = state % N;
+  return { out, score: best };
+}
+
+function encryptRepeatingVigenere(plain, key) {
+  let ptr = 0;
+  const out = [];
+  for (const p of plain) {
+    if (p === 0) {
+      out.push(0);
+    } else {
+      out.push(mod(p + key[ptr], N));
+      ptr = (ptr + 1) % key.length;
+    }
+  }
+  return out;
+}
+
 function main() {
   const { selected, keyText, wordLengths } = deriveP55Key();
   const { sigma, inverse, uniqueKeySymbols } = keyedAlphabet(selected);
@@ -298,7 +380,27 @@ function main() {
     }
   }
 
+  const repeatingVigenereContinuous = decodeRepeatingVigenere(target, selected, logp);
+  let repeatingVigenerePageReset = null;
+  for (const p of pages) {
+    const decoded = decodeRepeatingVigenere(p.indices, selected, logp);
+    if (decoded.failAt !== undefined) {
+      repeatingVigenerePageReset = { page: p.page, offset: decoded.failAt };
+      break;
+    }
+  }
+
   const plant = markovPlant(counts, 800, 0x23001123);
+  const repeatingVigenerePlantCipher = encryptRepeatingVigenere(plant, selected);
+  const repeatingVigenerePlantDecoded = decodeRepeatingVigenere(repeatingVigenerePlantCipher, selected, logp);
+  const repeatingVigenerePositiveControl = repeatingVigenerePlantDecoded.failAt === undefined
+    ? {
+        exact: repeatingVigenerePlantDecoded.out.reduce((sum, x, i) => sum + (x === plant[i] ? 1 : 0), 0),
+        length: plant.length,
+        scorePerRune: repeatingVigenerePlantDecoded.score / repeatingVigenerePlantDecoded.out.length
+      }
+    : { failAt: repeatingVigenerePlantDecoded.failAt };
+
   const plantKey = primeTotientKey(2 * plant.length + 10);
   const positiveControls = {};
   for (const holdF of [false, true]) {
@@ -342,12 +444,22 @@ function main() {
     pageReset: pageResetSummary,
     transparentF: transparentFSummary,
     pageResetTransparentF: resetF,
+    repeatingVigenere: {
+      keyPeriod: selected.length,
+      rule: "C=0 for plaintext F without key advance; otherwise C=P+K mod 29, repeated key",
+      continuous: repeatingVigenereContinuous.failAt === undefined
+        ? { scorePerRune: repeatingVigenereContinuous.score / repeatingVigenereContinuous.out.length, ioc29: normalizedIoc(repeatingVigenereContinuous.out) }
+        : { noAdmissibleStateAtZeroBasedRuneOffset: repeatingVigenereContinuous.failAt },
+      pageReset: repeatingVigenerePageReset,
+      positiveControl: repeatingVigenerePositiveControl
+    },
     positiveControls,
     randomAlphabetNulls: nulls,
     randomNullSummary: { mean: nullMean, min: nullMin, max: nullMax, candidateRankOf11: candidateRank }
   };
 
   assert.strictEqual(positiveControls["false"].exact, 800, "no-F planted control must recover exactly");
+  assert.strictEqual(repeatingVigenerePositiveControl.exact, 800, "repeating Vigenere planted control must recover exactly");
   assert(candidateRank === 11, "source-derived alphabet should rank last in this frozen null set");
   console.log(JSON.stringify(result, null, 2));
 }

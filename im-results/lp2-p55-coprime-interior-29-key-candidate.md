@@ -1,6 +1,6 @@
 # p55 coprime-interior selector: a 29-rune key candidate
 
-**Status: the source-derived selector remains provisional; its frozen OpenPuff receiver (23 November) and one source-derived mixed-alphabet prime-totient receiver (26 November) are experimentally rejected. No p55 plaintext or authentic key was recovered.**
+**Status: the source-derived selector remains provisional; its frozen OpenPuff receiver (23 November), mixed-alphabet prime-totient receiver, and cross-page repeating Divinity-Vigenere receiver (26 November) are experimentally rejected. No p55 plaintext or authentic key was recovered.**
 
 ## Human solve-path hypothesis
 
@@ -136,6 +136,29 @@ Solved p57 explicitly directs the reader to **find the divinity within**, and LP
 **Decision:** reject this newly extracted 29-rune subset as *the direct plaintext-F-transparent DIVINITY ciphertext* at phase zero. The source-derived coprime selector remains speculative, and this exact historical receiver failure must not be generalized to unrelated cipher architectures. Further key-phase/sign/order variants lack a first-party selector.
 
 **Zero-based alternative result (Agent16, 26 November):** I applied the same authenticated DIVINITY decoder, phase zero and the same two legal literal-F masks, to the zero-based candidate JCRS0EAJ15D8LKF8IA6E6FC22ISBI. The consume-F branch produces plaintext F from ciphertext rune 10 at selected rune 18; the literal-bypass branch produces plaintext F from ciphertext rune 10 at selected rune 7. Both violate the LP1 invariant that plaintext F is emitted literally and does not advance the key clock. Thus the zero-based variant also fails **0/2** masks as direct DIVINITY ciphertext. This is the same fixed receiver applied to a second indexing convention, not evidence against unrelated mechanisms.
+
+## Cross-page repeating Divinity-Vigenere receiver (Agent23, 26 November 2026)
+
+**Decision: negative for the fixed cross-page receiver.** This is distinct from Agent16's test of the candidate key against p55 itself. Here the candidate derived from p55 is used as the repeating key for the earlier unknown pages.
+
+### Source-selected operation
+
+- The key is the one-based p55 coprime-interior sequence already established above: A25S0EAJ15D8LKDCIA6E6FC22I5BI (29 GP29 symbols).
+- The receiver is the historically demonstrated LP1 Divinity-Vigenere operation: for plaintext F, emit F and do not advance the key; otherwise emit C = P + K[j] mod 29 and advance j. Decryption subtracts K[j].
+- The key is repeated with period 29 over consuming runes. The primary clock starts at key position 0 on p0; a separate page-reset control starts at key position 0 on each rune-bearing page.
+- Target: original p0-p54, 12,880 runes. p55 is excluded because it supplies the key. No printed word boundaries or fitted phase are used.
+
+This is a motivated human route: the p57 instruction says to find the divinity within; the p55 selector supplies a 29-rune candidate; LP1 pages 3-4 establish a recognizable Divinity-Vigenere mechanism. It does not assume the candidate is authentic merely because its length matches the alphabet.
+
+### Result
+
+The exact 841-state Viterbi decoder over key pointer and previous plaintext rune has **no admissible state at zero-based p0 rune offset 104** under the continuous clock. Resetting the key at each page also fails on p0 at offset 104. This is a hard contradiction for the frozen receiver, not merely a low language score.
+
+An 800-rune Shakespeare-bigram Markov plant encrypted with the same repeating key and transparent-F rule is recovered **800/800**, validating the decoder on the planted mechanism.
+
+Reject this exact p55-keyed, repeating Divinity-Vigenere receiver for p0-p54. Do not search arbitrary key phases, reverse orders, signs, or reset conventions; the source-selected forward/subtractive rule is the one tested. This does not invalidate the p55 selector for a different independently motivated use, nor does it recover any unknown plaintext.
+
+Reproducer: sims/agent23_p55_totient_keyword_alphabet_prime_stream_sft.cjs (now includes this cross-page Vigenere gate and its planted control).
 
 ## Additional fixed receiver tests (Agent16, 26 November)
 
