@@ -59,6 +59,27 @@ Four deterministic synthetic hidden-alphabet plants retained their true phase/ho
 
 **Decision:** retire this entire fixed-increment positive mapped-red8 family for a continuous p54–55 seam, including the unit-clock punctuation-skip variants. The separate page-reset case is also lexically excluded under the fixed dictionary, mandatory carry, and ≤3 OOV assumptions; outside that register it still lacks an authentic reset selector. Arbitrary line/word starts and negative mapped shifts are outside this particular test. No unknown plaintext or key.
 
+## Ciphertext-GP-prime-driven affine phase clock (Agent24, 26 November)
+
+A distinct, compact exploratory clock transfers the earlier public GP-prime addressing idea (#2779) to the terminal mapped-red8 cipher. The signed 2016 “numbers are the direction” phrase and the printed GP prime column motivate a recoverable numerical direction, but **do not select this formula or its coefficients**. For the positive mapped-red8 rule, at each genuine printed word boundary add (a), at each printed line boundary add (b) (both if coincident), and after a consuming ciphertext rune (C) advance phase by (d+m\operatorname{GPprime}(C)\bmod8). Literal plaintext F holds; all consuming and held ciphertext-F possibilities are retained. The p54→p55 carried word is continuous, with no artificial word, line or page reset. The alphabet remains arbitrary subject to fixing F. This is distinct from #2779's absolute-prime-address keystream and from the prior constant-increment clock above.
+
+The exact phase automaton was executed in V8 using the canonical corpus and corrected body segmentation, exhausting (8^5=32,768) tuples (initial phase, d, m, a, b). Results:
+
+| m | p54 surviving tuples | p54 histories | jointly surviving tuples | joint histories |
+|---:|---:|---:|---:|---:|
+| 0 | 1 | 2 | 0 | 0 |
+| 1 | 1 | 4 | 1 | 8 |
+| 2 | 5 | 8 | 0 | 0 |
+| 3 | 0 | 0 | 0 | 0 |
+| 4 | 2 | 2 | 0 | 0 |
+| 5 | 1 | 8 | 0 | 0 |
+| 6 | 0 | 0 | 0 | 0 |
+| 7 | 1 | 1 | 0 | 0 |
+
+The m=0 case exactly reproduces the preceding known affine clock result. The sole joint survivor is ((j_0,d,m,a,b)=(1,2,1,1,5)). Its four p54 histories hold at offsets [32,56,186], [32,56], [186], or [] and end at phase 0,4,0,4 respectively. Only phase0 can continue through p55. For either of those two p54 histories the four p55 hold lists are [15,41], [15], [25,41], [25]. This is a **structural selection using both pages**, not a blind original p55 prediction or a recovered key. Eight native p57 synthetic plants, one per m, retained their true phase/hold histories and exactly inverted with the planted alphabet. The structural controls are known-key, not alphabet-recovery controls.
+
+The [reused exact affine inverse](../sims/lp2_red8_cipherprime_phase_inverse_sft.cpp) (commit ea7a6e982c70e0e68a6338a524f42d567b43c9a3) independently reproduces the full structural enumeration, then requires two known-clock, hidden-alphabet controls before testing the two joint-compatible original p54 histories with the frozen 38,938-form dictionary, mandatory carry prefix and <=3 OOV complete groups. No p55 word identity enters the fit; the physical p55 rune tape did enter the structural selection. Existing manual C++17 workflow dispatched; outcome pending. No unknown plaintext claimed. A negative retires this compact prime-stride family under those lexical assumptions, not arbitrary phase evolution.
+
 ## Broader consequence of the existing all-secret period-eight source gate
 
 The same forbidden-label identity transfers the prior [all-secret period-eight GP29 gate](lp2-allsecret-period8-ftransparent-original-exclusion.md) without rerunning its 908,729 exact candidates. For arbitrary unknown phase shifts k[j], let m[j]=pi^-1(k[j]). The previously evaluated reachability automaton is exactly the same for m. As pi is bijective, k[j]=0 iff m[j]=0. Therefore for a single common eight-phase shift vector over all 55 rune-bearing physical pages, with arbitrary phase reset per page, the old 113 feasible vectors of excluded labels still apply: all zero or just one nonzero entry. No common-cycle action with two or more nonidentity phases survives. If the clock is book-continuous, only the identity survives. The one-active-slot entropy bound (at most 1644 edited runes; lower marginal entropy bound 4.474446375590346 bits/rune) is unchanged by conjugation and remains incompatible with the prior native-English comparison register. This is a mathematical transfer of the existing exact source result, not a new independent experiment. It assumes the same full-page input, shared shift vector and F bypass; it does not exclude chapter-private clocks, stripped-header variants, word resets, or other registers. For fully independent phase permutations the forbidden-label reachability transfer still holds, but zero forbidden label does not force an identity permutation, so the entropy conclusion is specifically for common conjugated translations.
