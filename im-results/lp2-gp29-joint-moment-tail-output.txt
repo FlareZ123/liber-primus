@@ -19,7 +19,7 @@ STATE 16 d=0 vars=0 singletons=2 nodes=0 actions=2 rotations=0,0 us=8,13 exact=1
 STATE 17 d=4 vars=5 singletons=1 nodes=7886 actions=0 rotations=316131,216564 us=1075,1405 exact=1
 STATE 18 d=4 vars=5 singletons=1 nodes=1745 actions=0 rotations=36241,6832 us=329,426 exact=1
 STATE 19 d=3 vars=4 singletons=1 nodes=220 actions=0 rotations=1906,607 us=71,177 exact=1
-STATE 20 d=4 vars=5 singletons=0 nodes=3318 actions=0 rotations=125055,19077 us=796,312 exact=1
+STATE 20 d=4 vars=5 singletons=1 nodes=3318 actions=0 rotations=125055,19077 us=796,312 exact=1
 STATE 21 d=7 vars=8 singletons=1 nodes=46142865 actions=471 rotations=1823453580,234762202 us=9373652,3565248 exact=1
 STATE 22 d=5 vars=6 singletons=1 nodes=22738 actions=0 rotations=663717,149164 us=14859,1874 exact=1
 STATE 23 d=3 vars=4 singletons=1 nodes=379 actions=0 rotations=14552,5088 us=166,264 exact=1
