@@ -5,7 +5,7 @@
 // The public IV and F reset are model assumptions, not authenticated LP2 rules.
 const fs=require('node:fs'),path=require('node:path');
 const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw,{count=1,startPlant=0,iterations=40,starts=1}={}){
+function experiment(raw,{count=1,startPlant=0,iterations=40,starts=1,externalPilots=[],originalTest=false}={}){
  const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
  const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
@@ -162,17 +162,21 @@ function experiment(raw,{count=1,startPlant=0,iterations=40,starts=1}={}){
   function metrics(F,K){
    let n=0,repeats=0,correct=0,legal=0,gain=0;
    for(const f of F){const x=decode(f,K);n+=f.d.length;repeats+=f.d.filter(x=>!x).length;if(!x.P)continue;legal++;gain+=x.gain;if(f.P)correct+=x.P.filter((p,i)=>p===f.P[i]).length;}
-   return {n,repeats,legal,frames:F.length,correct,gain:legal===F.length?gain/n:null};
+   return {n,repeats,legal,frames:F.length,correct:F[0].P?correct:null,gain:legal===F.length?gain/n:null};
   }
-  const oracle={train:metrics(train,truth),held:metrics(frames.filter(f=>!isTrain(f)),truth)};
+  const oracle=truth?{train:metrics(train,truth),held:metrics(frames.filter(f=>!isTrain(f)),truth)}:null;
   return {truth,fit,oracle,train:fit.K?metrics(train,fit.K):null,held:fit.K?metrics(frames.filter(f=>!isTrain(f)),fit.K):null};
  }
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
- return {iterations,starts,pilots,original:null};
+ const eligible=externalPilots.length===3&&externalPilots.every(p=>p.held&&p.train&&p.held.legal===p.held.frames&&p.train.legal===p.train.frames&&p.held.correct/p.held.n>=.95&&(p.held.repeats+p.train.repeats)/(p.held.n+p.train.n)<.012);
+ let originalFit=null;if(originalTest&&eligible){seed=0x4323301;originalFit=evaluate(original,null)}
+ return {iterations,starts,pilots,eligible,original:originalFit};
 }
 if(require.main===module){
  const arg=process.argv.find(x=>x.startsWith('--plant='));
  const n=arg?Number(arg.slice(8)):0;
- console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{count:n+1,startPlant:n}),null,2));
+ const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+ const opts=process.argv.includes('--original')?{count:0,originalTest:true,externalPilots:['gibran','shakespeare','emerson'].map(name=>JSON.parse(read('im-results/lp2-gp29-plainprev-shift-permutation-fhold-pilot-'+name+'.json')).pilots[0])}:{count:n+1,startPlant:n};
+ console.log(JSON.stringify(experiment(INPUTS.map(read),opts),null,2));
 }
 module.exports={experiment,INPUTS};
