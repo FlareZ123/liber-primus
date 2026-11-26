@@ -1,0 +1,837 @@
+{
+  "seed": "0x473301",
+  "cases": [
+    {
+      "name": "p18 paired Fibonacci prime -1",
+      "n": 260,
+      "possible": false,
+      "longest": 205,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 269
+    },
+    {
+      "name": "p28 paired Fibonacci prime 1",
+      "n": 269,
+      "possible": false,
+      "longest": 181,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 274
+    },
+    {
+      "name": "p22 paired Fibonacci prime -1",
+      "n": 131,
+      "possible": false,
+      "longest": 82,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 135
+    },
+    {
+      "name": "p27 paired Fibonacci prime 1",
+      "n": 234,
+      "possible": false,
+      "longest": 137,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 238
+    },
+    {
+      "name": "p29 paired Fibonacci prime -1",
+      "n": 277,
+      "possible": false,
+      "longest": 149,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 282
+    },
+    {
+      "name": "p20 paired Fibonacci prime -1",
+      "n": 269,
+      "possible": false,
+      "longest": 142,
+      "peak": 4,
+      "terminal": 0,
+      "score": null,
+      "controlN": 274
+    },
+    {
+      "name": "p0-2 black WELCOME 1",
+      "n": 716,
+      "possible": false,
+      "longest": 362,
+      "peak": 7,
+      "terminal": 0,
+      "score": null,
+      "controlN": 730
+    },
+    {
+      "name": "p19 paired Fibonacci prime 1",
+      "n": 271,
+      "possible": false,
+      "longest": 114,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 281
+    },
+    {
+      "name": "p17 paired Fibonacci prime 1",
+      "n": 273,
+      "possible": false,
+      "longest": 93,
+      "peak": 4,
+      "terminal": 0,
+      "score": null,
+      "controlN": 279
+    },
+    {
+      "name": "p30 paired Fibonacci prime 1",
+      "n": 263,
+      "possible": false,
+      "longest": 77,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 271
+    },
+    {
+      "name": "p0-2 black DIUINITY -1",
+      "n": 716,
+      "possible": false,
+      "longest": 200,
+      "peak": 5,
+      "terminal": 0,
+      "score": null,
+      "controlN": 744
+    },
+    {
+      "name": "p31 paired Fibonacci prime 1",
+      "n": 269,
+      "possible": false,
+      "longest": 64,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 275
+    },
+    {
+      "name": "p24 paired Fibonacci prime 1",
+      "n": 270,
+      "possible": false,
+      "longest": 61,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 280
+    },
+    {
+      "name": "p19 paired Fibonacci prime -1",
+      "n": 271,
+      "possible": false,
+      "longest": 50,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 275
+    },
+    {
+      "name": "p22 paired Fibonacci prime 1",
+      "n": 131,
+      "possible": false,
+      "longest": 24,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 133
+    },
+    {
+      "name": "p0-2 black FIRFUMFERENFE 1",
+      "n": 716,
+      "possible": false,
+      "longest": 131,
+      "peak": 5,
+      "terminal": 0,
+      "score": null,
+      "controlN": 730
+    },
+    {
+      "name": "p16 paired Fibonacci prime -1",
+      "n": 267,
+      "possible": false,
+      "longest": 47,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 279
+    },
+    {
+      "name": "p24 paired Fibonacci prime -1",
+      "n": 270,
+      "possible": false,
+      "longest": 46,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 276
+    },
+    {
+      "name": "p31 paired Fibonacci prime -1",
+      "n": 269,
+      "possible": false,
+      "longest": 43,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 276
+    },
+    {
+      "name": "p15-22 black FIRFUMFERENFE -1",
+      "n": 1883,
+      "possible": false,
+      "longest": 272,
+      "peak": 4,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1929
+    },
+    {
+      "name": "p23 paired Fibonacci prime 1",
+      "n": 213,
+      "possible": false,
+      "longest": 30,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 220
+    },
+    {
+      "name": "p21 paired Fibonacci prime 1",
+      "n": 273,
+      "possible": false,
+      "longest": 29,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 285
+    },
+    {
+      "name": "p0 printed title -1",
+      "n": 716,
+      "possible": false,
+      "longest": 74,
+      "peak": 4,
+      "terminal": 0,
+      "score": null,
+      "controlN": 729
+    },
+    {
+      "name": "p15 literal spiral 1",
+      "n": 1883,
+      "possible": false,
+      "longest": 167,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1923
+    },
+    {
+      "name": "p16-22 decimated lane 9 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 150,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1797
+    },
+    {
+      "name": "p25 paired Fibonacci prime -1",
+      "n": 273,
+      "possible": false,
+      "longest": 23,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 278
+    },
+    {
+      "name": "p15-22 black FIRFUMFERENFE 1",
+      "n": 1883,
+      "possible": false,
+      "longest": 156,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1935
+    },
+    {
+      "name": "p16-22 decimated lane 5 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 132,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1797
+    },
+    {
+      "name": "p16-22 decimated lane 15 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 116,
+      "peak": 3,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1798
+    },
+    {
+      "name": "p16-22 decimated lane 8 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 115,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1801
+    },
+    {
+      "name": "p25 paired Fibonacci prime 1",
+      "n": 273,
+      "possible": false,
+      "longest": 17,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 282
+    },
+    {
+      "name": "p15-22 black DIUINITY -1",
+      "n": 1883,
+      "possible": false,
+      "longest": 111,
+      "peak": 4,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1944
+    },
+    {
+      "name": "p17 paired Fibonacci prime -1",
+      "n": 273,
+      "possible": false,
+      "longest": 16,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 282
+    },
+    {
+      "name": "p30 paired Fibonacci prime -1",
+      "n": 263,
+      "possible": false,
+      "longest": 14,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 269
+    },
+    {
+      "name": "p0 printed title 1",
+      "n": 716,
+      "possible": false,
+      "longest": 37,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 730
+    },
+    {
+      "name": "p27 paired Fibonacci prime -1",
+      "n": 234,
+      "possible": false,
+      "longest": 12,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 240
+    },
+    {
+      "name": "p16-22 decimated lane 14 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 81,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1797
+    },
+    {
+      "name": "p20 paired Fibonacci prime 1",
+      "n": 269,
+      "possible": false,
+      "longest": 12,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 282
+    },
+    {
+      "name": "p0-2 black DIUINITY 1",
+      "n": 716,
+      "possible": false,
+      "longest": 28,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 735
+    },
+    {
+      "name": "p16-22 decimated lane 8 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 68,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1803
+    },
+    {
+      "name": "p16-22 decimated lane 0 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 59,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1798
+    },
+    {
+      "name": "p0-2 black FIRFUMFERENFE -1",
+      "n": 716,
+      "possible": false,
+      "longest": 22,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 731
+    },
+    {
+      "name": "p16-22 decimated lane 11 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 53,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1792
+    },
+    {
+      "name": "p16 paired Fibonacci prime 1",
+      "n": 267,
+      "possible": false,
+      "longest": 7,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 277
+    },
+    {
+      "name": "p15-22 black WELCOME 1",
+      "n": 1883,
+      "possible": false,
+      "longest": 45,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1952
+    },
+    {
+      "name": "p23 paired Fibonacci prime -1",
+      "n": 213,
+      "possible": false,
+      "longest": 5,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 216
+    },
+    {
+      "name": "p16-22 decimated lane 6 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 38,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1777
+    },
+    {
+      "name": "p15-22 black DIUINITY 1",
+      "n": 1883,
+      "possible": false,
+      "longest": 38,
+      "peak": 2,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1952
+    },
+    {
+      "name": "p16-22 decimated lane 5 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 34,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1786
+    },
+    {
+      "name": "p28 paired Fibonacci prime -1",
+      "n": 269,
+      "possible": false,
+      "longest": 5,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 275
+    },
+    {
+      "name": "p16-22 decimated lane 6 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 31,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1785
+    },
+    {
+      "name": "p16-22 decimated lane 14 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 31,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1782
+    },
+    {
+      "name": "p16-22 decimated lane 2 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 29,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1785
+    },
+    {
+      "name": "p16-22 decimated lane 3 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 27,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1788
+    },
+    {
+      "name": "p26 paired Fibonacci prime -1",
+      "n": 265,
+      "possible": false,
+      "longest": 4,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 269
+    },
+    {
+      "name": "p16-22 decimated lane 7 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 24,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1783
+    },
+    {
+      "name": "p16-22 decimated lane 12 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 23,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1785
+    },
+    {
+      "name": "p18 paired Fibonacci prime 1",
+      "n": 260,
+      "possible": false,
+      "longest": 3,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 265
+    },
+    {
+      "name": "p16-22 decimated lane 10 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 19,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1789
+    },
+    {
+      "name": "p16-22 decimated lane 15 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 17,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1786
+    },
+    {
+      "name": "p16-22 decimated lane 2 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 15,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1795
+    },
+    {
+      "name": "p16-22 decimated lane 10 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 13,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1796
+    },
+    {
+      "name": "p16-22 decimated lane 4 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 13,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1781
+    },
+    {
+      "name": "p16-22 decimated lane 9 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 13,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1792
+    },
+    {
+      "name": "p21 paired Fibonacci prime -1",
+      "n": 273,
+      "possible": false,
+      "longest": 2,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 279
+    },
+    {
+      "name": "p29 paired Fibonacci prime 1",
+      "n": 277,
+      "possible": false,
+      "longest": 2,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 287
+    },
+    {
+      "name": "p16-22 decimated lane 11 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 10,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1809
+    },
+    {
+      "name": "p16-22 decimated lane 1 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 10,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1788
+    },
+    {
+      "name": "p16-22 decimated lane 0 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 8,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1786
+    },
+    {
+      "name": "p15-22 black WELCOME -1",
+      "n": 1883,
+      "possible": false,
+      "longest": 6,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1955
+    },
+    {
+      "name": "p16-22 decimated lane 4 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 5,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1795
+    },
+    {
+      "name": "p16-22 decimated lane 13 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 5,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1791
+    },
+    {
+      "name": "p16-22 decimated lane 1 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 3,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1778
+    },
+    {
+      "name": "p0-2 black WELCOME -1",
+      "n": 716,
+      "possible": false,
+      "longest": 1,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 740
+    },
+    {
+      "name": "p16-22 decimated lane 13 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 2,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1797
+    },
+    {
+      "name": "p16-22 decimated lane 3 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 2,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1779
+    },
+    {
+      "name": "p15 literal spiral -1",
+      "n": 1883,
+      "possible": false,
+      "longest": 2,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1945
+    },
+    {
+      "name": "p26 paired Fibonacci prime 1",
+      "n": 265,
+      "possible": false,
+      "longest": 0,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 277
+    },
+    {
+      "name": "p16-22 decimated lane 7 1",
+      "n": 1744,
+      "possible": false,
+      "longest": 0,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1802
+    },
+    {
+      "name": "p16-22 decimated lane 12 -1",
+      "n": 1744,
+      "possible": false,
+      "longest": 0,
+      "peak": 1,
+      "terminal": 0,
+      "score": null,
+      "controlN": 1793
+    }
+  ],
+  "feasible": 0,
+  "controls": 80,
+  "inputs": [
+    {
+      "path": "sims/lp2_vnull_fhold_joint_clock_sft.cjs",
+      "sha": "c013df73a3c11047214f1004d9ab0cf216916905"
+    },
+    {
+      "path": "sims/lp2_vnull_fhold_source_key_sft.cjs",
+      "sha": "2d63ab3cacf555c0b6dc5e0f2a82aa013bd01700"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ]
+}
