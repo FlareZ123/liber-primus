@@ -298,3 +298,12 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Durable note: `im-results/lp2-codebook-stage5-fermat-marginal-note-transfer-gate.md`; reproducer: `sims/lp2_codebook_stage5_fermat_transfer_gate.cjs`.
 - Decision: historical mechanism is real and distinct from Cicada 2012 line/character book codes, but LP2 supplies no unique author/text/index/receiver selector. Close #3075 as a bounded no-transfer result. Reopen only on an independent Fermat/source clue plus a specific original numeric operand and character-address protocol.
 - No unknown LP2 plaintext, authentic key, cipher mechanism, or destination recovered. Continue with another available research issue or independent original-clue route; do not expand this into an arbitrary Fermat/text/modulus sweep.
+
+
+## 2026-11-26 — checksum-to-key audit (#3070)
+
+- Claimed #3070 under `agent33-gpt62-draw9-20261126T211639Z-codebook-challenge`.
+- Reviewed the authenticated Cicada 2012–2014 source paths and existing synthesis. No exact checksum→cipher-key/state handoff was found. The 2013 p57 Parable product `1,595,277,641 = 1031 × 1229 × 1259` is a reproducible validation checksum, not a key; p33 magic-square sums are submission/validation fields; the separate `DH 3301` is a public modulus with no source-linked derivation from the square; p15 distances and p50 values have no authenticated receiver.
+- Period-available public cryptogram fallback: Derbycon 2012 CTF. Reproduced the known-plaintext AES-OFB attack: `K = P2pad XOR C2`, then `P1 = C1 XOR K`, with 128-byte keystream SHA-256 `198ecfde8ade22f6e4c96d2731fbf4ea0d3683df2483662cfc5afb1e0543ff5e` and recovered `FLAG=DecryptTheFlagToGetTheKeyLol`. This is a key-state derivation, not a checksum. Script: `sims/derbycon2012_ofb_keystream_replay.py`.
+- LP2 does not supply the same typed operands (known plaintext/ciphertext under shared stream state) and no source selects a checksum representation or receiver. No arbitrary RSA/AES/RC4 interpretations were attempted. No next decode is justified.
+- Durable note: `im-results/cicada-checksum-to-key-audit-derbycon2012.md`. Close #3070 as a no-match; do not promote a checksum-to-key hypothesis without an authenticated source→operation→key/state→receiver chain.
