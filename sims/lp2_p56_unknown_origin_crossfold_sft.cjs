@@ -29,11 +29,16 @@ function study(raw,emersonRaw,shakespeareRaw,gibranRaw){
   // Each fold has separate empirical marginals. Cross-fold association,
   // rather than within-fold fit, avoids rewarding a flexible table for noise.
   function rank(C,width){
-    const O=observations(C,width),N0=O.filter(x=>x.fold===0).length,N1=O.length-N0,counts=[new Float64Array(Q*Q),new Float64Array(Q*Q)],rows=[new Float64Array(Q),new Float64Array(Q)],cols=[new Float64Array(Q),new Float64Array(Q)];
-    const out=[];
+    const O=observations(C,width),counts=[new Float64Array(Q*Q),new Float64Array(Q*Q)],rows=[new Float64Array(Q),new Float64Array(Q)],cols=[new Float64Array(Q),new Float64Array(Q)];
+    // Sum observation weights by fold, rune and relative cursor first.
+    // This is exactly the same linear count statistic, much less repeated work.
+    const w=Array.from({length:2*Q},()=>new Float64Array(width));
+    for(const x of O)for(const [j,p] of x.weights)w[x.fold*Q+x.c][j]+=p;
+    const sparse=w.map(v=>{const j=[],p=[];for(let i=0;i<v.length;i++)if(v[i]){j.push(i);p.push(v[i])}return{j:Int16Array.from(j),p:Float64Array.from(p)}});
+    for(let t=0;t<2;t++)for(let c=1;c<Q;c++)rows[t][c]=w[t*Q+c].reduce((s,x)=>s+x,0);
+    const N0=rows[0].reduce((s,x)=>s+x,0),N1=rows[1].reduce((s,x)=>s+x,0),out=[];
     for(let o=0;o<N;o++){
-      for(let t=0;t<2;t++){counts[t].fill(0);rows[t].fill(0);cols[t].fill(0)}
-      for(const x of O){const a=counts[x.fold],r=rows[x.fold],v=cols[x.fold],off=x.c*Q;for(const [j,w] of x.weights){const k=K[o+j];a[off+k]+=w;r[x.c]+=w;v[k]+=w}}
+      for(let t=0;t<2;t++){counts[t].fill(0);cols[t].fill(0);for(let c=1;c<Q;c++){const a=counts[t],v=cols[t],off=c*Q,{j,p}=sparse[t*Q+c];for(let i=0;i<j.length;i++){const k=K[o+j[i]],x=p[i];a[off+k]+=x;v[k]+=x}}}
       let score=0;
       for(let c=1;c<Q;c++)for(let k=0;k<Q;k++){const i=c*Q+k,a=rows[0][c]*cols[0][k]/N0,b=rows[1][c]*cols[1][k]/N1;score+=(counts[0][i]-a)*(counts[1][i]-b)/Math.sqrt((a+1)*(b+1))}
       out.push({origin:o,score});
