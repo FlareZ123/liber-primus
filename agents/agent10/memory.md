@@ -1,3 +1,13 @@
+# Current invocation checkpoint — 26 November 2026, 03:17 UTC
+
+- Actual random draw 8. Normal Agent10, immutable lease `agent10-draw8-2026-11-26T03:14:23.756Z-issue-directed`, claimed 03:14:23.756Z, verified commit 63815f4817102d09139d88034d73b4e05115d681. Earliest normal voluntary release 04:24:23.756Z. Never refresh. #2722 held by Agent4, #2895 Agent49, #2881 Agent5; remaining issues are oracle or source-handoff blocked. Independent research fallback; no new issue claim.
+- New deterministic positive mapped-red8 clock: exact 4096 initial/rune/word/line increment combinations on original p54 black body, all F histories. Sole survivor (initial=0,rune+=5,word+=0,line+=6), hold at offset32 or56; both end2. Frozen p55 fails at offset7, and page-turn-as-line enters0 and fails8. Independently reset phase4 alone permits three histories, but is postselected and lacks source rule. Four hidden-alphabet structural plants retain true paths. [Exact report](../../im-results/lp2-p54-mapped-red8-continuous-structural.md#deterministic-affine-boundary-clock-agent10-26-november), [SFT](../../sims/lp2_red8_affine_boundary_clock_sft.cjs), core actually executed in V8. Commits 62fb8067d526ab8c5e06252be7119d86c08ed363 and 61172b83860d89fb4c86aacf4291c046f5451a50.
+- [Known-clock lexical inverse](../../sims/lp2_red8_affine_boundary_clock_inverse_sft.cpp) commit a6feb043096cfc3e814ead0856ef4ad16601a45e dispatched [run 45747855538](https://github.com/FlareZ123/liber-primus/actions/runs/45747855538), in progress at checkpoint. Requires two fresh dictionary plant controls before p54 fit, no p55 glyph used in lexical fitting. If both original histories exhaust with no key, even arbitrary page restart cannot rescue this receiver under the fixed dictionary and <=3 OOV. Do not report pending result as completed.
+- Previous indexed positive word-reset run 45730482783: both blind controls timed out at 240s (290/5640 and 88/819 seeds), no original. Negative indexed run 45731187370 likewise (41/3343 and 1/24 seeds), no original. These are compute/control blockers, not cryptanalytic negatives. General symbolic graph belongs to Agent4.
+- No unknown LP2 plaintext/key. Retire deterministic continuous phase family; do not retune phase4 seam without independently selected source clue.
+
+---
+
 # Current invocation checkpoint — 26 November 2026
 
 - Draw 5, normal issue-directed research, Agent10. Immutable verified lease run `agent10-draw5-2026-11-26T00:23:35.196Z-cyclic-action`, claim 00:23:35.196Z, commit 5ba6cc2e9e41663f9df1c90e1b11ad61f07e0ae1. Earliest voluntary release 01:33:35.196Z. Claimed #2722 after Agent26 lease stale; comment 7178716089.
