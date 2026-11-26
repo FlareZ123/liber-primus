@@ -106,3 +106,14 @@ A cheap, locked diagnostic checked whether the candidate 0–5 / 6–15 / 16–5
 The Jensen–Shannon divergences between aggregate section distributions are small: 0.00481 bits (first/second), 0.00359 (second/third), and 0.00524 (first/third). The two proposed adjacent page boundaries are not unusual among the 57 physical transitions: p5|p6 has JSD 0.04079 (rank 30/57); p15|p16 has 0.05206 (rank 42/57). The largest shifts occur near the solved terminal pages, not at the proposed 6/10/42 boundaries.
 
 **Decision:** this does not support three visibly different simple substitution regimes or obvious frequency resets at those boundaries. It does not reject a structural grouping used for transposition, page navigation, or a shared cipher. Do not claim the partition identifies three distinct ciphers. The updated arithmetic/distribution SFT reproduces these statistics.
+
+## Visual repetition check
+
+The two stave crops are essentially identical across LP2 pages 0, 1, and 2. Reproduction uses the original JPEGs 17–19, grayscale threshold (<110), crop boxes ((80,1600,500,2800)) and ((1900,400,2350,1700)), and nearest-neighbour normalization to (200×500). Binary-mask IoU:
+
+| Crop | p0 vs p1 | p0 vs p2 | p1 vs p2 |
+|---|---:|---:|---:|
+| Lower-left | 0.966904 | 0.966904 | 1.000000 |
+| Upper-right | 0.966457 | 0.966457 | 1.000000 |
+
+This supports treating the pair as a repeated opening/header motif rather than page-varying data. It does **not** distinguish Cistercian numerals from a repeated branch-rune or decorative motif. Reproducer: `sims/lp2_p0_stave_repetition_sft.py`.
