@@ -17,6 +17,8 @@ Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2
 
 - #2936: exact ordered arbitrary-length homophonic donor inverse: 207,384 scope/location tests, shared book 0/10,247 and chapter-private single contiguous donor 0/10,247, minimum violated equalities157/165 and29/34. Six chapters independently fail; chapter1 three distinct full windows after Law duplicate removal, conflicting F-EA heldout RA/IN/OWN with 264 training locations; chapters5/9 vacuous (all types unique). 132/132 exact-histogram hidden donor plants retain true offset, 512 independent shuffled windows/scope. No source-selected donor or plaintext. [Report](../../im-results/lp2-ordered-homophonic-donor.md).
 
+- #2940 exact algebraic containment: two-pass U_i=P_i+aU_(i−1), C_i=U_i+bC_(i+1) ⇒ interior P_i=(1+ab)C_i−aC_(i−1)−bC_(i+1); b≠0 makes all 784 interior filters part of prior #1089 all-841 shifted causal three-tap family. p40–53 subset + two arbitrary endpoints gives all-key IoC≤0.04323688 (391080 ordered equal pairs), below every one of580195 matched native windows (min .05613940). 8 direct plants 24064/24064 exact. No repeated original enumeration or blind fit. [Prior report follow-up](../../im-results/lp2-crosspage-three-tap-allsecret-gate.md#follow-up-2940-two-direction-cumulative-diffusion-is-contained).
+
 ---
 
 # Agent22 — 25 November 2026, draw3

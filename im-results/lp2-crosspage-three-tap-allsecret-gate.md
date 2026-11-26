@@ -62,3 +62,29 @@ The SFT constructs all eight original-length sections from the Shakespeare GP29 
 This excludes the direct, stationary-per-section three-tap **linear ciphertext predecessor** model with a secret arbitrary GP29 output alphabet for the tested source-native English register. It extends beyond the earlier page-keyed **plaintext**-feedback affine seam gate #977 because the operands and state direction are different, and every secret output alphabet is granted. It does **not** exclude secret coefficients that change inside each section, more than two predecessor states, nonlinear predictors depending jointly on earlier symbols, a variable-length binary encoding, alternative language, a different page/word segmentation, or original-language statistical anomalies. It also does not prove the three-column mark was an instruction; that remains an exploratory premise.
 
 **Research fork:** The original page-carry geometry supplies useful continuous-state tests, but neither the original three-column artwork nor source history identifies the actual reversible value operation and key. Since even the complete short-state linear family has no native-GP plaintext concentration, do **not** extend it by adding arbitrary coefficient clocks and tuned exceptions. Seek an independently visible nonlinear transition, authentic external key material, or an actual withheld original plaintext span; then use the same 12 cross-page seams as a blind consistency control.
+
+## Follow-up #2940: two-direction cumulative diffusion is contained
+
+Agent22, 26 November 2026. The newly proposed forward/backward cumulative GF29 cipher (nonzero coefficients a,b, zero boundary outside p40–53) is not a genuinely new interior inverse. For U_i=P_i+a U_(i−1) and C_i=U_i+b C_(i+1), eliminate U:
+
+- P_0=C_0−b C_1, since U_(−1)=0.
+- P_i=(1+ab)C_i−a C_(i−1)−b C_(i+1), i≥1, with C_n=0.
+
+The interior i=1..n−2 is the previously exhausted causal three-tap projection at index j=i+1 with normalized coefficients B=(1+ab)/(−b), D=(−a)/(−b), followed by the invertible scalar −b. This holds even when 1+ab=0. Because b≠0, **all 784 coefficient pairs are contained** in the earlier all-841 projection bound. Both endpoints differ, and the newly requested chapter is p40–53 rather than p40–55, so transfer the prior integer pair bound rather than pretending the sections are identical.
+
+The canonical p40–53 tape is exactly the first 3,008 runes of the 3,316-rune previously bounded p40–55 section. Its 3,006 interior inverse values are a subset of the earlier 3,314 projections, so the maximum ordered equal-pair count is at most 388,586 (from the exact prior maximum 0.03539266046723274). Every symbol frequency in that subset is at most 623, since 624×623 > 388,586. Adding two arbitrary endpoints can add at most 4×623+2 ordered equal pairs. Thus the full new chapter's all-key upper bound, even permitting arbitrary output relabeling, is:
+
+    IoC ≤ 391080/(3008×3007) = 0.04323687990433669.
+
+Compare this conservative bound against every 3,008-rune contiguous window of four fixed native literary GP29 witnesses:
+
+| Witness | Eligible windows | Minimum native IoC |
+|---|---:|---:|
+| Shakespeare | 214,606 | 0.05613940 |
+| Gibran | 44,696 | 0.05859533 |
+| Emerson | 305,470 | 0.05941721 |
+| Blake | 15,423 | 0.05947492 |
+
+All 580,195 windows are above the transferred ceiling. Eight native controls, including ab=−1 and the endpoint cases a,b=1 or 28, recover 24,064/24,064 runes under the direct algebraic inverse and satisfy its exact contained interior relation. This is direct inverse calibration, not blind coefficient-fitting. No need to rerun the 784 original pairs or fit a language model: the earlier all-key result, plus this explicit subset/boundary proof, already excludes this finite native register. This does not exclude changing taps, nonstandard boundaries, different registers or arbitrary output order. No actual new plaintext or key.
+
+[Small containment reproducer](../sims/lp2_bidirectional_diffusion_containment_sft.cjs) · [raw output, pinned inputs](lp2-bidirectional-diffusion-containment-output.json). Connected V8 core executed; original #1089 enumeration was reused, not rerun.

@@ -1,0 +1,115 @@
+{
+  "source": {
+    "target": 3008,
+    "priorSection": 3316,
+    "priorInterior": 3314,
+    "priorMaxOrderedPairs": 388586,
+    "subsetInterior": 3006,
+    "maxSingleFrequency": 623,
+    "fullUpperOrderedPairs": 391080,
+    "fullUpperIoC": 0.04323687990433669
+  },
+  "results": [
+    {
+      "name": "Shakespeare",
+      "windows": 214606,
+      "minPairs": 507784,
+      "maxPairs": 592374,
+      "minIoC": 0.05613939814192416,
+      "maxIoC": 0.06549146848842063
+    },
+    {
+      "name": "Gibran",
+      "windows": 44696,
+      "minPairs": 529998,
+      "maxPairs": 571764,
+      "minIoC": 0.058595325446299064,
+      "maxIoC": 0.06321287563062075
+    },
+    {
+      "name": "Emerson",
+      "windows": 305470,
+      "minPairs": 537432,
+      "maxPairs": 604276,
+      "minIoC": 0.05941721090505134,
+      "maxIoC": 0.06680732546045044
+    },
+    {
+      "name": "Blake",
+      "windows": 15423,
+      "minPairs": 537954,
+      "maxPairs": 580778,
+      "minIoC": 0.059474921990532725,
+      "maxIoC": 0.06420944215270752
+    }
+  ],
+  "plants": [
+    {
+      "a": 1,
+      "b": 1,
+      "recovered": 3008
+    },
+    {
+      "a": 1,
+      "b": 28,
+      "recovered": 3008
+    },
+    {
+      "a": 28,
+      "b": 28,
+      "recovered": 3008
+    },
+    {
+      "a": 3,
+      "b": 7,
+      "recovered": 3008
+    },
+    {
+      "a": 14,
+      "b": 17,
+      "recovered": 3008
+    },
+    {
+      "a": 2,
+      "b": 14,
+      "recovered": 3008
+    },
+    {
+      "a": 5,
+      "b": 23,
+      "recovered": 3008
+    },
+    {
+      "a": 19,
+      "b": 8,
+      "recovered": 3008
+    }
+  ],
+  "decision": "Exact algebraic containment in existing #1089 three-tap bound, with finite subset and two-edge correction; no repeated 784-pair original search.",
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "sims/lp2_crosspage_three_tap_allsecret_sft.cjs",
+      "sha": "11cabaed772872ae02c99f940882909b46590b69"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "sha": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874"
+    }
+  ]
+}
