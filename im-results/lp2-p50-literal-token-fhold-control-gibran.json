@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Gibran",
+    "start": 1234,
+    "wrongClock": false,
+    "n": 3008,
+    "visibleF": 125,
+    "trueH": 66,
+    "nativeH": 66,
+    "nativeFholdCollisions": 2006,
+    "cipherTrueClockCollisions": 2006,
+    "upperAtNativeH": 3244,
+    "classRejections": [],
+    "exactTrueClockReplay": true
+  },
+  {
+    "name": "Gibran",
+    "start": 1234,
+    "wrongClock": true,
+    "n": 3008,
+    "visibleF": 125,
+    "trueH": 0,
+    "nativeH": 66,
+    "nativeFholdCollisions": 2006,
+    "cipherTrueClockCollisions": 2009,
+    "upperAtNativeH": 3042,
+    "classRejections": [],
+    "exactTrueClockReplay": true
+  }
+]
