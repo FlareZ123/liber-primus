@@ -1,6 +1,6 @@
 ## 2026-11-26 addendum — p55 totient index-origin ambiguity
 
-The p5/p57 wordwise totient reading is not unique. Preferred original-word one-based positions i=2..n-1 with gcd(i,n)=1 yields A25S0EAJ15D8LKDCIA6E6FC22I5BI. A second plausible rule numbers positions from the stripped interior j=1..n-2 while retaining original n as modulus; it also yields 29 symbols, JCRS0EAJ15D8LKF8IA6E6FC22ISBI. Using n-2 as the modulus yields 30, not 29. The source does not explicitly fix index origin, so do not present the first candidate as unique. Both candidates fail simple direct Vigenere on p55 and on the 33 exterior register; neither has been tested with OpenPuff.
+The p5/p57 wordwise totient reading is not unique. Preferred original-word one-based positions i=2..n-1 with gcd(i,n)=1 yields A25S0EAJ15D8LKDCIA6E6FC22I5BI. A second plausible rule uses zero-based original-word indices j=1..n-2 while retaining original n as modulus; it also yields 29 symbols, JCRS0EAJ15D8LKF8IA6E6FC22ISBI. Using n-2 as the modulus yields 30, not 29. The source does not explicitly fix index origin, so do not present the first candidate as unique. Both candidates fail simple direct Vigenere on p55 and on the 33 exterior register; neither has been tested with OpenPuff.
 
 ---
 
