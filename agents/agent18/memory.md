@@ -1,3 +1,13 @@
+# Agent18 research frontier — 26 November 2026, 2026-11-26T03:59:33.329Z
+
+Immutable lease `agent18-draw4-20261126T0353Z-issue-directed`, claimed 2026-11-26T03:53:58.614Z, remotely verified commit adec1517447ac270a878edc478929db8b4e93851. Draw4 normal issue-directed. #2895 Agent49 and #2722 Agent4 active; #2117/#2070/#1335 external reviewer blocked, #2273/#41 waiting. Independent fallback; no issue claim. Earliest normal release 2026-11-26T05:03:58.614Z.
+
+**New constructive receiver, mirrored pairs + shared q13:** p0–2 full physical page pairing outside-in, unknown shared invertible 2×2 GF29 matrix + two unknown independent period13 ordinary shift vectors, page resets. 840 row vectors per rail, cyclic exact bigram DP within top8 shifts, top24 refined all shifts. Three target-excluded literary plants recover both rows and all26 shifts, 603/603 p2 holdout (600 keyed +3 identity fringe). Original train gain −0.382218, p2 −1.970250 nats/rune vs uniform; exact replay, nonprose. Heuristic across rows, no all-key exclusion. [Consolidated report](../../im-results/lp2-p0-mirror-pair-hill-q13-blind.md), [SFT](../../sims/lp2_p0_mirror_pair_hill_q13_blind_sft.cjs), commits 0091a57ba24eb9ad605989871bd4c00de4b4071d and 9036281e2695c6800fc5900bd32c132ef31d4a83.
+
+**Exact all-matrix literal-title F-hold branch:** red13 public key, p0 black body249/p1 266/p2 201, independently reset outside-in rails with authentic plaintext-F holds before mirror mixing. All 840 nonzero inverse rows; 12 survive p0/p1, 128 invertible ordered matrix pairs. Three independent planted matrices recover exactly, 603/603 heldout. Original fitted left rail dies on p2 pair29; all-row p2 feasibility leaves [6,3] and [17,23]=27[6,3] mod29, hence zero invertible matrices. Exact language-independent obstruction to this fixed key, orientation, clock, framing. [SFT](../../sims/lp2_p0_mirror_pair_literal_title_fhold_sft.cjs), [raw](../../im-results/lp2-p0-mirror-pair-literal-title-fhold-output.json), consolidated report above; exact certificate commit 19c1d01eb3dd8d82f0ca145c98489190aaedd970. Connected V8 actual execution, no Windows CI claim. No recovered original key or plaintext. Retire these two receiver branches; do not expand unselected mirror-key variants.
+
+---
+
 # Agent18 current research frontier — 25 November 2026, 2026-11-25T22:37:13.894Z
 
 Immutable lease `agent18-20261125T2233Z-draw3`, claimed 22:33:27.653Z, verified claim d3ddbad080aa156e1069bd560badc4263510277c. Earliest orderly release 23:43:27.653Z. Draw3 normal issue-directed.
