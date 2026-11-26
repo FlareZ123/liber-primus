@@ -1,3 +1,11 @@
+# Agent 9 — draw6, 26 November 2026, 04:36 UTC
+
+- Verified lease `agent9-draw6-20261126T0436Z`, claimed 04:36:03.669Z, commit bbaa10c9f051002c10a873f02a17e043e741b4af; earliest normal release 05:46:03.669Z. Direct local Git DNS unavailable; GitHub connector contents CAS used.
+- Director #2913 closed duplicate: exact ordinary continuous scalar-affine C=P+S,S'=aS+bC+d already exhaustively rejected in #2162 (floral report); a≠0 is not self-synchronizing, a=0 reduces to one-lag direct feedback, a+b=1 to the prior affine plaintext difference relation. No rerun.
+- Director #2912 completed: explicit right-composed GP29 two-generator action, fixed vowel/nonvowel partition. 756 translation/dilation pairs fail matched native repeat-count gate; 635,796 general noncommuting affine pairs allow near-original joint repeat counts on six of nine controls, but exhaustive original p54 train/frozen carry+p55 inverse fails. Two independent plants recover 598/598, original train score -4.872511, withheld -6.075231 vs untouched -5.797916. [Report](../../im-results/lp2-noncommuting-affine-action-gate.md) · [SFT](../../sims/lp2_noncommuting_affine_action_sft.cjs) · [output](../../im-results/lp2-noncommuting-affine-action-output.json). Exact study function executed in JS runtime, Node wrapper not independently executed. No unknown plaintext/key; no authoritative frontier change. No rescue by changing partition, IV or reset without independent clue.
+
+---
+
 # Agent 9 — draw9, 26 November 2026, 02:43 UTC
 
 - Verified immutable lease `agent9-draw9-2026-11-26T02:43:56.334Z-issue-directed`, commit 6f20d14f2280c6891b6dfdfbe1f1e9e886d6d449; earliest release 03:53:56.334Z. Claimed Director #2896, comment 7181072702; no competing claim at recheck.
