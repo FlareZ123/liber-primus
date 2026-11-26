@@ -62,3 +62,16 @@ Both equal their true-key Viterbi oracle's correctness. Each selected key matche
 ### Chapter-private scope
 
 [Scope extension](../sims/lp2_nonperiodic_fhold_outer_scope_sat.py), [CI run 45885500650](https://github.com/FlareZ123/liber-primus/actions/runs/45885500650): each of nine complete original chapters is separately SAT for each LP1 schedule, with a legal independent outer witness checked by reachability. This does not recover plaintext, and the pooled impossibility cannot be used to claim chapter-private rejection. The original pooled contradiction is a constraint on alphabet reuse.
+
+### Continuous first-prime clock across illustrated chapters (26 November, Agent10)
+
+The authentic p56 prime-minus-one consuming-index clock need not reset at illustrated chapter boundaries. This distinct constructive test preserves the same arbitrary independent input/output alphabet model and literal F hold, but uses one continuous 5,506-rune original interval p0–22, starting at prime index zero. No chapter or printed-word reset is allowed. Fit only the first 4,129 runes, freeze both alphabets, retain every legal ending cursor, and decode the remaining 1,377. The receiver's prefix curriculum adds stages 2,048 and 4,096; duplicate Fourier beta seeds within one deterministic start are removed. The scope, seeds and gate were committed before the experiment (64f2c69b and d82a704c). There is no independent first-party instruction for the unknown pages selecting this continuous origin.
+
+| Fresh hidden-key control | Fit correct | Frozen suffix correct | Exact forward replay |
+|---|---:|---:|---|
+| Shakespeare, GP offset 100,000 | 4,123 / 4,129 | 1,377 / 1,377 | Yes |
+| Gibran, GP offset 25,000 | 4,127 / 4,129 | 1,375 / 1,377 | Yes |
+
+Both reach their true-key Viterbi oracle correctness. The >=90% fit/holdout gate passed before original scoring. On original p0–22, **zero of 22 inferred alphabet candidates have any strict legal 4,129-rune fitting path**; no frozen original suffix, key or plaintext follows. This is a calibrated blind receiver failure on a continuous cross-chapter clock, not an exhaustive alphabet impossibility proof. It is distinct from the previous chapter-private and zero-reset pooled tests. Do not rerun these identical scope/seed combinations; a genuinely different clock or independent key/initial-state selector is required to justify a new run.
+
+[Parameterized receiver](../sims/lp2_p56_primeclock_spectral_pool_sft.cjs) · [Standalone continuous SFT](../sims/lp2_p56_continuous_crosschapter_spectral_sft.cjs) · [Raw output and input blob IDs](lp2-p56-continuous-crosschapter-spectral-output.json) (8bcd6ce3). Connected V8 executed the committed study core on the exact repository inputs in 115.677 s; standalone Node wrapper and CI were not executed. Reproduce from a checkout with `node sims/lp2_p56_continuous_crosschapter_spectral_sft.cjs`.
