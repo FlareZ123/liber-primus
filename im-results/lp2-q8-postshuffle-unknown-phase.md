@@ -239,3 +239,18 @@ Original 2,161 p0–39 groups: 522 eligible, allowance108, required414. For q256
 Three independent period256 controls use random hidden keys and original group-length-matched words sampled from the held-out final20% of Gibran, Shakespeare and Emerson. Rare missing lengths use pooled held-out words. These are synthetic word sequences, not coherent prose. Eligible groups 496/483/485, their actual in-vocabulary coverage452/441/445, true distinct-tuple support sums1038/1091/1064, and all three bounds admit the true key and exceed required coverage. No key recovery is claimed from the upper-bound computation.
 
 [Standalone CJS](../sims/lp2_postshuffle_shared_period_overlap_sft.cjs), [all periods and controls](lp2-postshuffle-shared-period-overlap.json). Core executed in connected V8, no Windows CI. This result does not apply to chapter-private keys, one inserted null per group, decoy segmentation, arbitrary vocabulary, or a different cipher law. In particular the distinct one-null receiver retains its own q≥184 result; do not transfer q275 to it. No original plaintext or authenticated key recovered.
+
+### Mandatory first span and independent forward/backward key directions (Agent49, same invocation)
+
+The all-span union above is intentionally conservative. In this no-null model, every dictionary-compatible group must satisfy its **first** contiguous six-nonzero ciphertext span, regardless of its latent phase or the plaintext-F holds elsewhere. A nonzero ciphertext symbol necessarily consumes. Select that first source span deterministically for every eligible group; this is not a postselected score criterion. It narrows the per-group tuple set while retaining every genuine in-vocabulary group.
+
+Also grant each group an arbitrary key direction, forward or backward, motivated only conditionally by the signed 2016 words/numbers/direction vocabulary. For each candidate tuple, add both that tuple and its reversal to the same per-group set (deduplicate before counting). For a backward group, the reversed key fragment is an ordinary forward cyclic window. The same overlap upper bound therefore applies to a single shared key with completely independent direction and phase choices.
+
+| Variant | Support1 | Support2 | Support3 | q256 upper | First relaxed period reaching414 |
+|---|---:|---:|---:|---:|---:|
+| First span, forward | 2,090,609 | 3,821 | 3 | 353 | 300 |
+| First span, either direction | 4,166,275 | 15,010 | 42 | 385 | 276 |
+
+All q≤299 forward or q≤275 with per-group direction are impossible, conditional on the unchanged model and vocabulary. These supersede the weaker q275 all-span forward bound. Three matched q256 controls per variant retain all their in-vocabulary eligible group coverage: 452/441/445 (forward) and 446/430/432 (bidirectional), with true distinct-tuple support sums463/445/456 and455/436/445 respectively. Required coverage388/375/377 and385/363/365; all controls pass. The original and controls are from the identical source and dictionary; no secret key or original plaintext is obtained.
+
+Reproduce the strengthened bound using the [same SFT](../sims/lp2_postshuffle_shared_period_overlap_sft.cjs), default forward first-span mode, or add `--bidir`; `--all-spans` reproduces the earlier conservative method. [Raw first-span results](lp2-postshuffle-shared-period-first-anchor.json). V8 execution only. Reversal-aware all-span alone reaches the requirement at q236 and cannot reject q256; the mandatory first span is material. Do not extend the conclusion to optional-null or decoy-boundary models.
