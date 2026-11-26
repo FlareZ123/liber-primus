@@ -1,0 +1,233 @@
+{
+  "test": "p56 digest against signed 2014 Onion5 Interconnectedness source and MP3",
+  "pinned_source": {
+    "repository": "Dukotah/cicada3301",
+    "commit": "fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb",
+    "message_path": "corpus/A-primary-artifacts/pgp/messages/corpus_2014-01-interconnectedness-hex.asc",
+    "mp3_path": "corpus/A-primary-artifacts/2014/signed_interconnectedness_decoded.bin"
+  },
+  "target": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "message": {
+    "bytes": 13526359,
+    "sha256": "aa11ab74ea83d68dc4e0bf76c96baca9e7f37909432917ff4d8d5e924d9a8189"
+  },
+  "mp3": {
+    "bytes": 6651873,
+    "sha256": "1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6",
+    "id3v2": {
+      "major": 3,
+      "minor": 0,
+      "tag_bytes": 54,
+      "frames": [
+        {
+          "id": "TIT2",
+          "payload_bytes": 19,
+          "text": "Interconnectedness"
+        },
+        {
+          "id": "TPE1",
+          "payload_bytes": 5,
+          "text": "3301"
+        }
+      ]
+    },
+    "id3v1_present": false,
+    "mpeg_stream_bytes": 6651819
+  },
+  "hex_payload": {
+    "hex_digits": 13303746,
+    "decoded_bytes": 6651873,
+    "sha256": "1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6"
+  },
+  "candidate_count": 13,
+  "candidates": [
+    {
+      "source_form": "complete_pgp_clearsigned_message",
+      "bytes": 13526359,
+      "sha512": "8350c7cb68e2477b0b6bd3d325319523d5c9c3fec42275ccb58d73ed2b1d747ef75ca61050e98f1dde136871dd15a2b5e51069bc83e127044770efc4ef42de67",
+      "sha3_512": "a0a0355c07c5916392579452794278d9b093cd6bfc362b402b51a44f7bf8a68236bdf22e0435503e5ed6d3daca78f6cc0e99939408d670b0f3a33a45a25884ad",
+      "blake2b_512": "408f93c568e50afe19b8842686f24e5c40a2f862f8467ca77fa1465e75a0b4fd78be852d8067c83e4a726f7ec2a22fcd203b92ef2656866a417f93052014bda6",
+      "whirlpool": "7ec36e9ef3780ff815c69058a8d018ef18347069d88892f63daf9fdbc0f9105c54652da4c164a6a9c138023c80d91b2738ea9ee21536e4bb0dbf6eca4cbf1ba5",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "clearsigned_body_before_signature",
+      "bytes": 13525476,
+      "sha512": "2b01950c64afa63cdcba9f5e1ada264b1b477c8ae18a35995a5cefe19444f866f42bd64d42341599c774fc3592b5e2d0bd107249b55d0c3da403ec4d116584a6",
+      "sha3_512": "4c966f40e125fa4b1fbf4729a35be1151a889bd70fc0e40563b3da5f7bccc0c35cfdd2982278ee14d1e50e4b81032c172aba3506215fd8df6aea657fc3a1737c",
+      "blake2b_512": "6ba23357e6775e36e230cfac92f3a379a3459df49377b6c2e1abd1736fff19f963dc8610c6b54d05a8e4aa4eb7b162061fc308bb6bd42a4c2d4b96f03af8621d",
+      "whirlpool": "47ae7d137d4bd6c24eb599d6308e597058b116d8473ead9a9db939ff222c36a862fa06c3d8b08a8f0bba861db32443304670cd99192e05135200d08b36c8f88a",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "compact_hex_payload_ascii",
+      "bytes": 13303746,
+      "sha512": "904ebcdd71c3c2e212e4568bdee819dd79788985d65bb28814a69fbfa3ea31c620b253fc6b28d2521a51529b04673513e45de77962494585555a15e12245f322",
+      "sha3_512": "8c67badd9b06660f93c3c0f5db7f96c97ab9dd29d76cb4e079bb2a5bc35b5095c77a2c41b959b0ae6ce11253a73131916c4d2878b612898fea7ea4072789b405",
+      "blake2b_512": "dd5d61e87b042b332fe8528996fd7646f67a0e5f9c1458c550ebc8fa8ddd1c1901e8277c5dcee4d28419e38d9806afcb649547da985c84c6514f494fe862af6c",
+      "whirlpool": "84e4f147018f76b0534bd446078541565ff74a27b9b6b847c4c5b36e43b3c36cdf1797c0e82be695652f83c5ef5c7a2b371f58afe91f835092f1eee71d3f7950",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "decoded_interconnectedness_mp3",
+      "bytes": 6651873,
+      "sha512": "4b5c9e89b76f1cdf23c8f33330e1a56e9a27f207ea9f55f3ea0ff0ed97ab57c224b144861ac5c9f33e72172aee02ccd45e0c6ee5d4fad8c61b465911f136213a",
+      "sha3_512": "ea053c3ac4717fcf45e2e4037a0be96eff855f2f2e254f28c6f0df5053a6a4b51e9b907d43eefee10e6958295834eb13c9b58f9756df0f0526197e39f14b2036",
+      "blake2b_512": "1d25482aafae9c34a68c412954f6045bf864b6993515b9802bd8e26f2cac1b61e37b157115c3c019e4aaf3b17d421eae62772b8b2e2569a3de38455e1e028d23",
+      "whirlpool": "4c15ec2e6db02a8bd96a0134bcbcedbaab7e0db18072096fb1215f9102366d9a825709591c596b33f254977c05d6addbf9a5353065669e44df36b9877bfea185",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_complete_tag",
+      "bytes": 54,
+      "sha512": "94fc6a553faf8216d451aed5e8e19adff97e36ab4f7fdf74de1985ab1309ad514996b0f8f1cc163347f878c0860f1929631e287522bcb2b3f92dec26e6440d42",
+      "sha3_512": "3387928c6554c5fcbe7e7cdf0002f0025be50b77fa01d9b13da68202d5700623e2a953da43875adc71dc9166fb6f214bc2dbdd13f082d52a6d8c3902b71be06b",
+      "blake2b_512": "a36c1f26fd5999364051fe0736f26c320a3e500a7a0d09925de6b4ce777006a045eedadba052ee37be1030361cca19b8105b96035bb7e238544fac75979c007d",
+      "whirlpool": "e5b440fc9159a59b18de9cd3699ac104ad328a5a6ff7908fd2ce9462901021e4ea654f6aef8d5549109b16bd3f9d06660f33f6bf346c31f3ebb5cf41a1ab4ebf",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_body_without_header",
+      "bytes": 44,
+      "sha512": "29ef891cd6a482f19ab7850ca5f8d5167c23c8dbef5f4b3b54b9ffc7df38849fdb1b275226a4b9f971465a86118d0b577cb3243949acf068b38887146d5d05bd",
+      "sha3_512": "056f65254b517ebd5e9ad95fbc5170bf4f243c5037501894a25d997c34be204d5541321ddc1dceb0b08cfc85d2dce5c895c2d589e5e1102e3b33e08e2c2507c1",
+      "blake2b_512": "a5a22aed834a0c7c47c77b61dfc0f7b79610210717b71b7b5402d4b48ea34d64d23fb4d1489c14eb04e6b41d5725330d9c8dd689028737674ab145fcd3a88970",
+      "whirlpool": "912c065d84a7a59948064d7f0406f878236e755714b0b3b9c90062c44ab8719ef180fc462ca8141deea788ac5e1ff31d5b4e03efc73862f53a325e5fb69118e5",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "raw_mpeg_audio_frame_stream",
+      "bytes": 6651819,
+      "sha512": "1787bc071863e79fc7ebf66d5a40d951b5cb95c161c2210f9ed6999166a687cddcd9f6a7751e387e6b59514c8d8e666aa94d1654d295a81abed100a5bd6e047a",
+      "sha3_512": "d7e5e81e1fcc6c96f50f66cb103a30b0401784522144082d1b70bba453170a4cfe923fba370e1c1457b43812a963537e02cd39557cbdecc03cef351723267082",
+      "blake2b_512": "a5c0a3d2ae700bb32b24149953f45726b7427dd8dc5e75c9989aa45dd115cd43994512714417d5d4a7001757ca1768ef8feae14abdad5bf23688591a4e8356de",
+      "whirlpool": "d4e4a7b819d68c785644e283a200a5ab54dba08333fc99c3f88cbeee6e393fcb336ee94b70a64adf069c09cb15f8f6ee2a42006136663f39fd5592cb4a91a95e",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TIT2_complete_frame",
+      "bytes": 29,
+      "sha512": "6fba4d4737acfaf66df67267b2c8cd7141bd13fa2fe739ef15288e9273e018ccd23f4414080e9bc6843f4e08e569f77fae0d940539e5f0475b5a7a8c53ecb5d5",
+      "sha3_512": "d1205e0c3334985eee7bbe481acd8d0da1e2c62ae2673cc4477a22b33754ddec981162d56fe7deeb4723d203f092118bb0e840b916a3127c912b29aa9867e0aa",
+      "blake2b_512": "be37bb29d38cbeb9371bb8e8797b4e6d26ca42caa5a0d36ab272c80213038db87481d0d1a20fe02bd5b41ce9a488814a595a5e558cfbfffcfcc8f08ab712aaa1",
+      "whirlpool": "5c5518aaa45f33402cdaf3012eafdd2122f6f68ac1b31b0366fdd8fbd84ac7fe1dcc2868c6d611ddfde25a284b04a7c7a76e5ad5d9a3bdc09bbb861f2aac143a",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TIT2_raw_payload",
+      "bytes": 19,
+      "sha512": "626c052343c18f9adf9289bda306dbdb8abca7e96d4b338f84ab06fd5ab07ba9e6309bcd7ad2a0bd95915f4e0cf112e90d46bf771c3dbb6b9004b18dd09d5bce",
+      "sha3_512": "aa4e531ca7603daedabf3a7a0e25d30022e90e0e59ca3065320355796b24ba1d01295df2f0e4f270803dd5b9d0eeca5db09f8925b97b373d737c135e4706a4da",
+      "blake2b_512": "528c223c876a81c1604b85f028cbe97a26a7338a11e7261c3e2a0586af9c580a8349f04e058a3e30bb8cd2fe1eb73436d1731b2b3a8fa13554fe430279d8e075",
+      "whirlpool": "a21a3841da07a5dd472f7082aca1518c04a12254dc8daca251d1fb9b042ced4fd82d3bf36f884777469275617b59ea401c7412b87b34c80e958584f3db8491af",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TIT2_decoded_text_utf8",
+      "bytes": 18,
+      "sha512": "65c36a9c51b4d919e132838d82495f102d1e5c39cdb7f28d784a1ef7a5c3a7fb6a728642416579e994aaf25fed8616828568bbeff4b9b5f2aa748087d9a1d7d7",
+      "sha3_512": "42ec4f4035ccd18d837d2d1a9e1d8f5ac396dffd8fef9f41f23bd28e86e22bd5f541e70c2df08f9b1dfd0a39deb8c12b0259f48a43dbca1fdad3dddd9ca8bef0",
+      "blake2b_512": "e82674fb0141f4b3584b076d8f47a7787c76cecc74e5fbb79e7d69933983b1b45a896ef8732a39c0c14b8e29fc48996ccf6edc00f95dce9f580676ad5fd75a7c",
+      "whirlpool": "63769136bf6722007d9af143d7194f423c644631d2abd33ae6d7bd8e88d483556246b77bd5dd93f0c741e77749bc9945f0c38ef38420c9bd0e35721935d2b3aa",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TPE1_complete_frame",
+      "bytes": 15,
+      "sha512": "2f2c08ab74043494691844c342478395aa26ef4bedf23aacd7142017b6e8effe118bb7ef523723321da87a9ef542b7684f295da465f95df91e98de3b7e7f9a06",
+      "sha3_512": "8be5c26db4de316ef734645ea354de9646f6c51d509a3305a87cd0d5c8236bbf412d1d8fa68b816d331025b273cfd6f0081b6979ecfc67318ea58abd545c2fca",
+      "blake2b_512": "3d1d1b67d397a8fe637bfb2ed964eddbe2ded6868c404f982f42b01062c5e75a351fd4458bede0a22c5299e84789e19148c4a3b701ea1f6a6ede3e4934b079df",
+      "whirlpool": "b89ffd4414e02f7ab7dc38039e411e062c5c7085c99a7b8ee2a3c11bb8e4b5e9f2e49b80d8a974fe40cedbf6ce1135039788fed2f1f2d1a457d8eaa46e3b3b7f",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TPE1_raw_payload",
+      "bytes": 5,
+      "sha512": "fdbf217ba1b4b83fbeb4cc36641e123e3426ef8f71abb0966fa2e13425a474bfe67769700e663e8a1094980639221c66fa416cf740d916e0a3a426e8d1442c85",
+      "sha3_512": "9c808cc52268c80bb6a60956bbf2ff62dc81180b64922304831be4ddecaf1ab4b13938e927f0dc996a7415ecd2a3dd69105775c597a85e45d46b7ca2de05484e",
+      "blake2b_512": "105b307bdb72ed0c9670e9d25a09cdd19e448469f64b9a131735c364531132c6c11a94bb3a76dd7837784baf49df18d5c50578415f335aef82d4018e007fbee3",
+      "whirlpool": "f12b3b0eb60b44d98ebfb28079b3bc8f272e751fea408b261f39aefe2a5cf691d340a74778f25c060b8e1bc4535a5a0cd38375c41635e09fbc6f89feaf125e72",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    },
+    {
+      "source_form": "id3v2_TPE1_decoded_text_utf8",
+      "bytes": 4,
+      "sha512": "418c6119e194d226c7094bd8140971f5b4109093d169fb614c12b37bb119acaf7f53931f7672fbfd7ff76e393e98c60baa4884642dc2eba8a4fdfa53d6642547",
+      "sha3_512": "49a8a7974b1428080d6c975e7e7ef98296c9e0f5de69eeae84ae95b260552336c40267518e04e4abaeb716c373512e9d16b26283fb46075c0a99fe78e46685be",
+      "blake2b_512": "a1e7b31ec1287a6617d36a1b5c7d8f8c3ff8f760e3493f88a6489b545b9172da7c7a9eac4eec9c3c5bcdaa494d2a56f74ddd3321cbf91cc5564d2cf971d1b41d",
+      "whirlpool": "991acb6b583ba0366f5d252aa73fee13586a998633b33abdc5bdd8d74f69cd80b38425589bf088a8d483edcc5deeed1c7c38e482eca0e0be316b4336485f2c74",
+      "matches": {
+        "sha512": false,
+        "sha3_512": false,
+        "blake2b_512": false,
+        "whirlpool": false
+      }
+    }
+  ],
+  "matches": [],
+  "conclusion": "No tested exact Interconnectedness source form matches the p56 digest",
+  "workflow_run_id": 45790661269,
+  "workflow_url": "https://github.com/FlareZ123/liber-primus/actions/runs/45790661269",
+  "script": "sims/lp2_p56_interconnectedness_mp3_hash_gate.cjs",
+  "workflow": ".github/workflows/agent44-p56-interconnectedness-mp3-hash-gate.yml"
+}

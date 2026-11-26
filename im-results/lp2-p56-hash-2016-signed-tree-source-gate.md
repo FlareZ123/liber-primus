@@ -1,6 +1,6 @@
 # Solved p56 deep-web hash: 2016, original LP2 pages, and historical archive candidates
 
-**Outcome:** no known preimage recovered. The earlier 2016/source gates remain negative under SHA-512 and Whirlpool; the additional 2014 Fifth-Onion signed-media gate tests 11 exact byte forms under SHA-512, SHA3-512, BLAKE2b-512 and Whirlpool (0/44 matches). The existing unknown LP2 plaintext and deep-web destination remain unsolved.
+**Outcome:** no known preimage recovered. The earlier 2016/source gates remain negative under SHA-512 and Whirlpool. Two additional 2014 gates reject exact Fifth-Onion signed-media forms (0/44) and Interconnectedness PGP/MP3 forms (0/52), each under SHA-512, SHA3-512, BLAKE2b-512 and Whirlpool. The existing unknown LP2 plaintext and deep-web destination remain unsolved.
 
 The independently solved LP2 p56 prints the 64-byte deep-web digest `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`. An authentic signed 2016 clue returns the player to Liber Primus and supplies a visible tree in a 563×569 JPEG, matching the prime-summed p32 11×11 rune axes. The image's authenticated 1,136-byte OutGuess message also equals the p32 middle 5×5 ring sum. That is a source-visible reason to ask whether the 2016 material finally supplies a direct preimage to the earlier hash. It does **not** establish that 2016 is the hash target, nor select a different digest than SHA-512.
 
@@ -13,6 +13,16 @@ A bounded preimage test covered 11 exact source forms: the complete signed file;
 The complete per-form digests and byte lengths are preserved in [the machine-readable result](lp2-p56-onion5-signed-media-hash-gate.json). Reproduce with [the standalone script](../sims/lp2_p56_onion5_signed_media_hash_gate.py) and [workflow run 45789016059](https://github.com/FlareZ123/liber-primus/actions/runs/45789016059).
 
 This excludes these exact Fifth-Onion signed-message and media byte forms only. It does not exclude an unarchived original HTML response, a different page state, or the separate deep-web page named by p56; the target and hash semantics remain unresolved.
+
+### 2014 Interconnectedness PGP/MP3 hash gate (Agent44, 26 November 2026)
+
+The source-pinned test covers the original clearsigned message `corpus_2014-01-interconnectedness-hex.asc` and decoded payload `signed_interconnectedness_decoded.bin` from `Dukotah/cicada3301` commit `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb`. The message is 13,526,359 bytes (SHA-256 `aa11ab74ea83d68dc4e0bf76c96baca9e7f37909432917ff4d8d5e924d9a8189`); the decoded MP3 is 6,651,873 bytes (SHA-256 `1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6`). The 13,303,746-character signed hex body decodes byte-for-byte to that MP3.
+
+Thirteen source-defined forms were tested under SHA-512, SHA3-512, BLAKE2b-512 and Whirlpool: complete PGP message, cleartext body, compact hex payload, decoded MP3, ID3v2 tag/body, MPEG audio stream, and the two ID3v2 text frames (complete frame, raw payload, decoded text). **Result: 0/52 exact matches**. The MP3's ID3v2.3.0 tag is 54 bytes and contains only `TIT2=Interconnectedness` and `TPE1=3301`; no ID3v1 tag is present.
+
+Full per-form digests are preserved in [the machine-readable result](lp2-p56-interconnectedness-mp3-hash-gate.json). Reproduce with [the standalone script](../sims/lp2_p56_interconnectedness_mp3_hash_gate.cjs) and [workflow run 45790661269](https://github.com/FlareZ123/liber-primus/actions/runs/45790661269).
+
+This excludes the exact signed message, its decoded MP3, its compact hex body, and the parsed ID3/MPEG components. It does not exclude a different 2014 page state, an unarchived HTML wrapper, or the separate deep-web page named by p56.
 
 The [standalone SFT](../sims/lp2_p56_hash_signed2016_original_sources_sft.cjs) hashes exactly **ten** frozen source interpretations: the signed 2016 JPEG file (**26,342B**), its extracted signed ASCII (**1,136B**), original LP2 illustrated p14/p32/p55 JPEGs (**436,699/362,637/614,928B**), the 2016 cleartext as originally extracted (**270B**), OpenPGP canonical CRLF cleartext (**287B**), decoded RSA signature packet (**543B**), its exact MPI (**512B**), and the exact **9 January 2016 original-host HTTP body**: the source-preserved 99-byte server-path preamble followed immediately by the canonical 26,342-byte JPEG (**26,441B total**; source SHA-256 `2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4`). The known SHA-512 `abc` test vector authenticates the operation before checking all original inputs. None equals the full solved p56 digest under SHA-512.
 
