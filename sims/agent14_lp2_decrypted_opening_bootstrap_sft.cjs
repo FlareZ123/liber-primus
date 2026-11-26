@@ -26,19 +26,34 @@ function main(c,n){
  }
  const read=(t,k)=>t.map(([a,b,j])=>mod(a+b*k[j]));
  function optimize(es){
-  const U=Array.from({length:13},()=>new Float64Array(q)),T=Array.from({length:13},()=>new Float64Array(q*q));
+  const U=Array.from({length:13},()=>new Float64Array(q)),edges=new Map();
   let count=0;
   for(const e of es){const t=e.terms;count+=t.length;const [a,b,j]=t[0];for(let k=0;k<q;k++)U[j][k]+=lu[mod(a+b*k)];
-   for(let i=1;i<t.length;i++){const [a,b,j]=t[i-1],[d,f,h]=t[i];check(h===(j+1)%13,"noncycle edge");for(let k=0;k<q;k++)for(let l=0;l<q;l++)T[j][q*k+l]+=lb[mod(a+b*k)][mod(d+f*l)];}
+   for(let i=1;i<t.length;i++){const [a,b,j]=t[i-1],[d,f,h]=t[i];
+    if(j===h){for(let k=0;k<q;k++)U[j][k]+=lb[mod(a+b*k)][mod(d+f*k)];continue;}
+    const lo=Math.min(j,h),hi=Math.max(j,h),id=13*lo+hi;
+    if(!edges.has(id))edges.set(id,{lo,hi,t:new Float64Array(q*q)});
+    const m=edges.get(id).t;
+    for(let k=0;k<q;k++)for(let l=0;l<q;l++)m[q*k+l]+=j<h?lb[mod(a+b*k)][mod(d+f*l)]:lb[mod(a+b*l)][mod(d+f*k)];
+   }
   }
+  // Conditioning on x0 and x12 leaves only consecutive edges on x1..x11.
+  const inner=[],outer=[];
+  for(const e of edges.values()){if(e.lo===0||e.hi===12)outer.push(e);else{check(e.hi===e.lo+1,"unexpected nonlocal interior edge");inner[e.lo]=e.t;}}
   let best=-Infinity,key=null;
-  for(let root=0;root<q;root++){
-   let dp=new Float64Array(q).fill(-Infinity);dp[root]=U[0][root];const back=[];
-   for(let j=1;j<13;j++){const next=new Float64Array(q).fill(-Infinity),prev=new Int8Array(q);for(let l=0;l<q;l++){for(let k=0;k<q;k++){const v=dp[k]+T[j-1][q*k+l]+U[j][l];if(v>next[l]){next[l]=v;prev[l]=k;}}}dp=next;back.push(prev);}
-   for(let last=0;last<q;last++){const v=dp[last]+T[12][q*last+root];if(v>best){best=v;key=Array(13);key[12]=last;for(let j=12;j>0;j--)key[j-1]=back[j-1][key[j]];check(key[0]===root,"trace");}}
+  for(let root=0;root<q;root++)for(let last=0;last<q;last++){
+   const W=U.map(a=>Float64Array.from(a));let constant=U[0][root]+U[12][last];
+   for(const {lo,hi,t} of outer){
+    if(lo===0&&hi===12)constant+=t[q*root+last];
+    else if(lo===0)for(let k=0;k<q;k++)W[hi][k]+=t[q*root+k];
+    else for(let k=0;k<q;k++)W[lo][k]+=t[q*k+last];
+   }
+   let dp=W[1];const back=[];
+   for(let j=2;j<=11;j++){const next=new Float64Array(q).fill(-Infinity),prev=new Int8Array(q),m=inner[j-1];for(let l=0;l<q;l++){for(let k=0;k<q;k++){const v=dp[k]+(m?m[q*k+l]:0)+W[j][l];if(v>next[l]){next[l]=v;prev[l]=k;}}}dp=next;back.push(prev);}
+   for(let end=0;end<q;end++){const v=dp[end]+constant;if(v>best){best=v;key=Array(13);key[0]=root;key[12]=last;key[11]=end;for(let j=11;j>1;j--)key[j-1]=back[j-2][key[j]];}}
   }
   const direct=es.reduce((v,e)=>v+score(read(e.terms,key)),0);check(Math.abs(best-direct)<1e-6,"score trace");
-  return {count,best,key,mean:best/count};
+  return {count,best,key,mean:best/count,noncycleEdges:[...edges.values()].filter(e=>e.hi!==e.lo+1&&!(e.lo===0&&e.hi===12)).map(e=>[e.lo,e.hi])};
  }
  function decode(ps,s,k){
   const p0=ps[0].slice(14).map((v,i)=>mod(v-k[i%13]));const a=p0.slice(0,13),b=p0.slice(13,26);
@@ -50,7 +65,7 @@ function main(c,n){
   return {bank,later};
  }
  function evalOne(ps,s){
-  const {entries,seam}=setup(ps,s),tr=entries.filter(e=>e.page<40&&!seam.includes(e.page)),te=entries.filter(e=>e.page>=40&&!seam.includes(e.page)),all=tr.concat(te),f=optimize(tr),g=optimize(all),d=decode(ps,s,f.key);
+  const {entries,seam}=setup(ps,s),tr=entries.filter(e=>e.page<40),te=entries.filter(e=>e.page>=40),all=tr.concat(te),f=optimize(tr),g=optimize(all),d=decode(ps,s,f.key);
   check(entries.every(e=>read(e.terms,f.key).every((v,i)=>v===d.later[e.page-3][i])),"linear reduction");
   const heldScore=te.reduce((v,e)=>v+score(read(e.terms,f.key)),0),heldCount=te.reduce((v,e)=>v+e.x.length,0);
   const pageScores=entries.map(e=>({page:e.page,n:e.x.length,mean:score(d.later[e.page-3])/e.x.length,prefix:d.later[e.page-3].slice(0,45).map(i=>c.translit[i]).join(" ")}));
@@ -62,7 +77,7 @@ function main(c,n){
   const p0=bank.slice(0,n0),p1=bank.slice(n0,n0+n1),p2=bank.slice(n0+n1);
   const truth=pages.slice(3).map((a,j)=>{const donor=held[(j+di)%held.length].x;return a.map((_,i)=>donor[(i+j*17)%donor.length]);});
   const ps=[pages[0].slice(0,14).concat(p0.map((v,i)=>mod(v+mask[i%13]))),p1.map((v,i)=>mod(v+s*ks[0][i%13])),p2.map((v,i)=>mod(v+s*ks[1][i%13])),...truth.map((x,j)=>x.map((v,i)=>mod(v+s*ks[j+2][i%13])))];
-  const o=evalOne(ps,s),out=o.decoded.later;return {seed,s,mask,found:o.f.key,keyMatches:o.f.key.filter((x,i)=>x===mask[i]).length,truthBankMatches:o.decoded.bank.flat().filter((x,i)=>x===bank[i]).length,allMatches:out.flat().filter((x,i)=>x===truth.flat()[i]).length,total:truth.flat().length,fitMean:o.f.mean,heldMean:o.heldMean,allMean:o.all.mean};
+  const o=evalOne(ps,s),out=o.decoded.later,flatTruth=truth.flat();return {seed,s,mask,found:o.f.key,keyMatches:o.f.key.filter((x,i)=>x===mask[i]).length,truthBankMatches:o.decoded.bank.flat().filter((x,i)=>x===bank[i]).length,allMatches:out.flat().filter((x,i)=>x===flatTruth[i]).length,total:truth.flat().length,fitMean:o.f.mean,heldMean:o.heldMean,allMean:o.all.mean};
  }
  const original=[-1,1].map(s=>{const o=evalOne(pages,s);delete o.decoded;return o;});
  const controls=[plant(140026,-1,0),plant(140027,1,1)];
