@@ -221,3 +221,21 @@ On original p0–39, 522 groups have an eligible nonzero six-window. Of 4,383,04
 - Deterministic native-control seeds: `0x26840111`, `0x26840222`, `0x26840333`; matched null seed is each native seed XOR `0x5a5a5a5a`.
 - Executed by [GitHub Actions run #984](https://github.com/FlareZ123/liber-primus/actions/runs/45540766626), checked out at `c8877b0219e62d137337fb93888c51365736f027`.
 - Machine-readable output: [lp2-q8-postshuffle-unknown-phase-output.json](lp2-q8-postshuffle-unknown-phase-output.json).
+
+## Arbitrary 256-symbol shared key: overlap-weighted path bound (Agent 49, 26 November)
+
+This strengthens Agent23's six-tuple coverage bound using exactly the same original p0–39 training groups, 35,944-form dictionary, literal plaintext-F holds, arbitrary independent starting phases, and 5% OOV allowance. No inserted-null relaxation is included. It is an all-secret-key necessary condition, not an optimizer or a key fit.
+
+For a six-symbol key tuple e let w(e) be the number of distinct eligible source groups which admit that tuple on at least one contiguous nonzero ciphertext span and at least one compatible dictionary word. The actual source gives 4,366,806 tuples of support1, 16,196 of support2 and 38 of support3. Any in-vocabulary eligible group must have at least one of these candidate tuples among the cyclic key windows. Its support can be counted multiple times, hence total support of the q windows is an upper bound on group coverage. Give each position baseline support1, even if its actual tuple is unsupported. Only the 16,234 high-support tuples have positive extra weight w(e)-1.
+
+A succession of high-support windows at distance d<6 requires equality of the preceding tuple's suffix of length 6-d and the next tuple's prefix of that length. At d≥6 there is no overlap. Let F_t(e) be the largest extra support of a relaxed path ending in high tuple e at position t (zero-based). For d=1…min(6,t), obtain the maximum F_(t-d)(a) over tuples a having the required overlap, using the global max when d=6. Then
+
+    F_t(e) = w(e)-1 + max(0, max over allowed predecessors and d).
+
+The max over all t<q and all e gives a valid extra-support upper bound: take the linear sequence of high windows of any genuine cyclic key; compress each gap longer than six to six (the overlap requirement remains vacuous); preserve all high occurrences. The resulting path fits within q positions. Relax the closing overlap and grant repeated tuples, even though repeating a tuple cannot increase distinct covered groups. Every relaxation is in the upper-bound direction. The implementation uses a six-step ring buffer of prefix/suffix equivalence-class maxima, not pairwise graph enumeration. Total coverage is at most min(eligible, q+max F). This also holds for every smaller period by monotonicity of the bound; no claim of tightness.
+
+Original 2,161 p0–39 groups: 522 eligible, allowance108, required414. For q256, max extra=129, coverage ≤385, a deficit of29. First period where this particular upper bound reaches414 is **q275** (q274 below414). Therefore **all shared cyclic keys of periods 1–274 are excluded** under the fixed register/clock/group-preservation assumptions, including arbitrary q256 keys independently of the actual numeric grid content. The previous q≥188 bound remains a weaker special result.
+
+Three independent period256 controls use random hidden keys and original group-length-matched words sampled from the held-out final20% of Gibran, Shakespeare and Emerson. Rare missing lengths use pooled held-out words. These are synthetic word sequences, not coherent prose. Eligible groups 496/483/485, their actual in-vocabulary coverage452/441/445, true distinct-tuple support sums1038/1091/1064, and all three bounds admit the true key and exceed required coverage. No key recovery is claimed from the upper-bound computation.
+
+[Standalone CJS](../sims/lp2_postshuffle_shared_period_overlap_sft.cjs), [all periods and controls](lp2-postshuffle-shared-period-overlap.json). Core executed in connected V8, no Windows CI. This result does not apply to chapter-private keys, one inserted null per group, decoy segmentation, arbitrary vocabulary, or a different cipher law. In particular the distinct one-null receiver retains its own q≥184 result; do not transfer q275 to it. No original plaintext or authenticated key recovered.
