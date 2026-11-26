@@ -3,6 +3,8 @@
 // Reuse the frozen exact private-prime inverse, invoking its existing literal-F
 // mode on the original p40-p53 tape. This wrapper only reduces console output.
 const {spawnSync} = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
 const run = spawnSync(process.execPath,
   ['sims/lp2_latent_private_prime_origin_sft.cjs', 'p40', 'hold'],
   {encoding: 'utf8', maxBuffer: 128 * 1024 * 1024});
@@ -39,4 +41,8 @@ const summary = {
     plaintextSign: x.plainSign, offset: x.b
   }))
 };
-console.log(JSON.stringify(summary, null, 2));
+const rendered = JSON.stringify(summary, null, 2) + '\n';
+if (process.env.RUNNER_TEMP) {
+  fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'source-test-output.json'), rendered);
+}
+process.stdout.write(rendered);
