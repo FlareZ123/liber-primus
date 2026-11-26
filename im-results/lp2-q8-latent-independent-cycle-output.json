@@ -1,0 +1,682 @@
+{
+  "method": "unknown q8 up to cyclic rotation, >=8-consuming dictionary word seeds, 3/4-consuming lexical vote ranking, top48 prefix exact word marginal",
+  "gate": false,
+  "controls": [
+    {
+      "tag": "donor0",
+      "candidates": 932941,
+      "align": 1568331,
+      "truthSeeded": false,
+      "truthSupport": 0,
+      "truthRank": 0,
+      "truthKey": [
+        1,
+        25,
+        24,
+        10,
+        19,
+        21,
+        3,
+        3
+      ],
+      "selected": [
+        1,
+        25,
+        24,
+        10,
+        19,
+        4,
+        3,
+        3
+      ],
+      "correct": false,
+      "fit": -3.2581067962855754,
+      "held": -3.7256994524450313,
+      "heldAccuracy": 0.4605263157894737,
+      "heldBoundaryF1": 0.5964912280701754,
+      "decoded": "FLOW LOS THEN RISNG ST D WAUNG HIS BEG TEA IN TREE BUT A ALMITRA SPOCE G OF NG WE WOULD ASC NOW OF US LAND SAY AID YOU WOULD CNOW ME SECRETLY DEATH GOD YEAS SHALL YOUR U J THNG A I A HE S S YOU A WE W ME THE THE AM RE OF C EARS THEE ER WHO A S DUNG IS BOUND EYES JOEL IX ARC TEETH THE DAY D AN NO HAD AS OR THEIR A CEG DO FLIGHT IF YOU U OUH THNG J DEED I IS END A IS H A IF WEAC DEATH OPEN SEA D YEA SAD THNG DE UNTO THE HE X I OF C EARS FOR C EARS",
+      "fallback": 12,
+      "top": [
+        {
+          "key": [
+            1,
+            25,
+            24,
+            10,
+            19,
+            4,
+            3,
+            3
+          ],
+          "seedScore": 48.789377854914335,
+          "support": 1,
+          "fit": -3.2581067962855754,
+          "held": -3.7256994524450313
+        },
+        {
+          "key": [
+            1,
+            16,
+            11,
+            10,
+            19,
+            21,
+            3,
+            3
+          ],
+          "seedScore": 33.96855443539265,
+          "support": 1,
+          "fit": -3.395642069262944,
+          "held": -3.4111718583512705
+        },
+        {
+          "key": [
+            1,
+            25,
+            24,
+            22,
+            15,
+            21,
+            3,
+            3
+          ],
+          "seedScore": 34.96478276823312,
+          "support": 1,
+          "fit": -3.454357267365034,
+          "held": -3.9392033477009982
+        },
+        {
+          "key": [
+            1,
+            25,
+            24,
+            10,
+            19,
+            6,
+            6,
+            3
+          ],
+          "seedScore": 27.27583866727785,
+          "support": 1,
+          "fit": -3.6714079271787523,
+          "held": -3.70021411234488
+        },
+        {
+          "key": [
+            1,
+            18,
+            24,
+            1,
+            19,
+            21,
+            3,
+            3
+          ],
+          "seedScore": 33.74801388035345,
+          "support": 1,
+          "fit": -3.7371910350823394,
+          "held": -3.793980946520918
+        }
+      ]
+    },
+    {
+      "tag": "pad0",
+      "candidates": 932746,
+      "align": 1566536,
+      "truthSeeded": null,
+      "truthSupport": null,
+      "truthRank": null,
+      "truthKey": null,
+      "selected": [
+        2,
+        15,
+        28,
+        17,
+        24,
+        17,
+        18,
+        17
+      ],
+      "correct": null,
+      "fit": -4.151453311446895,
+      "held": -4.765154220509236,
+      "heldAccuracy": null,
+      "heldBoundaryF1": null,
+      "decoded": "HE T IU S OUR YOU I SIRE EX I SLNG UII AS OF T CAB DO OR D OE AND A HOO BE OE P EN P PP HA DEAR UP P S IF I BUT A CNG TO SO I ONE A A D NE A SO A THE OF WYETH OUERLAID AXE THY OF OH ICE D OF C THE NOT I OH S YET MY COG IS I G HUNG OPE C MR PATH HEAP HA COW S D SY HAG X DO S MOW A D BUT ONE AY ME S A A TO BE I I ARM LIPS I LED YE YOU I HE EX IN S D A ON OO A MY HO S NOW I I IN A AN EM IS P PP LA P MEW ON IX BE OE R P US X HO SNG AS THEAH GO AN I IT WE S OE RT I I LOCC A",
+      "fallback": 18,
+      "top": [
+        {
+          "key": [
+            2,
+            15,
+            28,
+            17,
+            24,
+            17,
+            18,
+            17
+          ],
+          "seedScore": 28.383252958484903,
+          "support": 1,
+          "fit": -4.151453311446895,
+          "held": -4.765154220509236
+        },
+        {
+          "key": [
+            1,
+            23,
+            2,
+            4,
+            27,
+            11,
+            9,
+            22
+          ],
+          "seedScore": 28.046579632946777,
+          "support": 1,
+          "fit": -4.180451161592513,
+          "held": -4.352849106405689
+        },
+        {
+          "key": [
+            0,
+            22,
+            19,
+            15,
+            24,
+            27,
+            17,
+            28
+          ],
+          "seedScore": 26.677187278414408,
+          "support": 1,
+          "fit": -4.204569635949162,
+          "held": -4.614168587016903
+        },
+        {
+          "key": [
+            0,
+            17,
+            24,
+            8,
+            5,
+            2,
+            14,
+            13
+          ],
+          "seedScore": 29.600071416850014,
+          "support": 1,
+          "fit": -4.209480485355095,
+          "held": -4.393928616596137
+        },
+        {
+          "key": [
+            2,
+            12,
+            20,
+            7,
+            23,
+            26,
+            27,
+            23
+          ],
+          "seedScore": 27.439818866007876,
+          "support": 1,
+          "fit": -4.247963584150833,
+          "held": -4.540697458847747
+        }
+      ]
+    },
+    {
+      "tag": "donor1",
+      "candidates": 931918,
+      "align": 1565451,
+      "truthSeeded": true,
+      "truthSupport": 4,
+      "truthRank": 1,
+      "truthKey": [
+        1,
+        20,
+        12,
+        25,
+        15,
+        28,
+        25,
+        27
+      ],
+      "selected": [
+        1,
+        20,
+        12,
+        25,
+        15,
+        28,
+        25,
+        27
+      ],
+      "correct": true,
+      "fit": -2.1256700836231004,
+      "held": -2.164336536782282,
+      "heldAccuracy": 0.9736842105263158,
+      "heldBoundaryF1": 0.9743589743589743,
+      "decoded": "HERE COMES THE DUCE HIMSELF GLOUCESTER MY NOBLE LORDS AND COUSINS ALL GOOD MORROW I HAUE BEEN LONG A SLEEPER BUT I HOPE MY ABSENCE DOTH NEGLECT NO GREAT DESIGNS WHICH BY MY PRESENCE MIGHT HAUE BEEN CONCLUDED BUCCNGHAM HAD NOT YOU COME UPON YOUR TH UE MY LORD WILLIAM LORD HASTNGS HAD PRONOUNCED YOUR PART A MEAN YOUR UOICE FOR CROWN A OF THE CNG GLOUCESTER THAN MY LORD HASTNGS NO MAN",
+      "fallback": 1,
+      "top": [
+        {
+          "key": [
+            1,
+            20,
+            12,
+            25,
+            15,
+            28,
+            25,
+            27
+          ],
+          "seedScore": 57.33627790548543,
+          "support": 4,
+          "fit": -2.1256700836231004,
+          "held": -2.164336536782282
+        },
+        {
+          "key": [
+            0,
+            15,
+            28,
+            25,
+            27,
+            1,
+            20,
+            12
+          ],
+          "seedScore": 33.79135511155746,
+          "support": 1,
+          "fit": -3.3855558020021457,
+          "held": -3.801939467201816
+        },
+        {
+          "key": [
+            1,
+            20,
+            27,
+            25,
+            15,
+            28,
+            25,
+            27
+          ],
+          "seedScore": 36.315011610850384,
+          "support": 1,
+          "fit": -3.543000664417507,
+          "held": -3.3390921230473807
+        },
+        {
+          "key": [
+            1,
+            20,
+            5,
+            25,
+            15,
+            28,
+            25,
+            27
+          ],
+          "seedScore": 32.89937160329426,
+          "support": 1,
+          "fit": -3.549055380938281,
+          "held": -3.5955902002828535
+        },
+        {
+          "key": [
+            12,
+            25,
+            15,
+            28,
+            25,
+            27,
+            27,
+            20
+          ],
+          "seedScore": 35.986438187912114,
+          "support": 1,
+          "fit": -3.5798740854702897,
+          "held": -3.4608660387147387
+        }
+      ]
+    },
+    {
+      "tag": "pad1",
+      "candidates": 932286,
+      "align": 1566348,
+      "truthSeeded": null,
+      "truthSupport": null,
+      "truthRank": null,
+      "truthKey": null,
+      "selected": [
+        0,
+        6,
+        26,
+        3,
+        12,
+        0,
+        15,
+        24
+      ],
+      "correct": null,
+      "fit": -4.062241720955431,
+      "held": -4.7792327977511375,
+      "heldAccuracy": null,
+      "heldBoundaryF1": null,
+      "decoded": "X WE I CAWNG I ACRE A WHEAT D AND CNG J DO OF A JOY FEW OX I A R OX CNG OX S A PUT TURC WE AERY TIT IT LL AS EACH IT TH D OF DEUX AS O IX DYENG THE D CNG WOES I AND HO A EN S A WITH J BUT ON DICE A TO I HE A AS HANG H A THE A I I I AS NO SON X PEW RUG HE O GOD H NOT TO AS X H S B I OWN A D IT AN I TH CAMENSCI O THNG D YOUR AS HAS PUTS ROD NOXA I CNG D D D I SNEAC UP TM CWI D DO PAY SEA I AT HIE S IN I UARY O D BOW A A AY MY XXX LA A JEAN SO TAP D S B EA X I A HAS A FAT",
+      "fallback": 19,
+      "top": [
+        {
+          "key": [
+            0,
+            6,
+            26,
+            3,
+            12,
+            0,
+            15,
+            24
+          ],
+          "seedScore": 26.662098332875445,
+          "support": 1,
+          "fit": -4.062241720955431,
+          "held": -4.7792327977511375
+        },
+        {
+          "key": [
+            3,
+            6,
+            12,
+            8,
+            10,
+            25,
+            27,
+            8
+          ],
+          "seedScore": 32.39773240778616,
+          "support": 1,
+          "fit": -4.068348441007086,
+          "held": -4.788378061738508
+        },
+        {
+          "key": [
+            0,
+            2,
+            26,
+            24,
+            13,
+            21,
+            24,
+            3
+          ],
+          "seedScore": 26.875275685205555,
+          "support": 1,
+          "fit": -4.0923661535706755,
+          "held": -4.6334228403860696
+        },
+        {
+          "key": [
+            9,
+            25,
+            27,
+            21,
+            24,
+            16,
+            26,
+            12
+          ],
+          "seedScore": 26.496017530157967,
+          "support": 1,
+          "fit": -4.095094612595713,
+          "held": -4.8487624733942525
+        },
+        {
+          "key": [
+            3,
+            12,
+            10,
+            14,
+            26,
+            17,
+            6,
+            26
+          ],
+          "seedScore": 26.488468610937964,
+          "support": 1,
+          "fit": -4.113047255899295,
+          "held": -4.640245554205859
+        }
+      ]
+    },
+    {
+      "tag": "donor2",
+      "candidates": 933949,
+      "align": 1569219,
+      "truthSeeded": true,
+      "truthSupport": 2,
+      "truthRank": 1,
+      "truthKey": [
+        0,
+        21,
+        21,
+        2,
+        17,
+        28,
+        25,
+        25
+      ],
+      "selected": [
+        0,
+        21,
+        21,
+        2,
+        17,
+        28,
+        25,
+        25
+      ],
+      "correct": true,
+      "fit": -2.1999063581783243,
+      "held": -2.2145201611378162,
+      "heldAccuracy": 1,
+      "heldBoundaryF1": 1,
+      "decoded": "NEED NOT IF YOU DO NOT FIND HIM WILL YOU NOT ACCWIESCE THAT IT IS BEST YOU SHOULD NOT FIND HIM FOR THERE IS A POWER WHICH AS IT IS IN YOU IS IN HIM ALSO AND COULD THEREFORE UERY WELL BRNG YOU TOGETHER OF IT WERE FOR THE BEST YOU ARE PREPARNG WITH EAGERNESS TO NO AND RENDER A SERUICE TO WHICH YOUR TALENT AND YOUR TASTE INUITE YOU THE LOUE OF MEN AND THE HOPE OF FAME HAS IT NOT OCCURRED TO YOU",
+      "fallback": 0,
+      "top": [
+        {
+          "key": [
+            0,
+            21,
+            21,
+            2,
+            17,
+            28,
+            25,
+            25
+          ],
+          "seedScore": 55.526394542118325,
+          "support": 2,
+          "fit": -2.1999063581783243,
+          "held": -2.2145201611378162
+        },
+        {
+          "key": [
+            0,
+            21,
+            21,
+            2,
+            22,
+            16,
+            25,
+            25
+          ],
+          "seedScore": 27.89105761231597,
+          "support": 1,
+          "fit": -3.394476724095825,
+          "held": -3.8211226436459462
+        },
+        {
+          "key": [
+            0,
+            22,
+            21,
+            2,
+            17,
+            28,
+            25,
+            25
+          ],
+          "seedScore": 36.11583368597039,
+          "support": 1,
+          "fit": -3.4594207231592313,
+          "held": -3.3123004372559617
+        },
+        {
+          "key": [
+            0,
+            21,
+            24,
+            9,
+            17,
+            28,
+            25,
+            25
+          ],
+          "seedScore": 33.73632907412871,
+          "support": 1,
+          "fit": -3.4943297809266203,
+          "held": -3.8277979916082763
+        },
+        {
+          "key": [
+            0,
+            21,
+            21,
+            2,
+            25,
+            4,
+            25,
+            25
+          ],
+          "seedScore": 33.47309501452047,
+          "support": 1,
+          "fit": -3.5079265767623453,
+          "held": -3.9334117870656042
+        }
+      ]
+    },
+    {
+      "tag": "pad2",
+      "candidates": 931144,
+      "align": 1563565,
+      "truthSeeded": null,
+      "truthSupport": null,
+      "truthRank": null,
+      "truthKey": null,
+      "selected": [
+        2,
+        23,
+        6,
+        13,
+        28,
+        6,
+        11,
+        16
+      ],
+      "correct": null,
+      "fit": -4.115351869860569,
+      "held": -4.9669366670896515,
+      "heldAccuracy": null,
+      "heldBoundaryF1": null,
+      "decoded": "BOY A STAR LICEWISE OF YEAR D I WIN THE GLUM B OR B YOUR SIT S UI A HE E A MAY ER ON EAR BE I THEM WON TA EAR IT A I I I BOTH RNG HEAD NOR WIT J A A A HERD MAT MY BE TM HE TM S I DO D IT SO EN A SO LYNG IN MY D B ACT NE AE A I HE S TIME D D COD JAW IN D I AID D D ME THE AH A WE RUIN IU HE BE I BE HA A MY TRIP U A BIG IN HAY THNG A D S D NO PAN EM A I A E A I CO WOE I J CO B THNG I TO AWE YEA HE D I I A IT A A IN ON D ME BE A RUN TOE AS J D A HA WE A AE SEW I A S S I D NAY A D D",
+      "fallback": 12,
+      "top": [
+        {
+          "key": [
+            2,
+            23,
+            6,
+            13,
+            28,
+            6,
+            11,
+            16
+          ],
+          "seedScore": 27.261187180569195,
+          "support": 1,
+          "fit": -4.115351869860569,
+          "held": -4.9669366670896515
+        },
+        {
+          "key": [
+            4,
+            27,
+            16,
+            17,
+            15,
+            11,
+            10,
+            22
+          ],
+          "seedScore": 30.380730793462185,
+          "support": 1,
+          "fit": -4.117976046426546,
+          "held": -4.375806537703262
+        },
+        {
+          "key": [
+            0,
+            1,
+            26,
+            21,
+            21,
+            11,
+            16,
+            28
+          ],
+          "seedScore": 28.098619442168157,
+          "support": 1,
+          "fit": -4.195202012267368,
+          "held": -4.571919110909258
+        },
+        {
+          "key": [
+            3,
+            17,
+            24,
+            21,
+            17,
+            21,
+            13,
+            11
+          ],
+          "seedScore": 27.427616710055304,
+          "support": 1,
+          "fit": -4.1974838769734015,
+          "held": -4.678672639217237
+        },
+        {
+          "key": [
+            0,
+            15,
+            3,
+            21,
+            22,
+            26,
+            4,
+            27
+          ],
+          "seedScore": 27.1162584908365,
+          "support": 1,
+          "fit": -4.2026868702707345,
+          "held": -4.507758630249245
+        }
+      ]
+    }
+  ],
+  "original": null
+}
