@@ -511,6 +511,7 @@ bool fastControl(const vector<string>&train,const vector<string>&held,unsigned s
  bool exact=equalAction(s.answer,s.answerKey,p.pi,k),pass=exact&&s.answerOov==0&&tr==47&&hit==17&&unique>=8;
  cout<<"FAST CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17 unique="<<unique<<" pass="<<pass<<endl;return pass;
 }
+#ifndef LP2_MOMENT_COMPLETION_NO_MAIN
 int main(int argc,char**argv){try{
  bool skipControls=false,controlsOnly=false;size_t seedStart=0,seedEnd=SIZE_MAX;int seconds=1500;
  for(int i=1;i<argc;i++){
@@ -550,3 +551,5 @@ int main(int argc,char**argv){try{
  o<<",\"completed_ids\":[";bool first=true;for(size_t i=0;i<s.completed.size();i++)if(s.completed[i]){if(!first)o<<",";first=false;o<<i;}o<<"],\"nodes\":"<<s.total.nodes<<",\"features\":"<<s.total.features<<",\"options\":"<<s.total.options<<",\"inherited\":"<<s.inheritedCount<<",\"early_pack\":"<<s.earlyPackCount<<"}";writeOutput(o.str());
  return (s.found||shardExhausted)?0:1;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
+
+#endif
