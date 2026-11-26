@@ -1,6 +1,8 @@
 // General unknown primitive q8, arbitrary word starts and literal F hold.
 // Difference graph over original eight key coordinates, exact GF29 key-space
-// elimination only when graph cycles close. Component translations are packed
+// elimination only when graph cycles close. Carry-anchor phase gauge and exact
+// posting intersections reduce redundant rotational and lexical search.
+// Component translations are packed
 // at residual leaves. Mandatory carry prefix, <=3 of 47 complete words OOV.
 #define main previous_line_sft_main
 #include "lp2_red8_minimum_line_reset_sft.cpp"
@@ -60,10 +62,18 @@ struct GFilter{
  }
  bool allowed(const GOption&o){for(int i=0;i<o.n;i++){auto e=o.e[i];if(!allowed(e.c,e.p,e.j))return false;}return true;}
 };
-struct GDomain{string cipher;vector<GOption> opts;vector<vector<pair<int,vector<int>>>> post;};
-GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base){
+struct GPosting{int feat;vector<int> ids;vector<uint64_t> bits;};
+struct GDomain{string cipher;vector<GOption> opts;vector<vector<GPosting>> post;};
+GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base,bool anchor=false){
  GDomain d;d.cipher=c;d.post.resize(c.size());vector<map<int,vector<int>>> tmp(c.size());unordered_set<string>seen;
- for(const auto&w:words)for(int start=0;start<Q;start++){
+ for(const auto&w:words){
+  // Rotate phase labels so the first NONIDENTITY consuming carry edge has j=0.
+  // It is nonzero by bijectivity, so the existing scale gauge k[0]=1 is legal.
+  // If the prefix contains only identity consuming edges, retain every start.
+  int canonical=-1,consumed=0;
+  if(anchor)for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]);if(!p)continue;if(p!=x){canonical=(Q-consumed%Q)%Q;break;}consumed++;}
+  for(int start=0;start<Q;start++){
+  if(canonical>=0&&start!=canonical)continue;
   GOption o;int j=start;bool ok=true;for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]);if(!p){if(x){ok=false;break;}continue;}if(j==0&&p==x){ok=false;break;}
    for(int t=0;t<o.n;t++){auto e=o.e[t];if(e.j==j&&((e.c==x)!=(e.p==p))){ok=false;break;}if(e.j==j&&((e.c==e.p)!=(x==p))){ok=false;break;}}if(!ok)break;
    o.e[o.n++]={uint8_t(x),uint8_t(p),uint8_t(j)};o.f[i]=j*N+p;j=(j+1)%Q;
@@ -71,8 +81,12 @@ GDomain makeGDomain(const string&c,const vector<string>&words,const Graph&base){
   if(!ok)continue;Graph t;if(!extend(base,o,t))continue;
   array<uint16_t,16> ids{};for(int i=0;i<o.n;i++){auto e=o.e[i];ids[i]=(e.c*N+e.p)*Q+e.j;}sort(ids.begin(),ids.begin()+o.n);auto z=unique(ids.begin(),ids.begin()+o.n);string sig((char*)ids.data(),2*(z-ids.begin()));if(!seen.insert(sig).second)continue;
   int index=d.opts.size();d.opts.push_back(o);for(size_t i=0;i<c.size();i++)tmp[i][o.f[i]].push_back(index);
- }
- for(size_t i=0;i<c.size();i++)for(auto&a:tmp[i])d.post[i].push_back({a.first,move(a.second)});return d;
+ }}
+ for(size_t i=0;i<c.size();i++)for(auto&[feat,ids]:tmp[i]){
+  GPosting p{feat,move(ids),{}};
+  if(p.ids.size()>=64){p.bits.assign((d.opts.size()+63)/64,0);for(int id:p.ids)p.bits[id/64]|=uint64_t(1)<<(id%64);}
+  d.post[i].push_back(move(p));
+ }return d;
 }
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
@@ -81,7 +95,7 @@ struct GSearch{
  fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;
  GSearch(const vector<string>&g,int budget=3):train(g),maxOov(budget){
   vector<string> pre(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(pre.begin(),pre.end());
-  for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],i==47?pre:fixed::by[g[i].size()],base));if(i!=47)order.push_back(i);}
+  for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],i==47?pre:fixed::by[g[i].size()],base,i==47));if(i!=47)order.push_back(i);}
   sort(order.begin(),order.end(),[&](int a,int b){auto s=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=s(a),y=s(b);return x==y?a<b:x<y;});
   unordered_set<string>seen;for(auto&o:ds[47].opts){Graph x;if(extend(base,o,x)&&seen.insert(x.sig()).second)seeds.push_back(x);}
   sort(seeds.begin(),seeds.end(),[](auto&a,auto&b){return a.dimension()==b.dimension()?a.sig()<b.sig():a.dimension()<b.dimension();});
@@ -89,9 +103,40 @@ struct GSearch{
  }
  bool stop(){if(found.load(memory_order_relaxed)||timed.load(memory_order_relaxed))return true;if(Clock::now()>=deadline){timed=true;return true;}return false;}
  vector<int> domain(int g,GFilter&f,size_t cap,GStats&c){
-  auto&d=ds[g];size_t best=SIZE_MAX;vector<const vector<int>*> posting;
-  for(size_t pos=0;pos<d.post.size();pos++){size_t n=0;vector<const vector<int>*> v;for(auto&[feat,list]:d.post[pos]){c.features++;int j=feat/N,p=feat%N;if(p&&!f.allowed(fixed::val(d.cipher[pos]),p,j))continue;n+=list.size();v.push_back(&list);if(n>=best)break;}if(n<best){best=n;posting=move(v);if(!n)return {};}}
-  vector<int> out;for(auto*v:posting)for(int id:*v){c.options++;if(f.allowed(d.opts[id])){out.push_back(id);if(out.size()>=cap)return out;}}return out;
+  const auto&d=ds[g];
+  struct Choice{size_t count=0;vector<const GPosting*> lists;};
+  vector<Choice> choices;choices.reserve(d.post.size());
+  for(size_t pos=0;pos<d.post.size();pos++){
+   Choice q;int x=fixed::val(d.cipher[pos]);
+   for(const auto&p:d.post[pos]){
+    c.features++;int j=p.feat/N,a=p.feat%N;
+    if(a&&!f.allowed(x,a,j))continue;
+    q.count+=p.ids.size();q.lists.push_back(&p);
+   }
+   if(!q.count)return {};
+   choices.push_back(move(q));
+  }
+  sort(choices.begin(),choices.end(),[](const auto&a,const auto&b){return a.count<b.count;});
+  vector<int> out;
+  auto test=[&](int id){c.options++;if(f.allowed(d.opts[id]))out.push_back(id);return out.size()>=cap;};
+  if(choices[0].count<=128||choices.size()==1){
+   for(auto*p:choices[0].lists)for(int id:p->ids)if(test(id))return out;
+   return out;
+  }
+  const size_t n=(d.opts.size()+63)/64;vector<uint64_t> bits(n),scratch(n);
+  auto add=[&](vector<uint64_t>&v,const Choice&q){
+   for(auto*p:q.lists){if(p->bits.empty()){for(int id:p->ids)v[id/64]|=uint64_t(1)<<(id%64);}
+    else for(size_t i=0;i<n;i++)v[i]|=p->bits[i];}
+  };
+  add(bits,choices[0]);
+  for(size_t pos=1;pos<min<size_t>(3,choices.size());pos++){
+   if(choices[pos].count==d.opts.size())continue;
+   fill(scratch.begin(),scratch.end(),0);add(scratch,choices[pos]);bool any=false;
+   for(size_t i=0;i<n;i++){bits[i]&=scratch[i];any|=bits[i]!=0;}
+   if(!any)return {};
+  }
+  for(size_t i=0;i<n;i++){uint64_t b=bits[i];while(b){int bit=__builtin_ctzll(b);b&=b-1;if(test(int(i*64+bit)))return out;}}
+  return out;
  }
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
   c.perms++;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
@@ -136,7 +181,22 @@ void regression(){
    for(int x=0;x<N;x++){int v=0;for(int z=0;z<Q;z++)v+=g.off[x][z]*k[z];fixed::require(v%N==aff::mod(pi[x]-pi[g.r[x]]),"graph relative offset");}
   }
  }
- cout<<"GRAPH regression 2700 true edge extensions passed"<<endl;
+ // Every planted carry word has at least one representative under the new gauge.
+ for(int t=0;t<400;t++){
+  fixed::Perm pi{},ip{};iota(pi.begin(),pi.end(),0);shuffle(pi.begin()+1,pi.end(),rng);for(int x=0;x<N;x++)ip[pi[x]]=x;
+  fixed::Key k{};for(int j=0;j<Q;j++)k[j]=rng()%N;k[0]=1;k[4]=2;
+  if(t%4==0)for(int j=1;j<4;j++)k[j]=0;
+  string w;for(int i=0;i<10;i++)w+=fixed::SYM[rng()%N];int start=rng()%Q;
+  string c=fixed::encode(w,pi,k,start);
+  auto d=makeGDomain(c,vector<string>{w},Graph{},true);
+  bool matched=false;
+  for(int r=0;r<Q;r++)if(k[r]){
+   fixed::Key nk{};fixed::Perm np{};for(int j=0;j<Q;j++)nk[j]=aff::mul[k[(j+r)%Q]][aff::inv[k[r]]];for(int x=0;x<N;x++)np[x]=aff::mul[pi[x]][aff::inv[k[r]]];
+   for(auto&o:d.opts){bool ok=true;for(int j=0;j<o.n;j++){auto e=o.e[j];ok&=aff::mod(np[e.c]-np[e.p])==nk[e.j];}matched|=ok;}
+  }
+  fixed::require(matched,"carry phase gauge lost planted action");
+ }
+ cout<<"GRAPH regression 2700 true edge extensions and 400 carry phase gauges passed"<<endl;
 }
 bool graphControl(const vector<string>&train,const vector<string>&held,unsigned seed){
  mt19937 rng(seed+123);fixed::Key k{};k[0]=1;for(int j=1;j<Q;j++)k[j]=rng()%N;k[4]=2;if(seed==3301)k[3]=0;
