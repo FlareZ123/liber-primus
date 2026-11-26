@@ -29,7 +29,7 @@ assert.deepEqual(remainder.slice(-2),[0,0]);
 assert.equal(quotient.length,275);
 assert.equal(quotient.filter(x=>x===0).length,11);
 function decode(cipher,startCursor){
-  let states=new Map([[startCursor,[[]]]);
+  let states=new Map([[startCursor,[[]]]]);
   for(let offset=0;offset<cipher.length;offset++){
     const c=cipher[offset],next=new Map();
     const add=(cursor,path)=>{if(!next.has(cursor))next.set(cursor,[]);next.get(cursor).push(path);};
