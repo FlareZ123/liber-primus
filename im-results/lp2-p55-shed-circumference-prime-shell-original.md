@@ -238,6 +238,32 @@ Consequently N has **no positive integer totient preimage**. The local 32-rune e
 
 [Read-only CommonJS arithmetic witness](../sims/lp2_p55_shed_inverse_totient_sft.cjs) regenerates the integers from the original-derived page-group fixture, asserts all four proper divisors, the exact prime multiple and seam counts/parities. The core arithmetic was executed in connected V8; P's primality relies on the existing exact Pratt certificate above. This closes only the literal proposed inverse-totient receiver; no unknown plaintext or authentic key.
 
+
+## Retain the extracted composite modulus: exact three-shell RSA-power inverse (Agent50, 26 November)
+
+The previous field-power receivers discard the factor eight from the 43-digit SHED interior. Here retain the actual integer (N=8P) as a modulus and use the shell as a separate ciphertext representative. Historical 2014 RSA is an authentic operation; the two fixed candidate exponents are the exact local-shell divisor 43 and the documented 2014 public exponent 65537. This is a conditional operand handoff, not a new source-authenticated RSA key. The modulus is not a conventional RSA modulus (it contains the repeated prime factor 2), and a genuine whole-word SHED extraction would change the interior as well as the shell.
+
+The local interior is held fixed at the previously certified (N=8P) throughout. Compare three shell choices, each below N: the 32 page-local word edges, the same edges with the physical incoming NG carry prepended, and the 34 edges including the two ends of the complete 11-rune crossing word. The last is a rival *shell* convention under the fixed local modulus, not a claim about the different 52-rune whole-word interior.
+
+For either exponent e, gcd(e,P−1)=1. Modulo P the unique root is (r=C^{e^{-1}\bmod(P-1)}\bmod P). Enumerate all eight CRT lifts (r+kP), k=0,…,7, and retain exactly those satisfying the original congruence modulo 8. Since any odd power of an odd integer preserves its residue modulo 8, and every even integer to any power >=3 vanishes modulo 8, every such original receiver has exactly one, four, or zero roots according as C is odd, C=0 mod8, or C=2,4,6 mod8.
+
+| Fixed shell register | Cipher mod8 | Roots for e=43 | Roots for e=65537 | Roots within original shell's BASE29 width |
+|---|---:|---:|---:|---:|
+| Page-local edges (32) | 3 | 1 | 1 | 0 |
+| Physical carry + edges (33) | 0 | 4 | 4 | 0 |
+| Complete crossing-word edges + local edges (34) | 6 | 0 | 0 | 0 |
+
+The last row is an all-exponent obstruction for every integer e>=3 at this fixed modulus, regardless of invertibility modulo P. The physical carry changes a unique odd-residue inverse into four distinct possible plaintext representatives; it cannot be silently ignored or resolved by choosing the least root. All ten roots from the two invertible exponents are 43 GP29 digits, rather than the original 32/33 shell width. All exactly re-encrypt to their corresponding original shell. The e=43 page-local root is
+`141312526306267437147487836175072657880408442419440312677545115`,
+with exact 27-byte hex
+`0057f0625edd5ddd4415821cb9eff5f4510a938bd348e8a347b49b`.
+The e=65537 local root is
+`272740138131090252148351748934385264750759969803349545486811435`.
+Neither the two unique roots nor any of the eight physical-shell roots yields coherent GP29 plaintext or readable raw ASCII. The historical SHA1 OAEP receiver is impossible for this modulus even before a padding test: the modulus width is 27 bytes, but SHA1 OAEP needs at least 42 bytes for its overhead. A separate encoding/padding method would require its own evidence.
+
+The read-only [SFT](../sims/lp2_p55_shed_raw_modulus_shell_sft.cjs) reconstructs all physical p54/p55 source indices against the corpus, all three shells, the source N and E, both complete CRT root sets, all original forward replays and an odd source-native plant (25 authentic p57 runes plus U to enforce odd parity). The corresponding even-plant test retains the original root among exactly four, demonstrating the ambiguity. It prints the complete root values, GP29 transliterations, hexadecimal bytes, and exact original-width checks. The arithmetic core was executed on the connected V8 runtime, not separately in a Node/CI checkout. P's primality uses the prior exact Pratt certificate. This is a finite direct inverse of the candidate **composite** modulus, not a repetition of the earlier prime-field cycle-walking test or use of the historical RSA private key. Retire this receiver; no unknown plaintext or authentic key. Do not extend to new exponent families, padding or arbitrary shell order without an independent clue.
+
+
 ## Reproduction
 
 Execute the read-only SFT:

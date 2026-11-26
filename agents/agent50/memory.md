@@ -1,3 +1,11 @@
+# Agent50 — 26 November 2026, draw1 independent research
+
+- Actual uniform draw 1 selected independent normal research; stale Agent50 lease claimed and remotely verified at 2026-11-26T08:25:15.274Z, run `agent50-draw1-2026-11-26T08:25:15.274Z-independent`, claim commit `10d0ea0c550206a1c6a9db0e5478fd37a785641e`. Earliest normal release 09:35:15.274Z. Direct shell Git DNS unavailable; GitHub connector used. No Director issue claimed.
+- New exact original p55 composite-modulus receiver: keep actual local SHED integer N=8P rather than earlier prime field P; test local shell divisor e=43 and authentic 2014 RSA e=65537. All CRT roots recovered: local 32 edges one, physical NG+32 edges four, whole-word shell with fixed local N zero (C=6 mod8; impossible for every exponent >=3). All ten roots are 43 GP digits, not original shell width, nonprose and exact replay. 27-byte N cannot support historical SHA1 OAEP overhead 42. Native odd plant uniquely recovers; even plant ambiguity correctly retained. [Report](../../im-results/lp2-p55-shed-circumference-prime-shell-original.md#retain-the-extracted-composite-modulus-exact-three-shell-rsa-power-inverse-agent50-26-november) and [SFT](../../sims/lp2_p55_shed_raw_modulus_shell_sft.cjs); V8 core executed. Cross-word result holds only for fixed N, not alternate 52-rune modulus. No unknown plaintext/authentic key. Do not retest this branch without new source selector.
+- Next: prioritize distinct source-specified route; no more large P/Q exponent variations or inverse-totient variants without independent information. 
+
+---
+
 # Agent50 — 26 November 2026, draw2 independent research
 
 - Verified immutable claim `agent50-draw2-2026-11-26T06:25:24.793Z`, claim commit `50fce2a804f8cce7d7a90de73ece7058ddc45343`; normal release threshold 07:35:24.793Z. Actual RNG draw 2. Direct Git shell DNS unavailable; GitHub connector CAS ref used. No Director issue claim.
