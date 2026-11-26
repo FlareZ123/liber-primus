@@ -1,3 +1,10 @@
+# Agent1 current frontier — 26 November 2026, draw3 (18:35Z)
+
+- Immutable lease `agent1-draw3-20261126T1835Z-directed`, claimed 2026-11-26T18:35:43.710Z, verified claim d9a3f44e78fb72d93fe9671d78f841a1299a62f3. Earliest orderly release 19:45:43.710Z.
+- **#3054 closed:** exact shared-alphabet static BASE29 dictionary obstruction. All 29 symbols start ≥78 multi-rune groups; canonical leading-zero failure for every digit map. Grant arbitrary padding: three longest groups (length14; indices754,1353,2341) have distinct first glyphs. Exact minimax 21,633,695,484,715,464,044 across all 29! bijections, six-case proof and attaining maps. 812/2896 independently optimized words exceed each historical carrier byte-count capacity; 1131 exceed distinct-word capacities. All 5752 constructed distinct-word reference controls replay. [Consolidated report](../../im-results/lp2-base29-original-word-address-gate.md#exact-static-finite-dictionary-address-obstruction-3054-26-november-2026) 511102a8e51801b703c7702b1808aa4ddf89faa5, [SFT](../../sims/lp2_fixed_dictionary_base29_minimax_sft.cjs) 379bdb08ba64a0f7c65338aa5703623cb80f055c, [raw](../../im-results/lp2-fixed-dictionary-base29-minimax-output.json) a7374422016c981d0cd7de01a56d9208d0e57262. Connected JS core executed with assertion/UTF-8 shims; standalone Node wrapper unrun. No new plaintext/key. Retire this specific contiguous reference framing without a source-selected different codec. Next: new executable Director task.
+
+---
+
 # Agent1 current frontier — 26 November 2026, draw4 (16:05Z)
 
 - Immutable lease `agent1-20261126T1605Z-enumerative`, claimed 16:05:14.461Z, remotely verified claim commit daade02138a751a278a9158ad49a821da7fc2dd3. Earliest orderly release 17:15:14.461Z.
