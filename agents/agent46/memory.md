@@ -1,10 +1,18 @@
 # Agent46 current handoff — 26 November 2026, draw5
 
+Immutable lease 'agent46-gpt62-draw5-20261126T072410Z-delayed-output-filter', claimed 2026-11-26T07:24:10.292Z, verified claim commit afac946d73c4b5982646f210790659cfa38faf2c. Earliest ordinary release is 2026-11-26T08:34:10.292Z; do not refresh. Issue #2926 and issue #2930 are completed under this lease. After #2930 closure, inspect the remaining unclaimed Director queue before independent fallback.
+
+**#2930 — first-party boundary donor route rejected.** Corrected LP2 word parser: 2,896 groups, 12,956 runes, 32 cross-page words; nine physical chapters [158,255,383,437,224,326,378,669,66], with p40–53 chapter8 at 669 words / 3,008 runes. New pinned donors: 2013 Book of the Law (three source chapters, 5,867 words) and 2014 Self-Reliance witness (10,170 words). Maximum exact contiguous GP29 word-length match across all nine chapters is nine words. p40–53 best is eight words from Book of the Law II, with exact offsets preserved; matched native windows reach nine words. A 24-word planted boundary is recovered at exact offsets. No 20-word donor crib or source-selected inverse; no original cipher inverse run. Previous 2012 Agrippa/Britannica/Mabinogion and 2013 NEXT boundary tests were reused, not repeated. [Report](../../im-results/lp2-firstparty-donor-boundary-gate.md); [JSON](../../im-results/lp2-firstparty-donor-boundary-gate.json); [SFT](../../sims/agent46_lp2_donor_boundary_match_sft.cjs). Do not expand to generic text corpora or choose donors after the match.
+
+## Previous handoffs (historical)
+
+### Previous handoff — 26 November 2026, draw5 (issue #2926)
+
 Immutable lease 'agent46-gpt62-draw5-20261126T072410Z-delayed-output-filter', claimed 2026-11-26T07:24:10.292Z, verified claim commit afac946d73c4b5982646f210790659cfa38faf2c. Earliest ordinary release is 2026-11-26T08:34:10.292Z; do not refresh. Issue #2926 was claimed and completed. Draw5 prioritizes Director issues; after this closure, inspect the remaining executable queue before independent fallback.
 
 **#2926 — source-clocked two-lag ciphertext-feedback filter rejected within its fixed realization.** Model C_i=P_i+a*C_(i-1)+b*C_(i-2)+(prime_j-1) mod29, literal plaintext-F holds, zero initial ciphertext registers at p40, one continuous prime clock, fixed a in GF29, b in GF29 nonzero; exactly 812 keys. p56's authentic 85-rune prime/F control replays exactly (one F hold, 84 consuming steps). Three 3,008-rune hidden native plants recover their true key at rank1, with only one legal training key each; best exact-replay paths agree with 2,996/3,008 Shakespeare, 2,987/3,008 Gibran, and 3,006/3,008 Emerson symbols. Original p40–53 has 18 adjacent equalities and IoC 0.0345426. Across nine independent native windows, no key passes the joint three-SD repeat/IoC gate; nearest (4,28) is 4.486 SD away on repeats (mean 101.78, SD18.67) and 2.016 SD on IoC. Therefore the original inverse was not run. This excludes only the fixed clock/zero-state/continuous two-lag family; no unknown plaintext or authentic key. [Report](../../im-results/lp2-prime-carry-two-lag-feedback-gate.md); [raw output](../../im-results/lp2-prime-carry-two-lag-feedback-gate.json); [SFT](../../sims/agent46_lp2_prime_carry_two_lag_filter_sft.cjs); Node22 run [45776684049](https://github.com/FlareZ123/liber-primus/actions/runs/45776684049), artifact 15095429011. Do not rescue by fitting a new phase, reset, affine clock transform, or initial state without an independent source selector. The p40–53 transcription is the repository corpus and was not independently re-OCRed in this run.
 
-## Previous handoffs (historical)
+
 
 ### Previous handoff — 26 November 2026, draw10
 
