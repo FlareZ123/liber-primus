@@ -1,0 +1,358 @@
+{
+  "width": 128,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "eligible": false,
+  "pilots": [
+    {
+      "key": [
+        13,
+        8,
+        3,
+        27,
+        22,
+        0,
+        20,
+        5,
+        6,
+        14,
+        10,
+        19,
+        15,
+        26,
+        1,
+        21,
+        12,
+        2,
+        25,
+        7,
+        16,
+        23,
+        4,
+        28,
+        11,
+        17,
+        9,
+        24,
+        18
+      ],
+      "initial": [
+        13,
+        8,
+        3,
+        27,
+        22,
+        0,
+        20,
+        5,
+        6,
+        14,
+        10,
+        19,
+        15,
+        26,
+        1,
+        21,
+        12,
+        2,
+        25,
+        7,
+        16,
+        23,
+        4,
+        28,
+        11,
+        17,
+        9,
+        24,
+        18
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 1.0886998234945306,
+          "improved": 0,
+          "evals": 407
+        }
+      ],
+      "truth": [
+        13,
+        8,
+        3,
+        27,
+        22,
+        0,
+        20,
+        5,
+        6,
+        14,
+        10,
+        19,
+        15,
+        26,
+        1,
+        21,
+        12,
+        2,
+        25,
+        7,
+        16,
+        23,
+        4,
+        28,
+        11,
+        17,
+        9,
+        24,
+        18
+      ],
+      "train": {
+        "n": 10317,
+        "repeats": 65,
+        "gain": 1.0886998234945269,
+        "correct": 10317,
+        "usedRows": 29,
+        "keyRows": 29,
+        "preview": [
+          "ANDCOUNTRYORPRODUCEAMODELINWHICHTHEEDUCATIANTHERELIGIANTHEPOLITICSUSAGESANDARTSOFHIST",
+          "DTHEDORMANTTASTEWECARUEANDPAINTORWEBEHOLDWHATISCARUEDANDPAINTEDASSTUDENTSOFTHEMYST"
+        ]
+      },
+      "held": {
+        "n": 2630,
+        "repeats": 15,
+        "gain": 1.0594170495170445,
+        "correct": 2630,
+        "usedRows": 27,
+        "keyRows": 27,
+        "preview": [
+          "RANDCOMPACTERLANDSCAPETHANTHEHORISONFIGURESNATURESECLECTICISMANDWHATISHISSPEECHHIS",
+          "ASANEPICHASDONEBEFOREADOGDRAWNBYAMASTERORALITTEROFPIGSSATISFIESANDISAREALITYNOTLE"
+        ]
+      },
+      "trace": [
+        {
+          "K": [
+            13,
+            8,
+            3,
+            27,
+            22,
+            0,
+            20,
+            5,
+            6,
+            14,
+            10,
+            19,
+            15,
+            26,
+            1,
+            21,
+            12,
+            2,
+            25,
+            7,
+            16,
+            23,
+            4,
+            28,
+            11,
+            17,
+            9,
+            24,
+            18
+          ],
+          "score": 1.0886998234945269,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.336117985032398,
+              "hardGain": -3.130450502712886,
+              "keyRows": 9
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.31532846420993,
+              "hardGain": -3.0943194242729506,
+              "keyRows": 13
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.1959762811889627,
+              "hardGain": -3.083738414141143,
+              "keyRows": 22
+            },
+            {
+              "iteration": 20,
+              "softLL": -2.570154451902626,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.5700423385349023,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.57004233808668,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.5699983753041673,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            }
+          ]
+        },
+        {
+          "K": [
+            13,
+            8,
+            3,
+            27,
+            22,
+            0,
+            20,
+            5,
+            6,
+            14,
+            10,
+            19,
+            15,
+            26,
+            1,
+            21,
+            12,
+            2,
+            25,
+            7,
+            16,
+            23,
+            4,
+            28,
+            11,
+            17,
+            9,
+            24,
+            18
+          ],
+          "score": 1.0886998234945269,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.3367704435993297,
+              "hardGain": -3.106170283997126,
+              "keyRows": 5
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.318965442234234,
+              "hardGain": -3.0549043613163445,
+              "keyRows": 11
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.2834757483921466,
+              "hardGain": -3.1025839402247843,
+              "keyRows": 18
+            },
+            {
+              "iteration": 20,
+              "softLL": -2.821636146225139,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 25,
+              "softLL": -2.5700440367588,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.5700423380952246,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.5699983753041673,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.5699983753040683,
+              "hardGain": 1.0886998234945269,
+              "keyRows": 29
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "negative": null,
+  "original": null
+}
