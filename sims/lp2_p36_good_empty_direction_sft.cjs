@@ -83,7 +83,7 @@ function physicalPart(page) {
 }
 
 /** @param {number} page @returns {{ordinal:number,start:number,end:number,values:number[]}[]} */
-function canonicalWords(page) {
+function pageLocalWords(page) {
   const out = [];
   let current = [];
   let start = 0;
@@ -137,7 +137,7 @@ const state = {
 };
 assert.deepEqual(state, {K:2,e:3,q:4,g:5,a:6,A:8,b:15,B:19,p:23});
 
-const selected = canonicalWords(36)[36];
+const selected = pageLocalWords(36)[36];
 assert.deepEqual(selected, {
   ordinal: 37,
   start: 169,
@@ -223,11 +223,77 @@ function combinations(values,count) {
 const fiveRuneWords=[];
 for (let page=0; page<=55; page+=1) {
   if (page===50) continue;
-  for (const word of canonicalWords(page)) {
+  for (const word of pageLocalWords(page)) {
     if (word.values.length===5) fiveRuneWords.push({page,...word});
   }
 }
 assert.equal(fiveRuneWords.length,318);
+
+// Independent whole-manuscript parser: carry a possible word across physical
+// page breaks and retain only words wholly contained on one unknown page.
+// This is the parser used by the p37 double-index receiver audit.
+const unknownSegments = parts.slice(0, 55);
+const completePages = unknownSegments.map((_, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let completeCurrent = [];
+let completeStartSegment = 0;
+let completeEndSegment = 0;
+let completeStartOffset = 0;
+function flushCompleteWord() {
+  if (!completeCurrent.length) return;
+  if (completeStartSegment === completeEndSegment) {
+    const page = completePages[completeStartSegment];
+    page.words.push({
+      index: page.words.length,
+      start: completeStartOffset,
+      end: completeStartOffset + completeCurrent.length - 1,
+      values: completeCurrent.slice(),
+    });
+  }
+  completeCurrent = [];
+}
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const character of [...unknownSegments[segment]]) {
+    const value = runeToValue.get(character);
+    if (value !== undefined) {
+      if (!completeCurrent.length) {
+        completeStartSegment = segment;
+        completeStartOffset = completePages[segment].offset;
+      }
+      completeEndSegment = segment;
+      completeCurrent.push(value);
+      completePages[segment].offset += 1;
+    } else if (character === "/" || /\s/u.test(character)) {
+      // Printed line and physical-page wraps may continue a word.
+    } else {
+      flushCompleteWord();
+    }
+  }
+}
+flushCompleteWord();
+const completeWords = completePages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+const completeFiveRuneWords = completeWords.filter((word) => word.values.length === 5);
+assert.equal(completeFiveRuneWords.length, 311);
+const p36CompletePage = completePages.find((page) => page.page === 36);
+const p36CompleteWordIndex35 = p36CompletePage.words[35];
+const p36CanonicalDoubleIndexWord = p36CompletePage.words[36];
+assert.deepEqual(p36CompleteWordIndex35, {
+  index: 35,
+  start: 169,
+  end: 173,
+  values: [2,22,4,1,20],
+});
+assert.deepEqual(p36CanonicalDoubleIndexWord, {
+  index: 36,
+  start: 174,
+  end: 179,
+  values: [1,2,15,1,23,20],
+});
 
 const narrowKeys=permutations([19,25,26,27]);
 assert.equal(narrowKeys.length,24);
@@ -292,6 +358,55 @@ assert.deepEqual(
 assert.equal(9*15*24*2,6480);
 assert.deepEqual(broadHits.filter((hit)=>hit.center===state.q),[broadHits[0]]);
 
+// Re-run the fixed-key and broad source-atom controls on the stricter
+// complete-word corpus. The p36 receiver remains a hit, but its word index
+// shifts because a two-rune fragment at the top of p36 continues from p35.
+const completeFixedKeyHits=[];
+for (const word of completeFiveRuneWords) {
+  const receiver=[word.values[0],word.values[1],word.values[3],word.values[4]];
+  for (const sign of [-1,1]) {
+    const output=receiver.map((value,index)=>mod29(value + sign*exactKey[index]));
+    const target=auth4ByValues.get(output.join(","));
+    if (target) completeFixedKeyHits.push({
+      page:word.page,index:word.index,start:word.start,center:word.values[2],
+      sign,target,output,
+    });
+  }
+}
+assert.deepEqual(completeFixedKeyHits,[{
+  page:36,index:35,start:169,center:4,sign:-1,target:"GOOD",output:[6,3,3,23],
+}]);
+assert.equal(completeFiveRuneWords.filter((word)=>word.values[2]===state.q).length,9);
+
+const completeBroadHits=[];
+let completeBroadOutputs=0;
+for (const atomSet of broadSets) {
+  for (const orderedAtoms of permutations(atomSet)) {
+    const key=orderedAtoms.map((atom)=>atom.value);
+    for (const word of completeFiveRuneWords) {
+      const receiver=[word.values[0],word.values[1],word.values[3],word.values[4]];
+      for (const sign of [-1,1]) {
+        completeBroadOutputs+=1;
+        const output=receiver.map((value,index)=>mod29(value + sign*key[index]));
+        const target=auth4ByValues.get(output.join(","));
+        if (target) completeBroadHits.push({
+          page:word.page,index:word.index,start:word.start,center:word.values[2],
+          keyLabels:orderedAtoms.map((atom)=>atom.label),key,sign,target,output,
+        });
+      }
+    }
+  }
+}
+assert.equal(completeBroadOutputs,223920);
+assert.deepEqual(
+  completeBroadHits.map((hit)=>[hit.page,hit.index,hit.start,hit.center,hit.target]),
+  [[36,35,169,4,"GOOD"],[28,2,14,9,"WILL"],[18,12,45,0,"LUCK"]]
+);
+assert.deepEqual(
+  completeBroadHits.filter((hit)=>hit.center===state.q).map((hit)=>[hit.page,hit.index,hit.target]),
+  [[36,35,"GOOD"]]
+);
+
 const sourceStateShapeHits=distinctAuth4.filter((entry)=>{
   const values=entry.values;
   return Object.values(state).includes(values[0]) &&
@@ -342,10 +457,23 @@ assert.deepEqual(sourceGp0Rows[36],{
 
 console.log(JSON.stringify({
   status:"PASS",
-  selected:{page:36,ordinal:37,offsets:[169,173],original:selected.values,emptyCenter:state.q,emptied},
+  selected:{page:36,pageLocalGroupOrdinal:37,offsets:[169,173],original:selected.values,emptyCenter:state.q,emptied},
+  parserBoundary:{
+    pageLocalGroupOrdinal:37,
+    completeWordIndex35:p36CompleteWordIndex35,
+    canonicalDoubleIndexWordIndex36:p36CanonicalDoubleIndexWord,
+    note:"The p36 page begins with a two-rune fragment continuing from p35. Page-local numbering resets at the physical page; the whole-manuscript complete-word parser does not."
+  },
   decoder:{key:exactKey,sign:"subtract",plaintext:good,word:"GOOD",keyStateTyping:["p+K","B","-K","p+e"]},
-  narrowControl:{fiveRuneWords:318,decodedOutputs:15264,qCenteredWords:9,qCenteredOutputs:432,hits:narrowHits},
-  broadControl:{atomSets:15,decodedOutputs:228960,totalHits:broadHits.length,qCenteredOutputs:6480,qCenteredHits:1},
+  narrowControl:{pageLocalFiveRuneGroups:318,decodedOutputs:15264,qCenteredGroups:9,qCenteredOutputs:432,hits:narrowHits},
+  broadControl:{pageLocalFiveRuneGroups:318,atomSets:15,decodedOutputs:228960,totalHits:broadHits.length,qCenteredOutputs:6480,qCenteredHits:1},
+  completeWordControl:{
+    completeFiveRuneWords:311,
+    fixedKeyHits:completeFixedKeyHits,
+    broadDecodedOutputs:completeBroadOutputs,
+    broadHits:completeBroadHits.map((hit)=>({page:hit.page,index:hit.index,start:hit.start,center:hit.center,target:hit.target})),
+    qCenteredBroadHits:completeBroadHits.filter((hit)=>hit.center===state.q).map((hit)=>({page:hit.page,index:hit.index,target:hit.target}))
+  },
   sourceReciprocalGp0:{cycles:reciprocalGp0Cycles,successorEdges:successorGp0Edges,theirGp0:sourceGp0Rows[19].gp0},
-  decision:"Strong local GOOD candidate under literal EMPTY-center removal and finite signed direction-number key family; preserve chronology caveat before generalizing."
+  decision:"Strong page-selected local GOOD inverse under literal EMPTY-center removal. The receiver survives the stricter complete-word control, but its page-local group37 ordinal is not the canonical cross-page double-index wordIndex36; do not claim a confirmed double-index receiver."
 },null,2));
