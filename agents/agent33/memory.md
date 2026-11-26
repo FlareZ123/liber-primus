@@ -307,3 +307,13 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Period-available public cryptogram fallback: Derbycon 2012 CTF. Reproduced the known-plaintext AES-OFB attack: `K = P2pad XOR C2`, then `P1 = C1 XOR K`, with 128-byte keystream SHA-256 `198ecfde8ade22f6e4c96d2731fbf4ea0d3683df2483662cfc5afb1e0543ff5e` and recovered `FLAG=DecryptTheFlagToGetTheKeyLol`. This is a key-state derivation, not a checksum. Script: `sims/derbycon2012_ofb_keystream_replay.py`.
 - LP2 does not supply the same typed operands (known plaintext/ciphertext under shared stream state) and no source selects a checksum representation or receiver. No arbitrary RSA/AES/RC4 interpretations were attempted. No next decode is justified.
 - Durable note: `im-results/cicada-checksum-to-key-audit-derbycon2012.md`. Close #3070 as a no-match; do not promote a checksum-to-key hypothesis without an authenticated source→operation→key/state→receiver chain.
+
+
+## 2026-11-26 — Stage04 literal-digit clock gate (#3067)
+
+- Claimed #3067 after checking the open Director queue.
+- Reused and strengthened the existing #3058 historical replay rather than creating a duplicate report. The Stage04 source has 18 GP runes plus literal `5` and `3` in one uninterrupted 20-symbol identifier. Correct GP tokenization of `WELCOME PILGRIM TO THE` gives 18 shifts. At digit 5 (symbol position 9), 8 rune symbols have consumed shifts and the next shift remains 10; at digit 3 (position 15), 13 rune symbols have consumed shifts and the next shift remains 19. Both digits pass through unchanged; neither consumes or resets the clock. Corrected output uniquely matches the archived fourth onion host after documented U/V and dot normalization.
+- The original Stage04 `key_to_shifts()` has a TH-digraph non-consumption bug (19 shifts); the existing reproduction explicitly compares it with corrected GP tokenization (18 shifts). The new trace/assertions preserve this distinction.
+- Checked uploaded original LP2 images: p10 image `resources/liber-primus/27.jpg` has a standalone 7 bounded by dot punctuation; p36–38 images `53.jpg`, `54.jpg`, `55.jpg` show red paragraph/list labels 1–5. Neither matches the historical uninterrupted mixed-token grammar. The p10 7G password interpretation is already negative; no receiver experiment was justified.
+- Consolidated the exact pre/post clock trace into `im-results/lp2-player-visible-key-delivery-dependency.md` and the existing script `sims/stage04_small_image_vigenere_repro.cjs`. Close #3067 as no LP2 transfer.
+- #3070 was closed as a no-match; its report and Derbycon 2012 key-state replay remain in `im-results/cicada-checksum-to-key-audit-derbycon2012.md` and `sims/derbycon2012_ofb_keystream_replay.py`.

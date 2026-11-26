@@ -29,6 +29,31 @@ This completes the bounded dependency decision via the specific-missing-artifact
 
 ## Independent intermediate-marker transfer: mixed-digit Stage04 identifier (#3058, Agent8, 26 November)
 
-The historical Stage04 small image is a distinct human-visible marker route: 18 GP runes with literal 5 and 3 embedded in one uninterrupted 20-symbol identifier. The prior [historical reconstruction](../sims/stage04_small_image_vigenere_repro.cjs) recovers the archived destination with the exact WELCOME PILGRIM TO THE key. In canonical indices the independent replay uses P=(C−K) mod29, key [7,18,20,5,3,19,18,13,10,20,6,4,10,19,16,3,2,18], and passes literal digits without key consumption. From the fixed source ciphertext it emits 18 consumed runes plus the original 5 and 3. With normal C/K, S/Z, U/V, IA/IO alternatives, 8 of 16 branches match the recognizable 16-base32-character + ONION format, including the archived exact destination. Thus the marker chooses an interpretation (a destination identifier), but cannot independently resolve all transliteration alternatives. No historical endpoint was contacted.
+The authenticated historical Stage04 small image contains 18 Gematria Primus (GP) runes and two literal decimal digits, `5` and `3`, embedded in one uninterrupted 20-symbol identifier. The archived receiver is the fourth onion host. With the clue-derived key phrase `WELCOME PILGRIM TO THE`, correct GP tokenization (including `TH` as one rune) yields 18 key shifts:
 
-I searched the exact original LP2 printed-token structure for a distinct comparable operand, not arbitrary windows containing digits. The master transcription's LP2 page boundaries were located by its 15 preceding LP1 page blocks; all 58 rune counts exactly match lp2-corpus.json. Across unsolved p0–55 there are **zero** delimiter-bounded mixed decimal/rune tokens. The only digit-containing rune-bearing lines are p10's standalone 7 between dot boundaries (visually confirmed in original 27.jpg), and the five separate list numerals on p36–38. P15 and pp49–51 are separate numeric tables, not embedded identifiers. The explicitly mixed format required by the historical image is therefore absent; deleting punctuation and choosing an arbitrary 16-character window would create a new operand rather than recognize one. The p10 7G password interpretation is already independently tested and negative. No LP2 object passes this exact historical marker condition, and the required reversible next operation is not selected. Retire this transfer, retaining the historical control and the possibility of a differently marked intermediate. No cipher fit or new key/plaintext follows.
+`[7,18,20,5,3,19,18,13,10,20,6,4,10,19,16,3,2,18]`.
+
+The digits are **literal payload symbols that do not consume the key clock**. Their exact state trace is:
+
+| Cipher symbol position | Literal digit | Rune symbols consumed before | Next key shift (1-based) | Rune symbols consumed after |
+|---:|---:|---:|---:|---:|
+| 9 | 5 | 8 | 10 | 8 |
+| 15 | 3 | 13 | 19 | 13 |
+
+Thus the first digit is emitted unchanged after eight rune decryptions; the ninth rune still uses shift 10. The second digit is emitted unchanged after thirteen rune decryptions; the fourteenth rune still uses shift 19. At the end, exactly 18 key symbols have been consumed and the original `5` and `3` remain in the output. The unique exact normalized host branch is `AUOWYFGL5LKZFJ3NONION`, matching the archived `avowyfgl5lkzfj3n.onion` after the archive's documented U/V and dot normalization. Wrong-key and wrong-direction controls do not match. Eight of the sixteen transliteration branches satisfy the 16-base32-character + `ONION` shape; the exact archived host is one branch.
+
+A source-code caveat matters: the archive's original `key_to_shifts()` peeks ahead for digraphs but does not consume the second letter, so it counts `TH` twice and produces 19 shifts. The corrected GP-token serialization consumes `TH` as one symbol and produces the 18-shift sequence above. The digit-clock result is tested with this corrected, alphabetically faithful GP serialization; the old implementation bug is not silently treated as the intended key schedule.
+
+The complete source-pinned replay is in [the existing reproduction script](../sims/stage04_small_image_vigenere_repro.cjs), which records the original `neuroretransmit/cicada` commit and source image/transcription blob IDs. It reproduces the archived receiver without contacting the historical endpoint.
+
+### LP2 candidate test
+
+The LP2 original images do **not** reproduce the historical operand grammar:
+
+- **p10, original `resources/liber-primus/27.jpg`:** the isolated `7` is visually bounded by dot punctuation on both sides. It is not embedded in an uninterrupted rune/decimal identifier like the Stage04 `...ᚱ5ᚢ...ᛝ3ᛠ...` source.
+- **p36–38, original `resources/liber-primus/53.jpg`, `54.jpg`, `55.jpg`:** the red numerals `1`–`5` are paragraph/list labels at the left margin, not symbols in the rune stream.
+- **p15 and pp49–51:** these are separate numerical tables, not mixed rune/decimal identifiers.
+
+I therefore froze the only superficially adjacent candidate, p10's `7`, and tested its *source-visible operand grammar* before any receiver experiment. It fails the historical match condition because the punctuation delimits it from the rune stream. Applying the Stage04 non-consuming rule anyway would require deleting the dots or inventing a larger operand window. The p36–38 labels are plainly numbering, not state events. The p10 `7G` password interpretation is already independently tested and negative.
+
+**Decision:** the Stage04 source establishes one narrow historical rule—literal decimal characters embedded in a continuous encrypted identifier can pass through without advancing a rune-key clock. It does not establish a general rule for standalone numerals or list labels. No LP2 event matches the exact operand grammar, so no key clock or receiver decode is selected. Retire this transfer; no new LP2 plaintext, key, or cipher follows.

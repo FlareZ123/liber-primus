@@ -100,6 +100,27 @@ const runeCount = [...CIPHER].filter((symbol) => lookup.has(symbol)).length;
 const visualSymbolCount = [...CIPHER].length;
 const sourceKey = sourceKeyToShifts(KEY_PHRASE.replace(/\s+/g, ''), true);
 const correctedKey = gpRuneKeyToShifts(KEY_PHRASE);
+const digitStateTrace = [];
+let runeSymbolsConsumed = 0;
+for (const [symbolIndex, symbol] of [...CIPHER].entries()) {
+  if (lookup.has(symbol)) {
+    runeSymbolsConsumed++;
+  } else if (/^\\d$/.test(symbol)) {
+    digitStateTrace.push({
+      symbolPosition: symbolIndex + 1,
+      symbol,
+      runeSymbolsConsumedBefore: runeSymbolsConsumed,
+      nextKeyShift: correctedKey[runeSymbolsConsumed % correctedKey.length],
+      runeSymbolsConsumedAfter: runeSymbolsConsumed,
+    });
+  }
+}
+assert.deepEqual(digitStateTrace, [
+  { symbolPosition: 9, symbol: '5', runeSymbolsConsumedBefore: 8, nextKeyShift: 10, runeSymbolsConsumedAfter: 8 },
+  { symbolPosition: 15, symbol: '3', runeSymbolsConsumedBefore: 13, nextKeyShift: 19, runeSymbolsConsumedAfter: 13 },
+]);
+assert.equal(runeSymbolsConsumed, 18);
+
 const sourceResult = decrypt(CIPHER, sourceKey);
 const correctedResult = decrypt(CIPHER, correctedKey);
 const wrongKeyResult = decrypt(CIPHER, gpRuneKeyToShifts('THE GREAT JOURNEY TOWARD'));
@@ -145,10 +166,11 @@ console.log(JSON.stringify({
   sourceOutputs: sourceResult.outputs,
   correctedGpKeyShifts: correctedKey,
   correctedKeyShiftCount: correctedKey.length,
+  digitStateTrace,
   correctedOutputs: correctedResult.outputs,
   normalizedArchivedHost: normalizedHost,
   exactHostMatches: exactMatches,
   wrongKeyControlMatches: wrongKeyResult.outputs.filter((candidate) => candidate === normalizedHost),
   wrongDirectionControlMatches: wrongDirectionResult.outputs.filter((candidate) => candidate === normalizedHost),
-  conclusion: 'One GP-tokenized WELCOME PILGRIM TO THE key exactly reproduces the archived fourth onion host; no LP2 instruction is present in the decoded string.',
+  conclusion: 'Literal 5 and 3 pass through as payload and do not consume the GP Vigenere key clock; the p10 isolated 7 and p36–38 red list labels do not match this uninterrupted mixed-identifier grammar.',
 }, null, 2));
