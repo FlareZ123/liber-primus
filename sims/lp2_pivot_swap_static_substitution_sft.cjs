@@ -81,5 +81,39 @@ function run(raw, assert) {
   });
   return {book,chapters,pagePrivateUpper,chapterPrivateUpper,physicalPageCount:physicalPages.length,native: native.map(summary),nativeCombined:summary(native.flat()),plants,plantRunes,crossPagePlants,controls};
 }
+function resetBound(c, target) {
+  const inv=Array.from({length:29},(_,i)=>i),y=[];
+  let prev=c[0];
+  for(const x of c){y.push(inv[x]);[inv[x],inv[prev]]=[inv[prev],inv[x]];prev=x}
+  // best[k][i] is the maximum total count in prefix length i using <= k nonempty segments,
+  // granting each segment's first position for free and any one label for its suffix.
+  let old=new Int32Array(y.length+1).fill(-1000000);old[0]=0;
+  const caps=[];
+  for(let k=1;k<=y.length;k++){
+    const cur=new Int32Array(y.length+1).fill(-1000000);cur[0]=0;
+    const active=new Int32Array(29).fill(-1000000);
+    let maxActive=-1000000;
+    for(let i=0;i<y.length;i++){
+      const label=y[i];
+      // Extend existing active segment by this rune.
+      active[label]++;
+      maxActive=Math.max(maxActive,active[label]);
+      // Starting segment here contributes one free match, regardless of suffix label.
+      const start=old[i]+1;
+      if(start>maxActive)maxActive=start;
+      for(let z=0;z<29;z++)if(active[z]<start)active[z]=start;
+      cur[i+1]=maxActive;
+    }
+    const value=cur[y.length];
+    caps.push(value);
+    if(value>=target)return {minimumSegments:k,capBefore:caps[k-2]??0,capAt:value,firstTen:caps.slice(0,10),cap55:caps[54],target};
+    old=cur;
+  }
+  throw Error("unreachable");
+}
 const raw=files.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"));
-console.log(JSON.stringify(run(raw,assert),null,2));
+const result=run(raw,assert);
+const tape=JSON.parse(raw[0]).pages.filter(p=>p.page<56).flatMap(p=>p.indices);
+const target=Math.min(...result.controls.map(x=>x.book.minE));
+result.arbitraryResetRelaxation=resetBound(tape,target);
+console.log(JSON.stringify(result,null,2));
