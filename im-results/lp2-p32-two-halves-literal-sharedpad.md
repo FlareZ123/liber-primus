@@ -1,6 +1,6 @@
 # p32 two-half shared-pad inverse: literal donor, arbitrary pad, and period-11 key decisions
 
-**26 November 2026 — no recovered unknown plaintext or authentic key.** The finite literal-donor family has no matching prefix (Agent49); the unrestricted spacing-free shared-pad inverse has poor blind identifiability (Agent8). A distinct periodic specialization recovers hidden keys and genuinely withheld native runes in controls, but fails on the original p32 continuation. The conditional TWA extraction and inferred square remain unconfirmed as author instructions.
+**26 November 2026 — no recovered unknown plaintext or authentic key.** The finite literal-donor family has no matching prefix (Agent49); the unrestricted spacing-free shared-pad inverse has poor blind identifiability (Agent8). A distinct periodic specialization recovers hidden keys and genuinely withheld native runes in controls, but fails on the original p32 continuation; an all-key cyclic relaxation also bounds every period-11 key and relative shift below eight independent native controls. The directly invertible duplicate-text specialization is nonprose. The conditional TWA extraction and inferred square remain unconfirmed as author instructions.
 
 ## Source framing and hypotheses
 
@@ -56,8 +56,29 @@ For the one imperfect unknown-b plant, the true key digit is outside the retaine
 
 [b=0 cyclic SFT](../sims/lp2_p32_two_halves_period11_inverse_sft.cjs) · [raw](lp2-p32-two-halves-period11-output.json) · [unknown-b cyclic SFT](../sims/lp2_p32_two_halves_period11_shift_inverse_sft.cjs) · [raw](lp2-p32-two-halves-period11-shift-output.json).
 
+## 4. Duplicate plaintext under complementary shifts
+
+A simpler, more identifiable specialization is P_L=P_R=P (same text twice, with opposite key sign). For s=+1, every original difference C_R−C_L must equal b; the forward/mirror differences have 21/24 distinct values, so this case is exactly impossible. For s=−1, the inverse is P[i]=15(C_L[i]+C_R[i]−b) mod29, since 15 is the inverse of 2. This fixes both plaintext and arbitrary pad for each b. All 29 values are enumerated, independently of any printed words or periodicity.
+
+All eight fresh native/Gibran plants recover the true b at rank1, the exact 55-rune plaintext and all 55 pad digits. Their mean scores range −3.250839 to −2.173291. Original best scores are −5.957962 (forward, b=3) and −5.751132 (mirror, b=4), both incoherent. This is a complete inverse and finite language-negative for the exact duplicate-text model, not arbitrary independent plaintexts. [SFT](../sims/lp2_p32_two_halves_duplicate_inverse_sft.cjs) · [all candidates](lp2-p32-two-halves-duplicate-output.json).
+
+## 5. All-key q11 bound: no unary-domain pruning
+
+The q11 receiver's most important limitation is the top12 pruning. Remove it by representing the complete full-page joint log score as the sum of eleven cyclic three-key factors F_j(k_{j−2},k_{j−1},k_j). Each factor collects all unigram, bigram and trigram terms ending in phase j over both streams. Each variable has all 29 values. Unroll the cycle at each possible cut, allowing its first two variable copies to differ from the final two copies; every genuine cyclic key remains feasible and all original factors are counted exactly once. Exact ordinary chain Viterbi with free initial pair and final pair gives an upper bound for that cut. Take the minimum of all eleven cut bounds (still an upper bound), then maximize over all29 values of b separately for each orientation/sign. Complexity is O(29^3 × 11^2 × 29) per orientation/sign, rather than 29^11 keys.
+
+A fresh set of eight genuine periodic native/Gibran plants, not used to tune the pruning, has actual paired plaintext scores −2.610939 to −2.104630. Every bound contains the true score to 1e−9; all eight minimum-cut upper bounds equal their actual true-key scores to that tolerance. In contrast:
+
+| Original half orientation | s | All-key upper bound b=0 | Upper bound granting every b |
+|---|---:|---:|---:|
+| Forward | +1 | −3.851584 | −3.752156 |
+| Forward | −1 | −3.912759 | −3.782447 |
+| Mirror | +1 | −3.990443 | −3.806022 |
+| Mirror | −1 | −4.037009 | −3.788540 |
+
+Thus **every** one of the 29^11 cyclic keys for **every** b and each fixed orientation/sign is below even the weakest of these eight genuine native controls under this specific trigram score. This is an all-key bound under the explicit source geometry and cipher, not a universal English-language theorem. It closes the top12 pruning objection without requiring exhaustive enumeration or another fitted original key. [SFT](../sims/lp2_p32_two_halves_period11_allkey_upper_sft.cjs) · [all 116 shift bounds and 11 cuts each](lp2-p32-two-halves-period11-allkey-upper-output.json).
+
 ## Research decision
 
-The literal-donor model is exactly negative within its library. The unconstrained joint language model cannot recover even genuine arbitrary pads. Imposing a period-11 shared key enables a strong predictive inverse but gives null-like original continuations, with no credible plaintext. Retire these specific two-half receivers absent independent source evidence selecting a different pad law or geometry; do not treat local words produced by the optimizer as decrypted fragments. A new source-selected key/receiver is more valuable than increasing a generic n-gram search.
+The literal-donor model is exactly negative within its library. The unconstrained joint language model cannot recover even genuine arbitrary pads. Imposing a period-11 shared key enables a strong predictive inverse but gives null-like original continuations and an all-key score bound below the independent native controls. The same-text duplicate model also fails; no credible plaintext. Retire these specific two-half receivers absent independent source evidence selecting a different pad law or geometry; do not treat local words produced by the optimizer as decrypted fragments. A new source-selected key/receiver is more valuable than increasing a generic n-gram search.
 
 All Agent8 experiment cores executed in connected JavaScript V8 on pinned repository inputs; the standalone Windows Node wrappers were not separately run. No new CI workflow. No change to the authoritative solution frontier.
