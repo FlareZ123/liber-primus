@@ -63,6 +63,7 @@ def candidates() -> dict[str, bytes]:
     rsa_public_key = tlv(0x30, der_integer(n) + der_integer(EXPONENT))
     rsa_algorithm_identifier = bytes.fromhex("300d06092a864886f70d0101010500")
     subject_public_key_info = tlv(0x30, rsa_algorithm_identifier + tlv(0x03, b"\x00" + rsa_public_key))
+    onion_service_id = base64.b32decode(HOST.removesuffix(".onion").upper())
     out = {
         "onion-host": HOST.encode("ascii"),
         "onion-host-bare": HOST.removesuffix(".onion").encode("ascii"),
@@ -83,6 +84,11 @@ def candidates() -> dict[str, bytes]:
         "http-example-url": f"http://{HOST}/{EXAMPLE_NUMBER}".encode("ascii"),
         "https-example-url": f"https://{HOST}/{EXAMPLE_NUMBER}".encode("ascii"),
     }
+    out.update({
+        "onion-v2-service-id-raw10": onion_service_id,
+        "onion-v2-service-id-hex": onion_service_id.hex().encode("ascii"),
+        "onion-v2-service-id-base64": base64.b64encode(onion_service_id),
+    })
     for index, number in enumerate(RESPONSE_NUMBERS, 1):
         out[f"response-{index}-decimal"] = number.encode("ascii")
         out[f"http-response-url-{index}"] = f"http://{HOST}/{number}".encode("ascii")
