@@ -82,6 +82,21 @@ Total **≥10 distinct OOV complete groups** in the first 192 key digits, versus
 
 Reproduce with [SFT](../sims/lp2_opening_triple_latent_f_commonpad_sft.cjs) and [executed raw results](lp2-opening-triple-latent-f-commonpad.json). The code was executed against repository inputs in the connected V8 runtime; no Windows CI run is claimed. The local 1.2M call cap is explicit and never contributes an unproven exclusion.
 
+## Spacing-free constructive inverse (Agent44, 26 November 2026)
+
+The printed-word premise is independently removed here. A width-256 joint beam considers every literal-F hold and all 29 shared consuming digits at each of the first 180 consuming positions on p0–2, forward and same-sign. The scorer is an interpolated four-gram GP29 model trained on the first 70% of each of three literary donors (32,746 Gibran, 151,974 Shakespeare, 214,613 Emerson runes); the donor end markers are checked explicitly. No original printed boundary enters the decoder. Each returned prefix exactly reencrypts. Scores below are per-rune natural log likelihood ratios relative to uniform GP29.
+
+| Input | Key digits correct / 180 | Plaintext runes correct / recovered | Joint score p0 / p1 / p2 |
+| --- | ---: | ---: | --- |
+| Authentic solved-Cicada passages, shared random pad | 178 | 545/551 | 1.432 / 1.431 / 1.302 |
+| Held literary passages, shared random pad | 178 | 543/549 | 1.356 / 1.443 / 1.413 |
+| Authentic solved-Cicada passages, three independent pads | 9 (relative to first pad) | 26/547 | 0.751 / 0.987 / 1.141 |
+| Original opening pages | unknown | unknown | 0.914 / 0.964 / 0.790 |
+
+The original result remains incoherent, despite the same algorithm recovering nearly all key digits and plaintext from both positive controls. Example original generated p0 prefix: NT HEW LIFE GLAN ANCE ... (the segmentation is illustrative and unsupported). Apparent fragments are selected by the language model and are not recovered words. This is an empirical negative for the specified H-decoy receiver, not an exact exclusion of arbitrary plaintext. Beam pruning can discard the true path; the signs, orders and key law are fixed. The separate p0/p1 fit and frozen p2 decode fails on both shared-pad positives at consuming steps 5 and 48, so its original failure at step 6 is uncalibrated and contributes no negative evidence. The initial literary donor slicing accidentally retained Gutenberg boilerplate; the committed code and raw output correct that error and supersede the first version.
+
+Reproduce with [spacing-free SFT](../sims/lp2_opening_triple_spacingfree_commonpad_sft.cjs) and [raw output](lp2-opening-triple-spacingfree-commonpad.json). Both were executed in V8; no Windows CI claim. No further source-free widening is justified by these outputs.
+
 ## Reproduction and next decision
 
 - Standalone **CommonJS/Node 22 SFT:** [`sims/lp2_p0_p1_cross_sharedpad_sft.cjs`](../sims/lp2_p0_p1_cross_sharedpad_sft.cjs). The script asserts the exact original ciphertext source and partitions, eight minimum costs, eight first-forced offsets, cipher/key recovery for native GP plants, and the matched and independent-pad control costs.
