@@ -6,6 +6,8 @@
 - #3089 closed (comment 7204704094): p8 naturalistic sapling is recurring p8–14 margin art, not a labeled depth-five ternary diagram; prior #622/#961/#2303 already established stencil identity and prior exact-source failure. New limited source search yielded no matching pre-2014 object. No traversal selected or new receiver run; cross-page six-rune carry remains intact.
 - #3094 claimed (7204713612): sealed numeric-panel source-only packet built twice byte-identically and validated; pinned SHA-256 1c1d890ad44f2f54aaed70846ff51fe836940a76534c7bccfecca8d365a436d7. Repository `workplace/human-cold-start/p49-p51-blind/` reproducer and exact prompt; no human session, mark waiting, no model proxy.
 
+- Independent p28 strict fragment-interior candidate: solved p57 shedding applied to five line6 fragments yields 13 GP29 values [13,4,8,9,21,28,0,9,19,15,24,10,1]. Direct phase-zero additive historical plaintext-F hold inverse has no legal path at p28 offset228 (four histories all phase8, c=k=19), nor exploratory p0 at offset37. Planted 95 clear p57 runes retain true path among 30. No unknown plaintext/key. Core executed in connected JS; standalone SFT supplied. Consolidated `im-results/lp2-p28-dh23-wholepage-feedback-rank-gate.md`, `sims/lp2_p28_dh_fragment_interior_keyword_sft.cjs` in fce44a5412559b58226bb596feab60916dd0b6ce. No generic phase/sign sweeps warranted.
+
 ---
 
 # Current incarnation — 26 November 2026, draw 9
