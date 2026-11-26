@@ -289,6 +289,23 @@ For each bank digit, the dependence on x is affine in exactly one coordinate. In
 | Plant 140026 | -1 | +0.650242 | +0.659822 | +0.652840 |
 | Plant 140027 | +1 | +0.659895 | +0.659473 | +0.659780 |
 
-Both independently keyed controls recover 13/13 mask elements, 715/715 bank digits and 12,227/12,227 later runes from the fit alone. They use distinct seeds and sign but recycle four held solved-section donors to match original physical page lengths; they are not two independent full-length literary books. Original fit and holdout candidates are nonprose; all decoded opening and subsequent runes replay exactly, an invariant shared by all masks. The p3–39/p40–55 split is a familiar manuscript partition, not fresh independent manuscript evidence. The exact full optimum is a score-domain result, not a universal theorem about language. It covers ordinary consumption only, not unknown-mask F-hold or arbitrary nonadditive bootstraps. No unknown plaintext or key, and no change to the authoritative frontier.
+Both independently keyed controls recover 13/13 mask elements, 715/715 bank digits and 12,227/12,227 later runes from the fit alone. They use distinct seeds and sign but recycle four held solved-section donors to match original physical page lengths; they are not two independent full-length literary books. Original fit and holdout candidates are nonprose; all decoded opening and subsequent runes replay exactly, an invariant shared by all masks. The p3–39/p40–55 split is a familiar manuscript partition, not fresh independent manuscript evidence. The exact full optimum is a score-domain result, not a universal theorem about language. The score result covers ordinary consumption. The separate exact feasibility result below closes the downstream literal-F variant for both opening clocks, but not arbitrary nonadditive bootstraps. No unknown plaintext or key, and no change to the authoritative frontier.
 
 [Reproducer](../sims/agent14_lp2_decrypted_opening_bootstrap_sft.cjs) · [exact output and source blobs](agent14-lp2-decrypted-opening-bootstrap.json). Executed the exact source core in connected V8 on pinned repository JSON; standalone Node filesystem wrapper not CI-run.
+
+### Exact literal-F bootstrap obstruction (both opening clocks)
+
+The first 247 of the 248 decoded p0 body digits are precisely the nineteen page keys for p1–p19. Under historical literal-F bypass, each ciphertext zero may either be a held plaintext F or a consumed non-F. Let H be the cumulative number of held zero events; the active key slot at physical offset i is (i-H) mod 13. For each consuming event in a downstream page, the key digit cannot equal s*C mod29, where s is the common additive sign. This gives exact feasibility without requiring a language model or word segmentation.
+
+For ordinary root consumption the 247 key digits are C_i-x[i mod13], for arbitrary x in GF29^13. With literal-F root consumption each held zero produces key digit zero, each other digit is C_i-x[(i-H) mod13] and must be nonzero; the final unassigned body digit is constrained as well. Use five-bit GP29 variables and six-bit cumulative hold counters (all tested pages contain fewer than 64 zero events, so no counter wrap). Enumerate each possible cumulative count symbolically with implications. Z3 QF_BV returns UNSAT for the original in all four cases:
+
+| Opening clock | Downstream sign | Result | Local seconds |
+|---|---:|---|---:|
+| Ordinary | -1 | UNSAT | 0.944 |
+| Ordinary | +1 | UNSAT | 0.774 |
+| Literal F | -1 | UNSAT | 3.870 |
+| Literal F | +1 | UNSAT | 3.355 |
+
+The ordinary-root result independently agrees with complete domain-box intersection enumeration; the literal-F result covers all 8192 opening hold subsets, all 29^13 masks and all subsequent hold choices. No assumptions about p20 onward are required. Fixed planted assignments with literal-F root, both signs, were SAT (0.307/0.271 seconds); these check feasibility encoding, not blind key recovery. A preliminary blind planted search timed out and is not a recovery control. The portable script includes both root-clock witness-control variants; ordinary-root witness controls have not separately been executed at this checkpoint. The local source was the exact p0–19 GP29 extraction from corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 (text SHA256 b029dc7428d032e05df56abd0d705854d80c75e8e24f47905c9b1b377eaff0b8). Source: [SAT reproducer](../sims/agent14_lp2_decrypted_opening_fhold_sat.py), commit 2a4160ee2c7fbd13f664e7480f95004ddfe5f276.
+
+**Retire these exact additive bootstraps:** ordinary downstream has a calibrated exhaustive score failure; literal-F downstream has a language-independent contradiction for both root clocks. No original plaintext or authenticated key recovered. Do not repeat the branch with more optimization absent a source-selected change in framing or mechanism.
