@@ -347,7 +347,7 @@ const p35Decoded = p35Cipher.map((value, index) => mod29(value - p35Key[index]))
 assert.deepEqual(p35Cipher, [19, 17, 19, 24, 11]);
 assert.deepEqual(p35Decoded, found);
 
-console.log(JSON.stringify({
+const result = {
   status: "PASS",
   sourceCoordinate: {
     markerCounts: { p0: p0MarkerCount, p57: p57TerminalMarkerCount },
@@ -394,4 +394,9 @@ console.log(JSON.stringify({
     classification: "cross-result consistency, not independent authentication of the p2 key"
   },
   decision: "Unique exact local inverse under the frozen key; source-coordinate hypothesis is plausible under page-local numbering; H4 slot assignment remains post-hoc, so do not promote to authenticated plaintext or a reusable cipher."
-}, null, 2));
+};
+const rendered = JSON.stringify(result, null, 2);
+console.log(rendered);
+if (process.env.RUNNER_TEMP) {
+  fs.writeFileSync(path.join(process.env.RUNNER_TEMP, "source-test-output.json"), rendered + "\n", "utf8");
+}
