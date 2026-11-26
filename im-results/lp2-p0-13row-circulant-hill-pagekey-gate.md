@@ -1,6 +1,6 @@
 # p0 55×13 page-key matrix: per-page circulant Hill gate
 
-**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent page orientation, without a language model. The page-row assignment and singular p50 alignment remain conditional structural observations.
+**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent page orientation, without a language model. The exact affine column-mean repair of the singular p50 panel also gives nonprose, even after integrating every possible null-mode restoration. The page-row assignment and singular p50 alignment remain conditional structural observations.
 
 ## Question
 
@@ -182,3 +182,18 @@ There are 58 equations per fixed direction on the full receiver. For example the
 
 Reproducer: [CommonJS SFT](../sims/agent31_lp2_page_row_word_circulant_sft.cjs); [full rank bases and orientation certificates](agent31-lp2-page-row-word-circulant.json). Executed against pinned repository inputs in connected V8, including the final pagewise extension; standalone Node/CI not run.
 
+
+## Singular p50 panel: exact null-mode restoration (Agent 3, 26 November)
+
+The direct p50-column image failure above does not survive arbitrary affine column means. This is the algebraically minimal repair of that specific recipient, rather than another rune-page key search. Let M be either frozen 13×13 matrix of row50 and J the all-ones matrix. M has image the zero-sum subspace and kernel the constants. The unique extension acting identically on the constant mode and identically to M on its complement is A=M+J/13 over GF29. For each original 13×8 panel column c, A⁻¹c is therefore the canonical mean-preserving inverse. More generally every solution of M p = c−mean(c)·1 is A⁻¹c+t·1, for any of the 29 constants t. The mean of c is public; the mean of p need not be. This completely enumerates the affine column-mean remedy, without searching matrices or new source keys.
+
+Test both source-admissible numeric radices (60 and omitted-f 59), both original matrix signs, and row-major or column-major output (eight frozen interpretations). Apply the canonical inverse to each panel, then integrate and maximize over all 29^8=500,246,412,961 independent column constants using exact cyclic dynamic programming. The native bigram model uses the same 2,296 training runes as the shared-affine study and 0.5 smoothing, with independent held source sections excluded. The evidence is the log mean likelihood ratio against iid uniform over the constant-mode prior; a positive optimized score alone is insufficient. Original quotient digits floor(v/29) are retained solely to check exact byte replay, not inferred from the candidate plaintext.
+
+| Order | Best canonical fixed score, nats | Best all-constant MAP, nats | Best log mean BF, nats | Held planted log mean BF |
+|---|---:|---:|---:|---:|
+| Row-major | −58.274 | +13.899 | −12.634 | +31.275 to +51.662 |
+| Column-major | −53.241 | +14.034 | −11.354 | +31.305 to +52.402 |
+
+All eight fixed and all eight optimized original readouts are incoherent, and all eight integrated scores are negative (range −31.391 to −11.354). The maximum original MAP +14.034 is far below the smallest held planted MAP +58.211. The eight row-major plants recover 832/832 runes; eight column-major plants recover 780/832. These are four disjoint 104-rune windows from two held solved sections, reused across signs and layout conventions; not sixteen independent prose samples. Every original field symbol and all original byte values replay exactly with the supplied quotient side information. Since M is singular, replay does not identify the missing means; the language calibration does. The original numeric table may carry nonlinguistic material, so this only retires direct GP29 prose as an output of the fixed affine-column repair.
+
+**Decision:** do not pursue arbitrary nullspace offsets or treat the p50 rank exception as an authenticated key. No unknown prose, key, or new source-selected consumer was recovered. The original p50 field means are [20,2,13,28,0,13,5,6] (base60) and [4,22,2,15,18,9,12,6] (base59). These merely describe the known table. [Runnable SFT](../sims/lp2_p0_row50_singular_mean_panel_sft.cjs) · [Exact output](lp2-p0-row50-singular-mean-panel-output.json). Core executed in connected V8 on pinned blobs; standalone Node not separately run.
