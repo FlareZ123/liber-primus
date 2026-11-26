@@ -1,0 +1,447 @@
+{
+  "dictionary": 29060,
+  "combinedRegister": 29081,
+  "variableDistinctOutputs": 28906,
+  "rows": [
+    {
+      "name": "all",
+      "groups": 2896,
+      "input": {
+        "n": 12956,
+        "ioc": 0.03447839786450569,
+        "equal": 86
+      },
+      "zeroPadded": 116,
+      "fixed": {
+        "legal": 1272,
+        "changed": 1208,
+        "overflow": 1624,
+        "loss": 0,
+        "output": {
+          "n": 12956,
+          "ioc": 0.03448099549953773,
+          "equal": 233
+        },
+        "covered": 184,
+        "longCovered": 3,
+        "preview": "AATTAHIH AETIAHD THJGAE BFO ONTH ITHTBAEYSSIIX NAEGITH HBNIA PBN EOJTH DWTH BDP EIAFXGF SPTFPUNGYNGXIA NG BU GOP NGAETH"
+      },
+      "minimal": {
+        "legal": 1632,
+        "changed": 1530,
+        "overflow": 1004,
+        "loss": 260,
+        "output": {
+          "n": 12956,
+          "ioc": 0.03446683958018881,
+          "equal": 273
+        },
+        "covered": 190,
+        "longCovered": 2,
+        "preview": "AATTAHIH AETIAHD OIAEO FRIA HREA NEWBASOEEOINGU RREADU HBNIA PBN EOJTH DWTH BDP EIAFXGF NGMJNLDBADDTH NG BU WEG NGAETH"
+      },
+      "variable": {
+        "covered": 192,
+        "unique": 135,
+        "longest": 3,
+        "longCovered": 2,
+        "longGroups": 1645,
+        "exactLength": 125,
+        "maxCandidates": 5,
+        "examples": [
+          {
+            "group": 820,
+            "cipher": "ODAC",
+            "candidate": [
+              "PIT"
+            ]
+          },
+          {
+            "group": 2861,
+            "cipher": "XSDC",
+            "candidate": [
+              "PAWN"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "p33-39",
+      "groups": 378,
+      "input": {
+        "n": 1680,
+        "ioc": 0.03436002155478034,
+        "equal": 12
+      },
+      "zeroPadded": 9,
+      "fixed": {
+        "legal": 176,
+        "changed": 167,
+        "overflow": 202,
+        "loss": 0,
+        "output": {
+          "n": 1680,
+          "ioc": 0.03460960322187243,
+          "equal": 42
+        },
+        "covered": 24,
+        "longCovered": 0,
+        "preview": "DEO JOECOYAOH THS FTEOEEAAIASG OEWPFUA OIAM AEJT YDBTR UJH AEOE IANGWHSFIA LTHT IWT OUNWML STHEAWJ AJAEGYMWD PIA EJW"
+      },
+      "minimal": {
+        "legal": 219,
+        "changed": 207,
+        "overflow": 124,
+        "loss": 35,
+        "output": {
+          "n": 1680,
+          "ioc": 0.03457344224169716,
+          "equal": 47
+        },
+        "covered": 26,
+        "longCovered": 0,
+        "preview": "DEO JOECOYAOH EOOE FXLAIAPPR OEWPFUA GGP THSM YDBTR IGIA AEOE IANGWHSFIA LTHT JFB OAGXRJ STHEAWJ AJAEGYMWD PIA EJW"
+      },
+      "variable": {
+        "covered": 29,
+        "unique": 23,
+        "longest": 3,
+        "longCovered": 0,
+        "longGroups": 211,
+        "exactLength": 22,
+        "maxCandidates": 3,
+        "examples": []
+      }
+    },
+    {
+      "name": "p55-complete",
+      "groups": 16,
+      "input": {
+        "n": 75,
+        "ioc": 0.03855855855855856,
+        "equal": 1
+      },
+      "zeroPadded": 1,
+      "fixed": {
+        "legal": 9,
+        "changed": 8,
+        "overflow": 7,
+        "loss": 0,
+        "output": {
+          "n": 75,
+          "ioc": 0.035315315315315315,
+          "equal": 2
+        },
+        "covered": 0,
+        "longCovered": 0,
+        "preview": "ROEAE HOE ETH SEOGDTHAE FIAABCU AG PRLNNGAEAETHUTHMPY MSDIAPF LNYNG OEAE EAEIGXGS ESEOTHTHES THOE WRLAEHB DJU BEI"
+      },
+      "minimal": {
+        "legal": 8,
+        "changed": 8,
+        "overflow": 6,
+        "loss": 2,
+        "output": {
+          "n": 75,
+          "ioc": 0.032432432432432434,
+          "equal": 1
+        },
+        "covered": 0,
+        "longCovered": 0,
+        "preview": "ROEAE HOE ETH SEOGDTHAE OGAHBU AG BEAFXIMUCPHNGLEO MSDIAPF LNYNG OEAE EAEIGXGS ESEOTHTHES THOE WRLAEHB DJU BEI"
+      },
+      "variable": {
+        "covered": 0,
+        "unique": 0,
+        "longest": 0,
+        "longCovered": 0,
+        "longGroups": 9,
+        "exactLength": 0,
+        "maxCandidates": 0,
+        "examples": []
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "0_warning",
+      "groups": 45,
+      "plain": {
+        "n": 184,
+        "ioc": 0.06402946067949632,
+        "equal": 5
+      },
+      "fixed": {
+        "cipher": {
+          "n": 184,
+          "ioc": 0.04478498455690188,
+          "equal": 6
+        },
+        "recovered": 184
+      },
+      "minimal": {
+        "cipher": {
+          "n": 184,
+          "ioc": 0.04021145165122357,
+          "equal": 6
+        },
+        "recovered": 184
+      },
+      "variable": {
+        "dictionaryPresent": 45,
+        "variableCovered": 45,
+        "exactCandidates": 37,
+        "ambiguous": 8
+      }
+    },
+    {
+      "name": "0_welcome",
+      "groups": 124,
+      "plain": {
+        "n": 515,
+        "ioc": 0.05941596464055004,
+        "equal": 20
+      },
+      "fixed": {
+        "cipher": {
+          "n": 515,
+          "ioc": 0.04302821956102905,
+          "equal": 20
+        },
+        "recovered": 515
+      },
+      "minimal": {
+        "cipher": {
+          "n": 515,
+          "ioc": 0.03835140342261342,
+          "equal": 22
+        },
+        "recovered": 515
+      },
+      "variable": {
+        "dictionaryPresent": 122,
+        "variableCovered": 122,
+        "exactCandidates": 104,
+        "ambiguous": 20
+      }
+    },
+    {
+      "name": "0_wisdom",
+      "groups": 31,
+      "plain": {
+        "n": 157,
+        "ioc": 0.05250694104197289,
+        "equal": 7
+      },
+      "fixed": {
+        "cipher": {
+          "n": 157,
+          "ioc": 0.04050302139474114,
+          "equal": 3
+        },
+        "recovered": 157
+      },
+      "minimal": {
+        "cipher": {
+          "n": 157,
+          "ioc": 0.03682835211497632,
+          "equal": 7
+        },
+        "recovered": 157
+      },
+      "variable": {
+        "dictionaryPresent": 21,
+        "variableCovered": 21,
+        "exactCandidates": 27,
+        "ambiguous": 4
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "groups": 208,
+      "plain": {
+        "n": 780,
+        "ioc": 0.06568249893025246,
+        "equal": 14
+      },
+      "fixed": {
+        "cipher": {
+          "n": 780,
+          "ioc": 0.05084098614265495,
+          "equal": 24
+        },
+        "recovered": 780
+      },
+      "minimal": {
+        "cipher": {
+          "n": 780,
+          "ioc": 0.043490997663013065,
+          "equal": 16
+        },
+        "recovered": 780
+      },
+      "variable": {
+        "dictionaryPresent": 207,
+        "variableCovered": 207,
+        "exactCandidates": 187,
+        "ambiguous": 21
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "groups": 181,
+      "plain": {
+        "n": 755,
+        "ioc": 0.06121524057125793,
+        "equal": 18
+      },
+      "fixed": {
+        "cipher": {
+          "n": 755,
+          "ioc": 0.0447063783441952,
+          "equal": 30
+        },
+        "recovered": 755
+      },
+      "minimal": {
+        "cipher": {
+          "n": 755,
+          "ioc": 0.03986157710752367,
+          "equal": 24
+        },
+        "recovered": 755
+      },
+      "variable": {
+        "dictionaryPresent": 177,
+        "variableCovered": 177,
+        "exactCandidates": 166,
+        "ambiguous": 15
+      }
+    },
+    {
+      "name": "jpg107-167",
+      "groups": 88,
+      "plain": {
+        "n": 319,
+        "ioc": 0.06981329232467814,
+        "equal": 6
+      },
+      "fixed": {
+        "cipher": {
+          "n": 319,
+          "ioc": 0.05029474970919343,
+          "equal": 12
+        },
+        "recovered": 319
+      },
+      "minimal": {
+        "cipher": {
+          "n": 319,
+          "ioc": 0.044380039825713216,
+          "equal": 11
+        },
+        "recovered": 319
+      },
+      "variable": {
+        "dictionaryPresent": 88,
+        "variableCovered": 88,
+        "exactCandidates": 82,
+        "ambiguous": 6
+      }
+    },
+    {
+      "name": "jpg229",
+      "groups": 18,
+      "plain": {
+        "n": 89,
+        "ioc": 0.05745658835546476,
+        "equal": 3
+      },
+      "fixed": {
+        "cipher": {
+          "n": 89,
+          "ioc": 0.032175689479060264,
+          "equal": 5
+        },
+        "recovered": 89
+      },
+      "minimal": {
+        "cipher": {
+          "n": 89,
+          "ioc": 0.035240040858018386,
+          "equal": 2
+        },
+        "recovered": 89
+      },
+      "variable": {
+        "dictionaryPresent": 18,
+        "variableCovered": 18,
+        "exactCandidates": 15,
+        "ambiguous": 3
+      }
+    },
+    {
+      "name": "p56_an_end",
+      "groups": 25,
+      "plain": {
+        "n": 85,
+        "ioc": 0.0700280112044818,
+        "equal": 3
+      },
+      "fixed": {
+        "cipher": {
+          "n": 85,
+          "ioc": 0.04089635854341737,
+          "equal": 5
+        },
+        "recovered": 85
+      },
+      "minimal": {
+        "cipher": {
+          "n": 85,
+          "ioc": 0.045098039215686274,
+          "equal": 3
+        },
+        "recovered": 85
+      },
+      "variable": {
+        "dictionaryPresent": 24,
+        "variableCovered": 24,
+        "exactCandidates": 22,
+        "ambiguous": 3
+      }
+    },
+    {
+      "name": "p57_parable",
+      "groups": 20,
+      "plain": {
+        "n": 95,
+        "ioc": 0.06270996640537514,
+        "equal": 1
+      },
+      "fixed": {
+        "cipher": {
+          "n": 95,
+          "ioc": 0.05173572228443449,
+          "equal": 2
+        },
+        "recovered": 95
+      },
+      "minimal": {
+        "cipher": {
+          "n": 95,
+          "ioc": 0.04658454647256439,
+          "equal": 3
+        },
+        "recovered": 95
+      },
+      "variable": {
+        "dictionaryPresent": 17,
+        "variableCovered": 17,
+        "exactCandidates": 18,
+        "ambiguous": 2
+      }
+    }
+  ]
+}
