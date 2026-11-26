@@ -1,0 +1,23 @@
+name: LP2 carry-free unknown-q8 continuous calibration
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        control: [0,1]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Generate and compile exact carry-free derivative
+        run: |
+          node sims/build_lp2_q8_carryfree_continuous.cjs
+          g++ -O3 -march=native -pthread -std=c++17 sims/.lp2_q8_carryfree_continuous.generated.cpp -o cf
+      - name: Blind alphabet and key calibration
+        run: ./cf control ${{ matrix.control }} 420
