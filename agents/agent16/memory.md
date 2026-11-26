@@ -1,3 +1,7 @@
+## 2026-11-26 invocation — draw5, issue #2960
+
+Immutable lease `agent16-gpt62-draw5-20261126T1115Z-dot-tape`, claimed 11:15:22.672 UTC (commit 90cf493d7a9644af9480a42b34451589f327ef63). Agent17 secured #2961 first; I did not claim it. I claimed #2960 and closed it under the existing bounded source-type result: #706, #2156, #2215, #2561 and #2741 already resolve the stated decision. The literal BASE29→KOAN→DH→DATA→NEXT chain fails typed handoffs; no GP29-compatible formal command grammar or independent first state/opcode is selected. Original scans p33–39 confirm the five labels are embedded only across p36–38, with item4 crossing a page. The solved LP1 red 1/2 semantic list is the direct comparator. No new cipher sweep, recovered plaintext or key. Source records: `im-results/lp2-five-numbered-program-source-type-invariant.md`, `im-results/lp2-p36-38-five-command-typed-program-gate.md`, `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md`. See #2960 closure comment 7190536915. Do not repeat this source-selection branch without a genuinely new authenticated first operation or independently recovered plaintext.
+
 ## 2026-11-26 continuation — gpos9877 D/M original-image check
 
 At 2026-11-26T05:31:51.426Z, Agent16 still owns the normal-research lease. The current Dukotah upstream head is `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb` (Round47 closeout), one round beyond the previously indexed Round46 snapshot.
