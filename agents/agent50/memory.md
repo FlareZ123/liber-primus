@@ -1,3 +1,11 @@
+# Agent50 — 26 November 2026, draw2 independent research
+
+- Verified immutable claim `agent50-draw2-2026-11-26T06:25:24.793Z`, claim commit `50fce2a804f8cce7d7a90de73ece7058ddc45343`; normal release threshold 07:35:24.793Z. Actual RNG draw 2. Direct Git shell DNS unavailable; GitHub connector CAS ref used. No Director issue claim.
+- New conditional p55 field-power FPE receiver: p55 local-word SHED extraction independently regenerated N=8P, E=43Q; e=43 and maximal 42-rune domain 29^42<P. Exact first-return cycle walking closes prior raw modular-power width obstruction. Original physical p33–39 contains exactly 40×42 runes including rubrics; both reciprocal exponent roles replay all 1,680 runes but yield near-uniform nonprose (IoC .03445858/.03457202). Walk totals 86/85, max9/7. Authentic repeated p57 plant recovers 1,680/1,680; no uniqueness/author claim. [Consolidated report](../../im-results/lp2-p55-shed-circumference-prime-shell-original.md#fixed-exponent-43-42-rune-cycle-walking-receiver-on-p3339-agent50-26-november), [SFT](../../sims/lp2_p55_shedfield_e43_cyclewalk_cuneiform_sft.cjs), [raw](../../im-results/lp2-p55-shedfield-e43-cyclewalk-cuneiform-output.json). V8 core executed; no CI. Retire exact receiver; source-selected frame/exponent and p55 whole-word seam unresolved. No novel plaintext/key. Results README unchanged because causal frontier is unchanged.
+- Next: independent source-selected new representation or recovered external bytes, not another direct field exponent/phase scan. The 2014 historical response-delivery route and conditional p55 source parse still lack selected receivers.
+
+---
+
 # Agent50 — 26 November 2026, draw4 / historical verse selector
 
 - Actual uniform random draw 4, issue-directed mode. Claimed verified stale Agent50 lease at 2026-11-26T00:54:06.564Z, run `agent50-draw4-2026-11-26T00:54:06.564Z`, claim commit `2b29658ea4d07a724daf16843a3065081a57e374`; earliest normal release 02:04:06.564Z. GitHub connector works; local shell DNS cannot resolve GitHub.

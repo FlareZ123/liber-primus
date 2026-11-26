@@ -203,6 +203,24 @@ Source-p56 hash comparison `SHA512(S as 26 bytes)` is **false**. The six complet
 
 The large-field P/Q branch still lacks a source-selected consumer. The separate base59/DH23 route now gives a reversible one-symbol selector M=17→prime59, but no unknown-page rune. The next decisive experiment is a frozen downstream receiver that consumes this 17/59 selector or a second independently source-selected ciphertext pair and predicts untouched original runes. Do not widen the P/Q discrete-log, radix, or key searches. See [the new fixed-point report](lp2-p55-base59-elgamal-fixedpoint.md).
 
+## Fixed exponent 43, 42-rune cycle-walking receiver on p33–39 (Agent50, 26 November)
+
+The earlier raw 43rd-power receiver on 42-digit GP29 packets sometimes leaves the digit domain. Instead of discarding or truncating those outputs, test the standard cycle-walking restriction of the already fixed field permutation. This is a distinct reversible receiver, not a new parameter search. Historical 2013 BASE29 and the separate [PARABLE RSA cycle-walking study](lp2-2013-parable-rsa-cyclewalk-original-gate.md) motivate the representation and framing technique. The conditional p55 local-word extraction fixes P=N/8 and e=43 (the divisor of the shell); B=29^42 is the maximal guaranteed GP29 packet range since B<P<29B. The full physical p33–39 span containing the cuneiform 1033/3301 header contains exactly 1,680 runes = 40×42. Freeze that span, including its original red rubrics, in printed order and phase zero. This is a conditional receiver choice: the cuneiform marks do not identify P/e, cycle walking, or the physical page boundaries as an encryption frame. In particular the p33 mid-page rubric and the p55 incoming carry remain independent objections.
+
+Map a packet integer x by successive x↦x^43 mod P until x<B; reverse by successive exponentiation with d=43^(-1) mod (P−1) = 10378792787663791801936161217705748326678933505966809166990687 until re-entry. Each is a permutation of the finite subset [0,B) because the underlying field map is bijective, so forward and reverse first returns are mutual inverses. No padding, dropped digits, or adjusted phase. Source P and shell division are regenerated from p55 groups and checked against the corpus. Test the inverse exponent and the reciprocal public/private role once.
+
+| Register | IoC | Adjacent equalities | Cycle-walk applications (max per packet) |
+|---|---:|---:|---:|
+| Original p33–39 | 0.03436002 | 12 | — |
+| d receiver | 0.03445858 | 56 | 86 (9) |
+| e receiver | 0.03457202 | 73 | 85 (7) |
+| Repeated authentic p57 GP29 plant | 0.07181712 | 18 | — |
+| Plant ciphertext | 0.03438200 | 71 | — |
+
+Both entire original candidates are nonprose; inverse begins `NTTXATHUWNFTFPPEOIUJOEOUTTHETHRMJLTAUOECFTHPRXWOYXXSUOEROETHUDOPPOEFAEIAOLGEOWAC…`, reciprocal begins `NGUSJMENGWFNGNGMXYHPCOEAESPRINGRXJGFUSEOOEIAAEWXPAEAEEOOEGBPHTDAEOWRLOEOECMETHNF…`. Both exactly re-encrypt all 1,680 source runes. A 1,680-rune repeated authentic p57 plant exactly recovers all symbols. Repetition makes its IoC an implementation-control reference rather than an independent natural-language distribution. The fixed receiver resolves the raw-packet range obstruction without producing plaintext. There is no key fit; neither the exact replay nor packet divisibility identifies a historical cipher. Retire this particular field-power receiver; do not vary exponent, packet origin, widths, or trailing policies absent a new first-party selector. The low original doublet count is not itself an all-secret field-cipher theorem.
+
+[Read-only CommonJS SFT](../sims/lp2_p55_shedfield_e43_cyclewalk_cuneiform_sft.cjs) · [Complete output with both original candidate tapes and walk counts](lp2-p55-shedfield-e43-cyclewalk-cuneiform-output.json). Input corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; group fixture blob 8960e113af36ee46186965e394ec6be18d69b74f. Core executed in connected V8; standalone Node wrapper not separately executed in CI. No unknown plaintext or authenticated key.
+
 ## Reproduction
 
 Execute the read-only SFT:
