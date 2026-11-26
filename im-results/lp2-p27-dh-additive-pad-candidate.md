@@ -1,8 +1,8 @@
 # p27 DIVINITY core: provisional DH-derived additive-pad candidate
 
-**Classification: local 8-rune candidate only. No unknown LP2 plaintext, authenticated KDF, or page decoder recovered.**
+**Classification: retrospective local 8-rune fit; the entire cyclic-order periodic-key rescue is excluded in the finite intact-word register below. No unknown LP2 plaintext, authenticated KDF, or page decoder recovered.**
 
-This note records a reproducible alternative to the already-rejected direct DH-derived cube on the p27 core. The additive operation maps one source-selected 8-rune core to the expected p57 word, but the exact key serialization order is not fixed by an explicit source instruction. Treat it as a live, falsifiable candidate—not an established decryption.
+This note records a reproducible alternative to the already-rejected direct DH-derived cube on the p27 core. The additive operation maps one source-selected 8-rune core to the expected p57 word, but the exact key serialization order is not fixed by an explicit source instruction. The exact target fit is retained as historical evidence; neither its coordinate nor its pad ordering supplies an independently selected decoder. The cyclic-order rescue has now failed.
 
 ## Candidate objects and unresolved coordinate convention
 
@@ -51,9 +51,31 @@ These are source-linked arithmetic consistencies. Because the pad was recognized
 4. Repeating the eight-symbol vector with period8 over p27 or p29 does not produce prose. The candidate is local to the eight-rune core, not a page decoder.
 5. The signed 2013 DH protocol supplies no documented KDF or payload cipher. Do not infer that the shared secret2 is a GP29 additive key merely because it participates in this candidate.
 
-## Decisive next test
+## Source-order decision and exact unknown-order key inverse (Agent42, 26 November 2026)
 
-First freeze one first-party indexing convention: printed versus physical versus zero-based LP2 page, one-based versus zero-based word, and which of the 2016 positions20/27 supplies page versus word. Then derive the eight pad entries **blindly from p28/p29 only**, without looking at the p27 core or target. Finally apply that same rule to a genuinely distinct target/holdout not already suggested by p57. If any of those rules cannot be fixed before consulting the fitted core, retire the pad as a retrospective numerical fit.
+The source sentence refers to the words and numbers of Liber Primus itself. No instruction assigns the positions of the two pronouns/nouns of the 2016 message to ordered page and word coordinates. The DIRECTION self-index uses one-based physical page30 = project p29 and word30, whereas the fitted p27 object uses project page27 and word20. There is no common declared indexing convention. The proposed eight pad values also interleave the two components of H(DH) with the line's fragment count, jump to p29, return to the p28 inner shell, insert a derived inverse modulo23, duplicate K and return to p29 for F. The actual source order does not fix those jumps or their operand roles. See the [signed-source grammar decision](lp2-signed2016-manuscript-grammar-source-gate.md) and [literal DH source](lp2-p28-dh-line6-source-reconstruction.md). This is a source underdetermination, not a theorem forbidding every imaginable serialization.
+
+To make the missing ordering a recoverable key variable instead of guessing more serializations, freeze only the **post-fitted** multiset {0,2,2,5,14,15,22,25}. Enumerate all 7!/2! = 2,520 cyclic keys with the unique zero at origin, all eight independent starting phases for each printed group, both signs, and ordinary consumption versus native plaintext-F holds (F emits zero and does not consume a shift). This covers every ordering, rotation and reversal of the fitted eight entries and all continuous-clock specializations. No arbitrary values, nulls, or other periods are added.
+
+Exact solver: for every finite native dictionary candidate P of the same rune length as original C, form the required shift tape sign*(C-P) mod29; in F-hold mode remove only P=0 positions, which must have C=0. Every remaining value beyond the first eight must repeat the corresponding earlier value. Index all prefixes of all rotated candidate keys and collect the supported key IDs per source group. This is exhaustive over the specified key multiset and finite vocabulary, with a generous independent phase per group. The word support count does not depend on printed group order. The TextBlob spelling source, standard GP contraction and ING/IO alternate produce 33,369 distinct rune forms, including one-rune abbreviations. The source page tapes are checked against the canonical corpus.
+
+The fit uses p28's 52 eligible groups, excluding its literal DH line6 (offsets117–139 inclusive) and endpoint fragments. The two other original tests exclude p27's heading, fitted 12-rune target word and terminal fragment (47 groups); and p29's fitted word30 and endpoint fragments (68 groups). These are untouched by this key-order fit, not globally novel manuscript holdouts. The multiset itself was obtained retrospectively from the p27 crib, so even positive cross-validation would not establish an independent KDF.
+
+| Sign / F mode | Maximum p27 support over every key | Maximum p28 fit support | Maximum p29 support over every key | p29 support among p28 fit winners |
+| --- | ---: | ---: | ---: | ---: |
+| + ordinary | 21/47 | 17/52 | 29/68 | 23/68 |
+| + F-hold | 21/47 | 17/52 | 29/68 | 19–22/68 |
+| − ordinary | 19/47 | 17/52 | 26/68 | 19–21/68 |
+| − F-hold | 19/47 | 17/52 | 27/68 | 16–22/68 |
+
+The per-page maxima even permit the three pages to select different keys; they are upper bounds on a shared-key model. Every key needs at least 26/35/39 OOV groups respectively, versus the frozen 5% budgets of 2/2/3. Best shared support is 58/167. There is no key within the budget. Isolated short word matches are abundant and do not identify coherent text.
+
+Calibration: four hidden distinct cyclic orders, one for each sign/hold mode, use four overlapping 100-word windows from the solved LP1 reference filtered to in-register forms, independently chosen deterministic group phases, 60 fit and 40 withheld words. Each fit uniquely recovers the exact planted cyclic key, and 160/160 withheld true words remain among the exact inverse candidates (124/160 unique). These are known-family planted controls, not four independently authored literary donors. The connected V8 core executed on original data and controls; the Node wrapper has been saved but has not separately run under Node or CI.
+
+- [Executable SFT](../sims/lp2_p27_dh_pad_multiset_cyclic_inverse_sft.cjs)
+- [Exact original and control output](lp2-p27-dh-pad-multiset-cyclic-output.json)
+
+**Decision:** retire the repeated eight-entry pad, including every possible cyclic ordering of its exact multiset, for native intact-word GP29 additive/F-hold decoding of these passages. Preserve the original local fit as a retrospective numerical relation. This does not exclude nonperiodic serialization, a one-use instruction token, or an alternative register/segmentation. Do not extend the fitted multiset to arbitrary variants without a first-party operation that fixes the new values and their consumer.
 
 Reproduce from the original canonical transcription and corpus with:
 
