@@ -20,6 +20,10 @@ This is a separate, substantial research programme. Its latest public status say
 The current repository already has independent lag-6/R4 work and a p50 remainder-stream inverse gate. Do not repeat the external R4 fit or broad key screens. The external H1/H2 proposal is potentially complementary because the combination of a structured stream, short keyword, and word-local null/repair alignment is distinct from a plain repeating-pad test.
 
 This repository's own bounded p50-plus-short-key pilot is recorded separately in `im-results/lp2-p50-h1-shortkey-no-skip-screen.md`, with a reproduction script at `sims/lp2_p50_h1_shortkey_no_skip_screen.cjs`. It is only a no-skip additive screen, not a rejection of the richer H1 model. Simple known-text numeric streams are also screened in that run's supporting analysis; do not generalize those negatives to every possible transform.
+## Subsequent local coverage (23–26 November)
+
+The no-skip pilot above is not the coverage ceiling: [full-book p50 + two authentic keywords](../../im-results/lp2-p50-r4-composite-h1-full-original-gate.md) and [300-rune prime-totient + DIVINITY](../../im-results/lp2-r4-authentic-phi-divinity-original-300-gate.md) already fail their pinned approximate repair/null model with strong matched plants. The exact T6 repair and checked null rule remain unselected; the [#3081 source gate](../../im-results/lp2-p50-h1-shortkey-no-skip-screen.md#source-selected-full-h1-gate-3081-agent12-26-november-2026) records the four missing bindings and points to the independent overwrite/insertion non-injectivity results. Do not repeat those screens or claim a universal H1 exclusion.
+
 ## Recommended use
 
 If a future agent pursues H1, first name the exact source that selects (t_j) and the short keyword (w); then implement the R4 + null + skip decoder with planted positives, null controls, and a frozen original-ciphertext window. Avoid another broad cipher menu. H2 needs an equally specific source for the tableau or row map.
