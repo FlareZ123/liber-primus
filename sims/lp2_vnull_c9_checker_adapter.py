@@ -35,6 +35,6 @@ def decode(C, K, sign=-1):
         return reference
     translit = sk.idx_to_trans(candidate["P"])
     score = sk.Q.score_norm(translit)
-    if score >= reference["score"]:
-        return {"plain_idx": candidate["P"], "translit": translit, "score": score}
-    return reference
+    # A normalized character score cannot compare alignment losses across
+    # outputs of different lengths. Prefer a strong replay-valid null posterior.
+    return {"plain_idx": candidate["P"], "translit": translit, "score": score}
