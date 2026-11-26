@@ -120,7 +120,7 @@ def build(repo, out):
         data = (repo/"resources/liber-primus"/f"{n:02}.jpg").read_bytes()
         assert sha(data)==HASHES[str(n)], f"image mismatch {n}"
         return data
-    raw=(repo/"resources/historical/cicada2013-gematria-jpeg.b64").read_bytes()
+    raw=(repo/"resources/historical/cicada2013-gematria-jpeg.b64").read_bytes().replace(b"\r\n",b"\n")
     assert hashlib.sha1(f"blob {len(raw)}\0".encode()+raw).hexdigest()==CHART_BLOB
     chart=base64.b64decode(b"".join(raw.split()),validate=True)
     assert chart.startswith(b"\xff\xd8")
