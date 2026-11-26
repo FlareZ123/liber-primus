@@ -121,4 +121,32 @@ A 716-rune Gibran prose positive starts at the printed `|Almustafa,` in the pinn
 
 Reproduce with [model/input generator](../sims/lp2_p0_title_exhaustive_model.py), [cycle enumeration](../sims/lp2_p0_title_exhaustive_fhold_cycles.cpp), [F-history score](../sims/lp2_p0_title_exhaustive_fhold_score.cpp), and [uninterrupted-clock DP](../sims/lp2_p0_title_exhaustive_nohold.cpp). Build C++17 with optimization. Run the generator with an output directory, then enumerate the ten partitions by first nonzero key value 3,5,6,8,15,18,19,21,26,27: cycles executable arguments are original.txt, output prefix, partition value. For each generated binary sign/partition file, pass model.bin, original.txt, sign (-1 or 1), and binary file to the F scorer. The uninterrupted executable accepts model.bin, original.txt, sign, comma-separated multiset `0,3,5,6,8,15,15,18,18,19,21,26,27`. Plant inputs and known-cycle binary are generated alongside the original.
 
-**Decision:** the direct raw-title period-13 additive route is exhausted under both clocks, all permutations, both signs and all phases, with or without original word boundaries or dictionary anchors. The unrestricted score result is a strong calibrated language-negative, not a mathematical impossibility of arbitrary non-English plaintext. A new source operand or genuinely different operator is needed; do not rerun arbitrary order variants of the same title.
+## Prime-weighted p0 title-key receiver (Agent16, 26 November 2026)
+
+**Source-motivated fixed test; no unknown plaintext or authentic key.** The original p0 heading contains 13 red GP29 runes (8+5), followed by the 13-dot boundary; the first black body rune is TH. The GP29 chart assigns a prime to each rune, and solved LP2 p56 uses prime-minus-one shifts. A compact human attempt is therefore to use the heading's own prime weights as a period-13 additive key, beginning at the first black body rune. The adjacent direct transfer is to use each heading rune's totient, prime−1. This is a plausible test, not a source-prescribed operation: p0 does not say the heading is a key, that values should be reduced modulo29, or which sign to use.
+
+**Frozen key material and equivalence.** The heading's GP29 indices are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`; its prime values are `[53,23,67,7,17,71,107,2,53,103,67,79,13]`. The two tested keys modulo29 are:
+
+- Prime weights: `[24,23,9,7,17,13,20,2,24,16,9,21,13]`
+- Totients: `[23,22,8,6,16,12,19,1,23,15,8,20,12]`
+
+The prime key is exactly the totient key plus1 in every cell. Thus, without an F bypass, the two outputs differ only by a global Caesar shift for a fixed sign; they are not independent cipher architectures.
+
+**Receiver and scope.** Decode `P[i]=(C[i] ± K[i mod13]) mod29`, phase zero at p0 body offset0 (the first black rune after the 13-dot mark), continuously across the complete 716-rune p0–p2 black body. Test both signs. Separately test the historically attested plaintext-F bypass: plaintext F emits F without advancing the 13-cell key; every other plaintext rune consumes one cell. No phase, key permutation, page reset, or post-hoc language-model search is allowed. The p0 249-rune body is the first interval; p1–p2 (467 runes) is an untouched continuation.
+
+**Original-cipher result.** Raw IoCs are p0 **0.034363259**, p1–p2 **0.034279622**, full black body **0.034101653**, versus solved p57 **0.062709966**.
+
+| Key | Sign | p0 decoded IoC | p1–p2 decoded IoC | Full 716 decoded IoC | First impossible F-hold body offset |
+|---|---|---:|---:|---:|---:|
+| Prime weights mod29 | Minus | 0.034654748 | 0.035455974 | 0.034535297 | **14** |
+| Prime weights mod29 | Plus | 0.034233709 | 0.033764969 | 0.034922061 | **115** |
+| Totients mod29 | Minus | 0.034654748 | 0.035455974 | 0.034535297 | **152** |
+| Totients mod29 | Plus | 0.034233709 | 0.033764969 | 0.034922061 | **30** |
+
+The no-hold outputs remain at the near-uniform GP29 baseline and do not form readable prose. All four F-hold inverses lose every possible key phase within p0, at the offsets shown; none can decode the complete opening. The four matching synthetic p57 controls retain their true F-hold paths, and all four no-hold controls round-trip exactly. This verifies the tested inverse transitions without treating a synthetic plant as evidence of the historical key.
+
+**Decision:** retire this exact printed-order prime-weighted/totient-weighted period-13 Vigenère receiver, phase zero, both signs, with or without the authentic plaintext-F bypass. The negative is distinct from the prior raw-GP-ordinal title-key family, but does not exclude a genuinely different title role or independently sourced operation. No plaintext or reusable key was recovered.
+
+**Reproduction:** [Node 22 source SFT](../sims/agent16_p0_prime_title_key_sft.cjs), executed successfully by the [manual Node 22 workflow](https://github.com/FlareZ123/liber-primus/actions/runs/45759068686).
+
+**Consolidated decision:** the direct raw-GP-ordinal title-key family remains exhausted under its previously stated full ordering/phase/hold scope. The separate phase-zero prime-weighted and totient-weighted title-key receivers are also negative under the exact scope above. The unrestricted language-model result remains a calibrated language-negative, not a mathematical impossibility of arbitrary non-English plaintext. A new source operand or genuinely different operator is needed; do not rerun arbitrary representations or order variants of the same title.

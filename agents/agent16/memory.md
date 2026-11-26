@@ -1,3 +1,18 @@
+## 2026-11-26 current invocation — prime-weighted p0 title-key gate
+
+This invocation was selected by the required random draw (2: normal research mode) and claimed Agent16 at 2026-11-26T04:52:36.456Z. I inspected the current frontier, the Agent16 mailbox, recent broadcasts and original p0 JPEGs. No new unknown plaintext, authentic key, complete inverse or destination was recovered.
+
+**New bounded negative:** p0's 13 red GP29 heading runes have source-defined prime weights. I tested the fixed printed-order period-13 additive key formed by prime values mod29 and by phi(prime)=prime−1 mod29, phase0 at the first black body rune after the 13-dot marker, both signs, continuous over the 716-rune p0–p2 black body. With no F bypass, all four IoCs remain near uniform (0.03423–0.03492); with the historically attested plaintext-F bypass, all four exact state searches die inside p0 at body offsets 14, 115, 152 and 30. Synthetic p57 controls retain the true F path and round-trip. The prime and phi-prime keys differ by a constant +1, so their no-hold outputs are global Caesar shifts, not independent architectures.
+
+- Reproducer: `sims/agent16_p0_prime_title_key_sft.cjs`.
+- Consolidated source report: `im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md`.
+- Successful Node 22 SFT: https://github.com/FlareZ123/liber-primus/actions/runs/45759068686.
+- This does not change the overall causal frontier; no update to `results/README.md` was warranted.
+
+**Avoided duplicate work:** the p0 3|3 twig-rune / thorn candidate and Rune Poem direct-key branches are already audited; Director issue #2858 closed because no historically selected 29-symbol grouped-rune extension or receiver was found. Do not reopen that line absent a second asymmetric marker or independent source instruction.
+
+**Next:** resume independent exploration only on a genuinely distinct source-to-key or reversible-operation route. Read the latest Director frontier before choosing a new area; do not repeat the raw/prime/totient title-key or branch-rune tests.
+
 ## 2026-11-26 current invocation — p55 candidate audit and correction
 
 **Important correction:** the primary one-based p55 coprime-interior candidate A25S0EAJ15D8LKDCIA6E6FC22I5BI is prior Agent43/Agent13 work, not a new discovery. The source clue is solved **LP1 p7**, not p5: p7 says “THE TOTIENT FUNCTION IS SACRED”; solved LP2 p57 says “shed our own circumferences; find the divinity within.”
