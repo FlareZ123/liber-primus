@@ -13,6 +13,10 @@
  *   2. GP29 prime weights projected into those subgroups and converted by
  *      discrete logarithms, with exponent mod 29 as the symbol mapping.
  *
+ * Projection always uses the full field cofactor: 24 for 1033 and 100 for
+ * 3301. The source-order bases 17 and 13 have half-order, but raising them
+ * by 24 and 100 still generates the required subgroups.
+ *
  * It does not search arbitrary generators, offsets, mappings or ciphers.
  * Run: node sims/lp2_cuneiform_1033_3301_p55_subgroup_key_gate.cjs
  */
@@ -30,6 +34,8 @@ const P = 1033;
 const Q = 3301;
 const INNER_ORDER = 43;
 const OUTER_ORDER = 33;
+const INNER_COFACTOR = 24;
+const OUTER_COFACTOR = 100;
 const ALPHABET = '0123456789abcdefghijklmnopqrs';
 const GP_PRIMES = corpus.prime;
 const TRANSLIT = corpus.translit;
@@ -90,8 +96,8 @@ function renderWords(values, lengths) {
 
 assert.ok(isPrime(P));
 assert.ok(isPrime(Q));
-assert.equal(P - 1, 24 * INNER_ORDER);
-assert.equal(Q - 1, 100 * OUTER_ORDER);
+assert.equal(P - 1, INNER_COFACTOR * INNER_ORDER);
+assert.equal(Q - 1, OUTER_COFACTOR * OUTER_ORDER);
 assert.equal(1033, 17 * 60 + 13);
 assert.equal(3301, 55 * 60 + 1);
 
@@ -135,28 +141,24 @@ assert.equal(exterior.length, OUTER_ORDER);
 assert.equal(interiorPositions.length, INNER_ORDER);
 assert.equal(exteriorPositions.length, OUTER_ORDER);
 
-// These are the two natural assignments of the cuneiform digits 13 and 17
-// to the prime fields. In the reversed assignment they are primitive roots.
-// In source order they have orders 516 and 1650, with the indicated powers
-// selecting the exact 43- and 33-element subgroups.
+// The two natural assignments of cuneiform digits 13 and 17 to the fields.
+// The cofactor exponents 24 and 100 are fixed by the field group orders.
 const assignments = [
   {
     name: 'reversed digits: 13 mod 1033, 17 mod 3301',
-    innerBase: 13, innerCofactor: 24,
-    outerBase: 17, outerCofactor: 100,
+    innerBase: 13, outerBase: 17,
     expectedInnerBaseOrder: 1032, expectedOuterBaseOrder: 3300,
     expectedInnerGenerator: 829, expectedOuterGenerator: 1758,
     expectedLogUnique: [19, 18],
-    expectedRawInAlphabet: [33, 32]
+    expectedRawInAlphabet: [18, 28]
   },
   {
     name: 'source order: 17 mod 1033, 13 mod 3301',
-    innerBase: 17, innerCofactor: 12,
-    outerBase: 13, outerCofactor: 50,
+    innerBase: 17, outerBase: 13,
     expectedInnerBaseOrder: 516, expectedOuterBaseOrder: 1650,
-    expectedInnerGenerator: 392, expectedOuterGenerator: 1912,
+    expectedInnerGenerator: 780, expectedOuterGenerator: 1537,
     expectedLogUnique: [19, 19],
-    expectedRawInAlphabet: [23, 33]
+    expectedRawInAlphabet: [18, 29]
   }
 ];
 
@@ -178,9 +180,9 @@ for (const assignment of assignments) {
   assert.equal(outerBaseOrder, assignment.expectedOuterBaseOrder);
 
   const innerGenerator = modPow(
-    assignment.innerBase, assignment.innerCofactor, P);
+    assignment.innerBase, INNER_COFACTOR, P);
   const outerGenerator = modPow(
-    assignment.outerBase, assignment.outerCofactor, Q);
+    assignment.outerBase, OUTER_COFACTOR, Q);
   assert.equal(innerGenerator, assignment.expectedInnerGenerator);
   assert.equal(outerGenerator, assignment.expectedOuterGenerator);
   assert.equal(multiplicativeOrder(innerGenerator, P), INNER_ORDER);
@@ -215,7 +217,7 @@ for (const assignment of assignments) {
     }
   }
 
-  // Direct GP-prime -> subgroup projection -> discrete-log map.
+  // Direct GP-prime -> cofactor projection -> subgroup discrete-log map.
   function logMap(base, cofactor, modulus, order) {
     const generator = modPow(base, cofactor, modulus);
     const table = new Map();
@@ -243,9 +245,9 @@ for (const assignment of assignments) {
   }
 
   const innerLog = logMap(
-    assignment.innerBase, assignment.innerCofactor, P, INNER_ORDER);
+    assignment.innerBase, INNER_COFACTOR, P, INNER_ORDER);
   const outerLog = logMap(
-    assignment.outerBase, assignment.outerCofactor, Q, OUTER_ORDER);
+    assignment.outerBase, OUTER_COFACTOR, Q, OUTER_ORDER);
   assert.equal(innerLog.uniqueReduced, assignment.expectedLogUnique[0]);
   assert.equal(outerLog.uniqueReduced, assignment.expectedLogUnique[1]);
   assert.equal(innerLog.rawInAlphabet,
@@ -288,7 +290,7 @@ const minIoC = Math.min(...scores);
 const maxIoC = Math.max(...scores);
 assert.equal(allReadouts.length, 24);
 assert.ok(Math.abs(minIoC - 0.028421052631578948) < 1e-12);
-assert.ok(Math.abs(maxIoC - 0.045263157894736845) < 1e-12);
+assert.ok(Math.abs(maxIoC - 0.041403508771929824) < 1e-12);
 
 console.log(JSON.stringify({
   scope: 'p33 cuneiform values as prime fields; p55 page-local 43 interior / 33 exterior registers',
