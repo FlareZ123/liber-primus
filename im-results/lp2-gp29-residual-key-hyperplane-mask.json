@@ -1,0 +1,603 @@
+{
+  "schema": "lp2-residual-key-hyperplane-mask-v1",
+  "attempts": 51,
+  "summary": {
+    "3": {
+      "n": 13,
+      "zero": 0,
+      "under64": 1,
+      "clipped": 12,
+      "medianLargest": 14
+    },
+    "4": {
+      "n": 19,
+      "zero": 1,
+      "under64": 1,
+      "clipped": 18,
+      "medianLargest": 14
+    }
+  },
+  "sampled": [
+    {
+      "d": 3,
+      "largest": 14,
+      "components": 10,
+      "enumerationNodes": 81,
+      "keys": null,
+      "clipped": true,
+      "exact": 1928,
+      "chosen": [
+        [
+          13,
+          5168
+        ],
+        [
+          42,
+          35603
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 11,
+      "components": 11,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": 102088,
+      "chosen": [
+        [
+          2,
+          3768
+        ],
+        [
+          42,
+          13613
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 9,
+      "components": 16,
+      "enumerationNodes": 72,
+      "keys": null,
+      "clipped": true,
+      "exact": 217520,
+      "chosen": [
+        [
+          9,
+          4789
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 19,
+      "components": 8,
+      "enumerationNodes": 474,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          13,
+          32454
+        ],
+        [
+          9,
+          42580
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 17,
+      "components": 9,
+      "enumerationNodes": 253,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          41,
+          14013
+        ],
+        [
+          13,
+          26350
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 18,
+      "components": 11,
+      "enumerationNodes": 233,
+      "keys": null,
+      "clipped": true,
+      "exact": 167,
+      "chosen": [
+        [
+          37,
+          17378
+        ],
+        [
+          31,
+          17441
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 16,
+      "components": 11,
+      "enumerationNodes": 96,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          9,
+          27625
+        ],
+        [
+          41,
+          30765
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 20,
+      "components": 6,
+      "enumerationNodes": 507,
+      "keys": null,
+      "clipped": true,
+      "exact": 91,
+      "chosen": [
+        [
+          12,
+          1515
+        ],
+        [
+          0,
+          1503
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 14,
+      "components": 6,
+      "enumerationNodes": 89,
+      "keys": null,
+      "clipped": true,
+      "exact": 687,
+      "chosen": [
+        [
+          16,
+          17963
+        ],
+        [
+          12,
+          17394
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 20,
+      "components": 7,
+      "enumerationNodes": 1625,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          2,
+          25075
+        ],
+        [
+          12,
+          10800
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 7,
+      "components": 10,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": 9057,
+      "chosen": [
+        [
+          41,
+          26587
+        ],
+        [
+          16,
+          24950
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 14,
+      "components": 10,
+      "enumerationNodes": 111,
+      "keys": null,
+      "clipped": true,
+      "exact": 1024,
+      "chosen": [
+        [
+          34,
+          29514
+        ],
+        [
+          31,
+          32604
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 4,
+      "components": 14,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          12,
+          699
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 8,
+      "components": 16,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": 11132,
+      "chosen": [
+        [
+          37,
+          15600
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 21,
+      "components": 9,
+      "enumerationNodes": 3556,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          31,
+          40109
+        ],
+        [
+          34,
+          19576
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 16,
+      "components": 10,
+      "enumerationNodes": 84,
+      "keys": null,
+      "clipped": true,
+      "exact": 1196,
+      "chosen": [
+        [
+          2,
+          1029
+        ],
+        [
+          37,
+          6691
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 11,
+      "components": 15,
+      "enumerationNodes": 74,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          37,
+          26674
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 18,
+      "components": 9,
+      "enumerationNodes": 109,
+      "keys": null,
+      "clipped": true,
+      "exact": 264,
+      "chosen": [
+        [
+          0,
+          35644
+        ],
+        [
+          37,
+          1187
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 10,
+      "components": 17,
+      "enumerationNodes": 74,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          41,
+          25918
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 14,
+      "components": 11,
+      "enumerationNodes": 79,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          41,
+          18655
+        ],
+        [
+          31,
+          40485
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 14,
+      "components": 10,
+      "enumerationNodes": 88,
+      "keys": null,
+      "clipped": true,
+      "exact": 2290,
+      "chosen": [
+        [
+          16,
+          27916
+        ],
+        [
+          41,
+          24326
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 6,
+      "components": 15,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          13,
+          11455
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 8,
+      "components": 10,
+      "enumerationNodes": 71,
+      "keys": null,
+      "clipped": true,
+      "exact": 5602,
+      "chosen": [
+        [
+          2,
+          23683
+        ],
+        [
+          0,
+          8463
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 17,
+      "components": 10,
+      "enumerationNodes": 88,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          2,
+          24183
+        ],
+        [
+          13,
+          2645
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 25,
+      "components": 5,
+      "enumerationNodes": 10245,
+      "keys": 0,
+      "clipped": false,
+      "exact": null,
+      "chosen": [
+        [
+          0,
+          23390
+        ],
+        [
+          12,
+          16872
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 16,
+      "components": 10,
+      "enumerationNodes": 116,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          2,
+          18635
+        ],
+        [
+          16,
+          27564
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 14,
+      "components": 6,
+      "enumerationNodes": 155,
+      "keys": null,
+      "clipped": true,
+      "exact": 571,
+      "chosen": [
+        [
+          12,
+          504
+        ],
+        [
+          0,
+          37160
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 14,
+      "components": 11,
+      "enumerationNodes": 79,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          2,
+          38710
+        ],
+        [
+          41,
+          16798
+        ]
+      ]
+    },
+    {
+      "d": 3,
+      "largest": 20,
+      "components": 6,
+      "enumerationNodes": 428,
+      "keys": 20,
+      "clipped": false,
+      "exact": 20,
+      "chosen": [
+        [
+          12,
+          737
+        ],
+        [
+          16,
+          4204
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 17,
+      "components": 10,
+      "enumerationNodes": 112,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          34,
+          33451
+        ],
+        [
+          42,
+          12896
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 12,
+      "components": 13,
+      "enumerationNodes": 77,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          45,
+          18226
+        ]
+      ]
+    },
+    {
+      "d": 4,
+      "largest": 14,
+      "components": 12,
+      "enumerationNodes": 88,
+      "keys": null,
+      "clipped": true,
+      "exact": null,
+      "chosen": [
+        [
+          2,
+          14537
+        ],
+        [
+          42,
+          23242
+        ]
+      ]
+    }
+  ],
+  "scope": "Deterministic original branch samples; no original whole-family exclusion. Only primitive key assignments with no forced intra-component coordinate collisions; residual packing and lexical support not included."
+}
