@@ -1,0 +1,152 @@
+{
+  "scope": "Complete descending-coefficient GF29 private-factor enumeration, minimum 50 coefficients",
+  "corpus_blob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "native_blob": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+  "seed": 3301,
+  "training_runes": 2553,
+  "min_candidate_runes": 50,
+  "original": [
+    {
+      "page": 8,
+      "n": 255,
+      "degrees": [
+        1,
+        3,
+        10,
+        10,
+        11,
+        22,
+        197
+      ],
+      "tested": 1904,
+      "score": -4.184546632376336,
+      "plain_n": 54,
+      "translit": "CUNGNGEAONSLLGTDMNWSHNGEAIAMREOAETHDGFTHUTBIABDUGEHNIARHHTUWNTRAP"
+    },
+    {
+      "page": 9,
+      "n": 268,
+      "degrees": [
+        92,
+        175
+      ],
+      "tested": 84,
+      "score": -4.457638023046455,
+      "plain_n": 93,
+      "translit": "THEOHJEAOECFTHDGMREANGMNOCTHNGWWIAWUILWHTOERTHWEAGUEOWTTLOAPFPFXNGAUNGYREACOYARTHCEAUOEOOENGSXHYOEHEYFFSDEOLDADUSLIAH"
+    },
+    {
+      "page": 10,
+      "n": 263,
+      "degrees": [
+        1,
+        1,
+        7,
+        15,
+        18,
+        29,
+        86,
+        105
+      ],
+      "tested": 5852,
+      "score": -4.039250103629328,
+      "plain_n": 94,
+      "translit": "IAYTYDPOTHLFHBAOYMEAEAXPEIRYLFJPOENGLELMOMWHAUIFHGIIEUOAOHJDNGACSOFUCCNWNNFEOLTMYWHYYSTHPPEBDNGOJYHEAMAB"
+    },
+    {
+      "page": 11,
+      "n": 273,
+      "degrees": [
+        1,
+        3,
+        6,
+        262
+      ],
+      "tested": 224,
+      "score": -4.574675885490996,
+      "plain_n": 263,
+      "translit": "HONTHILPAUNGMAEEOHEXWXYDTNBAEASDPLPODWEAGEOIACCWEAULRRAEMOENGHINYFOANHAEXHBPUHYANGTNGLSICTHIALNFCRAFTBOTIANTYOEIOEANGENGAITHFESOELWWUICSFSADDLNXOEMNFEONWFNGGIAHTHIADIWUAYBSTCGNGJLOEBCEAXTHHCNGNGTHLGNSNWBREAEAGTCOOEYILSWSSJYCNAERLNGTHNGEARUDCTHWEOTEOHCTWMPXFBEOUSIAOBMWETHRDESTHTHPWBIATXHIDPAEXCWONGXLARNGBJOEWAEMFSNGYUDIANGL"
+    },
+    {
+      "page": 12,
+      "n": 261,
+      "degrees": [
+        1,
+        4,
+        7,
+        24,
+        224
+      ],
+      "tested": 448,
+      "score": -4.471338453423169,
+      "plain_n": 229,
+      "translit": "NGDOEIANSAENGIORRBJJYFIAIEOFIALTEOAOEEANUDGXEYIDOCNGNOEEGMNLBMUYTHWBNGTYTHEYWACIETHGYCGHSHARDPDLNFLHNXNGEOIANWWNORIELOEORTOEEHATHFFCCEICOROXWNTAEAEDUURTIASPIOETIAHHEANGRHEAIROEGLRIONGEANUWICEAHEJNGGTDPAAEYOOYEHXOUFAEFHSADIGAELDCBEYYDJMHIAIIAESUGYXTHEIAAGIAEOJDDJOERSTTJLWIA"
+    },
+    {
+      "page": 13,
+      "n": 272,
+      "degrees": [
+        1,
+        4,
+        9,
+        17,
+        48,
+        192
+      ],
+      "tested": 1316,
+      "score": -3.9650339085706805,
+      "plain_n": 63,
+      "translit": "UEUMDORROTRSTNTHIANTEIAFDGHGAXCDYTEOTAGRYDTHEAJYEACDEOLCLAEYOUNFOJGOPH"
+    },
+    {
+      "page": 14,
+      "n": 137,
+      "degrees": [
+        4,
+        6,
+        46,
+        80
+      ],
+      "tested": 308,
+      "score": -4.161211053481078,
+      "plain_n": 91,
+      "translit": "JRPXIATOIPARAEITHHTHTMBCNYMIATHTHNDDMBTRECBEAWHEACIDOWIAUOEOWDDYNOASUCHJBAENOCDWXHEOTJLNAYWIAAIEMAHYFYL"
+    }
+  ],
+  "controls": [
+    {
+      "section": "0_wisdom",
+      "n": 157,
+      "tested": 12992,
+      "score": -2.906695070778333,
+      "true_rank": 1,
+      "exact_top": true
+    },
+    {
+      "section": "jpg229",
+      "n": 89,
+      "tested": 43204,
+      "score": -2.3303102334460433,
+      "true_rank": 1,
+      "exact_top": true
+    },
+    {
+      "section": "p56_an_end",
+      "n": 85,
+      "tested": 212156,
+      "score": -2.5143964793351627,
+      "true_rank": 1,
+      "exact_top": true
+    },
+    {
+      "section": "p57_parable",
+      "n": 95,
+      "tested": 3459316,
+      "score": -2.4679087350941162,
+      "true_rank": 1,
+      "exact_top": true
+    }
+  ],
+  "total_original": 10136,
+  "total_controls": 3727668
+}

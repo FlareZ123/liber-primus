@@ -140,9 +140,40 @@ The native input was transferred from the connected repository runtime; a finger
 
 [Exact C++17 SFT](../sims/agent7-tree-quotient-fhold-fourway-exact.cpp), [Node input generator](../sims/agent7-tree-quotient-fhold-exact-input.cjs), [full exact result](agent7-tree-quotient-fhold-fourway-exact.json). From the repo root, compile the C++17 file and pipe the output of the input generator (mode `original`, `prefix20`, or `control0`) into the executable. The full exact original marginal, two exact pair marginals, and four-stream planted recovery collectively justify retiring this fixed quotient common-pad branch. No authentic key or original plaintext was recovered.
 
+## Complete page-private polynomial-product inverse (Agent 7, 26 November)
+
+The source root7/root24 observations motivate a genuinely different receiver from shared-root GCD or same-stencil pad reuse: let each printed page be a full descending-coefficient polynomial C(X)=P(X)K(X) over GF(29), with an arbitrary independent secret polynomial K. No fixed key, factor selection, or degree guess is required. For nonzero leading digits, complete irreducible factorization of C makes every possible P an exactly enumerable divisor (including all 28 nonzero scalar multiples). Restrict P to at least 50 coefficients, in printed order, without hidden leading zeros or another transformation.
+
+SymPy factors each original p8–p14 polynomial and the full factor product is checked. All substantial monic divisors and scalar multiples are ranked by per-rune log likelihood under a normalized GP29 trigram trained on 2,553 native solved runes (unigram pseudocount .5, bigram/trigram backoff masses 16/32). Every top-three output is divided back into C and the resulting product replayed exactly. These checks establish algebraic validity, not plaintext authenticity.
+
+| Physical page | Factor degrees (all multiplicities 1) | Candidates | Best rune count | Best log P/rune |
+|---|---|---:|---:|---:|
+| p8 | 1, 3, 10, 10, 11, 22, 197 | 1904 | 54 | -4.184547 |
+| p9 | 92, 175 | 84 | 93 | -4.457638 |
+| p10 | 1, 1, 7, 15, 18, 29, 86, 105 | 5852 | 94 | -4.039250 |
+| p11 | 1, 3, 6, 262 | 224 | 263 | -4.574676 |
+| p12 | 1, 4, 7, 24, 224 | 448 | 229 | -4.471338 |
+| p13 | 1, 4, 9, 17, 48, 192 | 1316 | 63 | -3.965034 |
+| p14 | 4, 6, 46, 80 | 308 | 91 | -4.161211 |
+
+All 10,136 original candidates are evaluated; the best overall is p13, whose transliteration is `UEUMDORROTRSTNTHIANTEIAFDGHGAXCDYTEOTAGRYDTHEAJYEACDEOLCLAEYOUNFOJGOPH`, with no coherent passage. Exact degree constraints alone imply p9 plaintext length must be 93, 176 or 268 for any substantial divisor; p11 must have at least 263 coefficients (cofactor degree at most 10), and p12 at least 225. These are structural results, independent of the language score.
+
+Four genuine held-out native solved sections are planted with independent random private cofactors (seed 3301, each product 263 coefficients). The true plaintext is recovered exactly at rank 1 in every case, without exposing its length to the search:
+
+| Held-out section | Runes recovered | Candidates | True log P/rune | Rank |
+|---|---:|---:|---:|---:|
+| 0_wisdom | 157/157 | 12992 | -2.906695 | 1 |
+| jpg229 | 89/89 | 43204 | -2.330310 | 1 |
+| p56_an_end | 85/85 | 212156 | -2.514396 | 1 |
+| p57_parable | 95/95 | 3459316 | -2.467909 | 1 |
+
+All 426 native runes are recovered across 3,727,668 control candidates. The strongest original candidate scores substantially below the weakest native positive. This is a calibrated negative for direct page-private GF29 product encoding, not a proof against all languages or polynomial-based ciphers. Four controls come from the same native manuscript register and do not establish a universal threshold. No new original plaintext/key, no authoritative frontier change. Do not repeat this factor family without a distinct independently motivated representation.
+
+Reproduce: `python sims/agent7_tree_polynomial_factor_sft.py` (SymPy and NumPy). The final Python implementation was executed locally on canonical coefficient and native-text fixtures transferred from the connected repository, with each tape independently fingerprint-matched. The complete output includes top-three coefficient arrays and SHA256 tape hashes; the committed [compact measured output](agent7-tree-polynomial-factor.json) includes every page's factor degrees, rank-one output and control results. No CI execution claimed.
+
 ## Decision and actionable prerequisite
 
-The p10 original `7-G` dual-root/derivative signature, shared root24 on p10/p11 and both same-stencil quotient-length equalities are **precise and cheaply reproducible original-source observations**. The direct original 13×13 Hill matrix likewise fails to recover 91 connected runes. The two complete-length source-quotient transfers fail to produce readable GP-English and are rigorously incompatible with their matching-stencil target pages under **every** fixed global GP29 substitution. The opposed *reused* margin art supplies a reason to investigate the **seven-page family**, while no original art feature selects this exact two-page pair. GF29 polynomial language has independently appeared in the p15/p36/p39/p50 investigation. Neither page provides an authenticated instruction for polynomial division, a relative quotient alignment, or a cryptographic key. The separate p10→p12 and p11→p13 transfers eliminate the ten-position mismatch for their declared targets and still fail. The most literal quotient and mirror operations fail to reveal English; the exact same-stencil additive common-pad marginal and joint MAP also fail under a held-out calibrated trigram model; authentic transparent-F clocks do not rescue the exact pair receiver or the now-unpruned four-stream marginal; further rotations, phases, masks, and polynomial operations would be postselected without new evidence.
+The p10 original `7-G` dual-root/derivative signature, shared root24 on p10/p11 and both same-stencil quotient-length equalities are **precise and cheaply reproducible original-source observations**. The direct original 13×13 Hill matrix likewise fails to recover 91 connected runes. The two complete-length source-quotient transfers fail to produce readable GP-English and are rigorously incompatible with their matching-stencil target pages under **every** fixed global GP29 substitution. The opposed *reused* margin art supplies a reason to investigate the **seven-page family**, while no original art feature selects this exact two-page pair. GF29 polynomial language has independently appeared in the p15/p36/p39/p50 investigation. Neither page provides an authenticated instruction for polynomial division, a relative quotient alignment, or a cryptographic key. The separate p10→p12 and p11→p13 transfers eliminate the ten-position mismatch for their declared targets and still fail. The most literal quotient and mirror operations fail to reveal English; the exact same-stencil additive common-pad marginal and joint MAP also fail under a held-out calibrated trigram model; authentic transparent-F clocks do not rescue the exact pair receiver or the now-unpruned four-stream marginal; complete private GF29 product factorization also produces no credible direct plaintext despite exact recovery of four held-out native controls. Further rotations, phases, masks, and polynomial operations would be postselected without new evidence.
 
 A genuinely decisive next input is an original instruction or already-readable partial passage that identifies the **intended consumer of the root7/root24 factors**, or an independent predicted relationship on uninspected original runes. If that emerges, test a complete reversible original-cipher inverse and a held-out paragraph; otherwise retain this as an intermediate algebraic clue, with **no change to the authoritative unsolved status**.
 
