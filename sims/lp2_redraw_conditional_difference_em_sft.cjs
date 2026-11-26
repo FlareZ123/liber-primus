@@ -1,7 +1,7 @@
 "use strict";
 // Conditional ciphertext-only difference-key estimation, q=8 strict one-redraw.
 // All randomized searches are seeded. Language enters only after D is frozen.
-function run(co,native,gibran,shakespeare) {
+function run(co,native,gibran,shakespeare,target='all') {
 const Q=8,A=29,Z=[0,0,0,1,0,0,0,1],m=x=>((x%29)+29)%29;
 const j1=Array.from({length:Q},(_,j)=>(j+1)%Q),j2=Array.from({length:Q},(_,j)=>(j+2)%Q),free=Z.flatMap((v,i)=>v?[]:[i]);
 let seed=0x3f910aaa;
@@ -42,8 +42,8 @@ let preview=de.heldP.slice(0,120).map(x=>co.translit[x]).join(" ");
 return {name,n:c.length,cut,skips,repeats:d.filter(x=>x===0).length,truth,correctD:truth?canon(truth)===canon(fit.best.D):null,trueLL,fit,heldLL:h.ll,decoded:{K:de.K,fitScore:de.fitScore,heldScore:de.heldScore,fitCorrect:p?de.fitP.filter((x,i)=>x===p[i]).length:null,heldCorrect:p?de.heldP.filter((x,i)=>x===p[cut+i]).length:null,preview}}}
 const out=[],len=12956,cut=9640;
 let donors=[["uniform",Array.from({length:len},()=>rand(A))],["gibran",eng(gibran).slice(19000,19000+len)],["shakespeare",eng(shakespeare).slice(16000,16000+len)]];
-for(let [name,p] of donors){if(p.length!==len)throw Error("short donor");let D=randomD(),{c,skips}=emit(p,D);out.push(test(name,c,cut,D,p,skips))}
-let c=co.pages.slice(0,56).flatMap(p=>p.indices);if(c.length!==len)throw Error("bad corpus");out.push(test("original",c,cut,null,null,null));
+for(let [idx,[name,p]] of donors.entries()){if(target!=="all"&&target!==name)continue;seed=(0x3f910aaa+idx*0x517cc1)>>>0;if(p.length!==len)throw Error("short donor");let D=randomD(),{c,skips}=emit(p,D);out.push(test(name,c,cut,D,p,skips))}
+let c=co.pages.slice(0,56).flatMap(p=>p.indices);if(c.length!==len)throw Error("bad corpus");if(target==="all"||target==="original"){seed=0x6f142a9b;out.push(test("original",c,cut,null,null,null));}
 return {Z,seed:"0x3f910aaa",restarts:32,iterations:48,controls:out,nativeRunes:nP.length}
 }
-if(typeof module!=="undefined"){module.exports=run;if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");console.log(JSON.stringify(run(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/gibran_prophet_58585.txt"),read("resources/control/shakespeare_first300k.txt")),null,2))}}
+if(typeof module!=="undefined"){module.exports=run;if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");console.log(JSON.stringify(run(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json")),read("resources/control/gibran_prophet_58585.txt"),read("resources/control/shakespeare_first300k.txt"),process.argv[2]||"all"),null,2))}}
