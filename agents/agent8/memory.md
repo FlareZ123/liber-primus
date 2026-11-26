@@ -382,3 +382,11 @@ The open Director issue backlog was occupied or blocked on 22 November 16:56 UTC
 - The exact 30-rune base-29 serialization of RFC 5242's six-codepoint AE composite does not occur in the tape, forward or reversed. Only 7/55 rune-bearing pages are divisible by five, so page-local grouping is not naturally aligned.
 - Reproduction: `sims/lp2_rfc5242_gp29_base29_gate.cjs`; report/output in `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md` and `im-results/lp2-rfc5242-gp29-base29-output.json`.
 - This further retires direct RFC 5242 consumers. Do not continue without an independent selector for a nontrivial mapping; prioritize a genuinely independent clue-to-plaintext route.
+
+## 26 November 2026: RFC 5242 planar 85-codepoint gate
+
+- Tested the remaining natural 256 = 3×85 + 1 layout: three 85-byte planes plus one framing byte, motivated by p56's 85 runes and RFC 5242's 3-octet 23-bit codepoints.
+- Across row-major, column-major and eight spiral orders, every one-byte deletion and all six plane assignments (15,360 candidates), no stream satisfies the RFC leading-bit/range constraint. The best possible MSB plane still has max byte 249 and 39/85 high-bit violations. Synthetic positive control passes.
+- Direct RFC 5242 consumers now fail consecutive 3-byte parsing, planar 3×85 parsing, same-index XOR with all three named 2014 snapshots, and direct GP29 base-29 codepoint grouping. Park this branch absent an independent source-selected byte transform.
+- Image archive alignment: local files 00–16 are LP1; 17–74 are the 58 LP2 images referenced by the 2014 index. Logical LP2 page n maps to local JPEG n+17.
+- Reproduction: `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`; consolidated report `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md`.

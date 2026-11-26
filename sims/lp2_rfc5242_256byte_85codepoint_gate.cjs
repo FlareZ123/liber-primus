@@ -109,6 +109,58 @@ for (const order of orders) {
   }
 }
 results.sort((a, b) => a.violations - b.violations);
+const planePermutations = [
+  [0,1,2], [0,2,1], [1,0,2], [1,2,0], [2,0,1], [2,1,0]
+];
+const planarValid = [];
+let bestPossibleMsbPlane = { maxByte: Infinity };
+for (const order of orders) {
+  for (let dropIndex = 0; dropIndex < 256; dropIndex++) {
+    const stream = order.bytes.slice(0, dropIndex).concat(order.bytes.slice(dropIndex + 1));
+    const planes = [stream.slice(0,85), stream.slice(85,170), stream.slice(170,255)];
+    for (let planeIndex = 0; planeIndex < 3; planeIndex++) {
+      const plane = planes[planeIndex];
+      const candidate = {
+        maxByte: Math.max(...plane),
+        highBitCount: plane.filter(value => value >= 128).length,
+        order: order.name, dropIndex, planeIndex
+      };
+      if (candidate.maxByte < bestPossibleMsbPlane.maxByte) bestPossibleMsbPlane = candidate;
+    }
+    for (const permutation of planePermutations) {
+      const values = Array.from({ length: 85 }, (_, i) =>
+        (planes[permutation[0]][i] << 16) |
+        (planes[permutation[1]][i] << 8) |
+        planes[permutation[2]][i]
+      );
+      const highViolations = planes[permutation[0]].filter(value => value >= 128).length;
+      const invalid = values.filter(value => value === 0 || value > 0x7fffff).length;
+      if (highViolations === 0 && invalid === 0) {
+        planarValid.push({ order: order.name, dropIndex, planeOrder: permutation.join("") });
+      }
+    }
+  }
+}
+
+// Positive control: 85 valid codepoints in three planes plus one framing byte.
+const syntheticValues = Array.from({ length: 85 }, (_, i) => 0x1000 + i);
+const syntheticPlanes = [
+  syntheticValues.map(value => (value >> 16) & 255),
+  syntheticValues.map(value => (value >> 8) & 255),
+  syntheticValues.map(value => value & 255)
+];
+const synthetic = [...syntheticPlanes[0], ...syntheticPlanes[1], ...syntheticPlanes[2], 0xa5];
+const syntheticPayload = synthetic.slice(0, 255); // remove framing byte at index 255
+const syntheticDecoded = Array.from({ length: 85 }, (_, i) =>
+  (syntheticPayload[i] << 16) |
+  (syntheticPayload[85 + i] << 8) |
+  syntheticPayload[170 + i]
+);
+if (JSON.stringify(syntheticDecoded) !== JSON.stringify(syntheticValues)) {
+  throw new Error("Synthetic planar positive control failed");
+}
+if (planarValid.length !== 0) throw new Error("Unexpected valid original planar candidate");
+
 process.stdout.write(JSON.stringify({
   panelShape: [R, C],
   panelBytes: rowMajor.length,
@@ -116,4 +168,14 @@ process.stdout.write(JSON.stringify({
   requiredCodepoints: 85,
   best: results[0],
   all: results,
+  planar: {
+    traversals: orders.map(order => order.name),
+    traversalCount: orders.length,
+    deletionsPerTraversal: 256,
+    planePermutations: planePermutations.map(permutation => permutation.join("")),
+    candidateCount: orders.length * 256 * planePermutations.length,
+    validCandidates: planarValid.length,
+    bestPossibleMsbPlane,
+    syntheticPositiveControl: true
+  }
 }, null, 2) + "\n");

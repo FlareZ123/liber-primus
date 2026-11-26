@@ -75,6 +75,19 @@ The RFC's Section 6 AE composite is the six-codepoint sequence 0x40A, 0x006, 0x4
 **Result:** direct GP29 base-29 encoding of RFC 5242 codepoints is rejected. The 23-bit/RFC clue remains an unverified pointer, but neither the obvious 3-octet byte receiver nor the natural five-digit GP29 receiver produces a valid stream or plaintext.
 
 Reproduction: `sims/lp2_rfc5242_gp29_base29_gate.cjs` · captured output: `lp2-rfc5242-gp29-base29-output.json`.
+## LP2 image-index alignment
+
+The local 75-JPEG archive is ordered as 17 earlier LP1 images (local files 00–16), followed by the 58 LP2 images (local files 17–74). The 2014 Stage11 HTML lists 58 image slots numbered 0–57; those slots align with local JPEG indices 17–74, i.e. local index = LP2 image index + 17. This explains why local `02.jpg` is not LP2 page 2. Logical LP2 pages 33 and 38 align with local images 50 and 55, where the cuneiform numerals are visible; the coordinate pages 2, 5, 17 and 55 align with local images 19, 22, 34 and 72.
+
+## Planar 85-codepoint alternative
+
+The same `256 = 3×85 + 1` relation also motivates a planar rather than interleaved layout: one framing byte plus three 85-byte planes (most-significant, middle, least-significant octets) for the 85 p56 positions. This is a natural alternative to consecutive triplets, not a general byte permutation.
+
+The reproducer tests row-major, column-major, and all eight inward spiral traversals of the 32×8 panel; every possible one-byte deletion; and all six assignments of the three planes to high/middle/low octets: 15,360 candidates. RFC 5242 requires the most-significant octet of every 23-bit codepoint to have its high bit clear.
+
+**Result:** 0/15,360 candidates produce 85 valid nonzero 23-bit codepoints. Even the best possible choice of an 85-byte plane has maximum byte 249 (39/85 bytes have the high bit set), under column-major order after deleting byte 0. A synthetic 85-codepoint planar stream with one inserted framing byte passes the same decoder exactly.
+
+**Decision:** the direct planar interpretation is rejected alongside consecutive-triplet parsing. Permuting the 85 positions cannot repair this necessary-condition failure; it would require a separate byte transform, for which no source instruction has been identified. Reproduction is included in `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`.
 ## Other guardrails
 
 - The pair `(g,p)=(133,331)` has multiplicative order 66; `(1033,3301)` has order 550. Apparent matches to short LP2 blocks are not sufficient evidence for a DH cipher. Direct additive/multiplicative orbit-key tests on the p49 preamble and the numbered p33–39 block did not recover language.

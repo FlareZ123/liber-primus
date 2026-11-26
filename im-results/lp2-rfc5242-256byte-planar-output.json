@@ -1,0 +1,53 @@
+{
+  "schema": "lp2-rfc5242-256byte-planar-gate-v1",
+  "source": "resources/liber-primus/base60-grid.json",
+  "p56_source": "resources/liber-primus/lp2-corpus.json",
+  "panel_shape": [
+    32,
+    8
+  ],
+  "panel_bytes": 256,
+  "p56_runes": 85,
+  "hypothesis": "One framing byte plus three 85-byte planes encode 85 RFC 5242 codepoints.",
+  "tested": {
+    "traversals": [
+      "row-major",
+      "column-major",
+      "spiral-TL-cw",
+      "spiral-TL-ccw",
+      "spiral-TR-cw",
+      "spiral-TR-ccw",
+      "spiral-BR-cw",
+      "spiral-BR-ccw",
+      "spiral-BL-cw",
+      "spiral-BL-ccw"
+    ],
+    "traversal_count": 10,
+    "deletions_per_traversal": 256,
+    "plane_permutations": [
+      "012",
+      "021",
+      "102",
+      "120",
+      "201",
+      "210"
+    ],
+    "candidate_count": 15360
+  },
+  "result": {
+    "valid_candidates": 0,
+    "best_possible_msb_plane": {
+      "max_byte": 249,
+      "high_bit_count": 39,
+      "order": "column-major",
+      "drop_index": 0,
+      "plane_index": 1
+    }
+  },
+  "positive_control": {
+    "synthetic_codepoints": 85,
+    "inserted_framing_byte": 165,
+    "deleted_index": 255,
+    "exact_round_trip": true
+  }
+}
