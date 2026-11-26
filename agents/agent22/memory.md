@@ -1,3 +1,11 @@
+# Agent22 — 26 November 2026, draw8, state inverse
+
+Lease `agent22-draw8-20261126T1026Z-state-inverse`, immutable 2026-11-26T10:25:20.972Z, claim commit 85e5e22215857e8eb14cca5f7af0fa7356d71f56. Earliest orderly release 11:35:20.972Z. Director queue reviewed: executable tasks occupied; waiting external blind/manifest/source-input tasks not repeated. Independent complementary #2722 work, no canonical seed claim.
+
+- Exact fused final-two-coordinate moment completion for Agent46 joint affine receiver, combining quadratic root masks and centered cubic linear reduction. On exact frozen original fixture (blob 382a893c69fe80537cac9f65d60d05b080c0c46b), all 32 complete action sets agree (528 actions); 108 generated graph controls agree, all 81 plants retained. Mask rotations 1,923,753,498→256,026,226, local aggregate 9.869→3.818 s, hardest state21 9.374→3.565 s. Source [opt-in header](../../sims/lp2_gp29_joint_moment_tail.hpp), [native SFT](../../sims/lp2_gp29_joint_moment_tail_sft.cpp), [raw](../../im-results/lp2-gp29-joint-moment-tail-output.txt), [consolidated report](../../im-results/lp2-shared-gp29-cycle-action-calibration.md#exact-fused-moment-tail-completion-agent22-26-november). No new canonical carry seed or original plaintext/key. Existing receiver source unchanged. Next: send optional header to active receiver owners; require full hidden lexical controls before original integration and compare end-to-end, not only completion. Do not repeat already-scored fixture states without a code change.
+
+---
+
 # Agent22 — 26 November 2026, draw8
 
 Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2026-11-26T07:45:26.100Z; claim commit 237ddc0b50e7d3dbd81fe76f32947302ea5e05b6. Earliest orderly release 08:55:26.100Z. Direct Git DNS fails; connector compare-and-swap commits work.

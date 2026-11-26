@@ -234,6 +234,26 @@ The JS implementation matched an independent direct translation oracle on 16 pla
 
 [JS controls and initial branches](lp2-gp29-joint-affine-permutation-control.json), [JS remaining branches](lp2-gp29-joint-affine-permutation-original.json), [native fixture](lp2-gp29-joint-affine-native-fixture.tsv), [native driver](../sims/lp2_gp29_joint_affine_native_sft.cpp), [native candidate scoring](../sims/lp2_gp29_joint_affine_native_score_sft.cjs), [complete high-dimensional native action records](lp2-gp29-joint-affine-permutation-native.json). This closes the 32 **sampled** graph branches only; none is a complete canonical carry seed. The header is suitable for a bounded exact direct-completion probe in the active receiver with fallback on incomplete/ineligible states; an end-to-end receiver speedup has not been established. No original plaintext or source-selected key is claimed.
 
+#### Exact fused moment-tail completion (Agent22, 26 November)
+
+[Opt-in C++20 derivative](../sims/lp2_gp29_joint_moment_tail.hpp) and [SFT](../sims/lp2_gp29_joint_moment_tail_sft.cpp) replace the final hyperplane-mask scan of Agent46's joint affine enumerator with a necessary finite-field power-sum inverse followed by exact occupancy checking. The original header is unchanged. The method is complementary to Agent7's centered-component resultant: it applies that algebra inside the final coordinate loop of the joint affine solver, rather than scanning a fixed-key grid.
+
+With zero or one factored singleton, every full normalized alphabet has all 29 residue coordinates. If one singleton is factored, its coordinate is the affine form minus the sum of the other 28. Thus the full affine forms satisfy sum of squares = sum of cubes = 0 in GF(29) at every valid permutation. For a fixed prefix, the square sum is a quadratic in the last free variable. A 29^3 table returns its complete root mask, including degenerate constant and identically-zero cases. The last two levels share prefix evaluation and quadratic coefficients. Exact occupancy of the active forms, primitive q8 and the original normalization/emission logic remain authoritative.
+
+When the final variable t is the sole relative component translation, let full forms be b_i+v_i*t, with b_i depending on the remaining key. Verify symbolically that sum b_i*v_i and sum b_i*v_i^2 vanish identically, and let A=sum v_i^2 !=0, D=sum v_i^3. Then t^2=T=-sum b_i^2/A and the cube sum reduces to C+L*t=0, with C=sum b_i^3 and L=3*sum v_i*b_i^2+D*T. L!=0 gives exactly one proposed t, checked against t^2=T; L=0,C!=0 gives none; L=C=0 retains every square root. The penultimate coordinate is evaluated through precomputed quadratic/cubic coefficients. If the structural test fails, use the general quadratic tail. If more than one singleton is factored, use the original enumerator. No numerical root finding, new cipher assumptions or heuristic clipping.
+
+Executed locally with g++ C++20 -O3 -march=native. The exact original fixture blob is 382a893c69fe80537cac9f65d60d05b080c0c46b; all 32 states agree in their complete normalized action sets, node counts, leaf counts and empty-domain counts. Across 108 independent generated affine graph cases (81 planted, 27 arbitrary), 171 complete actions agree and all 81 planted actions survive. Candidate cap regression correctly reports nonexhaustion. These are graph-completion controls, not end-to-end lexical recovery controls.
+
+| State/scope | Actions | Baseline mask rotations | Tail mask rotations | Baseline local seconds | Tail local seconds |
+|---|---:|---:|---:|---:|---:|
+| 12 | 27 | 56,450,410 | 8,707,614 | .282 | .111 |
+| 13 | 21 | 20,132,539 | 3,465,826 | .096 | .058 |
+| 21 | 471 | 1,823,453,580 | 234,762,202 | 9.374 | 3.565 |
+| All 32 | 528 | 1,923,753,498 | 256,026,226 | 9.869 | 3.818 |
+
+[Raw native output](lp2-gp29-joint-moment-tail-output.txt). The observed aggregate local speedup is 2.59x, with 7.51x fewer hyperplane-mask rotations. Timing is dominated by state21 and several cheap states slow down; rotation counts omit the replacement moment and occupancy arithmetic. The baseline header was locally reconstructed from its connector-fetched source with identical traversal logic; the SFT is intended for direct repository compilation. The derivative is an opt-in candidate for the current completion receiver, not a claimed full-search speedup. Node/candidate/external stop limits still apply; rotation limits count actual mask rotations only. Every one of the 528 actions had already been scored in the original fixture work. No additional canonical carry seed, key or plaintext recovered. No p55 consultation, new workflow or repeat of an unrestricted original seed.
+
+
 ## 4. Evidence that remains valid
 
 ### Long-anchor arbitrary-q8 receiver, p40–53
