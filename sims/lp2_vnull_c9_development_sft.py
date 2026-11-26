@@ -10,7 +10,7 @@ PIN = "fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb"
 ADAPTER = ROOT / "sims/lp2_vnull_c9_checker_adapter.py"
 SEED = 2969472026
 
-def main():
+def main(paths=None, seed=SEED):
     with tempfile.TemporaryDirectory(prefix="lp2-c9-") as d:
         repo = Path(d)
         subprocess.run(["git", "init", "-q", str(repo)], check=True)
@@ -25,14 +25,14 @@ def main():
         import gates
         import _sandbox
         # Only the scored V-NULL arm. No V-BACK or new key sweep.
-        paths = ["data/keys/armada19/mill_on_liberty.txt",
+        paths = paths or ["data/keys/armada19/mill_on_liberty.txt",
                  "data/keys/armada19/shelley_frankenstein.txt"]
         stream = c9.H.english_stream(paths)
         with _sandbox.Sandbox(str(ADAPTER), "decode", "plain") as sb:
             rows = gates.run_all(decoder=c9.sandboxed_decoder(sb), verbose=True)
-            results = c9.run(None, 40, SEED, stream, ["V-NULL"], sb=sb)
+            results = c9.run(None, 40, seed, stream, ["V-NULL"], sb=sb)
         c9.table("lexical posterior development calibration", results)
-        print("C9_DEV_RESULT", json.dumps({"pin": PIN, "seed": SEED, "paths": paths,
+        print("C9_DEV_RESULT", json.dumps({"pin": PIN, "seed": seed, "paths": paths,
                   "c3": rows, "vnull": results["V-NULL"]}, sort_keys=True), flush=True)
 
 if __name__ == "__main__":
