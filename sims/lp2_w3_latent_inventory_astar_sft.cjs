@@ -25,12 +25,37 @@ function experiment(raw,mode="fresh"){
   if(start!==N)throw Error("sentence cut");const em=new Map(),hm=new Map();
   function edge(i,o,l){if(pg[i]!==pg[o])o=i;const key=`${i},${o},${l}`;if(em.has(key))return em.get(key);const k=mod(ps[i]-ps[o]),w=C.slice(i,i+l).map(c=>mod((v[1]?28-c:c)+v[0]*k)),e={o,w,c:cost(w),oov:lex.has(id(w))?0:1};em.set(key,e);return e}
   function relaxed(i,o){if(i===N)return 0;if(pg[i]!==pg[o])o=i;const k=i*(N+1)+o;if(hm.has(k))return hm.get(k);let s=meta[sid[i]],best=Infinity;for(let l of s.L)if(i+l<=s.end){let e=edge(i,o,l);best=Math.min(best,e.c+relaxed(i+l,e.o))}hm.set(k,best);return best}
-  const lower=relaxed(0,0);
+  const baseLower=relaxed(0,0);
+  // Lagrangian relaxation: charge lambda per use of each length, then subtract the
+  // exact outstanding inventory charge. Every fixed multiplier vector gives an
+  // admissible consistent lower bound; no cipher, score, cutoff or path is changed.
+  const duals=[];
+  if(mode!=="pilot"&&baseLower<=limit*N){
+   let weights=meta.map(m=>m.L.map(()=>0));
+   for(let iter=0;iter<48;iter++){
+    const lam=weights.map(x=>x.slice()),future=new Float64Array(meta.length+1);
+    for(let s=meta.length-1;s>=0;s--)future[s]=future[s+1]+sum(lam[s].map((v,j)=>v*(meta[s].rad[j]-1)));
+    const memo=new Map(),choice=new Map();
+    function dual(i,o){if(i===N)return 0;if(pg[i]!==pg[o])o=i;const tag=i*(N+1)+o;if(memo.has(tag))return memo.get(tag);let s=sid[i],m=meta[s],best=Infinity,bj=-1;for(let j=0;j<m.L.length;j++){let l=m.L[j];if(i+l>m.end)continue;let e=edge(i,o,l),v=e.c+lam[s][j]+dual(i+l,e.o);if(v<best){best=v;bj=j}}memo.set(tag,best);choice.set(tag,bj);return best}
+    const root=dual(0,0)-future[0];
+    if(duals.length<8||root>duals[duals.length-1].root){
+     duals.push({root,memo,lam,future});duals.sort((a,b)=>b.root-a.root);if(duals.length>8)duals.pop();
+    }
+    if(root>limit*N+1e-8)break;
+    const use=meta.map(m=>m.L.map(()=>0));let i=0,o=0;
+    while(i<N){if(pg[i]!==pg[o])o=i;const s=sid[i],j=choice.get(i*(N+1)+o);if(j===undefined||j<0)throw Error("dual trace");use[s][j]++;i+=meta[s].L[j]}
+    let norm2=0;const g=use.map((x,s)=>x.map((v,j)=>{let d=v-(meta[s].rad[j]-1);norm2+=d*d;return d}));if(!norm2)break;
+    const step=5/Math.sqrt(1+iter/10)/Math.sqrt(norm2);weights=weights.map((x,s)=>x.map((v,j)=>v+step*g[s][j]));
+   }
+  }
+  const lower=Math.max(baseLower,...duals.map(x=>x.root));
+  function lowerAt(i,o,b){if(i===N)return 0;if(pg[i]!==pg[o])o=i;let best=relaxed(i,o),s=sid[i],m=meta[s],tag=i*(N+1)+o;for(const d of duals){let v=d.memo.get(tag);if(v===undefined)continue;let rem=d.future[s+1];for(let j=0;j<m.L.length;j++)rem+=d.lam[s][j]*(Math.floor(b/m.m[j])%m.rad[j]);best=Math.max(best,v-rem)}return best}
+
   function exact(cap,cutoff=Infinity){
    const heap=[],seen=new Map();let expanded=0;
    function push(x){let i=heap.length;heap.push(x);while(i){let p=(i-1)>>1;if(heap[p].f<=x.f)break;heap[i]=heap[p];i=p}heap[i]=x}
    function pop(){let x=heap[0],y=heap.pop();if(heap.length){let i=0;while(2*i+1<heap.length){let j=2*i+1;if(j+1<heap.length&&heap[j+1].f<heap[j].f)j++;if(heap[j].f>=y.f)break;heap[i]=heap[j];i=j}heap[i]=y}return x}
-   function add(i,o,b,g,prev,w,oov){if(i<N&&pg[i]!==pg[o])o=i;const key=`${i},${o},${b}`,old=seen.get(key);if(old!==undefined&&old<=g+1e-10)return;let h=relaxed(i,o);if(g+h>cutoff+1e-8)return;seen.set(key,g);push({i,o,b,g,f:g+h,key,prev,w,oov})}
+   function add(i,o,b,g,prev,w,oov){if(i<N&&pg[i]!==pg[o])o=i;const key=`${i},${o},${b}`,old=seen.get(key);if(old!==undefined&&old<=g+1e-10)return;let h=lowerAt(i,o,b);if(g+h>cutoff+1e-8)return;seen.set(key,g);push({i,o,b,g,f:g+h,key,prev,w,oov})}
    add(0,0,meta[0].all,0,null,null,0);
    while(heap.length){let x=pop();if(x.g>seen.get(x.key)+1e-10)continue;if(x.i===N){let W=[],oov=0;for(let z=x;z.prev;z=z.prev){W.push(z.w);oov+=z.oov}W.reverse();if(sender(W,pages,v).join()!==C.join())throw Error("forward replay");return {status:"exact",cost:x.g,W,oov,expanded,seen:seen.size}}
     if(++expanded>cap)return {status:"cap",expanded,lowerBound:x.f,seen:seen.size};
