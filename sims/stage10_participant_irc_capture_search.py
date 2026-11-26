@@ -64,7 +64,22 @@ def main() -> None:
                     "text": line[:700],
                     "context": [x[:700] for x in lines[lo:hi]],
                 })
-        # Keep all substantive hits up to 500; preserve totals even if capped.
+        special = re.compile(r"cgi-bin/upload|key\\.asc|Cicada/33\\.01|CicaDOS|Cic/DOS", re.I)
+        special_hits = [
+            {"line": i + 1, "text": line[:1000],
+             "context": [x[:1000] for x in lines[max(0, i - 1):min(len(lines), i + 2)]]}
+            for i, line in enumerate(lines) if special.search(line)
+        ]
+        category_counts = {
+            name: sum(1 for line in lines if pattern.search(line))
+            for name, pattern in PATTERNS.items()
+        }
+        date_markers = [
+            {"line": i + 1, "text": line[:700]}
+            for i, line in enumerate(lines)
+            if re.search(r"May|2014-05|05/0[1-4]|0[1-4]/May", line, re.I)
+        ]
+        # Keep all substantive hits up to 1000; preserve totals even if capped.
         sources.append({
             "path": path,
             "url": f"https://github.com/{OWNER_REPO}/blob/{COMMIT}/{quote(path, safe='/')}",
@@ -78,6 +93,11 @@ def main() -> None:
             "sessionMarkers": [x for x in lines if "Session Start:" in x or "Session Close:" in x][:100],
             "dateSamples": [x[:700] for x in lines if re.search(r"2014|May", x, re.I)][:100],
             "lastLine": lines[-1] if lines else "",
+            "categoryCounts": category_counts,
+            "specialMatchCount": len(special_hits),
+            "specialMatches": special_hits,
+            "dateMarkerCount": len(date_markers),
+            "dateMarkers": date_markers[:500],
             "matchCount": len(hits),
             "matches": hits[:1000],
             "truncated": len(hits) > 1000,
