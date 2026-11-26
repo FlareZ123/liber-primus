@@ -1,6 +1,6 @@
 # Original LP2 32×8 table: exact source-generator check
 
-**17 November 2026, Agent38; Director #1367.** Bounded negative. No source-authored generator, original unknown plaintext, recovered key, decoder, or destination.
+**Current decision, 26 November 2026.** Bounded negatives across #1367/#2029/#2985. No source-authored generator, original unknown plaintext, recovered key, decoder, or destination. The literal GnuPG 1.4.11 persistent seed-file hypothesis is additionally excluded by its 600-byte native input contract.
 
 ## Why this is a possible plaintext route
 
@@ -112,8 +112,26 @@ For standard GNU-libc additive \`random()\`, all seed and warmup choices obey \`
 **Decision:** These are complete exclusions for the specified standard C runtime algorithms, two byte reductions and six named orderings, even granting unknown non-time-based seeds and arbitrary initial clock. The signed 2013 \`RAND\` command specifies participant-server random output rather than an LP2 source, so the negatives cannot prove Cicada chose either algorithm or exclude other generators, a hidden KDF, staged encryption or a non-byte interpretation. They recover **no** original LP2 plaintext or key. The absence of an original authored table generator and consumer remains the decisive external dependency; further PRNG catalog expansion is unjustified.
 
 
+## Period-authentic GnuPG seed-input contract (Director #2985, Agent17, 26 November 2026)
+
+The new question is whether the table is itself a literal seed/state input for a historically evidenced primitive. Cicada's signed messages carry GnuPG 1.4.11 armor (also reported in [Dukotah Round18](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round18/SYNTHESIS.md)); this documents the tool version, not its use for LP2. The exact period implementation was inspected at [GnuPG 1.4.11, tag commit 05febd5860f3a1d2f5d4916f3a88087c0d591bee, cipher/random.c](https://github.com/gpg/gnupg/blob/05febd5860f3a1d2f5d4916f3a88087c0d591bee/cipher/random.c#L487-L519) (annotated release tag dated 18 October 2010). Its native random_seed loader requires a regular file of exactly POOLBLOCKS × DIGESTLEN = 30 × 20 = **600 bytes**; another nonzero size fails before data absorption. Even a valid file is combined with process ID, time, process clock and a fresh entropy-source request; it is not a self-contained deterministic stream key.
+
+Direct evaluation of the size predicate extracted from the pinned source and the original-image-adjudicated [grid JSON](../resources/liber-primus/lp2-grid-256.json) gave:
+
+| Candidate serialization | Bytes | Accepted by native size predicate |
+| --- | ---: | --- |
+| Conditional base60, one unsigned byte/cell | 256 | No |
+| Conditional drop-f base59, one unsigned byte/cell | 256 | No |
+| Literal two-character tokens, no separators | 512 | No |
+| Physical rows, single spaces between tokens and LF after each row | 768 | No |
+| Boundary controls | 599 / 600 / 601 | No / yes / no |
+
+Reproduce by taking the length of the concatenated tokens, or counting one byte per cell; the row text has 32 × (16 token characters + 7 spaces + 1 LF) bytes. Compare to the source's exact size condition. The predicate was evaluated in V8, not by running a native GnuPG executable. The length result is independent of token order or rune scores. No source selects padding to 600 bytes or deterministic replacement of extra entropy inputs. A passphrase, arbitrary input to a separate KDF, or incomplete entropy pool remains mathematically possible but lacks an authored receiver.
+
+The other authentic operations have bounded decisions: #211/#773 establish participant-generated RAND; #2313 establishes exact historical XOR but no LP2 byte selector; #2123 establishes the original MP3/OpenPuff and square-upload receiver; #2350 finds no first-party consumer for the three early 2014 256-byte objects; #449/#2527 reject the exact authenticated RSA key/signature length premises; #2576 establishes that the immediate table framing does not label a typed receiver. #995/#2506 establish the missing PRNG/KDF/GP29 handoff. None supplies the primitive, table initialization and named unknown rune receiver simultaneously. Reopen only on a new authored instruction or a complete independently selected reversible operation. No new plaintext or key.
+
 ## Decision
 
 The complete original table is not one of the **42 frozen published constants or literal-seed generator outputs**. The additional #2029 exact-sequence gate found no pre-May-2014 source or generator in the named preserved corpus or public indexed repositories; the only located 2014 text/byte conversion is dated 11 May, is downstream of a participant transcription, and differs from the original images at ten cells. The exact printed sequence is now pinned by the row/page-preserving hash above. This remains a bounded negative, not a universal exclusion of lost archives, secret-seeded streams, other generators, or the base59 branch.
 
-**Missing necessary input:** a period-available source or exact generator that selects *all 256 cells in their printed order*, and a source-authored operation connecting it to a named ciphertext interval. Only then can a p50-origin key or decoder be meaningfully tested against a blind chapter. Close #1367 and #2029 at that dependency instead of extending arbitrary cipher menus. All 56 unknown LP2 pages remain unsolved.
+**Missing necessary input:** a period-available source or exact generator that selects *all 256 cells in their printed order*, and a source-authored operation connecting it to a named ciphertext interval. Only then can a p50-origin key or decoder be meaningfully tested against a blind chapter. Close #1367, #2029 and #2985 at that dependency instead of extending arbitrary cipher menus. All 56 unknown LP2 pages remain unsolved.
