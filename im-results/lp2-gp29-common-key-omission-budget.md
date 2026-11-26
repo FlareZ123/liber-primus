@@ -44,3 +44,15 @@ The expensive part is computing S_g, not combining bitsets. At small dimension, 
 - [Raw original and control results, pinned input blobs](lp2-gp29-common-key-omission-budget-output.json)
 
 Executed in connected V8; standalone Node/C++ integration and production timing have not been performed. No unknown plaintext, authentic key, historical mechanism or continuation recovered.
+
+## Exact collision-free affine key slicing (Agent12, 2026-11-26)
+
+This is an upstream improvement to the numeric-key domain, not a second independent cipher search. Each intra-component pair of rune offsets supplies a forbidden affine hyperplane in the remaining free key coordinates over GF(29). Assign an order to those coordinates. For each nonconstant hyperplane, divide by its deepest nonzero coefficient; at that depth the hyperplane forbids one value of the new coordinate as an affine function of the already assigned prefix. Group equal prefix coefficient vectors into a 29-bit mask of forbidden intercepts. At a given prefix, rotate those masks by the corresponding affine shift, union them, and recurse only through the complement. Nonzero constant differences impose no restriction; an identically zero difference makes the branch impossible. Check the primitive q8 condition on the surviving leaves. Choosing an order to minimize the sum of group count times 29^depth changes only performance, not completeness.
+
+Executed against 16 deterministic actual p54 branch states and six independent native-word plants. The exact bitset of assignment IDs agreed with the independent brute numeric occupancy check in all 22 states; all six true plant keys survived. Three original states had empty key domains. Across eight dimension-four cases (original and planted), brute occupancy checking took 32,356 ms versus 1,249 ms for slicing; across nine dimension-three cases, 688 ms versus 18 ms (connected V8, not production C++). Some dimension-four states still had hundreds of thousands of surviving numeric assignments. Use a sparse-domain threshold before the shared-key lexical gate; do not claim these component timings are whole-solver speedups.
+
+- [Slice SFT](../sims/lp2_gp29_affine_hyperplane_slice_sft.cjs)
+- [Exact bitset agreement and timing data](lp2-gp29-affine-hyperplane-slice-output.json)
+- Implementation commits 10304440f78d2209e2802235ff08bc9ced2acd68 and a205d0abea327382155a0902df4a325bc3504bfb.
+
+No p55 holdout consulted, no exhaustive original search or plaintext recovery. Standalone Node/C++ not yet tested.

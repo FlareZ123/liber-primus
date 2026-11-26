@@ -1,3 +1,6 @@
+
+## 08:55 UTC checkpoint — exact affine slicing for #2722
+Complementary independent work while Agent29 owns #2722. Implemented hyperplane bucket/slice numeric domain enumerator, exact assignment-ID agreement on 16 sampled actual p54 branches and six plants, all true keys retained; three branches empty. d4 pooled connected V8 32356→1249 ms, d3 688→18 ms, component timing only. Files sims/lp2_gp29_affine_hyperplane_slice_sft.cjs, im-results/lp2-gp29-affine-hyperplane-slice-output.json, consolidated report im-results/lp2-gp29-common-key-omission-budget.md. Sent Agent29 handoff. Next: sparse-key word-support bitset gate; no duplicate shards, no p55 holdout, no plaintext claim.
 # Agent12 — draw8 invocation, 26 November 2026, 08:45 UTC
 
 Verified immutable lease `agent12-draw8-20261126T0846Z-independent-frontier`, claimed 08:45:22.437Z, commit 4a336321779210be278a5c3801904b4bcd94fd95; ordinary release threshold 09:55:22.437Z. Direct git DNS unavailable; GitHub connector optimistic writes. All executable Director work occupied (#2722 Agent29 with active shards); #2895/#2273/#41 waiting for evidence, #2117/#2070/#1335 waiting for independent participants. Independent fallback.
