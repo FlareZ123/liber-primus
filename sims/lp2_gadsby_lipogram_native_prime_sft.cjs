@@ -1,5 +1,35 @@
 'use strict';
 // Agent42 #3038: authentic Gadsby lipogram vs native p56 encryption.
+function periodicMinimum(c,A,Q,forbid,cutoff=Infinity){
+ // Per-page relaxed exact optimization over arbitrary Q periodic shifts and F hold.
+ // At nonzero C there is one branch; at C=0 literal F may hold or consume.
+ // Bound via independent phase minimum cost after all observations so far.
+ const counts=Array.from({length:Q},()=>new Int16Array(A));
+ let best=cutoff, nodes=0,complete=false;
+ const mod=x=>(x%A+A)%A;
+ const costs=Array.from({length:A},(_,c)=>Array.from({length:A},(_,k)=>Number(forbid.has(mod(c-k)))));
+ function bound(){
+  let total=0;
+  for(let q=0;q<Q;q++){let min=Infinity;for(let k=0;k<A;k++)if(counts[q][k]===0){let cost=0;for(let x=0;x<A;x++)cost+=counts[q][x]*costs[x][k];if(cost<min)min=cost}total+=min;if(total>=best)return total}
+  return total;
+ }
+ function dfs(i,q){
+  nodes++;if(bound()>=best)return;
+  const start=i,phase=q;
+  while(i<c.length&&c[i]!==0){counts[q][c[i]]++;q=(q+1)%Q;i++}
+  const b=bound();
+  if(b<best){
+   if(i===c.length){best=b;complete=true}
+   else{
+    dfs(i+1,q); // hold literal F
+    counts[q][0]++;dfs(i+1,(q+1)%Q);counts[q][0]--;
+   }
+  }
+  let t=phase;for(let j=start;j<i;j++){counts[t][c[j]]--;t=(t+1)%Q}
+ }
+ dfs(0,0);
+ return {min:complete?best:null,provedAtLeast:complete?best:cutoff,nodes};
+}
 function experiment(raw){
  const [gp,native,source,book]=[JSON.parse(raw[0]),JSON.parse(raw[1]),raw[2],raw[3]];
  const assert=(x,msg)=>{if(!x)throw new Error(msg)}, ix=new Map(gp.runes.map((x,i)=>[x,i])), labels=gp.translit;
@@ -45,8 +75,10 @@ function experiment(raw){
  // minimum may be less than actual number of exceptions, never greater.
  const dpControls=windowed.slice(0,2).map((_,i)=>{let at=i*N;return orig.map(x=>{const p=donor.p.slice(at,at+x.p.length);at+=p.length;const m=minimum(encode(p));assert(m.min!==null&&m.min<=p.filter(y=>forbidden.has(y)).length,"known planted control");return m.min})});
  const perPage=orig.map(x=>({page:x.page,n:x.p.length,...minimum(x.p)}));
- const sumMin=xs=>xs.reduce((s,x)=>s+(x.min??0),0);
- return {source:{storyBounds:[start,end],wordCount:words.length,exceptions,forbidden:[...forbidden],donorRunes:donor.p.length,windows:windowed.length},native:nativeFrames.map(f=>({name:f.name,plain:summarize([f]),prime:summarize([{...f,p:encode(f.p)}])})),original:summarize(orig),windowed,dp:{controlMinima:dpControls,perPage,trainP0to39:sumMin(perPage.filter(x=>x.page<=39)),heldP40to55:sumMin(perPage.filter(x=>x.page>=40)),illegalPages:perPage.filter(x=>x.min===null).map(x=>x.page)},p56Replay:witness.p.length};
+ const periodic=orig.map(x=>({page:x.page,...periodicMinimum(x.p,29,8,forbidden,5)}));
+ const periodicControls=[];for(let i=0;i<4;i++){const K=[23,10,1,10,9,10,16,26],plain=donor.p.slice(i*100,i*100+100);let j=0;const c=plain.map(x=>x===0?0:mod(x+K[j++%8]));const z=periodicMinimum(c,29,8,forbidden,5);assert(z.min===0,"periodic lipogram plant");periodicControls.push(z)}
+ const sumMin=xs=>xs.some(x=>x.min===null)?null:xs.reduce((s,x)=>s+x.min,0);
+ return {source:{storyBounds:[start,end],wordCount:words.length,exceptions,forbidden:[...forbidden],donorRunes:donor.p.length,windows:windowed.length},native:nativeFrames.map(f=>({name:f.name,plain:summarize([f]),prime:summarize([{...f,p:encode(f.p)}])})),original:summarize(orig),windowed,dp:{controlMinima:dpControls,perPage,trainP0to39:sumMin(perPage.filter(x=>x.page<=39)),heldP40to55:sumMin(perPage.filter(x=>x.page>=40)),illegalPages:perPage.filter(x=>x.min===null).map(x=>x.page)},periodic:{controls:periodicControls,perPage:periodic,lowerBoundAll:periodic.reduce((s,x)=>s+x.provedAtLeast,0),train:periodic.filter(x=>x.page<=39).reduce((s,x)=>s+x.provedAtLeast,0),held:periodic.filter(x=>x.page>=40).reduce((s,x)=>s+x.provedAtLeast,0)},p56Replay:witness.p.length};
 }
 if(require.main===module){const fs=require('node:fs'),path=require('node:path');const root=path.resolve(__dirname,'..');const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/transcriptions/lp2-image-corrected.txt"];const book=process.argv[2];if(!book)throw Error('Pass pinned GITenberg 47342.txt path');console.log(JSON.stringify(experiment([...files.map(p=>fs.readFileSync(path.join(root,p),'utf8')),fs.readFileSync(book,'utf8')]),null,2))}
 module.exports={experiment};
