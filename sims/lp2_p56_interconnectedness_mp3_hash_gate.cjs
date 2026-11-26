@@ -38,13 +38,15 @@ async function get(url, expectedBytes, expectedSha256) {
   return data;
 }
 function clearsignedBody(text) {
-  assert.ok(text.startsWith("-----BEGIN PGP SIGNED MESSAGE-----"));
-  const after = text.split("-----BEGIN PGP SIGNED MESSAGE-----",1)[1];
-  const blank = after.search(/\r?\n\r?\n/);
-  assert.ok(blank >= 0);
-  const headerBreak = after.match(/\r?\n\r?\n/);
-  const body = after.slice(blank + headerBreak[0].length);
-  return body.split("-----BEGIN PGP SIGNATURE-----",1)[0];
+  const marker = "-----BEGIN PGP SIGNED MESSAGE-----";
+  assert.ok(text.startsWith(marker));
+  const after = text.slice(marker.length);
+  const headerBreak = after.match(/\\r?\\n\\r?\\n/);
+  assert.ok(headerBreak, "PGP cleartext header separator missing");
+  const body = after.slice(headerBreak.index + headerBreak[0].length);
+  const signatureAt = body.indexOf("-----BEGIN PGP SIGNATURE-----");
+  assert.ok(signatureAt >= 0, "PGP signature boundary missing");
+  return body.slice(0, signatureAt);
 }
 function extractHex(text) {
   const body = clearsignedBody(text);
