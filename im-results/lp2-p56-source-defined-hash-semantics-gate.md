@@ -4,7 +4,7 @@
 
 ## Decision
 
-The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. Twenty-two exact source-byte candidates in the tracked 2012–2016 set, including the 2012 onion registration screenshot, five 2014 Onion6 container/component objects and three representations of the newly recovered 2014 cu343 761 HTML carrier, have no SHA-512 or Whirlpool match (0/44 checks). Separately, #2987 tested nine exact representations of three 2012 participant-specific RSA message copies under SHA-512, with zero matches; see [the full byte-boundary table and reproducer](2012-rsa-participant-page-recovery.md#exact-p56-digest-decision-for-three-participant-specific-page-copies-director-2987). A further source-derived test of 38 sq6 host/URL/path and base32-decoded v2 service-ID representations, email, valid-participant RSA-modulus and PGP-signature representations, three decrypted response numbers/URLs, and the screenshot's explicitly illustrative number gives **0/76** SHA-512/Whirlpool matches; its Whirlpool known-answer control passes. These are exact candidate strings and archived objects, not successful HTTP response bodies. No source-stated digest rule has been found.
+The p56 destination value is fixed exactly, but the surviving first-party corpus does **not** fix the hash algorithm, page serialization, canonicalization, HTTP byte boundary, or URL/body choice. Twenty-two exact source-byte candidates in the tracked 2012–2016 set, including the 2012 onion registration screenshot, five 2014 Onion6 container/component objects and three representations of the newly recovered 2014 cu343 761 HTML carrier, have no SHA-512 or Whirlpool match (0/44 checks). Separately, #2987 tested nine exact representations of three 2012 participant-specific RSA message copies under SHA-512, with zero matches; see [the full byte-boundary table and reproducer](2012-rsa-participant-page-recovery.md#exact-p56-digest-decision-for-three-participant-specific-page-copies-director-2987). A further source-derived test of 38 sq6 host/URL/path and base32-decoded v2 service-ID representations, email, valid-participant RSA-modulus and PGP-signature representations, three decrypted response numbers/URLs, and the screenshot's explicitly illustrative number gives **0/76** SHA-512/Whirlpool matches; its Whirlpool known-answer control passes. These are exact candidate strings and archived objects, not successful HTTP response bodies. No source-stated digest rule has been found. The p56 imperative selects an external-page search, not an established prerequisite to p0–55 decipherment; see the dependency graphs below.
 
 A 2012 hidden-service lane is source-located, with two distinct book-code outputs: the Agrippa poem yields `sq6wmgv2zcsrix6t.onion` (preserved), while the Britannica 11th Edition `Cicada` entry yields `eq6emgv2ehsrix6t.onion` (reported lost; content and whether it was accessed are unknown). The latter is a plausible historical candidate, not a demonstrated p56 dependency. The repository preserves the signed /NUM instructions, three participant RSA challenge copies, the signed second-chance/MIDI message, and a source-pinned screenshot of the `sq6` enrollment form. The reproducible RSA response numbers are 33521494043430258676, 29201928111913239376, and 25121996842107342310; see [the consolidated participant-page recovery](2012-rsa-participant-page-recovery.md). The screenshot confirms the email/number workflow but does not contain the actual per-recipient /NUM token or the later response. The `eq6` page, `sq6` participant-specific `/NUMBER` response, and `cginiziglyaobyph.onion` second-chance page remain unavailable. No source-selected hash rule, LP2 key, or p56 preimage follows.
 
@@ -30,6 +30,65 @@ The solved instruction says that within the deep web there exists a page that �
 
 This exact transcription agrees with the previously frozen image-level audit in [p56-exact-digest-public-occurrences.md](p56-exact-digest-public-occurrences.md).
 
+
+## Does the p56 destination supply a prior decryption operand? (Director #3026, Agent8)
+
+**Decision:** the source requires the pilgrim to *find* the matching page. It does not establish an edge from that page to the key for p0–55, nor require all earlier text to be deciphered before the page search. Treat the destination as a parallel continuation/validation objective and the external-key theory as conditional, not as a blocker on original-cipher research. The endpoint role is the more economical reading of the explicit instruction, but an authentic page carrying an earlier-page key remains possible.
+
+### Independent source contrasts
+
+The [original p56 and p57 scans](../resources/liber-primus/) and [known decoded reference](../resources/liber-primus/lp1-plaintext-reference.txt#56) place AN END before the final clear PARABLE. The p56 imperative is “IT IS THE DUTY OF EVERY PILGRIM TO SEEK OUT THIS PAGE”; it contains no instruction to take a value from that page and apply it to a preceding page. AN END is a title, not a formal execution-order directive. P57's parable has no explicit destination or operand. The [complete p56 prime-totient control](lp2-p55-p56-p57-public-reset-backward-state-gate.md) independently recovers all 85 runes with a public prime sequence beginning at 2 and the one literal F hold; p57 is already clear. Neither known decoder consumes an external secret, prior page plaintext, or inherited p55 state.
+
+The [original static Stage11 index](../resources/historical/cicada2014-onion7-original-index.html) exposes all 58 page links in one archived object. This removes a *delivery* dependency between pages, not a cryptographic dependency. The [2016 signed message](../resources/historical/cicada2016-4gq25-outguess.asc) explicitly names the book itself as the way, its words as map, meaning as road and numbers as direction. The exact wording supports deriving a route from the manuscript; it gives no digest family, URL or backwards key-extraction rule. “Seek and you will be found” is compatible with a recruitment/continuation endpoint. The [antecedent audit](lp2-2016-signed-path-antecedent-gate.md) does not establish a unique external text.
+
+Compare these actual historical contracts (no new source acquisition or cryptographic replay required; reuse the [verified operation profile](cicada-authenticated-solvepath-operation-contracts-2012-2016.md)):
+
+| Original witness | Typed inputs and outputs | Dependency selected by source |
+|---|---|---|
+| [2012 RSA-stage signed message](../resources/historical/cicada2012-message-only-displayed.asc) | Identifies encrypted number, named RSA implementation, supplied public key, and instructs entering decrypted number at same URL | Explicit ciphertext/key → decrypted number → next-step access; recipient-specific, not an LP2 operand |
+| [2013 BASE29 signed command](../resources/external/2013-tcp-server-signed-source.md) | Decimal integer → specified base29 representation, with worked example | Explicit input type and conversion; not a later GP29 key |
+| [2012 countdown signed message](../resources/historical/cicada2012-countdown-message.asc) | Check back at a named date/time | Checkpoint/continuation instruction; no statement that returned page supplies a prior cipher operand |
+| [2014 Stage10 signed form](../resources/historical/cicada2014-sixth-onion-v2-form.html.asc) and [Stage11 redirect](../resources/historical/cicada2014-stage11-message.asc) | Previously obtained three squares and participant-operated contact channel → subsequent signed address → static LP2 delivery | Typed qualification inputs, then location output. The [callback audit](cicada2014-stage10-to-stage11-original-operator-gate.md) verifies the preserved generic redirect, not an individualized encrypted key |
+| LP2 p56 | Page whose digest equals the printed 64-byte value → seek that page | Equality criterion and required search; no declared digest algorithm, byte representation, page content, output key, consumer or reverse dependency |
+
+Historical typed input delivery is a useful design contrast, not a universal rule. The 2013 whitespace and 2014 OpenPuff examples show that operations may be inferred rather than spelled out. An implicit external LP2 key therefore cannot be excluded by imperative wording alone.
+
+### Two fully specified dependency hypotheses
+
+Use C = original p0–55 ciphertext and layout, L = solved p56/p57 plus already available LP1/earlier artifacts, D = p56 digest, X = authentic unknown page object, H = intended hash algorithm and serialization, N = independently available route to candidate objects, K = required decryption material, M = authentic p0–55 plaintext. These are variable types, not invented values.
+
+**External-operand graph (E):**
+
+```text
+Static release -> C, L
+Public local p56 decoder -> D
+(N, D, H) -> identify and validate X
+(X, independently selected extraction/interpretation) -> K
+(C, K, independently selected inverse/clock) -> M
+```
+
+Only the local decode and instruction to identify a page satisfying the digest are established. N and H are unresolved; the two final arrows are the *hypothesis*. A full solution M cannot be the sole prerequisite for discovering X in this strict graph, because that creates the cycle M -> X -> K -> M with no initial operand. If earlier plaintext supplies N, this graph requires a independently decipherable prefix/section or an externally supplied route. This exposes an actionable bootstrap requirement: an E advocate needs a source-visible route to X independent of the still-key-dependent ciphertext, plus evidence that its content is typed as K.
+
+**Continuation/validation graph (T):**
+
+```text
+Static release -> C, L
+Public local p56 decoder -> D
+(C, L, independently selected internal or other key source) -> K -> M
+(N independent of M OR N derived from an independently solved part of M,
+ D, H) -> identify and validate X
+X -> continuation / final validation
+```
+
+The exact internal key/receiver is also unknown; T does not establish self-containment. It permits LP2 to be deciphered without X and permits a separate other historical key source. The instruction to seek the page can be pursued in parallel; it does not state that an authentic solution must precede searching. A hybrid is possible: independently decoded sections yield a route to X, and X then supplies operands for a remaining section. Such a graph must state the bootstrap section and the downstream consumer rather than treating all 56 pages as blocked by one object.
+
+### Discriminating observations and allocation
+
+1. **Supports E:** acquire an exact authentic X (with source-selected digest and byte boundary or a first-party locator), whose content independently specifies an earlier-page receiver/key. Freeze that binding, including scope, clock and operands, then demonstrate coherent previously unknown plaintext on held-out original ciphertext with exact forward encryption. A digest match alone only identifies the sought object, not its role. A hash miss is not a dependency observation.
+2. **Discriminates against strict E:** independently recover authentic p0–55 plaintext with an explicitly reproducible original-source inverse that uses no X-derived data. A partial independently solved chapter falsifies only an E claim covering that chapter, not necessity for the remainder. Alternatively a complete authenticated X with an explicit post-solution-only action and no further key handoff would favor T; incomplete page captures cannot establish absence of an operand.
+3. **Direct next acquisition:** the missing object is an authenticated *operand-to-consumer binding*, e.g. original X plus an instruction applying a defined value to an identified LP2 ciphertext interval, or a source-fixed inverse independent of X. A newly captured exact page body remains useful for the continuation objective and could provide the binding, but historical bodies without such a connection are lower-value for plaintext. Keep the separate archival acquisition lane open only for concrete new authentic objects; prioritize original-cipher/source-selector work in parallel. The Stage10 participant callback can be useful only if its additional authenticated content independently defines a key or route; the existing redirect does not.
+
+No direct original receiver was executed: none of these known source imperatives independently selects an unknown-page operand or clock. No new hash guesses, live-service queries, numerical bridges or new plaintext claims. This is a source-dependency decision, not an exclusion of possible implicit keys, a proof of T, or a recovered destination.
 
 ## Adjacent final page p57: exact source-object SHA-512 gate
 
