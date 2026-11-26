@@ -6,7 +6,7 @@ const paths=[
  'resources/external/2013-liber-al-bookcode-I.txt','resources/external/2013-liber-al-bookcode-II.txt','resources/external/2013-liber-al-bookcode-III.txt',
  'resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt'];
 /** Exact 18-rune source-reuse key nomination, private plaintext-width q13, latent cuts. */
-function experiment(raw,which='p54'){
+function experiment(raw,which='p54',saved=null){
  const gp=JSON.parse(raw[0]),native=JSON.parse(raw[1]),W=gp.translit.map(x=>x.length),q=13,L=18;
  const map=new Map(gp.translit.map((x,i)=>[x,i])),runes=new Map(gp.runes.map((x,i)=>[x,i]));
  const sections=native.sections.map((s,j)=>({name:'native'+j,p:[...s.source_text].filter(x=>runes.has(x)).map(x=>runes.get(x))}));
@@ -42,10 +42,11 @@ function experiment(raw,which='p54'){
   return {u:u.map(Math.log),b:b.map(Math.log),t:t.map(Math.log)};
  }
  function encode(p,k,t){const c=[];for(const x of p){if(x===0)c.push(0);else{c.push((x+k[t])%29);t=(t+W[x])%q;}}return {c,t};}
- function decode(c,k,M,initial=null){
+ function decode(c,k,M,initial=null,forced=null){
   let states=initial?[{phase:initial.phase,a:initial.a,b:initial.b,score:0,node:null,start:initial.phase}]:Array.from({length:q},(_,phase)=>({phase,a:-1,b:-1,score:0,node:null,start:phase}));
-  for(const x of c){const next=new Map();for(const s of states){
-   const p=mod(x-k[s.phase]);const visit=(z,phase)=>{const add=s.a<0?(s.b<0?M.u[z]:M.b[s.b*29+z]):M.t[(s.a*29+s.b)*29+z],id=phase*900+(s.b+1)*30+z+1,v=s.score+add,old=next.get(id);if(!old||old.score<v)next.set(id,{phase,a:s.b,b:z,score:v,node:{p:z,prev:s.node},start:s.start});};
+  for(let i=0;i<c.length;i++){const x=c[i],next=new Map();for(const s of states){
+   if(forced&&i===forced.at&&s.phase!==0)continue;
+   const p=mod(x-k[s.phase]);const visit=(z,phase)=>{if(forced&&i>=forced.at&&i<forced.at+L&&z!==forced.plain[i-forced.at])return;const add=s.a<0?(s.b<0?M.u[z]:M.b[s.b*29+z]):M.t[(s.a*29+s.b)*29+z],id=phase*900+(s.b+1)*30+z+1,v=s.score+add,old=next.get(id);if(!old||old.score<v)next.set(id,{phase,a:s.b,b:z,score:v,node:{p:z,prev:s.node},start:s.start});};
    if(x===0)visit(0,s.phase);if(p!==0)visit(p,(s.phase+W[p])%q);
   }states=[...next.values()];if(states.length===0)return null;}
   const best=states.reduce((a,b)=>a.score>=b.score?a:b),p=[];for(let x=best.node;x;x=x.prev)p.push(x.p);p.reverse();
@@ -55,6 +56,26 @@ function experiment(raw,which='p54'){
  const cuts=[0,729,1874,3603,5506,6761,7960,9640,12648,12956];
  const tape=gp.pages.filter(x=>x.page<56).flatMap(x=>x.indices);
  if(tape.length!==12956)throw Error('tape geometry');
+ // Independently validate each full key against the original non-crib context.
+ function validateAnchors(matches){
+  const M=model(),out=[];
+  function nextMask(x,k,mask){let a=0;for(let t=0;t<q;t++)if(mask&(1<<t)){const p=mod(x-k[t]);if(x===0)a|=1<<t;if(p!==0)a|=1<<((t+W[p])%q);}return a;}
+  function prevMask(x,k,mask){let a=0;for(let t=0;t<q;t++){const p=mod(x-k[t]);if((x===0&&(mask&(1<<t)))||(p!==0&&(mask&(1<<((t+W[p])%q)))))a|=1<<t;}return a;}
+  function check(m,k,lo,hi,kind){const at=m.cipherStart,end=at+L,enc=encode(m.plain,k,0);if(enc.c.join(',')!==tape.slice(at,end).join(','))throw Error('crib replay');let left=1,right=1<<enc.t,reachLo=at,reachHi=end;
+   for(let i=at-1;i>=lo;i--){left=prevMask(tape[i],k,left);if(!left)break;reachLo=i;}
+   for(let i=end;i<hi;i++){right=nextMask(tape[i],k,right);if(!right)break;reachHi=i+1;}
+   const legal=reachLo===lo&&reachHi===hi;
+   let optimum=null;if(legal){const x=decode(tape.slice(lo,hi),k,M,null,{at:at-lo,plain:m.plain});if(!x)throw Error('reachability mismatch');optimum={score:x.score,mean:x.score/(hi-lo),p:x.p,translit:x.p.map(y=>gp.translit[y]).join('')};}
+   return {kind,lo,hi,reachLo,reachHi,leftLegal:reachLo===lo,rightLegal:reachHi===hi,legal,optimum};
+  }
+  for(const m of matches){if(m.cover!==q){out.push({...m,incompleteKey:true});continue;}
+   const k=m.partial,checks=[check(m,k,0,tape.length,'continuous book')];
+   const j=cuts.findIndex((x,i)=>i<cuts.length-1&&x<=m.cipherStart&&m.cipherStart+L<=cuts[i+1]);
+   if(j>=0){checks.push(check(m,k,cuts[j],cuts[j+1],'chapter '+j));if(j===8&&m.cipherStart>=cuts[j]+9)checks.push(check(m,k,cuts[j]+9,cuts[j+1],'terminal body'));}
+   out.push({source:m.source,donorStart:m.donorStart,cipherStart:m.cipherStart,key:k,chapter:j,checks});
+  }return out;
+ }
+ if(which==='validate')return {which,L,q,rows:validateAnchors(saved??scan(tape,D).matches)};
  if(which==='all')return {which,L,q,...scan(tape,D)};
  let c,P=null,K=null,ex=-1,sourceInfo=null,fit=223;
  if(which.startsWith('plant')){
