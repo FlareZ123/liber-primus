@@ -1,6 +1,6 @@
 # Prime-totient / move-to-front composed cipher: exact initial-alphabet recovery
 
-**Agent19, 24 November 2026. Original-input cryptanalytic attack; no unknown plaintext or authentic key recovered.** Full-size native positives recover an unrestricted nonlinear initial alphabet exactly. The original shared- and private-page inverses fail on held-out printed words. A separate all-secret rank-repeat bound rejects both all-consuming and authentic clear-F versions of A under every tested reset clock against nine native controls. No first-party source selects this composition. Retire this specific architecture.
+**Agent19, 24 November 2026. Original-input cryptanalytic attack; no unknown plaintext or authentic key recovered.** Full-size native positives recover an unrestricted nonlinear initial alphabet exactly. The original shared- and private-page inverses fail on held-out printed words. A separate all-secret rank-repeat bound rejects both all-consuming and authentic clear-F versions of A under every tested reset clock against nine native controls. No first-party source selects this composition. Retire the specified direct rank-emission architecture; the cumulative affine-rank extension tested below is also negative under its explicit continuous all-consuming clock.
 
 ## Why this concrete model
 
@@ -70,6 +70,30 @@ Test both the earlier all-consuming clock and the **actual** source-p56 rule: if
 The original has only 86 equal adjacent ciphertext symbols, all within the tested reset spans. Even granting completely independent initial alphabets, every native control produces at least 367 forced equal adjacent ranks (368 with actual clear-F). First-access ranks cannot remove these equalities. This exact invariant defeats the declared A mechanism for these finite ordinary native-prose samples, including the formerly surviving page-private variant and the source-authentic F-clock extension. A downstream value-changing anti-repeat layer or different source register is outside the model and would require its own source selection. [Repeat-bound SFT](../sims/lp2_prime_totient_mtf_repeat_allsecret_sft.cjs).
 
 **Decision:** do not spend compute on F-mask enumeration, short-page lexical rescue or private-list optimization for this architecture without a new source-selected downstream operation that explains the repeat deficit. No unknown plaintext or authentic key recovered.
+
+
+## Cumulative affine rank transport (Agent15, 26 November 2026)
+
+The earlier A-family repeat bound leaves a specific downstream value-changing operation outside its scope: accumulate the emitted MTF rank labels as GF29 ciphertext differences. This is distinct from the 2015 participant's prime-subtract-then-difference register (whose increment is a *difference of consecutive primes*). Here the original repeat deficit motivates examining increments; native p56 supplies the consecutive prime-minus-one values and 2014 bzip2 supplies a historical MTF precedent. Their composition, affine rank label, continuous book clock and all-consuming treatment of F are exploratory, not source-authenticated. No extra pad, arbitrary per-position label or word-boundary dependence is allowed.
+
+Let k_i=(prime[i]−1) mod29, with the first prime 2. Shift P_i to S_i=P_i+k_i mod29; encode S_i as its rank r_i in an initially secret GP29 permutation, then move S_i to the front. Let a∈{1,…,28}, b∈{0,…,28} be secret but fixed. Transmit C_i=C_(i−1)+a⁻¹(r_i−b) mod29, initially C_(−1)=0. This is a completely reversible, length-preserving changing-state sender. Unlike direct rank emission, its output equalities occur exactly when r_i=b, allowing a non-front recency rank to be the rare event.
+
+**Exact constructive key search:** enumerate all 812 affine rank labels; compute r_i=a(C_i−C_(i−1))+b and MTF-decode with the identity initial list to an abstract tape z. For every possible original initial list there is one permutation π of those labels, with P_i=π(z_i)−k_i mod29. For each (a,b), obtain the exact global maximum native unigram objective over all 29! permutations by a maximum-weight Hungarian assignment. The scorer uses the nine pinned solved-native sections (2,979 runes, additive 0.5 smoothing). Fit on p0–39 except the first rune, freeze a,b,π, and decode p40–53. No printed segmentation or p55 scores enter the fit. This is a real key inference algorithm, not a sampling search over initial alphabets.
+
+Three independent literary plants, drawn from the pinned Gibran/Emerson/Shakespeare sources at rune offsets 10000/15000/20000, use different nonlinear secret permutations and affine parameters. The full same-length search independently recovers each hidden affine pair and **29/29 initial alphabet entries**. It recovers **38,868/38,868 complete plaintext runes** and **9,024/9,024 withheld runes**. These are new encodings of native controls, not Cicada's historical ciphertexts.
+
+| Input | Fitted a,b | Holdout max rune | Holdout IoC | Holdout trigram mean (nats) |
+| --- | --- | ---: | ---: | ---: |
+| Gibran plant | 5,7 | 336 | .058615 | −2.897452 |
+| Emerson plant | 13,17 | 362 | .059907 | −2.972418 |
+| Shakespeare plant | 27,24 | 380 | .060401 | −2.997095 |
+| Original p0–55 | 2,12 | 130 | .034576 | −3.441502 |
+
+The original best training fit is −3.963326 nats/rune, then −4.167002 on the withheld p40–53; the complete inverse is nonprose. All 12,956 original runes replay exactly. The 3,008 withheld original runes also admit an **exact all-key maximum-frequency obstruction**: for each affine map form W[z,k] on the held-out positions. For a target plaintext symbol t, maximizing its occurrence count over all π is the maximum perfect assignment to W[z,(x−t) mod29]. The t dependence only permutes columns, so a single assignment gives the optimum for every target. Maximizing over all 812 maps gives **231 occurrences of any one plaintext rune**, even granting a fresh independently optimized alphabet and affine pair for the entire holdout. A witness (a=7,b=4) attains 231 zeros, so this is an exact ceiling, not a bound from incomplete search. Any alternative initial ciphertext IV changes only the first decoded rank and the resulting initial list; all subsequent abstract labels differ by one permutation, already granted by π, so this holdout ceiling also covers every IV.
+
+For comparison, exhausting every contiguous 3,008-rune window of the pinned finite native registers gives minimum maximum-rune counts of **304** (Gibran, 44,662 windows), **301** (Emerson, 303,892 windows), and **260** (Shakespeare, 214,099 windows). The original ceiling is below all 562,653 windows. Normalization is greedy GP transliteration with ING/IO, V→U, K/Q→C and Z→S; source ranges and precise normalization are in the SFT. This excludes all initial permutations and affine labels for the tested continuous consuming prime-clock architecture within that finite native-register comparison; it does not exclude F-hold semantics, arbitrary nonlinear rank labels, different clocks, or other text registers. Do not extend the composition without an independent clue.
+
+Reproduction: [single-file CommonJS inverse](../sims/lp2_prime_shift_mtf_cumulative_affine_sft.cjs), [raw complete results and input blob IDs](lp2-prime-shift-mtf-cumulative-affine-output.json), [code/output commit](https://github.com/FlareZ123/liber-primus/commit/4bcfcf677022d8e6d2179193a8fa2aca710cd389). Core executed directly on connected V8 and exact repository inputs. The standalone Node wrapper was not separately executed. No unknown plaintext or authentic key.
 
 ## Reproduction
 

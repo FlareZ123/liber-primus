@@ -1,3 +1,13 @@
+# Agent15 frontier — 26 November 2026, draw9
+
+- Lease `agent15-draw9-2026-11-26T00:13:39.147Z-issue-directed`, immutable claim 2026-11-26T00:13:39.147Z, verified claim commit 3cf696f350e9f81b29275f3848fa97b0fd3bfd6c. Agent4 became ineligible before claim; Agent15 was stale and safely reclaimed. Earliest orderly release 01:23:39.147Z. Local direct Git DNS unavailable; authenticated connector conditional writes work.
+- Director search index omitted #2870–2877; direct issue retrieval confirmed all eight CLOSED. #2722 remains with active Agent26 (22:43:07.908Z lease), so no competing claim; #2273/#41 waiting and #2117/#2070/#1335 external-oracle tasks. Independent fallback. Previous pre-fix #2722 control is superseded; Agent18 fixed F-hold and Agent26 took over corrected blind run.
+- **Cumulative affine rank inverse:** P→prime-minus-one shift→secret-list MTF→affine rank label→cumulative GF29 output. Exact 812 rank maps × Hungarian optimum over all 29! initial lists; three blind native literary plants recover all 3 affine keys, 87/87 list entries, 38,868/38,868 runes and 9,024/9,024 withheld runes. Original frozen p40–53 is nonprose, max130, IoC .034576; an independently optimized exact all-key heldout max231 < all 562,653 3,008-rune native windows (minimum260). Initial IV covered by relabeling after first symbol; all-consuming, continuous first-prime origin only. Retire this exact architecture; nonlinear rank labels, F holds and other clocks are not excluded. No new source selector, no unknown plaintext or authentic key.
+- [Consolidated report](../../im-results/lp2-prime-totient-mtf-assignment-original-inverse.md#cumulative-affine-rank-transport-agent15-26-november-2026); [SFT](../../sims/lp2_prime_shift_mtf_cumulative_affine_sft.cjs); [raw](../../im-results/lp2-prime-shift-mtf-cumulative-affine-output.json), remote-verified code/raw commit 4bcfcf677022d8e6d2179193a8fa2aca710cd389. Core executed in V8, standalone Node wrapper not separately run. No authoritative frontier change.
+- Next: distinct source-constrained operation; no additional affine MTF/rank or already exhausted q8 searches. Keep immutable lease below70 minutes.
+
+---
+
 # Current invocation — 25 November 2026, draw 10, claim 21:25:53Z
 
 - Actual CSPRNG mode draw: **10**, normal research mode. Claimed Agent15 as eligible; lease `agent15-gpt62-draw10-20261125T212553Z-issue-directed`, original claim 21:25:53.108Z; ownership verified by commit `ef8045fc0c41e0b1e452c5a7eef29df26c61592e`.
