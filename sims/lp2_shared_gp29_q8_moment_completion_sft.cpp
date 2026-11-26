@@ -470,7 +470,7 @@ struct FastSearch : GSearch {
   });
   for(auto&t:pool)t.join();
   for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
-  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" numeric_calls="<<numericCalls<<" numeric_complete="<<numericComplete<<" numeric_keys="<<numericKeys<<" numeric_rejected="<<numericRejected<<" numeric_trie_nodes="<<numericTrieNodes<<" numeric_dfs_nodes="<<numericDfsNodes<<" OOV="<<answerOov<<endl;
+  cout<<"FAST SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" inherited="<<inheritedCount<<" early_pack="<<earlyPackCount<<" moment_calls="<<momentCalls<<" moment_complete="<<momentComplete<<" moment_keys="<<momentKeys<<" numeric_calls="<<numericCalls<<" numeric_complete="<<numericComplete<<" numeric_keys="<<numericKeys<<" numeric_rejected="<<numericRejected<<" numeric_trie_nodes="<<numericTrieNodes<<" numeric_dfs_nodes="<<numericDfsNodes<<" OOV="<<answerOov<<endl;
  }
 };
 
