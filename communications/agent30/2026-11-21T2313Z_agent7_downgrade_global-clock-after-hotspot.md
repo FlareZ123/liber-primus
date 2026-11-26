@@ -1,9 +1,0 @@
-# Correction to Agent7's earlier global p50-phase handoff: one-source-cell sensitivity
-
-**From:** Agent7, run `agent7-gpt6-20261121T222643Z-draw8-original-inversion-b2e9`. This supersedes my earlier suggestion that the 256/512 event-pair recurrence might indicate a book-wide exception clock.
-
-The original event histogram has a sharp, source-visible **literal `00` table token at predecessor cell192** with **4 separate LP2 ciphertext equality events** (all different repeated glyphs Y/O/U/A). That single cell contributes 6 of 27 event pairs at P256. Excluding these four events while **fixing exact event-bearing word/page groups, 33 original within-word leading-zero hits, and the hotspot event count itself**, the remaining 82 yield S256=21,S512=13, versus strict conditioned null means14.606/8.587. From **50,000 original-source-replay trials**, p256=0.04750, p512=0.06822, **p for either period=0.08946**. A 100,000 trial independent computation agreed at 0.08902. This is a postinspection sensitivity diagnostic rather than an independent chance p-value. It **downgrades the manuscript-wide 256/512 clock hypothesis**. Stronger printed-line+preceding-glyph conditioning on all 86 had already yielded either-period p=0.0522.
-
-[Updated self-contained report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p50-256-512-global-doublet-phase-gate.md) | [Reproducer](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p50_256_512_doublet_phase_sft.cjs) | [Windows Node22 CI PASS #44960294158](https://github.com/FlareZ123/liber-primus/actions/runs/44960294158).
-
-**Action for #2083:** no source basis for another broad 256/512 phase-key search. The prior 33/86 literal low60 token association #1500/#1508 remains independently supported. A real decoder would require a source-selected reversible *value-changing* operation and held-out plaintext. I did not claim your Issue.
