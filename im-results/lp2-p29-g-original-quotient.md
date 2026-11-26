@@ -1,6 +1,6 @@
 # Original physical p29: source-derived GF29 polynomial quotient
 
-**Status: reproducible direct plaintext inverse with a negative original result; a later three-point cross-source DH correspondence is exact but is not a decryption.** No unknown Liber Primus plaintext, key, authenticated encryption mechanism or final destination has been recovered by this test. The literal polynomial-multiplication interpretation is closed for the specified page, alphabet and printed coefficient order. More elaborate or externally keyed mechanisms are outside its scope.
+**Status: the exact p29 polynomial quotient and its tested direct consumers remain nonlinguistic or inadmissible. The later p27/p29/p39 DH correspondence is conditional, not an authenticated key; the obvious p56 prime-totient/F-bypass consumer also fails for both natural K=2 prime starts.** No unknown Liber Primus plaintext, key, authenticated encryption mechanism or final destination has been recovered. The literal polynomial-multiplication interpretation is closed for the specified page, alphabet and printed coefficient order. More elaborate or externally keyed mechanisms are outside its scope.
 
 ## Intended human path and independent source inputs
 
@@ -112,9 +112,35 @@ For completeness, reducing 1033 and 3301 modulo the p28 DH prime 23 gives explor
 
 **Decision:** retain the three-point match as a possible cross-source checksum or intermediate-state clue. The full function readout and direct derivative do not recover text. Do not launch further key/cipher searches from this relation until an independent source selects a next operation and a held-out prediction. The runnable SFT emits and asserts the complete quotient-function and derivative vectors, plus the full-BASE29-digit holdout above.
 
+## Exact p56 prime-totient/F-bypass receiver on the p29 quotient (Agent13, 26 November 2026)
+
+A bounded consumer was tested for the conditional p27/p29/p39 Diffie–Hellman reading. That reading proposes shared secret \(K=2\); the original p29 polynomial quotient supplies a 275-rune candidate register; and solved p56 supplies an authentic reversible operation: subtract consecutive prime totients modulo 29, with literal plaintext F passing unchanged and not advancing the prime cursor.
+
+The only two source-natural interpretations of \(K=2\) as a prime-clock start were frozen:
+
+1. Start at prime value \(p=2\), the authentic p56 starting point (cursor 0).
+2. Treat 2 as a zero-based prime-sequence index, starting at \(p_2=5\) (cursor 2).
+
+The inverse retains both possible meanings of a ciphertext F. A ciphertext F can be literal plaintext F with no key advance, or a non-F plaintext whose shifted value happens to be F. A nonzero ciphertext that would decrypt to plaintext F is impossible under the authentic bypass rule and is rejected. This is an exact finite-state decoder, not a greedy choice of F positions.
+
+**Positive controls.** The authentic 85-rune p56 ciphertext has 22 legal F-aware paths, including its independently published plaintext; that plaintext has its single literal F at offset 56. A separate 275-rune native-GP plant made by repeating solved p57 is also recovered under both start interpretations (998 legal paths for cursor 0 and 354 for cursor 2). Thus the decoder and both prime starts are exercised on genuine and planted controls.
+
+**Original result.** The exact p29 quotient has 275 runes, 11 zero symbols and IoC 0.0340544127405. Neither frozen start has any legal path:
+
+| Interpretation of K=2 | First impossible offset | Ciphertext | Prior state | Next prime | Totient mod 29 | Forced plaintext |
+|---|---:|---:|---:|---:|---:|---:|
+| Start at prime 2 (cursor 0) | 82 | 23 | cursor 78, 4 paths | 401 | 23 | 0 (F), forbidden because ciphertext is nonzero |
+| Start at prime index 2 (prime 5) | 0 | 4 | cursor 2, 1 path | 5 | 4 | 0 (F), forbidden because ciphertext is nonzero |
+
+For the first interpretation, all four surviving prefixes arrive at cursor 78; the next prime-totient shift is 400 mod 29 = 23, so ciphertext 23 would require plaintext F. The second interpretation fails immediately for the same exact reason at the first quotient rune.
+
+**Decision:** reject the exact p56 prime-totient/F-transparent receiver on the p29 G quotient for both natural readings of the conditional DH value \(K=2\). This does not reject the p27 geometric/DH correspondence itself, prove that the quotient is intended ciphertext, or exclude a different source-selected consumer. The p27 DH mapping remains conditional and still lacks an authenticated instruction specifying how its shared value should decode LP2. Do not search additional prime offsets, signs, or F conventions to rescue this branch.
+
+Reproduce with node sims/lp2_p29_quotient_p56_totient_dh2_gate_sft.cjs (read-only Node 22/CommonJS).
+
 ## Decision and reproducibility
 
-The finite hypothesis `C_p29(X)=G(X)·P_GP(X)`, with the source G and the published coefficient order, fails as a **direct natural-language GP29 decipherment** despite its exact divisibility. The zero remainder might be a deliberate code/checksum, an intermediate transform or a coincidence. The p32/p33 `THEIR RISE` chain now supplies both an independent p29 source selector through the +a clause translation and a source-visible p39 coefficient direction: the printed `[27,5,15]` takes rising powers left-to-right, giving `G(X)=27+5X+15X^2=15(X-24)^2`. This resolves the earlier root24/root23 orientation fork. A value-changing opcode, outer key, decoding register and stopping rule remain absent, and every direct quotient consumer tested here remains negative. Do not salvage a readable output by trying arbitrary GP symbol permutations, text shifts or layouts after seeing the quotient.
+The finite hypothesis `C_p29(X)=G(X)·P_GP(X)`, with the source G and the published coefficient order, fails as a **direct natural-language GP29 decipherment** despite its exact divisibility. The zero remainder might be a deliberate code/checksum, an intermediate transform or a coincidence. The p32/p33 `THEIR RISE` chain supplies an independent p29 source selector through the +a clause translation and a source-visible p39 coefficient direction: the printed `[27,5,15]` takes rising powers left-to-right, giving `G(X)=27+5X+15X^2=15(X-24)^2`. This resolves the earlier root24/root23 orientation fork. The p57 strict-interior repeating key, the full quotient-function/derivative readouts, the full-BASE29-digit DH holdout, and the exact p56 prime-totient/F-bypass receiver under both K=2 prime starts are all negative. A value-changing opcode, outer key, authenticated decoding register and stopping rule remain absent. Do not salvage a readable output by trying arbitrary GP symbol permutations, text shifts, prime offsets or layouts after seeing the quotient.
 
 Reproduction: [single runnable CJS control](../sims/lp2_p29_g_polynomial_quotient_sft.cjs) using the existing canonical JSON and solved p57. The first bounded original-cipher test was independently executed by Agent31 and handed to Agent21, who reported the factor relation, in [its research mailbox](../communications/agent21/20261111T1409Z_agent31_p29-g-quotient-source-gate.md).
 
