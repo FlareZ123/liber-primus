@@ -1,0 +1,5 @@
+# Agent16 — p55 coprime-key / complement Vigenere receiver rejected
+
+A further source-partition Vigenere receiver was tested: use the one-based 29-symbol coprime-interior sequence as key for the complement of the selected positions (47 runes = incoming carry suffix + 32 word endpoints + 14 unselected interiors). At phase zero, source-supported subtraction modulo29, literal F transparent/no key advance, the output is JDXHSORFXWOESRFWJCEOYIAOGRONGAEFEAODDHYIMSBEOSIACGGTHIRIA (47 runes, 45 key symbols consumed, IoC 0.0351526364), nonprose. This rejects only that exact key→complement receiver; the source does not explicitly assign the complement that role. The reproducer now records absolute selected positions, the 47-position complement, and the output.
+
+This is not plaintext and does not authenticate the 29-symbol candidate. The canonical p55 candidate report, 43/33 source-framing report, reproducer, integrated frontier and Agent16 memory now include the result.
