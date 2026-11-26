@@ -14,6 +14,7 @@ const experiment=function experiment(gp,transcription,lex,donor,opts={}){
  const forms=new Set(),byLen=new Map();
  for(const l of lex.split(/\r?\n/)){const m=/^([a-z]+) (\d+)$/.exec(l);if(m){const w=encode(m[1]),k=w.join(",");if(w.length&&!forms.has(k)){forms.add(k);if(!byLen.has(w.length))byLen.set(w.length,[]);byLen.get(w.length).push(w)}}}
  assert(forms.size===29061,"lexicon "+forms.size);
+ if(opts.restrict){forms.clear();byLen.clear();for(const w of opts.restrict){forms.add(w.join(","));if(!byLen.has(w.length))byLen.set(w.length,[]);byLen.get(w.length).push(w)}}
  const orient=(p,rev)=>rev?{runes:p.runes.slice().reverse(),cls:p.cls.slice().reverse().map(x=>x===0?2:x===2?0:x)}:p;
  function intervals(c){const out=[];for(let j=0;j<c.length;j++){if(c[j]!==0&&c[j]!==3)continue;let e=j;while(e<c.length&&c[e]!==2&&c[e]!==3)e++;if(e===c.length)break;out.push([j,e+1]);j=e}return out}
  const nodes=[null],intern=new Map(),roots=[new Map(),new Map()];
@@ -32,12 +33,12 @@ const experiment=function experiment(gp,transcription,lex,donor,opts={}){
  function solve(P,Q,ra,rb,limit=4,cap=600000,ms=9000){
  const A=stream(P,ra),B=stream(Q,rb),na=A.c.length,nb=B.c.length;
  const tails=[new Map(),new Map()],memo=new Map(),trace=[];let states=0,edges=0,hit=false,max=[0,0],answer=null,start=Date.now();
- function tail(t,i,u,id){if(i===t.c.length)return 0;const key=i*nodes.length+(u+1),m=tails[id];if(m.has(key))return m.get(key);let best=1e9;for(let p=t.c[i]===0?0:1;p<29;p++){const z=step(t,i,u,p),cost=(z&1)+tail(t,i+1,Math.floor(z/2),id);if(cost<best)best=cost;if(!best)break}m.set(key,best);return best}
+ function tail(t,i,u,id){if(i===t.c.length)return 0;const key=i*(nodes.length+1)+(u+1),m=tails[id];if(m.has(key))return m.get(key);let best=1e9;for(let p=t.c[i]===0?0:1;p<29;p++){const z=step(t,i,u,p),cost=(z&1)+tail(t,i+1,Math.floor(z/2),id);if(cost<best)best=cost;if(!best)break}m.set(key,best);return best}
  function complete(t,i,u,id){const out=[];while(i<t.c.length){const target=tail(t,i,u,id);let ok=false;for(let p=t.c[i]===0?0:1;p<29;p++){const z=step(t,i,u,p),v=Math.floor(z/2);if((z&1)+tail(t,i+1,v,id)===target){out.push(p);u=v;i++;ok=true;break}}assert(ok,"tail traceback")}return out}
  function dfs(i,j,u,v,budget){
  if(hit)return false;if(tail(A,i,u,0)+tail(B,j,v,1)>budget)return false;
  if(i===na||j===nb){answer={steps:trace.slice(),ta:complete(A,i,u,0),tb:complete(B,j,v,1)};return true}
- const k=[i,j,u,v].join(",");if((memo.get(k)??-1)>=budget)return false;memo.set(k,budget);
+ const stride=nodes.length+1,k=((i*(nb+1)+j)*stride+(u+1))*stride+(v+1);if((memo.get(k)??-1)>=budget)return false;memo.set(k,budget);
  states++;if(states>cap||((states&2047)===0&&Date.now()-start>ms)){hit=true;return false}max[0]=Math.max(max[0],i);max[1]=Math.max(max[1],j);
  // Explore zero-increment-cost edges first, then one, then two.
  const choices=[];
@@ -52,18 +53,18 @@ const experiment=function experiment(gp,transcription,lex,donor,opts={}){
  return {best,excludedThrough:excluded,capped:hit,states,edges,max,words:[A.ranges.length,B.ranges.length],zeros:[A.c.filter(x=>!x).length,B.c.filter(x=>!x).length],...(witness?{witness}:{})}}
  let seed=0x42261126;function rand(n){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)%n}
  const donorByLen=new Map();for(const w of donor.match(/[A-Za-z]+/g).map(encode).filter(w=>w.length)){if(!donorByLen.has(w.length))donorByLen.set(w.length,[]);donorByLen.get(w.length).push(w)}
- function plant(p){const out=p.runes.map(()=>rand(29));for(const [lo,hi] of intervals(p.cls)){const a=donorByLen.get(hi-lo)||byLen.get(hi-lo);assert(a&&a.length,"missing length");const w=a[rand(a.length)];for(let j=lo;j<hi;j++)out[j]=w[j-lo]}return {runes:out,cls:p.cls}}
+ function plant(p){const out=p.runes.map(()=>rand(29));for(const [lo,hi] of intervals(p.cls)){let a=donorByLen.get(hi-lo)||byLen.get(hi-lo);if(opts.inLex)a=a.filter(w=>forms.has(w.join(",")));if(!a.length)a=byLen.get(hi-lo);assert(a&&a.length,"missing length");const w=a[rand(a.length)];for(let j=lo;j<hi;j++)out[j]=w[j-lo]}return {runes:out,cls:p.cls}}
  function enc(p,rev,k){let x=orient(p,rev),t=0,v=x.runes.map(s=>s===0?0:mod(s+k[t++]));return {runes:rev?v.reverse():v,cls:p.cls}}
  function oov(p){return intervals(p.cls).reduce((s,[lo,hi])=>s+!forms.has(p.runes.slice(lo,hi).join(",")),0)}
  // Independent small oracle: every 29^2 pad; independently enumerate the hold/consume ambiguity.
  function brute(P,Q,ra,rb){const A=stream(P,ra),B=stream(Q,rb);let best=99;for(let k0=0;k0<29;k0++)for(let k1=0;k1<29;k1++){
  const k=[k0,k1];function allPaths(t){const out=[];function f(i,j,p){if(i===t.c.length){let n=0;for(const [lo,hi] of t.ranges){const w=p.slice(lo,hi);if(t.rev)w.reverse();n+=+!forms.has(w.join(","))}out.push(n);return}if(t.c[i]===0)f(i+1,j,[...p,0]);const z=mod(t.c[i]-k[j]);if(z)f(i+1,j+1,[...p,z])}f(0,0,[]);return Math.min(...out)}
  best=Math.min(best,allPaths(A)+allPaths(B))}return best}
- const toys=[];for(const [a,b] of [[[0,4],[5,0]],[[0,0],[0,0]],[[13,18],[2,4]],[[0,0],[1,1]]]){const P={runes:a,cls:[0,2]},Q={runes:b,cls:[3,3]},x=solve(P,Q,false,true,3,200000,3000),y=brute(P,Q,false,true);assert(x.best===y,"toy "+JSON.stringify({a,b,x,y}));toys.push(y)}
+ const toys=[];for(const [a,b] of [[[0,4],[5,0]],[[0,0],[0,0]],[[13,18],[2,4]],[[0,0],[1,1]],[[1,1],[1,2]],[[0,2],[2,0]],[[5,5],[0,0]],[[28,27],[4,9]]]){const P={runes:a,cls:[0,2]},Q={runes:b,cls:[3,3]},x=solve(P,Q,false,true,3,200000,3000),y=brute(P,Q,false,true);assert(x.best===y,"toy "+JSON.stringify({a,b,x,y}));toys.push(y)}
  const results=[];for(const [i,j,ra,rb] of opts.cases||[[0,2,false,true]]){const orig=solve(pages[i],pages[j],ra,rb,4,opts.cap||600000,opts.ms||9000),controls=[];
- for(let z=0;z<(opts.controls??2);z++){const p=plant(pages[i]),q=plant(pages[j]),k=Array.from({length:Math.max(p.runes.length,q.runes.length)},()=>rand(29)),l=k.map(()=>rand(29)),a=enc(p,ra,k),b=enc(q,rb,k),truth=oov(p)+oov(q);let same=solve(a,b,ra,rb,Math.max(4,truth),opts.cap||600000,opts.ms||9000);if(same.best!==null)assert(same.best<=truth,"control optimum");controls.push({truth,holds:[p.runes.filter(x=>!x).length,q.runes.filter(x=>!x).length],same:{...same,witness:undefined}});if(opts.negative){let neg=solve(a,enc(q,rb,l),ra,rb,4,opts.cap||600000,opts.ms||9000);controls[controls.length-1].independent={...neg,witness:undefined}}}
+ for(let z=0;z<(opts.controls??2);z++){const p=plant(pages[i]),q=plant(pages[j]);if(opts.plantOov){for(const t of [p,q]){const [lo,hi]=intervals(t.cls).find(([lo,hi])=>hi-lo>=4);let w;do{w=Array.from({length:hi-lo},()=>rand(29))}while(forms.has(w.join(",")));t.runes.splice(lo,hi-lo,...w)}}const k=Array.from({length:Math.max(p.runes.length,q.runes.length)},()=>rand(29)),l=k.map(()=>rand(29)),a=enc(p,ra,k),b=enc(q,rb,k),truth=oov(p)+oov(q);let same=solve(a,b,ra,rb,Math.max(4,truth),opts.cap||600000,opts.ms||9000);if(same.best!==null)assert(same.best<=truth,"control optimum");controls.push({truth,holds:[p.runes.filter(x=>!x).length,q.runes.filter(x=>!x).length],same:{...same,witness:undefined}});if(opts.negative){let neg=solve(a,enc(q,rb,l),ra,rb,4,opts.cap||600000,opts.ms||9000);controls[controls.length-1].independent={...neg,witness:undefined}}}
  results.push({pair:[i,j],direction:(ra?"R":"F")+(rb?"R":"F"),original:orig,controls})}
  return {dictionary:forms.size,dagNodes:nodes.length-1,toys,results}
 };
 const data=paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"));
-const i=Number(process.argv[2]||0);const cases=[[0,1,false,true],[0,1,true,false],[0,2,false,true],[0,2,true,false],[1,2,false,true],[1,2,true,false]];console.log(JSON.stringify(experiment(JSON.parse(data[0]),...data.slice(1),{cases:[cases[i]],cap:800000,ms:6500,controls:2}),null,2));
+const i=Number(process.argv[2]||0);const cases=[[0,1,false,true],[0,1,true,false],[0,2,false,true],[0,2,true,false],[1,2,false,true],[1,2,true,false]];console.log(JSON.stringify(experiment(JSON.parse(data[0]),...data.slice(1),{cases:[cases[i]],cap:2000000,ms:14000,controls:2,inLex:true,plantOov:true}),null,2));
