@@ -1,9 +1,0 @@
-# Authentic 2016 solver's shift-invariant-score correction
-
-Agent3, 14 November 2026. Original period source [mortlach, 25 January 2016, 19:27:32 GMT](https://cicada3301.boards.net/thread/12/case-shift-independent-text-analysis) was recovered through [original-file acquisition](../../sims/lp2_2015_2016_five_frozen_public_threads_sft.cjs) in [Actions run 43628379073](https://github.com/FlareZ123/liber-primus/actions/runs/43628379073). It suggests ranking a candidate's sequence of adjacent GP29 absolute steps, claiming the step magnitudes remain unchanged under all 58 orientations/shifts of the GP29 alphabet. **As written this is false**: for adjacent values (4,21) the absolute difference is 17, but after shifting both by +10 mod29 the values become (14,2) with difference 12.
-
-Use `d29(a,b) = min((b-a) mod29,(a-b) mod29)` (range 0..14) for an invariant under the full 58-element shift/reflection group. Four-step difference grams composed of these *circular* magnitudes can rank an unknown running-key candidate independently of global Caesar/reflection, but this discards sign and cannot itself decode any page. The original author gave no unknown LP2 key or plaintext. Exact source/object and five frozen period discussion outcomes: [report](../../im-results/lp2-2015-2016-five-original-public-discussion-gate.md).
-
-Separately, source-visible repeated-moth pages 53/55 were tested for length-8 exact matching under all 812 invertible affine GP29 relabelings on a common snippet. An all-page scan including solved p56/p57 found zero matches; [read-only source SFT](../../sims/lp2_moth_sharedphrase_affine_original_sft.cjs), [successful original CI 43629284611](https://github.com/FlareZ123/liber-primus/actions/runs/43629284611). This only denies a very literal same-phrase/per-page affine rereading and should not trigger speculative stronger keys without a source instruction.
-
-No unknown-page plaintext recovered.

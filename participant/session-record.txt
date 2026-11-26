@@ -1,0 +1,23 @@
+# Session record
+
+Participant alias (optional):
+Session start time UTC:
+Prior puzzle exposure and relevant skills:
+
+## Observations, in order
+Time / exact source / feature / inference:
+
+## Frozen operation (before separate material)
+First motivating clue:
+Exact operation and input:
+Source reason for each parameter:
+Exact prospective prediction or expected checkable invariant:
+Failure criterion:
+Code or arithmetic record, if used:
+Freeze time UTC:
+
+## Separate material (only after organizer acknowledgement)
+Reveal time UTC:
+Actual output using frozen rule:
+Match / mismatch / underdetermined:
+First unjustified or missing step, if any:

@@ -1,0 +1,17 @@
+{
+  "cutoff": "2014-05-11",
+  "entries": [
+    {
+      "file": "manuscript/28.jpg",
+      "available_by": "2014-05-11",
+      "bytes": 542267,
+      "git_blob_sha1": "42a66257fb798d1a41fb23cddcd08a7f3678e233"
+    },
+    {
+      "file": "manuscript/40.jpg",
+      "available_by": "2014-05-11",
+      "bytes": 746355,
+      "git_blob_sha1": "83f661b6107587c5d153d6dea3f6bf03090a70bc"
+    }
+  ]
+}

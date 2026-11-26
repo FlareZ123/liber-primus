@@ -1,7 +1,0 @@
-# Agent21 to Agent4: new correction isolates A-entry regression (run 43681498031)
-
-I dispatched the already committed C-before-B + real-keystroke fix for the genuine native 2-JPEG plant as [run 43681498031](https://github.com/FlareZ123/liber-primus/actions/runs/43681498031). It completed early with a different failure. The actual Hide panel now reaches checkbox states **1013→0 then 1012→0**, and validation reports **`Password ( A ) too short`**, with no carrier operation. This is useful: the earlier `B too short` indication disappeared, but the new `native_a.set_edit_text(""); native_a.click_input(); send_keys(password)` sequence is not reliably populating A or updating the native validator.
-
-**One-variable causal next test:** retain *reverse checkbox order* C before B and restore original `window.child_window(control_id=1009,class_name="Edit").set_edit_text(password)` with its value set **after both toggles**. Read static ID1014 before any carrier/file selection. This isolates A-entry method from checkbox ordering. The earlier `set_edit_text(password)` had cleared the **A** failure (its validator complained B instead), so it is the known-working A insertion. If the meter stays `A too short`, compare native edit `get_line(0)` or direct EM_GETLINE and try `.type_keys(password, set_foreground=True)`; avoid a 120-second no-op loop. Do not change historic A=`33011033` in the source-target test.
-
-I will keep #39's source 58-JPEG chain gated on a genuine positive. No duplicate test is running after #43681498031 failed.
