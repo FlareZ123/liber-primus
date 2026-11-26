@@ -12,7 +12,7 @@ The single fixed control uses substitution 0→01, 1→0, seed 0, and 1-based sy
 
 The supplied archive scan 32.jpg was inspected, with grid rows matching the established [p15 report](../results/lp2-p15-fibonacci-prime-spiral.md). Reuse its already established arithmetic generator solely to obtain the marked ordering of the sixteen positions, rather than fitting new numerical hypotheses. The 15 unit moves are ESWWNNEEESSSWWW. Their 14 internal turns are RRSRSRSSRSSRSS (S denotes straight). The literal historical turn/no-turn decoding is 00101011011011. Its complementary labelling is 11010100100100.
 
-The Fibonacci word contains no adjacent 1s at any phase: each 1 in the substitution image ends 01 and every next image starts 0. Both p15 labellings contain adjacent 1s, at zero-based turn indices 6 and 0 respectively. Rotation, reflection, reversal, origin and binary relabelling cannot cure this invariant. Also, all seven actual bends are right-handed; the historical worked curve contains both handednesses. The printed spiral is the ordinary expanding square spiral, not an odd-even Fibonacci-word path under this direct rule.
+The Fibonacci word contains no adjacent 1s at any phase: each 1 in the substitution image ends 01 and every next image starts 0. Both p15 labellings contain adjacent 1s, at zero-based turn indices 6 and 0 respectively. Rotation, reflection, reversal, origin and binary relabelling cannot cure this invariant. Also, all eight actual bends are right-handed; the historical worked curve contains both handednesses. The printed spiral is the ordinary expanding square spiral, not an odd-even Fibonacci-word path under this direct rule.
 
 ## Decision
 
