@@ -461,17 +461,39 @@ struct FastSearch : GSearch {
  // suffices for all exact word merges; final pack and check stay authoritative.
  atomic<uint64_t> numericCalls{0},numericComplete{0},numericKeys{0},numericRejected{0},numericTrieNodes{0},numericDfsNodes{0};
  const Trie12& numericTrie()const{static const Trie12 t;return t;}
+ // A known continuous schedule fixes every trie consuming phase and
+ // literal-F hold. Do not expand arbitrary word-start or alternate hold
+ // paths in numeric subtrees of a scheduled receiver.
+ template<class F> bool numericVisit(const NumericGraph12&g,const fixed::Key&k,int id,F&&accept,uint64_t&nodes){
+  const auto&trie=numericTrie();const auto&c=train[id];
+  if(schedule.empty())return trie.visit(c,g,k,accept,[&]{return stop();},nodes);
+  const auto&t=trie.byLen.at(c.size());const auto&clock=schedule[id];
+  array<int,16>glyph{};for(size_t i=0;i<c.size();i++)glyph[i]=fixed::val(c[i]);
+  auto rec=[&](auto&&self,int z,int i,const NumericGraph12&a)->bool{
+   if((++nodes&1023)==0&&stop())return true;
+   if(i==int(c.size()))return t[z].end&&accept(a);
+   const auto&ch=t[z].ch;int x=glyph[i],j=clock[i];
+   if(j<0)return x==0&&ch[0]>=0&&self(self,ch[0],i+1,a);
+   int rc=a.r[x],want=(a.off[x]+N-k[j])%N;
+   if(a.masks[rc]&(1u<<want)){
+    for(int p=1;p<N;p++)if(a.r[p]==rc&&a.off[p]==want)return ch[p]>=0&&self(self,ch[p],i+1,a);
+    return false;
+   }
+   for(int p=1;p<N;p++)if(ch[p]>=0&&a.r[p]!=rc){NumericGraph12 b=a;if(b.merge(x,p,j,k)&&self(self,ch[p],i+1,b))return true;}
+   return false;
+  };return rec(rec,0,0,g);
+ }
  bool numericWord(const NumericGraph12&g,const fixed::Key&k,int id,uint64_t&nodes){
-  bool supported=false;numericTrie().visit(train[id],g,k,[&](const NumericGraph12&){supported=true;return true;},[&]{return stop();},nodes);return supported;
+  bool supported=false;numericVisit(g,k,id,[&](const NumericGraph12&){supported=true;return true;},nodes);return supported;
  }
  struct NumericOptions{vector<NumericGraph12> states;bool redundant=false,capped=false;};
  NumericOptions numericOptions(const NumericGraph12&g,const fixed::Key&k,int id,size_t cap,uint64_t&nodes){
   NumericOptions o;unordered_set<string>seen;
-  numericTrie().visit(train[id],g,k,[&](const NumericGraph12&a){
+  numericVisit(g,k,id,[&](const NumericGraph12&a){
    if(a.comps==g.comps){o.redundant=true;return true;}
    if(seen.insert(a.sig()).second)o.states.push_back(a);
    if(o.states.size()>=cap){o.capped=true;return true;}return false;
-  },[&]{return stop();},nodes);return o;
+  },nodes);return o;
  }
  void numericDfs(const NumericGraph12&g,const fixed::Key&k,vector<int>rem,int budget,GStats&c,uint64_t&nodes,uint64_t&dfsNodes){
   if(stop())return;dfsNodes++;
