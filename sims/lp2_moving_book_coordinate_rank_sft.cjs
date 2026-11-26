@@ -106,9 +106,19 @@ function core(data){
   for(let i=0;i<donors.length;i++){
    const p=donors[i],origin=(i?83:17)%model.n,c=model.enc(p,origin).out,exact=reach(model,c);
    assert(exact.legal===c.length,"plant reachability");
-   controls.push({donor:i?"Emerson":"Gibran",origin,cipherStats:stats(c),plainStats:stats(p),...fitTest(model,c,p)});
+   controls.push({donor:i?"Emerson":"Gibran",plantOrigin:origin,cipherStats:stats(c),plainStats:stats(p),...fitTest(model,c,p)});
   }
-  output.models.push({carrier:src.name,mode,units:model.n,carrierRunes:src.units.reduce((a,u)=>a+u.length,0),absent:model.absent,reachability,original,controls});
+  const rankScopes=mode==="rank"?targets.map(({name,t})=>{
+   let best=null;
+   for(let origin=0;origin<model.n;origin++){
+    let s=origin,prev=-1,score=0;const p=[];
+    for(const c of t){const e=model.inv[s][c][0];score+=prev<0?logUni[e.p]:log2[prev*N+e.p];p.push(e.p);s=e.next;prev=e.p}
+    if(!best||score>best.score)best={origin,score,p,end:s};
+   }
+   const replay=model.enc(best.p,best.origin);assert(replay.end===best.end&&replay.out.every((x,i)=>x===t[i]),"rank scope replay");
+   return {scope:name,n:t.length,score:best.score/t.length,origin:best.origin,end:best.end,stats:stats(best.p),excerpt:preview(best.p)};
+  }):null;
+  output.models.push({carrier:src.name,mode,units:model.n,carrierRunes:src.units.reduce((a,u)=>a+u.length,0),absent:model.absent,reachability,original,controls,rankScopes});
  }
  return output;
 }
