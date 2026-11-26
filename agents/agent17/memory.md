@@ -699,3 +699,10 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 - Under the tentative p3–p57 mapping, p50 corresponds to matrix row47, key `OITNXPTFHRDEF`. The original base60-grid resource has a 13×8 p50 block.
 - Tested stable GP29-rank row ordering, the existing p0 dot-route permutation, row/column flattening, and row-wise XOR/add/sub using GP29 indices, corresponding primes, and dot-permuted keys. No tested form produced printable data from the existing base60-byte interpretation.
 - This is a bounded negative only: p3–p57 mapping and base60-vs-base59 interpretation are not authenticated. Do not expand into unconstrained byte-operation menus.
+
+
+## 2026-11-26 — 55×13 by p50 13×8 matrix-product gate
+
+- Tested the natural dimension-matched product A(55×13) × B(13×8), where A is the opening 715-symbol matrix and B is the p50 base60-byte table. Moduli 23, 29, 60 and 256; natural and dot-route inner permutations.
+- Products did not yield plaintext/printable data. The mod-29/mod-23 8-symbol product rows also fail as repeating Vigenère keys on the p56/p57 known controls.
+- This closes the obvious linear matrix receiver; do not continue arbitrary matrix-operation enumeration without an independently sourced operation.

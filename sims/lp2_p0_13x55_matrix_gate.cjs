@@ -151,6 +151,66 @@ function printableRatio(bytes) {
 function asciiPreview(bytes) {
   return bytes.map(x => x >= 32 && x <= 126 ? String.fromCharCode(x) : ".").join("");
 }
+
+function matrixProduct(a, b, modulus) {
+  return a.map(row => Array.from({ length: 8 }, (_, col) =>
+    row.reduce((sum, value, k) => sum + value * b[k][col], 0) % modulus
+  ));
+}
+function bytePrintableRatio(bytes) {
+  return bytes.filter(x => x >= 32 && x <= 126).length / bytes.length;
+}
+function byteAsciiPreview(bytes) {
+  return bytes.slice(0, 80).map(x => x >= 32 && x <= 126 ? String.fromCharCode(x) : ".").join("");
+}
+const matrixProductTests = [];
+for (const [aName, a] of [
+  ["raw", rows],
+  ["dot-columns", dotPermutedRows]
+]) {
+  for (const [bName, b] of [
+    ["natural", p50ByteRows],
+    ["dot-rows", dotRoutePermutation.map(i => p50ByteRows[i])]
+  ]) {
+    for (const modulus of [23, 29, 60, 256]) {
+      const product = matrixProduct(a, b, modulus);
+      const flat = product.flat();
+      const entry = {
+        aName, bName, modulus, shape: [product.length, 8],
+        firstRows: product.slice(0, 5),
+        printableRatio: modulus === 256 ? bytePrintableRatio(flat) : null,
+        asciiPreview: modulus === 256 ? byteAsciiPreview(flat) : null
+      };
+      if (modulus === 29 || modulus === 23) {
+        const controls = [];
+        for (const page of [56, 57]) {
+          const key = product[page - 3];
+          const cipher = pages[page].indices;
+          const variants = [];
+          for (const sign of [-1, 1]) {
+            for (const hold of [null, F, E]) {
+              for (const reverse of [false, true]) {
+                const K = reverse ? key.slice().reverse() : key;
+                let cursor = 0;
+                const out = [];
+                for (const c of cipher) {
+                  if (hold !== null && c === hold) { out.push(c); continue; }
+                  out.push(((c + sign * K[cursor % 8]) % 29 + 29) % 29);
+                  cursor++;
+                }
+                variants.push({ sign, hold: hold === null ? "none" : translit[hold], reverse, ...stats(out, cursor) });
+              }
+            }
+          }
+          controls.push({ page, key: textOf(key), variants });
+        }
+        entry.controlVigenere = controls;
+      }
+      matrixProductTests.push(entry);
+    }
+  }
+}
+
 const p50Tests = [];
 for (const [keyName, key] of Object.entries(p50KeyVariants)) {
   for (const op of ["xor", "minus", "plus"]) {
@@ -228,6 +288,7 @@ process.stdout.write(JSON.stringify({
     base60TableShape: [13, 8],
     rowPermutation: p50RowOrder,
     rowwiseByteOperations: p50Tests,
-    rowReorders: p50Reorders
+    rowReorders: p50Reorders,
+    matrixProducts: matrixProductTests
   }
 }, null, 2) + "\n");

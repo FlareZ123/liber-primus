@@ -86,6 +86,8 @@ I tested the simplest page-key receivers using the 55 rows read sequentially:
 
 A further conditional cross-carrier check uses the natural p3–p57 row mapping: p50 is row47, and the original base60 table has a 13×8 p50 block. The row47 key is `OITNXPTFHRDEF`. Stable GP29-rank row permutation, the existing dot-route row permutation, row/column flattenings, and row-wise XOR/add/subtract using the row47 GP29 indices, corresponding primes, and dot-permuted forms do not produce printable data from the 13×8 base60-byte block. This is only a negative test of that specific base60-byte interpretation; the table's documented base59 ambiguity and the unproven page-to-row mapping remain caveats.
 
+The dimension-matched linear alternative `A(55×13) × B(13×8)`, with A the opening matrix and B the p50 13×8 base60-byte block, was also tested over moduli 23, 29, 60 and 256, with natural and dot-route inner orders. The mod-29/mod-23 products do not form language; the mod-256 products are not printable. Using the resulting 8-symbol mod-29/mod-23 rows as repeating Vigenère keys on the known p56/p57 controls also fails. The 13×8/55×13 dimension match is therefore not yet an executable receiver.
+
 The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, and title-keyed transposition receivers are not. This does not exclude a more complex matrix use, but there is currently no source-selected operation that turns the 55×13 payload into an executable key schedule. Do not continue enumerating grid routes without an independent cipher instruction. Reproduction: [13×55 matrix gate](../sims/lp2_p0_13x55_matrix_gate.cjs).
 
 
