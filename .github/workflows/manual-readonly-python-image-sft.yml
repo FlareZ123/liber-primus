@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   image-source-test:
-    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' && inputs.script != 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' && inputs.script != 'sims/lp2_semantic_running_key_distilgpt2_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_recovery_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_boundary_profile_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_carry_prefix_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_multichapter_pool_sft.py' && inputs.script != 'sims/lp2_nonperiodic_fhold_outer_sat.py' }}
+    if: ${{ inputs.script != 'sims/lp2_r4_composite_h1_sft.py' && inputs.script != 'sims/lp2_plaintext_autokey_q8_keyless_pair_bv.py' && inputs.script != 'sims/lp2_semantic_running_key_distilgpt2_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_recovery_sft.py' && inputs.script != 'sims/lp2_semantic_running_key_boundary_profile_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_carry_prefix_sft.py' && inputs.script != 'sims/lp2_shared_gp29_q8_multichapter_pool_sft.py' && inputs.script != 'sims/lp2_nonperiodic_fhold_outer_sat.py' && inputs.script != 'sims/lp2_nonperiodic_fhold_outer_scope_sat.py' }}
     runs-on: windows-latest
     timeout-minutes: 12
     steps:
@@ -248,7 +248,7 @@ jobs:
           if-no-files-found: warn
 
   q8-multichapter-pool-gate:
-    if: always()
+    if: ${{ always() && inputs.script == 'sims/lp2_shared_gp29_q8_multichapter_pool_sft.py' }}
     needs: q8-multichapter-pool
     runs-on: ubuntu-latest
     steps:
@@ -309,4 +309,26 @@ jobs:
         with:
           name: nonperiodic-outer-sat-${{ matrix.target }}-${{ matrix.schedule }}
           path: im-results/lp2-nonperiodic-outer-sat-*.json
+          if-no-files-found: warn
+
+  nonperiodic-fhold-outer-scope-sat:
+    if: ${{ inputs.script == 'sims/lp2_nonperiodic_fhold_outer_scope_sat.py' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        schedule: [ordinal, prime, p56]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --disable-pip-version-check z3-solver==4.13.3.0
+      - run: python -u sims/lp2_nonperiodic_fhold_outer_scope_sat.py --schedule ${{ matrix.schedule }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: nonperiodic-outer-scope-${{ matrix.schedule }}
+          path: im-results/lp2-nonperiodic-outer-scope-*.json
           if-no-files-found: warn
