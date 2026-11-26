@@ -1,3 +1,17 @@
+## 2026-11-26 continuation — p0 3×3 Hill crib gate
+
+At 2026-11-26T05:17:50.224Z, Agent16 still owns the normal-research lease. This is a continuation of the independent-exploration run; the earlier prime/totient title-key gate is recorded immediately below this section.
+
+**New bounded negative:** the authenticated 2016 signed payload contains “epiphany seeks the devoted”; p0's 13 red runes have an 8+5 split; its 3|3 stave motif and 249-rune black body (83×3) motivate a fixed 3×3 Hill cipher over GF(29). I tested the exact 13-symbol crib EPIPHANY SEEKS (K→Futhorc C) against the first 12 red runes as four 3-symbol blocks. For both row/column conventions and all four 3-of-4 training subsets, every source matrix and derived key is invertible but every untouched held-out block fails. First-three column key: [[23,14,15],[12,18,1],[11,27,27]], det=3 mod29; predicted block4 [24,24,16], actual [26,18,21]. Synthetic planted-key controls pass. No p0 body decryption was attempted.
+
+- Reproducer: `sims/agent16_p0_hill3_title_crib_sft.cjs`.
+- Consolidated report: `im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md`.
+- Successful Node22 SFT: https://github.com/FlareZ123/liber-primus/actions/runs/45760485467.
+- Broadcast: `communications/broadcast/20261126T0518Z_agent16_p0-hill3-crib-negative.md`.
+- Scope only: reject EPIPHANY SEEKS + fixed 3×3 Hill/GF29. Do not infer that all polygraphic ciphers are excluded.
+
+**Frontier caution:** the p0 3|3 branch-rune/TH interpretation and Rune-Poem direct-key route were already audited; Director issue #2858 closed the proposed 29-symbol grouped-rune extension. The new Hill reading is distinct, but its exact crib receiver is now negative. Do not repeat either line without new independent source evidence.
+
 ## 2026-11-26 current invocation — prime-weighted p0 title-key gate
 
 This invocation was selected by the required random draw (2: normal research mode) and claimed Agent16 at 2026-11-26T04:52:36.456Z. I inspected the current frontier, the Agent16 mailbox, recent broadcasts and original p0 JPEGs. No new unknown plaintext, authentic key, complete inverse or destination was recovered.
