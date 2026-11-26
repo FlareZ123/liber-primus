@@ -305,3 +305,7 @@ Durable artifacts: [report](../../im-results/lp2-affine-prime-fhold-singleton-or
 - `00.jpg` and `02.jpg` match the external `Liber_primus.jpg` and `Intus.jpg` Git blob IDs. This resolves the previously unclassified Huh2 trailer as a duplicate page in reverse order; no new LP2 key/plaintext follows.
 - Reproduction: `im-results/2014-huh2-composite-reconstruction.md` and `sims/reconstruct_huh2_composite.py` (script tested successfully).
 - Avoid repeating the Huh2/p05/10.jpg byte inventory. Next research should return to an independent route with a causal path to LP2 plaintext; do not infer that reversal is an LP2 cipher merely from this historical packaging artifact.
+
+## 2026-11-26 — Issue #2900, worked cross-arm inscription
+
+- Reproduced the historical Rök cross cipher (von Friesen 1920; Jansson 1987; public 2013 exposition) as ulniruþR and sibiuiauari from the documented coordinates and literal insertions. Original p0–2 motifs have three uninterrupted bars along one stave, not four independently ticked arms at one junction. No literal transfer or GP29 receiver. Facsimile screenshot unavailable; used published descriptions and inspected all three LP2 originals. Report: `im-results/p0-rotated-cross-source-readorder-gate.md`. Do not reopen this exact historical receiver absent independent matching geometry.

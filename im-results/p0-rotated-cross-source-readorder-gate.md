@@ -99,3 +99,24 @@ I independently inspected the preserved first-party 2013 Gematria Primus chart a
 Computed directly from resources/liber-primus/lp2-corpus.json (translit order), by subtracting preceding group sizes from each zero-based index and adding one. The four-group projection reproduces RACCO from the published example, but both possible 29-position projections disagree with the original 3/3→TH claim. Neither is selected by the LP2 ornament or the chart. The coordinate 3/3 is itself symmetric under swapping group and position, so it cannot establish which side denotes which component. The full cross image has equal branch counts by construction; the earlier held-out p1/p2 failure remains relevant.
 
 **Decision:** the English historical source offers a concrete coordinate system, but no complete, uniquely selected GP29 extension or value-changing cipher action. An ordinary lossless coordinate encoding followed by its inverse is the identity. No arbitrary extension, secret relabeling, or ciphertext-scored direction choice was performed. Close #2858 on its specified negative branch; do not reopen absent an independent source for the 29-symbol grouping and its receiver. No new plaintext or key.
+
+## Worked Rök cross-arm cipher (Director #2900, Agent1, 2026-11-26)
+
+A distinct historical comparator is the **Rök runestone numerical cross cipher**, published by Otto von Friesen, *Rökstenen* (1920), chapter IV pp. 17–18 ([digitized monograph](https://upload.wikimedia.org/wikipedia/commons/a/ad/R%C3%B6kstenen_-_runstenen_vid_r%C3%B6ks_kyrka%2C_Lysings_h%C3%A4rad_%C3%96sterg%C3%B6tland_%28IA_rokstenenrunsten00frie%29.pdf)). Sven B. F. Jansson, *Runes in Sweden* (1987), pp. 35–36 ([digitized text](https://fylgja.ru/wiki/Runes_in_Sweden%2C_1987/Runic_inscriptions_from_the_viking_age)), explains the worked inscription; an independent public [2013 illustrated exposition](https://findingmidgard.wordpress.com/2013/08/28/the-rok-runestone/) makes its period availability explicit.
+
+The convention uses four arms from a common junction, short ticks on each arm, two coordinate pairs per cross, and ordinary inserted runes where present. Its reversed family order is 1=tbmlR, 2=hnias, 3=fuþark. Read the crosses left to right; the upper pair and then lower pair yield two symbols. The lower coordinate pair follows the opposite lateral direction. This is a real multiletter cross receiver, distinct from interpreting a vertical stave as one twig rune. Historical reconstruction executed in Python:
+
+```python
+g = {1: 'tbmlR', 2: 'hnias', 3: 'fuþark'}
+def read(p):
+    return ''.join(g[a][b-1] for a,b in p)
+assert read([(3,2),(1,4),(2,2),(2,3),(3,5),(3,2)])+'þR' == 'ulniruþR'
+assert (read([(2,5),(2,3)])+'bi'+read([(3,2),(2,3)])+'a'
+        +read([(3,2),(2,4)])+'ri') == 'sibiuiauari'
+```
+
+These reproduce the historical readings from the published coordinate descriptions, rather than independently deciphering the physical stone. The scan retrieval failed for the 1920 facsimile; no independent source-plate pixel match is claimed.
+
+Original LP2 scans 17–19 were inspected. Each side motif has one uninterrupted vertical staff and three uninterrupted transverse bars crossing it at three separate heights. None provides a single four-arm junction with independently countable ticks at the arm ends, or ordinary runes inserted in its quadrants. The repeated pair occurs in two orientations (180 degrees apart) on each of the three pages; these are not three independent worked cross-cipher symbols. Rotation preserves the mismatch in the junction structure. The two upper/lower coordinate pairs required by the Rök procedure are therefore not supplied by the LP2 artwork. An imposed segmentation of the three bars, tick reclassification, or GP29 family extension would be a new unsourced hypothesis.
+
+**Decision:** retire the literal Rök cross-arm transfer. The historical control decodes successfully, but the receiver is absent in the source artwork. No unknown ciphertext was scored or fitted, and no unknown LP2 plaintext or key was recovered. Reopen only for independently identified marks or a source specifying a different multi-symbol stave procedure that matches this geometry.
