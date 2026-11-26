@@ -1,0 +1,1320 @@
+{
+  "schema": 1,
+  "source": {
+    "openingRunes": 729,
+    "rows": 55,
+    "fitPages": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "heldPages": [
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      51,
+      52,
+      53,
+      54,
+      55
+    ],
+    "omittedTailRunes": 267
+  },
+  "model": {
+    "training": [
+      "0_welcome",
+      "0_wisdom",
+      "0_koan_1",
+      "0_loss_of_divinity",
+      "jpg229"
+    ],
+    "trainingRunes": 2296,
+    "heldNames": [
+      "0_warning",
+      "jpg107-167",
+      "p56_an_end",
+      "p57_parable"
+    ],
+    "alpha": 0.5,
+    "seed": 1913729065
+  },
+  "nativeControls": [
+    {
+      "key": [
+        24,
+        16,
+        22,
+        17,
+        11,
+        17,
+        12,
+        26,
+        12,
+        4,
+        6,
+        2,
+        7
+      ],
+      "orientation": -1,
+      "orientations": [
+        {
+          "orientation": -1,
+          "fitRunes": 325,
+          "heldRunes": 338,
+          "fitLogBF": 145.70786438783531,
+          "fullLogBF": 387.9768846323248,
+          "predictiveLogBF": 242.2690202444895,
+          "fitKey": [
+            24,
+            16,
+            22,
+            17,
+            11,
+            17,
+            12,
+            26,
+            12,
+            4,
+            6,
+            2,
+            7
+          ],
+          "fullKey": [
+            24,
+            16,
+            22,
+            17,
+            11,
+            17,
+            12,
+            26,
+            12,
+            4,
+            6,
+            2,
+            7
+          ],
+          "fitMAPRatio": 189.48271017178618,
+          "heldMAPRatio": 242.26902025036284,
+          "heldCorrect": 338,
+          "knownHeldRunes": 338,
+          "replay": 338,
+          "readouts": [
+            {
+              "page": 40,
+              "length": 52,
+              "logRatio": 30.84397372460327,
+              "prefix": "OURDEATHDONOTEDITORCHANGETHISBOOCORTHEMESSAGECONTAINEDWITH"
+            },
+            {
+              "page": 41,
+              "length": 39,
+              "logRatio": 20.90355787452111,
+              "prefix": "INEITHERTHEWORDSORTHEIRNUMBERSFORALLISSACR"
+            },
+            {
+              "page": 42,
+              "length": 52,
+              "logRatio": 43.84849489908294,
+              "prefix": "OICEINMYHEADTHOUGHTTHESTUDENTANDHERAISEDHISHANDTOTELLTHE"
+            },
+            {
+              "page": 43,
+              "length": 52,
+              "logRatio": 39.35306480248201,
+              "prefix": "MASTERTHEMASTERSTOPPEDTHESTUDENTANDSAIDTHEUOICETHATJUSTS"
+            },
+            {
+              "page": 44,
+              "length": 52,
+              "logRatio": 39.41546534845963,
+              "prefix": "AIDYOUHAUENOUOICEINYOURHEADISTHEIANDTHESTUDENTSWEREENLI"
+            },
+            {
+              "page": 45,
+              "length": 39,
+              "logRatio": 26.820431577312007,
+              "prefix": "SHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUT"
+            },
+            {
+              "page": 46,
+              "length": 52,
+              "logRatio": 41.08403202390186,
+              "prefix": "MUSTSHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEM"
+            }
+          ]
+        },
+        {
+          "orientation": 1,
+          "fitRunes": 325,
+          "heldRunes": 338,
+          "fitLogBF": -87.42557662341522,
+          "fullLogBF": -232.13744131650503,
+          "predictiveLogBF": -144.7118646930898,
+          "fitKey": [
+            21,
+            27,
+            16,
+            14,
+            23,
+            8,
+            18,
+            4,
+            1,
+            24,
+            9,
+            26,
+            9
+          ],
+          "fullKey": [
+            21,
+            27,
+            21,
+            26,
+            3,
+            21,
+            17,
+            16,
+            18,
+            21,
+            3,
+            22,
+            25
+          ],
+          "fitMAPRatio": -45.49808809459971,
+          "heldMAPRatio": -203.9025490470724,
+          "heldCorrect": 9,
+          "knownHeldRunes": 338,
+          "replay": 338,
+          "readouts": [
+            {
+              "page": 40,
+              "length": 52,
+              "logRatio": -30.17007073192268,
+              "prefix": "AYCMIAGDTXPNGXJFEANGFEOTHNAEMYAEXGTTIEAUYOSNGORTIPNGIAMJXGGFOOJAE"
+            },
+            {
+              "page": 41,
+              "length": 39,
+              "logRatio": -31.402991727046235,
+              "prefix": "COMEEAADNNGIANIAWEOIAEOWGNGEXSDIAWIATHIAANGMDTAEHEOIDEO"
+            },
+            {
+              "page": 42,
+              "length": 52,
+              "logRatio": -33.28788768785825,
+              "prefix": "IANDTHAEBLWNGMDIAWOEMTHEAJMODABYYNGEOENGDPHFTNGGDJIAOEATHYCJOBEOTRATH"
+            },
+            {
+              "page": 43,
+              "length": 52,
+              "logRatio": -22.383858169901092,
+              "prefix": "SHYAECEATUMHIAFGEPNGEAIAWOUJDRTMTHFTHRWXBIANGXXIFNGSEODMFYOEMFDTHE"
+            },
+            {
+              "page": 44,
+              "length": 52,
+              "logRatio": -19.68559398433209,
+              "prefix": "LHEWCSLFOPUIWGMXEOTUNGWOTHYTHARUXMBFCIJEAHERFAEATHNGOOGEOEOAEAU"
+            },
+            {
+              "page": 45,
+              "length": 39,
+              "logRatio": -30.605474590003883,
+              "prefix": "UFTHDDUATHTHWOERCFIIWOEGDEONWTIAEOLHAEAWOAETAPMAS"
+            },
+            {
+              "page": 46,
+              "length": 52,
+              "logRatio": -36.366672156008136,
+              "prefix": "OLSEOEOMNGGEAXWIFTJPJTNGNBGYEPOEIAGDMDNGMONEOMXTLHAEIAHHTHMAEWFNGE"
+            }
+          ]
+        }
+      ],
+      "mixedFitLogBF": 145.01471720727537,
+      "mixedPredictiveLogBF": 242.2690202444895
+    },
+    {
+      "key": [
+        4,
+        2,
+        25,
+        27,
+        21,
+        18,
+        17,
+        18,
+        28,
+        2,
+        3,
+        8,
+        19
+      ],
+      "orientation": 1,
+      "orientations": [
+        {
+          "orientation": -1,
+          "fitRunes": 325,
+          "heldRunes": 338,
+          "fitLogBF": -82.60390041774276,
+          "fullLogBF": -227.51529225036694,
+          "predictiveLogBF": -144.9113918326242,
+          "fitKey": [
+            27,
+            22,
+            24,
+            1,
+            22,
+            7,
+            24,
+            13,
+            7,
+            24,
+            2,
+            4,
+            9
+          ],
+          "fullKey": [
+            14,
+            21,
+            6,
+            20,
+            4,
+            8,
+            26,
+            13,
+            25,
+            18,
+            16,
+            7,
+            18
+          ],
+          "fitMAPRatio": -40.14403436820232,
+          "heldMAPRatio": -227.54360279564563,
+          "heldCorrect": 14,
+          "knownHeldRunes": 338,
+          "replay": 338,
+          "readouts": [
+            {
+              "page": 40,
+              "length": 52,
+              "logRatio": -21.66597793258796,
+              "prefix": "CEAPJXAESIRIJTFIUFNGEANGUMNDSTAYEELBTANJFDEEADDGJIARIAFMFOEPX"
+            },
+            {
+              "page": 41,
+              "length": 39,
+              "logRatio": -15.781729779172384,
+              "prefix": "IACILOEDANGFOTHRTHCFONFLMYDEALPOEAFSDPOEBHTBOFW"
+            },
+            {
+              "page": 42,
+              "length": 52,
+              "logRatio": -50.13039976118498,
+              "prefix": "OEMEEAXGUHNGMTTJBFYAEFHPAABMSAEWEATLTHYIBNGGTFTHBCYDDFPEEOTYPG"
+            },
+            {
+              "page": 43,
+              "length": 52,
+              "logRatio": -33.864648499293665,
+              "prefix": "THTHJHBUOETHNGGLIABCWGJINNTHPNGYXUEDTTMTDEADEOWHJHNYGTHTHODNGIATFF"
+            },
+            {
+              "page": 44,
+              "length": 52,
+              "logRatio": -34.41428085292801,
+              "prefix": "FEWSCRGCUPPFEOSFOLTMWEOUTHNNGFPJOIABELSNEALHNNCBINGNGEJIEOHXG"
+            },
+            {
+              "page": 45,
+              "length": 39,
+              "logRatio": -32.45509740939283,
+              "prefix": "OENGEOFOEAEJNGFAEGEOIANGTHLPNGUITHWAEFGCEOFCCGIAEOGOETHOOH"
+            },
+            {
+              "page": 46,
+              "length": 52,
+              "logRatio": -39.23146856108579,
+              "prefix": "YFIAOOONMCIAAIAAILAETHWCYUEOIGUBNGSGIXCWTSAEWTHJXBHEEANGMOTHLBNP"
+            }
+          ]
+        },
+        {
+          "orientation": 1,
+          "fitRunes": 325,
+          "heldRunes": 338,
+          "fitLogBF": 145.70786438783531,
+          "fullLogBF": 387.9768846323248,
+          "predictiveLogBF": 242.2690202444895,
+          "fitKey": [
+            4,
+            2,
+            25,
+            27,
+            21,
+            18,
+            17,
+            18,
+            28,
+            2,
+            3,
+            8,
+            19
+          ],
+          "fullKey": [
+            4,
+            2,
+            25,
+            27,
+            21,
+            18,
+            17,
+            18,
+            28,
+            2,
+            3,
+            8,
+            19
+          ],
+          "fitMAPRatio": 189.48271017178618,
+          "heldMAPRatio": 242.26902025036284,
+          "heldCorrect": 338,
+          "knownHeldRunes": 338,
+          "replay": 338,
+          "readouts": [
+            {
+              "page": 40,
+              "length": 52,
+              "logRatio": 30.84397372460327,
+              "prefix": "OURDEATHDONOTEDITORCHANGETHISBOOCORTHEMESSAGECONTAINEDWITH"
+            },
+            {
+              "page": 41,
+              "length": 39,
+              "logRatio": 20.90355787452111,
+              "prefix": "INEITHERTHEWORDSORTHEIRNUMBERSFORALLISSACR"
+            },
+            {
+              "page": 42,
+              "length": 52,
+              "logRatio": 43.84849489908294,
+              "prefix": "OICEINMYHEADTHOUGHTTHESTUDENTANDHERAISEDHISHANDTOTELLTHE"
+            },
+            {
+              "page": 43,
+              "length": 52,
+              "logRatio": 39.35306480248201,
+              "prefix": "MASTERTHEMASTERSTOPPEDTHESTUDENTANDSAIDTHEUOICETHATJUSTS"
+            },
+            {
+              "page": 44,
+              "length": 52,
+              "logRatio": 39.41546534845963,
+              "prefix": "AIDYOUHAUENOUOICEINYOURHEADISTHEIANDTHESTUDENTSWEREENLI"
+            },
+            {
+              "page": 45,
+              "length": 39,
+              "logRatio": 26.820431577312007,
+              "prefix": "SHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUT"
+            },
+            {
+              "page": 46,
+              "length": 52,
+              "logRatio": 41.08403202390186,
+              "prefix": "MUSTSHEDOUROWNCIRCUMFERENCESFINDTHEDIUINITYWITHINANDEM"
+            }
+          ]
+        }
+      ],
+      "mixedFitLogBF": 145.01471720727537,
+      "mixedPredictiveLogBF": 242.2690202444895
+    }
+  ],
+  "synthetic": {
+    "key": [
+      6,
+      2,
+      14,
+      16,
+      11,
+      2,
+      26,
+      2,
+      8,
+      15,
+      10,
+      13,
+      12
+    ],
+    "orientation": 1,
+    "orientations": [
+      {
+        "orientation": -1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": -4679.369288563012,
+        "fullLogBF": -6596.40507097556,
+        "predictiveLogBF": -1917.0357824125485,
+        "fitKey": [
+          16,
+          19,
+          19,
+          16,
+          10,
+          18,
+          18,
+          8,
+          9,
+          21,
+          14,
+          14,
+          1
+        ],
+        "fullKey": [
+          6,
+          1,
+          10,
+          5,
+          16,
+          8,
+          24,
+          18,
+          12,
+          16,
+          14,
+          28,
+          21
+        ],
+        "fitMAPRatio": -4635.82692941697,
+        "heldMAPRatio": -2022.2188562495135,
+        "heldCorrect": 103,
+        "knownHeldRunes": 3224,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": -143.48300749066263,
+            "prefix": "AERNGMUXESSEHIFXLAITOMHUGNRTHHEOWFWOEAEJDPDEOEBAERDAENGEOCAEAEGBHTBRONGEDAXGEOCCRABEONRIABNGBEAFHIA"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": -147.3420217519799,
+            "prefix": "FUBGTEAIALGHYSTBCOEHSWAESMEAITHEATEOPIAOTHEPCCANDIDSAEJUEOIAGEONOECEONUNIXTNMYSUFNEAIBOPTHOBNGBOEJYR"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": -184.70124425292948,
+            "prefix": "IAEAEAEALOEATHCBNGEOWHFIUWAEEBOEEAHEOEMNGYNHTJAEIAEOEOEDSXYNGNGIAXUAENGAEAEAAEIIOXEOLOEPAEBUHEOJUTPJGOEMNGOUT"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": -182.62585799907336,
+            "prefix": "NGOEIEGIAEASONGXEAWMHSEOUFNGUOEXDDOEDFHBHEOESYEIAJAENUEAJHOETHIEOAEAYHIIAUTHEEWMYEXNGDEAXEOEATHNGEAEASAYU"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": -173.057158179181,
+            "prefix": "ETHICYNBLYROOENBAEPEAAEJAEBGUREHEOROEWWMSNGAEAJJEONCEOTHXNHNGANGNGHOEUMSBOELNGIAWLGUIAYJNHAEAENXIAWTTHRD"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": -157.74257148816443,
+            "prefix": "THXXCADMOEBAEMGLATHGEEAIWEAHGNCTHMWNSOENGSEALNGTNGOENGLIPXLLLUHWNGGXDHNGTHYTSIALIATHIAHXAWEGTUPINGDNNB"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": -164.84101345450216,
+            "prefix": "SGUCAJIAIAYDCEAOGOGSOEWMFEASNGTHRPTHFEOPLTHMOGAENGIAGDRAELCPTHTLRTHOEMLLBTANJEOHOEJDWFFPYGFMJRLGAEGNG"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": -185.08829545636203,
+            "prefix": "DILNGPMEOCEOHAXSUYTTSFEOIAMXISUEAAEIWDNGYIMTXEODIAIIADHEBSYEODHEOCEOJPEAJNAEAIARDTHSCIAFEXNGEATHYIAHO"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": -158.39083954107954,
+            "prefix": "DERLEEOBRTHTIDRDJTBAIATHXUCXEEAEEEONGGEGDPHJYAEHEHUDOBCIIMMWFOEAEGPRNYDTBYOEEAIAEAJYCNGTGNOEPA"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": -38.964255737923246,
+            "prefix": "EOHFNGLAUDTHBMEOCPDANWSIAFPFNMHYOEXEBTHUDBORBNGIATHJJJANAEDAESTHEALAIANGAUANGEWEANOE"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": -37.4663766844467,
+            "prefix": "ASOSHIAOEDTHSAWHPUNGPPJYLBBJJRGPXPPBOHGHDYMYSXCOEFAEPSCDIALUCONIAIASUAEAIASDJWNTHEAAEDBPTHFDCEN"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": -185.49995685492377,
+            "prefix": "YGOEWLHDREOEONBLDYEANOEEAWGAEAEPMCREARPNGLTDWNGINGDARXLAEAIALNGXBNGEAAOETNBACIAGTIFIFUWOEOECCGJIYMBOOE"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": -84.19874113591307,
+            "prefix": "THNGTHJNEOEMINGWEABDFWNTHAESOPPTHIAEPNGCFIRSJEAOEAEYGRHIEJENIANGPOOGEOSEAPNGDOWTIPYAJNGAEIAIAUBOWDCTNGCD"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": -140.7733123247611,
+            "prefix": "IAIEOCWYAEXTIEAOYEAEALXLEOBEAYYSSIARCCEOESISWRSUCRYHGRAORCMDNFEJIAALEOIOBOEXNAESCNLSRAYIANGAEPEOUO"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": -38.04420389761131,
+            "prefix": "XNGBSOEYEUTHEASAEAEEHWCJXSIEAJRFNGAEAINFENXWFOFDUEONGREMEAUMPEHUIANBEORJNMGWHUJ"
+          }
+        ]
+      },
+      {
+        "orientation": 1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": 6000.715818315292,
+        "fullLogBF": 8185.5308989469295,
+        "predictiveLogBF": 2184.815080631637,
+        "fitKey": [
+          6,
+          2,
+          14,
+          16,
+          11,
+          2,
+          26,
+          2,
+          8,
+          15,
+          10,
+          13,
+          12
+        ],
+        "fullKey": [
+          6,
+          2,
+          14,
+          16,
+          11,
+          2,
+          26,
+          2,
+          8,
+          15,
+          10,
+          13,
+          12
+        ],
+        "fitMAPRatio": 6044.490664105115,
+        "heldMAPRatio": 2184.815080631639,
+        "heldCorrect": 3224,
+        "knownHeldRunes": 3224,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": 153.5250795428625,
+            "prefix": "CIERANNTOUNGTHCEINCELODOSOEIANOOURTHNGYTYONTHANDSDTHEGOTYCONEMOUARSGTUSCOSAYETINBENNEPTO"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": 192.33025954666553,
+            "prefix": "OWHICOLLFFFTAYTHCRIANDPTATTHOEWHOWMENOUTRAITYWHAHSENDBSNTEREALLILTTOUSUAMOUCOBEFMOMAI"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": 157.2979002396314,
+            "prefix": "THUATENGTHMAYEAOUWUIARIUGHTOWTIANGSENDMREILOUGERCOSSRUDTIACUSAUEPRUSTESCOOTHOMWHTYDORITUI"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": 187.677135383688,
+            "prefix": "TOELLAEEAHOBOURELAENOWETLITAYDWEPITFUEWEWWNPOEFGONLHPTWISEWTIANTHISDTHOUENOLOSTONTESJFI"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": 197.8938294368277,
+            "prefix": "IEPREWECREACMISTINPOSAELOWOERRABEFIMYSTAEYOUWHGHOURTROORUDISHGREMALCOFOUWEFATWHETHAR"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": 201.74098983582604,
+            "prefix": "COREIUEDRRESBEPRECIAUGRELLTBOUNOUSTISEYOWBUGHECRGREPRTHEPTRSSIARATOUEMELLTHEREAYLYYOF"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": 159.60242192554787,
+            "prefix": "ERBEREPENAFGJOONOMARENTHINDOGRHOBEWENONBIGEASTWXGERTHEGERUAUDBLYWUNLHOYAHEMOYONGSNHOE"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": 158.61876203739521,
+            "prefix": "ELTIANXATINDENOBPITERELONGTURYWEAISSDEPLFABESWIARBXIEOCICARSPAUWEINSCXNGXWILFUCTONEOM"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": 193.51374300736896,
+            "prefix": "HCOUGOETHNSEMERITHEFOUTIDINARPRRPRALYOFOTHBITTFOEJOUYOREALYOUNTIANCIANSSSERSTOUNGANCFCEW"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": 36.21689286035672,
+            "prefix": "ELUOSTTHIUGRENTHEOEDWREASEABESTWEMAMENUCNBENANTOTOYSCNDSHEFAEEAFDISCTFDP"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": 31.727123967523234,
+            "prefix": "LTHANTHNGSTBCETTTHELLIERSIATBNGAEOEGJOATRTSGGOAWEOOEPEIFITIANUTDLTHNGBNFUCEFONTRERRSTRAROOEL"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": 211.37753305991728,
+            "prefix": "HTESYSOYOUATOUSTWISCOWEREESUTORMWETHAWEWHOATOUHANONDOUMOSTHRIWDCONSHAURERSGONWIUCA"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": 107.66396598359019,
+            "prefix": "UWENSOYYONYOMEAUGREAIANPITROEEDTHTYEROUSTISOTHESTNGSCETHNGBTHNMELAETHNRRSTIATHNGAWHELCEDWIFOU"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": 155.7917388992897,
+            "prefix": "THTOURNONGANFTHTWURECOWHOHBELEPIAOMANDESNDMANWHASEPILWHECTTHIMENOAUOFOMAUGHEORRRISSAUN"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": 39.837704905148385,
+            "prefix": "DOSTINETHASTRRSTHDEATHAMAGALESEIARWIDTHNGUENUGRDIAMETHEYHEIMPTUREAPLLFGHI"
+          }
+        ]
+      }
+    ],
+    "mixedFitLogBF": 6000.022671134732,
+    "mixedPredictiveLogBF": 2184.815080631637
+  },
+  "nullControl": {
+    "orientations": [
+      {
+        "orientation": -1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": -4693.393157830023,
+        "fullLogBF": -6576.634626619419,
+        "predictiveLogBF": -1883.241468789396,
+        "fitKey": [
+          6,
+          22,
+          19,
+          15,
+          21,
+          4,
+          11,
+          0,
+          8,
+          22,
+          1,
+          22,
+          11
+        ],
+        "fullKey": [
+          11,
+          24,
+          26,
+          23,
+          28,
+          24,
+          0,
+          4,
+          9,
+          23,
+          4,
+          9,
+          14
+        ],
+        "fitMAPRatio": -4649.618726001059,
+        "heldMAPRatio": -2057.0287523985453,
+        "heldCorrect": null,
+        "knownHeldRunes": 0,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": -142.47976684922307,
+            "prefix": "JOEHWIAXBFOELNGXPMEAIIFIAPEOICPFLICYEOGISEOMTHIAHLNTNGIRDJRSRIAAELWXCSOHBYLUCSAEBSEHWXEANGEOTHXBOEEOB"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": -195.07591912214036,
+            "prefix": "LAXYYNGOEGGTHYDEOPWAELPSCFPWNGNGNGEORRUNNGBIMSGBHMXEAHNRPLPYBWEOXYTXEOFOFYOEIEAIASWIAIANEONRLFEOOENGT"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": -170.0580566417774,
+            "prefix": "AEEOAYNBAEAEYXDTHEHHEXASFLYIYSLHRUJEAAEXUYLGJMHJAHSDRJBANGMXJTHYSTCGTMAMYEOEOEMCFFAEEAFMHMFTW"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": -161.93128944559172,
+            "prefix": "AENEEOGYAEETOAEGDCFEOPTOEJSTXOEEAYJIAPTTMEOHAOESPOGIOESHOMMANGNGCNROEDCOEHHEFGGAUOHLLEEAHEAOEOWMIALO"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": -193.53556916377377,
+            "prefix": "FBGRJNGDPEWIYRRWTHHLJFRASMLOEASTHANHPDNHOEAEYNXDJRJEAAEPJYXPJTAEUXAENYBFDIAEAIBBGFEOFOEOEAIUTHS"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": -173.3173476896759,
+            "prefix": "TOFHLNPDXTIAADLNGULPHTTJDSWIATRGELIAOAEFPOUEAHTMGOBEDPTHEALEOUDEAAYXDNYEDWEOOEGIAHIEADOEBRCHFFB"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": -172.44961075692646,
+            "prefix": "DJWOEEGTPTHBAEOTHDXOEEGIAFAEECNFIFACTXOEBTDAOEEOJSBAOTHRLYEIAIACPGHEAGTTHYIILWTHWAETAEDFYTEFUIAAOEIAAE"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": -185.56381958719786,
+            "prefix": "NFMGNGODMFIOESWMTOEJAECGOEAFEEAYAFHBONOEIAHPATWAYEOSTHUWNGIADFAEJSHGUXEOEIAEWEWDTTWAEEUCOEEAAOIANGEOB"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": -132.02919566835732,
+            "prefix": "EOOEBFGIAJFGIAYAPXIAMMAEIATHIHYYUWSEEOTHFOSNTHPXOWHRIFNRYOEMNOTHNNGANXMYUFSCIAEYXXJYWWHJYIOEFAIAL"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": -41.39718105152454,
+            "prefix": "CNGFJBLRSWJSAEAENOAEPODGXNGMSSTAENOCOOGOTHSAEMEAROEMNFPXOEIAJMNGWRPGNOEEOEAENNPEAM"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": -37.71592466271332,
+            "prefix": "HFHXLNMWIANGNTJARDAAESNGWNGPMMETHGNGNTHAEINIWTHESAEFMPIAOJLONOYTHNGWJYRNJOEGTHHYSHENXYGEOTHXHEGAEJG"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": -162.86945425758023,
+            "prefix": "BETHCUOETHPTHNGOFUMIAOOIWJFUOHEOFAEFIEOBYAEOEIAEAFTBFHXNYATHOENOOAEEOLCJBTANISTHEOOIANGBCNFEABTWTFOETRS"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": -126.31691605792213,
+            "prefix": "XHEAEOUXIAAEEOMOENGTFRFDPFWWOLAEFUBPEOCEOUWMNGIAIAINJTOEYUOIAPHPNAEJJCJIMLXEEXAELCBCTHCEBMEATAENPCCO"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": -122.03870624456462,
+            "prefix": "EOTYERWCLGOETHNGSEAUIOEAPJCSSEOYDTHNGNGIAAWHJTHEAOEWCUAIAIIANCYXOEJTHNOEWLUEDOEFSDEAOEASFSNIAEOIAHYJREOIOE"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": -40.24999519957686,
+            "prefix": "IIFJXSOEIAEEAUXIAHOIGESODPSIAMEAIAEOTOWSWHRAEOEEAONXEFLNGXTAYWSWYYAEJWUOEABEAEAE"
+          }
+        ]
+      },
+      {
+        "orientation": 1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": -4690.192019484467,
+        "fullLogBF": -6509.456586758665,
+        "predictiveLogBF": -1819.2645672741983,
+        "fitKey": [
+          17,
+          2,
+          27,
+          10,
+          15,
+          5,
+          16,
+          26,
+          19,
+          9,
+          19,
+          26,
+          8
+        ],
+        "fullKey": [
+          24,
+          2,
+          27,
+          10,
+          28,
+          7,
+          13,
+          2,
+          13,
+          0,
+          18,
+          27,
+          22
+        ],
+        "fitMAPRatio": -4646.626520592443,
+        "heldMAPRatio": -1959.6160404097013,
+        "heldCorrect": null,
+        "knownHeldRunes": 0,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": -145.00892578063952,
+            "prefix": "UTMJJEOUSNGXNGIAMIDOEDJUEOHOECEONUBGMUAEORDERIROEEOETHROYITLEOAIXPIAIAMTFEOORBIAEAERHLNGATHRDNGIAINGTHRS"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": -173.05902294047502,
+            "prefix": "EOEOWTDAJXESOIAEOSUEJLUFOPNLNGTHRCAWOESUOESSAEOECEAITUOHTHTEGMBEOEAWREOFFMSNICAEECHEADNHIAIANDIBBO"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": -162.95789869939102,
+            "prefix": "UJLNGDNGSJORMOENJSWHTHPIALIANTHPPTHXOELCOGAEANBGITHSSMUGNFOIAEDAMRTAEAMAEOFANGMXTHHYEOWYREMPIAWMYAE"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": -169.81861391038615,
+            "prefix": "EAMPWLJCEXOEBCAEYOEYCMRJUOEEAOCLXHOLOEAEAEOAEMCAESBCCIOEGEAFUOELEOYAEHDFOESWCJSIATHHYFAOEJGEORLWCRDEAG"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": -181.05335482659794,
+            "prefix": "AGREXTHTHEJIGIIATHEOCOEUWSNNGWGCBJDAESBNGPWGAJFTHUTHEATDFIEAEGLGWJEOYTHPDNGMFFUEOCTUGFAETPJGRPEAOENGEO"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": -155.96459109087303,
+            "prefix": "FEEATHPTHEOEAEIAGAIMSGGBAOIJMWLRAEYDLCWSTHIAONGIAPLPNTIYPXMEYLTHEHYSLUAEBHJTHLYFUFFTJEADMOETOEPEA"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": -166.70076056168895,
+            "prefix": "IGSGNXGAEONGRHOEYTHAEOOEDEOOEUJELCSXMJUNGHLERYWCAEIAAIAHYCEANIATHTHEOHAEFEAYAEEATHEOTHAOSEOAEOEWSJFIOENGRLBAP"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": -186.9286501818938,
+            "prefix": "EAWOECMUODCDNGEOGCGWHUUOMOEIAHEOOEIABNGAOAEHJAEEOSSAEFTSUMEAWMJEONPWUJSWRIAIEEOCPHGOEOIADCITHEOYCUEOEEOA"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": -136.78779837122778,
+            "prefix": "UDEOEXFBLOCEOMFAEYXSEATHEBIEOGNNGIGYNDMRUMAYDTHYMOEWHSOFSMIATIAEUWTHWIATHHFSIAEAYBEOBFEXNGHIATHNTHAECT"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": -35.09407506823944,
+            "prefix": "JEOHBNWXGNGLAEALRACEOMANGANGSCNLIACYTHEAOEBEIEOJOSOEJNITWPBIAAOEOEADBLWPYPTXANJE"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": -42.56798231339311,
+            "prefix": "HPXTHLFOEROMUGLIANGTHTJIAAEWIANGJMXTHIMPXTMAPPIOEUAEHCAEAEHBHUFHNGIRSJUAAEJAEPMIRAYYCAAGLAUIOEEOX"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": -156.68097159989247,
+            "prefix": "YXDAEOWAUOEAECIOEPAESCGTHTTHTHLTHBFMEOBNNGYMTLUOEBELYMAEEOTHHBITNGRIACMNNGMYSHSOEEHWREOMXXEAJEONGYTYNGNR"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": -94.66043653307894,
+            "prefix": "CWJGSELBTSAENETSUMJTIPAEEGLEOJCPUEOWPMNOFEOTHACNHIAEGGOELTAPOEIAYJBOHEOYOEGEIDTHDITHCRRTHBOHYD"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": -113.48908629048611,
+            "prefix": "BJLNAEIACWIAONGAEIABEOEDDXFNGFTUFHIWODREOIEINGOTHAEULFNHNBTHWJOEFSTHSXJNGSUEAJXWTHERWTMACTHSXJTHSDBT"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": -38.843872241438554,
+            "prefix": "NGTMGNGSXLAYUAEMTHRSOEXFSYDOEOEEAENLLEOOELFTTHIAGCGAEMOEEARELOEAGWNGNGEOGEOAEUWPGXATMT"
+          }
+        ]
+      }
+    ],
+    "mixedFitLogBF": -4690.845257891618,
+    "mixedPredictiveLogBF": -1819.3044760476077
+  },
+  "original": {
+    "orientations": [
+      {
+        "orientation": -1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": -4673.238910725541,
+        "fullLogBF": -6595.455549312202,
+        "predictiveLogBF": -1922.2166385866603,
+        "fitKey": [
+          7,
+          1,
+          25,
+          19,
+          19,
+          19,
+          26,
+          10,
+          18,
+          22,
+          2,
+          23,
+          20
+        ],
+        "fullKey": [
+          7,
+          1,
+          25,
+          22,
+          6,
+          2,
+          24,
+          18,
+          19,
+          17,
+          7,
+          2,
+          20
+        ],
+        "fitMAPRatio": -4629.464828437525,
+        "heldMAPRatio": -1960.0726571058938,
+        "heldCorrect": null,
+        "knownHeldRunes": 0,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": -123.44996317350568,
+            "prefix": "FFWFGTAEUSXYIAAHDAEALIAWBOEGAEAEAELPLYNGEOEELFDOEPUFEANEAJMLRSOJIANNGOFMOFFAJEAOGTHTLEOMNGWETAEDNGDNAE"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": -179.53266372505325,
+            "prefix": "MEOUEOANGOETHAETHREOLDUMEIAWJEOGDAEWHLFTLRJTMCFYMCTHBPCTHTELSIANGNWUGYXXWAIAAEYSAEUTEOOULXGNGAGIAEOITY"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": -152.97259925731413,
+            "prefix": "GUGMBEAOFYSAEEHFTHBJHPUJILRNGNGEOJPYSEAAEIAWIASWANTTEAYOUPWAEOYBTHEOAERHAEOOBNGIIAUJNOEMEAXEAMDPMCAEMC"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": -197.0080008214446,
+            "prefix": "THYWEORPOEIADEYSEODMFDYMSRXBONGPOERDTHOEBAEDOEEARJDEALEOAEIALTHOEUBSNITHAATHLDNIAEJBEOUIMNGWIAXWSPTHWSUNG"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": -165.18150878345696,
+            "prefix": "EOYEODMEAFYXBAAEEGWFFAHTGAESTHLIURJHNGRXMULMPPBGAEYEONTERTEOXOUIOEAGREAPIPCIADODXBFOAEEOHEAAGHR"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": -179.55418124051985,
+            "prefix": "NGJOMLFCDBNMDWIGSEOEUNGSDIOIATNGPNGNGNXFFLWIANGEFTHUCIAEOOETEXMCPDAESTGLTXAECCOENNGNGTOECMLHHNEAAEIAEOTH"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": -156.9847842332438,
+            "prefix": "FJPCHOFCUMIABEGSCJCENPBBEOLOEEOPTHDTXEFHJYWEABPEDEUPMWHFMAHNGIATFROEEOUYOEEAPRWPOEBJNIAUDMNGDTHTH"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": -136.63047940442908,
+            "prefix": "TAJAXEADIATOFTMMAUIDFBWYWDEHXTWEATHWUHNGIANXNGTLNGOEPFINBYWEDEACIFFDITBLAEOEBUXIJEOOEJYFOAEEDX"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": -173.66380932803264,
+            "prefix": "LSLPUAEOEGTHDIJCGACPEEOLWRPYYSXAWAEFLNCBIPXPLREOEOEESOECLIJYMEOEAPROYLGWEONCEACTHTGUEORYAEIPYREA"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": -35.514467409502245,
+            "prefix": "OLCLMNGGGCOEIAPTHYYWUOOELEOLDIASEDAEBWENIAEANGWNWIPAEEEOBGXSTHRREANNGAEXORCONGRGL"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": -46.388081048785644,
+            "prefix": "EDMOENEOFAWIBYOAGREOJJAEEAATHXAJAEOEMOOEOAXEOTHTHEAIATYAEPNGNGLYDLAEATXPJESAYEAYRTDBLWLJYTHAFNSCFFAE"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": -162.02928809860873,
+            "prefix": "BIACUWIANGAAEPWNGIAEATHIAXREANGALOJGUJRNGHHAEDIALXWHPEOMCPBGBWEALOEEOIMEOOERETNIORYXNGWPLONDXGFSLYNGNN"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": -96.43626912534873,
+            "prefix": "JBITAEUYHDWFLITAOEAHNTTNNTNGPAEOGCWTSMTHMAEEOIBAESEOPEALSTHODOEOETHELNDCHFTIFLATPEWOTLNGAEARTHGF"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": -116.93463748787013,
+            "prefix": "HIAXSFBXEARREEAAAJIAGHAEOEMRTWIAOEIEAGETHNGSPIOOIYYOEGSNTHEOTHTURGNWPOOEGBIOEJSEATHTOBSPFEASAWGUEOY"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": -37.79192396877865,
+            "prefix": "UIGTHLRNSAEAEIWOLIIAEAXWTHPEBOSUDPXJHREAREARCEOTHBXEAEAJXNSDGEAWAEAHEAEAEBROEEROEWTH"
+          }
+        ]
+      },
+      {
+        "orientation": 1,
+        "fitRunes": 8736,
+        "heldRunes": 3224,
+        "fitLogBF": -4702.896305306829,
+        "fullLogBF": -6607.238375994613,
+        "predictiveLogBF": -1904.3420706877841,
+        "fitKey": [
+          1,
+          23,
+          1,
+          24,
+          1,
+          9,
+          22,
+          2,
+          3,
+          3,
+          2,
+          25,
+          8
+        ],
+        "fullKey": [
+          21,
+          2,
+          13,
+          15,
+          18,
+          13,
+          26,
+          26,
+          18,
+          16,
+          18,
+          26,
+          14
+        ],
+        "fitMAPRatio": -4659.122778070532,
+        "heldMAPRatio": -2058.851696108492,
+        "heldCorrect": null,
+        "knownHeldRunes": 0,
+        "replay": 3224,
+        "readouts": [
+          {
+            "page": 40,
+            "length": 221,
+            "logRatio": -146.8199535260495,
+            "prefix": "FNRPTEOAEIAMBXTHOXTDSDIAECUYBXILTEAIAYEOOUDJLWPSIANTHXJFICGMLNEAGWEDNYEAEOLRUOYAUBOEIIYDNAEUFNT"
+          },
+          {
+            "page": 41,
+            "length": 273,
+            "logRatio": -178.64551989863173,
+            "prefix": "OIAIACYGAGFLAEAEJDNGNGFHAEOTANDCNPYOIAOAEGTHDOENIAROEFLEAJBYMEAPOEAEJFEWLHRTIINGCTPXNOLAUEOBOTANIA"
+          },
+          {
+            "page": 42,
+            "length": 260,
+            "logRatio": -160.48788091475353,
+            "prefix": "PBEOTNFWPABOEFOEITHOAEFRRTEAAEMSJEAEOGEOTHUIJOEMWBWOEMOLOETHHLYAEEAAELLNPTHHEASRCGJIUXJLISTIXCFOEHE"
+          },
+          {
+            "page": 43,
+            "length": 273,
+            "logRatio": -168.43257871984784,
+            "prefix": "AEUTLRFIAHYWWNGTIXBYOELHCIXINGLLXAIAAEFXOEOUXJOEAXILMXJIEAHXAAPEAOEREOTHFPAESPAEHTEAJRWOEXEOTWTHJUI"
+          },
+          {
+            "page": 44,
+            "length": 273,
+            "logRatio": -190.19102182270873,
+            "prefix": "ICSEASEFTIPAEFTHLHXFRMTHJNGXWCXECUYNGAEWEOYOYIAGCYXTFSHIAAEDUETHAEAERENAPONIAEAHPAJEBBEIAJOEAYTHBF"
+          },
+          {
+            "page": 45,
+            "length": 260,
+            "logRatio": -185.27437445805455,
+            "prefix": "FOEAEAATHMFEDMNGNGOENBLEOUNURSLEOGWYCIBTHXIXNGOJDALMHDNTNIAIATHCDOEEOBNGFAEBNGAEPGTGEBIABSEOEEATHMNEOGCTH"
+          },
+          {
+            "page": 46,
+            "length": 260,
+            "logRatio": -151.9455897755275,
+            "prefix": "EATHYYEAUWAEEFFUDOEGOEAERYCXDEHAEUANIAMGEOTOFNNGIGETBUMOEOIALRIAIDTHWDCIPMXBAEOEOAENGTLXIGBXIDJU"
+          },
+          {
+            "page": 47,
+            "length": 273,
+            "logRatio": -156.10130370188293,
+            "prefix": "EAPFYUASXUBCYOEDSLEAAESHNGHWSOANAENGMEOWXYYIAUMIAOADOETGEOLTBMOYIARTHYAPTJJAEOACROAEHUEOJOEARSJUOEI"
+          },
+          {
+            "page": 48,
+            "length": 260,
+            "logRatio": -155.32368688205955,
+            "prefix": "EOOCDIPGNGIHAIEAEDIAGNGPJEAINGBFUWIMWWJAJGAEIATIBCRPYMILTHROEOUCPPFRXEOOEXAEEDINGTHYXOTEAEAINGIAYTHAE"
+          },
+          {
+            "page": 49,
+            "length": 65,
+            "logRatio": -49.48193226861732,
+            "prefix": "IAJPEOMSPIATHCEEOAOEAEOEEOBMREONXUAENRFAEWWJEOGACFBTESEADNOYRMHAOETNGOEOODOEUUBAEWJW"
+          },
+          {
+            "page": 51,
+            "length": 91,
+            "logRatio": -54.77310087042145,
+            "prefix": "XTTORIWSSHETHROWFNYEOMRBAETHFXUHYMTHIEOEOTHSCIAEIADYAESPAXOPIAFTEFOEOMHTHXGTEAWXNGSOENYOEUCEOTHOOEAEAIA"
+          },
+          {
+            "page": 52,
+            "length": 260,
+            "logRatio": -173.15873085343594,
+            "prefix": "ETAEEOHTHNGEOIAXEOSJSBWIDDRSAEAJTEAMDEAIJLOENOEBAEONXEAYCNGAOEXFAMOEIAEOTHPILARAEIWAETIOJDDBFBWABPEOIEA"
+          },
+          {
+            "page": 53,
+            "length": 169,
+            "logRatio": -104.90765675073708,
+            "prefix": "AEPMTMTHIBSTCLYYHDHAERIAWYSOEUAEFMNMOTHBSCLOEBANMFNLEOELENIAENWIAOYHAEGIWTHNGYXOWCNEAMXGFILFBFNG"
+          },
+          {
+            "page": 54,
+            "length": 221,
+            "logRatio": -148.76089604037665,
+            "prefix": "DXDEOOEOEOEEOAEGYOLMHTHEALEOMEOJTFLJMIAEGOEIAWNOHDXOAETTPTAEAAEUSAXOFRREAYNGTMTHRTOEEAAEJNXDJWFGEAUFXB"
+          },
+          {
+            "page": 55,
+            "length": 65,
+            "logRatio": -34.54746962538754,
+            "prefix": "EORIAUMUNOLENGHIAUXNGWIAEMEHLURRUIAEUEOUJOEOTEOEABNGTEARJIANGNAEEAIWUGEOTTTTOEAIYI"
+          }
+        ]
+      }
+    ],
+    "mixedFitLogBF": -4673.932057906101,
+    "mixedPredictiveLogBF": -1922.2166309521408
+  }
+}
