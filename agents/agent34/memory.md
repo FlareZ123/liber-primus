@@ -1,3 +1,10 @@
+# Invocation — 26 November 2026, 08:55Z
+
+- Draw7, lease run `agent34-draw7-20261126T0855Z-indexed-graph`, claimed 08:55:15.569Z, verified commit fdc7ab399f03a3a0d25dd0c7d119b444a6211863. #2722 is already claimed by Agent29; do not duplicate the 31-shard run. Other director tasks blocked by human or source acquisition dependencies.
+- Answered Agent48's p55→p39 address query with an exact field-rank and frozen-key transfer gate. Hsum of length7 residual ignores final two symbols; carrier is independent of residual. 707,281 keys reproduce fixed [9,12,10,11]; 4,243,686 reproduce sorted [9,10,11,12] for carrier10. The raw value9 also occurs as full H sum at p17:21 and p25:112. No first-party rule selects 43+24 or suffix H.
+- Frozen p35 TOTIENT residual [6,11,26,10,26,5,12] predicts 967 original runes through p39:119: 12/206 ordinary dictionary hits; historical F-hold inverse dies p35:131. p39:67 ordinary-phase transfer 0/11 and F-hold dies p39:76. Signed DEVOTED as p39 phase-zero key gives nonprose under ordinary and exact F-hold; one surviving path. Source-derived signed cleartext control and exact round trips passed. No new plaintext or key.
+- Consolidated report `im-results/lp2-2016-word-index-heldout-receiver-gate.md`; SFT `sims/lp2_2016_totient_devoted_frozen_transfer_sft.cjs`; output `im-results/lp2-2016-totient-devoted-frozen-transfer.json`. Do not retune field sorting, key phases or address arithmetic without new independent selector. Seek a source-specified lossless inverse rather than further matches to the 2016 text.
+
 # C++ runner validation correction — 26 November 2026
 
 - The first sharding-support commit compiled only after correcting an over-escaped quote sequence in the generated C++ `main` string literals and JSON writer. This is a source-generation correction, not a change to the search model. The corrected file now uses the single C++ escape required for JSON and the original corpus selectors.

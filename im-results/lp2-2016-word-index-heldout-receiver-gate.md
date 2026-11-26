@@ -109,13 +109,32 @@ The p0 heading comparison remains:
 - EPIPHANY SEEKS has two zero-valued residual positions, invalid under the same one-based map. Omitting those zeros leaves PATH THE WORDS THE MAP THE ROAD THEIR NUMBERS, but that is a different projection.
 - The split packet's key values [6,16] select the full-message words EPIPHANY and WORDS, whose lengths 8 and 5 match the ciphertext heading's 8+5 layout.
 
-The p39 suffix pointer and p35 TOTIENT candidate materially strengthen the word-index hypothesis, but neither gives symbol-by-symbol plaintext recovery. The p35 candidate still depends on a candidate plaintext; the p39 suffix yields a word index, not a full p39 plaintext.
+The p39 suffix pointer and p35 TOTIENT candidate are conditional arithmetic matches; neither independently authenticates the other or gives symbol-by-symbol plaintext recovery. The exact field-rank and frozen transfer tests below constrain the proposed mechanism. The p35 candidate still depends on a candidate plaintext; the p39 suffix yields a word index, not a full p39 plaintext.
 
 ## Decision and next test
 
-Retain p35 TOTIENT as a source-constrained candidate and p39 suffix-Hsum 9 as an independent word-level pointer. Do not promote either to established plaintext.
+Retain p35 TOTIENT and p39 suffix-Hsum 9 as conditional candidate/pointer observations, not independently confirmed plaintext. Do not promote either to established plaintext.
 
 The next decisive test is to obtain a third independently selected receiver or an original clue that specifies the p39 suffix H operation and the p35 candidate's field sorting before inspecting the output. Do not widen the dictionary, add field permutations, or treat the p35 76+33+1 offset formula as established.
+
+## Independent receiver follow-through and exact H-field ambiguity (Agent34, 26 November)
+
+The p55 geometry gives 43+24=67, and the p39 2|5 group at offset67 is indeed the only one among the 15 source receivers at that offset. But the same geometry supports multiple address operations (for example quotient+remainder of 1033 gives 25, while divisor+quotient gives 67); no first-party instruction chooses this operation, page or H-suffix field. Raw H-field value9 occurs at p17:21 and p25:112 as their full H sums, as well as p39:67 as its suffix H sum. Its uniqueness is conditional on the preselected suffix projection; the p39 pointer was found after selecting p35's candidate, so it is not a blind prediction.
+
+There is a stronger algebraic limitation on the p35 packet. For a length-seven residual k, Hsum(k)=2(k0+k1+k2)+k3 mod29, Hsum(prefix)=2k0, and Hsum(suffix)=2(k2+k3)+k4. The carrier is independent of the plaintext. The three residual constraints are independent linear forms; k1,k2,k5,k6 are free. In particular neither k5 nor k6 affects any field. **Exactly 29^4=707,281** residual keys reproduce the ordered TOTIENT signature [9,12,10,11], and **6×29^4=4,243,686** reproduce its sorted [9,10,11,12] signature with carrier10. This is an exact unrestricted GP29 count, not a claim that all these keys are English or that the dictionary result is wrong. The p39 suffix H sum likewise ignores its last two runes. Thus neither numeric packet supplies a complete seven-rune key.
+
+To pursue a direct inverse, freeze the candidate TOTIENT and derive its C−P residual [6,11,26,10,26,5,12]. No phase fitting, sign search, or crib widening. Continue the same seven-key cycle after p35:116 through the independently established cuneiform body endpoint p39:119 exclusive. Also test the independently proposed p39:67 pointer as a phase-zero key using the literal signed DEVOTED [23,18,1,3,16,18,23]. A separate p39-only residual transfer uses the phase fixed by the ordinary continuous clock. The exact literal-F inverse is a finite phase DP: a ciphertext F can be held or consumed if the latter yields nonzero plaintext; non-F can only be consumed into nonzero plaintext. Every surviving witness is replayed. The signed cleartext positive plant is 175 runes including 3 F holds; the known path is retained (416 complete paths), not uniquely recovered.
+
+| Frozen inverse | Ordinary complete interior printed group dictionary hits | Literal-F path result |
+|---|---:|---|
+| p35 TOTIENT residual continuous heldout (967 runes) | 12/206 | No path; p35:131, ciphertext 6 |
+| p35 residual at p39:67 ordinary clock phase (52 runes) | 0/11 | No path; p39:76, ciphertext 6 |
+| p39 signed DEVOTED direct key (52 runes) | 1/11 | 1 path(s); 1/11 dictionary hits, nonprose |
+| p39 signed DEVOTED following group only (45 runes) | 1/10 | 1 path(s); 1/10 dictionary hits, nonprose |
+
+The ordinary continuous transfer reencrypts all 967 runes but is nonprose; the historical F-hold variant dies after just 14 held-out ciphertext runes at p35 offset131. The p39 DEVOTED receiver has a complete replaying inverse but no readable text. This rules out the frozen direct periodic continuation, not all possible uses of the two conditional words. Do not treat the address match as independent authentication or expand the key search without a new source operation.
+
+Reproducer: [sims/lp2_2016_totient_devoted_frozen_transfer_sft.cjs](../sims/lp2_2016_totient_devoted_frozen_transfer_sft.cjs), executed against the repository inputs in V8. Machine output: [lp2-2016-totient-devoted-frozen-transfer.json](lp2-2016-totient-devoted-frozen-transfer.json). No unknown LP2 plaintext, authentic key or destination was recovered.
 
 ## Reproduction
 
