@@ -1,0 +1,696 @@
+{
+  "knownControl": {
+    "p56": 85,
+    "consumed": 84,
+    "p57": 95
+  },
+  "chapters": [
+    {
+      "hold": true,
+      "page": 0,
+      "n": 716,
+      "prefix": 716,
+      "endStates": 6
+    },
+    {
+      "hold": true,
+      "page": 3,
+      "n": 1129,
+      "prefix": 528,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 8,
+      "n": 1717,
+      "prefix": 165,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 15,
+      "n": 1883,
+      "prefix": 522,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 23,
+      "n": 1005,
+      "prefix": 486,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 27,
+      "n": 1414,
+      "prefix": 513,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 33,
+      "n": 1670,
+      "prefix": 495,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 40,
+      "n": 3000,
+      "prefix": 681,
+      "endStates": 0
+    },
+    {
+      "hold": true,
+      "page": 54,
+      "n": 299,
+      "prefix": 172,
+      "endStates": 0
+    },
+    {
+      "hold": false,
+      "page": 0,
+      "n": 716,
+      "prefix": 716,
+      "endStates": 12
+    },
+    {
+      "hold": false,
+      "page": 3,
+      "n": 1129,
+      "prefix": 1129,
+      "endStates": 10
+    },
+    {
+      "hold": false,
+      "page": 8,
+      "n": 1717,
+      "prefix": 1717,
+      "endStates": 6
+    },
+    {
+      "hold": false,
+      "page": 15,
+      "n": 1883,
+      "prefix": 1883,
+      "endStates": 6
+    },
+    {
+      "hold": false,
+      "page": 23,
+      "n": 1005,
+      "prefix": 1005,
+      "endStates": 10
+    },
+    {
+      "hold": false,
+      "page": 27,
+      "n": 1414,
+      "prefix": 1414,
+      "endStates": 8
+    },
+    {
+      "hold": false,
+      "page": 33,
+      "n": 1670,
+      "prefix": 1670,
+      "endStates": 4
+    },
+    {
+      "hold": false,
+      "page": 40,
+      "n": 3000,
+      "prefix": 3000,
+      "endStates": 3
+    },
+    {
+      "hold": false,
+      "page": 54,
+      "n": 299,
+      "prefix": 299,
+      "endStates": 21
+    }
+  ],
+  "controls": [
+    {
+      "hold": true,
+      "name": "0_warning",
+      "n": 184,
+      "seed": 1033,
+      "selected": 1033,
+      "fitCorrect": 90,
+      "fitLength": 92,
+      "heldCorrect": 92,
+      "heldLength": 92,
+      "heldScore": -2.902963568852137
+    },
+    {
+      "hold": true,
+      "name": "0_welcome",
+      "n": 515,
+      "seed": 1170,
+      "selected": 1222,
+      "fitCorrect": 253,
+      "fitLength": 257,
+      "heldCorrect": 257,
+      "heldLength": 258,
+      "heldScore": -3.0057633601763944
+    },
+    {
+      "hold": true,
+      "name": "0_wisdom",
+      "n": 157,
+      "seed": 1307,
+      "selected": 1307,
+      "fitCorrect": 78,
+      "fitLength": 78,
+      "heldCorrect": 77,
+      "heldLength": 79,
+      "heldScore": -3.2319444234766093
+    },
+    {
+      "hold": true,
+      "name": "0_koan_1",
+      "n": 780,
+      "seed": 1444,
+      "selected": 1504,
+      "fitCorrect": 386,
+      "fitLength": 390,
+      "heldCorrect": 390,
+      "heldLength": 390,
+      "heldScore": -2.962018815559153
+    },
+    {
+      "hold": true,
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "seed": 1581,
+      "selected": 1581,
+      "fitCorrect": 377,
+      "fitLength": 377,
+      "heldCorrect": 378,
+      "heldLength": 378,
+      "heldScore": -3.02996915365408
+    },
+    {
+      "hold": true,
+      "name": "jpg107-167",
+      "n": 319,
+      "seed": 1718,
+      "selected": 1718,
+      "fitCorrect": 159,
+      "fitLength": 159,
+      "heldCorrect": 160,
+      "heldLength": 160,
+      "heldScore": -2.9130476145201643
+    },
+    {
+      "hold": true,
+      "name": "jpg229",
+      "n": 89,
+      "seed": 1855,
+      "selected": 1855,
+      "fitCorrect": 44,
+      "fitLength": 44,
+      "heldCorrect": 45,
+      "heldLength": 45,
+      "heldScore": -2.97342379869709
+    },
+    {
+      "hold": true,
+      "name": "p56_an_end",
+      "n": 85,
+      "seed": 1992,
+      "selected": 1992,
+      "fitCorrect": 42,
+      "fitLength": 42,
+      "heldCorrect": 43,
+      "heldLength": 43,
+      "heldScore": -2.9474391912203872
+    },
+    {
+      "hold": true,
+      "name": "p57_parable",
+      "n": 95,
+      "seed": 2129,
+      "selected": 2371,
+      "fitCorrect": 41,
+      "fitLength": 47,
+      "heldCorrect": 48,
+      "heldLength": 48,
+      "heldScore": -2.9396803376847043
+    },
+    {
+      "hold": false,
+      "name": "0_warning",
+      "n": 184,
+      "seed": 1033,
+      "selected": 1033,
+      "fitCorrect": 92,
+      "fitLength": 92,
+      "heldCorrect": 92,
+      "heldLength": 92,
+      "heldScore": -2.902963568852137
+    },
+    {
+      "hold": false,
+      "name": "0_welcome",
+      "n": 515,
+      "seed": 1170,
+      "selected": 1222,
+      "fitCorrect": 253,
+      "fitLength": 257,
+      "heldCorrect": 258,
+      "heldLength": 258,
+      "heldScore": -3.0079614472293574
+    },
+    {
+      "hold": false,
+      "name": "0_wisdom",
+      "n": 157,
+      "seed": 1307,
+      "selected": 1307,
+      "fitCorrect": 78,
+      "fitLength": 78,
+      "heldCorrect": 79,
+      "heldLength": 79,
+      "heldScore": -3.2319444234766093
+    },
+    {
+      "hold": false,
+      "name": "0_koan_1",
+      "n": 780,
+      "seed": 1444,
+      "selected": 1504,
+      "fitCorrect": 386,
+      "fitLength": 390,
+      "heldCorrect": 390,
+      "heldLength": 390,
+      "heldScore": -2.962018815559153
+    },
+    {
+      "hold": false,
+      "name": "0_loss_of_divinity",
+      "n": 755,
+      "seed": 1581,
+      "selected": 1581,
+      "fitCorrect": 377,
+      "fitLength": 377,
+      "heldCorrect": 378,
+      "heldLength": 378,
+      "heldScore": -3.02996915365408
+    },
+    {
+      "hold": false,
+      "name": "jpg107-167",
+      "n": 319,
+      "seed": 1718,
+      "selected": 1718,
+      "fitCorrect": 159,
+      "fitLength": 159,
+      "heldCorrect": 160,
+      "heldLength": 160,
+      "heldScore": -2.9130476145201643
+    },
+    {
+      "hold": false,
+      "name": "jpg229",
+      "n": 89,
+      "seed": 1855,
+      "selected": 1855,
+      "fitCorrect": 44,
+      "fitLength": 44,
+      "heldCorrect": 45,
+      "heldLength": 45,
+      "heldScore": -2.97342379869709
+    },
+    {
+      "hold": false,
+      "name": "p56_an_end",
+      "n": 85,
+      "seed": 1992,
+      "selected": 1992,
+      "fitCorrect": 42,
+      "fitLength": 42,
+      "heldCorrect": 43,
+      "heldLength": 43,
+      "heldScore": -2.9474391912203872
+    },
+    {
+      "hold": false,
+      "name": "p57_parable",
+      "n": 95,
+      "seed": 2129,
+      "selected": 2371,
+      "fitCorrect": 41,
+      "fitLength": 47,
+      "heldCorrect": 48,
+      "heldLength": 48,
+      "heldScore": -2.9396803376847043
+    }
+  ],
+  "original": [
+    {
+      "hold": true,
+      "page": 0,
+      "cut": 249,
+      "fit": {
+        "start": 976,
+        "end": 264,
+        "score": -3.8656029946029355,
+        "preview": "SONTLUNGUWWHBIXIAOEIABTHEGUMCXEAPEDGRYOEEAXBLAEDTHJNOIATFIJFHJIHEAIAIANGDYITECHTGOJTHLEGYYDTEMFPEATHTYPSRGRRGXLDUWJRBG"
+      },
+      "held": null,
+      "full": {
+        "start": 2742,
+        "end": 2043,
+        "score": -4.057305425262702,
+        "preview": "EIBWHISBITTOEERSRGJTUSTXOEXIEHBYROEEOEASSPIAGNGTEOPORWTHWLPRUOELJOYTLDGNGAEXPTIDNNGOSCHTHAEIAOTHXEAJTBEANTWMMIMIRUGAR"
+      },
+      "oracleHoldScore": -3.9451672075926236
+    },
+    {
+      "hold": true,
+      "page": 3,
+      "cut": 201,
+      "fit": {
+        "start": 2722,
+        "end": 3072,
+        "score": -3.908898060726502,
+        "preview": "ENBEAEAOERGWTSEFWWPYTBWBMYEOTBYALNGTHOEHTOELIATUUWOFDIAJJNGIACMJBBUNTTGEARUEODUGJXEAIATSAEFNGEHDTHPYNGSYXCYNEAELRCIAYAE"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 8,
+      "cut": 243,
+      "fit": null,
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 15,
+      "cut": 139,
+      "fit": {
+        "start": 1354,
+        "end": 1842,
+        "score": -3.6845055690170203,
+        "preview": "UULMJDUYUIAWCYOSICEAEOEUAEATHYCANHHNMCBBMOESTHDXYTYADEWOURWIAEGTNGIABNGPBEIJGFWIADAHUIATFJIABCLEASIABGWHAEWARSCOIPY"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 23,
+      "cut": 197,
+      "fit": {
+        "start": 1391,
+        "end": 1045,
+        "score": -3.7812001117031926,
+        "preview": "OGEEANISMRAEAELWEATHGSEYOLDNGWLOEAFTHJTHPWMYOHTEAOTOEOCNGRSEIARUHXHOTOERRGDAEEOGODBCNGEWDEACNEDNGNGAEOEEONJXOFISTRWOEWLINJ"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 27,
+      "cut": 215,
+      "fit": {
+        "start": 1015,
+        "end": 1773,
+        "score": -3.742052026045633,
+        "preview": "ROEWHEGXUXNSEATAEAFEYHCSTLICJNDBWCYJAEARDOAEAEHFBCOETTHUFISSJBUHXAELSUETHIAXLTXBSJRHNGSLJONGOESJSNGPXWYLRLFIPYNGHNB"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 33,
+      "cut": 204,
+      "fit": {
+        "start": 2652,
+        "end": 2957,
+        "score": -3.9181973661048217,
+        "preview": "IANGUNSIAJONGOCAETOEUAECWNITSRLUCTSMWEAIUSEICIABYDEHPAEIAJUOEIIAIHOESJABNGSISGHBOTUAEAGODIANGTOUBNXBTHRAEFULRHMAGPWWTTJJ"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 40,
+      "cut": 223,
+      "fit": {
+        "start": 1024,
+        "end": 1484,
+        "score": -3.742731464307433,
+        "preview": "CIIEITHHRTOEGRIJDGFRLLYSNGMJHIAXANPWIAEAIAENMJIOBMEAENEAIIJRAUISMGNCLTHHGIULOEOBYHMPPEAJYNTHPYTHOEAXPIUCEEWPXRUMT"
+      },
+      "held": null,
+      "full": null,
+      "oracleHoldScore": null
+    },
+    {
+      "hold": true,
+      "page": 54,
+      "cut": 223,
+      "fit": null,
+      "held": null,
+      "full": null,
+      "oracleHoldScore": -3.5848670428982126
+    },
+    {
+      "hold": false,
+      "page": 0,
+      "cut": 249,
+      "fit": {
+        "start": 2916,
+        "end": 2295,
+        "score": -3.871972372084501,
+        "preview": "TCHTHMTWCTGWPEASAAFBRBPYLYWNIIMCTLPTHLFAFNGFFSTXTHOEOYABEOYNGSIODDIFTGWIAGYCWOOETHIASAAEDAESXDIAWAYCPWSNIOEOSAEAEEABGU"
+      },
+      "held": {
+        "start": 2295,
+        "end": 1425,
+        "score": -4.109344623548638,
+        "preview": "OLBIHYJFEAOEEAGIATCEEAPGITHDEOUIANGCRTPOAXEGRCYPLNYBWEAEOGSNGPJJRHOEDHJTHEBEIIMXEOIFFIJNGSRSTNGPUHEELMPOESSHGEAUWCANGFGP"
+      },
+      "full": {
+        "start": 2389,
+        "end": 3109,
+        "score": -3.988954232445682,
+        "preview": "NGYCRTMHMRCNWWOHIIFEIAHOLHHMEATHTHPFDCANYYLTHAEIAPDOLYBGHTHNHEABAEJTIAJTHAEWOENEAPYUDGRLEOAETHUORPOISEANSMIIRRNFRPXUORWM"
+      },
+      "oracleHoldScore": -3.9591232234552556
+    },
+    {
+      "hold": false,
+      "page": 3,
+      "cut": 201,
+      "fit": {
+        "start": 2819,
+        "end": 2844,
+        "score": -3.719405179169224,
+        "preview": "IEBYIDETHWUTPYTHOICSNNGHNGTHMJGSDBDYSTRUDAPENHMEACOBSEITEAGNGTHHORELFAHGEADDCLCMWNWEOLJTOEGABEOPOETHUUIAIFNGOETYTHFIIAB"
+      },
+      "held": {
+        "start": 2844,
+        "end": 2469,
+        "score": -4.116264411189504,
+        "preview": "EOXEOCUPOAERCIHTCAEILRBEOJXWRHSWWUCBBTPTMAEEOUGHOEAJBEGEIMOOEWLTABIAUNEIAFGYNATHFIAFNGUMOPGFSCEOEEASXHEABTHIGTHCNTTRRAC"
+      },
+      "full": {
+        "start": 3204,
+        "end": 171,
+        "score": -4.011381958523155,
+        "preview": "OEOEDMBDEEOMHEIATIABJECFWRRHLEOGAETAIAUENGCOHNGMRSEAROECLTHDEYIARLTJNWIAPNGIGOEEOOAEBMEACACFTIANNRSEYNGCUTHUTHCAJUNYXIAAEGER"
+      },
+      "oracleHoldScore": -4.008568630123383
+    },
+    {
+      "hold": false,
+      "page": 8,
+      "cut": 243,
+      "fit": {
+        "start": 2604,
+        "end": 353,
+        "score": -3.766789492776019,
+        "preview": "OIUCFMFRTTLABCEARPNJFLMIXEEOCOEEAFNCOOJOGFUUSFMTOIMUMBTUOADNANELFSIAAHCFMGCJEUAEAIAGIAAEWIRYFLSEAHTHAEAJJBAEMEPI"
+      },
+      "held": {
+        "start": 353,
+        "end": 3063,
+        "score": -4.165312176362841,
+        "preview": "OEDBRNGEARCJIAFAWBXOEYIAXYTJTHEYMHFTHOESGIAESNRMTHPAWIAXPAECATHOEPJUWAEHNXTFGOEPAEOYYOXTLMETHJGDTHJIATUYAEDEOPRIWLEOHDFTCCGAE"
+      },
+      "full": {
+        "start": 1000,
+        "end": 2547,
+        "score": -3.9964731659666226,
+        "preview": "RRMNPPPIUAETRAEENIAEANTWNGALFYRTHRNGDPOEOBURBCUGSOEPGEATIAHYAEITHTHEAFJOOEEAXGULNFYOEHDEIARRTLTHOELNGJYJWHCNUWBCXTRFNGNGBEOW"
+      },
+      "oracleHoldScore": -3.9891387399675358
+    },
+    {
+      "hold": false,
+      "page": 15,
+      "cut": 139,
+      "fit": {
+        "start": 1808,
+        "end": 1622,
+        "score": -3.7609850052672584,
+        "preview": "PTRWHDUXMNEAAMSSPCUNEWPDTHEAATHTHAETHRYCWTHIEANEAIBYJIAWABGFYTUUDXLTHBBTAMBUAETPCUOUOEJWLCPJTHBYIEOPTHLGHLMSIAJIAIAEXG"
+      },
+      "held": {
+        "start": 1622,
+        "end": 2226,
+        "score": -4.147800482602546,
+        "preview": "LYAEEOTHBEATSOEEUTHTHEAAEAAUIAIANGAEOPIATCMOAGTHRBTHFMOLDTHDREACNIFEAALEOAERIAJWDOEWMFUTHHHOIATHBAEAEEAAEXGLPEAMXUFEAIAHNGTTFJEAEAFCEAFRD"
+      },
+      "full": {
+        "start": 2789,
+        "end": 2144,
+        "score": -4.004591407204462,
+        "preview": "GSLTTHFNGLUEDIBTHAPCDYIAEAEEOMIACOEMIWTLYNBXRCOETUIAOUCEJBTDTPLAEHGWFCBEABCOAEPPSIASLSGNIAMLGROEAEEWHEAOEAYCJCEMOAMSBD"
+      },
+      "oracleHoldScore": -4.004894623895973
+    },
+    {
+      "hold": false,
+      "page": 23,
+      "cut": 197,
+      "fit": {
+        "start": 1387,
+        "end": 1249,
+        "score": -3.807665835573543,
+        "preview": "HSHHAEOEOFYSPRPEFIADNGTLENPWNGAWAETHONGRGUATHOEBTHICHXNGDJDSACHYJWDODSTIAOFRAERTYIASCIJGFPSADMIASGCDPIAPPOENIWHOWRPSS"
+      },
+      "held": {
+        "start": 1249,
+        "end": 3254,
+        "score": -4.042641453197367,
+        "preview": "OEWHYIANNGRXTPTHANNGROOETOESIASPTHEPTHUGNGCYTEIAHGTHBEESHJSPIAXGAEDTCRWBAERMEOBEOWIAAEDAESMAMEOCDIAFNCWXAEFMBRNGFGOEANAEROECIAIAT"
+      },
+      "full": {
+        "start": 2613,
+        "end": 3254,
+        "score": -3.9886712677482388,
+        "preview": "ILUTSWJDTHEOGSWABCFPHBEOWSNGWEAHRNGOBCSIWWIOHHBATWNGHCWMYMFLIUDREEOIAWLOGCEPONGXTHAEAGNGISEUWGETAEUEAGBNOEMHSEAIAGNUN"
+      },
+      "oracleHoldScore": -3.967089686736674
+    },
+    {
+      "hold": false,
+      "page": 27,
+      "cut": 215,
+      "fit": {
+        "start": 1940,
+        "end": 3015,
+        "score": -3.71097418173595,
+        "preview": "ATIGSILBNYANGNBTHNTTHEDCEIAXAYNRRYYEAROMNGSUTAEIATTEJFEAEBNUTTAEEMTHIANOEEOSTHACXDNDROEAEGREIASXIAWRYLSHETHRTHYIPTPNIRPE"
+      },
+      "held": {
+        "start": 3015,
+        "end": 1280,
+        "score": -4.11731194567371,
+        "preview": "AMHYPWEONBCNITWNGTSEOAEAUMEATHEAIOECSODUGITHWENYOGTAEOLDHIAAEEONEOFAETHBEAEIASROIOEGHUPWAROEYOGMHEAEATHNWHGNAEXHUAEIAYIALHTMHAE"
+      },
+      "full": {
+        "start": 203,
+        "end": 545,
+        "score": -3.9768652216838274,
+        "preview": "SAEBAAEFFNFJDRTHDMUBHEEAETHFENGIIASAEDETTNGTHGHLELSUIATHUBOREXMJDUFHWYITHYXICAFIJOURULDNOENOXOCWLADWEOIIATTGARMTJROEY"
+      },
+      "oracleHoldScore": -3.9809356745564908
+    },
+    {
+      "hold": false,
+      "page": 33,
+      "cut": 204,
+      "fit": {
+        "start": 764,
+        "end": 353,
+        "score": -3.7955045741163533,
+        "preview": "NIANGGNCOFIAMWSHHULCTEABSEAAWLEACUJIAMLTEDCTHUYICHLFCPTHNPPBFTHWNGYLTHCLTIALYHGNGGSARMFNSEOJPNRILOOEIAEOOBFLOCNORBLURG"
+      },
+      "held": {
+        "start": 353,
+        "end": 3216,
+        "score": -4.023630746431394,
+        "preview": "SDUEEAGXJFPIAGINJCFURYCAEPSPGTHEAOWCPGEDEOEATHDYMPCYMEAFMOEOENEXIAEGSOEIJNGEETEOJEAGYTDWRWGPNERMBSJIOEDEELTHANGSGNGAEEXDG"
+      },
+      "full": {
+        "start": 3247,
+        "end": 1479,
+        "score": -3.973867858181717,
+        "preview": "BTNTHWPOPIIATHWPDXNGJDYOAFINGOEAPTHNFIANLYCGDNGJPEDDSJEGEOWTBHGNEIAISWOYIRAJEOIAUSLODSSEOUTIOEOEOEEONCAETHXSXTHYIAUEMSYRP"
+      },
+      "oracleHoldScore": -3.9599312505576436
+    },
+    {
+      "hold": false,
+      "page": 40,
+      "cut": 223,
+      "fit": {
+        "start": 2751,
+        "end": 533,
+        "score": -3.792519096304179,
+        "preview": "UMWENGFAEXRIEAYLLYTIACWEAMDMDCJIDCWDTDIGTLTHNEOEBMONUPPFTYGRRERTHMCNIAYXIADNGAEJCUPIAOEGRWJEAFEAAEWUAERMBWUBHWNFGPAEBEO"
+      },
+      "held": {
+        "start": 533,
+        "end": 1122,
+        "score": -4.066135557826919,
+        "preview": "EOTHBLRWGEAEMSUCEWBTOEOAEATMUAEWIEAOEDHTMSJPDAEHTHNGBOXPDUFIAFIAPXTHOEULTHXPWRAETSTHMNGEATHHNMPXIASLFIAERIAMPCTRNGPJUBTCELTUA"
+      },
+      "full": {
+        "start": 410,
+        "end": 1122,
+        "score": -4.018081271496303,
+        "preview": "NIRFCRGRFHODMNONGSOUILUFDRBXIAAOGNGUWNTEAPWLNSBAEMWLDNGWSNHXTHRWEAJNGAEGTIEANEIAGWREAIABSNGJIARTTHWPEOTHOEDHOPGAXILHTSYD"
+      },
+      "oracleHoldScore": -4.018917718463546
+    },
+    {
+      "hold": false,
+      "page": 54,
+      "cut": 223,
+      "fit": {
+        "start": 2133,
+        "end": 853,
+        "score": -3.7859260250004914,
+        "preview": "SRSUNNGEAEEAYNGGAIRYIWWULYWHBDMNNGSNIAAOEHYPOENGORYMLTEOEALEOAEEATIAOERLEOELEINIELNTHMJJCAEOOEEOAENTHOAGLOTOPYXLEMMTRATB"
+      },
+      "held": {
+        "start": 853,
+        "end": 1616,
+        "score": -4.0456719204805465,
+        "preview": "IEAEHHOOPOTBRRNGRIASIAAEAWNGANCRMBXEAWAEOOIAEAFDEOIOSIAMDWAEDUAEALHAEAEFIAHEADCITHTWTHCEOOEONINGYOEC"
+      },
+      "full": {
+        "start": 2133,
+        "end": 1616,
+        "score": -3.851948393082378,
+        "preview": "SRSUNNGEAEEAYNGGAIRYIWWULYWHBDMNNGSNIAAOEHYPOENGORYMLTEOEALEOAEEATIAOERLEOELEINIELNTHMJJCAEOOEEOAENTHOAGLOTOPYXLEMMTRATB"
+      },
+      "oracleHoldScore": -3.5408667061819292
+    }
+  ],
+  "source": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ]
+}
