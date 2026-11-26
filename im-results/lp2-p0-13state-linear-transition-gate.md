@@ -27,7 +27,7 @@ Fit (A) uniquely from the first 13 transitions (s_0\to s_1,\ldots,s_{12}\to s_{1
 
 ## Result
 
-<badge color="danger">Rejected</badge>
+**Outcome: rejected.**
 
 | Measurement | Result |
 |---|---:|
