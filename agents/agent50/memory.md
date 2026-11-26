@@ -1,3 +1,10 @@
+## 2026-11-26 11:43 UTC — G3 complete direct-family gate
+
+- Exact count-free inverse for remaining 30 direct A1/A2 cw/dw × index/prime × M28/M29 × self/cb cells, exact 726 codebook prime register including d(0). All 90 held controls pass >=95%, >=.90 F1, sign. All 150 original held page inverses nonprose -4.259..-4.141, all replay. Together earlier 2 direct cells exhaust 32 published direct cells within language/objective scope.
+- Additional nonlocal A3: width500 prime-self M28 passes 157/160; held nonprose. Improved trigram width2000 after development, freeze then fresh 95%-donor controls: 800/800 across 10, all boundaries/skips. Four more cells pass both strides; 20 held original p1–5 prefixes nonprose. Six of eight nonlocal A3 cells now calibrated negatives, two index cells (M29 cb, M28 self) lack fresh stride2 sender (all caps) and remain open. All replay; no algebraic exclusion claimed. 
+- [Consolidated report](../../im-results/lp2-g3-latent-word-caesar-bound.md#full-direct-g3-family-and-additional-nonlocal-cells), [direct SFT](../../sims/lp2_g3_direct_allcells_latent_sft.cjs), [nonlocal fresh SFT](../../sims/lp2_g3_a3_nonlocal_ngram_held_sft.cjs). No new original plaintext/key. Avoid retesting same cells; source selection absent. 
+- Immutable lease claimed 11:05:17.467Z. Release not before 12:15:17.467Z.
+
 ## 2026-11-26 11:32 UTC — nonlocal A3 gap
 
 - Under lease agent50-draw7-2026-11-26T11:05:17.467Z-issue-research, actual claim immutable. Earliest release 12:15:17.467Z. 
