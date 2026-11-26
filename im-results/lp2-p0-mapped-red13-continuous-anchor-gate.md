@@ -1,6 +1,6 @@
 # Opening red13 as a mapped repeating key: exact structural and blind-calibrated inverse gates
 
-**Decision.** The original opening red13 cannot be the positive-sign key of a continuously consumed F-fixed common-cycle cipher, for *any* GP29 alphabet permutation and any initial phase. The negative-sign model is structurally possible but its global inverse cannot satisfy four mandatory original p0 lexical anchors simultaneously in the broad frozen register below. There is no recovered unknown plaintext or historical key. The negative-sign result now requires at least two out-of-register words among the five selected anchors (all five four-subsets excluded); do not claim a three-OOV exclusion for the entire family.
+**Decision.** The original opening red13 cannot be the positive-sign key of a continuously consumed F-fixed common-cycle cipher, for *any* GP29 alphabet permutation and any initial phase. The negative-sign model is structurally possible but its global inverse cannot satisfy four mandatory original p0 lexical anchors simultaneously in the broad frozen register below. There is no recovered unknown plaintext or historical key. The negative-sign continuous-clock model is also excluded with at most three out-of-register words anywhere among the 56 opening-page complete groups. Both signs are retired in the stated scope.
 
 ## Hypothesis and original receiver
 
@@ -68,8 +68,37 @@ The last subset required raising the original per-leaf assignment cap to 20 mill
 
 The [MRV enumerator](../sims/lp2_p0_mapped_red13_anchor_join_mrv.cpp) substitutes the scalar gauge into the coordinate forms and uses pairwise affine disequalities. Each relation with one unassigned coordinate removes its unique forbidden field value. Choose the remaining variable with fewest legal values and backtrack exactly. On plant 1033 it recovers the same 24 maps and unique fit with 65 recursive nodes; on original subset 10,11,29,53 it exhausts 201 recursive nodes instead of 121,886,856 complete free assignments. These counters measure different operations, not wall-clock speedup. The original complete free-assignment counts above remain reproducible with the original enumerator and configurable subset/cap. MRV executable takes dictionary, ciphertext, local-domain TSV, seconds, comma-separated four-anchor indices. No further OOV budget conclusion follows merely from incomplete searches.
 
+## Complete three-OOV fixed-clock inverse
+
+The 248 training runes contain exactly 13 ciphertext F glyphs. Enumerate every legal start and F-hold/consume path, with consuming C=K=F forbidden. A consuming position has token t={C,K}, an unordered pair since x(P)=x(C)+x(K). Repeated tokens must produce the same plaintext, and two distinct tokens sharing a coordinate cannot produce the same plaintext. These constraints hold even in OOV words.
+
+The same frozen local dictionary/GF29 filter produces 906 word-state records, 1,416,615 word/state candidates. Full phase enumeration leaves 35,233 paths with at most three locally unsupported words. A pair-conflict graph and exact bounded vertex cover reduce this to 16,946 histories. For each, the new solver propagates bitset word domains on shared tokens, injective pair-output constraints, and homogeneous linear equations. The linear solver tracks a sufficient set of lexical word assumptions for each contradiction. When a candidate additional row is proportional to a nonzero coordinate difference, it is rejected, since enforcing that row would identify two alphabet coordinates. If propagation is inconclusive, branch over the smallest remaining token label domain; combine all branch contradiction witnesses. At low residual dimension enumerate maps exactly with the affine MRV method. For every contradiction, at least one word in its sufficient witness must be OOV; branch deletion of each witness word within the remaining budget. There is no fixed mandatory anchor. All consumed positions, including deleted words, still obey the common bijection.
+
+| Initial phase | Locally admissible histories | Pair-graph admissible | Initial timeout |
+|---:|---:|---:|---:|
+| 0 | 3,758 | 2,053 | 0 |
+| 1 | 2,209 | 1,089 | 0 |
+| 2 | 816 | 304 | 0 |
+| 3 | 255 | 78 | 0 |
+| 4 | 1,293 | 650 | 1 |
+| 5 | 3,471 | 2,040 | 4 |
+| 6 | 4,489 | 1,786 | 0 |
+| 7 | 4,144 | 2,068 | 0 |
+| 8 | 3,271 | 1,443 | 0 |
+| 9 | 2,812 | 889 | 0 |
+| 10 | 3,092 | 1,268 | 0 |
+| 11 | 2,793 | 1,541 | 0 |
+| 12 | 2,830 | 1,737 | 0 |
+| **Total** | **35,233** | **16,946** | **5** |
+
+Each initially timed-out path was extracted as its exact 56-state tuple and retried independently with a 60s limit. All five finished with zero solutions and zero further timeout. Across all partitions and retries, no original branch reached a viable bijective map, and no unknown plaintext was recovered. This is a complete negative for <=3 OOV under the stated cipher, segmentation, singleton and dictionary assumptions, not a heuristic search score.
+
+Known-clock positive controls on both earlier hidden-permutation plants recovered the exact normalized map and all 248 training runes (one hard call and one actual map each). A third control modifies plant 1033 at body groups 3,29,53 with deterministic non-dictionary strings (seed 1138), then reencrypts the entire tape. The solver, given its true clock but not its key or OOV positions, recovered the exact map and all 248 runes, with OOV=3 and 204 hard calls. The original earlier anchor controls were blind to the initial clock; the fixed-clock controls specifically test the new inverse and deletion reasoning.
+
+Reproduction: [complete clock SFT](../sims/lp2_p0_mapped_red13_clock_sft.py), [exact clock C++](../sims/lp2_p0_mapped_red13_clock_exact.cpp). The local original and control components were run with C++17 g++ and Python; the combined runner consolidates those component runs. Timing can change the first-pass timeout count, so the SFT retries whatever exact states time out and asserts zero remaining timeouts. It does not use held-out p1/p2 to fit the key.
+
 ## Research decision
 
-Retire this exact positive-sign continuous source-key law. Retire the negative-sign specialization with at most one OOV among the five anchors; two or more OOV anchors, altered segmentation, different reset schedule or different source operand are outside that result. No new authentic clue supports those rescues. The shared-matching relaxation can be reused on other mapped-key hypotheses without sweeping arbitrary alphabets. An OOV-aware multi-anchor extension must explicitly account for omitted anchors and should not repeat the completed four-anchor inverse.
+Retire this exact positive-sign continuous source-key law. Retire the negative-sign continuous specialization with at most three OOV among the 56 complete training words; four or more OOV, altered segmentation, different reset schedule or different source operand are outside that result. No new authentic clue supports those rescues. The shared-matching relaxation can be reused on other mapped-key hypotheses without sweeping arbitrary alphabets. The complete fixed-clock inverse supersedes the conditional anchor bounds. Do not spend more time on this source operand without an independently motivated change in the cipher.
 
 Reproduction: [Python SFT](../sims/lp2_p0_mapped_red13_sft.py), [exact local domain builder](../sims/lp2_p0_mapped_red13_domains.cpp), [global anchor join](../sims/lp2_p0_mapped_red13_anchor_join.cpp). The two C++ kernels and the matching MILP were executed locally; the combined orchestration's input generation was checked against those exact runs. Linux g++/Python 3.13, not a claimed Windows CI execution. The scope and dictionary are recorded so the result can be independently reproduced, not as an authorial cipher identification.
