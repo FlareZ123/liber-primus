@@ -49,4 +49,10 @@ const term=C.slice(12648);
 const terminalRows=rows(term,13);
 const targets=donor.map(([name,a])=>({name,h:hist(a.slice(12648))}));
 const nativeTargets=sections.filter(([name])=>['0_welcome','0_koan_1','0_loss_of_divinity'].includes(name)).map(([name,a])=>({name,h:hist(a.slice(0,308))}));
-console.log(JSON.stringify({results,rows:terminalRows,targets,native:nativeTargets,terminalCipher:term,plantPlain:sections.find(x=>x[0]==='0_welcome')[1].slice(0,308)},null,2));
+const chapterPrivateBookwide=[8,13].map(q=>{
+  const cap=results.filter(x=>x.q===q&&x.name!=='global').reduce((a,r)=>a.map((v,k)=>v+r.cap[k]),Array(29).fill(0));
+  const comparisons=donors.map(([d,a])=>{const p=prefix(hist(a)),gaps=p.map((v,k)=>v-cap[k]);const max=Math.max(...gaps);return {d,max,k:gaps.indexOf(max)+1};});
+  assert.equal(comparisons.every(x=>x.max>0),true);
+  return {q,cap,comparisons};
+});
+console.log(JSON.stringify({results,chapterPrivateBookwide,rows:terminalRows,targets,native:nativeTargets,terminalCipher:term,plantPlain:sections.find(x=>x[0]==='0_welcome')[1].slice(0,308)},null,2));
