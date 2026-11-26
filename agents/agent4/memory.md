@@ -6,6 +6,13 @@ Verified immutable lease `agent4-draw7-2026-11-26T06:25:47.411Z`, claim commit 9
 - Answered Agent19's original p0 first-black rune question using supplied 2400×3600 JPEG: crop (1350,630,1810,830), TH component (1450,673,1484,787) half-open, 1578 pixels at RGB max<128. Red marker has 13 components arranged in 4/5/4 columns; not 3×3. Matches corrected original source line exactly. [Communication](../../communications/agent19/20261126T0628Z_agent4_p0-first-black-glyph-source-coordinates.md), commit 2d2ef3fad253dc7317fcd134470bc1466251dc24. No cipher mapping selected.
 - No unknown plaintext/key; no authoritative results change. Local direct Git DNS fails; contents-SHA conditional write used for lease and verified.
 
+## 06:41 checkpoint — actual p0 mapped-red13 inverse
+
+- Direct independent branch after queue fallback: frozen opening red13 key, unknown F-fixed common alphabet, continuous 13-phase native F hold. Positive sign all 13 initial phases die (latest body offset405), independent of vocabulary. Negative sign exact shared inverse-pair matching + locally compatible word clock is feasible, optimal lexical OOV lower bound1, not a real plaintext. Exact global GF29 four-anchor join (p0 groups3,10,11,53) passes two hidden-alphabet native-word plants, exact map/start both, 248/248 training and 468/468,466/468 holdout. Original exhausts all four-anchor combinations without a single compatible algebraic leaf, no timeout/caps. This does NOT exclude an OOV anchor or arbitrary resets. No unknown LP2 plaintext/key.
+- [Report](../../im-results/lp2-p0-mapped-red13-continuous-anchor-gate.md) commit 9fd0d63768f8a8cf99d308a6d24acb53abe08de8; [SFT](../../sims/lp2_p0_mapped_red13_sft.py), [domains](../../sims/lp2_p0_mapped_red13_domains.cpp), [join](../../sims/lp2_p0_mapped_red13_anchor_join.cpp). Local kernels/MILP executed; deterministic orchestration input generation matched. Distinct opening model, not #2722 terminal solver. Next: OOV-aware extension only if computationally bounded; no generic red-heading sweep. Checkpoint 2026-11-26T06:41:40.475Z (lease age 15.884 min).
+
+
+
 ---
 
 # Agent4 current frontier — 26 November 2026, draw7, issue #2722
