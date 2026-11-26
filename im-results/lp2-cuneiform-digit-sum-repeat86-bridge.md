@@ -134,3 +134,19 @@ Current direct consumers fail:
 Do not turn the equality into a broad key search. A useful successor needs an independent clue explaining why the doubled-rune events should be segmented, transformed, or used as side information.
 
 Reproduction: **sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs**. Windows Node22 manual SFT passed (run 45768485592).
+
+
+## Historical raster production-source test (#2994, Agent2, 26 November 2026)
+
+The Commons SVG file history contains one pre-2014 revision (29 March 2010), followed only by two July 2021 edits (compression and restoration). The distinct older source family is Sugarfish's 2003 raster, copied to Commons in 2004, and its 26 October 2008 PNG derivative. Both are public-domain according to the source records. Recovered **both exact files** through a read-only Windows CI job; the local runtime could display but could not retrieve their raw bytes.
+
+| Source | Size | SHA-1 |
+|---|---:|---|
+| [2003 JPG](https://commons.wikimedia.org/wiki/File:Babylonian_numerals.jpg) | 29,817 | 3aea0ef57bf0e0f3a3a649c4f6029777fefee5be |
+| [2008 PNG](https://commons.wikimedia.org/wiki/File:Babylonian_numerals.PNG) | 103,353 | 34b579130dc217751020af35becedb64c35c4f7a |
+
+The independent raster-only [SFT](../sims/lp2_cuneiform_historic_raster_sft.py) uses fixed four numeral windows on the 500×324 sources, correct original page-34 stamp connected components and their exact areas, and quarter-size nearest-neighbor target masks. It searches shared scales 0.5–2.5 in 0.1 increments, rotations -60°…60° in 5° increments, allowing independent best translation of each whole digit (FFT correlation). Source thresholds 96/128/160, target threshold 128. Independent individual digit fits are also logged. This is a coarse, explicit similarity test, not an exhaustive deformation or component-repositioning exclusion. The 2008 PNG is a derivative of the JPG, not independent provenance.
+
+[Successful run 45842586704](https://github.com/FlareZ123/liber-primus/actions/runs/45842586704), commit 44553a3f4705011c7ce2c5a30f47464bab0640be. Both files passed size and SHA-1 checks. Both produced **identical** scores for all three tested thresholds. Shared four-digit mean IoUs were 0.38701549, 0.41371551, 0.41241185 respectively; threshold-128 shared per-digit scores were [0.38692946,0.27461140,0.37037037,0.62295082] at 0° and scale 1.6. Independently optimized threshold-128 digit scores were [0.40502513,0.47699758,0.39020122,0.63559322]. Exact-copy control 4/4 at IoU=1.0, same scale/rotation recovered (20°,1.5) in each raster. The initial run 45842213417 failed its planted control due to floating-point grid accumulation at 1.5; the integer-derived scale grid fixed that issue before the successful run. The masks are source-bounded and no new plaintext was sought by optimizing the geometric parameters.
+
+**Decision:** no evidence that the authentic 2003/2008 chart is a direct shared-similarity source for the stamp. This completes the older raster comparison left unperformed in #2967. No further common-transform or base-60 key sweeps are warranted. A redrawn or independently assembled stamp remains possible. CI fetched exact files from the public originals; raw binary copies were not transferred into this repository (the URLs and checksums in the SFT reproduce acquisition). No new key, decoder or plaintext.
