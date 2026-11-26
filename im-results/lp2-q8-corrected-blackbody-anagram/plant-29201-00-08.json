@@ -1,0 +1,171 @@
+{
+  "which": "29201",
+  "from": 0,
+  "to": 8,
+  "fitGroups": 47,
+  "holdGroups": 17,
+  "anchorOffsets": [
+    12657,
+    12718,
+    12734,
+    12807,
+    12824
+  ],
+  "results": [
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 0,
+      "prefixes": 111691,
+      "checks": 40875051,
+      "hits": 37915,
+      "distinct": 37915,
+      "anchorPass": 37915,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 1,
+      "prefixes": 94919,
+      "checks": 27702273,
+      "hits": 18288,
+      "distinct": 18288,
+      "anchorPass": 18288,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 2,
+      "prefixes": 103231,
+      "checks": 30448073,
+      "hits": 18007,
+      "distinct": 18007,
+      "anchorPass": 18007,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 3,
+      "prefixes": 99587,
+      "checks": 30608966,
+      "hits": 23205,
+      "distinct": 23205,
+      "anchorPass": 23205,
+      "survivors": [
+        {
+          "n": 21364383070,
+          "K": [
+            1,
+            6,
+            26,
+            17,
+            10,
+            11,
+            1,
+            14
+          ],
+          "missing": 0
+        }
+      ]
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 4,
+      "prefixes": 99570,
+      "checks": 24384374,
+      "hits": 5343,
+      "distinct": 5343,
+      "anchorPass": 5343,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 5,
+      "prefixes": 146404,
+      "checks": 56111432,
+      "hits": 28023,
+      "distinct": 28023,
+      "anchorPass": 28023,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 6,
+      "prefixes": 92816,
+      "checks": 22997339,
+      "hits": 12617,
+      "distinct": 12617,
+      "anchorPass": 12617,
+      "survivors": []
+    },
+    {
+      "pair": [
+        0,
+        1
+      ],
+      "shift": 7,
+      "prefixes": 94703,
+      "checks": 23665792,
+      "hits": 11368,
+      "distinct": 11368,
+      "anchorPass": 11368,
+      "survivors": []
+    }
+  ],
+  "evaluated": [
+    {
+      "n": 21364383070,
+      "K": [
+        1,
+        6,
+        26,
+        17,
+        10,
+        11,
+        1,
+        14
+      ],
+      "missing": 0,
+      "totalMissing": 0,
+      "holdCovered": 17,
+      "holdTrueBags": 17,
+      "holdUnique": 7,
+      "optimisticContinuous": true
+    }
+  ],
+  "control": {
+    "truth": 21364383070,
+    "key": [
+      6,
+      26,
+      17,
+      10,
+      11,
+      1,
+      14,
+      1
+    ],
+    "trueEdges": 64,
+    "matched": true
+  }
+}
