@@ -191,6 +191,7 @@ function viterbi(cipher, order, logp, initialStates, trace) {
   let maxActive = active.length;
   let transitionCount = 0;
   for (let t = 0; t < cipher.length; t++) {
+    const priorActiveStates = active.length;
     const next = new Float64Array(N);
     next.fill(-Infinity);
     const nextActive = [];
@@ -221,7 +222,7 @@ function viterbi(cipher, order, logp, initialStates, trace) {
     active = nextActive;
     if (active.length > maxActive) maxActive = active.length;
     if (trace) { back[t] = bp; emit[t] = ep; }
-    if (active.length === 0) return { feasible: false, noPathAt: t, priorActiveStates: active.length, maxActive, finalActive: 0, transitionCount };
+    if (active.length === 0) return { feasible: false, noPathAt: t, priorActiveStates, maxActive, finalActive: 0, transitionCount };
   }
   let bestState = -1, bestScore = -Infinity;
   for (const s of active) {
