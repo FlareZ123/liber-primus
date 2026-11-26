@@ -51,7 +51,7 @@ The script asserts that none equals the p56 target and records the exact byte le
 
 ## Authenticated-message semantic census
 
-The new deterministic source gate [`sims/lp2_p56_firstparty_hash_semantics_sft.cjs`](../sims/lp2_p56_firstparty_hash_semantics_sft.cjs) scans the 16 pinned Cicada clear-signed messages dated 2012–2016 in `resources/historical/`.
+The new deterministic source gate [`sims/lp2_p56_firstparty_hash_semantics_sft.cjs`](../sims/lp2_p56_firstparty_hash_semantics_sft.cjs) originally scanned 16 pinned Cicada clear-signed messages dated 2012–2016 (historical snapshot; expanded to 21 in #3016 below) in `resources/historical/`.
 
 It deliberately separates the OpenPGP armor header from the signed authored body. Results:
 
@@ -60,6 +60,33 @@ It deliberately separates the OpenPGP armor header from the signed authored body
 - 0/16 authored bodies contain the p56 target or its first printed line.
 
 Therefore the visible `Hash: SHA1` text is evidence about the digest used by the OpenPGP clear-signature packet. It is not an authored instruction selecting SHA-1, or any other function, for the p56 webpage.
+
+
+## Period toolchain discriminator: GnuPG 1.4.11 defaults, not a p56 hash selector (#3016, Agent7, 26 November 2026)
+
+**Decision:** SHA-512 is a defensible first candidate conditional on the documented GnuPG toolchain; no first-party source ties that toolchain's standalone digest command to p56. The 2012 public-key preferences are ordinary GnuPG defaults, and cannot select SHA-512 or rule out another external hash implementation. Do not launch an algorithm sweep; seek the missing source or an exact page object.
+
+### Original key and period software
+
+The exact `resources/historical/cicada-3301-2012-public-key.asc` (Git blob `d44aec389e2f346c6b9d149d4c61e890f62979c9`) has verified self-signature and subkey-binding signatures under fingerprint `6D854CD7933322A601C3286D181F01E57A35090F` (local GnuPG `--check-sigs`, both `sig:!`). The 2012-01-05 self-certification uses SHA-1 (packet digest ID 2). Its **hashed** preference subpacket 21 is exactly `08 02 09 0a 0b`: SHA-256, SHA-1, SHA-384, SHA-512, SHA-224. Symmetric subpacket 11 is `09 08 07 03 02`, compression subpacket 22 is `02 03 01`.
+
+The original 2014 Stage10 and Stage11 messages carry the period GnuPG 1.4.11 armor version and actual signature packet digest ID 2. Inspecting the upstream **tag gnupg-1.4.11** establishes:
+
+- [g10/keygen.c, keygen_set_std_prefs](https://github.com/gpg/gnupg/blob/gnupg-1.4.11/g10/keygen.c), blob `760e63a08bdc2316b4f435f94fa67626a0e4a422`: default hash list is exactly H8 H2 H9 H10 H11, symmetric S9 S8 S7 S3 S2 (optionally S1 if available), compression Z2 Z3 Z1 (Z3 if available). The three lists in the original key match the corresponding standard defaults. This is compatibility with default key generation, not proof of the creator's configuration or a custom riddle in the preference order.
+- [cipher/md.c, load_digest_module](https://github.com/gpg/gnupg/blob/gnupg-1.4.11/cipher/md.c), blob `9ee0fa7e54faeb200a5874e49d4f28a886312ee5`: registers MD5, SHA-1, RIPEMD-160, and the build-conditional SHA-224/256/384/512 algorithms; only SHA-512 has 64-byte digest output. There is no Whirlpool entry.
+- [g10/gpg.c, aPrintMD/print_mds/print_hex](https://github.com/gpg/gnupg/blob/gnupg-1.4.11/g10/gpg.c), blob `0142168e0417b8da6c94c4ab1056afe13805dd80`: standalone digest operation takes an explicitly named algorithm and reads binary file/stdin bytes, with no webpage canonicalization. Its ordinary 64-byte display uses uppercase hex and groups of four bytes; colon mode has a numeric algorithm field and a contiguous uppercase digest. Neither is the literal p56 lowercase, 26/25/25/27/25-character print layout. Reformatting is possible, but no source selects it or the command.
+
+The later `resources/historical/cicada2017-yEiTHhvF.asc` (blob `f455e72159fc9fea9e3d89df835468ea67fe3cf4`) has a real SHA-512 RSA signature (packet digest ID 10, independently verified locally, `VALIDSIG` full fingerprint above, 2017-04-04). This is actual signed-message use, not merely the clear-sign header. It postdates LP2 by almost three years and its signed message is about signature verification. It does not establish the p56 algorithm.
+
+### Bounded additional source scope
+
+The prior signed-body census has now expanded to **21** local 2012–2016 clear-signed copies, all SHA1 armor headers; all 21 authored bodies had zero bounded hash-family terms and zero p56 digest-prefix matches. The five additional copies since the historical 16-copy census do not select an algorithm. The old SFT's hardcoded 16-file cardinality is removed in favor of the actual source count; the semantic assertions remain. This is an authored-body census, not a new signature authentication of every copy.
+
+A distinct supplemental archive scan at [cicada-solvers/neuroretransmit-cicada commit b13600373d3400d75ec4208198019f3d92a304dd](https://github.com/cicada-solvers/neuroretransmit-cicada/tree/b13600373d3400d75ec4208198019f3d92a304dd) covered these 18 clear-signed objects (copies may overlap local originals), with zero authored hash/digest/checksum/family terms: 2012 `003-subreddit/posts/{8D7hN,KXLOP,vjuNp}.jpg.asc`, `005-845145127.com/img/{162667212858,everywhere}.jpg.asc`, `005-845145127.com/locations/cicada.asc`, `005-845145127.com/whitespace/whitespace.asc`, `008-second-chance/NHYLD.jpg.asc`, `012-necrome/necrome.asc`; 2013 `001-232.jpg/232.jpg.asc`, `002-3301/rootfs-contents/usr/local/bin/message.txt.asc`, `006-third-onion/{annapolis-md,okinawa-japan,standby}.txt.asc`, `007-fourth-onion/no-email.txt.asc`, `008-invitation/invitation.asc`; 2014 `001-twitter/zN4h51m.jpg.asc`, `002-first-onion/1033.jpg.asc`. The last specifies Crypt::RSA::ES::OAEP for a separate ciphertext, not a p56 page hash. No supplemental individual signature-verification claim is made.
+
+Ten further archived HTML objects (2012 countdown/location/whitespace, sq6 enrollment and second-chance root; 2013 first-onion, second-onion everything-you-need/patience and third-onion Annapolis/Okinawa) contained only four embedded `Hash: SHA1` armor headers, no authored algorithm selector. The source-pinned original Cicada OS custom `cicada` and `prime_echo` scripts and message likewise give no standalone digest command. The apparent phrase “break this hash” in modern TryHackMe recreations substitutes for the original 2013 signed instruction to solve a riddle; it is not a Cicada source. The 2014 community hash discussions are leads, not first-party declarations.
+
+**Fork:** the exact conditional toolchain restriction is useful for ordering a later exact-object check, but the antecedent (p56 uses GnuPG standalone hashing) is missing. This investigation produces zero preimage guesses and no new plaintext. Wait for an authentic algorithm/byte-boundary instruction or recover a specifically period-linked page body, rather than using the preference list to justify more algorithm searches.
 
 ## Preserved 2014 HTML semantic census
 
