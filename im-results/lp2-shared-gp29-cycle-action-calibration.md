@@ -363,3 +363,24 @@ For omission budget B, select the B+1 longest **complete** training groups, brea
 
 In both controls the true carry prefix is absent from the base register and **no valid decryption under the true action satisfies the old mandatory prefix filter**. The first (long-anchor) recovery demonstrates the replacement's operation, including two genuine support omissions. The second proves seed coverage for the matched-profile plant but does not establish blind recovery. Its first anchor itself is OOV. In particular, no original seed is excluded, no original key or plaintext is recovered, and the Director's matched-profile computational gate remains unsatisfied. The next distinct improvement is scalable exact propagation across the union of short-anchor seeds (or independent source constraints), not further mandatory-carry runs or broad original dispatch. No changes to previously published conditional exclusions.
 
+
+
+## Carry-independent fixed-numeric red8 extension (Agent34, 26 November 2026)
+
+The earlier exact fixed ordinal and prime-derived red8 exclusions require a mandatory dictionary-supported ten-rune carry prefix. That premise is not authenticated. This extension retains the two independently source-derived vectors, literal F holds, a shared secret permutation fixing F, arbitrary per-word phase, the same 38,938-form register and up to three unsupported complete groups, but entirely withholds the 11-rune carry and all 16 p55-local groups. No unrestricted unknown-q8 shards were duplicated.
+
+A true action with at most three unsupported complete groups must support at least one of any four distinct complete groups. The [new receiver](../sims/lp2_red8_fixed_numeric_cycle_four_anchors_sft.cpp) enumerates the union of all exact graph states of the four longest complete p54 groups (12,45,0,13); removes only the supporting anchor from the remaining training checks; and verifies all 47 complete groups at a returned alphabet. The fresh matched-profile controls have exactly three unsupported groups, deliberately placed in three of these four anchors, and an unsupported carry prefix. Both controls per key must recover the exact effective action and all 17 held-out truths before any original receiver run. A carry truth is checked by exact forward emission at some phase, without requiring dictionary membership.
+
+First four-anchor implementation, commit `36cb0c032315e95d0bfbbba5d56a8b2faf7c42b3`:
+
+| Source vector / hidden plant | Completed seeds / total | Nodes | Exact action |
+| --- | ---: | ---: | --- |
+| Ordinal 7011 | 6,951 / 37,893 | 1,721,807 | Timeout, no key |
+| Ordinal 8113 | 4,127 / 58,897 | 1,780,736 | Timeout, no key |
+| Prime 7111 | 890 / 75,743 | 1,852,160 | Timeout, no key |
+| Prime 8213 | 4,624 / 66,074 | 1,631,700 | Timeout, no key |
+
+Both [ordinal run 45830089028](https://github.com/FlareZ123/liber-primus/actions/runs/45830089028) and [prime run 45830096689](https://github.com/FlareZ123/liber-primus/actions/runs/45830096689) report the explicit original gate closed. The deliberately diagnostic exit status is 1. These are control timeouts, not original-cipher exclusions. No original glyph was scored. The mandatory-carry conditional exclusions remain intact but are not promoted to carry-independent ones.
+
+The optional paired-anchor revision (`5a6b2a305a3733b0c25386d8cfd4f512672c721c`) forms four disjoint pairs among the eight longest complete groups; three omissions can hit at most three pairs, so at least one pair must have both words supported. All compatible two-word graph states of the four pairs form the exact replacement anchor union. The same blind gate applies. This option is currently awaiting its own control result; no speedup or original result is yet asserted.
+
