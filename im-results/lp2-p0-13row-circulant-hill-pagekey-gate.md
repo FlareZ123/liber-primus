@@ -1,6 +1,6 @@
 # p0 55×13 page-key matrix: per-page circulant Hill gate
 
-**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent group orientation, without a language model. The exact affine column-mean repair of the singular p50 panel also gives nonprose, even after integrating every possible null-mode restoration. The page-row assignment and singular p50 alignment remain conditional structural observations.
+**Current decision:** fixed 13-block, shared-affine, chained, scalar-feedback, and word-local circulant receivers remain negative. The word-local image test excludes arbitrary shared output alphabets and every independent group orientation, without a language model. The exact affine column-mean repair of the singular p50 panel also gives nonprose, even after integrating every possible null-mode restoration. A causal 13-tap ciphertext-feedback extension is now also exactly excluded for nonstatic shared F-hold parameters with arbitrary entry registers; its fully private-page ordinary and F-hold variants fail aligned finite native-donor concentration bounds. The page-row assignment and singular p50 alignment remain conditional structural observations.
 
 ## Question
 
@@ -229,3 +229,49 @@ g++ -std=c++20 -O3 sims/agent38_lp2_word_circulant_group_sign_solver.cpp -o /tmp
 ```
 
 [Source fixture](./agent38-word-circulant-group-sign/fixture.txt) · [Generator](./agent38-word-circulant-group-sign/check.py) · [Exact solver](../sims/agent38_lp2_word_circulant_group_sign_solver.cpp) · [Full outputs and held checks](./agent38-word-circulant-group-sign/results.json).
+
+## Causal row-feedback receiver, including arbitrary initial registers (Agent 24, 26 November)
+
+The prior fixed-block, cyclic-page, word-local, and scalar-feedback tests do not cover a causal 13-tap streaming receiver. The conditional opening-row assignment supplies the 13 coefficients, while the observed adjacent-repeat anomaly motivates ciphertext-dependent state rather than an independent pad. The row50 zero constant mode is an incidental structural observation, not a source instruction for a feedback cipher. This tests one precise extension rather than authenticating the row assignment.
+
+Let `r_p` be the 13 printed indices of the row for page p, `s_p = sum(r_p) mod 29` (nonzero for every rune-bearing page). Let `h` be the previous 13 ciphertext values in chronological order, `S` an arbitrary permutation of GP29, and `a_p` either 1 or s_p. The ordinary sender is
+```
+C = a_p*S(P) + lambda*sum_j(r_p[j]*h[12-j])/d_p  (mod 29),
+d_p = 1 or s_p.
+```
+Both coefficient orientations are allowed, and lambda ranges over all 29 field values. This is 232 parameter representations (including duplicate representations). For the historical plaintext-F convention, P=F emits literal C=0. Either every physical ciphertext emission enters the register, or literal F holds the register while every ordinary emission, including an ordinary C=0, advances it. No word or punctuation assumptions.
+
+For any candidate, the residual `R=(C-feedback)/a_p` must equal S(P) on ordinary emissions. Write t=S(F). A nonzero ciphertext must consume and is impossible if R=t. A ciphertext zero admits literal F, plus the ordinary branch if R differs from t. Since S is a bijection, every other label is available; this is an exact necessary-and-sufficient state-path gate with no language assumption. The initial state can be arbitrary: after 13 physical emissions it is the observed 13-symbol suffix; on the consuming clock a run of 13 consecutive nonzero ciphertext runes must all consume, forcing the same observed state. Every tested physical page has such an anchor, starting at offset 0–13. The state before that anchor is unconstrained.
+
+### Shared-parameter exact decision
+
+Physical p3–55 (52 rune-bearing pages; the opening key material is omitted) gives the following exhaustive results. For each of 232 parameter representations test all 29 values of t, independently for each clock. Reachability merges identical 13-symbol states and retains all latent F choices; there is no beam or cutoff.
+
+| Clock | Eliminated representations | First contradictions | Survivors |
+|---|---:|---|---|
+| Physical | 6,720 / 6,728 | p3: 6,704; p4: 16 | 8 static representations, lambda=0, t=0 |
+| Consuming | 6,720 / 6,728 | p3: 6,660; p4: 60 | 8 static representations, lambda=0, t=0 |
+
+The hidden-register washout calculation retains at most 1/21 simultaneous states for the physical/consuming clock. All nonzero feedback multipliers are impossible, even allowing arbitrary page-entry registers and a completely secret common GP29 permutation. The surviving static cases are either a direct substitution or a page-scaled substitution; they are not plaintext recoveries. Two hidden-alphabet positive configurations over 683 authentic solved-native runes retain their true state/parameter pairs; the nonstatic feedback orientation/normalization/multiplier is selected among surviving nonstatic representations (with residual F-label and scaling ambiguities). Two separate arbitrary-hidden-IV configurations over 2,234 native runes each retain the true pairs after observed synchronization; both reuse the same native material with different parameters. These are feasibility controls, not claimed complete key recovery.
+
+### Independent private-page parameters and alphabets
+
+Relax **every** page to independent lambda, coefficient orientation, normalization, output scale, t, arbitrary GP29 bijection, and arbitrary incoming register. Ordinary residual histograms provide exact top-two counts. In the F-hold cases, track all 29 fixed t values simultaneously as bitsets on state nodes; propagate forward and backward, retaining only edges lying on complete legal suffix paths. For each t and physical position, form the union U of reachable output labels (ordinary R or literal-F label t). For any two labels u,v the count of positions with u or v in U is an upper bound on their joint count in any one legal complete path. Maximize over all t, all 406 pairs, and all parameter representations on each page independently. Summing page maxima is a generous upper bound even when the most frequent pair is chosen independently per page; it does not pretend that all pointwise choices are jointly realizable.
+
+The first 13 physical emissions, or the first complete 13-nonzero consuming anchor, are excluded from the counts. Compare against every contiguous 12,227-rune donor window, retaining exactly the same per-page suffix coordinates. The E/O pair is selected by whole-donor frequency before any window scoring, and its retained count is a lower bound on the sum of page-private top-two counts. Both pinned literary sources use the established GP-normalization convention (QU→CW, K/Q→C, V→U, Z→S, ING→NG, IO→IA, longest GP transliteration). All windows are examined, including the pinned files' framing text.
+
+| Receiver | Retained original runes | Upper bound | Gibran aligned E/O floor (50,266 windows) | Emerson aligned E/O floor (309,101 windows) |
+|---|---:|---:|---:|---:|
+| Ordinary, arbitrary IV | 11,551 | 1,655 | 2,251 | 2,127 |
+| Physical F-hold, arbitrary IV | 11,551 | 1,383 | 2,251 | 2,127 |
+| Consuming F-hold, arbitrary IV | 11,442 | 1,802 | 2,228 | 2,100 |
+
+For the consuming-clock extension only 16 pages require recomputation after the washout anchor; the other 36 reuse the identical original suffixes. Earlier public-IV counts are 1,655/1,383/1,791 on 11,551 symbols. The original consuming-clock receiver with independent parameters has 45 pages admitting nonstatic histories under the public-IV convention, so it would be incorrect to call the common-key algebraic exclusion an all-private-key impossibility. Instead, the aligned finite-donor concentration bound rejects the entire named private-parameter family for all of these donor windows. Two native plants (WELCOME 515 runes and KOAN1 780) retain the true labels, and their actual top-two counts 97/175 are below the computed union bounds 98/212. This calibrates bound containment but is not a general prose theorem.
+
+**Decision:** retire the causal 13-tap row-feedback receiver under its fixed source-row assignment, including independent page-private parameters/alphabets and arbitrary initial registers for the named finite native reference. The shared nonstatic F-hold case is excluded algebraically; ordinary and fully private cases are excluded conditionally on the matched donor register. No original plaintext or authenticated row-key mapping follows. Nonlinear, time-varying, differently sourced filters, decoy positions and unrelated encodings remain outside scope. A new independently selected operation is needed before extending this row-key family.
+
+Reproducers and data (all cores executed against pinned repository sources in connected V8; the generated CommonJS wrappers were not separately executed under Node/CI):
+- [Shared feedback SFT](../sims/agent24_lp2_p0_page_row_causal_feedback_sft.cjs) · [output](lp2-p0-page-row-causal-feedback-output.json).
+- [Page-private support SFT](../sims/agent24_lp2_p0_page_row_causal_private_sft.cjs) · [output](lp2-p0-page-row-causal-private-output.json).
+- [Arbitrary-IV synchronization SFT](../sims/agent24_lp2_p0_page_row_causal_washout_sft.cjs) · [full first-failure certificates](lp2-p0-page-row-causal-washout-output.json). The full JSON exceeds the connected file-fetch text limit; it is stored in Git and is reproducible locally.
+- [Private arbitrary-IV aligned donor SFT](../sims/agent24_lp2_p0_page_row_causal_private_washout_sft.cjs) · [output](lp2-p0-page-row-causal-private-washout-output.json).
