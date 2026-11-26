@@ -1,0 +1,358 @@
+{
+  "width": 128,
+  "donorLengths": [
+    47629,
+    217106,
+    306851
+  ],
+  "eligible": false,
+  "pilots": [
+    {
+      "key": [
+        7,
+        21,
+        20,
+        11,
+        27,
+        0,
+        4,
+        22,
+        15,
+        13,
+        3,
+        19,
+        9,
+        23,
+        16,
+        14,
+        6,
+        10,
+        28,
+        5,
+        17,
+        26,
+        24,
+        12,
+        25,
+        8,
+        1,
+        2,
+        18
+      ],
+      "initial": [
+        7,
+        21,
+        20,
+        11,
+        27,
+        0,
+        4,
+        22,
+        15,
+        13,
+        3,
+        19,
+        9,
+        23,
+        16,
+        14,
+        6,
+        10,
+        28,
+        5,
+        17,
+        26,
+        24,
+        12,
+        25,
+        8,
+        1,
+        2,
+        18
+      ],
+      "refinement": [
+        {
+          "sweep": 1,
+          "score": 1.0201875590781624,
+          "improved": 0,
+          "evals": 407
+        }
+      ],
+      "truth": [
+        7,
+        21,
+        20,
+        11,
+        27,
+        0,
+        4,
+        22,
+        15,
+        13,
+        3,
+        19,
+        9,
+        23,
+        16,
+        14,
+        6,
+        10,
+        28,
+        5,
+        17,
+        26,
+        24,
+        12,
+        25,
+        8,
+        1,
+        2,
+        18
+      ],
+      "train": {
+        "n": 10317,
+        "repeats": 76,
+        "gain": 1.0201875590781615,
+        "correct": 10317,
+        "usedRows": 29,
+        "keyRows": 29,
+        "preview": [
+          "WORSEREUOLUNGTHISWILLTEACHTHEEHOWTOCURSECWEENELISABETHMYWORDSAREDULLOCWICCENTHEMWITHTHIN",
+          "FYORCARTTHOUMYSONCNGRICHARDIIIAYITHANCGODMYFATHERANDYOURSELFDUCHESSOFYORCTHENPATIENTL"
+        ]
+      },
+      "held": {
+        "n": 2630,
+        "repeats": 20,
+        "gain": 0.96597527389112,
+        "correct": 2630,
+        "usedRows": 26,
+        "keyRows": 26,
+        "preview": [
+          "OWNDWITHCAREFORONEBENGSUEDTOONETHATHUMBLYSUESFORONETHATSCORNDATMENOWSCORNDOFMEFORONE",
+          "RICHARDIIIYOUHAUEADAUGHTERCALLDELISABETHUIRTUOUSANDFAIRROYALANDGRACIAUSCWEENELISAB"
+        ]
+      },
+      "trace": [
+        {
+          "K": [
+            7,
+            21,
+            20,
+            11,
+            27,
+            0,
+            4,
+            22,
+            15,
+            13,
+            3,
+            19,
+            9,
+            23,
+            16,
+            14,
+            6,
+            10,
+            28,
+            5,
+            17,
+            26,
+            24,
+            12,
+            25,
+            8,
+            1,
+            2,
+            18
+          ],
+          "score": 1.0201875590781615,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.332819586606074,
+              "hardGain": -3.1932977930974014,
+              "keyRows": 3
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.320531386664692,
+              "hardGain": -3.113212537839445,
+              "keyRows": 5
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.3096536320919823,
+              "hardGain": -3.1427457027339787,
+              "keyRows": 12
+            },
+            {
+              "iteration": 20,
+              "softLL": -3.2974997310239282,
+              "hardGain": -3.1427457027339787,
+              "keyRows": 12
+            },
+            {
+              "iteration": 25,
+              "softLL": -3.276580498754588,
+              "hardGain": -3.186883992980971,
+              "keyRows": 14
+            },
+            {
+              "iteration": 30,
+              "softLL": -3.1470932799165614,
+              "hardGain": -3.070562381038628,
+              "keyRows": 24
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.689166779007991,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.6889589140808594,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            }
+          ]
+        },
+        {
+          "K": [
+            7,
+            21,
+            20,
+            11,
+            27,
+            0,
+            4,
+            22,
+            15,
+            13,
+            3,
+            19,
+            9,
+            23,
+            16,
+            14,
+            6,
+            10,
+            28,
+            5,
+            17,
+            26,
+            24,
+            12,
+            25,
+            8,
+            1,
+            2,
+            18
+          ],
+          "score": 1.0201875590781615,
+          "history": [
+            {
+              "iteration": 5,
+              "softLL": -3.333282083868012,
+              "hardGain": -3.126343565575746,
+              "keyRows": 4
+            },
+            {
+              "iteration": 10,
+              "softLL": -3.3215137294034998,
+              "hardGain": -3.090445627445212,
+              "keyRows": 10
+            },
+            {
+              "iteration": 15,
+              "softLL": -3.31094499566624,
+              "hardGain": -3.1213826357009875,
+              "keyRows": 11
+            },
+            {
+              "iteration": 20,
+              "softLL": -3.2968774884623953,
+              "hardGain": -3.158094525599196,
+              "keyRows": 12
+            },
+            {
+              "iteration": 25,
+              "softLL": -3.2544162586444214,
+              "hardGain": -3.12964653626742,
+              "keyRows": 19
+            },
+            {
+              "iteration": 30,
+              "softLL": -2.7565667519755825,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 35,
+              "softLL": -2.6889855352107186,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 40,
+              "softLL": -2.688958914080858,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 45,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 50,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 55,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            },
+            {
+              "iteration": 60,
+              "softLL": -2.688958914080857,
+              "hardGain": 1.0201875590781615,
+              "keyRows": 29
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "negative": null,
+  "original": null
+}
