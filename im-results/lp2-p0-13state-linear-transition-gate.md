@@ -9,21 +9,23 @@ This is a bounded, human-plausible hypothesis rather than a generic recurrence s
 - p0 begins with a 13-rune red title.
 - The original page places a 13-dot mark at the title boundary.
 - The first black rune is TH (GP29 index 2), which can be treated as a one-symbol start sentinel.
-- The p0–p2 opening stream then contains 715 remaining runes, exactly (55\times13).
+- The p0–p2 opening stream then contains 715 remaining runes, exactly 55 × 13.
 
 A natural reading is a 13-symbol initial state (the red title), followed by 55 successive 13-symbol states. The 55 count also matches the other LP2 pages p1–p55, although the 55 rows are a continuous opening-stream partition and are not aligned to page boundaries. The source does not establish that the rows are states; this experiment tests that specific interpretation.
 
 ## Frozen model
 
-Let (s_0) be the 13 GP29 indices in the p0 red title. Remove the first black TH sentinel from the concatenated p0–p2 rune stream after the title, then split the remaining 715 symbols into 55 row-major vectors (s_1,\ldots,s_{55}\in GF(29)^{13}).
+Let `s_0` be the 13 GP29 indices in the p0 red title. Remove the first black TH sentinel from the concatenated p0–p2 rune stream after the title, then split the remaining 715 symbols into 55 row-major vectors `s_1, ..., s_55` in `GF(29)^13`.
 
 Test one fixed linear transition:
-[
-s_{t+1}=s_t A\pmod{29}
-]
-for a single (13\times13) matrix (A).
 
-Fit (A) uniquely from the first 13 transitions (s_0\to s_1,\ldots,s_{12}\to s_{13}). This uses a full-rank 13-state design matrix. Freeze (A), then test the remaining 42 transitions (s_{13}\to s_{14},\ldots,s_{54}\to s_{55}). No language model, search over matrix families, per-row key, or fitted holdout parameter is involved.
+```
+s_(t+1) = s_t A (mod 29)
+```
+
+for a single `13×13` matrix `A`.
+
+Fit `A` uniquely from the first 13 transitions (`s_0 → s_1, ..., s_12 → s_13`). This uses a full-rank 13-state design matrix. Freeze `A`, then test the remaining 42 transitions (`s_13 → s_14, ..., s_54 → s_55`). No language model, search over matrix families, per-row key, or fitted holdout parameter is involved.
 
 ## Result
 
@@ -54,7 +56,7 @@ Run from the repository root:
 node sims/lp2_p0_13state_linear_transition_gate.cjs
 ```
 
-The script reads the original-derived canonical GP29 corpus, asserts the 13 + 1 + 715 source partition, fits `A` over `GF(29)`, and prints the full matrix and held-out mismatches.
+The script reads the original-derived canonical GP29 corpus, asserts the 13 + 1 + 715 source partition, fits `A` over `GF(29)`, and prints the full matrix and held-out mismatches. The same calculation was executed in the connected JavaScript runtime against the repository corpus; no CI run is claimed.
 
 ## Relation to existing work
 
