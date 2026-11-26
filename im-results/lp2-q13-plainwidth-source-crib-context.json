@@ -22,7 +22,7 @@
         12,
         12
       ],
-      "chapter": 4,
+      "chapter": 5,
       "checks": [
         {
           "kind": "continuous book",
@@ -36,9 +36,9 @@
           "optimum": null
         },
         {
-          "kind": "chapter 4",
-          "lo": 5506,
-          "hi": 6761,
+          "kind": "chapter 5",
+          "lo": 6527,
+          "hi": 7960,
           "reachLo": 6548,
           "reachHi": 6677,
           "leftLegal": false,
@@ -217,11 +217,11 @@
         },
         {
           "kind": "chapter 5",
-          "lo": 6761,
+          "lo": 6527,
           "hi": 7960,
-          "reachLo": 6761,
+          "reachLo": 6759,
           "reachHi": 6817,
-          "leftLegal": true,
+          "leftLegal": false,
           "rightLegal": false,
           "legal": false,
           "optimum": null
@@ -247,7 +247,7 @@
         13,
         25
       ],
-      "chapter": 4,
+      "chapter": 5,
       "checks": [
         {
           "kind": "continuous book",
@@ -261,9 +261,9 @@
           "optimum": null
         },
         {
-          "kind": "chapter 4",
-          "lo": 5506,
-          "hi": 6761,
+          "kind": "chapter 5",
+          "lo": 6527,
+          "hi": 7960,
           "reachLo": 6623,
           "reachHi": 6649,
           "leftLegal": false,
@@ -382,7 +382,7 @@
         9,
         22
       ],
-      "chapter": 4,
+      "chapter": 5,
       "checks": [
         {
           "kind": "continuous book",
@@ -396,9 +396,9 @@
           "optimum": null
         },
         {
-          "kind": "chapter 4",
-          "lo": 5506,
-          "hi": 6761,
+          "kind": "chapter 5",
+          "lo": 6527,
+          "hi": 7960,
           "reachLo": 6684,
           "reachHi": 6715,
           "leftLegal": false,
@@ -1173,7 +1173,7 @@
         },
         {
           "kind": "chapter 5",
-          "lo": 6761,
+          "lo": 6527,
           "hi": 7960,
           "reachLo": 7657,
           "reachHi": 7811,
