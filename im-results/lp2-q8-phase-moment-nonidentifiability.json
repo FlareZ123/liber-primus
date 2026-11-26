@@ -1,0 +1,778 @@
+{
+  "schema": "q8-phase-moment-nonidentifiability-v1",
+  "mode": "exact population phase enumeration; no original ciphertext fit",
+  "keys": [
+    {
+      "id": "binary_all_pair_lags",
+      "a": [
+        1,
+        1,
+        2,
+        1,
+        2,
+        2,
+        2,
+        1
+      ],
+      "b": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "lagEqual": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "tripleShiftHist": [
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          2
+        ],
+        [
+          1,
+          2,
+          1
+        ],
+        [
+          1,
+          2,
+          2
+        ],
+        [
+          2,
+          1,
+          1
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          2,
+          2,
+          1
+        ],
+        [
+          2,
+          2,
+          2
+        ]
+      ],
+      "nonlocalTripleDifferent": true,
+      "fourWitness": {
+        "plaintext": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "a": "[2,2,2,3]|[2,2,3,2]|[2,3,2,3]|[2,3,3,3]|[3,2,2,2]|[3,2,3,3]|[3,3,2,2]|[3,3,3,2]",
+        "b": "[2,2,2,3]|[2,2,3,3]|[2,3,2,2]|[2,3,3,3]|[3,2,2,2]|[3,2,3,2]|[3,3,2,3]|[3,3,3,2]"
+      },
+      "exhaustivePlainTriples": 24389,
+      "triplesByNumberOfF": [
+        21952,
+        2352,
+        84,
+        1
+      ]
+    },
+    {
+      "id": "ternary_generator_fixed_coordinates",
+      "a": [
+        1,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1
+      ],
+      "b": [
+        1,
+        1,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ],
+      "lagEqual": [
+        true,
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true
+      ],
+      "tripleShiftHist": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          2
+        ],
+        [
+          0,
+          1,
+          1
+        ],
+        [
+          0,
+          2,
+          0
+        ],
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          2,
+          0,
+          0
+        ]
+      ],
+      "nonlocalTripleDifferent": true,
+      "fourWitness": {
+        "plaintext": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "a": "[1,1,1,3]|[1,1,2,2]|[1,1,3,1]|[1,2,2,1]|[1,3,1,1]|[2,1,1,1]|[2,2,1,1]|[3,1,1,2]",
+        "b": "[1,1,1,2]|[1,1,2,2]|[1,1,3,1]|[1,2,2,1]|[1,3,1,1]|[2,1,1,3]|[2,2,1,1]|[3,1,1,1]"
+      },
+      "exhaustivePlainTriples": 24389,
+      "triplesByNumberOfF": [
+        21952,
+        2352,
+        84,
+        1
+      ]
+    }
+  ],
+  "register": 38910,
+  "plants": [
+    {
+      "seed": 1506977336,
+      "truthOov": [
+        12,
+        43
+      ],
+      "carryPrefix": "15ifrg6kil",
+      "generatedKey": [
+        1,
+        15,
+        17,
+        0,
+        2,
+        17,
+        14,
+        23
+      ],
+      "pi": [
+        0,
+        9,
+        11,
+        10,
+        2,
+        17,
+        24,
+        19,
+        7,
+        5,
+        22,
+        12,
+        20,
+        8,
+        1,
+        13,
+        15,
+        26,
+        4,
+        21,
+        23,
+        25,
+        16,
+        3,
+        28,
+        27,
+        6,
+        18,
+        14
+      ],
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "fit": {
+            "words": 47,
+            "runes": 213,
+            "single": 213,
+            "pair": 485,
+            "pairDiff": 0,
+            "localPair": 286,
+            "localPairDiff": 0,
+            "triple": 120,
+            "tripleDiff": 0,
+            "four": 80,
+            "fourDiff": 72,
+            "fullWordDiff": 27,
+            "heldF": 4
+          },
+          "hold": {
+            "words": 17,
+            "runes": 86,
+            "single": 86,
+            "pair": 258,
+            "pairDiff": 0,
+            "localPair": 121,
+            "localPairDiff": 0,
+            "triple": 52,
+            "tripleDiff": 0,
+            "four": 40,
+            "fourDiff": 39,
+            "fullWordDiff": 10,
+            "heldF": 2
+          }
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "fit": {
+            "words": 47,
+            "runes": 213,
+            "single": 213,
+            "pair": 485,
+            "pairDiff": 105,
+            "localPair": 286,
+            "localPairDiff": 0,
+            "triple": 120,
+            "tripleDiff": 0,
+            "four": 80,
+            "fourDiff": 72,
+            "fullWordDiff": 27,
+            "heldF": 4
+          },
+          "hold": {
+            "words": 17,
+            "runes": 86,
+            "single": 86,
+            "pair": 258,
+            "pairDiff": 62,
+            "localPair": 121,
+            "localPairDiff": 0,
+            "triple": 52,
+            "tripleDiff": 0,
+            "four": 40,
+            "fourDiff": 39,
+            "fullWordDiff": 10,
+            "heldF": 2
+          }
+        }
+      ]
+    },
+    {
+      "seed": 1506977337,
+      "truthOov": [
+        12,
+        43
+      ],
+      "carryPrefix": "i6fk2dp9ro",
+      "generatedKey": [
+        1,
+        20,
+        4,
+        0,
+        2,
+        18,
+        19,
+        5
+      ],
+      "pi": [
+        0,
+        9,
+        16,
+        11,
+        19,
+        6,
+        18,
+        2,
+        8,
+        7,
+        23,
+        13,
+        21,
+        28,
+        26,
+        12,
+        10,
+        5,
+        15,
+        22,
+        1,
+        20,
+        24,
+        25,
+        17,
+        14,
+        3,
+        4,
+        27
+      ],
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "fit": {
+            "words": 47,
+            "runes": 213,
+            "single": 213,
+            "pair": 485,
+            "pairDiff": 0,
+            "localPair": 286,
+            "localPairDiff": 0,
+            "triple": 120,
+            "tripleDiff": 0,
+            "four": 80,
+            "fourDiff": 77,
+            "fullWordDiff": 26,
+            "heldF": 4
+          },
+          "hold": {
+            "words": 17,
+            "runes": 86,
+            "single": 86,
+            "pair": 258,
+            "pairDiff": 0,
+            "localPair": 121,
+            "localPairDiff": 0,
+            "triple": 52,
+            "tripleDiff": 0,
+            "four": 40,
+            "fourDiff": 37,
+            "fullWordDiff": 8,
+            "heldF": 4
+          }
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "fit": {
+            "words": 47,
+            "runes": 213,
+            "single": 213,
+            "pair": 485,
+            "pairDiff": 108,
+            "localPair": 286,
+            "localPairDiff": 0,
+            "triple": 120,
+            "tripleDiff": 0,
+            "four": 80,
+            "fourDiff": 77,
+            "fullWordDiff": 26,
+            "heldF": 4
+          },
+          "hold": {
+            "words": 17,
+            "runes": 86,
+            "single": 86,
+            "pair": 258,
+            "pairDiff": 60,
+            "localPair": 121,
+            "localPairDiff": 0,
+            "triple": 52,
+            "tripleDiff": 0,
+            "four": 40,
+            "fourDiff": 37,
+            "fullWordDiff": 8,
+            "heldF": 4
+          }
+        }
+      ]
+    }
+  ],
+  "nativeReports": [
+    {
+      "name": "0_warning",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 45,
+          "runes": 184,
+          "single": 184,
+          "pair": 375,
+          "pairDiff": 0,
+          "localPair": 234,
+          "localPairDiff": 0,
+          "triple": 95,
+          "tripleDiff": 0,
+          "four": 61,
+          "fourDiff": 59,
+          "fullWordDiff": 25,
+          "heldF": 3
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 45,
+          "runes": 184,
+          "single": 184,
+          "pair": 375,
+          "pairDiff": 80,
+          "localPair": 234,
+          "localPairDiff": 0,
+          "triple": 95,
+          "tripleDiff": 0,
+          "four": 61,
+          "fourDiff": 59,
+          "fullWordDiff": 25,
+          "heldF": 3
+        }
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 124,
+          "runes": 515,
+          "single": 515,
+          "pair": 1129,
+          "pairDiff": 0,
+          "localPair": 661,
+          "localPairDiff": 0,
+          "triple": 270,
+          "tripleDiff": 0,
+          "four": 173,
+          "fourDiff": 163,
+          "fullWordDiff": 55,
+          "heldF": 11
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 124,
+          "runes": 515,
+          "single": 515,
+          "pair": 1129,
+          "pairDiff": 242,
+          "localPair": 661,
+          "localPairDiff": 0,
+          "triple": 270,
+          "tripleDiff": 0,
+          "four": 173,
+          "fourDiff": 163,
+          "fullWordDiff": 55,
+          "heldF": 11
+        }
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 31,
+          "runes": 157,
+          "single": 157,
+          "pair": 375,
+          "pairDiff": 0,
+          "localPair": 221,
+          "localPairDiff": 0,
+          "triple": 95,
+          "tripleDiff": 0,
+          "four": 68,
+          "fourDiff": 59,
+          "fullWordDiff": 22,
+          "heldF": 5
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 31,
+          "runes": 157,
+          "single": 157,
+          "pair": 375,
+          "pairDiff": 86,
+          "localPair": 221,
+          "localPairDiff": 0,
+          "triple": 95,
+          "tripleDiff": 0,
+          "four": 68,
+          "fourDiff": 59,
+          "fullWordDiff": 22,
+          "heldF": 5
+        }
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 208,
+          "runes": 780,
+          "single": 780,
+          "pair": 1493,
+          "pairDiff": 0,
+          "localPair": 949,
+          "localPairDiff": 0,
+          "triple": 377,
+          "tripleDiff": 0,
+          "four": 227,
+          "fourDiff": 209,
+          "fullWordDiff": 83,
+          "heldF": 13
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 208,
+          "runes": 780,
+          "single": 780,
+          "pair": 1493,
+          "pairDiff": 301,
+          "localPair": 949,
+          "localPairDiff": 0,
+          "triple": 377,
+          "tripleDiff": 0,
+          "four": 227,
+          "fourDiff": 209,
+          "fullWordDiff": 83,
+          "heldF": 13
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 181,
+          "runes": 755,
+          "single": 755,
+          "pair": 1677,
+          "pairDiff": 0,
+          "localPair": 967,
+          "localPairDiff": 0,
+          "triple": 393,
+          "tripleDiff": 0,
+          "four": 265,
+          "fourDiff": 258,
+          "fullWordDiff": 90,
+          "heldF": 8
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 181,
+          "runes": 755,
+          "single": 755,
+          "pair": 1677,
+          "pairDiff": 373,
+          "localPair": 967,
+          "localPairDiff": 0,
+          "triple": 393,
+          "tripleDiff": 0,
+          "four": 265,
+          "fourDiff": 258,
+          "fullWordDiff": 90,
+          "heldF": 8
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 88,
+          "runes": 319,
+          "single": 319,
+          "pair": 644,
+          "pairDiff": 0,
+          "localPair": 384,
+          "localPairDiff": 0,
+          "triple": 153,
+          "tripleDiff": 0,
+          "four": 102,
+          "fourDiff": 98,
+          "fullWordDiff": 40,
+          "heldF": 2
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 88,
+          "runes": 319,
+          "single": 319,
+          "pair": 644,
+          "pairDiff": 140,
+          "localPair": 384,
+          "localPairDiff": 0,
+          "triple": 153,
+          "tripleDiff": 0,
+          "four": 102,
+          "fourDiff": 98,
+          "fullWordDiff": 40,
+          "heldF": 2
+        }
+      ]
+    },
+    {
+      "name": "jpg229",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 18,
+          "runes": 89,
+          "single": 89,
+          "pair": 218,
+          "pairDiff": 0,
+          "localPair": 124,
+          "localPairDiff": 0,
+          "triple": 53,
+          "tripleDiff": 0,
+          "four": 37,
+          "fourDiff": 35,
+          "fullWordDiff": 13,
+          "heldF": 2
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 18,
+          "runes": 89,
+          "single": 89,
+          "pair": 218,
+          "pairDiff": 49,
+          "localPair": 124,
+          "localPairDiff": 0,
+          "triple": 53,
+          "tripleDiff": 0,
+          "four": 37,
+          "fourDiff": 35,
+          "fullWordDiff": 13,
+          "heldF": 2
+        }
+      ]
+    },
+    {
+      "name": "p56_an_end",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 25,
+          "runes": 85,
+          "single": 85,
+          "pair": 130,
+          "pairDiff": 0,
+          "localPair": 96,
+          "localPairDiff": 0,
+          "triple": 36,
+          "tripleDiff": 0,
+          "four": 20,
+          "fourDiff": 20,
+          "fullWordDiff": 11,
+          "heldF": 1
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 25,
+          "runes": 85,
+          "single": 85,
+          "pair": 130,
+          "pairDiff": 24,
+          "localPair": 96,
+          "localPairDiff": 0,
+          "triple": 36,
+          "tripleDiff": 0,
+          "four": 20,
+          "fourDiff": 20,
+          "fullWordDiff": 11,
+          "heldF": 1
+        }
+      ]
+    },
+    {
+      "name": "p57_parable",
+      "results": [
+        {
+          "id": "binary_all_pair_lags",
+          "words": 20,
+          "runes": 95,
+          "single": 95,
+          "pair": 260,
+          "pairDiff": 0,
+          "localPair": 130,
+          "localPairDiff": 0,
+          "triple": 55,
+          "tripleDiff": 0,
+          "four": 40,
+          "fourDiff": 31,
+          "fullWordDiff": 11,
+          "heldF": 3
+        },
+        {
+          "id": "ternary_generator_fixed_coordinates",
+          "words": 20,
+          "runes": 95,
+          "single": 95,
+          "pair": 260,
+          "pairDiff": 57,
+          "localPair": 130,
+          "localPairDiff": 0,
+          "triple": 55,
+          "tripleDiff": 0,
+          "four": 40,
+          "fourDiff": 31,
+          "fullWordDiff": 11,
+          "heldF": 3
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "blob": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/liber-primus/lp2-page-groups-54-55-derived.json",
+      "blob": "8960e113af36ee46186965e394ec6be18d69b74f"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "blob": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ]
+}
