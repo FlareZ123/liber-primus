@@ -41,10 +41,25 @@ On p16–39, 13,137 reduced configurations have cheap bound >5. The remaining 13
 - [Raw output and pinned blobs](lp2-p15-reversing-orbit-mapfirst.json), commit ff66d26d9fcd81da0d506110e9fec4325e6887e.
 - Exact committed core executed in connected V8 (28.768 seconds); standalone wrapper not independently run.
 
+
+## Variable-escape relaxation: no selector search necessary
+
+Allow the escape glyph e_i to change arbitrarily at every transition, without even requiring an invertible public selector. This is a superset of all deterministic public escape laws with the same clock and rank ordering. For a nonrepeat decoded rank y, the ordinary GP29 unrank operation can emit only y or y+1, regardless of e_i. A repeat can emit any glyph. The bounds below do not depend on recovering an escape law, matching word divisions, or preserving word order.
+
+**Shift-before-map:** any two chosen output glyphs collectively receive at most four distinct rank categories, plus all repeats. A common arbitrary rank permutation cannot exceed the sum of the four largest pre-permutation category counts plus repeats. Exhaustively evaluate all 79,200 configurations. Original maximum = **1,038** (read cyclic, hold, dir -1, signed distance, sign -1, phase283), below the minimum top-two native count **1,066**. This even allows an arbitrary fixed outer glyph relabeling.
+
+**Map-before-shift:** the exact assignment minimum L of H lower-bounds each nonrepeat rank count. Every occurrence of rank y must emit one of adjacent canonical glyphs y,y+1. Consequently every adjacent glyph pair has summed count at least L, regardless of the variable escape law. The maximum, over all native windows, of their smallest adjacent-pair count is 24 (Shakespeare), 46 (Gibran), 47 (Emerson). Evaluate exact assignments for all 26,400 symmetry-reduced configurations. The global minimum is **89** (read cyclic, hold, dir -1, absolute distance, phase862). All configurations fail the native adjacent-pair bound. This uses the canonical GP29 unrank order and does not permit a further arbitrary outer relabeling for the map-first case.
+
+The fixed-escape controls from the preceding section both retain exact 9,194-rune replay and satisfy the relaxed bound (assignment minimum zero; actual minimum adjacent-pair sum five). These controls are special cases of variable escape; they are not evidence of blind recovery for a dynamic selector. The original bounds are deterministic counting/assignment statements, with finite-reference interpretation rather than a language-universal theorem.
+
+- [Variable-escape SFT](../sims/lp2_p15_reversing_orbit_variable_escape_sft.cjs), frozen commit 56a98acf050772429f1d0a1d0fb74134779c75ed.
+- [Raw output](lp2-p15-reversing-orbit-variable-escape.json), commit 756159f522df205b3e51d6e1a056298cf1c2395f.
+- Exact frozen core executed in connected V8, 81.321 seconds; standalone Node wrapper not independently run.
+
 ## Reproduction and limits
 
 - [Frozen CommonJS SFT](../sims/lp2_p15_reversing_orbit_rank28_sft.cjs), commit 7a26efa742ad2c1be78e629fc690e98686afc483.
 - [Original raw output](lp2-p15-reversing-orbit-rank28-original.json), [Gibran raw output](lp2-p15-reversing-orbit-rank28-control1.json), [Emerson raw output](lp2-p15-reversing-orbit-rank28-control2.json).
 - All three exact committed core functions ran in connected V8 against pinned source blobs; standalone Node wrapper not independently executed. The first raw output was serialized from the returned tool result rather than a second execution.
 
-This retires both specified operation orders of the reversing orbit for the three native-reference registers. It does not exclude other repeat state laws, other registers, or variable escape labels. Do not expand the source-unsupported direction rules merely to generate additional experiments.
+This retires both specified operation orders of the reversing orbit for the three native-reference registers. The variable-escape relaxation also fails both operation orders, with canonical GP29 unrank order required for the map-first result. It does not exclude other repeat state laws, other registers, or an additional map-first outer relabeling. Do not expand the source-unsupported direction rules merely to generate additional experiments.
