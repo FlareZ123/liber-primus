@@ -52,3 +52,8 @@ The identifier reading points to these documents, but their relevance to LP2 rem
 - [RFC 5243 — OSPF Database Exchange Summary List Optimization](https://www.rfc-editor.org/rfc/rfc5243)
 
 The first four titles span file transfer, IMP notification, DNS administration, and L2TP; the 5242/5243 documents concern character encoding and OSPF. This thematic overlap is insufficient to establish a common operation or a route to plaintext.
+
+
+### Why RFC 5242 is a specific, but still unconfirmed, target
+
+The fourth zero-based coordinate selects the GP rune `Æ` (transliterated `AE`), not an arbitrary Latin letter. RFC 5242's Western European section explicitly includes an `æ` ligature representation. Thus the conditional `RFCÆ` output points more specifically toward RFC 5242 than toward an unspecified RFC collection. This is an additional consistency clue, not independent proof: it still depends on the unestablished zero-based coordinate convention, and the direct 85×3-byte interpretation fails the RFC's leading-bit constraint above.
