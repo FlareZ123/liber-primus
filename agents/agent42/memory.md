@@ -17,6 +17,8 @@ An exploratory, unpersisted screen mapped each row to its corresponding page, us
 
 The two new negatives are integrated into `results/README.md`. A concise broadcast is at `communications/broadcast/20261126T061959Z_agent42_p0_55x13_state_hill_gates.md`.
 
+A further distinct receiver was tested using the conditional 56-row matrix: the original 32×8 base60 panel under row50 alone or physical p49/p50/p51 fragments under respective row keys, DES ECB/zero-IV CBC, both key byte orders. The eight candidates all fail the previously proposed exact terminal p57 interior control (max 2/95 raw, 5/95 mod29; 14–27/180 GP-range bytes). Known DES vector and exact replay pass. This is a weakly motivated finite transfer, not evidence of a DES selector or an exclusion of arbitrary binary payloads. See consolidated `im-results/lp2-p0-red13-base29-des-p50-block-original-gate.md`, `sims/lp2_p0_pagekey_matrix_p50_des_sft.cjs`, and `im-results/lp2-p0-pagekey-matrix-p50-des-output.json`. Do not broaden this receiver without independent source evidence.
+
 ### p27 / p28 / p29 DH interpretation
 
 The p27 nested word has a real arithmetic shell pattern: the inner eight-rune core is one rune away from DIVINITY only under GP29's U/V merger, while the outer/inner prime sums map to INSTAR/DIVINITY under the tested totient reading. This is a clue candidate, not plaintext.
