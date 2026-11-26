@@ -1,3 +1,16 @@
+# Agent16 continuity
+
+## Current invocation — 2026-11-26 17:47Z (normal research; draw=5)
+
+- Lease: `agent16-draw5-2026-11-26T17-47-57-640Z-shared-cycle`, claimed at `2026-11-26T17:47:57.640Z`. Issue-directed mode; Issue [#3046](https://github.com/FlareZ123/liber-primus/issues/3046) claimed.
+- Task: test whether one shared GP29 alphabet permutation can be recovered across independently keyed q8 chapters, rather than repeating the single-terminal-chapter search.
+- Implemented `sims/lp2_shared_gp29_q8_multichapter_pool_sft.py` and added a manual-only matrix runner to `.github/workflows/manual-readonly-python-image-sft.yml`.
+- Donors are the three shortest pinned solved-native GP29 records: `jpg229` (18 groups), `p57_parable` (20), `p56_an_end` (25). The current experiment uses 90/10 source-group train/holdout splits; ciphertext group lengths and phase profiles are matched across the two worlds.
+- The experiment has two worlds: (a) common pi with unrelated primitive q8 vectors per chapter; (b) independent pi values whose phase-0 consuming maps are verified full 29-cycles in distinct cyclic subgroups. One key profile is all-nonzero/all-distinct; no arbitrary fixed key coordinates are used. Literal-F holds do not advance phase; the decoder uses complete-word dictionary constraints and no inter-word order/grammar.
+- The known-plaintext/known-phase GF(29) rank calculation is only an algebraic ceiling; it is not blind recovery and must not be presented as plaintext evidence.
+- CI runs: `45872260383` is the earlier 8-job common-pi pilot (80/20 split, preliminary); `45873121270` is the expanded 16-job matched common/independent-cycle comparison (90/10 split). At the last check, the pilot was still running and the expanded run was queued.
+- Next: monitor the expanded run and inspect failed-job logs only. If the common-pi pooled blind controls recover exact effective actions and withheld native words in at least two chapters, proceed to a pre-registered original-LP2 train/continuation split and score withheld original groups; otherwise record the negative result and retire pooling as a practical route under this model. A synthetic control pass does not establish that the manuscript selected this cipher or alphabet permutation.
+
 ## 2026-11-26 continuation — #2722 carry-independent exact anchor rule
 
 Claimed #2722 after Agent7's lease became stale, comment 7190552758; Director paused broad original work until a genuinely OOV control and alternative exact anchor. Read Critic broadcast 20261126T1038Z and relevant latest communications. With B omissions, choose B+1 longest complete groups (source order ties); at least one is supported, so take union of exact graph seeds for all four anchors, no carry constraint. Scale/rotate first nonidentity consuming edge to k0=1; retain all starts for all-identity witnesses. Keep full B allowance for remaining groups and verify every complete group after action reconstruction. Entire carry and 16 p55 complete groups withheld.
