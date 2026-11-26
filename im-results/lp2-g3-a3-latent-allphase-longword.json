@@ -1,0 +1,134 @@
+{
+  "vocab": 35938,
+  "nKey": 2916,
+  "nodes": 61231,
+  "controls": [
+    {
+      "step": 0,
+      "sgn": -1,
+      "origin": 1775,
+      "len": 12,
+      "skips": 0,
+      "retained": true
+    },
+    {
+      "step": 0,
+      "sgn": 1,
+      "origin": 621,
+      "len": 9,
+      "skips": 0,
+      "retained": true
+    },
+    {
+      "step": 1,
+      "sgn": -1,
+      "origin": 401,
+      "len": 11,
+      "skips": 1,
+      "retained": true
+    },
+    {
+      "step": 1,
+      "sgn": 1,
+      "origin": 873,
+      "len": 13,
+      "skips": 2,
+      "retained": true
+    },
+    {
+      "step": 2,
+      "sgn": -1,
+      "origin": 517,
+      "len": 9,
+      "skips": 1,
+      "retained": true
+    },
+    {
+      "step": 2,
+      "sgn": 1,
+      "origin": 2775,
+      "len": 10,
+      "skips": 1,
+      "retained": true
+    }
+  ],
+  "originals": [
+    {
+      "sgn": -1,
+      "step": 0,
+      "states": 88711901,
+      "intervals": [
+        [
+          1126,
+          8
+        ]
+      ]
+    },
+    {
+      "sgn": 1,
+      "step": 0,
+      "states": 88690081,
+      "intervals": []
+    },
+    {
+      "sgn": -1,
+      "step": 1,
+      "states": 91218097,
+      "intervals": [
+        [
+          1126,
+          8
+        ]
+      ]
+    },
+    {
+      "sgn": 1,
+      "step": 1,
+      "states": 91154753,
+      "intervals": []
+    },
+    {
+      "sgn": -1,
+      "step": 2,
+      "states": 91198735,
+      "intervals": [
+        [
+          1126,
+          8
+        ]
+      ]
+    },
+    {
+      "sgn": 1,
+      "step": 2,
+      "states": 91166266,
+      "intervals": []
+    }
+  ],
+  "ordinary": {
+    "longCount": 343,
+    "intervalCount": 1,
+    "disjointUpper": 1,
+    "minOov": 342,
+    "allowedOov": 144,
+    "intervals": [
+      [
+        1126,
+        8
+      ]
+    ]
+  },
+  "allSkip": {
+    "longCount": 343,
+    "intervalCount": 1,
+    "disjointUpper": 1,
+    "minOov": 342,
+    "allowedOov": 144,
+    "intervals": [
+      [
+        1126,
+        8
+      ]
+    ]
+  }
+}
