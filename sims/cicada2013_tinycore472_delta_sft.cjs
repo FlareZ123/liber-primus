@@ -24,7 +24,7 @@ async function get(url,headers={},limit=cap){
 /** @param {Buffer} gz */
 function cpio(gz){
   const b=gunzipSync(gz,{maxOutputLength:64*1024*1024}),align=n=>(n+3)&~3;
-  let at=0;const entries=new Map(),links=new Map();let trailer=false;
+  let at=0;const entries=new Map(),links=new Map(),types={};let trailer=false;
   while(at+110<=b.length){
     const magic=b.toString("ascii",at,at+6);
     assert.ok(magic==="070701"||magic==="070702","newc magic at "+at);
@@ -38,6 +38,7 @@ function cpio(gz){
     const data=b.subarray(at,at+size);at=align(at+size);
     if(name==="TRAILER!!!"){trailer=true;break}
     const kind=mode&0xf000;
+    types[kind]=(types[kind]||0)+1;
     if(kind!==0x8000&&kind!==0xa000)continue;
     assert.ok(!entries.has(name),"duplicate path "+name);
     const entry={name,kind,mode,uid,gid,mtime,data};
@@ -53,6 +54,7 @@ function cpio(gz){
     const payload=group.find(e=>e.data.length);
     if(payload)for(const e of group)if(!e.data.length)e.data=payload.data;
   }
+  entries.types=types;
   return entries;
 }
 /** @param {Buffer} b */
@@ -186,7 +188,9 @@ async function main(){
   const orig=cpio(original);
   assert.equal(orig.get("usr/share/doc/tc/release.txt")?.data.toString(),"4.7.2\n");
   report.original={url:originalUrl,sha256:originalSha,release:"4.7.2",files:[...orig.values()].filter(e=>e.kind===0x8000).length,symlinks:[...orig.values()].filter(e=>e.kind===0xa000).length};
-  assert.equal(orig.size,1028,"compare prior manifest entry count");
+  report.original.cpioTypes=orig.types;
+  assert.equal(orig.size,903,"regular files + symlinks (125 /dev special entries excluded)");
+  assert.equal((orig.types[0x2000]||0)+(orig.types[0x6000]||0)+(orig.types[0x1000]||0),125,"special entries");
   const b=await baseline();
   report.baseline={...b.source,member:b.member,coreSha256:b.sha256,release:"4.7.2"};
   report.delta=delta(orig,b.entries);
