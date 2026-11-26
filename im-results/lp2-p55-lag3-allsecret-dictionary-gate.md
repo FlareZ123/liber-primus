@@ -58,3 +58,25 @@ A planted 13-rune **DETERMINATION** word is encoded using a seeded, undisclosed-
 [Read-only Python3 SFT](../sims/lp2_p55_lag3_allsecret_dictionary_sft.py) checks the original p55 indices by SHA256 `9a991437b541673c35cca0ba877eddee719c6fad7ec68c495100d2e27c61529f`, parses every source printed word, validates exact ciphertext, computes both source patterns, and checks both normalizations against the pinned dictionary. [Manual Windows workflow](../.github/workflows/agent17-p55-lag3-word-gate.yml) provides an independent original-repository execution.
 
 **Research decision:** retire the seemingly tempting “THOR/lag-three difference, then a secret substitution alphabet” explanation for ordinary GP-native English at p55, including a separate word-reset cipher. A later candidate must supply an *independently justified additional operation* or evidence that the 13-rune original word is outside the tested native vocabulary. The original p55 third-back IoC by itself is not a decryption signal.
+
+
+## Latent-spacing constructive inverse (Agent25, 26 November 2026)
+
+The intact-word obstruction does not resolve the independent H-decoy question. Retain exactly the previously reported lag3 ordinary ciphertext difference D[i]=(C[i]-C[i-3]) mod29, i=3..75, followed by one unknown fixed GP29 bijection. The first three source runes are held as a known ciphertext prefix (not claimed as decoded plaintext). Do not constrain any printed boundary. This is a motivated relaxation of the preceding experiment, not a new source-authenticated cipher.
+
+Learn interpolated native GP29 1- through 4-gram probabilities on Gibran, Shakespeare and Emerson, excluding each donor's final 16,000 native runes. Greedy native orthography uses the same QU→CW, V→U, K/Q→C, Z→S, ING→NG and IO→IA conventions as existing receivers. Three controls are the first 73-rune windows in each withheld tail with 21 distinct runes and IoC within .006 of the original lag3 difference (.0525114); each is encrypted under an independently sampled full bijection and the lag3 feedback. Hidden key and plaintext are not inputs to inference.
+
+The fixed inverse uses 200 simulated-annealing starts of 12,000 single key-swap proposals, incremental local 4-gram scores, and a fixed geometric temperature schedule. Retain the top 24 distinct decoding tapes by native score and rerank by the sum of native score and optimal TextBlob lexical segmentation score (unknown single-rune penalty 12). The lexicon folds to native runes and excludes one-letter words other than A/I. No actual source boundaries are used.
+
+| Input | Correct observed plaintext runes | Native score | Latent lexical score |
+|---|---:|---:|---:|
+| Gibran tail | 66/73 | -139.0444 | -167.5238 |
+| Shakespeare tail | 72/73 | -150.7630 | -174.7070 |
+| Emerson tail | 72/73 | -134.4133 | -143.3021 |
+| Original p55 | Unknown | -206.9186 | -305.0621 |
+
+All three blind controls yield substantially readable prose, recovering 210/219 native runes. Original outputs remain incoherent; the best joint candidate is merely a succession of disconnected short words and unknown symbols. All reported original candidate keys re-encrypt the full 76-rune original source with the retained first three runes. Such replay is automatic in this bijective family, not a key authentication.
+
+The result is a calibrated bounded search negative for a **spacing-free** fixed lag3 relabeling. It is not an exhaustive key-space exclusion; the controls are imperfect, and no independently authenticated source instruction selects THOR/lag3 or the relabeling. No new plaintext. Do not expand arbitrary additional layers from the IoC anomaly.
+
+[Standalone CJS receiver](../sims/lp2_p55_lag3_latent_spacing_substitution_sft.cjs) · [Executed complete raw results](lp2-p55-lag3-latent-spacing-substitution.json). Executed against pinned connected repository files; no separate Windows CI pass claimed.
