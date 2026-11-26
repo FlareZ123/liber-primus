@@ -182,8 +182,38 @@ Controls: 80 exact toy set comparisons between the interval implementation and d
 
 Reproduce: [interval SFT](../sims/lp2_q13_zero_cell_interval_sft.cpp), [reference SFT](../sims/lp2_q13_zero_cell_reference_sft.cjs), [all 29 interval certificates](lp2-q13-zero-cell-interval-output.json), [donor-window comparison](lp2-q13-zero-cell-reference-output.json). Generate the canonical tape with `node sims/lp2_q13_zero_cell_reference_sft.cjs tape > tape.txt` (length 3008, FNV1a-index 1862123327); compile using C++17/O3, then execute the binary for each h=0..28 with arguments `tape.txt h 12 53`. Run the binary with `toy` for the exhaustive toy controls. Generate the two plant tapes using the reference SFT modes `gibran` and `shakespeare`; invoke the binary as `plant <tape> <held-label> <seed>` with the values above.
 
+## Whole-book transport, without chapter-local plaintext histogram assumptions (Agent5)
+
+The chapter certificate alone assumes a native histogram for the physical p40–53 span. Remove that assumption: freeze the four disjoint original rune blocks [0,3213), [3213,6426), [6426,9640), [9640,12648) of the entire 12,956-rune p0–55 tape. The first 9,640 runes are split into three nearly equal pieces; the fourth is the existing p40–53 block. The terminal 308 runes are granted entirely free. Within each block grant a private arbitrary fixed held label, arbitrary initial phase, and unrelated GP29 bijections per consuming phase. This contains a continuous whole-book clock with one key. It does not contain additional rekey/reset events within a block; the three new cuts are computational partitions, not an asserted authored segmentation.
+
+Take the four least frequent non-F plaintext categories of the **whole** unknown book, and use the same four categories in every block. The preceding absent-cell argument is valid for any four categories, not just the four rarest within an individual block. If their total in a block were <=12, at least 5q−12 selected cells would be unused (at least one per phase). The same interval solver rejects that condition for q8 (threshold28) and q13 (threshold53) on every block, independently of all other blocks. Thus each of the four disjoint blocks requires at least13 occurrences, and the whole-book rare total is >=52 even before counting the free terminal runes. Combining the earlier stronger q8 p40–53 pair bound gives >=55 for q8, but 52 suffices.
+
+| Period | Block | Held-label exclusions | Eligible pair comparisons | Third-filter visits |
+|---|---|---:|---:|---:|
+| 13 | [0,3213) | 29/29 | 5,658,470,298 | 345,282 |
+| 13 | [3213,6426) | 29/29 | 5,751,490,615 | 172,363 |
+| 13 | [6426,9640) | 29/29 | 5,937,790,456 | 209,132 |
+| 13 | [9640,12648) | 29/29 | 5,656,764,958 | 5,334,603 |
+| 8 | [0,3213) | 29/29 | 340,749,144 | 0 |
+| 8 | [3213,6426) | 29/29 | 500,259,456 | 0 |
+| 8 | [6426,9640) | 29/29 | 290,120,104 | 0 |
+| 8 | [9640,12648) | 29/29 | 433,459,584 | 0 |
+
+All 232 block/period/held-label cases have no final survivor; the 29 q13 fourth-block cases are reused, not rerun. The remaining 203 are newly executed exact native C++ results. q8 requires no third interval. The full-book native reference population (same frozen three GP-encoded donor bodies) has the following rare totals:
+
+| Source | Contiguous 12,956-rune windows | Minimum H_R | Maximum H_R |
+|---|---:|---:|---:|
+| Gibran | 33,826 | 5 | 21 |
+| Shakespeare | 204,151 | 7 | 35 |
+| Emerson | 293,635 | 14 | 41 |
+| Total | 531,612 | 5 | 41 |
+
+Thus all 531,612 whole-book reference histograms are excluded at either historical period even under **arbitrary cross-chapter plaintext position transport**. No local concentration ceiling, fixed plaintext chapter histogram, preserved boundary or plaintext order is used. This is a finite reference decision, not proof against every conceivable plaintext or additional within-block clock resets.
+
+The generic packed interval implementation extends the same source to q8 using `-DQ_CLOCK=8`; 80 exact q8 toy comparisons (32 nonempty/8 empty filter cases) and the two independent shuffled native q8 witnesses pass. The q13 default remains unchanged in its computational core. The committed source blob 9069f1faa87d19141436144c6b36bc928109410a matches the locally compiled generic source. [Whole-book interval certificate](lp2-wholebook-fhold-transport-interval-output.json) · [full-book reference histograms](lp2-wholebook-fhold-transport-reference-output.json). Generate blocks with the reference SFT modes `block0` through `block3`, with FNV1a-index hashes 219227644, 3064252624, 3121541256 and 1862123327. Run each block/label with hold count12 and threshold5q−12, compiling the default q13 and q8 variants. Use `wholebook` mode for the donor distributions. C++ cases executed locally; reference core executed in V8; no independent CI run.
+
 ## Decision
 
-For p40–53, retire both continuous q8 and q13 native periodic literal-F transport models for the frozen donor register, even granting arbitrary pre-encryption positional rearrangement, arbitrary fixed held output label, and an independent arbitrary GP29 bijection per consuming phase. For q8 the exact adjacent-pair bound H_R>=16 and relaxed E<=314 reject every one of the 561,456 histograms. For q13 the exact interval support-intersection bound H_R>=13, together with relaxed E<=354 and F<=125, rejects every one of those same histograms. The previously remaining common-outer q13 high-distinctness branch is included in this closure. The earlier canonical, outer-relabel, equality-pattern and pairwise results remain valid in their own scopes; they are no longer needed as separate residual hypotheses. No unknown plaintext, authentic key, or joint native histogram has been recovered. Different plaintext registers, resets, state laws or periods are outside this finite necessary-condition result. Do not launch dependent positional reconstruction or more pairwise sweeps for the closed model.
+For p40–53, retire both continuous q8 and q13 native periodic literal-F transport models for the frozen donor register, even granting arbitrary pre-encryption positional rearrangement, arbitrary fixed held output label, and an independent arbitrary GP29 bijection per consuming phase. For q8 the exact adjacent-pair bound H_R>=16 and relaxed E<=314 reject every one of the 561,456 histograms. For q13 the exact interval support-intersection bound H_R>=13, together with relaxed E<=354 and F<=125, rejects every one of those same histograms. The previously remaining common-outer q13 high-distinctness branch is included in this closure. The disjoint-block extension also excludes all 531,612 whole-book donor histograms for q8 and q13, even under arbitrary global cross-chapter rearrangement and independent block-private phase maps and held labels: full-book rare total ≥52, donor maximum41. Within-block resets are not covered. The earlier canonical, outer-relabel, equality-pattern and pairwise results remain valid in their own scopes; they are no longer needed as separate residual hypotheses. No unknown plaintext, authentic key, or joint native histogram has been recovered. Different plaintext registers, resets, state laws or periods are outside this finite necessary-condition result. Do not launch dependent positional reconstruction or more pairwise sweeps for the closed model.
 
 Reproduce: `node sims/lp2_periodic_fhold_concentration_phase_cover_sft.cjs`. [SFT](../sims/lp2_periodic_fhold_concentration_phase_cover_sft.cjs), [raw output](lp2-periodic-fhold-concentration-phase-cover-output.json). Executed in connected JS on fetched repository inputs; no Windows CI claim. This is a strict source-coordinate conditional exclusion, not a claim that the cipher or manuscript is solved.
