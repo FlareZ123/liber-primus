@@ -74,19 +74,19 @@ struct GFilter{
  bool allowed(const GOption&o){for(int i=0;i<o.n;i++){auto e=o.e[i];if(!allowed(e.c,e.p,e.j))return false;}return true;}
 };
 struct GPosting{int feat;vector<int> ids;vector<uint64_t> bits;};
-struct GDomain{string cipher;vector<GOption> opts;vector<vector<GPosting>> post;};
+struct GDomain{string cipher;vector<GOption> opts;vector<vector<GPosting>> post;array<int,N*Q> tokenPos;vector<array<int,N>> positionPost;array<vector<uint64_t>,N*Q> phaseUse;};
 vector<vector<int>> clocks(const vector<string>&groups,uint64_t mask,int start=0){
  vector<vector<int>> out;int z=0,j=start;for(auto&w:groups){vector<int> row;for(char ch:w){int c=fixed::val(ch);bool hold=!c&&((mask>>z)&1);if(!c){fixed::require(z<63,"too many zero positions");z++;}
  row.push_back(hold?-1:j);if(!hold)j=(j+1)%Q;}out.push_back(row);}return out;
 }
 GDomain makeGDomain(const string&c,const vector<int>&clock,const vector<string>&words){
- GDomain d;d.cipher=c;d.post.resize(c.size());vector<map<int,vector<int>>> tmp(c.size());
+ GDomain d;d.cipher=c;d.post.resize(c.size());d.tokenPos.fill(-1);d.positionPost.resize(c.size());for(auto&row:d.positionPost)row.fill(-1);for(size_t i=0;i<c.size();i++)if(clock[i]>=0)d.tokenPos[fixed::val(c[i])*Q+clock[i]]=i;vector<map<int,vector<int>>> tmp(c.size());
  for(auto&w:words){GOption o;bool ok=true;for(size_t i=0;i<w.size();i++){int p=fixed::val(w[i]),x=fixed::val(c[i]),j=clock[i];
   if(j<0){if(p){ok=false;break;}o.f[i]=0;continue;}if(!p){ok=false;break;}
   for(int t=0;t<o.n;t++){auto e=o.e[t];if(e.j==j&&(((e.c==x)!=(e.p==p))||((e.c==e.p)!=(x==p)))){ok=false;break;}}
   if(!ok)break;o.e[o.n++]={uint8_t(x),uint8_t(p),uint8_t(j)};o.f[i]=j*N+p;
  }if(!ok)continue;int index=d.opts.size();d.opts.push_back(o);for(size_t i=0;i<c.size();i++)tmp[i][o.f[i]].push_back(index);}
- for(size_t i=0;i<c.size();i++)for(auto&[feat,ids]:tmp[i]){GPosting p{feat,move(ids),{}};if(p.ids.size()>=64){p.bits.assign((d.opts.size()+63)/64,0);for(int id:p.ids)p.bits[id/64]|=uint64_t(1)<<(id%64);}d.post[i].push_back(move(p));}
+ for(size_t i=0;i<c.size();i++)for(auto&[feat,ids]:tmp[i]){GPosting p{feat,move(ids),{}};p.bits.assign((d.opts.size()+63)/64,0);for(int id:p.ids)p.bits[id/64]|=uint64_t(1)<<(id%64);int a=feat%N;d.positionPost[i][a]=d.post[i].size();if(clock[i]>=0){auto&u=d.phaseUse[clock[i]*N+a];if(u.empty())u.assign(p.bits.size(),0);for(size_t z=0;z<u.size();z++)u[z]|=p.bits[z];}d.post[i].push_back(move(p));}
  return d;
 }
 bool supportsStatus(const GOption&o,int z){for(int i=0;i<o.n;i++){auto e=o.e[i];if(bool(z&(1<<e.j))!=(e.c==e.p))return false;}return true;}
@@ -94,11 +94,12 @@ vector<string> decodeFixed(const vector<string>&groups,const vector<vector<int>>
  fixed::Perm ip{};for(int i=0;i<N;i++)ip[pi[i]]=i;vector<string> out;
  for(size_t g=0;g<groups.size();g++){string w;for(size_t i=0;i<groups[g].size();i++){int j=clock[g][i],c=fixed::val(groups[g][i]);if(j<0){if(c)return {};w+='0';continue;}int p=ip[aff::sub[pi[c]][k[j]]];if(!p)return {};w+=fixed::SYM[p];}out.push_back(w);}return out;
 }
+struct LexState{vector<uint64_t> bits;array<int8_t,N*Q> pmap,cmap;LexState(){pmap.fill(-1);cmap.fill(-1);}};
 struct GStats{uint64_t nodes=0,joins=0,perms=0,keyTests=0,packNodes=0,features=0,options=0;};
 struct GSearch{
  Hard hard;vector<vector<int>> clock;vector<string> train;vector<GDomain> ds;vector<int> order;vector<Graph> seeds;int maxOov=3;
  atomic<bool> found{false},timed{false};atomic<size_t>next{0},done{0};Clock::time_point deadline;mutex answerMutex;
- fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;vector<char> completed;vector<string> seedWords;
+ fixed::Perm answer{};fixed::Key answerKey{};int answerOov=-1;GStats total;vector<char> completed;vector<GOption> seedOptions;array<size_t,49> offsets{};LexState initial;
  GSearch(const vector<string>&g,uint64_t mask,int budget=3):clock(clocks(g,mask)),train(g),maxOov(budget){
   vector<string> pre(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(pre.begin(),pre.end());
   set<pair<int,int>> obs;for(int i=0;i<48;i++){ds.push_back(makeGDomain(g[i],clock[i],i==47?pre:fixed::by[g[i].size()]));if(i!=47)order.push_back(i);
@@ -108,48 +109,40 @@ struct GSearch{
   for(int z=0;z<256;z++){if(z&ban)continue;int missing=0;for(int i=0;i<48;i++){bool ok=false;for(auto&o:ds[i].opts)if(supportsStatus(o,z)){ok=true;break;}if(!ok&&(i==47||++missing>maxOov)){missing=maxOov+1;break;}}if(missing<=maxOov)hard.statuses.push_back(z);}
   int possibleZero=0;for(int z:hard.statuses)possibleZero|=z;hard.nonzero=255^possibleZero;
   sort(order.begin(),order.end(),[&](int a,int b){auto s=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=s(a),y=s(b);return x==y?a<b:x<y;});
-  unordered_set<string>seen;for(auto&o:ds[47].opts){int gauge=-1,used=0;for(int i=0;i<o.n;i++){auto e=o.e[i];used|=1<<e.j;if(gauge<0&&e.c!=e.p)gauge=e.j;}
-   for(int j=0;j<Q;j++){if(gauge>=0?j!=gauge:bool(used&(1<<j)))continue;Graph x;if(extend(Graph(j,&hard),o,x)&&seen.insert(x.sig()).second)seeds.push_back(x);}}
+  unordered_map<string,GOption> seedMap;for(auto&o:ds[47].opts){int gauge=-1,used=0;for(int i=0;i<o.n;i++){auto e=o.e[i];used|=1<<e.j;if(gauge<0&&e.c!=e.p)gauge=e.j;}
+   for(int j=0;j<Q;j++){if(gauge>=0?j!=gauge:bool(used&(1<<j)))continue;Graph x;if(extend(Graph(j,&hard),o,x)&&seedMap.emplace(x.sig(),o).second)seeds.push_back(x);}}
   sort(seeds.begin(),seeds.end(),[](auto&a,auto&b){return a.dimension()==b.dimension()?a.sig()<b.sig():a.dimension()<b.dimension();});
+  for(auto&x:seeds)seedOptions.push_back(seedMap.at(x.sig()));
+  for(int g=0;g<48;g++)offsets[g+1]=offsets[g]+(ds[g].opts.size()+63)/64;initial.bits.assign(offsets[48],0);
+  for(int g=0;g<48;g++)for(size_t i=0;i<ds[g].opts.size();i++)if(any_of(hard.statuses.begin(),hard.statuses.end(),[&](int z){return supportsStatus(ds[g].opts[i],z);}))initial.bits[offsets[g]+i/64]|=uint64_t(1)<<(i%64);
   completed.assign(seeds.size(),0);
   cout<<"CONTINUOUS CARRY seeds="<<seeds.size()<<" zeroStatus";for(int z:hard.statuses)cout<<" "<<z;cout<<" domains";for(int i:order)cout<<" "<<i<<":"<<ds[i].opts.size();cout<<endl;
  }
  bool stop(){if(found.load(memory_order_relaxed)||timed.load(memory_order_relaxed))return true;if(Clock::now()>=deadline){timed=true;return true;}return false;}
- vector<int> domain(int g,GFilter&f,size_t cap,GStats&c){
-  const auto&d=ds[g];
-  struct Choice{size_t count=0;vector<const GPosting*> lists;};
-  vector<Choice> choices;choices.reserve(d.post.size());
-  for(size_t pos=0;pos<d.post.size();pos++){
-   Choice q;int x=fixed::val(d.cipher[pos]);
-   for(const auto&p:d.post[pos]){
-    c.features++;int j=p.feat/N,a=p.feat%N;
-    if(a&&!f.allowed(x,a,j))continue;
-    q.count+=p.ids.size();q.lists.push_back(&p);
+ size_t countDomain(int g,const LexState&state)const{size_t n=0;for(size_t i=offsets[g];i<offsets[g+1];i++)n+=__builtin_popcountll(state.bits[i]);return n;}
+ bool applyLex(LexState&state,const GOption&o,const vector<int>&rem)const{
+  for(int z=0;z<o.n;z++){auto e=o.e[z];int t=e.c*Q+e.j,u=e.p*Q+e.j;
+   if(state.pmap[t]>=0){if(state.pmap[t]!=e.p)return false;continue;}
+   if(state.cmap[u]>=0&&state.cmap[u]!=e.c)return false;
+   state.pmap[t]=e.p;state.cmap[u]=e.c;
+   for(int g:rem){const auto&d=ds[g];int pos=d.tokenPos[t];auto begin=offsets[g],end=offsets[g+1];
+    if(pos>=0){int n=d.positionPost[pos][e.p];if(n<0){fill(state.bits.begin()+begin,state.bits.begin()+end,0);continue;}auto&allow=d.post[pos][n].bits;for(size_t i=begin;i<end;i++)state.bits[i]&=allow[i-begin];}
+    else{auto&deny=d.phaseUse[e.j*N+e.p];if(!deny.empty())for(size_t i=begin;i<end;i++)state.bits[i]&=~deny[i-begin];}
    }
-   if(!q.count)return {};
-   choices.push_back(move(q));
-  }
-  sort(choices.begin(),choices.end(),[](const auto&a,const auto&b){return a.count<b.count;});
-  vector<int> out;
-  auto test=[&](int id){c.options++;if(f.allowed(d.opts[id]))out.push_back(id);return out.size()>=cap;};
-  if(choices[0].count<=128||choices.size()==1){
-   for(auto*p:choices[0].lists)for(int id:p->ids)if(test(id))return out;
-   return out;
-  }
-  const size_t n=(d.opts.size()+63)/64;vector<uint64_t> bits(n),scratch(n);
-  auto add=[&](vector<uint64_t>&v,const Choice&q){
-   for(auto*p:q.lists){if(p->bits.empty()){for(int id:p->ids)v[id/64]|=uint64_t(1)<<(id%64);}
-    else for(size_t i=0;i<n;i++)v[i]|=p->bits[i];}
-  };
-  add(bits,choices[0]);
-  for(size_t pos=1;pos<min<size_t>(3,choices.size());pos++){
-   if(choices[pos].count==d.opts.size())continue;
-   fill(scratch.begin(),scratch.end(),0);add(scratch,choices[pos]);bool any=false;
-   for(size_t i=0;i<n;i++){bits[i]&=scratch[i];any|=bits[i]!=0;}
-   if(!any)return {};
-  }
-  for(size_t i=0;i<n;i++){uint64_t b=bits[i];while(b){int bit=__builtin_ctzll(b);b&=b-1;if(test(int(i*64+bit)))return out;}}
-  return out;
+  }return true;
+ }
+ vector<int> domain(int g,GFilter&f,size_t cap,GStats&c,LexState&state){
+  const auto&d=ds[g];vector<int>out;out.reserve(min<size_t>(cap,d.opts.size()));
+  size_t start=offsets[g];for(size_t i=start;i<offsets[g+1];i++){uint64_t bits=state.bits[i];while(bits){int k=__builtin_ctzll(bits);uint64_t b=uint64_t(1)<<k;bits^=b;int id=int((i-start)*64+k);
+   c.options++;if(f.allowed(d.opts[id])){out.push_back(id);if(out.size()>=cap)return out;}else state.bits[i]&=~b;
+  }}return out;
+ }
+ uint64_t packingBound(const Graph&g,uint64_t cap=8192)const{
+  uint64_t b=1;auto mult=[&](uint64_t v){if(v&&b>cap/v)b=cap+1;else b*=v;};
+  for(int i=0;i<g.k.d;i++)mult(N);
+  vector<int>sz;for(int x=0;x<N;x++)if(g.size[x])sz.push_back(g.size[x]);
+  sort(sz.begin(),sz.end(),greater<int>());int free=N-sz[0];
+  for(size_t i=1;i<sz.size();i++){mult(free);free-=sz[i];}return b;
  }
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
   c.perms++;auto words=decodeFixed(train,clock,pi,k);if(words.empty()||!fixed::prefixDict.count(words.back()))return;
@@ -158,30 +151,53 @@ struct GSearch{
  }
  void pack(const Graph&g,const fixed::Key&k,GStats&c){
   c.keyTests++;bool primitive=false;for(int j=0;j<4;j++)primitive|=k[j]!=k[j+4];if(!primitive)return;
-  array<int,N> val{},trans{};array<uint32_t,N> masks{};for(int x=0;x<N;x++){int v=0;for(int j=0;j<Q;j++)v+=g.off[x][j]*k[j];v%=N;val[x]=v;uint32_t b=1u<<v;if(masks[g.r[x]]&b)return;masks[g.r[x]]|=b;}
-  int root=g.r[0];trans[root]=(N-val[0])%N;uint32_t used=fixed::rot(masks[root],trans[root]);vector<int> rem;for(int x=0;x<N;x++)if(masks[x]&&x!=root)rem.push_back(x);
-  auto dfs=[&](auto&&self,uint32_t mask,vector<int>left)->void{if(stop())return;c.packNodes++;if(left.empty()){fixed::Perm pi{};for(int x=0;x<N;x++)pi[x]=(val[x]+trans[g.r[x]])%N;check(pi,k,c);return;}
-   int pick=-1;vector<int> options;
-   for(int i=0;i<int(left.size());i++){int r=left[i];vector<int> v;for(int t=0;t<N;t++)if(!(mask&fixed::rot(masks[r],t)))v.push_back(t);if(v.empty())return;if(pick<0||v.size()<options.size()){pick=i;options=move(v);if(options.size()==1)break;}}
-   int r=left[pick];left.erase(left.begin()+pick);for(int t:options){trans[r]=t;self(self,mask|fixed::rot(masks[r],t),left);if(stop())return;}
+  array<int,N>val{},trans{};array<uint32_t,N>masks{};
+  for(int x=0;x<N;x++){
+   int v=0;for(int j=0;j<Q;j++)v+=g.off[x][j]*k[j];v%=N;val[x]=v;
+   uint32_t bit=1u<<v;if(masks[g.r[x]]&bit)return;masks[g.r[x]]|=bit;
+  }
+  int anchor=0;for(int x=1;x<N;x++)if(g.size[x]>g.size[anchor])anchor=x;
+  vector<int>rem;for(int x=0;x<N;x++)if(masks[x]&&x!=anchor)rem.push_back(x);
+  auto dfsPack=[&](auto&&self,uint32_t used,vector<int>left)->void{
+   if(stop())return;c.packNodes++;
+   if(left.empty()){
+    fixed::Perm pi{};int delta=(val[0]+trans[g.r[0]])%N;
+    for(int x=0;x<N;x++)pi[x]=(val[x]+trans[g.r[x]]+N-delta)%N;
+    check(pi,k,c);return;
+   }
+   int pick=-1;vector<int>options;
+   for(int i=0;i<int(left.size());i++){
+    int r=left[i];vector<int>v;for(int t=0;t<N;t++)if(!(used&fixed::rot(masks[r],t)))v.push_back(t);
+    if(v.empty())return;if(pick<0||v.size()<options.size()){pick=i;options=move(v);if(options.size()==1)break;}
+   }
+   int r=left[pick];left.erase(left.begin()+pick);
+   for(int t:options){trans[r]=t;self(self,used|fixed::rot(masks[r],t),left);if(stop())return;}
   };
-  dfs(dfs,used,rem);
+  dfsPack(dfsPack,masks[anchor],rem);
  }
+
  void enumerate(const Graph&g,GStats&c){Vec param{};auto visit=[&](auto&&self,int i)->void{if(stop())return;if(i==g.k.d){pack(g,g.k.evaluate(param),c);return;}for(int v=0;v<N;v++){param[i]=v;self(self,i+1);if(stop())return;}};visit(visit,0);}
- void dfs(const Graph&g,vector<int>rem,int b,GStats&c){
-  if(stop())return;c.nodes++;if(g.dimension()<=3||int(rem.size())<=b){enumerate(g,c);return;}
-  GFilter f(g);if(f.saturated)return;int pick=-1;vector<int>best;size_t cap=SIZE_MAX;int ntry=min<int>(rem.size(),g.dimension()>20?5:g.dimension()>12?8:16);
-  for(int i=0;i<ntry;){auto d=domain(rem[i],f,cap,c);if(d.empty()){if(!b)return;b--;rem.erase(rem.begin()+i);ntry--;if(pick>i)pick--;continue;}if(pick<0||d.size()<cap){pick=i;best=move(d);cap=best.size();}i++;}
+ void dfs(const Graph&g,vector<int>rem,int b,GStats&c,LexState state){
+  if(stop())return;c.nodes++;
+  if(g.dimension()<=3||int(rem.size())<=b||packingBound(g)<=8192){enumerate(g,c);return;}
+  GFilter f(g);if(f.saturated)return;
+  array<size_t,48> sizes{};for(int id:rem)sizes[id]=countDomain(id,state);
+  rem.erase(remove_if(rem.begin(),rem.end(),[&](int id){if(sizes[id])return false;b--;return true;}),rem.end());if(b<0)return;
+  stable_sort(rem.begin(),rem.end(),[&](int a,int b){return log2(double(sizes[a]))/train[a].size()<log2(double(sizes[b]))/train[b].size();});
+  int pick=-1;vector<int>best;size_t cap=SIZE_MAX;int ntry=min<int>(rem.size(),g.dimension()>20?5:g.dimension()>12?8:16);
+  for(int i=0;i<ntry;){auto d=domain(rem[i],f,cap,c,state);if(d.empty()){if(!b)return;b--;rem.erase(rem.begin()+i);ntry--;if(pick>i)pick--;continue;}if(pick<0||d.size()<cap){pick=i;best=move(d);cap=best.size();}i++;}
   if(pick<0){enumerate(g,c);return;}int id=rem[pick];rem.erase(rem.begin()+pick);unordered_set<string>seen;
-  for(int i:best){if(stop())return;c.joins++;Graph x;if(extend(g,ds[id].opts[i],x)&&seen.insert(x.sig()).second)dfs(x,rem,b,c);}
-  if(b)dfs(g,rem,b-1,c);
+  for(int i:best){if(stop())return;c.joins++;Graph x;if(!extend(g,ds[id].opts[i],x)||!seen.insert(x.sig()).second)continue;
+   auto child=state;if(applyLex(child,ds[id].opts[i],rem))dfs(x,rem,b,c,move(child));
+  }
+  if(b)dfs(g,rem,b-1,c,move(state));
  }
  void run(int seconds,size_t seedStart=0,size_t seedEnd=SIZE_MAX){
   if(seedEnd==SIZE_MAX)seedEnd=seeds.size();
   if(seedStart>seedEnd||seedEnd>seeds.size())throw runtime_error("invalid seed range");
   next=seedStart;done=0;deadline=Clock::now()+chrono::seconds(seconds);
   unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<GStats>stats(n);vector<thread>pool;
-  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seedEnd)break;dfs(seeds[i],order,maxOov,c);if(!found&&!timed){completed[i]=1;done++;}}});
+  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seedEnd)break;auto state=initial;if(applyLex(state,seedOptions[i],order))dfs(seeds[i],order,maxOov,c,move(state));if(!found&&!timed){completed[i]=1;done++;}}});
   for(auto&t:pool)t.join();for(auto&c:stats){total.nodes+=c.nodes;total.joins+=c.joins;total.perms+=c.perms;total.keyTests+=c.keyTests;total.packNodes+=c.packNodes;total.features+=c.features;total.options+=c.options;}
   cout<<"GRAPH SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(seedEnd-seedStart)<<" nodes="<<total.nodes<<" joins="<<total.joins<<" keys="<<total.keyTests<<" packing="<<total.packNodes<<" permutations="<<total.perms<<" features="<<total.features<<" options="<<total.options<<" OOV="<<answerOov<<endl;
  }
