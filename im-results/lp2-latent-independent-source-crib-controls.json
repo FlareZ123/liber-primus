@@ -1,0 +1,932 @@
+[
+  {
+    "q": 8,
+    "mode": "0",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      2,
+      3,
+      19,
+      15,
+      3,
+      27,
+      22,
+      8
+    ],
+    "trueFound": true,
+    "truePartial": 0,
+    "complete": 1,
+    "partial": 0,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9533333333333334,
+      "score": -2.2740817632865284
+    }
+  },
+  {
+    "q": 8,
+    "mode": "1",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      2,
+      6,
+      10,
+      16,
+      22,
+      20,
+      5,
+      6
+    ],
+    "trueFound": true,
+    "truePartial": 0,
+    "complete": 1,
+    "partial": 0,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.96,
+      "score": -2.2394902866243958
+    }
+  },
+  {
+    "q": 8,
+    "mode": "2",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      1,
+      17,
+      12,
+      12,
+      18,
+      4,
+      2,
+      8
+    ],
+    "trueFound": true,
+    "truePartial": 0,
+    "complete": 1,
+    "partial": 0,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9666666666666667,
+      "score": -2.2496786468251897
+    }
+  },
+  {
+    "q": 8,
+    "mode": "3",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      1,
+      1,
+      2,
+      11,
+      21,
+      18,
+      2,
+      5
+    ],
+    "trueFound": true,
+    "truePartial": 0,
+    "complete": 1,
+    "partial": 0,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.98,
+      "score": -2.252517595596258
+    }
+  },
+  {
+    "q": 8,
+    "mode": "4",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      2,
+      14,
+      11,
+      19,
+      22,
+      27,
+      14,
+      28
+    ],
+    "trueFound": true,
+    "truePartial": 1,
+    "complete": 1,
+    "partial": 1,
+    "stats": {
+      "comparisons": 4345,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4341,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9666666666666667,
+      "score": -2.3416197748331085
+    }
+  },
+  {
+    "q": 8,
+    "mode": "5",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      2,
+      16,
+      2,
+      20,
+      12,
+      19,
+      26,
+      25
+    ],
+    "trueFound": true,
+    "truePartial": 1,
+    "complete": 1,
+    "partial": 1,
+    "stats": {
+      "comparisons": 4345,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4341,
+      "joinReject": 0,
+      "maxStates": 1
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9733333333333334,
+      "score": -2.3377906717884573
+    }
+  },
+  {
+    "q": 13,
+    "mode": "0",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      0,
+      1,
+      9,
+      23,
+      8,
+      11,
+      2,
+      4,
+      12,
+      2,
+      22,
+      7,
+      13
+    ],
+    "trueFound": true,
+    "truePartial": 2,
+    "complete": 2,
+    "partial": 5,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 11
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.96,
+      "score": -2.3821694164988583
+    }
+  },
+  {
+    "q": 13,
+    "mode": "1",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      0,
+      15,
+      20,
+      8,
+      17,
+      5,
+      25,
+      22,
+      21,
+      7,
+      16,
+      20,
+      2
+    ],
+    "trueFound": true,
+    "truePartial": 4,
+    "complete": 8,
+    "partial": 7,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 8
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9733333333333334,
+      "score": -2.221056983918574
+    }
+  },
+  {
+    "q": 13,
+    "mode": "2",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      3,
+      7,
+      9,
+      13,
+      20,
+      7,
+      19,
+      11,
+      3,
+      19,
+      8,
+      4,
+      6
+    ],
+    "trueFound": true,
+    "truePartial": 2,
+    "complete": 5,
+    "partial": 3,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 4
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9666666666666667,
+      "score": -2.4314536345764077
+    }
+  },
+  {
+    "q": 13,
+    "mode": "3",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      1,
+      16,
+      3,
+      17,
+      9,
+      22,
+      4,
+      20,
+      7,
+      21,
+      2,
+      4,
+      9
+    ],
+    "trueFound": true,
+    "truePartial": 3,
+    "complete": 3,
+    "partial": 3,
+    "stats": {
+      "comparisons": 4495,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4484,
+      "joinReject": 0,
+      "maxStates": 5
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.98,
+      "score": -2.4278839955973885
+    }
+  },
+  {
+    "q": 13,
+    "mode": "4",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      0,
+      1,
+      3,
+      10,
+      6,
+      23,
+      19,
+      7,
+      24,
+      22,
+      5,
+      0,
+      22
+    ],
+    "trueFound": true,
+    "truePartial": 3,
+    "complete": 5,
+    "partial": 13,
+    "stats": {
+      "comparisons": 4345,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4341,
+      "joinReject": 0,
+      "maxStates": 7
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9933333333333333,
+      "score": -2.5033888619609095
+    }
+  },
+  {
+    "q": 13,
+    "mode": "5",
+    "patterns": [
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 117,
+        "length": 42,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE ASCED THE MASTER"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 113,
+        "j": 151,
+        "length": 41,
+        "text": "NOT WHO YOU ARE WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 18,
+        "j": 84,
+        "length": 37,
+        "text": "THE MASTER WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_koan_1",
+        "i": 20,
+        "j": 51,
+        "length": 29,
+        "text": "WHO ARE YOU WHO WISHES TO STUDY HERE"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 49,
+        "j": 81,
+        "length": 22,
+        "text": "WE WILL NOT BE STRONG ENOUGH"
+      },
+      {
+        "source": "0_loss_of_divinity",
+        "i": 107,
+        "j": 118,
+        "length": 20,
+        "text": "WE CAN BELONG AND BE RIGHT"
+      }
+    ],
+    "trueKey": [
+      6,
+      19,
+      15,
+      12,
+      28,
+      18,
+      12,
+      20,
+      14,
+      18,
+      7,
+      27,
+      13
+    ],
+    "trueFound": true,
+    "truePartial": 2,
+    "complete": 3,
+    "partial": 8,
+    "stats": {
+      "comparisons": 4345,
+      "holdReject": 0,
+      "periodReject": 0,
+      "lowerReject": 4341,
+      "joinReject": 0,
+      "maxStates": 8
+    },
+    "held": {
+      "length": 150,
+      "accuracy": 0.9466666666666667,
+      "score": -2.4932965600180825
+    }
+  }
+]
