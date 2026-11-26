@@ -46,7 +46,18 @@ function experiment(book,native,em,gib,sha){
  if(!exact(book.pages[0].indices.slice(0,13),key))throw Error("source title changed");
  const c=[book.pages[0].indices.slice(13),book.pages[1].indices,book.pages[2].indices];if(!exact(c.map(x=>x.length),sizes))throw Error("source lengths changed");
  const f=fit(c.slice(0,2)),d=f.best?decrypt(c,f.best.rows):null,full=d&&!d.bad;
- const original={fit:f,bad:d?.bad,full:!!full,holdoutGain:full?score(d.plain.slice(2)):null,replay:!!full&&exact(encrypt(d.plain,f.best.rows),c),decoded:full?d.plain.map(p=>p.map(x=>book.translit[x]).join(" ")):null};
+ const feasibility=[];
+ for(let a=0;a<Q;a++)for(let b=0;b<Q;b++)if(a||b){
+   const row=[a,b];
+   if(!c.slice(0,2).every(p=>decodeRail(project(p,row),false).valid))continue;
+   const h=decodeRail(project(c[2],row),false);
+   feasibility.push({row,p2FirstDead:h.valid?null:h.dead});
+ }
+ const survivors=feasibility.filter(x=>x.p2FirstDead===null);
+ let fullMatrices=0;
+ for(const a of survivors)for(const b of survivors)if(det(a.row,b.row))fullMatrices++;
+ if(feasibility.length!==12||survivors.length!==2||fullMatrices!==0)throw Error("unexpected original feasibility result");
+ const original={fit:f,bad:d?.bad,full:!!full,holdoutGain:full?score(d.plain.slice(2)):null,replay:!!full&&exact(encrypt(d.plain,f.best.rows),c),decoded:full?d.plain.map(p=>p.map(x=>book.translit[x]).join(" ")):null,feasibility,survivors,fullMatrices};
  return {key,sizes,controls,original};
 }
 const load=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");const lines=p=>load(p).split(/\r?\n/).slice(0,400).join("\n");
