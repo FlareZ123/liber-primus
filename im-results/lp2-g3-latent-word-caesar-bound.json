@@ -1,0 +1,1075 @@
+{
+  "vocab": 35826,
+  "shapes": 35285,
+  "whole": {
+    "runes": 12956,
+    "groups": 2896,
+    "long": 815,
+    "required": 671,
+    "candidateCounts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      7,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "byLengthUpper": 7,
+    "disjointUpper": 7,
+    "minOov": 808,
+    "candidateIntervals": [
+      [
+        126,
+        6
+      ],
+      [
+        314,
+        6
+      ],
+      [
+        1044,
+        6
+      ],
+      [
+        1711,
+        6
+      ],
+      [
+        2884,
+        6
+      ],
+      [
+        9231,
+        6
+      ],
+      [
+        10609,
+        6
+      ]
+    ]
+  },
+  "chapter": [
+    {
+      "page": 0,
+      "runes": 729,
+      "groups": 158,
+      "long": 56,
+      "required": 49,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 2,
+      "disjointUpper": 2,
+      "minOov": 54,
+      "candidateIntervals": [
+        [
+          126,
+          6
+        ],
+        [
+          314,
+          6
+        ]
+      ]
+    },
+    {
+      "page": 3,
+      "runes": 1145,
+      "groups": 255,
+      "long": 77,
+      "required": 65,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 2,
+      "disjointUpper": 2,
+      "minOov": 75,
+      "candidateIntervals": [
+        [
+          315,
+          6
+        ],
+        [
+          982,
+          6
+        ]
+      ]
+    },
+    {
+      "page": 8,
+      "runes": 1729,
+      "groups": 383,
+      "long": 107,
+      "required": 88,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 1,
+      "disjointUpper": 1,
+      "minOov": 106,
+      "candidateIntervals": [
+        [
+          1010,
+          6
+        ]
+      ]
+    },
+    {
+      "page": 15,
+      "runes": 1903,
+      "groups": 437,
+      "long": 117,
+      "required": 96,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 0,
+      "disjointUpper": 0,
+      "minOov": 117,
+      "candidateIntervals": []
+    },
+    {
+      "page": 23,
+      "runes": 1021,
+      "groups": 224,
+      "long": 68,
+      "required": 57,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 0,
+      "disjointUpper": 0,
+      "minOov": 68,
+      "candidateIntervals": []
+    },
+    {
+      "page": 27,
+      "runes": 1433,
+      "groups": 326,
+      "long": 83,
+      "required": 67,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 0,
+      "disjointUpper": 0,
+      "minOov": 83,
+      "candidateIntervals": []
+    },
+    {
+      "page": 33,
+      "runes": 1680,
+      "groups": 378,
+      "long": 102,
+      "required": 84,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 1,
+      "disjointUpper": 1,
+      "minOov": 101,
+      "candidateIntervals": [
+        [
+          1271,
+          6
+        ]
+      ]
+    },
+    {
+      "page": 40,
+      "runes": 3008,
+      "groups": 669,
+      "long": 184,
+      "required": 151,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 1,
+      "disjointUpper": 1,
+      "minOov": 183,
+      "candidateIntervals": [
+        [
+          969,
+          6
+        ]
+      ]
+    },
+    {
+      "page": 54,
+      "runes": 308,
+      "groups": 66,
+      "long": 21,
+      "required": 18,
+      "candidateCounts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "byLengthUpper": 0,
+      "disjointUpper": 0,
+      "minOov": 21,
+      "candidateIntervals": []
+    }
+  ],
+  "controls": [
+    {
+      "donor": 0,
+      "src": "dw",
+      "trueSign": 1,
+      "selectedSign": 1,
+      "n": 262,
+      "groups": 71,
+      "correct": 262,
+      "F1": 1,
+      "score": -1.8478952316390433,
+      "oov": 0,
+      "truthOov": 0,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 262,
+        "groups": 71,
+        "long": 11,
+        "required": 8,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          10,
+          4,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "byLengthUpper": 11,
+        "disjointUpper": 13,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            0,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            58,
+            6
+          ],
+          [
+            76,
+            6
+          ],
+          [
+            117,
+            6
+          ],
+          [
+            142,
+            9
+          ],
+          [
+            144,
+            7
+          ],
+          [
+            165,
+            6
+          ],
+          [
+            177,
+            6
+          ],
+          [
+            177,
+            7
+          ],
+          [
+            189,
+            6
+          ],
+          [
+            198,
+            7
+          ],
+          [
+            209,
+            6
+          ],
+          [
+            241,
+            6
+          ]
+        ]
+      },
+      "recovered": "SILENCE I SHALL RETURN THE MIST THAT DRIFTS AWAY AT DAWN LEAUNG BUT DEW IN THE FIELDS SHALL RISE AND GATHER INTO A CLOUD AND THEN FALL DOWN IN RAIN AND NOT UNLICE THE MIST HAUE I BEEN IN THE STILLNESS OF THE NIGHT I HAUE WALCED IN YOUR STREETS AND MY SPIRIT HAS ENTERED YOUR HOUSES AND YOUR HEART BEATS WERE IN MY HEART AND YOUR BREATH WAS UPON MY"
+    },
+    {
+      "donor": 0,
+      "src": "cw",
+      "trueSign": 1,
+      "selectedSign": 1,
+      "n": 262,
+      "groups": 71,
+      "correct": 262,
+      "F1": 1,
+      "score": -1.8478952316390433,
+      "oov": 0,
+      "truthOov": 0,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 262,
+        "groups": 71,
+        "long": 11,
+        "required": 8,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          8,
+          4,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "byLengthUpper": 11,
+        "disjointUpper": 11,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            0,
+            7
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            58,
+            6
+          ],
+          [
+            117,
+            6
+          ],
+          [
+            142,
+            9
+          ],
+          [
+            144,
+            7
+          ],
+          [
+            165,
+            6
+          ],
+          [
+            177,
+            6
+          ],
+          [
+            177,
+            7
+          ],
+          [
+            189,
+            6
+          ],
+          [
+            198,
+            7
+          ],
+          [
+            209,
+            6
+          ]
+        ]
+      },
+      "recovered": "SILENCE I SHALL RETURN THE MIST THAT DRIFTS AWAY AT DAWN LEAUNG BUT DEW IN THE FIELDS SHALL RISE AND GATHER INTO A CLOUD AND THEN FALL DOWN IN RAIN AND NOT UNLICE THE MIST HAUE I BEEN IN THE STILLNESS OF THE NIGHT I HAUE WALCED IN YOUR STREETS AND MY SPIRIT HAS ENTERED YOUR HOUSES AND YOUR HEART BEATS WERE IN MY HEART AND YOUR BREATH WAS UPON MY"
+    },
+    {
+      "donor": 1,
+      "src": "dw",
+      "trueSign": -1,
+      "selectedSign": -1,
+      "n": 260,
+      "groups": 58,
+      "correct": 260,
+      "F1": 1,
+      "score": -1.8845076471883528,
+      "oov": 1,
+      "truthOov": 1,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 260,
+        "groups": 58,
+        "long": 17,
+        "required": 15,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11,
+          9,
+          2,
+          2,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "byLengthUpper": 17,
+        "disjointUpper": 17,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            10,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            28,
+            7
+          ],
+          [
+            45,
+            6
+          ],
+          [
+            72,
+            7
+          ],
+          [
+            74,
+            6
+          ],
+          [
+            79,
+            6
+          ],
+          [
+            88,
+            6
+          ],
+          [
+            94,
+            6
+          ],
+          [
+            94,
+            8
+          ],
+          [
+            107,
+            7
+          ],
+          [
+            107,
+            8
+          ],
+          [
+            109,
+            6
+          ],
+          [
+            126,
+            6
+          ],
+          [
+            126,
+            9
+          ],
+          [
+            126,
+            13
+          ],
+          [
+            132,
+            7
+          ],
+          [
+            146,
+            7
+          ],
+          [
+            168,
+            7
+          ],
+          [
+            175,
+            7
+          ],
+          [
+            186,
+            7
+          ],
+          [
+            210,
+            6
+          ],
+          [
+            223,
+            6
+          ],
+          [
+            223,
+            10
+          ],
+          [
+            251,
+            7
+          ],
+          [
+            251,
+            9
+          ]
+        ]
+      },
+      "recovered": "DOTH WANT HER PROPER LIMBS HER FACE DEFACED WITH SCARS OF INFAMY HER ROYAL STOCC GRAFT WITH IGNOBLE PLANTS AND ALMOST SHOULDER D IN THE SWALLOWNG GULF OF BLIND FORGETFULNESS AND DARC OBLIUIAN WHICH TO RECURE WE HEARTILY SOLICIT YOUR GRACIAUS SELF TO TACE ON YOU THE CHARGE AND CNGLY GOUERNMENT OF THIS YOUR LAND NOT AS PROTECTOR"
+    },
+    {
+      "donor": 1,
+      "src": "cw",
+      "trueSign": -1,
+      "selectedSign": -1,
+      "n": 260,
+      "groups": 58,
+      "correct": 260,
+      "F1": 1,
+      "score": -1.8845076471883528,
+      "oov": 1,
+      "truthOov": 1,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 260,
+        "groups": 58,
+        "long": 17,
+        "required": 15,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          11,
+          9,
+          2,
+          2,
+          1,
+          0,
+          0,
+          1,
+          0
+        ],
+        "byLengthUpper": 17,
+        "disjointUpper": 18,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            10,
+            6
+          ],
+          [
+            28,
+            6
+          ],
+          [
+            28,
+            7
+          ],
+          [
+            45,
+            6
+          ],
+          [
+            64,
+            6
+          ],
+          [
+            72,
+            7
+          ],
+          [
+            79,
+            6
+          ],
+          [
+            88,
+            6
+          ],
+          [
+            94,
+            6
+          ],
+          [
+            94,
+            8
+          ],
+          [
+            107,
+            7
+          ],
+          [
+            107,
+            8
+          ],
+          [
+            109,
+            6
+          ],
+          [
+            126,
+            6
+          ],
+          [
+            126,
+            9
+          ],
+          [
+            126,
+            13
+          ],
+          [
+            132,
+            7
+          ],
+          [
+            146,
+            7
+          ],
+          [
+            168,
+            7
+          ],
+          [
+            175,
+            7
+          ],
+          [
+            186,
+            7
+          ],
+          [
+            210,
+            6
+          ],
+          [
+            223,
+            6
+          ],
+          [
+            223,
+            10
+          ],
+          [
+            251,
+            7
+          ],
+          [
+            251,
+            9
+          ]
+        ]
+      },
+      "recovered": "DOTH WANT HER PROPER LIMBS HER FACE DEFACED WITH SCARS OF INFAMY HER ROYAL STOCC GRAFT WITH IGNOBLE PLANTS AND ALMOST SHOULDER D IN THE SWALLOWNG GULF OF BLIND FORGETFULNESS AND DARC OBLIUIAN WHICH TO RECURE WE HEARTILY SOLICIT YOUR GRACIAUS SELF TO TACE ON YOU THE CHARGE AND CNGLY GOUERNMENT OF THIS YOUR LAND NOT AS PROTECTOR"
+    },
+    {
+      "donor": 2,
+      "src": "dw",
+      "trueSign": 1,
+      "selectedSign": 1,
+      "n": 262,
+      "groups": 67,
+      "correct": 262,
+      "F1": 1,
+      "score": -1.7912747601277739,
+      "oov": 0,
+      "truthOov": 0,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 262,
+        "groups": 67,
+        "long": 14,
+        "required": 11,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          5,
+          4,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "byLengthUpper": 14,
+        "disjointUpper": 14,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            2,
+            7
+          ],
+          [
+            29,
+            11
+          ],
+          [
+            45,
+            6
+          ],
+          [
+            54,
+            6
+          ],
+          [
+            66,
+            6
+          ],
+          [
+            66,
+            8
+          ],
+          [
+            74,
+            6
+          ],
+          [
+            111,
+            6
+          ],
+          [
+            111,
+            8
+          ],
+          [
+            119,
+            6
+          ],
+          [
+            144,
+            7
+          ],
+          [
+            144,
+            8
+          ],
+          [
+            202,
+            6
+          ],
+          [
+            211,
+            6
+          ],
+          [
+            211,
+            7
+          ],
+          [
+            220,
+            6
+          ],
+          [
+            220,
+            7
+          ],
+          [
+            243,
+            7
+          ],
+          [
+            252,
+            8
+          ]
+        ]
+      },
+      "recovered": "OF MANCIND YET WAS THERE NEUER A YOUNG PHILOSOPHER WHOSE BREEDNG HAD FALLEN INTO THE CHRISTIAN CHURCH BY WHOM THAT BRAUE TEXT OF PAUL S WAS NOT SPECIALLY PRISED THEN SHALL ALSO THE SON BE SUBJECT UNTO HIM WHO PUT ALL THNGS UNDER HIM THAT GOD MAY BE ALL IN ALL LET THE CLAIMS AND UIRTUES OF PERSONS BE NEUER SO GREAT AND WELCOME THE INSTINCT OF"
+    },
+    {
+      "donor": 2,
+      "src": "cw",
+      "trueSign": 1,
+      "selectedSign": 1,
+      "n": 262,
+      "groups": 67,
+      "correct": 262,
+      "F1": 1,
+      "score": -1.7912747601277739,
+      "oov": 0,
+      "truthOov": 0,
+      "hiddenLengthOrderChanged": true,
+      "relaxedBound": {
+        "runes": 262,
+        "groups": 67,
+        "long": 14,
+        "required": 11,
+        "candidateCounts": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          9,
+          5,
+          3,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0
+        ],
+        "byLengthUpper": 14,
+        "disjointUpper": 14,
+        "minOov": 0,
+        "candidateIntervals": [
+          [
+            2,
+            7
+          ],
+          [
+            29,
+            11
+          ],
+          [
+            45,
+            6
+          ],
+          [
+            54,
+            6
+          ],
+          [
+            66,
+            6
+          ],
+          [
+            66,
+            8
+          ],
+          [
+            74,
+            6
+          ],
+          [
+            111,
+            6
+          ],
+          [
+            111,
+            8
+          ],
+          [
+            119,
+            6
+          ],
+          [
+            144,
+            7
+          ],
+          [
+            202,
+            6
+          ],
+          [
+            211,
+            6
+          ],
+          [
+            211,
+            7
+          ],
+          [
+            220,
+            6
+          ],
+          [
+            220,
+            7
+          ],
+          [
+            243,
+            7
+          ],
+          [
+            252,
+            8
+          ]
+        ]
+      },
+      "recovered": "OF MANCIND YET WAS THERE NEUER A YOUNG PHILOSOPHER WHOSE BREEDNG HAD FALLEN INTO THE CHRISTIAN CHURCH BY WHOM THAT BRAUE TEXT OF PAUL S WAS NOT SPECIALLY PRISED THEN SHALL ALSO THE SON BE SUBJECT UNTO HIM WHO PUT ALL THNGS UNDER HIM THAT GOD MAY BE ALL IN ALL LET THE CLAIMS AND UIRTUES OF PERSONS BE NEUER SO GREAT AND WELCOME THE INSTINCT OF"
+    }
+  ]
+}
