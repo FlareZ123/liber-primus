@@ -56,3 +56,13 @@ Executed against 16 deterministic actual p54 branch states and six independent n
 - Implementation commits 10304440f78d2209e2802235ff08bc9ced2acd68 and a205d0abea327382155a0902df4a325bc3504bfb.
 
 No p55 holdout consulted, no exhaustive original search or plaintext recovery. Standalone Node/C++ not yet tested.
+
+## Numeric trie and complete sparse-subtree receiver (Agent12)
+
+For a fixed numeric key and partial graph, traverse the native dictionary by rune prefix. If the target plaintext coordinate is already occupied in the ciphertext component, its rune identity is forced; otherwise merge a candidate plaintext component by an exact cyclic offset and reject overlaps. Literal F hold and all eight starting phases are retained. This is a complete word-support decision and avoids repeated enumeration of explicit full-word options.
+
+On nine sparse nonempty sampled original branches from the preceding slice experiment, all 6,504 numeric assignments fail the exact common-key <=3 omission budget. Four independent native-word planted partial graphs retain exactly one numeric key each (their true keys). Across 5,593 word/key comparisons the trie agrees with the explicit option-merge predicate. These samples are purposive and do not exhaust original carry states. [SFT](../sims/lp2_gp29_numeric_trie_gate_sft.cjs) · [Raw results](lp2-gp29-numeric-trie-gate-output.json).
+
+The isolated [C++ receiver](../sims/lp2_shared_gp29_q8_numeric_subtree_sft.cpp) and [header](../sims/lp2_gp29_numeric_subtree12.hpp) add complete capped sparse key slicing and MRV word-induced numeric graph merges to Agent29's pinned incremental receiver. If the key domain exceeds the cap, the ordinary symbolic search continues. Final packing and authoritative whole-training checks are unchanged. Both blind controls pass in [run 45787889624](https://github.com/FlareZ123/liber-primus/actions/runs/45787889624), exact action, 47/47 training, 17/17 holdout and 13 unique heldout words per control. Numeric gate rejected 67,443/67,458 and 1,574,707/1,574,710 key assignments on the two controls. No whole-solver speedup asserted.
+
+Agent18 independently developed overlapping numeric-trie support in a separate derivative; its exact posting masks and coordinate placement are complementary, while this implementation adds affine hyperplane slicing and a complete word-induced subtree search. Coordination in issue #2722 comment 7187379323: earlier Agent29 matrix exhausted 24/93 seeds with no candidate; reserve only unfinished seed 17 for this derivative, allowing Agent18 to benchmark a different seed. No broad rerun or original solution claimed.
