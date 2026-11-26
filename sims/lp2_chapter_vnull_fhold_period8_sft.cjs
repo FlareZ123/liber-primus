@@ -19,7 +19,7 @@ function encryptWords(ws,k,rng){
  }return C});
 }
 function edit(a,b){let d=Array.from({length:b.length+1},(_,i)=>i);for(let i=0;i<a.length;i++){const q=[i+1];for(let j=0;j<b.length;j++)q.push(Math.min(d[j+1]+1,q[j]+1,d[j]+(a[i]!==b[j])));d=q}return d.at(-1)}
-function run(raw,mode="original",start=0,end=9){
+function run(raw,mode="original",start=0,end=9,customTrial=null){
  const c=JSON.parse(raw[0]),native=JSON.parse(raw[3]),rm=new Map(c.runes.map((r,i)=>[r,i]));
  function split(s){const a=[];let w=[];for(const x of s){if(rm.has(x))w.push(rm.get(x));else if(w.length){a.push(w);w=[]}}if(w.length)a.push(w);return a}
  const original=split(raw[1].split("%").slice(0,55).join("").replace(/[\/\r\n]/g,"")),full=original.flat(),expected=c.pages.slice(0,56).flatMap(p=>p.indices);
@@ -32,7 +32,7 @@ function run(raw,mode="original",start=0,end=9){
  const bylen=new Map();for(const w of dict.values()){if(!bylen.has(w.length))bylen.set(w.length,[]);bylen.get(w.length).push(w)}
  const seq=raw.slice(4,7).map(t=>words(t).flat()),lp=train(seq.map(a=>a.slice(0,Math.floor(a.length*.7)))),rng=makeRng(0x47a8c8);
  function trial(name,ws,truth=null,key=null){
-  const p=plan(ws),result={name,n:p.n,trainN:p.trainN,anchors:p.anchors,eligible:p.anchors.length>=2,steps:[]};if(!result.eligible)return result;
+  const p=plan(ws);if(customTrial)return customTrial({name,ws,truth,key,p,bylen,dict,lp});const result={name,n:p.n,trainN:p.trainN,anchors:p.anchors,eligible:p.anchors.length>=2,steps:[]};if(!result.eligible)return result;
   let set=null;for(const a of p.anchors){const next=candidates(a,bylen),size=next.size;if(set===null)set=next;else set=new Set([...set].filter(k=>next.has(k)));result.steps.push({offset:a.offset,width:a.word.length,individual:size,joint:set.size,containsTrue:key?set.has(pack(key)):null});if(!set.size)break}
   result.joint=set.size;let best=null,feasible=0;const C0=ws.slice(0,p.cut).flat();
   for(const v of set){const k=unpack(v),K=Array.from({length:C0.length},(_,i)=>k[i%period]),d=decode(C0,K,lp);if(!d.possible)continue;feasible++;if(!best||d.logEvidence>best.d.logEvidence)best={k,d}}
