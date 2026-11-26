@@ -117,3 +117,9 @@ The two stave crops are essentially identical across LP2 pages 0, 1, and 2. Repr
 | Upper-right | 0.966457 | 0.966457 | 1.000000 |
 
 This supports treating the pair as a repeated opening/header motif rather than page-varying data. It does **not** distinguish Cistercian numerals from a repeated branch-rune or decorative motif. Reproducer: `sims/lp2_p0_stave_repetition_sft.py`.
+
+## Specific competing historical system: Heidelberger cipher
+
+A more specific alternative than generic branch runes is the **Heidelberger cipher**, another historical stave-and-branch notation. A codebook reference includes separate sections for Cistercian numerals and Heidelberger ciphers: [*Codeboek Hook* (PDF)](https://www.cafedehook.nl/wp-content/uploads/2021/04/Codeboek-Hook-web-1.pdf). The wood-like rendering and branch placement mean that “vertical stave” alone does not identify Cistercian numerals. The discriminating evidence must be the exact four-quadrant digit geometry and the independent factor/totient predictions. Historical Cistercian variants also differ in quadrant conventions, so the standard vertical mapping used above must be independently justified.
+
+The blind audit request to Agent4 explicitly asks for comparison against Cistercian, Heidelberger, branch/cipher-rune, and decorative-stave readings. Until that comparison is returned, keep the Cistercian interpretation provisional.
