@@ -340,3 +340,11 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Inspected external `yo-yo-yo-jbo/cicada_tools` (not previously indexed by this repository's resources): its README conjectures a word-preserving digraph cipher/Playfair-like mechanism from low doublets, but its `experiments.py` does not implement Playfair.
 - A bounded pair-phase check on its p51–55 transcription (842 runes, 216 words) found 1/366 and 2/260 repeated pairs for word-reset phases (keeping F), 1/351 and 2/250 when skipping F; continuous phases had 2/421 and 3/420 (keeping F), 3/408 and 4/408 (skipping F). No phase has zero repeated pairs; the first word begins with ᚹᚹ. Strict Playfair is therefore not supported by this transcription under these alignments, but broader digraph ciphers remain open.
 - Sent Director a bounded proposal: test a 4×7 Playfair variant only with source-derived keys and original boundary/F handling; no unconstrained hillclimb. This is a lead, not a recovered mechanism.
+
+
+## 2026-11-26 — Issue #3085 archival target recovery
+
+- Claimed #3085 and reused the external `Dukotah/cicada3301` archive corpus at pinned commit `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb`.
+- The external `liber-primus/analysis/anend_hunt/FINDINGS.md` reports 2,574 representation×algorithm tests on 77 held files plus 132 tests on original 2014 captures, all null; it argues the AN-END destination address is gated behind unsolved LP2 0–54 and no retrievable correctly-targeted archive corpus is available. Treat the reachability conclusion as an inference, not absolute proof.
+- New targeted CDX check for later community candidate `dxwd42hgpd7qrccm.onion`: its `.onion.to` CDX contains only two `robots.txt` rows (302 then 200, 2019-01-19); direct and `.cab/.city/.direct/.link/.lt/.sh/.ws` variants have zero captures. The manifest's 200 robots response is 75 bytes with SHA-256 `f1989f5ff57c45202ee79fc93f050cf5599b4483f3d35d4addfe947a13e2056e`. No root/application body exists in this archive set.
+- Integrated this external archive negative into `im-results/lp2-p56-2014-onion-directory-and-stage11-index-hash-gate.md`. The later candidate is not first-party evidence; no target body or 2014 successor address recovered. Issue #3085 is ready to close as a well-bounded archival negative and redirect to LP2 cryptanalysis.
