@@ -1,0 +1,2849 @@
+{
+  "source": {
+    "groups": 2896,
+    "runes": 12956,
+    "carries": 32,
+    "chapterWords": [
+      158,
+      255,
+      383,
+      437,
+      224,
+      326,
+      378,
+      669,
+      66
+    ]
+  },
+  "vocabulary": 3379,
+  "results": [
+    {
+      "name": "book-shared",
+      "n": 2896,
+      "split": 1930,
+      "stateCipherTypes": 2888,
+      "observedRepeats": 8,
+      "total": {
+        "windows": 10247,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 226
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 2972,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 172,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 7275,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 226,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law continuous",
+          "start": 2457,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 338
+        },
+        {
+          "donor": "Law continuous",
+          "start": 1102,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 330
+        },
+        {
+          "donor": "Law continuous",
+          "start": 1380,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 328
+        }
+      ]
+    },
+    {
+      "name": "book-private-chapter",
+      "n": 2896,
+      "split": 1930,
+      "stateCipherTypes": 2894,
+      "observedRepeats": 2,
+      "total": {
+        "windows": 10247,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 320
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 2972,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 301,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 7275,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 320,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law continuous",
+          "start": 331,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 118
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 5193,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 81
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 5245,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 84
+        }
+      ]
+    },
+    {
+      "name": "chapter1",
+      "n": 158,
+      "split": 105,
+      "stateCipherTypes": 158,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 21777,
+        "training": 1715,
+        "full": 139,
+        "bestPrefix": 158
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 51,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 89,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 24,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 77,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 583,
+          "training": 40,
+          "full": 3,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 42,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 54,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 58,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            4,
+            7,
+            21,
+            37,
+            39,
+            42,
+            46,
+            48,
+            50,
+            54
+          ]
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1740,
+          "training": 88,
+          "full": 3,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 258,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1250,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1518,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            17,
+            71,
+            84,
+            109,
+            168,
+            170,
+            193,
+            227,
+            249,
+            250
+          ]
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1811,
+          "training": 124,
+          "full": 11,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 470,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 492,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 528,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 649,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1382,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1400,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1402,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1423,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1511,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1568,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            115,
+            131,
+            140,
+            145,
+            152,
+            176,
+            183,
+            188,
+            198,
+            200
+          ]
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1845,
+          "training": 165,
+          "full": 13,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 6,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 135,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 169,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 171,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 238,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 243,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 248,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 633,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 942,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1127,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            6,
+            9,
+            11,
+            14,
+            15,
+            19,
+            30,
+            73,
+            84,
+            91
+          ]
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5710,
+          "training": 387,
+          "full": 28,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 258,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1250,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1518,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 2367,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 2389,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 2425,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 2546,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3279,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3297,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3299,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            17,
+            71,
+            84,
+            109,
+            168,
+            170,
+            193,
+            227,
+            249,
+            250
+          ]
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 10013,
+          "training": 911,
+          "full": 81,
+          "bestPrefix": 158,
+          "fullOffsets": [
+            {
+              "offset": 180,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 181,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 225,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 226,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 234,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 298,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 335,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 341,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 368,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 398,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            53,
+            56,
+            62,
+            67,
+            73,
+            85,
+            92,
+            121,
+            122,
+            124
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 3",
+          "start": 1397,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 4
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "start": 248,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 12
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "start": 7,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 11
+        }
+      ]
+    },
+    {
+      "name": "chapter2",
+      "n": 255,
+      "split": 170,
+      "stateCipherTypes": 255,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 21120,
+        "training": 77,
+        "full": 0,
+        "bestPrefix": 207
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 486,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 162,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1643,
+          "training": 3,
+          "full": 0,
+          "bestPrefix": 193,
+          "fullOffsets": [],
+          "trainOffsets": [
+            879,
+            1505,
+            1533
+          ]
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1714,
+          "training": 2,
+          "full": 0,
+          "bestPrefix": 175,
+          "fullOffsets": [],
+          "trainOffsets": [
+            488,
+            633
+          ]
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1748,
+          "training": 13,
+          "full": 0,
+          "bestPrefix": 197,
+          "fullOffsets": [],
+          "trainOffsets": [
+            87,
+            111,
+            126,
+            208,
+            939,
+            1114,
+            1139,
+            1144,
+            1162,
+            1188
+          ]
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5613,
+          "training": 18,
+          "full": 0,
+          "bestPrefix": 197,
+          "fullOffsets": [],
+          "trainOffsets": [
+            879,
+            1505,
+            1533,
+            2385,
+            2530,
+            3952,
+            3976,
+            3991,
+            4073,
+            4804
+          ]
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9916,
+          "training": 41,
+          "full": 0,
+          "bestPrefix": 207,
+          "fullOffsets": [],
+          "trainOffsets": [
+            71,
+            297,
+            426,
+            427,
+            568,
+            810,
+            872,
+            895,
+            899,
+            921
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 3",
+          "start": 939,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 5
+        },
+        {
+          "donor": "Law 3",
+          "start": 695,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 12
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "start": 146,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 23
+        }
+      ]
+    },
+    {
+      "name": "chapter3",
+      "n": 383,
+      "split": 255,
+      "stateCipherTypes": 383,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 20352,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 230
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 358,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 146,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1515,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 188,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1586,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 227,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1620,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 192,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5485,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 227,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9788,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 230,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law continuous",
+          "start": 4540,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 12
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 6223,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 13
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 2412,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 8
+        }
+      ]
+    },
+    {
+      "name": "chapter4",
+      "n": 437,
+      "split": 291,
+      "stateCipherTypes": 436,
+      "observedRepeats": 1,
+      "total": {
+        "windows": 20028,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 219
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 304,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 147,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1461,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 171,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1532,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 210,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1566,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 186,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5431,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 210,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9734,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 219,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 1",
+          "start": 794,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 20
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "start": 138,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 13
+        },
+        {
+          "donor": "Law continuous",
+          "start": 950,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 14
+        }
+      ]
+    },
+    {
+      "name": "chapter5",
+      "n": 224,
+      "split": 149,
+      "stateCipherTypes": 224,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 21306,
+        "training": 265,
+        "full": 1,
+        "bestPrefix": 224
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 517,
+          "training": 6,
+          "full": 0,
+          "bestPrefix": 187,
+          "fullOffsets": [],
+          "trainOffsets": [
+            71,
+            83,
+            88,
+            95,
+            421,
+            461
+          ]
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1674,
+          "training": 11,
+          "full": 0,
+          "bestPrefix": 187,
+          "fullOffsets": [],
+          "trainOffsets": [
+            236,
+            253,
+            260,
+            286,
+            818,
+            1089,
+            1161,
+            1186,
+            1210,
+            1312
+          ]
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1745,
+          "training": 16,
+          "full": 0,
+          "bestPrefix": 197,
+          "fullOffsets": [],
+          "trainOffsets": [
+            145,
+            152,
+            374,
+            451,
+            581,
+            593,
+            680,
+            1195,
+            1391,
+            1420
+          ]
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1779,
+          "training": 25,
+          "full": 0,
+          "bestPrefix": 220,
+          "fullOffsets": [],
+          "trainOffsets": [
+            25,
+            132,
+            147,
+            183,
+            221,
+            241,
+            319,
+            337,
+            373,
+            548
+          ]
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5644,
+          "training": 53,
+          "full": 0,
+          "bestPrefix": 220,
+          "fullOffsets": [],
+          "trainOffsets": [
+            236,
+            253,
+            260,
+            286,
+            818,
+            1089,
+            1161,
+            1186,
+            1210,
+            1312
+          ]
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9947,
+          "training": 154,
+          "full": 1,
+          "bestPrefix": 224,
+          "fullOffsets": [
+            {
+              "offset": 822,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            79,
+            132,
+            148,
+            171,
+            179,
+            256,
+            284,
+            326,
+            334,
+            374
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 3",
+          "start": 1471,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 7
+        },
+        {
+          "donor": "Law 3",
+          "start": 550,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 7
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "start": 188,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 14
+        }
+      ]
+    },
+    {
+      "name": "chapter6",
+      "n": 326,
+      "split": 217,
+      "stateCipherTypes": 325,
+      "observedRepeats": 1,
+      "total": {
+        "windows": 20694,
+        "training": 2,
+        "full": 0,
+        "bestPrefix": 219
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 415,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 152,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1572,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 192,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1643,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 181,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1677,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 205,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5542,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 205,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9845,
+          "training": 2,
+          "full": 0,
+          "bestPrefix": 219,
+          "fullOffsets": [],
+          "trainOffsets": [
+            4463,
+            6647
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Self-Reliance",
+          "start": 6040,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 9
+        },
+        {
+          "donor": "Law continuous",
+          "start": 2047,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 17
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 7170,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 15
+        }
+      ]
+    },
+    {
+      "name": "chapter7",
+      "n": 378,
+      "split": 252,
+      "stateCipherTypes": 378,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 20382,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 228
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 363,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 139,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1520,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 178,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1591,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 221,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1625,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 206,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5490,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 221,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9793,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 228,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 3",
+          "start": 1284,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 16
+        },
+        {
+          "donor": "Self-Reliance",
+          "start": 8543,
+          "trueOffsetRetained": true,
+          "training": 1,
+          "full": 1,
+          "heldRepeatChecks": 13
+        },
+        {
+          "donor": "Law 2",
+          "start": 53,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 18
+        }
+      ]
+    },
+    {
+      "name": "chapter8",
+      "n": 669,
+      "split": 446,
+      "stateCipherTypes": 669,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 18636,
+        "training": 0,
+        "full": 0,
+        "bestPrefix": 231
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 72,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 133,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1229,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 162,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1300,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 231,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1334,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 213,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5199,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 231,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 9502,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 210,
+          "fullOffsets": [],
+          "trainOffsets": []
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 1",
+          "start": 743,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 34
+        },
+        {
+          "donor": "Law 3",
+          "start": 798,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 30
+        },
+        {
+          "donor": "Law 2",
+          "start": 263,
+          "trueOffsetRetained": true,
+          "training": 2,
+          "full": 2,
+          "heldRepeatChecks": 44
+        }
+      ]
+    },
+    {
+      "name": "chapter9",
+      "n": 66,
+      "split": 44,
+      "stateCipherTypes": 66,
+      "observedRepeats": 0,
+      "total": {
+        "windows": 22595,
+        "training": 17020,
+        "full": 10458,
+        "bestPrefix": 66
+      },
+      "rows": [
+        {
+          "donor": "solved:0_warning",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_welcome",
+          "windows": 59,
+          "training": 43,
+          "full": 21,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 2,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 11,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 12,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 13,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 16,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 21,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 22,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 23,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 24,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "donor": "solved:0_wisdom",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "windows": 143,
+          "training": 109,
+          "full": 59,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 0,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 4,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 6,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 15,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 23,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 34,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 35,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 36,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 46,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 47,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            3,
+            4,
+            6,
+            7,
+            10,
+            11,
+            12,
+            15,
+            17
+          ]
+        },
+        {
+          "donor": "solved:0_loss_of_divinity",
+          "windows": 116,
+          "training": 73,
+          "full": 33,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 1,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 4,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 5,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 6,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 7,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 10,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 17,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 23,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 25,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "donor": "solved:jpg107-167",
+          "windows": 23,
+          "training": 16,
+          "full": 3,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 7,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 12,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 15,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            4,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        {
+          "donor": "solved:jpg229",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p56_an_end",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved:p57_parable",
+          "windows": 0,
+          "training": 0,
+          "full": 0,
+          "bestPrefix": 0,
+          "fullOffsets": [],
+          "trainOffsets": []
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "windows": 675,
+          "training": 492,
+          "full": 284,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 3,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 6,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 10,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 13,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 14,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 16,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 17,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 20,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 22,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            7,
+            9,
+            10,
+            13,
+            14
+          ]
+        },
+        {
+          "donor": "Law 1",
+          "windows": 1832,
+          "training": 1314,
+          "full": 729,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 16,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 20,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 22,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 25,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 26,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 29,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 35,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 36,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 38,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            13,
+            14,
+            16,
+            17
+          ]
+        },
+        {
+          "donor": "Law 2",
+          "windows": 1903,
+          "training": 1382,
+          "full": 808,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 0,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 2,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 12,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 13,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 15,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 22,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 24,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 26,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            11,
+            12,
+            13
+          ]
+        },
+        {
+          "donor": "Law 3",
+          "windows": 1937,
+          "training": 1450,
+          "full": 942,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 0,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 1,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 5,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 6,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 8,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 10,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 11,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 13,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 19,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            13
+          ]
+        },
+        {
+          "donor": "Law continuous",
+          "windows": 5802,
+          "training": 4219,
+          "full": 2511,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 9,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 16,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 20,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 22,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 25,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 26,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 29,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 35,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 36,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 38,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            13,
+            14,
+            16,
+            17
+          ]
+        },
+        {
+          "donor": "Self-Reliance",
+          "windows": 10105,
+          "training": 7922,
+          "full": 5068,
+          "bestPrefix": 66,
+          "fullOffsets": [
+            {
+              "offset": 0,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 3,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 4,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 5,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 7,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 11,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 12,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 13,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 18,
+              "heldRepeatChecks": 0
+            },
+            {
+              "offset": 20,
+              "heldRepeatChecks": 0
+            }
+          ],
+          "trainOffsets": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "plants": [
+        {
+          "donor": "Law 3",
+          "start": 150,
+          "trueOffsetRetained": true,
+          "training": 206,
+          "full": 102,
+          "heldRepeatChecks": 0
+        },
+        {
+          "donor": "solved:0_koan_1",
+          "start": 110,
+          "trueOffsetRetained": true,
+          "training": 13760,
+          "full": 7484,
+          "heldRepeatChecks": 0
+        },
+        {
+          "donor": "solved concatenated sensitivity",
+          "start": 218,
+          "trueOffsetRetained": true,
+          "training": 7,
+          "full": 6,
+          "heldRepeatChecks": 0
+        }
+      ]
+    }
+  ],
+  "inputBlobs": [
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-I.txt",
+      "sha": "64876892683fab1467481fe87d85743a8ea17982"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-II.txt",
+      "sha": "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-III.txt",
+      "sha": "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    },
+    {
+      "path": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "sha": "12a6bc018047a1276e77f2b7f633d5905732fff9"
+    },
+    {
+      "path": "resources/external/cicada2013-crowley-book-of-law-2013-gp-wordlengths.json",
+      "sha": "30b602862c88a3cf0434e973117fbf61f2a227ad"
+    }
+  ]
+}
