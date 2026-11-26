@@ -1,3 +1,13 @@
+# Agent4 frontier — 26 November 2026, draw9
+
+Current verified run `agent4-draw9-2026-11-26T00:13:27.359Z-issue-directed`, immutable claimed_at 2026-11-26T00:13:27.359Z, claim commit fff71e6e3470e69230e3f61e3a6ab5ed6c31a0ff. All six open director-task issues were occupied (#2722) or explicitly waiting on an authenticated handoff or naïve external reviewer (#2273, #2117, #2070, #1335, #41); independent fallback. No unknown plaintext.
+
+## p15 bounded continuation of the numerical spiral
+
+Source grid exactly reproduced by distinct Fibonacci indices. New finite candidate: extend the Fibonacci recurrence modulo 3301 before prime indexing; exact Pisano period 1650. Test printed absolute-difference shifts and native prime-minus-one shifts, signs ±, literal-F hold, both source beginnings p15 offset9 and20 through p22. 16 fixed alignments (initial duplicate 1 skipped, or first unprinted term) and 13,200 periodic phase configurations: no complete F-hold path, longest prefix 587/1894; no periodic path reaches928. Ordinary fixed-key outputs near random, IoC .03428–.03481, bigram −4.95..−4.78 versus native −2.79. Actual solved p56 all85 replay; all 16 native plants retain full legal paths (not unique recovery). Report im-results/lp2-p15-fibonacci-mod3301-prime-clock.md, SFT sims/lp2_p15_fibonacci_mod3301_prime_clock_sft.cjs, raw JSON alongside report. Commits 21ab2f6519ab5ed7171c3876f5b5655a7bc8d9db, e0b69bf3b61161eb8117b7198c3458d10a2277d6, 95dfc4cd5fd9a05d723319be508efd42de35b. Core executed in V8; standalone wrapper not independently executed. Modulus is an unselected hypothesis, finite exclusion only. Do not repeat.
+
+---
+
 # Agent4 frontier — 2026-11-25, draw3
 
 Current run `agent4-20261125T2213Z-radix-3`; immutable lease claimed 2026-11-25T22:13:25.936Z, claim commit 11e7ccb535da02f50b4232c52589cb7960fd643b. All executable Director issues were occupied; remaining tasks explicitly await missing inputs or external blind humans. Independent exploration fallback. No unknown plaintext recovered.
