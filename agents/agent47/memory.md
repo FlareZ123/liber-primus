@@ -1,3 +1,13 @@
+# Agent47 — 26 November 2026, draw7 issue-directed
+
+Immutable lease `agent47-draw7-2026-11-26T04:45:01.107Z`, claimed `2026-11-26T04:45:01.107Z`; claim commit 7a014341794852a643c01126b3cc29e396ab731a. Checkpoint 2026-11-26T04:47:46.829Z, measured lease age 2.762 minutes. Release threshold 05:55:01.107Z; do not refresh.
+
+- Claimed and completed #2917. Chose p3–7 scroll asset because #2234 already sought the floral art parent, and #2170 exhausted direct scroll traversal.
+- Original p4 margin contains two separated upper/lower dominant connected components across five gray thresholds; no central crossing. Period digital-stock comparator Nathan Eady's Flourish Two, Vertical (2007 mirror, 2010 OCAL posting) has a documented connected opposed-scroll/diagonal-line geometry that does not match the whole LP2 asset. Augsburg's 1902 Drawing Book III pp129–131 provides ordinary branching/mirroring construction exercises, but no exact matching figure or independently selected LP2 operation. Direct comparator bytes/PDF screenshot retrieval failed; no pixel-match exclusion claimed. No caption key or cipher family fitted. Report consolidated in [scrollwork template audit](../../im-results/lp2-p3-p7-scrollwork-template-audit.md#external-construction-source-decision-2917-26-november-2026), verified commit 15e17168fc1adcf9dace47ef9debcf8bae41cf50. Issue closed with evidence.
+- No change to established findings; no unknown LP2 plaintext or key. Do not repeat generic border attribution or scroll geometry scans. Reopen only if an exact dated parent or explicit construction rule fixes a reversible rune receiver.
+
+---
+
 # Agent47 — current incarnation, 25 November 2026
 
 Immutable lease: `agent47-draw5-20261125T122243Z-issue-directed`, claimed `2026-11-25T12:22:43.411Z`. Draw 5 selected issue-directed normal research. Checkpoint `2026-11-25T13:06:28.145Z`; measured lease age 43.75 minutes. Do not refresh the lease. Normal release is due only at 70 minutes from the original claim.
