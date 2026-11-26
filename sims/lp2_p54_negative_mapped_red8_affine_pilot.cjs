@@ -1,0 +1,44 @@
+'use strict';
+const fs=require('fs');
+function main(lex,fixture,profile,ms=12000){
+const S="0123456789abcdefghijklmnopqrs",A=["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"],idx=new Map(A.map((x,i)=>[x,i])),D=new Set();
+for(const line of lex.split(/\r?\n/)){const m=line.match(/^([a-z]+)\s+\d+$/);if(!m)continue;const w=m[1].toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");function rec(i,s){if(i===w.length){D.add(s);return}for(let k=1;k<=3&&i+k<=w.length;k++){const t=w.slice(i,i+k),v=k===3?(t==="ING"?21:undefined):idx.get(t);if(v!==undefined)rec(i+k,s+S[v])}}rec(0,"")}
+for(const x of fixture.added.split(/\s+/))if(x)D.add(x);if(D.size!==38938)throw Error("dictionary "+D.size);
+const by=Array.from({length:64},()=>[]);for(const w of D)by[w.length].push(w);const prefix=[...new Set(by[11].map(w=>w.slice(0,10)))];
+const mod=n=>(n%29+29)%29,inv=Array.from({length:29},(_,i)=>Array.from({length:29},(_,j)=>j).find(j=>i*j%29===1)||0),eq=(a,b)=>a.every((x,i)=>x===b[i]);
+const heading=profile.red8_key.gp29_indices;function initial(start){const a=Array.from({length:37},()=>new Uint8Array(27));a[1][26]=1;for(let i=2;i<28;i++)a[i][i-2]=1;for(let i=0;i<26;i++)a[28][i]=28;a[28][26]=28;for(let j=0;j<8;j++)a[29+j]=a[heading[(j+start)%8]].map(x=>mod(-x));return {a,d:26}}
+function edge(st,e){const [c,p,j]=e,{a,d}=st,r=new Uint8Array(d+1);for(let i=0;i<=d;i++)r[i]=mod(a[c][i]-a[p][i]-a[29+j][i]);return r}
+function extend(st,edges){let {d}=st;let a=st.a.map(x=>x.slice());for(const e of edges){let r=edge({a,d},e),p=d-1;while(p>=0&&!r[p])p--;if(p<0){if(r[d])return null;continue}let z=inv[r[p]];for(let i=0;i<=d;i++)r[i]=r[i]*z%29;for(const row of a){let f=row[p];if(f)for(let i=0;i<=d;i++)row[i]=mod(row[i]-f*r[i]);row[p]=row[d-1];row[d-1]=row[d]}d--;}
+const keys=new Set();for(let x=0;x<29;x++){let key=String.fromCharCode(...a[x].slice(0,d+1));if(keys.has(key))return null;keys.add(key)}if([0,1,2,3].every(j=>eq(a[29+j].slice(0,d+1),a[33+j].slice(0,d+1))))return null;return {a,d}}
+function normalized(r,d){let p=d-1;while(p>=0&&!r[p])p--;if(p<0)return r[d]===0?0:1;let z=inv[r[p]];return String.fromCharCode(...r.map(x=>x*z%29))}
+function filter(st,required){let {a,d}=st,forbid=new Set(),cache=new Int8Array(29*29*8).fill(-1);for(let c=0;c<29;c++)for(let p=0;p<c;p++){let r=new Uint8Array(d+1);for(let i=0;i<=d;i++)r[i]=mod(a[c][i]-a[p][i]);let k=normalized(r,d);if(typeof k==="string")forbid.add(k)}for(const e of required){const k=normalized(edge(st,e),d);if(k===0)return null;if(typeof k==='string')forbid.add(k)}return e=>{let [c,p,j]=e,id=(c*29+p)*8+j;if(cache[id]>=0)return cache[id];let k=normalized(edge(st,e),d);return cache[id]=+(k!==1&&!forbid.has(k))}}
+function layout(groups,mask){let z=0,j=0;return groups.map((w,g)=>{let pos=[...w].map(x=>{let c=S.indexOf(x),hold=c===0&&((mask>>z)&1);if(c===0)z++;if(hold)return {c,hold:true,j:-1};return {c,j:j++%8,hold:false}});return {g,pos,word:w}})}
+function domains(groups,mask){return layout(groups,mask).map(({g,pos,word})=>{const options=[];for(const w of g===47?prefix:by[word.length]){const es=[],forward=new Map(),back=new Map(),fixed=new Map();let ok=true;for(let i=0;i<w.length;i++){let p=S.indexOf(w[i]),{c,j,hold}=pos[i];if(hold){if(p!==0){ok=false;break}continue}if(!p){ok=false;break}let t=j*29+c,u=j*29+p,k=+(c===p);if((forward.has(t)&&forward.get(t)!==p)||(back.has(u)&&back.get(u)!==c)||(fixed.has(j)&&fixed.get(j)!==k)){ok=false;break}if(!forward.has(t))es.push([c,p,j]);forward.set(t,p);back.set(u,c);fixed.set(j,k)}if(ok){options.push({w,es})}}return {g,pos,word,options}})}
+function decode(groups,mask,pi,k){let invpi=[];pi.forEach((x,i)=>invpi[x]=i);return layout(groups,mask).map(({pos})=>pos.map(({c,j,hold})=>hold?"0":S[invpi[mod(pi[c]-k[j])]]).join(""))}
+function propagate(dom,budget){
+const pop=x=>{x=x>>>0;x=x-((x>>>1)&0x55555555);x=(x&0x33333333)+((x>>>2)&0x33333333);return (((x+(x>>>4))&0x0f0f0f0f)*0x01010101)>>>24};
+let rounds=0,initial=dom.reduce((n,g)=>n+g.options.length,0),lo=new Uint32Array(8*29*29),hi=new Uint32Array(8*29*29);
+const tokens=[...new Set(dom.flatMap(g=>g.pos.filter(p=>!p.hold).map(({c,j})=>j*29+c)))],neighbors=new Map(tokens.map(t=>[t,tokens.filter(u=>u!==t&&Math.floor(u/29)===Math.floor(t/29))]));
+for(;;){let forced=dom.filter(g=>!g.options.length).map(g=>g.g);if(forced.includes(47)||forced.length>budget)return {excluded:true,rounds,forced,initial,final:dom.reduce((n,g)=>n+g.options.length,0)};
+rounds++;lo.fill(0);hi.fill(0);
+for(const g of dom){if(!g.options.length)continue;const sup=new Map();for(const o of g.options)for(const [c,p,j] of o.es){const t=j*29+c;sup.set(t,(sup.get(t)||0)|(1<<p))}
+const arr=g.g<32?lo:hi,b=1<<(g.g%32);
+for(const [t,m] of sup){for(let p=1;p<29;p++)if(!(m&(1<<p)))arr[t*29+p]|=b;if(pop(m)===1){const p=31-Math.clz32(m);for(const u of neighbors.get(t))arr[u*29+p]|=b}}
+}
+let change=0;const left=budget-forced.length;
+for(const g of dom){const old=g.options.length;g.options=g.options.filter(o=>{let a=0,b=0;for(const [c,p,j] of o.es){let t=(j*29+c)*29+p;a|=lo[t];b|=hi[t];}return !(b&(1<<15))&&pop(a)+pop(b)<=left});change+=old-g.options.length}
+if(!change)return {excluded:false,rounds,forced,initial,final:dom.reduce((n,g)=>n+g.options.length,0)};
+}}
+function solve(groups,mask,ms,budget=3,start=0){
+let begin=Date.now(),dom=domains(groups,mask),stats={nodes:0,extensions:0,enum:0,residual:0,timeout:false,minDim:26};let result=null;const pruning=propagate(dom,budget);if(pruning.excluded)return {mask,pruning,stats,result:null};let sorted=dom.slice().sort((a,b)=>Math.log2(Math.max(1,a.options.length))/a.word.length-Math.log2(Math.max(1,b.options.length))/b.word.length);
+const mandatory=dom[47];sorted=sorted.filter(g=>g.g!==47);const req=[...new Map(dom.flatMap(g=>g.pos.filter(p=>!p.hold).map(({c,j})=>[j*29+c,[c,0,j]]))).values()];
+function stop(){if(result)return true;if(Date.now()-begin>ms){stats.timeout=true;return true}return false}
+function complete(st){const {a,d}=st;for(let t=0;t<29**d;t++){stats.enum++;let v=a.map(row=>mod(row[d]+(d?row[0]*(t%29):0)+(d>1?row[1]*Math.floor(t/29):0))),pi=v.slice(0,29),k=v.slice(29);if(new Set(pi).size!==29||k.slice(0,4).every((x,i)=>x===k[i+4]))continue;if(req.some(([c,p,j])=>pi[c]===k[j]))continue;let plain=decode(groups,mask,pi,k),miss=plain.slice(0,47).filter(w=>!D.has(w)).length;if(miss<=budget&&prefix.includes(plain[47])&&!plain[47].split("").some((p,j)=>p==="0"&&!mandatory.pos[j].hold)){result={pi,k,plain,miss};return}}}
+function dfs(st,rem,b){if(stop())return;stats.nodes++;stats.minDim=Math.min(stats.minDim,st.d);if(st.d<=2){complete(st);return}if(rem.length<=b){stats.residual++;return}const allow=filter(st,req);if(!allow)return;let best=-1,opts=null,n=Math.min(rem.length,st.d>12?8:rem.length),score=Infinity;for(let i=0;i<n;i++){let g=rem[i],d=g.options.filter(o=>o.es.every(allow));if(!d.length){if(!b)return;dfs(st,rem.filter((_,j)=>j!==i),b-1);return}let s=Math.log2(d.length+1)/g.word.length;if(s<score){best=i;opts=d;score=s}}let rest=rem.filter((_,i)=>i!==best);for(const o of opts){if(stop())return;stats.extensions++;let next=extend(st,o.es);if(next)dfs(next,rest,b)}if(b)dfs(st,rest,b-1)}
+let base=initial(start);for(const o of mandatory.options){if(stop())break;let st=extend(base,o.es);if(st)dfs(st,sorted,budget)}
+return {mask,pruning,domainCounts:dom.map(x=>x.options.length),stats,elapsed:Date.now()-begin,result}}
+function rng(seed){let x=seed>>>0;return n=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x%n}}
+function plant(seed){const rand=rng(seed),lengths=profile.p54.body_groups.map(w=>w.length);lengths[47]=11;let pi=Array.from({length:29},(_,i)=>i);for(let i=28;i>2;i--){let j=2+rand(i-1);[pi[i],pi[j]]=[pi[j],pi[i]]}let ip=[];pi.forEach((x,i)=>ip[x]=i);const start=seed%8,k=Array.from({length:8},(_,j)=>mod(-pi[heading[(j+start)%8]]));let trial=0;while(++trial<10000){let phase=0,z=0,mask=0;let plain=lengths.map(n=>by[n][rand(by[n].length)]);const encode=w=>[...w].map(x=>{let p=S.indexOf(x);if(!p){mask|=1<<z++;return "0"}let c=ip[mod(pi[p]+k[phase++%8])];if(!c)z++;return S[c]}).join("");let cipher=plain.map(encode);if(z>4)continue;return {seed,trial,pi,k,start,plain:plain.map((w,i)=>i===47?w.slice(0,10):w),cipher:cipher.map((w,i)=>i===47?w.slice(0,10):w),mask,z}}throw Error("plant selection")}
+const p=plant(3301);let r=solve(p.cipher,p.mask,ms,0,p.start);return {plant:{...p},control:{...r,exact:r.result&&eq(r.result.pi,p.pi)&&eq(r.result.k,p.k),exactPlain:r.result&&eq(r.result.plain,p.plain)}};
+}
+const files=["resources/control/english_wordfreq_textblob.txt","im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json","resources/liber-primus/lp2-page-groups-54-55-derived.json"];const v=files.map(p=>fs.readFileSync(p,'utf8'));console.log(JSON.stringify(main(v[0],JSON.parse(v[1]),JSON.parse(v[2]),Number(process.argv[2]||13000)),null,2));
