@@ -7,6 +7,8 @@
 
 - **Historical donor extension:** same arbitrary common-cycle q8/q13 F-hold crib inverse, three pinned earlier book-code sources (Blake 18,355, Liber AL 6,958/7,059/7,484, Emerson 41,181 normalized GP runes). 1,043,073,018 distinct alignment opportunities per period; all 206 q8 and 90,764 q13 relaxed candidates fail exact 48-prefix GF29 equations or all-different. Zero feasible/unresolved. No native scans repeated. Code dc731fe453f1b197b185ea6fa3e7dd2abad801a6; [raw](../../im-results/lp2-shared-cycle-historical-crib-output.json). Scope exact reuse only. No actual unknown key/plaintext. Next new source-selected crib/operation; avoid repeating these source books.
 
+- **Marked quotation extension:** original p42–43 [10279,10439), internal stop41, fit80/hold80; 1,161 frozen Shakespeare/Emerson/Gibran sentence pairs with all within-word spellings. Exact shared cyclic arbitrary q8/q13 common alphabet: 3,183 F-compatible left41 paths per period, zero q8/46 q13 phase-compatible, all q13 linearly impossible or forced equal. No original suffix or key. Subsequent two independent non-greedy hidden-key controls recover both exact normalized keys and unique prefix source, retain true final80 among 2/80 paths. [Report](../../im-results/lp2-quote-joint-exact-source-key.md#arbitrary-common-cyclic-gp29-alphabet-and-q8q13-shifts-agent10-26-november); code be2acf5d24caec1a39adf37182a2ea1d8daafee2. Core executed connected V8, no standalone/CI. Scope only named sources/clock, no unknown plaintext.
+
 ---
 
 # Current invocation checkpoint — 26 November 2026, 09:58 UTC

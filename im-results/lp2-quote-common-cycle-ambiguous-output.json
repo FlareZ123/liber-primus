@@ -1,0 +1,81 @@
+{
+  "pairs": 1161,
+  "controls": [
+    {
+      "q": 8,
+      "seed": 6304154,
+      "source": "Shakespeare",
+      "stop": 2507,
+      "nonGreedy": true,
+      "left": 3272,
+      "compatible41": 1,
+      "linear41": 1,
+      "right48": 1,
+      "compatible48": 1,
+      "linear48": 1,
+      "paths80": 1,
+      "H": {
+        "feasible": 1
+      },
+      "matching": 1,
+      "exact": 1,
+      "heldout": [
+        {
+          "paths": 2,
+          "truth": true
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "seed": 8587163,
+      "source": "Emerson",
+      "stop": 318,
+      "nonGreedy": true,
+      "left": 3189,
+      "compatible41": 48,
+      "linear41": 1,
+      "right48": 1,
+      "compatible48": 1,
+      "linear48": 1,
+      "paths80": 1,
+      "H": {
+        "feasible": 1
+      },
+      "matching": 1,
+      "exact": 1,
+      "heldout": [
+        {
+          "paths": 80,
+          "truth": true
+        }
+      ]
+    }
+  ],
+  "original": [
+    {
+      "q": 8,
+      "left": 3183,
+      "compatible41": 0,
+      "linear41": 0,
+      "right48": 0,
+      "compatible48": 0,
+      "linear48": 0,
+      "paths80": 0,
+      "H": {},
+      "out": []
+    },
+    {
+      "q": 13,
+      "left": 3183,
+      "compatible41": 46,
+      "linear41": 0,
+      "right48": 0,
+      "compatible48": 0,
+      "linear48": 0,
+      "paths80": 0,
+      "H": {},
+      "out": []
+    }
+  ]
+}
