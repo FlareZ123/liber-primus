@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('fs');
-function main(lex,fixture,profile,ms=12000){
+function main(lex,fixture,profile,ms=12000,mode='control',seed=3301,first=0,last=128,budget=0){
 const S="0123456789abcdefghijklmnopqrs",A=["F","U","TH","O","R","C","G","W","H","N","I","J","EO","P","X","S","T","B","E","M","L","NG","OE","D","A","AE","Y","IA","EA"],idx=new Map(A.map((x,i)=>[x,i])),D=new Set();
 for(const line of lex.split(/\r?\n/)){const m=line.match(/^([a-z]+)\s+\d+$/);if(!m)continue;const w=m[1].toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");function rec(i,s){if(i===w.length){D.add(s);return}for(let k=1;k<=3&&i+k<=w.length;k++){const t=w.slice(i,i+k),v=k===3?(t==="ING"?21:undefined):idx.get(t);if(v!==undefined)rec(i+k,s+S[v])}}rec(0,"")}
 for(const x of fixture.added.split(/\s+/))if(x)D.add(x);if(D.size!==38938)throw Error("dictionary "+D.size);
@@ -29,8 +29,9 @@ let change=0;const left=budget-forced.length;
 for(const g of dom){const old=g.options.length;g.options=g.options.filter(o=>{let a=0,b=0;for(const [c,p,j] of o.es){let t=(j*29+c)*29+p;a|=lo[t];b|=hi[t];}return !(b&(1<<15))&&pop(a)+pop(b)<=left});change+=old-g.options.length}
 if(!change)return {excluded:false,rounds,forced,initial,final:dom.reduce((n,g)=>n+g.options.length,0)};
 }}
-function solve(groups,mask,ms,budget=3,start=0){
-let begin=Date.now(),dom=domains(groups,mask),stats={nodes:0,extensions:0,enum:0,residual:0,timeout:false,minDim:26};let result=null;const pruning=propagate(dom,budget);if(pruning.excluded)return {mask,pruning,stats,result:null};let sorted=dom.slice().sort((a,b)=>Math.log2(Math.max(1,a.options.length))/a.word.length-Math.log2(Math.max(1,b.options.length))/b.word.length);
+function prepare(groups,mask,budget){let dom=domains(groups,mask),pruning=propagate(dom,budget);return {dom,pruning}}
+function solve(groups,mask,ms,budget=3,start=0,prep=prepare(groups,mask,budget)){
+let begin=Date.now(),{dom,pruning}=prep,stats={nodes:0,extensions:0,enum:0,residual:0,timeout:false,minDim:26};let result=null;if(pruning.excluded)return {mask,pruning,stats,result:null};let sorted=dom.slice().sort((a,b)=>Math.log2(Math.max(1,a.options.length))/a.word.length-Math.log2(Math.max(1,b.options.length))/b.word.length);
 const mandatory=dom[47];sorted=sorted.filter(g=>g.g!==47);const req=[...new Map(dom.flatMap(g=>g.pos.filter(p=>!p.hold).map(({c,j})=>[j*29+c,[c,0,j]]))).values()];
 function stop(){if(result)return true;if(Date.now()-begin>ms){stats.timeout=true;return true}return false}
 function complete(st){const {a,d}=st;for(let t=0;t<29**d;t++){stats.enum++;let v=a.map(row=>mod(row[d]+(d?row[0]*(t%29):0)+(d>1?row[1]*Math.floor(t/29):0))),pi=v.slice(0,29),k=v.slice(29);if(new Set(pi).size!==29||k.slice(0,4).every((x,i)=>x===k[i+4]))continue;if(req.some(([c,p,j])=>pi[c]===k[j]))continue;let plain=decode(groups,mask,pi,k),miss=plain.slice(0,47).filter(w=>!D.has(w)).length;if(miss<=budget&&prefix.includes(plain[47])&&!plain[47].split("").some((p,j)=>p==="0"&&!mandatory.pos[j].hold)){result={pi,k,plain,miss};return}}}
@@ -38,7 +39,31 @@ function dfs(st,rem,b){if(stop())return;stats.nodes++;stats.minDim=Math.min(stat
 let base=initial(start);for(const o of mandatory.options){if(stop())break;let st=extend(base,o.es);if(st)dfs(st,sorted,budget)}
 return {mask,pruning,domainCounts:dom.map(x=>x.options.length),stats,elapsed:Date.now()-begin,result}}
 function rng(seed){let x=seed>>>0;return n=>{x=(Math.imul(x,1664525)+1013904223)>>>0;return x%n}}
-function plant(seed){const rand=rng(seed),lengths=profile.p54.body_groups.map(w=>w.length);lengths[47]=11;let pi=Array.from({length:29},(_,i)=>i);for(let i=28;i>2;i--){let j=2+rand(i-1);[pi[i],pi[j]]=[pi[j],pi[i]]}let ip=[];pi.forEach((x,i)=>ip[x]=i);const start=seed%8,k=Array.from({length:8},(_,j)=>mod(-pi[heading[(j+start)%8]]));let trial=0;while(++trial<10000){let phase=0,z=0,mask=0;let plain=lengths.map(n=>by[n][rand(by[n].length)]);const encode=w=>[...w].map(x=>{let p=S.indexOf(x);if(!p){mask|=1<<z++;return "0"}let c=ip[mod(pi[p]+k[phase++%8])];if(!c)z++;return S[c]}).join("");let cipher=plain.map(encode);if(z>4)continue;return {seed,trial,pi,k,start,plain:plain.map((w,i)=>i===47?w.slice(0,10):w),cipher:cipher.map((w,i)=>i===47?w.slice(0,10):w),mask,z}}throw Error("plant selection")}
-const p=plant(3301);let r=solve(p.cipher,p.mask,ms,0,p.start);return {plant:{...p},control:{...r,exact:r.result&&eq(r.result.pi,p.pi)&&eq(r.result.k,p.k),exactPlain:r.result&&eq(r.result.plain,p.plain)}};
+function plant(seed){
+ const rand=rng(seed),lengths=profile.p54.body_groups.map(w=>w.length);lengths[47]=11;const trainLen=223;lengths.push(...profile.p55.groups.slice(1).map(w=>w.length));
+ let pi=Array.from({length:29},(_,i)=>i);for(let i=28;i>2;i--){let j=2+rand(i-1);[pi[i],pi[j]]=[pi[j],pi[i]]}
+ let ip=[];pi.forEach((x,i)=>ip[x]=i);const start=seed%8,k=Array.from({length:8},(_,j)=>mod(-pi[heading[(j+start)%8]]));
+ let trial=0;while(++trial<10000){let phase=0,z=0,mask=0,offset=0;let plain=lengths.map(n=>by[n][rand(by[n].length)]);
+ const encode=w=>[...w].map(x=>{let p=S.indexOf(x),c=p?ip[mod(pi[p]+k[phase++%8])]:0;if(offset++<trainLen&&!c){if(!p)mask|=1<<z;z++}return S[c]}).join("");
+ let cipher=plain.map(encode);if(z>4)continue;
+ return {seed,trial,pi,k,start,plain:plain.slice(0,48).map((w,i)=>i===47?w.slice(0,10):w),cipher:cipher.slice(0,48).map((w,i)=>i===47?w.slice(0,10):w),holdPlain:plain.slice(47),holdCipher:[cipher[47].slice(10),...cipher.slice(48)],mask,z};
+ }throw Error("plant selection")
 }
-const files=["resources/control/english_wordfreq_textblob.txt","im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json","resources/liber-primus/lp2-page-groups-54-55-derived.json"];const v=files.map(p=>fs.readFileSync(p,'utf8'));console.log(JSON.stringify(main(v[0],JSON.parse(v[1]),JSON.parse(v[2]),Number(process.argv[2]||13000)),null,2));
+function holdout(groups,hold,mask,result,truth){
+ const {pi,k,plain}=result,ip=[];pi.forEach((x,i)=>ip[x]=i);let n=layout(groups,mask).flatMap(g=>g.pos).filter(x=>!x.hold).length,states=[{phase:n%8,words:[]}],counts=[],clipped=false;
+ for(let g=0;g<hold.length;g++){let next=[];for(const st of states){
+  function visit(i,j,w){if(i===hold[g].length){let full=g===0?plain[47]+w:w;if(D.has(full))next.push({phase:j,words:[...st.words,full]});return}
+   const c=S.indexOf(hold[g][i]);if(!c)visit(i+1,j,w+"0");let p=ip[mod(pi[c]-k[j])];if(p)visit(i+1,(j+1)%8,w+S[p]);
+  }visit(0,st.phase,"");
+ }counts.push(next.length);if(next.length>10000){clipped=true;next=next.slice(0,10000)}states=next;if(!states.length)break;}
+ return {counts,fullPaths:states.length,clipped,truthRetained:truth?states.some(st=>eq(st.words,truth)):null,examples:states.slice(0,5)};
+}
+const p=mode==='control'?plant(seed):null,groups=p?p.cipher:profile.p54.body_groups,z=groups.join("").split("").filter(x=>x==="0").length;
+let cases=[],success=null;
+for(let mask=0;mask<2**z;mask++){let prep=null;for(let start=0;start<8;start++){const id=mask*8+start;if(id<first||id>=last)continue;if(!prep)prep=prepare(groups,mask,budget);
+ const r=solve(groups,mask,ms,budget,start,prep);cases.push({id,start,mask,stats:r.stats,elapsed:r.elapsed,pruning:r.pruning,result:r.result});
+ if(r.result){const h=holdout(groups,p?p.holdCipher:profile.p55.groups,mask,r.result,p?p.holdPlain:null);success={id,start,mask,result:r.result,holdout:h,exact:p?eq(r.result.pi,p.pi)&&eq(r.result.k,p.k):null,exactPlain:p?eq(r.result.plain,p.plain):null};break}
+}if(success)break}
+return {mode,seed,first,last,budget,z,plant:p,cases,success};
+}
+const files=["resources/control/english_wordfreq_textblob.txt","im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json","resources/liber-primus/lp2-page-groups-54-55-derived.json"];const v=files.map(p=>fs.readFileSync(p,'utf8'));console.log(JSON.stringify(main(v[0],JSON.parse(v[1]),JSON.parse(v[2]),Number(process.argv[2]||13000),process.argv[3]||'control',Number(process.argv[4]||3301),Number(process.argv[5]||0),Number(process.argv[6]||128),Number(process.argv[7]||0)),null,2));
