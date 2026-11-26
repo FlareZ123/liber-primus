@@ -1,0 +1,187 @@
+{
+  "tag": "donor0",
+  "stage": [
+    {
+      "length": 5,
+      "seeds": 512,
+      "best": 21.969685077667236
+    },
+    {
+      "length": 6,
+      "seeds": 512,
+      "best": 34.60506725311279
+    },
+    {
+      "length": 7,
+      "seeds": 512,
+      "best": 45.15349864959717
+    },
+    {
+      "length": 8,
+      "seeds": 512,
+      "best": 53.95784309506416
+    },
+    {
+      "length": 9,
+      "seeds": 512,
+      "best": 65.01276221871376
+    },
+    {
+      "length": 10,
+      "seeds": 512,
+      "best": 77.57087722420692
+    },
+    {
+      "length": 11,
+      "seeds": 512,
+      "best": 85.00830760598183
+    },
+    {
+      "length": 12,
+      "seeds": 512,
+      "best": 93.45284202694893
+    },
+    {
+      "length": 13,
+      "seeds": 512,
+      "best": 118.08608692442067
+    }
+  ],
+  "short": 3305851,
+  "long": 10996901,
+  "truthKey": [
+    0,
+    2,
+    25,
+    19,
+    20,
+    28,
+    4,
+    10,
+    28,
+    8,
+    27,
+    24,
+    21
+  ],
+  "truthRank": 1,
+  "correct": true,
+  "selected": [
+    0,
+    2,
+    25,
+    19,
+    20,
+    28,
+    4,
+    10,
+    28,
+    8,
+    27,
+    24,
+    21
+  ],
+  "fit": -2.2920085846423506,
+  "held": -2.4935184457728012,
+  "heldAccuracy": 0.9601990049751243,
+  "heldBoundaryF1": 0.9259259259259259,
+  "decoded": "BENDNG SLOPES AND EUEN THE PASSNG FLOCCS OF YOUR THOUGHTS AND YOUR DESIRES AND TO MY SILENCE CAME THE LAUGHTER OF YOUR CHILDREN IN STREAMS AND THE LONGNG OF YOUR YOUTH OFF RIUERS AND WHEN THEY REACHED MY DEPTH THE STREAMS AND THE RIUERS CEASED NOT YET TO CNG ILLUSTRATIAN BUT SWEETER STILL THAN LAUGHTER AND GREATER THAN LONGNG CAME TO ME IT WAS THE BOUNDLESS IN YOU THE UAST MAN IN WHOM YOU ARE ALL BUT CELLS AND SINEWS HE IN WHOSE CHANT ALL YOUR RAGE A BUT A SOUND LESS THROBBNG IT IS IN THE UAST MAN THAT YOU ARE FAST AND IN BEHOLDNG HIM THAT I BEHELD YOU AND LOUED YOU FOR WHAT DISTANCES CAN LOUE REACH THAT ARE NOT IN THAT UAST SPHERE WHAT UISIANS WHAT EXPECTATIANS AND WHAT PRESUMPTIAN S CAN OUT SOAR THAT FLIGHT LICE A GIANT OAC TREE COUERED WITH APPLE BLOSSOMS IS THE FAST MAN IN YOU HIS MIGHT BIND A YOU TO THE EARTH HIS FRAGRANCE LIFTS YOU INTO SPACE AND IN IS TO ON ABILITY YOU ARE DEATH LESS YOU HAUE BEEN TOLD THAT EUEN LICE A CHAIN YOU ARE",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        0,
+        2,
+        25,
+        19,
+        20,
+        28,
+        4,
+        10,
+        28,
+        8,
+        27,
+        24,
+        21
+      ],
+      "fragmentScore": 118.08608692442067,
+      "fit": -2.2920085846423506
+    },
+    {
+      "key": [
+        2,
+        25,
+        19,
+        20,
+        28,
+        4,
+        10,
+        28,
+        8,
+        27,
+        24,
+        21,
+        22
+      ],
+      "fragmentScore": 98.33279034681618,
+      "fit": -2.8364229472677067
+    },
+    {
+      "key": [
+        2,
+        25,
+        19,
+        20,
+        28,
+        4,
+        10,
+        28,
+        8,
+        27,
+        24,
+        21,
+        23
+      ],
+      "fragmentScore": 94.60640328857698,
+      "fit": -2.8400515180143033
+    },
+    {
+      "key": [
+        2,
+        25,
+        19,
+        20,
+        28,
+        4,
+        10,
+        28,
+        8,
+        27,
+        24,
+        21,
+        15
+      ],
+      "fragmentScore": 94.70357257207797,
+      "fit": -2.8469789836240933
+    },
+    {
+      "key": [
+        2,
+        25,
+        19,
+        20,
+        28,
+        4,
+        10,
+        28,
+        8,
+        27,
+        24,
+        21,
+        4
+      ],
+      "fragmentScore": 95.30030529201031,
+      "fit": -2.8495433764517246
+    }
+  ]
+}
