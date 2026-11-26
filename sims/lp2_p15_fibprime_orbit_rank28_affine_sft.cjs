@@ -64,7 +64,7 @@ const core=function(data,which="all"){
   const {p,...b}=best;check(equal(enc(p,b.k),x),"replay");
   return {...res,best:{...b,held:score(p,cut,p.length),heldSingletonHits:ss.filter(i=>i>=cut&&AIO.includes(p[i])).length,excerpt:p.slice(cut,cut+150).map(i=>s.translit[i]).join(""),...(truth?{heldRuneHits:p.slice(cut).filter((v,i)=>v===truth.p[cut+i]).length,keyExact:Object.keys(truth.k).every(f=>b.k[f]===truth.k[f])}:{})}};
  }
- const controls=[];for(const [j,o,k] of [[3,1000,{hold:true,read:0,e:21,kind:0,phase:763,a:17,b:13}],[4,4000,{hold:false,read:2,e:28,kind:1,phase:1481,a:9,b:23}]]){
+ const controls=[];for(const [j,o,k] of [[3,1400,{hold:true,read:0,e:21,kind:0,phase:763,a:17,b:13}],[4,12400,{hold:false,read:2,e:28,kind:1,phase:1481,a:9,b:23}]]){
  if(which!=="all"&&which!==String(j))continue;const n=native(data[j]),p=n.out.slice(o,o+c.length),ss=n.ss.filter(i=>i>=o&&i<o+c.length).map(i=>i-o),x=enc(p,k);check(equal(dec(x,k,ev(x,k.hold,k.read)),p),"control inverse");controls.push({donor:j,offset:o,truth:k,...search(x,ss,{p,k})})
  }
  return {model:"rank28 source key: affine signed/absolute 3301-prime[F_t mod3301], 1650 Fibonacci phases, a,b mod28, 29 escape symbols, hold/consume, cyclic/log15/sorted; no holdout fit",n:c.length,cut,period:q,original:which==="all"||which==="original"?search(c,sites,null):null,controls}
