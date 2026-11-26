@@ -203,7 +203,7 @@ for (let page = 0; page <= 55; page += 1) {
 }
 assert.equal(offset36PageCandidates.length, 13);
 const offset36FourRunePages = offset36PageCandidates
-  .filter((entry) => entry.groups.some((group) => group.length === V))
+  .filter((entry) => entry.groups.some((group) => group.length === 4))
   .map((entry) => entry.page);
 assert.deepEqual(offset36FourRunePages, [2,8,48]);
 const p2CompletePage = pages.find((page) => page.page === 2);
