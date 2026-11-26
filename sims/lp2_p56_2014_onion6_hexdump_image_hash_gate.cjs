@@ -47,27 +47,31 @@ const segments = layout.starts.map((start, i) => {
     const reference = fs.readFileSync(path.join(root, referenceName));
     assert.deepEqual(content, reference, `Embedded stream does not equal canonical ${referenceName}`);
   }
+  const sha512Digest = sha512(content);
+  const whirlpoolDigest = whirlpool(content);
   return {
     name: i === 0 ? "LP1 image 10 (first JPEG stream)" : `LP1 image ${10 + i} (embedded copy of ${10 + i}.jpg)`,
     offset: start,
     bytes: content.length,
     sha256: crypto.createHash("sha256").update(content).digest("hex"),
-    sha512: sha512(content),
-    whirlpool: whirlpool(content),
-    matchesP56Sha512: sha512(content) === target,
-    matchesP56Whirlpool: whirlpool(content) === target
+    sha512: sha512Digest,
+    whirlpool: whirlpoolDigest,
+    matchesP56Sha512: sha512Digest === target,
+    matchesP56Whirlpool: whirlpoolDigest === target
   };
 });
 
+const wholeSha512 = sha512(bytes);
+const wholeWhirlpool = whirlpool(bytes);
 const whole = {
   name: "complete 10.jpg / archived Onion6 container",
   offset: 0,
   bytes: bytes.length,
   sha256: crypto.createHash("sha256").update(bytes).digest("hex"),
-  sha512: sha512(bytes),
-  whirlpool: whirlpool(bytes),
-  matchesP56Sha512: sha512(bytes) === target,
-  matchesP56Whirlpool: whirlpool(bytes) === target
+  sha512: wholeSha512,
+  whirlpool: wholeWhirlpool,
+  matchesP56Sha512: wholeSha512 === target,
+  matchesP56Whirlpool: wholeWhirlpool === target
 };
 
 const result = {
