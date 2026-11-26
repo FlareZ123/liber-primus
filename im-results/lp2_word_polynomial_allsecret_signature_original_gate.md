@@ -11,7 +11,7 @@ The p39-red-polynomial word hypothesis now grants each word **an arbitrary nonze
 
 ## Why investigate this operation
 
-The manuscript contains an original red quadratic expression on physical p39, and the Cicada-signed 2016 message emphasizes words and their numbers. A natural but *unselected* implementation is a polynomial shift in each printed word's rune position. Prior independent research excluded constant, affine and linear-ramp per-word shifts. The quadratic operation and extensions through degree seven test the wider finite-difference family without guessing coefficients. The original expression does **not** specify this operation or the reset clock.
+Physical p39 contains the red rune triple [27,5,15] (original 56.jpg, offsets119–121). Interpreting it as ascending polynomial coefficients yields 27+5X+15X²=15(X−24)² mod29; the page itself prints three runes, not an explicit quadratic expression. The Cicada-signed 2016 message emphasizes words and their numbers. A natural but *unselected* implementation is a polynomial shift in each printed word's rune position. Prior independent research excluded constant, affine and linear-ramp per-word shifts. The quadratic operation and extensions through degree seven test the wider finite-difference family without guessing coefficients. The conjectural polynomial interpretation does **not** specify this operation or the reset clock.
 
 ## All-secret mechanism and exact invariant
 
@@ -49,6 +49,6 @@ The planted control independently chooses each secret polynomial coefficient, en
 
 ## Limits and research decision
 
-This result excludes one broad **additive per-word polynomial shift** family in the pinned GP29 English register while preserving original length multiset and rune order. It says nothing universal about non-English plaintext, proper names absent from the 32,021-word reference, insertions/deletions, nonpolynomial feedback, transposition, or other encrypted registers. Even degree seven remains an artificial robustness extension: the source p39 printing only offers the quadratic clue and does not authenticate the word index clock. No further scanning of polynomial coefficients in this family can evade the exact invariant; a new route needs independent source evidence for a different operation or text register.
+This result excludes one broad **additive per-word polynomial shift** family in the pinned GP29 English register while preserving original length multiset and rune order. It says nothing universal about non-English plaintext, proper names absent from the 32,021-word reference, insertions/deletions, nonpolynomial feedback, transposition, or other encrypted registers. Even degree seven remains an artificial robustness extension: the source p39 printing only offers the triple and its conjectural quadratic reading and does not authenticate the word index clock. No further scanning of polynomial coefficients in this family can evade the exact invariant; a new route needs independent source evidence for a different operation or text register.
 
 **Reproduction:** `node sims/lp2_polynomial_wordshift_allsecret_sft.cjs` (read-only Node22 SFT, original source files, unaltered lexical normalization; all counts and full per-degree matrix printed). The SFT fails if original source lengths or all-cut zero gates differ, and includes exact encryption/decryption plants.
