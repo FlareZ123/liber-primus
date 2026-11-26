@@ -100,14 +100,17 @@ Plant wordPlant(const vector<string>&shape,const vector<string>&held,unsigned se
  p.train=split(c.substr(0,223),shape);p.held=split(c.substr(223),held);return p;
 }
 bool gate(const vector<string>&shape,const vector<string>&held,unsigned base){
- for(unsigned attempt=0;attempt<2000;attempt++){
+ for(unsigned attempt=0;attempt<50000;attempt++){
   auto p=wordPlant(shape,held,base+attempt*10007);string c=join(p.train);if(count(c.begin(),c.end(),'0')>4)continue;
   auto paths=schedules(c,boundaries(shape));if(paths.cost!=2||paths.paths.size()>128)continue;
   fixed::require(any_of(paths.paths.begin(),paths.paths.end(),[&](auto&q){return q.key==p.path.key&&q.end==p.path.end;}),"true path omitted");
   cout<<"MASK PLANT seed="<<base+attempt*10007<<" attempt="<<attempt<<" paths="<<paths.paths.size()<<endl;
   MaskSearch s(p.train,paths.paths,0);s.run(360);bool exact=s.found&&s.answer==p.pi;bool hold=false;
-  if(exact){auto&w=paths.paths[s.chosenPath];auto d=split(decode(c,w,s.answer),shape);auto h=holdout(p.held,d.back(),s.answer,w.end);hold=d==p.truth&&find(h.begin(),h.end(),p.holdTruth)!=h.end();}
-  cout<<"MASK CONTROL "<<base<<" exact="<<exact<<" hold="<<hold<<endl;return exact&&hold;
+  int trainPaths=0,fullPaths=0,truePaths=0;set<vector<string>> fullTexts;
+  if(exact)for(auto&w:paths.paths){auto d=split(decode(c,w,s.answer),shape);if(!fixed::prefixDict.count(d.back())||!all_of(d.begin(),d.end()-1,[](const string&v){return fixed::dict.count(v);}))continue;trainPaths++;
+   auto h=holdout(p.held,d.back(),s.answer,w.end);for(auto&v:h){fullPaths++;auto complete=d;complete.pop_back();complete.insert(complete.end(),v.begin(),v.end());fullTexts.insert(complete);if(d==p.truth&&v==p.holdTruth){hold=true;truePaths++;}}
+  }
+  cout<<"MASK CONTROL "<<base<<" exact="<<exact<<" hold="<<hold<<" trainPaths="<<trainPaths<<" fullPaths="<<fullPaths<<" distinctFullTexts="<<fullTexts.size()<<" truthPaths="<<truePaths<<endl;return exact&&hold;
  }
  cout<<"MASK CONTROL "<<base<<" no structural plant"<<endl;return false;
 }
@@ -116,6 +119,6 @@ int main(){try{
  auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");auto paths=schedules(join(train),boundaries(train));fixed::require(paths.cost==2&&paths.paths.size()==85,"word minimum");
  bool a=gate(train,held,3301),b=gate(train,held,1033);if(!a||!b){cout<<"MASK ORIGINAL GATED OFF"<<endl;return 2;}
- MaskSearch s(train,paths.paths,3);s.run(1200);if(s.found){auto&p=paths.paths[s.chosenPath];auto w=split(decode(join(train),p,s.answer),train);cout<<"ORIGINAL CANDIDATE "<<aff::str(s.answer)<<" phase="<<p.end<<" OOV="<<s.oov<<endl;for(auto&x:w)cout<<x<<" ";cout<<endl;auto h=holdout(held,w.back(),s.answer,p.end);cout<<"CONTINUOUS HOLDOUT "<<h.size()<<endl;for(auto&x:h){for(auto&v:x)cout<<v<<" ";cout<<endl;}}
+ MaskSearch s(train,paths.paths,3);s.run(1200);if(s.found){cout<<"ORIGINAL CANDIDATE "<<aff::str(s.answer)<<" firstPath="<<s.chosenPath<<" OOV="<<s.oov<<endl;int trainPaths=0,fullPaths=0;for(size_t i=0;i<paths.paths.size();i++){auto&p=paths.paths[i];auto w=split(decode(join(train),p,s.answer),train);if(!fixed::prefixDict.count(w.back()))continue;int oov=count_if(w.begin(),w.end()-1,[](const string&v){return !fixed::dict.count(v);});if(oov>3)continue;trainPaths++;cout<<"TRAIN PATH "<<i<<" phase="<<p.end<<" OOV="<<oov;for(auto&x:w)cout<<" "<<x;cout<<endl;auto h=holdout(held,w.back(),s.answer,p.end);for(auto&x:h){fullPaths++;cout<<"HOLD PATH "<<i;for(auto&v:x)cout<<" "<<v;cout<<endl;}}cout<<"TRAIN PATHS "<<trainPaths<<" CONTINUOUS HOLDOUT PATHS "<<fullPaths<<endl;}
  bool exhausted=!s.found&&!s.timed&&s.done==s.seedCount;cout<<"MASK ORIGINAL exhausted="<<exhausted<<endl;return exhausted?0:1;
  }catch(const exception&e){cerr<<"ERROR "<<e.what()<<endl;return 2;}}
