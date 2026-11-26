@@ -1,0 +1,482 @@
+{
+  "N": 12956,
+  "q": 13,
+  "cuts": [
+    0,
+    729,
+    1874,
+    3603,
+    5506,
+    6761,
+    7960,
+    9640,
+    12648,
+    12956
+  ],
+  "ns": [
+    33879,
+    204151,
+    294315
+  ],
+  "total": 532345,
+  "chosen": [
+    {
+      "p": "5a451jfgo95if",
+      "latin": "CIRCUMSTANCES",
+      "cover": 13,
+      "len": 13,
+      "gain": 133056,
+      "remain": 399289
+    },
+    {
+      "p": "i9gi4goa9ji9g",
+      "latin": "ENTERTAINMENT",
+      "cover": 13,
+      "len": 13,
+      "gain": 45457,
+      "remain": 353832
+    },
+    {
+      "p": "539gijd34o4aif",
+      "latin": "CONTEMPORARIES",
+      "cover": 13,
+      "len": 14,
+      "gain": 43049,
+      "remain": 310783
+    },
+    {
+      "p": "d3ffahakagaif",
+      "latin": "POSSIBILITIES",
+      "cover": 13,
+      "len": 13,
+      "gain": 28006,
+      "remain": 282777
+    },
+    {
+      "p": "5a451j9o1a6ogr9",
+      "latin": "CIRCUMNAUIGATIAN",
+      "cover": 13,
+      "len": 15,
+      "gain": 18053,
+      "remain": 264724
+    },
+    {
+      "p": "a913k19go4akq",
+      "latin": "INUOLUNTARILY",
+      "cover": 13,
+      "len": 13,
+      "gain": 14898,
+      "remain": 249826
+    },
+    {
+      "p": "a9ie8o1fgahki",
+      "latin": "INEXHAUSTIBLE",
+      "cover": 13,
+      "len": 13,
+      "gain": 12908,
+      "remain": 236918
+    },
+    {
+      "p": "19o55319gohki",
+      "latin": "UNACCOUNTABLE",
+      "cover": 13,
+      "len": 13,
+      "gain": 12848,
+      "remain": 224070
+    },
+    {
+      "p": "ijho457iji9gf",
+      "latin": "EMBARCWEMENTS",
+      "cover": 13,
+      "len": 13,
+      "gain": 12848,
+      "remain": 211222
+    },
+    {
+      "p": "j1kgag1na931f",
+      "latin": "MULTITUDINOUS",
+      "cover": 13,
+      "len": 13,
+      "gain": 12848,
+      "remain": 198374
+    },
+    {
+      "p": "5319gi4d3afin",
+      "latin": "COUNTERPOISED",
+      "cover": 13,
+      "len": 13,
+      "gain": 12105,
+      "remain": 186269
+    },
+    {
+      "p": "a9ie8o1fgahkq",
+      "latin": "INEXHAUSTIBLY",
+      "cover": 13,
+      "len": 13,
+      "gain": 11711,
+      "remain": 174558
+    },
+    {
+      "p": "o553jdkaf8ji9gf",
+      "latin": "ACCOMPLISHMENTS",
+      "cover": 13,
+      "len": 15,
+      "gain": 8068,
+      "remain": 166490
+    },
+    {
+      "p": "31i47o5i01k9iff",
+      "latin": "OUERWACEFULNESS",
+      "cover": 13,
+      "len": 15,
+      "gain": 5987,
+      "remain": 160503
+    },
+    {
+      "p": "ajd3ffahakagq",
+      "latin": "IMPOSSIBILITY",
+      "cover": 13,
+      "len": 13,
+      "gain": 5741,
+      "remain": 154762
+    },
+    {
+      "p": "d4ifi9gaji9gf",
+      "latin": "PRESENTIMENTS",
+      "cover": 13,
+      "len": 13,
+      "gain": 4511,
+      "remain": 150251
+    },
+    {
+      "p": "ifgohkaf8ji9gf",
+      "latin": "ESTABLISHMENTS",
+      "cover": 13,
+      "len": 14,
+      "gain": 2762,
+      "remain": 147489
+    },
+    {
+      "p": "f1f5idgahakagq",
+      "latin": "SUSCEPTIBILITY",
+      "cover": 13,
+      "len": 14,
+      "gain": 2049,
+      "remain": 145440
+    },
+    {
+      "p": "a9gikka6i95i",
+      "latin": "INTELLIGENCE",
+      "cover": 12,
+      "len": 12,
+      "gain": 26457,
+      "remain": 118983
+    },
+    {
+      "p": "ajd4af39ji9g",
+      "latin": "IMPRISONMENT",
+      "cover": 12,
+      "len": 12,
+      "gain": 26270,
+      "remain": 92713
+    },
+    {
+      "p": "naf539gi9gin",
+      "latin": "DISCONTENTED",
+      "cover": 12,
+      "len": 12,
+      "gain": 21958,
+      "remain": 70755
+    },
+    {
+      "p": "ieg4o34na9o4q",
+      "latin": "EXTRAORDINARY",
+      "cover": 13,
+      "len": 13,
+      "gain": 642,
+      "remain": 70113
+    },
+    {
+      "p": "58ofgafiji9g",
+      "latin": "CHASTISEMENT",
+      "cover": 12,
+      "len": 12,
+      "gain": 12857,
+      "remain": 57256
+    },
+    {
+      "p": "a95391i9ai95i",
+      "latin": "INCONUENIENCE",
+      "cover": 13,
+      "len": 13,
+      "gain": 405,
+      "remain": 56851
+    },
+    {
+      "p": "539gijdkogr9",
+      "latin": "CONTEMPLATIAN",
+      "cover": 12,
+      "len": 12,
+      "gain": 8599,
+      "remain": 48252
+    },
+    {
+      "p": "ijh4o5iji9gf",
+      "latin": "EMBRACEMENTS",
+      "cover": 12,
+      "len": 12,
+      "gain": 8094,
+      "remain": 40158
+    },
+    {
+      "p": "d4i5adagogr9",
+      "latin": "PRECIPITATIAN",
+      "cover": 12,
+      "len": 12,
+      "gain": 7530,
+      "remain": 32628
+    },
+    {
+      "p": "d4id3fgi431f",
+      "latin": "PREPOSTEROUS",
+      "cover": 12,
+      "len": 12,
+      "gain": 6678,
+      "remain": 25950
+    },
+    {
+      "p": "1958o4agohkq",
+      "latin": "UNCHARITABLY",
+      "cover": 12,
+      "len": 12,
+      "gain": 6317,
+      "remain": 19633
+    },
+    {
+      "p": "4ijijh4o95if",
+      "latin": "REMEMBRANCES",
+      "cover": 12,
+      "len": 12,
+      "gain": 3897,
+      "remain": 15736
+    },
+    {
+      "p": "539fda4og34f",
+      "latin": "CONSPIRATORS",
+      "cover": 12,
+      "len": 12,
+      "gain": 3271,
+      "remain": 12465
+    },
+    {
+      "p": "5319gi9o95if",
+      "latin": "COUNTENANCES",
+      "cover": 12,
+      "len": 12,
+      "gain": 3215,
+      "remain": 9250
+    },
+    {
+      "p": "a44i5395akohkq",
+      "latin": "IRRECONCILABLY",
+      "cover": 13,
+      "len": 14,
+      "gain": 74,
+      "remain": 9176
+    },
+    {
+      "p": "539fdi5g1agaif",
+      "latin": "CONSPECTUITIES",
+      "cover": 13,
+      "len": 14,
+      "gain": 72,
+      "remain": 9104
+    },
+    {
+      "p": "fg4o7hi44aif",
+      "latin": "STRAWBERRIES",
+      "cover": 12,
+      "len": 12,
+      "gain": 1936,
+      "remain": 7168
+    },
+    {
+      "p": "539gijdkogif",
+      "latin": "CONTEMPLATES",
+      "cover": 12,
+      "len": 12,
+      "gain": 1746,
+      "remain": 5422
+    },
+    {
+      "p": "58o4o5gi4afin",
+      "latin": "CHARACTERISED",
+      "cover": 13,
+      "len": 13,
+      "gain": 60,
+      "remain": 5362
+    },
+    {
+      "p": "nafd43di4gain",
+      "latin": "DISPROPERTIED",
+      "cover": 13,
+      "len": 13,
+      "gain": 48,
+      "remain": 5314
+    },
+    {
+      "p": "nafon1o9go6i",
+      "latin": "DISADUANTAGE",
+      "cover": 12,
+      "len": 12,
+      "gain": 1349,
+      "remain": 3965
+    },
+    {
+      "p": "jigoj34d83faf",
+      "latin": "METAMORPHOSIS",
+      "cover": 13,
+      "len": 13,
+      "gain": 36,
+      "remain": 3929
+    },
+    {
+      "p": "ajdi45idgahkq",
+      "latin": "IMPERCEPTIBLY",
+      "cover": 13,
+      "len": 13,
+      "gain": 24,
+      "remain": 3905
+    },
+    {
+      "p": "o58ai1iji9gf",
+      "latin": "ACHIEUEMENTS",
+      "cover": 12,
+      "len": 12,
+      "gain": 366,
+      "remain": 3539
+    },
+    {
+      "p": "jaf19ni4fg33n",
+      "latin": "MISUNDERSTOOD",
+      "cover": 13,
+      "len": 13,
+      "gain": 12,
+      "remain": 3527
+    },
+    {
+      "p": "a9fa69a0a5o95i",
+      "latin": "INSIGNIFICANCE",
+      "cover": 13,
+      "len": 14,
+      "gain": 12,
+      "remain": 3515
+    },
+    {
+      "p": "5a451jfgo95i",
+      "latin": "CIRCUMSTANCE",
+      "cover": 12,
+      "len": 12,
+      "gain": 257,
+      "remain": 3258
+    },
+    {
+      "p": "dko9go6i9ig",
+      "latin": "PLANTAGENET",
+      "cover": 11,
+      "len": 11,
+      "gain": 2962,
+      "remain": 296
+    },
+    {
+      "p": "a9gikki5g1ok",
+      "latin": "INTELLECTUAL",
+      "cover": 12,
+      "len": 12,
+      "gain": 51,
+      "remain": 245
+    },
+    {
+      "p": "f155iffa1ikq",
+      "latin": "SUCCESSIUELY",
+      "cover": 12,
+      "len": 12,
+      "gain": 44,
+      "remain": 201
+    },
+    {
+      "p": "5319gi40iagkq",
+      "latin": "COUNTERFEITLY",
+      "cover": 12,
+      "len": 13,
+      "gain": 34,
+      "remain": 167
+    },
+    {
+      "p": "13k1dg131fkq",
+      "latin": "UOLUPTUOUSLY",
+      "cover": 12,
+      "len": 12,
+      "gain": 33,
+      "remain": 134
+    },
+    {
+      "p": "93421jhi4ko9n",
+      "latin": "NORTHUMBERLAND",
+      "cover": 12,
+      "len": 13,
+      "gain": 33,
+      "remain": 101
+    },
+    {
+      "p": "onja9afgi4in",
+      "latin": "ADMINISTERED",
+      "cover": 12,
+      "len": 12,
+      "gain": 23,
+      "remain": 78
+    },
+    {
+      "p": "a9gi4d4igogr9",
+      "latin": "INTERPRETATIAN",
+      "cover": 12,
+      "len": 13,
+      "gain": 23,
+      "remain": 55
+    },
+    {
+      "p": "53jdo9r9f8ad",
+      "latin": "COMPANIANSHIP",
+      "cover": 12,
+      "len": 12,
+      "gain": 22,
+      "remain": 33
+    },
+    {
+      "p": "19oggoa9ohki",
+      "latin": "UNATTAINABLE",
+      "cover": 12,
+      "len": 12,
+      "gain": 11,
+      "remain": 22
+    },
+    {
+      "p": "do4ga51ko4kq",
+      "latin": "PARTICULARLY",
+      "cover": 12,
+      "len": 12,
+      "gain": 11,
+      "remain": 11
+    },
+    {
+      "p": "4ijijh4o95i",
+      "latin": "REMEMBRANCE",
+      "cover": 11,
+      "len": 11,
+      "gain": 11,
+      "remain": 0
+    }
+  ],
+  "estimatedCompletions": 32299308,
+  "tapeFNV": 4267951341
+}
