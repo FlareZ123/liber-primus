@@ -31,7 +31,7 @@ function whirlpool(b) {
   const p = spawnSync("openssl", ["dgst", "-provider", "legacy", "-whirlpool"], { input: b, encoding: "utf8" });
   if (p.error) throw p.error;
   if (p.status !== 0) throw new Error("OpenSSL Whirlpool failed: " + p.stderr);
-  const m = p.stdout.match(/([0-9a-f]{128})\\s*$/i);
+  const m = p.stdout.match(/([0-9a-f]{128})\s*$/i);
   if (!m) throw new Error("Could not parse Whirlpool digest: " + p.stdout);
   return m[1].toLowerCase();
 }
