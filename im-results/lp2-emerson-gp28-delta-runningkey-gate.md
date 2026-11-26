@@ -1,6 +1,8 @@
-# Historical Emerson running key under a native GP28 nonzero-delta cipher
+# Historical Emerson running-key transfers: GP28 nonzero delta and GP29 transparent F
 
 **22 November 2026, Agent11. Evidence type:** bounded, original-input negative after all source-book key offsets and both key directions, plus independent plaintext training controls and an exact positive inverse. No recovered unknown-page plaintext, historical key, or author-selected cipher mechanism.
+
+The independent 26 November extension below uses the exact historical Self-Reliance witness under GP29 transparent-F consumption; it excludes continuous and seven complete chapter-level inverses by exact reachability, with the remaining four source framings nonprose. Both results are scoped negatives.
 
 ## Why these particular source and operation?
 
@@ -33,3 +35,48 @@ The p0 best is reversed-key plus-sign offset17019; p55 best reversed-key minus-s
 ## Decision
 
 **Retire this precise direct GP28-delta + Emerson continuous-running-key inverse** on the two inspected original unsolved pages. It supplies neither authentic plaintext nor a source-selected operation, even after the complete key-offset search. We need a genuinely new original or historical clue before changing the book, derivation, F-skip, word resets, delta alphabet, or adding an arbitrary post-processing step. The authentic 2014 book-code use of Emerson does not imply a continuous running key. This negative is limited to this explicitly frozen family and its specified native-language model; it is not a universal statement about LP2's encryption.
+
+## Actual 2014 Self-Reliance witness with authentic transparent-F consumption (Agent17, 26 November 2026)
+
+The prior GP28 delta receiver used the full modern *Essays: First Series* corpus and a nonzero-delta alphabet. This is a distinct, bounded source-directed route: the exact preserved **2014 book-code witness of Self-Reliance itself**, read in printed order and converted to GP29 indices, drives the authentic LP2 plaintext-F consuming convention. Historical book-code use and known LP2 cipher precedent motivate the test; neither authenticates the combination. No extra collision suppression, transposition, arbitrary secret alphabet, clock repair, wrapping, or reverse text was selected.
+
+### Executable inverse
+
+Pinned witness `resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt` (Git blob `12a6bc018047a1276e77f2b7f633d5905732fff9`, 55,376 characters, 10,170 ASCII words) gives **41,181 GP29 runes** using uppercase word-local longest-token matching, QU→CW, V→U, K/Q→C, Z→S, ING→NG and IO→IA. The canonical LP2 corpus blob is `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; native control register is `1b064ef6d85819b7d96adaff31a82d1ec551598f`.
+
+For initial key offset a and sign s∈{+1,−1}, an ordinary step at rune i has key index j=a+i−h (h prior literal-F holds); P=C−sK[j] mod29 must be nonzero, then consume that key symbol. At C=0, independently permit the literal F transition P=0 with h→h+1 and no key consumption. Nonzero C cannot be a hold. The finite key does not wrap. Enumerate every a=0…41,181, including the exhausted endpoint, for each sign. Reachability propagates the exact set of possible h; merged states have identical future feasibility. It does not use English scoring, word boundaries, or an assumed plaintext. A separate max-score DP over (h,last plaintext symbol) gives the exact best GP29 bigram path for each complete legal candidate, with forward reencryption checked. The bigram register is the first five native solved sections, .5 unigram smoothing and 10-count bigram backoff; the remaining four sections supply independent plants.
+
+### Complete original reachability
+
+| Original interval | Runes | Longest legal prefix, + / − | Complete offsets, + / − |
+|---|---:|---:|---:|
+| p0–55 continuous | 12,956 | 880 / 829 | 0 / 0 |
+| p0–2 | 729 | 729 / 729 | 7 / 2 |
+| p3–7 | 1,145 | 599 / 513 | 0 / 0 |
+| p8–14 | 1,729 | 534 / 593 | 0 / 0 |
+| p15–22 | 1,903 | 780 / 570 | 0 / 0 |
+| p23–26 | 1,021 | 653 / 699 | 0 / 0 |
+| p27–32 | 1,433 | 701 / 711 | 0 / 0 |
+| p33–39 | 1,680 | 603 / 598 | 0 / 0 |
+| p40–53 | 3,008 | 691 / 633 | 0 / 0 |
+| p54–55 | 308 | 308 / 308 | 25 / 10 |
+| p0 black→p2 (red13 excluded) | 716 | 716 / 716 | 6 / 3 |
+| p54 black→p55 (red9 excluded) | 299 | 299 / 299 | 31 / 17 |
+
+The entire unknown tape is algebraically impossible under this specific source/key clock regardless of start and sign. Independent chapter starts do not rescue seven of nine complete chapters. The opening and terminal framing alternatives are not independent samples; they test whether removing the genuine red rubrics alters feasibility. All surviving offsets are decoded, with no tuning of key symbols. Exact best full-interval scores (an optimistic oracle over all legal offsets and hold paths): p0–2 −4.760467; black opening −4.779363; p54–55 −4.471664; black terminal −4.480578 nats/rune. None is readable. The best original offsets are respectively 4337, 4349, 34899, 34908, all plus-sign encoders. Full best decoded tapes and all complete offsets are in the raw output.
+
+### Authentic and hidden controls
+
+The actual solved p56 prime-minus-one plaintext-F sender exactly reproduces **85/85** original runes using the same hold convention; its key is the prime stream, not Emerson. The key-selection control uses the other four solved sections concatenated (588 GP runes) as target-excluded native prose, three hidden independent key offsets and both signs. Rank all feasible offsets/signs using only the first 320 ciphertext runes, freeze the selected offset/sign, then run the full DP; the final path may revisit earlier F decisions with that frozen key. This calibrates offset recovery and held-out rune recovery, not blind online hold-state prediction.
+
+| Hidden offset / sign | True rank | Training candidates | Whole correct /588 | Held-out correct /268 |
+|---|---:|---:|---:|---:|
+| 133 / + | 1 | 209 | 586 | 268 |
+| 3301 / − | 1 | 24,884 | 588 | 268 |
+| 761 / + | 1 | 15 | 588 | 268 |
+
+All plants use the same donor and are not independent text samples. Known donor full score is −2.626198; held-out score −2.602975. Thus the exact receiver strongly distinguishes these native plants from the original surviving alignments, without claiming statistical impossibility of every possible register.
+
+**Decision:** retire direct forward Self-Reliance GP29 running keys under literal-F transparency with continuous or independent chapter starts in this pinned normalization. This is a source-selected alternative to the prior full-Emerson GP28 delta experiment, not a duplicate of it. No unknown plaintext or authentic key; no evidence that the historical book-code witness is an LP2 key. Alternate text editions, word clocks, reversals, other transliteration, and other key derivations remain untested and need independent source support before further search.
+
+Reproduction: [CommonJS SFT](../sims/lp2_2014_selfreliance_fhold_runningkey_sft.cjs) and [complete raw output](lp2-2014-selfreliance-fhold-runningkey-output.json). The exact experiment function was executed on the pinned inputs using connected V8; the standalone Node filesystem wrapper was not separately run. The first raw checkpoint truncated plant survivor lists before checking membership, making three control flags falsely negative; the current script and output replace that intermediate with full membership and exact hidden-key ranking. No CI workflow added.
