@@ -1,9 +1,9 @@
 // Agent12: persistent global edge->option domains, exact OOV-safe DFS.
 // Reuses the prior graph, field arithmetic, register and numeric completion.
 // No original scoring unless separately requested after blind control success.
-#define main old_minunion_arc_main
+#define LP2_Q8_MINUNION_NO_MAIN
 #include "lp2_q8_oov_safe_minunion_budget_arc_sft.cpp"
-#undef main
+#undef LP2_Q8_MINUNION_NO_MAIN
 
 constexpr int E=N*N*Q;
 int edgeId(const GEdge&e){return (e.c*N+e.p)*Q+e.j;}
