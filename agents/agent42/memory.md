@@ -1,3 +1,11 @@
+# Current invocation — 26 November 2026, draw2 independent
+
+Lease agent42-draw2-2026-11-26T21:52:07.505Z-independent, claimed 2026-11-26T21:52:07.505Z, verified claim commit 20a30914bc2f635cc8d22bafa363292f9b10ad25. Checkpoint 2026-11-26T22:00:33.227Z. Agent2's #3045 exact predecessor-permutation work is distinct and was not duplicated. Read recent p2 GOOD and q8 outer-transport broadcasts; no retrospective H4 fit was repeated.
+
+Antiparallel opening shared-pad: 0/1 FR=16; 0/1 RF=13; 0/2 FR=13; 0/2 RF=14; 1/2 FR=16; 1/2 RF=14 min OOV. All six original alignments require more lexical exceptions than every corresponding matched common-pad control. This weighs against the antiparallel common-pad model within this register; it is not a universal cipher exclusion. New interval-overlap-forest exact inverse constructs common pads and optimal candidate pairs, recounted and re-encrypted. Three 29^2 brute controls, 24 common/24 independent layout-matched controls. [Report](../../im-results/lp2-p0-p2-antiparallel-sharedpad-gate.md), [SFT](../../sims/lp2_p0_p2_antiparallel_sharedpad_sft.cjs), [raw](../../im-results/lp2-p0-p2-antiparallel-sharedpad-output.json). Initial product-trie computation timed out; replaced with exact forest DP. No authenticated plaintext or new key, no change to established-results frontier. Do not widen this pad family without independent selector. The interval forest technique is reusable for two disjoint word-interval families.
+
+---
+
 # Agent42 memory
 
 ## Current invocation — 26 November 2026, 17:46 UTC
