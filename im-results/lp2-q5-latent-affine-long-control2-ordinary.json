@@ -1,0 +1,235 @@
+{
+  "which": "2",
+  "hold": false,
+  "truthCycle": [
+    6,
+    11,
+    9,
+    17,
+    15
+  ],
+  "n": 716,
+  "tries": 13684575,
+  "valid": 127584,
+  "accepted": 128427,
+  "bounds": [
+    {
+      "threshold": 7,
+      "keys": 59044,
+      "max": 25,
+      "winner": [
+        6,
+        11,
+        9,
+        17,
+        15
+      ],
+      "winners": [
+        [
+          6,
+          11,
+          9,
+          17,
+          15
+        ]
+      ],
+      "tied": 1,
+      "hist": {
+        "1": 21583,
+        "2": 19231,
+        "3": 11319,
+        "4": 4793,
+        "5": 1577,
+        "6": 411,
+        "7": 111,
+        "8": 16,
+        "9": 2,
+        "25": 1
+      },
+      "trueCount": 25,
+      "trueIsBest": true,
+      "truthCoveredLongWords": 23,
+      "refs": [
+        {
+          "donor": 0,
+          "n": 716,
+          "windows": 46119,
+          "min": 8,
+          "minStart": 706
+        },
+        {
+          "donor": 1,
+          "n": 716,
+          "windows": 216391,
+          "min": 7,
+          "minStart": 147082
+        },
+        {
+          "donor": 2,
+          "n": 716,
+          "windows": 306555,
+          "min": 11,
+          "minStart": 223283
+        }
+      ]
+    },
+    {
+      "threshold": 8,
+      "keys": 3723,
+      "max": 11,
+      "winner": [
+        6,
+        11,
+        9,
+        17,
+        15
+      ],
+      "winners": [
+        [
+          6,
+          11,
+          9,
+          17,
+          15
+        ]
+      ],
+      "tied": 1,
+      "hist": {
+        "1": 3625,
+        "2": 97,
+        "11": 1
+      },
+      "trueCount": 11,
+      "trueIsBest": true,
+      "truthCoveredLongWords": 11,
+      "refs": [
+        {
+          "donor": 0,
+          "n": 716,
+          "windows": 46119,
+          "min": 3,
+          "minStart": 706
+        },
+        {
+          "donor": 1,
+          "n": 716,
+          "windows": 216391,
+          "min": 2,
+          "minStart": 15068
+        },
+        {
+          "donor": 2,
+          "n": 716,
+          "windows": 306555,
+          "min": 5,
+          "minStart": 87589
+        }
+      ]
+    },
+    {
+      "threshold": 9,
+      "keys": 105,
+      "max": 8,
+      "winner": [
+        6,
+        11,
+        9,
+        17,
+        15
+      ],
+      "winners": [
+        [
+          6,
+          11,
+          9,
+          17,
+          15
+        ]
+      ],
+      "tied": 1,
+      "hist": {
+        "1": 103,
+        "2": 1,
+        "8": 1
+      },
+      "trueCount": 8,
+      "trueIsBest": true,
+      "truthCoveredLongWords": 8,
+      "refs": [
+        {
+          "donor": 0,
+          "n": 716,
+          "windows": 46119,
+          "min": 0,
+          "minStart": 16002
+        },
+        {
+          "donor": 1,
+          "n": 716,
+          "windows": 216391,
+          "min": 0,
+          "minStart": 7530
+        },
+        {
+          "donor": 2,
+          "n": 716,
+          "windows": 306555,
+          "min": 2,
+          "minStart": 27379
+        }
+      ]
+    },
+    {
+      "threshold": 10,
+      "keys": 6,
+      "max": 6,
+      "winner": [
+        6,
+        11,
+        9,
+        17,
+        15
+      ],
+      "winners": [
+        [
+          6,
+          11,
+          9,
+          17,
+          15
+        ]
+      ],
+      "tied": 1,
+      "hist": {
+        "1": 5,
+        "6": 1
+      },
+      "trueCount": 6,
+      "trueIsBest": true,
+      "truthCoveredLongWords": 6,
+      "refs": [
+        {
+          "donor": 0,
+          "n": 716,
+          "windows": 46119,
+          "min": 0,
+          "minStart": 0
+        },
+        {
+          "donor": 1,
+          "n": 716,
+          "windows": 216391,
+          "min": 0,
+          "minStart": 5401
+        },
+        {
+          "donor": 2,
+          "n": 716,
+          "windows": 306555,
+          "min": 0,
+          "minStart": 27379
+        }
+      ]
+    }
+  ]
+}
