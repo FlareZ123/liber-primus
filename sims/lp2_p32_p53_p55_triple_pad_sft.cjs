@@ -62,18 +62,47 @@ function tripleSharedPad(raw,mode="all"){
   check(pA.every((x,i)=>(x+key[i])%Q===A[a+i])&&pB.every((x,i)=>(x+key[i])%Q===Bb[b+i]),"replay");
   return {score,plain:[pA,pB,p],key,latin:[pA,pB,p].map(s=>s.map(x=>gp.translit[x]).join(""))};
  }
+
+ /** Exact three-independent-trigram marginal over the common hidden pad symbol. */
+ function forward3(A,Bb,C,a,b,start=0,end=H,posterior=null){
+  let prev=new Float64Array(Q2),next=new Float64Array(Q2),ll=0;
+  const da=C.map((c,i)=>mod(A[a+i]-c)),db=C.map((c,i)=>mod(Bb[b+i]-c));
+  if(posterior)prev.set(posterior);
+  else{
+   for(let x=0;x<Q;x++)for(let y=0;y<Q;y++){
+    const ax=(x+da[0])%Q,bx=(x+db[0])%Q,ay=(y+da[1])%Q,by=(y+db[1])%Q;
+    prev[x*Q+y]=U[x]*U[ax]*U[bx]*B[x*Q+y]*B[ax*Q+ay]*B[bx*Q+by];
+   }
+   let norm=prev.reduce((a,b)=>a+b,0);for(let i=0;i<Q2;i++)prev[i]/=norm;ll=Math.log(norm);start=2;
+  }
+  for(let i=start;i<end;i++){
+   next.fill(0);
+   const mapA=Array.from({length:Q},(_,z)=>(z+da[i])%Q),mapB=Array.from({length:Q},(_,z)=>(z+db[i])%Q);
+   for(let x=0;x<Q;x++){
+    const ax=(x+da[i-2])%Q,bx=(x+db[i-2])%Q;
+    for(let y=0;y<Q;y++){
+     const ay=(y+da[i-1])%Q,by=(y+db[i-1])%Q,k=x*Q+y,v=prev[k],row=k*Q,ra=(ax*Q+ay)*Q,rb=(bx*Q+by)*Q,dst=y*Q;
+     for(let z=0;z<Q;z++)next[dst+z]+=v*T[row+z]*T[ra+mapA[z]]*T[rb+mapB[z]];
+    }
+   }
+   const norm=next.reduce((a,b)=>a+b,0);check(norm>0,"trigram normalization");for(let j=0;j<Q2;j++)next[j]/=norm;
+   ll+=Math.log(norm);const tmp=prev;prev=next;next=tmp;
+  }
+  return {ll,posterior:prev};
+ }
  function solve(A,Bb,C,truth=null){
   const candidates=[];
   for(let a=0;a<=A.length-L;a++)for(let b=0;b<=Bb.length-L;b++){const f=forward(A,Bb,C,a,b);candidates.push({a,b,ll:f.ll});}
   candidates.sort((a,b)=>b.ll-a.ll);
-  const best=candidates[0],f=forward(A,Bb,C,best.a,best.b),held=forward(A,Bb,C,best.a,best.b,H,L,f.posterior);
+  const shortlist=candidates.slice(0,64).map(c=>({...c,ll3:forward3(A,Bb,C,c.a,c.b).ll})).sort((a,b)=>b.ll3-a.ll3);
+  const best=shortlist[0],f=forward3(A,Bb,C,best.a,best.b),held=forward3(A,Bb,C,best.a,best.b,H,L,f.posterior);
   const d=decode(A,Bb,C,best.a,best.b);
-  const out={count:candidates.length,top:candidates.slice(0,10),prefixGain:f.ll/H+uniform,heldGain:held.ll/(L-H)+uniform,margin:best.ll-candidates[1].ll,decode:d};
-  if(truth){const rank=candidates.findIndex(c=>c.a===truth.a&&c.b===truth.b)+1,tf=forward(A,Bb,C,truth.a,truth.b),th=forward(A,Bb,C,truth.a,truth.b,H,L,tf.posterior),td=decode(A,Bb,C,truth.a,truth.b);out.truth={a:truth.a,b:truth.b,rank,prefixGain:tf.ll/H+uniform,heldGain:th.ll/(L-H)+uniform,correct:td.plain.map((p,j)=>p.filter((x,i)=>x===truth.p[j][i]).length),padCorrect:td.key.filter((x,i)=>x===truth.k[i]).length,exactSelected:best.a===truth.a&&best.b===truth.b};}
+  const out={count:candidates.length,shortlistSize:shortlist.length,top:shortlist.slice(0,10),prefixGain:f.ll/H+uniform,heldGain:held.ll/(L-H)+uniform,margin:best.ll3-shortlist[1].ll3,decode:d};
+  if(truth){const rank=candidates.findIndex(c=>c.a===truth.a&&c.b===truth.b)+1,rank3=shortlist.findIndex(c=>c.a===truth.a&&c.b===truth.b)+1,tf=forward3(A,Bb,C,truth.a,truth.b),th=forward3(A,Bb,C,truth.a,truth.b,H,L,tf.posterior),td=decode(A,Bb,C,truth.a,truth.b);out.truth={a:truth.a,b:truth.b,rank,rank3,prefixGain:tf.ll/H+uniform,heldGain:th.ll/(L-H)+uniform,correct:td.plain.map((p,j)=>p.filter((x,i)=>x===truth.p[j][i]).length),padCorrect:td.key.filter((x,i)=>x===truth.k[i]).length,exactSelected:best.a===truth.a&&best.b===truth.b};}
   return out;
  }
  const original=[32,53,55].map(i=>gp.pages[i].indices);check(original.map(x=>x.length).join()==="121,179,76","geometry");
- let rng=0x19535532;function rand(n){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)%n;}
+ let rng=0x19535533;function rand(n){rng^=rng<<13;rng^=rng>>>17;rng^=rng<<5;return (rng>>>0)%n;}
  const control=[];
  const N=mode==="pilot"?1:4;
  for(let trial=0;trial<N;trial++){
@@ -83,8 +112,9 @@ function tripleSharedPad(raw,mode="all"){
   control.push({trial,offsets,...solve(A,Bb,C,{a,b,p,k})});
  }
  if(mode==="pilot")return {trainRunes:total,control};
- const actual=solve(...original);
- return {trainRunes:total,control,actual};
+ const passed=control.filter(x=>x.truth.exactSelected&&x.truth.padCorrect>=Math.ceil(L*.7)&&x.heldGain>0).length;
+ const actual=passed>=3?solve(...original):null;
+ return {trainRunes:total,control,passed,actual};
 }
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/shakespeare_first300k.txt","resources/control/gibran_prophet_58585.txt","resources/control/emerson_essays_2944.txt","resources/external/relikd-solved-gp29-native-v1.json"];
 console.log(JSON.stringify(tripleSharedPad(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),process.argv.includes("--pilot")?"pilot":"all"),null,2));
