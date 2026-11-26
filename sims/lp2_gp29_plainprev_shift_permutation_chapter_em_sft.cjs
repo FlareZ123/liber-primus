@@ -5,7 +5,7 @@
 // The public IV and F reset are model assumptions, not authenticated LP2 rules.
 const fs=require('node:fs'),path=require('node:path');
 const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-function experiment(raw,{width=128,count=3,startPlant=0,originalTest=false,refineSweeps=8}={}){
+function experiment(raw,{width=128,count=3,startPlant=0,originalTest=false,refineSweeps=8,externalPilots=[],target='both'}={}){
  const gp=JSON.parse(raw[0]),A=29,mod=(x,m=29)=>(x%m+m)%m,assert=(x,m)=>{if(!x)throw Error(m)},alphabet=gp.translit,tokens=alphabet.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function native(t){const a=/\*{3}\s*START OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t),b=/\*{3}\s*END OF (?:THE|THIS) PROJECT GUTENBERG EBOOK[^\n]*/i.exec(t);let p=[];for(const w0 of t.slice(a?a.index+a[0].length:0,b?b.index:t.length).toUpperCase().match(/[A-Z]+/g)||[]){const w=w0.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let j=0;j<w.length;){const v=w.startsWith("ING",j)?{t:"ING",i:21}:w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));assert(v,w);p.push(v.i);j+=v.t.length;}}return p}
  const donors=raw.slice(1).map(native),train=donors.map(d=>d.slice(0,d.length-16000)),U0=new Float64Array(A).fill(.5),B0=new Float64Array(A*A),T0=new Float64Array(A*A*A),sum=a=>a.reduce((x,y)=>x+y,0);
@@ -137,16 +137,30 @@ function experiment(raw,{width=128,count=3,startPlant=0,originalTest=false,refin
  const pilots=[];for(let i=0;i<count;i++){const K=key();if(i>=startPlant)pilots.push(evaluate(plant(donors[i%3],K),K))}
  // Do not score original data unless all three unseen native plants meet the
  // predeclared 95% holdout rune accuracy and have repeat rates below 1.2%.
- const eligible=pilots.length===3&&pilots.every(p=>p.held.correct/p.held.n>=.95&&(p.train.repeats+p.held.repeats)/(p.train.n+p.held.n)<.012);
+ const gate=externalPilots.length?externalPilots:pilots;
+ const eligible=gate.length===3&&gate.every(p=>p.held.correct/p.held.n>=.95&&(p.train.repeats+p.held.repeats)/(p.train.n+p.held.n)<.012);
  let negative=null,unknown=null;
  if(eligible&&originalTest){
-   const randomFrames=original.map(f=>({...f,d:f.d.map(()=>rng()%A)}));
-   negative=evaluate(randomFrames,null);
-   // Require a positive heldout gain on unknown text; a mere best score or
-   // exact round-trip does not support a plaintext claim.
-   unknown=evaluate(original,null);
+   // Separate execution is needed for the connected runtime's per-call budget.
+   // Fix the inference seed independently of whether the controls ran together.
+   if(target==='both'||target==='matched-null'){
+    seed=0x42c3301;
+    const n=sum(original.map(f=>f.d.length)),repeats=sum(original.map(f=>f.d.filter(d=>d===0).length));
+    const ds=Array.from({length:n},(_,i)=>i<repeats?0:1+rng()%28);
+    for(let i=n-1;i>0;i--){const j=rng()%(i+1);[ds[i],ds[j]]=[ds[j],ds[i]]}
+    let off=0;const randomFrames=original.map(f=>{const d=ds.slice(off,off+f.d.length);off+=f.d.length;return {...f,d}});
+    negative=evaluate(randomFrames,null);
+   }
+   if(target==='both'||target==='original'){seed=0x42d3301;unknown=evaluate(original,null)}
  }
  return {width,donorLengths:donors.map(d=>d.length),eligible,pilots,negative,original:unknown};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(INPUTS.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8')),{width:128,count:3,originalTest:true}),null,2));
+if(require.main===module){
+ const read=p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8');
+ const arg=process.argv.find(x=>x.startsWith('--plant='));
+ const target=process.argv.includes('--original')?'original':process.argv.includes('--matched-null')?'matched-null':null;
+ const controls=['gibran','shakespeare','emerson'].map(x=>'im-results/lp2-gp29-plainprev-shift-permutation-chapter-em-'+x+'.json');
+ const opts=target?{count:0,originalTest:true,target,externalPilots:controls.map(p=>JSON.parse(read(p)).pilots[0])}:arg?{count:1+Number(arg.slice(8)),startPlant:Number(arg.slice(8)),originalTest:false}:{count:3,originalTest:true};
+ console.log(JSON.stringify(experiment(INPUTS.map(read),opts),null,2));
+}
 module.exports={experiment,INPUTS};
