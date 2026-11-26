@@ -1,0 +1,84 @@
+{
+  "tag": "pad0",
+  "cycles": 141457,
+  "align": 3665426,
+  "full": 93755,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    1,
+    25,
+    24,
+    21,
+    16
+  ],
+  "fit": -3.532758385300569,
+  "held": -3.651199266991509,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "HIS HEAR NOT THEM AS OUT WITH A WIDE MAN HOW SHALT IN ROOF PRAY NOR OF WERE HOW THE YEARS FIUE OF EARTH THOSE YOU SUP THE OF ALL OF DOES NEUER IN THNGS WILL GOD HE GOD BID THE THE THAT OWN HAUE DEAR SOUR WITH OF SUN A TIMID ASC NOT OF THE SON SLEW THEM WITH HIS THAN OF COOL OF LONG THE LEAPNG GULLY JUMP BEAR PAST TELL IN SNGLE OF ITS ANON FEEL HIM IT SPEAC OF IN THIRD ARE LONGNG OF IT PAUL A UEIL DOST THEIR THEE BID WAS BENG MACAR REACH THE EACH HIM OF THUMB THE IN THE THEY THEY THE DURNG CICC MY THE AS OUR IF SOARNG SNGLE IN LADS CAN IN FOR SHE NEW WAY IT SENSES IN A GREAT MAIN AND IN STOP THE MILES THE NUMB IS THE HIM OUT THE IN WAYS BUYNG IN SPEACS DID MY FOR PALM WIDER HAD WHY FIFTH HEAR BED THE WHISCY WHO IN CLEAN IN COUERS MAY WIND MY MY OF BUT THNGS ARE THE LAW OF WHEN THAN IS IN BREATH THE MEAN OF SOFT YOU SO IN IS THEY ILL NOW NAIL OF THESE OF THE REAP COAST ALL YOU YES THE EARTH THE IS WHO OF THE RUDE OF YET WAUNG HEW GARB THIS MY HOUND SO ONLY MACNG LICE ARE JANE PALM ASC IS PINE NOW YET AS THE MAN WAS END",
+  "fallback": 0,
+  "top": [
+    {
+      "key": [
+        1,
+        25,
+        24,
+        21,
+        16
+      ],
+      "score": 57.936666445598945,
+      "support": 3,
+      "fit": -3.532758385300569
+    },
+    {
+      "key": [
+        12,
+        14,
+        17,
+        26,
+        18
+      ],
+      "score": 58.52231974833562,
+      "support": 1,
+      "fit": -3.536985880337839
+    },
+    {
+      "key": [
+        2,
+        11,
+        20,
+        21,
+        4
+      ],
+      "score": 56.50932563859904,
+      "support": 5,
+      "fit": -3.5450043666499367
+    },
+    {
+      "key": [
+        1,
+        17,
+        21,
+        3,
+        16
+      ],
+      "score": 61.64489242246589,
+      "support": 1,
+      "fit": -3.5466419580008828
+    },
+    {
+      "key": [
+        2,
+        21,
+        19,
+        19,
+        26
+      ],
+      "score": 60.490150629467415,
+      "support": 1,
+      "fit": -3.5497278529898026
+    }
+  ]
+}
