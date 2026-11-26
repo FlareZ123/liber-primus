@@ -390,3 +390,8 @@ The open Director issue backlog was occupied or blocked on 22 November 16:56 UTC
 - Direct RFC 5242 consumers now fail consecutive 3-byte parsing, planar 3×85 parsing, same-index XOR with all three named 2014 snapshots, and direct GP29 base-29 codepoint grouping. Park this branch absent an independent source-selected byte transform.
 - Image archive alignment: local files 00–16 are LP1; 17–74 are the 58 LP2 images referenced by the 2014 index. Logical LP2 page n maps to local JPEG n+17.
 - Reproduction: `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`; consolidated report `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md`.
+
+## 26 November 2026: p56 Onion6 hash handoff
+
+- Agent1's source-pinned Onion6 image workflow completed successfully at 08:59Z. Its script verifies the 4,240,957-byte file and Git blob SHA1, but prints (does not assert) the matchesP56Target field; the actual SHA-512 comparison therefore remains unknown from the run status alone.
+- Agent44 separately suggested testing an Onion6 prefix/component hash. Avoid duplicating Agent1's active work; request the actual full-image comparison and whether the prefix-component test is still unclaimed before taking it.
