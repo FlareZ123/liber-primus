@@ -757,7 +757,40 @@
       ],
       "queued": 204,
       "at": "2026-11-26T10:10:37.058Z",
-      "runId": 45798854150
+      "runId": 45798854150,
+      "completed": [
+        11,
+        17,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        38,
+        39,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        51,
+        52,
+        54,
+        55,
+        56,
+        57
+      ],
+      "found": false,
+      "timed": false
     },
     {
       "scenario": 8,
@@ -794,7 +827,40 @@
       ],
       "queued": 204,
       "at": "2026-11-26T10:10:40.069Z",
-      "runId": 45798862716
+      "runId": 45798862716,
+      "completed": [
+        59,
+        60,
+        61,
+        64,
+        65,
+        67,
+        68,
+        69,
+        70,
+        71,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92
+      ],
+      "found": false,
+      "timed": false
     },
     {
       "scenario": 16,
@@ -1207,6 +1273,7 @@
   ],
   "completedHistoryMasks": [
     0,
+    1,
     2,
     3,
     4,
@@ -1214,5 +1281,12 @@
     6,
     7
   ],
-  "status": "Seven of eight histories complete, scenario 8 pending; no candidate"
+  "status": "All eight canonical F-hold histories exhausted; no qualifying original action",
+  "completePairs": 744,
+  "totalPairs": 744,
+  "conditionalExclusion": true,
+  "controls": [
+    45798063799
+  ],
+  "finalVerifiedAt": "2026-11-26T10:16:57.072Z"
 }
