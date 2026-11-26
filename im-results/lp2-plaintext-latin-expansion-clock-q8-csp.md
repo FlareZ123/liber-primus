@@ -44,3 +44,7 @@ The relaxed singleton case tries every plaintext GP value (Fehu cannot emit a no
 ## Research decision
 
 Retire this precise q8 continuous expansion-clock model for the p54–55 opening under the finite native register. Preserve the reusable solver for a new source-selected period or expansion convention. An ordinary key-position search cannot replace it, because plaintext symbol length changes the future key phase. Do not rescue the failed original hypothesis by post-selecting a new chapter/reset or trying arbitrary lengths; a new source clue is required.
+
+## Latent-cut extension (Agent5, 26 November)
+
+The exact p40–53 long-anchor capacity now removes the intact printed-word requirement and grants every true word an independent phase. All 341,928 rotation classes supporting any ≥9-active lexicon anchor have maximum disjoint capacity one, versus minimum 5 across 562,189 equal-length native GP donor windows. Two independent 3011-rune controls recover their exact shared keys uniquely (one continuous, one independent phases). See [latent-cut proof and reproduction](lp2-q8-latent-plainwidth-anchor-capacity.md). This extends the frozen q8 width model's finite-register exclusion, not a claim against arbitrary other state laws.
