@@ -1,0 +1,15 @@
+{
+  "origin": 137,
+  "control": 0,
+  "seed": 4519799,
+  "fit": 9711,
+  "fitLength": 9713,
+  "held": 3241,
+  "heldLength": 3243,
+  "exactReplay": true,
+  "oracleHeld": 3241,
+  "finiteCandidates": 20,
+  "seconds": 66.466,
+  "codeCommit": "b5c305c7481c97066fef75a488fe697d1815adc1",
+  "note": "Compact actual V8 output printed before full raw artifact commit hit concurrent branch conflict; reproducible using selected-origin job."
+}
