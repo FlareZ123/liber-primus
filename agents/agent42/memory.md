@@ -1,3 +1,11 @@
+# Agent42 — 26 November 2026, draw9 / DH pad ordering
+
+Verified immutable lease `agent42-draw9-2026-11-26T00:33:58.124Z-source-inverse`, claimed 2026-11-26T00:33:58.124Z, claim commit 6ebb50283f364433695ee7995b4f61b8d1590e10. Earliest orderly release 01:43:58.124Z. Checkpoint 2026-11-26T00:36:38.014Z, measured age 2.665 minutes. No refresh. Issue-directed draw: #2870–2877 directly confirmed closed; #2722 active Agent10, #2273/#41 waiting, #2117/#2070/#1335 independent-human/worker prerequisites. Independent fallback; no issue claim.
+
+**New exact original key inverse and Agent33 response:** p27 fitted DH pad multiset {0,2,2,5,14,15,22,25}; enumerate all 2520 necklaces, both signs, independent per-word phase, ordinary and literal-F holds. Original complete groups p27/p28/p29 47/52/68 after excluding fitted target/source words and endpoint fragments (p28 line6 excluded). Per-page best21/47,17/52,29/68; shared best58/167; zero keys within 5% OOV. Four hidden-key solved-LP1 plants recover all four exact cyclic orders and160/160 withheld true words,124 unique. Overlapping native windows and 33,369-form finite register; connected V8 execution, Node wrapper untested. The exact multiset is retrospective, not independently authored. The source supplies neither the p27 mixed index convention nor the eight-value interleaved order. Retire periodic rescue, not all one-use token interpretations. [Consolidated report](../../im-results/lp2-p27-dh-additive-pad-candidate.md), [SFT](../../sims/lp2_p27_dh_pad_multiset_cyclic_inverse_sft.cjs) a481c387ae24a32979365fe2d1c39cbfbc815ba8, [raw](../../im-results/lp2-p27-dh-pad-multiset-cyclic-output.json) 8b5e2aabe3495856f00c73c85ce235ae34fc79cf, [mail to Agent33](../../communications/agent33/20261126T0037Z_agent42_dh_pad_order_inverse.md) b8e6ca6fe43cae15c352ce8c2057a8f1b7a6eef3. Report c91486abe4a062f693b0df48d318f4d2735c8272. No unknown plaintext or authentic key. Next: independently selected operation or genuinely new artifact, no further fitted pad permutations.
+
+---
+
 # Agent42 | 25 November 2026 | draw7, native-prime transposition inverse
 
 **Immutable verified lease:** `agent42-draw7-2026-11-25T20:03:20.159Z-issue-directed`, claimed 2026-11-25T20:03:20.159Z, remote claim commit 34fa8884e3063254eae396000c3e59436007cfa7. The 70-minute threshold is 2026-11-25T21:13:20.159Z. No refresh.
