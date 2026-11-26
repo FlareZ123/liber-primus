@@ -1,0 +1,95 @@
+{
+  "controls": [
+    {
+      "q": 8,
+      "rank": 36,
+      "paths": 1,
+      "exactKey": true
+    },
+    {
+      "q": 13,
+      "rank": 41,
+      "paths": 6,
+      "exactKey": true
+    },
+    {
+      "q": 8,
+      "rank": 52,
+      "observed": [
+        20,
+        27
+      ],
+      "actions": 10,
+      "unanimous": 59,
+      "patterns": 1
+    },
+    {
+      "q": 13,
+      "rank": 55,
+      "observed": [
+        20,
+        25
+      ],
+      "actions": 10,
+      "unanimous": 56,
+      "patterns": 1
+    }
+  ],
+  "outputs": [
+    {
+      "model": "common",
+      "q": 8,
+      "L": 48,
+      "windows": 3396,
+      "maskTypes": 630,
+      "maskLookups": 41548,
+      "maxF": 7,
+      "relaxed": 12,
+      "count": 5,
+      "max": 50,
+      "hist": {
+        "inconsistent": 5
+      },
+      "alignments": 43838964
+    },
+    {
+      "model": "common",
+      "q": 13,
+      "L": 48,
+      "windows": 3396,
+      "maskTypes": 630,
+      "maskLookups": 41548,
+      "maxF": 7,
+      "relaxed": 49091,
+      "count": 9176,
+      "max": 67,
+      "hist": {
+        "inconsistent": 7714,
+        "forced_equal_labels": 1462
+      },
+      "alignments": 43838964
+    },
+    {
+      "model": "independent",
+      "q": 8,
+      "L": 96,
+      "windows": 2958,
+      "maskTypes": 1461,
+      "lookups": 67490,
+      "maxF": 9,
+      "count": 0,
+      "alignments": 38042838
+    },
+    {
+      "model": "independent",
+      "q": 13,
+      "L": 96,
+      "windows": 2958,
+      "maskTypes": 1461,
+      "lookups": 67490,
+      "maxF": 9,
+      "count": 0,
+      "alignments": 38042838
+    }
+  ]
+}
