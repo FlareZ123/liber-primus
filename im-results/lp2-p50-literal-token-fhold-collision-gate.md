@@ -1,6 +1,6 @@
-# p50 literal-token phase clock: exact F-transparent extension (#2972)
+# p50 literal-token phase clock: exact F-transparent collision and bijection gates (#2972, #3063)
 
-**Decision (Agent34, 2026-11-26): all 96 fixed native windows are excluded by integer collision bounds over every hidden F-hold history.** The 256 literal row-major tokens (161 classes) remain unchanged, with phase zero at the beginning of physical p40–53. This extends the [ordinary consuming result](lp2-p50-literal-token-phase-collision-gate.md), without assigning radix59/60 values, permuting the table or introducing another origin. No unknown plaintext or historical key is recovered.
+**Decision (Agent34, 2026-11-26; exact follow-up Agent18, 2026-11-26): all 96 fixed native windows are excluded by integer collision bounds over every hidden F-hold history, and all 24,613 wider scalar survivors from the frozen Gibran/Shakespeare/Emerson corpus fail exact held-F alignment or per-class partial-bijection consistency.** The 256 literal row-major tokens (161 classes) remain unchanged, with phase zero at the beginning of physical p40–53. This extends the [ordinary consuming result](lp2-p50-literal-token-phase-collision-gate.md), without assigning radix59/60 values, permuting the table or introducing another origin. No unknown plaintext or historical key is recovered.
 
 ## Exact invariant and certificate
 
@@ -55,16 +55,36 @@ Exact plants, plaintext, keys, held positions and replay: [fixtures](lp2-p50-fho
 
 A rolling 256-phase histogram computes M for every contiguous length-3,008 donor window, with O(256) update per entering/leaving non-F rune and exact checks at all 96 fixed starts. Use the same combined certificate, falling back to the initial single-run ceiling for H outside 42–109.
 
-| Source | Windows | Excluded | Not excluded | Min M |
+| Source | Windows | Scalar-bound excluded | Scalar survivors | Exact bijections |
 |---|---:|---:|---:|---:|
-| Gibran | 43,774 | 43,561 | 213 | 1829 |
-| Shakespeare | 214,099 | 192,404 | 21,695 | 1700 |
-| Emerson | 303,583 | 300,878 | 2,705 | 1826 |
-| Total | 561,456 | 536,843 | 24,613 | 1700 |
+| Gibran | 43,774 | 43,561 | 213 | 0 |
+| Shakespeare | 214,099 | 192,404 | 21,695 | 0 |
+| Emerson | 303,583 | 300,878 | 2,705 | 0 |
+| Total | 561,456 | 536,843 | 24,613 | 0 |
 
-The 24,613 surviving windows pass only a necessary scalar bound. They do not supply a compatible original shift map, an actual plaintext, or proof of viability. This wider result forbids describing the 96-window decision as a universal native-language impossibility. The original literal-token hypothesis is negative on the Director's frozen test. Arbitrary positional transport, other origins/clocks, a different distribution, or unrelated table semantics remain outside the decision.
+The 24,613 scalar survivors are the exact candidate set passed to the shared-bijection gate below; passing the collision bound alone is not evidence of viability. The fixed three-donor receiver is now excluded, but this is not a universal native-language impossibility. Arbitrary positional transport, other donors, other origins/clocks, a different distribution, or unrelated table semantics remain outside the decision.
+
+## Exact shared-bijection follow-up (#3063)
+
+The exact follow-up re-enumerates the same 24,613 scalar survivors using the pinned donor texts, GP29 normalization, p40–53 ciphertext, 256-cell row-major token clock, and combined H-conditioned collision certificate. It adds no donor, radix, framing, phase, or chapter-reset variant. For every candidate window, each plaintext F (index 0) must be a literal hold and align with ciphertext F; for each non-F position, the class is `tokenIds[(i − priorHeldF) mod 256]`. The observed `(class, plaintext) → ciphertext` edges and reverse edges must each be consistent, i.e. one partial bijection per literal token class. The checker rejects at the first hold mismatch, forward conflict, or reverse conflict.
+
+**Result: zero exact witnesses among all 24,613 scalar survivors.** First rejection counts are mutually exclusive and exhaustive: 18,087 hold mismatches, 5,946 forward conflicts, and 580 reverse conflicts. By donor: Gibran 213/213 rejected, Shakespeare 21,695/21,695 rejected, Emerson 2,705/2,705 rejected. No witness map or unobserved-entry completion remains to preserve. Pinned Git blob SHA-1 inputs and exact counts are in [the machine-readable output](lp2-p50-literal-token-fhold-bijection-output.json).
+
+The checker is calibrated on three independently seeded **arbitrary full per-class permutations**, not only additive shifts. Each native-F-hold plant has 3,008 runes and exactly 125 visible ciphertext Fs, including consuming zeros. Training on four fifths of positions predicts every observed repeated edge in the held-out fifth:
+
+| Plant | Held F (H) | Consuming zeros | Held-out repeat edges predicted correctly | Coverage of held-out consuming positions |
+|---|---:|---:|---:|---:|
+| Gibran / 1234 | 66 | 59 | 214/214 | 36.2% |
+| Shakespeare / 4567 | 60 | 65 | 218/218 | 37.0% |
+| Emerson / 7890 | 91 | 34 | 203/203 | 34.9% |
+
+The remaining held-out positions have previously unseen class/plaintext pairs and are correctly reported as unknown, not counted as predictions. Three matched ordinary-consuming wrong-clock plants, also with exactly 125 visible ciphertext Fs, are rejected: Gibran hold mismatch at rune 0, Shakespeare forward conflict at rune 52, Emerson hold mismatch at rune 29. These controls show that the exact checker accepts genuine arbitrary per-class bijections with real consuming zeros and predicts withheld repeated edges, while rejecting the wrong clock. They do not turn a synthetic control into evidence for an original key.
+
+This closes the fixed p50 literal-token F-hold per-class-bijection receiver on the frozen Gibran/Shakespeare/Emerson donor corpus. It does not exclude other donor sources, other clock/state laws, or unrelated interpretations of the p50 panel.
 
 ## Reproduction
+- [Exact shared-bijection SFT](../sims/lp2_p50_literal_token_fhold_bijection_sft.cjs): run with Node 22 from repository root. It pins all seven input Git blob SHA-1 values, reproduces the 24,613 scalar survivors, applies exact held-F and per-class forward/reverse constraints, and validates arbitrary-permutation controls. [Output](lp2-p50-literal-token-fhold-bijection-output.json); the existing [manual Node 22/CommonJS runner](../.github/workflows/manual-readonly-commonjs-sft.yml) can execute it.
+
 
 - [JS SFT](../sims/lp2_p50_literal_token_fhold_collision_sft.cjs): run from root with Node, mode `original` or `sliding im-results/lp2-p50-fhold-combined-certificate.json`. Modes `fixture0`/ `fixturewrong0` etc. reconstruct the six plants. Original and sliding tests executed in V8 against pinned repository files.
 - [C++ SFT](../sims/lp2_p50_fhold_collision_dual_sft.cpp): compile C++17 with optimization; arguments `16 42 109 block` or `12 75 89 both` etc. Add fixture index 0–5 after `both` for matched controls. The manual workflow logs report `SELFTEST`, `BY_H` and `CERTIFIED_BLOCK_MAX`; diagnostic program deliberately returns 1, so completed runs appear as GitHub failure despite successful certificate calculation. Explicit ERROR is a real failure. 
