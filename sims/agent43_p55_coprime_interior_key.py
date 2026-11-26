@@ -107,6 +107,19 @@ def main() -> int:
         selected_positions.append(positions_for_word)
         per_word_counts.append(len(positions_for_word))
 
+    # Alternative indexing origin: number positions from the stripped interior
+    # while retaining the original word length as the totient modulus.
+    alternate_selected_indices: list[int] = []
+    interior_modulus_indices: list[int] = []
+    for word in words:
+        n = len(word)
+        for interior_position in range(1, n - 1):
+            rune = word[interior_position]
+            if math.gcd(interior_position, n) == 1:
+                alternate_selected_indices.append(gp_index[rune])
+            if n > 2 and math.gcd(interior_position, n - 2) == 1:
+                interior_modulus_indices.append(gp_index[rune])
+
     totients = [
         sum(1 for i in range(1, n + 1) if math.gcd(i, n) == 1)
         for n in lengths
@@ -128,6 +141,7 @@ def main() -> int:
         raise SystemExit("base29 alphabet must contain exactly 29 symbols")
     # One BASE29 digit per GP29 symbol; this is not a single large-integer conversion.
     password = "".join(BASE29[i] for i in selected_indices)
+    alternate_password = "".join(BASE29[i] for i in alternate_selected_indices)
 
     # Test the simplest source-familiar Vigenere consumer on p55 itself:
     # subtract the repeated GP29 key and leave literal F runes transparent.
@@ -184,6 +198,27 @@ def main() -> int:
             / (len(values) * (len(values) - 1))
         )
 
+    def decode_with_key(cipher: list[int], key: list[int], sign: int) -> tuple[list[int], int]:
+        decoded: list[int] = []
+        key_cursor = 0
+        for cipher_index in cipher:
+            if cipher_index == 0:
+                decoded.append(0)
+                continue
+            decoded.append((cipher_index + sign * key[key_cursor % len(key)]) % 29)
+            key_cursor += 1
+        return decoded, key_cursor
+
+    alternate_direct, alternate_direct_cursor = decode_with_key(
+        page55["indices"], alternate_selected_indices, -1
+    )
+    alternate_exterior_minus, alternate_exterior_minus_cursor = decode_with_key(
+        exterior_indices, alternate_selected_indices, -1
+    )
+    alternate_exterior_plus, alternate_exterior_plus_cursor = decode_with_key(
+        exterior_indices, alternate_selected_indices, 1
+    )
+
     exterior_minus, exterior_minus_cursor = decode_exterior(-1)
     exterior_plus, exterior_plus_cursor = decode_exterior(1)
     exterior_vigenere = {
@@ -225,6 +260,26 @@ def main() -> int:
         "excluded_interior_gp29_indices": excluded_indices,
         "base29_alphabet": BASE29,
         "candidate_password": password,
+        "alternate_index_origin_gp29_indices": alternate_selected_indices,
+        "alternate_index_origin_candidate_password": alternate_password,
+        "interior_length_modulus_selected_count": len(interior_modulus_indices),
+        "alternate_direct_p55_vigenere_subtract_f_transparent": {
+            "plaintext": "".join(translit[value] for value in alternate_direct),
+            "key_symbols_consumed": alternate_direct_cursor,
+            "ioc": index_of_coincidence(alternate_direct),
+        },
+        "alternate_interior_key_to_33_exterior_vigenere": {
+            "minus": {
+                "plaintext": "".join(translit[value] for value in alternate_exterior_minus),
+                "key_symbols_consumed": alternate_exterior_minus_cursor,
+                "ioc": index_of_coincidence(alternate_exterior_minus),
+            },
+            "plus": {
+                "plaintext": "".join(translit[value] for value in alternate_exterior_plus),
+                "key_symbols_consumed": alternate_exterior_plus_cursor,
+                "ioc": index_of_coincidence(alternate_exterior_plus),
+            },
+        },
         "direct_p55_vigenere_subtract_f_transparent": {
             "plaintext": direct_plaintext,
             "key_symbols_consumed": direct_key_cursor,
