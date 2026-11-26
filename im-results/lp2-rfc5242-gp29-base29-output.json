@@ -1,0 +1,253 @@
+{
+  "schema": "lp2-rfc5242-gp29-base29-gate-v1",
+  "source": "resources/liber-primus/lp2-corpus.json",
+  "source_blob_sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "method": "Concatenate original GP29 indices for LP2 pages 0-55; decode non-overlapping groups of five indices as base-29 integers, all offsets 0-4 and both digit orders; accept values 1..2^23-1.",
+  "totals": {
+    "pages": 56,
+    "rune_bearing_pages": 55,
+    "runes": 12956,
+    "groups": 2591,
+    "remainder": 1,
+    "page_length_mod5": {
+      "0": 8,
+      "1": 14,
+      "2": 9,
+      "3": 16,
+      "4": 9
+    },
+    "rune_bearing_pages_divisible_by5": [
+      {
+        "page": 8,
+        "n": 255
+      },
+      {
+        "page": 18,
+        "n": 260
+      },
+      {
+        "page": 24,
+        "n": 270
+      },
+      {
+        "page": 26,
+        "n": 265
+      },
+      {
+        "page": 39,
+        "n": 240
+      },
+      {
+        "page": 45,
+        "n": 270
+      },
+      {
+        "page": 46,
+        "n": 270
+      }
+    ]
+  },
+  "radix": {
+    "base": 29,
+    "digits": 5,
+    "space": 20511149,
+    "valid_codepoints": 8388607,
+    "expected_uniform_valid_pct": 40.8978
+  },
+  "results": [
+    {
+      "endian": "big",
+      "offset": 0,
+      "groups": 2591,
+      "valid": 1067,
+      "invalid": 1524,
+      "validPct": 41.18,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1067,
+        "invalid": 1524
+      }
+    },
+    {
+      "endian": "big",
+      "offset": 1,
+      "groups": 2591,
+      "valid": 1047,
+      "invalid": 1544,
+      "validPct": 40.41,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1047,
+        "invalid": 1544
+      }
+    },
+    {
+      "endian": "big",
+      "offset": 2,
+      "groups": 2590,
+      "valid": 1079,
+      "invalid": 1511,
+      "validPct": 41.66,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1079,
+        "invalid": 1511
+      }
+    },
+    {
+      "endian": "big",
+      "offset": 3,
+      "groups": 2590,
+      "valid": 1024,
+      "invalid": 1566,
+      "validPct": 39.54,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1024,
+        "invalid": 1566
+      }
+    },
+    {
+      "endian": "big",
+      "offset": 4,
+      "groups": 2590,
+      "valid": 1033,
+      "invalid": 1557,
+      "validPct": 39.88,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1033,
+        "invalid": 1557
+      }
+    },
+    {
+      "endian": "little",
+      "offset": 0,
+      "groups": 2591,
+      "valid": 1032,
+      "invalid": 1559,
+      "validPct": 39.83,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1032,
+        "invalid": 1559
+      }
+    },
+    {
+      "endian": "little",
+      "offset": 1,
+      "groups": 2591,
+      "valid": 1063,
+      "invalid": 1528,
+      "validPct": 41.03,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1063,
+        "invalid": 1528
+      }
+    },
+    {
+      "endian": "little",
+      "offset": 2,
+      "groups": 2590,
+      "valid": 1044,
+      "invalid": 1546,
+      "validPct": 40.31,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1044,
+        "invalid": 1546
+      }
+    },
+    {
+      "endian": "little",
+      "offset": 3,
+      "groups": 2590,
+      "valid": 1081,
+      "invalid": 1509,
+      "validPct": 41.74,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1081,
+        "invalid": 1509
+      }
+    },
+    {
+      "endian": "little",
+      "offset": 4,
+      "groups": 2590,
+      "valid": 1018,
+      "invalid": 1572,
+      "validPct": 39.31,
+      "ranges": {
+        "special": 0,
+        "mark": 0,
+        "reserved": 0,
+        "character": 1018,
+        "invalid": 1572
+      }
+    }
+  ],
+  "ae_composite": {
+    "rfc_codepoints": [
+      "0x40a",
+      "0x6",
+      "0x40c",
+      "0x7",
+      "0x108",
+      "0x31"
+    ],
+    "five_digit_base29": [
+      0,
+      0,
+      1,
+      6,
+      19,
+      0,
+      0,
+      0,
+      0,
+      6,
+      0,
+      0,
+      1,
+      6,
+      21,
+      0,
+      0,
+      0,
+      0,
+      7,
+      0,
+      0,
+      0,
+      9,
+      3,
+      0,
+      0,
+      0,
+      1,
+      20
+    ],
+    "forward_hits": [],
+    "reverse_hits": []
+  }
+}

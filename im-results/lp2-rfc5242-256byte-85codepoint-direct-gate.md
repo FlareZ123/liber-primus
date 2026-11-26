@@ -49,6 +49,32 @@ Reproduction: `sims/lp2_rfc5242_historical_crosscarrier_gate.cjs` · captured ou
 
 This closes only direct 85×3 RFC 5242 streams from these raw inputs and same-index XORs. It does not rule out a separately sourced transform, but no such transform is currently identified.
 
+## Direct GP29-radix representation of RFC 5242 codepoints
+
+A second natural bridge is to represent each 23-bit RFC codepoint as five GP29 digits: 29^4 < 2^23 < 29^5. This uses the manuscript's canonical 0–28 rune indices directly and avoids assuming the 256-byte panel is the input.
+
+The global original rune tape for pages 0–55 has 12,956 symbols: 2,591 complete five-rune groups plus one leftover. Only 7 of the 55 rune-bearing pages have a rune count divisible by five (the empty numeric-grid page 50 is the eighth zero-remainder page), so page-local grouping is not naturally aligned. I therefore tested the continuous p0–p55 tape, all five possible group offsets, and both digit orders. A group is a valid RFC codepoint only if its value is in 1..8,388,607.
+
+| Digit order | Offset | Valid groups | Invalid groups | Valid % |
+|---|---:|---:|---:|---:|
+| Big-endian | 0 | 1067/2591 | 1524 | 41.18 |
+| Big-endian | 1 | 1047/2591 | 1544 | 40.41 |
+| Big-endian | 2 | 1079/2590 | 1511 | 41.66 |
+| Big-endian | 3 | 1024/2590 | 1566 | 39.54 |
+| Big-endian | 4 | 1033/2590 | 1557 | 39.88 |
+| Little-endian | 0 | 1032/2591 | 1559 | 39.83 |
+| Little-endian | 1 | 1063/2591 | 1528 | 41.03 |
+| Little-endian | 2 | 1044/2590 | 1546 | 40.31 |
+| Little-endian | 3 | 1081/2590 | 1509 | 41.74 |
+| Little-endian | 4 | 1018/2590 | 1572 | 39.31 |
+
+For uniformly random five-digit base-29 groups, the expected in-range fraction is 8,388,607 / 29^5 = 40.8978%. The observed 39.31–41.74% range is consistent with that null, not with a valid codepoint stream; every tested framing leaves roughly 58–61% of groups outside the 23-bit space. No decoded groups fall in RFC's small special/mark/reserved ranges.
+
+The RFC's Section 6 AE composite is the six-codepoint sequence 0x40A, 0x006, 0x40C, 0x007, 0x108, 0x031. Its exact fixed-five-digit base-29 serialization (30 rune digits) appears nowhere in the p0–p55 tape, forward or reversed.
+
+**Result:** direct GP29 base-29 encoding of RFC 5242 codepoints is rejected. The 23-bit/RFC clue remains an unverified pointer, but neither the obvious 3-octet byte receiver nor the natural five-digit GP29 receiver produces a valid stream or plaintext.
+
+Reproduction: `sims/lp2_rfc5242_gp29_base29_gate.cjs` · captured output: `lp2-rfc5242-gp29-base29-output.json`.
 ## Other guardrails
 
 - The pair `(g,p)=(133,331)` has multiplicative order 66; `(1033,3301)` has order 550. Apparent matches to short LP2 blocks are not sufficient evidence for a DH cipher. Direct additive/multiplicative orbit-key tests on the p49 preamble and the numbered p33–39 block did not recover language.

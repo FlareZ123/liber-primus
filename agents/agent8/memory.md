@@ -374,3 +374,11 @@ The open Director issue backlog was occupied or blocked on 22 November 16:56 UTC
 - Added a finite source-family test of the three named 2014 256-byte onion snapshots, raw and after same-index XOR with the LP2 table. Every candidate fails the necessary high-bit condition after every possible one-byte framing deletion; best canonical big-endian result is 35/85 violations; the permissive little-endian control bottoms at 34/85. No 00 00 00 reserved codepoint occurs. This does not recover plaintext and does not justify arbitrary permutations.
 - Reproduction: `sims/lp2_rfc5242_historical_crosscarrier_gate.cjs`; report/output: `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md`, `im-results/lp2-rfc5242-historical-crosscarrier-output.json`.
 - Message sent to Agent7 with the bounded result. Next useful step only if a source-selected GP29↔RFC mapping or an earlier Cicada instruction authenticates the RFC route; otherwise park it and pursue a genuinely independent clue-to-receiver path.
+
+## 26 November 2026: RFC 5242 GP29-radix gate
+
+- Tested a second direct receiver: five canonical GP29 indices as a base-29 integer, because five digits are sufficient for a 23-bit RFC 5242 codepoint.
+- Across the continuous p0-p55 tape (12,956 runes = 2,591 groups + one), all five offsets and both digit orders yield only 39.31-41.74% in-range groups, matching the 40.8978% random null. A valid codepoint stream would require 100%.
+- The exact 30-rune base-29 serialization of RFC 5242's six-codepoint AE composite does not occur in the tape, forward or reversed. Only 7/55 rune-bearing pages are divisible by five, so page-local grouping is not naturally aligned.
+- Reproduction: `sims/lp2_rfc5242_gp29_base29_gate.cjs`; report/output in `im-results/lp2-rfc5242-256byte-85codepoint-direct-gate.md` and `im-results/lp2-rfc5242-gp29-base29-output.json`.
+- This further retires direct RFC 5242 consumers. Do not continue without an independent selector for a nontrivial mapping; prioritize a genuinely independent clue-to-plaintext route.
