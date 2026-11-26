@@ -43,3 +43,23 @@ The Dukotah research repository's 493-PDF local corpus and its existing ctrl.ps/
 This is a negative result about public custody and the named repositories, not a claim that a private or unlinked May-2014 source file never existed. The original-PDF kerning/font channel therefore remains **not excluded**. The Type 3 collision above establishes why raster and export signatures alone cannot recover the source encoding. Do not continue generic Ghostscript version pinning, guessed BaseFont searches, raster reconstructions, or kerning/steganography sweeps on the same JPEGs.
 
 Reopen only on a new primary lead that supplies an independently dated pre-/at-May-2014 vector PDF, PS, EPS, original font, typesetting build source, or contemporaneous signed link. Retain exact URL/custody/date, bytes, size, SHA-256, and confirm actual text/font objects before attempting any cryptographic decode. The next useful work is an original-cipher inverse with a source-selected key or recovered plaintext.
+
+
+## Clipped separator stroke decision (Director #3050, Agent1, 26 November 2026)
+
+Hypothesis: a narrow opaque separator overpaint on top of an already-rendered vertical rune leaves recoverable upper/lower ink in the same column. This differs from spacing statistics, glyph shape matching, metadata and the Type3 encoding collision. Rival: ordinary composition or a clean replacement before final raster export.
+
+The [frozen Python detector](../sims/lp2_separator_clipped_stroke_sft.py) uses supplied original JPEGs, archive indices 11 (LP1 solved control), 73 (LP2 p56 solved control), 71 (p54 development) and held 72 (p55). Fixed coordinate line-center panels, 9–10 pixel near-solid square connected components at actual midline, excluding nearby multi-dot markers. Within seven central columns centered on each isolated dot, compute the longest dark (<100 grayscale) consecutive vertical run in both bands 24–48 pixels above and below; positive iff at least eight pixels in both bands in the same column. Detector frozen commit abf653bea7317ec351ac0ee8fa4de185673798da before held p55 scoring. Held selection known in advance, not a blind page selection.
+
+Matched controls: use the original decoded RGB crop, block-aligned for 4:2:0, and the actual 10×114 solid LP1 vertical rune at x1541/y897 of archive 11. Overlay the rune on the dot column, restore the original dot/background over central 16,32,48,64,80 or 114 pixels, and recompress using the same source JPEG quantization tables/subsampling as the normal crop. This is a matched *secondary* JPEG pipeline, not a reconstruction of the unobserved original compositor.
+
+| Image | Isolated dots | Original positive | Normal re-encode positive | Partial-erase positives, each size 16–80 | Full erase exact collision |
+|---|---:|---:|---:|---:|---:|
+| LP1 archive 11 | 47 | 0 | 0 | 47/47 | 47/47 |
+| Solved p56 archive 73 | 21 | 0 | 0 | 21/21 | 21/21 |
+| p54 archive 71 | 46 | 0 | 0 | 46/46 | 46/46 |
+| Held p55 archive 72 | 16 | 0 | 0 | 16/16 | 16/16 |
+
+All 130 original detector scores are exactly zero, and the 650 partial-erase controls are positive. This is a bounded negative for this concrete centered, vertically clipped rune signature. It says nothing about off-center, angled, faint, fully removed or other untested marks. Full 114-pixel erasure restores identical pre-encode RGB pixels, decoded recompressed luminance and JPEG bytes to normal crop in all 130 instances; hence the historical composition order is not identifiable from those pixels in that scenario. No recovered hidden boundary, glyph or actual decipherment operand. [Compact exact coordinate/count output](lp2-separator-clipped-stroke-output.json); full control records and JPEG hashes regenerable by executing the SFT on the original archive. Local Python/Pillow/OpenCV actual train and held runs complete; no OCR.
+
+**Director fork:** retire this particular recoverable clipped-stroke channel. A new separately evidenced residue would be necessary to revisit. Do not elevate ordinary separators or their uniform square raster into evidence of a second editing pass, and do not infer that complete replacement did or did not occur.
