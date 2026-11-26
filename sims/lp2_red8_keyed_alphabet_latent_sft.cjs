@@ -47,13 +47,27 @@ function experiment(raw){
   const support=edges.map((e,p)=>({p,lengths:[...e.keys()].sort((a,b)=>a-b)}));
   return {possible:true,minOOV:cost[at],oovRunes,logscore:score[at],witness:words,lexicalEdgeCount:support.reduce((a,b)=>a+b.lengths.length,0),longestLexicalEdge:Math.max(0,...support.flatMap(x=>x.lengths)),replay:true};
  }
+ function coverageBound(c,m,W,B){
+  const edges=getEdges(c,m),N=c.length,S=N+1,inf=1e9;
+  let a=new Int32Array((B+1)*S).fill(inf),b=new Int32Array((B+1)*S);a[0]=0;
+  for(let j=0;j<W;j++){
+   b.fill(inf);
+   for(let k=0;k<=B;k++)for(let p=0;p<N;p++){
+    const h=a[k*S+p];if(h===inf)continue;
+    for(const l of edges[p].keys()){const np=p+l;if(N-np<W-j-1)continue;const i=k*S+np;b[i]=Math.min(b[i],h);}
+    if(k<B)for(let l=1;l<=N-p-(W-j-1);l++)if(!edges[p].has(l)){const i=(k+1)*S+p+l;b[i]=Math.min(b[i],h+l);}
+   }
+   [a,b]=[b,a];
+  }
+  return Array.from({length:B+1},(_,k)=>{const z=a[k*S+N];return z===inf?null:z;});
+ }
  function rng(seed){let x=seed>>>0;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296};}
- const original=models.map(m=>({model:m,cap13:solve(C,m,64,13),unbounded:solve(C,m,64,C.length)}));
+ const original=models.map(m=>({model:m,cap13:solve(C,m,64,13),unbounded:solve(C,m,64,C.length),minOovRunesByExactBudget:coverageBound(C,m,64,3)}));
  const controls=[];
  for(let i=0;i<3;i++){
   const R=rng(0x54a8b001+i),m=models[(i*3)%models.length],s=native.find(x=>x.name===["0_welcome","0_loss_of_divinity","0_koan_1"][i]),words=s.words.slice(0,64);
   const assignments=words.map(w=>({w,phase:Math.floor(R()*8),hold:R()<.5})),c=assignments.flatMap(z=>encrypt(z.w,m,z.phase,z.hold));
-  const out=solve(c,m,words.length,13);const truth=words.join(""),witness=out.witness.map(z=>z.encoded).join("");controls.push({name:s.name,model:m,truthWords:words.length,truthRunes:truth.length,truthRetained:out.minOOV===0,agreement:[...truth].filter((v,i)=>v===witness[i]).length,result:out});
+  const out=solve(c,m,words.length,13);const truth=words.join(""),witness=out.witness.map(z=>z.encoded).join("");controls.push({name:s.name,model:m,truthWords:words.length,truthRunes:truth.length,truthRetained:out.minOOV===0,agreement:[...truth].filter((v,i)=>v===witness[i]).length,result:out,minOovRunesByExactBudget:coverageBound(c,m,words.length,3)});
  }
  return {lexiconSize:lex.size,sourceKey:K,body:{N:C.length,W:groups.length,printedMax:Math.max(...groups.map(x=>x.length))},original,controls};
 }
