@@ -1,0 +1,85 @@
+{
+  "blobs": [
+    "67eda5ae7130bdf09ead9c810a616f7db2d5ae61",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  ],
+  "n": 9194,
+  "cut": 5878,
+  "orbit": 1650,
+  "nativeMax": [
+    {
+      "max": 4,
+      "windows": 211230,
+      "example": 51572
+    },
+    {
+      "max": 3,
+      "windows": 56616,
+      "example": 14808
+    },
+    {
+      "max": 5,
+      "windows": 315451,
+      "example": 72745
+    }
+  ],
+  "globalNativeSecondSmallestMax": 5,
+  "evaluated": 26400,
+  "equivalentFullConfigurations": 79200,
+  "minBound": 0,
+  "minBoundConfig": {
+    "read": 0,
+    "hold": false,
+    "dir": -1,
+    "kind": 0,
+    "phase": 0
+  },
+  "needExact": 13263,
+  "minExact": 91,
+  "minExactConfig": {
+    "read": 1,
+    "hold": false,
+    "dir": 1,
+    "kind": 0,
+    "phase": 726
+  },
+  "survivors": 0,
+  "samples": [],
+  "controls": [
+    {
+      "donor": 1,
+      "config": {
+        "read": 0,
+        "hold": true,
+        "dir": -1,
+        "kind": 1,
+        "phase": 763
+      },
+      "escape": 27,
+      "knownKeyFitHits": 5877,
+      "knownKeyHeldHits": 3316,
+      "parityBound": 0,
+      "assignmentBound": 0,
+      "secondSmallest": 0
+    },
+    {
+      "donor": 2,
+      "config": {
+        "read": 1,
+        "hold": false,
+        "dir": 1,
+        "kind": 0,
+        "phase": 1481
+      },
+      "escape": 25,
+      "knownKeyFitHits": 5877,
+      "knownKeyHeldHits": 3316,
+      "parityBound": 0,
+      "assignmentBound": 0,
+      "secondSmallest": 2
+    }
+  ]
+}
