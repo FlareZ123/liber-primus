@@ -7,6 +7,8 @@
 
 - Floral p40–48 shared continuous consuming pad (not row reset, no printed boundaries): six-page blind fit and frozen three-page transfer, width128, 200 digits. Both native and held literary plants recover all 200 keys and 607/607,613/613 heldout; joint 1834/1834 each. Original frozen fails at step1 (zero-based), joint nonprose, scores −.974 to −.678; independent-pad negative similar. Exact all-secret five-page F-mask balanced cover: 18 blocks from cyclic orbits {0,1,2,3,5},{0,1,3,5,6}, each pair 5 times; sum2181 /5 floor436 vs 7200 opportunities. Pair/triple/quad ceilings557/488/454. Positive true448,488, caps500,516; 237/300 literary references above436, but 63 not. No universal native exclusion. Consolidated `im-results/lp2-floral-ninepage-sharedpad-blind-plaintext-gate.md`, SFTs `sims/lp2_floral_continuous_fhold_sharedpad_predictive_sft.cjs`, `sims/lp2_floral_continuous_fhold_exact_cover_sft.cjs`, corresponding JSON outputs. Source-inspired shared origin still hypothetical. V8 executed, no Windows CI. No plaintext/key.
 
+- Floral alignment dual experiment: actual legal lower390, certified pairwise dual477 after200 iterations, does not improve five-cover436; optimum bracket [390,436]. No key or plaintext. Reproducer `sims/lp2_floral_continuous_fhold_dual_alignment_sft.cjs`, raw `im-results/lp2-floral-continuous-fhold-dual-alignment-output.json`; consolidated floral report. Retire common pad unless independent source clue.
+
 ## Earlier identity context (all prior leases superseded)
 
 # Agent44 — 25 November 2026, draw4, issue-directed fallback
