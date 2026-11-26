@@ -15,16 +15,16 @@ function experiment(corpus,solved,squareText,lexiconText,bodyOnly=false){
   assert.equal(powers.length,840);
   assert.deepEqual(mul(powers.at(-1),K),I);
   const lengths=bodyOnly?[11,11,9]:[8,5], offsets=bodyOnly?[23,62,245]:[0,8], words=lengths.map(()=>new Set());
-  const code=a=>a.reduce((s,x)=>s*q+x,0);
+  const code=a=>a.map(x=>String.fromCharCode(65+x)).join('');
   const normalize=w=>w.toUpperCase().replace(/QU/g,'CW').replace(/[VKZQ]/g,x=>({V:'U',K:'C',Z:'S',Q:'C'})[x]);
   const tokens=corpus.translit.map((x,i)=>[x,i]);tokens.push(['ING',21]);
   // Permit every segmentation into genuine GP graphemes, including NG/ING and literal N+G.
   const visit=(w,pos,len,key,target,set)=>{
     if(len>target||w.length-pos>3*(target-len)||w.length-pos<target-len)return;
     if(pos===w.length){if(len===target)set.add(key);return;}
-    for(const [s,id] of tokens)if(w.startsWith(s,pos))visit(w,pos+s.length,len+1,key*q+id,target,set);
+    for(const [s,id] of tokens)if(w.startsWith(s,pos))visit(w,pos+s.length,len+1,key+String.fromCharCode(65+id),target,set);
   };
-  for(const line of lexiconText.split(/\r?\n/)){const hit=line.match(/^([a-z]+)\s+\d+$/i);if(!hit)continue;const w=normalize(hit[1]);for(let j=0;j<lengths.length;j++)visit(w,0,0,0,lengths[j],words[j]);}
+  for(const line of lexiconText.split(/\r?\n/)){const hit=line.match(/^([a-z]+)\s+\d+$/i);if(!hit)continue;const w=normalize(hit[1]);for(let j=0;j<lengths.length;j++)visit(w,0,0,'',lengths[j],words[j]);}
   const sections=solved.sections.map(s=>({name:s.name,a:[...s.source_text].map(x=>solved.runes.indexOf(x)).filter(x=>x>=0)}));
   const donor=sections.find(s=>s.name==='0_koan_1');
   const parable=solved.sections.find(s=>s.name==='p57_parable');
@@ -59,7 +59,7 @@ function experiment(corpus,solved,squareText,lexiconText,bodyOnly=false){
     const slots=offsets.map((offset,j)=>Array.from({length:lengths[j]},(_,k)=>[Math.floor((offset+k)/n),(offset+k)%n]));
     const active=[...new Set(slots.flat().map(s=>s[0]))];
     const first=matrices.map(M=>Object.fromEntries(active.map(r=>[r,Array.from({length:n},(_,j)=>mod(M[r].reduce((s,x,k)=>s+x*C[k][j],0)))])));
-    const calc=(v,M,positions)=>{let key=0;for(const [r,c] of positions){let sum=0;const p=v[r],w=M[c];for(let k=0;k<n;k++)sum+=p[k]*w[k];key=key*q+(sum%q);}return key;};
+    const calc=(v,M,positions)=>{let key='';for(const [r,c] of positions){let sum=0;const p=v[r],w=M[c];for(let k=0;k<n;k++)sum+=p[k]*w[k];key+=String.fromCharCode(65+(sum%q));}return key;};
     const candidates=[],counts=lengths.map(()=>0);let all=0;
     for(let a=0;a<840;a++)for(let b=0;b<840;b++){
       const matches=slots.map((s,j)=>words[j].has(calc(first[a],matrices[b],s)));
