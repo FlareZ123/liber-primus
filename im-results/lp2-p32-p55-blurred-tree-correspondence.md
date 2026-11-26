@@ -202,11 +202,36 @@ The first q consuming symbols of each overlap are granted entirely arbitrary add
 
 [Read-only SFT](../sims/lp2_p32_p55_mixed_delay_autokey_inverse_sft.cjs) · [executed raw output](../im-results/lp2-p32-p55-mixed-delay-autokey-output.json). Connected JS execution against pinned corpus and native donor; no CI execution claimed. No original key or plaintext. Retire this exact shared-message feedback family; no further delay or coefficient tuning absent a new source-selected operation.
 
+## Shared hidden cyclic alphabet, mixed historical periods (Agent11, 26 November 2026)
+
+The previously surviving mixed-period arbitrary phase permutations need not behave as independent unrelated bijections. A materially smaller intermediate receiver grants one entirely secret common 29-cycle (alphabet coordinates), and independently secret period-8 and period-13 shift vectors. This is the natural shared-cycle restriction of those phase permutations, consistent with a single mixed GP alphabet and the two known historical keyword periods. The tree resemblance motivates testing shared content; neither the repeated-passage premise nor the secret alphabet is source-authenticated.
+
+Freeze the same full 76-rune physical p55 (including its carry), all 46 forward contiguous placements in p32, both period orders, and every common literal-F hold mask. A consuming symbol obeys
+
+```
+C32 = pi^-1(pi(P) + K[u])
+C55 = pi^-1(pi(P) + J[v])
+pi(C55) - pi(C32) + K[u] - J[v] = 0 (mod 29)
+```
+
+The final equation is linear over GF29 in 29 alphabet coordinates plus 21 phase shifts. Any bijective coordinate function can be normalized to pi(0)=0 and pi(1)=1 by translating and multiplying all coordinates and multiplying the shifts accordingly. A common shift gauge of both keys permits K[0]=0 during difference inference; restoring that gauge afterwards is essential to respect the nonzero consuming plaintext constraint. All common double-zero choices are enumerated, so a consuming zero is not misclassified as necessarily held F.
+
+| Periods p32/p55 | Placement/mask pairs | Raw rank 48 | Raw rank 47 | Exact admissible inverse |
+|---|---:|---:|---:|---:|
+| 8/13 | 53 | 52 | 1 | 0 |
+| 13/8 | 53 | 52 | 1 | 0 |
+
+All 106 normalized systems are inconsistent even before demanding that the rest of the alphabet be injective. Thus the rejection is exact, with no unknown-alphabet enumeration or language scoring. The raw rank47 case in each order does not permit even the necessary distinct coordinates of native F and U. This retires the common-cycle subfamily of the otherwise nonidentifiable mixed-period arbitrary phase-permutation model.
+
+Eight independent hidden-alphabet encipherments of authentic WELCOME, WISDOM, KOAN1 and LOSS OF DIVINITY 121/76-rune excerpts, four per period order, retain the true common F mask, recover the true normalized alphabet cycle and admit the true plaintext in a 7–13-member candidate set. All eight locate only the planted offset; no control is unresolved. Each surviving candidate replays both tapes exactly. The controls force a consuming double zero and distinguish holds. The plaintext remains gauge-ambiguous; these are synthetic encipherments of native solved text, not authentic tree-page keys.
+
+The read-only reproducer is [sims/lp2_p32_p55_shared_cycle_inverse_sft.cjs](../sims/lp2_p32_p55_shared_cycle_inverse_sft.cjs), and the [full executed output](lp2-p32-p55-shared-cycle-inverse-output.json) lists every rejected original placement/mask and rank. Executed using connected JavaScript on corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and donor blob 1b064ef6d85819b7d96adaff31a82d1ec551598f; no CI run claimed. This is a finite exact inverse exclusion, not an original plaintext or authenticated key. Do not widen the family without an independent clue selecting a different operation or placement.
+
 ## Cryptanalytic decision
 
 The paired p32/p55 trees remain a **genuine silhouette-level visual correspondence**, but the source-locked branch-junction test does not preserve an identical or stable graph. The simplest claim that the p55 image is a topology-preserving copy of p32 is therefore unsupported; the relation may be a shared motif, a heavily transformed rendering, or a filtered/degraded variant with lost fine branches. Neither interpretation selects a rune order, key, page reset or reversible cipher operation.
 
-The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. Independent mixed period-8/13 additive and all-secret affine repeated-text keys, as well as same-period arbitrary phase bijections, are excluded for all 46 forward placements with all common latent-F masks. The independent mixed-delay plaintext/ciphertext autokey family with all nonzero feedback coefficients is also excluded on these alignments. Mixed-period arbitrary phase alphabets admit numerous non-language witnesses, so their feasibility supplies no identifying evidence or authenticated key. No authentic unknown plaintext, key, or destination follows from this visual relation.
+The earlier 121→81→76 stationary-bijective same-message family remains excluded, and the naive 29-tip count remains threshold-unstable. Independent mixed period-8/13 additive and all-secret affine repeated-text keys, as well as same-period arbitrary phase bijections, are excluded for all 46 forward placements with all common latent-F masks. The independent mixed-delay plaintext/ciphertext autokey family with all nonzero feedback coefficients is also excluded on these alignments. A single common hidden cyclic alphabet with arbitrary mixed-period shifts is also exactly excluded (106/106 placement/mask configurations), despite eight successful native-control cycle recoveries. Mixed-period unrelated arbitrary phase alphabets admit numerous non-language witnesses, so their feasibility supplies no identifying evidence or authenticated key. No authentic unknown plaintext, key, or destination follows from this visual relation.
 
 **Disposition:** retain the visual correspondence as provisional context, but close branch-count and branch-junction mining. Reopen only if an author-era vector/source plate, caption, or independently authenticated clue specifies a unique branch traversal or tells the solver how the image consumes original rune material. Do not tune image thresholds, count branches until 29/43 appears, or attempt another ciphertext inverse without that selector.
 
