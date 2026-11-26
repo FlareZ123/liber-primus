@@ -7,7 +7,7 @@
     1874,
     3603,
     5506,
-    6761,
+    6527,
     7960,
     9640,
     12648,
@@ -121,8 +121,8 @@
       "latin": "ACCOMPLISHMENTS",
       "cover": 13,
       "len": 15,
-      "gain": 8068,
-      "remain": 166490
+      "gain": 8054,
+      "remain": 166504
     },
     {
       "p": "31i47o5i01k9iff",
@@ -130,7 +130,7 @@
       "cover": 13,
       "len": 15,
       "gain": 5987,
-      "remain": 160503
+      "remain": 160517
     },
     {
       "p": "ajd3ffahakagq",
@@ -138,7 +138,7 @@
       "cover": 13,
       "len": 13,
       "gain": 5741,
-      "remain": 154762
+      "remain": 154776
     },
     {
       "p": "d4ifi9gaji9gf",
@@ -146,7 +146,7 @@
       "cover": 13,
       "len": 13,
       "gain": 4511,
-      "remain": 150251
+      "remain": 150265
     },
     {
       "p": "ifgohkaf8ji9gf",
@@ -154,7 +154,7 @@
       "cover": 13,
       "len": 14,
       "gain": 2762,
-      "remain": 147489
+      "remain": 147503
     },
     {
       "p": "f1f5idgahakagq",
@@ -162,14 +162,14 @@
       "cover": 13,
       "len": 14,
       "gain": 2049,
-      "remain": 145440
+      "remain": 145454
     },
     {
       "p": "a9gikka6i95i",
       "latin": "INTELLIGENCE",
       "cover": 12,
       "len": 12,
-      "gain": 26457,
+      "gain": 26471,
       "remain": 118983
     },
     {
@@ -233,8 +233,8 @@
       "latin": "PRECIPITATIAN",
       "cover": 12,
       "len": 12,
-      "gain": 7530,
-      "remain": 32628
+      "gain": 7542,
+      "remain": 32616
     },
     {
       "p": "d4id3fgi431f",
@@ -242,23 +242,23 @@
       "cover": 12,
       "len": 12,
       "gain": 6678,
-      "remain": 25950
+      "remain": 25938
     },
     {
       "p": "1958o4agohkq",
       "latin": "UNCHARITABLY",
       "cover": 12,
       "len": 12,
-      "gain": 6317,
-      "remain": 19633
+      "gain": 6328,
+      "remain": 19610
     },
     {
       "p": "4ijijh4o95if",
       "latin": "REMEMBRANCES",
       "cover": 12,
       "len": 12,
-      "gain": 3897,
-      "remain": 15736
+      "gain": 3885,
+      "remain": 15725
     },
     {
       "p": "539fda4og34f",
@@ -266,7 +266,7 @@
       "cover": 12,
       "len": 12,
       "gain": 3271,
-      "remain": 12465
+      "remain": 12454
     },
     {
       "p": "5319gi9o95if",
@@ -274,7 +274,7 @@
       "cover": 12,
       "len": 12,
       "gain": 3215,
-      "remain": 9250
+      "remain": 9239
     },
     {
       "p": "a44i5395akohkq",
@@ -282,7 +282,7 @@
       "cover": 13,
       "len": 14,
       "gain": 74,
-      "remain": 9176
+      "remain": 9165
     },
     {
       "p": "539fdi5g1agaif",
@@ -290,7 +290,7 @@
       "cover": 13,
       "len": 14,
       "gain": 72,
-      "remain": 9104
+      "remain": 9093
     },
     {
       "p": "fg4o7hi44aif",
@@ -298,7 +298,7 @@
       "cover": 12,
       "len": 12,
       "gain": 1936,
-      "remain": 7168
+      "remain": 7157
     },
     {
       "p": "539gijdkogif",
@@ -306,7 +306,7 @@
       "cover": 12,
       "len": 12,
       "gain": 1746,
-      "remain": 5422
+      "remain": 5411
     },
     {
       "p": "58o4o5gi4afin",
@@ -314,7 +314,7 @@
       "cover": 13,
       "len": 13,
       "gain": 60,
-      "remain": 5362
+      "remain": 5351
     },
     {
       "p": "nafd43di4gain",
@@ -322,7 +322,7 @@
       "cover": 13,
       "len": 13,
       "gain": 48,
-      "remain": 5314
+      "remain": 5303
     },
     {
       "p": "nafon1o9go6i",
@@ -330,7 +330,7 @@
       "cover": 12,
       "len": 12,
       "gain": 1349,
-      "remain": 3965
+      "remain": 3954
     },
     {
       "p": "jigoj34d83faf",
@@ -338,7 +338,7 @@
       "cover": 13,
       "len": 13,
       "gain": 36,
-      "remain": 3929
+      "remain": 3918
     },
     {
       "p": "ajdi45idgahkq",
@@ -346,7 +346,7 @@
       "cover": 13,
       "len": 13,
       "gain": 24,
-      "remain": 3905
+      "remain": 3894
     },
     {
       "p": "o58ai1iji9gf",
@@ -354,7 +354,7 @@
       "cover": 12,
       "len": 12,
       "gain": 366,
-      "remain": 3539
+      "remain": 3528
     },
     {
       "p": "jaf19ni4fg33n",
@@ -362,7 +362,7 @@
       "cover": 13,
       "len": 13,
       "gain": 12,
-      "remain": 3527
+      "remain": 3516
     },
     {
       "p": "a9fa69a0a5o95i",
@@ -370,7 +370,7 @@
       "cover": 13,
       "len": 14,
       "gain": 12,
-      "remain": 3515
+      "remain": 3504
     },
     {
       "p": "5a451jfgo95i",
@@ -378,7 +378,7 @@
       "cover": 12,
       "len": 12,
       "gain": 257,
-      "remain": 3258
+      "remain": 3247
     },
     {
       "p": "dko9go6i9ig",
@@ -386,7 +386,7 @@
       "cover": 11,
       "len": 11,
       "gain": 2962,
-      "remain": 296
+      "remain": 285
     },
     {
       "p": "a9gikki5g1ok",
@@ -394,7 +394,7 @@
       "cover": 12,
       "len": 12,
       "gain": 51,
-      "remain": 245
+      "remain": 234
     },
     {
       "p": "f155iffa1ikq",
@@ -402,7 +402,7 @@
       "cover": 12,
       "len": 12,
       "gain": 44,
-      "remain": 201
+      "remain": 190
     },
     {
       "p": "5319gi40iagkq",
@@ -410,7 +410,7 @@
       "cover": 12,
       "len": 13,
       "gain": 34,
-      "remain": 167
+      "remain": 156
     },
     {
       "p": "13k1dg131fkq",
@@ -418,14 +418,14 @@
       "cover": 12,
       "len": 12,
       "gain": 33,
-      "remain": 134
+      "remain": 123
     },
     {
       "p": "93421jhi4ko9n",
       "latin": "NORTHUMBERLAND",
       "cover": 12,
       "len": 13,
-      "gain": 33,
+      "gain": 22,
       "remain": 101
     },
     {
