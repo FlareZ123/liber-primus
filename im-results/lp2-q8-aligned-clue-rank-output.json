@@ -1,0 +1,2075 @@
+{
+  "schema": 1,
+  "budgets": [
+    8,
+    16,
+    24,
+    32,
+    40,
+    48,
+    64,
+    80,
+    96,
+    128,
+    160,
+    213
+  ],
+  "rows": [
+    {
+      "seed": 808929536,
+      "tries": 11042,
+      "k": [
+        1,
+        25,
+        5,
+        14,
+        25,
+        19,
+        10,
+        18
+      ],
+      "results": [
+        {
+          "kind": "prefix",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 16,
+          "edges": 16,
+          "rank": 17,
+          "dimension": 19,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 16,
+          "edges": 16,
+          "rank": 14,
+          "dimension": 22,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 16,
+          "edges": 16,
+          "rank": 17,
+          "dimension": 19,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 24,
+          "edges": 24,
+          "rank": 24,
+          "dimension": 12,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 24,
+          "edges": 24,
+          "rank": 21,
+          "dimension": 15,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 24,
+          "edges": 24,
+          "rank": 25,
+          "dimension": 11,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 32,
+          "edges": 32,
+          "rank": 29,
+          "dimension": 7,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 32,
+          "edges": 32,
+          "rank": 26,
+          "dimension": 10,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 32,
+          "edges": 32,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 40,
+          "edges": 40,
+          "rank": 33,
+          "dimension": 3,
+          "complete": true,
+          "legal": 6,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 40,
+          "edges": 40,
+          "rank": 30,
+          "dimension": 6,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 40,
+          "edges": 40,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 48,
+          "edges": 48,
+          "rank": 33,
+          "dimension": 3,
+          "complete": true,
+          "legal": 6,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 48,
+          "edges": 48,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 48,
+          "edges": 48,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 64,
+          "edges": 64,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 64,
+          "edges": 64,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 64,
+          "edges": 64,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 80,
+          "edges": 80,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 80,
+          "edges": 80,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 80,
+          "edges": 80,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 96,
+          "edges": 96,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 96,
+          "edges": 96,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 96,
+          "edges": 96,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 128,
+          "edges": 128,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 128,
+          "edges": 128,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 128,
+          "edges": 128,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 160,
+          "edges": 160,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 160,
+          "edges": 160,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 160,
+          "edges": 160,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 213,
+          "edges": 213,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 213,
+          "edges": 213,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 213,
+          "edges": 213,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 11,
+            "carry": 1,
+            "total": 4
+          }
+        }
+      ]
+    },
+    {
+      "seed": 808929552,
+      "tries": 65422,
+      "k": [
+        1,
+        24,
+        0,
+        25,
+        12,
+        8,
+        9,
+        11
+      ],
+      "results": [
+        {
+          "kind": "prefix",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 8,
+          "edges": 8,
+          "rank": 8,
+          "dimension": 28,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 16,
+          "edges": 16,
+          "rank": 17,
+          "dimension": 19,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 16,
+          "edges": 16,
+          "rank": 15,
+          "dimension": 21,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 16,
+          "edges": 16,
+          "rank": 16,
+          "dimension": 20,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 24,
+          "edges": 24,
+          "rank": 23,
+          "dimension": 13,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 24,
+          "edges": 24,
+          "rank": 21,
+          "dimension": 15,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 24,
+          "edges": 24,
+          "rank": 24,
+          "dimension": 12,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 32,
+          "edges": 32,
+          "rank": 27,
+          "dimension": 9,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 32,
+          "edges": 32,
+          "rank": 29,
+          "dimension": 7,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 32,
+          "edges": 32,
+          "rank": 31,
+          "dimension": 5,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 40,
+          "edges": 40,
+          "rank": 31,
+          "dimension": 5,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 40,
+          "edges": 40,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 40,
+          "edges": 40,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 48,
+          "edges": 48,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 48,
+          "edges": 48,
+          "rank": 33,
+          "dimension": 3,
+          "complete": true,
+          "legal": 6,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 48,
+          "edges": 48,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 64,
+          "edges": 63,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 64,
+          "edges": 64,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 64,
+          "edges": 64,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 80,
+          "edges": 79,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 80,
+          "edges": 80,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 80,
+          "edges": 80,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 96,
+          "edges": 95,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 96,
+          "edges": 94,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 96,
+          "edges": 94,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 128,
+          "edges": 127,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 128,
+          "edges": 126,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 128,
+          "edges": 126,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 160,
+          "edges": 159,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 160,
+          "edges": 158,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 160,
+          "edges": 158,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 12,
+            "carry": 1,
+            "total": 7
+          }
+        }
+      ]
+    },
+    {
+      "seed": 808929568,
+      "tries": 939,
+      "k": [
+        1,
+        18,
+        14,
+        11,
+        13,
+        24,
+        19,
+        25
+      ],
+      "results": [
+        {
+          "kind": "prefix",
+          "n": 8,
+          "edges": 7,
+          "rank": 8,
+          "dimension": 28,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 16,
+          "edges": 15,
+          "rank": 16,
+          "dimension": 20,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 16,
+          "edges": 16,
+          "rank": 17,
+          "dimension": 19,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 16,
+          "edges": 16,
+          "rank": 17,
+          "dimension": 19,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 24,
+          "edges": 23,
+          "rank": 24,
+          "dimension": 12,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 24,
+          "edges": 24,
+          "rank": 25,
+          "dimension": 11,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 24,
+          "edges": 24,
+          "rank": 25,
+          "dimension": 11,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 32,
+          "edges": 31,
+          "rank": 28,
+          "dimension": 8,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 32,
+          "edges": 32,
+          "rank": 30,
+          "dimension": 6,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 32,
+          "edges": 32,
+          "rank": 31,
+          "dimension": 5,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 40,
+          "edges": 39,
+          "rank": 31,
+          "dimension": 5,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 40,
+          "edges": 40,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 40,
+          "edges": 40,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 48,
+          "edges": 47,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 48,
+          "edges": 48,
+          "rank": 33,
+          "dimension": 3,
+          "complete": true,
+          "legal": 6,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 48,
+          "edges": 48,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 64,
+          "edges": 63,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 64,
+          "edges": 64,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 64,
+          "edges": 64,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 80,
+          "edges": 79,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 80,
+          "edges": 80,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 80,
+          "edges": 80,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 96,
+          "edges": 95,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 96,
+          "edges": 96,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 96,
+          "edges": 96,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 128,
+          "edges": 127,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 128,
+          "edges": 128,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 128,
+          "edges": 128,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 160,
+          "edges": 159,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 160,
+          "edges": 159,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 160,
+          "edges": 159,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 10,
+            "carry": 1,
+            "total": 6
+          }
+        }
+      ]
+    },
+    {
+      "seed": 808929584,
+      "tries": 4843,
+      "k": [
+        1,
+        27,
+        5,
+        17,
+        0,
+        8,
+        15,
+        0
+      ],
+      "results": [
+        {
+          "kind": "prefix",
+          "n": 8,
+          "edges": 8,
+          "rank": 9,
+          "dimension": 27,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 8,
+          "edges": 8,
+          "rank": 8,
+          "dimension": 28,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 8,
+          "edges": 8,
+          "rank": 6,
+          "dimension": 30,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 16,
+          "edges": 16,
+          "rank": 14,
+          "dimension": 22,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 16,
+          "edges": 16,
+          "rank": 14,
+          "dimension": 22,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 16,
+          "edges": 16,
+          "rank": 13,
+          "dimension": 23,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 24,
+          "edges": 24,
+          "rank": 19,
+          "dimension": 17,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 24,
+          "edges": 23,
+          "rank": 21,
+          "dimension": 15,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 24,
+          "edges": 23,
+          "rank": 19,
+          "dimension": 17,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 32,
+          "edges": 32,
+          "rank": 24,
+          "dimension": 12,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 32,
+          "edges": 31,
+          "rank": 23,
+          "dimension": 13,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 32,
+          "edges": 31,
+          "rank": 24,
+          "dimension": 12,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 40,
+          "edges": 40,
+          "rank": 29,
+          "dimension": 7,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 40,
+          "edges": 39,
+          "rank": 27,
+          "dimension": 9,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 40,
+          "edges": 39,
+          "rank": 30,
+          "dimension": 6,
+          "complete": false
+        },
+        {
+          "kind": "prefix",
+          "n": 48,
+          "edges": 48,
+          "rank": 32,
+          "dimension": 4,
+          "complete": false
+        },
+        {
+          "kind": "dispersed",
+          "n": 48,
+          "edges": 47,
+          "rank": 31,
+          "dimension": 5,
+          "complete": false
+        },
+        {
+          "kind": "oracle",
+          "n": 48,
+          "edges": 47,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 64,
+          "edges": 64,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 64,
+          "edges": 63,
+          "rank": 34,
+          "dimension": 2,
+          "complete": true,
+          "legal": 2,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 64,
+          "edges": 63,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 80,
+          "edges": 80,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 80,
+          "edges": 78,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 80,
+          "edges": 78,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 96,
+          "edges": 96,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 96,
+          "edges": 94,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 96,
+          "edges": 94,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 128,
+          "edges": 128,
+          "rank": 35,
+          "dimension": 1,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 128,
+          "edges": 126,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 128,
+          "edges": 126,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 160,
+          "edges": 160,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 160,
+          "edges": 158,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 160,
+          "edges": 158,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "prefix",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "dispersed",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        },
+        {
+          "kind": "oracle",
+          "n": 213,
+          "edges": 211,
+          "rank": 36,
+          "dimension": 0,
+          "complete": true,
+          "legal": 1,
+          "passing": 1,
+          "truthPassing": true,
+          "exact": true,
+          "held": {
+            "retained": 16,
+            "unique": 14,
+            "carry": 1,
+            "total": 3
+          }
+        }
+      ]
+    }
+  ]
+}
