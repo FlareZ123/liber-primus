@@ -1,0 +1,174 @@
+{
+  "seed": [
+    15,
+    8,
+    18,
+    3,
+    6,
+    19,
+    27,
+    0,
+    15,
+    26,
+    18,
+    21,
+    5
+  ],
+  "length": 716,
+  "prefix": 249,
+  "trainingSections": [
+    "0_warning",
+    "0_welcome",
+    "0_wisdom",
+    "jpg107-167",
+    "jpg229",
+    "p56_an_end",
+    "p57_parable"
+  ],
+  "out": [
+    {
+      "name": "original-F",
+      "hold": true,
+      "keys": 24389,
+      "prefixLegal": 1426,
+      "fullLegal": 3,
+      "fullNonzero": 2,
+      "maxNonzeroPrefix": 716,
+      "selected": {
+        "coef": [
+          16,
+          5,
+          14
+        ],
+        "prefixScore": -4.326115486072486,
+        "holdoutScore": null,
+        "complete": false,
+        "replay": false,
+        "prefixPreview": "HOEBXDLTTOENGEWNGNGUCERDEODWSNGWUOESAIAAOAEELSIADRRSTEANYGELXXUDFSNGTHDTNGARYIBEXPAENNLXESJOEATHC",
+        "holdoutPreview": null
+      },
+      "retrospective": {
+        "coef": [
+          19,
+          1,
+          6
+        ],
+        "score": -4.6328237063828706,
+        "replay": true,
+        "preview": "XALURDUAIANXLPBTHPTHSJXBEANESEOWEUSIAPOBNSBIEAHNGHWMASNGPFJNGWFWPUEACOENGHTHHJHIATSGBSTHCBIJIOSTNGAEEORLYOXUGAEARIAHREAJER"
+      }
+    },
+    {
+      "name": "original-ordinary",
+      "hold": false,
+      "keys": 24389,
+      "prefixLegal": 24389,
+      "fullLegal": 24389,
+      "fullNonzero": 24388,
+      "maxNonzeroPrefix": 716,
+      "selected": {
+        "coef": [
+          10,
+          20,
+          10
+        ],
+        "prefixScore": -4.274102900856591,
+        "holdoutScore": -4.686858503198173,
+        "complete": true,
+        "replay": true,
+        "prefixPreview": "EUDWHIASSEAEAITCLSFEAEOBAEFEEAWURFEIAESEIMSEOEWONGTTTHUITHSEOOEUEAXTOJLJJEEATLCNESLIJMFRCNWNNI",
+        "holdoutPreview": "DSCXDEOFSEATHSNSMMEGOENGTMWJTAAEAEAEHWXEULXCTHIAUMOEIADMFJHTUEOIAIBMEONDBNPAIFTHOFHIDYFUYWAEANGNGEA"
+      },
+      "retrospective": {
+        "coef": [
+          16,
+          26,
+          26
+        ],
+        "score": -4.474356122452758,
+        "replay": true,
+        "preview": "NPRIAYUAAOAEEEOPNXIIEAOHIDPRMIUNLLBRTDNGEOONGNGSIALCIAHDEAEAWHJEAYNIAOPAEJTHUTHYBPJLCEGRHPAWUSTIARCTBPBETJAEIACWEAFMXEEA"
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "hold": true,
+      "keys": 24389,
+      "prefixLegal": 226,
+      "fullLegal": 5,
+      "fullNonzero": 4,
+      "maxNonzeroPrefix": 716,
+      "selected": {
+        "coef": [
+          3,
+          11,
+          7
+        ],
+        "prefixScore": -2.267858162302997,
+        "holdoutScore": -2.5658463481976583,
+        "complete": true,
+        "replay": true,
+        "prefixPreview": "ACOANAMANDECIDEDTOGOANDSTUDYWITHAMASTERHEWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHES",
+        "holdoutPreview": "MAPROFESSORTHATISWHATYOUDONOTWHATYOUAREREPLIEDTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHE",
+        "trueCoeff": [
+          3,
+          11,
+          7
+        ],
+        "prefixCorrect": 249,
+        "holdoutCorrect": 467
+      },
+      "retrospective": {
+        "coef": [
+          3,
+          11,
+          7
+        ],
+        "score": -2.462216378522001,
+        "replay": true,
+        "preview": "ACOANAMANDECIDEDTOGOANDSTUDYWITHAMASTERHEWENTTOTHEDOOROFTHEMASTERWHOAREYOUWHOWISHESTOSTUDYHEREASCEDTHEMA"
+      },
+      "nativeScore": -2.462216378522001
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "hold": false,
+      "keys": 24389,
+      "prefixLegal": 24389,
+      "fullLegal": 24389,
+      "fullNonzero": 24388,
+      "maxNonzeroPrefix": 716,
+      "selected": {
+        "coef": [
+          9,
+          4,
+          17
+        ],
+        "prefixScore": -2.7299583013631556,
+        "holdoutScore": -2.6940321148837696,
+        "complete": true,
+        "replay": true,
+        "prefixPreview": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCO",
+        "holdoutPreview": "NWHATWENEEDMOSTTHNGSARENOTWORTHCONSUMNGPRESERUATIANWEPRESERUETHNGSBECAUSEWEBELIEUEWEARE",
+        "trueCoeff": [
+          9,
+          4,
+          17
+        ],
+        "prefixCorrect": 249,
+        "holdoutCorrect": 467
+      },
+      "retrospective": {
+        "coef": [
+          9,
+          4,
+          17
+        ],
+        "score": -2.706525998170595,
+        "replay": true,
+        "preview": "THELOSSOFDIUINITYTHECIRCUMFERENCEPRACTICESTHREEBEHAUIARSWHICHCAUSETHELOSSOFDIUINITYCONSUMPTIANWECONSUMETOO"
+      },
+      "nativeScore": -2.706525998170595
+    }
+  ]
+}
