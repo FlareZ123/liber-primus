@@ -1,0 +1,1711 @@
+{
+  "wordLengths": [
+    7,
+    4,
+    2,
+    6,
+    7,
+    2,
+    2,
+    7,
+    2,
+    4,
+    4,
+    3,
+    3,
+    14,
+    4,
+    2,
+    8,
+    5,
+    3,
+    6
+  ],
+  "trainNames": [
+    "0_welcome",
+    "0_koan_1",
+    "0_loss_of_divinity"
+  ],
+  "trainRunes": 2050,
+  "testNames": [
+    "0_warning",
+    "jpg107-167",
+    "p56_an_end"
+  ],
+  "modes": [
+    {
+      "wholePage": false,
+      "L": 75,
+      "original": [
+        {
+          "sign": -1,
+          "fhold": false,
+          "perRune": -4.152431399253202,
+          "plain": [
+            20,
+            23,
+            5,
+            24,
+            6,
+            6,
+            24,
+            24,
+            4,
+            1,
+            15,
+            9,
+            18,
+            20,
+            4,
+            28,
+            4,
+            26,
+            23,
+            21,
+            28,
+            20,
+            6,
+            0,
+            4,
+            14,
+            5,
+            24,
+            19,
+            23,
+            3,
+            9,
+            7,
+            28,
+            1,
+            13,
+            16,
+            27,
+            1,
+            20,
+            5,
+            27,
+            12,
+            17,
+            6,
+            2,
+            18,
+            17,
+            22,
+            28,
+            15,
+            19,
+            24,
+            15,
+            28,
+            24,
+            1,
+            12,
+            3,
+            28,
+            24,
+            12,
+            9,
+            2,
+            6,
+            20,
+            21,
+            15,
+            9,
+            3,
+            1,
+            19,
+            21,
+            24,
+            28
+          ],
+          "translit": "LDCAGGAARUSNELREARYDNGEALGFRXCAMDONWEAUPTIAULCIAEOBGTHEBOEEASMASEAAUEOOEAAEONTHGLNGSNOUMNGAEA",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "first"
+            ],
+            [
+              1,
+              "first"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "first"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "first"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "first"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 75,
+          "maxStates": 4
+        },
+        {
+          "sign": -1,
+          "fhold": true,
+          "perRune": -4.206377139373718,
+          "plain": [
+            20,
+            23,
+            5,
+            24,
+            6,
+            6,
+            24,
+            24,
+            4,
+            1,
+            15,
+            9,
+            18,
+            20,
+            4,
+            28,
+            4,
+            26,
+            23,
+            21,
+            28,
+            20,
+            6,
+            14,
+            1,
+            18,
+            10,
+            14,
+            6,
+            23,
+            3,
+            9,
+            7,
+            28,
+            1,
+            13,
+            16,
+            27,
+            1,
+            20,
+            5,
+            27,
+            12,
+            17,
+            6,
+            2,
+            18,
+            17,
+            22,
+            28,
+            15,
+            19,
+            24,
+            15,
+            28,
+            24,
+            1,
+            12,
+            3,
+            28,
+            24,
+            12,
+            9,
+            2,
+            6,
+            20,
+            21,
+            15,
+            9,
+            3,
+            1,
+            19,
+            21,
+            24,
+            28
+          ],
+          "translit": "LDCAGGAARUSNELREARYDNGEALGXUEIXGDONWEAUPTIAULCIAEOBGTHEBOEEASMASEAAUEOOEAAEONTHGLNGSNOUMNGAEA",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "first"
+            ],
+            [
+              1,
+              "first"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "first"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "first"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 75,
+          "maxStates": 16
+        },
+        {
+          "sign": 1,
+          "fhold": true,
+          "perRune": -4.519417928321463,
+          "plain": [
+            1,
+            15,
+            15,
+            19,
+            24,
+            28,
+            23,
+            9,
+            10,
+            23,
+            26,
+            8,
+            15,
+            1,
+            0,
+            23,
+            8,
+            16,
+            25,
+            21,
+            18,
+            13,
+            1,
+            10,
+            0,
+            28,
+            9,
+            15,
+            1,
+            10,
+            8,
+            1,
+            2,
+            19,
+            26,
+            4,
+            7,
+            5,
+            26,
+            9,
+            0,
+            10,
+            28,
+            7,
+            24,
+            8,
+            13,
+            27,
+            28,
+            10,
+            17,
+            10,
+            17,
+            6,
+            13,
+            26,
+            2,
+            22,
+            8,
+            16,
+            5,
+            1,
+            12,
+            25,
+            18,
+            23,
+            22,
+            27,
+            4,
+            21,
+            1,
+            6,
+            8,
+            28,
+            21
+          ],
+          "translit": "USSMAEADNIDYHSUFDHTAENGEPUIFEANSUIHUTHMYRWCYNFIEAWAHPIAEAIBIBGPYTHOEHTCUEOAEEDOEIARNGUGHEANG",
+          "holds": [
+            14,
+            24,
+            40
+          ],
+          "choices": [
+            [
+              0,
+              "first"
+            ],
+            [
+              1,
+              "last"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "last"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "last"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "last"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "first"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "first"
+            ],
+            [
+              15,
+              "last"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 72,
+          "maxStates": 16
+        },
+        {
+          "sign": 1,
+          "fhold": false,
+          "perRune": -4.613224878787313,
+          "plain": [
+            1,
+            15,
+            15,
+            19,
+            24,
+            28,
+            23,
+            9,
+            10,
+            23,
+            26,
+            8,
+            15,
+            1,
+            25,
+            26,
+            15,
+            8,
+            16,
+            10,
+            15,
+            1,
+            15,
+            13,
+            28,
+            10,
+            10,
+            24,
+            25,
+            16,
+            23,
+            7,
+            6,
+            5,
+            4,
+            1,
+            14,
+            19,
+            24,
+            6,
+            24,
+            7,
+            4,
+            7,
+            4,
+            22,
+            18,
+            10,
+            14,
+            21,
+            26,
+            9,
+            17,
+            15,
+            8,
+            6,
+            10,
+            21,
+            1,
+            8,
+            6,
+            21,
+            6,
+            8,
+            21,
+            0,
+            17,
+            24,
+            5,
+            0,
+            22,
+            11,
+            28,
+            14,
+            4
+          ],
+          "translit": "USSMAEADNIDYHSUAEYSHTISUSPEAIIAAETDWGCRUXMAGAWRWROEEIXNGYNBSHGINGUHGNGGHNGFBACFOEJEAXR",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "first"
+            ],
+            [
+              1,
+              "last"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "first"
+            ],
+            [
+              6,
+              "last"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "last"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "last"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "first"
+            ],
+            [
+              19,
+              "last"
+            ]
+          ],
+          "consumed": 75,
+          "maxStates": 4
+        }
+      ],
+      "controls": [
+        {
+          "name": "0_warning",
+          "start": 0,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 74,
+          "nativeScore": -2.9378791340493238,
+          "selectedScore": -2.8917734765826357,
+          "holds": 2
+        },
+        {
+          "name": "0_warning",
+          "start": 0,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 65,
+          "nativeScore": -2.9378791340493238,
+          "selectedScore": -2.858361334320963,
+          "holds": 2
+        },
+        {
+          "name": "0_warning",
+          "start": 75,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 68,
+          "nativeScore": -2.7767567431203606,
+          "selectedScore": -2.5946872723491707,
+          "holds": 0
+        },
+        {
+          "name": "0_warning",
+          "start": 75,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 69,
+          "nativeScore": -2.7767567431203606,
+          "selectedScore": -2.6828046549505404,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 0,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 75,
+          "nativeScore": -2.6510894151047433,
+          "selectedScore": -2.6510894151047433,
+          "holds": 2
+        },
+        {
+          "name": "jpg107-167",
+          "start": 0,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 75,
+          "nativeScore": -2.6510894151047433,
+          "selectedScore": -2.6510894151047433,
+          "holds": 2
+        },
+        {
+          "name": "jpg107-167",
+          "start": 75,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 72,
+          "nativeScore": -2.770654540570587,
+          "selectedScore": -2.7224700248357108,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 75,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 75,
+          "nativeScore": -2.770654540570587,
+          "selectedScore": -2.770654540570587,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 150,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 75,
+          "nativeScore": -2.2352962681255493,
+          "selectedScore": -2.2352962681255493,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 150,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 75,
+          "nativeScore": -2.2352962681255493,
+          "selectedScore": -2.2352962681255493,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 225,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 74,
+          "nativeScore": -2.600469632399429,
+          "selectedScore": -2.557203629456024,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 225,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 75,
+          "nativeScore": -2.600469632399429,
+          "selectedScore": -2.600469632399429,
+          "holds": 0
+        },
+        {
+          "name": "p56_an_end",
+          "start": 0,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 68,
+          "nativeScore": -2.6003272480605726,
+          "selectedScore": -2.595066231122622,
+          "holds": 1
+        },
+        {
+          "name": "p56_an_end",
+          "start": 0,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 68,
+          "nativeScore": -2.6003272480605726,
+          "selectedScore": -2.595066231122622,
+          "holds": 1
+        }
+      ],
+      "controlMinNative": -2.9378791340493238,
+      "controlRecovered": 1008,
+      "controlRunes": 1050,
+      "null": {
+        "trials": 256,
+        "exceed": 51,
+        "upperTail": 0.20233463035019456,
+        "median": -4.273315554118833,
+        "min": -4.569202326768496,
+        "max": -3.880249311603214
+      }
+    },
+    {
+      "wholePage": true,
+      "L": 76,
+      "original": [
+        {
+          "sign": -1,
+          "fhold": false,
+          "perRune": -4.168046653682706,
+          "plain": [
+            5,
+            20,
+            23,
+            5,
+            24,
+            6,
+            6,
+            24,
+            24,
+            4,
+            1,
+            15,
+            9,
+            18,
+            20,
+            4,
+            28,
+            4,
+            26,
+            23,
+            21,
+            28,
+            20,
+            6,
+            0,
+            4,
+            14,
+            5,
+            24,
+            19,
+            23,
+            3,
+            9,
+            7,
+            28,
+            1,
+            13,
+            16,
+            27,
+            1,
+            20,
+            5,
+            27,
+            12,
+            17,
+            6,
+            2,
+            18,
+            17,
+            22,
+            28,
+            15,
+            19,
+            24,
+            15,
+            28,
+            24,
+            1,
+            12,
+            3,
+            28,
+            24,
+            12,
+            9,
+            2,
+            6,
+            20,
+            21,
+            15,
+            9,
+            3,
+            1,
+            19,
+            21,
+            24,
+            28
+          ],
+          "translit": "CLDCAGGAARUSNELREARYDNGEALGFRXCAMDONWEAUPTIAULCIAEOBGTHEBOEEASMASEAAUEOOEAAEONTHGLNGSNOUMNGAEA",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "keep"
+            ],
+            [
+              1,
+              "first"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "first"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "first"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "first"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 76,
+          "maxStates": 4
+        },
+        {
+          "sign": -1,
+          "fhold": true,
+          "perRune": -4.221282581433212,
+          "plain": [
+            5,
+            20,
+            23,
+            5,
+            24,
+            6,
+            6,
+            24,
+            24,
+            4,
+            1,
+            15,
+            9,
+            18,
+            20,
+            4,
+            28,
+            4,
+            26,
+            23,
+            21,
+            28,
+            20,
+            6,
+            14,
+            1,
+            18,
+            10,
+            14,
+            6,
+            23,
+            3,
+            9,
+            7,
+            28,
+            1,
+            13,
+            16,
+            27,
+            1,
+            20,
+            5,
+            27,
+            12,
+            17,
+            6,
+            2,
+            18,
+            17,
+            22,
+            28,
+            15,
+            19,
+            24,
+            15,
+            28,
+            24,
+            1,
+            12,
+            3,
+            28,
+            24,
+            12,
+            9,
+            2,
+            6,
+            20,
+            21,
+            15,
+            9,
+            3,
+            1,
+            19,
+            21,
+            24,
+            28
+          ],
+          "translit": "CLDCAGGAARUSNELREARYDNGEALGXUEIXGDONWEAUPTIAULCIAEOBGTHEBOEEASMASEAAUEOOEAAEONTHGLNGSNOUMNGAEA",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "keep"
+            ],
+            [
+              1,
+              "first"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "first"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "first"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 76,
+          "maxStates": 16
+        },
+        {
+          "sign": 1,
+          "fhold": true,
+          "perRune": -4.518254920281034,
+          "plain": [
+            8,
+            1,
+            15,
+            15,
+            19,
+            24,
+            28,
+            23,
+            9,
+            10,
+            23,
+            26,
+            8,
+            15,
+            1,
+            0,
+            23,
+            8,
+            16,
+            25,
+            21,
+            18,
+            13,
+            1,
+            10,
+            0,
+            28,
+            9,
+            15,
+            1,
+            10,
+            8,
+            1,
+            2,
+            19,
+            26,
+            4,
+            7,
+            5,
+            26,
+            9,
+            0,
+            10,
+            28,
+            7,
+            24,
+            8,
+            13,
+            27,
+            28,
+            10,
+            17,
+            10,
+            17,
+            6,
+            13,
+            26,
+            2,
+            22,
+            8,
+            16,
+            5,
+            1,
+            12,
+            25,
+            18,
+            23,
+            22,
+            27,
+            4,
+            21,
+            1,
+            6,
+            8,
+            28,
+            21
+          ],
+          "translit": "HUSSMAEADNIDYHSUFDHTAENGEPUIFEANSUIHUTHMYRWCYNFIEAWAHPIAEAIBIBGPYTHOEHTCUEOAEEDOEIARNGUGHEANG",
+          "holds": [
+            15,
+            25,
+            41
+          ],
+          "choices": [
+            [
+              0,
+              "keep"
+            ],
+            [
+              1,
+              "last"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "last"
+            ],
+            [
+              5,
+              "last"
+            ],
+            [
+              6,
+              "first"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "last"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "last"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "first"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "first"
+            ],
+            [
+              15,
+              "last"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "last"
+            ],
+            [
+              19,
+              "first"
+            ]
+          ],
+          "consumed": 73,
+          "maxStates": 16
+        },
+        {
+          "sign": 1,
+          "fhold": false,
+          "perRune": -4.61082756876707,
+          "plain": [
+            8,
+            1,
+            15,
+            15,
+            19,
+            24,
+            28,
+            23,
+            9,
+            10,
+            23,
+            26,
+            8,
+            15,
+            1,
+            25,
+            26,
+            15,
+            8,
+            16,
+            10,
+            15,
+            1,
+            15,
+            13,
+            28,
+            10,
+            10,
+            24,
+            25,
+            16,
+            23,
+            7,
+            6,
+            5,
+            4,
+            1,
+            14,
+            19,
+            24,
+            6,
+            24,
+            7,
+            4,
+            7,
+            4,
+            22,
+            18,
+            10,
+            14,
+            21,
+            26,
+            9,
+            17,
+            15,
+            8,
+            6,
+            10,
+            21,
+            1,
+            8,
+            6,
+            21,
+            6,
+            8,
+            21,
+            0,
+            17,
+            24,
+            5,
+            0,
+            22,
+            11,
+            28,
+            14,
+            4
+          ],
+          "translit": "HUSSMAEADNIDYHSUAEYSHTISUSPEAIIAAETDWGCRUXMAGAWRWROEEIXNGYNBSHGINGUHGNGGHNGFBACFOEJEAXR",
+          "holds": [],
+          "choices": [
+            [
+              0,
+              "keep"
+            ],
+            [
+              1,
+              "last"
+            ],
+            [
+              2,
+              "first"
+            ],
+            [
+              3,
+              "first"
+            ],
+            [
+              4,
+              "first"
+            ],
+            [
+              5,
+              "first"
+            ],
+            [
+              6,
+              "last"
+            ],
+            [
+              7,
+              "last"
+            ],
+            [
+              8,
+              "first"
+            ],
+            [
+              9,
+              "last"
+            ],
+            [
+              10,
+              "last"
+            ],
+            [
+              11,
+              "first"
+            ],
+            [
+              12,
+              "last"
+            ],
+            [
+              13,
+              "last"
+            ],
+            [
+              14,
+              "last"
+            ],
+            [
+              15,
+              "last"
+            ],
+            [
+              16,
+              "first"
+            ],
+            [
+              17,
+              "last"
+            ],
+            [
+              18,
+              "first"
+            ],
+            [
+              19,
+              "last"
+            ]
+          ],
+          "consumed": 76,
+          "maxStates": 4
+        }
+      ],
+      "controls": [
+        {
+          "name": "0_warning",
+          "start": 0,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 70,
+          "nativeScore": -2.91513818155766,
+          "selectedScore": -2.8277553465466108,
+          "holds": 2
+        },
+        {
+          "name": "0_warning",
+          "start": 0,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 73,
+          "nativeScore": -2.91513818155766,
+          "selectedScore": -2.896507173763466,
+          "holds": 2
+        },
+        {
+          "name": "0_warning",
+          "start": 76,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 73,
+          "nativeScore": -2.747220120382488,
+          "selectedScore": -2.733138137113884,
+          "holds": 0
+        },
+        {
+          "name": "0_warning",
+          "start": 76,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 73,
+          "nativeScore": -2.747220120382488,
+          "selectedScore": -2.7377138434810724,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 0,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 68,
+          "nativeScore": -2.6665417621522485,
+          "selectedScore": -2.5665849180638136,
+          "holds": 2
+        },
+        {
+          "name": "jpg107-167",
+          "start": 0,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 72,
+          "nativeScore": -2.6665417621522485,
+          "selectedScore": -2.6542647333535174,
+          "holds": 2
+        },
+        {
+          "name": "jpg107-167",
+          "start": 76,
+          "sign": 1,
+          "fhold": false,
+          "recovered": 72,
+          "nativeScore": -2.7952464707227582,
+          "selectedScore": -2.71732374799246,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 76,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 72,
+          "nativeScore": -2.7952464707227582,
+          "selectedScore": -2.71732374799246,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 152,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 75,
+          "nativeScore": -2.3887421882751516,
+          "selectedScore": -2.373384007997112,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 152,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 75,
+          "nativeScore": -2.3887421882751516,
+          "selectedScore": -2.373384007997112,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 228,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 73,
+          "nativeScore": -2.565855575028805,
+          "selectedScore": -2.450424148529219,
+          "holds": 0
+        },
+        {
+          "name": "jpg107-167",
+          "start": 228,
+          "sign": 1,
+          "fhold": true,
+          "recovered": 72,
+          "nativeScore": -2.565855575028805,
+          "selectedScore": -2.433525003831577,
+          "holds": 0
+        },
+        {
+          "name": "p56_an_end",
+          "start": 0,
+          "sign": -1,
+          "fhold": false,
+          "recovered": 75,
+          "nativeScore": -2.583644449885167,
+          "selectedScore": -2.562852484255205,
+          "holds": 1
+        },
+        {
+          "name": "p56_an_end",
+          "start": 0,
+          "sign": -1,
+          "fhold": true,
+          "recovered": 74,
+          "nativeScore": -2.583644449885167,
+          "selectedScore": -2.5493080144919475,
+          "holds": 1
+        }
+      ],
+      "controlMinNative": -2.91513818155766,
+      "controlRecovered": 1017,
+      "controlRunes": 1064,
+      "null": {
+        "trials": 256,
+        "exceed": 35,
+        "upperTail": 0.14007782101167315,
+        "median": -4.318411518363482,
+        "min": -4.638568293083048,
+        "max": -3.9227487954717715
+      }
+    }
+  ]
+}
