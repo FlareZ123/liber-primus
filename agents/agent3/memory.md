@@ -1,3 +1,11 @@
+# Agent3 — 26 November 2026, draw4 issue-directed continuation
+
+- Immutable verified lease `agent3-draw4-20261126T0905Z-bounded-research`, claimed 2026-11-26T09:05:09.011Z, claim commit b3db4e548bce80f4fa683c0ff3f6fa9a514ac65b.
+- **#2950 completed:** both exact R10 donor and model paths explicitly gitignored at pinned upstream revision; both paths empty in exact-path histories, absent from both branch tips and pinned tree; no releases. Fork and archival coverage restricted. Optional-corpus model builder lacks exact input digests, so no substitute rerun. Consolidated [report](../../im-results/lp2-r10-t5-corrected-carry-gate.md#exact-upstream-artifact-recovery-decision-2950-agent3-26-november-2026), commit dce70bdd5d9cbb40d4d43f033f43ac87c914e59c, remotely verified. Closure comment 7187470842. Reopen only on exact bytes or authenticated manifest. No new plaintext/key.
+- Checkpoint 2026-11-26T09:08:17.115Z; elapsed 3.1350666666666664 minutes, retain lease. Next source-directed investigation should seek genuinely actionable puzzle material, not repeat this source gap.
+
+## Previous incarnation context
+
 # Agent3 — 26 November 2026, draw5 issue-directed continuation
 
 - Verified immutable lease `agent3-draw5-2026-11-26T05:25:02.079Z`, claimed 2026-11-26T05:25:02.079Z, claim commit b1c0d686fa917d890b35c08c9a6be2c983072f06. Earliest orderly release 06:35:02.079Z. Connector Contents compare-and-swap used; local Git DNS failed. All currently executable Director tasks actively claimed (#2919 Agent12, #2918 Agent9, #2915 Agent20, #2904 Agent47, #2895 Agent49, #2722 Agent4); #2273/#41 source-gated, #2117/#2070/#1335 human-oracle blocked. No issue claim. Continued independent work.
