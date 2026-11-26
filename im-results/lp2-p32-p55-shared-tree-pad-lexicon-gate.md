@@ -26,6 +26,30 @@ The combined gate passes 3/4, all four hidden alignments are correct, and 266/30
 
 [Final read-only SFT](../sims/lp2_p32_p53_p55_triple_pad_tetragram_sft.cjs), [control 0](lp2-p32-p53-p55-triple-pad-tetragram-control0.json), [control 1](lp2-p32-p53-p55-triple-pad-tetragram-control1.json), [control 2](lp2-p32-p53-p55-triple-pad-tetragram-control2.json), [control 3](lp2-p32-p53-p55-triple-pad-tetragram-control3.json), [original](lp2-p32-p53-p55-triple-pad-tetragram-original.json). Run the SFT separately with argument 0,1,2,3; only after passing the stated gate run with argument `original`. The exported core ran in connected V8. A combined multi-control computation timed out; separate controls and original completed. A transient commit conflict on original output was retried successfully. No separate standalone Node or CI run.
 
+### Authentic literal-F clock at the three physical starts (Agent19)
+
+The known historical F-transparent clock is a materially distinct receiver from the preceding all-consuming alignment. Freeze the first 76 physical runes of p32 and p53 and all 76 p55 runes; the respective original visible-F counts are 3,2,3. For every one of the 256 hold-mask triples, independently compress each tape's consuming clock. At shared pad index t, P_j=(C_j−K_t) mod29 must be nonzero on every still-active tape, while held physical zero runes emit plaintext F and consume no key. A tape that has exhausted its consuming positions imposes no further constraint. Integrate the 29 key choices with an exact first-order Markov forward algorithm, including leading/intervening/trailing Fs. Sum the likelihoods across all masks; divide by the product of the exact independent-pad marginals to form a shared-versus-independent log Bayes factor. No word-boundary assumption.
+
+A first-order MAP pilot distinguishes its shared/independent plant (+7.528/−2.894 total logBF) but recovers only 25/74 common key symbols, with the true hold mask third by marginal likelihood. A distinct fixed stronger receiver keeps the top eight masks by the exact first-order marginal and computes an exact conditional trigram MAP over the last two common key symbols, accounting for the true physical F history on each tape. Compare MAP joint scores across these eight; replay each output. The higher-order mask shortlist is bounded and need not contain the true mask. The BF itself remains exact for the stated first-order model.
+
+Six fresh disjoint-training literary plants have the same physical lengths and exact visible-F counts as original, and each is paired with an independent-pad rival with the same plaintexts and counts. Use the 374,413-rune language register from the preceding test. The gate is 5/6 positive full BFs, 5/6 negative independent BFs, and at least 4/6 positives with at least 70% common-key recovery. Score full76 and first48 separately; full minus prefix BF is a withheld conditional log likelihood ratio.
+
+| Control | Recovered common key | Shared full logBF | Independent full logBF | Shared withheld increment |
+|---|---:|---:|---:|---:|
+| 0 | 48/75 | +6.211119 | −9.031781 | +2.195678 |
+| 1 | 61/74 | +4.729604 | −12.209324 | +1.517034 |
+| 2 | 49/74 | +4.175044 | −7.189142 | +3.152644 |
+| 3 | 56/73 | +14.684794 | −12.631285 | +3.819103 |
+| 4 | 65/73 | +12.455113 | −4.285131 | +4.585745 |
+| 5 | 66/73 | +4.513350 | −1.300448 | +0.542756 |
+| Original | unknown | +0.368861 | n/a | **−1.665246** |
+
+The gate passes (6/6 positive, 6/6 negative, 4/6 recovery threshold); 345/442 common pad symbols are recovered across plants. All six true shared-pad controls show positive withheld increments; the original first48 BF +2.034107 falls to +0.368861 on full76. The original's selected trigram hold mask is p32 offset42, p53 none, p55 offsets15/25. Its three exact-replaying candidate texts are incoherent. The small positive full BF alone is not a decipherment: it falls below every matched positive, and the continuation moves against the shared model.
+
+**Decision:** no predictive or readable recovery for the fixed physical-start, F-transparent, equal-additive three-pad receiver. This is a calibrated finite diagnostic, not an all-alignment or all-key-family impossibility theorem. The BF assumes uniform independent consuming pad symbols and the fitted first-order language law; conditioned visible-F count controls reduce but do not eliminate model mismatch. No unknown plaintext or key. The complete longer p32/p53 tails remain outside the 76-rune overlap.
+
+[Pilot SFT](../sims/lp2_p32_p53_p55_triple_pad_latent_f_sft.cjs) · [pilot raw](lp2-p32-p53-p55-triple-pad-latent-f-control0.json) · [final SFT](../sims/lp2_p32_p53_p55_triple_pad_latent_f_trigram_sft.cjs) · [control 0](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control0.json) · [control 1](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control1.json) · [control 2](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control2.json) · [control 3](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control3.json) · [control 4](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control4.json) · [control 5](lp2-p32-p53-p55-triple-pad-latent-f-trigram-control5.json) · [original raw](lp2-p32-p53-p55-triple-pad-latent-f-trigram-original.json). Run final SFT separately with argument 0–5, then `original` only after passing the gate. Executed directly in connected V8; standalone Node/CI not separately run.
+
 ## Distinct bitwise XOR shared-pad inverse (Agent6, 24 November 2026)
 
 The historical XOR operation is a separate hypothesis from GF(29) addition and multiplication. Grant any position-dependent five-bit common pad K and any page-constant relative XOR mask s in 0..31: C_A=P_A XOR K, C_B=P_B XOR K XOR s. Both emitted plaintext and ciphertext symbols must be GP29 indices 0..28. Cancel K, so P_A XOR P_B=C_A XOR C_B XOR s. Exact relative-XOR word-overlap signatures provide a 32-bit candidate set; a complete forest CSP then requires shared word assignments across all overlaps, including one-rune overlaps. No key-stream family is assumed.
