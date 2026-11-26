@@ -2,7 +2,7 @@
 
 ## Finding
 
-The existing p0 split-READOUT inverse has a new, source-constrained interpretation. The two-rune ciphertext word at p0 offsets 235–236 is:
+The existing p0 split-READOUT lookup has a conditional cross-source interpretation. It is a local crib-selection observation, not a source-selected inverse. The two-rune ciphertext word at p0 offsets 235–236 is:
 
 - ciphertext **C = [8,5]**
 - fixed split-packet lookup key **K = [6,16]**
@@ -37,16 +37,21 @@ Using the established one-based packet lookup Kᵢ = packet[Cᵢ − 1], the man
 
 The p0 and p38 [8,5] hits are the only two of the five that also pass the source-word-length check: positions [6,16] select GP29 words of lengths [8,5], exactly the ciphertext values. The other three select EPIPHANY / ROAD, whose lengths are [8,4], not [8,13].
 
-Across all 284 eligible two-rune groups (both ciphertext symbols in 1–23), 20 satisfy the same two-position source-word-length equality; only two of those decrypt to THE, at p0 and p38. The other length matches do not produce source-vocabulary plaintext. This is a narrow local result, not a general page decoder. The p38 occurrence is a repeated control, not the p0 boundary selection.
+Across all 284 eligible two-rune groups (both ciphertext symbols in 1–23), 20 satisfy the same two-position source-word-length equality; only two of those decrypt to THE, at p0 and p38. The other length matches do not produce source-vocabulary plaintext. This is a narrow local result, not a general page decoder. The p38 occurrence repeats the same ciphertext pair and deterministic lookup result; it is not independent key or plaintext evidence. Five observed hits reduce to two input types; the two length matches reduce to one input type. A third possible input type [8,17] would also output THE but does not occur in the reported census.
+
+## Exact domain and reversibility gate
+
+For `c=1..23`, the fixed lookup `f(c)=(c−packet[c−1]) mod29` has only 14 distinct outputs. Its six nonsingleton fibers are `11←[1,16,20]`, `18←[5,13,17]`, `23←[6,15]`, `25←[10,11]`, `4←[12,22]`, `21←[18,21,23]`. Ciphertext 0 and 24–28 have no assigned lookup. A plaintext-only deterministic sender therefore cannot exactly reconstruct this entire eligible ciphertext domain; a state/exception channel or restricted domain would be necessary. This does not exclude a randomized sender with independently recoverable state or a deliberately partial navigation rule. Neither is specified here. The [original receiver visual gate](lp2-p0-readout-receiver-visible-clue-audit.md) also finds no source-visible selector for the H/READOUT operation. THE remains a conditional output, not established plaintext.
 
 ## Why the index origin matters
 
-There are two plausible ways to number the 2016 text:
+Separate the four indexing conventions explicitly:
 
 - **Full signed cleartext, one-based, including “Hello”:** [6,16] → EPIPHANY / WORDS. Their GP29 lengths [8,5] match both the p0 red-heading word lengths and the ciphertext pair.
-- **The 29-word prose body excluding “Hello” (or zero-based indexing of the full message):** [6,16] → SEEKS / ARE. Their GP29 lengths [5,3] do not match [8,5].
+- **One-based 29-word body excluding “Hello”, or zero-based full message:** [6,16] → SEEKS / ARE. Their GP29 lengths [5,3] do not match [8,5].
+- **Zero-based 29-word body excluding “Hello”:** [6,16] → THE / THE, GP29 lengths [2,2]. This is the previously defined body-remainder map. With GP29 values 0–28, the proposed one-based full-message rule can address only the first 28 words (zero is invalid), not the entire 43-word register.
 
-The first convention is additionally anchored by the independently selected EMPTY/EPIPHANY boundary: full-message word 6 is EPIPHANY, the same source word that the existing GP0/p50 address route maps to p0 offset 237. Thus the first coordinate of K lands on the independently selected boundary word. The split packet's already-established one-based lookup and the exact 8+5 length match support the same origin. The earlier DH23 mapping of H-transform outputs used zero-based source positions; that is a separate operation. This one-based interpretation applies to the split-packet key [6,16] only; it must not be transferred automatically to the 13-rune title residual.
+The earlier [GP0/p50 pointer circuit](lp2-2016-gp0-table-word-pointer-circuit.md) maps EMPTY/EPIPHANY to offsets 236/237 and explicitly uses EPIPHANY's zero-based full-message index 5 alongside GP0 sum 121. That conditional navigation result does not select one-based index 6 for a different lookup: it locates the same input boundary used here and supplies no independently predicted plaintext or addressing conversion. The prior [body-remainder convention](lp2-p50-functional-graph-2016-wordmap.md) uses the 29-word body after Hello with r→human ordinal r+1. One-based packet addressing does not by itself imply one-based addressing of a separate source register.
 
 ## Candidate-key self-index check
 
@@ -73,7 +78,7 @@ The candidate comparison is bounded by the signed source rather than open-ended 
 | FOUND | 0 | 12 | 8/9 | no |
 | FALSE | 0 | 11 | 7/9 | no |
 
-Thus WORDS is the unique member of this eight-candidate family whose residual selects exactly the source-defined spine. As a secondary check, the existing p0 DEVOTED crib has residual key **[21,4,15,19,5,12,10]**, whose distinct source-ordered positions give **LIES EMPTY LIBER IS ITS MAP MEANING**.
+Thus WORDS is the unique member of this eight-candidate family whose residual selects exactly the specified spine. The first eight residual values are identical for every candidate because EPIPHANY is fixed: their distinct positions supply seven of nine spine entries. Only positions 14 and 23 need to be added by the five-rune continuation without introducing other positions. The spine is an interpretive subsequence of the known signed text, not an independently pre-registered target; do not treat the eight trials or seven shared positions as independent confirmations. As a secondary check, the existing p0 DEVOTED crib has residual key **[21,4,15,19,5,12,10]**, whose distinct source-ordered positions give **LIES EMPTY LIBER IS ITS MAP MEANING**.
 
 These projections are **not independent decryptions**: the residual keys depend on the proposed plaintexts, and sorting/deduplicating selected positions is an interpretive readout. In particular, the exact WORDS spine fit does not override the marker-state gate below. Treat it as evidence that the 2016 word map is involved, not as title plaintext.
 
@@ -88,7 +93,7 @@ The 13-rune p0 title has an existing source-selected 4|5|4 marker-state gate, do
 
 The marker-state target [13,23,6] is fixed by the original p0 marker/column analysis, not chosen for this comparison. This is the decisive countertest: **EPIPHANY SEEKS passes; EPIPHANY WORDS fails**. The two zeroes in the SEEKS residual are valid GP29/state values; they are not invalid word pointers because the title residual is not the same object as the split-packet key [6,16]. Do not apply the one-based book-index interpretation to the title residual.
 
-The new [6,16] → EPIPHANY / WORDS link remains a real cross-source clue, supported by the 8+5 length match and the independent EPIPHANY boundary anchor. It may be telling the solver how to use the 2016 word map rather than giving the title plaintext. The exact role remains unresolved; preserve EPIPHANY SEEKS as the stronger title candidate.
+The [6,16] → EPIPHANY / WORDS link remains a conditional arithmetic cross-reference. The 8+5 match is preserved, but the boundary does not independently select the indexing origin. The marker-state comparison favors SEEKS within that specific proposed gate; neither title is authenticated.
 
 ## Reproduction and next decisive test
 
@@ -96,4 +101,4 @@ Run: **node sims/lp2_p0_2016_word_index_map_sft.cjs**.
 
 The script reads the original corpus, transcription and signed 2016 source; asserts the fixed packet, all five THE hits, the 284/20/2 length-control counts, and the exact candidate projections.
 
-The next useful test is to determine whether the [6,16] → EPIPHANY / WORDS cross-reference selects a concrete operation on the 2016 message or another p0 receiver. Preserve the established EPIPHANY SEEKS title candidate unless a new source-selected test overturns its marker-state pass. Seek one independent second plaintext receiver for the word-index mechanism; do not widen this into an unconstrained search over origins, offsets or candidate phrases.
+The next admissible test requires an independently selected complete operation (or explicitly partial navigation grammar), with a frozen index register and a new original-cipher prediction not using [8,5], the already selected p0 boundary, or a candidate-derived residual. Until then retain both cribs as conditional, and do not expand the lookup, source-word searches or title candidates.

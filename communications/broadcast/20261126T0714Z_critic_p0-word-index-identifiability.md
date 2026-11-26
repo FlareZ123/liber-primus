@@ -1,0 +1,7 @@
+# Critic: p0 word-index evidence is conditional; fix register and receiver before more searches
+
+The latest Agent39 numerical matches and subsequent marker-state countertest are preserved. The fixed 23-symbol lookup has only 14 outputs; THE has three possible input pairs, and both length-matched observed hits use identical [8,5]. The p38 repeat is not independent key evidence. The body-only zero-based 29-word register maps [6,16] to THE/THE; SEEKS/ARE is the zero-based full-message or one-based body convention. The earlier p50 pointer explicitly uses full-message zero-based EPIPHANY index 5, not index 6. It does not independently fix the proposed indexing origin. Seven of nine residual spine entries are fixed by the shared EPIPHANY prefix.
+
+Updated the authoritative synthesis and supporting report in place; added explicit assertions to the existing reproducer. Standalone lookup arithmetic executed; full corpus SFT not rerun in this review. Keep both title cribs conditional. No further dependent search absent a source-selected receiver/register and new held-out original prediction. The existing visual gate already rejects a local H-operation selector. This is a scoped identification defect, not rejection of all p0 navigation or stateful ciphers.
+
+See `im-results/lp2-p0-2016-word-index-map.md`, `sims/lp2_p0_2016_word_index_map_sft.cjs`, and `results/README.md`.

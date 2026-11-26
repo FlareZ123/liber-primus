@@ -157,14 +157,32 @@ assert.equal(boundedTitleScan.filter((row) => row.exactCoreSet).length, 1);
 assert.equal(boundedTitleScan.find((row) => row.exactCoreSet).candidate, "WORDS");
 
 const bodyWords = sourceWords.slice(1, 30);
+const fibers = new Map();
+for (let c = 1; c <= packet.length; c++) {
+  const plain = mod(c - packet[c - 1]);
+  if (!fibers.has(plain)) fibers.set(plain, []);
+  fibers.get(plain).push(c);
+}
+assert.equal(fibers.size, 14);
+assert.deepEqual(fibers.get(18), [5,13,17]);
+assert.deepEqual(fibers.get(2), [8]);
+assert.equal(new Set(theHits.map(h => h.cipher.join(','))).size, 2);
+assert.equal(new Set(lengthMatchedTHE.map(h => h.cipher.join(','))).size, 1);
+assert.deepEqual(p0THE.key.map(v => bodyWords[v]), ['THE','THE']);
+assert.equal(new Set(titleWordsKey.slice(0, 8)).size, 7);
 const output = {
   signedSource: {
     alphabeticWordCount: sourceWords.length,
     openingWord: sourceWords[0],
     oneBasedFullMessage: { 6: sourceWords[5], 16: sourceWords[15], 24: sourceWords[23] },
-    oneBased29WordBodyExcludingHello: { 6: bodyWords[5], 16: bodyWords[15], 24: bodyWords[23] }
+    oneBased29WordBodyExcludingHello: { 6: bodyWords[5], 16: bodyWords[15], 24: bodyWords[23] },
+    zeroBased29WordBodyExcludingHello: { 6: bodyWords[6], 16: bodyWords[16], 24: bodyWords[24] }
   },
   splitPacket: packet,
+  lookupGate: { inputCount: packet.length, distinctOutputs: fibers.size,
+    unassignedInputs: [0,24,25,26,27,28], fibers: Object.fromEntries(fibers),
+    observedTHEInputTypes: [...new Set(theHits.map(h => h.cipher.join(',')))],
+    lengthMatchedTHEInputTypes: [...new Set(lengthMatchedTHE.map(h => h.cipher.join(',')))] },
   globalTHEHits: theHits,
   twoRuneLengthControl: {
     eligibleGroups: eligibleTwoRuneGroups,
