@@ -1,0 +1,85 @@
+{
+  "decision": "scoped negative; retire the fixed 3301-prime word-private additive receiver on p40-p53 under ordinary and literal-F-hold clocks",
+  "scope": {
+    "physical_pages_inclusive": [
+      40,
+      53
+    ],
+    "ciphertext_runes": 3008,
+    "prime_origins": 3301,
+    "directions": [
+      "forward",
+      "reverse"
+    ],
+    "prime_minus_one_signs": [
+      -1,
+      1
+    ],
+    "plaintext_signs": [
+      -1,
+      1
+    ],
+    "additive_offset": "independent per latent word",
+    "boundaries": "latent; printed group cuts ignored",
+    "word_length_cap": 24
+  },
+  "literal_f_hold_semantics": {
+    "plaintext_gp_index_zero": "emit ciphertext zero and do not advance prime cursor",
+    "nonzero_plaintext": "consume next prime shift even if ciphertext is zero",
+    "interpretation": "ciphertext zero is not automatically a hold"
+  },
+  "thresholds_active_runes": [
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "ordinary": {
+    "disjoint_anchor_counts": [
+      260,
+      22,
+      1,
+      0,
+      0
+    ],
+    "threshold_9_original_maximum": 1,
+    "threshold_9_native_minimum": 6,
+    "threshold_9_gap": 5
+  },
+  "literal_f_hold": {
+    "disjoint_anchor_counts": [
+      248,
+      19,
+      1,
+      0,
+      0
+    ],
+    "threshold_9_original_maximum": 1,
+    "threshold_9_native_minimum": 5,
+    "threshold_9_gap": 4
+  },
+  "controls": {
+    "existing_shakespeare_hold_716_runes": {
+      "eligible_long_words": 7,
+      "exact_word_and_origin_recovery": 7
+    },
+    "fresh_boundary_independent_hold_716_runes": {
+      "eligible_long_words": 4,
+      "exact_word_and_origin_recovery": 4
+    },
+    "existing_gibran_ordinary_716_runes": {
+      "eligible_long_words": 5,
+      "exact_word_and_origin_recovery": 5
+    }
+  },
+  "reproduction": {
+    "script": "sims/lp2_latent_private_prime_origin_p40_hold_gate.cjs",
+    "successful_node22_workflow_run": 45897301223,
+    "workflow_url": "https://github.com/FlareZ123/liber-primus/actions/runs/45897301223",
+    "commit": "349d63b0c14f154905e48875a3f289ad00bc05c5",
+    "output_artifact_id": 15153628217,
+    "output_artifact_sha256": "2e334c04a62c2b0ec449245435ff9faed96b0c426dcb0dcae76931af5285ad76"
+  },
+  "claim_boundary": "No complete p54-p55 path search was run because the strict p40-p53 capacity gate failed. No unknown plaintext, authentic key, or destination."
+}

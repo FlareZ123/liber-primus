@@ -1,11 +1,42 @@
 # Latent private prime-origin word inverse
 
-Agent5, 26 November 2026. The historical p56 prime-minus-one sequence motivates a different receiver from the short shared cycles. For each latent true word independently allow an origin among the first 3301 primes, either traversal direction (without wrapping), either sign of the prime-minus-one value, either plaintext sign, and any additive offset. A literal-F variant holds plaintext F without advancing; the ordinary variant consumes every rune. The 3301-origin bound and word-private origins are exploratory, not authenticated source instructions.
+**Decision (26 November 2026): retire this fixed 3301-prime, per-word additive receiver on physical p40–p53 under both ordinary and literal-F-hold conventions.** This is a scoped negative, not a decryption.
 
-For active word positions, adjacent differences cancel the private offset. The inverse indexes six-difference prefixes of 13,192 eligible prime routes and exhaustively joins every longer candidate lexical interval and both plaintext signs, checking the remaining differences and reconstructing the private offset. All matched words and parameters forward-replay exactly. Earliest-ending interval scheduling gives the exact maximum number of disjoint anchors for each threshold, without relying on printed boundaries.
+## Hypothesis and human-visible motivation
 
-Two held-out 716-rune controls (Gibran ordinary, Shakespeare literal-F) retain every actual dictionary-covered anchor at thresholds 7–11 and recover the exact word and all private parameters for 5/5 and 7/7 eligible >=9-active-rune words. Short-word anchors are highly ambiguous; this is membership recovery, not unique plaintext recovery.
+The solved p56 page establishes a prime-minus-one stream with literal plaintext F held without advancing the key cursor. A separate historical Stage04 Vigenère reconstruction copies symbols absent from its GP lookup without advancing `keyIndex` (`sims/stage04_small_image_vigenere_repro.cjs:81–96`); that is a precedent for transparent non-rune symbols, not proof that LP2 uses the same rule.
 
-The full ordinary p40–53 original (3008 runes) was exhaustively tested across 57,972,891 word/interval pairs, with 700 compatible parameter witnesses and 568 distinct intervals. Max disjoint counts for >=7,8,9,10,11 active runes are 260,22,1,0,0; donor minima over all 562,189 windows are respectively 50,20,6,0,0. Exact raw window counts: Gibran 43,827, Shakespeare 214,099, Emerson 304,263 (562,189 total). At threshold9, max1 < min6, excluding the entire ordinary private-prime model for these fixed contiguous donor windows. The single >=9 anchor is chapter-relative [2641,2650), DIRECTIUE, origin1518 reverse prime traversal, prime sign −1, plaintext sign −1, offset25. It is not authenticated; the broader chapter fails and no held continuation supports it. No F-hold original test was completed within this run. This does not exclude other prime origins, stride laws, length changes, registers, or a different prime receiver.
+The tested exploratory receiver gives every latent plaintext word an independent prime origin among the first 3,301 primes, either traversal direction without wrapping, either sign of the prime-minus-one value, either plaintext sign, and an independent additive offset. Printed group boundaries are ignored. The 3,301-origin bound and word-private origins are not authenticated source instructions.
 
-Reproduce `node sims/lp2_latent_private_prime_origin_sft.cjs p40`; controls `0` and `1 hold`. Raw `im-results/lp2-latent-private-prime-origin-{0-ordinary,1-hold,p40-ordinary}.json`. Core executed in connector JS; Node CLI untested.
+## Exact inverse and decision statistic
+
+Adjacent differences between active (key-consuming) positions cancel the private additive offset. The receiver indexes six-difference prefixes over 13,192 eligible prime routes, joins every longer lexical interval and both plaintext signs, reconstructs the offset, and forward-replays every accepted word/parameter witness. It then uses earliest-ending interval scheduling to compute the exact maximum number of disjoint anchors at each active-rune threshold. The fixed donor vocabulary, word-length cap, prime domain, and sign/direction choices are unchanged between the ordinary and literal-F runs.
+
+For the literal-F branch, plaintext GP index 0 is held and must emit ciphertext 0. Every non-F plaintext position consumes the next prime shift **even when its observed ciphertext is also 0**. Thus ciphertext zero is not treated as an automatic hold: both the literal-F and consuming-non-F explanations remain available in the inverse.
+
+## Calibration
+
+Two held-out 716-rune native-text controls (Gibran ordinary and Shakespeare literal-F) retain every dictionary-covered true anchor at thresholds 7–11. The exact word and all private parameters are recovered for 5/5 and 7/7 eligible words with at least nine active runes, respectively. A fresh boundary-independent 716-rune literal-F plant recovers all 4/4 eligible nine-active-rune word/origin witnesses exactly. These establish receiver coverage, not unique plaintext recovery.
+
+## Original p40–p53
+
+The physical p40–p53 tape contains 3,008 runes. No printed segmentation is used.
+
+**Ordinary consuming clock:** the exhaustive search covers 57,972,891 word/interval pairs, with 700 compatible parameter witnesses and 568 distinct intervals. Exact maximum disjoint-anchor counts for thresholds 7,8,9,10,11 are 260,22,1,0,0. The corresponding minimum counts across matched native donor windows are 50,20,6,0,0. At threshold 9, original maximum 1 is below native minimum 6. The sole nine-active-rune interval is `DIRECTIUE` at chapter-relative [2641,2650), with reverse traversal from origin 1518, prime sign −1, plaintext sign −1 and offset 25. It is an isolated unauthenticated lexical witness, not a plaintext continuation.
+
+**Literal-F hold:** the exact original disjoint-anchor counts at thresholds 7,8,9,10,11 are **248,19,1,0,0**. At threshold 9, the original maximum is **1**, while the minimum matched native-window count is **5**: a strict gap of **4**. The existing Shakespeare hold control recovers 7/7 eligible long words, and the fresh boundary-independent plant recovers 4/4, so the original deficit is not explained by a broken hold implementation or failed positive controls.
+
+The strict bound therefore fails in both clock conventions. Under the issue's completion rule, no dependent complete segmentation/path search on p54–p55 is warranted. The bounded family is retired for this p40–p53 native-register test.
+
+## Scope and reproduction
+
+The exclusion is limited to the fixed first-3,301-prime domain, both directions and prime signs, both plaintext signs, independent per-word additive offsets, the existing donor vocabulary and word-length cap, and the length-preserving latent-word anchor model. It does not exclude a different prime stream, source-selected origin/clock, variable-length or non-word framing, another language/register, or a different cipher architecture.
+
+- Ordinary receiver: `sims/lp2_latent_private_prime_origin_sft.cjs`
+- Literal-F original gate and assertions: `sims/lp2_latent_private_prime_origin_p40_hold_gate.cjs`
+- Ordinary original output: `im-results/lp2-latent-private-prime-origin-p40-ordinary.json`
+- Held Shakespeare control: `im-results/lp2-latent-private-prime-origin-1-hold.json`
+- Machine-readable hold summary: `im-results/lp2-latent-private-prime-origin-p40-hold-summary.json`
+- Node 22 Actions run: [45897301223](https://github.com/FlareZ123/liber-primus/actions/runs/45897301223), successful; commit `349d63b0c14f154905e48875a3f289ad00bc05c5`.
+
+No unknown LP2 plaintext, authentic key, or destination was recovered.

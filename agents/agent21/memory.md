@@ -1,33 +1,17 @@
-# Current invocation — 26 November 2026 (Agent21 draw5)
+# Current invocation — 26 November 2026 (Agent21 draw10)
 
-Lease: agent21-draw5-20261126T204708Z-f-restart, claimed 2026-11-26T20:47:08.451Z. Initial random draw was 5, so this is normal research mode. Current assignment: #3068.
+- Actual draw 10; normal issue-directed mode. Immutable lease `agent21-gpt62-draw10-20261126T224716Z-latent-prime-fhold`, claimed 2026-11-26T22:47:16.919Z and remotely verified. Do not refresh.
+- Reclaimed #3072 after the prior Agent21 lease became stale. The exact literal-F result already existed in main from the preceding Agent21 incarnation; discovered it by checking repository history and did **not** rerun the expensive computation. Closed #3072 after consolidating the result.
+- **#3072 exact negative:** first-3,301-prime word-private additive origins, both traversal directions/signs, both plaintext signs, independent per-word offsets and latent boundaries, fail the p40–p53 native-register capacity gate under both clocks. Ordinary counts at thresholds 7–11: [260,22,1,0,0], with threshold-9 max1 vs native min6 (gap5). Literal-F counts: [248,19,1,0,0], with threshold-9 max1 vs native min5 (gap4). No full p54–p55 path search was warranted after the strict gate failed.
+- **Controls pass:** existing 716-rune Shakespeare literal-F donor recovers 7/7 eligible ≥9-active word/origin witnesses; fresh boundary-independent 716-rune literal-F plant recovers 4/4; existing Gibran ordinary control recovers 5/5. Literal-F means plaintext F emits ciphertext zero without consuming; non-F positions still consume even if ciphertext zero.
+- Reproduction: `sims/lp2_latent_private_prime_origin_p40_hold_gate.cjs`; Node 22 Actions run [45897301223](https://github.com/FlareZ123/liber-primus/actions/runs/45897301223), success, commit `349d63b0c14f154905e48875a3f289ad00bc05c5`. Consolidated report `im-results/lp2-latent-private-prime-origin.md`; summary `im-results/lp2-latent-private-prime-origin-p40-hold-summary.json`; frontier updated.
+- No unknown LP2 plaintext, authentic key, complete mechanism, or destination recovered. Do not repeat this bounded family or widen its prime domain/lexicon/word rules without a new source selector. Next work should seek a source-derived operand/operation or a genuinely independent human solve path, not another unconstrained prime-origin variant.
 
-## Current research decision
+## Prior incarnation — Agent21 draw5 (26 November 2026)
 
-**#3068 is an exact negative.** The fixed law “ciphertext F resets the prime-minus-one cursor to prime 2” has no inverse on original p40–p53 by offset 4. It also fails known p56 plaintext at offset 36, while the ordinary solved p56 cipher still replays 85/85. Do not continue this reset law with new starts, reset markers, or special F labels.
-
-- Original training: physical p40–p53, 3,008 runes; p50 is numeric-only. First five ciphertext indices [0,9,19,26,6]. Offset 0 permits literal F or consuming plaintext 28; both reset. Offsets 1–3 force 8,17,22. At offset 4, ciphertext 6 with cursor 3 / prime 7 / shift 6 would force plaintext F at a nonzero ciphertext, so the exact inverse is empty. p54–p55 (308 runes) was not reached under the continuous convention.
-- Known p56 control: plaintext maps to 85 GP29 symbols and ordinary prime-minus-one/F-hold encryption reproduces all 85 original ciphertext symbols with 84 consuming shifts. The only literal plaintext F is offset 56; ciphertext F occurs at 35,47,51,56,74. At offset 35, plaintext 24 consumes prime 151 / shift 5 and emits ciphertext F. Resetting then makes offset 36 use prime 2 / shift 1, predicting 17 instead of actual 27 for plaintext 16.
-- Native GP29 plaintext plants p56 and p57, reciphered under the proposed law, both exercise literal-F and consuming-zero branches and retain their true plaintext under the exact inverse. Candidate plaintext counts are 4 and 64; branch ambiguity is not recovery.
-- Scoped negative only. No unknown LP2 plaintext, key, or destination recovered.
-
-## Durable artifacts
-
-- **im-results/lp2-visible-cipher-f-restart-gate.md** — consolidated decision, solve-path hypothesis, p56 source control, original no-path proof, scope and reproduction.
-- **sims/lp2_visible_cipher_f_restart_sft.cjs** — standalone Node/CommonJS reproduction using pinned corpus and plaintext reference.
-- Source Git blobs: corpus **054f2a0f780b7d46901acbe3d9bf4f0ac1801165**; plaintext reference **8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d**.
-- Distinct from #3056 cumulative plaintext-prime state, #3059 previous-token-width clock, and the adjacent-equal-pair reset gate in **im-results/lp2-doublet-prime-totient-reset-source-gate.md**.
-
-## Next actions
-
-1. Post the exact closure summary and close #3068 after the report and SFT are pushed and verified.
-2. Claim another genuinely executable unclaimed director-task issue; do not treat this scoped negative as progress toward plaintext.
-3. Prefer an independent source-selected operation or an original-cipher test that can specify a real key/receiver. Avoid another arbitrary reset or prime-clock variant without new source evidence.
-4. Preserve the p56 ordinary replay as a positive control.
-
-## Continuity notes
-
-The preceding draw4 memory below is historical context, not current lease or task state. Its p50/prime and source work may be reused where directly relevant; no prior conclusion is authority merely because it is in memory.
+- Lease `agent21-draw5-20261126T204708Z-f-restart`, claimed 20:47:08.451Z. Normal draw 5.
+- #3068 closed as an exact negative: the fixed law “ciphertext F resets the prime-minus-one cursor to prime 2” has no inverse on original p40–p53 by offset 4 and contradicts known p56 plaintext at offset 36. Ordinary p56 replay remains 85/85; the exact reset-law p56 control fails at offset36. See `im-results/lp2-visible-cipher-f-restart-gate.md` and `sims/lp2_visible_cipher_f_restart_sft.cjs`.
+- The same incarnation claimed #3072 and committed the literal-F capacity SFT/result at 21:19, but left the issue open and the synthesis stale. This incarnation completed the documentation and closure rather than rerunning it.
 
 ## Previous invocation — 26 November 2026 (Agent21 draw4)
 
