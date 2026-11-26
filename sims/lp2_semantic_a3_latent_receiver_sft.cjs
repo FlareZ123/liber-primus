@@ -41,6 +41,7 @@ function experiment(raw,variants,opts={}){
    for(const st of beam)proposals(st,st.j,null,0,0,st);
    counts.push(cand.size);beam=[...cand.values()].sort((a,b)=>b.rank-a.rank).slice(0,width);if(!beam.length)return{failed:true,i};
   }
+  if(opts.screen)return {score:beam[0].rank/N};
   const t=beam[0],future=t.queue;let st=t,words=[],P=[],skips=[],bounds=[],n=N,tail=t.pref;while(st.parent){P.push(st.p);skips.push(st.skips);if(st.word){words.push(st.word);bounds.push(n);}st=st.parent;n--;}
   P.reverse();skips.reverse();words.reverse();bounds.reverse();
   let start=0,kt=[];for(const [k,end] of [...bounds,...future].entries()){for(let j=start;j<end;j++)kt.push(K[mk(j+J[k])]);start=end;}
@@ -54,9 +55,10 @@ function experiment(raw,variants,opts={}){
  if(!opts.noControls&&controls.some(c=>c.correct/c.N<.95||c.F1<.9||c.trueSkips.reduce((a,b)=>a+b,0)===0))return{vocab:vocab.size,keyLength:K.length,controls,gate:false};
  if(opts.controlsOnly)return{vocab:vocab.size,keyLength:K.length,controls,gate:true};
  const all=opts.configs??Object.keys(variants).flatMap(v=>[-1,1].map(sign=>({v,sign,s:0})));
- const C=gp.pages[opts.page??0].indices,results=all.map(x=>({...x,...solve(C,N,x.v,x.s,x.sign,width)}));results.sort((a,b)=>(b.score??-Infinity)-(a.score??-Infinity));
+ const plant=opts.plant?makePlant(...opts.plant):null;
+ const C=plant?plant.C:gp.pages[opts.page??0].indices,results=all.map(x=>({...x,...solve(C,N,x.v,x.s,x.sign,width)}));results.sort((a,b)=>(b.score??-Infinity)-(a.score??-Infinity));
  const top=results[0],held=opts.noHeld?[]:[1,2,3,4,5].map(page=>({page,v:top.v,s:top.s,sign:top.sign,...solve(gp.pages[page].indices,N,top.v,top.s,top.sign,width)}));
- return{vocab:vocab.size,keyLength:K.length,N,width,controls,gate:true,results,held};
+ return{vocab:vocab.size,keyLength:K.length,N,width,controls,gate:true,results,held,plant};
 }
 module.exports=experiment;
 if(require.main===module){const read=p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8");console.log(JSON.stringify(experiment(paths.map(read),JSON.parse(read("resources/derived/dukotah-r38-r39-lp1-semantic-keys.json")).variants),null,2));}
