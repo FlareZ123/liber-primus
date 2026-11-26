@@ -32,7 +32,7 @@ The implied permutation is [8,0,1,9,2,3,10,4,5,11,6,7,12]. As a symmetry checkâ€
 
 | Item | GP29 indices | GP transliteration |
 |---|---|---|
-| p2 final-13 input | [11,13,0,28,8,23,9,27,1,13,15,1,7] | JPF EAH D NIA U? |
+| p2 final-13 input | [11,13,0,28,8,23,9,27,1,13,15,1,7] | JPFEAHDNIAUPSUW |
 | p2 same-permutation output | [1,11,13,13,0,28,15,8,23,1,9,27,7] | UJPPFEASHDUNIAW |
 
 Neither output is four words. Combining the two gives 26 GP29 runes, but the source supplies no rule for discarding symbols, inserting word boundaries, mapping the sequence to the signed-message vocabulary, or converting any result into numeric addresses. The p2 marker's terminal placement is especially important: it cannot introduce a same-page continuation after the final rune.
