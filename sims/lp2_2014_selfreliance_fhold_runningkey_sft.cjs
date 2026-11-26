@@ -85,7 +85,9 @@ function experiment(raw,gp,known,pageRange=null){
    for(const run of v.runs)for(const {start} of run.survivors){const score=scoreOnly(c,start,run.sign);if(!Number.isFinite(score))throw Error("scoreOnly reachability discrepancy");ranks.push({start,sign:run.sign,score});}
    ranks.sort((a,b)=>b.score-a.score);
    const best=ranks.slice(0,3).map(x=>{const d=bestPath(c,x.start,x.sign);if(Math.abs(d.score-x.score)>1e-10)throw Error("scoreOnly Viterbi mismatch");return {...x,holds:d.holds,runes:d.p.map(k=>gp.runes[k]).join(""),text:d.p.map(k=>gp.translit[k]).join("")};});
-   return {name:v.name,length:v.length,zeros:v.zeros,signs:v.runs.map(({sign,starts,max,survivorCount})=>({sign,starts,max,survivorCount})),best};
+   const donor=known.sections.slice(5).flatMap(s=>parse(s.source_text));let nativeMin=Infinity,nativeMax=-Infinity;
+   for(let i=0;i+c.length<=donor.length;i++){const q=score(donor.slice(i,i+c.length));nativeMin=Math.min(nativeMin,q);nativeMax=Math.max(nativeMax,q);}
+   return {name:v.name,length:v.length,zeros:v.zeros,signs:v.runs.map(({sign,starts,max,survivorCount})=>({sign,starts,max,survivorCount})),best,nativeComparison:{windows:donor.length-c.length+1,min:nativeMin,max:nativeMax,margin:best.length?nativeMin-best[0].score:null}};
   });
   return {keyLength:key.length,p56Control:plain56.length,pages};
  }
