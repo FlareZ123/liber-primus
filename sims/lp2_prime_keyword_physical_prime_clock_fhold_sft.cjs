@@ -34,7 +34,7 @@ function experiment(gp,native){
  function keyless(c,q){
   const zeroPos=c.map((v,i)=>v===0?i:-1).filter(i=>i>=0),z=zeroPos.length,states=[];
   for(let mask=0;mask<2**z;mask++){
-   let t=0,zi=0;const phase=new Int16Array(c.length),residual=new Uint8Array(c.length),allowed=Array(q).fill(ALL);
+   let t=0,zi=0;const phase=new Int16Array(c.length),residual=Array(c.length).fill(0),allowed=Array(q).fill(ALL);
    for(let i=0;i<c.length;i++){
     if(c[i]===0&&((mask>>>zi++)&1)){phase[i]=-1;residual[i]=0;continue;}
     const ph=t%q,v=mod(c[i]-phi[i]);phase[i]=ph;residual[i]=v;
