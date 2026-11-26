@@ -7,8 +7,10 @@
  * magic squares, in source row-major order, supply K_i = phi(n_i) mod 29
  * for the 43 strict printed-word interiors of original LP2 physical p55.
  *
- * Test only P=C-K and P=C+K. No phase, rotation, permutation, key fitting,
- * reset, or alternate word boundary is searched. This is a bounded negative,
+ * Test the fixed additive directions P=C-K and P=C+K, plus the two fixed
+ * multiplicative directions P=C*K^{-1} and P=C*K in GF(29). No phase, rotation,
+ * permutation, key fitting, reset, or alternate word boundary is searched.
+ * This is a bounded negative,
  * not plaintext recovery.
  *
  * From repository root:
@@ -63,7 +65,12 @@ function phi(n) {
   return result;
 }
 const mod = n => ((n % 29) + 29) % 29;
+function invMod(n) {
+  for (let x = 1; x < 29; x++) if (mod(n * x) === 1) return x;
+  throw new Error("no GP29 inverse for key value " + n);
+}
 const key = innerValues.map(value => phi(value) % 29);
+assert.ok(key.every(value => value !== 0));
 assert.deepEqual(key, [
   17,2,9,8,25,8,9,2,17,19,6,17,2,13,25,23,7,24,22,19,14,
   11,14,19,22,24,7,23,25,13,2,17,6,19,24,19,12,23,14,23,12,19,24
@@ -72,6 +79,10 @@ assert.deepEqual(key, [
 const outputs = {
   minus: cipher.map((value, i) => mod(value - key[i])),
   plus: cipher.map((value, i) => mod(value + key[i]))
+};
+const multiplicativeOutputs = {
+  inverse: cipher.map((value, i) => mod(value * invMod(key[i]))),
+  direct: cipher.map((value, i) => mod(value * key[i]))
 };
 function forwardReplay(plaintext, sign) {
   return plaintext.map((value, i) => mod(value - sign * key[i]));
@@ -150,6 +161,10 @@ const decodedScores = {
   minus: score(outputs.minus),
   plus: score(outputs.plus)
 };
+const multiplicativeScores = {
+  inverse: score(multiplicativeOutputs.inverse),
+  direct: score(multiplicativeOutputs.direct)
+};
 assert.ok(Math.abs(ioc(cipher) - 62 / 1806) < 1e-12);
 assert.ok(Math.abs(ioc(outputs.minus) - 66 / 1806) < 1e-12);
 assert.ok(Math.abs(ioc(outputs.plus) - 60 / 1806) < 1e-12);
@@ -179,6 +194,8 @@ for (const source of sources) {
   let total = 0;
   let atOrBelowMinus = 0;
   let atOrBelowPlus = 0;
+  let atOrBelowMultiplicativeInverse = 0;
+  let atOrBelowMultiplicativeDirect = 0;
   const trials = 20000;
   for (let trial = 0; trial < trials; trial++) {
     const plant = [];
@@ -193,6 +210,8 @@ for (const source of sources) {
     total += value;
     if (value <= decodedScores.minus) atOrBelowMinus++;
     if (value <= decodedScores.plus) atOrBelowPlus++;
+    if (value <= multiplicativeScores.inverse) atOrBelowMultiplicativeInverse++;
+    if (value <= multiplicativeScores.direct) atOrBelowMultiplicativeDirect++;
     if (trial === 0) {
       for (const sign of [-1, 1]) {
         const encrypted = plant.map((plain, i) => mod(plain - sign * key[i]));
@@ -202,20 +221,36 @@ for (const source of sources) {
         assert.deepEqual(recovered, plant);
         positivePlants++;
       }
+      const encryptedProduct = plant.map((plain, i) => mod(plain * key[i]));
+      const recoveredProduct = encryptedProduct.map((cipherValue, i) =>
+        mod(cipherValue * invMod(key[i]))
+      );
+      assert.deepEqual(recoveredProduct, plant);
+      positivePlants++;
+      const encryptedQuotient = plant.map((plain, i) => mod(plain * invMod(key[i])));
+      const recoveredQuotient = encryptedQuotient.map((cipherValue, i) =>
+        mod(cipherValue * key[i])
+      );
+      assert.deepEqual(recoveredQuotient, plant);
+      positivePlants++;
     }
   }
   controls.push({
     source: source.name, trials, min, max, mean: total / trials,
-    atOrBelowMinus, atOrBelowPlus
+    atOrBelowMinus, atOrBelowPlus,
+    atOrBelowMultiplicativeInverse, atOrBelowMultiplicativeDirect
   });
 }
-assert.deepEqual(controls.map(row =>
-  [row.atOrBelowMinus, row.atOrBelowPlus]
-), [[0,0],[0,0],[0,0]]);
+assert.deepEqual(controls.map(row => [
+  row.atOrBelowMinus, row.atOrBelowPlus,
+  row.atOrBelowMultiplicativeInverse, row.atOrBelowMultiplicativeDirect
+]), [[0,0,0,0],[0,0,0,0],[0,0,0,0]]);
 assert.ok(controls.every(row => row.min > -3.6));
 assert.ok(decodedScores.minus < Math.min(...controls.map(row => row.min)));
 assert.ok(decodedScores.plus < Math.min(...controls.map(row => row.min)));
-assert.equal(positivePlants, 6);
+assert.ok(multiplicativeScores.inverse < Math.min(...controls.map(row => row.min)));
+assert.ok(multiplicativeScores.direct < Math.min(...controls.map(row => row.min)));
+assert.equal(positivePlants, 12);
 
 console.log(JSON.stringify({
   status: "bounded original-source negative; no p55 plaintext recovered",
@@ -241,8 +276,20 @@ console.log(JSON.stringify({
     intraWordBigramLog: decodedScores.plus,
     exactForwardReplay: 43
   },
+  multiplicativeInverse: {
+    plaintextGP: gp(multiplicativeOutputs.inverse),
+    ioc: ioc(multiplicativeOutputs.inverse),
+    intraWordBigramLog: multiplicativeScores.inverse,
+    exactForwardReplay: 43
+  },
+  multiplicativeDirect: {
+    plaintextGP: gp(multiplicativeOutputs.direct),
+    ioc: ioc(multiplicativeOutputs.direct),
+    intraWordBigramLog: multiplicativeScores.direct,
+    exactForwardReplay: 43
+  },
   languageControls: controls,
-  sourceNativePositivePlants: positivePlants + "/6 exact",
-  scope: "Only the fixed original-order 3x3/5x5/3x3 square-core totient pad on p55's 43 strict word interiors, both additive signs. No phase, rotation, permutation, or reset search."
+  sourceNativePositivePlants: positivePlants + "/12 exact",
+  scope: "Only the fixed original-order 3x3/5x5/3x3 square-core totient pad on p55's 43 strict word interiors: both additive and both multiplicative directions. No phase, rotation, permutation, or reset search."
 }, null, 2));
 console.log("SFT PASS: exact original replay, source-native positive plants, and matched-word controls.");
