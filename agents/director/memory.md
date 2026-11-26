@@ -1,80 +1,66 @@
-# Director frontier — 26 November 2026, 22:21 UTC
+# Director frontier — 26 November 2026, 23:05 UTC
 
-Run `director-20261126T220527Z-12`, random draw **12**. The exclusive Director lease was claimed and remotely verified at 22:05:27Z. No unknown LP2 plaintext, authentic new key, complete inverse for any of the 56 unknown pages, or confirmed continuation destination has been recovered. Assignments and structural matches remain hypotheses unless independently source-selected and reproducible.
+Run `director-20261126T225525Z-12`, random draw **12**. Exclusive Director lease claimed and remotely verified at **2026-11-26T22:55:25.099Z**. No unknown LP2 plaintext, authentic new key, complete inverse for any of the 56 unknown pages, or confirmed continuation destination has been recovered.
 
 ## Causal frontier
 
-### 1. p28 DH23: strong navigation, no payload cipher
+### Strongest local candidate: p28, but no payload receiver
 
-The best source-structured route remains the p28 center-line construction: the selected line is 23 runes, begins with the unique literal `DH`, and contains a five-rune selected word at positions 19–23. The resulting DH23 tuple is `p=23, g=5, a=6, B=19`, with `b=15, A=8, K=2`. The clear p57 wording WE/OUR/OWN selects the reversible GP29 pair map `H(x,y)=(x−y,x+y) mod29`. p27/p50 cross-links add conditional navigation, but the historical signed DH protocol has no KDF or payload cipher. Do not mistake the tuple or navigation for a decipherment.
+The p28 literal-DH line reconstructs the historical teaching tuple `p=23,g=5,a=6,b=15,A=8,B=19,K=2`. The source-constrained center/word28 operation yields candidate **READ OUT**; the fixed outer-H readout and b-orbit add candidate **HERE → THE**. This is a structured local solve-path hypothesis, not unknown-page decryption. The next recurrence predicts an absent pair, and no source-selected typed receiver or continuation exists. Critic's 26 Nov correction is controlling: the cross-modulus chain `K^3=A, A^3=B, B^3=b` is deterministic once the historical tuple is known, so the 711-variant count is a conditional family discriminator, not independent corroboration. In GP29, exponent27 is the reciprocal map on nonzero elements; it is not the inverse of cubing (cube inverse exponent is19). The current page-start report and results synthesis state this correctly. Do not run further DH exponent, H-coordinate, or pad sweeps. #3098 asks only for a source-selected receiver or retirement.
 
-The p50 32×8 panel's 76-cell perimeter / 180-cell interior partition is exact. The frozen p28-H transfer to the row-major 30×6 interior was tested under base59 and base60: only **6/180** and **11/180** matches to known p56+p57, respectively; the first pair already disagrees. Native 180-rune plants, all 841 pair inverses and p56 re-encryption pass. The receiver is rejected and no p55 perimeter decode follows. Preserve the partition as structure only.
+### Other source-local structures without an unknown-page inverse
 
-### 2. p49–51 numeric panel: no typed consumer
+- **p7→p8:** five p7 red-word products form a quartic coefficient packet and the five black dots invite a Shamir reading; the field, share coordinates, and body consumer are not selected. The authentic 2013 SSSS uses GF(2^n), not an established GP29 field. #3099 tests only the historical source bridge.
+- **p15:** the red 3299 origin and square spiral exactly generate all16 cells by `|3301−prime(f_n+1)|`. This is an established numeric sub-puzzle, not text plaintext. Direct GP29 projection, raw Fibonacci autokey and the literal Fibonacci-word drawing rule have failed. #3100 seeks a source-selected consumer, not another offset/key sweep.
+- **p0:** historical reversed 6:5:5 twig-runes give local 3|3→TH, matching the first black rune. The historical key is 16-rune Younger Futhark; no 29-symbol extension is authenticated. #3101 tests for a real pre-2014 extension only.
+- **p23–26:** specimen-5 mayfly identification is strong; the exact Dutch 1977 facing legend remains unavailable and the q15 intact-word additive/F-hold receiver failed. #3102 is a lawful archive-access search for the exact spread, not another species/key sweep.
+- **p49–51:** 32×8 panel, 10/13/9 row split, repeated tree pair and horizontal reflection are source observations. The panel has 161 distinct values; base59/base60 are indistinguishable on every printed token. No start, operation, key schedule or receiver is selected. #3103 seeks only an independently sourced cell grammar and output type.
+- **p55:** 76 runes and the conditional 43/33 partition are structural. p57's “shed circumferences” does not select a complete tree traversal or exterior role; p32/p55 art similarity is not a decoder. #3104 seeks an exact source/topology only.
+- **p33–39:** ordinary sexagesimal reading gives 1033/3301, matching Stage10 square sums; direct Hill/Vigenère and word-sum transfers fail. #3105 tests whether a primary source defines a typed cross-round operation.
+- **p8 sapling:** #3089 confirms naturalistic sapling art, not a complete depth-five ternary tree. Do not repeat tree parameter or traversal searches.
 
-The original panel is 32×8, split physically 10/13/9 rows, with 161 distinct values. Base59/base60 codebooks are indistinguishable on all printed tokens. The p50 tree pair source-selects horizontal reflection `c→7−c`, but not a start cell, arithmetic combiner, radix, key schedule or receiver. Do not repeat direct lookup, affine, fixed-pad, generic orientation or table-consumer sweeps without a new source selector.
+### Clock and architecture decisions
 
-- **External H1/R4 (#3081):** existing approximate full-book p50+DIVINITY/FIRFUMFERENFE and p0 phi(prime)+DIVINITY receivers fail on the original despite strong positive plants. The exact T6 overwrite/checked-null contract still lacks source-fixed stream, keyword, phase, null location/count and restoration check. This is not a universal exclusion of R4.
-- **External H2 (#3082):** no source-selected GP29 row map. The conditional literal-token row-permutation receiver has a repeated-token contradiction within p56 and fails all four equal-input held-out p57 predictions; planted controls pass. Keep H2 unbound.
-- **Rune Poem (#3083):** duplicate of #2802; the 2010 Futhorc table fixes rune order but supplies no poem stanza/edition/coordinate selector. Do not repeat.
-- **p49 10-dot marker (#3087):** duplicate of #2796. The mark is not at the tenth table-row boundary; p56's identical mark precedes five hex lines / 128 characters / 64 octets, while p36/p38 bracket five numbered sections. No 10-row table selector. The p36/p38 numbered sections are now a separate bounded source-gate task (#3093).
+- Agent18 closes the remaining arbitrary-outer q8 transport loophole; Agent2/Agent25's joint rare-rune and equal-shift certificates close the corresponding q13 branch under their stated registers. These are bounded histogram/transport exclusions, not all-language theorems.
+- **#3066 (Agent5):** fixed public ciphertext-grapheme-width q8/q13 clock fails on original p54. Four independent sparse-zero plants recover; all eight original hold histories survive but score below all 1,481 solved-native and 570,544 donor windows, and frozen winners have no legal p55 continuation. Retire this exact continuous clock, not all public clocks.
+- **#3072 (Agent21):** first-3301-prime word-private additive family fails on p40–53 under both ordinary and literal-F clocks: at nine active runes original max1 versus matched-native minima6/5; positive controls pass. Retire this bounded family; no prime-domain/phase expansion.
+- **Still active:** #3065 Agent20 (physical-prime clock) and #3084 Agent17 (byte-level CicadaOS ISO delta against period Tiny Core baseline). Keep scopes separate; do not duplicate prime_echo, wisdom/folly, signed TCP or raw slack audits.
+- H-shuffle/H-decoy and other nonperiodic/stateful encodings remain unresolved. Statistical patterns alone do not select a key or operation.
 
-### 3. Segmentation, word order and native clocks
+### External continuation
 
-H-shuffle and H-decoy remain distinct and unresolved. The historical visible-order discriminator (#3080) pinned a 2013 packet with 988 unique hex offsets at stride65 and a 2014 width-14 permutation that exactly replays 70 characters; **0/14** printed five-groups map to contiguous plaintext spans and four cross rows. No original LP2 macro-label/carry selects individual group order. Word-local lexical/reset negatives remain conditional on intact groups; sequential language claims also require order.
-
-Agent18's q8 rare-rune pair certificate closes the remaining outer-output-relabeled q8 transport loophole in the tested register: 561,446/561,456 donor windows are rejected by the pair bound and the ten remaining Emerson windows exceed the relaxed E bound. q13 arbitrary-outer transport remains open. Agent42's exact overlap-forest method rejects the p0–2 antiparallel shared-pad hypothesis in all six directions (original 13–16 OOV versus 0–4 on 24 common-pad plants); it is reusable for fixed, internally disjoint word intervals, not latent segmentation or F-hold drift.
-
-Active, still-live issue claims:
-- #3065 — Agent20: physical-prime clock.
-- #3066 — Agent5: public ciphertext Latin-width clock.
-- #3072 — Agent21: latent word-private prime origin with authentic literal-F holds.
-
-Keep their scopes separate. Do not widen prime ranges, alphabets, phases or key families.
-
-### 4. Other local routes
-
-- **p2 H4:** #3071 found no independent without-replacement/source-index selector; #3078 found no historical source selecting paired operands, signs or output order. Agent30's later four-distinct-word interpretation remains conditional. No H4 expansion or slot/phrase sweeps.
-- **p32/p47 low-digit map (#3086):** reciprocal arithmetic is preserved, but p32↔p55 tree correspondence is stronger than the proposed p47 handoff. No source selects basin-wide retention, GP0 addressing, aggregate, stop phase or next receiver. Corrected the old 2013 chronology/segmentation error; no new page scan or consumer.
-- **p7→p8:** the five red products and p8 243-rune body yield exact local arithmetic, but no first-party word-to-rune operation or receiver. The p8 tree source-identity question remains open (#3089); do not repeat polynomial/root consumers.
-- **p15 Fibonacci drawing:** exact prime/spiral construction, but no independent key/state operation; existing direct and permutation tests fail. Keep as a source fact, not a decoder.
-- **p23–26 mayfly:** specimen-5 image match is strong, but the 1977 Dutch legend remains unavailable and the 15-instar q15 model failed. The new human cold-start packet (#3090) must not expose the retrospective species/key hypotheses.
-- **p33–39 cuneiform:** the repeated emblem reads 1033/3301 in conventional sexagesimal notation; the six later header rasters are identical. No page-specific key or cipher consumer.
-- **p55:** 43/33 and 76-rune structures remain conditional. #41 awaits one frozen source-selected decoder; #1335 awaits a real human-oracle test. No new p55 cipher or key is established.
-
-### 5. External continuation
-
-The p56 512-bit digest still has no authenticated algorithm, target bytes or destination. #3085 is a bounded archival negative: the pinned Dukotah corpus reports 2,574 representation×algorithm tests across 77 held files plus 132 tests on original 2014 captures, all null; the later `dxwd42hgpd7qrccm.onion` candidate has only two robots.txt captures and no application body. Close this archive-retrieval avenue and prioritize recovering LP2 p0–54 / the address-generating plaintext. #3084 remains claimed by Agent17 for a byte-level original CicadaOS ISO comparison against the identified period Tiny Core baseline; avoid repeating prime_echo, wisdom/folly strings, signed TCP or raw slack audits.
+The p56 digest has no authenticated hash algorithm, canonical bytes, target response body, or destination. #3085 is a bounded archival negative: the pinned Dukotah corpus and later onion.to candidate provide no application response body. The p56 imperative is a continuation/search objective, not an established prerequisite key for p0–54.
 
 ## Closure review
 
-Previous inclusive watermark: **2026-11-26T21:54:05Z (#3037)**. Inspected every director-task closure since then:
+Previous inclusive watermark: **2026-11-26T22:18:17Z (#3085)**. Reviewed every director-task closure since then:
 
 | Issue | Closed UTC | Decision |
 |---|---:|---|
-| #3079 | 22:03:31 | Fixed p28 H receiver on p50 core180 rejected: 6/180 base59, 11/180 base60; no perimeter decode. |
-| #3080 | 22:06:20 | No source-visible H-shuffle/H-decoy unit or order discriminator; historical 2013/2014 controls do not select LP2 group order. |
-| #3081 | 22:08:10 | No complete first-party R4/H1 stream+keyword+phase+null/restoration contract; prior approximate receivers fail original. |
-| #3086 | 22:09:06 | p32/p47 low-digit map has no source-selected next prediction; preserve arithmetic only. |
-| #3083 | 22:13:14 | Duplicate of #2802; no new Rune Poem source/receiver result. |
-| #3082 | 22:15:31 | H2 row-permutation transfer fails repeated-token and held-out p57 checks; no source-selected row map. |
-| #3087 | 22:16:31 | Duplicate of #2796; p49 10-dot does not select the 10-row table split. |
-| #3085 | 22:18:17 | No contemporaneous target/response body or hash algorithm recovered; archive candidate is robots-only. |
+| #3088 | 22:24:43 | p7 black 13-dot is a real body/footer boundary paired with the red-footer opener; no source-selected state transition or cryptographic event. |
+| #3093 | 22:25:59 | Five numbered p36–p38 sections have literal spans, but no independent operand/receiver; absent p37 mark defeats exact 254-slot ink-only alignment. |
+| #3089 | 22:28:06 | p8 art is a naturalistic sapling, not a depth-five ternary tree; no traversal or receiver. |
+| #3097 | 22:36:02 | Historical player-solve-path contract rewritten with 12 source-linked clue→operation paths. Multi-stage/participant-specific historical routes invalidate a hard layer-count ceiling, but signature validity does not select a unique decoder. Stage11's 133/331 metadata is unique among inspected indices but has no raw template/HTTP/Tor source or output. |
+| #3072 | 22:56:22 | Fixed first-3301-prime word-private additive family fails exact anchor capacity under ordinary and literal-F clocks; positive controls pass. |
+| #3066 | 22:59:29 | Fixed public ciphertext-width q8/q13 clock fails native-register and p55-continuation tests; retire only that clock. |
 
-Advance the closure watermark to **2026-11-26T22:18:17Z (#3085)**. No successor is justified for the retired exact receivers without new independent source evidence.
+Advance watermark to **2026-11-26T22:59:29Z (#3066)**. No successor is justified for these closed families without a new independent source selector.
 
 ## Queue and handoff
 
-There are **24 open director-task Issues**, below the 30-issue ceiling. Six claims are live: #3065 (Agent20), #3066 (Agent5), #3072 (Agent21), #3084 (Agent17), #3088 (Agent13), and #3092 (Agent33). Ten further open issues are waiting on human, owner or external-source input.
+There are **26 open director-task Issues**, below the 30-issue ceiling. Eight new, unclaimed, executable assignments are available:
 
-Eight executable assignments are unclaimed:
-- #3089 — identify the p8 tree illustration/source before assigning a traversal.
-- #3090 — prepare a blind human cold-start for p23–p26.
-- #3091 — prepare a blind human cold-start for p40–p48.
-- #3093 — source-gate the five numbered sections bracketed by p36/p38.
-- #3094 — prepare a blind human cold-start for the p49–p51 numeric panel.
-- #3095 — prepare a blind human cold-start for p52–p55.
-- #3096 — prepare a full-book blind human cold-start for cross-page paths.
-- #3097 — adversarially audit the historical solve-path contract against primary sources.
+- [#3098](https://github.com/FlareZ123/liber-primus/issues/3098) — p28 source-selected payload receiver or retirement.
+- [#3099](https://github.com/FlareZ123/liber-primus/issues/3099) — authentic Shamir field/share serialization for p7→p8.
+- [#3100](https://github.com/FlareZ123/liber-primus/issues/3100) — source-selected readout for p15 Fibonacci-prime spiral.
+- [#3101](https://github.com/FlareZ123/liber-primus/issues/3101) — pre-2014 source-fixed extension of p0 3|3 twig-rune clue beyond TH.
+- [#3102](https://github.com/FlareZ123/liber-primus/issues/3102) — lawful recovery of the 1977 Dutch mayfly plate legend.
+- [#3103](https://github.com/FlareZ123/liber-primus/issues/3103) — source-selected cell order and receiver for p49–p51.
+- [#3104](https://github.com/FlareZ123/liber-primus/issues/3104) — exact p55 tree source/topology and authored 43/33 traversal.
+- [#3105](https://github.com/FlareZ123/liber-primus/issues/3105) — source-selected operation linking p33–p39 cuneiform values to Stage10.
 
-The authoritative `results/README.md` was consolidated in commit `2c140352095ed4a2fab4c3e92ad41fe8eb0a89c7` with the #3079, #3080, #3081/#3082 and #3085 decisions. Preserve the 8-issue executable queue; do not pad it further or create successors from numerical coincidences.
+The other open issues are claimed, waiting on a real human, or dependent on external evidence: #3090–#3096 human packets, #2989 Stage10 POST, #2982 transcription, #3012/#2995/#2996 human sessions, #2273 missing-repeat side information, #1335/#2117/#2070 human tests, and #41's frozen decoder. Do not create more issues merely to fill capacity; the queue meets the 8–12 target.
+
+## Repository synthesis
+
+`results/README.md` remains authoritative. The p28 exponent semantics are already corrected there and in `im-results/lp2-p28-readout-here-page-start.md`. This checkpoint adds the #3066 public-width-clock negative to the synthesis and reconciles the integrated challenge's p28 independence wording in the same commit. No unknown plaintext, key, or destination was recovered.
