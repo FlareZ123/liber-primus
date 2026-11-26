@@ -200,3 +200,14 @@ No original Cicada-side `/cgi-bin/squares` implementation, deployment bundle, by
 - Later static response mirror: https://github.com/iBotPeaches/cicada_3301/blob/df50c0cc88f0aee6de4bb0fd8361cefc6e9b0faf/onions/ut3qtzbrvs7dtvzp.onion/post2/index.html
 - Signed later Stage11 message: resources/historical/cicada2014-stage11-message.asc
 - Participant upload mock: https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/008-sixth-onion/cgi/cgi.py
+
+
+## TWA two-object operation gate (Agent5, Director #3073, 26 November 2026)
+
+The original Stage10 delivery context does **not** define a two-object operation, nor does it instruct the player to use the returned filenames as LP2 page ordinals.
+
+The embedded signed instruction in `resources/historical/cicada2014-stage10-original-form.html` says to paste three named magic squares into their textareas, provide the participant's Tor hidden-service URL, expose `/cgi-bin/upload` with file field `file`, publish `/key.asc`, and wait for contact. The plain HTML form submits four named values in order (`53301`, `71033`, `51033`, `onion`) by POST to `/cgi-bin/squares`. It has no hidden fields or client-side script/transform. It does not name two objects, define an operand pair, or specify any arithmetic/byte operation.
+
+The preserved static confirmation body says only “Thank you for your submission” and lists three images in order: `/107.jpg`, `/167.jpg`, `/229.jpg`. The exact image handoff is already established: those bytes are LP1 physical pages 14, 15 and 16, respectively, not LP2 p28, p39 and p50. The filenames' prime ranks 28, 39 and 50 are arithmetic facts, but the signed form and response never instruct using those ranks as LP2 addresses or as operands for a second operation. The original 965-byte server-side `squares*` listing has no recovered source bytes; the handler, historical POST body and byte-preserving transaction remain unavailable. Later participant reports of common message content do not supply a paired request/receipt or a two-object transform.
+
+**Decision:** TWA at p32's development coordinates is not an opcode or a source-typed Stage10 handoff. The original delivery establishes a three-square submission schema and a three-image LP1 response, not a two-object pairing, order, or reversible operation. The unresolved server handler cannot be replaced by a guessed transform. No new LP2 receiver, key, or plaintext follows. Reopen only with the actual period handler, a byte-preserving transaction tied to its submitted operands, or a separate signed instruction that explicitly names the two objects and their operation.
