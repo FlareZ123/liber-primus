@@ -1,13 +1,13 @@
-# Authentic 2013 761.MP3 XOR tests against original LP2 material
+# 2013 761.MP3 raw-byte XOR against original LP2 page JPEGs
 
-**Agent 18, 11 November 2026; p2 extension by Agent 2, 15 November 2026; p23–26 image and 5-bit stream extensions by Agent 21, 26 November 2026. Bounded historical-operation negative.** Raw offset-zero 2013 MP3-XOR produces no recognizable payload from original LP2 p2, p23–26, p27, p53 or p55. A separate 5-bit GP29 rune-stream XOR test also fails to recover a valid plaintext stream. No unknown LP2 plaintext, key or continuation is recovered.
+**Agent 18, 11 November 2026; p2 extension by Agent 2, 15 November 2026; p23–26 image extension by Agent 21, 26 November 2026. Bounded historical-operation negative.** The exact 2013 offset-zero raw-byte XOR produces no recognizable complete-file payload from original LP2 p2, p23–26, p27, p53 or p55. This report tests JPEG receivers only; the distinct packed-GP29 rune receiver is documented separately. No unknown LP2 plaintext, key or continuation is recovered.
 
 ## Human-visible selectors and historical operation
 
 Three source-motivated LP2 visual selectors motivate the same narrowly specified test:
 
 - **Physical p2 (19.jpg)** contains an apparent cicada-nymph illustration. The original Cicada 2013 audio 761.MP3 is titled *The Instar Emergence*. This is a plausible cross-round pointer to that exact earlier artifact, not proof of authorial intent.
-- **Physical p23–26 (40–43.jpg)** form a four-page insect/instar illustration sequence: p23 has the five-dot marker, while p24–26 show repeated cicada figures. This is the clearest visual match to the audio's *Instar* title and poem, and had not been included in the earlier direct-XOR page set.
+- **Physical p23–26 (40–43.jpg)** were added as a bounded visual-block extension. Do not describe them as four repeated cicada figures: the block contains mixed corpse/cross/dot and wing motifs. Community art attribution links the mayfly-wing drawings in this block to Figure 4, “Ephemeroptera (mayflies),” on [the original art-source page](https://www.metafysica.nl/wings/wings_14.html), although community inventories differ on the exact LP2 page boundary. This is an insect-art association, not an instruction to use the audio as a key.
 - **Physical p27 (44.jpg)** displays a wing drawing, another plausible insect-related selector tested previously.
 
 The historical operation is real: archived 2013 participants used the original 761.MP3 bytes as an XOR pad for the saved Twitter hex stream and recovered a JPEG containing the Gematria Primus clue. The source-pinned audio is **4,010,732 bytes**, Git commit rtkd/iddqd@f2267b0c2f1e1d2662806b90b9c3a2953b3a7023, SHA-256 83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460. Its ID3 metadata occupies the first **206 bytes**.
@@ -46,16 +46,8 @@ The [manual-only workflow](../.github/workflows/lp2-p27-761mp3-originaljpeg-xor.
 
 The [p23–26 wrapper](../sims/lp2_p23_p26_instar_761mp3_originaljpeg_xor_sft.cjs) fetches the exact pinned 761.MP3, verifies its length and SHA-256, and invokes the same source SFT for physical pages 23–26. It ran through the existing [manual Node 22 runner](../.github/workflows/manual-node22-sft-runner.yml) in [GitHub Actions run 45855584894](https://github.com/FlareZ123/liber-primus/actions/runs/45855584894).
 
-The separate [5-bit GP29 stream SFT](../sims/lp2_761mp3_5bit_xor_rune_stream_sft.cjs) tested the raw MP3, including ID3, as a continuous key stream against all unknown p0–55 runes and the p23–26 sequence restarted at bit zero. It tested MSB-/LSB-first packing and bit phases 0–7; [run 45857227692](https://github.com/FlareZ123/liber-primus/actions/runs/45857227692) completed successfully. The best p23–26 alignment was then tested with the [histogram-preserving permutation null SFT](../sims/lp2_761mp3_5bit_xor_alignment_null_sft.cjs), [run 45857999361](https://github.com/FlareZ123/liber-primus/actions/runs/45857999361): 5,000 replicates, best-of-16 correction, median minimum invalid count 36, observed 35, empirical p=0.3855229.
-
-## GP29 5-bit rune-stream XOR
-
-A second source-motivated receiver treats the 29-symbol Gematria Primus alphabet as a fixed-width 5-bit stream. The pinned raw 761.MP3 (including its 206-byte ID3 tag, byte offset zero) was converted into consecutive 5-bit values and XORed with canonical GP29 indices. This is distinct from XORing the JPEG bytes themselves. The separate [pnotisdev Phase 60 status](`https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md`) reports an additive audio-key screen; this test addresses the untested direct XOR mapping.
-
-The SFT tested both MSB-first and LSB-first packing at all eight bit phases for two scopes: the complete unknown p0–55 rune stream continuously (12,956 runes), and p23–26 with the key restarted at bit zero (1,021 runes). No modulo reduction or repair of values 29–31 was allowed. **No variant produced a GP29-only stream.** The best full-book variant still had 1,069 invalid values (8.25%). The best p23–26 variant had 35 invalid values (3.43%), but its output still used all 32 possible values.
-
-Because the p23–26 minimum was selected from 16 packings, it was compared with 5,000 deterministic permutation replicates that independently shuffled each phase's 5-bit key values while preserving its exact histogram. The best-of-16 null had median minimum invalid count 36 (5th–95th percentiles 31–41); 1,927/5,000 replicates were at least as good as the observed 35. The empirical, multiple-test-adjusted (p)-value is **0.3855229**. The low invalid count is therefore ordinary under random positional alignment, not evidence that the audio is a key. No plaintext is recovered.
+The separate [Agent37 packed-GP29 XOR gate](lp2-2013-audio-direct-packed-gp29-original-xor-gate.md) tests the distinct raw-rune receiver under one-byte and both canonical five-bit byte packings; it is not repeated here.
 
 ## Decision
 
-Retire the exact direct whole-file raw-byte XOR transfer to LP2 JPEGs p2, p23–26, p27, p53 and p55, and the tested 5-bit GP29 rune-stream XOR mapping. Do not add arbitrary offsets, modulo repairs, second-layer guesses or new carrier transformations. The p2 and p23–26 illustrations may still point to the 2013 Instar artifact for a different, independently selected reason; these tests supply no further operation. No unknown LP2 plaintext, key or final destination has been recovered.
+Retire the exact direct whole-file 2013 MP3-XOR transfer to the source-motivated LP2 JPEG targets p2, p23–26 and p27, as well as the p53/p55 controls. Do not add arbitrary offsets, second-layer guesses or new carrier transformations. The insect and wing illustrations may still point to the 2013 Instar artifact for a different, independently selected reason; this test supplies no further operation. No unknown LP2 plaintext, key or final destination has been recovered.

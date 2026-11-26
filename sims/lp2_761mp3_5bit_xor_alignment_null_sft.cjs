@@ -1,7 +1,8 @@
 "use strict";
 /**
- * Follow-up null test for the single best p23–26 result from
- * lp2_761mp3_5bit_xor_rune_stream_sft.cjs.
+ * Follow-up null test for an exploratory, non-historical symbolwise 5-bit XOR variant.
+ * The source-authentic bytewise packed-GP29 XOR is already tested by Agent37.
+ * The single best p23–26 result is from lp2_761mp3_5bit_xor_rune_stream_sft.cjs.
  *
  * The first screen's best of 16 bit packings had 35 out-of-alphabet values
  * (3.43%) on 1,021 runes. This script asks whether that low count reflects

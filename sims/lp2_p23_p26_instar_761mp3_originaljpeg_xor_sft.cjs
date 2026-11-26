@@ -1,9 +1,10 @@
 "use strict";
 /**
  * Source-constrained extension of the authenticated 2013 761.MP3 XOR operation.
- * Human-visible selector: LP2 p23–26 carry the four-page cicada/instar illustration sequence;
- * the 2013 Cicada OS track is explicitly titled "The Instar Emergence" and its ID3 poem
- * supplies the repeated "instar ... shed ... emerge" wording.
+ * Human-visible selector: LP2 p23–26 are a mixed visual block; community art inventories
+ * associate wing diagrams in this block with mayfly art, while p23/p24 carry other motifs.
+ * The 2013 Cicada OS track is titled "The Instar Emergence" and its ID3 poem supplies
+ * the repeated "instar ... shed ... emerge" wording; this is a hypothesis, not a species match.
  *
  * Fetches the exact historical 761.MP3 from rtkd/iddqd commit
  * f2267b0c2f1e1d2662806b90b9c3a2953b3a7023, checks its SHA-256, then delegates

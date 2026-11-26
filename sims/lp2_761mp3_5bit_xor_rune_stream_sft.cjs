@@ -1,9 +1,11 @@
 "use strict";
 /**
  * Test a source-motivated cross-round key hypothesis:
- *   - p57 repeats the 2013 761.MP3 ID3 poem; p23–26 form the Instar illustration sequence.
- *   - Cicada 2013 authenticates raw-byte XOR through 761.MP3 XOR Twitter.bin -> gematria.jpg.
- *   - Gematria Primus has 29 symbols, so a standard fixed-width representation is 5 bits/symbol.
+ *   - p57 repeats the 2013 761.MP3 ID3 poem; p23–26 are a mixed visual block.
+ *   - This is an exploratory symbolwise 5-bit XOR variant, NOT the historical bytewise XOR.
+ *     Agent37's packed-GP29 report already tests the source-authentic bytewise operation.
+ *   - Gematria Primus has 29 symbols, so a fixed-width 5-bit representation is conceivable,
+ *     but this mapping is not selected by an independent source clue.
  *
  * This SFT tests the raw pinned MP3 (including its 206-byte ID3 tag) as a continuous
  * 5-bit XOR key stream against canonical GP29 indices. It tests only the 8 possible
