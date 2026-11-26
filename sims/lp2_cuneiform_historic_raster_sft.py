@@ -15,7 +15,7 @@ BOXES = [(106,199,147,223),(105,66,148,89),(445,131,498,160),(36,2,54,25)]
 GROUPS = [(4,2),(3,1),(7,9),(8,)]
 NAMES = ("17","13","55","1")
 ANGLES = range(-60,61,5)
-SCALES = np.arange(.5,2.51,.1)
+SCALES = tuple(i/10 for i in range(5,26))
 
 def crop(m):
     y,x=np.where(m)
