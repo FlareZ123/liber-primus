@@ -27,13 +27,26 @@ function experiment(lex,fixture,source){
   function rec(i){if(i===last){let blocked=0;if(oracle){for(let t=0;t<N;t++){params[last]=t;if(rows.every(([a,m])=>!(m&(1<<md(a.reduce((s,x,j)=>s+x*params[j],0))))))accept()}return}
     for(const [a,mask] of rows){let b=0;for(let j=0;j<last;j++)b+=a[j]*params[j];b=md(b);let q=a[last];if(!q){if(mask&(1<<b)){blocked=ALL;break}}else{let m=mask;while(m){let bit=31-Math.clz32(m&-m);m&=m-1;blocked|=1<<md((bit-b)*inv[q])}if(blocked===ALL)break}}
     let allowed=ALL^blocked;while(allowed){let t=31-Math.clz32(allowed&-allowed);allowed&=allowed-1;params[last]=t;accept()}return}
-   for(let t=0;t<N;t++){params[i]=t;rec(i+1)}}rec(0);return {count,rank:basis.length};
+   for(let t=0;t<N;t++){params[i]=t;rec(i+1)}}rec(0);return {count,rank:basis.length,only:count===1?origin:null};
  }
+ function forcedPacking(g,a){
+ const k=Array(Q).fill(0);for(let j=0;j<g.free.length;j++)k[g.free[j]]=a[j];for(let i=0;i<g.piv.length;i++){let row=g.eq[i];k[g.piv[i]]=md(row[Q]-g.free.reduce((s,j)=>s+row[j]*k[j],0))}
+ const vals=g.off.map(v=>md(v.reduce((s,x,j)=>s+x*k[j],0))),comps=new Map();for(let x=0;x<N;x++){let r=g.root[x];if(!comps.has(r))comps.set(r,[]);comps.get(r).push(x)}
+ const cs=[...comps.values()].sort((a,b)=>b.length-a.length),masks=cs.map(c=>c.reduce((s,x)=>s|(1<<vals[x]),0)),shift=Array(cs.length).fill(0),rot=(m,t)=>t?((m<<t)|(m>>>(N-t)))&ALL:m;
+ let nodes=0,packings=0,maxCovered=0,witness=null,cut=false;const primitive=k.slice(0,4).some((v,j)=>v!==k[j+4]);
+ function support(c,pi,ip,dict){for(let start=0;start<Q;start++){function rec(i,j,w){if(i===c.length)return dict.has(w);const x=S.indexOf(c[i]);if(!x&&rec(i+1,j,w+"0"))return true;let p=ip[md(pi[x]-k[j])];return p!==0&&rec(i+1,(j+1)%Q,w+S[p])}if(rec(0,start,""))return true}return false}
+ function dfs(used,left){if(++nodes>2000000){cut=true;return}if(!left.length){packings++;let pi=Array(N);for(let i=0;i<cs.length;i++)for(let x of cs[i])pi[x]=md(vals[x]+shift[i]);const f=pi[0];pi=pi.map(x=>md(x-f));const ip=Array(N);for(let x=0;x<N;x++)ip[pi[x]]=x;
+  if(!primitive)return;let covered=0;for(let i=0;i<47;i++)covered+=support(groups[i],pi,ip,D);maxCovered=Math.max(maxCovered,covered);if(covered>=44&&support(groups[47],pi,ip,new Set(pref)))witness={pi,covered};return}
+  let pick=-1,opts;for(let i of left){let v=[];for(let t=0;t<N;t++)if(!(used&rot(masks[i],t)))v.push(t);if(!v.length)return;if(pick<0||v.length<opts.length){pick=i;opts=v;if(v.length===1)break}}for(let t of opts){shift[pick]=t;dfs(used|rot(masks[pick],t),left.filter(i=>i!==pick));if(cut||witness)return}}
+ if(primitive)dfs(masks[0],cs.slice(1).map((_,i)=>i+1));
+ return {key:k,primitive,componentSizes:cs.map(c=>c.length),nodes,packings,maxCovered,cut,witness};
+ }
+ const forced=[];
  const carry=domain(groups[47],pref,true),indices=[...Array(47).keys()].sort((a,b)=>groups[b].length-groups[a].length).slice(0,9),domains=indices.map(i=>domain(groups[i],by[groups[i].length],false));const stats=Array.from({length:4},()=>({states:0,empty:0,rankReduced:0,one:0,counts:[],oracle:0}));let joins=0,accepted=0,trailEnds=0;
  // Fixed randomized partial joins only: no p55, no exhaustive original key claim.
  for(let trial=0;trial<250;trial++){let edges=carry[rnd(carry.length)].slice(),g=graph(edges);
   for(let j=0;j<domains.length;j++){let arr=domains[j],found=false;for(let t=0;t<30;t++){let next=edges.concat(arr[rnd(arr.length)]),h=graph(next);joins++;if(!h)continue;edges=next;g=h;accepted++;found=true;break}if(!found)break;
-   if(g.d<=3){let s=stats[g.d],a=exact(g.d,g.forbid);s.states++;s.empty+=a.count===0;s.rankReduced+=a.count>0&&a.rank<g.d;s.one+=a.count===1;s.counts.push(a.count);if(s.oracle<12){let b=exact(g.d,g.forbid,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("oracle mismatch");s.oracle++}if(!a.count)break}
+   if(g.d<=3){let s=stats[g.d],a=exact(g.d,g.forbid);s.states++;s.empty+=a.count===0;s.rankReduced+=a.count>0&&a.rank<g.d;s.one+=a.count===1;s.counts.push(a.count);if(a.only)forced.push({trial,joinIndex:j,...forcedPacking(g,a.only)});if(s.oracle<12){let b=exact(g.d,g.forbid,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("oracle mismatch");s.oracle++}if(!a.count)break}
   }trailEnds++;
  }
  // Controlled affine arrangements with no full parallel class; two independent
@@ -41,6 +54,6 @@ function experiment(lex,fixture,source){
  const allBut0=ALL^1,ex=new Map([["1,0",allBut0],["0,1",allBut0],["1,1",1]]),one=new Map([["1,0",allBut0],["0,1",allBut0]]);
  if(exact(2,ex).count!==0||exact(2,one).count!==1||exact(2,one).rank!==0)throw Error("constructed gate");
  const generated=[];for(let d=1;d<=3;d++){let tested=0,zero=0,rankReduced=0;for(let i=0;i<40;i++){let f=new Map();for(let j=0;j<12;j++){let a=Array.from({length:d},()=>rnd(N)),k=a.findIndex(Boolean);if(k<0)continue;a=a.map(x=>md(x*inv[a[k]]));let key=a.join(","),mask=f.get(key)||0;for(let l=0;l<1+rnd(18);l++)mask|=1<<rnd(N);f.set(key,mask)}let a=exact(d,f),b=exact(d,f,true);if(a.count!==b.count||a.rank!==b.rank)throw Error("random mismatch");tested++;zero+=a.count===0;rankReduced+=a.count>0&&a.rank<d}generated.push({d,tested,zero,rankReduced})}
- return {dictionary:D.size,prefixes:pref.length,carryOptions:carry.length,indices,domainSizes:domains.map(x=>x.length),joins,accepted,trailEnds,stats:stats.map(({counts,...s},d)=>({d,...s,min:counts.length?Math.min(...counts):null,max:counts.length?Math.max(...counts):null,mean:counts.length?counts.reduce((a,b)=>a+b,0)/counts.length:null})),generated,scope:"Randomized partial original p54 lexical joins, no p55 data used in fitting, no exhaustive search or key recovery."};
+ return {dictionary:D.size,prefixes:pref.length,carryOptions:carry.length,indices,domainSizes:domains.map(x=>x.length),joins,accepted,trailEnds,stats:stats.map(({counts,...s},d)=>({d,...s,min:counts.length?Math.min(...counts):null,max:counts.length?Math.max(...counts):null,mean:counts.length?counts.reduce((a,b)=>a+b,0)/counts.length:null})),generated,forced,scope:"Randomized partial original p54 lexical joins, no p55 data used in fitting, no exhaustive search or key recovery."};
 }
 console.log(JSON.stringify(experiment(...['resources/control/english_wordfreq_textblob.txt','im-results/lp2-shared-gp29-q8-terminal-corrected-fixtures.json','resources/liber-primus/lp2-page-groups-54-55-derived.json'].map(p=>fs.readFileSync(p,'utf8'))),null,2));
