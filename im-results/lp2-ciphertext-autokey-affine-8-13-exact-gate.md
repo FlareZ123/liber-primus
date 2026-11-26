@@ -1,6 +1,6 @@
 # Exact ciphertext-autokey GP29 inverse gates: affine q8/q13 and arbitrary all-lag rows
 
-**Decision:** no unknown LP2 plaintext or key. The all-lag row-permutation extension at the end excludes all 3,301 tested continuous ordinary lags against the frozen native register, and short transparent-F lags without guessing a hold mask. The fixed-length ciphertext-fed affine autokey family below has no whole-book shared feedback parameters. Four original pages individually reject both historical primer lengths even when given entirely independent coefficients and arbitrary primers. The ordinary additive member survives feasibility on just three page/length pairs; an exact language-scored inverse on those pairs produces nonprose despite native-plant success.
+**Decision:** no unknown LP2 plaintext or key. The all-lag row-permutation extension at the end excludes all 3,301 tested continuous ordinary lags against the frozen native register, and short transparent-F lags without guessing a hold mask. The fixed-length ciphertext-fed affine autokey family below has no whole-book shared feedback parameters. Four original pages individually reject both historical primer lengths even when given entirely independent coefficients and arbitrary primers. The ordinary additive member survives feasibility on just three page/length pairs; an exact language-scored inverse on those pairs produces nonprose despite native-plant success. The distinct alternating plaintext/ciphertext q8 register (#3049) also fails an exact 12-rune zero-free certificate at the p54 black-body origin (below).
 
 ## Model and distinction from prior work
 
@@ -142,3 +142,31 @@ A separate exact target-excluded lexical decoder uses the first 12 body words of
 All four selected full plaintexts re-encrypt exactly and all four alternate arbitrary primer constructions also re-encrypt. A primer-dependent consumed plaintext rune can be changed to any of the other 27 nonzero values with a corresponding change of its one primer digit, without altering any ciphertext or the future queue. Conditional on a fixed hold mask with at least q consumptions, there are exactly 28^q distinct legal unrestricted primer prefixes; lexical/context priors can reduce this, but the four controls show that unigram lexical inference cannot uniquely identify the actual primer even when suffix recovery is perfect (150/150). Do not interpret exact suffix recovery as recovered key material.
 
 [SFT](../sims/lp2_ciphertext_autokey_lag_exact_gate_sft.cjs) · [machine-readable output including a witness for each excluded lag](lp2-ciphertext-autokey-lag-primer-ambiguity-output.json). Executed the exact function on repository source in JS, no Windows CI claim. The chapter assignments use canonical page cuts; the original 12,956 GP indices match the corrected transcription rune-for-rune. No LP2 plaintext or key recovered. Retire #2649 as already substantially covered, with the additional exact all-lag and primer-ambiguity conclusions above. Do not tune other taps under this issue.
+
+## Distinct alternating plaintext/ciphertext-fed q8 register (#3049, Agent1, 26 November 2026)
+
+**Decision:** the frozen mixed register is algebraically impossible on the original p54 black body, regardless of primer, language, printed grouping or latent F choices. This is a different sender from the pure ciphertext autokey above, #2549's pure plaintext autokey, #2617's plaintext-difference law and the #2686 reciprocal law. It retains a genuine mixed feedback action on native controls but does not evade the fixed ciphertext-feedback obstruction on the odd lanes. No unknown plaintext or key.
+
+Use zero-based consuming event n, cell j=n mod8, and emit C=P+K_j mod29 for nonzero P; even n replaces K_j by P, odd n replaces K_j by C. A literal plaintext F emits zero and holds both register and clock. Consuming ciphertext zero is allowed. Because the register length is even, each lane has fixed parity. In even lanes K_j' = C−K_j and successive keys are affine in their initial key with coefficient ±1. In odd lanes K_j'=C and all primer dependence disappears after the first consumption; thereafter P_n=C_n−C_(n−8). Thus when an odd-lane repeated ciphertext occurs at lag8 within a zero-free prefix, it forces a forbidden consuming P=0.
+
+For any fixed F-event mask, represent each lane's current key by a_j k_j+b_j; a_j is ±1 until an odd lane consumes, then 0. If a_j≠0, consumption excludes the single primer value a_j(C−b_j) modulo29; update affine coefficients according to the selected feedback. If a_j=0, C=b_j is immediately impossible. Domains are independent across lanes, so the nonempty Cartesian product describes every legal primer exactly for that mask. Construct a witness from each surviving domain and verify forward replay. All 431 masks across 100 seeded reduced-alphabet q2/N5 cases match direct exhaustive enumeration of every primer, including the full surviving primer sets (228 legal masks).
+
+### Exact original contradiction
+
+Use the source-corrected p54 black body (remove the 9 red heading runes), then the unchanged p55. The first 12 body indices, zero based, are:
+
+`[27,23,13,21,1,7,24,19,16,24,21,21]`.
+
+All are nonzero. At consuming offset3 (physical p54 rune12), odd cell3 is overwritten with ciphertext 21. At offset11 (physical p54 rune20), the same cell must emit ciphertext 21, hence plaintext 21−21=0. A consuming F is forbidden, and a literal held F would emit ciphertext 0 rather than 21. Every primer fails. This certificate is independent of all later ciphertext zeros. The exact full-prefix mask enumeration confirms 0/8 legal on 223 body runes, and 0/64 on the 299-rune body+continuation. No p55 language model or key fit is justified; the held-out continuation cannot rescue the impossible prefix.
+
+### Native controls, limits and competing statistics
+
+Three independent 299-rune windows from the existing WELCOME, first KOAN and LOSS OF DIVINITY source sections are planted with independent deterministic pseudorandom q8 primers. The true masks contain 8/11/8 generated ciphertext zeros. The exact domain inverse retains all three true keys and produces independent replayable witnesses. All true plaintexts replay exactly given the planted key and mask.
+
+Even with the true mask, each odd primer retains 28 values. Explicitly changing all four odd initial cells leaves every post-first-cycle symbol unchanged, including 76/76 heldout symbols for each control. This proves a legality/continuation identifiability limitation, not a blind language-recovery result. No statistical key search was performed once the exact contradiction was established.
+
+For repeat suppression, use the same three plaintext windows and 128 new seeded primers each under mixed, ordinary periodic, pure plaintext autokey and pure ciphertext autokey laws (1,536 runs total). The original 299 runes have six visible F and three adjacent equalities. Mixed plants have mean F counts 15.148/12.398/13.039 and adjacent equalities 11.156/10.359/10.586; only 1/384 attains at most three equalities, 0/384 at most six F, and 0/384 both. All three rivals also have zero joint matches in their 384 respective draws. These are descriptive native-control statistics at matching length, not matched low-F geometry or a universal probability bound. The original contradiction does not depend on this mismatch.
+
+[Reproducer](../sims/lp2_mixed_alternating_autokey_q8_exact_sft.cjs) · [raw output and source pins](lp2-mixed-alternating-autokey-q8-exact-output.json) · [Director #3049](https://github.com/FlareZ123/liber-primus/issues/3049). The complete analysis function executed in connected V8 on pinned inputs; standalone Node wrapper not separately run.
+
+**Fork:** retire this exact alternating law at its frozen p54 body origin. The source does not select a new parity offset, changed register length or alternative F rule; do not tune them to avoid the witness.
