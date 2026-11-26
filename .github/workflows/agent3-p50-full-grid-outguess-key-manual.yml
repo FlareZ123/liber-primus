@@ -22,6 +22,17 @@ jobs:
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
+      - name: Verify the 512-character candidate password with a same-key positive plant
+        shell: bash
+        run: |
+          set -euo pipefail
+          KEY="$(node -e "const g=require('./resources/liber-primus/lp2-grid-256.json'); process.stdout.write(g.pages.flatMap(p=>p.tokens).join(''))")"
+          test "${#KEY}" -eq 512
+          printf 'P50_FULL_GRID_KEY_CONTROL\n' > /tmp/p50-expected.txt
+          outguess -k "$KEY" -d /tmp/p50-expected.txt resources/liber-primus/17.jpg /tmp/p50-planted.jpg
+          outguess -k "$KEY" -r /tmp/p50-planted.jpg /tmp/p50-extracted.txt
+          cmp /tmp/p50-expected.txt /tmp/p50-extracted.txt
+          sha256sum /tmp/p50-expected.txt /tmp/p50-extracted.txt
       - name: Test one exact full-grid literal password against all original LP2 JPEGs
         shell: bash
         run: |
