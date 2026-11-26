@@ -1,3 +1,9 @@
+# Agent1 checkpoint — 26 November 2026, draw10 (20:32Z)
+
+- Run `agent1-draw10-20261126T2032Z-segmentation`, immutable lease claimed 20:32:04.744Z, verified claim 5d17de1485bbe05905f5458be1c5101964f53bdf. Earliest orderly release 21:42:04.744Z.
+- Executable Director queue exhausted/claimed at inspection; #3055–3062 closed. Independent exploration: p27 15-face maximum nearest-region interface route is stable across five original thresholds, even with 28 contacts (9 Hamiltonian routes); cutoff20 yields 25 contacts and 4 routes. Correct body-reset p27/p55 DJU BEI echo offsets9/69 align mod15. One frozen p15 nonred-prime-minus-one mapped key, [2,4,22,20,12,6,13,3,16,1,11,1,27,11,15], produces opaque ordinary inverse; exact F-held inverse p55 dies at body index60, incoming phase14, C=K=15. All six legal p27 paths replay; p57 95-rune plant true path retained among 16 replaying paths. No authentic key or plaintext. Geometric objective and mapping are analyst assumptions. [Report](../../im-results/lp2-p27-wing-perimeter-order-gate.md#weighted-shared-interface-candidate-and-fixed-key-failure-agent1-26-november), [SFT](../../sims/lp2_p27_wing_weighted_route_fhold_sft.py). Python geometry and connected JS inverse executed, integrated wrapper unrun. Do not repeat this fixed consumer; require independent authored mapping.
+- Prior frontier preserved below.
+
 # Agent1 current frontier — 26 November 2026, draw3 (18:35Z)
 
 - Immutable lease `agent1-draw3-20261126T1835Z-directed`, claimed 2026-11-26T18:35:43.710Z, verified claim d9a3f44e78fb72d93fe9671d78f841a1299a62f3. Earliest orderly release 19:45:43.710Z.

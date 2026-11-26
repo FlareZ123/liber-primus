@@ -63,8 +63,31 @@ The only two low-description numerical readings were considered and rejected at 
 
 The p27 heading **WE MUST SHED** and solved p57's “SHED OUR OWN CIRCUMFERENCES” make the perimeter-removal interpretation plausible. They do not specify the numeric mapping or a cipher. The p57 phrase “FIND THE DIVINITY WITHIN” also has a serious competing referent in the 809-centred 5×5 square, whose recursive circumference removal leaves one centre value; no evidence uniquely transfers that instruction to the p27 wing's two remaining cells. The p22→ARE27 route selects a p27 text word and its local H readout, not the wing's face labels or a rune-key consumer.
 
+
+## Weighted shared-interface candidate and fixed-key failure (Agent1, 26 November)
+
+A different, deterministic geometric proxy resolves the earlier unweighted routing ambiguity **conditional on an analyst-selected objective**. Reuse the original crop, 15 x-ranked pale components and exterior component. Assign each intervening pixel its nearest retained region by Euclidean distance; count unit horizontal/vertical grid edges separating different positive labels. These Manhattan interface counts approximate contact strength, not verified physical vein length. There are 28 positive interfaces, 25 with length at least 20 grid edges; the latter graph admits four complete root-to-tip paths at each of the five original grayscale thresholds. The unique maximum-total-interface path, even retaining all 28 contacts and nine paths, is:
+
+`1,2,5,7,4,3,6,8,11,12,14,9,10,13,15`
+
+| Gray threshold | Best weight (cutoff 20) | Runner-up |
+| --- | ---: | ---: |
+| 80 | 2394 | 2289 |
+| 120 | 2388 | 2281 |
+| 160 | 2377 | 2273 |
+| 200 | 2361 | 2258 |
+| 235 | 2357 | 2247 |
+
+A fresh receiver motivation is the corrected body clock: the known identical six-rune DJU BEI echo starts at p27 offset28 and p55 offset70 in the full physical pages, but at offsets **9 and 69** after excluding the red19 p27 heading and the one p55 incoming carry rune. These are congruent modulo 15. This does not establish key reuse or equal plaintext.
+
+Freeze one candidate without language scoring: assign the 15 nonred [p15 spiral prime values](../results/lp2-p15-fibonacci-prime-spiral.md) in their established sequence to faces 1–15, read the maximum-interface route, subtract one as in solved p56 and reduce mod29. The resulting candidate key is `[2,4,22,20,12,6,13,3,16,1,11,1,27,11,15]`. Use positive additive encryption with a fresh body-reset phase zero. Ordinary consuming inversion gives opaque streams; its identical decoded echo is forced by the ciphertext/phase match. Under authentic literal plaintext-F holds, enumerate every inverse branch: p27 has six legal full-body paths (three each ending phases13 and14), none reads as coherent prose; p55 has **zero full paths**, first dead at body index60 (physical rune index61), where incoming phase14 requires consuming plaintext zero from ciphertext15/key15, which is prohibited by the F-bypass rule. The nonzero ciphertext also cannot be a held literal F. The clear 95-rune p57 planted control retains its actual full plaintext among 16 legal paths, all of which reencrypt exactly.
+
+This is an exact rejection of this single frozen F-hold receiver, not all period15 keys, and a qualitative ordinary-consuming negative. The maximal-interface rule, x-rank assignment, mapping of p15 primes to p27, additive clock and body resets are exploratory decisions, not independent author instructions. The local Python image computation and connected JS exact inverse/control ran separately; the integrated Python reproducer is supplied but was not executed end-to-end in this invocation. Corpus Git blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`.
+
+[Integrated reproducer](../sims/lp2_p27_wing_weighted_route_fhold_sft.py).
+
 ## Decision
 
-**Preserve the exact 13-rim/2-inner geometry as a candidate visual clue; retire the tested fixed shell transposition and close the claim that the unlabeled wing supplies a unique fifteen-step key.** The two inner faces are geometrically distinguishable and can be sorted left-to-right by an ordinary reading convention, but that convention is not authored on the image; the source-derived root-to-tip proximity family admits both orders in every tested setting. Neither the face count nor analyst ranks select a GP29/DH mapping, reversible operation, or ciphertext receiver. A separately authored order and typed consumer are required before any new cipher test; do not select a path or key by language score.
+**Preserve the exact 13-rim/2-inner geometry as a candidate visual clue; retire the tested fixed shell transposition and weighted-route p15 F-hold receiver, and close the claim that the unlabeled wing supplies a unique fifteen-step key.** The two inner faces are geometrically distinguishable and can be sorted left-to-right by an ordinary reading convention, but that convention is not authored on the image; the source-derived root-to-tip proximity family admits both orders in every tested setting. Neither the face count nor analyst ranks select a GP29/DH mapping, reversible operation, or ciphertext receiver. The maximum-interface objective does select a stable exploratory route, but its single tested p15-key consumer fails exactly; it does not resolve the author-intent ambiguity. Seek an independently motivated operand or operation before further route/key variants; do not select a path or key by language score.
 
 **Reproducer:** sims/lp2_p27_wing_perimeter_sft.py, reading resources/liber-primus/44.jpg and resources/liber-primus/lp2-corpus.json. Full root-to-tip and inner-pair order test: sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py. Prior face audit: im-results/lp2-p27-fifteenth-wing-face-source-gate.md; prior fifteen-transition graph ambiguity: im-results/lp2-p27-p15-fifteen-transition-order-gate.md.
