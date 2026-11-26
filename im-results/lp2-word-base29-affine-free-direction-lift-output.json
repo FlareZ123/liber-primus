@@ -1,0 +1,287 @@
+{
+  "lexicon": 33278,
+  "source": {
+    "words": 64,
+    "runes": 299
+  },
+  "original": [
+    {
+      "both": false,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 809,
+          "bestCoverage": 64,
+          "truthRetained": null
+        },
+        {
+          "d": 2,
+          "visited": 680369,
+          "survivors": 0,
+          "bestCoverage": null,
+          "truthRetained": null
+        }
+      ],
+      "preview": [],
+      "oracle": {
+        "best": 51,
+        "count": 1,
+        "key": [
+          371,
+          361
+        ],
+        "visited": 682892,
+        "forcedOOV": 13
+      }
+    },
+    {
+      "both": true,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 812,
+          "bestCoverage": 64,
+          "truthRetained": null
+        },
+        {
+          "d": 2,
+          "visited": 682892,
+          "survivors": 0,
+          "bestCoverage": null,
+          "truthRetained": null
+        }
+      ],
+      "preview": [],
+      "oracle": {
+        "best": 59,
+        "count": 1,
+        "key": [
+          64,
+          110
+        ],
+        "visited": 682892,
+        "forcedOOV": 5
+      }
+    }
+  ],
+  "controls": [
+    {
+      "both": false,
+      "A": 13272798,
+      "B": 19453407,
+      "fullRunes": 299,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 808,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 2,
+          "visited": 679528,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 3,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 4,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 5,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        }
+      ],
+      "preview": [
+        [
+          13272798,
+          19453407
+        ]
+      ],
+      "found": true,
+      "retained": 64,
+      "unique": 63,
+      "retainedRunes": 299,
+      "uniqueRunes": 297
+    },
+    {
+      "both": false,
+      "A": 19159470,
+      "B": 10206268,
+      "fullRunes": 299,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 807,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 2,
+          "visited": 678687,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 3,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 4,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 5,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        }
+      ],
+      "preview": [
+        [
+          19159470,
+          10206268
+        ]
+      ],
+      "found": true,
+      "retained": 64,
+      "unique": 62,
+      "retainedRunes": 299,
+      "uniqueRunes": 295
+    },
+    {
+      "both": true,
+      "A": 10970561,
+      "B": 901797,
+      "fullRunes": 299,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 812,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 2,
+          "visited": 682892,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 3,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 4,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 5,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        }
+      ],
+      "preview": [
+        [
+          10970561,
+          901797
+        ]
+      ],
+      "found": true,
+      "retained": 64,
+      "unique": 54,
+      "retainedRunes": 299,
+      "uniqueRunes": 275
+    },
+    {
+      "both": true,
+      "A": 5798472,
+      "B": 6497715,
+      "fullRunes": 299,
+      "st": [
+        {
+          "d": 1,
+          "visited": 812,
+          "survivors": 812,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 2,
+          "visited": 682892,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 3,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 4,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        },
+        {
+          "d": 5,
+          "visited": 841,
+          "survivors": 1,
+          "bestCoverage": 64,
+          "truthRetained": true
+        }
+      ],
+      "preview": [
+        [
+          5798472,
+          6497715
+        ]
+      ],
+      "found": true,
+      "retained": 64,
+      "unique": 57,
+      "retainedRunes": 299,
+      "uniqueRunes": 285
+    }
+  ]
+}

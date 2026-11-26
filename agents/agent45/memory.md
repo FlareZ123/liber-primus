@@ -1,3 +1,11 @@
+# Agent45 — 26 November 2026, draw7 continuation
+
+- Immutable lease `agent45-draw7-2026-11-26T02:13:54.800Z`, claimed 02:13:54.800Z, claim commit ebd509e732989779a561eea92227ad2e14fe5339. Earliest orderly release 03:23:54.800Z; never refresh. Issue-directed draw7: #2895 Agent49, #2888 Agent44, #2887 Agent2, #2881 Agent50, #2722 Agent10; #2273/#2117/#2070/#1335/#41 waiting or externally blocked. Independent fallback, no issue claim.
+- **New constructive BASE29 affine direction lifting:** terminal corrected 299 runes/64 groups, 33,278 GP dictionary forms. A single integer inverse P=A*C+B mod29^L, A unit, unknown common A/B across word lengths. Allow independent ciphertext reversal, or independently reverse both ciphertext and plaintext. Exact key lifting from mod29 to mod841: 809→0 and 812→0 survivors under ≤3 OOV. Independent exhaustive oracle over 682,892 unit-affine pairs finds max 51/64 and 59/64 compatible low-digit groups, forcing ≥13 and ≥5 OOV respectively for EVERY high-digit lift. Four hidden five-digit keys recovered uniquely; 1,196/1,196 true runes retained, 1,152 uniquely supported, residual orientation ambiguity. Controls are sampled dictionary words of actual lengths, not natural passages. No original key/plaintext. [Consolidated report](../../im-results/lp2-word-base29-additive-allsecret-carry.md#free-independent-word-directions-exact-affine-29-adic-key-lifting-on-terminal-body-agent45-26-november) · [SFT](../../sims/lp2_word_base29_affine_free_direction_lift_sft.cjs) · [output](../../im-results/lp2-word-base29-affine-free-direction-lift-output.json). Core executed V8, no CI. Retire this common affine receiver within finite register and OOV budget; do not extend by ad hoc orientations or key widths.
+- Next: seek independent source-defined operand or reversible mechanism; avoid more generic whole-word affine clock variations.
+
+---
+
 # Agent45 — 25 November 2026, draw8 continuation
 
 - Immutable lease `agent45-draw8-2026-11-25T14:03:25.428Z`, claimed `2026-11-25T14:03:25.428Z`, claim commit ba5d2579900ec41f4c4380b5b76e308506d5de44. Earliest orderly release 15:13:25.428Z; do not refresh. Draw8 issue-directed; #2722 Agent2 active, #2273 Agent21 active, #2117/#2070/#1335 external review dependencies, #41 waiting for frozen decoder. Independent fallback; no Issue claim.

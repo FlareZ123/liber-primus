@@ -1,6 +1,6 @@
 # Original LP2 whole-word BASE29 numeral cipher: exact all-secret exclusions
 
-**Classification:** source-motivated, bounded negative. No recovered unknown LP2 plaintext, authentic cipher key, or continuation destination.
+**Classification:** source-motivated, bounded negative. No recovered unknown LP2 plaintext, authentic cipher key, or continuation destination. The new terminal lexical extension below also excludes a common affine integer key even with independent wordwise reversals on either side, under its explicit finite dictionary and three-OOV budget.
 
 **Main new exclusion.** Grant an adversary an arbitrary SECRET coordinate order for every original rune-word length, and a separate independent coordinate order and full word-integer cipher state for **each of nine manuscript-illustrated chapters**. The original data still support at most **1,145** total word endings among the four most frequent GP plaintext-final rune classes. Exact original-length-matched GP-native Gibran and Shakespeare controls have **1,547** and **1,553**. The new bound includes all fixed chapter×length digit permutations followed by any invertible 29-adically compatible integer transformation, regardless of secret polynomial degree or coefficients. It also includes arbitrary wordwise reversals, circular digit readings, source-page orientations *if fixed inside each actual illustrated chapter×word-length stratum*, and independent key resets at the nine printed chapter boundaries. Two full 2,896-word native controls encrypted by chapter-varying, length-varying affine keys **and** secret cyclic rune-position shifts decrypt exactly; all 110 original chapter×length strata were exhaustively bounded without key enumeration.
 
@@ -149,6 +149,31 @@ Two distinct public-domain source texts retained in the repo, Gibran's *The Prop
 - All **812** single-digit invertible affine maps (28 nonzero slopes × 29 offsets) are independently checked as bijective, and the length-two additive model checks all 841 possible full-word keys.
 
 The original's impossible bounds **609 < 1,547/1,553** and **648 < 1,002/963** are arithmetic, source-original upper limits. No unknown key value or extra fixed global alphabet relabeling can overcome them. These controls demonstrate a decisive difference from the native GP-English word-initial/terminal distributions in two independent real-language sources; they do not prove an impossibility for exotic registers or all conceivable natural language distributions.
+
+## Free independent word directions: exact affine 29-adic key lifting on terminal body (Agent45, 26 November)
+
+**Decision:** the corrected p54 body through p55 cannot use a single common invertible affine BASE29 numeral key with individually reversed ciphertext words and at most three out-of-register plaintext words. Even granting independent reversal of both ciphertext and plaintext words, every full key forces at least **five** OOV groups. This is a separate lexical decision from the fixed-coordinate concentration results: word orientation is now private to each group, but the integer coefficients are common across lengths.
+
+The signed historical BASE29 convention and the later signed word/number/direction clue motivate this exploratory numeric receiver, but neither specifies affine arithmetic or reversal. For each complete printed word of length L, choose either reading direction for the ciphertext, pack it as C in [0,29^L), and compute P = (A*C+B) mod 29^L, with gcd(A,29)=1. Unpack to exactly L GP29 digits, including leading zero. Either retain normal plaintext order (model I) or permit independent reversal of the decoded word as well (model II). No key reset, width-private coefficient, extra null or F hold. The reversible arithmetic is exact when the direction choices are known; a linguistic receiver must infer those choices, and ambiguous words remain possible.
+
+For depth d, reducing the integer equation modulo 29^min(d,L) eliminates every higher key digit. For each orientation of C, compare the resulting low digits to the corresponding suffixes of every dictionary word of length L; model II also grants all dictionary prefixes in reversed order. If neither reading yields a compatible low-digit string, the whole word must be OOV for **every** lift of this key. Start with all 812 unit-affine pairs modulo29, retain candidates with at most three failing words, then enumerate all 29² digit extensions of each surviving pair. This is exhaustive below any untraversed depth; the original empties at depth2. The independent depth2 oracle enumerates all 682,892 unit-affine pairs modulo841 without any pruning, counts support from every one of the 64 groups, and supplies a stronger exact OOV lower bound. It is a necessary test, not a sufficient full-word match.
+
+Source: parse and match all 2,896 printed groups and 12,956 GP indices from the original transcript and canonical corpus, preserving cross-page words. Remove the two p54 heading groups (1+8 runes), yielding precisely 299 runes in 64 complete groups. Dictionary: 33,278 distinct GP29 forms of widths 1–14 from pinned TextBlob English frequencies, both canonical greedy and ING/IO spelling conventions, plus actual solved native words. The complete p54→p55 scope is used for this mathematical exclusion; there is no fresh manuscript holdout or claim that the register exhausts English.
+
+| Original model | Mod29 survivors | Mod841 tested after pruning | Mod841 survivors at <=3 OOV | All-key max compatible groups | Forced OOV lower bound |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| I: independent cipher reversal | 809 | 680,369 | 0 | 51/64 | 13 |
+| II: independent cipher and plain reversal | 812 | 682,892 | 0 | 59/64 | 5 |
+
+The unique relaxed two-digit maximizers are (371,361) and (64,110), respectively, but neither is an original key: even their necessary lexical support falls short. In particular, all high-digit extensions of those candidates remain subject to the same bound.
+
+Four seeded, matched-length controls select dictionary words and independent five-digit integer keys, with hidden per-word orientations. All four keys are recovered uniquely modulo 29^5 by the lifting search; the actual complete control coefficients are known to be within that width. The true plaintext is retained for all 1,196 runes. Unique in-register plaintext support accounts for 297/299 and 295/299 runes in model I and 275/299 and 285/299 in model II. These are independent planted keys and random matched-length lexical controls, not contiguous literary passages; the observed ambiguity is explicit. The control generator uses exact BigInt modular inversion; the low-five-digit lift uses exact safe-integer products. There is no inference of unrestricted higher coefficient digits from these controls.
+
+- [Executed CommonJS experiment](../sims/lp2_word_base29_affine_free_direction_lift_sft.cjs)
+- [Full machine output](lp2-word-base29-affine-free-direction-lift-output.json)
+- Pinned input blobs: canonical corpus `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; transcript `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`; TextBlob list `140e1d22b5f8c45deddd2e8b25549d9d6307d938`; solved native `1b064ef6d85819b7d96adaff31a82d1ec551598f`. The computational core executed in connected V8; standalone Node wrapper and CI were not separately run.
+
+Retire the common affine integer receiver under this finite terminal register and OOV budget even with completely unknown independent word directions. This does not exclude variable coefficients, changing word lengths or segmentation, non-affine integer bijections, other registers, or more OOV groups. No unknown plaintext or authentic key recovered.
 
 ## Reproducible scripts and decision
 
