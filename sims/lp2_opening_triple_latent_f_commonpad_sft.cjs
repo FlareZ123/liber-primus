@@ -1,3 +1,38 @@
+function windowGate(T,t,B,maxCalls=2500000,signs=[1,1,1]){
+ const startOpts=T.map(x=>{let z=0;const out=[];for(let p=0;p<=x.c.length;p++){if(p>=t&&p-t<=z&&p+B<=x.c.length)out.push(p);if(x.c[p]===0)z++}return out});
+ let calls=0,capped=false;const minC=[];
+ for(let budget=0;budget<=3;budget++){
+  let tested=0,passed=null;
+  outer:for(const i of startOpts[0])for(const j of startOpts[1])for(const l of startOpts[2]){
+   tested++;const st=[i,j,l],memo=new Map(),free=T.map((x,j)=>{const f=x.free.slice();let a=0;for(let p=0;p<x.c.length;p++)if(x.end[p]){if(a<st[j]||p>=st[j]+B)for(let q=a;q<=p;q++)f[q]=true;a=p+1}return f});
+   function step(j,p,n,r){const x=T[j];if(free[j][p]||n===-1)return [x.end[p]?0:-1,0];const k=x.ts[p][n][r];return [x.end[p]?0:k,k<0?1:0]}
+   function dfs(pos,nodes,left,b){
+    if(++calls>maxCalls){capped=true;return false}
+    if(left===0)return true;
+    if(pos.some((p,j)=>p>=T[j].c.length))return false;
+    const code=left+";"+pos.join(",")+";"+nodes.join(",");
+    if((memo.get(code)??-1)>=b)return false;memo.set(code,b);
+    for(let j=0;j<3;j++)if(T[j].c[pos[j]]===0){
+     const [nn,cost]=step(j,pos[j],nodes[j],0);
+     if(cost>b)continue;
+     const pp=pos.slice(),nd=nodes.slice();pp[j]++;nd[j]=nn;
+     if(dfs(pp,nd,left,b-cost))return true;if(capped)return false;
+    }
+    for(let k=0;k<29;k++){
+     const pp=pos.map(p=>p+1),nd=[],r=T.map((x,j)=>(x.c[pos[j]]-signs[j]*k+29)%29);if(r.includes(0))continue;
+     let cost=0;for(let j=0;j<3;j++){const [nn,c]=step(j,pos[j],nodes[j],r[j]);nd.push(nn);cost+=c}
+     if(cost>b)continue;if(dfs(pp,nd,left-1,b-cost))return true;if(capped)return false;
+    }
+    return false
+   }
+   if(dfs(st,[0,0,0],B,budget)){passed=st;break outer}
+   if(capped)break outer;
+  }
+  minC.push({budget,tested,passed,capped,calls});
+  if(capped||passed)return {t,B,startOptions:startOpts.map(x=>x.length),attempts:minC,lowerBound:budget};
+ }
+ return {t,B,startOptions:startOpts.map(x=>x.length),attempts:minC,lowerBound:4}
+}
 "use strict";
 function experiment(inputs){
  const [gp,raw,lex,native,gib,sh]=[JSON.parse(inputs[0]),inputs[1],inputs[2],JSON.parse(inputs[3]),inputs[4],inputs[5]];
@@ -22,7 +57,7 @@ function experiment(inputs){
   function options(t,i,n,p){
    if(t.free[i]||n===-1)return [[t.end[i]?0:-1,0]];
    const k=t.ts[i][n][p];
-   if(k>=0)return [[t.end[i]?0:k,0],...(t.end[i]?[]:[[-1,1]])];
+   if(k>=0)return [[t.end[i]?0:k,0]];
    return [[t.end[i]?0:-1,1]];
   }
   function dfs(pos,nodes,b){
@@ -73,11 +108,15 @@ function experiment(inputs){
  function plant(dirs,signs){const plain=shapes.map(ws=>ws.map(({w,partial})=>({w:pools[w.length][rand()%pools[w.length].length],partial}))),key=Array.from({length:266},()=>rand()%29);
   const enc=plain.map((ws,j)=>{const oriented=dirs[j]?ws.slice().reverse().map(({w,partial})=>({w:w.slice().reverse(),partial})):ws;let t=0;const out=oriented.map(({w,partial})=>({w:w.map(p=>p===0?0:mod(p+signs[j]*key[t++])),partial}));return dirs[j]?out.reverse().map(({w,partial})=>({w:w.reverse(),partial})):out});
   const r=joint(enc,dirs,signs,0);assert(r.possible,"plant failed");const truth=plain.map((w,i)=>stream(w,dirs[i]).c);
-  return {dirs,signs,holds:truth.map(p=>p.filter(x=>!x).length),visited:r.visited,keyCorrect:r.witness.K.filter((x,i)=>x===key[i]).length,plainCorrect:r.witness.P.map((p,j)=>p.filter((x,i)=>x===truth[j][i]).length)}
+  const checks=Array.from({length:8},(_,i)=>windowGate(enc.map((w,j)=>stream(w,dirs[j])),24*i,24,1200000,signs));assert(checks.every(w=>w.lowerBound===0),"window relaxation rejected plant");
+  return {windowChecks:checks.map(w=>({t:w.t,bound:w.lowerBound,capped:w.attempts.some(a=>a.capped)})),dirs,signs,holds:truth.map(p=>p.filter(x=>!x).length),visited:r.visited,keyCorrect:r.witness.K.filter((x,i)=>x===key[i]).length,plainCorrect:r.witness.P.map((p,j)=>p.filter((x,i)=>x===truth[j][i]).length)}
  }
+ const T=shapes.map(x=>stream(x,false));
+ const windows=Array.from({length:8},(_,i)=>windowGate(T,24*i,24,1200000));
  const plants=[plant([false,false,false],[1,1,1]),plant([false,true,false],[1,-1,1]),plant([true,false,true],[1,1,-1]),plant([true,true,true],[1,-1,-1])];
- return {vocabulary,shapes:shapes.map(ws=>({words:ws.length,complete:ws.filter(w=>!w.partial).length,partial:ws.filter(w=>w.partial).map(w=>w.w.length)})),original,plants}
+ return {windows,windowLowerBound:windows.reduce((n,w)=>n+w.lowerBound,0),vocabulary,shapes:shapes.map(ws=>({words:ws.length,complete:ws.filter(w=>!w.partial).length,partial:ws.filter(w=>w.partial).map(w=>w.w.length)})),original,plants}
 }
+
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/transcriptions/lp2-image-corrected.txt","resources/control/english_wordfreq_textblob.txt","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"];
 console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.resolve(__dirname,"..",p),"utf8"))),null,2));
