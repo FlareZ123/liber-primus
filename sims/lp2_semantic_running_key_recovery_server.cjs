@@ -163,6 +163,7 @@ function boundaryProposal(C,L,pair,lo,hi){
 const rl=require("node:readline").createInterface({input:process.stdin,crlfDelay:Infinity});
 rl.on("line",line=>{try{const q=JSON.parse(line);let result;
  if(q.op==="control")result=control(q.idx);
+ else if(q.op==="check")result=check(q.pair,q.C,q.L);
  else if(q.op==="baseline")result=check(decode(q.C,q.L,1,128),q.C,q.L);
  else if(q.op==="proposal")result=proposal(q.C,q.L,q.pair,q.lo,q.hi);
  else if(q.op==="boundary")result=boundaryProposal(q.C,q.L,q.pair,q.lo,q.hi);
