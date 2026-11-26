@@ -239,4 +239,8 @@ const summary = {
   results
 };
 
-console.log(JSON.stringify(summary, null, 2));
+const rendered = JSON.stringify(summary, null, 2) + '\n';
+if (process.env.RUNNER_TEMP) {
+  fs.writeFileSync(path.join(process.env.RUNNER_TEMP, 'source-test-output.json'), rendered);
+}
+console.log(rendered);
