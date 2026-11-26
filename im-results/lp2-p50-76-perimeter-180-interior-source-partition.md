@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** exact 76/180 original-print partition; the source-sized 256-rune direct byte-pad and row-wise rank-transposition and one-swap-per-cell graph receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; fixed p28 H row-pair transfer to the known 180-rune terminal register is negative; the source-sized 256-rune direct byte-pad and row-wise rank-transposition and one-swap-per-cell graph receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -115,6 +115,19 @@ Under the strict full-token lookup hypothesis, grant every distinct original int
 
 **Decision:** The attractive `p50 inner180 → known p56+p57 → learn secret lookup → decode p55 outer76` chain fails *before* touching the unknown p55 alphabet, so no fitted decoder or actual plaintext is obtained. The two sources' matching lengths are exact geometry, not an authenticated assignment. An independently authored stateful coder, per-position pad, nonnatural reordering, unknown transformation of the known runes or different cell mapping remains outside this stationary lookup exclusion. The next useful advancement is a creator-selected operation able to handle **repeated source tokens with different target runes** without arbitrary exceptions.
 
+
+### Fixed p28 Hadamard receiver on the known interior (#3079, Agent12, 26 November 2026)
+
+The conditional p28 circumference readout supplies H(x,y)=(x−y,x+y) mod29 ([p28 report](lp2-p28-readout-p0-hadamard-dh-echo.md)). Test the Director's explicitly frozen transfer: remove the one-cell rim, pair columns (1,2),(3,4),(5,6) in every retained row 1–30 (zero-based), parse the original tokens with the f-omitted base59 or standard base60 alphabet, reduce modulo29, and emit [x−y,x+y]. Compare in printed row order against independently solved p56 plaintext (85 runes, actual prime-minus-one/F-hold at offset56) followed by clear p57 (95 runes).
+
+| Radix | First pair residues → H | p56 matches | p57 matches | Total |
+| --- | --- | ---: | ---: | ---: |
+| 59 | [13,9] → [4,22] | 1/85 | 5/95 | 6/180 |
+| 60 | [17,11] → [6,28] | 3/85 | 8/95 | 11/180 |
+
+The first two source tokens are 49 and 2a (full-grid addresses 9,10); the independently known first two GP indices are [24,9] (AN). Both fixed mappings already fail there. Exact positive plants use H inverse on the same native 180-rune register, encode the results as two-character numeral tokens, and reproduce all 180 under either radix. The inverse (15(u+v),15(v−u)) mod29 replays all 841 possible input pairs and each original row-pair residue; the authentic p56 inverse re-encrypts 85/85. This replay does not invert the lossy reduction of full numeric values modulo29.
+
+**Decision:** reject both specified H consumers. The conditional 76/180 partition and the local p28 H observation survive; neither selects a table-to-plaintext operation. The acceptance gate fails, so the perimeter remains untouched. No rotation, alternative pairing, score optimization, or p55 candidate. [SFT](../sims/lp2_p50_core180_hadamard_sft.cjs) · [raw output](lp2-p50-core180-hadamard-output.json). Executed the functional core against pinned source blobs `2550eae357442912220e05dc51147523a61dd75a` and `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` in the connected runtime; standalone Node wrapper not run.
 
 ### Source-conditioned FOLD/MOBIUS test (14 November 2026)
 
