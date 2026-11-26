@@ -189,10 +189,15 @@ struct GSearch{
   for(size_t i=0;i<n;i++){uint64_t b=bits[i];while(b){int bit=__builtin_ctzll(b);b&=b-1;if(test(int(i*64+bit)))return out;}}
   return out;
  }
+ // Optional best-fit reporting for explicitly nonexhaustive discovery.
+ // Exact searches keep their original early rejection and acceptance gate.
+ bool recordNear=false;int nearMiss=48;fixed::Perm nearPi{};fixed::Key nearKey{};
  void check(const fixed::Perm&pi,const fixed::Key&k,GStats&c){
   c.perms++;auto m=fixed::maps(pi,k);if(!fixed::support(train.back(),m,fixed::prefixDict))return;
-  int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov)return;
-  lock_guard<mutex>l(answerMutex);if(!found){answer=pi;answerKey=k;answerOov=n;found=true;}
+  int n=0;for(int i:order)if(!fixed::support(train[i],m,fixed::dict)&&++n>maxOov&&!recordNear)return;
+  lock_guard<mutex>l(answerMutex);
+  if(recordNear&&(n<nearMiss||(n==nearMiss&&make_pair(pi,k)<make_pair(nearPi,nearKey)))){nearMiss=n;nearPi=pi;nearKey=k;}
+  if(n<=maxOov&&!found){answer=pi;answerKey=k;answerOov=n;found=true;}
  }
  void pack(const Graph&g,const fixed::Key&k,GStats&c){
   c.keyTests++;bool primitive=false;for(int j=0;j<4;j++)primitive|=k[j]!=k[j+4];if(!primitive)return;
