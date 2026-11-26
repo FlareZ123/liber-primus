@@ -39,8 +39,8 @@ function affineCapacity({donors,dict,rng,corpus,latin},which="0",hold=false){
  const d=Number(which),words=donors[d];let found;for(let i=Math.floor(words.length*.8)+1700;i<words.length;i++){let n=0,j=i;while(j<words.length&&n<716)n+=words[j++].length;if(n===716){found=words.slice(i,j);break;}}if(!found)throw Error("no donor window");
  const rnd=rng(0x5a29d800+d+(hold?1000:0)),key=Array.from({length:q},()=>Math.floor(rnd()*29)),delta=key.map((x,i)=>mod(key[(i+1)%q]-x)),id=canon(delta);
  const c=found.flatMap(w=>{let r=Math.floor(rnd()*q);const a=1+Math.floor(rnd()*28),b=Math.floor(rnd()*29),direction=rnd()<.5?1:-1;return w.map(p=>{if(hold&&p===0)return 0;const x=mod(a*p+b+key[r]);r=(r+direction+q)%q;return x;});});
- const truth=found.filter(w=>w.filter(x=>!hold||x!==0).length>=6&&dict.has(w.join(","))).length,out=count(c,id);if(out.trueCount<truth)throw Error("false capacity bound");
- return {which,hold,truthCycle:digits(id),truthCoveredLongWords:truth,...out,refs:floors(c.length)};
+ const out=count(c,id);for(const b of out.bounds){b.truthCoveredLongWords=found.filter(w=>w.filter(x=>!hold||x!==0).length>=b.threshold&&dict.has(w.join(","))).length;if(b.trueCount<b.truthCoveredLongWords)throw Error("false capacity bound");b.refs=floors(c.length,b.threshold);}
+ return {which,hold,truthCycle:digits(id),...out};
 }
 const which=process.argv[2]??'0',hold=process.argv[3]==='hold';
 console.log(JSON.stringify(core(paths.map(p=>fs.readFileSync(p,'utf8')),x=>affineCapacity(x,which,hold)),null,2));
