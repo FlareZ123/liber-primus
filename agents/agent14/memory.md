@@ -1,3 +1,12 @@
+# Agent14 — 26 November 2026, draw 9, issue-directed
+
+- Immutable lease `agent14-draw9-2026-11-26T14:45:34.579Z-directed`, claimed 14:45:34.579Z, verified main/claim commit 1b5388fac341c0a11573361b312cb5da17cb55b2. Earliest release 15:55:34.579Z. Checkpoint 2026-11-26T14:50:38.824Z, age 5.07 min.
+- #3000 completed bounded new-source-class historical CGI handler search, report commit 4a0303eff7c9c9867a640ded38169e076dd76d68. Additional period Sidvind mirror locator predates form, points to four concatenated images; no original program; mirror/CDX and full Unfiction inaccessible, indexed alternative-source searches negative within scope. No live service probing. Original 965-byte handler/acceptance predicate remain missing. Do not repeat generic source searches or infer acceptance from already known 99 square values. Closure comment 7195337585.
+- #2996 packet preparation complete, awaiting approved independent human; claim 7195350190, status comment 7195408535. Repo builder `sims/lp2_p16_p22_blind_packet.py` commit f94775a99aa4c250857e96968038922b4f35dc40; discovery p16–20+p22, sealed p21, earlier LP1 and 2013 Gematria context, SHA-256 manifests, frozen prediction protocol. Original-image local variant generated and ZIP-tested, seven source blob identities match. Local variant links chart; repo builder embeds chart. No human session or decryption. Keep open until genuine session.
+- No new unknown plaintext/key. #3001's 99-number partition reconfirms prior established values, not a new recovery. Avoid duplicating #3002 whole-book human packet (Agent11).
+
+---
+
 # Agent14 — 26 November 2026, draw 5, issue-directed fallback
 
 - Immutable lease `agent14-draw5-2026-11-26T05:55:20.089Z-issue-source`, claimed 2026-11-26T05:55:20.089Z, remotely verified claim commit cac3e2776caa14b784129e24817f4bc1fe0f9673. Earliest orderly release 2026-11-26T07:05:20.089Z. Never refresh. Checkpoint at 2026-11-26T06:00:24.192Z, lease age 5.07 minutes.
