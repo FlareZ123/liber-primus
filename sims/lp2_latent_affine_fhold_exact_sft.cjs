@@ -69,6 +69,45 @@ function slopeAnalysis(tape,words,gp,vocab,donors,sig,key,mod,inverse,encode,ass
  // A finite dual certificate must never exceed exact minimum on random short interval DAGs.
  let dualControls=0;for(let t=0;t<160;t++){const N=6+rand(18),K=1+rand(N),ends=new Uint32Array(N+1);for(let i=1;i<=N;i++){ends[i]=1;for(let l=2;l<=Math.min(6,i);l++)if(rand(2))ends[i]|=1<<(l-1)}if(K*6<N)continue;const d=dual(ends,K,6),e=exact({starts:new Uint32Array(N),ends},K,6);assert(d.lb<=e,"invalid lower bound");dualControls++}
  const idx=make(vocab),S=scan(tape,idx,CAP),K=words.length,budget=Math.floor(K*.05),all=[];
+
+ if(options.fourWitness){
+  const palette=[2,4,6,7],N=tape.length,W=N+1,ends=new Uint32Array(W),INF=30000;
+  for(let i=1;i<=N;i++)for(const s of palette)ends[i]|=S.E[s][i];
+  let prev=new Int16Array(W),cur=new Int16Array(W);prev.fill(INF);prev[0]=0;
+  const choices=new Uint8Array((K+1)*W),dq=new Int32Array(W);
+  for(let k=1;k<=K;k++){cur.fill(INF);let head=0,tail=0;
+   for(let i=k;i<=Math.min(N,k*CAP);i++){const j=i-1;while(tail>head&&prev[dq[tail-1]]>=prev[j])tail--;dq[tail++]=j;while(dq[head]<i-CAP)head++;
+    let v=Math.min(INF,prev[dq[head]]+1),z=v<INF?32+i-dq[head]:0;
+    for(let b=ends[i];b;){const lo=b&-b,l=32-Math.clz32(lo),q=prev[i-l];if(q<INF&&q<=v){v=q;z=l}b^=lo;if(v===0)break}
+    cur[i]=v;choices[k*W+i]=z;
+   }[prev,cur]=[cur,prev]
+  }
+  const cost=prev[N],seg=[];let i=N;
+  for(let k=K;k>0;k--){const z=choices[k*W+i],l=z&31;assert(l>0,"trace");seg.push({start:i-l,l,oov:z>=32});i-=l}assert(i===0,"trace start");seg.reverse();
+  const hist=Array(25).fill(0),printed=Array(25).fill(0),slopeCounts=Object.fromEntries(palette.map(a=>[a,0])),choiceHist={};
+  for(const p of words)printed[p.length]++;
+  let sumLog10=0,ambiguous=0,oov=0,replayed=0,independentKeysLog10=0;
+  for(const z of seg){hist[z.l]++;const C=tape.slice(z.start,z.start+z.l),opts=new Map();let keyCount=0;
+   for(const a of palette)for(let b=0;b<29;b++){
+    const p=C.map(c=>mod((c-b)*inverse[a]));
+    const o=key(p);if(vocab.has(o)){if(!opts.has(o))opts.set(o,{p,a,b,hold:false});keyCount++}
+    // In the held-F branch, ciphertext zero may represent plaintext F, or a non-F under the affine map.
+    const Q=p.slice(),zero=[];let impossible=false;
+    for(let j=0;j<C.length;j++){if(C[j]===0){if(p[j]!==0)zero.push(j);Q[j]=0}else if(p[j]===0){impossible=true;break}}
+    if(impossible)continue;
+    for(let mask=0;mask<2**zero.length;mask++){for(let j=0;j<zero.length;j++)Q[zero[j]]=mask&(1<<j)?p[zero[j]]:0;
+      const h=key(Q);if(vocab.has(h)){assert(encode(Q,a,b,true).join()===C.join(),"held replay");if(!opts.has(h))opts.set(h,{p:Q.slice(),a,b,hold:true});keyCount++}
+    }
+   }
+   assert(z.oov===(opts.size===0),"OOV trace mismatch");
+   let chosen;if(opts.size){sumLog10+=Math.log10(opts.size);independentKeysLog10+=Math.log10(keyCount);if(opts.size>1)ambiguous++;choiceHist[opts.size]=(choiceHist[opts.size]||0)+1;chosen=opts.values().next().value}else{oov++;chosen={p:C.map(c=>mod(c*inverse[palette[0]])),a:palette[0],b:0,hold:false}}
+   assert(encode(chosen.p,chosen.a,chosen.b,chosen.hold).join()===C.join(),"full replay");replayed+=C.length;slopeCounts[chosen.a]++;
+   Object.assign(z,chosen,{lexicalOptions:opts.size});
+  }
+  assert(oov===cost&&replayed===N,"witness totals");
+  return {palette,cost,groups:K,runes:N,replayed,hist,printed,changedLengthSlots:printed.reduce((s,x,l)=>s+Math.max(0,x-hist[l]),0),ambiguous,log10DistinctPlaintexts:sumLog10,log10LexicalKeyAndModeTuples:independentKeysLog10,choiceHist,slopeCounts,first40:seg.slice(0,40).map(z=>z.p.map(x=>gp.translit[x]).join("")).join(" "),elapsedMs:Date.now()-started};
+ }
+
  if(options.smallSlope){
  const ends=new Uint32Array(tape.length+1),pairs=[],triples=[];
  function setEnds(slopes){for(let i=0;i<ends.length;i++){let x=0;for(const a of slopes)x|=S.E[a][i];ends[i]=x}}
@@ -160,5 +199,5 @@ function experiment(raw,options={}){
  const chapters=[];for(let j=0;j<9;j++){const start=offsets[j],stop=offsets[j+1];assert(wo.indexOf(start)>=0&&wo.indexOf(stop)>=0,"chapter seam");chapters.push({page:[0,3,8,15,23,27,33,40,54][j],...summary(scan(tape.slice(start,stop),index,24),lens.slice(wo.indexOf(start),wo.indexOf(stop)),24)})}
  return{vocab:vocab.size,toyIntervals,controls,original,chapters,witness:proof,elapsedMs:Date.now()-started};
 }
-if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{slopeOnly:process.argv.includes("--slope")||process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),smallSlope:process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),fourSlope:process.argv.includes("--four-slope")}),null,2));
+if(require.main===module)console.log(JSON.stringify(experiment(paths.map(p=>fs.readFileSync(path.join(__dirname,"..",p),"utf8")),{fourWitness:process.argv.includes("--four-witness"),slopeOnly:process.argv.includes("--four-witness")||process.argv.includes("--slope")||process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),smallSlope:process.argv.includes("--small-slope")||process.argv.includes("--four-slope"),fourSlope:process.argv.includes("--four-slope")}),null,2));
 module.exports={experiment};
