@@ -91,7 +91,9 @@ def main() -> int:
     selected_indices: list[int] = []
     excluded_indices: list[int] = []
     selected_positions: list[list[int]] = []
+    selected_absolute_positions: list[int] = []
     per_word_counts: list[int] = []
+    page_offset = 1  # p55 index 0 is the final carry rune from p54
     for word in words:
         n = len(word)
         positions_for_word: list[int] = []
@@ -102,10 +104,14 @@ def main() -> int:
                 selected.append(rune)
                 selected_indices.append(gp_index[rune])
                 positions_for_word.append(position)
+                selected_absolute_positions.append(page_offset + position - 1)
             else:
                 excluded_indices.append(gp_index[rune])
         selected_positions.append(positions_for_word)
         per_word_counts.append(len(positions_for_word))
+        page_offset += n
+    if page_offset != 76 or len(selected_absolute_positions) != 29:
+        raise SystemExit("absolute p55 key positions do not reproduce the 76/29 partition")
 
     # Zero-based original-word indexing: interior array indices 1..n-2,
     # while retaining original word length n as the totient modulus.
@@ -221,6 +227,17 @@ def main() -> int:
         exterior_indices, zero_based_selected_indices, 1
     )
 
+    selected_absolute_set = set(selected_absolute_positions)
+    complement_positions = [
+        i for i in range(len(page55["indices"])) if i not in selected_absolute_set
+    ]
+    complement_indices = [page55["indices"][i] for i in complement_positions]
+    if len(complement_indices) != 47:
+        raise SystemExit("selected 29-runic key must leave a 47-rune complement")
+    complement_minus, complement_minus_cursor = decode_with_key(
+        complement_indices, selected_indices, -1
+    )
+
     divinity_key = [23, 10, 1, 10, 9, 10, 16, 26]
 
     def divinity_f_invariant(cipher: list[int], literal_f_bypass: bool) -> dict:
@@ -306,6 +323,13 @@ def main() -> int:
         "zero_based_original_word_gp29_indices": zero_based_selected_indices,
         "zero_based_original_word_candidate_password": zero_based_password,
         "interior_length_modulus_selected_count": len(interior_modulus_indices),
+        "selected_absolute_p55_positions_zero_based": selected_absolute_positions,
+        "complement_p55_positions_zero_based": complement_positions,
+        "coprime_key_to_47_complement_vigenere_subtract_f_transparent": {
+            "plaintext": "".join(translit[value] for value in complement_minus),
+            "key_symbols_consumed": complement_minus_cursor,
+            "ioc": index_of_coincidence(complement_minus),
+        },
         "divinity_f_invariant_tests": divinity_f_tests,
         "zero_based_direct_p55_vigenere_subtract_f_transparent": {
             "plaintext": "".join(translit[value] for value in zero_based_direct),
