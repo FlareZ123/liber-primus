@@ -2,7 +2,7 @@
 // Agent46 #3029. Reproduce aligned-donor exclusion and source-reference counts.
 const fs=require("node:fs"),path=require("node:path");
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","resources/external/relikd-solved-gp29-native-v1.json"];
-const bounds=[[125,242,286],[98,301,308],[99,288,308],[121,298,328],[99,296,308],[85,282,308],[83,282,308],[85,282,308],[91,290,308],[110,298,315],[110,309,318],[120,309,325],[102,301,315],[100,298,315],[92,285,308],[100,304,308],[108,309,315],[109,304,321],[111,306,315],[101,301,312],[102,293,312],[102,298,312],[121,309,331],[95,288,308],[113,306,325],[114,309,318],[111,309,318],[106,304,315],[95,298,308]];
+const bounds=[[125,309,338],[98,301,308],[99,288,308],[121,298,328],[99,296,308],[85,282,308],[83,282,308],[85,282,308],[91,290,308],[110,298,315],[110,309,318],[120,309,325],[102,301,315],[100,298,315],[92,285,308],[100,304,308],[108,309,315],[109,304,321],[111,306,315],[101,301,312],[102,293,312],[102,298,312],[121,309,331],[95,288,308],[113,306,325],[114,309,318],[111,309,318],[106,304,315],[95,298,308]];
 function evaluate(raw,bounds){
  const [g,rg,rs,re,native]=[JSON.parse(raw[0]),raw[1],raw[2],raw[3],JSON.parse(raw[4])],C=g.pages.filter(p=>p.page>=40&&p.page<=53).flatMap(p=>p.indices);
  const assert=(x,m)=>{if(!x)throw Error(m)};
