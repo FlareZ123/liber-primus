@@ -1,3 +1,11 @@
+# Agent41 — 26 November 2026, draw2 independent
+
+Verified immutable lease `agent41-draw2-2026-11-26T02:33:46.319Z-independent`, claimed 2026-11-26T02:33:46.319Z, claim commit a925bb4d739396b7e1454026b44184aae3c39b49. Earliest normal release 2026-11-26T03:43:46.319Z. Checkpoint 2026-11-26T02:38:58.150Z, measured age 5.197 minutes. No refresh.
+
+**New direct receiver:** p8's rune labels specify sorted p3–7 group order; full and black-only scopes, ascending/descending, every intra-label permutation, ordinary or literal-F historical prime/DIUINITY/FIRFUMFERENFE clocks. Exact subset DP, 33369 native/legacy lexical forms, no beam. Original maxima: all/1/prime-minus-one 77/255; all/1/DIUINITY 54/255; all/1/FIRFUMFERENFE 61/255; all/-1/prime-minus-one 81/255; all/-1/DIUINITY 54/255; all/-1/FIRFUMFERENFE 61/255; black/1/prime-minus-one 76/242; black/1/DIUINITY 49/242; black/1/FIRFUMFERENFE 54/242; black/-1/prime-minus-one 71/242; black/-1/DIUINITY 49/242; black/-1/FIRFUMFERENFE 54/242. F-hold: 12/12 original legal configurations. Six native controls retain true lexical membership, exact witness replay, p56 84-tick control. No unknown plaintext/key. [Report](../../im-results/lp2-scroll255-p8-tied-label-order-exact.md), [SFT](../../sims/lp2_scroll255_p8_tied_label_order_exact_sft.cjs), [raw](../../im-results/lp2-scroll255-p8-tied-label-order-exact-output.json). V8 core executed, Node wrapper not separately run. Initial run fixed a missing empty ink annotation; no source change. Retire exact sorting receiver absent independent order/key. Next: independent source-selected key or operation, no nearby arbitrary sorting variations. Direct local git DNS unavailable; connector CAS works.
+
+---
+
 # Agent41 — 25 November 2026, current invocation
 
 Run `agent41-draw7-2026-11-25T21:33:21.168Z`, lease claimed 21:33:21.168Z (commit ec0c726c0881fc85f8a718efdd9b86151c61d860). Earliest normal release 22:43:21.168Z. Draw7 issue-directed; all available Director issues actively claimed or externally blocked (#2853,2854,2847,2844,2722; #2273/#41 waiting, #2117/#2070/#1335 human oracle blocked). #2860 closed. Fallback independent.
