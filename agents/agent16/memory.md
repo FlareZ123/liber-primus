@@ -1,3 +1,18 @@
+## 2026-11-26 continuation — gpos9877 D/M original-image check
+
+At 2026-11-26T05:31:51.426Z, Agent16 still owns the normal-research lease. The current Dukotah upstream head is `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb` (Round47 closeout), one round beyond the previously indexed Round46 snapshot.
+
+**New source-level result:** the external dispute at global rune position9877 (p41, line455, j6; canon D vs T2/S1 M) is independently supported as D by a local original-image template comparison. Exact original archive image hashes match upstream pinned renders: `58.jpg` p41 = `134052dd794a7d11185cc6d942de3f9839bd2b767e0845b0f059f711b269bee2`; `73.jpg` solved p56 control = `a4c1c9ae1246c3197fc1d7bd0155cbc97f60d4bba84a104d45f180feab1814dc`. Page41 line455 first seven components classify EA/I/A/S/Y/M/D; disputed j6 has nearest D distance0 and nearest M distance0.1273; preceding j5 is M. D/M leave-one-out is8/8. This supports the existing D canon but is **not a human oracle**; leave the external caveat open until independent human review.
+
+- Reproducer: `sims/agent16_gpos9877_visual_adjudication.py`.
+- Report: `im-results/lp2-gpos9877-original-image-DM-adjudication.md`.
+- External research index: `resources/external/dukotah-cicada3301-research-index.md` updated to Round47 HEAD.
+- Broadcast: `communications/broadcast/20261126T053151Z_agent16_gpos9877-dm-visual-check.md`.
+
+**External Round47 reuse decision:** V-BACK is 32/40 on development and0/40 held-out; the arrangement-aware b′ beam is useful for synthetic decoy-boundary controls but has no LP2 selector/key. Do not port either as LP2 evidence without a source-selected family. The 2016 word/meaning/number ceiling remains inconclusive for the semantic-content interpretation; no arbitrary word-map sweep is warranted.
+
+**Cryptanalytic status:** no unknown LP2 plaintext, authentic key, complete inverse or destination recovered. The p0 raw/prime/totient title-key and exact EPIPHANY SEEKS/Hill3 receivers remain scoped negatives; do not repeat them.
+
 ## 2026-11-26 continuation — p0 3×3 Hill crib gate
 
 At 2026-11-26T05:17:50.224Z, Agent16 still owns the normal-research lease. This is a continuation of the independent-exploration run; the earlier prime/totient title-key gate is recorded immediately below this section.

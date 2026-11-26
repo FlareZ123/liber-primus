@@ -1,10 +1,10 @@
 # Independent Liber Primus external-research index
 
-**Snapshot inspected:** 2026-11-25T07:31:02Z. Dukotah HEAD: `593247d84689531432ec642b0f57d1e487bb28c9` (Round46 closeout). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
+**Snapshot inspected:** 2026-11-26T05:31:51.425Z. Dukotah HEAD: `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb` (Round47 closeout). Independent njloof HEAD: `0fa6134c2f9c92317e4ea3a6f1fa82a5c3952d9b` (2026-11-19T15:35:09Z).
 **Source:** https://github.com/Dukotah/cicada3301  
 **License:** MIT covers the repository's original code and documentation; the license explicitly does not purport to license the underlying Cicada artifacts reproduced for research. No code was copied here.
 
-This is a large, actively maintained research programme with a versioned falsification ledger, a planted-key decoder/benchmark, a measured-coverage ceiling, and a human-oracle rule. Its current Round45 kickoff and measured-ceiling snapshot report no LP2 solution. Treat its conclusions as independent research evidence, not as an authoritative replacement for this repository's own corpus or synthesis.
+This is a large, actively maintained research programme with a versioned falsification ledger, planted-key decoders/benchmarks, a measured-coverage ceiling, and a human-oracle rule. Its current Round47 closeout and measured-ceiling snapshot report no LP2 solution. Treat its conclusions as independent research evidence, not as an authoritative replacement for this repository's own corpus or synthesis.
 
 ## Round 44 findings relevant here
 
@@ -38,7 +38,14 @@ Pinned upstream HEAD: [`593247d84689531432ec642b0f57d1e487bb28c9`](https://githu
 - **Re-measured rows:** R41-C1-R14 is negative at full power under the corrected loader; the old result was weakened by legacy parsing, not blind. C-01 SKELETON is at chance and conditional on in-order spaces. R37-U2b/U3 and R44-7GRAM hold; R38-C2-G3 was not rerun and remains conditional on an explicit fragment convention. Under the b′ printed-length permutation, word-indexed rows fall to at most 0.033.
 - **P1 two-rune deficit:** it replicates across held-out parts (about 15.3–15.6%), but the T1 control is uninformative because Paradise Lost itself is 16.06%; treat the extremity as register-dependent, not as a key clue. The line-break lead remains descriptive only.
 - **Alignment/transcription:** the A1 repair resolves 86/86 Campaign-V disagreements as a map fault; O/A/AE 450 is a KMeans-basin artifact. A second blind reader found 0/279 canon errors (κ=0.969); the stated two-reader bound is ≤2.1% pooled, with remaining disputed positions outside that blind frame.
-- **Round47 plan:** close the transcription caveat; rerun R38-C2-G3 only with a fixed fragment convention and planted controls; obtain Greek/Hebrew/Norse/archaic-English controls before preregistering further two-rune claims.
+## Round47 closeout — backward rejection and decoy arrangements (26 November 2026)
+
+Pinned upstream HEAD: [`fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb`](https://github.com/Dukotah/cicada3301/commit/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb). The [Round47 synthesis](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/analysis/round47/SYNTHESIS.md) and [pickup](https://github.com/Dukotah/cicada3301/blob/fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb/liber-primus/PICKUP-HERE.md) add useful decoder and transcription findings, but no LP2 plaintext or authentic key.
+
+- **V-BACK rejection decoder:** a backstep-aware beam recovers 32/40 symbols on its development seed but 0/40 on held-out material. This identifies a decoder blind spot for that synthetic family; there is no independent evidence that LP2 uses V-BACK.
+- **Arrangement-aware b′ decoder:** with a key in hand, the segmentation beam reaches 0.962/0.976 on its controls; on an unknown key from a 65,536-key family, ranking plus arrangement beam recovers 78–88/100. This is useful for future word-indexed/polygraphic work under H-decoy, but the controls are synthetic and do not select an LP2 cipher family or key.
+- **gpos9877 D/M caveat:** upstream maps the candidate to page41 line455 j6, with canon D but T2 and S1 reads M; its template and adjacent-doublet evidence favour D. A local original-image check independently supports D: archive images 58.jpg and 73.jpg match the upstream pinned SHA-256 values; the first seven page41 components classify exactly as EA/I/A/S/Y/M/D; target j6 has nearest D-template distance 0 and nearest M distance 0.1273; D/M leave-one-out is 8/8. See [local original-image adjudication](../../im-results/lp2-gpos9877-original-image-DM-adjudication.md) and [reproducer](../../sims/agent16_gpos9877_visual_adjudication.py). This is a model-side template check, not a human oracle; retain the caveat until independent human review. The local canon already has D and is unchanged.
+- **Round47 decision:** do not port V-BACK or the arrangement beam as LP2 evidence without a source-selected family and original-cipher prediction. Keep the useful decoder implementation as a future tool, and avoid repeating the exact gpos9877 image comparison absent new source material.
 
 ## Current word/meaning/number clue ceiling — 25 November 2026
 
