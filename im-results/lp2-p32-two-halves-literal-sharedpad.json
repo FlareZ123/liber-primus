@@ -1,0 +1,275 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/beowulf_oe_gp_profile_corrected.json",
+      "sha": "445eb016711fc9f36d17bd10de544c3ff378fcbe"
+    },
+    {
+      "path": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "sha": "12a6bc018047a1276e77f2b7f633d5905732fff9"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-I.txt",
+      "sha": "64876892683fab1467481fe87d85743a8ea17982"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-II.txt",
+      "sha": "cb4353b080d7584441f85502aeccb60796e6fe0f"
+    },
+    {
+      "path": "resources/external/2013-liber-al-bookcode-III.txt",
+      "sha": "36e716252a271d31f5c4ba25b3cb78199ccc1114"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "sourceSizes": [
+    {
+      "name": "0_warning",
+      "runes": 184
+    },
+    {
+      "name": "0_welcome",
+      "runes": 515
+    },
+    {
+      "name": "0_wisdom",
+      "runes": 157
+    },
+    {
+      "name": "0_koan_1",
+      "runes": 780
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "runes": 755
+    },
+    {
+      "name": "jpg107-167",
+      "runes": 319
+    },
+    {
+      "name": "jpg229",
+      "runes": 89
+    },
+    {
+      "name": "p56_an_end",
+      "runes": 85
+    },
+    {
+      "name": "p57_parable",
+      "runes": 95
+    },
+    {
+      "name": "Beowulf",
+      "runes": 48012
+    },
+    {
+      "name": "Self-Reliance",
+      "runes": 41583
+    },
+    {
+      "name": "Liber AL I",
+      "runes": 7003
+    },
+    {
+      "name": "Liber AL II",
+      "runes": 7103
+    },
+    {
+      "name": "Liber AL III",
+      "runes": 7524
+    },
+    {
+      "name": "Gibran",
+      "runes": 63114
+    }
+  ],
+  "sourceWindows": 176508,
+  "orderedPairsPerOrientation": 31155074064,
+  "fit": 32,
+  "holdout": 23,
+  "center": [
+    1,
+    22,
+    16,
+    7,
+    24,
+    7,
+    24,
+    27,
+    17,
+    9,
+    11
+  ],
+  "controls": [
+    {
+      "a": {
+        "t": 9,
+        "at": 35317
+      },
+      "b": {
+        "t": 11,
+        "at": 413
+      },
+      "s": -1,
+      "k": 14,
+      "prefix": 2,
+      "full": 2,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 14,
+        "at": 61264
+      },
+      "b": {
+        "t": 9,
+        "at": 5542
+      },
+      "s": 1,
+      "k": 8,
+      "prefix": 1,
+      "full": 1,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 14,
+        "at": 2426
+      },
+      "b": {
+        "t": 14,
+        "at": 45981
+      },
+      "s": -1,
+      "k": 17,
+      "prefix": 2,
+      "full": 2,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 12,
+        "at": 1187
+      },
+      "b": {
+        "t": 14,
+        "at": 17191
+      },
+      "s": 1,
+      "k": 19,
+      "prefix": 1,
+      "full": 1,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 14,
+        "at": 12618
+      },
+      "b": {
+        "t": 10,
+        "at": 10126
+      },
+      "s": -1,
+      "k": 2,
+      "prefix": 2,
+      "full": 2,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 14,
+        "at": 13232
+      },
+      "b": {
+        "t": 14,
+        "at": 42503
+      },
+      "s": 1,
+      "k": 14,
+      "prefix": 1,
+      "full": 1,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 10,
+        "at": 27231
+      },
+      "b": {
+        "t": 14,
+        "at": 59533
+      },
+      "s": -1,
+      "k": 27,
+      "prefix": 2,
+      "full": 2,
+      "recovered": true,
+      "withheldPairs": 23
+    },
+    {
+      "a": {
+        "t": 14,
+        "at": 51176
+      },
+      "b": {
+        "t": 14,
+        "at": 35623
+      },
+      "s": 1,
+      "k": 21,
+      "prefix": 1,
+      "full": 1,
+      "recovered": true,
+      "withheldPairs": 23
+    }
+  ],
+  "original": [
+    {
+      "orientation": "row-forward",
+      "sign": 1,
+      "prefix": 0,
+      "full": 0,
+      "found": []
+    },
+    {
+      "orientation": "row-forward",
+      "sign": -1,
+      "prefix": 0,
+      "full": 0,
+      "found": []
+    },
+    {
+      "orientation": "row-mirror",
+      "sign": 1,
+      "prefix": 0,
+      "full": 0,
+      "found": []
+    },
+    {
+      "orientation": "row-mirror",
+      "sign": -1,
+      "prefix": 0,
+      "full": 0,
+      "found": []
+    }
+  ]
+}
