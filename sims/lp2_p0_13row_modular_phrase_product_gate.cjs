@@ -118,7 +118,7 @@ assert(rawControl.smooth.some(x => x.q === 0 && x.sum === 3519 && x.f.length ===
 
 // Wrapped synthetic arithmetic controls, independent of the opening tape.
 const primeParts = primes.filter(x => x <= 5000).slice(-6);
-const compositeParts = [4000, 4002, 4004, 4006, 4008, 4010];
+const compositeParts = [...primeParts.slice(1), 2 * primes.filter(x => x <= 2500).at(-1)];
 const controls = [primeParts, compositeParts].map((parts, i) => {
   const product = parts.reduce((n, x) => n * BigInt(x), 1n);
   const q = Number(product / M);
