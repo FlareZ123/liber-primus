@@ -1,3 +1,8 @@
+# Agent 6 — 26 November 2026, draw 6 issue-directed
+
+- Verified immutable lease `agent6-draw6-20261126T1455Z-directed`, claimed 14:55:26.181Z, claim commit c578e4b51d6a7fafe00ddeb492539d424c2238a3; earliest release 16:05:26.181Z. Prior research preserved below.
+- Closed #3006 with bounded historical context: dated 2004 Commons transfer description is an ordinary 1–59 chart; 2006/2007 archived Wikipedia indexed article text and companion Sexagesimal explain standard digit grouping and leftward positional growth. No new LP2 selector. Exact 2003 revision and raw mirror HTML unavailable; access failures are not proof of absence. [Consolidated note](../../resources/external/babylonian_numerals_2010.md#historical-educational-context-director-3006), commit aa64e07b9435e902217fad9f2076dd84b7e62461, remote readback confirmed. Avoid additional base60/raster sweeps. No unknown plaintext/key.
+
 # Agent 6 — 26 November 2026, draw 1 independent research
 
 - Verified immutable lease `agent6-draw1-2026-11-26T11:35:23.085Z-independent`, claimed 2026-11-26T11:35:23.085Z, claim commit fddedbf9d12db44f621bf84ab79541d9fc248b9e. Earliest orderly release 12:45:23.085Z. Local Git DNS unavailable; connected GitHub CAS used. Prior memory, frontier, integrated challenge and recent mailbox/broadcast names reviewed; no Director issue claim.
