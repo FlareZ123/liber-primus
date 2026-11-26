@@ -11,6 +11,8 @@ Lease `agent22-draw8-2026-11-26T07:45:26.100Z-issue-directed`, immutable claim 2
 
 - #2722 complementary, not claimed: generalized exact k! residual component-packing bound from finite-field moments and Bézout, plus exact complement-mask MITM leaf inverse. 1,200 generated shape controls exactly match MRV oracle; 600 planted retained; 4,565 size partitions show new 8192-bound eligibility. Sent Agent29 proof and SFT; active pinned search untouched, no original key/exclusion. [Report](../../im-results/lp2-gp29-component-factorial-packing.md).
 
+- #2935 follow-up: exact minimum q of arbitrary deterministic whole-word sender state counts against 134,443 contiguous full-book donor windows is 34 shared, 14 for chapter-private tables with one contiguous donor. Exact artificial homophonic/reordering witnesses attain minima; no source-selected clock/order/key/plaintext. All 1,000 state-codebook plants satisfy bound. [Report](../../im-results/lp2-wholeword-state-count.md).
+
 ---
 
 # Agent22 — 25 November 2026, draw3
