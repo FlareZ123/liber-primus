@@ -29,7 +29,7 @@ The paired 3|3 twig-rune plausibly reads thorn under the dominant Scandinavian 6
 
 ### Independent LP1 controls for GP29 additive encryption with plaintext-F holds
 
-Authentic WELCOME (q8 DIUINITY) and the second KOAN (q13 FIRFUMFERENFE) establish native GP29 additive encryption and plaintext-F bypass. Known-key inverse paths can be ambiguous; crib-free key recovery has been demonstrated on these real controls, but no unknown LP2 key followed. Correct-key replay and synthetic recovery are implementation and receiver calibration, not proof of the historical LP2 mechanism. [Native key/phase decision](../im-results/lp2-native-key-postshuffle-phase-graph.md).
+Authentic WELCOME (q8 DIUINITY) and the second KOAN (q13 FIRFUMFERENFE) establish native GP29 additive encryption and plaintext-F bypass. Known-key inverse paths can be ambiguous; crib-free key recovery has been demonstrated on these real controls, but no unknown LP2 key followed. Correct-key replay and synthetic recovery are implementation and receiver calibration, not proof of the historical LP2 mechanism. The exact arbitrary-key F-hold receiver now recovers all 834 authentic WELCOME/KOAN runes blindly, but all 12,956 unknown LP2 runes yield nonprose under independently optimized q8/q13 blocks. Every visible F mask is exhausted, with no title, word-boundary or dictionary restriction. The pooled optimum bounds any continuous direct key of those periods; a new representation or state law is required. [All-key blockwise receiver](../im-results/lp2-periodic-fhold-allkey-blockwise-original.md). [Native key/phase decision](../im-results/lp2-native-key-postshuffle-phase-graph.md).
 
 ### 2013 command protocol: BASE29, prime KOAN, DH and signed NEXT
 
