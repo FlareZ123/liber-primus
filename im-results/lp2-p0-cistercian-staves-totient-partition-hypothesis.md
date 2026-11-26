@@ -50,11 +50,28 @@ That gives a real alternative, but it is a cross-family import: LP2's 29-rune al
 
 Thus the p0 match is possible, but not uniquely selected by the 3|3 geometry. The 180° pair and the first visible TH do not establish the required alphabet/order independently.
 
+### Local Futhorc alignment: E at the third position of both red words
+
+The source-fixed p0 red heading is `SHEOGMIAF` (8 GP29 runes) followed by `SYENGC` (5 GP29 runes). In the canonical corpus, the third rune of each word (zero-based offsets 2 and 10 in the 13-rune heading) is **E**. Under the directly relevant Anglo-Saxon Isruna/Hahal-runa order, each 3|3 stave also reads **E**. This gives a precise local correspondence: two staves, two heading words, and E at the third position of each word. It is a stronger local fit than the cross-family 3|3 → TH match.
+
+This may be a title/word-position annotation or a selector for an E-based operation, but the image does not say whether E is plaintext, a key symbol, a transparent hold, or merely a label. The same staves repeat on p1–p2 where there is no red heading, so their repetition is not three independent confirmations. The correlation is a source observation, not recovered plaintext.
+
+### Bounded E-hold receiver tests
+
+A natural operational hypothesis is that the Futhorc Hahal-runa value E selects an E-transparent hold, analogous to the authentic plaintext-F hold in solved Cicada material. I tested the simplest clue-constrained consumers against the original corpus:
+
+- Use the exact 13-rune red heading as a repeating GP29 additive key on p0's 249-rune black body and the 716-rune p0–p2 chapter remainder. When ciphertext E is emitted as plaintext E without consuming a key cell, both arithmetic directions are nonprose.
+- Remove the two E cells from the heading to form an 11-rune key; the additive directions and the Beaufort-style `K−C` receiver are also nonprose.
+- Transfer the solved p56 prime-minus-one clock, starting at prime 2, to the p0–p2 remainder with E-hold. The 716-rune output consumes 694 shifts, has 25 adjacent equalities and IoC 0.035469; its opening is nonprose. The same implementation with the authentic F-hold on p56 recovers the known opening `AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE...` using 80 consuming shifts, providing a positive control.
+
+Exact inputs, rules, output summaries and the p56 control are reproducible in [the E-hold probe](../sims/lp2_p0_hahalruna_ehold_probe.cjs). These results reject the simple title-key and p56-prime-clock E-hold receivers only; they do not reject every possible E-based marker or an independently sourced key.
+
+
 ## Decisive next tests
 
-1. Reopen the TH readout only if an independent original clue selects the reversed Younger Futhark order or otherwise fixes the relevant alphabet and orientation.
-2. Seek a second clean, variable branch-rune symbol whose value makes a prediction on an independently anchored ciphertext position. The repeated p0–p2 ornament is not three independent symbols.
-3. Do not use the visible first black TH glyph to choose the row order and then count that same match as independent confirmation.
+1. Reopen an E-hold receiver only if an independent source supplies a key or state rule; do not repeat the failed red-title-key or p56-prime-clock transfers.
+2. Seek a second clean, variable branch-rune symbol or another original clue that independently selects the role of the two E markers.
+3. Do not use the visible first black TH glyph to choose the Younger Futhark row order and then count that same match as independent confirmation.
 4. Do not repeat the Cistercian/totient arithmetic or broad branch-count scans. No receiver, key schedule, or page-level instruction follows from the 3|3 observation alone.
 
-**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa, but the most directly relevant Anglo-Saxon Futhorc convention reads it as E. The TH result requires a separate reversed Younger Futhark convention and is not selected by the current source evidence. Retain the motif as an unresolved clue; no key, reversible receiver, or plaintext has been recovered.
+**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers fail. The TH result requires a separate reversed Younger Futhark convention and is not selected by the current source evidence. Retain the motif as an unresolved local clue; no key, reversible receiver, or plaintext has been recovered.

@@ -662,3 +662,12 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 - The p0 first black rune is visibly TH, but it is a ciphertext glyph, not known plaintext. Choosing reversed Younger Futhark because it matches that visible glyph is post hoc absent an independent order selector. The paired 180° ornaments may suggest reversal but do not uniquely select reversed ætt order. Preserve TH only as a conditional cross-family hypothesis; the 3|3 motif alone does not supply a cipher, key, or plaintext.
 - Updated the current Cistercian/stave report, the second-marker gate, and `results/README.md` together; sent Agent2 the source-order correction. Do not repeat broad branch-count scans or the Cistercian arithmetic.
 - Next: seek a distinct, independently selected clue that fixes the Futhorc/Younger order or identifies a second variable cipher-rune symbol; otherwise move to a genuinely independent route with a typed path to plaintext.
+
+
+## 2026-11-26 — Futhorc E/E alignment and E-hold receiver gate
+
+- The direct Anglo-Saxon Isruna/Hahal-runa order gives 3|3 = E. The p0 red heading is `SHEOGMIAF` (8) + `SYENGC` (5); its third rune in each word (offsets 2 and 10) is E. The two 3|3 staves therefore have a precise two-marker / two-word / third-position-E correspondence. This is a stronger local correlation than the cross-family Younger Futhark 3|3 = TH reading, but it still does not specify whether E is plaintext, key material, hold, or a label.
+- Tested E-transparent hold with the 13-rune red title as repeating key (both additive signs), the 11-rune title with its two E cells removed, and the Beaufort-style K−C variant, on p0 body and the continuous p0–p2 716-rune chapter remainder. All are nonprose.
+- Tested transfer of the solved p56 prime-minus-one clock (starting at prime 2) to the p0–p2 remainder with E-hold: 694 consuming shifts, 25 adjacent equalities, IoC 0.035469, nonprose. The same implementation with authentic F-hold on p56 recovers the known opening “AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE…”, so the negative is not an implementation failure.
+- Reproducer: `sims/lp2_p0_hahalruna_ehold_probe.cjs`. The tests reject these simple E-hold receivers, not every possible E-based operation or an independently sourced key.
+- Next: do not repeat these title-key or prime-clock E-hold tests. Continue only if an independent source selects a key/state rule or a second variable Hahal-runa symbol; otherwise pursue a genuinely independent route to an unknown-page inverse.
