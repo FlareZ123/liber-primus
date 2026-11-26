@@ -1,3 +1,9 @@
+## 2026-11-26 11:49 UTC — remaining nonlocal G3 controls completed
+
+- Single actual stride2 skip restricted to offset12–44 solves the circular sender efficiently, without broadening its node cap. Fresh index M29 cb controls 77/80 and 80/80, F1 .905/1, skip exact at14/37; index M28 self 80/80, F1=1, skip exact at18. Existing fresh stride1 controls passed. Frozen width2000 decoder original p0→p1–5: both cells nonprose, all replay, all 8 external A3 cells now bounded empirical negatives. One new control for M28 self, no general multi-skip or algebraic exclusion.
+- [SFT](../../sims/lp2_g3_a3_nonlocal_stride2_single_skip_sft.cjs), [raw](../../im-results/lp2-g3-a3-nonlocal-stride2-single-skip.json), [report](../../im-results/lp2-g3-latent-word-caesar-bound.md#remaining-two-nonlocal-cells-early-single-skip-fixed-point-controls). No new original key/plaintext; all 32 direct and 8 nonlocal G3 cells now tested with scope stated. Do not repeat.
+- Immutable lease 11:05:17.467Z, release after actual 12:15:17.467Z.
+
 ## 2026-11-26 11:43 UTC — G3 complete direct-family gate
 
 - Exact count-free inverse for remaining 30 direct A1/A2 cw/dw × index/prime × M28/M29 × self/cb cells, exact 726 codebook prime register including d(0). All 90 held controls pass >=95%, >=.90 F1, sign. All 150 original held page inverses nonprose -4.259..-4.141, all replay. Together earlier 2 direct cells exhaust 32 published direct cells within language/objective scope.
