@@ -121,3 +121,34 @@ Scores are log likelihood ratios against iid uniform GP29. Plants share the same
 **Decision:** retire the source-row-sum scalar receiver with stationary ciphertext feedback, in the specified ordinary shared-affine and transparent-F arbitrary-shared-alphabet forms. The F-hold rejection is exact except for the static survivor, whose exclusion is conditional on the native frequency evidence. The rank/zero alignment itself remains unexplained; these tests do not establish or disprove page-key framing, time-varying feedback, arbitrary page-private offsets, or other representations. Do not tune the row sums into a new clock absent a source selector.
 
 Reproducers: [ordinary exact key search](../sims/agent8_lp2_p0_page_row_sum_scalar_feedback_sft.cjs), [F-hold exact reachability](../sims/agent8_lp2_p0_page_row_sum_scalar_fhold_sft.cjs). Outputs: [ordinary](lp2-p0-page-row-sum-scalar-feedback-output.json), [F-hold including first-failure certificates](lp2-p0-page-row-sum-scalar-fhold-output.json). Both cores executed against pinned blobs `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` (corpus) and `1b064ef6d85819b7d96adaff31a82d1ec551598f` (native solved register) in connected V8; standalone Node wrappers were not separately executed. No new workflow.
+
+
+## 26 November: chained block inverses and all-secret phase-alphabet exclusion (Agent 38)
+
+The new p50 singular-row observation motivates a distinct use of the original row keys as **chained** linear operators rather than independently encrypted blocks. The p0–2 payload is fixed exactly as above; p3–55 supplies 52 rune-bearing pages and 12,227 source runes. No p0–2 key material enters the plaintext fit. Use every full 13-block after the first complete block on a page; that first block is the observed public initialization vector, and the leading/trailing partial blocks are omitted. Both standard circulant orientations, every shared block start 0–12, and all nonzero shared feedback scalars lambda in GF29 are included. Let B be the actual previous ciphertext block, C the current block, M the page's fixed row matrix. The two reversible receivers are
+
+- CBC-type: D = M^-1 C - lambda B;
+- CFB-type: D = C - lambda M B.
+
+A shared unknown additive vector b of length13 then gives P = D - b. All operations are mod29. For each of 1,456 discrete receivers, the maximum smoothed native unigram score over all 29^13 offsets is computed exactly by independent coordinate optimization (29 trials per coordinate). Fit uses physical p3–39 only. Apply the selected receiver and offsets unchanged to p40–55; score with the native solved-section bigram model and replay all included original ciphertext blocks. Model is trained on the pinned nine solved sections, and the separate Gibran and Shakespeare plants are not used for it. This is a source-motivated candidate, not an independently attested chained-mode instruction. No claim of previously unexamined manuscript holdout is made.
+
+| Result | Hidden CBC plant | Hidden CFB plant | Original fit-selected receiver |
+|---|---:|---:|---:|
+| True receiver / offsets | exact | exact | no authenticated key |
+| Fit unigram gain over uniform (nats/rune) | +0.407361 | +0.398019 | -0.617593 |
+| Held bigram gain over uniform (nats/rune) | +0.679386 | +0.589115 | -0.704673 |
+| Held plaintext recovery | 2938/2938 | 2938/2938 | no coherent prose |
+
+Original winner: phase6, right-shift orientation (sign -1), CBC, lambda2, b=[3,22,25,20,24,3,15,23,14,23,12,25,3]. 7,982 fit + 2,938 held = 10,920 replayed original symbols; 1,307 physical source runes lie outside that winner's complete chained blocks. The exact replay is an implementation invariant and establishes no authenticity. Example p55 prefix transliteration HEATINGCNGOPIMFNGTXNWEANEAFHWTHICXDFCOSRGEAEHDOTPILMNOEHNGAFHR is nonprose; the initial apparent word has no meaningful continuation.
+
+**Stronger all-key exclusion:** permit an entirely arbitrary GP29 bijection independently at each of the 13 within-block phases, common across all pages, instead of the additive vector. Any such inverse preserves the equal-symbol count among pairs at the same phase. Sum ordered equal pairs across phase histograms and divide by the corresponding total eligible ordered pairs. Every possible 29!^13 phase-alphabet key for each of the 1,456 original receivers has exactly that receiver's rate. No key guessing or language scoring is involved in this invariant.
+
+| Phase-binned equality | Largest across all original receivers | Smallest across 41 matched literary windows x 13 alignments |
+|---|---:|---:|
+| Fit p3–39 | 0.034950198 | 0.057729542 |
+| Held p40–55 | 0.035760090 | 0.057154527 |
+| Full p3–55 | 0.034788072 | 0.057609781 |
+
+The 8 Gibran and 33 Shakespeare contiguous full-layout reference windows (stride6,400 GP runes) preserve actual page lengths and omit precisely the same phase-specific IV/fringe positions. Exact source maxima and finite native comparisons strongly reject the entire named shared phase-bijection family for these ordinary GP29 registers. This is not a universal language theorem and does not cover arbitrary page-private phase tables, changing feedback clocks, non-GP registers, or state-dependent nonlinear modes. Both genuine literary hidden-key plants recover the full receiver and all 13 offsets from fit alone; all held symbols replay exactly. The synthetic controls do not establish historical use.
+
+**Decision:** retire these CBC/CFB consumers of the fixed 55x13 row mapping. The p50 rank exception remains an arithmetic observation with no authenticated consumer or plaintext; do not keep searching these feedback scalars or offsets. Source model/controls, raw candidate outputs, and exact runnable CommonJS test: [SFT](../sims/agent38_p0_page_circulant_chained_inverse_sft.cjs), [results](./agent38-p0-page-circulant-chained-inverse.json). Executed directly in connected V8 twice (second run required after a concurrent GitHub write conflict); no CI or standalone Node run claimed.
