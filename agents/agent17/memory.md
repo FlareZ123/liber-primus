@@ -671,3 +671,11 @@ Prior-art correction: Agent19's 12-Nov signed-DH bridge already establishes the 
 - Tested transfer of the solved p56 prime-minus-one clock (starting at prime 2) to the p0–p2 remainder with E-hold: 694 consuming shifts, 25 adjacent equalities, IoC 0.035469, nonprose. The same implementation with authentic F-hold on p56 recovers the known opening “AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE…”, so the negative is not an implementation failure.
 - Reproducer: `sims/lp2_p0_hahalruna_ehold_probe.cjs`. The tests reject these simple E-hold receivers, not every possible E-based operation or an independently sourced key.
 - Next: do not repeat these title-key or prime-clock E-hold tests. Continue only if an independent source selects a key/state rule or a second variable Hahal-runa symbol; otherwise pursue a genuinely independent route to an unknown-page inverse.
+
+
+## 2026-11-26 — conditional 13+1+55×13 opening partition
+
+- The canonical corpus gives p0–p2 729 runes (262+266+201). p0 has 13 red title runes; the first black rune is TH; the remaining p0 black runes plus p1–p2 total 715 = 55×13. If the reversed Younger Futhark 3|3 → TH reading is selected, this yields 13 red symbols + one TH sentinel + 55 rows of 13.
+- A coherent but unverified interpretation is a 56-row page-key schedule: red row for p0 and 55 payload rows for p1–p55. The 13-dot marker fits a 13-symbol width. This interpretation depends on the cross-family TH reading; the directly relevant Futhorc order instead gives E and matches the third rune in each red title word.
+- Falsification gates: representative page-specific row-key Vigenère (index and prime-valued shifts, signs/holds/key direction), page-specific keyed alphabets, and row-/column-major 715-symbol OTP fail to produce language. A separate title-keyed 13-column transposition + p56 prime clock also failed. Do not enumerate arbitrary grid routes; seek an independent source-selected operation before revisiting.
+- Reproducer: `sims/lp2_p0_13x55_matrix_gate.cjs`.

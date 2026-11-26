@@ -67,11 +67,31 @@ A natural operational hypothesis is that the Futhorc Hahal-runa value E selects 
 Exact inputs, rules, output summaries and the p56 control are reproducible in [the E-hold probe](../sims/lp2_p0_hahalruna_ehold_probe.cjs). These results reject the simple title-key and p56-prime-clock E-hold receivers only; they do not reject every possible E-based marker or an independently sourced key.
 
 
+### Conditional 13+1+55×13 partition: possible per-page key matrix
+
+The original-image-derived corpus gives p0–p2 a total of **729 runes** (262 + 266 + 201). The p0 red heading occupies 13 runes; the first black rune after it is TH; the remaining p0 black text plus all p1–p2 runes totals **715 = 55 × 13**. Thus, if the TH glyph is a sentinel, the opening material partitions exactly as:
+
+```text
+13 red runes + 1 black TH sentinel + 55 rows × 13 runes
+```
+
+Together with the 13-dot marker, this suggests a possible 56-row, 13-symbol schedule: the red row for p0 and 55 subsequent rows for p1–p55. It is a coherent human-solve-path hypothesis, but depends on selecting the reversed Younger Futhark 3|3 → TH reading; the more directly relevant Futhorc Hahal-runa convention instead gives E and matches the two third-position E runes in the red title. The row interpretation is not established.
+
+I tested the simplest page-key receivers using the 55 rows read sequentially:
+
+- Treat each 13-symbol row as a repeating Vigenère key for its page. Representative p3/p4/p55 tests under the natural p1–p55 mapping, and p56/p57 under the alternative p3–p57 mapping, fail with index shifts and prime-valued shifts, both arithmetic directions, forward/reversed keys, and no/F/E holds.
+- Treat each row as a keyword for a page-specific keyed monoalphabetic alphabet. The red row on p0 and payload rows on representative p3/p4/p55 do not produce language.
+- Treat the 715-symbol payload as a one-time pad for the first 715 runes of p3 onward. Row-major and column-major key order, both signs, forward/reversed key, and no/F/E holds all fail.
+- A separate 13-column transposition keyed by the raw or decoded red title, combined with the p56 prime-minus-one clock in either layer order, also fails to produce language on the 715-symbol payload.
+
+The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, and title-keyed transposition receivers are not. This does not exclude a more complex matrix use, but there is currently no source-selected operation that turns the 55×13 payload into an executable key schedule. Do not continue enumerating grid routes without an independent cipher instruction. Reproduction: [13×55 matrix gate](../sims/lp2_p0_13x55_matrix_gate.cjs).
+
+
 ## Decisive next tests
 
-1. Reopen an E-hold receiver only if an independent source supplies a key or state rule; do not repeat the failed red-title-key or p56-prime-clock transfers.
-2. Seek a second clean, variable branch-rune symbol or another original clue that independently selects the role of the two E markers.
-3. Do not use the visible first black TH glyph to choose the Younger Futhark row order and then count that same match as independent confirmation.
-4. Do not repeat the Cistercian/totient arithmetic or broad branch-count scans. No receiver, key schedule, or page-level instruction follows from the 3|3 observation alone.
+1. Reopen an E-hold or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, or OTP tests.
+2. Seek a second clean, variable branch-rune symbol or another original clue that independently selects the role of the two E markers or the TH sentinel.
+3. Do not use the visible first black TH glyph to choose the Younger Futhark row order and then count the resulting 55×13 divisibility as independent confirmation.
+4. Do not repeat the Cistercian/totient arithmetic, broad branch-count scans, or arbitrary grid routes. No receiver or plaintext has been recovered.
 
-**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers fail. The TH result requires a separate reversed Younger Futhark convention and is not selected by the current source evidence. Retain the motif as an unresolved local clue; no key, reversible receiver, or plaintext has been recovered.
+**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers fail. A reversed Younger Futhark readout gives TH and exposes an exact 13+1+55×13 partition, but the resulting simple page-key, keyed-alphabet, OTP, and transposition receivers fail, and the order is not independently selected. Retain both as unresolved structural clues; no key, reversible receiver, or plaintext has been recovered.
