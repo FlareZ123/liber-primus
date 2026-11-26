@@ -1,0 +1,6210 @@
+{
+  "sourcePins": {
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/external/blake-marriage-1906-gutenberg45315.txt": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874"
+  },
+  "source": {
+    "groups": 2896,
+    "pages": 55,
+    "carries": 32,
+    "runes": 12956
+  },
+  "toy": 264627,
+  "pageResults": [
+    {
+      "page": 0,
+      "n": 59,
+      "distinct": 59,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 66,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 150,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 123,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 30,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 682,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74654,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12484,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54131,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4522,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 1,
+      "n": 62,
+      "distinct": 62,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 63,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 147,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 120,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 27,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 679,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74651,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12481,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54128,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4519,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "n": 37,
+      "distinct": 37,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 9,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 88,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 172,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 145,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 52,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 704,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74676,
+          "hits": 52,
+          "shuffledHits": 52,
+          "first": 6520
+        },
+        {
+          "name": "Gibran",
+          "windows": 12506,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54153,
+          "hits": 288,
+          "shuffledHits": 288,
+          "first": 966
+        },
+        {
+          "name": "Blake",
+          "windows": 4544,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "n": 44,
+      "distinct": 44,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 2,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 81,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 165,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 138,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 45,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 697,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74669,
+          "hits": 2,
+          "shuffledHits": 2,
+          "first": 44211
+        },
+        {
+          "name": "Gibran",
+          "windows": 12499,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54146,
+          "hits": 50,
+          "shuffledHits": 50,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4537,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 4,
+      "n": 60,
+      "distinct": 60,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 65,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 149,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 29,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 681,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74653,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12483,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4521,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 5,
+      "n": 58,
+      "distinct": 58,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 67,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 31,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 683,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74655,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12485,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4523,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "n": 44,
+      "distinct": 44,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 2,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 81,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 165,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 138,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 45,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 697,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74669,
+          "hits": 2,
+          "shuffledHits": 2,
+          "first": 44211
+        },
+        {
+          "name": "Gibran",
+          "windows": 12499,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54146,
+          "hits": 50,
+          "shuffledHits": 50,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4537,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "n": 49,
+      "distinct": 48,
+      "repeatOccurrences": 1,
+      "repeatedClasses": 1,
+      "repeatSlots": [
+        30
+      ],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 76,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 160,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 133,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 40,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 692,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74664,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12494,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54141,
+          "hits": 0,
+          "shuffledHits": 1,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4532,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 8,
+      "n": 51,
+      "distinct": 51,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 74,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 158,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 131,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 38,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 690,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74662,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12492,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54139,
+          "hits": 7,
+          "shuffledHits": 7,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4530,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 9,
+      "n": 56,
+      "distinct": 56,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 69,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 153,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 126,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 33,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 685,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74657,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12487,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54134,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4525,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 10,
+      "n": 64,
+      "distinct": 63,
+      "repeatOccurrences": 1,
+      "repeatedClasses": 1,
+      "repeatSlots": [
+        63
+      ],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 61,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 145,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 118,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 25,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 677,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74649,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12479,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54126,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4517,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 11,
+      "n": 55,
+      "distinct": 55,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 70,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 154,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 34,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 686,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74658,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12488,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54135,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4526,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 12,
+      "n": 65,
+      "distinct": 65,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 60,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 144,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 117,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 24,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 676,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74648,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12478,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54125,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4516,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 13,
+      "n": 61,
+      "distinct": 61,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 64,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 148,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 121,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 28,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 680,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74652,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12482,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4520,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "n": 31,
+      "distinct": 31,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 15,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 94,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 1,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 178,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 58,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 710,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74682,
+          "hits": 316,
+          "shuffledHits": 316,
+          "first": 2431
+        },
+        {
+          "name": "Gibran",
+          "windows": 12512,
+          "hits": 2,
+          "shuffledHits": 2,
+          "first": 775
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54159,
+          "hits": 1195,
+          "shuffledHits": 1195,
+          "first": 966
+        },
+        {
+          "name": "Blake",
+          "windows": 4550,
+          "hits": 15,
+          "shuffledHits": 15,
+          "first": 446
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "n": 37,
+      "distinct": 37,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 9,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 88,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 172,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 145,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 52,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 704,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74676,
+          "hits": 52,
+          "shuffledHits": 52,
+          "first": 6520
+        },
+        {
+          "name": "Gibran",
+          "windows": 12506,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54153,
+          "hits": 288,
+          "shuffledHits": 288,
+          "first": 966
+        },
+        {
+          "name": "Blake",
+          "windows": 4544,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 16,
+      "n": 60,
+      "distinct": 60,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 65,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 149,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 29,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 681,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74653,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12483,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4521,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 17,
+      "n": 68,
+      "distinct": 68,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 57,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 141,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 114,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 21,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 673,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74645,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12475,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4513,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 18,
+      "n": 61,
+      "distinct": 61,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 64,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 148,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 121,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 28,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 680,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74652,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12482,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4520,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 19,
+      "n": 65,
+      "distinct": 64,
+      "repeatOccurrences": 1,
+      "repeatedClasses": 1,
+      "repeatSlots": [
+        49
+      ],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 60,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 144,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 117,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 24,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 676,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74648,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12478,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54125,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4516,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 20,
+      "n": 64,
+      "distinct": 64,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 61,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 145,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 118,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 25,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 677,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74649,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12479,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54126,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4517,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 21,
+      "n": 55,
+      "distinct": 55,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 70,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 154,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 34,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 686,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74658,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12488,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54135,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4526,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "n": 27,
+      "distinct": 27,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 19,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 98,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 5,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 182,
+          "hits": 3,
+          "shuffledHits": 3,
+          "first": 87
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 155,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 62,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 714,
+          "hits": 3,
+          "shuffledHits": 3,
+          "first": 287
+        },
+        {
+          "name": "Emerson",
+          "windows": 74686,
+          "hits": 1123,
+          "shuffledHits": 1123,
+          "first": 1169
+        },
+        {
+          "name": "Gibran",
+          "windows": 12516,
+          "hits": 10,
+          "shuffledHits": 10,
+          "first": 775
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54163,
+          "hits": 2804,
+          "shuffledHits": 2804,
+          "first": 202
+        },
+        {
+          "name": "Blake",
+          "windows": 4554,
+          "hits": 62,
+          "shuffledHits": 62,
+          "first": 446
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "n": 46,
+      "distinct": 46,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 79,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 163,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 136,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 43,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 695,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74667,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12497,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54144,
+          "hits": 28,
+          "shuffledHits": 28,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4535,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 24,
+      "n": 63,
+      "distinct": 63,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 62,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 146,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 119,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 26,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 678,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74650,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12480,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4518,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 25,
+      "n": 57,
+      "distinct": 57,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 68,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 152,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 125,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 32,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 684,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74656,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12486,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54133,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4524,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 26,
+      "n": 58,
+      "distinct": 58,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 67,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 31,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 683,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74655,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12485,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4523,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "n": 52,
+      "distinct": 52,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 73,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 157,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 37,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 689,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74661,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12491,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54138,
+          "hits": 5,
+          "shuffledHits": 5,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4529,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 28,
+      "n": 58,
+      "distinct": 58,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 67,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 31,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 683,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74655,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12485,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4523,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 29,
+      "n": 71,
+      "distinct": 71,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 54,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 138,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 111,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 18,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 670,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74642,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12472,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54119,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4510,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 30,
+      "n": 60,
+      "distinct": 60,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 65,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 149,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 29,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 681,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74653,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12483,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4521,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 31,
+      "n": 64,
+      "distinct": 64,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 61,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 145,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 118,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 25,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 677,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74649,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12479,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54126,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4517,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 32,
+      "n": 21,
+      "distinct": 21,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 25,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 104,
+          "hits": 12,
+          "shuffledHits": 12,
+          "first": 5
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 11,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 6
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 188,
+          "hits": 22,
+          "shuffledHits": 22,
+          "first": 87
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 161,
+          "hits": 3,
+          "shuffledHits": 3,
+          "first": 84
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 68,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 5,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 720,
+          "hits": 46,
+          "shuffledHits": 46,
+          "first": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 74692,
+          "hits": 5299,
+          "shuffledHits": 5299,
+          "first": 54
+        },
+        {
+          "name": "Gibran",
+          "windows": 12522,
+          "hits": 311,
+          "shuffledHits": 311,
+          "first": 32
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54169,
+          "hits": 8972,
+          "shuffledHits": 8972,
+          "first": 44
+        },
+        {
+          "name": "Blake",
+          "windows": 4560,
+          "hits": 320,
+          "shuffledHits": 320,
+          "first": 361
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "n": 53,
+      "distinct": 53,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 72,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 156,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 36,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 688,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74660,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12490,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54137,
+          "hits": 3,
+          "shuffledHits": 3,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4528,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 34,
+      "n": 60,
+      "distinct": 60,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 65,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 149,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 29,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 681,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74653,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12483,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4521,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 35,
+      "n": 61,
+      "distinct": 61,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 64,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 148,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 121,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 28,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 680,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74652,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12482,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4520,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 36,
+      "n": 49,
+      "distinct": 49,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 76,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 160,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 133,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 40,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 692,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74664,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12494,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54141,
+          "hits": 11,
+          "shuffledHits": 11,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4532,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 37,
+      "n": 53,
+      "distinct": 53,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 72,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 156,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 36,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 688,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74660,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12490,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54137,
+          "hits": 3,
+          "shuffledHits": 3,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4528,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 38,
+      "n": 47,
+      "distinct": 47,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 78,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 162,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 135,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 42,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 694,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74666,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12496,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54143,
+          "hits": 20,
+          "shuffledHits": 20,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4534,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 39,
+      "n": 55,
+      "distinct": 55,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 70,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 154,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 34,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 686,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74658,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12488,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54135,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4526,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 40,
+      "n": 55,
+      "distinct": 55,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 70,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 154,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 34,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 686,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74658,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12488,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54135,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 14677
+        },
+        {
+          "name": "Blake",
+          "windows": 4526,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 41,
+      "n": 61,
+      "distinct": 61,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 64,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 148,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 121,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 28,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 680,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74652,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12482,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54129,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4520,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 42,
+      "n": 57,
+      "distinct": 57,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 68,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 152,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 125,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 32,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 684,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74656,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12486,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54133,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4524,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 43,
+      "n": 58,
+      "distinct": 58,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 67,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 31,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 683,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74655,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12485,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4523,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 44,
+      "n": 56,
+      "distinct": 56,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 69,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 153,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 126,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 33,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 685,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74657,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12487,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54134,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4525,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 45,
+      "n": 63,
+      "distinct": 62,
+      "repeatOccurrences": 1,
+      "repeatedClasses": 1,
+      "repeatSlots": [
+        28
+      ],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 62,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 146,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 119,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 26,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 678,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74650,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12480,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54127,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4518,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 46,
+      "n": 60,
+      "distinct": 60,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 65,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 149,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 122,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 29,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 681,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74653,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12483,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54130,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4521,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 47,
+      "n": 58,
+      "distinct": 58,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 67,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 151,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 31,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 683,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74655,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12485,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4523,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 48,
+      "n": 66,
+      "distinct": 66,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 59,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 143,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 116,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 23,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 675,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74647,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12477,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54124,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4515,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 49,
+      "n": 17,
+      "distinct": 17,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 29,
+          "hits": 5,
+          "shuffledHits": 5,
+          "first": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 108,
+          "hits": 36,
+          "shuffledHits": 36,
+          "first": 5
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 15,
+          "hits": 5,
+          "shuffledHits": 5,
+          "first": 6
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 192,
+          "hits": 43,
+          "shuffledHits": 43,
+          "first": 52
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 165,
+          "hits": 11,
+          "shuffledHits": 11,
+          "first": 81
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 72,
+          "hits": 7,
+          "shuffledHits": 7,
+          "first": 24
+        },
+        {
+          "name": "jpg229",
+          "windows": 2,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 9,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 4,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 724,
+          "hits": 124,
+          "shuffledHits": 124,
+          "first": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 74696,
+          "hits": 12571,
+          "shuffledHits": 12571,
+          "first": 54
+        },
+        {
+          "name": "Gibran",
+          "windows": 12526,
+          "hits": 1219,
+          "shuffledHits": 1219,
+          "first": 14
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54173,
+          "hits": 17054,
+          "shuffledHits": 17054,
+          "first": 44
+        },
+        {
+          "name": "Blake",
+          "windows": 4564,
+          "hits": 776,
+          "shuffledHits": 776,
+          "first": 26
+        }
+      ]
+    },
+    {
+      "page": 51,
+      "n": 20,
+      "distinct": 20,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 26,
+          "hits": 2,
+          "shuffledHits": 2,
+          "first": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 105,
+          "hits": 17,
+          "shuffledHits": 17,
+          "first": 5
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 12,
+          "hits": 2,
+          "shuffledHits": 2,
+          "first": 6
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 189,
+          "hits": 27,
+          "shuffledHits": 27,
+          "first": 52
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 162,
+          "hits": 4,
+          "shuffledHits": 4,
+          "first": 84
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 69,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 24
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 6,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 1,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 721,
+          "hits": 62,
+          "shuffledHits": 62,
+          "first": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 74693,
+          "hits": 6638,
+          "shuffledHits": 6638,
+          "first": 54
+        },
+        {
+          "name": "Gibran",
+          "windows": 12523,
+          "hits": 458,
+          "shuffledHits": 458,
+          "first": 14
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54170,
+          "hits": 10682,
+          "shuffledHits": 10682,
+          "first": 44
+        },
+        {
+          "name": "Blake",
+          "windows": 4561,
+          "hits": 398,
+          "shuffledHits": 398,
+          "first": 282
+        }
+      ]
+    },
+    {
+      "page": 52,
+      "n": 59,
+      "distinct": 59,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 66,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 150,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 123,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 30,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 682,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74654,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12484,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54131,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Blake",
+          "windows": 4522,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 53,
+      "n": 39,
+      "distinct": 39,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 7,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 86,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 170,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 143,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 50,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 702,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74674,
+          "hits": 29,
+          "shuffledHits": 29,
+          "first": 7612
+        },
+        {
+          "name": "Gibran",
+          "windows": 12504,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54151,
+          "hits": 171,
+          "shuffledHits": 171,
+          "first": 966
+        },
+        {
+          "name": "Blake",
+          "windows": 4542,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 54,
+      "n": 50,
+      "distinct": 50,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_welcome",
+          "windows": 75,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 159,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 132,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 39,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "jpg229",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p57_parable",
+          "windows": 0,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 691,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Emerson",
+          "windows": 74663,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Gibran",
+          "windows": 12493,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54140,
+          "hits": 9,
+          "shuffledHits": 9,
+          "first": 1960
+        },
+        {
+          "name": "Blake",
+          "windows": 4531,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        }
+      ]
+    },
+    {
+      "page": 55,
+      "n": 16,
+      "distinct": 16,
+      "repeatOccurrences": 0,
+      "repeatedClasses": 0,
+      "repeatSlots": [],
+      "donors": [
+        {
+          "name": "0_warning",
+          "windows": 30,
+          "hits": 6,
+          "shuffledHits": 6,
+          "first": 0
+        },
+        {
+          "name": "0_welcome",
+          "windows": 109,
+          "hits": 42,
+          "shuffledHits": 42,
+          "first": 5
+        },
+        {
+          "name": "0_wisdom",
+          "windows": 16,
+          "hits": 6,
+          "shuffledHits": 6,
+          "first": 6
+        },
+        {
+          "name": "0_koan_1",
+          "windows": 193,
+          "hits": 49,
+          "shuffledHits": 49,
+          "first": 52
+        },
+        {
+          "name": "0_loss_of_divinity",
+          "windows": 166,
+          "hits": 17,
+          "shuffledHits": 17,
+          "first": 5
+        },
+        {
+          "name": "jpg107-167",
+          "windows": 73,
+          "hits": 10,
+          "shuffledHits": 10,
+          "first": 14
+        },
+        {
+          "name": "jpg229",
+          "windows": 3,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "p56_an_end",
+          "windows": 10,
+          "hits": 1,
+          "shuffledHits": 1,
+          "first": 4
+        },
+        {
+          "name": "p57_parable",
+          "windows": 5,
+          "hits": 0,
+          "shuffledHits": 0,
+          "first": null
+        },
+        {
+          "name": "solved-concatenated-descriptive",
+          "windows": 725,
+          "hits": 151,
+          "shuffledHits": 151,
+          "first": 0
+        },
+        {
+          "name": "Emerson",
+          "windows": 74697,
+          "hits": 15299,
+          "shuffledHits": 15299,
+          "first": 54
+        },
+        {
+          "name": "Gibran",
+          "windows": 12527,
+          "hits": 1624,
+          "shuffledHits": 1624,
+          "first": 14
+        },
+        {
+          "name": "Shakespeare",
+          "windows": 54174,
+          "hits": 19576,
+          "shuffledHits": 19576,
+          "first": 44
+        },
+        {
+          "name": "Blake",
+          "windows": 4565,
+          "hits": 967,
+          "shuffledHits": 967,
+          "first": 26
+        }
+      ]
+    }
+  ],
+  "ordered": [
+    {
+      "name": "0_warning",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "0_welcome",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "0_wisdom",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "jpg107-167",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "jpg229",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "p56_an_end",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "p57_parable",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "solved-concatenated-descriptive",
+      "windows": 0,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 0,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "Emerson",
+      "windows": 71817,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 71817,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "Gibran",
+      "windows": 9647,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 9647,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "Shakespeare",
+      "windows": 51294,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 51294,
+        "hits": 0,
+        "first": null
+      }
+    },
+    {
+      "name": "Blake",
+      "windows": 1685,
+      "hits": 0,
+      "first": null,
+      "shuffled": {
+        "windows": 1685,
+        "hits": 0,
+        "first": null
+      }
+    }
+  ],
+  "controls": [
+    {
+      "name": "Emerson",
+      "start": 20827,
+      "windows": 71817,
+      "hits": 1,
+      "first": 20827,
+      "truthIncluded": true,
+      "knownTrainingRepeatPredictions": 767,
+      "correct": 767,
+      "ambiguousPages": 3
+    },
+    {
+      "name": "Gibran",
+      "start": 4149,
+      "windows": 9647,
+      "hits": 1,
+      "first": 4149,
+      "truthIncluded": true,
+      "knownTrainingRepeatPredictions": 863,
+      "correct": 863,
+      "ambiguousPages": 1
+    },
+    {
+      "name": "Shakespeare",
+      "start": 16541,
+      "windows": 51294,
+      "hits": 1,
+      "first": 16541,
+      "truthIncluded": true,
+      "knownTrainingRepeatPredictions": 567,
+      "correct": 567,
+      "ambiguousPages": 2
+    },
+    {
+      "name": "Blake",
+      "start": 787,
+      "windows": 1685,
+      "hits": 1,
+      "first": 787,
+      "truthIncluded": true,
+      "knownTrainingRepeatPredictions": 664,
+      "correct": 664,
+      "ambiguousPages": 3
+    }
+  ],
+  "summary": {
+    "repeatOccurrences": 4,
+    "repeatClasses": 4,
+    "pagesNoRepeat": 51,
+    "pagesNoDonor": [
+      0,
+      1,
+      4,
+      5,
+      7,
+      9,
+      10,
+      12,
+      13,
+      16,
+      17,
+      18,
+      19,
+      20,
+      24,
+      25,
+      26,
+      28,
+      29,
+      30,
+      31,
+      34,
+      35,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      52
+    ],
+    "pagesWithDonorAndRepeat": []
+  }
+}
