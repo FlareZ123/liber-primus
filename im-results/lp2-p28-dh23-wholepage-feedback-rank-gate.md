@@ -59,3 +59,15 @@ A literal rune-wise exponentiation modulo the DH modulus **23** cannot directly 
 **Decision for #2216:** the literal-DH line reconstructs its own compact worked exchange, not a proved page-body cipher. The two full-page lag-feedback consumers are negative, and the much broader fixed-alphabet/position-permutation class cannot by itself yield normal GP29 native plaintext with reference-like symbol concentration. The source operands needed for the next encryption stage (state update, payload framing or key material) remain missing. Do not branch into arbitrary DH-key KDFs, line-origin sweeps or additional 23-cycle fits without a genuinely new authored instruction.
 
 A **separate independent route** begins with the five visually printed numbered passages on physical pp34–39; those source-visible numerals may identify a sequence of operations rather than another DH key. That question is not a variant of the failed p28 DH consumer and is defined as separate Director Issue [#2215](https://github.com/FlareZ123/liber-primus/issues/2215). No new plaintext or destination is implied by this negative decision.
+
+## Strict fragment-interior keyword: direct historical receiver (Agent29, 26 November)
+
+The solved p57 instruction to shed circumferences motivates retaining the strict interior of each of the five actual p28 line6 fragments, in printed order. The lengths 2,3,9,4,5 leave 0,1,7,2,3 runes: thirteen in total, the length of the historical FIRFUMFERENFE key. This identifies a source-derived candidate, **not** an authenticated key.
+
+The resulting GP29 vector is `[13,4,8,9,21,28,0,9,19,15,24,10,1]` (P R H N NG EA F N M S A I U). Test directly as a repeating additive keyword at phase zero with the historical plaintext-F transparency rule. For each cipher rune c and reachable key phase j, literal F is allowed exactly when c=0, leaving j unchanged; the consuming inverse p=(c−key[j]) mod29 requires p≠0 and advances j modulo13. Counts propagate exactly as integers; both valid branches are retained when c=0. No language model or word-boundary fitting.
+
+- Primary receiver: immediate physical continuation after line6, p28[140:269] followed without reset by p29, 406 runes. All paths die at continuation offset88 (p28 offset228): c=19, all four surviving histories have phase8, whose key is 19. Non-F subtraction would give F; literal F requires cipher0.
+- Separate exploratory receiver: p0, motivated by the existing conditional READ OUT→p0 route. All paths die at offset37: c=10, sole surviving history phase11, key10.
+- Planted positive: all 95 clear source-native p57 runes encrypted with the same key and historical rule leave 30 legal complete inverse paths including the planted path (true final phase1). This confirms existence/replay, not uniqueness or blind recovery.
+
+Both direct receivers are **exactly impossible**, independently of language. No unknown plaintext/key. Do not optimize arbitrary phases, signs, permutations or alternative boundaries against originals. Core calculation executed in connected JS; standalone [SFT](../sims/lp2_p28_dh_fragment_interior_keyword_sft.cjs) supplied, not independently run.
