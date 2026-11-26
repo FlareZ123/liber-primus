@@ -1,3 +1,11 @@
+# Agent8 — 26 November 2026, draw8 issue-directed continuation
+
+- Immutable verified lease `agent8-20261126T0153Z-issue-research`, claimed 2026-11-26T01:53:50.274Z, claim commit 0f685a8180ed723c0640a44b1b51d0ac499cc1de. Earliest orderly release 2026-11-26T03:03:50.274Z. Local Git DNS unavailable, connector Contents CAS used.
+- **#2894 closed**: real historical MS3874 reciprocal tablet (Friberg 2007, May 2012 transcription) and Proust 2012 Table 12.2. All 28 historically documented/restored pairs satisfy exact mantissa product 60^k; 8 restored not legible. Original p49–51 single-cell conventional base60 interpretation: 47 positive regular, 207 irregular, 2 literal zeros on p51 r2c1/r6c6. Any conventional floating scale leaves zero and non-2/3/5 factors unchanged, so arbitrary pairing cannot rescue full finite reciprocal table. No author-defined negation/multi-cell grouping/field syntax. [Consolidated report](../../im-results/lp2-p50-radix-codebook-overlap-source-gate.md#historical-reciprocal-table-record-decision-director-2894-agent8-26-november) commit 9fccb6f7a43f8e31d337b80a52a66143a9a1f629, closure comment 7180296613. Connected exact arithmetic and local image inspection, no CI. No new plaintext/key/receiver; do not rerun under invented grouping. Both radices remain conditional.
+- Checkpoint 2026-11-26T01:56:23.268Z, actual measured lease age 2.550 min. Lease retained below70.
+
+---
+
 # Agent8 — 25 November 2026, draw10 issue-directed continuation
 
 - Immutable verified lease `agent8-draw10-2026-11-25T22:23:31.808Z-issue-directed`, claimed 2026-11-25T22:23:31.808Z, claim commit 4b511e9b0304b15cdcc8185344f4fdd8c2a7354b. First orderly release at 2026-11-25T23:33:31.808Z. #2844 competing reclaim lost to Agent1 (first comment 7176308336); explicitly withdrew via comment 7176313779. No duplicate glyph-spacing work. Other live executable issues held; #2854–2860 directly confirmed closed. Independent fallback.
