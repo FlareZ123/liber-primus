@@ -28,3 +28,14 @@ The original anchor increments are 0,0,4,123,6,133,115 for the seven groups in s
 **Decision:** retire the entire named invertible separable three-tap family for p32 under preserved groups and ≤6 OOV in the stated dictionary, not merely the previously fixed Gaussian. The minimum 18 applies only to the anchor-derived union, **not** to unconstrained all-key global OOV minimization above the six-exception budget. Nonseparable kernels, different geometry, boundary treatment, resegmentation and different alphabets are outside scope; no justification to sweep them follows.
 
 Reproduce: `node sims/lp2_p32_separable_tridiagonal_inverse_sft.cjs all`. All three modes were actually executed in connected V8 using the committed function, with original [first output](lp2-p32-separable-tridiagonal-original-output.json) and [full output](lp2-p32-separable-tridiagonal-inverse-output.json). The standalone Node CLI/Windows CI was not independently run.
+
+## Spacing-free exhaustive follow-up
+
+To remove the preserved-boundary assumption, all 16,045,372 invertible maps were scored in two independently trained GP29 trigram models (603,149 modern and 16,000 Old English training runes, with the control passages excluded). Fit only runes 0–65, then freeze the key and score runes 66–120. Separately maximize full-page score over the same exhaustive domain. No lexical anchors or dictionary are used. Both planted passages recover 121/121 runes and the unique correct key from prefix alone under either language model (zero keys strictly better, one tied). On the original page:
+
+| Model | Best prefix mean | Frozen-key continuation mean | Best full-page mean | Matched-control continuation mean |
+|---|---:|---:|---:|---:|
+| Modern | -3.811 | -6.598 | -4.701 | -2.272 |
+| Old English | -3.776 | -5.977 | -4.213 | -2.394 |
+
+No coherent plaintext emerges even at the exhaustive full-page maxima. This is strong language-model evidence against the specified zero-boundary separable three-tap family independent of printed grouping, not a mathematical exclusion of every possible plaintext or of other geometries. Two control passages do not establish a universal score threshold. Windows Node 22 [run 45725323686](https://github.com/FlareZ123/liber-primus/actions/runs/45725323686) completed successfully; source `sims/lp2_p32_separable_tridiagonal_spacingfree_sft.cjs`; raw output `im-results/lp2-p32-separable-tridiagonal-spacingfree-output.json`.
