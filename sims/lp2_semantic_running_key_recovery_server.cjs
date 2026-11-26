@@ -113,11 +113,59 @@ function proposal(C,L,pair,lo,hi){
  }
  return selected.map(p=>check({P:[...pair.P.slice(0,lo),...p.P,...pair.P.slice(hi)],K:[...pair.K.slice(0,lo),...p.K,...pair.K.slice(hi)],space:[...pair.space.slice(0,lo),...p.space,...pair.space.slice(hi)]},C,L));
 }
+
+function boundaryProposal(C,L,pair,lo,hi){
+ check(pair,C,L);
+ if(lo<0||hi>C.length||lo>=hi)throw Error("window");
+ // Hold P and K runes fixed. Search only the same unconstrained K word-boundary
+ // positions used by the recovery proposal (no boundary before the first rune).
+ let kc=start;
+ for(let i=0;i<lo;i++){if(pair.space[i])kc=advance(kc,B);kc=advance(kc,pair.K[i]);}
+ let beam=[{kc,score:0,prev:null}],WIDTH=384;
+ for(let i=lo;i<hi;i++){
+  const map=new Map();
+  for(const st of beam){
+   const kr=row(g,st.kc,5),kb=advance(st.kc,B),ks=row(g,kb,5),kscore=Math.log(kr[B]);
+   const k=pair.K[i];
+   for(let j=0;j<(i?2:1);j++){
+    const next=advance(j?kb:st.kc,k);
+    const score=st.score+(j?kscore:0)+Math.log(j?ks[k]:kr[k]);
+    const old=map.get(next);
+    if(!old||score>old.score)map.set(next,{kc:next,score,prev:st,space:!!j});
+   }
+  }
+  beam=[...map.values()].sort((a,b)=>b.score-a.score).slice(0,WIDTH);
+ }
+ function path(q){const s=[];while(q.prev){s.push(q.space);q=q.prev;}s.reverse();return s;}
+ const ranked=beam.map(q=>{
+  let st=q.kc,score=q.score;
+  for(let i=hi;i<Math.min(C.length,hi+6);i++){
+   if(pair.space[i]){score+=logp(st,B,1,1);st=advance(st,B);}
+   score+=logp(st,pair.K[i],1,1);st=advance(st,pair.K[i]);
+  }
+  return {q,rank:score};
+ }).sort((a,b)=>b.rank-a.rank);
+ const selected=[],seen=new Set();
+ for(const v of ranked.slice(0,12)){
+  const s=path(v.q);selected.push(s);seen.add(s.slice(0,8).map(Number).join(""));
+ }
+ for(const v of ranked){
+  if(selected.length>=24)break;
+  const s=path(v.q),id=s.slice(0,8).map(Number).join("");
+  if(!seen.has(id)){selected.push(s);seen.add(id);}
+ }
+ return selected.map(s=>check({
+  P:pair.P,K:pair.K,
+  space:[...pair.space.slice(0,lo),...s,...pair.space.slice(hi)]
+ },C,L));
+}
+
 const rl=require("node:readline").createInterface({input:process.stdin,crlfDelay:Infinity});
 rl.on("line",line=>{try{const q=JSON.parse(line);let result;
  if(q.op==="control")result=control(q.idx);
  else if(q.op==="baseline")result=check(decode(q.C,q.L,1,128),q.C,q.L);
  else if(q.op==="proposal")result=proposal(q.C,q.L,q.pair,q.lo,q.hi);
+ else if(q.op==="boundary")result=boundaryProposal(q.C,q.L,q.pair,q.lo,q.hi);
  else throw Error("unknown op");
  console.log(JSON.stringify({result}));}catch(e){console.log(JSON.stringify({error:String(e.stack||e)}))}});
 }
