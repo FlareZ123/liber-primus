@@ -90,12 +90,15 @@ struct IndexedSearch{
   for(int id:best){if(stop())return;c.joins++;aff::Space t;if(!aff::apply(s,ds[g].opts[id],t))continue;if(seen.insert(signature(t)).second)dfs(t,rem,b,c);}
   if(b)dfs(s,rem,b-1,c);
  }
- void run(int seconds){
+ void run(int seconds,size_t begin=0,size_t end=SIZE_MAX){
+  end=min(end,seeds.size());fixed::require(begin<end,"nonempty seed range");
+  next=begin;vector<uint8_t> completed(seeds.size(),0);
   deadline=Clock::now()+chrono::seconds(seconds);unsigned n=max(1u,min(4u,thread::hardware_concurrency()));vector<Totals> stats(n);vector<thread> pool;
-  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=seeds.size())break;dfs(seeds[i],order,budget,c);if(!found&&!timed)done.fetch_add(1);}});
+  for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{auto&c=stats[t];while(!stop()){size_t i=next.fetch_add(1);if(i>=end)break;dfs(seeds[i],order,budget,c);if(!found&&!timed){completed[i]=1;done.fetch_add(1);}}});
   for(auto&t:pool)t.join();
   for(auto&c:stats){totals.nodes+=c.nodes;totals.joins+=c.joins;totals.perms+=c.perms;totals.featureTests+=c.featureTests;totals.optionTests+=c.optionTests;}
-  cout<<"BITSET WORD SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<seeds.size()<<" nodes="<<totals.nodes<<" joins="<<totals.joins<<" perms="<<totals.perms<<" featureTests="<<totals.featureTests<<" optionTests="<<totals.optionTests<<" OOV="<<answerOov<<endl;
+  cout<<"BITSET WORD COMPLETED IDS range=["<<begin<<","<<end<<")";for(size_t i=begin;i<end;i++)if(completed[i])cout<<" "<<i;cout<<endl;
+  cout<<"BITSET WORD SEARCH found="<<found<<" timed="<<timed<<" seeds="<<done<<"/"<<(end-begin)<<" nodes="<<totals.nodes<<" joins="<<totals.joins<<" perms="<<totals.perms<<" featureTests="<<totals.featureTests<<" optionTests="<<totals.optionTests<<" OOV="<<answerOov<<endl;
  }
 };
 struct WordPlant{vector<string> train,held,truth,holdTruth;Pi pi;};
@@ -109,8 +112,20 @@ bool indexedControl(const vector<string>&train,const vector<string>&held,unsigne
  bool exact=s.answer==p.pi,pass=exact&&s.answerOov==0&&tr==47&&hit==17&&unique>=8;
  cout<<"BITSET WORD CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold="<<hit<<"/17 unique="<<unique<<" pass="<<pass<<endl;return pass;
 }
-int main(){try{aff::init();fixed::dictionary();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
+int main(int argc,char**argv){try{aff::init();fixed::dictionary();auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": [")),held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&join(train).size()==223&&held.size()==17&&join(held).size()==76,"profile");
+ // Prior both-sign run passed both blind controls for the unchanged search.
+ // A range invocation searches only the negative-sign original and reports
+ // exact completed IDs; an incomplete previous worker prefix is not assumed.
+ if(argc==3){
+  negative=true;size_t begin=stoul(argv[1]),end=stoul(argv[2]);IndexedSearch s(train,3);
+  fixed::require(s.seeds.size()==343&&begin<end&&end<=s.seeds.size(),"original negative seed range");
+  s.run(1800,begin,end);
+  if(s.found){auto m=fixed::maps(wide(s.answer),mappedKey(s.answer));cout<<"CANDIDATE pi="<<aff::str(s.answer)<<" sign=-1"<<endl;auto h=held;h[0]=train.back()+h[0];for(int i=0;i<int(h.size());i++){auto v=fixed::decode(h[i],m,fixed::dict);cout<<"HOLD "<<i<<" candidates="<<v.size();for(auto&w:v)cout<<" "<<w;cout<<endl;}}
+  bool exhausted=!s.found&&!s.timed&&s.done==end-begin;
+  cout<<"BITSET WORD RANGE exhausted="<<exhausted<<" begin="<<begin<<" end="<<end<<endl;return exhausted?0:1;
+ }
+ fixed::require(argc==1,"optional arguments: begin end");
  bool all=true;
  for(int sign:{1,-1}){negative=sign<0;cout<<"BITSET WORD SIGN "<<sign<<endl;
  bool a=indexedControl(train,held,3301),b=indexedControl(train,held,1033);if(!a||!b){cout<<"BITSET WORD ORIGINAL GATED OFF sign="<<sign<<endl;all=false;continue;}
