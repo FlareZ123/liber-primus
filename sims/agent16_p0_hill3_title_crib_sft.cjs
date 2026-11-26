@@ -173,7 +173,7 @@ const output = {
   authenticatedCribSource: 'resources/historical/cicada2016-4gq25-outguess.asc',
   operation: 'fixed 3x3 Hill cipher over GF(29), title blocks at phase zero',
   cipherTitle,
-  plaintextCrib,
+  plaintextCrib: plainCrib,
   blocks: { cipher: cipherBlocks, plain: plainBlocks },
   p0BlackBody: { length: body.length, completeThreeRuneBlocks: body.length / 3 },
   heldoutTests: results,
