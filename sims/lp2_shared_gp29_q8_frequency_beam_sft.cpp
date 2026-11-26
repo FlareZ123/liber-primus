@@ -5,11 +5,11 @@
 
 struct Beam7:FastSearch{
  using FastSearch::FastSearch;
- size_t width=4;
+ size_t width=4,baselineWidth=0;
  atomic<uint64_t> prefixes{0},limited{0},finished{0};
- void beam(const Graph&g,vector<int>rem,int budget,GStats&c){
+ void beam(const Graph&g,vector<int>rem,int budget,GStats&c,bool novel){
   if(stop())return;
-  if(g.dimension()<=12||int(rem.size())<=budget){fastDfs(g,rem,budget,c,DomainPointers{});return;}
+  if(g.dimension()<=12||int(rem.size())<=budget){if(novel)fastDfs(g,rem,budget,c,DomainPointers{});return;}
   prefixes++;
   GFilter f(g);if(f.saturated)return;
   int pick=-1;vector<int>best;
@@ -21,20 +21,20 @@ struct Beam7:FastSearch{
    if(pick<0||d.size()<best.size()){pick=i;best=move(d);}
    i++;
   }
-  if(pick<0){fastDfs(g,rem,budget,c,DomainPointers{});return;}
+  if(pick<0){if(novel)fastDfs(g,rem,budget,c,DomainPointers{});return;}
   int id=rem[pick];rem.erase(rem.begin()+pick);
   prioritize(id,best);
-  unordered_set<string>words,seen;
+  unordered_map<string,size_t>words;unordered_set<string>seen;
   for(int opt:best){
    if(stop())return;
    string w=optionWord7(ds[id],ds[id].opts[opt]);
    if(words.size()>=width&&!words.count(w)){limited++;continue;}
    Graph x;c.joins++;
    if(!extend(g,ds[id].opts[opt],x))continue;
-   words.insert(w);
-   if(seen.insert(x.sig()).second)beam(x,rem,budget,c);
+   size_t rank=words.try_emplace(w,words.size()+1).first->second;
+   if(seen.insert(x.sig()).second)beam(x,rem,budget,c,novel||rank>baselineWidth);
   }
-  if(budget)beam(g,rem,budget-1,c);
+  if(budget)beam(g,rem,budget-1,c,novel);
  }
  void runBeam(int seconds,size_t first,size_t last){
   vector<size_t>ids(last-first);iota(ids.begin(),ids.end(),first);
@@ -45,7 +45,7 @@ struct Beam7:FastSearch{
   for(unsigned t=0;t<n;t++)pool.emplace_back([&,t]{
    while(!stop()){
     size_t pos=next.fetch_add(1);if(pos>=ids.size())break;size_t id=ids[pos];
-    beam(seeds[id],order,maxOov,stats[t]);
+    beam(seeds[id],order,maxOov,stats[t],baselineWidth==0);
     if(!found&&!timed){finished++;lock_guard<mutex>l(checkpointMutex);cout<<"HEURISTIC VISITED seed="<<id<<endl;}
    }
   });
@@ -55,16 +55,16 @@ struct Beam7:FastSearch{
  }
 };
 int main(int argc,char**argv){try{
- size_t first=27,last=82,width=4;int seconds=900;
- for(int i=1;i<argc;i++){string a=argv[i];if(i+1>=argc)throw runtime_error("missing value");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--width")width=stoull(v);else if(a=="--seconds")seconds=stoi(v);else throw runtime_error("unknown argument "+a);}
- if(!width||seconds<=0||first>=last||last>93)throw runtime_error("bad arguments");
+ size_t first=27,last=82,width=4,baseline=0;int seconds=900;
+ for(int i=1;i<argc;i++){string a=argv[i];if(i+1>=argc)throw runtime_error("missing value");string v=argv[++i];if(a=="--seed-start")first=stoull(v);else if(a=="--seed-end")last=stoull(v);else if(a=="--width")width=stoull(v);else if(a=="--baseline-width")baseline=stoull(v);else if(a=="--seconds")seconds=stoi(v);else throw runtime_error("unknown argument "+a);}
+ if(!width||baseline>=width||seconds<=0||first>=last||last>93)throw runtime_error("bad arguments");
  aff::init();fixed::dictionary();frequencyOrderEnabled=true;exactMrvEnabled=true;buildPrior7();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");
  auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));
  auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));
  fixed::require(train.size()==48&&held.size()==17,"profile");
- Beam7 s(train);s.width=width;fixed::require(s.seeds.size()==93,"canonical seed count");
- cout<<"HEURISTIC width="<<width<<" range="<<first<<":"<<last<<" high_dim_gt=12; no exhaustion claim"<<endl;
+ Beam7 s(train);s.width=width;s.baselineWidth=baseline;fixed::require(s.seeds.size()==93,"canonical seed count");
+ cout<<"HEURISTIC width="<<width<<" baseline_width="<<baseline<<" range="<<first<<":"<<last<<" high_dim_gt=12; no exhaustion claim"<<endl;
  s.runBeam(seconds,first,last);
  if(s.found){
   auto m=fixed::maps(s.answer,s.answerKey);cout<<"ORIGINAL candidate pi";for(int x:s.answer)cout<<" "<<x;cout<<" k";for(int x:s.answerKey)cout<<" "<<x;cout<<endl;
