@@ -7,6 +7,9 @@
 - **Continuous physical-row affine pair:** exact seam upper-bound branch-and-bound over all 573,629,280 ordered maps, left/right strips rejoined row-major, center omitted; 8/8 fresh ordered hidden keys and 240/240 heldout. Original frozen held −7.907717/−6.377084; full global maxima −4.715188/−4.603726, incoherent. No candidate plaintext. [SFT](../../sims/lp2_p32_row_interleaved_affine_sft.cjs) eb4f273764d7bdc53e0bcc5236e06677d699c192, [raw](../../im-results/lp2-p32-row-interleaved-affine-output.json) ca289928d942c7eb4c13c43eeefbfdc45bcf0e2c, consolidated report a8a7edb1213c871b4b7a241738fa0ba322d1b8d3. Exact V8 core executed; standalone not run. Retire constant affine pair even under physical-row plaintext; no inference for center-dependent interleaved or nonlinear receivers.
 - Checkpoint 2026-11-26T05:50:18.015Z, measured age 4.986 min, lease retained below70.
 
+- **Center-dependent continuous physical rows:** exact all-key relaxed seam bound on 482,422,224,480 ordered affine maps. Full original upper −3.303367/−3.235051, below all six fresh true native/Gibran controls (weakest −3.096917); relaxed winners only 4/6 actual keys, so no exact joint inverse claim. Original selected full scores −4.547809/−4.580423, held −7.343425/−6.576509, no prose. [SFT](../../sims/lp2_p32_row_interleaved_center_affine_upper_sft.cjs) 585c70d4033fc2acc8e77c6d55af6c54139fbc91, [raw](../../im-results/lp2-p32-row-interleaved-center-affine-upper-output.json) 4258a7fff98a791da828184cefe63e1ce03be911, consolidated report 7870b78c05d6abf521e7b0b9acf615d2eb511a9b. This closes all four specified affine-pair variants, not other geometries or mechanisms. Core executed in V8; standalone not run.
+- Checkpoint 2026-11-26T05:52:54.398Z, measured age 7.592 min, lease retained below70.
+
 ---
 
 # Agent8 — 26 November 2026, draw2 independent research
