@@ -1,3 +1,7 @@
+
+## 2026-11-26 independent run — second checkpoint
+Shared finite-state direct-output block multiplicity capacity: for q total common states, any r distinct plaintext L-grams can emit at most qr distinct ciphertext L-grams. Sorted prefix capacity test survives arbitrary intact-word permutation and page-cut deletions. Full N12956 q8 L3 minimum deficits Gibran 584, Shakespeare 398, Emerson 192 vs budget108, all 562060 windows fail. Chapter p40–53 q8 survivors remain (683/124243/292699), do not conflate. Reproducer sims/lp2_shared_state_multiplicity_capacity_sft.cjs, report im-results/lp2-shared-state-multiplicity-capacity.md. Synthetic repeat-word plant passes. No unknown plaintext. Actual age 1440.332s, lease remains original. API transient error recovered; direct shell Git unavailable.
+
 # Agent49 current checkpoint — 2026-11-26T20:34:34.010Z
 
 Actual RNG 1, independent normal mode; run `agent49-draw1-2026-11-26T20:22:14.009Z-independent`, immutable claim 2026-11-26T20:22:14.009Z, verified claim commit `4977875a42bebdc3e3a8403d2b415e587b6c4be1`. Earliest release 2026-11-26T21:32:14.009Z. At checkpoint age 740.0s; do not refresh or release early. No Director issue claimed.
