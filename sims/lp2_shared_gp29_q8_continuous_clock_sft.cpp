@@ -107,9 +107,10 @@ unordered_map<string,size_t> canonicalSeeds(const string&carry){
  sort(seeds.begin(),seeds.end(),[](auto&a,auto&b){return a.dimension()==b.dimension()?a.sig()<b.sig():a.dimension()<b.dimension();});
  unordered_map<string,size_t>out;for(size_t i=0;i<seeds.size();i++)out.emplace(seeds[i].sig(),i);return out;
 }
-bool controlClock(const vector<string>&train,const vector<string>&held,unsigned seed,bool propagate){
+bool controlClock(const vector<string>&train,const vector<string>&held,unsigned seed,bool propagate,bool oov=false){
  mt19937 rng(seed+999);fixed::Key k{};k[0]=1;for(int j=1;j<Q;j++)k[j]=rng()%N;k[4]=2;if(seed==3301)k[3]=0;
  vector<string>t(train.begin(),train.end()-1),h(held.begin()+1,held.end());auto p=fixed::plant(t,h,k,seed);
+ if(oov)for(int i:{3,12,45}){string w;do{w.clear();for(size_t j=0;j<p.truthTrain[i].size();j++)w+=fixed::SYM[1+rng()%(N-1)];}while(fixed::dict.count(w));p.truthTrain[i]=w;}
  vector<string>plain=p.truthTrain;plain.push_back(p.truthCarry.substr(0,10));
  vector<string>cipher;ClockRows clock;int phase=rng()%Q;
  for(const auto&w:plain){cipher.push_back(fixed::encode(w,p.pi,k,phase));vector<int>v;for(char x:w){if(x=='0')v.push_back(-1);else{v.push_back(phase);phase=(phase+1)%Q;}}clock.push_back(move(v));}
@@ -117,20 +118,20 @@ bool controlClock(const vector<string>&train,const vector<string>&held,unsigned 
  vector<string>heldCipher;heldCipher.push_back(fixed::encode(p.truthCarry.substr(10),p.pi,k,phase));if(p.truthCarry[10]!='0')phase=(phase+1)%Q;
  for(const auto&w:p.truthHold){heldCipher.push_back(fixed::encode(w,p.pi,k,phase));phase=(phase+count_if(w.begin(),w.end(),[](char x){return x!='0';}))%Q;}
  for(auto&row:clock)for(int&j:row)if(j>=0)j=(j+Q-gauge)%Q;
- Continuous7 s(cipher,0,clock);s.usePropagation=propagate;s.runClock(420,{}, {},-int(seed));
+ Continuous7 s(cipher,oov?3:0,clock);s.usePropagation=propagate;s.runClock(420,{}, {},-int(seed));
  if(!s.found){cout<<"CONTINUOUS CONTROL "<<seed<<" no key"<<endl;return false;}
  auto m=fixed::maps(s.answer,s.answerKey);int tr=0;string prefix,w;for(int i=0;i<47;i++)tr+=s.scheduledWord(i,m,w)&&w==p.truthTrain[i];
  fixed::require(s.scheduledWord(47,m,prefix),"carry decode");
  auto paths=heldPaths(heldCipher,prefix,nextPhase(clock),m);vector<string>truth{p.truthCarry};truth.insert(truth.end(),p.truthHold.begin(),p.truthHold.end());bool hit=find(paths.words.begin(),paths.words.end(),truth)!=paths.words.end();
  bool exact=equalAction(s.answer,s.answerKey,p.pi,k),pass=exact&&tr==47&&hit&&!paths.clipped;
- cout<<"CONTINUOUS CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold_truth="<<hit<<" hold_paths="<<paths.words.size()<<" pass="<<pass<<endl;return pass;
+ cout<<"CONTINUOUS CONTROL "<<seed<<" exact="<<exact<<" train="<<tr<<"/47 hold_truth="<<hit<<" hold_paths="<<paths.words.size()<<" oov="<<oov<<" pass="<<pass<<endl;return pass;
 }
 int main(int argc,char**argv){try{
- bool controls=false,inventory=false,propagate=false;int first=0,last=64,seconds=120;set<size_t>excluded;
- for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(a=="--propagate"){propagate=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--scenario-start")first=stoi(v);else if(a=="--scenario-end")last=stoi(v);else if(a=="--seconds")seconds=stoi(v);else if(a=="--exclude")excluded.insert(stoull(v));else throw runtime_error("unknown argument "+a);}
+ bool controls=false,inventory=false,propagate=false,oovControls=false;int first=0,last=64,seconds=120;set<size_t>excluded;
+ for(int i=1;i<argc;i++){string a=argv[i];if(a=="--controls-only"){controls=true;continue;}if(a=="--inventory"){inventory=true;continue;}if(a=="--propagate"){propagate=true;continue;}if(a=="--oov-controls"){controls=true;oovControls=true;continue;}if(i+1>=argc)throw runtime_error("missing argument");string v=argv[++i];if(a=="--scenario-start")first=stoi(v);else if(a=="--scenario-end")last=stoi(v);else if(a=="--seconds")seconds=stoi(v);else if(a=="--exclude")excluded.insert(stoull(v));else throw runtime_error("unknown argument "+a);}
  aff::init();fixed::dictionary();frequencyOrderEnabled=true;exactMrvEnabled=true;buildPrior7();
  auto src=fixed::read("resources/liber-primus/lp2-page-groups-54-55-derived.json");auto train=fixed::strings(src,"body_groups",src.find("\"heading_groups\": ["));auto held=fixed::strings(src,"groups",src.rfind("\"p55\""));fixed::require(train.size()==48&&held.size()==17,"profile");
- if(controls){bool a=controlClock(train,held,3301,propagate),b=controlClock(train,held,1033,propagate);return a&&b?0:2;}
+ if(controls){bool a=controlClock(train,held,3301,propagate,oovControls),b=controlClock(train,held,1033,propagate,oovControls);return a&&b?0:2;}
  auto all=join(train);fixed::require(count(all.begin(),all.end(),'0')==3&&first>=0&&first<last&&last<=64&&seconds>0,"scenario range");
  auto canonical=canonicalSeeds(train.back());fixed::require(canonical.size()==93,"canonical seed count");
  int complete=0;bool found=false;
