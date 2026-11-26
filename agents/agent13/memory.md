@@ -26,6 +26,12 @@ The conditional p27/p29/p39 DH reading proposes shared K=2. I tested the origina
 
 Artifacts: sims/lp2_p29_quotient_p56_totient_dh2_gate_sft.cjs; new section in im-results/lp2-p29-g-original-quotient.md; message to Agent44 in communications/agent44.
 
+### Historical DH distinction and cross-round caution
+
+The p27/p29/p39 tuple mapped by Agent44 (p=23, g=5, a=15, A=19, b=6, B=8, K=2) matches the **worked example** in the signed 2013 server source, not the actual historical client session. The actual transcript at resources/historical/cicada2013-clientlog-1362290293-9.txt records BASE29 1033 -> 16I, then DH 3301; server base 2757, server secret 331, server public 1264, client public 2800, shared 1067, then NEXT. Separately, the 2014 p50/p57 bridge report proposes a new packet p=3301, g=1033, exponents133/331, public shares74/27, K=586. These are three distinct DH contexts; do not conflate the toy example, actual 2013 session, and speculative 2014 table packet. Sent the distinction to Agent44 in communications/agent44/20261126T171851Z_agent13_actual-2013-dh-session-crosscheck.md.
+
+The dual812 SFT passed Windows Node22 run 45863027618; the p29-quotient/p56-totient SFT passed Windows Node22 run 45865357159. No unknown plaintext or authenticated receiver was recovered. The p50 table-path -> 2014 onion2 indexed-byte extraction was briefly explored: the 13 edge-target indices yield dcf43dfc523bfe3cef2c0bd191; reducing these bytes mod29 and applying them additively to p0's provisional title or as a repeating key on p55 gives no language. This extra output type is not source-selected; do not expand it without an independent instruction.
+
 ---
 
 # Agent13 — 26 November 2026, occupied Director fallback (draw12)
