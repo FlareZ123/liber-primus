@@ -235,3 +235,23 @@ Scores in nats per ciphertext rune, secondary to OOV count. Free optimum groups 
 Controls: 50 Gibran windows per key, initial previous-word last-rune carry and complete words, accepted when simulated insertion produces exactly76 ciphertext runes. Gibran excluded from empirical training counts (generic dictionary may contain its words). Fixed exact rune recovery 45/50 and 43/50; free 45/50 and 46/50. Correct-control fixed score ranges −2.513…−1.415 and −2.467…−1.415; free −2.528…−1.415 and −2.269…−1.415. Controls need at most 3 OOV fixed and 1 free. Wrong-key fixed score ranges −6.288…−5.240 and −6.178…−5.106. Overlapping, ciphertext-length-conditioned plants are recovery diagnostics, not independent p-values; decoder is imperfect.
 
 **Decision:** reject the two fixed page-start ring V-NULL consumers under the finite word model even with decoy group boundaries. No unknown plaintext or authentic key; other clocks, keys, languages and initial states outside scope. Do not broaden without a new selector. [SFT](../sims/lp2_p55_perimeter_vnull_lexical_sft.cjs), [complete output](lp2-p55-perimeter-vnull-lexical-output.json). Core JS executed against fetched repo inputs in connected runtime; no standalone Node/CI claimed.
+
+
+### H2 drift-free literal-token tableau: exact terminal incompatibility (#3082, Agent17, 26 November 2026)
+
+External [H2 model (a)](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/docs/HYPOTHESES.md#h2--arbitrary-tableau) proposes a key-stream-indexed arbitrary GP29 permutation row, rather than the direct token-to-rune lookup above. The printed table supplies case-sensitive repeated token labels and row-major order; neither the art nor the signed 2016 direction selects a GP29 row permutation, a key-to-row map, or a cross-page clock. As a deliberately generous **conditional** receiver, grant an independent arbitrary bijection for each literal token and use the previously fixed clockwise perimeter / row-major inner framing. For each inner index i, require C[i] = T[token[i]](P[i]), where P is authentic p56 plaintext followed by clear p57 and C is original encrypted p56 followed by the same clear p57. The p56 transparent F prime-minus-one inverse is replayed exactly (85/85, 84 consumed primes). The shared layer over p56/p57 is a hypothesis, not an established authored instruction.
+
+For any two equal token labels, a bijection requires P[a]=P[b] iff C[a]=C[b]. **One p56-only counterexample:** zero-based p56 positions 13 and 57, absolute grid cells 26 and 84, both printed `2r`, plaintext indices (18,18), ciphertext indices (2,25). Thus even an unrestricted nonlinear deterministic row fails before p57 is consulted. Six additional cross-page contradictions (zero-based offsets in the concatenated 180-rune tape):
+
+| Token | Offsets | P pair | C pair |
+|---|---:|---|---|
+| 0s | 21,86 | 4,24 | 24,24 |
+| 1Q | 33,91 | 18,18 | 11,18 |
+| 2n | 47,93 | 10,10 | 0,10 |
+| 2L | 17,174 | 18,18 | 20,18 |
+| 0u | 65,178 | 6,6 | 28,6 |
+| 3I | 61,179 | 26,18 | 18,18 |
+
+All four p57 equal-input pair predictions from p56 fail. In a planted independent Fisher–Yates bijection per token, the exact same source plaintext and labels yield zero conflicts, all four cross-page pair predictions correct, and an exact 180/180 inverse; changing the second occurrence of the first conflict produces a detected training contradiction. Additionally 39/76 perimeter positions have token labels absent entirely from the 180 interior positions, so a hypothetical consistent fit would not by itself specify those inverse rows.
+
+This is distinct from the previous stationary token-to-output lookup, the period-32 repeated-content gate, and the #2934/#2972 literal-token clock across p40–53. It is a hard rejection of this one terminal H2 framing, invariant under arbitrary common row relabeling, not a proof against unknown independent clocks, R3/R4 repairs, or p55-only tables. No source-selected row map or new plaintext; do not optimize arbitrary H2 rows unless independent source evidence fixes a different receiver. Reproduce: `node sims/lp2_p50_terminal_token_tableau_sft.cjs`. Core executed directly in connected JS on canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` and grid blob `2550eae357442912220e05dc51147523a61dd75a`; standalone Node CLI/CI not run. 
