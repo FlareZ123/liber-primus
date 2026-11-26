@@ -1,42 +1,26 @@
-## 2026-11-26 addendum — p55 totient index-origin ambiguity
+## 2026-11-26 current invocation — p55 candidate audit and correction
 
-The p5/p57 wordwise totient reading is not unique. Preferred original-word one-based positions i=2..n-1 with gcd(i,n)=1 yields A25S0EAJ15D8LKDCIA6E6FC22I5BI. A second plausible rule uses zero-based original-word indices j=1..n-2 while retaining original n as modulus; it also yields 29 symbols, JCRS0EAJ15D8LKF8IA6E6FC22ISBI. Using n-2 as the modulus yields 30, not 29. The source does not explicitly fix index origin, so do not present the first candidate as unique. Both candidates fail simple direct Vigenere on p55 and on the 33 exterior register; neither has been tested with OpenPuff.
+**Important correction:** the primary one-based p55 coprime-interior candidate A25S0EAJ15D8LKDCIA6E6FC22I5BI is prior Agent43/Agent13 work, not a new discovery. The source clue is solved **LP1 p7**, not p5: p7 says “THE TOTIENT FUNCTION IS SACRED”; solved LP2 p57 says “shed our own circumferences; find the divinity within.”
 
----
+The 16 complete words beginning on p55 have lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. Their strict interiors total43; one-based original-word positions i=2..n-1 with gcd(i,n)=1 select29. Agent13 tested the primary candidate as an A-only OpenPuff password on original seven-JPEG chain 50.jpg–56.jpg at JPEG Medium1/5; the same-run 35-byte positive control passed, while the exact LP2 chain returned a native corrupted-stream error and no files. This rejects that exact seven-carrier receiver. Agent13 also tested the 29 selected runes as ciphertext under the historical DIVINITY Vigenere law; both legal literal-F masks fail (0/2). Do not repeat or vary either frozen receiver absent a new independent source instruction.
 
-## 2026-11-26 addendum — audit prior p57 DIVINITY OpenPuff run
+Agent16's useful contribution was to correct the p55 word parser: it had ended an open word at the percent page marker, falsely creating a singleton. The corrected parser preserves words across page markers, assigns each word to the page where its first rune occurs, verifies the 11-rune p54→p55 carry and the 16 complete p55-starting words, and leaves the one-based candidate unchanged.
 
-The p55 candidate's OpenPuff receiver is still untested. Do not say no OpenPuff test has ever been attempted on p55: workflow agent14-p57-divinity-openpuff-p55.yml ran A=DIVINITY on original image72.jpg at JPEG Medium1/5 (run 43699273919). It failed the wrapper check “Native GUI did not prove exact single-carrier original p55, bit level and actual extraction”; logs show 1,216-byte capacity and Unhide controls but not an accepted result. Treat as inconclusive, not a cryptographic negative. The 29-character candidate is different and has not been dispatched. Resolve the prior verification failure before any new candidate test; owner/Director approval still required.
+A further indexing ambiguity exists. If the same gcd test is applied to zero-based original-word array indices j=1..n-2 with original word length n as modulus, it also selects29 symbols and yields **JCRS0EAJ15D8LKF8IA6E6FC22ISBI**. The standard mathematical totient definition favors the one-based candidate, but the source does not specify the indexing convention. Using n-2 as modulus yields30. The zero-based variant is untested and is not independently source-selected; do not sweep it.
 
-The 29-symbol key also fails the fixed Vigenere receiver against the 33 p55 exterior runes: minus output JDTHTBFNAEAFAEDAEAENGGFCTTHEOXNOOFLTNEOEOWH; plus output THIAEOXBEAFCYFGLEONOOFFDOEAPNGRIARADMCMIAEO.
+Agent16 also tested both 29-symbol candidates as repeating Vigenere keys on all76 p55 runes and on the 33 exterior register, with literal F transparent; all outputs are nonprose. This rejects only those direct key receivers, not other mechanisms.
 
----
+A separate single-carrier p57 DIVINITY A-key attempt on original p55 image72.jpg at JPEG Medium1/5 (workflow run43699273919) failed its native wrapper proof and is inconclusive, not a cryptographic negative. It used A=DIVINITY, not either 29-symbol candidate. Neither candidate has been tested on the single p55 image72 carrier. No test is currently authorized; no password/carrier/depth sweeps.
 
-## 2026-11-25 — draw 9 independent research: p55 totient/circumference candidate
+Canonical locations:
+- Candidate derivation and frozen Agent13 receiver results: im-results/lp2-p55-coprime-interior-29-key-candidate.md
+- 43/33 structural partition and carry/parser correction: im-results/p55-original-33-exterior-43-interior-source-framing.md
+- Reproducer for one-based and zero-based selectors and direct Vigenere diagnostics: sims/agent43_p55_coprime_interior_key.py
+- Integrated frontier: workplace/integrated-original-inversion-challenge.md
 
-Lease run: agent16-gpt62-draw9-20261125T234309Z-independent; claimed 2026-11-25T23:43:09.671Z. Normal mode draw 9; no executable director-task Issue was available (the six open issues were waiting/claimed), so this was independent exploration.
-
-**New candidate, not a solution:** LP1 physical p5 (05.jpg) says “THE TOTIENT FUNCTION IS SACRED”; solved LP2 p57 (74.jpg) says “Shed our own circumferences; find the divinity within.” The p7 reference in the earlier Agent43 message is wrong; p7 is in the four-page Koan. On LP2 p55 (original image72.jpg; SHA-256 a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba), 16 complete words start on p55, lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. The first p55 rune continues an 11-rune word that started on p54. A one-based interior selection i=2..n-1 with gcd(i,n)=1 selects phi(n)-1 runes per word, sum(phi)=45, total29 of the 43 strict interiors. The GP29 index sequence is [10,2,5,28,0,14,10,19,1,5,13,8,21,20,13,12,18,10,6,14,6,15,12,2,2,18,5,11,18]; per-symbol effective BASE29 mapping yields A25S0EAJ15D8LKDCIA6E6FC22I5BI.
-
-**Parser correction:** sims/agent43_p55_coprime_interior_key.py previously ended words at %, which splits the p54–p55 carry and produces a fake singleton, failing its 16-word assertion. Corrected to preserve open words across page markers and assign by start page; asserts the 11-rune carry and 16 word lengths. Candidate string unchanged. The report im-results/p55-original-33-exterior-43-interior-source-framing.md now integrates this branch and clarifies its limitations.
-
-**Receiver tests/status:** direct same-page Vigenere P=C-K mod29 with literal F transparent yields JDXJWUWAEIEAIATHJEOFSGWEATUECYFEONGXMTOGTNGEOCCRYHFRFLXEAGIHRNGHLOTPDYLFCFBGEAAENSPEIAOEAEIAY (76 runes, 73 key symbols consumed, IoC 0.0287719298; original p55 IoC 0.0378947368): reject only this direct receiver. The candidate is a plausible OpenPuff A password for original p55 image72.jpg; 29 chars fits the v4.01 manual's 32-character password width. #1049 native multi-carrier calibration passed (run 43698173445), but previous 58/58 original single-JPEG tests used A=33011033, not this candidate. OpenPuff is owner/Director-gated; no test with this candidate dispatched. A separate p57 DIVINITY A-key workflow targeted the same image72.jpg at Medium1/5 (run 43699273919) but failed its native-verification wrapper; treat it as inconclusive, not a cryptographic negative. Broadcast requests authorization for exactly one p55 single-carrier A-only Medium1/5 test with B/C disabled, no sweeps. Do not claim plaintext or key absent a recovered payload and verified content.
-
-Next: wait for Director's decision; if authorized, run one native v4.00 Unhide on untouched 72.jpg with the candidate and the existing positive controls. Otherwise continue with an independently source-selected receiver or evaluate the 14 unselected interior symbols without unconstrained key hunting.
+No plaintext, authenticated key, or complete p55 inverse was recovered. Do not describe A25 as new or untested; withdraw the earlier request to retest it. The only new variant is the zero-based candidate, which lacks a source-selected receiver.
 
 ---
-
-# Agent16 — 25 November 2026: direct five-bit all-secret binary receiver
-
-Lease: `agent16-draw3-2026-11-25T21:43:46.265Z-issue-directed`, claimed `2026-11-25T21:43:46.265Z`; 70-minute threshold 22:53:46.265Z. Draw3, issue-directed; direct inspection found the executable issues already claimed or closed, with other issues explicitly waiting on blind humans or side information. Agent6's competing lease was observed and not overwritten. Independent research therefore proceeded.
-
-**Current decision:** retire direct 8-bit ASCII transport from stationary injective five-bit GP29/large-mark codebooks, including eight independent cyclic phase alphabets. Existing fixed-map five-bit report now contains the complete extension: [consolidated report](../../im-results/lp2-gp29-three-mark-fivebit-original-binary-gate.md), commit 5002f8ef0bd5356e8b54acadbfbf6070e48c88a9.
-
-- All-key assignment minimizes number of octet high-bit ones. Every chapter fails with or without large marks, even with an independent secret codebook and every bit alignment/direction. Whole rune-only 3308/8097 necessarily non-ASCII, marked 3299/8116. Red256 A/B/C min violations 15/14/10.
-- Seven-bit packed sensitivity: relaxed within-codeword top-two-bit printable bound excludes 8/9 rune-only chapters and all marked chapters. Terminal rune-only and A/B can produce multiple arbitrary printable witnesses; no key or prose. Four A/B strict-printability branches capped at 30000 nodes, explicitly unresolved. For declared letters/digits/common-punctuation/whitespace English-text ASCII alphabet, all 56 A/B/C/terminal direction/phase cases exhaust with zero witnesses and no caps. This is a different finite character class from all printable ASCII.
-- Eight private mod8 five-bit codebooks still fail every chapter for octet ASCII, whole rune/marked minima 3187/3171. Packed seven-bit shared eight-column book and p40–53 fail, other chapter-private cases inconclusive. Actual p57-derived controls retained under known secret codebooks, assignment also checked against small brute-force optima.
-- Scripts: `sims/lp2_fivebit_allsecret_ascii_assignment_sft.cjs`, `sims/lp2_fivebit_sevenbit_printable_csp_sft.cjs`, `sims/lp2_fivebit_sevenbit_native_ascii_sft.cjs`, `sims/lp2_fivebit_eight_column_allsecret_ascii_sft.cjs`; matching JSON outputs linked in report. Core executed on connected ECMAScript runtime; standalone Node CI unrun.
-- No unknown plaintext, no authentic key, no new source selector. Do not treat alternative printable witnesses as decryptions. Do not extend arbitrary packing alphabets; encrypted/compressed intermediates are outside the bound and would need genuinely independent selector. No changes to authoritative frontier because this is a scoped exclusion consolidated into existing report.
 
 ## Next research decision
 
