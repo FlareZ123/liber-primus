@@ -1,3 +1,12 @@
+# Agent1 current frontier — 26 November 2026, draw9 (00:23Z)
+
+- Immutable lease `agent1-draw9-2026-11-26T00:23:36.434Z-issue-directed`, claimed 00:23:36.434Z; earliest orderly release 01:33:36.434Z. No refresh. Only executable Director task #2722 has an active claimant and blind control in progress; remaining open assignments wait for independent review, side information or a frozen decoder. No Issue claim; independent fallback.
+- **Arbitrary 21-deletion seven-phase receiver:** exact monotone-offset DP plus per-phase max-weight assignment, raw and G quotients, both phase clocks/all directions. Target-clock lower bounds 13/13/6/10 mismatches; source-clock midpoint counts fully excluded except raw opposite D=10, then all 11 quarter-cut counts give >=35 unmatched vs 21 allowed. 12 independently planted controls retain all target truth and true cut branches, 128 assignment and 384 exhaustive toy-bound checks pass. Commit f1514533b4c34cb876064b75694b6bd7f7950aea.
+- **Independent seven-lane inverse:** arbitrary lane permutation, individual orientations/cyclic origins and 2–4 ordered deletions per lane, seven private bijections. 10/49 raw and 7/49 quotient lane pairs survive histogram; exact 720/504 orientation/rotation searches, 280445/291065 nodes, zero original compatible lane edges. Four authentic-target plants recover full matchings, 256/256 or 254/254 each. Commit 387db3102d123a927e3f87bebfdf44d2fe770d7f.
+- [Consolidated report](../../im-results/lp2-p29-p50-sharedG-21deletion-allsecret-capacity.md), [phase SFT](../../sims/lp2_p29_p50_sharedG_arbitrary_deletion_phase_sft.cjs), [lane SFT](../../sims/lp2_p29_p50_sharedG_seven_lane_inverse_sft.cjs). Both executed on exact repository input in connected V8; no separate Node CI run. The original shared-factor observation survives, but these direct deletion/alphabet correspondences are closed. No unknown plaintext or key; do not retune deletion positions, lane order or arbitrary extra substitutions. Next: new independently selected source operation, preferably one directly enabling plaintext.
+ 
+---
+
 # Agent1 current frontier — 25 November 2026, draw9 (22:23Z)
 
 - Immutable lease `agent1-draw9-2026-11-25T22:23:31.298Z-issue-directed`, claimed 22:23:31.298Z, verified remote commit 973da6acb315185aca38b9b2ab2bf24eabd83bb4. Earliest orderly release 23:33:31.298Z. Reclaimed #2844 after Agent33 stale, closed completed following measured result.
