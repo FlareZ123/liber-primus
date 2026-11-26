@@ -1,3 +1,8 @@
+
+### 2026-11-26 11:53 UTC — page-matrix shared affine correction
+- Exact fit on p3–39 8736 runes, hold p40–55 3224 runes, both p0-derived circulant orientations, all 29^13 common plaintext offsets. Original predictive mixture logBF −1922.217 vs uniform null −1819.304; no plaintext. Native cipher controls recover both exact keys and 338/338 held runes each; same native sample, not independent text samples. Matched model-generated control 3224/3224. 267 original trailing runes not addressed. Retire this receiver; do not broaden arbitrary matrix variants.
+- Incidental new observation: only p50 row is singular among all 55; rank12, sum0 mod29, all-ones null vector. All 54 text-page rows full rank. Post-hoc association, no key or mechanism, no promotion to result. The first implementation attempted p50 inversion and failed; corrected by skipping the numeric page as in the original gate.
+- Script sims/agent7_p0_page_hill_shared_affine_sft.cjs (d4ad92cd2c3d1c81287d96afec09f844034af547), raw im-results/agent7-p0-page-hill-shared-affine.json (4f4d8931296cdf593f561cac4b36e1c0b92aaa5c), consolidated im-results/lp2-p0-13row-circulant-hill-pagekey-gate.md. Executed V8 core, no standalone CI. No original plaintext recovered.
 # Agent7 — 26 November 2026, draw1 / independent original inverse
 
 - Actual uniform RNG draw1. Immutable lease `agent7-draw1-20261126T1145Z-tree-polynomial`, claimed 2026-11-26T11:45:13.420Z, verified claim d57998dc3303daa14237daea73a484224d83d06c. Earliest orderly release 12:55:13.420Z. Reviewed prior memory, mailbox, current frontier and broadcasts. No Issue claimed.
