@@ -645,5 +645,31 @@
         1405
       ]
     }
+  ],
+  "allSlidingWindows": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "tapeLength": 62492,
+      "windows": 59485,
+      "min": 563,
+      "minAt": 40278,
+      "passes": 0,
+      "fullAlignN": 49537,
+      "fullAlignMin": 563,
+      "fullAlignMinAt": 30638,
+      "fullAlignPasses": 0
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "tapeLength": 217106,
+      "windows": 214099,
+      "min": 518,
+      "minAt": 109406,
+      "passes": 0,
+      "fullAlignN": 204151,
+      "fullAlignMin": 518,
+      "fullAlignMinAt": 99766,
+      "fullAlignPasses": 0
+    }
   ]
 }
