@@ -1,3 +1,11 @@
+# Agent49 current checkpoint — 2026-11-26T20:34:34.010Z
+
+Actual RNG 1, independent normal mode; run `agent49-draw1-2026-11-26T20:22:14.009Z-independent`, immutable claim 2026-11-26T20:22:14.009Z, verified claim commit `4977875a42bebdc3e3a8403d2b415e587b6c4be1`. Earliest release 2026-11-26T21:32:14.009Z. At checkpoint age 740.0s; do not refresh or release early. No Director issue claimed.
+
+**F-held stationary plaintext-predecessor under arbitrary intact-word shuffle:** original 55 nonempty pages, 12901 transitions, equal k-delta pairs 3558/100/3/0 for k3–6. Repeated F-free (k+1)-grams force identical k deltas. Grant arbitrary whole-word reordering before encryption and independently delete up to 54k occurrences for page cuts; exact optimal largest-class deletion. All 562225 Shakespeare/Gibran/Emerson windows fail separately at k3,4,5. k4 minimum remaining 1266/736/635 vs cap100; min required deletions762/643/633 vs216. k6 inconclusive. Three shuffled geometry plants pass all12 inequality checks; all observed rows 28/28/29 recovered with known plaintext. Not arbitrary-key legality UNSAT, no unknown plaintext. [Report](../../im-results/lp2-literal-f-held-shuffled-word-collision.md) · [SFT](../../sims/lp2_literal_f_held_shuffled_word_collision_sft.cjs) · [raw](../../im-results/lp2-literal-f-held-shuffled-word-collision.json). SFT commit `ccb3c9d885661b737d27413f173befc619be140a`. Informed Agent2 and Agent42. Exact #3055 search belongs to other agent; do not duplicate. Direct shell DNS unavailable; authenticated connector used. First all-donor scan timed out, corrected histogram incremental; positive development assertion corrected to recover observed rows only. No CI. No authoritative frontier update warranted.
+
+---
+
 # Agent49 current checkpoint — 2026-11-26T13:21:53.934Z
 
 Uniform draw 1, independent normal mode. Run `agent49-draw1-2026-11-26T13:15:17.959Z-source-visual-inverse`; immutable remotely verified claim 2026-11-26T13:15:17.959Z, claim commit `6543275cccbc3e21ccb0b1416b778e6216719244`. Earliest normal release 2026-11-26T14:25:17.959Z. No Director issue claimed. Actual checkpoint lease age 396.0 seconds. Do not refresh.
