@@ -103,9 +103,46 @@ The 1033 hit equals one cuneiform value, but the same preregistered Cicada set a
 
 Reproducer: **sims/lp2_2016_road_corrected_loader_t1_sft.cjs**. It asserts the corrected stream, word/wrap counts, all statistics, the three hit groups, and the seeded null procedure.
 
+## Corrected T3 receiver: prime-selected self-indexing with a secret common alphabet (Agent49, 26 November)
+
+The historical T3 lane includes a prime predicate and zero-based within-word selection by the sum modulo word length; it scored the direct output under the superseded parse. The distinct question here is whether the **same selector followed by an unknown common GP29 substitution** conceals an otherwise native message. This is an exploratory extension of the signed 2016 word/number/direction hint and historical GP prime weights, not an independently authenticated second alphabet or key.
+
+For each complete original group (w), compute its GP-prime sum (S). If (S) is prime, emit (w[S\bmod |w|]) with zero-based indexing; otherwise emit nothing. Preserve group order. The corrected transcription matches the canonical unknown ciphertext at all 12,956 runes and yields 2,896 groups; **604** pass the predicate (20.856%). The output is a projected tape rather than an inverse of the full manuscript.
+
+### All-order, all-alphabet necessary condition
+
+A fixed secret alphabet permutes counts and an arbitrary output ordering preserves them. As in the T2 result above, half the L1 distance between sorted count vectors is the exact minimum number of symbol replacements to match a literal reference histogram, even granting all 29! alphabets and all arrangements. Every same-length contiguous native-GP reference window was searched:
+
+| Reference | Windows | Exact matches | Minimum replacements of 604 |
+|---|---:|---:|---:|
+| Shakespeare | 216,503 | 0 | 137 |
+| Emerson | 320,724 | 0 | 134 |
+| Gibran | 61,889 | 0 | 143 |
+
+Thus all 599,116 literal windows fail under arbitrary common alphabets and output arrangements. Even the closest requires 134/604 (22.19%) changes. This finite reference result does not exclude every possible English text.
+
+### Actual unknown-alphabet inversion
+
+Train the joint GP29 trigram model only on Shakespeare and Emerson, smoothing by 0.1. Fit a 29-way bijection to the first 392 extracted symbols by 16 seeded annealing restarts of 12,000 swap proposals each, then freeze that key and decode the final 212. Reuse the earlier T2 substitution optimizer with this new source selector; do not sweep predicates, shifts, or indices.
+
+For positive controls, construct prime-sum four-rune carrier groups for each of the 29 possible extracted symbols; interleave composite-sum filler groups. Encode three independent 604-rune Gibran segments under independently shuffled secret alphabets. The extraction stage must recover all 604 hidden ciphertext symbols before fitting. These are mechanism controls, not a match to the original's entire cover-group length or selection-gap distribution.
+
+| Input | Fit nats/trigram | Frozen holdout | Correct withheld runes |
+|---|---:|---:|---:|
+| Gibran start 12,000 | -7.8430 | -7.9744 | 212/212 |
+| Gibran start 30,000 | -7.7146 | -7.8360 | 211/212 |
+| Gibran start 45,000 | -7.9216 | -7.9019 | 212/212 |
+| Original LP2 | -11.9095 | -13.7963 | unknown |
+
+All three plants pass the frozen criterion (at least 95% exact withheld recovery on two of three plants). The original best frozen key yields nonprose, beginning `UEWELUPBEADSTPOEODTHYNGHWRNGORLANEDOFCEAHRIAGNDMAPEAFREOUTWEADEXPEOPOETRIANLANURAEXMOEIAIFNGYTHESCHPOTM`. All projected symbols round-trip in all runs; that is automatic for a bijective alphabet and does not reconstruct the discarded cover symbols. The annealing result is a calibrated finite search, not an all-key theorem. The separate histogram result grants arbitrary output order without needing the annealer.
+
+**Decision:** retire the exact prime-selector/self-index/common-alphabet receiver. No plaintext or authentic key recovered; a new independently selected extraction rule would be needed to justify a successor. This is not an additional rerun of the historical direct T3 menu, and neither the other T3 predicates nor T4/T5 have been generally excluded by this extension.
+
+Reproducer [SFT](../sims/lp2_road_prime_selfindex_secret_alphabet_sft.cjs), [raw results](lp2-road-prime-selfindex-secret-alphabet.json). Both executed in V8 on the live canonical inputs; no CI.
+
 ## Current decision
 
-T1a and sentence/line T1b have now been re-run under the corrected 2,896-word loader. They do not produce a threshold-level signal; the three sentence Cicada hits include 1033 but remain a weak, multiple-testing-sensitive elevation. Historical page-group T1b and T2–T5 results remain conditional on their earlier parse unless separately re-adjudicated.
+T1a and sentence/line T1b have now been re-run under the corrected 2,896-word loader. They do not produce a threshold-level signal; the three sentence Cicada hits include 1033 but remain a weak, multiple-testing-sensitive elevation. Historical page-group T1b and most direct T2–T5 results remain conditional on their earlier parse unless separately re-adjudicated. The corrected T3 prime-selected self-index extension above gives a finite all-order/all-alphabet histogram exclusion and a calibrated ordered substitution-inverse negative.
 
 The corrected pointwise T2 quotient work above establishes exact finite order-and-alphabet-independent histogram limits and a calibrated direct ordered quotient negative, not a universal closure of word-gematria, selector, ordering, or book-pointer readings. Any further word-indexed revisit must use the 2,896-word loader, address arrangement/decoder ambiguity, and retain a source-constrained operation with independent controls. The external Round47 arrangement-aware decoder is relevant only where a bounded key family actually selects the ordering; it is not a license for unconstrained key search.
 
