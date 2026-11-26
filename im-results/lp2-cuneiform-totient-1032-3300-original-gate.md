@@ -33,7 +33,7 @@ The totient values were interpreted in the simplest ways suggested by the existi
 - Periodic key stream K_i = ((43i + 32) mod 76) mod 29, with both additive signs and both ordinary key consumption and literal-F hold.
 - Hill-2 matrix [[24,0],[76,32]] mod 29 = [[24,0],[18,3]], with direct/inverse matrices and row/column vector conventions.
 
-All 12 transformed readouts are nonlinguistic. The 29-letter transliteration streams were scored with the repository's English quadgram model against matched-length windows from Shakespeare, Emerson and Gibran. Every transformed output falls below the first percentile of all three controls; the best transformed score is 0.285. The known clear p57 page scores 2.482 under the same model. The result rejects these direct totient-derived position, additive and Hill receivers, not every conceivable use of the numbers.
+All 12 transformed readouts are nonlinguistic. The 29-letter transliteration streams were scored with the repository's English quadgram model against matched-length windows from Shakespeare, Emerson and Gibran. Every transformed output falls below the first percentile of all three controls. The best is the inverse full-page affine readout at 0.285041; raw p55 scores 0.068772, while the known clear p57 page scores 2.481947 under the same model. The best 95-letter output remains far below the matched-length control p01 values (2.064625, 2.216572 and 2.188893). The result rejects these direct totient-derived position, additive and Hill receivers, not every conceivable use of the numbers. The standalone Node22 SFT passed on workflow run 45790211306 (job 139807044913; main head af9265a2).
 
 ## Frozen p33–p39 DH receiver
 
