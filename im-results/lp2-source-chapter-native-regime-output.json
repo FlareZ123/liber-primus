@@ -1153,5 +1153,508 @@
         12709
       ]
     }
-  ]
+  ],
+  "internal": [
+    {
+      "name": "p33-36 before first number",
+      "length": 845,
+      "cut": 214,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -4.953934565739315,
+          "legal": 214
+        },
+        {
+          "id": "atbash",
+          "avg": -5.038690135529903,
+          "legal": 214
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 0
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 32
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 58
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -4.953934565739315,
+      "heldScore": -5.168350000223437,
+      "heldLegal": 631,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "DEOXCFIAWHGEOOEFTEOEEAAIASGYEANTHAEROIAMWXMYDBTRUJHAEOEIANGWHSFIALTHTIWTOUNW",
+      "heldPreview": "MBNHEODHMLIEANIAEEUTTHEOSPHHEOCEAAEDLSNGIWACOTEONGGCTHSEAFUNGLHWOEOAPGEOMLJS"
+    },
+    {
+      "name": "numbered item1",
+      "length": 139,
+      "cut": 69,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.071792791900924,
+          "legal": 69
+        },
+        {
+          "id": "atbash",
+          "avg": -5.1206000260423945,
+          "legal": 69
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 29
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": -5.290058205802108,
+          "legal": 69
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 1
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -5.071792791900924,
+      "heldScore": -5.014874447878373,
+      "heldLegal": 70,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "LTHEOOEAAEEAMXHCXATTHAEXOSCDTYWNOETXWIOEJFIOIRSXNMAIARPSDIOEHETUWEAOEDOEJI",
+      "heldPreview": "OTHOERULUTHSUDLGIYNGOOEIEYEFEONGBLIUYFOENOEBOEGJANMAEYTHFIBNGPNIRGJEOAEHARX"
+    },
+    {
+      "name": "numbered item2",
+      "length": 91,
+      "cut": 45,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -4.748997006614819,
+          "legal": 45
+        },
+        {
+          "id": "atbash",
+          "avg": -4.93948641219883,
+          "legal": 45
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 4
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 34
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 11
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -4.748997006614819,
+      "heldScore": -4.311331499972513,
+      "heldLegal": 46,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "NYEXNUXINGTPWSYTEAPXAIJSRATSNGTCGCHEOERAIAHCNGBEREAA",
+      "heldPreview": "LOEELATHSCWRWOHYUNGOPLITAFSNGDCARBWPNOTHCTHNMOEYEONFB"
+    },
+    {
+      "name": "numbered item3",
+      "length": 98,
+      "cut": 49,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.317873184493521,
+          "legal": 49
+        },
+        {
+          "id": "atbash",
+          "avg": -4.6377296569995075,
+          "legal": 49
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 0
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": -4.837612370857163,
+          "legal": 49
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": -5.173297838578167,
+          "legal": 49
+        }
+      ],
+      "selected": "atbash",
+      "prefixScore": -4.6377296569995075,
+      "heldScore": -5.23153543351359,
+      "heldLegal": 49,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "CIASNGMIRAHENGOXWEACREAJBXCBWTHTROBWSRIAFTEOAIONOFLEOGFNGD",
+      "heldPreview": "BYLUAEIAAEYOEULPOEREGCRBENGUJNWUCEAJPEOJOEEAOEGIADOEOEIAOENTHROENG"
+    },
+    {
+      "name": "numbered item4",
+      "length": 96,
+      "cut": 39,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -4.858710215394593,
+          "legal": 39
+        },
+        {
+          "id": "atbash",
+          "avg": -4.8549856935791125,
+          "legal": 39
+        },
+        {
+          "id": "DIUINITY",
+          "avg": -4.781945197222088,
+          "legal": 39
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 31
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 18
+        }
+      ],
+      "selected": "DIUINITY",
+      "prefixScore": -4.781945197222088,
+      "heldScore": null,
+      "heldLegal": 38,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "IAUXUIDOEODCERXIAIAPOBWTMRNGYAYBNGNGAIAOEUTIAYTXE",
+      "heldPreview": ""
+    },
+    {
+      "name": "numbered item5",
+      "length": 129,
+      "cut": 64,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.169560578436845,
+          "legal": 64
+        },
+        {
+          "id": "atbash",
+          "avg": -4.872414712474658,
+          "legal": 64
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 6
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 28
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 6
+        }
+      ],
+      "selected": "atbash",
+      "prefixScore": -4.872414712474658,
+      "heldScore": -5.1271048097047665,
+      "heldLegal": 65,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "LOXYJGEOGNGBOFNEAODOETLNGNLWTHEAEEEOEIUBNTHHLAAECJUSFNDFIJIAOEEYGOULWIMA",
+      "heldPreview": "EOWLROEAEWONGHEOAOEEMIFBUCPLWMDPMCTMPEDUAWHOTHTHAEDCMWOEUWBLBHFGBEOOEHJ"
+    },
+    {
+      "name": "after item5 to chapter end",
+      "length": 282,
+      "cut": 42,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.271213920276535,
+          "legal": 42
+        },
+        {
+          "id": "atbash",
+          "avg": -5.028636703738065,
+          "legal": 42
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 15
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 5
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": -5.012506934807188,
+          "legal": 42
+        }
+      ],
+      "selected": "prime-minus-one",
+      "prefixScore": -5.012506934807188,
+      "heldScore": null,
+      "heldLegal": 90,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "ANGEMEOWGWTHNOEOMPPOPBTEAJTHRMLCEOJOEEOXEWAAEAEALAULB",
+      "heldPreview": ""
+    },
+    {
+      "name": "p40-48 before numeric panel",
+      "length": 2408,
+      "cut": 231,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -4.960778383663224,
+          "legal": 231
+        },
+        {
+          "id": "atbash",
+          "avg": -5.223937911490286,
+          "legal": 231
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 60
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 67
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 38
+        }
+      ],
+      "selected": "clear",
+      "prefixScore": -4.960778383663224,
+      "heldScore": -5.05989416301987,
+      "heldLegal": 2177,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "FNMYGDAEHAPXYHEOEAOETNGEALITTHFMACEDCTROEGEANAEBUEBUTHFOEGSOEIPOEXSBWJBYM",
+      "heldPreview": "EAIASYMDYSBDJDONTLCANGRGHGJWFAUEODTMJINGAEXPCPEAOEABIISEOGHSEOIABFWNGAEA"
+    },
+    {
+      "name": "p49-51 numeric panel text",
+      "length": 158,
+      "cut": 66,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -4.9418455377785175,
+          "legal": 66
+        },
+        {
+          "id": "atbash",
+          "avg": -4.861354329609587,
+          "legal": 66
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 19
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": -4.990181116510292,
+          "legal": 66
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": -4.90540996736549,
+          "legal": 66
+        }
+      ],
+      "selected": "atbash",
+      "prefixScore": -4.861354329609587,
+      "heldScore": -4.757564744977681,
+      "heldLegal": 92,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "UIBEAHGEDEWOEYNPOOERFNEJUEOMWNYEOTHOBILEARUOERNECXEOIAIYMIRSNGFHJIAAUGRTH",
+      "heldPreview": "NGNGSEAUHXJMDNMANLYOCBJUOTNGNIARSUSEBRIAMFICNREOGNPCWOEHPCWGPBCHGEABO"
+    },
+    {
+      "name": "p52-53 after numeric panel",
+      "length": 442,
+      "cut": 263,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.167411153864377,
+          "legal": 263
+        },
+        {
+          "id": "atbash",
+          "avg": -5.075740137709353,
+          "legal": 263
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 198
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": null,
+          "legal": 245
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": null,
+          "legal": 73
+        }
+      ],
+      "selected": "atbash",
+      "prefixScore": -5.075740137709353,
+      "heldScore": -5.057929938779394,
+      "heldLegal": 179,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "SEANWRTMGNGTXTHOXCGAJUAGNGEOOEABIFSHCLYAYTHHXFSOEARORJSPNEOODSWNGYLFCAE",
+      "heldPreview": "TOFOTHIANSXEIAMAEGMOECYUONGCGIANMILOEJIABIAYNICWJOETHAIEIABTHUHIABGFXTHTAAES"
+    },
+    {
+      "name": "p55 terminal tree",
+      "length": 76,
+      "cut": 38,
+      "ranked": [
+        {
+          "id": "clear",
+          "avg": -5.249242796533452,
+          "legal": 38
+        },
+        {
+          "id": "atbash",
+          "avg": -4.910520475054126,
+          "legal": 38
+        },
+        {
+          "id": "DIUINITY",
+          "avg": null,
+          "legal": 3
+        },
+        {
+          "id": "FIRFUMFERENFE",
+          "avg": -4.634274162666938,
+          "legal": 38
+        },
+        {
+          "id": "prime-minus-one",
+          "avg": -4.980325426753704,
+          "legal": 38
+        }
+      ],
+      "selected": "FIRFUMFERENFE",
+      "prefixScore": -4.634274162666938,
+      "heldScore": null,
+      "heldLegal": 36,
+      "prefixCorrect": null,
+      "heldCorrect": null,
+      "preview": "NGSSIGAEBAESYOGCTHSAEIADIACEOOSHEAFAEINYCEOENGTHHUG",
+      "heldPreview": ""
+    }
+  ],
+  "compare": [
+    {
+      "start": 0,
+      "n": 467,
+      "globalAtbashScore": -5.050846344580784,
+      "piecewiseScore": -5.050846344580782
+    },
+    {
+      "start": 3,
+      "n": 928,
+      "globalAtbashScore": -5.017265974002596,
+      "piecewiseScore": -5.017265974002602
+    },
+    {
+      "start": 8,
+      "n": 1474,
+      "globalAtbashScore": -5.118756377258296,
+      "piecewiseScore": -5.069964642191457
+    },
+    {
+      "start": 15,
+      "n": 1744,
+      "globalAtbashScore": -5.018895957587025,
+      "piecewiseScore": -5.098656911204914
+    },
+    {
+      "start": 23,
+      "n": 808,
+      "globalAtbashScore": -5.130718706738573,
+      "piecewiseScore": -4.895939343840601
+    },
+    {
+      "start": 27,
+      "n": 1199,
+      "globalAtbashScore": -5.029225478943042,
+      "piecewiseScore": -5.0407464958910815
+    },
+    {
+      "start": 33,
+      "n": 1466,
+      "globalAtbashScore": -5.031121712476255,
+      "piecewiseScore": -5.043770547274962
+    },
+    {
+      "start": 40,
+      "n": 2777,
+      "globalAtbashScore": -4.9708421450027975,
+      "piecewiseScore": -5.075558463492039
+    },
+    {
+      "start": 54,
+      "n": 76,
+      "globalAtbashScore": -4.914080333129252,
+      "piecewiseScore": -5.288100247497727
+    }
+  ],
+  "pooled": {
+    "N": 10939,
+    "global": -5.031680661274558,
+    "piecewise": -5.052620599246198
+  }
 }
