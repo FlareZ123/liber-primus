@@ -106,6 +106,26 @@ const epiphany = gpWord("EPIPHANY"), words = gpWord("WORDS"), seeks = gpWord("SE
 const residual = (c, p) => c.map((v, i) => mod(v - p[i]));
 const titleWordsKey = residual(titleCipher, [...epiphany, ...words]);
 const titleSeeksKey = residual(titleCipher, [...epiphany, ...seeks]);
+
+function interleavedH(values) {
+  const out = [];
+  for (let left = 0, right = values.length - 1; left < right; left++, right--) {
+    out.push(mod(values[left] - values[right]), mod(values[left] + values[right]));
+  }
+  if (values.length % 2) out.push(values[(values.length - 1) / 2]);
+  return out;
+}
+function markerColumnSums(values) {
+  const h = interleavedH(values);
+  const sum = (part) => mod(part.reduce((a, b) => a + b, 0));
+  return { h, columns: [sum(h.slice(0, 4)), sum(h.slice(4, 9)), sum(h.slice(9, 13))] };
+}
+const stateGateTarget = [13,23,6]; // Existing p0 13-dot marker 4|5|4 state gate.
+const epiphanySeeksStateGate = markerColumnSums(titleSeeksKey);
+const epiphanyWordsStateGate = markerColumnSums(titleWordsKey);
+assert.deepEqual(epiphanySeeksStateGate.columns, stateGateTarget);
+assert.deepEqual(epiphanyWordsStateGate.columns, [13,15,14]);
+
 const p0Devoted = p0.words.find((w) => w.start === 237 && w.end === 243);
 assert.ok(p0Devoted);
 const devotedCipher = p0Devoted.values, devotedPlain = gpWord("DEVOTED");
@@ -164,6 +184,12 @@ const output = {
     corePositions,
     coreWords: corePositions.map((v) => sourceWords[v - 1]),
     candidates: boundedTitleScan
+  },
+  markerStateGate: {
+    columnWidths: [4,5,4],
+    expected: stateGateTarget,
+    EPIPHANY_SEEKS: epiphanySeeksStateGate,
+    EPIPHANY_WORDS: epiphanyWordsStateGate
   },
   p0Title: {
     cipher: titleCipher,
