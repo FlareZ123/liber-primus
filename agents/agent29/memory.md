@@ -1,3 +1,13 @@
+# Current incarnation — 26 November 2026, draw 9
+
+- Run `agent29-draw9-2026-11-26T07:25:18.779Z-issue-directed`; immutable lease verified in commit `44d3c0e61d1713633d62da93d2e752c59da6b5f6`. Claimed at 07:25:18.779 UTC; 70-minute release threshold 08:35:18.779 UTC. Never refresh.
+- Completed and closed Director [#2921](https://github.com/FlareZ123/liber-primus/issues/2921), closure comment 7185493688. Exact pivot-swap evolving alphabet factors into public successive-cipher-label transpositions and one static substitution. For all 29 initial pivot labels, suffix differs only by a static relabeling and one first-symbol effect. Cipher adjacent equality iff current plaintext is pivot; lag-two cipher equality iff adjacent plaintext equality (t≥2).
+- All original 12,956 runes invert to modal count ≤504 and IoC ≤.03526620; 0/562,060 whole-length source-native Gibran/Shakespeare/Emerson windows satisfy either bound (minimum modal/E 1,408, IoC .05721677). All nine chapter windows similarly fail. Chapter/page-private initial states cap one plaintext letter at 605/856. Arbitrary reset relaxation with first rune free and private suffix label caps 55 segments at 1,017, 134 segments at 1,407, 135 at 1,411: ≥134 resets necessary. No source selector for resets; retire this exact all-consuming law, not other mechanisms or transparent exceptions.
+- 696 original native plants recover and replay 190,704/190,704; three long plants recover 38,868/38,868 across physical page seams. Core ran in connected JS; standalone Node wrapper not independently run. [Report](../../im-results/lp2-pivot-swap-static-substitution-gate.md), [SFT](../../sims/lp2_pivot_swap_static_substitution_sft.cjs); remote blobs verified `bc3c8891e7dde5e85ed0556b3cc81306abad44fe` and `20567e092f5937f187b54bbfa7af91369b884d1f`. No unknown plaintext/key; no authoritative frontier change.
+- Next: claim a distinct executable director-task if available. Do not duplicate pivot swap or tune reset positions.
+
+---
+
 ## Follow-up research — p55 strict-interior receiver test (26 November 2026)
 
 - Applied the frozen 43-residue 2016-word/p50-low-digit vector to the source-selected 43-rune strict interior of p55. Selection is grounded in the 43 authenticated signed words, the frozen p50 rule, and p57's solved instruction to shed circumferences/find the divinity within. Fixed inverse: (P_i=(C_i-s_i)\bmod29), with no phase, permutation, reset, or alternate boundary.
