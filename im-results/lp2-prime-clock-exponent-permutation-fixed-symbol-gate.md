@@ -1,6 +1,6 @@
-# Global GP29 prime-exponent clock: fixed-symbol exclusion
+# Global GP29 prime-exponent clock: identity and all-fixed-alphabet exclusion
 
-**26 November 2026. Intermediate negative for Director Issue #2942. No unknown plaintext or authentic key recovered.**
+**26 November 2026. Intermediate negative for Director Issue #2942 and Agent5's all-fixed-alphabet extension. No unknown plaintext or authentic key recovered.** The current strongest result is the exact arbitrary-input/output-permutation concentration bound below; the original fixed-symbol gate remains the special identity-offset case.
 
 ## Hypothesis and source boundary
 
@@ -65,3 +65,28 @@ The script asserts the original and solved-native counts, the 566 control window
 Close the frozen identity-offset prime-exponent clock without running a full original inverse or language scoring. Every allowed exponent fixes EA, while the original contains far too many EA symbols for the matched ordinary-English controls. This rejects the specified exponent-only global transfer and, more generally, any identity-offset power-only map using units modulo28 as exponents.
 
 It does **not** exclude a non-English intermediate register, a source-authenticated additional translation/affine layer, or the separate p28-local READ OUT candidate. No such extra layer is selected by this task's source evidence. Do not rescue this receiver with arbitrary translations, remappings, or exponent schedules.
+
+
+## Arbitrary fixed input/output alphabets: exact public-clock exclusion (Agent 5, 26 November)
+
+**Stronger decision:** the identity-offset fixed-symbol objection is no longer the limiting assumption for the specified global phase-zero unit-prime exponent receiver. For any two fixed GP29 alphabet permutations (A,B), consider (C_i=B(A(P_i)^{e_i})) in GF29, with the successive unit-prime schedule beginning at 3. Test consuming or internal-zero-hold clocks (the held output label may be arbitrary), and both direct and inverse exponent directions. These extensions are hypotheses, not source-authenticated operations; the earlier signed DH example and p56 prime clock motivate the general vocabulary but do not choose the combined cipher.
+
+The first inverse exactly scores all 1,318,688 gauge-reduced affine-wrapper representations on 9,640 training runes (p0–39), then uses a 32-per-law unigram shortlist for native trigram selection; p40–55 (3,316 runes) is withheld. All four independent literary plants recover their exact hidden gauge-fixed tuple and all 12,956 runes per plant (13,264 held runes total). Every original law produces nonprose, despite exact forward replay. The strongest original full-tape top-two cap is 1,036; held cap 303. The best train-ranked original candidate scores −3.511697/−3.535656 train/held trigram log probability per rune, compared to −2.801570..−2.661394/−2.745470..−2.661077 on plants. The trigram shortlist is not an all-key trigram optimum.
+
+For arbitrary (A,B), top-two concentration is invariant to (A^{-1}). For a fixed target pair ({x,y}), construct a 29×29 integer cost matrix: (W_{cz}) counts positions having original symbol c at which the specified inverse power of z falls in the target pair. The unknown (B^{-1}) is a one-to-one assignment from c to z; a maximum-weight Hungarian assignment gives its exact optimum. For internal-zero hold enumerate each of 29 possible ciphertext labels for z=0, pin that row/column and solve 28×28 assignments. The phase sequence is thus fully determined before assignment. A simultaneous unit exponentiation of both target symbols permutes columns, commuting with every clock exponent and fixing zero; the 406 pairs fall into exactly 51 orbits. This quotient loses no possibilities.
+
+| Global law | Exact full top-two maximum | Exact held maximum |
+|---|---:|---:|
+| Ordinary, direct exponent | 1,122 | 361 |
+| Ordinary, inverse exponent | 1,122 | 361 |
+| Zero-hold, direct exponent | 1,162 | 365 |
+| Zero-hold, inverse exponent | 1,162 | 365 |
+| Native reference floor | 2,456 | 588 |
+
+Native floors are computed over every contiguous matched window in the pinned Shakespeare, Emerson and Gibran GP29 references: 564,558 full and 593,478 held-length windows. All four original maxima are strictly below these floors. Full and held maxima may use different outer permutations; they are conservative independent bounds. Neither a secret arbitrary fixed input relabeling nor a secret arbitrary fixed output relabeling can repair the concentration failure under this clock. No order/spacing assumption or dictionary is needed; the comparison is finite to the stated reference distribution, not a theorem about all languages. A public clock with another origin or resets and other exponent/state laws are not covered here.
+
+The exact assignment implementation checks integer primal/dual feasibility and matching objectives on every solve, passes 112 brute-force small matrix controls, retains the concentration of two arbitrary-permutation native KOAN plants (same source text, different maps/clocks; no unique key claim), reproduces the full 406-pair optimum on two 96-rune prefixes, and replays the exact maximizing output maps. All source indices and outputs are recorded.
+
+- [Affine inverse SFT](../sims/lp2_prime_exponent_affine_wrapper_original_sft.cjs), freeze d7594116; [raw outputs](lp2-prime-exponent-affine-wrapper-output.json), ef25f7f3.
+- [Exact arbitrary-permutation SFT](../sims/lp2_prime_exponent_allpermutation_capacity_sft.cjs), freeze 942fb1e4; [raw witnesses](lp2-prime-exponent-allpermutation-capacity-output.json), 0d242ba7.
+- Both frozen computation cores ran in connected V8; standalone CommonJS wrappers have not separately run in native Node/Windows. No CI dispatched. No new unknown plaintext, key, or authenticated clock selection.
