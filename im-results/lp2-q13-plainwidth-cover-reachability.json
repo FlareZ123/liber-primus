@@ -1,12 +1,12 @@
 {
   "schema": "T: placements,partial,complete,relaxRejected,exactTested,local,continuous,shared; C: word,chapter,absolute offset,key at anchor phase0,continuous,shared",
-  "sourceBlob": "10f15ce5fbe9dcf008b58e1079fc66e10b54baed",
+  "sourceBlob": "05472d5d6409578f281d1cd84e5bedb5f29820ee",
   "total": [
     732480,
-    582401,
-    30874761,
-    29938643,
-    936118,
+    582402,
+    30874790,
+    29936700,
+    938090,
     73,
     0,
     0
