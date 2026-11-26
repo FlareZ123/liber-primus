@@ -1,0 +1,2532 @@
+{
+  "keyLength": 41181,
+  "rawWords": 10170,
+  "p56Control": 85,
+  "results": [
+    {
+      "name": "full p0-55",
+      "length": 12956,
+      "zeros": 458,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 880,
+          "best": [
+            34751,
+            34752,
+            34754
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 11935
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 829,
+          "best": [
+            24492,
+            24493
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 12880
+        }
+      ]
+    },
+    {
+      "name": "black opening p0-2",
+      "length": 716,
+      "zeros": 33,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 716,
+          "best": [
+            4348,
+            4349,
+            34748,
+            34764,
+            34765,
+            34766
+          ],
+          "survivorCount": 6,
+          "survivors": [
+            {
+              "start": 4348,
+              "ends": 3
+            },
+            {
+              "start": 4349,
+              "ends": 3
+            },
+            {
+              "start": 34748,
+              "ends": 1
+            },
+            {
+              "start": 34764,
+              "ends": 2
+            },
+            {
+              "start": 34765,
+              "ends": 2
+            },
+            {
+              "start": 34766,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 13787
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 716,
+          "best": [
+            24503,
+            24504,
+            24505
+          ],
+          "survivorCount": 3,
+          "survivors": [
+            {
+              "start": 24503,
+              "ends": 2
+            },
+            {
+              "start": 24504,
+              "ends": 2
+            },
+            {
+              "start": 24505,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 9562
+        }
+      ]
+    },
+    {
+      "name": "black terminal p54-55",
+      "length": 299,
+      "zeros": 6,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 299,
+          "best": [
+            6192,
+            8430,
+            9127,
+            9679,
+            10083,
+            10555,
+            13055,
+            13559,
+            13666,
+            16746
+          ],
+          "survivorCount": 31,
+          "survivors": [
+            {
+              "start": 6192,
+              "ends": 1
+            },
+            {
+              "start": 8430,
+              "ends": 2
+            },
+            {
+              "start": 9127,
+              "ends": 1
+            },
+            {
+              "start": 9679,
+              "ends": 2
+            },
+            {
+              "start": 10083,
+              "ends": 1
+            },
+            {
+              "start": 10555,
+              "ends": 1
+            },
+            {
+              "start": 13055,
+              "ends": 3
+            },
+            {
+              "start": 13559,
+              "ends": 2
+            },
+            {
+              "start": 13666,
+              "ends": 1
+            },
+            {
+              "start": 16746,
+              "ends": 1
+            },
+            {
+              "start": 16747,
+              "ends": 1
+            },
+            {
+              "start": 18486,
+              "ends": 1
+            },
+            {
+              "start": 18487,
+              "ends": 1
+            },
+            {
+              "start": 20655,
+              "ends": 1
+            },
+            {
+              "start": 21578,
+              "ends": 2
+            },
+            {
+              "start": 21579,
+              "ends": 2
+            },
+            {
+              "start": 21580,
+              "ends": 2
+            },
+            {
+              "start": 22416,
+              "ends": 1
+            },
+            {
+              "start": 22452,
+              "ends": 2
+            },
+            {
+              "start": 22648,
+              "ends": 2
+            },
+            {
+              "start": 25537,
+              "ends": 1
+            },
+            {
+              "start": 26725,
+              "ends": 1
+            },
+            {
+              "start": 28777,
+              "ends": 1
+            },
+            {
+              "start": 29376,
+              "ends": 1
+            },
+            {
+              "start": 30071,
+              "ends": 1
+            },
+            {
+              "start": 30262,
+              "ends": 2
+            },
+            {
+              "start": 31979,
+              "ends": 1
+            },
+            {
+              "start": 34824,
+              "ends": 1
+            },
+            {
+              "start": 34908,
+              "ends": 1
+            },
+            {
+              "start": 37209,
+              "ends": 1
+            },
+            {
+              "start": 38028,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 3748
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 299,
+          "best": [
+            500,
+            501,
+            3056,
+            3057,
+            4530,
+            14003,
+            14278,
+            14279,
+            15225,
+            15227
+          ],
+          "survivorCount": 17,
+          "survivors": [
+            {
+              "start": 500,
+              "ends": 1
+            },
+            {
+              "start": 501,
+              "ends": 1
+            },
+            {
+              "start": 3056,
+              "ends": 1
+            },
+            {
+              "start": 3057,
+              "ends": 1
+            },
+            {
+              "start": 4530,
+              "ends": 2
+            },
+            {
+              "start": 14003,
+              "ends": 2
+            },
+            {
+              "start": 14278,
+              "ends": 2
+            },
+            {
+              "start": 14279,
+              "ends": 2
+            },
+            {
+              "start": 15225,
+              "ends": 1
+            },
+            {
+              "start": 15227,
+              "ends": 1
+            },
+            {
+              "start": 16125,
+              "ends": 2
+            },
+            {
+              "start": 18555,
+              "ends": 1
+            },
+            {
+              "start": 21219,
+              "ends": 1
+            },
+            {
+              "start": 21220,
+              "ends": 1
+            },
+            {
+              "start": 36064,
+              "ends": 1
+            },
+            {
+              "start": 36065,
+              "ends": 1
+            },
+            {
+              "start": 39555,
+              "ends": 1
+            }
+          ],
+          "prefixAtLeast100": 2789
+        }
+      ]
+    },
+    {
+      "name": "p0-2",
+      "length": 729,
+      "zeros": 34,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 729,
+          "best": [
+            4336,
+            4337,
+            34735,
+            34736,
+            34751,
+            34752,
+            34754
+          ],
+          "survivorCount": 7,
+          "survivors": [
+            {
+              "start": 4336,
+              "ends": 3
+            },
+            {
+              "start": 4337,
+              "ends": 3
+            },
+            {
+              "start": 34735,
+              "ends": 1
+            },
+            {
+              "start": 34736,
+              "ends": 1
+            },
+            {
+              "start": 34751,
+              "ends": 2
+            },
+            {
+              "start": 34752,
+              "ends": 2
+            },
+            {
+              "start": 34754,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 11935
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 729,
+          "best": [
+            24492,
+            24493
+          ],
+          "survivorCount": 2,
+          "survivors": [
+            {
+              "start": 24492,
+              "ends": 2
+            },
+            {
+              "start": 24493,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 12880
+        }
+      ]
+    },
+    {
+      "name": "p3-7",
+      "length": 1145,
+      "zeros": 26,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 599,
+          "best": [
+            24397,
+            24398
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 5808
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 513,
+          "best": [
+            16808
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 5021
+        }
+      ]
+    },
+    {
+      "name": "p8-14",
+      "length": 1729,
+      "zeros": 66,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 534,
+          "best": [
+            4052
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 2397
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 593,
+          "best": [
+            31554
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 1703
+        }
+      ]
+    },
+    {
+      "name": "p15-22",
+      "length": 1903,
+      "zeros": 72,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 780,
+          "best": [
+            40144,
+            40145,
+            40146
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 13988
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 570,
+          "best": [
+            6534,
+            6535
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 13046
+        }
+      ]
+    },
+    {
+      "name": "p23-26",
+      "length": 1021,
+      "zeros": 37,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 653,
+          "best": [
+            19047
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 2221
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 699,
+          "best": [
+            35109
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 3759
+        }
+      ]
+    },
+    {
+      "name": "p27-32",
+      "length": 1433,
+      "zeros": 52,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 701,
+          "best": [
+            6253,
+            6255
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 6690
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 711,
+          "best": [
+            27543
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 8689
+        }
+      ]
+    },
+    {
+      "name": "p33-39",
+      "length": 1680,
+      "zeros": 40,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 603,
+          "best": [
+            37886,
+            37887,
+            37888
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 9077
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 598,
+          "best": [
+            24044,
+            24046
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 8714
+        }
+      ]
+    },
+    {
+      "name": "p40-53",
+      "length": 3008,
+      "zeros": 125,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 691,
+          "best": [
+            6397,
+            6398
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 4969
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 633,
+          "best": [
+            35944,
+            35945
+          ],
+          "survivorCount": 0,
+          "survivors": [],
+          "prefixAtLeast100": 7154
+        }
+      ]
+    },
+    {
+      "name": "p54-55",
+      "length": 308,
+      "zeros": 6,
+      "runs": [
+        {
+          "sign": 1,
+          "starts": 41182,
+          "max": 308,
+          "best": [
+            8421,
+            9670,
+            10546,
+            13046,
+            13550,
+            16737,
+            16738,
+            18477,
+            18478,
+            20646
+          ],
+          "survivorCount": 25,
+          "survivors": [
+            {
+              "start": 8421,
+              "ends": 2
+            },
+            {
+              "start": 9670,
+              "ends": 2
+            },
+            {
+              "start": 10546,
+              "ends": 1
+            },
+            {
+              "start": 13046,
+              "ends": 3
+            },
+            {
+              "start": 13550,
+              "ends": 2
+            },
+            {
+              "start": 16737,
+              "ends": 1
+            },
+            {
+              "start": 16738,
+              "ends": 1
+            },
+            {
+              "start": 18477,
+              "ends": 1
+            },
+            {
+              "start": 18478,
+              "ends": 1
+            },
+            {
+              "start": 20646,
+              "ends": 1
+            },
+            {
+              "start": 21569,
+              "ends": 2
+            },
+            {
+              "start": 21570,
+              "ends": 2
+            },
+            {
+              "start": 21571,
+              "ends": 2
+            },
+            {
+              "start": 22443,
+              "ends": 2
+            },
+            {
+              "start": 22639,
+              "ends": 2
+            },
+            {
+              "start": 25528,
+              "ends": 1
+            },
+            {
+              "start": 26716,
+              "ends": 1
+            },
+            {
+              "start": 29367,
+              "ends": 1
+            },
+            {
+              "start": 30062,
+              "ends": 1
+            },
+            {
+              "start": 30253,
+              "ends": 2
+            },
+            {
+              "start": 31970,
+              "ends": 1
+            },
+            {
+              "start": 34815,
+              "ends": 1
+            },
+            {
+              "start": 34899,
+              "ends": 1
+            },
+            {
+              "start": 37200,
+              "ends": 1
+            },
+            {
+              "start": 38019,
+              "ends": 2
+            }
+          ],
+          "prefixAtLeast100": 3197
+        },
+        {
+          "sign": -1,
+          "starts": 41182,
+          "max": 308,
+          "best": [
+            491,
+            492,
+            3048,
+            13994,
+            14270,
+            15216,
+            16116,
+            21210,
+            21211,
+            36055
+          ],
+          "survivorCount": 10,
+          "survivors": [
+            {
+              "start": 491,
+              "ends": 1
+            },
+            {
+              "start": 492,
+              "ends": 1
+            },
+            {
+              "start": 3048,
+              "ends": 1
+            },
+            {
+              "start": 13994,
+              "ends": 2
+            },
+            {
+              "start": 14270,
+              "ends": 2
+            },
+            {
+              "start": 15216,
+              "ends": 1
+            },
+            {
+              "start": 16116,
+              "ends": 2
+            },
+            {
+              "start": 21210,
+              "ends": 1
+            },
+            {
+              "start": 21211,
+              "ends": 1
+            },
+            {
+              "start": 36055,
+              "ends": 1
+            }
+          ],
+          "prefixAtLeast100": 2915
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "name": "jpg107-167",
+      "length": 319,
+      "start": 133,
+      "sign": 1,
+      "plantedIncluded": true,
+      "starts": 41182,
+      "max": 319,
+      "best": [
+        132,
+        133,
+        135,
+        361,
+        472,
+        514,
+        526,
+        527,
+        717,
+        1444
+      ],
+      "survivorCount": 171,
+      "survivors": [
+        {
+          "start": 132,
+          "ends": 2
+        },
+        {
+          "start": 133,
+          "ends": 2
+        },
+        {
+          "start": 135,
+          "ends": 2
+        },
+        {
+          "start": 361,
+          "ends": 3
+        },
+        {
+          "start": 472,
+          "ends": 3
+        },
+        {
+          "start": 514,
+          "ends": 2
+        },
+        {
+          "start": 526,
+          "ends": 2
+        },
+        {
+          "start": 527,
+          "ends": 2
+        },
+        {
+          "start": 717,
+          "ends": 2
+        },
+        {
+          "start": 1444,
+          "ends": 1
+        },
+        {
+          "start": 1445,
+          "ends": 1
+        },
+        {
+          "start": 2323,
+          "ends": 1
+        },
+        {
+          "start": 2326,
+          "ends": 1
+        },
+        {
+          "start": 3256,
+          "ends": 2
+        },
+        {
+          "start": 3404,
+          "ends": 3
+        },
+        {
+          "start": 3405,
+          "ends": 3
+        },
+        {
+          "start": 3983,
+          "ends": 3
+        },
+        {
+          "start": 4745,
+          "ends": 3
+        },
+        {
+          "start": 5435,
+          "ends": 2
+        },
+        {
+          "start": 5436,
+          "ends": 2
+        },
+        {
+          "start": 5438,
+          "ends": 2
+        },
+        {
+          "start": 5439,
+          "ends": 2
+        },
+        {
+          "start": 5877,
+          "ends": 2
+        },
+        {
+          "start": 5878,
+          "ends": 2
+        },
+        {
+          "start": 6277,
+          "ends": 3
+        },
+        {
+          "start": 6278,
+          "ends": 3
+        },
+        {
+          "start": 6685,
+          "ends": 1
+        },
+        {
+          "start": 7664,
+          "ends": 3
+        },
+        {
+          "start": 8185,
+          "ends": 2
+        },
+        {
+          "start": 8187,
+          "ends": 2
+        },
+        {
+          "start": 8493,
+          "ends": 3
+        },
+        {
+          "start": 8737,
+          "ends": 3
+        },
+        {
+          "start": 8860,
+          "ends": 1
+        },
+        {
+          "start": 8862,
+          "ends": 1
+        },
+        {
+          "start": 9455,
+          "ends": 1
+        },
+        {
+          "start": 9456,
+          "ends": 1
+        },
+        {
+          "start": 9609,
+          "ends": 3
+        },
+        {
+          "start": 9610,
+          "ends": 3
+        },
+        {
+          "start": 9770,
+          "ends": 1
+        },
+        {
+          "start": 9922,
+          "ends": 1
+        },
+        {
+          "start": 10325,
+          "ends": 2
+        },
+        {
+          "start": 10615,
+          "ends": 2
+        },
+        {
+          "start": 10617,
+          "ends": 2
+        },
+        {
+          "start": 11561,
+          "ends": 1
+        },
+        {
+          "start": 11563,
+          "ends": 1
+        },
+        {
+          "start": 11565,
+          "ends": 1
+        },
+        {
+          "start": 11971,
+          "ends": 3
+        },
+        {
+          "start": 12103,
+          "ends": 2
+        },
+        {
+          "start": 12114,
+          "ends": 2
+        },
+        {
+          "start": 12173,
+          "ends": 2
+        },
+        {
+          "start": 13193,
+          "ends": 2
+        },
+        {
+          "start": 13919,
+          "ends": 2
+        },
+        {
+          "start": 15201,
+          "ends": 2
+        },
+        {
+          "start": 15281,
+          "ends": 1
+        },
+        {
+          "start": 15283,
+          "ends": 1
+        },
+        {
+          "start": 15285,
+          "ends": 1
+        },
+        {
+          "start": 15359,
+          "ends": 3
+        },
+        {
+          "start": 15686,
+          "ends": 2
+        },
+        {
+          "start": 16220,
+          "ends": 2
+        },
+        {
+          "start": 16436,
+          "ends": 3
+        },
+        {
+          "start": 16438,
+          "ends": 3
+        },
+        {
+          "start": 16700,
+          "ends": 2
+        },
+        {
+          "start": 16897,
+          "ends": 2
+        },
+        {
+          "start": 16898,
+          "ends": 2
+        },
+        {
+          "start": 17196,
+          "ends": 2
+        },
+        {
+          "start": 17244,
+          "ends": 2
+        },
+        {
+          "start": 17345,
+          "ends": 2
+        },
+        {
+          "start": 17346,
+          "ends": 2
+        },
+        {
+          "start": 19178,
+          "ends": 2
+        },
+        {
+          "start": 19180,
+          "ends": 2
+        },
+        {
+          "start": 19718,
+          "ends": 3
+        },
+        {
+          "start": 19719,
+          "ends": 3
+        },
+        {
+          "start": 19722,
+          "ends": 3
+        },
+        {
+          "start": 19965,
+          "ends": 2
+        },
+        {
+          "start": 19966,
+          "ends": 2
+        },
+        {
+          "start": 19971,
+          "ends": 2
+        },
+        {
+          "start": 19972,
+          "ends": 2
+        },
+        {
+          "start": 20114,
+          "ends": 2
+        },
+        {
+          "start": 20351,
+          "ends": 2
+        },
+        {
+          "start": 20464,
+          "ends": 2
+        },
+        {
+          "start": 20586,
+          "ends": 2
+        },
+        {
+          "start": 20587,
+          "ends": 2
+        },
+        {
+          "start": 20630,
+          "ends": 2
+        },
+        {
+          "start": 20651,
+          "ends": 3
+        },
+        {
+          "start": 20659,
+          "ends": 3
+        },
+        {
+          "start": 20672,
+          "ends": 2
+        },
+        {
+          "start": 22243,
+          "ends": 3
+        },
+        {
+          "start": 22245,
+          "ends": 3
+        },
+        {
+          "start": 22748,
+          "ends": 2
+        },
+        {
+          "start": 22782,
+          "ends": 1
+        },
+        {
+          "start": 22786,
+          "ends": 2
+        },
+        {
+          "start": 22788,
+          "ends": 2
+        },
+        {
+          "start": 22804,
+          "ends": 3
+        },
+        {
+          "start": 23289,
+          "ends": 3
+        },
+        {
+          "start": 23569,
+          "ends": 2
+        },
+        {
+          "start": 23572,
+          "ends": 2
+        },
+        {
+          "start": 23573,
+          "ends": 2
+        },
+        {
+          "start": 24137,
+          "ends": 3
+        },
+        {
+          "start": 24139,
+          "ends": 3
+        },
+        {
+          "start": 24141,
+          "ends": 2
+        }
+      ],
+      "prefixAtLeast100": 8215
+    },
+    {
+      "name": "jpg229",
+      "length": 89,
+      "start": 3301,
+      "sign": -1,
+      "plantedIncluded": false,
+      "starts": 41182,
+      "max": 89,
+      "best": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        12,
+        13,
+        14,
+        21
+      ],
+      "survivorCount": 27939,
+      "survivors": [
+        {
+          "start": 2,
+          "ends": 8
+        },
+        {
+          "start": 3,
+          "ends": 8
+        },
+        {
+          "start": 4,
+          "ends": 9
+        },
+        {
+          "start": 5,
+          "ends": 6
+        },
+        {
+          "start": 6,
+          "ends": 6
+        },
+        {
+          "start": 7,
+          "ends": 4
+        },
+        {
+          "start": 12,
+          "ends": 7
+        },
+        {
+          "start": 13,
+          "ends": 7
+        },
+        {
+          "start": 14,
+          "ends": 7
+        },
+        {
+          "start": 21,
+          "ends": 8
+        },
+        {
+          "start": 22,
+          "ends": 8
+        },
+        {
+          "start": 23,
+          "ends": 8
+        },
+        {
+          "start": 24,
+          "ends": 8
+        },
+        {
+          "start": 26,
+          "ends": 5
+        },
+        {
+          "start": 27,
+          "ends": 5
+        },
+        {
+          "start": 28,
+          "ends": 7
+        },
+        {
+          "start": 29,
+          "ends": 7
+        },
+        {
+          "start": 30,
+          "ends": 8
+        },
+        {
+          "start": 31,
+          "ends": 8
+        },
+        {
+          "start": 32,
+          "ends": 8
+        },
+        {
+          "start": 37,
+          "ends": 6
+        },
+        {
+          "start": 38,
+          "ends": 6
+        },
+        {
+          "start": 39,
+          "ends": 6
+        },
+        {
+          "start": 41,
+          "ends": 8
+        },
+        {
+          "start": 42,
+          "ends": 8
+        },
+        {
+          "start": 51,
+          "ends": 9
+        },
+        {
+          "start": 52,
+          "ends": 10
+        },
+        {
+          "start": 53,
+          "ends": 9
+        },
+        {
+          "start": 54,
+          "ends": 9
+        },
+        {
+          "start": 58,
+          "ends": 8
+        },
+        {
+          "start": 60,
+          "ends": 10
+        },
+        {
+          "start": 62,
+          "ends": 7
+        },
+        {
+          "start": 63,
+          "ends": 9
+        },
+        {
+          "start": 64,
+          "ends": 9
+        },
+        {
+          "start": 65,
+          "ends": 9
+        },
+        {
+          "start": 70,
+          "ends": 8
+        },
+        {
+          "start": 71,
+          "ends": 9
+        },
+        {
+          "start": 72,
+          "ends": 9
+        },
+        {
+          "start": 73,
+          "ends": 9
+        },
+        {
+          "start": 74,
+          "ends": 6
+        },
+        {
+          "start": 75,
+          "ends": 6
+        },
+        {
+          "start": 76,
+          "ends": 8
+        },
+        {
+          "start": 77,
+          "ends": 8
+        },
+        {
+          "start": 78,
+          "ends": 8
+        },
+        {
+          "start": 81,
+          "ends": 4
+        },
+        {
+          "start": 82,
+          "ends": 7
+        },
+        {
+          "start": 83,
+          "ends": 7
+        },
+        {
+          "start": 84,
+          "ends": 6
+        },
+        {
+          "start": 85,
+          "ends": 4
+        },
+        {
+          "start": 86,
+          "ends": 4
+        },
+        {
+          "start": 88,
+          "ends": 6
+        },
+        {
+          "start": 89,
+          "ends": 6
+        },
+        {
+          "start": 90,
+          "ends": 6
+        },
+        {
+          "start": 92,
+          "ends": 8
+        },
+        {
+          "start": 93,
+          "ends": 8
+        },
+        {
+          "start": 94,
+          "ends": 8
+        },
+        {
+          "start": 95,
+          "ends": 8
+        },
+        {
+          "start": 96,
+          "ends": 8
+        },
+        {
+          "start": 97,
+          "ends": 8
+        },
+        {
+          "start": 98,
+          "ends": 10
+        },
+        {
+          "start": 99,
+          "ends": 5
+        },
+        {
+          "start": 100,
+          "ends": 5
+        },
+        {
+          "start": 101,
+          "ends": 7
+        },
+        {
+          "start": 102,
+          "ends": 7
+        },
+        {
+          "start": 103,
+          "ends": 7
+        },
+        {
+          "start": 107,
+          "ends": 6
+        },
+        {
+          "start": 108,
+          "ends": 6
+        },
+        {
+          "start": 110,
+          "ends": 6
+        },
+        {
+          "start": 111,
+          "ends": 7
+        },
+        {
+          "start": 112,
+          "ends": 7
+        },
+        {
+          "start": 113,
+          "ends": 7
+        },
+        {
+          "start": 117,
+          "ends": 5
+        },
+        {
+          "start": 118,
+          "ends": 7
+        },
+        {
+          "start": 119,
+          "ends": 5
+        },
+        {
+          "start": 120,
+          "ends": 5
+        },
+        {
+          "start": 126,
+          "ends": 4
+        },
+        {
+          "start": 127,
+          "ends": 4
+        },
+        {
+          "start": 128,
+          "ends": 4
+        },
+        {
+          "start": 129,
+          "ends": 7
+        },
+        {
+          "start": 130,
+          "ends": 5
+        },
+        {
+          "start": 131,
+          "ends": 9
+        },
+        {
+          "start": 132,
+          "ends": 6
+        },
+        {
+          "start": 133,
+          "ends": 6
+        },
+        {
+          "start": 134,
+          "ends": 6
+        },
+        {
+          "start": 135,
+          "ends": 4
+        },
+        {
+          "start": 136,
+          "ends": 4
+        },
+        {
+          "start": 137,
+          "ends": 8
+        },
+        {
+          "start": 139,
+          "ends": 4
+        },
+        {
+          "start": 140,
+          "ends": 7
+        },
+        {
+          "start": 141,
+          "ends": 7
+        },
+        {
+          "start": 142,
+          "ends": 7
+        },
+        {
+          "start": 143,
+          "ends": 7
+        },
+        {
+          "start": 146,
+          "ends": 8
+        },
+        {
+          "start": 147,
+          "ends": 9
+        },
+        {
+          "start": 148,
+          "ends": 9
+        },
+        {
+          "start": 152,
+          "ends": 4
+        },
+        {
+          "start": 153,
+          "ends": 5
+        },
+        {
+          "start": 154,
+          "ends": 5
+        },
+        {
+          "start": 155,
+          "ends": 5
+        },
+        {
+          "start": 156,
+          "ends": 7
+        }
+      ],
+      "prefixAtLeast100": 0
+    },
+    {
+      "name": "p56_an_end",
+      "length": 85,
+      "start": 761,
+      "sign": 1,
+      "plantedIncluded": false,
+      "starts": 41182,
+      "max": 85,
+      "best": [
+        1,
+        2,
+        4,
+        7,
+        11,
+        13,
+        15,
+        22,
+        25,
+        27
+      ],
+      "survivorCount": 9694,
+      "survivors": [
+        {
+          "start": 1,
+          "ends": 1
+        },
+        {
+          "start": 2,
+          "ends": 1
+        },
+        {
+          "start": 4,
+          "ends": 1
+        },
+        {
+          "start": 7,
+          "ends": 1
+        },
+        {
+          "start": 11,
+          "ends": 1
+        },
+        {
+          "start": 13,
+          "ends": 1
+        },
+        {
+          "start": 15,
+          "ends": 1
+        },
+        {
+          "start": 22,
+          "ends": 2
+        },
+        {
+          "start": 25,
+          "ends": 1
+        },
+        {
+          "start": 27,
+          "ends": 2
+        },
+        {
+          "start": 29,
+          "ends": 3
+        },
+        {
+          "start": 30,
+          "ends": 2
+        },
+        {
+          "start": 32,
+          "ends": 1
+        },
+        {
+          "start": 34,
+          "ends": 1
+        },
+        {
+          "start": 36,
+          "ends": 2
+        },
+        {
+          "start": 37,
+          "ends": 1
+        },
+        {
+          "start": 50,
+          "ends": 1
+        },
+        {
+          "start": 61,
+          "ends": 1
+        },
+        {
+          "start": 63,
+          "ends": 2
+        },
+        {
+          "start": 66,
+          "ends": 2
+        },
+        {
+          "start": 67,
+          "ends": 2
+        },
+        {
+          "start": 73,
+          "ends": 2
+        },
+        {
+          "start": 79,
+          "ends": 1
+        },
+        {
+          "start": 82,
+          "ends": 3
+        },
+        {
+          "start": 106,
+          "ends": 1
+        },
+        {
+          "start": 112,
+          "ends": 1
+        },
+        {
+          "start": 120,
+          "ends": 1
+        },
+        {
+          "start": 128,
+          "ends": 2
+        },
+        {
+          "start": 129,
+          "ends": 2
+        },
+        {
+          "start": 135,
+          "ends": 1
+        },
+        {
+          "start": 136,
+          "ends": 1
+        },
+        {
+          "start": 146,
+          "ends": 2
+        },
+        {
+          "start": 152,
+          "ends": 1
+        },
+        {
+          "start": 163,
+          "ends": 1
+        },
+        {
+          "start": 174,
+          "ends": 2
+        },
+        {
+          "start": 188,
+          "ends": 2
+        },
+        {
+          "start": 189,
+          "ends": 2
+        },
+        {
+          "start": 190,
+          "ends": 2
+        },
+        {
+          "start": 191,
+          "ends": 2
+        },
+        {
+          "start": 192,
+          "ends": 1
+        },
+        {
+          "start": 194,
+          "ends": 1
+        },
+        {
+          "start": 199,
+          "ends": 2
+        },
+        {
+          "start": 200,
+          "ends": 2
+        },
+        {
+          "start": 212,
+          "ends": 2
+        },
+        {
+          "start": 219,
+          "ends": 1
+        },
+        {
+          "start": 220,
+          "ends": 1
+        },
+        {
+          "start": 221,
+          "ends": 1
+        },
+        {
+          "start": 230,
+          "ends": 2
+        },
+        {
+          "start": 236,
+          "ends": 1
+        },
+        {
+          "start": 239,
+          "ends": 2
+        },
+        {
+          "start": 240,
+          "ends": 2
+        },
+        {
+          "start": 241,
+          "ends": 1
+        },
+        {
+          "start": 242,
+          "ends": 1
+        },
+        {
+          "start": 243,
+          "ends": 1
+        },
+        {
+          "start": 244,
+          "ends": 1
+        },
+        {
+          "start": 247,
+          "ends": 1
+        },
+        {
+          "start": 248,
+          "ends": 1
+        },
+        {
+          "start": 249,
+          "ends": 2
+        },
+        {
+          "start": 255,
+          "ends": 2
+        },
+        {
+          "start": 256,
+          "ends": 1
+        },
+        {
+          "start": 262,
+          "ends": 1
+        },
+        {
+          "start": 264,
+          "ends": 1
+        },
+        {
+          "start": 265,
+          "ends": 2
+        },
+        {
+          "start": 268,
+          "ends": 2
+        },
+        {
+          "start": 271,
+          "ends": 1
+        },
+        {
+          "start": 272,
+          "ends": 1
+        },
+        {
+          "start": 278,
+          "ends": 2
+        },
+        {
+          "start": 291,
+          "ends": 1
+        },
+        {
+          "start": 296,
+          "ends": 2
+        },
+        {
+          "start": 303,
+          "ends": 1
+        },
+        {
+          "start": 304,
+          "ends": 2
+        },
+        {
+          "start": 309,
+          "ends": 2
+        },
+        {
+          "start": 312,
+          "ends": 2
+        },
+        {
+          "start": 317,
+          "ends": 1
+        },
+        {
+          "start": 318,
+          "ends": 1
+        },
+        {
+          "start": 320,
+          "ends": 1
+        },
+        {
+          "start": 328,
+          "ends": 2
+        },
+        {
+          "start": 331,
+          "ends": 1
+        },
+        {
+          "start": 337,
+          "ends": 1
+        },
+        {
+          "start": 339,
+          "ends": 1
+        },
+        {
+          "start": 341,
+          "ends": 1
+        },
+        {
+          "start": 344,
+          "ends": 1
+        },
+        {
+          "start": 347,
+          "ends": 2
+        },
+        {
+          "start": 348,
+          "ends": 2
+        },
+        {
+          "start": 350,
+          "ends": 1
+        },
+        {
+          "start": 351,
+          "ends": 1
+        },
+        {
+          "start": 356,
+          "ends": 1
+        },
+        {
+          "start": 357,
+          "ends": 2
+        },
+        {
+          "start": 369,
+          "ends": 1
+        },
+        {
+          "start": 372,
+          "ends": 1
+        },
+        {
+          "start": 374,
+          "ends": 1
+        },
+        {
+          "start": 385,
+          "ends": 3
+        },
+        {
+          "start": 393,
+          "ends": 2
+        },
+        {
+          "start": 394,
+          "ends": 1
+        },
+        {
+          "start": 395,
+          "ends": 1
+        },
+        {
+          "start": 400,
+          "ends": 1
+        },
+        {
+          "start": 401,
+          "ends": 1
+        },
+        {
+          "start": 402,
+          "ends": 1
+        },
+        {
+          "start": 404,
+          "ends": 2
+        },
+        {
+          "start": 409,
+          "ends": 2
+        }
+      ],
+      "prefixAtLeast100": 0
+    },
+    {
+      "name": "p57_parable",
+      "length": 95,
+      "start": 1033,
+      "sign": -1,
+      "plantedIncluded": false,
+      "starts": 41182,
+      "max": 95,
+      "best": [
+        0,
+        2,
+        3,
+        5,
+        6,
+        7,
+        9,
+        13,
+        14,
+        18
+      ],
+      "survivorCount": 15622,
+      "survivors": [
+        {
+          "start": 0,
+          "ends": 9
+        },
+        {
+          "start": 2,
+          "ends": 9
+        },
+        {
+          "start": 3,
+          "ends": 8
+        },
+        {
+          "start": 5,
+          "ends": 5
+        },
+        {
+          "start": 6,
+          "ends": 5
+        },
+        {
+          "start": 7,
+          "ends": 5
+        },
+        {
+          "start": 9,
+          "ends": 7
+        },
+        {
+          "start": 13,
+          "ends": 6
+        },
+        {
+          "start": 14,
+          "ends": 6
+        },
+        {
+          "start": 18,
+          "ends": 6
+        },
+        {
+          "start": 19,
+          "ends": 8
+        },
+        {
+          "start": 20,
+          "ends": 8
+        },
+        {
+          "start": 21,
+          "ends": 7
+        },
+        {
+          "start": 22,
+          "ends": 7
+        },
+        {
+          "start": 33,
+          "ends": 9
+        },
+        {
+          "start": 36,
+          "ends": 6
+        },
+        {
+          "start": 42,
+          "ends": 7
+        },
+        {
+          "start": 43,
+          "ends": 9
+        },
+        {
+          "start": 44,
+          "ends": 8
+        },
+        {
+          "start": 45,
+          "ends": 8
+        },
+        {
+          "start": 47,
+          "ends": 6
+        },
+        {
+          "start": 51,
+          "ends": 8
+        },
+        {
+          "start": 55,
+          "ends": 9
+        },
+        {
+          "start": 56,
+          "ends": 8
+        },
+        {
+          "start": 60,
+          "ends": 6
+        },
+        {
+          "start": 64,
+          "ends": 8
+        },
+        {
+          "start": 65,
+          "ends": 8
+        },
+        {
+          "start": 67,
+          "ends": 8
+        },
+        {
+          "start": 69,
+          "ends": 7
+        },
+        {
+          "start": 70,
+          "ends": 7
+        },
+        {
+          "start": 71,
+          "ends": 7
+        },
+        {
+          "start": 75,
+          "ends": 6
+        },
+        {
+          "start": 78,
+          "ends": 7
+        },
+        {
+          "start": 82,
+          "ends": 4
+        },
+        {
+          "start": 89,
+          "ends": 7
+        },
+        {
+          "start": 91,
+          "ends": 8
+        },
+        {
+          "start": 93,
+          "ends": 7
+        },
+        {
+          "start": 101,
+          "ends": 9
+        },
+        {
+          "start": 102,
+          "ends": 9
+        },
+        {
+          "start": 104,
+          "ends": 5
+        },
+        {
+          "start": 108,
+          "ends": 4
+        },
+        {
+          "start": 109,
+          "ends": 4
+        },
+        {
+          "start": 110,
+          "ends": 7
+        },
+        {
+          "start": 116,
+          "ends": 7
+        },
+        {
+          "start": 117,
+          "ends": 7
+        },
+        {
+          "start": 124,
+          "ends": 3
+        },
+        {
+          "start": 130,
+          "ends": 4
+        },
+        {
+          "start": 131,
+          "ends": 4
+        },
+        {
+          "start": 139,
+          "ends": 3
+        },
+        {
+          "start": 141,
+          "ends": 3
+        },
+        {
+          "start": 155,
+          "ends": 5
+        },
+        {
+          "start": 156,
+          "ends": 5
+        },
+        {
+          "start": 157,
+          "ends": 5
+        },
+        {
+          "start": 159,
+          "ends": 5
+        },
+        {
+          "start": 164,
+          "ends": 6
+        },
+        {
+          "start": 165,
+          "ends": 6
+        },
+        {
+          "start": 166,
+          "ends": 5
+        },
+        {
+          "start": 167,
+          "ends": 5
+        },
+        {
+          "start": 168,
+          "ends": 5
+        },
+        {
+          "start": 170,
+          "ends": 6
+        },
+        {
+          "start": 174,
+          "ends": 4
+        },
+        {
+          "start": 175,
+          "ends": 4
+        },
+        {
+          "start": 177,
+          "ends": 4
+        },
+        {
+          "start": 178,
+          "ends": 5
+        },
+        {
+          "start": 180,
+          "ends": 5
+        },
+        {
+          "start": 195,
+          "ends": 8
+        },
+        {
+          "start": 196,
+          "ends": 10
+        },
+        {
+          "start": 198,
+          "ends": 8
+        },
+        {
+          "start": 199,
+          "ends": 7
+        },
+        {
+          "start": 200,
+          "ends": 9
+        },
+        {
+          "start": 201,
+          "ends": 9
+        },
+        {
+          "start": 202,
+          "ends": 8
+        },
+        {
+          "start": 209,
+          "ends": 3
+        },
+        {
+          "start": 210,
+          "ends": 3
+        },
+        {
+          "start": 213,
+          "ends": 6
+        },
+        {
+          "start": 216,
+          "ends": 6
+        },
+        {
+          "start": 217,
+          "ends": 6
+        },
+        {
+          "start": 220,
+          "ends": 9
+        },
+        {
+          "start": 221,
+          "ends": 7
+        },
+        {
+          "start": 224,
+          "ends": 6
+        },
+        {
+          "start": 231,
+          "ends": 6
+        },
+        {
+          "start": 232,
+          "ends": 6
+        },
+        {
+          "start": 233,
+          "ends": 6
+        },
+        {
+          "start": 234,
+          "ends": 6
+        },
+        {
+          "start": 236,
+          "ends": 6
+        },
+        {
+          "start": 237,
+          "ends": 7
+        },
+        {
+          "start": 239,
+          "ends": 9
+        },
+        {
+          "start": 240,
+          "ends": 6
+        },
+        {
+          "start": 241,
+          "ends": 6
+        },
+        {
+          "start": 244,
+          "ends": 4
+        },
+        {
+          "start": 245,
+          "ends": 4
+        },
+        {
+          "start": 248,
+          "ends": 7
+        },
+        {
+          "start": 249,
+          "ends": 7
+        },
+        {
+          "start": 260,
+          "ends": 9
+        },
+        {
+          "start": 261,
+          "ends": 9
+        },
+        {
+          "start": 265,
+          "ends": 5
+        },
+        {
+          "start": 266,
+          "ends": 5
+        },
+        {
+          "start": 268,
+          "ends": 5
+        },
+        {
+          "start": 270,
+          "ends": 5
+        },
+        {
+          "start": 271,
+          "ends": 3
+        }
+      ],
+      "prefixAtLeast100": 0
+    }
+  ]
+}
