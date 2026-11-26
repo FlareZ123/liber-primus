@@ -1,0 +1,17 @@
+{
+  "exactNumericOracle": {
+    "cases": 33000,
+    "locallyCompatible": 8047,
+    "additionalRejections": 4737
+  },
+  "sourceShapedConcrete": {
+    "plants": 1000,
+    "reached": 1000,
+    "edges": 1064896,
+    "oldPass": 85749,
+    "newPass": 55850,
+    "truth": 35190,
+    "additionalRejections": 29899,
+    "scope": "Known complete key coordinates, not symbolic unknown-key search timing."
+  }
+}
