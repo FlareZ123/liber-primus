@@ -2,7 +2,7 @@
 
 ## Finding
 
-Three distinct participant-specific one-time RSA messages are now represented in the repository, and all three encrypted response numbers are reproducible. The original onion /NUM path token and original server-response bytes have **not** been recovered. The archive README identifies the quaetrix0@gmail.com / valid-participant copy as the only one of its three page copies with a valid PGP signature; this invocation has not independently re-verified that signature. The unknown and another_unknown copies have redactions and their signatures do not verify.
+Three distinct participant-specific one-time RSA messages are now represented in the repository, and all three encrypted response numbers are reproducible. The original onion /NUM path token and original server-response bytes have **not** been recovered. A source-pinned screenshot of the enrollment form is now preserved; it confirms the email/number workflow but does not reveal an actual participant token or the later response. The archive README identifies the quaetrix0@gmail.com / valid-participant copy as the only one of its three page copies with a valid PGP signature; this invocation has not independently re-verified that signature. The unknown and another_unknown copies have redactions and their signatures do not verify.
 
 The recovered RSA response numbers are **33521494043430258676** (valid-participant mirror), **29201928111913239376** (unknown), and **25121996842107342310** (another_unknown). These are numbers to enter at the same onion URL after decrypting the displayed RSA challenge; they are not the initial emailed /NUM path token.
 
@@ -58,6 +58,14 @@ The archive's separate `another_unknown.pem` ciphertext (Git blob SHA-1 **`49e29
 
 The 11 June 2021 [participant-style account](https://saumitrasapre.medium.com/the-mysterious-puzzle-2-c73d805e1f04) prints the matching RSA message and says that appending `25121996842107342310` to `sq6wmgv2zcsrix6t.onion` returned “Correct. We'll email you”; the following email contained the MIDI clue. This is a useful independent consistency check on the second decryption and the historical sequence, but it is a retrospective secondary source, not a contemporaneous archive capture or signature verification.
 
+## Source-pinned enrollment-form screenshot
+
+The community archive `cicada-solvers/neuroretransmit-cicada`, commit `b13600373d3400d75ec4208198019f3d92a304dd`, preserves `2012/007-onions/sq6wmgv2zcsrix6t.onion/screenshots/6mBiv.jpg`. It is mirrored locally as [`resources/external/2012-sq6wmgv2zcsrix6t-onion-get-email-screenshot.jpg`](../resources/external/2012-sq6wmgv2zcsrix6t-onion-get-email-screenshot.jpg): 123,011 bytes, Git blob SHA-1 `908ec5b74fd99ff9bf5a440e1685ca317dc88c26`, SHA-256 `07d3c4539437192017f5dd9f8faa31097b7b92beac0a91617f2cb49c40d8db3f`.
+
+The browser capture is at `/cgi-bin/get_email`. Its signed page text asks the participant to create a new public email address, wait for a number, then append a slash and that number to the onion host root. The displayed `3894894230934209` is explicitly an example, not a recovered path token. The screenshot is not the original HTML/HTTP entity, not the participant-specific `/NUMBER` page, and not the later “Correct. We'll email you.” response.
+
+The exact screenshot bytes were tested under SHA-512 and Whirlpool; neither matches the p56 target. The three preserved page/source objects were also rechecked in the same run. [Workflow 45800628837](https://github.com/FlareZ123/liber-primus/actions/runs/45800628837) · [raw hash results](lp2-p56-whirlpool-2012-onion-pages.json) · [source note](../resources/external/2012-sq6wmgv2zcsrix6t-onion-get-email-screenshot.source.md).
+
 ## Exact missing artifact and stopping boundary
 
 Recovered:
@@ -68,7 +76,7 @@ Recovered:
 
 Still missing:
 
-- the initial email from the puzzle sender containing the participant's unique numeric /NUM path token, or a server/request log mapping that token to the one-time response;
+- the initial email from the puzzle sender containing the participant's unique numeric /NUM path token, or a server/request log mapping that token to the one-time response; the screenshot's example number is not this token;
 - a byte-preserving capture of the original onion HTTP response;
 - independent local GPG re-verification of the valid-participant mirror. The archive README identifies it as the valid signature copy; the other two message copies do not verify.
 

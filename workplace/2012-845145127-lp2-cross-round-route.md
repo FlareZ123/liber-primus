@@ -8,9 +8,15 @@ The 2012 site sequence was **countdown → coordinates → whitespace payload �
 
 The whitespace HTML is whitespace-only, but its decoded payload is PGP clear-signed and verifies under the 2012 Cicada key fingerprint `6D854CD7 933322A6 01C3286D 181F01E5 7A35090F`. Signature time: 2012-01-11 05:07:59 UTC. It lists ten image filenames mapped by the contemporary walkthrough to `http://75.119.203.244/NUMBER.jpg`. One numbered image, `162667212858.jpg`, survives with a separately verified PGP-signed book-code extraction (signature time 2012-01-06 20:28:30 UTC). The ten names group into six 29-volume/Britannica images and four fading-death/Agrippa images. This is an authenticated continuation of the 2012 round, not an unsigned detour.
 
+
+The two book-code outputs are distinct and must not be conflated: the Agrippa poem yields `sq6wmgv2zcsrix6t.onion`, whose enrollment page is preserved; the Britannica 11th Edition `Cicada` entry yields `eq6emgv2ehsrix6t.onion`. The pinned [two-book-code archive](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/006-two-book-codes/README.md) records both. Community records mark `eq6` as long gone and say it is unknown whether anyone accessed it; no page bytes or access record are preserved in the inspected archives. Treat it as a separate missing 2012 endpoint, not as an established LP2 dependency.
+
 The second-chance arithmetic is `889296759263 + 963846244281 = 1853143003544`. The `1853143003544.tk` and `33091839349.tk` steps lead into the second-chance onion `cginiziglyaobyph.onion`. The first `.tk` domain's authorship is not established, but the later second-chance instruction is PGP-verified. This route remains within the 2012 puzzle.
 
 ## Archive boundary
+
+A source-pinned community-archive screenshot of `sq6wmgv2zcsrix6t.onion/cgi-bin/get_email` is preserved at `resources/external/2012-sq6wmgv2zcsrix6t-onion-get-email-screenshot.jpg`. It shows the email form and the instruction to append the emailed number to the onion host root; its displayed 16-digit example is illustrative, not an actual participant token. The screenshot is not the `/NUMBER` response or original HTTP entity. Its SHA-512 and Whirlpool hashes do not match the LP2 p56 target (workflow 45800628837).
+
 
 - No original countdown HTML has been found; the 2022 community page is a reconstruction. The separate countdown image was added to that archive in 2023.
 - The earliest full coordinates-page copy located is a 2015 Wayback capture of a local IE-saved page on `net-netz-blog.de`, with Mark-of-the-Web, AdBlock CSS and Wayback toolbar. It is not the original `845145127.com` response.
@@ -22,6 +28,6 @@ The second-chance arithmetic is `889296759263 + 963846244281 = 1853143003544`. T
 
 ## LP2 decision
 
-No source in this chain selects an LP2 page, GP29 rune sequence, LP2 cipher operation or LP2 key. The 845145127 derivation and ten-file/second-chance arithmetic are explained inside the 2012 round. Retain this as an authenticated historical route, but retire it as an LP2 key hypothesis.
+No source in this chain selects an LP2 page, GP29 rune sequence, LP2 cipher operation or LP2 key. The 845145127 derivation and ten-file/second-chance arithmetic are explained inside the 2012 round. The separate `eq6` host is a plausible missing historical endpoint but has no demonstrated connection to p56. Retain this as an authenticated historical route, not an LP2 key hypothesis.
 
 See [the consolidated report](../im-results/cicada2012-pgp-uid-original-prime-domain-resolution.md), [source inventory](../resources/external/2012-845145127/README.md), and [signature reproducer](../sims/verify_2012_845145127_signatures.sh).
