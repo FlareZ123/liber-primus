@@ -96,7 +96,10 @@ assert.ok(pageIdMod29.every(x => x === 2));
 assert.match(stage11.provenance.historicalAuthentication, /not PGP signed HTTP response/i);
 
 // 2014 Stage04 / LP1 page05: known 5x5 mixed table, 12 numeric + 13 word cells.
-const gridRows = wisdom.split(/\r?\n/).filter(line => line.includes('⁘') && !line.startsWith('ᚳᚾᚩᚹ'));
+const wisdomLines = wisdom.split(/\r?\n/);
+const gridHeader = wisdomLines.findIndex(line => line.startsWith('ᚳᚾᚩᚹ'));
+assert.notEqual(gridHeader, -1);
+const gridRows = wisdomLines.slice(gridHeader + 1).filter(line => line.trim()).slice(0, 5);
 const cells = gridRows.flatMap(line => line.trim().split(/\s+/).map(x => x.replace(/[⁘⁜]+$/g, '')));
 const numericCells = cells.filter(x => /^\d+$/.test(x));
 const wordCells = cells.filter(x => !/^\d+$/.test(x));
