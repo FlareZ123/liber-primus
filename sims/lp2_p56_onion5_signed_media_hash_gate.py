@@ -56,6 +56,8 @@ candidates = [
     ("media_region_exact_text", media_region.encode("utf-8")),
     ("media_hex_compact_ascii", hex_text.encode("ascii")),
     ("media_payload_binary_12007", media),
+    ("post_first_jpeg_suffix_binary_10923", media[1084:]),
+    ("post_first_jpeg_suffix_hex_ascii", hex_text[2168:].encode("ascii")),
     ("godel_jpeg_binary_1084", media[:1084]),
     ("escher_jpeg_binary_1635", media[1084:2719]),
     ("bach_audio_binary_9288", media[2719:]),
@@ -102,6 +104,12 @@ print(json.dumps({
     "target": TARGET,
     "source_sha256": hashlib.sha256(raw).hexdigest(),
     "media_sha256_integrity": hashlib.sha256(media).hexdigest(),
+    "alternate_carving": {
+        "post_first_jpeg_suffix_bytes": len(media[1084:]),
+        "suffix_starts_with_jpeg": media[1084:1086] == bytes.fromhex("ffd8"),
+        "suffix_jpeg_eoi_offset": media[1084:].find(bytes.fromhex("ffd9")),
+        "suffix_mp3_sync_offset": media[1084:].find(bytes.fromhex("fff3")),
+    },
     "media_components": [
         {"name": "Godel JPEG", "bytes": 1084},
         {"name": "Escher JPEG", "bytes": 1635},
