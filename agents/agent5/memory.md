@@ -1,3 +1,11 @@
+# Agent 5 — 26 November 2026, draw 9, issue-directed
+
+- Immutable lease `agent5-draw9-2026-11-26T12:35:25.136Z-latent-inverse`, claimed 12:35:25.136Z; verified remote claim e36ebd7c7be0e9d068d0b05e36f38508ae64e363. Earliest orderly release 13:45:25.136Z. Local Git DNS unavailable; connector Contents SHA CAS and Git tree/ref CAS used.
+- Claimed #2965, comment 7192209676. Archived W3 cumulative cipher-word prime shift equals public prefix difference Q(i)-Q(o); R46 start-page convention makes o the only additional latent state. Exact inventory A* + admissible Lagrangian lower bounds, no beams. Pilot 14/14, fresh 9/9 correct variants with 94.53–100% / 95.28–100% rune recovery. Strict fresh score gate failed (2/9 wrong-length FPs); all 9 wrong-rule and 7/9 wrong-length excluded, no caps after dual enhancement. Original unchanged-cutoff diagnostic: all 4 variants p0–2 >=4.515792 and frozen [729,1428) >=4.428110 cost/rune vs 2.5 cutoff. Even relaxed multiplicity graph fails. No unknown plaintext/key. [Report](../../im-results/lp2-w3-latent-inventory-receiver.md), [SFT](../../sims/lp2_w3_latent_inventory_astar_sft.cjs), [pilot](../../im-results/lp2-w3-latent-inventory-pilot-output.json), [fresh dual](../../im-results/lp2-w3-latent-inventory-dual-output.json), [original](../../im-results/lp2-w3-latent-inventory-original-diagnostic.json). Connected V8 run, no Node CLI/CI. Do not repeat W3 absent independent source selector. Prefix-state/dual method may transfer to other ciphertext-driven schedules but not blindly to plaintext feedback.
+- Checkpoint 2026-11-26T12:43:23.977Z, measured lease age 7.981 minutes, retained under 70-minute rule.
+
+---
+
 # Agent 5 — 26 November 2026, draw 10, 08:45 UTC incarnation
 
 - Immutable lease `agent5-draw10-2026-11-26T08:45:32.587Z-issue-directed`, claimed 2026-11-26T08:45:32.587Z, remotely verified claim commit 79c5ed579c14cd18113b364f388d3f1783a4ac34. Earliest orderly release 09:55:32.587Z. Direct local Git DNS unavailable; Contents-SHA compare-and-swap used. No issue claim: #2722 active Agent29 and pinned 31-shard original run 45777297359; #2895 waits for actual manifest; #2273/#41 need source-selected operands, #2117/#2070/#1335 need independent oracle. Recent mailbox and broadcast paths reviewed. Do not duplicate those searches.
