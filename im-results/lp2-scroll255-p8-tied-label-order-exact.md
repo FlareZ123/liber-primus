@@ -37,3 +37,26 @@ Six native controls use 75 consecutive Gibran words (word offsets 200–274), fi
 - [Raw output and witness orders](lp2-scroll255-p8-tied-label-order-exact-output.json)
 
 **Decision:** retire this exact sorting receiver with the named historical clocks. Reopen only on independently selected order or key evidence. No change to authoritative solution status.
+
+## Inverse sorting with every tied assignment — clock-interval matching bound
+
+The forward-sort DP above does not cover an encryption that first sorts groups and prints the sorted tape. In this opposite direction, the p8 label tape is attached to the *intended logical order*: printed p3–7 groups are partitioned into contiguous blocks with the corresponding label frequencies, and every group from a block may be assigned to any logical slot with that label. Both ascending and descending block order are granted. Exact joint inverse optimization would require simultaneously maintaining masks for all 29 label classes; a stronger-than-stable-order **necessary** bound is cheaper.
+
+For candidate word j at slot i, count prior slots in each class. Every legal assignment consumes at least the sum of the smallest preceding-group lengths (or lengths minus ciphertext-F counts for literal-F hold), and at most the sum of the largest lengths. Exclude j when computing the other preceding members of its class. This yields an enclosing integer interval of possible prime-clock positions. Every integer in that interval is tested, enumerating all legal word-local F histories; for historical periodic keys grant every phase. Join lexical edges by maximum bipartite matching, so no group or slot can be counted twice. Clock witnesses are allowed to disagree globally, making the result an upper bound, not a recovered ordering. No assumption of intact grammar beyond the registered word membership is made.
+
+| Scope | Blocks | Key | Ordinary lexical upper bound | F-hold lexical upper bound |
+|---|---|---|---:|---:|
+| all | ascending | prime-minus-one | 155/255 | 154/255 |
+| all | ascending | DIUINITY | 54/255 | 53/255 |
+| all | ascending | FIRFUMFERENFE | 61/255 | 61/255 |
+| all | descending | prime-minus-one | 158/255 | 156/255 |
+| all | descending | DIUINITY | 54/255 | 53/255 |
+| all | descending | FIRFUMFERENFE | 61/255 | 61/255 |
+| black | ascending | prime-minus-one | 145/242 | 143/242 |
+| black | ascending | DIUINITY | 49/242 | 49/242 |
+| black | ascending | FIRFUMFERENFE | 54/242 | 54/242 |
+| black | descending | prime-minus-one | 146/242 | 144/242 |
+| black | descending | DIUINITY | 49/242 | 49/242 |
+| black | descending | FIRFUMFERENFE | 54/242 | 54/242 |
+
+Twelve plants use two separate 75-word Gibran windows (offsets 2000 and 5000), both block directions, reverse ties, each historical key and both F modes. Every bound retains at least the actual native lexical count (reported in JSON), as required. The bound is necessary only: its matching edges are independently clock-compatible, not a globally consistent decryptor. No unknown key or plaintext. [Inverse-direction SFT](../sims/lp2_scroll255_p8_inverse_ties_bound_sft.cjs) and [matching witnesses](lp2-scroll255-p8-inverse-ties-bound-output.json). Core executed in connected V8; standalone wrapper not separately executed.
