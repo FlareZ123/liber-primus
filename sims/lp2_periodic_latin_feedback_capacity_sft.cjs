@@ -44,6 +44,19 @@ function experiment(gp,refs,task="summary"){
  let toys=0;for(let t=0;t<8;t++){let h=Int32Array.from({length:9},()=>Math.floor(rand()*10));for(let k=1;k<=3;k++){let best=-Infinity;for(let mask=0;mask<512;mask++){let rows=[0,0,0],cols=[0,0,0],w=0;for(let i=0;i<9;i++)if(mask>>i&1){rows[Math.floor(i/3)]++;cols[i%3]++;w+=h[i]}if(rows.every(x=>x===k)&&cols.every(x=>x===k))best=Math.max(best,w)}check(cap(h,k,3)===best,"toy exhaustive");toys++}}
  return {n:tape.length,floor,results,plants,toys};
  }
+ if(task.startsWith("page13-window:")){
+  const scope=task.split(":")[1],local=scope==="page-local";check(local||scope==="page-absolute","invalid scope");
+  const h=matrices(pages,13,local),phaseCaps=h.map(assignment),bounds=Array.from({length:15},(_,j)=>pages.length+sum(h.map(a=>j===0?assignment(a):cap(a,j+1))));
+  const groups=Array.from({length:13},()=>[]);let off=0;for(const pg of pages){for(let j=1;j<pg.length;j++)groups[(j+(local?0:off))%13].push(off+j);off+=pg.length}
+  const windows=refs.map(encode).map(a=>{let hist=new Int32Array(n),passE=0,passAll=0,passPhaseE=0,minMaxPhaseMargin=Infinity,first=null;
+   for(let i=0;i<a.length;i++){hist[a[i]]++;if(i>=tape.length)hist[a[i-tape.length]]--;if(i<tape.length-1||hist[18]>bounds[0])continue;passE++;
+    let t=0;const v=Array.from(hist).sort((a,b)=>b-a).slice(0,15).map(z=>t+=z);if(!v.every((z,k)=>z<=bounds[k]))continue;passAll++;
+    const offset=i-tape.length+1,counts=groups.map(g=>g.reduce((s,k)=>s+(a[offset+k]===18),0)),margin=Math.max(...counts.map((z,k)=>z-phaseCaps[k]));
+    minMaxPhaseMargin=Math.min(minMaxPhaseMargin,margin);if(margin<=0){passPhaseE++;if(first===null)first=offset}
+   }
+   return {windows:a.length-tape.length+1,passE,passAll,passPhaseE,minMaxPhaseMargin:Number.isFinite(minMaxPhaseMargin)?minMaxPhaseMargin:null,first};
+  });return {scope,q:13,phaseCaps,bounds,windows};
+ }
  const [scope,q0,ks0="1,2,3,5,9,15"]=task.split(":");const [,b,l]=scopes.find(x=>x[0]===scope),q=Number(q0),ks=ks0.split(",").map(Number),h=matrices(b,q,l);
  return {scope,q,free:b.length,capacities:ks.map(k=>({k,latin:b.length+sum(h.map(a=>k===1?assignment(a):cap(a,k))),rowOnly:b.length+sum(h.map(a=>rowOnly(a,k)))}))};
 }
