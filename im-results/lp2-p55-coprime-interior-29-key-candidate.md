@@ -16,9 +16,11 @@ This is a plausible source-constrained reading, not a uniquely compelled instruc
 
 ## Exact original-data derivation
 
-The original p55 image is resources/liber-primus/72.jpg. It contains 76 runes: one initial rune completing a word carried from p54, followed by 16 complete words beginning on p55. The complete-word lengths, reproduced using the original page/word parser, are:
+The original p55 image is resources/liber-primus/72.jpg. It contains 76 runes: one initial rune completing a word carried from p54, followed by 16 complete words beginning on p55. The complete-word lengths, reproduced using the corrected page/word parser, are:
 
 [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]
+
+A prior parser version ended an open word at the percent page marker, falsely creating a singleton. The corrected parser preserves open words across page markers and attributes each word to the page where its first rune occurs. It verifies the 11-rune p54→p55 carry and exactly 16 complete words starting on p55; the selected one-based key is unchanged.
 
 For these lengths:
 
@@ -40,6 +42,14 @@ The selected GP29 indices in original word/position order are:
 The historical base-29 alphabet 0123456789ABCDEFGHIJKLMNOPQRS serializes those 29 indices as:
 
 **A25S0EAJ15D8LKDCIA6E6FC22I5BI**
+
+### Zero-based original-word indexing alternative (Agent16, 26 November)
+
+If the creator implemented the same gcd test using zero-based original-word array indices j=1..n-2, while retaining the original word length n as modulus, the selection also contains 29 runes but yields a different candidate:
+
+**JCRS0EAJ15D8LKF8IA6E6FC22ISBI**
+
+The standard mathematical definition of Euler's totient favors the one-based candidate above. The source does not explicitly specify indexing convention, however, so the zero-based result remains a possible implementation variant, not an independently selected key. Using n-2 as the modulus yields 30 symbols. Do not test both variants as a sweep.
 
 This 29-character string is a **candidate key/password**, not plaintext. Reproduction and exact word-boundary checks are in [sims/agent43_p55_coprime_interior_key.py](../sims/agent43_p55_coprime_interior_key.py).
 
@@ -89,6 +99,14 @@ Solved p57 explicitly directs the reader to **find the divinity within**, and LP
 **Original result:** branch **0** (consume the ciphertext F as keyed non-F) becomes impossible at **selected rune 18**; branch **1** (literal bypass) becomes impossible already at **selected rune 7**. In each case the decoder would need to create plaintext **F** from a ciphertext **non-F**, contradicting the authenticated LP1 encryption rule. Thus **0/2** bypass masks survive, independent of any English score, key search or additional language assumptions. The control authentic LP1 example has 515 GP runes and 11 known literal-F bypasses; a separate source-native solved-p57 29-rune planted plaintext with literal F at position 4 is encrypted and recovered under the identical decoder. [Independent standalone original-input CommonJS SFT](../sims/agent13_p55_coprime29_divinity_sft.cjs).
 
 **Decision:** reject this newly extracted 29-rune subset as *the direct plaintext-F-transparent DIVINITY ciphertext* at phase zero. The source-derived coprime selector remains speculative, and this exact historical receiver failure must not be generalized to unrelated cipher architectures. Further key-phase/sign/order variants lack a first-party selector.
+
+## Additional fixed receiver tests (Agent16, 26 November)
+
+The primary candidate was also tested as a repeating Vigenere key, distinct from Agent13's test of the selected 29 runes as ciphertext under DIVINITY. Subtracting the repeated GP29 key modulo 29 from all 76 p55 runes, with literal F transparent and no key advance on F, yields a nonprose 76-rune output (IoC 0.0287719298 versus original p55 0.0378947368). The zero-based candidate likewise gives nonprose under the same fixed receiver (IoC 0.0277192982).
+
+Applying the primary key to the 33 exterior runes (carry suffix plus each complete word's first/last rune) yields nonprose under both subtraction and addition. The zero-based candidate also yields nonprose in both directions. Exact outputs and parameters are preserved in the linked source-framing report. These tests reject only these direct Vigenere receivers, not an unrelated steganographic or cryptographic mechanism.
+
+A separate single-carrier p57 DIVINITY A-key attempt on original p55 image72.jpg at JPEG Medium1/5 ran as workflow 43699273919. It failed the native wrapper proof and is inconclusive, not a cryptographic negative; it used A=DIVINITY, not either 29-symbol candidate. This does not reverse Agent13's completed seven-JPEG OpenPuff rejection of the primary candidate.
 
 ## What this does not establish
 

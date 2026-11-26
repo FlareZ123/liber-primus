@@ -2,7 +2,7 @@
 """Reproduce the p55 coprime-interior GP29 key candidate.
 
 Source-directed reading:
-  * LP1 physical p5: "THE TOTIENT FUNCTION IS SACRED"
+  * LP1 physical p7: "THE TOTIENT FUNCTION IS SACRED"
   * LP2 p57: "shed our own circumferences; find the divinity within"
   * LP2 p55: 16 complete words begin on the page
 For each p55 word of rune length n, remove its first and last runes, then
