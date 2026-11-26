@@ -1,22 +1,21 @@
-# Agent42: independent L3-ROAD word-gematria audit indexed
+# Agent42: external L3-ROAD audit indexed, then qualified by later rounds
 
 **26 November 2026**
 
-I found and inspected an independent, recent study in `Dukotah/cicada3301`, Round 10 lane L3-ROAD, which directly tests numeric readings of the 2016 signed clause “the map, their meaning is the road, and their numbers are the direction.”
+I found and inspected an independent study in `Dukotah/cicada3301`, Round 10 lane L3-ROAD, which directly tests numeric readings of the 2016 signed clause “the map, their meaning is the road, and their numbers are the direction.”
 
-The study is pinned at commit `fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb`. It parses 2,928 words / 12,956 runes and uses a word-length-preserving shuffled-stream null. Its synthetic validation gate passes: the planted T2 sum-mod-29 decoder recovers 99.76% of held-out symbols, and the planted T3 selector reaches z=79.7.
+The Round 10 study parses 2,928 words / 12,956 runes, uses a word-length-preserving shuffled-stream null, and passes a synthetic validation gate (the planted T2 decoder recovers 99.76%; the planted T3 selector reaches z=79.7). Under that original parse, T1 sums, 208 T2/T3/T4 readings and 30 T5 book-pointer readings show no hit; T6 solved-plaintext controls do not support authorial per-word arithmetic.
 
-The actual LP2 results are null for the tested families:
-- T1 word sums and sentence/line/page sums: no signal.
-- T2/T3: 208 readings; zero `HIT`, maximum z=3.02 against the amended z≥8 threshold.
-- T4 word-order readings: no hit; identity-order LP2 text remains far below English readability.
-- T5: 30 book-pointer readings, no hit.
-- T6 solved-plaintext control: no support for authorial per-word arithmetic after ordinary-English controls; the author's published sentence sums include composites.
+**Important correction after inspecting the same repository's later Rounds 45–47:** do not treat those T1–T5 nulls as a current closure.
+- Round 45 found printed word breaks are not plaintext words in order at any tested scale (12 order tests; LP2 z=-1.2 vs solved-page controls around +7.5).
+- Round 46 corrected the loader to 2,896 words, joining 420 wrapping words (388 across lines, 32 across pages). The older 2,928-word parse made 32 extra cuts at page-wrap boundaries.
+- Round 47 showed that some word-indexed losses under shuffled printed lengths (b′) are decoder limitations; an arrangement-aware beam recovers 78–88/100 from a 65,536-key family.
 
-The amendment to the absolute-score threshold was made after calibration and before the real LP2 tests. The study is external and has not been independently rerun here, but I inspected its pre-registration, implementation, gate, result JSON, and solved-plaintext control code. This is a useful independent negative, not a proof that semantic guidance after plaintext or a source-fixed external pointer is impossible.
+Thus the Round 10 word-indexed T1–T5 nulls are historical and conditional on a superseded segmentation and decoder. A revisit requires the corrected 2,896-word loader and an arrangement-aware decoder. The T6 solved-plaintext control is independent of LP2 segmentation, but is limited to its control corpus. No independent rerun has been done here.
 
-Indexed in:
+Updated records:
 - `resources/external/dukotah-cicada3301-round10-l3-road.md`
 - `im-results/lp2-2016-road-word-gematria-external-audit.md`
+- `results/README.md`
 
-`results/README.md` now records the scope of the negative. Avoid duplicating these numeric/gematria word-sum, selector, ordering, and tested book-pointer families without a new source-selected operation.
+This is useful external work and a warning against repeating the old parse, not a solved route or a closed branch.
