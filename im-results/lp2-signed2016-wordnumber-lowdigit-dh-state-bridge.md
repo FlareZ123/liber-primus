@@ -355,9 +355,34 @@ For reference, the exact ordered vector `[-b,A,-K,B,g,a,A]` has:
 
 That second value is **diagnostic only** because the ordered vector was recognized after the state was known. It must not be presented as a discovery p-value.
 
+## Untouched receiver test: p55 strict interior 43
+
+The solved p57 instruction to shed circumferences and find the divinity within gives a source-motivated receiver: strip the first and last rune from each complete p55 word. The canonical geometry yields 43 interior runes at the fixed page-local offsets below. Independently, the authenticated 2016 signed message has 43 alphabetic words, and the frozen p50 low-digit rule yields one residue per word. This is the most direct 43-to-43 receiver test of that vector.
+
+Use the fixed subtractive inverse, `P_i = (C_i - s_i) mod 29`, with the existing source-local key vector `s_i = low60(p50[i]) - i - GP_length(word_i) mod 29`. No phase, offset, permutation, reset, or alternate receiver was searched.
+
+```
+p55 interior offsets:
+2,3,10,11,12,13,16,17,18,19,24,25,26,27,28,29,30,31,32,33,34,37,38,39,40,43,44,49,50,51,52,53,56,57,58,59,60,65,66,67,68,71,74
+
+43 key residues:
+18,19,13,28,28,15,24,23,17,24,20,0,22,17,15,12,11,3,23,10,18,23,6,0,22,18,20,24,0,27,16,8,20,17,10,28,14,8,27,19,5,6,8
+
+decoded GP29 stream:
+ULEAWATOUFIHFNGOEREDIXJTHNGBIALMNGDIHIAIAAANGORLEOFFCI
+```
+
+Restoring the original interior-word boundaries (interior lengths `2,0,0,4,4,0,11,4,2,0,5,5,0,4,1,1`) gives:
+
+`UL | ∅ | ∅ | EAWAT | OUFI | ∅ | HFNGOEREDIXJTH | NGBIAL | MNG | ∅ | DIHIAIA | AANGOR | ∅ | LEOFF | C | I`
+
+The result is not recognizable plaintext or a sourced instruction. Its index of coincidence is `0.0354374308`, versus `0.0343300111` for the original 43-rune interior; the full output and boundaries are more decisive than this short-sample statistic. This direct receiver fails. The p50 vector remains a source-to-source DH-state bridge, not a demonstrated p55 key.
+
+Do not try the additive sign, phase shifts, alternate boundary stripping, word permutations, or table offsets without a new independent source selector.
+
 ## Relation to earlier 43-word work
 
-This does **not** reopen the rejected 43-word -> p50 -> p55 inner-43 decoder. No p55 coordinate, codebook, exterior rune, or 43-to-43 p55 correspondence is used.
+The earlier prime-sum and raw table-pad 43-word -> p50 -> p55 tests remain rejected. The p50 low-digit bridge is a distinct 43-value vector; it has now been tested as a direct key for the p55 strict interior, with the exact failed receiver result below. This does not justify alternate key alignments or a new p55 search.
 
 The new bridge uses only:
 
@@ -386,7 +411,7 @@ It also independently reinforces the p50 low-digit consumer found in the READ OU
 
 The graph topology now supplies the DH state without p28, and Agent25 has consumed that direction-cycle state in a finite 288-form H/cube serialization that derives the complete seven-rune OPENPGP candidate key from the two cycles. The source-selected p0 receiver then decrypts to OPENPGP. The same key fails an independent ROAD/NUMBERS receiver, so the result is an OPENPGP-specific source-derived candidate rather than a reusable packet key. PATHS, VERIFY and BEWARE still need a shared source-selected scheduler.
 
-The next decisive test should derive one of those remaining segment keys from the frozen graph/topology before inspecting its receiver plaintext, or expose a new untouched receiver selected by the signed-word map.
+The p55 43-interior direct pad is now a failed receiver. The next decisive test should derive a different remaining segment key from the frozen graph/topology before inspecting its receiver plaintext, or expose a new untouched receiver selected by the signed-word map.
 
 ## Reproduction
 
@@ -394,4 +419,4 @@ The next decisive test should derive one of those remaining segment keys from th
 node sims/lp2_signed2016_p50_lowdigit_dh_state_bridge_sft.cjs
 ```
 
-The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the terminal state packet and punctuation H identities; charges the 256 arithmetic/length conventions, 256 cyclic table origins, and eight table traversals; reproduces the independent EPIPHANY/SEEKS/THE/DEVOTED transfer; constructs and charges the HELLO -> MAP -> ROAD direction cycle; verifies its `[p,b,-K] -> [p+K,p-K,b]` warning-shell prefix; and computes the exact labeled-token multiset counts.
+The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the terminal state packet and punctuation H identities; charges the 256 arithmetic/length conventions, 256 cyclic table origins, and eight table traversals; reproduces the independent EPIPHANY/SEEKS/THE/DEVOTED transfer; constructs and charges the HELLO -> MAP -> ROAD direction cycle; verifies its `[p,b,-K] -> [p+K,p-K,b]` warning-shell prefix; computes the exact labeled-token multiset counts; and applies the full 43-value vector to the p55 strict interior with the fixed subtractive inverse, asserting the exact non-plaintext output.

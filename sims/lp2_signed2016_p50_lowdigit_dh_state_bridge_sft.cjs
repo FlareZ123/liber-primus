@@ -226,6 +226,44 @@ const frozenMode = Object.freeze({
 
 const sequence = derive(frozenMode);
 assert.ok(sequence);
+const p55InteriorOffsets = [
+  2, 3, 10, 11, 12, 13, 16, 17, 18, 19, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33,
+  34, 37, 38, 39, 40, 43, 44, 49, 50, 51, 52, 53, 56, 57, 58, 59, 60, 65, 66, 67,
+  68, 71, 74,
+];
+const p55Interior = p55InteriorOffsets.map(offset => corpus.pages[55].indices[offset]);
+assert.equal(p55Interior.length, 43);
+const p55InteriorPlain = p55Interior.map((value, index) => mod29(value - sequence[index]));
+const p55InteriorPlainText = p55InteriorPlain.map(value => corpus.translit[value]).join("");
+const p55InteriorGroupLengths = [2, 0, 0, 4, 4, 0, 11, 4, 2, 0, 5, 5, 0, 4, 1, 1];
+let p55GroupOffset = 0;
+const p55InteriorPlainGroups = p55InteriorGroupLengths.map(length => {
+  const group = p55InteriorPlain.slice(p55GroupOffset, p55GroupOffset + length)
+    .map(value => corpus.translit[value]).join("");
+  p55GroupOffset += length;
+  return group || "∅";
+});
+assert.deepEqual(p55Interior, [
+  19, 10, 12, 6, 23, 2, 27, 24, 17, 5, 28, 0, 14, 10, 19, 1, 5, 13, 8, 21, 20,
+  15, 23, 27, 13, 8, 12, 18, 10, 6, 14, 6, 15, 12, 2, 2, 18, 28, 10, 19, 5, 11, 18
+]);
+assert.deepEqual(p55InteriorPlain, [
+  1, 20, 28, 7, 24, 16, 3, 1, 0, 10, 8, 0, 21, 22, 4, 18, 23, 10, 14, 11, 2,
+  21, 17, 27, 20, 19, 21, 23, 10, 8, 27, 27, 24, 24, 21, 3, 4, 20, 12, 0, 0, 5, 10
+]);
+assert.equal(p55InteriorPlainText, "ULEAWATOUFIHFNGOEREDIXJTHNGBIALMNGDIHIAIAAANGORLEOFFCI");
+assert.deepEqual(p55InteriorPlainGroups, [
+  "UL", "∅", "∅", "EAWAT", "OUFI", "∅", "HFNGOEREDIXJTH", "NGBIAL",
+  "MNG", "∅", "DIHIAIA", "AANGOR", "∅", "LEOFF", "C", "I"
+]);
+const p55Ioc = values => {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value] += 1;
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (values.length * (values.length - 1));
+};
+assert.ok(Math.abs(p55Ioc(p55Interior) - 0.03433001107419712) < 1e-12);
+assert.ok(Math.abs(p55Ioc(p55InteriorPlain) - 0.035437430786267994) < 1e-12);
 const tail = sequence.slice(36);
 assert.deepEqual(tail, [
   mod29(-state.b),
@@ -1470,6 +1508,17 @@ console.log(JSON.stringify({
     exactTokenProbability: epiphanyExactProbability,
     cyclicExactOffsets: epiphanyCyclicExactOffsets,
     sourceTraversalHits: epiphanyTraversalHits,
+  },
+  p55InteriorReceiverTest: {
+    offsets: p55InteriorOffsets,
+    groupLengths: p55InteriorGroupLengths,
+    keyResidues: sequence,
+    ciphertext: p55Interior.map(value => corpus.translit[value]).join(""),
+    inverse: "P=(C-s) mod29",
+    plaintext: p55InteriorPlainText,
+    plaintextGroups: p55InteriorPlainGroups,
+    iocCiphertext: p55Ioc(p55Interior),
+    iocPlaintext: p55Ioc(p55InteriorPlain),
   },
   exactTokenMultisetNull: {
     denominator: denominator.toString(),
