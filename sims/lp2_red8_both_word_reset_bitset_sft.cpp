@@ -6,6 +6,8 @@
 #undef main
 bool negative=false;
 bool useInverseIndex=false;
+array<int,8> activeKey=K;
+const array<int,8> DIVINITY{23,10,1,10,9,10,16,26};
 struct Posting{int feature;vector<int> ids;vector<uint64_t> bits;};
 struct Totals{uint64_t nodes=0,joins=0,perms=0,featureTests=0,optionTests=0,indexLookups=0;};
 // For the negative mapped key, pi(P)=pi(C)+pi(K). Cache the possible P
@@ -39,19 +41,19 @@ struct PositionIndex {
 vector<aff::Word> byteWords(const vector<string>&x){vector<aff::Word> w;for(auto&s:x){aff::Word a;for(char c:s)a.push_back(fixed::val(c));w.push_back(move(a));}return w;}
 aff::Word byteWord(const string&s){aff::Word x;for(char c:s)x.push_back(fixed::val(c));return x;}
 fixed::Perm wide(const Pi&x){fixed::Perm y;copy(x.begin(),x.end(),y.begin());return y;}
-fixed::Key mappedKey(const Pi&x){fixed::Key k;for(int j=0;j<8;j++)k[j]=aff::mod((negative?-1:1)*int(x[K[j]]));return k;}
+fixed::Key mappedKey(const Pi&x){fixed::Key k;for(int j=0;j<8;j++)k[j]=aff::mod((negative?-1:1)*int(x[activeKey[j]]));return k;}
 
-aff::Domain negativeDomain(int g,const aff::Word&c,const vector<aff::Word>&words,const aff::Space&b){
+aff::Domain mappedDomain(int g,const aff::Word&c,const vector<aff::Word>&words,const aff::Space&b){
  aff::Domain d;d.group=g;d.post.resize(c.size());unordered_set<string>seen;vector<map<int,vector<int>>>tmp(c.size());
  for(auto&w:words)for(int start=0;start<8;start++){
   aff::Option o;int j=start;bool ok=true;
   for(int i=0;i<int(c.size());i++){
-   int p=w[i],x=c[i],k=K[j];if(!p){if(x){ok=false;break;}continue;}
-   if(p==x||(x==0&&p!=k)||(x!=0&&p==k)){ok=false;break;}
+   int p=w[i],x=c[i],k=activeKey[j];if(!p){if(x){ok=false;break;}continue;}
+   if(p==x||(negative?((x==0&&p!=k)||(x!=0&&p==k)):(x==k))){ok=false;break;}
    o.feature[i]=k*29+p;j=(j+1)%8;
    // For ciphertext F and consuming plaintext, p=K is necessary and sufficient.
    // The equation then vanishes identically and needs no affine edge.
-   if(x)o.e[o.n++]={uint8_t(p),uint8_t(x),uint8_t(k)};
+   if(negative){if(x)o.e[o.n++]={uint8_t(p),uint8_t(x),uint8_t(k)};}else o.e[o.n++]={uint8_t(x),uint8_t(p),uint8_t(k)};
   }
   if(!ok)continue;aff::Space t;if(!aff::apply(b,o,t))continue;
   array<uint16_t,16>ids{};for(int i=0;i<o.n;i++)ids[i]=aff::eid(o.e[i]);sort(ids.begin(),ids.begin()+o.n);auto end=unique(ids.begin(),ids.begin()+o.n);
@@ -69,7 +71,7 @@ struct IndexedSearch{
  IndexedSearch(const vector<string>&g,int b):train(g),budget(b){
   vector<string> prefix(fixed::prefixDict.begin(),fixed::prefixDict.end());sort(prefix.begin(),prefix.end());vector<vector<aff::Word>> by(16);
   for(int n=1;n<16;n++)by[n]=byteWords(fixed::by[n]);auto pre=byteWords(prefix);
-  for(int i=0;i<48;i++){cipher.push_back(byteWord(g[i]));auto&lex=i==47?pre:by[g[i].size()];ds.push_back(negative?negativeDomain(i,cipher.back(),lex,base):aff::makeDomain(i,cipher.back(),lex,base));
+  for(int i=0;i<48;i++){cipher.push_back(byteWord(g[i]));auto&lex=i==47?pre:by[g[i].size()];ds.push_back((negative||activeKey!=K)?mappedDomain(i,cipher.back(),lex,base):aff::makeDomain(i,cipher.back(),lex,base));
    auto&d=ds.back();vector<vector<Posting>> pp(d.post.size());for(size_t q=0;q<d.post.size();q++)for(auto&[k,v]:d.post[q]){Posting p{k,move(v),{}};if(p.ids.size()>=64){p.bits.assign((d.opts.size()+63)/64,0);for(int id:p.ids)p.bits[id/64]|=uint64_t(1)<<(id%64);}pp[q].push_back(move(p));}d.post.clear();vector<PositionIndex> ii(pp.size());for(size_t j=0;j<pp.size();j++)for(int slot=0;slot<int(pp[j].size());slot++){int z=pp[j][slot].feature;ii[j].slot[z]=slot;ii[j].present[z/29]|=1u<<(z%29);}index.push_back(move(ii));posts.push_back(move(pp));if(i!=47)order.push_back(i);}
   sort(order.begin(),order.end(),[&](int a,int b){auto score=[&](int i){return log2(double(max<size_t>(1,ds[i].opts.size())))/train[i].size();};double x=score(a),y=score(b);return x==y?a<b:x<y;});
   unordered_set<string> seen;for(const auto&o:ds[47].opts){aff::Space s;if(aff::apply(base,o,s)&&seen.insert(signature(s)).second)seeds.push_back(s);}
@@ -173,7 +175,7 @@ void indexRegression(IndexedSearch& s,const string& label,ostream& json){
  }
  for(const auto& state:samples){
   aff::Filter f(state);if(f.saturated)continue;ReverseFilter reverse(f);states++;
-  for(int x=1;x<29;x++)for(int k:K){auto bits=reverse.mask(x,k);for(int p=1;p<29;p++){
+  for(int x=1;x<29;x++)for(int k:activeKey){auto bits=reverse.mask(x,k);for(int p=1;p<29;p++){
    bool old=f.mask(p,k)&(1u<<x),now=bits&(1u<<p);fixed::require(old==now,"inverse relation mismatch");comparisons++;
   }}
   for(int g:s.order){
@@ -190,6 +192,22 @@ int main(int argc,char**argv){try{aff::init();fixed::dictionary();auto src=fixed
  // Prior both-sign run passed both blind controls for the unchanged search.
  // A range invocation searches only the negative-sign original and reports
  // exact completed IDs; an incomplete previous worker prefix is not assumed.
+ if(argc==3&&string(argv[1])=="divinity"){
+  activeKey=DIVINITY;int sign=stoi(argv[2]);fixed::require(sign==1||sign==-1,"DIVINITY sign");
+  negative=sign<0;useInverseIndex=negative;
+  // The actual LP1 keyword is the independently selected operand. Keep the
+  // original p54 black-body split and mandatory carry; no p55 suffix in fit.
+  bool a=indexedControl(train,held,3301),b=indexedControl(train,held,1033);
+  if(!a||!b){cout<<"DIVINITY original gated off sign="<<sign<<endl;return 1;}
+  IndexedSearch s(train,3);fixed::require(s.seeds.size()==(negative?156:231),"corrected original DIVINITY carry state count");
+  s.run(1800);
+  bool exhausted=!s.found&&!s.timed&&s.done==s.seeds.size();
+  cout<<"DIVINITY original sign="<<sign<<" exhausted="<<exhausted<<endl;
+  if(s.found){auto m=fixed::maps(wide(s.answer),mappedKey(s.answer));cout<<"DIVINITY CANDIDATE pi="<<aff::str(s.answer)<<" sign="<<sign<<endl;
+   auto h=held;h[0]=train.back()+h[0];for(int i=0;i<int(h.size());i++){auto v=fixed::decode(h[i],m,fixed::dict);cout<<"HOLD "<<i<<" candidates="<<v.size();for(auto&w:v)cout<<" "<<w;cout<<endl;}}
+  if(const char* p=getenv("SFT_OUTPUT")){ofstream out(p);out<<"{\"sign\":"<<sign<<",\"controlsPassed\":true,\"exhausted\":"<<(exhausted?"true":"false")<<",\"found\":"<<(s.found?"true":"false")<<",\"timed\":"<<(s.timed?"true":"false")<<",\"seedsDone\":"<<s.done<<",\"seedsTotal\":"<<s.seeds.size()<<",\"nodes\":"<<s.totals.nodes<<",\"joins\":"<<s.totals.joins<<",\"pi\":\""<<(s.found?aff::str(s.answer):string())<<"\"}\n";}
+  return exhausted||s.found?0:1;
+ }
  if(argc==2&&string(argv[1])=="check-index"){
   negative=true;ostringstream json;json<<"[";
   {IndexedSearch original(train,3);indexRegression(original,"original",json);}
