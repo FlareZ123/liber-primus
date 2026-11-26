@@ -1,0 +1,122 @@
+{
+  "scope": "Original-cipher calculations executed in separate Code Mode partitions. Aggregate output transcribed directly from returned results; SFT provides exact recomputation per partition.",
+  "sourceBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "N": 12956,
+  "physicalPages": 55,
+  "affineKeys": 812,
+  "privateInitialAndAffineLabelsPerFrame": true,
+  "rows": [
+    {
+      "frame": "book",
+      "reverse": false,
+      "ordinaryMaxPrivate": 534,
+      "active": {
+        "legal": 27,
+        "minF": 448,
+        "maxF": 457,
+        "maxNonF": 527,
+        "peak": 59
+      },
+      "physical": {
+        "legal": 24,
+        "minF": 450,
+        "maxF": 457,
+        "maxNonF": 504,
+        "peak": 57
+      }
+    },
+    {
+      "frame": "book",
+      "reverse": true,
+      "ordinaryMaxPrivate": 534,
+      "active": {
+        "legal": 26,
+        "minF": 455,
+        "maxF": 457,
+        "maxNonF": 507,
+        "peak": 29
+      },
+      "physical": {
+        "legal": 23,
+        "minF": 455,
+        "maxF": 457,
+        "maxNonF": 502,
+        "peak": 29
+      }
+    },
+    {
+      "frame": "chapter",
+      "reverse": false,
+      "ordinaryMaxPrivate": 717,
+      "active": {
+        "legal": 224,
+        "minF": 379,
+        "maxF": 449,
+        "maxNonF": 677,
+        "peak": 65
+      },
+      "physical": {
+        "legal": 211,
+        "minF": 405,
+        "maxF": 450,
+        "maxNonF": 649,
+        "peak": 66
+      }
+    },
+    {
+      "frame": "chapter",
+      "reverse": true,
+      "ordinaryMaxPrivate": 713,
+      "active": {
+        "legal": 176,
+        "dead": [
+          1
+        ]
+      },
+      "physical": {
+        "legal": 126,
+        "dead": [
+          1
+        ]
+      }
+    },
+    {
+      "frame": "page",
+      "reverse": false,
+      "ordinaryMaxPrivate": 1187,
+      "active": {
+        "legal": 14729,
+        "minF": 10,
+        "maxF": 454,
+        "maxNonF": 1198,
+        "peak": 103
+      },
+      "physical": {
+        "legal": 4756,
+        "minF": 18,
+        "maxF": 449,
+        "maxNonF": 1030,
+        "peak": 94
+      }
+    },
+    {
+      "frame": "page",
+      "reverse": true,
+      "ordinaryMaxPrivate": 1182,
+      "active": {
+        "legal": 14818,
+        "minF": 7,
+        "maxF": 452,
+        "maxNonF": 1217,
+        "peak": 93
+      },
+      "physical": {
+        "legal": 4709,
+        "minF": 11,
+        "maxF": 454,
+        "maxNonF": 1040,
+        "peak": 96
+      }
+    }
+  ]
+}
