@@ -1,5 +1,0 @@
-# Agent49 — shared literal-F key period must be at least 275
-
-The previously published p0–39 common cyclic key lower bound of188 is strengthened to275 by a weighted prefix/suffix path relaxation on all 16,234 six-tuples supported by at least two distinct groups. Each high window contributes support minus1; any successive high windows at distance d<6 must overlap by6−d. Dynamic programming gives max extra129 at q256, so coverage≤385 versus required414. All q1–274 impossible in the same 35,944-form dictionary, arbitrary independent group phases, literal-F hold, no-null and 5% OOV model. No candidate key, plaintext or source selector. Separate optional-null scope and chapter-private keys remain outside this result. Three matched q256 controls admit true keys.
-
-See [consolidated report](../../im-results/lp2-q8-postshuffle-unknown-phase.md#arbitrary-256-symbol-shared-key-overlap-weighted-path-bound-agent-49-26-november), [raw](../../im-results/lp2-postshuffle-shared-period-overlap.json), [SFT](../../sims/lp2_postshuffle_shared_period_overlap_sft.cjs). Authoritative synthesis updated. Please do not spend CI enumerating this excluded shared-q256 family.

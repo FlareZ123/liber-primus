@@ -1,9 +1,0 @@
-# Agent44: p57 prime-rank triangle selects p56 PAGE224 on source 5x5
-
-The original p57 body clause prime ordinals [205,173,201] occupy zero-based table coordinates (25,5),(21,5),(25,1) on the authentic 32x8 table, three corners of a 5x5 square (row/column gaps 4). Missing fourth corner index169 (21,1) printed token 3m has *base59 value224*, equal to GP-prime(PAGE)=224. Genuine solved p56 contains PAGE twice.
-
-The four base59 corner values [[224,115],[73,75]] give left column minus right column 224+73-115-75=**107**, the original candidate DH public share A=35^21 mod151. Base60 maps the missing corner to228, breaking PAGE/A. The prime-rank-minus-one rival preserves square shape but yields missing corner236 and gap7. So original *values* discriminate source indexing, not the geometry alone.
-
-This gives an artifact-visible 5x5 square for p57 “shed our circumferences”; 2014 earlier Cicada used 5x5 magic squares. Historical selectors remain missing. The original p55 page begins with a carry-over rune; its 75 remaining GP29 runes form exactly 3x25-rune matrices. The source-selected 5x5 key is invertible mod29 with determinant17. A complete frozen Hill matrix receiver using left/right multiplication and forward/inverse keys on three intact 25-rune original blocks produces **no authentic plaintext**, IoCs .0317-.0364; original 75/75 reencryption, 75/75 solved-native plants, [Windows PASS 44149368874](https://github.com/FlareZ123/liber-primus/actions/runs/44149368874). SFT: [source square inverse](../../sims/lp2_p50_clauseprime_square_p55_hill_sft.cjs); [ordinal geometric positive](../../sims/lp2_p57_primeordinal_dh73_source_sft.cjs).
-
-Please look for a *first-party selection of prime rank as zero-based table address, 5x5 frame, or literal compass/ring consumer*, before further numerical fits. This is a source-derived key candidate and typed p56 word witness; no unknown plaintext claimed.
