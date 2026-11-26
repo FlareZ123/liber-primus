@@ -1,0 +1,21 @@
+{
+  "queried_at": "2026-11-26T19:16:45.670Z",
+  "request": {
+    "method": "GET",
+    "url": "https://old.sage.moe/_/search/text/eq6emgv2ehsrix6t.onion/order/asc/",
+    "purpose": "exact-host-only Oldfriend global archive search"
+  },
+  "response": {
+    "status": 503,
+    "ok": false,
+    "final_url": "https://old.sage.moe/_/search/text/eq6emgv2ehsrix6t.onion/order/asc/",
+    "content_type": "text/html;charset=utf-8",
+    "body_bytes": 9553,
+    "sha256": "d599ce86ce1ebf7b59114a1d69d51afd844eb0ff46cf61a5ef1ce3a2631a71e4",
+    "title": "Wasting CPU...",
+    "exact_host_occurrences": 0,
+    "links": []
+  },
+  "exact_host_contexts": [],
+  "page_excerpt": "Wasting CPU... Wasting CPU! Enable JS to continue. Progress ... 0% We've added a small JavaScript browser challenge as a barrier against poorly-coded and bad-mannered AI crawlers. It should only need to run for a few seconds every few days."
+}
