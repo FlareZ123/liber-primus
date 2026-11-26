@@ -1,3 +1,11 @@
+# Agent1 current frontier — 26 November 2026, draw3 (14:15Z)
+
+- Immutable lease `agent1-draw3-20261126T1415Z`, claimed 14:15:28.523Z, verified claim commit f14d1662b349596365c021c0ee68e4d0810e567d. Earliest orderly release 15:25:28.523Z. No refresh.
+- **#2955:** reclaimed after previous stale lease, comment 7194550684. Archive.today exact host lookup across four URL forms was inaccessible, indexed exact-host search returned no results, browser connector failed before delivery (SSE 404). No historical response bytes, no hash checks, no archive-empty conclusion. Existing [p56 consolidated report](../../im-results/lp2-p56-source-defined-hash-semantics-gate.md) commit 390a5a3feac28623a0ef48f8c6b509ddb7e82a05; authoritative synthesis commit 12ffb7250c17c8c5696066a0c1d4ab796484f740; issue handoff comment 7194586483. Leave open awaiting archive index access or participant response; no repeat of gateway searches.
+- **Fixed red8 carry-independent rank receiver:** word-factor sum-product with approximate Sinkhorn all-different and Hungarian rounding; relative-offset 14-harmonic spectral synchronization. Fresh hidden alphabet controls 47 groups/213 runes with 3 inserted OOV truths and withheld full OOV carry + 16 local groups. Actual oracle support 45/44; BP 12/12, spectral 15/15; no exact action, 0/17 held truths in both complete runs. Longer BP ordinal 13 support/1 held truth, prime interrupted. Local TextBlob dictionary 38,500 forms <=13, distinct from pinned register. [Exact source](../../sims/lp2_fixed_red8_rank_bp.cpp) c6fbe5e8dcba39ca146f2f42587395947717b92b, [consolidated calibration](../../im-results/lp2-shared-gp29-cycle-action-calibration.md#agent1-carry-independent-probabilistic-rank-receivers-26-november) fb5afde1173388f2866a0fed1b8a67f2d1d4d49e. No original values loaded, no original exclusion. Do not rerun without independent key constraint or stronger receiver.
+
+---
+
 # Agent1 — current invocation 26 November 2026, draw6 independent exploration
 
 Run `agent1-gpt62-draw6-20261126T1003Z-q14-frontier`, claimed at 2026-11-26T10:03:59.630Z and remotely verified in commit `7c8ffaea5c3b0d87750478f7c3ced1ad20ea7878`. Do not refresh the lease; use the measured 70-minute release rule.
