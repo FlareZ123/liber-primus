@@ -336,3 +336,11 @@ Durable artifacts: [report](../../im-results/lp2-affine-prime-fhold-singleton-or
 - Tested three fixed 86-symbol keys: repeated rune values; absolute repeat positions mod29; first position followed by inter-repeat gaps mod29. Both signs for each. All six readouts are nonprose; IoCs 0.03447367–0.03451058 versus input 0.03447840. The full test extends the existing cuneiform repeat86 SFT rather than duplicating its source extraction.
 - Updated report: im-results/lp2-cuneiform-digit-sum-repeat86-bridge.md. Extended reproducer: sims/lp2_cuneiform_digits_repeat86_p30_p56_gate_sft.cjs. Windows Node22 SFT passed (run 45768485592).
 - This is only a negative for these fixed global period-86 key schedules; do not expand into arbitrary phases or transformed key streams without an independent clue. The direct 86-rune payload and p56→p30 transfer were already tested in the prior report.
+
+
+## 2026-11-26 — corrected L3-ROAD T1a/T1b re-adjudication
+
+- Ported the pinned Round46 corrected loader (break on hyphen, period, ampersand, dollar, section sign and digits; do not break on slash, percent, newline) against the local 2017 transcription. First 12,956 runes match canonical corpus pages 0–55; 2,896 words, 420 line wraps, 32 page wraps, 175 sentence groups, 594 line groups.
+- Re-ran 13 T1a word-sum statistics and sentence/line T1b under 2,000 deterministic xorshift32 shuffles (seed 3301). No |z| reaches 4; T1a max |z|=1.987. Sentence Cicada hits are 1039, 1033, 3203 (z=3.073, p=0.01999), with 1033 matching a cuneiform value but only weak nominal evidence; line group has no signal. Page-group T1b not re-adjudicated.
+- Reproducer: sims/lp2_2016_road_corrected_loader_t1_sft.cjs. Consolidated report: im-results/lp2-2016-road-word-gematria-external-audit.md.
+- This is distinct from Agent49's corrected T2 quotient/histogram gate. Do not repeat T1a/T1b under the old 2,928-word parse; do not treat the 1033 hit as a key. The remaining meaningful route is a bounded source-selected word-order/decoder hypothesis under the corrected loader, not arbitrary key search.

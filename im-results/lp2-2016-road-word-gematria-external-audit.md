@@ -79,8 +79,34 @@ The original recovered key replays all 2,896 **projected** symbols but yields no
 
 **Decision:** retire this direct quotient-plus-fixed-alphabet ordered receiver within the calibrated scope; no new plaintext, key, or route. Do not broaden arbitrary output permutation searches absent an independent source-selected order; the sorted-count bound already grants all such arrangements for the tested literal references. This does not rerun T1/T3/T4/T5, order-dependent T2 reductions, or the external scorer. The complete runnable CommonJS SFT and raw numerical output were executed in V8 on the live canonical inputs and preserved, without additional CI: [SFT](../sims/lp2_road_pointwise_orderfree_quotient_sft.cjs) · [raw](lp2-road-pointwise-orderfree-quotient.json).
 
+## Corrected-loader T1a/T1b re-adjudication (Agent1, 26 November 2026)
+
+The Round10 T1 word-sum and T1b group-sum nulls were published against a 2,928-word parse. The later pinned loader at **Dukotah/cicada3301@fed5473f6ea8180c7a5bfcf1bc19b746db38f9eb**, file **liber-primus/analysis/round46/L1-word-loader/words.py**, joins across slash, percent, and newlines, breaking only on hyphen, period, ampersand, dollar, section sign, and digits. I ported those rules against this repository's 2017 transcription and checked the first 12,956 rune indices exactly against canonical corpus pages 0–55.
+
+The corrected parse yields **2,896 words**, mean length 4.47376, **420 line wraps**, and **32 page wraps**. It produces 175 punctuation-defined sentence groups and 594 line groups. The old external Round10 parse had 2,928 words and 219 sentence groups, so sentence grouping is materially changed.
+
+I re-ran the complete T1a word-sum family (13 preregistered statistics) and sentence/line T1b group-sum statistics against 2,000 deterministic Fisher–Yates null permutations (xorshift32, seed 3301; shuffle all rune indices, then re-cut into corrected fixed word/group lengths). This is an independent reproducible null, not a byte-for-byte reproduction of the external NumPy PCG64 sequence.
+
+- **T1a:** no statistic reaches |z|=4; the largest absolute z is 1.987 (word-sum divisibility by 29).
+- **Sentence T1b:** prime-rate z=2.785; emirp-rate z=1.318; Cicada-number hits z=3.073, nominal empirical p=0.01999, below the preregistered |z|=4 gate and not corrected for the full family of tests.
+- **Line T1b:** prime-rate z=-0.648, emirp-rate z=-0.230, Cicada-hit count z=-1.165; no signal.
+
+The three corrected sentence-sum Cicada hits are:
+
+| Sentence group | Start page | Words | Prime-weight sum |
+|---:|---:|---:|---:|
+| 56 | 12 | 5 | 1039 |
+| 57 | 13 | 6 | **1033** |
+| 166 | 43 | 9 | 3203 |
+
+The 1033 hit equals one cuneiform value, but the same preregistered Cicada set also yields 1039 and 3203; three hits versus null mean 0.6325 is only a weak nominal elevation. The older Round10 parse reported 157, 1033, and 3203; the corrected loader changes 157 to 1039 while retaining 1033 and 3203. This is not evidence of plaintext or a key. Page-group T1b is not re-adjudicated here.
+
+Reproducer: **sims/lp2_2016_road_corrected_loader_t1_sft.cjs**. It asserts the corrected stream, word/wrap counts, all statistics, the three hit groups, and the seeded null procedure.
+
 ## Current decision
 
-The historical Round 10 T1–T5 results remain conditional on their superseded parse. The corrected pointwise T2 work above establishes exact finite order-and-alphabet-independent histogram limits and a calibrated direct ordered quotient negative, not a universal closure of word-gematria, selector, ordering, or book-pointer readings. Any revisit of the other families must use the 2,896-word loader, address arrangement/decoder ambiguity, and retain a source-constrained operation with independent controls.
+T1a and sentence/line T1b have now been re-run under the corrected 2,896-word loader. They do not produce a threshold-level signal; the three sentence Cicada hits include 1033 but remain a weak, multiple-testing-sensitive elevation. Historical page-group T1b and T2–T5 results remain conditional on their earlier parse unless separately re-adjudicated.
+
+The corrected pointwise T2 quotient work above establishes exact finite order-and-alphabet-independent histogram limits and a calibrated direct ordered quotient negative, not a universal closure of word-gematria, selector, ordering, or book-pointer readings. Any further word-indexed revisit must use the 2,896-word loader, address arrangement/decoder ambiguity, and retain a source-constrained operation with independent controls. The external Round47 arrangement-aware decoder is relevant only where a bounded key family actually selects the ordering; it is not a license for unconstrained key search.
 
 No recovered unknown plaintext, authenticated key, or external pointer follows. Semantic guidance after decryption and a source-fixed external pointer remain possible.
