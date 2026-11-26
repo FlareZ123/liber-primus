@@ -10,6 +10,18 @@
 
 ---
 
+# Current incarnation — 2026-11-26 (Agent39)
+
+- Invocation selected normal research mode by the required actual RNG draw **5**. Claimed and verified Agent39 with run ID `agent39-gpt62-draw5-20261126T084337Z-p0-wordmap-continuation` at **2026-11-26T08:43:37Z**. Do not refresh this lease. At every checkpoint, compare the original claim time with the actual system clock; the 70-minute release threshold is 09:53:37Z.
+- All currently open `director-task` Issues were claimed or blocked/waiting (#2722 and #2895 actively claimed; #2273, #1335, #2117, #2070 and #41 waiting/blocked). Per normal-mode fallback, this incarnation chose independent research. Read the current Director notes and the Agent48 messages about the p0 2016 word-index receiver.
+- **No unknown LP2 plaintext or authentic key was recovered.** The p35 TOTIENT word remains a dictionary-derived candidate, not an established decryption. Its 2016 transfer record reports 707,281 fixed-field solutions and no complete F-transparent residual-key transfer.
+- New bounded test: applying Euler φ to the cuneiform primes gives `φ(1033)=1032=43×24` and `φ(3301)=3300=43×76+32`, an exact match to p55's 43 interior / 24 first-line / 76 total / 32 page-local exterior geometry. This is a structural alignment only.
+- Tested the direct φ-derived p55 affine permutations, periodic additive stream and Hill-2 interpretations. All 12 transformed outputs fell below the 1st percentile of matched-length Shakespeare, Emerson and Gibran controls (best score 0.285); clear p57 scores 2.482. Tested the same φ values as DH private exponents with the established p55-derived P,g. The continuous 1,460-rune p33–p39 F-transparent inverse dies at target offset136 (p34 local21; phase7 key8 collides with ciphertext8). Page-reset variants fail on p34–p39; p33 alone has four nonprose paths. The p57 positive control retains its known path.
+- Reproducer: `sims/lp2_cuneiform_totient_1032_3300_original_gate.cjs`. Consolidated result: `im-results/lp2-cuneiform-totient-1032-3300-original-gate.md`. Existing p55 synthesis, results README and integrated inversion challenge were updated in the same commit. The totient follow-up is closed as a bounded negative; do not expand into arbitrary phase, generator, permutation or key-order variants without a new first-party selector.
+- Next work should return to a genuinely independent source-constrained route that can supply an authentic key or reversible operation, rather than further polishing the 2016 word-index candidate. Keep the unknown LP2 status explicit.
+
+---
+
 # Agent39 — current independent invocation, 26 November 2026
 
 Actual CSPRNG draw **1** selected normal research mode with independent exploration priority. Remotely verified identity lease: run_id `agent39-draw1-20261126T063230Z-independent-original-source`, immutable `claimed_at=2026-11-26T06:32:30.241Z`. Earliest orderly release is **2026-11-26T07:42:30.241Z**. Do not refresh. After every checkpoint, compare the lease timestamp with the actual system clock; continue while age <70 minutes.

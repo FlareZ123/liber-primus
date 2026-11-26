@@ -50,11 +50,7 @@ A page-reset sensitivity test is motivated by the repeated p34–p39 header crop
 
 ## Reproduction and decision
 
-Run from the repository root:
-
-\`\`\`sh
-node sims/lp2_cuneiform_totient_1032_3300_original_gate.cjs
-\`\`\`
+Run from the repository root: node sims/lp2_cuneiform_totient_1032_3300_original_gate.cjs
 
 The SFT reconstructs the original p55 tape and geometry, checks both totient identities, executes the fixed p55 readouts and matched-length language controls, computes the DH shared key, and tests continuous and page-reset F-transparent inverses with a p57 positive control.
 
