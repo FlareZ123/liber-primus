@@ -8,22 +8,53 @@ on:
         required: false
         default: '1500'
         type: string
+      calibration_run:
+        description: 'Optional successful manual C++ controls-only run ID; reuse its exact source commit'
+        required: false
+        default: ''
+        type: string
 
 permissions:
   contents: read
+  actions: read
 
 jobs:
   controls:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    outputs:
+      source_sha: ${{ steps.gate.outputs.source_sha }}
     steps:
       - uses: actions/checkout@v4
-      - name: Compile and recover both hidden actions
+      - name: Recover both hidden actions or reuse a completed exact-source calibration
+        id: gate
         env:
+          GH_TOKEN: ${{ github.token }}
+          CALIBRATION_RUN: ${{ inputs.calibration_run }}
           SFT_OUTPUT: ${{ runner.temp }}/controls.json
         run: |
-          g++ -std=c++17 -O3 -pthread -o "$RUNNER_TEMP/q8" sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp
-          "$RUNNER_TEMP/q8" --controls-only
+          if [[ -n "$CALIBRATION_RUN" ]]; then
+            [[ "$CALIBRATION_RUN" =~ ^[0-9]+$ ]]
+            gh run view "$CALIBRATION_RUN" --repo "$GITHUB_REPOSITORY" --json conclusion,headSha,workflowName > "$RUNNER_TEMP/calibration-meta.json"
+            python - "$RUNNER_TEMP/calibration-meta.json" <<'PY'
+          import json, sys
+          d=json.load(open(sys.argv[1]))
+          assert d['conclusion']=='success' and d['workflowName']=='Manual reusable C++17 original-source SFT'
+          PY
+            source_sha=$(jq -r .headSha "$RUNNER_TEMP/calibration-meta.json")
+            gh run download "$CALIBRATION_RUN" --repo "$GITHUB_REPOSITORY" --name cpp17-sft-output --dir "$RUNNER_TEMP/calibration"
+            cp "$RUNNER_TEMP/calibration/source-test-output.json" "$SFT_OUTPUT"
+            jq -e '.mode=="controls" and .passed==true and .control_3301==true and .control_1033==true' "$SFT_OUTPUT"
+            # Pin the exact calibrated source and all dependency files, not current main.
+            expected=$(git hash-object sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp)
+            actual=$(gh api "repos/$GITHUB_REPOSITORY/contents/sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp?ref=$source_sha" --jq .sha)
+            [[ "$expected" == "$actual" ]]
+          else
+            source_sha=$GITHUB_SHA
+            g++ -std=c++17 -O3 -pthread -o "$RUNNER_TEMP/q8" sims/lp2_shared_gp29_q8_incremental_graph_sft.cpp
+            "$RUNNER_TEMP/q8" --controls-only
+          fi
+          echo "source_sha=$source_sha" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -43,6 +74,8 @@ jobs:
         shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.controls.outputs.source_sha }}
       - name: Search independent canonical carry states
         env:
           SECONDS_LIMIT: ${{ inputs.seconds }}
