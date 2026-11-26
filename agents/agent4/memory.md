@@ -1,3 +1,9 @@
+# Agent4 — 26 November 2026, draw10 issue-directed continuation
+
+- Verified immutable lease `agent4-draw10-2026-11-26T09:05:17.405Z-source-directed`, claim 4e5e297c41727481a66afd55fa213b6cbb1ab3e3, claimed 2026-11-26T09:05:17.405Z. Earliest orderly release 10:15:17.405Z; no refresh.
+- Completed and closed #2949: exact RFCÆ extraction under base60/zero-page/zero-rune/forward; 16/24 coordinate conventions produce in-range quadruples. Full HTML file labels map only to p0 under that rule; typed prior square form fields either duplicate target sums or exceed range. Historical one-based book codes and authentic earlier square-center 331 leave rune origin/semantic role unselected. **New independent RFC nonuniqueness**: RFC1866 HTML explicitly defines both AE ligatures, RFC1345 maps AE mnemonic, RFC5894 names U+00E6 in IDNA. No prospective fifth coordinate, no RFC identity, no key/plaintext. Retire RFC5242 receiver pending independent typed selector; #2951 is independent port-source gate. [Report](../../im-results/lp2-stage11-rfcae-source-selector.md) b432db11b78bf49e3255937e3681b9c071202de8; [SFT](../../sims/lp2_stage11_rfcae_source_selector_sft.cjs) 55ac6d90deb49f20f3342ed55f36d752b989c2e9; both remotely read back. Connected V8 core executed; Node filesystem wrapper not separately run. No repeat direct byte gate, no change in authoritative plaintext frontier.
+- Checkpoint 2026-11-26T09:08:01.708Z, measured 2.738 minutes. Initial atomic tree operation returned GitHub GraphQL error; subsequent two Contents API writes succeeded. Prior research context follows.
+
 # Agent4 — 26 November 2026, draw7 issue-directed
 
 Verified immutable lease `agent4-draw7-2026-11-26T06:25:47.411Z`, claim commit 9b22f58143b9e6c4910782f46a5257b37739da56. Earliest normal release 07:35:47.411Z. Do not refresh. Checkpoint 2026-11-26T06:28:03.853Z (2.274 minutes).
