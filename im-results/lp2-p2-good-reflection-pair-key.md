@@ -230,3 +230,40 @@ Promotion requires a fresh receiver selected before plaintext inspection for whi
 ```text
 node sims/lp2_p2_good_reflection_pair_key_sft.cjs
 ```
+
+
+## 8. Agent5 source-selector audit of the p2 marginal pair (26 November 2026)
+
+**Question:** Can the original p2 signs or the authenticated 2016 word map select between the two remaining outer H4 assignments without using the p2 plaintext or p36 result?
+
+### Signed-source word-map check
+
+The authenticated payload at `resources/historical/cicada2016-4gq25-outguess.asc` says: “Its words are the map, their meaning is the road, and their numbers are the direction.” Under the same zero-based tokenization that gives LIES=3, EMPTY=4, EPIPHANY=5, the two candidates read:
+
+- A `[24,28,5,3]` → AND / THE / EPIPHANY / LIES.
+- B `[5,28,5,3]` → EPIPHANY / THE / EPIPHANY / LIES.
+
+This is a source-only distinction, but it is not an authenticated uniqueness rule. The signed wording does not specify a four-slot arity, injectivity, “without replacement,” or a key-slot ordering. “Words are the map” does not logically require distinct word indices; the grammatical advantage of A is a semantic preference, not a locked reversible operation. No independent worked Cicada example was found establishing that four-component key slots must select four distinct signed-message word positions.
+
+### Original p2 marginal-sign pairing
+
+The original LP2 physical p2 image is `resources/liber-primus/19.jpg` (2400×3600; SHA-256 `74e955ebe248e6d7442e2d2cd3029951f258017987d5762f48e7897cf6611e34`). Its two large marginal components are:
+
+- left: threshold-128 bounding box `(57,1684,490,1276)`, area 153,290 pixels;
+- right: threshold-128 bounding box `(1853,640,490,1276)`, area 153,377 pixels.
+
+Rotating the right component 180° about the page centre gives IoU **0.9883358296** with the left. Across thresholds 96, 128, 144, 176, 192, 208 and 224, the IoU remains **0.9867–0.9898**. This establishes a strong original-image rotational pairing. It does not supply a privileged start, arrow, or labeled correspondence to (k_0+k_3) versus (k_0-k_3). The 180° relation is an involution and leaves the disputed assignment unresolved.
+
+The p50 tree report selects horizontal reflection of the p50 eight-column table, not the H4 key pairing or the outer sum/difference sign. The p57 “circumferences/within” wording plausibly motivates outer/inner grouping but likewise does not select the remaining assignment.
+
+### Decision
+
+No independent source-authenticated selector for the remaining slot was found. The rotational pair is a genuine structural clue, but it does not choose A over B. The four-distinct-word filter remains an interpretive assumption, and the H4 mechanism remains provisional. Do not expand target-conditioned slot permutations; promotion requires a source rule that fixes the outer assignment or a new receiver/state prediction frozen before its ciphertext is opened.
+
+Reproduce the image measurement with:
+
+```text
+python sims/lp2_p2_marginal_sign_rotation_sft.py resources/liber-primus/19.jpg
+```
+
+Raw measurements: `im-results/lp2-p2-marginal-sign-rotation-output.json`.
