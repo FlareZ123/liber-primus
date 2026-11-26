@@ -27,7 +27,7 @@ A tempting size relation is `256 - 1 = 255 = 85 × 3`. The derived numerical pan
 
 The reproducer is `sims/lp2_rfc5242_256byte_85codepoint_gate.cjs`. It tests row-major and column-major order, eight natural inward-spiral orders, every possible single-byte deletion, and big- and little-endian placement of the most-significant octet.
 
-**Result:** no tested direct ordering/framing satisfies the 23-bit leading-bit constraint. The best natural candidate still has **31 invalid leading octets out of 85**. This rejects the direct 3-byte RFC 5242 interpretation under these orders and a one-byte framing model. It does not reject an additional, independently sourced permutation or transform; none has been identified.
+**Result:** no tested direct ordering/framing satisfies the 23-bit leading-bit constraint. The best candidate is the top-right, counterclockwise inward spiral, big-endian, deleting zero-based byte 154; it still has **31 invalid leading octets out of 85**. Row-major and column-major best cases each leave 37/85 violations. This rejects the direct 3-byte RFC 5242 interpretation under these orders and a one-byte framing model. It does not reject an additional, independently sourced permutation or transform; none has been identified.
 
 ## Other guardrails
 
