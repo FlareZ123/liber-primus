@@ -1,6 +1,6 @@
 # P0–p2: 729 full runes and 716 black runes as candidate page-key rows
 
-**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct, one source-anchored two-layer and one fixed integer-seeded RAND cipher-key interpretation on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. The exact modular lift extension also rules out up to six prime phrase sums modulo 29^13, and permits at most 24/224 distinct rows for six arbitrary composite-or-prime sums under a generous universal page-length bound. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
+**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct, one source-anchored two-layer and fixed integer-seeded RAND and consecutive-prime-value cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. The exact modular lift extension also rules out up to six prime phrase sums modulo 29^13, and permits at most 24/224 distinct rows for six arbitrary composite-or-prime sums under a generous universal page-length bound. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
 
 ## Source-visible alignment
 
@@ -124,3 +124,17 @@ As an independent auxiliary interpretation, the p50 row seed 7215211729633808439
 [Python SFT](../sims/lp2_p0_base29_rand_pagekey_sft.py), frozen before the run in commit 2175a43279bab36808475727ed3caf70778b0cc1. Original corpus, native control and grid blob IDs are 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, 1b064ef6d85819b7d96adaff31a82d1ec551598f and 2550eae357442912220e05dc51147523a61dd75a respectively. The results above were executed in the connector V8 runtime via an independent equivalent MT implementation, matched against local CPython integer-seed byte vectors including >32-bit seeds. A manual Windows Python run was dispatched but was cancelled during concurrent workflow activity (run 45849817493, job 140012973327; logs unavailable). No independent Windows execution is claimed.
 
 **Decision:** retire this exact integer-RAND page-key receiver. No recovered unknown plaintext, no new authenticated selector, no evidence that these rows are an RNG keybook. Do not broaden this to arbitrary PRNG families without a new source operand.
+
+
+## Integer-seeded authentic prime-value clock (Agent9, 26 November)
+
+A separate, more historically grounded receiver uses the same frozen raw BASE29 rows and physical page assignment, but instead of a PRNG treats the integer as a **lower bound on prime values**. Generate successive primes p >= seed, shift by (p−1) mod29, starting anew on each page. This borrows the actual solved p56 producer and literal-F rule; the choice of lower-bound seed and page reset remains exploratory, not an authored instruction. No offsets, alternate arithmetic signs, row permutations or seed selection. Deterministic 64-bit Miller–Rabin covers the entire 13-digit seed space (29^13 < 2^64). The implementation checks the authentic p56 forward encryption at start value 2: **85/85 exact original ciphertext runes**, not merely a synthetic replay.
+
+| Receiver | p3–39 legal pages / runes / gain | p40–55 legal pages / runes / gain |
+| --- | --- | --- |
+| Ordinary | 37/37 · 8,911 · −0.674568 | 15/15 · 3,316 · −0.673946 |
+| Plaintext-F hold | 0/37 · 0 · impossible | 1/15 · 66 · −0.620217 |
+
+The only F-hold legal original is p49 with three paths, IoC .033566 and nonprose preview `AWIAFUYXSTNJUEOMOHWHIYOXEALGBSAEJIAOEDUNIAJGTOEOXEOCSUDADDIJRPOIAJOEGGX`. The same two held native controls recover all 180 runes under both consumption laws (11 and 8 legal F paths; highest-scoring path is the actual plaintext in each). The fixed exact prime-value producer therefore fails on the unknown pages even though it reproduces the original solved p56 at its known origin.
+
+[CommonJS SFT](../sims/lp2_p0_base29_primevalue_pagekey_sft.cjs), frozen commit 8d5a5e335cd6006c0d84d16974b55d3dc8e8b247. The committed experiment function executed in the connector V8 runtime with filesystem/assert adapters on the exact original and control blobs listed above; native Node/Windows execution is not claimed. Retire this literal raw-row starting-prime-value receiver. This is not an exclusion of encrypted seeds, a different prime-indexing law or any other keybook semantics. The two integer-seed experiments both fail, including the authentic p56-style F-hold law on 51/52 independent pages in each, and provide no positive selector for further keybook seed sweeps.
