@@ -1,6 +1,6 @@
 # P0–p2: 729 full runes and 716 black runes as candidate page-key rows
 
-**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct and one source-anchored two-layer reversible cipher-key interpretations on the original unsolved pages remain nonlinguistic. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
+**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct and one source-anchored two-layer reversible cipher-key interpretations on the original unsolved pages remain nonlinguistic. Raw rows cannot be literal per-page products of ordinary Gematria phrase sums in either digit direction, independently of their page assignment. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
 
 ## Source-visible alignment
 
@@ -60,3 +60,25 @@ The first-stage stream remains near uniform (IoC **0.0341524**), which is expect
 Both plausible source-frame registrations and the title-key-decoded keybook interpretation fail to recover ordinary GP-native natural prose under the frozen standard cipher consumers. The paired 13-dot separators make the black-register hypothesis interesting as a reading cue, but the numerology does not fix its operation and no original ciphertext was deciphered.
 
 **Decision:** Retire these exact direct and title-crib-fed two-stage repeating/lag13 autokey inverses. Future investigation would need a source-selected 13-rune-row consumer, with a complete exact inverse and non-overfit original plaintext holdout, to justify pursuing this alignment. Do not expand the idea into unconstrained key transformation sweeps solely because of the exact count.
+
+## Exact raw BASE29 checksum exclusion (Agent42, 26 November)
+
+The attested 2013 Parable ID3 product 1259×1031×1229 = 1,595,277,641 predicts the 88 original p57 body runes' sums. See [historical source and exact inverse](../results/2013-761-parable-prime-products.md). Test whether raw 13-rune rows encode similar products of GP-prime sums for unknown pages.
+
+**Necessary condition:** for N GP runes partitioned into disjoint nonempty phrases with positive GP-prime sums s_j, ∑s_j ≤109N. Every prime divisor of ∏s_j is ≤109N. Also the sum of prime factors with multiplicities cannot exceed 109N, because factorization cannot increase the sum of integer factors ≥2. Dividing by all primes ≤109N and finding residual >1 is conclusive even without knowing the plaintext or phrase boundaries. This covers subsets of disjoint phrases and composite phrase sums; it assumes a length-preserving GP29 plaintext and literal unencrypted, non-reduced product.
+
+Test all four row placements above and the red title row0 followed by a first-black-TH sentinel at offset13, then rows1–55 from offset14. The latter maps to physical pages including p50; assigned tests use p3–55 excluding p50. The largest unknown page is p29 (277 runes); universal bound 30,193. Read BASE29 in printed or reversed digit order.
+
+| Registration | Rows | Assigned failures (printed / reversed) | Failures with any page assignment (printed / reversed) |
+| --- | ---: | ---: | ---: |
+| Full, residual last | 56 | 52/52 · 52/52 | 56/56 · 56/56 |
+| Full, residual first | 56 | 52/52 · 52/52 | 56/56 · 56/56 |
+| Black, residual last | 55 | 52/52 · 52/52 | 55/55 · 55/55 |
+| Black, residual first | 55 | 52/52 · 52/52 | 55/55 · 55/55 |
+| Title + TH sentinel | 56 | 52/52 · 52/52 | 56/56 · 56/56 |
+
+All 520 assigned tests fail the large-prime-factor condition; all 224 distinct row integers across registrations and both digit orders contain a prime divisor exceeding 30,193. Repeated rows are not independent observations. Example: full-last p3 row3 is 3,042,111,791,760,460,804; after division by every prime ≤23,653, residual 150,515,632,753 remains. The historical control passes with prime-factor sum 3,519 ≤9,592.
+
+[Node reproducer](../sims/lp2_p0_13row_gp_phrase_product_gate.cjs) derives the inputs directly from the corpus. The connector-side equivalent returned these exact counts; the committed SFT also asserts the historical p57 control sums.
+
+**Decision:** reject the literal per-page disjoint-phrase GP sum product hypothesis, even with arbitrary row assignment. Encrypted/reduced checksums, overlapping/reused phrases and length-changing representations remain outside scope; require an independent source selector. This algebraic exclusion is not evidence for a different key.
