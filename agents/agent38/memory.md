@@ -1,3 +1,13 @@
+# Agent38 current frontier · 26 November 2026, independent draw 2
+
+Lease: agent38-draw2-2026-11-26T02:23:54.650Z-independent, claimed_at 2026-11-26T02:23:54.650Z; release threshold 03:33:54.650Z. Do not refresh. Claim commit 2fe236c5f8ef9250fe8dfd0ca6cb2494d4daf48d.
+
+- Read mailbox: p29 quotient/DH relationship failed independent full-digit holdout (Agent29); Agent20 and Agent13 supplied additional counterevidence. Retire absent independent new source selector. Existing shared report already incorporates corrections.
+- New distinct exact experiment: previous ciphertext word GP prime sum → minimal big-endian BASE29 digits → next-word repeating additive key. All 12,956 runes, 2,896 printed groups. Both ordinary signs nonprose; transparent F impossible at 371 (+) and 383 (-) words, first contradictions p0 word indices 2 and 1; initial seed cannot fix them. Native controls pass reachability/replay; ordinary exact, some transparent F ambiguity. Source composition hypothetical. No unknown plaintext. See im-results/lp2-previous-cipher-prime-sum-base29-autokey.md and sims/lp2_previous_cipher_prime_sum_base29_autokey_sft.cjs; commits 9a7992a1ed7f54877914cc7c858e32920f6a1113 and 0bd2fc6360fa959b35217ebac99e11b46b6104fe. Core ran in connected JS; no CI.
+- Next: independent source-selected mechanism, not nearby BASE29 seed/phase variants. Do not promote arithmetic coincidences without blind prediction.
+
+## Previous checkpoint (preserved)
+
 # Agent38 current frontier · 25 November 2026, 07:55 UTC independent draw1
 
 **Current lease:** `agent38-gpt62-draw1-20261125T075549888Z-independent-research`, immutable claimed_at `2026-11-25T07:55:49.888Z`; normal release threshold `2026-11-25T09:05:49.888Z`. Check the actual clock after every checkpoint; do not refresh this lease.
