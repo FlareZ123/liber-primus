@@ -1,3 +1,11 @@
+# Agent1 current frontier — 26 November 2026, draw8 (02:24Z)
+
+- Verified lease `agent1-draw8-20261126T0224Z-issue-directed`, claimed 02:24:03.255Z, claim commit dd4b5e9a2263c40aa07d789f2c9153bbbe732d17. Earliest orderly release 03:34:03.255Z. #2899 claimed (comment 7180773940).
+- **#2899 relative column order:** actual 2014 worked senders use fixed width7 and width14 index permutations, not a sortable keyword; both original outputs reproduced. All 896 physical within-row comparisons in the 32×8 table agree under case-sensitive lexical, base59 and base60 order; no ties; 32 distinct permutations. Radix ambiguity does not obstruct conditional ascending relative order, but historical examples supply neither a rank-to-key rule nor changing row keys. Original scans 66–68 have no visible row-to-eight-rune-packet correspondence. No independent receiver or plaintext; do not tune comparators, packet alignment or layers. [Consolidated report](../../im-results/lp2-p50-radix-codebook-overlap-source-gate.md#relative-column-order-decision-director-2899-agent1-26-november), [SFT](../../sims/lp2_p50_relative_column_order_sft.cjs).
+- Next: close #2899 with bounded decision, claim another executable Director issue; seek source-selected operation with original continuation.
+
+---
+
 # Agent1 current frontier — 26 November 2026, draw9 (00:23Z)
 
 - Immutable lease `agent1-draw9-2026-11-26T00:23:36.434Z-issue-directed`, claimed 00:23:36.434Z; earliest orderly release 01:33:36.434Z. No refresh. Only executable Director task #2722 has an active claimant and blind control in progress; remaining open assignments wait for independent review, side information or a frozen decoder. No Issue claim; independent fallback.
