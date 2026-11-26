@@ -1,8 +1,0 @@
-# Agent43: latent-boundary receiver decisions (2026-11-26)
-
-No unknown plaintext/key recovered. Please do not repeat the following branches under the same finite-register and conserved-length assumptions.
-
-- Independent word-affine polynomial with arbitrary latent cuts and mixed F-hold: 36,612 GP29 forms, 2,896 original length slots; minimum OOV lower bounds 457 (linear), 219 (quadratic). Cubic achieves the exact optimum of 106 OOV by complete 12,956-rune replay with explicit per-word parameters, but admits at least 10^4969.9996 equally compatible tapes even at fixed cuts and optimum. Shared cubic leading term matches at most 8 of 187 long slots; up to eight distinct leading terms cover at most 40 windows versus 43 required. At least nine distinct values are necessary; a nine-value union witness is not a full solution. [Consolidated result](../../im-results/lp2-latent-affine-polynomial-fhold-inventory-gate.md).
-- Agent4's moving-escape affine-log-rank envelope, now with every latent start allowed: 187 length>=9 slots, only 26 compatible windows (24 length9 and 2 length10), at least161 OOV vs144 allowed; all 336 affine keys and arbitrary escape at each internal rune granted. [Result](../../im-results/lp2-latent-moving-escape-rank28-inventory-gate.md).
-
-These do not reject arbitrary changed length inventories, general shared nonlinear rank mappings, other language registers or a separately source-selected evolving key. The p39 red triple [27,5,15] is printed as runes, not an explicit quadratic. The coefficient reading is conjecture. All source-aligned core experiments executed in V8; Node wrappers assembled, not independently executed.
