@@ -1,6 +1,6 @@
 # P15 signed Fibonacci matrix shares a quadratic factor with p39's red triad
 
-**Agent 37, 13 November 2026. Evidence class:** exact original-source arithmetic and an independently located interpage *candidate* mechanism. Direct eigenstate, matrix-feedback and other bounded consumers have failed. **No unknown LP2 plaintext, authenticated key or complete cipher recovered.**
+**Agent 37, 13 November 2026. Evidence class:** exact original-source arithmetic and an independently located interpage *candidate* mechanism. Direct eigenstate, matrix-feedback, direct Hill and dual-number pair-state consumers have failed. **No unknown LP2 plaintext, authenticated key or complete cipher recovered.**
 
 ## Two visibly separate source inputs
 
@@ -144,6 +144,42 @@ Apply `H(M)` and `H(M)⁻¹` directly, with the complete unchanged 4-rune bounda
 | pp40–53 black, 3,000 runes | **0.034434367011** | **0.034527509170** |
 
 Neither operation recovers GP-native prose. The bridge provides a concrete source-only **candidate algebra and full-order operator**, while the direct stationary Hill consumer is rejected on original ciphertext. Further attempts require an independent cipher-state/seed or information-extraction instruction. In particular, do not search arbitrary powers of `H` or pick an output coordinate using language.
+
+### Full-ring 812-cycle digraph substitution (Agent13, 26 November 2026)
+
+The earlier log-coordinate receiver used only the 812 units and left the 86 equal pairs outside its domain. The full dual-number ring supplies a reversible action on **all 841 ordered rune pairs**. Encode each pair by
+
+\[
+u(x,y)=(y-x)+x\varepsilon,\qquad \varepsilon^2=0,
+\]
+
+then multiply by the source-shaped generator \(g=19+13\varepsilon\) or its inverse. The pair map is a bijection on all \(29^2\) states. Multiplication by \(g\) has exact cycle decomposition **812, 28, 1**: the 812 unequal pairs form one cycle, the 28 nonzero equal pairs form a second, and \((0,0)\) is fixed. Thus this extends the earlier unit-only correspondence without dropping or specially filtering the 86 observed doublets.
+
+A human-facing hypothesis is a digraph substitution: partition the original stream into non-overlapping pairs and apply one cyclic phase \(s\in\mathbb Z_{812}\) to every pair. A second natural use of the same source-selected order is a running phase \(s+t\), where \(t\) counts processed pairs. The source does not specify either clock or the pairing boundary, so the test freezes only four ordinary framings: global offset 0/1 and physical-page-local offset 0/1. For the running clock, page-local pairing is tested with both a page-reset clock and a continuous clock. One global starting phase is shared across all pages; no independently fitted page phases, arbitrary pair permutation, extra alphabet map, or post-selected key is allowed.
+
+All **812 phases** are tested for each of the ten fixed/running framing combinations (**8,120 original candidates**). The operation is exactly reversible: the SFT exhaustively round-trips all **841 pair states × 812 phases = 682,892** pair/phase cases and all **8,120** corresponding solved-p57 native-GP controls.
+
+| Fixed/running clock and framing | Best original IoC | Best phase | Mean IoC over all 812 phases |
+|---|---:|---:|---:|
+| Fixed, global offset 0 | 0.0345539914 | 25 | 0.0344850884 |
+| Fixed, global offset 1 | 0.0345193404 | 635 | 0.0344813524 |
+| Fixed, page-local offset 0 | 0.0345192451 | 649 | 0.0344791732 |
+| Fixed, page-local offset 1 | 0.0345181488 | 761 | 0.0344814112 |
+| Running, global offset 0 | 0.0345237612 | 17 | 0.0344762925 |
+| Running, global offset 1 | 0.0345098197 | 587 | 0.0344788599 |
+| Running, page-reset offset 0 | 0.0345558145 | 413 | 0.0344817490 |
+| Running, page-reset offset 1 | 0.0345488915 | 277 | 0.0344864392 |
+| Running, page-continuous offset 0 | 0.0345216759 | 164 | 0.0344796864 |
+| Running, page-continuous offset 1 | 0.0345077464 | 534 | 0.0344750893 |
+
+The unchanged original has IoC **0.0344783979**; solved p57 has **0.0627099664**. No phase in any tested family reaches 0.05. The best original score, 0.0345558145, is still essentially the uniform 29-symbol baseline and is nowhere near the native-GP control. The output prefixes remain nonlinguistic.
+
+**Decision:** retire the exact cyclic digraph receiver \(u\mapsto g^{-(s+t)}u\) for the four tested pair framings, both fixed and 812-step running clocks, and one shared initial phase. This does not exclude an arbitrary 812-pair permutation, independent page keys, another pair embedding, or a different state update; none is selected by the source. Do not expand those families without a new first-party instruction. Reproduce with
+
+~~~sh
+node sims/lp2_dual812_pair_action_sft.cjs
+~~~
+
 
 ## A single coordinate selected by the printed red 3299 cell (Agent20, 13 November)
 
