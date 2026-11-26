@@ -1,0 +1,131 @@
+{
+  "outputs": [
+    {
+      "source": "Blake",
+      "q": 8,
+      "runes": 18355,
+      "windows": 18308,
+      "maskTypes": 3252,
+      "maskLookups": 51108,
+      "maxF": 7,
+      "relaxed": 228,
+      "count": 41,
+      "max": 53,
+      "hist": {
+        "inconsistent": 39,
+        "forced_equal_labels": 2
+      },
+      "alignments": 236337972,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    },
+    {
+      "source": "Blake",
+      "q": 13,
+      "runes": 18355,
+      "windows": 18308,
+      "maskTypes": 3252,
+      "maskLookups": 51108,
+      "maxF": 7,
+      "relaxed": 88468,
+      "count": 17038,
+      "max": 66,
+      "hist": {
+        "inconsistent": 14069,
+        "forced_equal_labels": 2969
+      },
+      "alignments": 236337972,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    },
+    {
+      "source": "Liber AL",
+      "q": 8,
+      "runes": [
+        6958,
+        7059,
+        7484
+      ],
+      "windows": 21360,
+      "maskTypes": 4143,
+      "maskLookups": 52724,
+      "maxF": 7,
+      "relaxed": 49,
+      "count": 9,
+      "max": 50,
+      "hist": {
+        "inconsistent": 9
+      },
+      "alignments": 275736240,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    },
+    {
+      "source": "Liber AL",
+      "q": 13,
+      "runes": [
+        6958,
+        7059,
+        7484
+      ],
+      "windows": 21360,
+      "maskTypes": 4143,
+      "maskLookups": 52724,
+      "maxF": 7,
+      "relaxed": 123441,
+      "count": 23065,
+      "max": 68,
+      "hist": {
+        "inconsistent": 19035,
+        "forced_equal_labels": 4030
+      },
+      "alignments": 275736240,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    },
+    {
+      "source": "Emerson",
+      "q": 8,
+      "runes": 41181,
+      "windows": 41134,
+      "maskTypes": 5639,
+      "maskLookups": 52784,
+      "maxF": 7,
+      "relaxed": 728,
+      "count": 156,
+      "max": 55,
+      "hist": {
+        "inconsistent": 129,
+        "forced_equal_labels": 27
+      },
+      "alignments": 530998806,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    },
+    {
+      "source": "Emerson",
+      "q": 13,
+      "runes": 41181,
+      "windows": 41134,
+      "maskTypes": 5639,
+      "maskLookups": 52784,
+      "maxF": 7,
+      "relaxed": 272247,
+      "count": 50661,
+      "max": 71,
+      "hist": {
+        "inconsistent": 42418,
+        "forced_equal_labels": 8243
+      },
+      "alignments": 530998806,
+      "L": 48,
+      "feasible": [],
+      "unresolved": []
+    }
+  ]
+}

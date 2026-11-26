@@ -232,6 +232,20 @@ Two independent hidden-alphabet controls use authentic solved-native WELCOME off
 
 Retire exact long contiguous solved-text reuse in this common-cycle family. This does not constrain shorter cribs below48, arbitrary unseen plaintext, word-local phase starts, reordering, altered orthography or non-Cicada donor material. The active carry-independent #2722 receiver remains distinct. A new authenticated source-selected long crib can be tested immediately by the indexed receiver without another dictionary-wide key search.
 
+#### Earlier book-code sources as independently named donors
+
+The same exact 48-rune receiver was extended to the three historical book-code prose sources already pinned in the repository (not additional native Cicada runs). The donor hypothesis is exact quotation reuse, motivated by Cicada's actual 2012 Blake, 2013 Liber AL and 2014 Emerson book codes; it does not establish that LP2 quotes those texts or that these editions are identical to the organizers' copies. Use the trimmed 1906 Blake edition, each Liber AL chapter separately, and the pinned Self-Reliance witness. Deterministic NFKD, remove combining marks, uppercase, split alphabetic words, apply QU→CW, ING→NG, IO→IA, V→U, K/Q→C, Z→S and greedy GP29 digraphs per word. No spelling/offset search beyond every contiguous 48-window. No concatenation across Liber AL chapters.
+
+| Donor | Native-normalized runes | Alignments per period | q8 relaxed / feasible | q13 relaxed / feasible |
+|---|---:|---:|---:|---:|
+| Blake, Marriage of Heaven and Hell | 18,355 | 236,337,972 | 41 / 0 | 17,038 / 0 |
+| Crowley, Liber AL I–III | 6,958 + 7,059 + 7,484 | 275,736,240 | 9 / 0 | 23,065 / 0 |
+| Emerson, Self-Reliance | 41,181 | 530,998,806 | 156 / 0 | 50,661 / 0 |
+
+All 206 q8 and 90,764 q13 fixed-48 candidates fail normalized linear consistency or the forced-equal-label test; no enumeration clipping or unresolved systems. Longest relaxed compatibility is respectively 53/66, 50/68 and 55/71 for q8/q13. In particular a long unrestricted independent-phase equality match is not necessarily a shared cyclic action. These exact algebraic contradictions exclude the specified original source reuse hypothesis under the common-cycle receiver, not fresh prose, paraphrase, altered orthography or other key clocks. Total 1,043,073,018 additional conceptual alignments per period. The index avoids explicit nested traversal of that Cartesian product.
+
+[Historical source SFT](../sims/lp2_shared_cycle_historical_crib_sft.cjs), code commit dc731fe453f1b197b185ea6fa3e7dd2abad801a6; [raw results](lp2-shared-cycle-historical-crib-output.json). Actual source core executed in connected V8 in separate book/period shards; standalone Node wrapper not independently executed. Source blobs: Blake fc503b01bbedbec4e0c8b3d1ded311bed8e28874; Liber AL I/II/III 64876892683fab1467481fe87d85743a8ea17982, cb4353b080d7584441f85502aeccb60796e6fe0f, 36e716252a271d31f5c4ba25b3cb78199ccc1114; Emerson 12a6bc018047a1276e77f2b7f633d5905732fff9. No unknown original key or plaintext.
+
 ### Unrestricted q8: calibrated symbolic key-difference inverse and carry-phase quotient
 
 The [symbolic key-difference graph inverse](../sims/lp2_shared_gp29_q8_symbolic_graph_sft.cpp) represents consuming edges as pi(C)−pi(P)=k[j]. Component merges retain symbolic differences, cycles impose seven-dimensional gauge-fixed key equations, collision hyperplanes prune candidate joins, and residual keys are checked by disjoint component translation packing. The corrected zero-OOV blind controls pass: seed3301 47/47 training, 17/17 holdout, 13 unique; seed1033 identical; both recover the exact effective action up to rotation. Its 2,700 true-edge regression also passed. The original at <=3 OOV timed out after 7/720 carry seeds, 6,814,720 nodes, 45,799,424 joins, 7,171,990 key tests and 10 full permutations. [Run 45747412355](https://github.com/FlareZ123/liber-primus/actions/runs/45747412355). This is a computational timeout, not a negative cipher result.
