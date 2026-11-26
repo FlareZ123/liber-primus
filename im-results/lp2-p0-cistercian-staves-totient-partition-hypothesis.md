@@ -71,6 +71,42 @@ A natural operational hypothesis is that the Futhorc Hahal-runa value E selects 
 Exact inputs, rules, output summaries and the p56 control are reproducible in [the E-hold probe](../sims/lp2_p0_hahalruna_ehold_probe.cjs). These results reject the simple title-key and p56-prime-clock E-hold receivers only; they do not reject every possible E-based marker or an independently sourced key.
 
 
+### Direct Hahal-runa coordinate receiver: exact common-axis and spacing-free gate (Agent4, 26 November)
+
+The historical group/position semantics suggest a literal coordinate fractionation, distinct from the earlier GP28 predecessor-rank and GP30-space rectangle studies. Use the canonical GP29 order as a 4×8 chart, with `r=floor(x/8)`, `c=x mod 8` and the final three cells 29–31 absent. The first three rows match the Isruna Futhorc comparator above; extending the fourth to five GP symbols is our explicit hypothesis. The two original 180° staves motivate reversing one coordinate stream; their three branches motivate testing a relative cyclic displacement of three. No evidence authenticates fractionation itself.
+
+**Direct inverse:** on the 716 black runes of p0–p2 (156 complete printed groups; the 13-rune title excluded), reverse or cyclically shift by ±3 either coordinate stream, retaining the other. All six within-group variants introduce 34–38 forbidden cells and hit only 8–15 full lexical groups. Applying the same six transforms to the continuous 716-rune body instead gives 34–41 forbidden cells, so none is a legal full inverse. No missing-cell restoration is supplied by the source.
+
+**Exact common-axis inverse relaxation.** Give each word *arbitrary independent positional permutations* of its row and column streams, but use one shared row-label and one shared column-label bijection across the entire opening. For a proposed plaintext word, the transformed row and column marginal count vectors must equal those of the plaintext. This criterion is necessary and sufficient for the existence of independent coordinate-position permutations: pair the occurrences of each coordinate label separately. It grants all 4!×8!=967,680 label maps, even those that do not globally preserve the holes, provided the particular plaintext/ciphertext glyphs are valid. For the separate native F-hold case, remove all h plaintext F symbols and h actual ciphertext F symbols before the comparisons; enumerate every h from zero to the ciphertext word's F count. Held F sites remain fixed, and consuming coordinates may otherwise be permuted arbitrarily. This is an upper bound even if the historical sender has a more restrictive position schedule.
+
+The exhaustive count-vector search uses the pinned 38,910-form TextBlob GP29 register augmented by 28 authentic native forms (38,938). Original source: 2,896 complete groups / 12,956 runes, exactly matching the canonical tape; opening title 8+5 and body 156/716.
+
+| Receiver on 156 black groups | Maximum dictionary-supported groups | Minimum unsupported groups | Best maps tied |
+|---|---:|---:|---:|
+| Fixed literal group/position labels, arbitrary within-group transport | 48 | 108 | fixed |
+| Every shared axis relabeling, ordinary | 60 | 96 | 1 |
+| Every shared axis relabeling, literal-F hold | 59 | 97 | 4 |
+
+Both shared-map optima have no supported group of length ≥8 (20 such original groups). Allowing a *different* row/column label map for every group instead supports all 156 groups (with and without F holds), so a changing-label model is not excluded by this invariant; the permissive construction also no longer identifies a key schedule. Neither red title group has a fixed-label lexical witness.
+
+Two hidden-map plants of 70 actual solved-native groups each, using independent row/column permutations with only legal output cells, recover their exact unique common label maps (ordinary WELCOME, 60/70 mixed groups; F-hold KOAN, 58/70 mixed groups). The known planting inverses recover every original native glyph. These are in-register calibration plants, not independent evidence of vocabulary coverage or a unique original plaintext under arbitrary position permutations.
+
+**Spacing-free strengthening.** Remove the printed word assumption entirely and allow arbitrary independent position permutations over all 716 black runes. A shared label map still preserves the multiset of four row totals and the multiset of eight column totals. Original row totals [202,198,199,117], column totals [104,96,100,82,97,82,81,74], 33 ciphertext F. With native F holds, remove exactly the candidate plaintext's F count from both row0 and col0 before sorting, and require no more than 33 holds.
+
+For each contiguous 716-GP29 window from the pinned Shakespeare/Gibran/Emerson texts, compare sorted marginals. Half the L1 distance on either axis is the minimum number of individual coordinate changes needed to reconcile that axis; take the larger of the two as a discrepancy lower bound. This optimizes over all label relabelings separately for each reference window, an additional relaxation of a shared secret map.
+
+| Reference | Windows | Ordinary min discrepancy | F-hold feasible windows | F-hold min discrepancy |
+|---|---:|---:|---:|---:|
+| Shakespeare | 216,391 | 79 | 216,391 | 79 |
+| Gibran | 61,777 | 73 | 61,777 | 67 |
+| Emerson | 320,612 | 73 | 320,013 | 67 |
+
+Zero exact matches in either mode (598,780 ordinary windows, 598,181 F-count-admissible windows). For the F-hold column, the discrepancy is conditional on the window's exact F count; the 599 other windows already violate the F availability condition. Two positive 716-rune Gibran plants with a hidden hole-preserving label map pass their respective ordinary/F-hold invariants exactly. The reference normalization is deterministic (QU→CW, ING→NG, IO→IA, V→U, K/Q→C, Z→S; greedy GP29 digraphs). This is a finite reference-window comparison, not a theorem about every possible English text.
+
+**Decision:** retire direct Hahal-runa fractionation under a common pair of axis maps, including arbitrary boundary-free axis transport for the specified native reference windows. The row/position historical reading itself remains provisional. Do not rescue the family by introducing unrestricted per-word label changes without independently selected state or key material. No unknown plaintext or key.
+
+Reproducers: [exact common-axis search](../sims/lp2_p0_hahalruna_common_axis_fractionation_sft.cjs), [spacing-free marginal gate](../sims/lp2_p0_hahalruna_spacingfree_axis_marginal_sft.cjs). Both cores executed in connected V8; standalone Node filesystem wrappers were not separately executed. Source blobs: corpus `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, transcription `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`, lexicon `140e1d22b5f8c45deddd2e8b25549d9d6307d938`, native controls `1b064ef6d85819b7d96adaff31a82d1ec551598f`; Shakespeare `94c677ad9dd50771c6670e0c4e4dad9052b46d85`, Gibran `df260a07d56bf5998d40a6360b6132c35c252d10`, Emerson `a92be8ba5b3511a003a22ba31523c14397aaa83a`.
+
 ### Conditional 13+1+55×13 partition: possible per-page key matrix
 
 The original-image-derived corpus gives p0–p2 a total of **729 runes** (262 + 266 + 201). The p0 red heading occupies 13 runes; the first black rune after it is TH; the remaining p0 black text plus all p1–p2 runes totals **715 = 55 × 13**. Thus, if the TH glyph is a sentinel, the opening material partitions exactly as:
@@ -97,9 +133,9 @@ The exact partition is real; the simple Vigenère, keyed-alphabet, OTP, and titl
 
 ## Decisive next tests
 
-1. Reopen an E-hold or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, or OTP tests.
+1. Reopen an E-hold, branch-coordinate fractionation, or 13×55 matrix receiver only if an independent source supplies the key/state rule; do not repeat the failed title-key, p56-prime-clock, row-key, keyed-alphabet, or OTP tests.
 2. Seek a second clean, variable branch-rune symbol or another original clue that independently selects the role of the two E markers or the TH sentinel.
 3. Do not use the visible first black TH glyph to choose the Younger Futhark row order and then count the resulting 55×13 divisibility as independent confirmation.
 4. Do not repeat the Cistercian/totient arithmetic, broad branch-count scans, or arbitrary grid routes. No receiver or plaintext has been recovered.
 
-**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers fail. A reversed Younger Futhark readout gives TH and exposes an exact 13+1+55×13 partition, but the resulting simple page-key, keyed-alphabet, OTP, and transposition receivers fail, and the order is not independently selected. Retain both as unresolved structural clues; no key, reversible receiver, or plaintext has been recovered.
+**Current conclusion:** the repeated 3|3 branch morphology is compatible with Hahal-runa. The direct Anglo-Saxon Futhorc readout is E and matches the third rune of both p0 red-title words, but the simplest E-hold receivers and the exact common-axis coordinate-fractionation receiver fail. A reversed Younger Futhark readout gives TH and exposes an exact 13+1+55×13 partition, but the resulting simple page-key, keyed-alphabet, OTP, and transposition receivers fail, and the order is not independently selected. Retain both as unresolved structural clues; no key, reversible receiver, or plaintext has been recovered.
