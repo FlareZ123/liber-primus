@@ -64,8 +64,10 @@ function decryptBlock(cipherBlock, inverse) {
 
 const pages = corpus.pages.map((p) => p.indices);
 const opening = pages.slice(0, 3).flat();
+const redTitle = pages[0].slice(0, 13);
+const firstBlackSentinel = opening[13];
 const payload = opening.slice(14); // 13 red title runes + first black TH sentinel
-if (payload.length !== 715 || payload.length % 13 !== 0) {
+if (redTitle.length !== 13 || firstBlackSentinel !== 2 || payload.length !== 715 || payload.length % 13 !== 0) {
   throw new Error("expected 715-symbol p0-p2 payload after the first black TH sentinel");
 }
 const keyRows = Array.from({ length: 55 }, (_, i) => payload.slice(i * 13, (i + 1) * 13));
@@ -163,7 +165,8 @@ for (const direction of [-1, 1]) {
 console.log(JSON.stringify({
   hypothesis: "row i of the p0 55x13 payload is the 13-symbol first-row key of a circulant Hill cipher for LP2 page p(i+1)",
   source: {
-    redTitleLength: 13,
+    redTitleLength: redTitle.length,
+    firstBlackSentinel,
     excludedFirstBlackSentinel: true,
     payloadLength: payload.length,
     keyRows: keyRows.length,
