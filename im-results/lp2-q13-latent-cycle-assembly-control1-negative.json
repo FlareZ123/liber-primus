@@ -1,0 +1,173 @@
+{
+  "tag": "pad1",
+  "stage": [
+    {
+      "length": 5,
+      "seeds": 512,
+      "best": 19.09770594537258
+    },
+    {
+      "length": 6,
+      "seeds": 512,
+      "best": 25.3140408169711
+    },
+    {
+      "length": 7,
+      "seeds": 512,
+      "best": 28.473542429157533
+    },
+    {
+      "length": 8,
+      "seeds": 512,
+      "best": 36.95236312794441
+    },
+    {
+      "length": 9,
+      "seeds": 512,
+      "best": 39.71317654661834
+    },
+    {
+      "length": 10,
+      "seeds": 512,
+      "best": 46.9641630348051
+    },
+    {
+      "length": 11,
+      "seeds": 512,
+      "best": 50.632998407585546
+    },
+    {
+      "length": 12,
+      "seeds": 512,
+      "best": 55.233749112463556
+    },
+    {
+      "length": 13,
+      "seeds": 512,
+      "best": 62.63394771784078
+    }
+  ],
+  "short": 3293088,
+  "long": 10969889,
+  "truthKey": null,
+  "truthRank": null,
+  "correct": null,
+  "selected": [
+    1,
+    24,
+    16,
+    26,
+    20,
+    8,
+    15,
+    10,
+    25,
+    5,
+    18,
+    28,
+    19
+  ],
+  "fit": -4.076617324839993,
+  "held": -4.427499368247339,
+  "heldAccuracy": null,
+  "heldBoundaryF1": null,
+  "decoded": "D REAL EATS DIM LET LO DO I I UOW GOOD AS RATHS CNG TO A BE ALONG TO IT TIT A DID HEW HE WOE I GUN IS I OR OWE A NUTS SO CUP I S ART A MY SOW THE BEAUTY W DO I CNOWS YEA HE OF A THY I A MR NO S YE DO A MR T IS D BE THE EM ME BY ME D OTHERS ME WOE I A SEA W OF BY I HE GO NO HA SEA OR DAM HE A THE I WE A A MY IT ICY SIP LEE IT I BRNG S BEAM YE D T ARM BENGS CNG S TO OH YOU S TO A THNG ME A I ME WAGS LD IN TO TEN D IN A AND I HAP THE A HO A HUT IS WHO LL I AND I D MY POURS AN AT HE BE I DOUE OR SAY S ST MY A ER W I HE BE IS IN YEAR A ROB CAN I BY IDEA EN WHY S SNG THE UENT IT DO AN THE IN A MAD A BY LIUE AT BE THNG AS YE THE PEG W BOIL IT IU TO ON CO A RED FED YOU HE GRUB MY A TO Y PATH ON A ME A AIM BY SHY A HIS LL BEAT MEN A A JOB NO TO S I TIS OF A LL THY EN NE IN END SHALL RT HE BY GENE IN RE A IN OR MR S UP ME A AN SAD I LL A S LL I BRNG OX BE IT S IT A TO A BY A ME DAY Y MR A A HE EATNG RE IT NE MA XU FEE SAW THEN DRY LO BE MY YET NO A MR S TEAR A I WE HE A MY GO OH OR AS A HIM S A AY PP NGEST AS SUP A HA T US SCY A NUR DE A BY ARE TM TO HAS SNG BE DEAD LET TA TO UP YE HUM THEM US THE A A MY",
+  "fallback": 9,
+  "top": [
+    {
+      "key": [
+        1,
+        24,
+        16,
+        26,
+        20,
+        8,
+        15,
+        10,
+        25,
+        5,
+        18,
+        28,
+        19
+      ],
+      "fragmentScore": 58.38691473763902,
+      "fit": -4.076617324839993
+    },
+    {
+      "key": [
+        4,
+        22,
+        8,
+        9,
+        13,
+        12,
+        16,
+        20,
+        26,
+        27,
+        23,
+        26,
+        9
+      ],
+      "fragmentScore": 57.338986845861655,
+      "fit": -4.104167577101201
+    },
+    {
+      "key": [
+        1,
+        24,
+        16,
+        26,
+        20,
+        10,
+        15,
+        10,
+        25,
+        5,
+        18,
+        28,
+        19
+      ],
+      "fragmentScore": 58.41272984747775,
+      "fit": -4.1367451458957625
+    },
+    {
+      "key": [
+        0,
+        5,
+        26,
+        1,
+        22,
+        5,
+        8,
+        18,
+        22,
+        2,
+        12,
+        0,
+        19
+      ],
+      "fragmentScore": 57.83347388704715,
+      "fit": -4.1584449537141035
+    },
+    {
+      "key": [
+        2,
+        2,
+        17,
+        18,
+        18,
+        19,
+        27,
+        3,
+        5,
+        28,
+        17,
+        9,
+        22
+      ],
+      "fragmentScore": 59.38738291116897,
+      "fit": -4.162941971534919
+    }
+  ]
+}
