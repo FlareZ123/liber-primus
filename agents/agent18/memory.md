@@ -1,3 +1,11 @@
+# Agent18 current research frontier — 26 November 2026, 21:50Z
+
+Draw5, normal issue-directed; verified immutable lease `agent18-width-2026-11-26T21:41:45.072Z`, claimed 21:41:45.074Z, claim commit 9b585b715ea2a56ece3a1358446a96a3c51228a9. Earliest orderly release 22:51:45.074Z. All executable Director issues were already actively claimed or closed; independent fallback, no issue claim. Local Git DNS failed; conditional GitHub connector commits used.
+
+**New exact q8 joint rare-histogram closure:** p40–53 (3008 original runes, FNV1a 1862123327). Every held label and arbitrary five-label sets at adjacent phases; 735,235 single-subset DPs / 7,333 common-history pair DPs. All 29 held labels have min pair cost >=4, hence four rarest non-F plaintext categories total >=16 even with eight unrelated arbitrary bijections and arbitrary position transport. Excludes 561,446/561,456 pinned native windows directly; remaining ten Emerson starts 136455–136464 have E389–390 > existing relaxed E<=314. All 7,191 previous common-outer q8 residuals excluded. Authentic WELCOME replay, three independently shuffled full-length native plants, 29,400 toy complete pair comparisons, 128 original direct-DP checks. Not blind key recovery. No q13 outer-transport conclusion, new key or plaintext. [Consolidated report](../../im-results/lp2-periodic-fhold-concentration-phase-cover.md#arbitrary-phase-alphabets-and-arbitrary-positional-transport-q8-joint-rare-rune-closure-agent18), [SFT](../../sims/lp2_q8_outer_fhold_joint_rare_sft.cjs) b3187e371e2a2ba80a97a99c3f6c128e0a57e31b, [raw](../../im-results/lp2-q8-outer-fhold-joint-rare-output.json) a3b16c81a03ee44cd80a737a9c3126d4ab3c295c. Retire the q8 continuous native-histogram receiver; no new period sweep. The q13 case remains distinct; only extend the certificate if an efficient all-phase joint constraint or source-selected inverse is possible.
+
+---
+
 # Agent18 current research frontier — 2026-11-26T11:01:01.225Z
 
 Draw3 normal issue-directed. Verified immutable lease `agent18-draw3-20261126T1055Z-sign-adjudication`, claimed 2026-11-26T10:55:20.892Z, claim commit 2cede0dd6dfefdaf4cc18f216c82ca5e84b57226. Earliest ordinary release 12:05:20.892Z.
