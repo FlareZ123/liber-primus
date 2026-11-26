@@ -1,6 +1,6 @@
 # Exact p50 76-cell perimeter and 180-cell interior: two source-sized receiver candidates
 
-**Status:** exact 76/180 original-print partition; direct key, prime-removal and stationary-lookup consumers negative; one bounded FOLD/MOBIUS interpretation also rejected; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
+**Status:** exact 76/180 original-print partition; the source-sized 256-rune direct byte-pad and row-wise rank-transposition receivers are also negative; direct key, prime-removal, stationary-lookup, FOLD/MOBIUS, phase-bijection and ring-convolution candidates remain excluded only within their stated scopes; no plaintext, verified key or decoder. [Original-input SFT](../sims/lp2_p50_ring76_inner180_dual_source_gate_sft.cjs).
 
 ## Why the exact split could matter
 
@@ -134,6 +134,29 @@ Each phase receives only four or five training observations. The first 138 posit
 **Decision:** the exact p53+p54-start versus p56+p57 repeated-content hypothesis is rejected for this full 32-phase bijection family under both clocks. The 180-rune length match remains a source-sized geometric observation, not evidence that the tapes contain the same text. Do not rescue this receiver with offsets, reordered tapes, altered F rules or page-specific resets. This does not exclude unrelated plaintexts or a different independently selected mechanism.
 
 Reproducer: [period-32 phase-bijection SFT](../sims/lp2_p53p54_vs_p56p57_period32_phase_bijection_sft.cjs), run with `node sims/lp2_p53p54_vs_p56p57_period32_phase_bijection_sft.cjs`.
+
+## Source-sized 256-rune receiver: perimeter/interior byte pad and rowwise rank (Agent43, 26 November 2026)
+
+The solved p57 instruction says **“we must shed our own circumferences; find the divinity within and emerge.”** The original p50 panel is 32×8: its clockwise outer ring contains 76 cells and its inner 30×6 rectangle contains 180. The original p55 has exactly 76 runes; p53 has 179, and p54 begins with the enlarged red A (GP29 index 24), giving 180. This motivates one exact, human-attemptable pairing:
+
+- outer ring, clockwise from the top-left → p55 (76 runes);
+- inner rectangle, row-major → p53 followed by p54's enlarged first rune (180 runes).
+
+The resulting receiver and key each contain exactly 256 positions. This is a structural hypothesis, not an authored instruction: the source does not explicitly pair these page spans or specify a consumer.
+
+**Direct byte-pad test.** Read the 256 printed tokens in perimeter-then-interior order. Test both conditional unsigned-byte interpretations already documented above (base60 and drop-lowercase-f base59), without selecting between them. Against the target p55 || p53 || p54[0], test the natural direct projections:
+
+- P = C ± (byte mod 29);
+- P = C ± (byte & 31);
+- P = C XOR (byte & 31).
+
+Neither radix nor sign produces recognizable English under either additive projection. The XOR outputs contain 22 invalid GP29 symbols under base60 and 30 under base59, so neither is a direct 29-symbol receiver. No phase, row shuffle, F-hold branch, or fitted transformation is included in this test. The full exact outputs and per-output IoCs are emitted by sims/lp2_p50_dualregion_receiver_sft.cjs.
+
+**Rowwise rank-transposition test.** Each of the 32 physical rows contains eight distinct tokens. Sorting each row in ascending numerical order yields a permutation of its eight positions; the permutation is identical under base59 and base60 because both alphabets preserve the printed token order. Apply those 32 row-specific permutations to the 32 consecutive eight-rune blocks of the same 256-rune receiver. Test ascending/descending order and both gather/inverse conventions. None of the four outputs is recognizable English. Their IoC is 0.0343137255, exactly the receiver's IoC as expected for a pure transposition; this statistic is not evidence for or against the mapping. The script asserts both inverse round trips and the radix-invariant row permutations.
+
+**Decision.** Retire these exact direct pad and rowwise rank-transposition receivers. This does not exclude a different source-selected nonlinear/stateful operation, nor does it identify the table's radix or purpose. Do not expand into arbitrary phases, row orders, or fitted transforms without a new original-source selector.
+
+Reproducer: sims/lp2_p50_dualregion_receiver_sft.cjs.
 
 ## Decision and reproduction
 
