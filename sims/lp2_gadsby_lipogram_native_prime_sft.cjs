@@ -30,6 +30,13 @@ function periodicMinimum(c,A,Q,forbid,cutoff=Infinity){
  dfs(0,0);
  return {min:complete?best:null,provedAtLeast:complete?best:cutoff,nodes};
 }
+function reducedCheck(){
+ const mod=(x,A)=>(x%A+A)%A;
+ function brute(c,A,Q,forbid){let best=Infinity;const K=[];function key(q){if(q<Q){for(let k=0;k<A;k++){K[q]=k;key(q+1)}return}function dec(i,j,v){if(i===c.length){best=Math.min(best,v);return}if(c[i]===0)dec(i+1,j,v);const p=mod(c[i]-K[j],A);if(p)dec(i+1,(j+1)%Q,v+Number(forbid.has(p)))}dec(0,0,0)}key(0);return best;}
+ let tested=0;
+ for(let b=0;b<3**6;b++){let v=b;const c=Array.from({length:6},()=>{let x=v%3;v=Math.floor(v/3);return x});const z=brute(c,3,2,new Set([2]));const y=periodicMinimum(c,3,2,new Set([2]),7);if((Number.isFinite(z)?z:null)!==y.min)throw Error("reduced alphabet mismatch");tested++}
+ return tested;
+}
 function experiment(raw){
  const [gp,native,source,book]=[JSON.parse(raw[0]),JSON.parse(raw[1]),raw[2],raw[3]];
  const assert=(x,msg)=>{if(!x)throw new Error(msg)}, ix=new Map(gp.runes.map((x,i)=>[x,i])), labels=gp.translit;
@@ -75,10 +82,14 @@ function experiment(raw){
  // minimum may be less than actual number of exceptions, never greater.
  const dpControls=windowed.slice(0,2).map((_,i)=>{let at=i*N;return orig.map(x=>{const p=donor.p.slice(at,at+x.p.length);at+=p.length;const m=minimum(encode(p));assert(m.min!==null&&m.min<=p.filter(y=>forbidden.has(y)).length,"known planted control");return m.min})});
  const perPage=orig.map(x=>({page:x.page,n:x.p.length,...minimum(x.p)}));
+ const WELCOME=nativeFrames.find(x=>x.name==="0_welcome"),KW=[23,10,1,10,9,10,16,26];let kw=0;
+ const welcomeCipher=WELCOME.p.map(x=>x===0?0:mod(x+KW[kw++%8]));
+ assert(welcomeCipher.join()===frame(runeGroups(raw[4].split("%").slice(1,3).join("%"))).p.join(),"historical WELCOME replay");
+ const reducedExhaustive=reducedCheck();
  const periodic=orig.map(x=>({page:x.page,...periodicMinimum(x.p,29,8,forbidden,5)}));
  const periodicControls=[];for(let i=0;i<4;i++){const K=[23,10,1,10,9,10,16,26],plain=donor.p.slice(i*100,i*100+100);let j=0;const c=plain.map(x=>x===0?0:mod(x+K[j++%8]));const z=periodicMinimum(c,29,8,forbidden,5);assert(z.min===0,"periodic lipogram plant");periodicControls.push(z)}
  const sumMin=xs=>xs.some(x=>x.min===null)?null:xs.reduce((s,x)=>s+x.min,0);
- return {source:{storyBounds:[start,end],wordCount:words.length,exceptions,forbidden:[...forbidden],donorRunes:donor.p.length,windows:windowed.length},native:nativeFrames.map(f=>({name:f.name,plain:summarize([f]),prime:summarize([{...f,p:encode(f.p)}])})),original:summarize(orig),windowed,dp:{controlMinima:dpControls,perPage,trainP0to39:sumMin(perPage.filter(x=>x.page<=39)),heldP40to55:sumMin(perPage.filter(x=>x.page>=40)),illegalPages:perPage.filter(x=>x.min===null).map(x=>x.page)},periodic:{controls:periodicControls,perPage:periodic,lowerBoundAll:periodic.reduce((s,x)=>s+x.provedAtLeast,0),train:periodic.filter(x=>x.page<=39).reduce((s,x)=>s+x.provedAtLeast,0),held:periodic.filter(x=>x.page>=40).reduce((s,x)=>s+x.provedAtLeast,0)},p56Replay:witness.p.length};
+ return {source:{storyBounds:[start,end],wordCount:words.length,exceptions,forbidden:[...forbidden],donorRunes:donor.p.length,windows:windowed.length},native:nativeFrames.map(f=>({name:f.name,plain:summarize([f]),prime:summarize([{...f,p:encode(f.p)}])})),original:summarize(orig),windowed,dp:{controlMinima:dpControls,perPage,trainP0to39:sumMin(perPage.filter(x=>x.page<=39)),heldP40to55:sumMin(perPage.filter(x=>x.page>=40)),illegalPages:perPage.filter(x=>x.min===null).map(x=>x.page)},periodic:{reducedExhaustive,welcomeReplay:welcomeCipher.length,controls:periodicControls,perPage:periodic,lowerBoundAll:periodic.reduce((s,x)=>s+x.provedAtLeast,0),train:periodic.filter(x=>x.page<=39).reduce((s,x)=>s+x.provedAtLeast,0),held:periodic.filter(x=>x.page>=40).reduce((s,x)=>s+x.provedAtLeast,0)},p56Replay:witness.p.length};
 }
-if(require.main===module){const fs=require('node:fs'),path=require('node:path');const root=path.resolve(__dirname,'..');const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/transcriptions/lp2-image-corrected.txt"];const book=process.argv[2];if(!book)throw Error('Pass pinned GITenberg 47342.txt path');console.log(JSON.stringify(experiment([...files.map(p=>fs.readFileSync(path.join(root,p),'utf8')),fs.readFileSync(book,'utf8')]),null,2))}
+if(require.main===module){const fs=require('node:fs'),path=require('node:path');const root=path.resolve(__dirname,'..');const files=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/transcriptions/lp2-image-corrected.txt"];const book=process.argv[2];if(!book)throw Error('Pass pinned GITenberg 47342.txt path');console.log(JSON.stringify(experiment([...files.map(p=>fs.readFileSync(path.join(root,p),'utf8')),fs.readFileSync(book,'utf8'),fs.readFileSync(path.join(root,'resources/transcriptions/lp1_wulfic_canonical.txt'),'utf8')]),null,2))}
 module.exports={experiment};
