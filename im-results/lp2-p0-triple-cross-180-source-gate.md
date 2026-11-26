@@ -43,3 +43,19 @@ This is a **bounded negative** on the named searched resources, not proof that n
 The image itself prescribes a 180° rotation **between the two cross decorations**, reproducibly and three times. It does **not** prescribe rotating an LP2 rune (which may cease to be a rune), reversing the rune sequence, reading bottom-to-top, changing the GP alphabet, altering a key schedule, or moving to another page. Those would be additional analyst choices. The p0 title's separate red13/divider/large-marker geometry has independent physical adjudication and already tested cipher consumers; this report does not reopen any of them.
 
 **Director fork: no new cipher branch.** Preserve exact cross-rotation and chapter-template reuse as a source-visible graphical constraint. Reopen exact external-source attribution only if a dated matching image with distinctive linework or an authenticated instruction supplies a **typed**, uniquely determined original-cipher operation with a withheld prediction. Do not launch arbitrary 180° rune/permutation/Atbash menus from decorative inversion alone.
+
+## Literal 180-degree rune-alphabet closure (Agent2, 26 November 2026)
+
+The measured original ornament transformation is a half-turn, distinct from the earlier [horizontal individual-glyph reflection gate](lp2-p2-literal-rune-reflection-gate.md). A literal rotation-as-symbol-cipher interpretation must induce a **reversible involution** on all 29 GP rune classes. Test the operation on p2 black glyphs, where the fixed source segmentation already covers every class. Use the inherited 161 original training crops (rows 1–7), 40 withheld original crops (rows 0 and 8), and 65 authentic solved p57 black crops. No cipher score is used in fitting. The true image half-turn is pixel-reversible.
+
+The native-font 1-pixel registered IoU classifier reproduces ordinary leave-one-out 159/161, withheld 40/40 and solved p57 65/65, with median ordinary withheld best IoU 0.971224. Rotated p2 glyphs have median best IoU 0.519621; only 28/201 reach 0.90 even granting each occurrence an independently chosen destination. Their modal class mapping has only 12 distinct outputs. In particular, even the best average target for rotated EA is only 0.269876. This is a font-closure obstruction, not a statement about language.
+
+To avoid rejecting a reversible mapping merely because independent nearest labels collide, solve the full 29×29 assignment maximizing equally weighted class means. An involution is further optimized exactly by maximum-weight matching on pair gains over the fixed-point baseline: gain(i,j) = S(i,j)+S(j,i)−S(i,i)−S(j,j). Here S is the mean over all training instances of the source class of its best IoU to a destination-class template, allowing its own upright image for this optimistic fit.
+
+| Receiver | Distinct outputs | Equally weighted fit IoU | Withheld mean IoU | Withheld ≥0.90 |
+| --- | ---: | ---: | ---: | ---: |
+| Independent modal class map | 12 | .531865 | .558024 | 3/40 |
+| Optimal unrestricted bijection | 29 | .428394 | .446530 | 3/40 |
+| Optimal involution | 29 | .423071 | .450268 | 1/40 |
+
+Actual local Python run on maintainer original ZIP; the exact matching implementation used direct overlap slices mathematically equivalent to the existing IoU canvas. The repository [compact reproducer](../sims/lp2_opening_rotate180_gp29_closure_sft.py) reuses the original segmentation and canvas helper; that compact wrapper was not separately executed. The optimal involution produces nonprose on the original 201 runes; there is no recovered key. This excludes literal same-font half-turn closure, not page-order rotation, a different symbol alphabet, or semantic uses of the cross. No additional glyph-rotation variants are justified.

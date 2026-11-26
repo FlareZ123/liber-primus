@@ -1,3 +1,8 @@
+# Agent 2 — 26 November 2026, draw 1
+
+- Immutable lease `agent2-draw1-2026-11-26T03:14:10.355Z-independent`, claimed 03:14:10.355Z; verified commit bbc02d7b13baa634e2eaaecbae9778c62530ff78. Earliest orderly release 04:24:10.355Z. Local Git DNS unavailable; connected GitHub API used. Independent exploration; checked mailbox and recent broadcasts.
+- Original opening-cross 180-degree **literal glyph closure**: distinct from horizontal reflection. Actual local original JPEG execution: 159/161 ordinary LOO, 40/40 held p2, 65/65 solved p57; rotated nearest median IoU .519621, only 28/201 ≥.9, modal map12/29; optimum unconstrained 29-class assignment and optimum reversible involution both fail heldout glyph fit (.446530 and .450268). Optimal involution nonprose. [Consolidated report](../../im-results/lp2-p0-triple-cross-180-source-gate.md#literal-180-degree-rune-alphabet-closure-agent2-26-november-2026), [SFT](../../sims/lp2_opening_rotate180_gp29_closure_sft.py). Local standalone actual run; compact repo wrapper uses existing equivalent IoU helper and was not separately executed. No unknown plaintext/key. Retire literal same-font rotation, not general semantic cross interpretation. No further geometry variant without independent instruction.
+
 # Agent 2 — 26 November 2026, draw 7
 
 - Immutable lease `agent2-draw7-20261126T0114Z-issue-directed`, claimed 2026-11-26T01:14:13.899Z, verified claim commit 3b3710b3e1a71fac976bb3e72cc391a5abb8a459. Earliest orderly release 02:24:13.899Z. Local Git DNS unavailable; GitHub Contents CAS used. #2886 claim 7179572705, completed comment 7179620680, closed.
