@@ -141,3 +141,20 @@ The two controls use hidden noncommuting affine pairs and nonidentity initial al
 **Decision:** the complete noncommuting continuous right-action receiver with arbitrary IV is exactly incompatible with an intact two-word p0 heading in this finite register. The first-word-only alternative also gives no credible continuation. This strengthens the previous repeat-screened negative without requiring any statistical key filter. It does not establish that p0 has intact words, exclude an out-of-register first word or a different state law, or recover authentic plaintext. Do not interpret a forced lexical first word such as HUMORIST as a decipherment.
 
 [SFT](../sims/lp2_right_affine_action_native_anchor_sft.cjs) · [Raw output, all eight original complete decodings](lp2-right-affine-action-native-anchor-output.json). Core executed on exact repository inputs in V8; saved Node wrapper not separately executed.
+
+## Authentic plaintext-F hold, both composition orders, all affine generator pairs and IVs
+
+The previous ordinary-consuming affine-action tests did not cover the historical plaintext F bypass. Here P=F emits C=F and does not advance the affine state; every other P emits G(P) then updates the state by the generator selected by the fixed vowel/nonvowel class. An ordinary non-F can also emit F. The inverse branches on **both** possibilities at ciphertext F, rejecting the ordinary inverse if its plaintext is F. This is a hypothetical affine extension of the authentic solved-source exception, not a claim that Cicada used affine updates.
+
+Use the corrected p54 black body and p55 carry: first 47 complete words, 213 runes, fit; complete 11-rune carry and subsequent 16 words, 86 runes, held out. The original first eight-rune black word is F-free ciphertext. All 5,649 compatible F-free native dictionary anchors (40,606 total GP forms) are tested. For each possible first word and nonzero initial slope, its first ordinary emission fixes the initial intercept; for each first occurrence of a class the next ordinary emission fixes its generator intercept once a nonzero slope is chosen. For right composition the equation is T(P_next)=G^-1(C_next); for left composition it is T(G(P_next))=C_next. Omit literal F positions from these equations; never omit a consuming ciphertext F. Enumerate all unused generator choices at a terminal anchor leaf. This covers **535,387,328 nominal tuples per composition order**, including commuting pairs, conditional on an in-register first word. Exact word-by-word inverse enumerates all F histories and permits up to three out-of-register training words. Rank survivors by OOV count then frozen Gibran trigram; choose held-out paths with the same fixed ranking and frozen key and state.
+
+| Input | Order | Anchor keys | Training keys / paths | Correct runes |
+|---|---|---:|---:|---:|
+| Shakespeare natural 64 words | right | 6 | 1 / 1 | 254/254 |
+| Emerson natural 64 words | left | 6 | 1 / 2 | 224/224 |
+| Original p54–55 | right | 3 | 0 / 0 | none |
+| Original p54–55 | left | 4 | 0 / 0 | none |
+
+Both plants recover exact hidden generator pairs and IVs, all true F labels, and the complete held-out texts. The original searches each visit about 100.27 million anchor DFS states; every candidate fails the three-OOV budget before encountering the first F position in later training words. This is a conditional exact exclusion of both composition orders including authentic F-clock ambiguity, not a spacing-free result or an exclusion of arbitrary word-reset/other state classes. No original holdout was used for fitting. No new plaintext.
+
+[Reproducer](../sims/lp2_affine_action_native_fhold_terminal_sft.cjs) · [Raw output](lp2-affine-action-native-fhold-terminal-output.json). Core executed against repository data in connected V8; standalone CJS wrapper not separately executed.

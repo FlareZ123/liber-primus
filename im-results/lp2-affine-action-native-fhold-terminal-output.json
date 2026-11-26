@@ -1,0 +1,387 @@
+{
+  "dictionary": 40606,
+  "anchorForms": 6294,
+  "nominalKeys": 535387328,
+  "originalCipher": "rndl17ojgoll2r7f8a5pdp63jaoi3g730q1gb2bsi59s5si431en78hl0o5b13brsak68h1beo57rj3dqnrkdca24q6jem6fjdbmnmgrmglajlqopl4qb9k1eh8db3s6p7efn51gm8c9dgsqh166oc963ikjh2qrmcqj5m2ik4cd4nqenlqdfie7560n4ini73cm83mhf8so5ajebjijk63g2eis46qlpja7fhejfc6n2p0roh5174hs0eaj15d8lkcjfnrd0h8c5cisia6e6fifc22if2m5saj5enb1hia",
+  "originalCipherF": 6,
+  "plants": [
+    {
+      "source": "Shakespeare",
+      "wordOffset": 10003,
+      "actual": [
+        [
+          3,
+          5
+        ],
+        [
+          7,
+          11
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "plainF": 3,
+      "cipherF": 7,
+      "side": "right",
+      "trainWords": 47,
+      "trainRunes": 189,
+      "holdWords": 17,
+      "holdRunes": 65,
+      "anchorKeys": 6,
+      "anchorNodes": 100253143,
+      "anchorCompatible": 5649,
+      "anchorLeaves": 6,
+      "firstUse": 96753468,
+      "known": 96797656,
+      "trainPaths": 1,
+      "trainKeys": 1,
+      "branches": 10,
+      "best": {
+        "key": [
+          [
+            3,
+            5
+          ],
+          [
+            7,
+            11
+          ],
+          [
+            13,
+            8
+          ]
+        ],
+        "oov": 3,
+        "holds": 3,
+        "trainMean": -2.44413902381365,
+        "trainWords": [
+          "received",
+          "them",
+          "for",
+          "the",
+          "hire",
+          "of",
+          "their",
+          "breath",
+          "only",
+          "?ji9i9a1f",
+          "do",
+          "not",
+          "stand",
+          "upon",
+          "t",
+          "we",
+          "recommend",
+          "to",
+          "you",
+          "?g4ah19if",
+          "of",
+          "the",
+          "people",
+          "our",
+          "purpose",
+          "to",
+          "them",
+          "and",
+          "to",
+          "our",
+          "noble",
+          "consul",
+          "wish",
+          "we",
+          "all",
+          "joy",
+          "and",
+          "honour",
+          "senators",
+          "to",
+          "?534rko91f",
+          "come",
+          "all",
+          "joy",
+          "and",
+          "honour",
+          "brutus"
+        ],
+        "trainCompact": "4i5ia1in2ij0342i8a4i302ia4h4s239kqji9i9a1fn393gfgo9n1d39g7i4i53jji9ng3q31g4ah19if302idcdki314d14d3fig32ijo9ng331493hki539f1k7af87iokkb3qo9n839314fi9og34fg3534rko91f53jiokkb3qo9n839314h41g1f",
+        "holdPaths": 2,
+        "hold": {
+          "oov": 1,
+          "holds": 0,
+          "mean": -2.2804099706085657,
+          "words": [
+            "you",
+            "see",
+            "how",
+            "he",
+            "intends",
+            "to",
+            "use",
+            "the",
+            "people",
+            "?fa5a9a1f",
+            "may",
+            "they",
+            "perceive",
+            "s",
+            "intent",
+            "he",
+            "will"
+          ],
+          "compact": "q31fii8378ia9gi9nfg31fi2idcdkifa5a9a1fjoq2iqdi45ia1ifa9gi9g8i7akk"
+        },
+        "correctKey": true,
+        "trainExact": true,
+        "holdExact": true,
+        "truthRetained": true,
+        "correctRunes": 254
+      },
+      "otherCandidates": []
+    },
+    {
+      "source": "Emerson",
+      "wordOffset": 15050,
+      "actual": [
+        [
+          2,
+          8
+        ],
+        [
+          11,
+          3
+        ],
+        [
+          23,
+          14
+        ]
+      ],
+      "plainF": 4,
+      "cipherF": 9,
+      "side": "left",
+      "trainWords": 47,
+      "trainRunes": 166,
+      "holdWords": 17,
+      "holdRunes": 58,
+      "anchorKeys": 6,
+      "anchorNodes": 100250254,
+      "anchorCompatible": 5649,
+      "anchorLeaves": 6,
+      "firstUse": 96748176,
+      "known": 96794956,
+      "trainPaths": 2,
+      "trainKeys": 1,
+      "branches": 7,
+      "best": {
+        "key": [
+          [
+            2,
+            8
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            23,
+            14
+          ]
+        ],
+        "oov": 0,
+        "holds": 2,
+        "trainMean": -2.3790033950098897,
+        "trainWords": [
+          "interest",
+          "and",
+          "mine",
+          "and",
+          "all",
+          "men",
+          "s",
+          "however",
+          "long",
+          "we",
+          "have",
+          "dwelt",
+          "in",
+          "lies",
+          "to",
+          "live",
+          "in",
+          "truth",
+          "does",
+          "this",
+          "sound",
+          "harsh",
+          "to",
+          "day",
+          "you",
+          "will",
+          "soon",
+          "love",
+          "what",
+          "is",
+          "dictated",
+          "by",
+          "your",
+          "nature",
+          "as",
+          "well",
+          "as",
+          "mine",
+          "and",
+          "if",
+          "we",
+          "follow",
+          "the",
+          "truth",
+          "it",
+          "will",
+          "bring"
+        ],
+        "trainCompact": "a9gi4ifgo9nja9io9nokkji9f837i1i4k3l7i8o1in7ikga9kaifg3ka1ia9g412nmf2aff319n8o4f8g3noqq317akkf339k31i78ogafna5goginhqq3149og14iof7ikkofja9io9na07i03kk372ig412ag7akkh4l",
+        "holdPaths": 1,
+        "hold": {
+          "oov": 0,
+          "holds": 2,
+          "mean": -2.2348792769291004,
+          "words": [
+            "us",
+            "out",
+            "safe",
+            "at",
+            "last",
+            "but",
+            "so",
+            "may",
+            "you",
+            "give",
+            "these",
+            "friends",
+            "pain",
+            "yes",
+            "but",
+            "i",
+            "cannot"
+          ],
+          "compact": "1f31gfo0iogkofgh1gf3joqq316a1i2ifi04ai9nfdoa9qifh1ga5o993g"
+        },
+        "correctKey": true,
+        "trainExact": true,
+        "holdExact": true,
+        "truthRetained": true,
+        "correctRunes": 224
+      },
+      "otherCandidates": [
+        {
+          "key": [
+            [
+              2,
+              8
+            ],
+            [
+              11,
+              3
+            ],
+            [
+              23,
+              14
+            ]
+          ],
+          "oov": 1,
+          "holds": 3,
+          "trainMean": -2.397320790612421,
+          "trainWords": [
+            "interest",
+            "and",
+            "mine",
+            "and",
+            "all",
+            "men",
+            "s",
+            "however",
+            "long",
+            "we",
+            "have",
+            "dwelt",
+            "in",
+            "lies",
+            "to",
+            "live",
+            "in",
+            "truth",
+            "does",
+            "this",
+            "sound",
+            "harsh",
+            "to",
+            "day",
+            "you",
+            "will",
+            "soon",
+            "love",
+            "what",
+            "is",
+            "dictated",
+            "by",
+            "your",
+            "nature",
+            "as",
+            "well",
+            "as",
+            "mine",
+            "and",
+            "if",
+            "we",
+            "follow",
+            "the",
+            "truth",
+            "it",
+            "will",
+            "?h40"
+          ],
+          "trainCompact": "a9gi4ifgo9nja9io9nokkji9f837i1i4k3l7i8o1in7ikga9kaifg3ka1ia9g412nmf2aff319n8o4f8g3noqq317akkf339k31i78ogafna5goginhqq3149og14iof7ikkofja9io9na07i03kk372ig412ag7akkh40"
+        }
+      ]
+    }
+  ],
+  "original": [
+    {
+      "side": "right",
+      "trainWords": 47,
+      "trainRunes": 213,
+      "holdWords": 17,
+      "holdRunes": 86,
+      "anchorKeys": 3,
+      "anchorNodes": 100268751,
+      "anchorCompatible": 5649,
+      "anchorLeaves": 3,
+      "firstUse": 96762400,
+      "known": 96812948,
+      "trainPaths": 0,
+      "trainKeys": 0,
+      "branches": 0,
+      "best": null,
+      "otherCandidates": []
+    },
+    {
+      "side": "left",
+      "trainWords": 47,
+      "trainRunes": 213,
+      "holdWords": 17,
+      "holdRunes": 86,
+      "anchorKeys": 4,
+      "anchorNodes": 100267561,
+      "anchorCompatible": 5649,
+      "anchorLeaves": 4,
+      "firstUse": 96762400,
+      "known": 96811757,
+      "trainPaths": 0,
+      "trainKeys": 0,
+      "branches": 0,
+      "best": null,
+      "otherCandidates": []
+    }
+  ]
+}
