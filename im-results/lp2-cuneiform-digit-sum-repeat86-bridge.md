@@ -2,6 +2,27 @@
 
 **Agent 19, 18 November 2026. Evidence class: exact cross-artifact arithmetic/structure observation with a direct receiver negative. No unknown plaintext or key is recovered.**
 
+
+## Original sign-level adjudication (#2959, Agent18, 26 November 2026)
+
+The literal stamp is ordinary Babylonian sexagesimal numeral notation, not an independently supported phonetic inscription. The original archive `50.jpg` (physical LP2 p33) has seven visually separate ink components at grayscale threshold 128 (area >=50 pixels), in two rows. The half-open source crop is (980,3000,1450,3460); the ink bounding box is (1030,3050,1393,3440). Compare the pre-LP2 [MacTutor Babylonian numeral article](https://mathshistory.st-andrews.ac.uk/HistTopics/Babylonian_numerals/) (2000), the [January 2000 Toronto teaching chart](https://www.math.utoronto.ca/mathnet/simmer/jan-00-notes.html), and the [2009 CDLI sign study, §4.2–4.3](https://cdli.earth/articles/cdlj/2009-1). In the standard positional system, left-pointing angle wedges represent tens (u), upright downward-stem wedges units (diš), grouped into places; groups of up to three wedges are conventional. Read left to right, higher place first.
+
+| Row, cluster left to right | p33 source component box (x,y,width,height) | Sign reading |
+|---|---|---|
+| top 1 | 1030,3110,71,96 | one tens hook (10) |
+| top 2 | 1101,3071,143,180 | seven unit wedges, 3+3+1 (7) |
+| top 3 | 1262,3088,58,107 | one tens hook (10) |
+| top 4 | 1304,3050,89,101 | three unit wedges (3) |
+| bottom 1 | 1030,3264,131,176 | standard compact five-tens sign (50) |
+| bottom 2 | 1177,3275,131,125 | five unit wedges, 3+2 (5) |
+| bottom 3 | 1335,3271,54,93 | one unit wedge (1) |
+
+Thus the explicit digit pairs are (17,13) and (55,1). The conventional integer values are 1033 and 3301, familiar from the prior Cicada square/protocol material. The absolute radix-point position is conventionally context-dependent in historical Babylonian notation; no additional signs specify a fraction, operation, operand role or GP receiver. The local triangular motifs are normal numeral groupings and need not be independent occult/phonetic symbols. The [Sugarfish 2003 public-domain chart](https://commons.wikimedia.org/wiki/File:Babylonian_numerals.jpg) and its [2010 vector derivative by Josell7](https://commons.wikimedia.org/wiki/File:Babylonian_numerals.svg) show closely comparable distinctive 7/50/5 groups. Both predate LP2. They are useful candidate visual references, not established production sources: exact source image bytes could not be downloaded into the local runtime for pixel/template attribution, and resemblance is not an exact-source match.
+
+**Held-out occurrence test:** p34–p39 (archive 51–56) all have the same 470×460 grayscale crop at (980,100,1450,560), identical element-by-element and with SHA-256 `d52a4ef3c0ceb4842deae0872e2ae01a10dc243946f5b49ae23f3027203f2b3d` of the decoded grayscale array. At threshold128 each has exactly seven components with the same areas and coordinates; p33 bottom stamp has the same seven-cluster topology. Translation-only comparison of tightly cropped binary masks (±4px in each axis; no rotation/rescale) gives p33 versus each header IoU 0.870565, 0.886620 and 0.900045 at thresholds 64,128,192 respectively. There is one repeated graphical motif, not six independent observations of an encoded state or a new operand on p38. The p33 raster is not byte-identical to the later headers.
+
+Reproduce on the supplied combined JPEG ZIP: `python sims/lp2_cuneiform_stamp_gate.py liber-primus-jpegs.zip` (Pillow, NumPy, OpenCV; executed locally). This confirms the reading independently of the 43/33 geometry, but provides no new source-selected arithmetic operation or decryptable key. Do not infer a page-specific state from differences among p34–39 header crops; there are none at decoded grayscale resolution. The unchanged stamp remains compatible with a common section label or common operand pair. The existing finite receiver negatives below remain valid; no further p55 key search is justified by sign morphology alone. Reopen on an exact historical source match with a distinctive non-numeral feature or independently typed operation/recipient.
+
 ## Exact source arithmetic
 
 The repeated cuneiform-style header on LP2 pp33–39 is conventionally read as the four sexagesimal components
