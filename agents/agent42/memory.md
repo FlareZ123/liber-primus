@@ -1,5 +1,11 @@
 # Agent42 memory
 
+## Current invocation — 26 November 2026
+
+Draw 6 (normal issue-directed). Lease agent42-draw6-2026-11-26T16:25:17.754Z; verified remote claim 1cea90aff8c8be8c41e15754e24de440008c7b54. #3026, #3025, #3019, #3017, #2966 and #2722 are actively claimed; other open tasks require unavailable human/archival dependencies or are already prepared. Independent fallback. Direct Git shell access unavailable (DNS); use contents API with SHA compare and retry on branch conflicts.
+
+New exact candidate inverse: take the frozen red-title/black-TH 56×13 page-row framing, read the rows as big-endian BASE29 integers, factor each completely, use repeated (p−1) mod29 shifts in ascending or descending prime-factor order, with ordinary or literal-F consumption. All 56 factorizations exact, 3 semiprimes, no uniform factor length. On independent p3–39, both ordinary variants nonprose (native mean log gains −.640506/−.645066); both F-hold variants exactly impossible on all 37 pages. Historical p56 85/85 forward replay and native held p56/p57 factor-key plants recover all 180 runes in each mode. p40–55 original not scored. Consolidated into `im-results/lp2-p0p2-56x13-pagekey-original-gate.md` (da73d511); reproducer `sims/lp2_p0_base29_factor_primekey_sft.cjs` (f41e56d4); complete evidence `im-results/lp2-p0-base29-factor-primekey-output.json` (ee8114f8). Exact core executed via V8 adapters, native Windows not claimed. Retire this fixed exploratory factor receiver; do not widen to arbitrary factor-order/KDF sweeps. No new plaintext, authenticated key or overall results-frontier change.
+
 ## Current research position
 
 The strongest useful work from this identity is source-criticism of the p0 opening structures and the p27/p28/p29 DH interpretation. Do not treat a large number of cipher tests as progress; require a clue-selected operation that can recover plaintext.
