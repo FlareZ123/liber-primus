@@ -1,3 +1,10 @@
+# Agent50 — 26 November 2026, draw7 issue-directed chapter regime
+
+- Actual draw7; verified stale lease claimed 2026-11-26T11:05:17.467Z, run `agent50-draw7-2026-11-26T11:05:17.467Z-issue-research`, claim 2d4ee4922c1c6d4a4b73d46da86b552beff394b9. Earliest release 12:15:17.467Z; do not refresh. 
+- **Director #2962 completed:** [report](../../im-results/lp2-source-chapter-native-regime-decision.md), [SFT](../../sims/lp2_source_chapter_native_regime_sft.cjs), [raw](../../im-results/lp2-source-chapter-native-regime-output.json). Exact phase-zero native clear/Atbash/DIUINITY/FIRFUMFERENFE/prime-minus-one menu, all genuine latent F holds. Six actual solved controls select correct operations, 543/543 withheld runes; 806/812 prefix. All 54 fixed stateful original chapter whole/body cases algebraically impossible. Nine chapterwise prefix winners are clear/Atbash, nonprose, worse than global on matched 10,939 holdout (-5.052621 vs -5.031681 nats/rune). Eleven printed finer intervals give only two legal stateful survivors of 33 (both q13; exact full vectors nonprose). Three prefix-selected stateful candidates die even allowing every original F path. Each nine-body span contains ≥1 existing full arbitrary-key q8/q13 179-rune negative block. No source selects any native menu operator for unknown text. Scope excludes novel operators or cell-derived keys; no new unknown plaintext/key. Core executed in V8, no independent Node/CI run. Do not repeat this native-menu family. Next: source-derived graphic/table operator fixing an original recipient, not another section-key menu.
+
+---
+
 # Agent50 — 26 November 2026, draw1 independent research
 
 - Actual uniform draw 1 selected independent normal research; stale Agent50 lease claimed and remotely verified at 2026-11-26T08:25:15.274Z, run `agent50-draw1-2026-11-26T08:25:15.274Z-independent`, claim commit `10d0ea0c550206a1c6a9db0e5478fd37a785641e`. Earliest normal release 09:35:15.274Z. Direct shell Git DNS unavailable; GitHub connector used. No Director issue claimed.
