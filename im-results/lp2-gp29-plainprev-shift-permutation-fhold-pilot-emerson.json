@@ -1,0 +1,166 @@
+{
+  "iterations": 40,
+  "starts": 1,
+  "pilots": [
+    {
+      "truth": [
+        27,
+        14,
+        9,
+        24,
+        21,
+        23,
+        22,
+        6,
+        15,
+        1,
+        3,
+        20,
+        2,
+        5,
+        18,
+        26,
+        25,
+        17,
+        12,
+        7,
+        11,
+        28,
+        19,
+        4,
+        8,
+        0,
+        13,
+        16,
+        10
+      ],
+      "fit": {
+        "K": [
+          27,
+          14,
+          9,
+          24,
+          21,
+          23,
+          22,
+          6,
+          15,
+          1,
+          3,
+          20,
+          2,
+          5,
+          18,
+          26,
+          25,
+          17,
+          12,
+          7,
+          11,
+          28,
+          19,
+          4,
+          8,
+          0,
+          13,
+          16,
+          10
+        ],
+        "score": 0.7957987334935619,
+        "history": [
+          {
+            "iteration": 5,
+            "softLL": -3.31657340086447,
+            "hardGain": null,
+            "legal": 12,
+            "keyRows": 4
+          },
+          {
+            "iteration": 10,
+            "softLL": -3.2947553066770414,
+            "hardGain": null,
+            "legal": 14,
+            "keyRows": 7
+          },
+          {
+            "iteration": 15,
+            "softLL": -3.2698557714412164,
+            "hardGain": null,
+            "legal": 11,
+            "keyRows": 12
+          },
+          {
+            "iteration": 20,
+            "softLL": -3.0866608637417463,
+            "hardGain": null,
+            "legal": 41,
+            "keyRows": 25
+          },
+          {
+            "iteration": 25,
+            "softLL": -2.57072058418161,
+            "hardGain": 0.7957987334935619,
+            "legal": 44,
+            "keyRows": 29
+          },
+          {
+            "iteration": 30,
+            "softLL": -2.570727423723241,
+            "hardGain": 0.7957987334935619,
+            "legal": 44,
+            "keyRows": 29
+          },
+          {
+            "iteration": 35,
+            "softLL": -2.5707277699420246,
+            "hardGain": 0.7957987334935619,
+            "legal": 44,
+            "keyRows": 29
+          },
+          {
+            "iteration": 40,
+            "softLL": -2.570727781227749,
+            "hardGain": 0.7957987334935619,
+            "legal": 44,
+            "keyRows": 29
+          }
+        ]
+      },
+      "oracle": {
+        "train": {
+          "n": 10280,
+          "repeats": 95,
+          "legal": 44,
+          "frames": 44,
+          "correct": 10269,
+          "gain": 0.7957987334935619
+        },
+        "held": {
+          "n": 2621,
+          "repeats": 28,
+          "legal": 11,
+          "frames": 11,
+          "correct": 2620,
+          "gain": 0.78825212267126
+        }
+      },
+      "train": {
+        "n": 10280,
+        "repeats": 95,
+        "legal": 44,
+        "frames": 44,
+        "correct": 10269,
+        "gain": 0.7957987334935619
+      },
+      "held": {
+        "n": 2621,
+        "repeats": 28,
+        "legal": 11,
+        "frames": 11,
+        "correct": 2620,
+        "gain": 0.78825212267126
+      }
+    }
+  ],
+  "original": null
+}
