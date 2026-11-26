@@ -1,0 +1,8521 @@
+{
+  "observed": [
+    63,
+    23
+  ],
+  "controlSummary": [
+    {
+      "name": "Shakespeare",
+      "kind": "matched-0",
+      "joint": 9,
+      "totalOnly": 11,
+      "union": 14
+    },
+    {
+      "name": "Shakespeare",
+      "kind": "matched-1",
+      "joint": 5,
+      "totalOnly": 23,
+      "union": 23
+    },
+    {
+      "name": "Shakespeare",
+      "kind": "matched-2",
+      "joint": 3,
+      "totalOnly": 25,
+      "union": 26
+    },
+    {
+      "name": "Shakespeare",
+      "kind": "continuous-offset1000",
+      "joint": 41,
+      "totalOnly": 54,
+      "union": 60
+    },
+    {
+      "name": "Gibran",
+      "kind": "matched-0",
+      "joint": 0,
+      "totalOnly": 16,
+      "union": 16
+    },
+    {
+      "name": "Gibran",
+      "kind": "matched-1",
+      "joint": 0,
+      "totalOnly": 17,
+      "union": 17
+    },
+    {
+      "name": "Gibran",
+      "kind": "matched-2",
+      "joint": 2,
+      "totalOnly": 29,
+      "union": 29
+    },
+    {
+      "name": "Gibran",
+      "kind": "continuous-offset1000",
+      "joint": 108,
+      "totalOnly": 155,
+      "union": 164
+    },
+    {
+      "name": "Emerson",
+      "kind": "matched-0",
+      "joint": 3,
+      "totalOnly": 12,
+      "union": 15
+    },
+    {
+      "name": "Emerson",
+      "kind": "matched-1",
+      "joint": 6,
+      "totalOnly": 36,
+      "union": 37
+    },
+    {
+      "name": "Emerson",
+      "kind": "matched-2",
+      "joint": 0,
+      "totalOnly": 14,
+      "union": 14
+    },
+    {
+      "name": "Emerson",
+      "kind": "continuous-offset1000",
+      "joint": 56,
+      "totalOnly": 81,
+      "union": 87
+    }
+  ],
+  "screenedPairs": 283,
+  "testedKeyIVs": 229796,
+  "allPairs": 635796,
+  "train": 729,
+  "held": 12227,
+  "candidates": [
+    {
+      "coeff": [
+        [
+          1,
+          7
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          7
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          7
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          7
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 12,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          7
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 14,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          22
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          22
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 31,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          22
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 26,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 61,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          22
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          1,
+          22
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 17,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 57,
+          "S": 41,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 12,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 40,
+          "S": 64,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 19,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          5,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 65,
+          "S": 32,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 66,
+          "S": 36,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 46,
+          "S": 57,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 46,
+          "S": 22,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 57,
+          "S": 30,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 59,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 49,
+          "S": 16,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 65,
+          "S": 35,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 51,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 29,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          15,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 30,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 61,
+          "S": 12,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 73,
+          "S": 19,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 59,
+          "S": 13,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          23,
+          20
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 30,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 56,
+          "S": 45,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 48,
+          "S": 51,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 31,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          26,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 31,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          5
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          25
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          25
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          25
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          26
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 25,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          26
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          26
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 31,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          26
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 30,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          2,
+          26
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          3,
+          1
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 31,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          3,
+          1
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          3,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          3,
+          19
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          4,
+          5
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 69,
+          "S": 34,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          4,
+          5
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 28,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 31,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          4,
+          5
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 67,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          4,
+          5
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          4,
+          5
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 18,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 14,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 20,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 14,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          6
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 57,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          9
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 41,
+          "S": 54,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 40,
+          "S": 60,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 35,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 13,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 88,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 15,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 46,
+          "S": 58,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 26,
+          "S": 70,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 45,
+          "S": 57,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 20,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 39,
+          "S": 55,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          5,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 77,
+          "S": 32,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 53,
+          "S": 46,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 48,
+          "S": 43,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 51,
+          "S": 53,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 48,
+          "S": 54,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 59,
+          "S": 44,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 20,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 56,
+          "S": 38,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          11,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 32,
+          "S": 69,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          12,
+          28
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 45,
+          "S": 53,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 47,
+          "S": 55,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 43,
+          "S": 53,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 32,
+          "S": 60,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 56,
+          "S": 45,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 55,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 58,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 51,
+          "S": 48,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 52,
+          "S": 49,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 56,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 55,
+          "S": 39,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 17,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 54,
+          "S": 41,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 41,
+          "S": 31,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 56,
+          "S": 37,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          15,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 50,
+          "S": 51,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          16,
+          3
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 20,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 69,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 66,
+          "S": 38,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 48,
+          "S": 53,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 13,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 61,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 62,
+          "S": 32,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 65,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 56,
+          "S": 12,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 74,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 15,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          23,
+          20
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 53,
+          "S": 51,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 55,
+          "S": 44,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 29,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 40,
+          "S": 64,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 42,
+          "S": 51,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 34,
+          "S": 54,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 44,
+          "S": 58,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 52,
+          "S": 42,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 82,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          26,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 30,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 46,
+          "S": 47,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          5,
+          21
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 29,
+          "S": 67,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 23,
+          "S": 70,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 33,
+          "S": 50,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 30,
+          "S": 69,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 15,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 82,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 19,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 65,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 15,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          6,
+          24
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 73,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 16,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 59,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 29,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 27,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 35,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 47,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          7,
+          9
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 18,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 55,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          8,
+          1
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 49,
+          "S": 36,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          8,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          8,
+          22
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          8
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 20,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          26
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 88,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          26
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          26
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          26
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 87,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          9,
+          26
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          1
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 50,
+          "S": 52,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          1
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          1
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 30,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          1
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 57,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 29,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          10,
+          23
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 66,
+          "S": 32,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 44,
+          "S": 42,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 31,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 31,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 82,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 14,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          0
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 39,
+          "S": 62,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          11
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 38,
+          "S": 58,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 27,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 38,
+          "S": 63,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 16,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 35,
+          "S": 66,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          11,
+          14
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 36,
+          "S": 68,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          12,
+          1
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 30,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          12,
+          1
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 56,
+          "S": 41,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          12,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 46,
+          "S": 46,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 63,
+          "S": 40,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 31,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 48,
+          "S": 33,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 23,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          12
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 44,
+          "S": 56,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          20
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 20,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          20
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 27,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          20
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 64,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          20
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 16,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          22
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          22
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 31,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          22
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          22
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          13,
+          22
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          2
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 63,
+          "S": 39,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          16
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 32,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          16
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 71,
+          "S": 31,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          16
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 57,
+          "S": 41,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 15,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 61,
+          "S": 36,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 66,
+          "S": 19,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 73,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 15,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 75,
+          "S": 25,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 13,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 58,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          14,
+          24
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 42,
+          "S": 60,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          4
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          4
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 18,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 62,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          4
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 14,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 47,
+          "S": 54,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          5,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 75,
+          "S": 32,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 59,
+          "S": 36,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 57,
+          "S": 35,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 60,
+          "S": 40,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          12,
+          28
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 56,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 63,
+          "S": 39,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 50,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 74,
+          "S": 32,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 60,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 59,
+          "S": 18,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 62,
+          "S": 38,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 45,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 64,
+          "S": 36,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 57,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 63,
+          "S": 41,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          16,
+          3
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 77,
+          "S": 30,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 14,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 67,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 71,
+          "S": 24,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 12,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 51,
+          "S": 16,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 28,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          23,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 34,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          23,
+          20
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 29,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 57,
+          "S": 45,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 17,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          26,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 30,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          12
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 38,
+          "S": 59,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          15,
+          19
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 79,
+          "S": 25,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          1
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          1
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          1
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 22,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          1
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 48,
+          "S": 56,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 42,
+          "S": 50,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 29,
+          "S": 66,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 44,
+          "S": 55,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 57,
+          "S": 41,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 55,
+          "S": 38,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 54,
+          "S": 49,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 63,
+          "S": 41,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 55,
+          "S": 38,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 27,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 56,
+          "S": 43,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 54,
+          "S": 50,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 60,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 27,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 58,
+          "S": 43,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 55,
+          "S": 45,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 54,
+          "S": 39,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 40,
+          "S": 31,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 61,
+          "S": 37,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 53,
+          "S": 47,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 65,
+          "S": 28,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 69,
+          "S": 27,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 68,
+          "S": 29,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 12,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          23,
+          20
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 58,
+          "S": 40,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 45,
+          "S": 47,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 41,
+          "S": 61,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          5
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 36,
+          "S": 62,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 40,
+          "S": 60,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 35,
+          "S": 69,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          14
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 33,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          16,
+          14
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 74,
+          "S": 31,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 32,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          17,
+          6
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 52,
+          "S": 48,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 14,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 18,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 58,
+          "S": 35,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 82,
+          "S": 14,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          17
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 86,
+          "S": 16,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 63,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 62,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 50,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 77,
+          "S": 32,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 86,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 28,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          18,
+          28
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 87,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          19,
+          22
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 54,
+          "S": 50,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          19,
+          22
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 27,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          19,
+          22
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 48,
+          "S": 54,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 42,
+          "S": 49,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          5,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 23,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 68,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 81,
+          "S": 22,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 62,
+          "S": 20,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 57,
+          "S": 44,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 45,
+          "S": 34,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 69,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 30,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 16,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 64,
+          "S": 13,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 54,
+          "S": 18,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 41,
+          "S": 54,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          20,
+          13
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 29,
+          "S": 75,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 40,
+          "S": 59,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          21,
+          12
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 43,
+          "S": 56,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 42,
+          "S": 60,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 38,
+          "S": 36,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 13,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          2,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 31,
+          "S": 65,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 47,
+          "S": 57,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 20,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 50,
+          "S": 51,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          5,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          9,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 54,
+          "S": 39,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          10,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 56,
+          "S": 48,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 62,
+          "S": 40,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 20,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 58,
+          "S": 36,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          11,
+          23
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 35,
+          "S": 65,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          12,
+          28
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 47,
+          "S": 55,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 49,
+          "S": 55,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 74,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 45,
+          "S": 53,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 19,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 34,
+          "S": 62,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 56,
+          "S": 23,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 62,
+          "S": 42,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 66,
+          "S": 36,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 60,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 57,
+          "S": 44,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 57,
+          "S": 44,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 21,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 57,
+          "S": 39,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 59,
+          "S": 17,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 60,
+          "S": 38,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 43,
+          "S": 29,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-2",
+          "I": 67,
+          "S": 33,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 67,
+          "S": 25,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 55,
+          "S": 46,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          18,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-0",
+          "I": 75,
+          "S": 30,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 68,
+          "S": 36,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 50,
+          "S": 53,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 71,
+          "S": 13,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 71,
+          "S": 30,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 68,
+          "S": 28,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 70,
+          "S": 28,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 12,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 77,
+          "S": 20,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 51,
+          "S": 15,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          23,
+          20
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 60,
+          "S": 39,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-2",
+          "I": 47,
+          "S": 46,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          25,
+          7
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-0",
+          "I": 36,
+          "S": 56,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 46,
+          "S": 58,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 55,
+          "S": 38,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 75,
+          "S": 32,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          26,
+          26
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 49,
+          "S": 43,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          4
+        ],
+        [
+          27,
+          4
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-1",
+          "I": 35,
+          "S": 63,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-1",
+          "I": 25,
+          "S": 70,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 36,
+          "S": 46,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          22,
+          22
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 54,
+          "S": 39,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          23,
+          18
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 29,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          23,
+          24
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 24,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          24,
+          7
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 48,
+          "S": 49,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          24,
+          7
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 19,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 79,
+          "S": 19,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          1,
+          11
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "matched-2",
+          "I": 50,
+          "S": 50,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 86,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          3,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 82,
+          "S": 21,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          9,
+          8
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 20,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 28,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 70,
+          "S": 27,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 26,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 22,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 52,
+          "S": 38,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Emerson",
+          "kind": "continuous-offset1000",
+          "I": 77,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          20,
+          16
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 85,
+          "S": 18,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          4
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 17,
+          "joint": true,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 65,
+          "S": 20,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          22
+        ],
+        [
+          13,
+          25
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 78,
+          "S": 31,
+          "joint": true,
+          "total": false
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          25,
+          22
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "matched-0",
+          "I": 78,
+          "S": 29,
+          "joint": true,
+          "total": false
+        },
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 17,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 73,
+          "S": 23,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          26,
+          23
+        ],
+        [
+          15,
+          9
+        ]
+      ],
+      "support": [
+        {
+          "name": "Emerson",
+          "kind": "matched-1",
+          "I": 74,
+          "S": 26,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          27,
+          1
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 76,
+          "S": 21,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          27,
+          23
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 72,
+          "S": 29,
+          "joint": true,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          27,
+          24
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Shakespeare",
+          "kind": "continuous-offset1000",
+          "I": 83,
+          "S": 17,
+          "joint": false,
+          "total": true
+        },
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 80,
+          "S": 24,
+          "joint": false,
+          "total": true
+        }
+      ]
+    },
+    {
+      "coeff": [
+        [
+          28,
+          24
+        ],
+        [
+          21,
+          17
+        ]
+      ],
+      "support": [
+        {
+          "name": "Gibran",
+          "kind": "continuous-offset1000",
+          "I": 84,
+          "S": 17,
+          "joint": false,
+          "total": true
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "source": "Shakespeare",
+      "offset": 25000,
+      "actual": [
+        [
+          1,
+          22
+        ],
+        [
+          13,
+          8
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "selected": [
+        [
+          1,
+          22
+        ],
+        [
+          13,
+          8
+        ],
+        [
+          13,
+          8
+        ]
+      ],
+      "trainRecovered": 729,
+      "heldRecovered": 12227,
+      "trainScore": -2.584990115325194,
+      "heldScore": -2.541678229204163,
+      "margin": 0.001807182766366328,
+      "fullRepeat": [
+        95,
+        34
+      ]
+    },
+    {
+      "source": "Emerson",
+      "offset": 30000,
+      "actual": [
+        [
+          26,
+          23
+        ],
+        [
+          15,
+          9
+        ],
+        [
+          23,
+          14
+        ]
+      ],
+      "selected": [
+        [
+          26,
+          23
+        ],
+        [
+          15,
+          9
+        ],
+        [
+          23,
+          14
+        ]
+      ],
+      "trainRecovered": 729,
+      "heldRecovered": 12227,
+      "trainScore": -2.457138947163803,
+      "heldScore": -2.458266345890343,
+      "margin": 0.0002250633734626406,
+      "fullRepeat": [
+        100,
+        29
+      ]
+    }
+  ],
+  "originalFit": {
+    "coeff": [
+      [
+        13,
+        12
+      ],
+      [
+        21,
+        17
+      ],
+      [
+        2,
+        22
+      ]
+    ],
+    "trainScore": -5.405213220334831,
+    "heldScore": -5.784172041587739,
+    "margin": 0.013960911556192987,
+    "untouchedTrain": -5.7779449106376495,
+    "untouchedHold": -5.814068614249386,
+    "first80": "J O R D E A J NG F H U W Y G E E S W L F TH D T X O B D S L A N I S S Y A L EO TH OE U R B A N IA J IA NG P EA W H W B G N O I TH N EO EA G M Y W Y D W X S D R F A M J B J",
+    "pages": [
+      {
+        "page": 0,
+        "score": -5.12481897326376,
+        "baseline": -5.943439038839399,
+        "decoded": "b34niobl0817q6iif7k02nge3hnfko9affqokc2m14ho9rbrlds787h693a29cs6jq7qn7efn40ojbhb4ka524sa0n83jbadeghdda0gs7ps2h3hme8kljq4a5gg4de5ohni2n0mgomq2oqs2mdeg5isdpclfagq9laajg3g79pe7h3gf2qbk6n59mo4krhb16k9crm8mj18qb36i5c1ddg15kgl1kikq4l2oa184ea4g4khsfb07k1a56forogi01l2a0"
+      },
+      {
+        "page": 1,
+        "score": -5.514381764998961,
+        "baseline": -5.9124179844424605,
+        "decoded": "mpr2pegj2qoknqlqd90ln78nbh3qij5kn968k0e9m8q80cp8gseer06na4o3q9sokl08l8hn458lqd4a4j9mhoq6fl5o1k0r3067c5hsgaq6i35c2c5sbm2coe9j9mlf30h4isjpr4p6bd7ecsohfq31aop971dlob3peclgg95k20in034m2o571sj8mlikidfj49liiisikbk4sk8boganfnrdli3area042lfcl70spjng3e94frm5mk746obsor925i1o5"
+      },
+      {
+        "page": 2,
+        "score": -5.562942815125053,
+        "baseline": -5.390678673265044,
+        "decoded": "aafnpkqdsnhdo81b9da0pp87dqmi1klq7flkqh2ca5f18b0liq4f566798il3hqgfhar8onjbhoqoj57grlcm0nd0ijr127q9onre24la0pa89ki6on28booq1gq5g4n8djsd51169bchradh2ek82icgibdpjke9pplg8688eieg0fhhni4j989hmcrg0od6p7p4bi4f"
+      },
+      {
+        "page": 3,
+        "score": -6.08726710940597,
+        "baseline": -5.725555262632331,
+        "decoded": "icd7rqkqm988sa3eee2snphe7hsciosc5lrbbh4oksmspodcqq435g8egk2l4880313i973g15jsee7ffrfr60fn3lgpb024h535hrkg4a6esm7q86glqqcdi6rs5751c3c56j96ghokbq09fiijnqefrske356io5iepfe9gmcnnecpm5h7n5bb4e0s22bdeks89ej92cfmlrme6rb7d3kes"
+      },
+      {
+        "page": 4,
+        "score": -5.773469103448204,
+        "baseline": -6.1039301593815125,
+        "decoded": "qe2glj23p06jskrq4aia93np035qgrd4h0lig67hgnofrepjqigihc7qb9b4kl87ghbl226naci1rs9fp0rq47k55hofmh228p5m6e6e9d2gok3nrnapg83gcek5lbd4nkindhqjka1kf7bbsas77h51705l1c1jchcbqq9dqlqfsk1b3ra1sd2eg3gkrr29apnj6s3rkqif0qcighsj1efk1qrdpil7m96l7fq9q33a6sg52a11ee90psjpo52sqkrsr"
+      },
+      {
+        "page": 5,
+        "score": -5.826885378788175,
+        "baseline": -6.096682821762705,
+        "decoded": "p2n302m0k8dasjjcmebh66epnrgd4d0elg4epq2gn9j55m71cg29dig5ci8je3n4g4bo3l8qgpaqqejioqpeq95n6k7i4mfk4hnskg60gp0kkgefjsqmihqja1144d4md6i9cbjs4i0lcd1ni7sdmd4888hel1s4o90k3rpm4hbj22qnpa0e0p2cnrlr1qspn8qi3kg00lsd811bkbndb90q1268k44174iii90fs6hjl4644njg79s10grr60lk450c68d"
+      },
+      {
+        "page": 6,
+        "score": -5.977535513988692,
+        "baseline": -5.833328589836752,
+        "decoded": "3d6kj5c417ka9iam7bjgqjq7ekqspimhec9nors01331j3hq4i3ag26j1jp6n2i8sekncl0bng1foc9387erpn66j4mbg9alr50ksj3f2ef9borkaq35346orjc52o5n2goieo51oicoph135mll8sp61pk8bpgoil5hl02e0gpi4cnf7sr6lseaar9f2qg08gmq"
+      },
+      {
+        "page": 7,
+        "score": -5.8583636483956525,
+        "baseline": -5.794043739852978,
+        "decoded": "qgp7k9bmmj2ah9ofaligoccc25og1m5d2hj0hs7eb6b16e6o6ammapj8fh7819q5n7h8ao9gqq8bbgq8bbcdaehhks21m0mhec1oric1a434khhc21c684f3j1f3i9h96kkl5asjod11g6agq33s909sl04sgibbb2pb7g66bm8ps2orophsog7gi0k570p2ms733djdrermdir9"
+      },
+      {
+        "page": 8,
+        "score": -5.851236647139375,
+        "baseline": -5.657789323328303,
+        "decoded": "ha8hoamaaf45jklji1gq2181a54ahdbdn6l233jfb4fd9krr8lh4hbma2ond758naccqgkfkdbi1f90ad8a0cppo7odk9emccl307jcp730dbb48j0300h4cj5c27i60a678qbekek3jjdfhljj1rdmabschq50cg0n57mddpp7g7c2lh4mj2j529f090ja8fld12erra8d8aln6paeo7m5o11p3ohp0lo9jlgjsapaq6br9gc50pc2chob5mrf"
+      },
+      {
+        "page": 9,
+        "score": -5.90941449801759,
+        "baseline": -6.033648132290174,
+        "decoded": "5hfrrilk0koosg95p2smlnfcsqea8gqem9dnjo9qq359s1slsceoo0bkb72jr6sso2r4hiq75ai0m2s9ddslq53iqb0r7eejma2157698gf41shm3gh9hfj6h4j0go2jbpbskl53orm4p3gijmksgg08kg53k9d1rd2mhrdmii3lh2bnefn5hb5rh70c28ieaas06e7o9hj2ocfb6jc9l20abgn9smg98plirq3lij5jimaammjn81186123a2ommsa3esd2jsh6"
+      },
+      {
+        "page": 10,
+        "score": -5.713439692423378,
+        "baseline": -5.909439382889093,
+        "decoded": "eqe0oh7fnrfcoqid2sehi4sfdijoqg8ef8jspebboilo0sf68rpg9ihja8r8lr9kfroakh5l15ks38i4o3pf7pkojf7js17qmm81aq1k63qmr1pmnagfi80glpl9hed41l3hadacnhdjhdno9g8fib7qbhm2n6bdrldn7plp78dkd2s74eh5b60d9aj1k2jadngcepe5cse3hgamih7pk8kai519cbkr1a2aedon49ng3npjn52c9nsdp4p6k97mn39qoo6"
+      },
+      {
+        "page": 11,
+        "score": -5.544436481323236,
+        "baseline": -5.872101850312686,
+        "decoded": "iq3rdd9ji0h21kqr4o4lsceb2josa6r9re6q0qc5i5dks1oog1rdnn7jg5b174ghefo2pmge8jlfg302k53r0p75nda66co429eggimmes58pjlpnn354fe7laomie2fkd8jjih3kd4nmqif4mmls6s3elajaae0760pj3pd8d7sk1fb1bb1plq26mj5fjgc7m2sak4f3f4gksii1jpq4s1nqrprrk8m8lqk8825j0q6bf8ojibo946s14n9q2c32agoc454ce35iof27"
+      },
+      {
+        "page": 12,
+        "score": -5.485885607735166,
+        "baseline": -5.625589571587977,
+        "decoded": "ce9f4i8gkbhskmg5d66gia397qbb58ga226rb5ji4c1760p40c2fj6db7905o9ma3o4f7ci5k2l63q63brneafagjcfgj978q6h15q8q5i01qeil399604mor528meblo432bpj8mc7lo24iq72781733ec4sa1131sqdbpd6977op6r4hm182677cihdbhjpcfjlkoqflpif1j7mbi66k9rlfn9pfoffq3dsndg4oo2nrf89hk6n72i7j463spe8ikjn"
+      },
+      {
+        "page": 13,
+        "score": -5.477301059957755,
+        "baseline": -5.664059409513588,
+        "decoded": "o6fiffqi7g4isd1lih833fdign4ce2gq6rhoqq4fk3bh3adi79dann3m15diiof0lhhj209eronc1rf7co11580kk8lalii7r0k7fag0or3r0kg1conhd6fioa38hlhrdbimdmg803n9hdqj3cbciijji0iffgcdoa1ehhi6c80frds1dqonen3g4eh64hjei62d4ebhn9gkapfh2841c12pciilr4aqoqb4ch2egd7i7cod7m51nah6n28f5s1dpk8bclnin6rsk34k"
+      },
+      {
+        "page": 14,
+        "score": -5.774784837203262,
+        "baseline": -6.095020488033518,
+        "decoded": "8imdkh5rnenaped6qbal13dsfbnmfi0c1eg7ii3l98lg594ca079qbkrgl4idj3h90gosbnf692e9k2rd9oslgnos3mhrhc143b5ak12802777q8fs7h38ajh3p6l5mmsosqp4271"
+      },
+      {
+        "page": 15,
+        "score": -6.238684223345948,
+        "baseline": -5.464051663080718,
+        "decoded": "plajc7im2rlsmes5kk76cc8d2sbclkhjnmcf99g3n5k71o9p0qgccjc62c5ci19oej1i67esjgge04h1p2g0ojqsnbn2sl57coepompg2ioo89c8670p48obsgs75a8ehh1nr15lc83ppeq95cilo89jdaa3o19"
+      },
+      {
+        "page": 16,
+        "score": -5.820277778881834,
+        "baseline": -6.0478417911588345,
+        "decoded": "kjq7g3okeqdmd7hgkgceq2naqemd4l8ii47bdr5pbgoga9mm9hap2090bpcrfj9p2mjsbh3e3rqkkeqbr2m75kad7sscr7jc9q235jkrk1iakha3rhnnefkelhmicq96odpf8iis009f9a8piaela886c9qi9pn3pffog0mq9hq04sopmfdjpjnerli303sf8mkfgq64p3ae75jcr3jqskdagjahs3hicela404cf82rro4j962nn4il57ob5h9hfo401nmcc4f"
+      },
+      {
+        "page": 17,
+        "score": -5.781011347468949,
+        "baseline": -5.891173419308296,
+        "decoded": "8h3kc6139b275nepgkgffc1d9b7dd6r0bq08eb73h1irb4c2b9b5q0cnqibgakk5qigonh7g1ikk19r339sr4sc439kd2ld77ij6g3kk5m5r1ikmgddamhg0mjro395rsn6grc9p6lkkln9em7rclpgmkfan6psp7b31qqiqooinfqskl0q1n0q62q38h9940m03cdb687h57l2bqp2chc6blnhbq138j1jo60g52rbiklp662co6gh1ske8heq5bfjl2s4414k0epec2"
+      },
+      {
+        "page": 18,
+        "score": -5.640186306661359,
+        "baseline": -5.7538924200658235,
+        "decoded": "hgjgmqig709l88hh12ia6h1973ard85a09k4frmjff5h9ekjgrbo7049qj63ccaaqphi4fbenpbcaiomnbs5lhipliqr99be7jnbhi5n2rpbs6bl5ofi9aohihma3o3hhl95biqm9n9a7bep0ifik0ennj3mn4qj4bqn7sb5397mo5r7ioq8knb7sa1l99jogh9aeai0sebpc7s26480fnfcjfb4ngp4mhhcmsehd463epcsrl0h9r3lg2j4a9nhgg4n"
+      },
+      {
+        "page": 19,
+        "score": -5.290834553069123,
+        "baseline": -5.980334264410531,
+        "decoded": "8gfhi07on350j3l8r5gkkl26jf5lg3rlhqf9j152ri262khi1kch57c54g8fd8m272cqd6p8rmsgkhj06ef87314q0redaocgq8hnbbmjq282leod79n6pkkh933hbk6mc3q4f1bc8i4kgng316prrm32j8i0ap9pagqnr83an0250prrdp71dckqb1op3bff56sg619cdhnhncr56r7n4541d3jn1add3h2ikf7f3144i0ph53k7glocd9jhlq77d7he2fsh345jpe"
+      },
+      {
+        "page": 20,
+        "score": -5.417242868594994,
+        "baseline": -5.9686849423940656,
+        "decoded": "c147ona5ofndgorl86io70g9nm7lq1g524jd4s5n7ea834o8sm2ockq3s9m1545igg341g6en0ffhnq2lfoflhb9bf29n30jasenhdcok83eclp96k69fndiiih6e9mikf8nmhfkn8rc4klcafpfla75ilqeqs9eml90qeoj831p7ib30392epqs8r9igpm71k8mkk11la71pm7jqeai10f7b5bs2380273d57pqjrd815h9pfmkijm8no724l9rnj3b154jn7834"
+      },
+      {
+        "page": 21,
+        "score": -5.4069493875724195,
+        "baseline": -5.804935204616537,
+        "decoded": "5egsm6hi554el3p42ilbi23pk2nmr1a21akilqi7mar6mkh2nhpireoodgn7bf3kdenojq96rkjogseqh4a9ls1s5m876d09sfraaijoejfroji3a27f9n895arqc86g7agj6kg849he0cos2oao5p2f7lre35nlqe5all2dh431qmdb4fhsniok3i45r27rc9f4f2lpd2haib4nokdrk5onoogrbpf9pbjl1ifs1a85bd9gq4so2i5fi7d0613ei8shfi71cno45771p"
+      },
+      {
+        "page": 22,
+        "score": -5.838907665462339,
+        "baseline": -5.798431667532977,
+        "decoded": "34a1sgk1p92s3jieek8eeg8am490od8hhn06alij5rmm75kgfam1aqsd54ebdo8fr5p9cdmc6d9s505fdq4b0idq60e6j4s53ldn3661n2jj3i3c1pbk8njp4h831qkk8dp"
+      },
+      {
+        "page": 23,
+        "score": -5.31375002112,
+        "baseline": -5.676386039850088,
+        "decoded": "sd4s81i8qdj3l9m6jj3oiql387qkif5hkoqob0agof8nne9fq5kmjjdo9ga8qn7h5boprd7dddkl7akod8a2c57e5m1roj55603blbelbl5n4qd6h5mpgee1mk210n7aban5qjakr9k746in304ibahj458f5kr2rskibjf7hk73aamkr7ses5oh9jjil9dc5qq5fi30cjhqbp85nrcs2"
+      },
+      {
+        "page": 24,
+        "score": -5.601709930466632,
+        "baseline": -5.680855927758254,
+        "decoded": "l6mpbppq8o3dp4lqji0sdp52qe66fhqqq6i75spbsi945j0hgqlqak7ikr0dgd2ajgnaaelnq3a3e10r54b9g5pq1l24i817jg2cqp0qnfmkkh1g99pc1hio97gl3079e9a7gpffk3i0sdb122oaqg6msmbeqpaqq574j89c2750sk6fiedl8321mik9kck6q2318hplspf5lfk0l173mco0padjrkbpd3boa6ekma169jnkb4hl44lfirnlklqf104aal1ck0nilj"
+      },
+      {
+        "page": 25,
+        "score": -6.060267859993961,
+        "baseline": -5.491429728802688,
+        "decoded": "ac28810bcp2ir6hhsm4md8r3erl6a4ipfam9jaj5h4pcef7644i9e2dsergar97ms254fa1e5pndlp5n7ii7bsjlbjjgbre01jhah327alo6jrom7qqq4h5sf3ocp7s4msn4hsallr64op48r1fla56lpn3ffb1o6edrf0npe7re3pegec15eiccfgnj9cs22ojlp7o38b46m4edk2s07p3a7m26ob6ec4gdq52d3g1hlmeakoo2b2emj00n3hc168d69q0msas2si519"
+      },
+      {
+        "page": 26,
+        "score": -5.9934420441872245,
+        "baseline": -5.3714554504140395,
+        "decoded": "ekbmsea7pbremmkdk53kjc7cml7h8kjfr8ebir9398167hkh3rdpo6nnilr87nobd4k58m81een7o4d23s1349f847lsc6d5mhaiacqamhmla4c2o49477dnmn67ah2006joraif6m0sme1f1ii6p453q6op3bk6qmq5er6je34n3fb9fin2dpcacdem5s2aiqc77la3m9sgmper31m207a9gdmaaa5alml9okh3jod8fnaffspp0o6fkb97j9emh6gl63qrb"
+      },
+      {
+        "page": 27,
+        "score": -5.562613702140644,
+        "baseline": -5.521045417242373,
+        "decoded": "2fe8ef9nhf6bf62kdifpf40n1r8n94ed7f2bi1111a14hkjaqjl38oid70qqhpdink2bfcb56nger1j81a50d9ja48cs3f676c45ps60qgnjkq0s4j4h8l0o9n0dok11sbdc2n7p801m48aic3im8f935kjsnfncgdqs8290ksjgkg38a3bmlmsl5o74i6jqo8gnif1smp9h11gmmlfpn7bk57lq4n569o3de4j9qb"
+      },
+      {
+        "page": 28,
+        "score": -5.917090338827652,
+        "baseline": -5.8879443418306225,
+        "decoded": "jjj2p9dnm63lk7s3hni2ajih9921g2lkhn82brrfsnei8haas4e1528im4occ730o7fioj30enq3k6jp8o6os3o5njlk47k6r2mg3lbji2cn7a07642l9g352nsce98d1e08p8rcre0klp74osor74jj2f483lp96jf3ebbb7e1scfa452c9hq03cbdi1mkdpbnbld5cnn975hcb1nesaes5jaj905asna1p4krakmbilg6f1ejpahecl000gp4brm0inqlfr5h8j"
+      },
+      {
+        "page": 29,
+        "score": -5.654933294609116,
+        "baseline": -5.698442792201786,
+        "decoded": "634dhr8e1ro2s1lg258npq7big2316klsje50s5f3lj040lfde9945dq237egar98qbpcq348dc8ko1da527rk3lehrpcl17sgmlahoo4clafd3aaol89gfia5l6n2od8lje7375nbkkpfd6bj0lgp51o846qc29spalroiira3bimgf85l1b6o9q9spjemee7gge0qhigbagics038bcjn10el89rkhnfqfofkic7hggkoedblg0eo2c33r97cacn8poa5fhq75bsri5qdqi"
+      },
+      {
+        "page": 30,
+        "score": -5.94231245022981,
+        "baseline": -5.91019351927329,
+        "decoded": "9gsrn9i6g3g2epkl1mppoiap81729iaaqjm1pr9ld8ihhem0sm8kk215je5s8phdi0cfgj609e40bm64goam5n41b3ep78mokeaimagahqgado0mdn7m7hfanskli01drragar06a3o0e87qqmp6kr87j9fk8qjlf8obfnonrqma4fh58eoq924j1jl32lh75msk173he8k525eri1egdrr0781s2cp5sl4ae86an4npr661kijb1pehadgnspp3iemqsqa"
+      },
+      {
+        "page": 31,
+        "score": -6.056796432839343,
+        "baseline": -5.639851005043253,
+        "decoded": "nkbbdmea3ridn5i2fs3j6lcn2dld2hgc19q2dq23b9sn90p5b0gkgiegsl9bnqo4e9oj3ch8hb0p7pf778fg8n58eq2jbn96amkg1ei2nec5c7pl7crnpq08n7s4sc9p4bhepmbgels7an5a8a9emoosb70pbkq44jg9kijbns31cdk79criog3p6geg43pkbfjn29gn3jkr4q5rqk06bh2phq6cgl2sb12dafj9hj3o11lp31r7hmj9qq092m8h7jmm8j0lodakn"
+      },
+      {
+        "page": 32,
+        "score": -6.293292450350753,
+        "baseline": -5.8785386664477,
+        "decoded": "nh5p7o2r7b4bqe1dpkdael08mgi6rabkbcsma2c37j5b7gdn661rklk8j0bhfndm2dhopd2qpdof2s8mdel7jcl56jne0mde025res90d1c7e5nsf0c81lq29"
+      },
+      {
+        "page": 33,
+        "score": -6.045391028553452,
+        "baseline": -5.850068433044544,
+        "decoded": "j2aa6bk34csd09l9b4nj98di9b02g6f4b56me2bq2o1rrd26ncl061slmn24f4n2885r78ih4m58sa17pikdns2cfccc74k4d5bkapf2aeg1msd9p0nh6ebla2pnans4j2nqb6s9h8o1nco00mb6br28cs5n41b6cdoa5pjd254picqnhq6scrjo9db3jkcrislc5pb9qk4l93341ooqbg"
+      },
+      {
+        "page": 34,
+        "score": -5.713325838428105,
+        "baseline": -5.799778279409262,
+        "decoded": "l8f719qjrh1mmgcqrr95q36j18i3saellpk3h6n31r63ihk7lbog72m08o69jrbldd80nf25p3dj243jlhpbonri9enbaopg9hja4cdkjm820kner7gf04bj3e19j232h5k0ocab26cdr94dj6a6dq3aj043a99m1apheqg210l827mhih6fkrf4d5804s7kq5s6jfhmlr4aoo71s3e4e8fc1i030gkrsifemcshr06ri3bkoakrmh8girg0h4qn34c2f"
+      },
+      {
+        "page": 35,
+        "score": -5.624958925751709,
+        "baseline": -5.992251542479382,
+        "decoded": "4cm9aemeike2hq82ilqhri709o8e7ggeia38m9qnk01s2l569qdh5koo0cedn4eqia06hic4kgc77k580o8hcqbkb1ps6m4h78m92o17eidqcn5eeke5pli23i7gi8g31fjao4qm6380foje2no4hni6sigmrr1ran07icemldgpljb406damaalhki9f89i9f97n5rf87ssi6g0llohf7ibl6db0e64488m2hsbifs822qjl1r620oak1749mshm9ko2oe71h67gh4"
+      },
+      {
+        "page": 36,
+        "score": -5.954879172588278,
+        "baseline": -6.114786004908671,
+        "decoded": "marrdkl9d93bp02q7c891krope9pig13fafgdknf20hs7l5i7i3h7ragobrh6l98rqgg7abaepcgne1i9crso489f1qhnh9s6qldd6hk2pbls4imdb2phi60j6gapc4iamljs3so0l97jgg1qfspibc908heds758jf4plbomm519e2s741cml555m4f933oc71al7gfj325ahe168lcd56esk35mmeqlh50dgsgmg80od"
+      },
+      {
+        "page": 37,
+        "score": -6.113789796537245,
+        "baseline": -5.642621774030051,
+        "decoded": "e7157j82m88dkbdnf6pas228no4lk2sfp66e8k5m48f4n74fe6ak35ebeeefqo9iqm2gr797p8ks686gqkbpn5je2s8i13b70r533o6pd5668a2es121qbo6sj5sllq55456231dcpbl80cf3s4b0bo06p6jse3chjan5mpnc1rmpmh53k93iqg89ln051eerbhcf9gmhmlcc3ohrhkq2ag8m5hqo257dgae"
+      },
+      {
+        "page": 38,
+        "score": -5.8884909407993495,
+        "baseline": -5.818766040042273,
+        "decoded": "nsjqdrkih3jahp8he7kdb39schd9lglk8gesfr1epsnnb666sdhb5mlhpclrsl1og4kjhbke05mp73qo70o9n2c6gs6dd38h2ir894hjieq64eop71rsfkchjii93mrshl2oda8bpqjka2g8fba6cna6mboq74qebnkmlnn5j4oan26kroisg970prpd7kl04a4chr0o9ep3l8j9gsj24imb10n44f4pgae3"
+      },
+      {
+        "page": 39,
+        "score": -6.217849654051831,
+        "baseline": -5.5907341816640015,
+        "decoded": "lnslm147rp38b4o0c9hrli4qhm8ai4ppq0pri8ar4hp674ij9sjb721b0brb2mkdh827id8g2m4516jd54b38j6nomglso2njago0j8f4fpsdp6chplaq7ro400nm48hoimir4me8bshnks84mpnargjf0p4553ma867aqhbdilaf56j1fl8e5h3fpsr3eiqdekipm1aoj19m4amqs629rmielbq00ceh3lgq6mhmmj8e6g1"
+      },
+      {
+        "page": 40,
+        "score": -6.156760754040503,
+        "baseline": -5.7234125066887644,
+        "decoded": "g2erk1omf49sqe2boprgn19imdc4m87kiinr41iefoj2qp3e08kmrls76a6hlr2op47ecl7o8s6f5803ac8n9crd4qog5s8hhs8b50i2hrdc403jomhlh8omf7caohmas3p4oj5blnqpbj89c3gookk3os12r8dqqgosa3ma2srnj9cidhedhdjcps5p3h6jon80fh14bkna01cflcm9q1b3hnqr3aempsp6cc8"
+      },
+      {
+        "page": 41,
+        "score": -5.950978166057205,
+        "baseline": -5.7657120429860775,
+        "decoded": "engfl78rhp93hih6h2fo7aakqq1dq31en8jdko78l6ma8gb2ll1sr6gh5m66255kcoi7cgcse2cjoj2q0ldbciisd2gac4qqrrqralgfkaghddd3jrh4njpj3a5bjpcggmmr7oqp7mi517mbrqorbnkomkh9qrecmbpceci583c17bscr12dkna7f2bgf64h56r6c5r97j2oha1na2ndh3beffpfcdphrgsmjcegkrs0pmi6n6f0oeloco8iceq68hndp6qgn56hssif1"
+      },
+      {
+        "page": 42,
+        "score": -5.9454702361659395,
+        "baseline": -5.991253112435521,
+        "decoded": "oaecboa8b69me6sm5or5p8c8nobjmcoofq899ho73p94pb97rgca6np5f2mb9rpkog54jifi7cm42ca34p8i2igd4okd18sd5of5k6eg1017i0mbnr03kqf694ifhhrbpad85bp0j6ak3kj6pd1jshgpqli4go80cerkrneh6fcl7qn888q0kq3fhal3s6ihqqkj6kfoc7josne7c8m1bkfe1nsn6peb3mhd24fg38f3edj1lraph8bfrg0pg7l18obenakqblmo257d"
+      },
+      {
+        "page": 43,
+        "score": -5.818998423321778,
+        "baseline": -6.15555217372797,
+        "decoded": "d61f2sp23hdhgq0fa4aqe84ciec45fspng33dmr1cbain9r83f12q1719bml04s967l3jl0qchrelqcnqnrqhh6o2n6rjggo3j1nbjdq55arbh7rmkr92egn4ksqca93fo9o0mj1japg2no02qgg6i438c6p81m0sbmlmjl5p9ark58kq97g1i76r9ch56jkmpnh050l1mogm9i58js82ighardpphrndjf496c67p47og4581dcicj6sk2sbnq35cqfc83pajqkamc476"
+      },
+      {
+        "page": 44,
+        "score": -5.679012293709435,
+        "baseline": -5.996506992160236,
+        "decoded": "da09rhphflrs6177hck1o08do0l7ed89bghom7pc23frn3qmmg5sklh9748olscpn1in7g362l3pc7f22mhj8rhgoak71crkc86b2shoh3qf48sb7090lp9qqpqrpmm9o16fsrib1qhhfnmqkeikc1jdfoaos0k0msdck257b6die11poqmiijfns6ag6ajcqkeqod9ikrfk6nf113diela2a1d99b41s7ldkif6i5ljh5kn46r6b1pndga4n9aosjp98adipi9llpbrp"
+      },
+      {
+        "page": 45,
+        "score": -5.623397126999547,
+        "baseline": -5.706170832072884,
+        "decoded": "p2s79odhom6jf5q99gpm6phel06bcbf59skn24o6h2ff4pcshhslmsmei6dm1p68a3s52gjln0c9sj07b1kj4p4psp5bqjribfea4h1eboi7qfnqoc3q9i7qi32os59insbaf38m1lprjsli5rhjq15a7q86blc3amckanflr83h943an5qkbks95a2da1qn8gldlsr2dlq5da284bs6eaie56b1108akkp5800k9g5ko5ll2j695k6ghjiod7fb0m5f45lbe50qm1"
+      },
+      {
+        "page": 46,
+        "score": -5.809561713583255,
+        "baseline": -5.593380030716821,
+        "decoded": "d80c738er8hfc4asmj0al0nni4q1ngkmkc26lkchm1ak6be87an5icj8iofl4q1sf2jao8fshfncalme04l89de2fn6gdc49q1nf1d3blp7m59ip964p554q7ap0e5n6gnfqj16k88ajh3iojpr3963cns666k64082nn4saqebsna8e83mc2hn60rh9l8s0cs7l95dkn7d29cirpbhdah6fppajse6or9q9gkk68loec972brribgfojm8e28maa213kaamf1ob97"
+      },
+      {
+        "page": 47,
+        "score": -5.716848239619131,
+        "baseline": -6.010840950508546,
+        "decoded": "03o0knrain2db0m9rnhprp9nomdbkkhib7ai027eibofcikmf8kgkhsbqp54hg6oa77rk6mpi7ik8kf72gq6qgloq1acaq5e4dgcl4as805klkr5piar0qcjfd9nia09i0g1m9bd1298p83k43imk645b10p174ks0obo8jk4h9d07rr0230bb5frimaf76idqrs9sh35on7gk55s08pei11nk19sr2cehcka3mb0b2j4fa1do5krdis0mbpm4lbd7b5iiggaj00a3r771"
+      },
+      {
+        "page": 48,
+        "score": -5.9227144933157,
+        "baseline": -5.841441062462807,
+        "decoded": "jr9scmir5lpqca4o204on42pseahjch3eg4qon7o67l27sar2imgmk7sbeoaaa3qhbp5gockd4m5mdgdqsp45jhqh66js72bbpc5baj678so6n9q820l1epbes0nsn6im0ebq4k1jrgpnplos20ic5mm61rdhcsdc3ida0rpecogd8ho3anm9sgq59i444ccj53c2h3omloa0rdhhdg3jdsg9l3l6475fg9dck6p3j019hkg0mo31aqqd8g1bir05dqn4o3p9ir3frc"
+      },
+      {
+        "page": 49,
+        "score": -5.683212752333695,
+        "baseline": -5.899380124800858,
+        "decoded": "e77mmn75l9d312sdmhdh15a31acppks08rkkhoj62fdcjsgfckl5sp2d6f8l98hfce"
+      },
+      {
+        "page": 50,
+        "score": null,
+        "baseline": null,
+        "decoded": ""
+      },
+      {
+        "page": 51,
+        "score": -6.057202220374252,
+        "baseline": -6.114140779319676,
+        "decoded": "1h1c213b0s51mdsimn6og02da64nne6mkj84s92c5lr1msjjlb73j4fik06gmhcmc5dsb42ckl5pccmho080ci51fhr0"
+      },
+      {
+        "page": 52,
+        "score": -5.635123396745401,
+        "baseline": -5.866265034028191,
+        "decoded": "c9nnhr0g0l20eskcba73h9e58ngf1ojd61ojgsjjehcjdh4k5pjcb35m2ifr1oclo242h5hn9lhriego2n8ras0iqd6f192a9o11m9rq2ion5qqb99s908i9em97a19jmg2ndei9hs9g4m6j198qk2a8lriblqob3qkasmiqa4omq2sf42d54hbp89qcnd26p8m7rg46l4o8pecdpdsmims25obon2dsmkoeaafjscph648laen0shdlqgp6h13lm9oh992"
+      },
+      {
+        "page": 53,
+        "score": -5.552271246520586,
+        "baseline": -5.79192961849502,
+        "decoded": "g9f2ok2d7jjig2o714sir3f326s78gl0bflr71f8fo7cb6gi6llo4dnq18s98kr2b9iobd4qm426f4s8pe5l7ihnkb35o29bchghfcomc22200o8hs6mak3gnnos61l3brdiijqq8e3hrlka1eq0idqeo90hmdn6b6ppo10gsc6no2635km"
+      },
+      {
+        "page": 54,
+        "score": -5.5302786400652195,
+        "baseline": -5.534093763601103,
+        "decoded": "ajjk0rkjiqkbo92d6i3fmfb4l71j87qifpdraq997h8noc5d0k9g3q4l2h84l3eoed83rnodhojrs4qq71oqj33a3be5sklf7in1iqdnrenj2pegl6ckghoaa103fhhs4sa4ak68j11flfp7od3c3shkn452k5oas7s5koqp33a71r52716hr7fdp6e5409afqlfbj0q92gsopicecksbjjdd53h5j50ersqnmoq"
+      },
+      {
+        "page": 55,
+        "score": -5.777686812154722,
+        "baseline": -5.813640011311793,
+        "decoded": "6mkkog3rn4fpq5ba293cieg3cq92n0af6n53pbp5pck52qegn8mjbn039q65jf8g2es722fqbei3"
+      }
+    ]
+  }
+}

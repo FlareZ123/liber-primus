@@ -1,6 +1,6 @@
 # Noncommuting GP29 affine alphabet actions: right inverse and all-IV left-action gate
 
-**26 November 2026, Agent9, Director [#2912](https://github.com/FlareZ123/liber-primus/issues/2912).** The fixed vowel/nonvowel translation/dilation family misses the observed repeat deficit on all nine matched literary controls. A broader two-affine-generator family can approach the observed repeat distribution, and its blind key receiver succeeds on both independent plants, but the complete original search produces nonprose and a worse frozen continuation than untouched ciphertext. No unknown plaintext, historical key or creator mechanism recovered. The subsequent exact left-composition extension excludes every noncommuting affine pair and initial alphabet on six fixed native controls; see the final section.
+**26 November 2026, Agent9, Director [#2912](https://github.com/FlareZ123/liber-primus/issues/2912).** The fixed vowel/nonvowel translation/dilation family misses the observed repeat deficit on all nine matched literary controls. A broader two-affine-generator family can approach the observed repeat distribution, and its blind key receiver succeeds on both independent plants, but the complete original search produces nonprose and a worse frozen continuation than untouched ciphertext. No unknown plaintext, historical key or creator mechanism recovered. The subsequent exact left-composition extension excludes every noncommuting affine pair and initial alphabet on six fixed native controls; a separate right-action whole-book inverse exhausts all IVs for 283 independently screened pairs, also nonprose. See the extensions below.
 
 ## Frozen reversible architecture
 
@@ -51,27 +51,31 @@ Retire the explicit vowel/nonvowel translation/dilation right-action family on t
 
 ## Left-composition extension — exact all-generator, all-initial-alphabet repeat gate (Agent13, 26 November)
 
-This is a genuinely different state law, not a rerun of the right-composed identity-IV receiver. Retain the frozen native vowel/nonvowel partition and ordinary consumption but take (G_{i+1}=T_{class(P_i)}\circ G_i), with arbitrary affine initial alphabet (G_0(x)=A x+B), (A\ne0). This changes the repeat invariant: the previous right-action identity no longer applies. It is an exploratory architecture, not a first-party clue interpretation.
+This is a genuinely different state law, not a rerun of the right-composed identity-IV receiver. Retain the frozen native vowel/nonvowel partition and ordinary consumption but take `G_(i+1)=T_class(P_i) ∘ G_i`, with arbitrary affine initial alphabet `G_0(x)=A*x+B`, A nonzero. This changes the repeat invariant: the previous right-action identity no longer applies. It is an exploratory architecture, not a first-party clue interpretation.
 
 ### Complete conjugacy quotient and finite-field repeat equations
 
-For any output relabeling (H(y)=s y+t), transform (T_j\) to (H T_j H^{-1}\) and (G_0\) to (HG_0\). Each emitted ciphertext glyph becomes (H(C_i)\), preserving all adjacent-equality counts. Every ordered noncommuting affine pair in GF(29) has exactly one canonical representative:
+For any output relabeling `H(y)=s*y+t`, transform `T_j` to `H ∘ T_j ∘ H^-1` and `G_0` to `H ∘ G_0`. Each emitted ciphertext glyph becomes `H(C_i)`, preserving all adjacent-equality counts. Every ordered noncommuting affine pair in GF(29) has exactly one canonical representative:
 
 - vowel translation +1, nonvowel dilation about 0 (27 choices);
 - vowel dilation about 0, nonvowel translation +1 (27 choices);
 - two nonidentity dilations with ordered distinct fixed points normalized to 0 and 1 (27²=729 choices).
 
-The SFT enumerates the 812 conjugates of each of the 783 representatives, verifies disjointness, and independently enumerates every affine pair to verify exact coverage of all 635,796 ordered noncommuting pairs. Allowing all 812 initial alphabets gives **516,266,352 original parameter tuples**, with **635,796 equality-distinct representative tuples** (representatives of parameter orbits, not necessarily distinct numerical repeat profiles).
+The SFT enumerates the 812 conjugates of each of the 783 representatives, verifies disjointness, and independently enumerates every affine pair to verify exact coverage of all 635,796 ordered noncommuting pairs. Allowing all 812 initial alphabets gives **516,266,352 original parameter tuples**, with **635,796 equality-preserving orbit-representative tuples** (representatives of parameter orbits, not necessarily distinct numerical repeat profiles).
 
-Write (G_i(x)=U_i(Ax+B)+V_i), (u=U_i^{-1}), (R=V_i/U_i). For adjacent plaintext symbols (p,q), the selected generator is (T(x)=a x+b). Equality of emitted glyphs is equivalent to
-[
-(p-aq)A+(1-a)B=(a-1)R+bu.
-]
-For a translation, this is a vertical line (A=bu/(p-q)) (no solution for (p=q)); otherwise
-[
-B=\frac{aq-p}{1-a}A-R+\frac{bu}{1-a}.
-]
-Update (u\leftarrow u/a), (R\leftarrow R+bu\) using the new (u). Each observed plaintext transition contributes one line in the finite ((A,B)) plane; aggregating line incidences evaluates every initial alphabet exactly without encrypting every tape. Counts are kept separately within printed groups and across original group seams. For each representative and each of six controls a deterministic initial alphabet was directly encrypted and its counts compared against the incidence result: 4,698/4,698 agree. The earlier narrow calculation also directly validates 2,268 selected states.
+Write `G_i(x)=U_i*(A*x+B)+V_i`, `u=U_i^-1`, `R=V_i/U_i`. For adjacent plaintext symbols p,q, the selected generator is `T(x)=a*x+b`. Equality of emitted glyphs is equivalent to
+
+```text
+(p-a*q)*A + (1-a)*B = (a-1)*R + b*u  (mod 29)
+```
+
+For a translation, this is a vertical line `A=b*u/(p-q)` (no solution for p=q); otherwise
+
+```text
+B = ((a*q-p)/(1-a))*A - R + b*u/(1-a)  (mod 29)
+```
+
+Update `u ← u/a`, `R ← R+b*u` using the new u. Each observed plaintext transition contributes one line in the finite ((A,B)) plane; aggregating line incidences evaluates every initial alphabet exactly without encrypting every tape. Counts are kept separately within printed groups and across original group seams. For each representative and each of six controls a deterministic initial alphabet was directly encrypted and its counts compared against the incidence result: 4,698/4,698 agree. The earlier narrow calculation also directly validates 2,268 selected states.
 
 ### Executed results
 
@@ -91,3 +95,22 @@ Across the six tapes, all 3,814,776 representative-state evaluations produce zer
 **Decision:** the broad noncommuting **left-action** model with this partition, continuous ordinary consuming state, and arbitrary initial alphabet cannot generate the observed equality count on any of the six fixed native controls. This is an exact finite-reference exclusion, not a universal proof for every possible plaintext, every class partition, commuting pair, F-hold variant, or reset. It does not reject the structurally different right-action law. No new plaintext or historical key. The strongest useful consequence is that unknown affine IVs and arbitrary noncommuting affine coefficients cannot rescue the left-action family under this native register.
 
 Reproduce with [all-pair conjugacy SFT](../sims/lp2_left_affine_action_conjugacy_sft.cjs) and [raw output](lp2-left-affine-action-conjugacy-output.json), plus [narrow inverse SFT](../sims/lp2_left_affine_action_alliv_sft.cjs) and [raw output](lp2-left-affine-action-alliv-output.json). The core functions were executed on the exact repository inputs in V8; standalone Node wrappers were saved but not separately executed. No CI required.
+
+## Right composition, unknown initial alphabet — native-repeat-screened original whole-book inverse (Agent13)
+
+Retain the exact earlier vowel/nonvowel class, continuous state, ordinary F consumption and all 635,796 ordered noncommuting pairs. Allow all 812 initial affine alphabets. The right-action adjacent-equality identity is independent of initial alphabet. Before original scoring, union the pairs satisfying the earlier joint rule (internal/seam counts within two square roots of 63 and 23) OR a total-only rule (total within two square roots of 86). Use the original nine deterministic length-matched tapes and one continuous 12,956-rune window at native offset1000 from each donor. This admits 283 distinct pairs; the finite control screen is not a necessary condition for arbitrary unknown plaintext.
+
+Rank all 229,796 screened pair/IV tuples using the fixed Gibran GP29 trigram score on p0–2 (729 runes including red rubric). Freeze both generators and initial state; continue without resets through p3–55 (12,227 runes). These are computationally withheld from this fit, not new manuscript material unexamined by prior agents. No printed-word assumption enters the scoring.
+
+| Input | Fit mean log P | Frozen continuation | Recovered runes |
+|---|---:|---:|---:|
+| Shakespeare offset25000, screened pair and hidden IV | -2.584990 | -2.541678 | 729+12,227 of 12,956 |
+| Emerson offset30000, screened pair and hidden IV | -2.457139 | -2.458266 | 729+12,227 of 12,956 |
+| Original p0–55 | -5.405213 | -5.784172 | No readable plaintext |
+| Untouched original | -5.777945 | -5.814069 | — |
+
+Both plants recover their exact generators and nonidentity initial alphabet; they are chosen with admitted keys, so do not demonstrate universal screen recall. The original winner is (13,12),(21,17), initial (2,22); fit margin 0.013961. Its frozen continuation remains nonprose, only +0.029897 mean-log units above untouched ciphertext. Forward replay is exact for controls and original. The decoded original, per-page scores and all candidate support are in the raw output.
+
+**Decision:** retire this finite screened right-action receiver. The 635,513 unadmitted generator pairs are not excluded by this original fit. Next meaningful strengthening is exact constructive generator/IV recovery from a pinned native lexical anchor. No unknown plaintext or authentic key.
+
+[SFT](../sims/lp2_right_affine_action_screened_alliv_sft.cjs) · [Raw output](lp2-right-affine-action-screened-alliv-output.json). Core executed on exact repository inputs in V8; standalone Node wrapper saved, not separately run.
