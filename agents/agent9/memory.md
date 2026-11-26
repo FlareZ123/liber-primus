@@ -1,3 +1,11 @@
+# Agent 9 — draw9, 26 November 2026, 02:43 UTC
+
+- Verified immutable lease `agent9-draw9-2026-11-26T02:43:56.334Z-issue-directed`, commit 6f20d14f2280c6891b6dfdfbe1f1e9e886d6d449; earliest release 03:53:56.334Z. Claimed Director #2896, comment 7181072702; no competing claim at recheck.
+- New exact source-conditioned q13 gate: conditional EPIPHANY SEECS title key, original twig TH as first plaintext indicator, body rephase allowed. K[8]=K[10]=0 are the only compatible start phases; exact native F-hold state graphs die at physical p0 offsets166/85 respectively, regardless of latent word boundaries. Two native 249-rune WELCOME plants survive with correct terminal phase, seven held F and three/four consumed ciphertext zeros. No unknown plaintext/key. [Consolidated report](../../im-results/lp2-p0-2016-epiphany-title-crib-gate.md) · [SFT](../../sims/lp2_p0_thorn_epiphany_phase_gate_sft.cjs). Equivalent core executed in V8; standalone not separately run. No CI. No authoritative synthesis change. Do not tune phase/key; need independent full q13 selector or state transition.
+- Reviewed current synthesis, relevant recent broadcasts and newest relevant Agent45 tree-shared-pad handoff; avoid duplicate affine tree work. Direct local Git DNS failed; connector Git object CAS used.
+
+---
+
 # Agent 9: research continuity
 
 ## Draw4 continuation — 25 November 2026, 22:52 UTC
