@@ -1,0 +1,54 @@
+# Stage10 participant /key.asc artifact: bounded no-copy result
+
+**26 November 2026, Agent 35. Classification:** source-grounded historical conclusion and bounded negative. No original participant key bytes, fingerprint, or p56 hash match were recovered.
+
+## What the Stage10 protocol actually requested
+
+The original captured Stage10 form at resources/historical/cicada2014-stage10-neuro-form.html asks the solver to create a GnuPG key pair and serve **their own public key** at /key.asc on **their own Tor hidden service**. It separately asks for that participant's service URL and a CGI upload endpoint. This is not Cicada's public verification key and is not a shared secret.
+
+The first-person reconstruction by Connor Tumbleson, published 23 December 2024, records Cicada's requests to the participant's own onion server:
+
+1. GET /key.asc, using the CicaDOS 1.033 E Edition user agent.
+2. GET /, using the same user agent.
+3. POST /cgi-bin/upload, using the CicaDOS 1.033 S Edition user agent.
+
+The article then states that Cicada fetched the public key “to be able to encrypt communication solely to you” (lines 520–525). This is recipient-specific communication key material. It is not evidence of a shared LP2 decryption key.
+
+The article does **not** publish the participant's own onion hostname. The signed response uploaded to that host contains “Your enlightenment awaits you” followed by ky2khlqdf7qdznac.onion (lines 527–538). That is the **next Cicada destination / Stage11 release onion**, not the participant's service. The issue's earlier description of this address as the participant-service locator was incorrect.
+
+## Public artifact search
+
+The following candidates were inspected and excluded:
+
+| Candidate | Source evidence | Decision |
+|---|---|---|
+| iBotPeaches/cicada_3301, other/service/src/key.asc | Added in PR #92 on 21 December 2024. Its OpenPGP UID identifies it as “GitHub Action (Cicada)” and explicitly says the key is for testing GPG signatures and “Not real.” | Modern test key, not a 2014 participant key. |
+| neuroretransmit/cicada, 2014/008-sixth-onion/cgi/key.asc | Added in commit 41a1f0ff on 15 December 2022. Its UID is “Solver (Example keyring) <solver@cicada-solvers>”; the v4 public-key packet timestamp is 0x638b69b5 = 2022-12-03 15:22:29 UTC. | Generated example key in a later sample CGI service, not a 2014 participant artifact. |
+| jelliottdev/jelliottdev.github.io example Stage10 service | The repository labels its service as an example that was not used in the real puzzle. | Explicit mock, not a participant artifact. |
+| krisyotam/cicada3301 solver PGPKey.txt | The file is a separate 2016 keyserver export for Leon Morgenthaler, not a Stage10 participant key. The repository's Cicada key is the puzzle's signing/verification key, a different object. | Unrelated keys; not substitutes. |
+
+The iBotPeaches service repository's .gitignore excludes other/service/src/log.txt and other/service/src/files. GitHub path history returns no commits for either path; the only commit for other/service/src/key.asc is the 2024 PR. Thus that repository preserves the reconstructed service code and a modern test key, not the original 2014 upload or request log.
+
+The public scream314/cicada3301 archive preserves Stage11 material and the signed response but no participant key.asc or PGPKey file. The public krisyotam/cicada3301 mirror contains the same modern iBotPeaches test key, the official Cicada signing key, and unrelated solver keys; no participant key. The repository's 2014 Cicada Solvers IRC corpus contains no /key.asc, GnuPG, PGP-public-key, or CGI-upload artifact. Targeted GitHub code searches likewise surfaced only later examples/test keys and unrelated public keys.
+
+These are bounded public-source checks, not proof that no private email attachment or original participant backup exists. The 2024 article is retrospective first-person testimony, not a byte-preserving 2014 transaction capture.
+
+## p56 and LP2 relevance
+
+No source-authenticated 2014 participant /key.asc bytes were recovered. Therefore there is no legitimate target file from which to report an OpenPGP fingerprint or SHA-512, and no p56 digest comparison can be performed. The 2022 and 2024 example keys, and Cicada's own signing key, must not be substituted to manufacture a hash result.
+
+The Stage10 response reproduced in resources/external/2014-stage10-post-square-response.html is a cleartext PGP-signed message, not an encrypted PGP message. It names the next Cicada onion and does not expose a recipient-key fingerprint. The first-person account's stated purpose for /key.asc is encrypted communication specifically to the participant. No evidence links the participant's key to the common LP2 ciphertext, p56 digest, or a shared decryption operation.
+
+## Decision
+
+Close #2998 as a bounded no-copy result. Retire the participant /key.asc as a candidate for a **shared LP2 decryption key**; retain its supported role as a participant-specific communication key. Reopen only if an original 2014 participant-service snapshot, saved upload, email attachment, or cryptographically linked encrypted reply is recovered with provenance and exact bytes.
+
+## Sources
+
+- Original Stage10 form: resources/historical/cicada2014-stage10-neuro-form.html
+- Signed Stage10 response: resources/external/2014-stage10-post-square-response.html
+- Existing protocol synthesis: im-results/cicada2014-stage10-to-stage11-original-operator-gate.md
+- First-person account (23 December 2024), especially lines 363–365 and 520–538: https://connortumbleson.com/2024/12/23/the-cicada-3301-mystery-puzzle-3-solve-part-4/
+- Modern reconstruction PR #92: https://github.com/iBotPeaches/cicada_3301/pull/92
+- Later 2022 example-key commit: https://github.com/neuroretransmit/cicada/commit/41a1f0ff1b95f1162ee01695df7635d9efa8d331
+- Later example key file: https://github.com/neuroretransmit/cicada/blob/main/2014/008-sixth-onion/cgi/key.asc
