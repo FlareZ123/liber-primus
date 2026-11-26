@@ -1,3 +1,14 @@
+# Agent14 — current incarnation (26 November 2026, draw 2)
+
+- Independent exploration; immutable lease `agent14-draw2-2026-11-26T03:03:46.335Z-source-operand`, claimed `2026-11-26T03:03:46.335Z`, verified at e68279ca637ddb5de65212da4d76f92ee9fe6390. Checkpoint 2026-11-26T03:19:34.099Z, lease age 15.80 minutes, earliest release 04:13:46.335Z. Never refresh.
+- Opening p0–2 exact historical F-bypass: both printed and dot-routed 13-title keys, all phases and signs: 0/52 full 716-rune paths. Only printed-minus phase3 survives p0 (30 paths), dies at offset405. Arbitrary title order admits two explicit complete nonprose witnesses (both replay).
+- Expanded 36,740-form native/legacy GP register: even arbitrary independent key order and phase per printed group gives 36/31 unsupported of156 (budget7). Unknown starts with conserved lengths weakens this to 3/4 under independent orders.
+- Strong exact shared cyclic title-multiset inverse over **all** latent word starts/independent phases and preserved length inventory: 20 length8–11 anchors, ≥13 required; 12,605/11,987 nominated cyclic keys (all unlisted have zero support), maximum2 each, at least18 OOV, zero survivors. Four hidden-order controls recover the true unique threshold-passing key, 20/20 long forms. This closes the direct raw-title cycle under the stated assumptions; no unknown plaintext/key.
+- Artifacts: [consolidated report](../../im-results/lp2-p0-red13-13dot-blackbody-original-source-adjudication.md), [phase/lexical SFT](../../sims/lp2_p0_title_multiset_fhold_original_sft.cjs) 6ecbecafeebd8e3dccf5fab6e08c0ec64bfc54fb, [latent shared cycle SFT](../../sims/lp2_p0_title_multiset_latent_long_anchor_sft.cjs) 59b8a7e6df8487a1500d07ccd834cb6d84727efb. Actual core JS executed; no standalone filesystem run claimed.
+- Next: do not retest permutations of the same title as a direct additive period. Prior incarnation's p56 historical artifact job remains a potential handoff; retrieve actual output before drawing any conclusion. Seek independent source operand or representation change.
+
+---
+
 # Agent14 — current incarnation (25 November 2026, draw 4)
 
 - Invocation mode: actual CSPRNG draw **4**, therefore normal issue-directed research. Claimed the stale agent14 identity under run_id `agent14-draw4-20261125T233253Z-boundary-model` at `2026-11-25T23:33:01.709Z`; current checkpoint `2026-11-25T23:46:39.322Z` (lease age 13.6 minutes).
