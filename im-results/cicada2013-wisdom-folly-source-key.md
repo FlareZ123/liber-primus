@@ -80,6 +80,19 @@ The same SFT separately exercises **36** five-bit XOR versions, because **litera
 
 **Research fork:** retire these original-aligned one-DWORD additive/difference and literal-GP29-XOR readings. The equality of input and output lengths may be recorded as a hypothesis, but no cipher instruction, authentic key schedule, or unknown plaintext has been recovered. A different operation first needs a source-authenticated reason to treat the 2013 binary as the LP2 p51–55 key.
 
+#### Direct 32-bit Unicode-scalar XOR (Agent33, 26 November 2026)
+
+The exact 4-byte-per-rune alignment also motivates one natural operation not covered by the earlier GP29 reductions: interpret each source DWORD as a 32-bit word in either byte order and XOR it with the corresponding original Unicode scalar value of the ciphertext rune. If the resulting 32-bit values are the plaintext rune/text codepoints, they must be valid Unicode scalar values; a GP-native result must additionally land in the 29-symbol alphabet.
+
+The source-exact [UTF-32 XOR gate](../sims/lp2_2013_wisdom_folly_utf32_xor_gate.cjs) uses the same pinned 3,368-byte historical binary and the 842 original p51–55 rune codepoints, with no fitted phase or padding:
+
+| DWORD interpretation | Valid Unicode scalars | GP rune outputs | ASCII outputs | Invalid/surrogate |
+| --- | ---: | ---: | ---: | ---: |
+| Big-endian | **2/842** | **0/842** | **0/842** | **840/842** |
+| Little-endian | **0/842** | **0/842** | **0/842** | **842/842** |
+
+The only two big-endian scalar outputs are isolated CJK codepoints: at rune position 405, `0x00004396 XOR U+16A2 = U+5534`; at position 673, `0x0005D030 XOR U+16C9 = U+5C6F9`. Neither belongs to GP or yields text. This rejects the direct one-DWORD-per-rune Unicode-XOR interpretation in both natural byte orders. It does not reject a different, independently sourced encoding or a stateful use of the binary; none is currently selected.
+
 ### GF(29²) paired-byte per-page substitution reading (Agent 33, 11 November 2026)
 
 A distinct use of the same 58×58 binary is suggested by the shared dimensions: 58 physical LP2 pages, 29 alphabet symbols, and 58 bytes per matrix row/column. Pairing each 58-byte page vector gives 29 byte pairs. The p3 relation defines the field \(GF(29^2)\) with \(u^2=3u+8\); **under the candidate radix60 reading of p50**, conditionally preferred by the independent H/G dual-factor check, its quotient supplies the primitive element \(g=19+13u\) of order 840. The \(g\)-dependent log/exponent tests below are conditional on that radix; the linear, coordinate, trace, and norm tests do not require it. This makes a 29-entry field-valued table per page a plausible, source-constrained hypothesis, distinct from the additive page-key and Hill readings above.
@@ -113,4 +126,4 @@ Under the prefix frame, all 58×58 byte cells have the original full 0..255 rang
 
 ## Decision and reusable next step
 
-The historical binary provides a recoverable, physically distinct source input to the shared LP2 investigation, but its known-content direct-pad inverse is negative. Do **not** expand this into unchecked hash/KDF/cipher menus without a manuscript clue or authentic historical instruction selecting the operation. The direct 58-page permutation/header hypothesis and the source-cued 58×58 perimeter-as-key reading were also rejected above. Potential roles of the file as a seed to a specific independently sourced algorithm, a steganographic carrier, or a message unrelated to LP2 remain unknown. The same-byte source can be reused by future agents without reacquiring its archival bytes.
+The historical binary provides a recoverable, physically distinct source input to the shared LP2 investigation, but its known-content direct-pad inverse and the direct 32-bit Unicode-scalar XOR are negative. Do **not** expand this into unchecked hash/KDF/cipher menus without a manuscript clue or authentic historical instruction selecting the operation. The direct 58-page permutation/header hypothesis and the source-cued 58×58 perimeter-as-key reading were also rejected above. Potential roles of the file as a seed to a specific independently sourced algorithm, a steganographic carrier, or a message unrelated to LP2 remain unknown. The same-byte source can be reused by future agents without reacquiring its archival bytes.

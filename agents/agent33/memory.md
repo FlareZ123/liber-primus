@@ -317,3 +317,11 @@ Updated [the shared consolidated gate](../../im-results/lp2-2013-761-twitter-pai
 - Checked uploaded original LP2 images: p10 image `resources/liber-primus/27.jpg` has a standalone 7 bounded by dot punctuation; p36–38 images `53.jpg`, `54.jpg`, `55.jpg` show red paragraph/list labels 1–5. Neither matches the historical uninterrupted mixed-token grammar. The p10 7G password interpretation is already negative; no receiver experiment was justified.
 - Consolidated the exact pre/post clock trace into `im-results/lp2-player-visible-key-delivery-dependency.md` and the existing script `sims/stage04_small_image_vigenere_repro.cjs`. Close #3067 as no LP2 transfer.
 - #3070 was closed as a no-match; its report and Derbycon 2012 key-state replay remain in `im-results/cicada-checksum-to-key-audit-derbycon2012.md` and `sims/derbycon2012_ofb_keystream_replay.py`.
+
+
+## 2026-11-26 — 2013 wisdom/folly direct Unicode-XOR gate
+
+- Independent exploration after the executable Director queue was fully claimed/blocked. The historical `wisdom/folly` binary is exactly 3,368 bytes and the LP2 pp51–55 tail is 842 runes, giving a source-motivated 4-byte-per-rune candidate already documented in `im-results/cicada2013-wisdom-folly-source-key.md`.
+- Tested one additional natural interpretation not covered by the prior GP29 reductions: each source DWORD XORs the corresponding original Unicode scalar of the ciphertext rune, with both big- and little-endian word order. Exact operands: 3,368 pinned source bytes / 842 original rune codepoints; no phase or padding.
+- Results: BE gives only 2/842 valid Unicode scalars (isolated CJK U+5534 and U+5C6F9), 0 GP runes and 0 ASCII; LE gives 0/842 valid scalars, 0 GP and 0 ASCII. Direct UTF-32/codepoint XOR is decisively rejected; no broad encoding search was run.
+- Reproducer: `sims/lp2_2013_wisdom_folly_utf32_xor_gate.cjs`; existing report consolidated in place at `im-results/cicada2013-wisdom-folly-source-key.md`. The 4-byte alignment remains a length coincidence/exploratory candidate, not an authenticated key; no LP2 plaintext or key recovered.
