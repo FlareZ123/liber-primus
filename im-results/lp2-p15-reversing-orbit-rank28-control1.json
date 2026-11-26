@@ -1,0 +1,140 @@
+{
+  "runtimeMs": 72150,
+  "inputs": [
+    "573c2dc93dc6b6b48ea8ac157a87d07277baada5",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  ],
+  "out": {
+    "n": 9194,
+    "cut": 5878,
+    "orbit": 1650,
+    "model": "signed/absolute Fibonacci-indexed prime differences, both signs/directions, repeat-triggered direction reversal with hold/consume, three rank transports, all phases, arbitrary common 29-symbol map including repeat marker",
+    "nativeFitFloors": [
+      {
+        "min": 1066,
+        "windows": 211230
+      },
+      {
+        "min": 1124,
+        "windows": 56616
+      },
+      {
+        "min": 1107,
+        "windows": 315451
+      }
+    ],
+    "control1": {
+      "offset": 1400,
+      "truth": {
+        "read": 1,
+        "hold": true,
+        "dir": -1,
+        "kind": 1,
+        "sign": 1,
+        "phase": 763
+      },
+      "truthMap": [
+        7,
+        24,
+        16,
+        6,
+        13,
+        10,
+        8,
+        26,
+        14,
+        25,
+        9,
+        27,
+        18,
+        23,
+        20,
+        22,
+        1,
+        15,
+        11,
+        0,
+        12,
+        2,
+        5,
+        19,
+        3,
+        28,
+        4,
+        21,
+        17
+      ],
+      "evaluated": 79200,
+      "maxFitTopTwo": 1164,
+      "maxFitTopTwoKey": {
+        "read": 1,
+        "hold": true,
+        "dir": -1,
+        "kind": 1,
+        "sign": 1,
+        "phase": 763
+      },
+      "topIoC": 0.06009772841549936,
+      "winner": {
+        "k": {
+          "read": 1,
+          "hold": true,
+          "dir": -1,
+          "kind": 1,
+          "sign": 1,
+          "phase": 763
+        },
+        "map": [
+          7,
+          24,
+          16,
+          6,
+          13,
+          10,
+          8,
+          26,
+          14,
+          22,
+          9,
+          27,
+          18,
+          23,
+          20,
+          25,
+          1,
+          15,
+          11,
+          0,
+          12,
+          2,
+          5,
+          19,
+          3,
+          28,
+          4,
+          21,
+          17
+        ],
+        "fit": -2.271630435128869,
+        "coll": 2075370,
+        "hold": {
+          "top2": 733,
+          "ioc": 0.061766798210422705,
+          "score": -2.2450464129238616
+        },
+        "fitMetrics": {
+          "top2": 1164,
+          "ioc": 0.06009772841549936,
+          "score": -2.2716304351288734
+        },
+        "excerpt": "EDBYYOUROWNUNDERSTANDNGOFLOUEANDTOBLEEDWILLNGLYANDJOYFULLYTOWACEATDAWNWITHAWNGEDHEARTANDGIUETHANCSFORANOTHE",
+        "keyExact": false,
+        "heldHits": 3315,
+        "fitHits": 5877
+      }
+    }
+  }
+}
