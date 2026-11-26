@@ -1,0 +1,122 @@
+{
+  "which": "original",
+  "from": 64,
+  "to": 72,
+  "fitGroups": 47,
+  "holdGroups": 17,
+  "anchorOffsets": [
+    12657,
+    12718,
+    12734,
+    12807,
+    12824
+  ],
+  "results": [
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 0,
+      "prefixes": 105706,
+      "checks": 33252808,
+      "hits": 21365,
+      "distinct": 21365,
+      "anchorPass": 21365,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 1,
+      "prefixes": 98967,
+      "checks": 28036887,
+      "hits": 12273,
+      "distinct": 12273,
+      "anchorPass": 12273,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 2,
+      "prefixes": 123739,
+      "checks": 42764049,
+      "hits": 44399,
+      "distinct": 44399,
+      "anchorPass": 44399,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 3,
+      "prefixes": 96040,
+      "checks": 27755929,
+      "hits": 21960,
+      "distinct": 21960,
+      "anchorPass": 21960,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 4,
+      "prefixes": 120693,
+      "checks": 41092586,
+      "hits": 21495,
+      "distinct": 21495,
+      "anchorPass": 21495,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 5,
+      "prefixes": 100696,
+      "checks": 32003301,
+      "hits": 31919,
+      "distinct": 31919,
+      "anchorPass": 31919,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 6,
+      "prefixes": 96532,
+      "checks": 29636816,
+      "hits": 17118,
+      "distinct": 17118,
+      "anchorPass": 17118,
+      "survivors": []
+    },
+    {
+      "pair": [
+        2,
+        4
+      ],
+      "shift": 7,
+      "prefixes": 101031,
+      "checks": 22958224,
+      "hits": 6620,
+      "distinct": 6620,
+      "anchorPass": 6620,
+      "survivors": []
+    }
+  ],
+  "evaluated": [],
+  "control": null
+}
