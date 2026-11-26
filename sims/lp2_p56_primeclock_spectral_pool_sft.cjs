@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),path=require('node:path');
-function study(data, restarts=48, iterations=42, continuous=false){
+function study(data, restarts=48, iterations=42, continuous=false, originJob=null){
  const [rawC,rawN,lp1,emerson,shakespeare,gibran]=data,c=JSON.parse(rawC),native=JSON.parse(rawN),Q=29,id=Array.from({length:Q},(_,i)=>i),m=x=>(x%Q+Q)%Q;
  const assert=(x,s)=>{if(!x)throw Error(s)},idx=new Map(c.runes.map((r,i)=>[r,i])),extract=s=>[...s].filter(r=>idx.has(r)).map(r=>idx.get(r));
  const R=['F','U','TH','O','R','C','G','W','H','N','I','J','EO','P','X','S','T','B','E','M','L','NG','OE','D','A','AE','Y','IA','EA'],ri=new Map(R.map((r,i)=>[r,i]));
@@ -210,6 +210,20 @@ function study(data, restarts=48, iterations=42, continuous=false){
    const tape=c.pages.slice(0,56).flatMap(p=>p.indices),rows=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1]));
    const original=gate?curriculum(rows,K,continuous?0x44f605:0x44f155):null;
    return {model:continuous?'authentic p56 prime-minus-one continuous clock across the first four illustrated chapters (p0–22), no chapter resets; 4129 fit / 1377 frozen continuation, independent alphabets, two fresh controls':'authentic p56 prime-minus-one consuming-index clock, zero reset per illustrated chapter; pooled spectral known-schedule receiver retaining all legal prefix Viterbi end states, keys frozen; gate requires >=90% fit and frozen suffix on two fresh plants',controls,gate,original}
+ }
+ if(originJob){
+   const starts=[0,729,1874,3603,5506,6527,7960,9640,12648,12956],o=originJob.origin,primes=[];
+   for(let i=2;primes.length<o+3008;i++)if(primes.every(p=>p*p>i||i%p!==0))primes.push(i);
+   const K=primes.slice(o).map(p=>(p-1)%Q),tape=c.pages.slice(0,56).flatMap(p=>p.indices);
+   let C=starts.slice(0,-1).map((x,i)=>tape.slice(x,starts[i+1])),truth=null,A=null,B=null;
+   if(originJob.control!==undefined){const j=originJob.control,settings=[[0,5000,137],[0,110000,911],[1,1000,1703],[1,35000,3200]],sources=[gp(shakespeare),gp(gibran)],[kind,offset,trueOrigin]=settings[j];
+     assert(o===trueOrigin,'selected control origin differs from true origin');const src=sources[kind].slice(offset,offset+starts.at(-1));assert(src.length===starts.at(-1),'control scope length');
+     let z=(0x22112650+j)>>>0;const rnd=()=>{z^=z<<13;z^=z>>>17;z^=z<<5;return z>>>0};
+     function priorPerm(fix0){const a=id.slice();for(let i=28;i>(fix0?1:0);i--){const k=(fix0?1:0)+rnd()%(i+(fix0?0:1));[a[i],a[k]]=[a[k],a[i]]}return a}
+     A=priorPerm(true);B=priorPerm(false);truth=starts.slice(0,-1).map((x,i)=>src.slice(x,starts[i+1]));C=truth.map(P=>encrypt(P,K,A,B));
+   }
+   const result=curriculum(C,K,originJob.seed??0x44f777,truth,A,B);
+   return {model:'Shared nonzero chapter reset; origin selected by independent cross-fold prefilter, fixed before alphabet fitting; frozen 25% continuation per chapter',origin:o,control:originJob.control??null,result};
  }
  return multi();
 
