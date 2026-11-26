@@ -39,9 +39,10 @@ async function get(url, expectedBytes, expectedSha256) {
 }
 function clearsignedBody(text) {
   const marker = "-----BEGIN PGP SIGNED MESSAGE-----";
-  assert.ok(text.startsWith(marker));
-  const after = text.slice(marker.length);
-  const headerBreak = after.match(/\\r?\\n\\r?\\n/);
+  const markerAt = text.indexOf(marker);
+  assert.ok(markerAt >= 0, "PGP clearsigned marker missing");
+  const after = text.slice(markerAt + marker.length);
+  const headerBreak = after.match(/\r?\n\r?\n/);
   assert.ok(headerBreak, "PGP cleartext header separator missing");
   const body = after.slice(headerBreak.index + headerBreak[0].length);
   const signatureAt = body.indexOf("-----BEGIN PGP SIGNATURE-----");
