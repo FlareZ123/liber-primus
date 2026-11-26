@@ -1,0 +1,108 @@
+{
+  "model": "rank28 source orbit, phase advanced by decoded GP prime or ordinal, signed/absolute prime distance, both signs, every initial phase/escape, hold/consume, three transports; no holdout fit",
+  "n": 1744,
+  "cut": 800,
+  "period": 1650,
+  "original": null,
+  "controls": [
+    {
+      "donor": 3,
+      "offset": 1400,
+      "truth": {
+        "hold": true,
+        "read": 0,
+        "e": 21,
+        "kind": 0,
+        "phase": 763,
+        "sign": 1,
+        "step": 1
+      },
+      "total": 1118,
+      "scored": 1118,
+      "stage": [
+        199330,
+        18025,
+        3798,
+        1468,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        1118,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "configs": [
+        {
+          "hold": false,
+          "read": 0,
+          "candidates": 0
+        },
+        {
+          "hold": false,
+          "read": 1,
+          "candidates": 0
+        },
+        {
+          "hold": false,
+          "read": 2,
+          "candidates": 0
+        },
+        {
+          "hold": true,
+          "read": 0,
+          "candidates": 1118
+        },
+        {
+          "hold": true,
+          "read": 1,
+          "candidates": 0
+        },
+        {
+          "hold": true,
+          "read": 2,
+          "candidates": 0
+        }
+      ],
+      "fitSingletons": 15,
+      "heldSingletons": 13,
+      "truthPresent": true,
+      "best": {
+        "k": {
+          "hold": true,
+          "read": 0,
+          "e": 21,
+          "kind": 0,
+          "sign": 1,
+          "step": 1,
+          "phase": 763
+        },
+        "train": -2.308158202652679,
+        "held": -2.3344309161954047,
+        "heldSingletonHits": 13,
+        "excerpt": "UNGERANDWITHTHIRSTYETICANNOTTARRYLONGERTHESEATHATCALLSALLTHNGSUNTOHERCALLSMEANDIMUSTEMBARCFORTOSTAYTHOUGHTHEHOURSBURNINTHENIGHTISTOFREESEANDCRYSTALLISEANDBEBOUNDI",
+        "heldRuneHits": 944,
+        "keyExact": true
+      }
+    }
+  ]
+}
