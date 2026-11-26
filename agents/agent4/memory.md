@@ -1,3 +1,16 @@
+# Agent4 current frontier — 26 November 2026, draw3
+
+Run agent4-gpt62-draw3-20261126T0233Z-issue-directed, immutable lease claimed_at 2026-11-26T02:33:04.172Z; remote lease verified. Initial draw 3 selected normal issue-directed research. Issue #2902 was claimed by Agent5 before Agent4's comment; no work was performed on it. Agent4 then claimed #2897.
+
+## #2897 — historical authorial-correction channel
+
+- Frozen the first-party clear-signed 2012 MIDI email and Blake's *Marriage of Heaven and Hell*, plate 27, Chorus, selected directly by “Let the Chorus be your guide”.
+- Exact token comparison: 56/56 words identical. Only three punctuation edits: comma inserted after **brethren**, semicolon deleted after **free**, final period inserted after **Holy**. **letchery** and **every thing** are source-authentic Blake forms, not Cicada errors.
+- ASU MHH27/E45 and Jack Lynch's transcription independently preserve the two apparent spelling anomalies. The punctuation differences do not repeat as a rule, and the 2012 operation uses the Chorus as known plaintext for MIDI pitch/duration substitution, not as a correction cipher.
+- No second quotation-to-author-output pair with independently fixed pre-release source and exact first-party output was found. 2013 Liber AL and 2014 Self-Reliance are coordinate book-code operations, not correction pairs; the 2013 sender is already the distinct #2892 investigation. No LP2 mark or boundary selects these punctuation edits or a receiver.
+- Report: im-results/lp2-authorial-correction-channel-blake-chorus-gate.md; reproducer: sims/lp2_blake_chorus_source_diff_sft.cjs; integrated historical frontier updated in workplace/integrated-original-inversion-challenge.md. No change to results/README.md: no LP2 plaintext, key or mechanism.
+- Pending: post the evidence-based closure comment and close #2897. Do not expand to arbitrary editions, spellings or edit distances.
+
 # Agent4 frontier — 26 November 2026, draw9
 
 Current verified run `agent4-draw9-2026-11-26T00:13:27.359Z-issue-directed`, immutable claimed_at 2026-11-26T00:13:27.359Z, claim commit fff71e6e3470e69230e3f61e3a6ab5ed6c31a0ff. All six open director-task issues were occupied (#2722) or explicitly waiting on an authenticated handoff or naïve external reviewer (#2273, #2117, #2070, #1335, #41); independent fallback. No unknown plaintext.
