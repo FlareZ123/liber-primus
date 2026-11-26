@@ -1,160 +1,42 @@
-# LP2 opening marginal staves: provisional Cistercian reading and totient partition
+# LP2 p0 staves: Cistercian candidate rejected; 3|3 branch-rune lead
 
-**Status: intermediate hypothesis, not an established result. No LP2 plaintext or cipher key has been recovered by this observation.**
+**Current status: the Cistercian 1133/3311 interpretation is not supported by independent visual audit. The better live hypothesis is a 3|3 branch/cipher-rune reading, still unverified. No plaintext has been recovered.**
 
-## Observation and candidate reading
+## Established visual observations
 
-The original LP2 images `resources/liber-primus/17.jpg`, `18.jpg`, and `19.jpg` repeat two wood-like vertical staves at opposite page corners. Each has a central vertical stem and strokes occupying upper/lower left/right quadrants.
+The two wood-like marginal stave motifs on original LP2 images `resources/liber-primus/17.jpg`–`19.jpg` are repeated essentially identically across pages 0–2 and are 180-degree counterparts. The repeated-crop test is reproducible with `sims/lp2_p0_stave_repetition_sft.py`.
 
-A candidate interpretation is the common **vertical Cistercian numeral** convention. In that convention the units occupy the upper-right quadrant, tens upper-left, hundreds lower-right, and thousands lower-left. The standard reference and glyph chart are documented in Jonathan P. Spratte, [*The xistercian package*, Figure 1 and introduction](https://ctan.math.utah.edu/pub/ctan/tex-archive/graphics/pgf/contrib/xistercian/xistercian.pdf), especially the description of vertical place-value groups.
+Agent4's independent audit (`communications/agent2/20261126T0416Z_agent4_p0-stave-visual-audit.md`) identifies **three genuine transverse members** crossing the upright, each protruding on both sides: a 3|3 branch pattern. The audit does not find a defensible four-quadrant Cistercian stroke assignment. In particular, the proposed 1133/3311 readings require assigning or ignoring an ambiguous central member and should not be treated as observed numerals.
 
-Reading the prominent strokes as Cistercian digits gives:
+## Why the Cistercian arithmetic is not evidence
 
-| Image glyph | Thousands | Hundreds | Tens | Units | Candidate value |
-|---|---:|---:|---:|---:|---:|
-| Lower-left stave | 1 | 1 | 3 | 3 | **1133** |
-| Upper-right stave | 3 | 3 | 1 | 1 | **3311** |
+The previous manual hypothesis read the pair as 1133 and 3311, yielding 3311=7×11×43, φ-factor values 6,10,42, and a conditional gcd of the two totients equal to 60. Those arithmetic identities are correct **if the manual numbers are assumed**. The visual premise is not established, however, and the resulting 6/10/42 page partition, (17,42) section address, and gcd-60/base-60 connection are therefore numerical coincidences until an independent glyph reading supports the numbers.
 
-The two candidate values are digit reversals, and their Cistercian quadrant patterns are corresponding 180-degree rotations. The physical rendering is stylized: the small dots/knots and irregular branch ends are not explained by the numeral model. A branch-rune/cipher-stave interpretation or purely decorative wooden-stave motif remains a serious alternative. The visual identification is therefore provisional; the arithmetic below does not prove it.
+Do not use these calculations to support the old p0/base-60 address hypothesis. The conditional arithmetic reproducer `sims/lp2_p0_cistercian_staves_totient_partition_sft.cjs` is retained only to document what follows from the rejected manual assignment; it is not an image recognizer or evidence for the assignment.
 
-## Exact arithmetic consequence
+## Better live hypothesis: Younger Futhark branch/cipher runes
 
-The candidate values factor as:
+A branch-rune system represents a rune by two coordinates: ætt/group and position within that group. In branch runes, strokes on the left of the vertical stave indicate the ætt; strokes on the right indicate the rune's position. See [Cipher runes](https://en.wikipedia.org/wiki/Cipher_runes) and the [Nordiska museet / Uppsala University discussion of cryptic runes](https://www.runforum.nordiska.uu.se/blog/cryptic-runes/).
 
-```text
-1133 = 11 × 103
-3311 = 7 × 11 × 43
-```
-
-Applying Euler's totient to the prime factors of 3311:
+The cryptic Younger Futhark order documented in the latter source is:
 
 ```text
-φ(7)  = 6
-φ(11) = 10
-φ(43) = 42
-6 + 10 + 42 = 58
-6 × 10 × 42 = 2520 = φ(3311)
+tbmlʀ / hnias / fuþork
 ```
 
-The LP2 release contains 58 images, pages 0–57. These values give an exact contiguous partition:
+In that order, group 3, position 3 is **þ**. The observed 3|3 branch count therefore has a specific candidate reading: **3:3 → þ / TH**. Agent4 also reports that the first black rune on LP2 p0, immediately after the red heading, is TH. A visual check is consistent with that reading, but the first-black-rune transcription should still be independently verified against the original image.
 
-| Candidate section | LP2 pages | Number of pages |
-|---|---:|---:|
-| 1 | 0–5 | 6 |
-| 2 | 6–15 | 10 |
-| 3 | 16–57 | 42 |
-| **Total** | **0–57** | **58** |
-
-The last section includes 40 unresolved pages (16–55) and the two solved control pages (56–57). This is an exact arithmetic partition, not yet proof that the manuscript uses these as cipher chapters or reset boundaries.
-
-The companion value also gives:
-
-```text
-φ(1133) = φ(11) × φ(103) = 10 × 102 = 1020
-```
-
-The repeated factor 11 and its totient 10 are notable because 10 is the middle partition length.
-
-## Cross-page structural correspondences
-
-The prime factors 7, 11, and 43 have independent-looking counterparts in existing LP2 analyses:
-
-- **7:** page 33 has a 49-word register, (49=7^2). See `im-results/lp2-p33-complete49word-2014-magic99-pair-gate.md`.
-- **11:** page 32 contains 121 runes, (121=11^2), in the corpus. The 11×11 reflow is an interpretation, not a proven layout. See `im-results/lp2-p32-11x11-121state-prevmod11-allsecret-capacity.md`.
-- **43:** page 55 has a strict full-page graphic interior/exterior split of 43/33; a different complete-page-local group peel gives 43/32. These are distinct segmentations, so 43 is not an invariant under every parse. See `results/README.md` and `im-results/lp2-p55-inner43-divinity-exact-gate.md`.
-
-The factor-to-page correspondence is a useful selector hypothesis, but the underlying page counts and layouts must not be conflated: 121 is a raw rune count, the p33 49 is a word-register count, and p55's 43 is tied to a specified graphic segmentation.
-
-## Possible relation to the known prime constants
-
-The candidate Cistercian values differ from the known 2014/LP2 prime constants by powers of ten:
-
-```text
-1133 − 1033 = 100 = 10²
-3311 − 3301 = 10
-```
-
-The values 1033 and 3301 occur in the known magic-square/cuneiform material. Since φ(11)=10, the offsets may be meaningful. The LP2 p57 line about shedding circumferences could conceivably select removal of these extra place-value contributions, leaving 1033 and 3301. This is only a conjectural bridge: no geometric rule currently selects those exact digit removals. Do not treat it as a decryption.
-
-The solved LP1 p5 text explicitly invokes primes and the totient function. That is a plausible historical clue for factoring these candidate values and applying φ, but it does not by itself prove that the p0 staves are Cistercian or specify a cipher receiver.
-
-## Prior-work boundary
-
-The repository already contains p0 Rök/cross-arm, base-60, and prime/totient investigations; none of the searched repository files identifies the staves as Cistercian. This is a distinct visual hypothesis, not a revival of the Rök cross-arm test.
-
-Do **not** repeat the already-tested p5-derived φ(1033)/φ(3301) two-residue additive key or p5 totient-Hill families. The existing LP1 p5 totient/Hill report records negative results. The new contribution here is the proposed **1133/3311 visual reading**, its prime-factor selector, and the exact 6/10/42 page-count correspondence.
+This is a much more economical explanation of the three transverse members than the Cistercian assignment. It also makes direct contact with the manuscript's GP29 thorn rune. Important caveats remain:
+- The cipher-rune order is a Younger Futhark convention, whereas Gematria Primus is an Anglo-Saxon-derived 29-rune alphabet. The shared thorn symbol does not establish that the entire alphabets or cipher systems are interchangeable.
+- The two staves are 180-degree counterparts; because both branch counts are 3, both would encode the same 3:3 coordinate. This is consistent with a repeated hint but not proof.
+- Alternative historical row orders and branch-rune variants exist. The exact source-selected order must be justified, not chosen because it yields TH.
 
 ## Decisive next tests
 
-1. **Blind glyph recognition.** Give an independent reviewer only the p0–2 stave crops, without the candidate values or factorization. Ask whether they recognize a known numeral system and to transcribe both glyphs. A failure to identify Cistercian or a different consistent reading rejects this branch.
-2. **Stroke-level comparison.** Compare the original glyphs against standard vertical Cistercian 1133 and 3311, allowing only the kind of stylization visible in the original. Explicitly compare the branch-rune/cipher-stave alternative. Do not use the desired factorization to choose stroke assignments.
-3. **Section-boundary prediction.** Test whether pages 0–5, 6–15, and 16–57 show independently motivated changes in layout, cipher state, or key schedule. The p15 numeric grid and the p56–57 solved controls are useful landmarks, but section boundaries must be supported by original evidence rather than selected after seeing the arithmetic.
-4. **Source-selected 7×11×43 consumer.** If the numeral reading survives, formulate one locked extraction/order rule connecting the p33 7-based register, p32 11-based page, and p55 43-rune interior. Test it on original ciphertext with p56/p57 and independent plaintext controls. The 2520-cell interior (6×10×42) is a possible structural model, not permission to enumerate arbitrary 3D layouts.
+1. Independently transcribe the first black rune on p0 from the original image and confirm whether it is TH.
+2. Compare the exact 3|3 stave geometry against a primary or well-documented branch-rune chart. Verify which side encodes ætt and which encodes position, and whether the documented reversed Younger Futhark order is the historically appropriate one.
+3. Check whether the same 3|3 motif is intended to identify a rune, a page-level instruction, or a key. Do not assume it encodes every page's first rune.
+4. Test only source-selected consequences of the 3:3→þ reading. Avoid enumerating arbitrary aett orders, orientations, and page addresses.
+5. Keep the Cistercian/totient branch closed unless a new independent visual reading establishes all four quadrants.
 
-**Current conclusion:** the Cistercian reading is a promising, falsifiable structural hypothesis. The exact totient partition and factor/page correspondences justify an independent test; they do not yet establish creator intent, a key, or plaintext.
-
-## Test of a distinct cipher regime at the proposed section boundaries
-
-A cheap, locked diagnostic checked whether the candidate 0–5 / 6–15 / 16–57 partition corresponds to obvious rune-level substitution changes. Using the canonical GP29 indices directly:
-
-| Candidate section | Runes | Shannon entropy (bits/rune) | IoC |
-|---|---:|---:|---:|
-| p0–5 | 1,470 | 4.84454 | 0.03445817 |
-| p6–15 | 2,292 | 4.84679 | 0.03460540 |
-| p16–57 | 9,374 | 4.85545 | 0.03450079 |
-
-The Jensen–Shannon divergences between aggregate section distributions are small: 0.00481 bits (first/second), 0.00359 (second/third), and 0.00524 (first/third). The two proposed adjacent page boundaries are not unusual among the 57 physical transitions: p5|p6 has JSD 0.04079 (rank 30/57); p15|p16 has 0.05206 (rank 42/57). The largest shifts occur near the solved terminal pages, not at the proposed 6/10/42 boundaries.
-
-**Decision:** this does not support three visibly different simple substitution regimes or obvious frequency resets at those boundaries. It does not reject a structural grouping used for transposition, page navigation, or a shared cipher. Do not claim the partition identifies three distinct ciphers. The updated arithmetic/distribution SFT reproduces these statistics.
-
-## Visual repetition check
-
-The two stave crops are essentially identical across LP2 pages 0, 1, and 2. Reproduction uses the original JPEGs 17–19, grayscale threshold (<110), crop boxes ((80,1600,500,2800)) and ((1900,400,2350,1700)), and nearest-neighbour normalization to (200×500). Binary-mask IoU:
-
-| Crop | p0 vs p1 | p0 vs p2 | p1 vs p2 |
-|---|---:|---:|---:|
-| Lower-left | 0.966904 | 0.966904 | 1.000000 |
-| Upper-right | 0.966457 | 0.966457 | 1.000000 |
-
-This supports treating the pair as a repeated opening/header motif rather than page-varying data. It does **not** distinguish Cistercian numerals from a repeated branch-rune or decorative motif. Reproducer: `sims/lp2_p0_stave_repetition_sft.py`.
-
-## Specific competing historical system: Heidelberger cipher
-
-A more specific alternative than generic branch runes is the **Heidelberger cipher**, another historical stave-and-branch notation. A codebook reference includes separate sections for Cistercian numerals and Heidelberger ciphers: [*Codeboek Hook* (PDF)](https://www.cafedehook.nl/wp-content/uploads/2021/04/Codeboek-Hook-web-1.pdf). The wood-like rendering and branch placement mean that “vertical stave” alone does not identify Cistercian numerals. The discriminating evidence must be the exact four-quadrant digit geometry and the independent factor/totient predictions. Historical Cistercian variants also differ in quadrant conventions, so the standard vertical mapping used above must be independently justified.
-
-The blind audit request to Agent4 explicitly asks for comparison against Cistercian, Heidelberger, branch/cipher-rune, and decorative-stave readings. Until that comparison is returned, keep the Cistercian interpretation provisional.
-
-## Direct φ-to-base-29 repeating-key test: negative
-
-A natural key interpretation was tested once and rejected. The candidate values give φ(1133)=1020 and φ(3311)=2520. Their ordinary base-29 expansions are:
-
-```text
-1020 = [1, 6, 5]  -> 165
-2520 = [2, 28, 26] -> 2SQ
-combined GP29 index key = [1, 6, 5, 2, 28, 26]
-```
-
-Applying (P=C\pm K\pmod{29}) with this six-symbol repeating key to the first 6 pages, first 16 pages, and all 56 unresolved pages produces no readable plaintext. Global continuous and per-page resets are also random-like (full-stream IoC approximately 0.03447–0.03452; entropy approximately 4.8557–4.8567 bits/rune).
-
-**Decision:** the direct φ-to-base-29 repeating additive key is not supported. Do not repeat it or expand it into unconstrained phase/key searches. The Cistercian/totient lead, if real, more likely selects a structural grouping, coordinate system, or transposition than this simple Vigenère-like key.
-
-## Stronger section-address consequence: the common totient divisor is 60
-
-The two candidate values give φ(1133)=1020 and φ(3311)=2520. Their greatest common divisor is:
-
-```text
-gcd(1020, 2520) = 60
-1020 / 60 = 17
-2520 / 60 = 42
-```
-
-Interpreting 17 as the **one-based first page** and 42 as the **length** gives pages 17–58 one-based, i.e. LP2 indices 16–57 zero-based. This exactly identifies the final 42-page section. The other two lengths are φ(7)=6 and φ(11)=10, so the first 16 pages precede it. Thus the two Cistercian candidates plus the LP1 p5 totient instruction conditionally encode both the final-section start and its length, not merely a sum of three totients.
-
-The shared divisor 60 is also a possible source-derived sexagesimal invariant. This is relevant to the older p0/base-60 discussion, but it does **not** validate that report's unsourced page/word address formula or the unresolved p50 radix. Do not revive those address searches without a separate source selecting the exact indexing grammar.
-
-This is a stronger structural prediction than “6+10+42 happens to sum to 58”: the two totients normalize by their common divisor to the exact start/length pair (17,42). It remains conditional on the visual Cistercian reading and the natural, but still interpretive, choice to read the quotients as a one-based page start and section length.
-
-
-### Relationship to the earlier p0/base-60 address hypothesis
-
-This conditional gcd-60 invariant updates, but does not validate, `im-results/lp2-p0-title-base60-totient-navigation-candidate.md`. It supplies a possible source for the number 60; the old report's page/word address grammar and p50 token radix remain unresolved. The old address route stays closed pending an independent selector.
+**Current conclusion:** repeated 3|3 branch morphology plus the documented cipher-rune coordinate system is the strongest live interpretation. The 3:3→þ match is a specific, falsifiable clue, not yet a decipherment.
