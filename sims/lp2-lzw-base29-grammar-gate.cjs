@@ -1,0 +1,26 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path');
+const paths=["resources/liber-primus/lp2-corpus.json","resources/control/emerson_essays_2944.txt","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"];
+function experiment(gp,raw){
+const mod=x=>(x%29+29)%29;
+function lzwEncode(a,b=5){const clear=2**b,end=clear+1;let n=end+1,d=new Map(),out=[clear],p=a[0];if(!a.length)return [...out,end];for(const x of a.slice(1)){const k=p+","+x;if(d.has(k))p=d.get(k);else{out.push(p);if(n<4096)d.set(k,n++);p=x}}out.push(p,end);return out}
+function lzwDecode(c,b=5,partial=false){const clear=2**b,end=clear+1;if(c[0]!==clear)throw Error("clear");let d=[],p=null,out=[],n=end+1;for(let i=0;i<clear;i++)d[i]=[i];for(let j=1;j<c.length;j++){let v=c[j];if(v===end){if(j!==c.length-1)throw Error("trailing code");return out}if(v===clear)throw Error("mid-clear");let s=d[v]??(p&&v===n?[...p,p[0]]:null);if(!s)throw Error("invalid code");out.push(...s);if(p&&n<4096)d[n++]=[...p,s[0]];p=s}if(partial)return out;throw Error("missing end")}
+const worked=lzwDecode([4,1,6,6,2,9,9,7],2,true);
+const expected=[1,1,1,1,1,2,2,2,2,2,1,1,1];if(String(worked)!==String(expected))throw Error("reference mismatch");
+function width(max){return max<29?1:max<841?2:3}
+function toDigits(v,w){const a=[];for(let i=0;i<w;i++){a.unshift(v%29);v=Math.floor(v/29)}if(v)throw Error("width");return a}
+function serial(c){let n=34,has=false,a=toDigits(32,2);for(let i=1;i<c.length;i++){let v=c[i],w=width(has?Math.min(n,4095):33);a.push(...toDigits(v,w));if(v===33)break;if(has&&n<4096)n++;has=true}return a}
+function parse(a){if(a[0]!==1||a[1]!==3)throw Error("clear");let n=34,has=false,c=[32],i=2;while(i<a.length){let w=width(has?Math.min(n,4095):33);if(i+w>a.length)throw Error("truncated");let v=0;for(let j=0;j<w;j++)v=29*v+a[i++];if(v===33){if(i!==a.length)throw Error("early end");c.push(v);const p=lzwDecode(c);if(p.some(x=>x>=29)||String(serial(lzwEncode(p)))!==String(a))throw Error("noncanonical");return p}if(v>=29&&!(has&&v>=34&&v<=Math.min(n,4095)))throw Error("domain");c.push(v);if(has&&n<4096)n++;has=true}throw Error("missing end")}
+function gate(a,q){let dom=Array.from({length:q},()=>new Set(Array.from({length:29},(_,i)=>i)));const steps=[];function restrict(i,allowed){let p=i%q;dom[p]=new Set([...dom[p]].filter(k=>allowed.includes(mod(a[i]-k))));steps.push({offset:i,phase:p,size:dom[p].size});return dom[p].size>0}if(a.length<6)return{fail:"short"};for(const [i,v] of [[0,1],[1,3],[2,0]])if(!restrict(i,[v]))return{fail:steps.at(-1),sizes:dom.map(x=>x.size)};let n=34,i=4;while(i<a.length){let w=width(Math.min(n,4095));if(i+w>a.length)return{fail:"truncated",offset:i};let max=Math.floor(Math.min(n,4095)/29**(w-1));if(i+w===a.length){let d=toDigits(33,w);for(let j=0;j<w;j++)if(!restrict(i+j,[d[j]]))return{fail:steps.at(-1),sizes:dom.map(x=>x.size)};return{sizes:dom.map(x=>x.size),survives:true}}if(!restrict(i,Array.from({length:max+1},(_,j)=>j)))return{fail:steps.at(-1),sizes:dom.map(x=>x.size)};i+=w;if(n<4096)n++}return{fail:"missing end"}}
+const tok=gp.translit.map((x,i)=>[x,i]).sort((a,b)=>b[0].length-a[0].length);
+function encode(s){let a=[];for(let w of s.toUpperCase().match(/[A-Z]+/g)||[]){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");for(let i=0;i<w.length;){if(w.startsWith("ING",i)){a.push(21);i+=3;continue}if(w.startsWith("IO",i)){a.push(27);i+=2;continue}const t=tok.find(x=>w.startsWith(x[0],i));if(!t)throw Error(w);a.push(t[1]);i+=t[0].length}}return a}
+function crypt(a,k,hold,sign=1){let j=0;return a.map(v=>hold&&v===0?0:mod(v+sign*k[j++%k.length]))}
+function stats(a){let e=0,z=0,f=Array(29).fill(0);for(let i=0;i<a.length;i++){f[a[i]]++;if(!a[i])z++;if(i&&a[i]===a[i-1])e++}return{n:a.length,e,rate:e/(a.length-1),zero:z/a.length,ioc:f.reduce((s,v)=>s+v*(v-1),0)/(a.length*(a.length-1))}}
+let seed=132884;function rand(){seed=(Math.imul(1664525,seed)+1013904223)>>>0;return Math.floor(seed/4294967296*29)}
+let native=[],random=[];for(const [donor,s] of raw.entries()){let p=encode(s);for(const n of [308,729,3008,12956])for(let j=0;j<5;j++){let a=p.slice(j*n,(j+1)*n);if(a.length!==n)continue;let d=serial(lzwEncode(a));if(String(parse(d))!==String(a))throw Error("roundtrip");for(const key of ["DIUINITY","FIRFUMFERENFE"]){let k=encode(key);for(const hold of [false,true]){let c=crypt(d,k,hold);if(!hold){let dc=crypt(c,k,false,-1);if(String(parse(dc))!==String(a)||String(crypt(serial(lzwEncode(parse(dc))),k,false))!==String(c))throw Error("encrypted roundtrip");if(!gate(c,k.length).survives)throw Error("false gate");}native.push({donor,n,key,hold,ratio:d.length/n,...stats(c)});let z=Array.from({length:c.length},rand);random.push({n:c.length,q:k.length,...stats(z),survives:!!gate(z,k.length).survives});}}}}
+const ranges=[[0,2],[3,7],[8,14],[15,22],[23,26],[27,32],[33,39],[40,53],[54,55],[0,55]];
+const original=ranges.map(([lo,hi])=>{let a=gp.pages.filter(p=>p.page>=lo&&p.page<=hi).flatMap(p=>p.indices);return{range:[lo,hi],...stats(a),prefix:a.slice(0,8),ordinary:[8,13].map(q=>({q,...gate(a,q)})),holdNecessary:a[2]===0}});
+return{worked,expected,native,random,original}
+}
+const f=paths.map(p=>fs.readFileSync(path.join(__dirname,'..',p),'utf8'));
+console.log(JSON.stringify(experiment(JSON.parse(f[0]),f.slice(1)),null,2));
