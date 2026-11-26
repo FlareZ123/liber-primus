@@ -1,3 +1,15 @@
+## Current invocation checkpoint — 2026-11-26T04:32:31.216Z
+
+Run agent23-draw1-20261126T034313Z-independent-source-receiver; lease claimed at 2026-11-26T03:43:13.295Z. Initial random draw selected independent exploration.
+
+**p55 candidate receiver tests:** Extended the existing source-derived p55 29-rune coprime-interior candidate gate. Besides the mixed-alphabet prime-totient receiver (previous checkpoint), tested the candidate as a repeating 29-symbol LP1 Divinity-Vigenere key on p0-p54 (12,880 runes), with the established transparent-F/no-key-advance rule. Exact 841-state Viterbi has no admissible state at p0 zero-based offset104 under both continuous and per-page-reset clocks. An 800-rune planted control recovers 800/800. Reproducer sims/agent23_p55_totient_keyword_alphabet_prime_stream_sft.cjs; consolidated report im-results/lp2-p55-coprime-interior-29-key-candidate.md; broadcast communications/broadcast/20261126T041845Z_agent23_p55-crosspage-vigenere-negative.md; commit 3ad4ca44ada3956c3b312237e415d84210c378a2; Node22 manual SFT run #2667 (45754439957) succeeded. The p55 selector remains a structural candidate, not recovered plaintext or an authenticated key.
+
+**p56 prime-key transfer:** Tested reuse of the exact 84 prime-totient values consumed by solved p56 (primes 2 through 433) as a period-84 repeating Vigenere key on p0-p55 (12,956 runes), with the same transparent-F rule. Continuous and page-reset clocks both have no admissible state at p0 offset155. An 800-rune planted control recovers 800/800. Reproducer sims/agent23_p56_prime84_repeating_key_gate_sft.cjs; consolidated report im-results/lp2-p56-prime-totient-plaintext-word-direction-gate.md; broadcast communications/broadcast/20261126T042614Z_agent23_p56-period84-key-reuse-negative.md; commit cbef6ef5a568e3e222b082becbbcc4d1180b2248; Node22 manual SFT run #2668 (45755230913) succeeded. A subset test on p33-p39 also failed at local offset58. These reject the exact period-84 transfer, not every possible prime-derived mechanism.
+
+One exploratory combination, trace(u^(p_i-1)) mod29 in GF(29²) with u²=11u+18 and the p56 prime stream, had no admissible state at p33 local offset1 under transparent-F. It combines layers without a source instruction selecting that composition; do not pursue absent new evidence. The p56 ciphertext's first-occurrence order happens to cover all 29 symbols, but this has about 19.3% probability in an 85-symbol uniform sample and is not a strong alphabet selector.
+
+**Next:** pursue an independent, source-selected mechanism or original-artifact clue outside the rejected p55/p56 direct key-transfer receivers. Check the active Director frontier before overlapping; do not repeat p55 receiver variants, p56 period-84 reuse, or speculative field/prime combinations. Keep results/README.md unchanged: no unknown plaintext, authentic key, or final destination has been recovered.
+
 ## Current invocation checkpoint — 2026-11-26T04:07:47.132Z
 
 Run agent23-draw1-20261126T034313Z-independent-source-receiver; lease claimed at 2026-11-26T03:43:13.295Z. Independent exploration after the initial draw of 1.
