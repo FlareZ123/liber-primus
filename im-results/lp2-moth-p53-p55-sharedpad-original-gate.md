@@ -1,6 +1,6 @@
 # Identical p53/p55 moth: one shared GP29 pad does not yield native-English plaintext
 
-**Original-input result, 15 November 2026 (Agent 5).** The copied moth selects a particular pair of original ciphertext pages, but their two physically anchored 76-rune alignments fail an exact source-English word-pair gate for an otherwise arbitrary *shared additive pad*. This bounds one human-visible key-reuse hypothesis. It recovers **no original plaintext, authentic key, cipher or destination**.
+**Original-input result, 15 November 2026 (Agent 5).** The copied moth selects a particular pair of original ciphertext pages, but their two physically anchored 76-rune alignments fail an exact source-English word-pair gate for an otherwise arbitrary *shared additive pad*. This bounds one human-visible key-reuse hypothesis. The later latent-F extension below fails its heldout recovery gate and establishes exact tail nonidentifiability; it does not produce an original language rejection. It recovers **no original plaintext, authentic key, cipher or destination**.
 
 ## Why these pages are a motivated pair
 
@@ -75,3 +75,34 @@ Eight native-text plants use WELCOME and first KOAN, two independently sampled a
 [Standalone original-input SFT](../sims/lp2_p53_p55_samecontent_affine_fhold_sft.cjs).
 
 **Decision:** retain the verified artwork reuse, retire same contiguous p53/p55 plaintext under the four q8/q13 combinations with synchronized F holds. This is independent of the shared-pad hypothesis above but not a new cipher mechanism. It extends the [p32/p55 repeated-content work](lp2-p32-p55-blurred-tree-correspondence.md) to the stronger exact-image pair. Different underlying content, changed representations, arbitrary phase permutations or other clocks remain outside this proof; the artwork alone does not justify enlarging them. No unknown LP2 plaintext/key.
+
+## Latent Fehu holds and unknown word boundaries — #2977 (Agent19, 26 November 2026)
+
+**Decision: the fixed body-start arbitrary-pad receiver is underdetermined as a full two-page solution, and the tested first-order native language receiver has inadequate held-out recovery power.** The original language score and candidate plaintext were deliberately not computed after the controls failed. This does not reject reuse of an independently sourced or structurally constrained key, or every possible higher-order paired-plaintext scorer.
+
+The previous intact-word and ordinary-consuming gates do not cover authentic plaintext-F transparency. Freeze p53's 179 physical runes and the p55 75-rune body (skip its incoming NG carry); no offset, period, or printed-word assumption. For a pair of consuming events, (P_B=P_A+C_B-C_A\pmod{29}), with both plaintext runes nonzero. A literal zero can instead be a non-consuming F, independently in each stream. After one stream's last consuming event, the remaining stream is covered by an entirely unconstrained fresh pad.
+
+### Exact original combinatorial obstruction (no language assumptions)
+
+There are five ciphertext F sites on p53, offsets 68,71,79,89,166, and three on the p55 body, offsets 14,24,40 (zero-based). Every one of the (2^8=256) possible masks is feasible. For any mask, let L be the number of shared consuming events, Z the number of equal ciphertext pairs among them, and U the number of unpaired consuming events. The exact number of distinct plaintext pairs under that mask is
+
+```
+28^(Z+U) * 27^(L-Z)
+```
+
+Each equal pair permits 28 nonzero plaintext choices; unequal pairs permit 27; each unmatched consuming event permits 28. Each different mask gives a disjoint set of plaintext pairs (a held rune is F, a consuming one cannot be F). Summation yields approximately **7.979419 × 10^258 distinct exact-replay pairs (860.054 bits of unweighted ambiguity)**. With no F holds alone there are 5 equal pairs, 70 unequal pairs and 104 unmatched consuming events. Across masks, **99–107 p53 consuming events have no p55 counterpart**. Even an oracle revealing both actual hold masks and the entire shared pad cannot fix these tail digits: each remains 28-way compatible. This is a structural count, not a linguistic entropy estimate. For an unconstrained iid uniform pad, an oracle revealing the key up to a consuming boundary cannot predict any unused digit better than 1/29 before observing further ciphertext; a proposed recurrence or external key would be a different premise.
+
+### Exact product model and blinded controls
+
+Train a fixed first-order GP29 Markov model (0.5 pseudocount per cell) on the first 2,000 lines of the pinned Emerson text from I. HISTORY onward (89,909 runes). No printed boundaries are used in decoding. Gibran and Shakespeare supply nonoverlapping literal windows. Use dynamic programming over the two ciphertext positions, the two previous plaintext symbols, and one canonical-hold-order bit. Canonicalize commuting holds A-before-B between consuming pairs; pair transition has relative likelihood 29 times the product of the two native probabilities, a hold has relative likelihood 29 times its native probability, and a solitary consume has its native probability. Sum all compatible plaintext/hold paths and also compute exact Viterbi maximum. Compare the marginal likelihood against two independent uniform pads with the same language prior. Eight exhaustive tiny cases, including both zero-ending cases, match direct enumeration in marginal and maximum posterior to 1e-9. Every positive Viterbi candidate exactly replays both full ciphertexts using its reconstructed common pad. Replay does not authenticate the key.
+
+| Frozen diagnostic | Independent positives accepted | Independent-pad negatives rejected | Required to score original |
+|---|---:|---:|---:|
+| Conditional increment of log BF after withholding first40/40 ciphertext prefix, cutoff +0.209600 learned from eight development pairs | 10/16 | 9/16 | 15/16 each |
+| Full-span log BF, cutoff +0.524730 from the same eight development pairs; 24 new disjoint donor windows matched to original observed 5/3 ciphertext Fs | 16/24 | 23/24 | 22/24 each |
+
+In each negative the plaintext pair and p53 ciphertext are unchanged; the replacement p55 pad is independently sampled until its observed F count matches the positive. The second experiment also conditions the positive ciphertext on the exact original observed zero counts. The likelihood formula itself is unconditional, so the score is an empirically calibrated diagnostic under the matched sampling, not a conditional Bayes factor for that sampling procedure. The first heldout group has mean Viterbi plaintext accuracies of **12.33% / 15.42%** and shared-key accuracy **11.14%**; maximum p55/key accuracy only 28%. Its best complete-pair posterior log masses range from −225.83 to −202.14 under the declared model. Fresh count-matched group means: p53 11.01%, p55 15.67%, shared-key 12.90%; descriptive full-score AUC 0.9097. High score separation in some positives is compatible with very poor actual recovery. No independent future key digits were predicted.
+
+**Disposition.** Both prospective classification gates failed and overlap-key recovery is weak. Do not apply the language fit to the original or treat the count as a general exclusion of meaningful two-time-pad decryption. Require an independent key generator or operand before another complete-page artwork receiver; the matched overlap can still be studied if a genuinely stronger, separately calibrated language inverse recovers the planted text. This is not evidence that the duplicated moth is meaningless.
+
+Reproduction: [SFT](../sims/lp2_moth_p53_p55_sharedpad_latent_f_sft.cjs) · [raw control scores and all 256 original hold-mask counts](lp2-moth-p53-p55-sharedpad-latent-f-output.json). The function was executed against the repository source blobs in the connected JavaScript runtime; standalone Node wrapper not independently executed. The donor conversion is deterministic greedy GP tokenization, including ING→NG and IO→IA; a real native register may differ. The first-order model is a deliberately bounded scorer, and the validation samples are finite.
