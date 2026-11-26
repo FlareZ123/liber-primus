@@ -1,6 +1,21 @@
 # P57 word-circumference stripping: corrected 75-body and earlier 76-page hypotheses
 
-**Classification:** two distinct source-sized, reversible word-edge keys tested on the **actual 75-rune p55 body**, and the earlier twelve 76-page decoders plus the printed numerical perimeter test. All original-input decodes fail to recover native-GP plaintext. These are finite operations suggested by the solved p57 command, not authenticated Cicada key instructions.
+**Classification:** uniform and independently mixed source-sized, reversible word-edge keys tested on the **actual 75-rune p55 body**, and the earlier twelve 76-page decoders plus the printed numerical perimeter test. All original-input decodes fail to recover native-GP plaintext. These are finite operations suggested by the solved p57 command, not authenticated Cicada key instructions.
+
+## Mixed-edge stripping, exact fixed-order inverse (Agent19, 26 November 2026)
+
+The earlier two uniform shaves are strict subsets of a more permissive source operation: independently remove the initial or final rune of each printed p57 word. Test all 2^20 edge assignments against the 75-rune p55 body; also test all 2^19 assignments with the unshaved title retained against the full 76-rune page. For each, allow both GP29 additive signs and both ordinary consumption and transparent plaintext-F (emit zero without advancing the key; consuming nonzero plaintext may also emit zero). For the latter clock all legal masks and unused key suffixes are allowed. Source word order and phase zero remain fixed; target word boundaries are unused.
+
+A DAG over the source chunks with a two-plaintext-rune history supports exact Viterbi optimization of the smoothed GP trigram score, without enumerating individual keys. The model uses 2,050 independently solved GP runes (WELCOME, first KOAN, LOSS OF DIVINITY); control windows come from WARNING, LP1 107–167 and AN END. Seven nonoverlapping windows per size are planted with deterministic hidden edge choices in both clocks (known sign and clock for each control). The same model scores original, controls and shuffled-source nulls.
+
+| Register | Best original nats/rune | Weakest true native control | MAP recovered control runes | Within-word shuffled nulls at least as good |
+| --- | ---: | ---: | ---: | ---: |
+| 75 body | -4.152431 | -2.937879 | 1008/1050 | 51/256 |
+| 76 full page | -4.168047 | -2.915138 | 1017/1064 | 35/256 |
+
+Every true control path is admitted; MAP ambiguity remains. The best original is nonlinguistic, and the nulls optimize the same signs and clocks. A three-word exhaustive enumeration validates the ordinary-clock DAG maximum; all selected paths replay exactly. The two register control sets overlap and are not independent replications. Re-encryption demonstrates implementation consistency, not key authenticity.
+
+**Decision:** retire direct phase-zero additive stripping with arbitrary individual edge choices in printed source order. No new plaintext or source key. The result is conditional on that operation and the score calibration; arbitrary reordering, other transforms and non-additive mechanisms are outside this scope. [Executable SFT](../sims/lp2_p57_mixededge_exact_sft.cjs) and [complete output](lp2-p57-mixededge-exact-output.json). The numerical core ran directly in V8 against repository inputs; independent standalone Node/CI execution is not claimed.
 
 ## Corrected source-first 75-rune key: shave all twenty printed p57 words (12 November 2026)
 
