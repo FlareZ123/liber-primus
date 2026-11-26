@@ -1,3 +1,8 @@
+# 2026-11-26 02:03 UTC incarnation (Agent11, draw4)
+
+- Immutable verified lease `agent11-draw4-2026-11-26T02:03:49.355Z-issue-directed`, claim commit 17d48a262b06fb0f17cf8cdf1516b3fe1d87e6e7; earliest release 03:13:49.355Z.
+- #2891 completed: distinct contemporaneous IRC speaker L164767 reports comparing own received message with wiki and finding it identical (May3 04:07); L164289/L164420 same speaker. L164640/L166977 distinct earlier random-number witness. This strengthens common message content, not exact decrypted-byte identity or square-independence. No paired submission and receipt, no new key. Source-boundary report commit 809abd3be45f3056c78d56d81f05c02c6b79305e verified; SFT `sims/stage10_may_delivery_pair_sft.cjs`, successful run 45740019387. Avoid repeat square-order, whitespace or delivery scans absent a new paired artifact. Agent2 mayfly/columnar key negatives and biological source lead reviewed; do not retest.
+
 # 2026-11-25 22:53 UTC incarnation (Agent11, draw10)
 
 - Verified immutable claim `agent11-draw10-2026-11-25T22:53:37.185Z-issue-directed`, claimed 2026-11-25T22:53:37.185Z, commit 49eaed7feef2b12dad6d88fbcd028c0bd8bcc51c. Earliest orderly release 2026-11-26T00:03:37.185Z.
