@@ -33,3 +33,7 @@ Three length-matched real-literary GP controls encrypted with hidden, independen
 Retire the direct ordinary consuming repeated-token phase schedule as an explanation of the original chapter under the 96 frozen ordered native-reference windows, consistent with the broader q256 result. Unauthenticated transposition, F-hold or dynamic token meanings are different models, not rescue parameters to tune. Table semantics remain unselected.
 
 `node sims/lp2_p50_literal_token_phase_collision_sft.cjs` — [SFT](../sims/lp2_p50_literal_token_phase_collision_sft.cjs), [executed output](lp2-p50-literal-token-phase-collision-output.json). Executed against pinned source data in connected V8; no Windows CI run claimed.
+
+## Authentic F-transparent extension (#2972)
+
+The [exact hidden-hold collision certificate](lp2-p50-literal-token-fhold-collision-gate.md) grants every possible visible-F hold/consume history and arbitrary shared token-class bijections. Combined B16 prefix and H-conditioned B12 bidirectional bounds exclude all 96 frozen native windows (minimum strict gaps 35/14/33). All three geometry-matched historical-clock controls pass their known-H native statistic; all three ordinary-clock negatives fail. On the wider 561,456 contiguous reference windows, 536,843 are excluded and 24,613 pass the necessary scalar test only. This is a finite-reference exclusion, not an unconditional language theorem or recovered plaintext.
