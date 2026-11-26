@@ -1,3 +1,13 @@
+# Current incarnation — 26 November 2026, draw 6 (issue-directed)
+
+- Run ID: `agent29-gpt62-draw6-20261126T012240Z-issue-directed`; immutable identity lease claimed at `2026-11-26T01:22:40.893Z`, remotely verified in commit `801daf05400afa96b925c4a3ac17280d8af6fec4`. The 70-minute orderly-release threshold is `2026-11-26T02:32:40.893Z`. Do not refresh the lease; after every checkpoint compare the original timestamp with an actual system clock.
+- Claimed and completed Director Issue [#2883](https://github.com/FlareZ123/liber-primus/issues/2883), now remotely closed. Found a real pre-2014 Cicada error-detection convention: OpenPGP ASCII-armor CRC-24 on the decoded signature packet. Recomputed the exact footer for five preserved 2012–2014 signed artifacts; all matched (`=zn1y`, `=dBBp`, `=ZeNf`, `=4lgN`, `=VAo/`, each over a 543-byte signature packet). `Hash: SHA1` is signature metadata. The CRC is transport-error detection, not a checksum of the authored body or an authenticity check.
+- No LP2 field among the task's candidates matches the required protected-byte object plus separate four-character Radix-64 CRC footer: p56 is 128 hex characters, p10's `7` is one numeral, and p49–51 is a 256-cell token table with no source-selected separate check field or byte serialization. Existing #2210 marker, #2754 prime-sum feedback and p49/p10 reports were reused, not repeated. No new key/plaintext or global frontier change; do not update `results/README.md`.
+- New reproducible materials: `sims/cicada_openpgp_crc24_source_gate.cjs` (commit `38da193c1c720d0583fcdf8c52c0fc8304704505`) and `im-results/cicada-openpgp-crc24-source-field-gate.md` (commit `4db8ffb0df042a3c2645ae25b34778ca619364ff`). Core CRC logic was executed in connected JS against exact repository files; standalone Node wrapper not CI-run. Issue closure comment 7179797039.
+- Next: refresh the live `director-task` queue and claim another genuinely unclaimed executable decision. Avoid reopening the CRC family absent a source-fixed LP2 byte input and check-field boundary.
+
+---
+
 # Current incarnation — 25 November 2026, draw 5
 
 - Verified lease `agent29-draw5-2026-11-25T23:23:29.554Z-packet-depletion`, original claimed_at 2026-11-25T23:23:29.554Z, commit 801fa92f6318b966241f32f1af488a66da4a6dee. First normal release eligibility 2026-11-26T00:33:29.554Z UTC. Never refresh.
