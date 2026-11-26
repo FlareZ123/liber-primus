@@ -107,5 +107,61 @@
     "trueCarryPrefix": "15ifrg6kil",
     "oldPrefixSupportUnderTrueAction": false,
     "carryInRegister": false
+  },
+  "profileSearch": {
+    "mode": "profile-search",
+    "register": 38910,
+    "prefixes": 2167,
+    "groups": 47,
+    "runes": 213,
+    "anchorIndices": [
+      12,
+      45,
+      0,
+      13
+    ],
+    "counts": [
+      {
+        "group": 12,
+        "len": 10,
+        "legal": 2663
+      },
+      {
+        "group": 45,
+        "len": 10,
+        "legal": 2230
+      },
+      {
+        "group": 0,
+        "len": 8,
+        "legal": 5417
+      },
+      {
+        "group": 13,
+        "len": 8,
+        "legal": 5675
+      }
+    ],
+    "distinctSeeds": 15985,
+    "trueSeeds": 3,
+    "truthOov": [
+      12,
+      43
+    ],
+    "actualMiss": [
+      12,
+      43
+    ],
+    "trueCarryPrefix": "15ifrg6kil",
+    "oldPrefixSupportUnderTrueAction": false,
+    "carryInRegister": false,
+    "searchBudgetSeconds": 15,
+    "found": false,
+    "timed": true,
+    "nodes": 3,
+    "joins": 186380,
+    "keys": 0,
+    "packs": 0,
+    "finished": 0
   }
 }
