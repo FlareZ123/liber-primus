@@ -1,6 +1,6 @@
 # 2013 second-onion ICMP: payload and prime-ID reconstruction
 
-**Classification:** reproducible historical payload reconstruction; target IP documented in a participant transcript; strong, incomplete 3301-seeded prime-ID hypothesis; original PCAP not recovered. This is not an LP2 decryption.
+**Classification:** reproducible historical payload reconstruction; target IP documented in a participant transcript; strong, incomplete 3301-seeded prime-ID hypothesis; original PCAP not recovered. This is not an LP2 decryption. **26 November forward reconstruction:** standard gzip reproduces all 778 historical bytes and every fragment exactly; the separate 2014 four-JPEG group also has an exact forward uncompressed serialization. Neither selects an LP2 receiver. See the forward-generation section below.
 
 ## Directly recovered payload
 
@@ -27,6 +27,31 @@ The gzip header names `message.txt.asc` and stores mtime `1357837635`, i.e. **20
 > 3301
 
 No LP2 plaintext, LP2 key, page-56 instruction, or `AN END` handoff appears in this payload.
+
+## Exact forward payload generation (Agent32, 26 November, Director #2902)
+
+The independent source is the original signed 959-byte message already recovered above, not a newly guessed LP2 crib. The organizer's **gzip container plus 28-byte framing** can now be reproduced in the forward direction exactly. This does not reconstruct the missing packet headers or prove a new cipher.
+
+1. Serialize the exact signed message bytes, including whitespace and final LF. Use filename `message.txt.asc`, MTIME 1357837635 (2013-01-10 17:07:15 UTC, matching the signature timestamp), FLG=8 (FNAME only), XFL=0, OS=3 (Unix).
+2. Encode one raw RFC1951 DEFLATE member using zlib 1.3.1 default strategy; append CRC32 and ISIZE in little endian. The 26-byte header is `1f8b080843f5ee5000036d6573736167652e7478742e61736300`, the trailer is `603740d3bf030000`. The resulting 778 bytes exactly match the source gzip blob `8f97ecf20117a235e6f72559a306116603dc3540`.
+3. Split from byte zero into 27 full 28-byte fragments and a 22-byte remainder. Every fragment exactly matches the archived hex lines, with no padding, private key, byte permutation or special compression dictionary. This reconstructs the data fragments, not a raw ICMP packet sender.
+
+| Encoder level | Complete member length | Exact original? |
+|---|---:|---|
+| 1–3 | 782 | no |
+| 4 | 781 | no |
+| 5–8 | 778 | yes |
+| 9 | 778 | no (XFL differs; raw DEFLATE matches) |
+
+GNU gzip 1.13 with the source filename and filesystem mtime gives the same four full-member matches. Therefore the default level 6 is sufficient but is **not identifiable** among levels 5–8; the compressed bits alone also admit level 9. The original compression program/version cannot be inferred uniquely. The time, filename and fragment width are explicit source framing; none requires a secret. The prime-ID rule described below remains only a three-observation hypothesis.
+
+**Contemporary solve transcript:** the [signed January hint](../resources/historical/cicada2013-second-onion-everything-you-need.asc) points to listening for a reply after knocking. Participants recover the custom response fragments, the initial bytes 1f8b08 identify gzip, and ordinary decompression reveals a signed next-stage message. The complete signature and CRC/size furnish recognizable progress. Compression level, producer OS and stored filename are learned from the recovered container, rather than given in the signed hint.
+
+**Independent second historical artifact:** the 2014 fourth-onion archive at [pinned commit ade9a028](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/006-fourth-onion) supplies a genuinely different gzip payload. From four unchanged original local JPEGs 06–09, reconstruct the forward serialization as `06 || 07 || reverse(08 || 09)`. It exactly matches archived decoded blob `7b640ff8b74e51b1c767f5270a5eec9cdc677448`, all 3,010,703 bytes. This gives a positive forward control for the entire group reversal, not separate reversal of 08 and 09 in the same order. The source compressed blob `7e273e715c4138a178c3f36bf17ac05955fe4c1d` has 2,532,309 bytes. GNU gzip 1.13 `-n` yields 2,532,300 at level6; the archived length is nine bytes larger. This is consistent with an eight-byte stored filename plus NUL under an otherwise identical encoder, but length alone does **not** prove it. Levels 1–9 yield 2546490,2543265,2541752,2533802,2532344,2532300,2531933,2530293,2529822. Connector large-binary retrieval yielded empty content or UnicodeDecodeError, so the original member header and compressed bytes were not accessible for exact replay in this invocation. The reproducer has an optional `--fourth-gzip` comparison when the source blob becomes available. No independent exact compression-level conclusion for 2014 is asserted.
+
+**LP2 transfer decision:** the actual historical trigger is an already recovered byte stream with recognizable gzip signature and a complete member, not the fact that the author used gzip somewhere. The only independently typed LP2 binary-like operand, the pp49–51 printed table under the established base60 and source-factor transports, already fails the strict direct gzip/DEFLATE checks ([existing gate](p50-historical-compression-source-gate.md)). Its first bytes are cb e7 and 0a 21, respectively. The four-image control has a known byte reversal boundary and authenticated downstream handoff; no original LP2 graphic independently selects a corresponding byte stream or exact reversal boundary. Do not invent an LP2 fragment width, filename, missing gzip header, key or arbitrary chapter reversal. The missing link is a source-selected complete compressed member, or an independently specified reversible transform producing one from original unresolved ciphertext. No unknown plaintext, authentic LP2 key or new LP2 receiver was recovered; this closes only the bounded historical sender investigation.
+
+Reproduction: [read-only SFT](../sims/cicada_gzip_forward_sft.py), run locally with the pinned hex fixture and original JPEG ZIP (Python zlib 1.3.1, GNU gzip 1.13). No new workflow.
 
 ## Target and human-facing operation
 
