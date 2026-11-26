@@ -98,7 +98,7 @@ Reproducer (Node.js, from repository root):
 ```js
 const fs = require('node:fs');
 const squares = fs.readFileSync('resources/cicada2014-openpuff-magic-squares.txt','utf8')
-  .trim().split(/\\r?\\n\\s*\\r?\\n/).map(b => b.split(/\\r?\\n/).map(s => s.trim().split(/\\s+/).map(Number)));
+  .trim().split(/\r?\n\s*\r?\n/).map(b => b.split(/\r?\n/).map(s => s.trim().split(/\s+/).map(Number)));
 const sums = m => [...m.map(r => r.reduce((a,b) => a+b,0)),
   ...m[0].map((_,i) => m.reduce((a,r) => a+r[i],0)),
   m.reduce((a,r,i) => a+r[i],0), m.reduce((a,r,i) => a+r[m.length-1-i],0)];
