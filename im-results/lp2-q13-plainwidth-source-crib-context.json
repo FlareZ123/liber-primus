@@ -1,0 +1,1312 @@
+{
+  "which": "validate",
+  "L": 18,
+  "q": 13,
+  "rows": [
+    {
+      "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "donorStart": 6218,
+      "cipherStart": 6556,
+      "key": [
+        24,
+        12,
+        27,
+        11,
+        15,
+        10,
+        10,
+        21,
+        23,
+        13,
+        10,
+        12,
+        12
+      ],
+      "chapter": 4,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 6548,
+          "reachHi": 6677,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 4",
+          "lo": 5506,
+          "hi": 6761,
+          "reachLo": 6548,
+          "reachHi": 6677,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "donorStart": 6999,
+      "cipherStart": 965,
+      "key": [
+        17,
+        3,
+        27,
+        2,
+        4,
+        5,
+        13,
+        5,
+        11,
+        24,
+        3,
+        2,
+        11
+      ],
+      "chapter": 1,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 965,
+          "reachHi": 986,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 1",
+          "lo": 729,
+          "hi": 1874,
+          "reachLo": 965,
+          "reachHi": 986,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "donorStart": 9531,
+      "cipherStart": 2873,
+      "key": [
+        24,
+        16,
+        25,
+        12,
+        11,
+        13,
+        19,
+        25,
+        26,
+        24,
+        3,
+        23,
+        13
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 2873,
+          "reachHi": 2910,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 2873,
+          "reachHi": 2910,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "donorStart": 14814,
+      "cipherStart": 2026,
+      "key": [
+        8,
+        18,
+        14,
+        22,
+        8,
+        24,
+        13,
+        2,
+        27,
+        7,
+        9,
+        9,
+        11
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 2024,
+          "reachHi": 2045,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 2024,
+          "reachHi": 2045,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-I.txt",
+      "donorStart": 1643,
+      "cipherStart": 6763,
+      "key": [
+        2,
+        15,
+        9,
+        21,
+        3,
+        3,
+        4,
+        20,
+        10,
+        7,
+        10,
+        12,
+        12
+      ],
+      "chapter": 5,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 6759,
+          "reachHi": 6817,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 5",
+          "lo": 6761,
+          "hi": 7960,
+          "reachLo": 6761,
+          "reachHi": 6817,
+          "leftLegal": true,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-II.txt",
+      "donorStart": 2856,
+      "cipherStart": 6630,
+      "key": [
+        6,
+        1,
+        6,
+        1,
+        7,
+        26,
+        4,
+        20,
+        25,
+        24,
+        10,
+        13,
+        25
+      ],
+      "chapter": 4,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 6623,
+          "reachHi": 6649,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 4",
+          "lo": 5506,
+          "hi": 6761,
+          "reachLo": 6623,
+          "reachHi": 6649,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-II.txt",
+      "donorStart": 3512,
+      "cipherStart": 2062,
+      "key": [
+        18,
+        6,
+        13,
+        21,
+        21,
+        2,
+        10,
+        7,
+        3,
+        23,
+        17,
+        17,
+        6
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 2042,
+          "reachHi": 2110,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 2042,
+          "reachHi": 2110,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-III.txt",
+      "donorStart": 2793,
+      "cipherStart": 5099,
+      "key": [
+        12,
+        20,
+        11,
+        26,
+        7,
+        19,
+        15,
+        1,
+        5,
+        13,
+        15,
+        7,
+        1
+      ],
+      "chapter": 3,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 5098,
+          "reachHi": 5160,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 3",
+          "lo": 3603,
+          "hi": 5506,
+          "reachLo": 5098,
+          "reachHi": 5160,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-III.txt",
+      "donorStart": 3121,
+      "cipherStart": 6688,
+      "key": [
+        27,
+        23,
+        6,
+        0,
+        26,
+        7,
+        19,
+        1,
+        26,
+        7,
+        28,
+        9,
+        22
+      ],
+      "chapter": 4,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 6684,
+          "reachHi": 6715,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 4",
+          "lo": 5506,
+          "hi": 6761,
+          "reachLo": 6684,
+          "reachHi": 6715,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-III.txt",
+      "donorStart": 4613,
+      "cipherStart": 11737,
+      "key": [
+        12,
+        11,
+        26,
+        25,
+        9,
+        19,
+        4,
+        20,
+        2,
+        3,
+        15,
+        0,
+        15
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 11736,
+          "reachHi": 11763,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 11736,
+          "reachHi": 11763,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-III.txt",
+      "donorStart": 5817,
+      "cipherStart": 12877,
+      "key": [
+        0,
+        25,
+        17,
+        19,
+        21,
+        7,
+        4,
+        21,
+        12,
+        11,
+        28,
+        24,
+        22
+      ],
+      "chapter": 8,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 12870,
+          "reachHi": 12943,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 8",
+          "lo": 12648,
+          "hi": 12956,
+          "reachLo": 12870,
+          "reachHi": 12943,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "terminal body",
+          "lo": 12657,
+          "hi": 12956,
+          "reachLo": 12870,
+          "reachHi": 12943,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/2013-liber-al-bookcode-III.txt",
+      "donorStart": 6749,
+      "cipherStart": 4797,
+      "key": [
+        25,
+        6,
+        14,
+        1,
+        20,
+        8,
+        24,
+        2,
+        2,
+        18,
+        0,
+        14,
+        27
+      ],
+      "chapter": 3,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 4728,
+          "reachHi": 4883,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 3",
+          "lo": 3603,
+          "hi": 5506,
+          "reachLo": 4728,
+          "reachHi": 4883,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 493,
+      "cipherStart": 11261,
+      "key": [
+        27,
+        19,
+        11,
+        18,
+        20,
+        25,
+        3,
+        28,
+        17,
+        28,
+        8,
+        10,
+        7
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 11256,
+          "reachHi": 11288,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 11256,
+          "reachHi": 11288,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 494,
+      "cipherStart": 11262,
+      "key": [
+        19,
+        11,
+        18,
+        20,
+        25,
+        3,
+        28,
+        17,
+        28,
+        8,
+        10,
+        7,
+        27
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 11248,
+          "reachHi": 11288,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 11248,
+          "reachHi": 11288,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 1635,
+      "cipherStart": 12320,
+      "key": [
+        24,
+        14,
+        9,
+        9,
+        28,
+        27,
+        1,
+        7,
+        4,
+        24,
+        17,
+        13,
+        21
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 12265,
+          "reachHi": 12364,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 12265,
+          "reachHi": 12364,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 2217,
+      "cipherStart": 2862,
+      "key": [
+        12,
+        5,
+        13,
+        27,
+        23,
+        23,
+        7,
+        21,
+        11,
+        23,
+        2,
+        10,
+        11
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 2844,
+          "reachHi": 2910,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 2844,
+          "reachHi": 2910,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 2535,
+      "cipherStart": 10362,
+      "key": [
+        26,
+        5,
+        5,
+        1,
+        28,
+        23,
+        13,
+        24,
+        28,
+        8,
+        23,
+        7,
+        4
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 10336,
+          "reachHi": 10391,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 10336,
+          "reachHi": 10391,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 2834,
+      "cipherStart": 10057,
+      "key": [
+        18,
+        23,
+        15,
+        10,
+        0,
+        0,
+        3,
+        4,
+        22,
+        27,
+        17,
+        14,
+        15
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 10057,
+          "reachHi": 10078,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 10057,
+          "reachHi": 10078,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 10663,
+      "cipherStart": 12043,
+      "key": [
+        5,
+        9,
+        21,
+        4,
+        13,
+        24,
+        28,
+        8,
+        5,
+        19,
+        5,
+        24,
+        21
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 11972,
+          "reachHi": 12085,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 11972,
+          "reachHi": 12085,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 12429,
+      "cipherStart": 4068,
+      "key": [
+        1,
+        3,
+        8,
+        20,
+        18,
+        10,
+        10,
+        9,
+        1,
+        4,
+        22,
+        25,
+        0
+      ],
+      "chapter": 3,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 4066,
+          "reachHi": 4090,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 3",
+          "lo": 3603,
+          "hi": 5506,
+          "reachLo": 4066,
+          "reachHi": 4090,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 22128,
+      "cipherStart": 421,
+      "key": [
+        12,
+        18,
+        21,
+        28,
+        28,
+        5,
+        19,
+        17,
+        27,
+        24,
+        10,
+        10,
+        25
+      ],
+      "chapter": 0,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 400,
+          "reachHi": 459,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 0",
+          "lo": 0,
+          "hi": 729,
+          "reachLo": 400,
+          "reachHi": 459,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 22374,
+      "cipherStart": 3031,
+      "key": [
+        10,
+        18,
+        13,
+        20,
+        22,
+        21,
+        4,
+        8,
+        1,
+        6,
+        1,
+        6,
+        13
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 2964,
+          "reachHi": 3161,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 2964,
+          "reachHi": 3161,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 22566,
+      "cipherStart": 12176,
+      "key": [
+        26,
+        7,
+        10,
+        26,
+        23,
+        8,
+        8,
+        17,
+        27,
+        3,
+        0,
+        12,
+        8
+      ],
+      "chapter": 7,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 12157,
+          "reachHi": 12199,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 7",
+          "lo": 9640,
+          "hi": 12648,
+          "reachLo": 12157,
+          "reachHi": 12199,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 23107,
+      "cipherStart": 3349,
+      "key": [
+        9,
+        23,
+        1,
+        10,
+        25,
+        6,
+        1,
+        23,
+        21,
+        1,
+        19,
+        13,
+        8
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 3323,
+          "reachHi": 3376,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 3323,
+          "reachHi": 3376,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 27038,
+      "cipherStart": 8139,
+      "key": [
+        11,
+        17,
+        20,
+        21,
+        1,
+        26,
+        23,
+        2,
+        28,
+        22,
+        0,
+        11,
+        2
+      ],
+      "chapter": 6,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 8034,
+          "reachHi": 8232,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 6",
+          "lo": 7960,
+          "hi": 9640,
+          "reachLo": 8034,
+          "reachHi": 8232,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 30367,
+      "cipherStart": 7700,
+      "key": [
+        24,
+        13,
+        28,
+        7,
+        26,
+        25,
+        2,
+        16,
+        6,
+        25,
+        0,
+        8,
+        9
+      ],
+      "chapter": 5,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 7657,
+          "reachHi": 7811,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 5",
+          "lo": 6761,
+          "hi": 7960,
+          "reachLo": 7657,
+          "reachHi": 7811,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 32067,
+      "cipherStart": 5505,
+      "key": [
+        25,
+        26,
+        9,
+        17,
+        11,
+        26,
+        20,
+        6,
+        5,
+        23,
+        7,
+        1,
+        17
+      ],
+      "chapter": -1,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 5505,
+          "reachHi": 5565,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 35813,
+      "cipherStart": 1940,
+      "key": [
+        16,
+        1,
+        25,
+        5,
+        6,
+        25,
+        7,
+        4,
+        6,
+        9,
+        12,
+        7,
+        16
+      ],
+      "chapter": 2,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 1936,
+          "reachHi": 1960,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 2",
+          "lo": 1874,
+          "hi": 3603,
+          "reachLo": 1936,
+          "reachHi": 1960,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    },
+    {
+      "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+      "donorStart": 39340,
+      "cipherStart": 8230,
+      "key": [
+        24,
+        0,
+        6,
+        20,
+        26,
+        2,
+        18,
+        10,
+        1,
+        5,
+        2,
+        17,
+        27
+      ],
+      "chapter": 6,
+      "checks": [
+        {
+          "kind": "continuous book",
+          "lo": 0,
+          "hi": 12956,
+          "reachLo": 8222,
+          "reachHi": 8355,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        },
+        {
+          "kind": "chapter 6",
+          "lo": 7960,
+          "hi": 9640,
+          "reachLo": 8222,
+          "reachHi": 8355,
+          "leftLegal": false,
+          "rightLegal": false,
+          "legal": false,
+          "optimum": null
+        }
+      ]
+    }
+  ]
+}
