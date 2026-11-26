@@ -1,0 +1,247 @@
+{
+  "date": "2026-11-26",
+  "question": "Can one uninterrupted period-14 additive GP29 key with authentic plaintext-F holds attain the pooled solved-LP1 frequency benchmark on LP2 physical pages 40–55?",
+  "source": {
+    "section": [
+      40,
+      55
+    ],
+    "runes": 3316,
+    "visibleF": 131,
+    "fnv64": "be6c056ed7b1bd0a"
+  },
+  "benchmark": {
+    "value": 414,
+    "formula": "ceil(3316 * 349 / 2797)"
+  },
+  "solver": "sims/lp2_section8_q9plus_fhold_bitset.cpp",
+  "runner": "sims/lp2_section8_q14_fhold_sft.cjs",
+  "workflowRun": {
+    "id": 45787045992,
+    "url": "https://github.com/FlareZ123/liber-primus/actions/runs/45787045992",
+    "commit": "c6ac1f30a52fe58719a4e1abb88f305fbf27a375"
+  },
+  "exhaustivePartition": {
+    "rootDigit": [
+      0,
+      28
+    ],
+    "shards": 4,
+    "allComplete": true,
+    "ranges": [
+      [
+        0,
+        6
+      ],
+      [
+        7,
+        13
+      ],
+      [
+        14,
+        20
+      ],
+      [
+        21,
+        28
+      ]
+    ]
+  },
+  "maxima": {
+    "maxE": 166,
+    "maxAnyNonF": 177,
+    "benchmarkReached": false
+  },
+  "totals": {
+    "leaves": 20856,
+    "nodes": 196309110,
+    "tests": 5692360903,
+    "sumShardSeconds": 800.2070000000001
+  },
+  "shards": [
+    {
+      "rootRange": [
+        0,
+        6
+      ],
+      "complete": true,
+      "leaves": 9146,
+      "nodes": 70903305,
+      "tests": 2055930995,
+      "maxE": 163,
+      "maxAnyNonF": 177,
+      "maxAnyRuneIndex": 10,
+      "keyE": [
+        6,
+        8,
+        13,
+        0,
+        5,
+        24,
+        28,
+        0,
+        7,
+        0,
+        0,
+        28,
+        0,
+        18
+      ],
+      "keyAny": [
+        0,
+        8,
+        0,
+        2,
+        0,
+        15,
+        5,
+        28,
+        7,
+        23,
+        8,
+        0,
+        0,
+        8
+      ],
+      "elapsedSeconds": 299.48
+    },
+    {
+      "rootRange": [
+        7,
+        13
+      ],
+      "complete": true,
+      "leaves": 5555,
+      "nodes": 56510479,
+      "tests": 1638643180,
+      "maxE": 166,
+      "maxAnyNonF": 177,
+      "maxAnyRuneIndex": 10,
+      "keyE": [
+        7,
+        0,
+        5,
+        0,
+        0,
+        7,
+        6,
+        9,
+        18,
+        0,
+        25,
+        0,
+        8,
+        21
+      ],
+      "keyAny": [
+        8,
+        0,
+        8,
+        0,
+        2,
+        0,
+        15,
+        5,
+        28,
+        7,
+        23,
+        8,
+        0,
+        0
+      ],
+      "elapsedSeconds": 227.007
+    },
+    {
+      "rootRange": [
+        14,
+        20
+      ],
+      "complete": true,
+      "leaves": 3448,
+      "nodes": 35373995,
+      "tests": 1025746247,
+      "maxE": 163,
+      "maxAnyNonF": 171,
+      "maxAnyRuneIndex": 22,
+      "keyE": [
+        18,
+        6,
+        8,
+        13,
+        0,
+        5,
+        24,
+        28,
+        0,
+        7,
+        0,
+        0,
+        28,
+        0
+      ],
+      "keyAny": [
+        20,
+        0,
+        0,
+        2,
+        0,
+        0,
+        14,
+        9,
+        0,
+        8,
+        23,
+        16,
+        28,
+        0
+      ],
+      "elapsedSeconds": 139.461
+    },
+    {
+      "rootRange": [
+        21,
+        28
+      ],
+      "complete": true,
+      "leaves": 2707,
+      "nodes": 33521331,
+      "tests": 972040481,
+      "maxE": 166,
+      "maxAnyNonF": 170,
+      "maxAnyRuneIndex": 10,
+      "keyE": [
+        21,
+        7,
+        0,
+        5,
+        0,
+        0,
+        7,
+        6,
+        9,
+        18,
+        0,
+        25,
+        0,
+        8
+      ],
+      "keyAny": [
+        28,
+        8,
+        0,
+        15,
+        5,
+        0,
+        28,
+        23,
+        8,
+        0,
+        1,
+        24,
+        0,
+        0
+      ],
+      "elapsedSeconds": 134.259
+    }
+  ]
+}
