@@ -82,20 +82,31 @@ const p56Control=decode(p56Cipher,0);
 assert.equal(p56Control.failure,null);assert.equal(p56Control.paths.length,22);assert.ok(includes(p56Control,p56Plain));
 const p57=source.pages.find(p=>p.page===57).indices;
 const plant=Array.from({length:275},(_,i)=>p57[i%p57.length]);
-const plants=[0,2].map(startCursor=>{
-  const decoded=decode(encrypt(plant,startCursor),startCursor);
-  assert.equal(decoded.failure,null);assert.ok(includes(decoded,plant));
+const p57NoF=Array.from({length:275},(_,i)=>{
+  const symbol=p57[i%p57.length];
+  return symbol===0?1:symbol;
+});
+const plantCases=[
+  {startCursor:0,plain:plant},
+  {startCursor:1,plain:p57NoF},
+  {startCursor:2,plain:plant}
+];
+const plants=plantCases.map(({startCursor,plain})=>{
+  const decoded=decode(encrypt(plain,startCursor),startCursor);
+  assert.equal(decoded.failure,null);assert.ok(includes(decoded,plain));
   return {startCursor,legalPaths:decoded.paths.length,knownPlaintextIncluded:true};
 });
-const original=[0,2].map(startCursor=>{
+const original=[0,1,2].map(startCursor=>{
   const result=decode(quotient,startCursor);
   assert.ok(result.failure,"original quotient unexpectedly has a legal decode");
   return {startCursor,failure:result.failure};
 });
 assert.equal(original[0].failure.offset,82);assert.equal(original[0].failure.ciphertext,23);
 assert.deepEqual(original[0].failure.priorStates,[{cursor:78,pathCount:4,nextPrime:401,totientMod29:23,forbiddenPlaintext:0}]);
-assert.equal(original[1].failure.offset,0);assert.equal(original[1].failure.ciphertext,4);
-assert.deepEqual(original[1].failure.priorStates,[{cursor:2,pathCount:1,nextPrime:5,totientMod29:4,forbiddenPlaintext:0}]);
+assert.equal(original[1].failure.offset,10);assert.equal(original[1].failure.ciphertext,7);
+assert.deepEqual(original[1].failure.priorStates,[{cursor:11,pathCount:1,nextPrime:37,totientMod29:7,forbiddenPlaintext:0}]);
+assert.equal(original[2].failure.offset,0);assert.equal(original[2].failure.ciphertext,4);
+assert.deepEqual(original[2].failure.priorStates,[{cursor:2,pathCount:1,nextPrime:5,totientMod29:4,forbiddenPlaintext:0}]);
 function ioc(a){const h=Array(N).fill(0);for(const x of a)h[x]++;return h.reduce((s,v)=>s+v*(v-1),0)/(a.length*(a.length-1));}
 console.log(JSON.stringify({
   model:"p56 prime-totient/F-transparent inverse on original p29 G quotient",
@@ -104,5 +115,5 @@ console.log(JSON.stringify({
   quotientIoC:ioc(quotient),quotientIndexSHA256:crypto.createHash("sha256").update(Buffer.from(quotient)).digest("hex"),
   authenticP56Control:{cipherRunes:p56Cipher.length,plainRunes:p56Plain.length,literalFPositions:[56],legalPaths:p56Control.paths.length,knownPlaintextIncluded:true},
   p57NativePlants:plants,originalQuotientResults:original,
-  verdict:"No admissible p56 prime-totient/F-bypass decoding for K=2 interpreted as prime start 2 or prime cursor index 2."
+  verdict:"No admissible p56 prime-totient/F-bypass decoding for K=2 interpreted as prime value 2, one-based prime ordinal 2, or zero-based cursor 2."
 },null,2));
