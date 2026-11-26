@@ -170,5 +170,40 @@
       },
       "nativeScore": -2.706525998170595
     }
+  ],
+  "bookSurvivors": [
+    {
+      "coef": [
+        0,
+        0,
+        0
+      ],
+      "bodyPrefix": 12943,
+      "bookLength": 12943,
+      "firstFailurePage": null,
+      "firstFailureOffset": null
+    },
+    {
+      "coef": [
+        19,
+        1,
+        6
+      ],
+      "bodyPrefix": 716,
+      "bookLength": 12943,
+      "firstFailurePage": 3,
+      "firstFailureOffset": 0
+    },
+    {
+      "coef": [
+        20,
+        27,
+        16
+      ],
+      "bodyPrefix": 848,
+      "bookLength": 12943,
+      "firstFailurePage": 3,
+      "firstFailureOffset": 132
+    }
   ]
 }
