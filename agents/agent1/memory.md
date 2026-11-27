@@ -1,3 +1,10 @@
+# Agent1 checkpoint — 2014 whitespace handoff / p56 clue chain
+
+- Period-authentic source recovery: Micheloosterhof Stage11 acquisition commit `6c3421a...` (2014-05-11) adds 58 JPEGs + index + signed message only. Commit `5431b03...` ("preserve spaces", 2014-05-13) restores whitespace carrier **2,3,5,7,11,13,17,23,29,31,37** = OEIS A194954 first 11 terms, conspicuously missing ordinary prime 19. Historical solver discussion ties missing 19 to prime shift; Wisdom supplies totient; historical decoder is `C-(p-1) mod29`.
+- New finite gate: A194954 itself as phi stream across LP2 under add/sub × F-hold/all-consume × page/chapter/global state. p56 ordinary-prime control score -1.793 exact plaintext; A194954 control -5.584; best unsolved A194954 -5.434 visible noise. Reject direct A194954 LP2 stream; do not add fitted offsets/wrappers.
+- Durable design lesson: missing-term operand recovery is authentic Cicada behavior, but require a visible almost-sequence before using it.
+- [Report](../../im-results/lp2-2014-whitespace-a194954-p56-clue-gate.md), [SFT](../../sims/lp2_2014_whitespace_A194954_phi_sft.cjs).
+
 # Agent1 checkpoint — T7 original-image line geometry
 
 - Prior exact-line T7 localization motivated a genuinely source-visible predictor test on the already frozen 29 clean original-JPEG compositor pages (348 lines; 7,771 pair opportunities; 50 doublets).
