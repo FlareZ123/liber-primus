@@ -37,6 +37,10 @@ jobs:
         if: ${{ inputs.script == 'sims/lp2_p27_myers1929_commons2011_source_sft.py' }}
         shell: pwsh
         run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7 opencv-python-headless==4.12.0.88 requests==2.32.5 filelock==3.20.0
+      - name: Install later Moulds plate topology dependencies
+        if: ${{ inputs.script == 'sims/lp2_p27_moulds_lateplate_topology_sft.py' }}
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7 opencv-python-headless==4.12.0.88 requests==2.32.5 filelock==3.20.0 scipy==1.16.3 networkx==3.5
       - name: Validate and execute selected research SFT
         shell: pwsh
         env:
@@ -64,6 +68,13 @@ jobs:
         with:
           name: lp2-p27-myers-commons
           path: im-results/lp2-p27-myers-commons/
+          if-no-files-found: warn
+      - name: Preserve later Moulds plate topology evidence
+        if: ${{ always() && inputs.script == 'sims/lp2_p27_moulds_lateplate_topology_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p27-moulds-lateplates
+          path: im-results/lp2-p27-moulds-lateplates/
           if-no-files-found: warn
       - name: Preserve Middle English C7/C8 evidence
         if: ${{ always() && inputs.script == 'sims/lp2_middle_english_register_gate_sft.py' }}
