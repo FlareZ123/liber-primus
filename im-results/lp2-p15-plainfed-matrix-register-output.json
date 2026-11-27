@@ -1,0 +1,130 @@
+{
+  "date": "2026-11-27",
+  "input_sha256": "1470d018c26e27ca2e5c6b5ab71e33fd55309077c843d3a9ef37de1fbb22231d",
+  "prefix": 267,
+  "length": 1744,
+  "fullF": {
+    "literal": {
+      "complete": true,
+      "nodes": 46986707,
+      "legalSeeds": 0,
+      "paths": 0,
+      "maxPrefix": 1403
+    },
+    "signed": {
+      "complete": true,
+      "nodes": 47336211,
+      "legalSeeds": 0,
+      "paths": 0,
+      "maxPrefix": 1591
+    }
+  },
+  "original": {
+    "literal": {
+      "ordinary": {
+        "nodes": 189551308,
+        "bestSeed": 114211,
+        "ties": 1,
+        "trainNLL": 3.59844,
+        "trainIOC": 0.0350877,
+        "heldNLL": 3.84091,
+        "heldIOC": 0.0343148
+      },
+      "hold": {
+        "nodes": 36395886,
+        "legalSeeds": 9890,
+        "paths": 72760,
+        "bestSeed": 180973,
+        "ties": 1,
+        "trainNLL": 3.61091,
+        "trainIOC": 0.0361015,
+        "heldNodes": 601,
+        "heldPaths": 0
+      }
+    },
+    "signed": {
+      "ordinary": {
+        "nodes": 189551308,
+        "bestSeed": 567882,
+        "ties": 1,
+        "trainNLL": 3.58499,
+        "trainIOC": 0.037425,
+        "heldNLL": 3.85136,
+        "heldIOC": 0.0347294
+      },
+      "hold": {
+        "nodes": 36498825,
+        "legalSeeds": 9841,
+        "paths": 74173,
+        "bestSeed": 321245,
+        "ties": 1,
+        "trainNLL": 3.63829,
+        "trainIOC": 0.0351159,
+        "heldNodes": 257,
+        "heldPaths": 0
+      }
+    }
+  },
+  "controls": {
+    "nativeKoan": {
+      "length": 780,
+      "seed": 274314,
+      "trainNLL": 2.55699,
+      "heldNLL": 2.66804,
+      "trainIOC": 0.0681761,
+      "heldIOC": 0.0634061,
+      "ordinary": {
+        "literal": true,
+        "signed": true
+      },
+      "hold": {
+        "literal": {
+          "nodes": 592861658,
+          "legalSeeds": 214676,
+          "paths": 5226037,
+          "heldNodes": 51203,
+          "heldPaths": 757,
+          "correct": true
+        },
+        "signed": {
+          "nodes": 175149402,
+          "legalSeeds": 36756,
+          "paths": 150571,
+          "heldNodes": 108718,
+          "heldPaths": 1114,
+          "correct": true
+        }
+      }
+    },
+    "nativeDivinity": {
+      "length": 755,
+      "seed": 360866,
+      "trainNLL": 2.80215,
+      "heldNLL": 2.77411,
+      "trainIOC": 0.0642618,
+      "heldIOC": 0.0594893,
+      "ordinary": {
+        "literal": true,
+        "signed": true
+      },
+      "hold": {
+        "literal": {
+          "nodes": 342870623,
+          "legalSeeds": 81618,
+          "paths": 149965,
+          "heldNodes": 23729,
+          "heldPaths": 2,
+          "correct": true
+        },
+        "signed": {
+          "nodes": 412342223,
+          "legalSeeds": 175665,
+          "paths": 2573688,
+          "heldNodes": 2365,
+          "heldPaths": 1,
+          "correct": true
+        }
+      }
+    }
+  }
+}
