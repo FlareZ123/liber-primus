@@ -1,6 +1,6 @@
 # LP2 p33–p39 independent human source-only session (Director #3012)
 
-**Status: builder and protocol prepared; complete archive assembly and independent human session pending.** No human has been contacted or simulated, and no new cipher operation, key, or plaintext is established.
+**Status: complete discovery and separately sealed holdout archives assembled and tested; independent human session pending.** No human has been contacted or simulated, and no new cipher operation, key, or plaintext is established.
 
 The [builder](../sims/lp2_p33_p39_blind_packet.py) constructs two deterministic ZIP archives from the original scans and exact historical chart files. Give the participant only `discovery.zip`. Keep `holdout.zip` and `moderator.md` private until the locked-prediction protocol allows release. The participant prompt includes neither issue text nor previously derived numerical readings or transformations.
 
@@ -17,12 +17,19 @@ From the repository root:
 python sims/lp2_p33_p39_blind_packet.py --output <private-directory>
 ```
 
+The completed [manual Windows assembly run](https://github.com/FlareZ123/liber-primus/actions/runs/46076258521) provides separate downloadable artifacts:
+
+- [Participant discovery artifact](https://github.com/FlareZ123/liber-primus/actions/runs/46076258521/artifacts/15235480807), 2,538,297 bytes, GitHub artifact SHA-256 `6755cd3c89f891bde3f8d11db673d3dfedc9d84627df84d1190da846daf58b1c`.
+- [Moderator-only artifact](https://github.com/FlareZ123/liber-primus/actions/runs/46076258521/artifacts/15235020956), 382,697 bytes, GitHub artifact SHA-256 `2538002c32a5ea3992a668407cf62d962b433de922e2b33dd837ba7d6bdd058e`. Do not provide this link or archive to a participant.
+
+These digests refer to the GitHub artifact containers, not the inner ZIPs. Both artifacts expire 25 February 2027; rerun the existing manual workflow using script `sims/lp2_p33_p39_blind_packet_sft.py` to rebuild them. Download and privately send only the inner discovery ZIP to the independent participant; a link to the research repository could expose the experimental hypotheses.
+
 The builder reads the original page JPEGs and repository-pinned SVG and Stage10 form, and downloads the two historical raster files by their exact dated URLs. An offline coordinator may supply the two exact raster files with `--chart-dir <directory>`; `--image-dir` can point to the extracted combined original archive. No third-party Python package is required. The builder stops on missing or mismatched chart bytes. It validates the SVG SHA-1, both raster SHA-1/length pairs, exact Stage10 Git blob and field order, and produces SHA-256 manifests for each archive. Windows text-checkout normalization is accepted only when the canonical source digest matches.
 
 ## Executed checks
 
-Locally the original uploaded JPEGs p33–39 passed disjoint discovery/holdout membership, byte-preserving ZIP extraction, SHA-256/length manifest replay, CRC checks and repeat-build archive equality for the image-only pack core. A modified chart test was correctly rejected. The live repository source returned the exact Stage10 blob `6a7130783f73320a5e6e5f802061f7851071a349` with the three field labels in their original order, and SVG blob `b1065e2446826360a1cc169cc26a47e9e8e8b4e1` of 220819 characters, matching the pinned source record. Local networking could not resolve Wikimedia or raw GitHub, so the **complete combined archive has not been built end-to-end** in this invocation. The raster bytes are independently known to have been acquired by #2994 in run 45842586704. No new workflow or identical raster comparison was dispatched.
+The original image-only checks had already passed. The [end-to-end assembly SFT](../sims/lp2_p33_p39_blind_packet_sft.py) now also passes on a network-enabled Windows checkout (run above, pinned commit `0e327e43d35e3904c283a0fae714e6bec00e5d97`): exact 2003/2008 raster SHA-1 and byte counts, 2010 SVG identity, original Stage10 form Git blob and field order, source-only ZIP entry allowlists, disjoint page membership, per-entry length and SHA-256 manifest replay, byte identity of every page with its repository original, CRC, and byte-identical ZIP regeneration using the acquired chart bytes offline. Both separate upload steps succeeded. No new artwork comparison or numeric sweep was run.
 
 ## Next decision
 
-On a network-enabled checkout, assemble both archives and privately present the discovery packet only to a maintainer-approved, unexposed real human. If the participant locks a source-selected numerical operation, apply it without retuning to the held p38 and record exact output; otherwise retain the no-selector result as bounded evidence. The issue remains open pending this dependency. Do not substitute an LLM cold start or another arbitrary square sweep. The established p33 square-receiver negatives and authoritative frontier remain unchanged.
+Privately present the already assembled discovery packet only to a maintainer-approved, unexposed real human. If the participant locks a source-selected numerical operation, apply it without retuning to the held p38 and record exact output; otherwise retain the no-selector result as bounded evidence. The issue remains open pending this dependency. Do not substitute an LLM cold start or another arbitrary square sweep. The established p33 square-receiver negatives and authoritative frontier remain unchanged.
