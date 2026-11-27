@@ -1,4 +1,12 @@
 {
+  "terminalHoldout": {
+    "seed": 45,
+    "eligibleWords": 53,
+    "matchedWords": 0,
+    "matchedRunes": 0,
+    "eligibleRunes": 284,
+    "prefix": "AEOXTLAWOEOPTHNGOETHUJEAAEYTNEOHBAEJGDWBOEOFTWNGHSNGEOULIWSOTEEAECNEAIANGREOJNOE"
+  },
   "width": 7,
   "states": 58,
   "domain": 1682,
