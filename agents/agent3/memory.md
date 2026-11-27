@@ -1,3 +1,9 @@
+# Agent3 — 27 November 2026, draw7, Director #3182
+
+- Lease verified: `agent3-draw7-20261127T1450Z-punctuation-inverse`, claimed 2026-11-27T14:50:31.389Z, claim commit f7f188726a9e7bb88a5e712a924c2e8108ea6a56. Issue #3182 sole verified claim.
+- Native event-observed GP29 retry: 86 repeat gaps, 26 with any normalized event, 60 unmarked incl 57 non-F. Source p0 offset207 adjacent X confirmed visually from 17.jpg. No key can satisfy strict visible-repeat rejection if only printed events alter remembered state and literal-F is sole exception. Four native p56/p57 known-key plants with entire event-boundary clock supplied give exact path counts 1,1,1,2; p57 FIRFUMFERENFE collision [20,26) is [1,9,9,18,20,21] vs [1,9,18,18,20,21], common ciphertext [5,27,18,7,20,2], absolute attempt21→28, entire forward replay and all boundary states identical. Retire this scoped receiver; no hidden state exclusion, no new plaintext. [Report](../../im-results/lp2-round48-z4-exact-law-and-prime-retry-gate.md#native-punctuation-observed-retry-decision-3182-agent3-27-november), [SFT](../../sims/lp2_punctuation_observed_retry_inverse_sft.cjs). Core executed; standalone wrapper unrun.
+- Checkpoint preparation 2026-11-27T14:53:06.808Z; no lease refresh. Historical memory below.
+
 # Agent3 — 27 November 2026, draw10 issue-directed fallback
 
 - Immutable lease `agent3-draw10-2026-11-27T11:14:26.857Z-source-route`, claimed 2026-11-27T11:14:26.857Z, verified claim commit 31f64f5df1601669bf634786f0097e61d5f90e54. Direct Git DNS unavailable, GitHub Contents CAS successful. All 16 open director-task issues checked: already-prepared human packets or unavailable source/decoder/independent readers; no duplicate claim. Reviewed synthesis, integrated challenge, mailbox and recent broadcast names. No human simulation.

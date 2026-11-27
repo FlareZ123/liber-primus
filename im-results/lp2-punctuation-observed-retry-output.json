@@ -1,0 +1,217 @@
+{
+  "counts": {
+    "all": 86,
+    "anyEvent": 26,
+    "nonFUnmarked": 57,
+    "unmarked": 60,
+    "wordOnly": 22,
+    "firstUnmarkedNonF": {
+      "i": 207,
+      "r": 14,
+      "event": ""
+    },
+    "marked": [
+      {
+        "i": 122,
+        "r": 2,
+        "event": "-"
+      },
+      {
+        "i": 653,
+        "r": 11,
+        "event": "-"
+      },
+      {
+        "i": 979,
+        "r": 21,
+        "event": "-"
+      },
+      {
+        "i": 1038,
+        "r": 6,
+        "event": "-"
+      },
+      {
+        "i": 2026,
+        "r": 11,
+        "event": "-"
+      },
+      {
+        "i": 2580,
+        "r": 14,
+        "event": "-"
+      },
+      {
+        "i": 5836,
+        "r": 15,
+        "event": "-"
+      },
+      {
+        "i": 6081,
+        "r": 1,
+        "event": "-"
+      },
+      {
+        "i": 6542,
+        "r": 20,
+        "event": "-"
+      },
+      {
+        "i": 7232,
+        "r": 19,
+        "event": "-"
+      },
+      {
+        "i": 7381,
+        "r": 2,
+        "event": "-"
+      },
+      {
+        "i": 7869,
+        "r": 0,
+        "event": "-"
+      },
+      {
+        "i": 7943,
+        "r": 9,
+        "event": "-"
+      },
+      {
+        "i": 8196,
+        "r": 8,
+        "event": "/\n-"
+      },
+      {
+        "i": 8309,
+        "r": 4,
+        "event": "/\n"
+      },
+      {
+        "i": 8385,
+        "r": 24,
+        "event": "."
+      },
+      {
+        "i": 8700,
+        "r": 16,
+        "event": "-"
+      },
+      {
+        "i": 9596,
+        "r": 7,
+        "event": "-"
+      },
+      {
+        "i": 10508,
+        "r": 28,
+        "event": "/\n"
+      },
+      {
+        "i": 10612,
+        "r": 22,
+        "event": "-"
+      },
+      {
+        "i": 10842,
+        "r": 22,
+        "event": "-"
+      },
+      {
+        "i": 11189,
+        "r": 3,
+        "event": "-"
+      },
+      {
+        "i": 11344,
+        "r": 18,
+        "event": "/\n"
+      },
+      {
+        "i": 11659,
+        "r": 7,
+        "event": "-"
+      },
+      {
+        "i": 12668,
+        "r": 21,
+        "event": "-"
+      },
+      {
+        "i": 12804,
+        "r": 6,
+        "event": "-"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "page": 56,
+      "key": "DIUINITY",
+      "blocks": 28,
+      "attempts": 87,
+      "ways": "1",
+      "ambiguousBlocks": 0,
+      "first": null
+    },
+    {
+      "page": 56,
+      "key": "FIRFUMFERENFE",
+      "blocks": 28,
+      "attempts": 88,
+      "ways": "1",
+      "ambiguousBlocks": 0,
+      "first": null
+    },
+    {
+      "page": 57,
+      "key": "DIUINITY",
+      "blocks": 23,
+      "attempts": 96,
+      "ways": "1",
+      "ambiguousBlocks": 0,
+      "first": null
+    },
+    {
+      "page": 57,
+      "key": "FIRFUMFERENFE",
+      "blocks": 23,
+      "attempts": 97,
+      "ways": "2",
+      "ambiguousBlocks": 1,
+      "first": {
+        "l": 20,
+        "h": 26,
+        "count": "2",
+        "trueP": [
+          1,
+          9,
+          9,
+          18,
+          20,
+          21
+        ],
+        "alt": [
+          1,
+          9,
+          18,
+          18,
+          20,
+          21
+        ],
+        "cipher": [
+          5,
+          27,
+          18,
+          7,
+          20,
+          2
+        ],
+        "startState": {
+          "prev": -1,
+          "t": 21
+        },
+        "endT": 28
+      }
+    }
+  ]
+}
