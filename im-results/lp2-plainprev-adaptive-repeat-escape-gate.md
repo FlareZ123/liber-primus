@@ -50,3 +50,13 @@ Retire this literal printed-spiral phase-zero rank-shift consumer. Do not vary a
 ## Reproduction and next decision
 
 All three experiment cores executed directly in the connected JS runtime against the exact repository source strings. The persisted CommonJS wrappers read those same checked-in files and emit the full JSON; they have not separately been run under Node in a checkout. Outputs contain the four source blob SHAs and all settings. No changes to the established results frontier are warranted. The useful next decision is to seek an independently selected evolving rank schedule or a different recoverable output representation, not optimize period-8/13 maps or the p15 literal vector. The present rank law is mathematically reversible but not an authenticated first-party mechanism.
+
+## Extended period-capacity frontier
+
+The exact singleton bound was extended to every integer period 1–256, under the same eight clock/rank variants, without fitting any key. For one rank map per phase shared throughout the book, the first periods at which **this necessary bound ceases to exclude** the Shakespeare, Emerson and Gibran histogram floors are 17, 26 and 17 respectively. In particular every period 1–16 is excluded against all three finite donor registers: maximum period-16 capacity 1,399 versus floors 1,408/1,491/1,416. This remains true under arbitrary per-phase deletion order, arbitrary eventwise escapes, and arbitrary reordering of those donor histograms. These thresholds are not candidate key periods. The 23-period maximum is 1,469, so the singleton test alone does not exclude two registers there.
+
+For independently chosen chapter-private phase maps the sum of per-chapter maxima is already 1,815 at q8 and 2,031 at q13. Thus the whole-book bound cannot reject those private schedules. The distinction identifies where this obstruction stops being useful; further period fitting without an independent schedule source is not warranted.
+
+- [Extended SFT](../sims/agent14_lp2_adaptive_escape_period_capacity_sft.cjs), commit a8447e07d876181f8dd70567bcb8031520de5056.
+- [Full numeric output](agent14-lp2-adaptive-escape-period-capacity-output.json), commit 630d6691372a4d7e5609b485fa963e11fe68bb13.
+- Core executed in connected JavaScript; standalone wrapper not separately executed. No new plaintext or recovered key.
