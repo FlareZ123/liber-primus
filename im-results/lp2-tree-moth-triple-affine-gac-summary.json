@@ -1,0 +1,221 @@
+{
+  "source": {
+    "inputBytes": 448746,
+    "fnv64": "9cc5ae8c77fb2b88",
+    "sha256Local": "5547b2e1adadeef17c9e9d73aee9e0f6a229ee81a07c3f7da820520368697c26",
+    "dict": 40751
+  },
+  "nativeGAC": [
+    {
+      "case": 0,
+      "mode": 0,
+      "root": [
+        120206,
+        113317,
+        0,
+        50
+      ],
+      "pairsRoot": 25140961,
+      "visits": 50,
+      "branches": 391,
+      "pairs": 61829744,
+      "factorCalls": 2269,
+      "solutions": 2,
+      "truthRetained": true,
+      "accuracies": [
+        [
+          15,
+          17,
+          19
+        ],
+        [
+          16,
+          17,
+          20
+        ]
+      ]
+    },
+    {
+      "case": 1,
+      "mode": 0,
+      "root": [
+        150774,
+        138338,
+        0,
+        52
+      ],
+      "pairsRoot": 36762483,
+      "visits": 40,
+      "branches": 48,
+      "pairs": 66600302,
+      "factorCalls": 356,
+      "solutions": 2,
+      "truthRetained": true,
+      "accuracies": [
+        [
+          9,
+          10,
+          12
+        ],
+        [
+          9,
+          10,
+          12
+        ]
+      ]
+    },
+    {
+      "case": 2,
+      "mode": 0,
+      "root": [
+        136095,
+        134700,
+        0,
+        50
+      ],
+      "pairsRoot": 11913694,
+      "visits": 589,
+      "branches": 15688,
+      "pairs": 156565504,
+      "factorCalls": 86344,
+      "solutions": 0,
+      "timeout": true
+    },
+    {
+      "case": 2,
+      "mode": 1,
+      "root": [
+        136095,
+        134700,
+        0,
+        50
+      ],
+      "pairsRoot": 11913694,
+      "visits": 31,
+      "branches": 50,
+      "pairs": 14627824,
+      "factorCalls": 371,
+      "solutions": 2,
+      "timeout": false
+    }
+  ],
+  "conditionalCounts": [
+    [
+      0,
+      0,
+      "1126737",
+      [
+        "29",
+        "1",
+        "1439",
+        "27",
+        "1"
+      ]
+    ],
+    [
+      0,
+      1,
+      "12938904",
+      [
+        "1",
+        "126852",
+        "6",
+        "17"
+      ]
+    ],
+    [
+      0,
+      2,
+      "30001296192",
+      [
+        "28",
+        "535737432",
+        "2"
+      ]
+    ],
+    [
+      1,
+      0,
+      "34488990000",
+      [
+        "17100",
+        "1245",
+        "81",
+        "4",
+        "5",
+        "1"
+      ]
+    ],
+    [
+      1,
+      1,
+      "26628776916698880",
+      [
+        "83860",
+        "107",
+        "22",
+        "936758",
+        "144",
+        "1"
+      ]
+    ],
+    [
+      1,
+      2,
+      "8577414",
+      [
+        "27",
+        "1998",
+        "1",
+        "159"
+      ]
+    ],
+    [
+      2,
+      0,
+      "39833856",
+      [
+        "408",
+        "24",
+        "3",
+        "1356"
+      ]
+    ],
+    [
+      2,
+      1,
+      "2304000",
+      [
+        "10",
+        "3600",
+        "64"
+      ]
+    ],
+    [
+      2,
+      2,
+      "1113840",
+      [
+        "5",
+        "2184",
+        "3",
+        "2",
+        "17"
+      ]
+    ]
+  ],
+  "conditionalCountsSchema": [
+    "case",
+    "fixedTrack",
+    "distinctPairCount",
+    "componentCounts"
+  ],
+  "exactTrieBounded": {
+    "capPerStep": 1000000,
+    "case0ForwardFirstCap": 3,
+    "case0ReverseFirstCap": 11,
+    "case1ReverseFirstCap": 16,
+    "case2ForwardFirstCap": 3,
+    "case2ReverseHistoryCapAt": 40
+  }
+}
