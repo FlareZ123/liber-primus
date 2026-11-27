@@ -1,6 +1,6 @@
-# Known-plaintext recovery of private insertion charts
+# Recovery and original constraints of private insertion charts
 
-Agent7, 27 November 2026. **Actual effective-key recovery on long aligned synthetic encipherments; short disconnected fragments fail the exact unknown-boundary-state gate below, even with oracle-known charts. No original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report; no new unselected original search.
+Agent7, 27 November 2026. **Long aligned controls recover effective keys; supplied-destination ciphertext-only controls recover entire held plaintexts; arbitrary blind destination search fails calibration. Short disconnected fragments fail the exact unknown-boundary-state gate even with oracle-known charts. The three GP-prime residue destination family is conditionally excluded on original LP2. No original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report. The residue-family gate below is an independent, explicitly conditional original test.
 
 ## Sender and attack
 
@@ -39,7 +39,7 @@ Initial prototype with 200 nodes recovered three of four keys; improved matching
 
 [SFT](../sims/lp2_private_rank_map_recovery_sft.cjs): run from repo root with optional argument 0 (first four, default) or 1/2/3/4 (independent P ordinary/P hold/C ordinary/C hold). [First raw](lp2-private-rank-map-recovery-output.json) · [1](lp2-private-rank-map-recovery-batch1.json) · [2](lp2-private-rank-map-recovery-batch2.json) · [3](lp2-private-rank-map-recovery-batch3.json) · [4](lp2-private-rank-map-recovery-batch4.json).
 
-A supplied 8,000-rune known fit is a substantial prerequisite, absent for unknown LP2. The experiment does not solve a ciphertext-only secret-chart problem. The earlier blind beam failed; the arbitrary-map aligned-donor gate remains negative. Retire this unselected adaptive receiver as a current LP2 route, but retain the rank-distance solver for an independently authenticated sufficiently informative known-plaintext alignment or source-selected insertion rule. The short-fragment test below identifies a specific state deficit.
+A supplied 8,000-rune known fit is a substantial prerequisite, absent for unknown LP2. The aligned experiment does not solve a ciphertext-only secret-chart problem; the supplied-destination experiments below remove the known-plaintext requirement but not the destination-map prerequisite. The earlier blind beam failed; the arbitrary-map aligned-donor gate remains negative. Retire this unselected adaptive receiver as a current LP2 route, but retain the rank-distance solver for an independently authenticated sufficiently informative known-plaintext alignment or source-selected insertion rule. The short-fragment test below identifies a specific state deficit.
 
 
 ## Short disconnected aligned fragments: exact state-identifiability gate (#3183, Agent1)
@@ -72,3 +72,47 @@ Reproduce: [partial-state solver and native calibration](../sims/lp2_partial_ran
 ### Next research decision
 
 Do not treat short provisional words as adequate adaptive-rank known plaintext. For this independently unknown-boundary model, acquire an independently evidenced initial list/reset (e.g. a literal source instruction naming initial order and reset point) or a substantially longer independently authenticated aligned span with at least 28 distinct ciphertext symbols, and sufficient label coverage to constrain S,R. No such unknown-page crib or boundary state is currently established. Linking the actual full ciphertext through gaps could add constraints, especially C-feedback where a move destination is known from C given R; this was not tested and cannot be excluded by the independent-fragment state bound. Similarly, a restricted language model or known boundary states could resolve some ambiguity; exact replay alone cannot certify which completion is intended. No unknown key/plaintext recovered.
+
+
+## Ciphertext-only inverse conditional on an independently supplied destination map (Agent2)
+
+For ordinary continuous C-feedback, supplying R makes the rank stream deterministic given A, independent of S. Fit the sorted rank-frequency likelihood under a Shakespeare GP model by greedy full initial-list transpositions (six starts, up to fifteen sweeps), then solve rank-to-GP substitution by sixteen seeded 10,000-swap anneals under a smoothed Shakespeare trigram model. No printed word boundaries or plaintext anchors enter recovery. Freeze both inferred charts before the held continuation.
+
+Two distinct literary controls, Gibran and Emerson, each normalized [38000,44000), independently planted arbitrary S and A. Each of the 29 ciphertext labels is assigned independently to one of the eight ranks of least frequent donor plaintext labels (generation only; solver receives R, not donor frequencies or the donor). Fit 3000 runes, hold 3000, continuous state, ordinary consumption. Equal adjacent ciphertext pairs: 23 and 18 out of 5999; all 29 glyphs occur.
+
+| Donor | Fit plaintext | Held plaintext | Full replay |
+|---|---:|---:|---:|
+| Gibran | 2957/3000 | 3000/3000 | 6000/6000 |
+| Emerson | 2968/3000 | 3000/3000 | 6000/6000 |
+
+Both held scores equal the actual native score. This is useful inverse capability, not unique initial-key identification. A source-authenticated destination map would now permit a real ciphertext-only recovery attempt even without a long crib. No such new map has been identified. The previous fixed public GP-prime-minus-one map already failed its original gate.
+
+[SFT](../sims/lp2_private_rank_known_destination_blind_state_sft.cjs) · [raw](lp2-private-rank-known-destination-blind-state-output.json). Executed connected V8 core; standalone Node wrapper not separately run.
+
+### Unknown map is the remaining obstacle
+
+Separate hidden-map Gibran and Emerson controls, [30000,36000), split 3000/3000, 16 and 40 adjacent repeats. Fit a chart-invariant objective (half sorted-unigram log likelihood minus empirical rank bigram conditional entropy) by alternating coordinate destination moves and initial-list transpositions; follow with whole destination-group moves and exchanges. Neither held recovery improves with group moves. Blind held objective -4.912/-4.651 vs planted -3.850/-3.938. Even an oracle best rank-to-GP bijection fitted using the held truth gives only 628/3000 and 1220/3000 held matches (upper diagnostic, not recovered plaintext). Same-destination pair confusion TP/FP/FN is 24/29/24 and 12/10/33; destination coordinates correct up to reflection 6/29 and 3/29. Near-oracle starts with true initial list and three perturbed destination coordinates still yield only 2392/3000 and 2282/3000 oracle held matches (27/29 and 25/29 destination matches). Do not extrapolate to unknown LP2 maps or spend more compute on the untyped search. No original unconstrained blind fit was performed.
+
+[SFT](../sims/lp2_private_rank_grouped_destination_search_sft.cjs) · [raw](lp2-private-rank-grouped-destination-search-output.json).
+
+## Exact original gate: three GP-prime residue destination groups (Agent2)
+
+Exploratory restricted C-feedback family: classify each ciphertext glyph by GP prime modulo four (prime 2, primes 1 mod 4, primes 3 mod 4), assign any destination rank to each of the three classes. No original instruction selecting this classification is established. Ordinary continuous consumption, arbitrary private initial list and arbitrary static rank-to-plaintext bijection. The sole plaintext restriction is that the 83 singleton printed groups are one-rune words A or I; actual solved native controls support this restriction, but it is not established for unknown LP2 (H-decoy remains possible).
+
+At every event maintain a conservative 29-bit domain of ranks per glyph. If emitted glyph c is at rank j and inserted at d, any other glyph at rank r transforms to r-[r>j]+[r-[r>j]>=d]. Union the allowed transforms over the rank domain of c and apply sound singleton all-different closure. First pass independently intersects all singleton rank-pair support conditions. Second pass restricts the live emitted-glyph domain at each singleton to each surviving pair, propagating the constraint forward. Empty domains or absent pairs are exact contradictions despite relaxed correlations. Exhaustive reflection quotient covers all nonconstant destination triples; constant maps were already excluded by the stronger all-partition [fixed insertion gate](lp2-adaptive-fixed-insertion-partition-gate.md). All 12,956 original rune indices match the corrected transcription; 83 singleton groups.
+
+Six independent native solved-corpus plants (2979 runes, 27 singletons each; different triples including a constant one) retain the true pair through forward and bidirectional propagation; 23,548 individual rank-transform mask checks pass. No claims of key identification from these controls.
+
+| Stage | Count |
+|---|---:|
+| Nonconstant reflection representatives | 12,180 |
+| Rejected by independent singleton pair intersections | 10,933 |
+| Remaining maps | 1,247 |
+| Remaining candidate rank pairs across maps | 5,300 |
+| Pairs surviving propagated singleton constraints | 0 |
+
+All 24,360 nonconstant triples and the 29 previously excluded constant maps are therefore ruled out under the stated continuous ordinary sender and singleton-word premise. No source reset, F hold, alternate partition, or H-decoy spacing claim follows. No recovered original plaintext. This is a finite original contradiction, not a generic rejection of private adaptive rank ciphers.
+
+[SFT](../sims/lp2_prime_mod4_adaptive_destination_allinitial_sft.cjs) · raw batches [0](lp2-prime-mod4-adaptive-destination-batch00.json), [1–3](lp2-prime-mod4-adaptive-destination-batches01-03.json), [4–6](lp2-prime-mod4-adaptive-destination-batches04-06.json), [7–9](lp2-prime-mod4-adaptive-destination-batches07-09.json), [10–12](lp2-prime-mod4-adaptive-destination-batches10-12.json), [13–14](lp2-prime-mod4-adaptive-destination-batches13-14.json). Executed all batches in connected V8.
+
+**Decision:** retain the supplied-destination inverse as a usable downstream receiver for an independently evidenced map. Reject the finite residue family under ordinary consumption and native singleton reading. Neither the blind map search nor a long run of exact finite exclusions establishes an original LP2 solution.
