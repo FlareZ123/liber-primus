@@ -1,0 +1,111 @@
+{
+  "publishedControl": "OAHQHCNYNXTSZJRRHJBYHQKSOUJY",
+  "tests": [
+    {
+      "n": 223,
+      "held": 86,
+      "ptDistinct": 25,
+      "ctDistinct": 28,
+      "runs": [
+        {
+          "anchor": 174,
+          "cost": 15.536194989501054,
+          "nodes": 100001,
+          "dead": 44096,
+          "branches": 2862,
+          "maxDepth": 19,
+          "capped": true,
+          "solved": false
+        },
+        {
+          "anchor": 175,
+          "cost": 15.536194989501054,
+          "nodes": 100001,
+          "dead": 42287,
+          "branches": 2756,
+          "maxDepth": 20,
+          "capped": true,
+          "solved": false
+        },
+        {
+          "anchor": 176,
+          "cost": 15.536194989501054,
+          "nodes": 90075,
+          "dead": 42369,
+          "branches": 2749,
+          "maxDepth": 223,
+          "capped": false,
+          "solved": true
+        }
+      ],
+      "knownLeft": 28,
+      "knownRight": 25,
+      "correctKnownLeft": true,
+      "correctKnownRight": true,
+      "heldExact": 86,
+      "cipherRepeats": 14
+    },
+    {
+      "n": 223,
+      "held": 86,
+      "ptDistinct": 19,
+      "ctDistinct": 29,
+      "runs": [
+        {
+          "anchor": 195,
+          "cost": 14.974841581667091,
+          "nodes": 100001,
+          "dead": 44890,
+          "branches": 3615,
+          "maxDepth": 22,
+          "capped": true,
+          "solved": false
+        },
+        {
+          "anchor": 196,
+          "cost": 14.974841581667091,
+          "nodes": 100001,
+          "dead": 52269,
+          "branches": 4227,
+          "maxDepth": 24,
+          "capped": true,
+          "solved": false
+        },
+        {
+          "anchor": 75,
+          "cost": 15.944741764146626,
+          "nodes": 100001,
+          "dead": 41472,
+          "branches": 2884,
+          "maxDepth": 23,
+          "capped": true,
+          "solved": false
+        }
+      ]
+    },
+    {
+      "n": 1000,
+      "held": 86,
+      "ptDistinct": 27,
+      "ctDistinct": 29,
+      "runs": [
+        {
+          "anchor": 183,
+          "cost": 13.02497103139568,
+          "nodes": 133300,
+          "dead": 44072,
+          "branches": 2520,
+          "maxDepth": 1000,
+          "capped": false,
+          "solved": true
+        }
+      ],
+      "knownLeft": 29,
+      "knownRight": 27,
+      "correctKnownLeft": true,
+      "correctKnownRight": true,
+      "heldExact": 86,
+      "cipherRepeats": 44
+    }
+  ]
+}
