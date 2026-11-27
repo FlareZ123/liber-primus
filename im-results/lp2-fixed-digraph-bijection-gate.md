@@ -125,12 +125,43 @@ Three independent source corpora were converted using the established GP29 token
 
 The sorted-profile total-variation (TV) distance is a descriptive distance between normalized, descending 841-bin frequency vectors. It is not a p-value. The stronger simple observation is that every sampled native-English control has substantially fewer distinct digraphs and a much higher maximum frequency than the original, for every tested alignment.
 
+## Collision-graph state and switch budgets (#3201, Agent24, 27 November)
+
+**Decision:** no compact shared stationary nonoverlapping pair permutation is viable on the stated native-GP register: the existing arbitrary-bijection gate already dominates every compact keyed subfamily. Do not repeat a Hill, Feistel, digraph S-box or local-swap sweep. The useful new result is how far a *changing* pair map must depart from stationarity, not another stationary search.
+
+### Exact constraints
+
+Let each complete consuming pair be a vertex in GP29². The ordered edge between consecutive pair vertices is the cross-block seam (an edge type is an ordered pair of pair types, not an adjacent-rune equality event). Let (A_k), (B_k) be prefix sums of descending positive frequency bins of two equal-length tapes, padded by zeros after support. Define (D_q(A,B)=\max_k\{0,A_k-B_{qk},B_k-A_{qk}\}).
+
+If a sender has q arbitrary bijective pair maps, each source vertex can reach at most q destination types, and conversely. Therefore **vertex (D_q=0)** is necessary. Consecutive vertices can use two independently selected maps, hence **edge (D_{q^2}=0)**. These inequalities need neither aligned plaintext positions nor knowledge of the map sequence. If s seams change the active map index, the remaining seams use one of q induced edge permutations; at most s events can violate the same-map capacity, so **(s\ge D_q\)** on edge profiles. These are necessary bounds, not claims that all passing histograms admit a map bank. Internal equality selects exactly 29 pair vertices (the diagonal); seam equality selects edges whose preceding second coordinate equals the following first coordinate. A stationary pair bijection can change both literal equality counts, so the observed 86 adjacent equalities cannot simply be equated to a pair-frequency invariant. In fact, any pair bijection preserving the seam-equality predicate for *all* pairs must be a common monoalphabetic map on both coordinates: comparing all pairs ending/starting at a fixed symbol forces their output second/first labels to coincide; distinct input symbols must have distinct output labels. Thus `F(a,b)=(sigma(a),sigma(b))`. Such a map also preserves internal equality. An arbitrary mixed pair map has no such universal guarantee. The previous sorted-profile contradiction implies an empty jointly attainable internal/seam equality set for any of the excluded matched native tapes, regardless of the key parameterization.
+
+For a dominant stationary map plus e exceptions, relaxing chronological alignment gives an exact histogram transportation lower bound (e\ge D_1\) on vertices: under the best independent relabeling, (D_1) is the unmatched mass (integer TV). Each exceptional pair changes at most two adjacent pair-edge observations; hence also (e\ge\lceil D_1(\mathrm{edges})/2\rceil). The edge relabeling is relaxed independently of the vertex map; no claim of joint attainability is made for these lower bounds.
+
+**Exact aligned minimum switches:** for a particular aligned candidate plaintext/ciphertext tape, a contiguous stationary run is feasible iff the observed correspondences form a partial bijection (both forward and reverse consistency). Such a map always extends to a full 841-way permutation. Feasibility is hereditary under taking subintervals. Greedily take the longest feasible prefix, then repeat: truncating any competing optimal partition at the end of that prefix leaves no more than its original number of suffix runs minus one, proving optimality by induction. The resulting number of cuts is the exact minimum switch count even with independent arbitrary private maps per run, and is a lower bound for any shared compact map bank. It is conditional on the specified aligned candidate and continuous framing, not a lower bound over all possible natural-language text.
+
+### Executed original experiment
+
+Pinned canonical transcription (12,956 unknown runes; terminal p54–55 308 runes), ordinary consuming nonoverlapping phases 0/1. Independent disjoint windows of each exact length were taken from the existing Gibran, Shakespeare and Emerson text files with the established longest-match GP normalization. Full-book windows: 4/16/25 = 45 per phase. Terminal: 204/710/1053 = 1,967 per phase. Full rows and extrema, exact input blob IDs, and native calibration are in the [machine-readable output](lp2-pair-state-graph-budget-output.json). The original pair graph has 832/838 vertex types and 6,449/6,445 ordered seam edge types at phases 0/1; maximum edge multiplicity 2/3. Actual internal/seam adjacent rune repeats are 37/49 and 49/37.
+
+| Scope | Phase | Complete pairs | Necessary q floor, range over controls | Minimum dominant-map exceptions, range | Exact minimum aligned switches, range |
+|---|---:|---:|---:|---:|---:|
+| Full p0–55 | 0 | 6478 | 7–13 | 3127–3522 | 412–471 |
+| Full p0–55 | 1 | 6477 | 7–14 | 3172–3539 | 398–487 |
+| Terminal p54–55 | 0 | 154 | 2–5 | 16–57 | 5–17 |
+| Terminal p54–55 | 1 | 153 | 2–9 | 17–61 | 5–18 |
+
+Thus no q≤6 map bank survives these 90 full-book phase/window comparisons, and every dominant-map interpretation needs >48% exceptional blocks even allowing arbitrary pair relabeling and transport. At q=8, only 10/45 phase0 and 6/45 phase1 windows pass the histogram capacity relaxation; the graph-only minimum switch floors among these are 40 and 55 respectively (not sufficient for a true map bank). More strongly, the aligned test requires at least 398 switches over every full-book match even without a shared bank. Continuous pair framing with switches only at the 55 rune-bearing page seams (at most 54) or nine chapter seams (at most 8) is therefore excluded for these alignments. The terminal chapter alone needs at least five switches on every aligned donor match. This does not reject independent re-framing/reordering, F bypass, alternative donor registers or genuine symbol/block-state feedback.
+
+**Controls and limitations:** 12 planted LP1 reference controls with 1/2/4/8/13/29 concealed permutations and either pseudorandom or 37-block run clocks pass every bound and oracle inverse (1,780/1,780 blocks each); greedy exactly recovers the 48-switch minimum on all five nonconstant run37 controls. Greedy matches exact quadratic DP on 1,000 deterministic small random instances. These establish implementation and the exact relaxed segmentation result, not blind key recovery. No surviving stationary family warrants an original key fit. A full standalone Node/CI run was not performed; the identical computation was executed in the connected V8 runtime. The literary files are finite normalized donors, not independently authenticated unknown plaintext. No new plaintext or key is recovered.
+
+Reproduce: `node sims/lp2_pair_state_graph_budget_sft.cjs`. Do not widen this fixed-pair branch or optimize its synthetic fits. A successor should supply an independently selected genuinely changing state/clock or distinct representation; use these capacity bounds before investing in a key search.
+
 ## Decision and scope
 
 Retire a **single fixed bijective two-rune block map** on the tested GP29 clocks, including all invertible 2×2 Hill keys. The result is family-wide: it is not a rejection of only the previously tested p32 M7 matrix.
 
 This does not reject:
-- a key or pair map that changes between blocks, words, pages or sections;
+- a sufficiently fast-changing pair-map bank; the #3201 extension above excludes q≤6 and page/chapter-only switching for the sampled continuous aligned donor windows, not all changing maps or independently reframed blocks;
 - a stateful stream cipher or any transformation mixing symbols across block boundaries;
 - a non-GP29 intermediate alphabet or a different plaintext language;
 - a non-bijective map with an independently transmitted/recoverable restoration channel.
