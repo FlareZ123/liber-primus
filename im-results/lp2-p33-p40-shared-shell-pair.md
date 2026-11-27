@@ -220,6 +220,29 @@ Controls use a=23,b=5,x0=76, and second independent seed127. Both continuous ord
 
 Reproducer: `g++ -O3 -std=c++17 sims/lp2_will_paths_source_moduli_lcg.cpp -o /tmp/lcg`; use previous `/tmp/reset.in`, run `/tmp/lcg plant < /tmp/reset.in` for originals and controls. Final C++ code executed locally with dynamic (not fixed-width) exact hold-count DP. The Node canonical input builder is shared with the reset relaxation.
 
+### Exact ciphertext-feedback inversion from both anchors (Agent24, 27 Nov)
+
+A distinct receiver replaces autonomous key evolution with the public history of consuming ciphertext. Let the six-tap affine law be
+
+`C_i = P_i + b + sum_(j=1..6) a_j C_(i-j) mod29`.
+
+Under literal plaintext-F holds, F emits ciphertext F without shifting the ciphertext register; a consuming plaintext F is forbidden. Ordinary consumption is tested separately. The four known non-F runes in each tentative WILL/PATHS anchor supply eight linear equations in seven coefficients. This tests every affine order <=6 simultaneously, including zero taps, with a continuous shared filter. For the hold model, enumerate every possible prior consuming register by allowing each observed zero to hold or consume; all nonzero ciphertext necessarily consumes. Solve the eight equations exactly by GF29 elimination for each pair of registers. Then enforce actual hold reachability between both anchors and to the end of p40 with no spacing assumptions. The first anchor's incoming histories relax prior legality, so failure is decisive. The seven-tap/eight-coefficient model is a deliberately saturated comparison; its fit is not independent evidence of a key.
+
+Original corpus p33–40 has 1911 runes, anchors at offsets132 and1751 (p33:132 and p40:71); the held-out suffix after PATHS is 156 runes. Canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, native solved-source blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`.
+
+| Order / clock | Anchor history pairs | Linear candidates | Complete legal candidates |
+|---|---:|---:|---:|
+| <=6 ordinary | 1 | 0 | 0 |
+| <=6 literal-F | 2 | 1 | 0 |
+| 7 ordinary (saturated control) | 1 | 1 | 1 |
+| 7 literal-F | 2 | 2 | 0 |
+
+All rank tests are full column rank. The sole six-tap hold candidate is [9,3,15,27,4,19,24] (bias first), which dies at p33 offset166, only 30 runes after WILL ends. The saturated seven-tap ordinary key [18,25,21,25,11,19,13,7] gives bigram scores -3.745955 on the intervening text and -3.769695 on the frozen suffix, versus -2.748519 on original clear p57 and -2.811617 on the 156-rune donor suffix. The decoded suffix begins ETSTLSOEOEXSOEOFMNPAEAETHGNGATHGPNNCIBIAINGNGDDCPISEL and is nonprose. Both seven-tap F-hold candidates fail at p33 offsets166 and216. The six-tap result is exact, independent of language scoring; the saturated ordinary seven-tap result is a predictive failure, not a general English impossibility theorem.
+
+Two same-length native plants (WELCOME + KOAN1 + LOSS, trimmed and with anchors inserted at the original offsets) use independently specified keys and exact original geometry. Ordinary and F-hold controls each recover the exact planted six-tap key as the sole legal parameter candidate. Ordinary inverse recovers 1779/1779 runes; F-hold MAP recovers 1766/1779 with 466933209365773025280 legal paths, so exact key recovery does not imply unique F-mask recovery. Every reported MAP path re-encrypts exactly. Bigram model trained only on the other specified solved sections (warning, wisdom, jpg107-167, jpg229, p56), excluding the donor and p57. Exact source and output: [SFT](../sims/lp2_will_paths_cipherfeedback_anchor_sft.cjs), [raw output](lp2-will-paths-cipherfeedback-anchor-output.json). Core executed in connected V8; standalone Node wrapper has not separately run.
+
+**Decision:** retire the complete shared continuous affine previous-ciphertext filter of order <=6 under both clocks, and the explicit order-seven continuation test. This is distinct from the earlier autonomous key LFSR and independently reset key-state tests. Conditional on both proposed cribs and the assumed recurrence; it neither validates nor disproves the local cribs themselves. No source-selected higher order or independent nonlinear feedback selector. No new plaintext.
+
 ## Evidence boundary
 
 Preserve:
@@ -231,7 +254,7 @@ p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 
 The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
 
-The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is exactly excluded under both clocks, and its all-bias affine relaxation is F-hold-impossible and ordinary-language-negative on every remaining candidate; even granting independent seed resets at both anchors yields no shared affine recurrence whose two suffixes meet the finite native-text floors. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
+The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is exactly excluded under both clocks, and its all-bias affine relaxation is F-hold-impossible and ordinary-language-negative on every remaining candidate; even granting independent seed resets at both anchors yields no shared affine recurrence whose two suffixes meet the finite native-text floors. The continuous affine ciphertext-feedback extension of order ≤6 is also exactly excluded under both clocks, with the saturated order-seven ordinary continuation nonprose and its literal-F counterpart impossible. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
