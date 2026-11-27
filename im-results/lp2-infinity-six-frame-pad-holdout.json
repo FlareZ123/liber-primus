@@ -1,0 +1,372 @@
+{
+  "N": 100,
+  "trainingLengths": [
+    6970,
+    7067,
+    7501
+  ],
+  "controls": [
+    {
+      "positive": {
+        "fitBF": 126.81801217669931,
+        "heldBF": 55.33074403196338,
+        "keyCorrect": 86,
+        "heldCorrect": 86
+      },
+      "wrongHeld": {
+        "heldBF": -90.24140388004867
+      },
+      "independent": {
+        "fitBF": -108.8387164359608,
+        "heldBF": -33.79049781935305
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 125.4630039484066,
+        "heldBF": 59.57643007883098,
+        "keyCorrect": 91,
+        "heldCorrect": 91
+      },
+      "wrongHeld": {
+        "heldBF": -79.75770829428029
+      },
+      "independent": {
+        "fitBF": -84.70109886407295,
+        "heldBF": -42.179538104941685
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 106.79860844066548,
+        "heldBF": 73.26843112483789,
+        "keyCorrect": 91,
+        "heldCorrect": 91
+      },
+      "wrongHeld": {
+        "heldBF": -61.919536703480844
+      },
+      "independent": {
+        "fitBF": -88.9164512758332,
+        "heldBF": -47.51035128714125
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 113.80700398513773,
+        "heldBF": 35.385523584245675,
+        "keyCorrect": 80,
+        "heldCorrect": 80
+      },
+      "wrongHeld": {
+        "heldBF": -92.76874790470038
+      },
+      "independent": {
+        "fitBF": -85.01420874676728,
+        "heldBF": -39.5249133191694
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 112.38831178269538,
+        "heldBF": 65.8153203059685,
+        "keyCorrect": 86,
+        "heldCorrect": 86
+      },
+      "wrongHeld": {
+        "heldBF": -70.98614463777449
+      },
+      "independent": {
+        "fitBF": -81.90594691661022,
+        "heldBF": -26.09294532086301
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 122.83590160291237,
+        "heldBF": 70.95323761185864,
+        "keyCorrect": 83,
+        "heldCorrect": 83
+      },
+      "wrongHeld": {
+        "heldBF": -78.78495182830011
+      },
+      "independent": {
+        "fitBF": -90.72722021551067,
+        "heldBF": -36.260129446623296
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 87.03861843259574,
+        "heldBF": 44.924417910205875,
+        "keyCorrect": 87,
+        "heldCorrect": 87
+      },
+      "wrongHeld": {
+        "heldBF": -67.91132454309923
+      },
+      "independent": {
+        "fitBF": -90.68382309629328,
+        "heldBF": -32.1784944876797
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 118.61354664867986,
+        "heldBF": 37.428826336097245,
+        "keyCorrect": 82,
+        "heldCorrect": 82
+      },
+      "wrongHeld": {
+        "heldBF": -92.54149753096794
+      },
+      "independent": {
+        "fitBF": -89.96440612647575,
+        "heldBF": -42.01459465810194
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 102.07233280302898,
+        "heldBF": 56.69187118260493,
+        "keyCorrect": 87,
+        "heldCorrect": 87
+      },
+      "wrongHeld": {
+        "heldBF": -72.9209131214102
+      },
+      "independent": {
+        "fitBF": -93.53260620143647,
+        "heldBF": -40.511374844647435
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 133.3819515750106,
+        "heldBF": 51.95449589554005,
+        "keyCorrect": 84,
+        "heldCorrect": 84
+      },
+      "wrongHeld": {
+        "heldBF": -86.20516226762334
+      },
+      "independent": {
+        "fitBF": -83.66304700142769,
+        "heldBF": -39.08386888182736
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 121.87015678964121,
+        "heldBF": 64.59632117218325,
+        "keyCorrect": 91,
+        "heldCorrect": 91
+      },
+      "wrongHeld": {
+        "heldBF": -82.62852833631518
+      },
+      "independent": {
+        "fitBF": -73.8056078163711,
+        "heldBF": -25.95621712101115
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 121.34784730867136,
+        "heldBF": 47.09561562994941,
+        "keyCorrect": 88,
+        "heldCorrect": 88
+      },
+      "wrongHeld": {
+        "heldBF": -84.06832524512947
+      },
+      "independent": {
+        "fitBF": -75.81928472254435,
+        "heldBF": -36.25357607076535
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 92.73276929977555,
+        "heldBF": 62.516636831464666,
+        "keyCorrect": 91,
+        "heldCorrect": 91
+      },
+      "wrongHeld": {
+        "heldBF": -79.69298182317266
+      },
+      "independent": {
+        "fitBF": -90.90785926459307,
+        "heldBF": -33.221013643973265
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 87.35998205225451,
+        "heldBF": 47.143515234961114,
+        "keyCorrect": 80,
+        "heldCorrect": 80
+      },
+      "wrongHeld": {
+        "heldBF": -79.76235407102195
+      },
+      "independent": {
+        "fitBF": -82.33175601145626,
+        "heldBF": -33.729914881869036
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 129.69208545395486,
+        "heldBF": 51.90022582656093,
+        "keyCorrect": 92,
+        "heldCorrect": 92
+      },
+      "wrongHeld": {
+        "heldBF": -73.66947234586746
+      },
+      "independent": {
+        "fitBF": -75.0627094212582,
+        "heldBF": -30.527237528446676
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 118.49013925118038,
+        "heldBF": 45.96966810746312,
+        "keyCorrect": 89,
+        "heldCorrect": 89
+      },
+      "wrongHeld": {
+        "heldBF": -85.09830648277375
+      },
+      "independent": {
+        "fitBF": -87.03501557673462,
+        "heldBF": -27.877120277255926
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 121.91053835829143,
+        "heldBF": 56.00294081718312,
+        "keyCorrect": 91,
+        "heldCorrect": 91
+      },
+      "wrongHeld": {
+        "heldBF": -87.24424407195556
+      },
+      "independent": {
+        "fitBF": -82.88968091810352,
+        "heldBF": -36.5781478054962
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 124.46116976101644,
+        "heldBF": 54.69671549354098,
+        "keyCorrect": 87,
+        "heldCorrect": 87
+      },
+      "wrongHeld": {
+        "heldBF": -74.46882152071498
+      },
+      "independent": {
+        "fitBF": -96.39994669128032,
+        "heldBF": -30.96302356946967
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 125.75108018144897,
+        "heldBF": 63.53600270341303,
+        "keyCorrect": 94,
+        "heldCorrect": 94
+      },
+      "wrongHeld": {
+        "heldBF": -88.27826440912145
+      },
+      "independent": {
+        "fitBF": -94.75521391716939,
+        "heldBF": -44.926131318151874
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 103.9696776953499,
+        "heldBF": 48.01257574368742,
+        "keyCorrect": 83,
+        "heldCorrect": 83
+      },
+      "wrongHeld": {
+        "heldBF": -76.79290717295657
+      },
+      "independent": {
+        "fitBF": -84.07753937881535,
+        "heldBF": -27.972464543266597
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 128.09281441464714,
+        "heldBF": 67.25035807409768,
+        "keyCorrect": 87,
+        "heldCorrect": 87
+      },
+      "wrongHeld": {
+        "heldBF": -79.77186684420576
+      },
+      "independent": {
+        "fitBF": -80.88315105210654,
+        "heldBF": -43.19805757435847
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 118.51522509256688,
+        "heldBF": 39.56508798412028,
+        "keyCorrect": 89,
+        "heldCorrect": 89
+      },
+      "wrongHeld": {
+        "heldBF": -62.83088368912945
+      },
+      "independent": {
+        "fitBF": -89.1758310333114,
+        "heldBF": -30.78761195153743
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 94.61397167047403,
+        "heldBF": 52.538744889170175,
+        "keyCorrect": 82,
+        "heldCorrect": 82
+      },
+      "wrongHeld": {
+        "heldBF": -62.61736241798735
+      },
+      "independent": {
+        "fitBF": -90.31888540514001,
+        "heldBF": -28.808746345770487
+      }
+    },
+    {
+      "positive": {
+        "fitBF": 98.36647632034624,
+        "heldBF": 53.50548136081784,
+        "keyCorrect": 90,
+        "heldCorrect": 90
+      },
+      "wrongHeld": {
+        "heldBF": -80.44776207072096
+      },
+      "independent": {
+        "fitBF": -90.73549290724145,
+        "heldBF": -39.42415440917307
+      }
+    }
+  ],
+  "gate": false,
+  "original": null
+}
