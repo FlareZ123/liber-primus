@@ -46,6 +46,17 @@ For a fixed chart the move is T(j)=R(S^-1(j)). Despite duplicate targets in T, a
 
 The independently proposed opening title EPIPHANY SEEKS (GP EPIPHANY SEECS) gives plaintext indices [18,13,10,13,8,24,9,26,15,18,18,5,15]. Against original red13, with canonical or reversed initial list and either role, its repeated P at offset3 requires a different rank from offset1. Thus all four fixed initial-list hypotheses are inconsistent with this conditional crib, even with an arbitrary static chart. The title is not authenticated plaintext, and arbitrary initial lists are outside this observation.
 
+## Constructive exact lexical inverse (Agent 2)
+
+The partial-list representation permits **exact search for a fixed rank chart without guessing unseen glyph positions**. At a forward step a seen ciphertext glyph fixes its current rank and hence plaintext; an unseen glyph must occupy the unbound position S(P). Bind the glyph only when selected, then move it to R(P). Reverse search instead selects lexical P compatible with current rank R(P), undoing the move to S(P). A length-indexed trie constrains each complete printed group; transparent plaintext F introduces the literal-zero hold branch. Unassigned positions at an edge can be completed arbitrarily. The finite lexical register is 32,655 distinct GP forms constructed from pinned Shakespeare, Emerson, Gibran, Blake, Liber AL and TextBlob sources. This uses an intact printed-word assumption and no semantic phrase scoring.
+
+Two dictionary-assembled controls with hidden affine rank charts (7,13) and (17,4), independent random lists per frame, ordinary and F-hold clocks respectively, each identify the unique correct chart out of all 812 on the first 76-rune frame. Three geometry-matched frames (76,71,68) per control then have unique exact plaintexts, all 430/430 runes recovered. These are artificial lexical controls, not natural prose. The enlarged-register native Gibran trials (known arbitrary chart, unknown list, reverse traversal, 134 and 132 runes) both cap at 4M nodes without completion, so native-scale recovery is not established by this recorded experiment. A smaller-register exploratory pilot had recovered both, but the enlarged-register result takes precedence.
+
+Original window: zero-based printed group 1353, 76 runes, lengths 14,7,7,10,8,5,4,9,2,7,3. All 812 affine charts in **each** clock exhaust without completion or cap (403,132 ordinary nodes; 385,488 F-hold nodes; maximum depth 20). This excludes this plaintext-driven insertion schedule with an affine chart, arbitrary initial list, intact groups and all words from the finite register. Arbitrary nonaffine charts, out-of-register words, segmentation changes and state resets inside the frame are outside this conclusion.
+
+- [Exact lexical SFT](../sims/lp2_gpprime_plain_rank_lexical_sft.cjs)
+- [Raw output](lp2-gpprime-plain-rank-lexical-output.json)
+
 ## Reproduction
 
 - [SFT](../sims/lp2_gpprime_rank_insert_sft.cjs)
