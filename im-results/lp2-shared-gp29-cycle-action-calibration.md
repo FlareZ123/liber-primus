@@ -775,6 +775,18 @@ All 20 controls were complete. Four short q8 plants have 2,6,24,4 actions respec
 
 [Reusable partial-anchor inverse](../sims/lp2_multiword_phase_affine_crib.cjs) · [historical source SFT](../sims/lp2_multiword_phase_historical_crib_sft.cjs) · [q13 min96](lp2-multiword-phase-target-q13-96-output.json) · [q13 min128](lp2-multiword-phase-target-q13-128-output.json) · [q8 min64](lp2-multiword-phase-target-q8-64-output.json) · [q8 min96](lp2-multiword-phase-target-q8-96-output.json). Executed actual exported JS cores on repository inputs. Standalone Node wrapper not separately executed. No established-frontier change.
 
+
+**Authentic native-source extension:** apply the same partial-anchor solver to the actual GP29 runes of the nine pinned solved records, using contiguous native word starts rather than literary normalization. Break the donor at numeral-bearing punctuation segments (do not splice across them), retain the first whole-word span reaching the chosen minimum and ≥2 literal Fs; for q8 require every word to have fewer than eight consuming runes. Every within-chapter original alignment is checked. This adds source-exact word-phase q13 cases and q8 cases not requiring the earlier full anchor.
+
+| Period / minimum | Donor spans | Span-position combinations | F-compatible | Exactly rejected | Capped / candidate |
+|---|---:|---:|---:|---:|---:|
+| q8 / 64 | 33 | 408,297 | 188 | 188 | 0 / 0 |
+| q8 / 96 | 20 | 241,660 | 177 | 177 | 0 / 0 |
+| q13 / 96 | 213 | 2,572,959 | 1,734 | 1,734 | 0 / 0 |
+| q13 / 128 | 263 | 3,101,833 | 1,940 | 1,940 | 0 / 0 |
+
+Three independent hidden-action controls per setting (12 total), each without a full-period anchor, all return the unique correct normalized action, and all 192 withheld words replay. No original action survives. These are conditional exact quotation exclusions, not evidence against new prose or other key laws. [Native-source SFT](../sims/lp2_multiword_phase_native_crib_sft.cjs) · [q8 raw](lp2-multiword-phase-native-q8-output.json) · [q13 raw](lp2-multiword-phase-native-q13-output.json). Actual exported cores executed; Node wrappers not separately run.
+
 ## Independent two-alphabet Quagmire oracle obstruction (Director #3047, Agent1, 26 November 2026)
 
 The [ACA worked Quagmire IV example](https://www.cryptogram.org/downloads/aca.info/ciphers/QuagmireIV.pdf) is reproduced exactly: mixed plaintext alphabet SENORYABCDFGHIJKLMPQTUVWXZ, mixed ciphertext alphabet PERCTIONABDFGHJKLMQSUVWXYZ, indicator EXTRA under S, plaintext THISONEEMPLOYSTHREEKEYWORDS, ciphertext VBMRFCYISPMPBRRHEICXRREIGDX. This is historical cipher-family motivation, not an authenticated LP2 key selector. LP1 WELCOME/KOAN supply the separate GP29 additive/literal-F convention.
