@@ -119,10 +119,32 @@ For the fixed p8 255-rune recipient (51 adjacent records or five lanes), the nat
 
 None yields recognizable prose; IoC is invariant under the common translation. The six monic degree-five plants using genuine p57 first 51 plaintext runes recover 51/51 each. [Reproducer](../sims/lp2_p7_native_monic_shamir_original_sft.cjs); canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`. Connected V8 core executed; original p7 constants independently checked in Python. No broader key/clock search or LP2 plaintext claim.
 
+## Reconstructed historical secret as a direct BASE29 operand (Agent3, 27 November 2026)
+
+The historical SSSS reconstruction now supplies actual bytes rather than guessed shares. The independently signed 2013 TCP specification defines BASE29, with 3301 → 3QO; the participant witness gives 1033 → 16I. As a limited cross-round transfer, interpret the complete 22-byte reconstructed destination and the 22-byte pre-diffusion field constant as big-endian integers, apply minimal BASE29, and interpret each resulting digit value as a GP29 shift. This is a proposed bridge, **not a source instruction**; the BASE29 command itself does not specify a byte-to-integer conversion or a rune cipher.
+
+| Input | Exact 36-digit key |
+|---|---|
+| ASCII `p7amjopgric7dfdi.onion` | `RE5H5Q0MSBALI2P09QSEHBF8LG76B9EEOA83` |
+| Field constant `65b9c4065cc47a4a48e01d17de166a94252dfbb44e69` | `OQJ9AE61BR14BA7P733NC2IPE4G1H5PHJN8I` |
+
+Freeze phase zero at p8's black-body start after its 12 red runes; no phase fitting, no alternate serialization or key stretching. Decode all 243 runes, then freeze the resulting end phase and continue into all 268 original p9 runes. Both arithmetic signs and ordinary versus literal plaintext-F holds are tested. An exact max-sum DP retains the best history for each (key phase, preceding decoded rune), branching on every ciphertext F which can be an emitted hold or legal consuming non-F. The score is a smoothed bigram model trained on 3,001 approximately GP-transliterated LP1 reference runes, excluding LP2 p56/p57. Scores are diagnostics, not a calibrated universal threshold.
+
+| Key | Sign | Ordinary p8 / p9 mean log score | F-hold p8 |
+|---|---:|---:|---|
+| Destination | + | −4.304 / −4.208 | No legal full history |
+| Destination | − | −4.386 / −4.149 | No legal full history |
+| Field constant | + | −4.282 / −4.322 | No legal full history |
+| Field constant | − | −4.334 / −4.217 | No legal full history |
+
+The ordinary outputs are nonprose and exactly re-encrypt. Held solved p57 scores −2.616; all eight same-key p57 plants admit exact replay, seven recover all 95 runes and the field-constant minus F-hold MAP recovers 87/95 (ambiguity in language ranking). The four original F-hold negatives are structural, independent of the score. No new plaintext. Retire these direct, phase-zero historical-key receivers; arbitrary phase offsets, other clocks and transformations were not tested. No independent source selects the historical secret as an LP2 operand, so do not expand this key family just because the recovered destination is authentic.
+
+[Executable receiver](../sims/lp2_2013_ssss_base29_p8_receiver.cjs), original corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, code commit `d1a832146b998e445f9def66b7d61eb6f7a5c1f1`. Connected V8 core executed; filesystem wrapper/CI not independently executed.
+
 ## Research decision
 
 This is a **geometry-constrained ordinary-quartic coincidence with already-known key-state constants**. The actual 2013 sender's fixed monic term removes the dual DH match in the corresponding GF29 analogue. Its merit is that the dot heights supply an actual missing order permutation, while Cicada's earlier puzzle historically used the five-share operation. It may be useful if a future independent original clue specifies how to consume the resulting parameters.
 
-The direct p8 tensor and p0 period-five body consumers both fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
+The direct p8 tensor, p0 period-five body, and reconstructed historical secret's phase-zero BASE29 p8/p9 consumers all fail to recover plaintext. The **central limitation** remains: no original LP2 instruction explicitly says to use Shamir over GF29, no independent ciphertext/key receiver was identified, the source red-word products and target DH values were known before this test, and the direct following-page decoder fails. The primary 2013 source reconstruction now fixes the historical comparison scheme as GF(2^176), polynomial x^176+x^11+x^3+x^2+1, index-prefixed 44-hex shares, and threshold 5; no GP29 bridge exists. The global hypothesis family and discovery-aware chance probability are unmeasured. **Do not promote a new solved page, unknown key, or authorial operation** on this evidence.
 
 **Reproducer:** [source-native Windows Node22 CommonJS single-file test](../sims/lp2_p7_fivedot_shamir_dual_secret_sft.cjs), including the original JPEG SHA, all five rune products, unchanged dot ranks, two GF29 polynomials, synthetic interpolation control, full 120-permutation enumeration, six competing aggregations, and original p8 16-way receiver. [Independent Windows CI execution](https://github.com/FlareZ123/liber-primus/actions/runs/44941697115).
