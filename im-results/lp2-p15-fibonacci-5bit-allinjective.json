@@ -1,0 +1,681 @@
+{
+  "script": "8a4ebad9e994b87d27ca1ced8e3e76f9f1741b4f",
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "prior": "5df6acea1926e1f2ca3d9cdee684e5baa251ac36",
+  "transcription": "f7b534a33edeb212d427329798438325307463d7",
+  "results": [
+    {
+      "name": "ordinal",
+      "prefixStates": 58,
+      "canonical": 547,
+      "all32": 722,
+      "maxEdges29": 660,
+      "maximizers": [
+        [
+          0,
+          2,
+          10
+        ],
+        [
+          2,
+          4,
+          10
+        ],
+        [
+          2,
+          8,
+          10
+        ]
+      ],
+      "subsets": 4960,
+      "positive": {
+        "omitted": [
+          29,
+          30,
+          31
+        ],
+        "runes": 95,
+        "carrierRunes": 112,
+        "frames": 5,
+        "support": 87
+      },
+      "alternative": {
+        "omitted": [
+          28,
+          29,
+          30
+        ],
+        "runes": 95,
+        "carrierRunes": 111,
+        "frames": 6,
+        "support": 78
+      },
+      "diagnostics": [
+        {
+          "name": "p15black-p22",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 1883,
+              "transitions": 1882,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 75
+            },
+            {
+              "label": "page",
+              "frames": 8,
+              "n": 1883,
+              "transitions": 1875,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 75
+            },
+            {
+              "label": "line",
+              "frames": 85,
+              "n": 1883,
+              "transitions": 1798,
+              "distinctPairs": 730,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 70
+            },
+            {
+              "label": "group",
+              "frames": 432,
+              "n": 1883,
+              "transitions": 1451,
+              "distinctPairs": 687,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 27
+            }
+          ]
+        },
+        {
+          "name": "p40-p53",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 3008,
+              "transitions": 3007,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 214
+            },
+            {
+              "label": "page",
+              "frames": 13,
+              "n": 3008,
+              "transitions": 2995,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 212
+            },
+            {
+              "label": "line",
+              "frames": 135,
+              "n": 3008,
+              "transitions": 2873,
+              "distinctPairs": 804,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 196
+            },
+            {
+              "label": "group",
+              "frames": 669,
+              "n": 3008,
+              "transitions": 2339,
+              "distinctPairs": 775,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 115
+            }
+          ]
+        },
+        {
+          "name": "p0-p55",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 12956,
+              "transitions": 12955,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 1639
+            },
+            {
+              "label": "page",
+              "frames": 55,
+              "n": 12956,
+              "transitions": 12901,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 1634
+            },
+            {
+              "label": "line",
+              "frames": 594,
+              "n": 12956,
+              "transitions": 12362,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 1553
+            },
+            {
+              "label": "group",
+              "frames": 2896,
+              "n": 12956,
+              "transitions": 10060,
+              "distinctPairs": 838,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 1198
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "gematria-prime",
+      "prefixStates": 103,
+      "canonical": 424,
+      "all32": 441,
+      "maxEdges29": 441,
+      "maximizers": [
+        [
+          15,
+          30,
+          31
+        ]
+      ],
+      "subsets": 4960,
+      "positive": {
+        "omitted": [
+          29,
+          30,
+          31
+        ],
+        "runes": 95,
+        "carrierRunes": 152,
+        "frames": 3,
+        "support": 103
+      },
+      "alternative": {
+        "omitted": [
+          28,
+          29,
+          30
+        ],
+        "runes": 95,
+        "carrierRunes": 151,
+        "frames": 5,
+        "support": 97
+      },
+      "diagnostics": [
+        {
+          "name": "p15black-p22",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 1883,
+              "transitions": 1882,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 411
+            },
+            {
+              "label": "page",
+              "frames": 8,
+              "n": 1883,
+              "transitions": 1875,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 410
+            },
+            {
+              "label": "line",
+              "frames": 85,
+              "n": 1883,
+              "transitions": 1798,
+              "distinctPairs": 730,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 387
+            },
+            {
+              "label": "group",
+              "frames": 432,
+              "n": 1883,
+              "transitions": 1451,
+              "distinctPairs": 687,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 246
+            }
+          ]
+        },
+        {
+          "name": "p40-p53",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 3008,
+              "transitions": 3007,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 788
+            },
+            {
+              "label": "page",
+              "frames": 13,
+              "n": 3008,
+              "transitions": 2995,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 784
+            },
+            {
+              "label": "line",
+              "frames": 135,
+              "n": 3008,
+              "transitions": 2873,
+              "distinctPairs": 804,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 741
+            },
+            {
+              "label": "group",
+              "frames": 669,
+              "n": 3008,
+              "transitions": 2339,
+              "distinctPairs": 775,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 538
+            }
+          ]
+        },
+        {
+          "name": "p0-p55",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 12956,
+              "transitions": 12955,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 4668
+            },
+            {
+              "label": "page",
+              "frames": 55,
+              "n": 12956,
+              "transitions": 12901,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 4644
+            },
+            {
+              "label": "line",
+              "frames": 594,
+              "n": 12956,
+              "transitions": 12362,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 4416
+            },
+            {
+              "label": "group",
+              "frames": 2896,
+              "n": 12956,
+              "transitions": 10060,
+              "distinctPairs": 838,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 3515
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "p15-fibonacci-prime",
+      "prefixStates": 373,
+      "canonical": 515,
+      "all32": 530,
+      "maxEdges29": 530,
+      "maximizers": [
+        [
+          15,
+          30,
+          31
+        ]
+      ],
+      "subsets": 4960,
+      "positive": {
+        "omitted": [
+          29,
+          30,
+          31
+        ],
+        "runes": 95,
+        "carrierRunes": 302,
+        "frames": 1,
+        "support": 163
+      },
+      "alternative": {
+        "omitted": [
+          28,
+          29,
+          30
+        ],
+        "runes": 95,
+        "carrierRunes": 301,
+        "frames": 4,
+        "support": 167
+      },
+      "diagnostics": [
+        {
+          "name": "p15black-p22",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 1883,
+              "transitions": 1882,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 233
+            },
+            {
+              "label": "page",
+              "frames": 8,
+              "n": 1883,
+              "transitions": 1875,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 232
+            },
+            {
+              "label": "line",
+              "frames": 85,
+              "n": 1883,
+              "transitions": 1798,
+              "distinctPairs": 730,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 209
+            },
+            {
+              "label": "group",
+              "frames": 432,
+              "n": 1883,
+              "transitions": 1451,
+              "distinctPairs": 687,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 157
+            }
+          ]
+        },
+        {
+          "name": "p40-p53",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 3008,
+              "transitions": 3007,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 521
+            },
+            {
+              "label": "page",
+              "frames": 13,
+              "n": 3008,
+              "transitions": 2995,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 517
+            },
+            {
+              "label": "line",
+              "frames": 135,
+              "n": 3008,
+              "transitions": 2873,
+              "distinctPairs": 804,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 474
+            },
+            {
+              "label": "group",
+              "frames": 669,
+              "n": 3008,
+              "transitions": 2339,
+              "distinctPairs": 775,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 353
+            }
+          ]
+        },
+        {
+          "name": "p0-p55",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 12956,
+              "transitions": 12955,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 3359
+            },
+            {
+              "label": "page",
+              "frames": 55,
+              "n": 12956,
+              "transitions": 12901,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 3341
+            },
+            {
+              "label": "line",
+              "frames": 594,
+              "n": 12956,
+              "transitions": 12362,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 3178
+            },
+            {
+              "label": "group",
+              "frames": 2896,
+              "n": 12956,
+              "transitions": 10060,
+              "distinctPairs": 838,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 2503
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "p15-absolute-difference",
+      "prefixStates": 449,
+      "canonical": 376,
+      "all32": 385,
+      "maxEdges29": 385,
+      "maximizers": [
+        [
+          15,
+          27,
+          30
+        ],
+        [
+          15,
+          27,
+          31
+        ],
+        [
+          15,
+          30,
+          31
+        ],
+        [
+          27,
+          30,
+          31
+        ]
+      ],
+      "subsets": 4960,
+      "positive": {
+        "omitted": [
+          29,
+          30,
+          31
+        ],
+        "runes": 95,
+        "carrierRunes": 393,
+        "frames": 1,
+        "support": 167
+      },
+      "alternative": {
+        "omitted": [
+          28,
+          29,
+          30
+        ],
+        "runes": 95,
+        "carrierRunes": 392,
+        "frames": 3,
+        "support": 171
+      },
+      "diagnostics": [
+        {
+          "name": "p15black-p22",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 1883,
+              "transitions": 1882,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 523
+            },
+            {
+              "label": "page",
+              "frames": 8,
+              "n": 1883,
+              "transitions": 1875,
+              "distinctPairs": 735,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 522
+            },
+            {
+              "label": "line",
+              "frames": 85,
+              "n": 1883,
+              "transitions": 1798,
+              "distinctPairs": 730,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 499
+            },
+            {
+              "label": "group",
+              "frames": 432,
+              "n": 1883,
+              "transitions": 1451,
+              "distinctPairs": 687,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 349
+            }
+          ]
+        },
+        {
+          "name": "p40-p53",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 3008,
+              "transitions": 3007,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 971
+            },
+            {
+              "label": "page",
+              "frames": 13,
+              "n": 3008,
+              "transitions": 2995,
+              "distinctPairs": 806,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 965
+            },
+            {
+              "label": "line",
+              "frames": 135,
+              "n": 3008,
+              "transitions": 2873,
+              "distinctPairs": 804,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 909
+            },
+            {
+              "label": "group",
+              "frames": 669,
+              "n": 3008,
+              "transitions": 2339,
+              "distinctPairs": 775,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 706
+            }
+          ]
+        },
+        {
+          "name": "p0-p55",
+          "frames": [
+            {
+              "label": "chapter",
+              "frames": 1,
+              "n": 12956,
+              "transitions": 12955,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 5549
+            },
+            {
+              "label": "page",
+              "frames": 55,
+              "n": 12956,
+              "transitions": 12901,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 5521
+            },
+            {
+              "label": "line",
+              "frames": 594,
+              "n": 12956,
+              "transitions": 12362,
+              "distinctPairs": 840,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 5256
+            },
+            {
+              "label": "group",
+              "frames": 2896,
+              "n": 12956,
+              "transitions": 10060,
+              "distinctPairs": 838,
+              "excludedByAllStaticInjections": true,
+              "minimumAdditionalCuts": 4187
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
