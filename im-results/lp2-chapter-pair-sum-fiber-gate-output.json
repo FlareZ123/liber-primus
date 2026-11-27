@@ -1,0 +1,2243 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ],
+  "chapterLengths": [
+    729,
+    1145,
+    1729,
+    1903,
+    1021,
+    1433,
+    1680,
+    3008,
+    308
+  ],
+  "original": [
+    {
+      "n": 364,
+      "sumColl": 4522,
+      "pairColl": 134,
+      "distinct": 303,
+      "sumIOC": 0.03422335240517059,
+      "pairIOC": 0.0010141373777737414,
+      "sumHist": [
+        8,
+        11,
+        15,
+        10,
+        11,
+        16,
+        17,
+        17,
+        11,
+        5,
+        11,
+        13,
+        15,
+        13,
+        13,
+        16,
+        14,
+        6,
+        11,
+        12,
+        13,
+        6,
+        13,
+        10,
+        17,
+        16,
+        16,
+        13,
+        15
+      ]
+    },
+    {
+      "n": 572,
+      "sumColl": 11528,
+      "pairColl": 386,
+      "distinct": 414,
+      "sumIOC": 0.035295702546140374,
+      "pairIOC": 0.0011818304287656302,
+      "sumHist": [
+        10,
+        29,
+        20,
+        20,
+        20,
+        28,
+        15,
+        29,
+        27,
+        18,
+        16,
+        16,
+        27,
+        20,
+        13,
+        21,
+        19,
+        10,
+        25,
+        15,
+        14,
+        27,
+        20,
+        21,
+        18,
+        23,
+        19,
+        17,
+        15
+      ]
+    },
+    {
+      "n": 864,
+      "sumColl": 25756,
+      "pairColl": 858,
+      "distinct": 532,
+      "sumIOC": 0.0345425089051972,
+      "pairIOC": 0.0011507016866228916,
+      "sumHist": [
+        36,
+        21,
+        25,
+        33,
+        26,
+        28,
+        33,
+        24,
+        42,
+        30,
+        24,
+        26,
+        35,
+        24,
+        24,
+        35,
+        39,
+        40,
+        32,
+        26,
+        21,
+        30,
+        30,
+        29,
+        36,
+        29,
+        30,
+        25,
+        31
+      ]
+    },
+    {
+      "n": 951,
+      "sumColl": 30690,
+      "pairColl": 1020,
+      "distinct": 573,
+      "sumIOC": 0.033969782500415074,
+      "pairIOC": 0.0011290054789971774,
+      "sumHist": [
+        37,
+        30,
+        39,
+        28,
+        32,
+        31,
+        39,
+        37,
+        31,
+        32,
+        39,
+        37,
+        31,
+        29,
+        32,
+        40,
+        29,
+        35,
+        30,
+        33,
+        32,
+        28,
+        29,
+        34,
+        36,
+        37,
+        26,
+        31,
+        27
+      ]
+    },
+    {
+      "n": 510,
+      "sumColl": 8976,
+      "pairColl": 328,
+      "distinct": 373,
+      "sumIOC": 0.03457760314341847,
+      "pairIOC": 0.0012635309526561115,
+      "sumHist": [
+        20,
+        24,
+        15,
+        22,
+        19,
+        16,
+        17,
+        16,
+        15,
+        16,
+        17,
+        11,
+        14,
+        22,
+        12,
+        20,
+        9,
+        14,
+        23,
+        19,
+        17,
+        19,
+        17,
+        23,
+        26,
+        22,
+        18,
+        18,
+        9
+      ]
+    },
+    {
+      "n": 716,
+      "sumColl": 17736,
+      "pairColl": 624,
+      "distinct": 482,
+      "sumIOC": 0.034644684924014534,
+      "pairIOC": 0.0012188928390045707,
+      "sumHist": [
+        19,
+        23,
+        18,
+        34,
+        29,
+        31,
+        15,
+        23,
+        23,
+        28,
+        25,
+        35,
+        22,
+        28,
+        15,
+        33,
+        26,
+        31,
+        28,
+        29,
+        23,
+        21,
+        21,
+        19,
+        21,
+        25,
+        24,
+        23,
+        24
+      ]
+    },
+    {
+      "n": 840,
+      "sumColl": 24136,
+      "pairColl": 922,
+      "distinct": 518,
+      "sumIOC": 0.0342471195868097,
+      "pairIOC": 0.0013082467790453487,
+      "sumHist": [
+        29,
+        28,
+        26,
+        31,
+        27,
+        24,
+        35,
+        35,
+        23,
+        28,
+        32,
+        30,
+        27,
+        31,
+        28,
+        33,
+        25,
+        33,
+        38,
+        38,
+        23,
+        19,
+        30,
+        28,
+        26,
+        20,
+        27,
+        33,
+        33
+      ]
+    },
+    {
+      "n": 1504,
+      "sumColl": 78374,
+      "pairColl": 2658,
+      "distinct": 700,
+      "sumIOC": 0.03467090641412211,
+      "pairIOC": 0.0011758398097422176,
+      "sumHist": [
+        52,
+        49,
+        51,
+        46,
+        53,
+        59,
+        57,
+        43,
+        47,
+        55,
+        37,
+        59,
+        60,
+        45,
+        70,
+        49,
+        65,
+        50,
+        45,
+        46,
+        52,
+        49,
+        63,
+        46,
+        45,
+        47,
+        42,
+        52,
+        70
+      ]
+    },
+    {
+      "n": 154,
+      "sumColl": 860,
+      "pairColl": 38,
+      "distinct": 138,
+      "sumIOC": 0.03649944826415415,
+      "pairIOC": 0.0016127663186486715,
+      "sumHist": [
+        10,
+        5,
+        5,
+        8,
+        7,
+        7,
+        4,
+        5,
+        5,
+        9,
+        2,
+        0,
+        3,
+        2,
+        5,
+        6,
+        4,
+        7,
+        7,
+        1,
+        7,
+        7,
+        8,
+        3,
+        7,
+        10,
+        1,
+        4,
+        5
+      ]
+    }
+  ],
+  "pooled": {
+    "n": 6475,
+    "sumColl": 1443286,
+    "pairColl": 51366,
+    "distinct": 835,
+    "sumIOC": 0.03443023057480889,
+    "pairIOC": 0.0012253588157202615,
+    "sumHist": [
+      221,
+      220,
+      214,
+      232,
+      224,
+      240,
+      232,
+      229,
+      224,
+      221,
+      203,
+      227,
+      234,
+      214,
+      212,
+      253,
+      230,
+      226,
+      239,
+      219,
+      202,
+      206,
+      231,
+      213,
+      232,
+      229,
+      203,
+      216,
+      229
+    ]
+  },
+  "reference": [
+    {
+      "name": "0_warning",
+      "kind": "solved native",
+      "length": 184,
+      "whole": {
+        "n": 92,
+        "sumColl": 336,
+        "pairColl": 50,
+        "distinct": 72,
+        "sumIOC": 0.04013377926421405,
+        "pairIOC": 0.005972288580984233,
+        "sumHist": [
+          4,
+          4,
+          2,
+          5,
+          1,
+          6,
+          4,
+          3,
+          3,
+          1,
+          3,
+          3,
+          10,
+          2,
+          1,
+          1,
+          1,
+          1,
+          2,
+          4,
+          8,
+          2,
+          2,
+          5,
+          1,
+          4,
+          1,
+          5,
+          3
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "0_welcome",
+      "kind": "solved native",
+      "length": 515,
+      "whole": {
+        "n": 257,
+        "sumColl": 2518,
+        "pairColl": 480,
+        "distinct": 144,
+        "sumIOC": 0.038272130350194555,
+        "pairIOC": 0.007295719844357977,
+        "sumHist": [
+          9,
+          7,
+          8,
+          8,
+          22,
+          7,
+          4,
+          5,
+          8,
+          11,
+          12,
+          10,
+          9,
+          4,
+          13,
+          7,
+          1,
+          8,
+          4,
+          14,
+          9,
+          3,
+          10,
+          14,
+          9,
+          13,
+          13,
+          9,
+          6
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 208,
+            "minSumColl": 890,
+            "minPairColl": 162,
+            "maxDistinct": 105,
+            "minSumAt": 105,
+            "minPairAt": 192,
+            "maxDistinctAt": 184,
+            "minSumIOC": 0.03777268483150836,
+            "minPairIOC": 0.006875477463712758
+          },
+          "ordered": {
+            "windows": 208,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "0_wisdom",
+      "kind": "solved native",
+      "length": 157,
+      "whole": {
+        "n": 78,
+        "sumColl": 248,
+        "pairColl": 30,
+        "distinct": 65,
+        "sumIOC": 0.041292041292041295,
+        "pairIOC": 0.004995004995004995,
+        "sumHist": [
+          6,
+          5,
+          0,
+          3,
+          6,
+          2,
+          1,
+          1,
+          1,
+          3,
+          1,
+          3,
+          3,
+          1,
+          4,
+          1,
+          2,
+          2,
+          3,
+          4,
+          1,
+          2,
+          9,
+          3,
+          0,
+          2,
+          1,
+          3,
+          5
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "0_koan_1",
+      "kind": "solved native",
+      "length": 780,
+      "whole": {
+        "n": 390,
+        "sumColl": 6372,
+        "pairColl": 1388,
+        "distinct": 152,
+        "sumIOC": 0.04200118647419419,
+        "pairIOC": 0.009149034341836398,
+        "sumHist": [
+          12,
+          8,
+          17,
+          16,
+          33,
+          21,
+          2,
+          8,
+          19,
+          4,
+          9,
+          15,
+          10,
+          5,
+          17,
+          11,
+          2,
+          12,
+          10,
+          12,
+          18,
+          5,
+          29,
+          14,
+          12,
+          21,
+          21,
+          10,
+          17
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": {
+            "windows": 52,
+            "minSumColl": 5284,
+            "minPairColl": 1162,
+            "maxDistinct": 155,
+            "minSumAt": 49,
+            "minPairAt": 49,
+            "maxDistinctAt": 49,
+            "minSumIOC": 0.03999031271758544,
+            "minPairIOC": 0.00879423606696334
+          },
+          "ordered": {
+            "windows": 52,
+            "maxPrefix": 1,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 473,
+            "minSumColl": 892,
+            "minPairColl": 136,
+            "maxDistinct": 111,
+            "minSumAt": 469,
+            "minPairAt": 471,
+            "maxDistinctAt": 471,
+            "minSumIOC": 0.037857567269331975,
+            "minPairIOC": 0.005772005772005772
+          },
+          "ordered": {
+            "windows": 473,
+            "maxPrefix": 1,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "kind": "solved native",
+      "length": 755,
+      "whole": {
+        "n": 377,
+        "sumColl": 5356,
+        "pairColl": 902,
+        "distinct": 166,
+        "sumIOC": 0.03778429933969186,
+        "pairIOC": 0.0063632259156837295,
+        "sumHist": [
+          11,
+          6,
+          12,
+          16,
+          20,
+          13,
+          16,
+          18,
+          8,
+          8,
+          16,
+          21,
+          19,
+          7,
+          11,
+          9,
+          11,
+          7,
+          8,
+          20,
+          16,
+          6,
+          22,
+          16,
+          11,
+          24,
+          11,
+          5,
+          9
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": {
+            "windows": 27,
+            "minSumColl": 5000,
+            "minPairColl": 844,
+            "maxDistinct": 172,
+            "minSumAt": 18,
+            "minPairAt": 18,
+            "maxDistinctAt": 15,
+            "minSumIOC": 0.03784094693185602,
+            "minPairIOC": 0.006387551842097296
+          },
+          "ordered": {
+            "windows": 27,
+            "maxPrefix": 1,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 448,
+            "minSumColl": 834,
+            "minPairColl": 130,
+            "maxDistinct": 106,
+            "minSumAt": 446,
+            "minPairAt": 340,
+            "maxDistinctAt": 338,
+            "minSumIOC": 0.03539597657244716,
+            "minPairIOC": 0.005517358458534929
+          },
+          "ordered": {
+            "windows": 448,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "jpg107-167",
+      "kind": "solved native",
+      "length": 319,
+      "whole": {
+        "n": 159,
+        "sumColl": 1258,
+        "pairColl": 296,
+        "distinct": 87,
+        "sumIOC": 0.05007563092110501,
+        "pairIOC": 0.011782501393201179,
+        "sumHist": [
+          2,
+          3,
+          11,
+          10,
+          15,
+          11,
+          1,
+          2,
+          0,
+          3,
+          2,
+          2,
+          8,
+          4,
+          8,
+          2,
+          5,
+          4,
+          4,
+          8,
+          12,
+          0,
+          8,
+          4,
+          1,
+          16,
+          5,
+          6,
+          2
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 12,
+            "minSumColl": 1014,
+            "minPairColl": 232,
+            "maxDistinct": 91,
+            "minSumAt": 5,
+            "minPairAt": 5,
+            "maxDistinctAt": 5,
+            "minSumIOC": 0.043035395976572445,
+            "minPairIOC": 0.009846362787539259
+          },
+          "ordered": {
+            "windows": 12,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "jpg229",
+      "kind": "solved native",
+      "length": 89,
+      "whole": {
+        "n": 44,
+        "sumColl": 104,
+        "pairColl": 18,
+        "distinct": 37,
+        "sumIOC": 0.05496828752642706,
+        "pairIOC": 0.009513742071881607,
+        "sumHist": [
+          1,
+          0,
+          1,
+          1,
+          7,
+          4,
+          0,
+          1,
+          1,
+          2,
+          1,
+          1,
+          5,
+          0,
+          2,
+          1,
+          0,
+          0,
+          1,
+          4,
+          3,
+          1,
+          0,
+          3,
+          2,
+          1,
+          0,
+          1,
+          0
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "p56_an_end",
+      "kind": "solved native",
+      "length": 85,
+      "whole": {
+        "n": 42,
+        "sumColl": 62,
+        "pairColl": 6,
+        "distinct": 39,
+        "sumIOC": 0.036004645760743324,
+        "pairIOC": 0.003484320557491289,
+        "sumHist": [
+          1,
+          3,
+          3,
+          0,
+          1,
+          0,
+          1,
+          2,
+          2,
+          0,
+          2,
+          0,
+          4,
+          1,
+          1,
+          0,
+          0,
+          3,
+          2,
+          3,
+          1,
+          0,
+          1,
+          1,
+          3,
+          1,
+          4,
+          1,
+          1
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "p57_parable",
+      "kind": "solved native",
+      "length": 95,
+      "whole": {
+        "n": 47,
+        "sumColl": 82,
+        "pairColl": 6,
+        "distinct": 45,
+        "sumIOC": 0.037927844588344126,
+        "pairIOC": 0.0027752081406105457,
+        "sumHist": [
+          1,
+          0,
+          1,
+          0,
+          3,
+          1,
+          1,
+          0,
+          4,
+          1,
+          3,
+          2,
+          4,
+          0,
+          2,
+          2,
+          2,
+          0,
+          0,
+          5,
+          3,
+          0,
+          1,
+          1,
+          1,
+          2,
+          3,
+          2,
+          2
+        ]
+      },
+      "pooled": null,
+      "chapters": [
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        },
+        {
+          "window": null,
+          "ordered": {
+            "windows": 0,
+            "maxPrefix": 0,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "gibran_prophet_58585.txt",
+      "kind": "literary",
+      "length": 62492,
+      "whole": {
+        "n": 31246,
+        "sumColl": 38924496,
+        "pairColl": 6223730,
+        "distinct": 551,
+        "sumIOC": 0.03987016569517922,
+        "pairIOC": 0.0063749353708281225,
+        "sumHist": [
+          1082,
+          741,
+          872,
+          1652,
+          2784,
+          1126,
+          766,
+          1202,
+          774,
+          802,
+          1325,
+          1157,
+          1365,
+          542,
+          1119,
+          881,
+          665,
+          837,
+          1076,
+          1464,
+          1430,
+          692,
+          1354,
+          981,
+          616,
+          1252,
+          1086,
+          798,
+          805
+        ]
+      },
+      "pooled": {
+        "windows": 49537,
+        "minSumColl": 1582122,
+        "minPairColl": 245276,
+        "maxDistinct": 463,
+        "minSumAt": 49328,
+        "minPairAt": 42330,
+        "maxDistinctAt": 360,
+        "minSumIOC": 0.03774222521210473,
+        "minPairIOC": 0.005851168260806815
+      },
+      "chapters": [
+        {
+          "window": {
+            "windows": 61764,
+            "minSumColl": 4538,
+            "minPairColl": 666,
+            "maxDistinct": 201,
+            "minSumAt": 53911,
+            "minPairAt": 61552,
+            "maxDistinctAt": 394,
+            "minSumIOC": 0.03434444343535253,
+            "minPairIOC": 0.005040414131323222
+          },
+          "ordered": {
+            "windows": 61764,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 61348,
+            "minSumColl": 11602,
+            "minPairColl": 1776,
+            "maxDistinct": 255,
+            "minSumAt": 53855,
+            "minPairAt": 44001,
+            "maxDistinctAt": 397,
+            "minSumIOC": 0.035522271073934825,
+            "minPairIOC": 0.005437644667066734
+          },
+          "ordered": {
+            "windows": 61348,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 60764,
+            "minSumColl": 26932,
+            "minPairColl": 4256,
+            "maxDistinct": 295,
+            "minSumAt": 53255,
+            "minPairAt": 47287,
+            "maxDistinctAt": 379,
+            "minSumIOC": 0.036119694433715294,
+            "minPairIOC": 0.005707909531779752
+          },
+          "ordered": {
+            "windows": 60764,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 60590,
+            "minSumColl": 32658,
+            "minPairColl": 5084,
+            "maxDistinct": 306,
+            "minSumAt": 53081,
+            "minPairAt": 363,
+            "maxDistinctAt": 394,
+            "minSumIOC": 0.03614809895400963,
+            "minPairIOC": 0.005627317505119265
+          },
+          "ordered": {
+            "windows": 60590,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 61472,
+            "minSumColl": 9122,
+            "minPairColl": 1410,
+            "maxDistinct": 242,
+            "minSumAt": 53927,
+            "minPairAt": 61466,
+            "maxDistinctAt": 396,
+            "minSumIOC": 0.035140028506491006,
+            "minPairIOC": 0.005431642205015601
+          },
+          "ordered": {
+            "windows": 61472,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 61060,
+            "minSumColl": 18384,
+            "minPairColl": 2834,
+            "maxDistinct": 277,
+            "minSumAt": 53509,
+            "minPairAt": 47822,
+            "maxDistinctAt": 340,
+            "minSumIOC": 0.03591045825682697,
+            "minPairIOC": 0.005535804977145759
+          },
+          "ordered": {
+            "windows": 61060,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 60813,
+            "minSumColl": 25494,
+            "minPairColl": 4014,
+            "maxDistinct": 292,
+            "minSumAt": 53261,
+            "minPairAt": 47351,
+            "maxDistinctAt": 401,
+            "minSumIOC": 0.036174016686531585,
+            "minPairIOC": 0.005695555933934957
+          },
+          "ordered": {
+            "windows": 60813,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 59485,
+            "minSumColl": 83432,
+            "minPairColl": 12806,
+            "maxDistinct": 347,
+            "minSumAt": 46973,
+            "minPairAt": 46671,
+            "maxDistinctAt": 116,
+            "minSumIOC": 0.0369084525983494,
+            "minPairIOC": 0.005665088263189932
+          },
+          "ordered": {
+            "windows": 59485,
+            "maxPrefix": 4,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 62185,
+            "minSumColl": 718,
+            "minPairColl": 82,
+            "maxDistinct": 120,
+            "minSumAt": 61966,
+            "minPairAt": 630,
+            "maxDistinctAt": 630,
+            "minSumIOC": 0.03047279517867753,
+            "minPairIOC": 0.003480179950768186
+          },
+          "ordered": {
+            "windows": 62185,
+            "maxPrefix": 2,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "emerson_essays_2944.txt",
+      "kind": "literary",
+      "length": 321327,
+      "whole": {
+        "n": 160663,
+        "sumColl": 994470314,
+        "pairColl": 155343032,
+        "distinct": 645,
+        "sumIOC": 0.03852678616001835,
+        "pairIOC": 0.006018146234290597,
+        "sumHist": [
+          3883,
+          3585,
+          5152,
+          7998,
+          12215,
+          5347,
+          3338,
+          5897,
+          4697,
+          4019,
+          6094,
+          6432,
+          6481,
+          3137,
+          6067,
+          5212,
+          3369,
+          4273,
+          6116,
+          8088,
+          7194,
+          3595,
+          7276,
+          5423,
+          3658,
+          7017,
+          6071,
+          4166,
+          4863
+        ]
+      },
+      "pooled": {
+        "windows": 308372,
+        "minSumColl": 1571856,
+        "minPairColl": 236494,
+        "maxDistinct": 493,
+        "minSumAt": 298858,
+        "minPairAt": 194453,
+        "maxDistinctAt": 194082,
+        "minSumIOC": 0.037497325208168585,
+        "minPairIOC": 0.00564166973805528
+      },
+      "chapters": [
+        {
+          "window": {
+            "windows": 320599,
+            "minSumColl": 4538,
+            "minPairColl": 588,
+            "maxDistinct": 204,
+            "minSumAt": 312780,
+            "minPairAt": 217127,
+            "maxDistinctAt": 154281,
+            "minSumIOC": 0.03434444343535253,
+            "minPairIOC": 0.004450095359186269
+          },
+          "ordered": {
+            "windows": 320599,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 320183,
+            "minSumColl": 11504,
+            "minPairColl": 1580,
+            "maxDistinct": 251,
+            "minSumAt": 189433,
+            "minPairAt": 219728,
+            "maxDistinctAt": 194948,
+            "minSumIOC": 0.035222220861450285,
+            "minPairIOC": 0.004837544242097657
+          },
+          "ordered": {
+            "windows": 320183,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 319599,
+            "minSumColl": 26794,
+            "minPairColl": 3690,
+            "maxDistinct": 301,
+            "minSumAt": 188855,
+            "minPairAt": 39850,
+            "maxDistinctAt": 194158,
+            "minSumIOC": 0.03593461654006266,
+            "minPairIOC": 0.004948821938972576
+          },
+          "ordered": {
+            "windows": 319599,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 319425,
+            "minSumColl": 32440,
+            "minPairColl": 4414,
+            "maxDistinct": 312,
+            "minSumAt": 306054,
+            "minPairAt": 39838,
+            "maxDistinctAt": 194160,
+            "minSumIOC": 0.0359068017045769,
+            "minPairIOC": 0.004885715866954452
+          },
+          "ordered": {
+            "windows": 319425,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 320307,
+            "minSumColl": 9022,
+            "minPairColl": 1236,
+            "maxDistinct": 239,
+            "minSumAt": 120307,
+            "minPairAt": 210138,
+            "maxDistinctAt": 76831,
+            "minSumIOC": 0.03475480565507146,
+            "minPairIOC": 0.0047613544435455915
+          },
+          "ordered": {
+            "windows": 320307,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 319895,
+            "minSumColl": 18240,
+            "minPairColl": 2544,
+            "maxDistinct": 279,
+            "minSumAt": 195483,
+            "minPairAt": 40306,
+            "maxDistinctAt": 194656,
+            "minSumIOC": 0.03562917529397976,
+            "minPairIOC": 0.00496933234363402
+          },
+          "ordered": {
+            "windows": 319895,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 319648,
+            "minSumColl": 25284,
+            "minPairColl": 3478,
+            "maxDistinct": 296,
+            "minSumAt": 188897,
+            "minPairAt": 40036,
+            "maxDistinctAt": 194136,
+            "minSumIOC": 0.035876042908224076,
+            "minPairIOC": 0.004935013337873886
+          },
+          "ordered": {
+            "windows": 319648,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 318320,
+            "minSumColl": 81970,
+            "minPairColl": 11668,
+            "maxDistinct": 356,
+            "minSumAt": 305998,
+            "minPairAt": 38672,
+            "maxDistinctAt": 194524,
+            "minSumIOC": 0.036261696465225576,
+            "minPairIOC": 0.005161662490621594
+          },
+          "ordered": {
+            "windows": 318320,
+            "maxPrefix": 4,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 321020,
+            "minSumColl": 744,
+            "minPairColl": 68,
+            "maxDistinct": 124,
+            "minSumAt": 52215,
+            "minPairAt": 36590,
+            "maxDistinctAt": 182280,
+            "minSumIOC": 0.03157626687038452,
+            "minPairIOC": 0.002886002886002886
+          },
+          "ordered": {
+            "windows": 321020,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "shakespeare_first300k.txt",
+      "kind": "literary",
+      "length": 217106,
+      "whole": {
+        "n": 108553,
+        "sumColl": 448083118,
+        "pairColl": 65185640,
+        "distinct": 618,
+        "sumIOC": 0.03802584923980505,
+        "pairIOC": 0.005531873930675973,
+        "sumHist": [
+          3033,
+          2449,
+          3199,
+          4850,
+          8104,
+          4025,
+          2721,
+          3741,
+          3420,
+          3099,
+          4152,
+          4146,
+          4696,
+          1846,
+          3937,
+          3432,
+          2917,
+          2650,
+          3745,
+          5005,
+          4384,
+          2101,
+          5029,
+          3966,
+          2112,
+          4668,
+          4399,
+          3297,
+          3430
+        ]
+      },
+      "pooled": {
+        "windows": 204151,
+        "minSumColl": 1538096,
+        "minPairColl": 215308,
+        "maxDistinct": 489,
+        "minSumAt": 187048,
+        "minPairAt": 190189,
+        "maxDistinctAt": 189473,
+        "minSumIOC": 0.036691965366664164,
+        "minPairIOC": 0.005136268268798389
+      },
+      "chapters": [
+        {
+          "window": {
+            "windows": 216378,
+            "minSumColl": 4516,
+            "minPairColl": 548,
+            "maxDistinct": 210,
+            "minSumAt": 24808,
+            "minPairAt": 122821,
+            "maxDistinctAt": 198097,
+            "minSumIOC": 0.03417794326885236,
+            "minPairIOC": 0.00414736778373142
+          },
+          "ordered": {
+            "windows": 216378,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 215962,
+            "minSumColl": 11434,
+            "minPairColl": 1432,
+            "maxDistinct": 258,
+            "minSumAt": 178468,
+            "minPairAt": 199705,
+            "maxDistinctAt": 139521,
+            "minSumIOC": 0.035007899281104184,
+            "minPairIOC": 0.004384407186508762
+          },
+          "ordered": {
+            "windows": 215962,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 215378,
+            "minSumColl": 26590,
+            "minPairColl": 3520,
+            "maxDistinct": 302,
+            "minSumAt": 63926,
+            "minPairAt": 197096,
+            "maxDistinctAt": 98016,
+            "minSumIOC": 0.035661023132054416,
+            "minPairIOC": 0.004720827432299043
+          },
+          "ordered": {
+            "windows": 215378,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 215204,
+            "minSumColl": 32444,
+            "minPairColl": 4286,
+            "maxDistinct": 313,
+            "minSumAt": 196906,
+            "minPairAt": 138631,
+            "maxDistinctAt": 98020,
+            "minSumIOC": 0.035911229177043556,
+            "minPairIOC": 0.004744036748021473
+          },
+          "ordered": {
+            "windows": 215204,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 216086,
+            "minSumColl": 9010,
+            "minPairColl": 1114,
+            "maxDistinct": 248,
+            "minSumAt": 178468,
+            "minPairAt": 199755,
+            "maxDistinctAt": 111478,
+            "minSumIOC": 0.03470857891290111,
+            "minPairIOC": 0.004291382564813745
+          },
+          "ordered": {
+            "windows": 216086,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 215674,
+            "minSumColl": 18248,
+            "minPairColl": 2406,
+            "maxDistinct": 283,
+            "minSumAt": 197728,
+            "minPairAt": 199381,
+            "maxDistinctAt": 111691,
+            "minSumIOC": 0.03564480212524905,
+            "minPairIOC": 0.004699769504238778
+          },
+          "ordered": {
+            "windows": 215674,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 215427,
+            "minSumColl": 25222,
+            "minPairColl": 3332,
+            "maxDistinct": 300,
+            "minSumAt": 197210,
+            "minPairAt": 197096,
+            "maxDistinctAt": 98020,
+            "minSumIOC": 0.03578806969748567,
+            "minPairIOC": 0.004727850615812475
+          },
+          "ordered": {
+            "windows": 215427,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 214099,
+            "minSumColl": 81938,
+            "minPairColl": 11180,
+            "maxDistinct": 362,
+            "minSumAt": 190127,
+            "minPairAt": 195827,
+            "maxDistinctAt": 198307,
+            "minSumIOC": 0.036247540380232444,
+            "minPairIOC": 0.0049457821944762954
+          },
+          "ordered": {
+            "windows": 214099,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        },
+        {
+          "window": {
+            "windows": 216799,
+            "minSumColl": 732,
+            "minPairColl": 66,
+            "maxDistinct": 125,
+            "minSumAt": 3336,
+            "minPairAt": 153289,
+            "maxDistinctAt": 151629,
+            "minSumIOC": 0.03106697224344283,
+            "minPairIOC": 0.0028011204481792717
+          },
+          "ordered": {
+            "windows": 216799,
+            "maxPrefix": 3,
+            "exact": 0
+          }
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "name": "gibran_prophet_58585.txt",
+      "seed": 826736641,
+      "anchors": 10000,
+      "direct": 486,
+      "forced": 0,
+      "held": 2000,
+      "covered": 1981,
+      "correct": 1981,
+      "unknown": 19,
+      "fullReplay": true
+    },
+    {
+      "name": "emerson_essays_2944.txt",
+      "seed": 826736642,
+      "anchors": 10000,
+      "direct": 502,
+      "forced": 0,
+      "held": 2000,
+      "covered": 1977,
+      "correct": 1977,
+      "unknown": 23,
+      "fullReplay": true
+    }
+  ]
+}
