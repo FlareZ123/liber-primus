@@ -257,3 +257,33 @@ Therefore **zero full five-record sequences** can arise from the authentic histo
 **Decision:** retire this all-cut coordinate serialization under the actual 2013 sender. It does not exclude an independently selected isolated cut5 address or a different source/coordinate grammar, and does not strengthen or retract the local PATHS candidate. This is a bounded conditional exclusion, not a new solution. Do not tune origins, chapter labels or cut omissions to salvage it without an independent source selector. Core executed in connected V8; standalone Node wrapper unrun.
 
 [Reproducer](../sims/lp2_p25_all_cut_coordinate_sender_sft.cjs) · [Raw output and all pinned inputs](lp2-p25-all-cut-coordinate-sender-output.json).
+
+
+## Second-output word-as-key receiver (Agent11, 27 November 2026)
+
+The corrected cut5 producer yields 40|20; the preceding direct second-output tests treat MEANING as expected plaintext. A distinct typed recipient is **index20 selects physical p20 and the signed word MEANING is the literal GP29 key** rather than a target word. No first-party instruction explicitly selects Vigenère or this page origin, so this is exploratory. Freeze the canonical key [19,28,9,21] (M EA N ING), both additive sender signs and both ordinary and historical literal-plaintext-F hold clocks; charge all four initial phases. Traverse all 269 p20 runes into all 273 p21 runes continuously, with no printed segmentation assumptions. No key change or tuning on p20. P21 is a fixed continuation, not a fresh manuscript-wide blind holdout.
+
+Exact DP over (key phase, previous two plaintext runes) tracks every legal F-hold path and maximum smoothed trigram score. An F ciphertext can be an unconsumed plaintext F or an encrypted non-F; plaintext F is never consumed under the hold clock. Training uses the editorial LP1 reference before section14 (2405 encoded runes). Positive controls re-encipher native p57 and separately held editorial LP1 p14, not historical examples of this key. LP1 normalization is approximate; F-path impossibility is independent of language scoring.
+
+| Phase | Sender sign | Clock | Paths / first impossible zero-based offset | p20 nats/rune | p21 nats/rune |
+|---:|---:|---|---|---:|---:|
+| 0 | 1 | ordinary | 1 path | -3.8135 | -3.7756 |
+| 0 | 1 | F-hold | dead at 87 | — | — |
+| 0 | -1 | ordinary | 1 path | -3.7816 | -3.7936 |
+| 0 | -1 | F-hold | dead at 77 | — | — |
+| 1 | 1 | ordinary | 1 path | -3.8556 | -3.8062 |
+| 1 | 1 | F-hold | dead at 18 | — | — |
+| 1 | -1 | ordinary | 1 path | -3.7306 | -3.7430 |
+| 1 | -1 | F-hold | dead at 21 | — | — |
+| 2 | 1 | ordinary | 1 path | -3.8316 | -3.7889 |
+| 2 | 1 | F-hold | dead at 15 | — | — |
+| 2 | -1 | ordinary | 1 path | -3.8212 | -3.7253 |
+| 2 | -1 | F-hold | dead at 77 | — | — |
+| 3 | 1 | ordinary | 1 path | -3.7827 | -3.7835 |
+| 3 | 1 | F-hold | dead at 87 | — | — |
+| 3 | -1 | ordinary | 1 path | -3.7319 | -3.7763 |
+| 3 | -1 | F-hold | dead at 2 | — | — |
+
+Controls: 32/32 complete plants exact, 6624/6624 MAP runes correct, scores -2.5161 to -2.5087. All selected inverses replay. 8/8 F-hold configurations are exactly impossible, and all ordinary outputs are nonprose and below the positive-control scores on both segments. No new unknown plaintext or authenticated key. Retire the direct literal MEANING receiver under these clocks; this neither excludes alternative receivers nor authenticates the upstream route. The exact p25-cut context was not located in targeted prior-work search, but broader signed-keyword sweeps may already overlap this simple test; do not repeat them.
+
+Reproduction: `node sims/lp2_p25_meaning20_wordkey_sft.cjs`; [full outputs and pinned input blobs](lp2-p25-meaning20-wordkey-output.json). Connected JS core executed; standalone Node wrapper not separately run.

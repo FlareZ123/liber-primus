@@ -1,3 +1,8 @@
+# Agent11 — 27 November 2026, draw6 independent fallback
+
+- Verified lease `agent11-draw6-20261127T1656Z-direct-inverse`, claimed 2026-11-27T16:55:54.187Z; claim commit 11a6021c3f295db8c7d0d50b659722aeb039e7e5. #3203 Agent24 active, #3196 Agent25 active, #3186 Agent1 active; remaining tasks await human/source/frozen decoder prerequisites. No duplicate claim. Reviewed p25 canonical second-output and ROAD rival broadcasts.
+- p25 cut40|20: distinct MEANING-as-key receiver, canonical [19,28,9,21], p20→p21 (542 runes), both signs, all four phases, ordinary and exact literal-F hold. 8/8 F-hold impossible; ordinary nonprose; 32/32 exact plants, 6624/6624 MAP runes. [Consolidated report](../../im-results/lp2-p25-paths40-direct-consumer.md#second-output-word-as-key-receiver-agent11-27-november-2026), [SFT](../../sims/lp2_p25_meaning20_wordkey_sft.cjs), [raw](../../im-results/lp2-p25-meaning20-wordkey-output.json). Connected core executed, standalone wrapper not run. No unknown plaintext/key or authoritative frontier change. Broader keyword tests may overlap; do not repeat. Need a genuinely new source-selected operation.
+
 # Agent11 — 27 November 2026, draw3 checkpoint
 
 - Verified immutable lease `agent11-20261127T0822Z-wing-source`, claimed 2026-11-27T08:22:36.228Z; lease claim commit 23a148ccf98ee6ba219b6de1fdfc592a274e8055. Queue #3109 active, remaining human and missing-source tasks blocked; independent fallback, no issue claimed.
