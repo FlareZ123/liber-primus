@@ -720,6 +720,30 @@ Entries are first exact tested budgets, not lower bounds. The two matched fixtur
 
 [Exact SFT](../sims/lp2_q8_unlabelled_aligned_crib_sft.cjs) · [raw results, all tested alignments and positive action witnesses](lp2-q8-unlabelled-aligned-crib-output.json). Code commit 028e8f86b96ac24b6e68d3e9c66213dd48d2b4ef, output 45235fceae597b11f46f41400105377be732426f. Exported core executed in connected V8 using actual repository inputs; standalone Node wrapper not separately executed.
 
+
+#### Independently phased earlier book-code quotation recovery (Agent4, 27 November 2026)
+
+Agent10's prior contiguous 48-rune historical book-code receiver assumes a continuous consuming phase. The preceding independently phased native LP1 receiver does not cover the three earlier named literary sources. Here the **same five pinned witnesses and GP29 normalization as Agent10** (Blake's *Marriage*, Liber AL I/II/III, 2014 Self-Reliance witness) supply independent known-text candidates, but each **donor word** may start at any q8 phase. Ciphertext segmentation is ignored. This is a source-constrained key recovery attempt, not an inferred source quotation.
+
+For every normalized donor word start, take the shortest whole-word span reaching at least 64 or 96 GP29 runes. Require at least two literal plaintext F symbols and one word with at least eight consuming symbols so the earlier anchor elimination is valid. Every within-chapter original starting rune is included; span/position counts include overlapping spans and the two minimum-length settings are not disjoint experiments. Preindex original F pairs by separation and choose the rarest donor-F pair in each chapter, then enforce every donor F. A consuming symbol may still emit ciphertext F. The exact affine receiver uses the eight consuming anchor differences as shifts, grants all independent word starts, enforces bijective common alphabet, π(F)=0, π(U)=1, primitive q8, and exact replay. Order branch groups by number of compatible starts and then number of equations. Retain the existing 500,000-node, 2,000,000-enumeration and residual-dimension-three bounds; every cap is explicitly unresolved.
+
+| Source | Min 64 spans / F-compatible alignments | Min 96 spans / F-compatible alignments |
+|---|---:|---:|
+| Blake | 1,542 / 13,183 | 2,596 / 15,188 |
+| Liber AL I | 493 / 3,849 | 881 / 4,629 |
+| Liber AL II | 535 / 4,251 | 1,014 / 4,621 |
+| Liber AL III | 529 / 3,985 | 974 / 4,857 |
+| Self-Reliance | 4,150 / 31,927 | 6,604 / 33,329 |
+| Total | 7,249 / 57,195 | 12,069 / 62,624 |
+
+**Original outcome:** 89,657,894 and 145,813,779 possible span-position combinations respectively; all **119,819** F-compatible original alignments exactly rejected, zero surviving actions and zero unresolved original alignments. The other combinations violate a mandatory literal-F condition. No candidate reaches a p55 or further original continuation test.
+
+**Calibration:** one deterministic hidden common action per source and length (10 plants) was embedded in a 13-rune decoy prefix and followed by 16 withheld donor words independently encrypted under the same action. All five 96-minimum plants return exactly one action equal to the hidden truth; all 80 withheld words replay. At 64 minimum, two exact unique actions, two complete ambiguous sets (two actions each, including truth), and one unresolved Liber AL I plant (one residual-dimension/enumeration-capped leaf, zero returned actions). The four recovered short-control truths replay all 64 withheld words. The unresolved control is not classified as a rejection. The selected truth's held replay does not establish unique held plaintext or general blind identifiability.
+
+**Decision:** retire this particular exact historical quotation route under the shared q8 action, including independent donor-word phases, without implying that the unknown text cannot be paraphrased, shorter, differently normalized, written with nonliteral-F conventions, or under a different key law. The source corpus does not supply the independently aligned plaintext needed by the unrestricted p54–55 receiver. No unknown plaintext/key recovered; no change to the established overall frontier.
+
+[SFT](../sims/lp2_q8_historical_wordphase_crib_sft.cjs) · [summary](lp2-q8-historical-wordphase-crib-summary.json) · [Blake output](lp2-q8-historical-wordphase-crib-blake-output.json) · [Emerson 64](lp2-q8-historical-wordphase-crib-emerson64-output.json) · [Emerson 96](lp2-q8-historical-wordphase-crib-emerson96-output.json). Connected JS core executed on the pinned actual source files. Full Liber AL calculation completed, but its detailed JSON creation lost a concurrent branch-head race; observed per-source totals are preserved in the summary and the SFT regenerates the full details. The standalone Node filesystem wrapper was not separately run. Earlier initial plant assertion was changed to preserve an unresolved calibration explicitly; no original outcome was changed.
+
 ## Independent two-alphabet Quagmire oracle obstruction (Director #3047, Agent1, 26 November 2026)
 
 The [ACA worked Quagmire IV example](https://www.cryptogram.org/downloads/aca.info/ciphers/QuagmireIV.pdf) is reproduced exactly: mixed plaintext alphabet SENORYABCDFGHIJKLMPQTUVWXZ, mixed ciphertext alphabet PERCTIONABDFGHJKLMQSUVWXYZ, indicator EXTRA under S, plaintext THISONEEMPLOYSTHREEKEYWORDS, ciphertext VBMRFCYISPMPBRRHEICXRREIGDX. This is historical cipher-family motivation, not an authenticated LP2 key selector. LP1 WELCOME/KOAN supply the separate GP29 additive/literal-F convention.
