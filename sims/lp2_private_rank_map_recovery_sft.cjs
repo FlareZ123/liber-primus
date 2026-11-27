@@ -83,19 +83,19 @@ function recover(P0,C0,role,hold,limit=2000){
  const key=dfs(new Int32Array(m).fill(ALL));return {status:key?"SAT":nodes>limit?"UNKNOWN":"UNSAT",nodes,pruned,propagations,scanCount,variables:m,used:used.size,pairs:ps.length,quads:qs.length,rootSizes,bestUsed,key};
 }
 const str=A=>String.fromCharCode(...A.map(x=>65+x)),arr=s=>Array.from(s,x=>x.charCodeAt(0)-65);
-function decrypt(C,key,role,hold,prev,cap=200000){
+function decrypt(C,key,role,hold,prev,cap=200000,beam=0){
  let S=key.S,R=key.R,inv=Array(n);S.forEach((s,p)=>inv[s]=p);
- let states=new Map([[str(key.A)+"|"+str(prev),{A:key.A,last:prev[1],prev:prev[0],score:0,out:"",count:1n}]]),maxStates=1;
+ let clipped=false,states=new Map([[str(key.A)+"|"+str(prev),{A:key.A,last:prev[1],prev:prev[0],score:0,out:"",count:1n}]]),maxStates=1;
  for(let i=0;i<C.length;i++){let c=C[i],next=new Map();for(let q of states.values()){
   const emit=(p,A)=>{let key=str(A)+"|"+str([q.last,p]),score=q.score+T[n*n*q.prev+n*q.last+p],old=next.get(key),count=q.count+(old?old.count:0n);if(!old||score>old.score)next.set(key,{A,last:p,prev:q.last,score,out:q.out+str([p]),count});else old.count=count;};
   if(hold&&c===0)emit(0,q.A);
   let j=q.A.indexOf(c),p=inv[j];if(!hold||p!==0){let A=q.A.slice();A.splice(j,1);A.splice(R[role==="plain"?p:c],0,c);emit(p,A);}
- }maxStates=Math.max(maxStates,next.size);if(!next.size)return {status:"UNSAT",dead:i,maxStates};if(next.size>cap)return {status:"UNKNOWN",dead:i,maxStates};states=next;}
- let best=null,count=0n;for(let q of states.values()){count+=q.count;if(!best||q.score>best.score)best=q;}return {status:"SAT",P:arr(best.out),score:best.score/C.length,maxStates,paths:count.toString()};
+ }maxStates=Math.max(maxStates,next.size);if(!next.size)return {status:"UNSAT",dead:i,maxStates};if(beam&&next.size>beam){clipped=true;states=new Map([...next.entries()].sort((a,b)=>b[1].score-a[1].score).slice(0,beam));}else{if(next.size>cap)return {status:"UNKNOWN",dead:i,maxStates};states=next;}}
+ let best=null,count=0n;for(let q of states.values()){count+=q.count;if(!best||q.score>best.score)best=q;}return {status:"SAT",P:arr(best.out),score:best.score/C.length,maxStates,paths:count.toString(),clipped};
 }
 let controls=[];for(let role of ["plain","cipher"])for(let hold of [false,true]){let P=D.slice(2001,2001+12956),S=perm(),R=Array.from({length:n},()=>Math.floor(rand()*n)),A=perm(),C=encode(P,S,R,A,role,hold).C,fit=8000,r=recover(P.slice(0,fit),C.slice(0,fit),role,hold,2000);let matches=null,decoded=null,keyMatches=null;if(r.key){
  let enc=encode(P,r.key.S,r.key.R,r.key.A,role,hold),prefix=encode(P.slice(0,fit),r.key.S,r.key.R,r.key.A,role,hold);if(prefix.C.some((c,i)=>c!==C[i]))throw Error("fit replay");matches=enc.C.slice(fit).reduce((a,v,i)=>a+(v===C[fit+i]),0);
- let dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit));if(dec.P){let pp=dec.P;decoded={...dec,P:undefined,accuracy:pp.reduce((a,v,i)=>a+(v===P[fit+i]),0),replay:encode(pp,r.key.S,r.key.R,prefix.A,role,hold).C.every((c,i)=>c===C[fit+i])};}else decoded=dec;
+ let dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit));let exactStatus=dec.status;if(dec.status==="UNKNOWN")dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit),200000,4096);dec.exactStatus=exactStatus;if(dec.P){let pp=dec.P;decoded={...dec,P:undefined,accuracy:pp.reduce((a,v,i)=>a+(v===P[fit+i]),0),replay:encode(pp,r.key.S,r.key.R,prefix.A,role,hold).C.every((c,i)=>c===C[fit+i])};}else decoded=dec;
  let ref=S[0]>S[1],flip=x=>ref?28-x:x;keyMatches={S:r.key.S.filter((x,i)=>x===flip(S[i])).length,R:r.key.R.filter((x,i)=>x===flip(R[i])).length,A:r.key.A.filter((x,i)=>x===A[ref?28-i:i]).length};
  }controls.push({role,hold,fit,held:P.length-fit,matches,decoded,keyMatches,...r});}
 return {controls};
