@@ -23,7 +23,7 @@ function experiment(corpus,transcription) {
   flush();
   const canon=words.filter(w=>w.page===w.endPage);
   check(words.length===2896&&canon.length===2864,"canonical count");
-  const target=[19,18,24,9,10,21]; // MEANING, signed word index20
+  const target=[19,18,24,9,10,21]; // Expanded noncanonical M E A N I NG; canonical MEANING has four runes
   const source=corpus.pages[25].indices.slice(144,150);
   check(eq(source,[18,3,20,10,11,16]),"p25 source mismatch");
   const v=source.map((x,i)=>Number(BigInt(x)**BigInt(i?27:3)%29n));

@@ -88,6 +88,8 @@ Results:
 | 32 | YOU | len3, GP0 30 | 0 |
 | **40** | **PATHS** | **len4, GP0 54** | **1** |
 
+**Canonical spelling correction (Agent1):** the original all-cut SFT hardcoded expanded MEANING and DIRECTION. Reading the signed source directly with the same ING/IO/composite GP conventions as the p40 SFT gives MEANING [19,28,9,21], DIRECTION [23,10,4,18,5,16,27,9]. The corrected globally seam-aware 2,896-group parser reproduces the same sole hit; the table above uses the corrected canonical states.
+
 The sole hit is p40 offsets71..74:
 
 ```text
@@ -180,7 +182,7 @@ The next receiver must make a fresh prediction. The direct second-output six-run
 
 ## Fresh second-output receiver test (Agent1, 27 November)
 
-The producer's cut5 emits **40 | 20**, not just 40. The latter is the signed source index of MEANING, six GP29 runes [19,18,24,9,10,21]. A direct second receiver has the advantage that both outputs of the already-frozen transform are used. The previous exact-GP0 same-index control had no p20 receiver, so we tested a distinct nonzero-sum six-rune key, without adjusting its components from p20 ciphertext.
+The producer's cut5 emits **40 | 20**, not just 40. The latter is the signed source index of MEANING. To test a direct six-rune additive operand, we grant the **expanded, noncanonical** spelling [19,18,24,9,10,21] (M E A N I NG). Canonical MEANING is four runes [19,28,9,21]; see the separate canonical test below. A direct second receiver has the advantage that both outputs of the already-frozen transform are used. The corrected exact-GP0 same-index control has no p20 receiver, so we tested a distinct nonzero-sum six-rune key, without adjusting its components from p20 ciphertext.
 
 The fixed transformed object [3,10,16,3,8,20] itself is a six-rune operand. The natural pairwise extension of the already-used H4 map is H6(x) = [x0−x5,x1−x4,x2−x3,x2+x3,x1+x4,x0+x5] mod29; applying its inverse to this same object gives [26,9,24,8,28,23]. No first-party instruction selects either six-rune interpretation; these are two explicitly motivated, finite alternative receivers. Both keys have sum 2 mod29. MEANING sums to 101, so any permutation of either key requires the ciphertext sum to be 16 mod29 for addition or 12 for subtraction. Since MEANING has no F, authentic literal plaintext-F bypass changes neither prediction.
 
@@ -188,6 +190,17 @@ The canonical 2,896-group parser (2,864 wholly contained, 32 crossing) finds fou
 
 We also discarded the printed spacing. Among the 264 contiguous six-rune windows on p20, five have residue16 and six have residue12; no exact prediction matches. A stronger multiset-difference test across all 12,681 within-page six-rune windows in p0–55 (including all 251 wholly contained six-rune words) yields zero matches for either key and sign, even granting arbitrary permutation of each key. The four literal predicted ciphertexts are [22,28,11,12,18,12], [16,8,8,6,2,1], [16,27,19,17,9,15], [22,9,0,1,11,27]. All 2,880 permutation-enumerated positive plants (including duplicate orderings) retain their exact inverse and pass the multiset gate.
 
-**Decision:** retire direct or outside-in H6-inverse use of the frozen six-vector as a signed additive MEANING key. The result does not refute the already-known PATHS candidate, nor all interpretations of the right output20. A different receiver requires an independently selected operation, not additional reordering or language-score tuning. No new plaintext or authentic key. The experiment ran in connected V8 against the repository inputs at commit `38cf0089a9ea3fbfdf9f9bbf0b2f71c2460b36c6`; the standalone Node wrapper is supplied but was not separately executed.
+**Decision:** retire direct or outside-in H6-inverse use of the frozen six-vector as a signed additive key for the explicitly expanded six-rune MEANING spelling. The result does not refute the already-known PATHS candidate, nor all interpretations of the right output20. A different receiver requires an independently selected operation, not additional reordering or language-score tuning. No new plaintext or authentic key. The experiment ran in connected V8 against the repository inputs at commit `38cf0089a9ea3fbfdf9f9bbf0b2f71c2460b36c6`; the standalone Node wrapper is supplied but was not separately executed.
 
 Reproduction: `node sims/lp2_p25_second_output_meaning_gate_sft.cjs`. Raw structured output: `im-results/lp2-p25-second-output-meaning-gate.json`.
+
+### Canonical four-rune second receiver
+
+The earlier six-rune test deliberately covers only the expanded spelling. The canonical signed MEANING target is [19,28,9,21] (M EA N ING), sum77. The corrected all-cut census has zero complete p20 groups of length4 and sum77. The same p25 upstream source independently fixes the p40 four-rune key [20,20,12,6], so the minimal direct reuse on its second output predicts these four-rune ciphertexts:
+
+- addition: [10,19,21,27];
+- subtraction: [28,8,26,15].
+
+Neither occurs in any of the 12,791 contiguous within-page four-rune windows in p0–55. Granting arbitrary permutation of the signed key yields one **noncanonical cross-word window** on p27 offset52: [2,19,0,27], with delta [12,20,20,6]. It starts in the last rune of the two-rune group at51 and ends inside the nine-rune group at53. No independent instruction selects p27, that unmarked window or the permutation. This is not a new plaintext candidate; neither sign has any exact fixed-order receiver anywhere.
+
+The already reported p36 MEANING candidate uses a different source-visible bracket and key [1,3,3,1]; it is not reproduced by this p25-derived key. The new result rejects direct fixed-key reuse on the second output without retracting the original PATHS local fit or the independent p36 candidate. No new plaintext or key. Corrected source-derived all-cut SFT and canonical test executed in connected V8 at `a6d2386786d9a21ed641bb642aa407f7fcaba1d3`; standalone Node wrapper unrun. Raw output: `im-results/lp2-p25-canonical-all-cut-output.json`.

@@ -156,7 +156,7 @@ On the unique p25 `[K,g]` side object, the already source-selected cube/reciproc
 
 The state value `g=5` fixes that split. Authenticated source index40 is **PATHS**, so the signed instruction “numbers are the direction” sends the left value directly to p40.
 
-This interpretation has a finite cut control. Across all five cuts, the in-range source indices are `3,13,20,28,29,31,32,40`. Under the same exact-state receiver type used here—same-number page, same canonical rune length and exact GP0 sum—**p40/PATHS is the only hit**. No alternate cut supplies another same-type destination.
+This interpretation has a finite cut control. Across all five cuts, the in-range source indices are `3,13,20,28,29,31,32,40`. Under the same exact-state receiver type used here—same-number page, same canonical rune length and exact GP0 sum—**p40/PATHS is the only hit**. No alternate cut supplies another same-type destination. The all-cut SFT now reads canonical GP encodings directly from the signed source (correcting the earlier expanded MEANING and DIRECTION states) and preserves the sole hit. The same fixed p40 key does not recover canonical MEANING anywhere in the 12,791 within-page four-rune windows; the second output still lacks a direct receiver.
 
 The same upstream state fixes the numeric H-shell without using p40 ciphertext:
 

@@ -1,265 +1,78 @@
 'use strict';
+const fs=require('node:fs');
+const path=require('node:path');
 
-const assert = require('node:assert/strict');
-const fs = require('node:fs');
-const path = require('node:path');
-
-const MOD = 29;
-
-/**
- * @param {number} a
- * @param {number} e
- * @param {number} m
- * @returns {number}
- */
-function modPow(a, e, m) {
-  let r = 1n;
-  let b = BigInt(a % m);
-  let n = BigInt(e);
-  const mm = BigInt(m);
-  while (n > 0n) {
-    if ((n & 1n) === 1n) r = (r * b) % mm;
-    b = (b * b) % mm;
-    n >>= 1n;
-  }
-  return Number(r);
-}
-
-/**
- * @param {[number, number, number, number]} k
- * @returns {[number, number, number, number]}
- */
-function H4(k) {
-  const [k0,k1,k2,k3] = k;
-  return [
-    (k0-k3+MOD)%MOD,
-    (k1-k2+MOD)%MOD,
-    (k1+k2)%MOD,
-    (k0+k3)%MOD
-  ];
-}
-
-/**
- * @param {[number, number, number, number]} h
- * @returns {[number, number, number, number]}
- */
-function H4Inv(h) {
-  const [h0,h1,h2,h3] = h;
-  const inv2 = 15; // 2^-1 mod29
-  return [
-    ((h0+h3)*inv2)%MOD,
-    ((h1+h2)*inv2)%MOD,
-    ((h2-h1+MOD)*inv2)%MOD,
-    ((h3-h0+MOD)*inv2)%MOD
-  ];
-}
-
-const root = path.join(__dirname, '..');
-const corpus = JSON.parse(fs.readFileSync(path.join(root,'resources','liber-primus','lp2-corpus.json'),'utf8'));
-const transcription = fs.readFileSync(path.join(root,'resources','liber-primus','lp2-transcription.txt'),'utf8').replace(/\r/g,'');
-const signedSource = fs.readFileSync(path.join(root,'resources','historical','cicada2016-4gq25-outguess.asc'),'utf8').replace(/\r/g,'');
-const runeSet = new Set(corpus.runes);
-const runeIndex = new Map(corpus.runes.map((r,i)=>[r,i]));
-const gpTokens = corpus.translit.map((symbol,value)=>({symbol,value})).sort((l,r)=>r.symbol.length-l.symbol.length);
-
-/** @param {string} word @returns {number[]} */
-function gp(word) {
-  const normalized = word
-    .toUpperCase()
-    .replace(/QU/g, "CW")
-    .replace(/V/g, "U")
-    .replace(/[KQ]/g, "C")
-    .replace(/Z/g, "S")
-    .replace(/[^A-Z]/g, "");
-
-  const values = [];
-  for (let offset = 0; offset < normalized.length;) {
-    if (normalized.startsWith("ING", offset)) {
-      values.push(21);
-      offset += 3;
-      continue;
+function experiment(corpus,transcription,signedSource){
+  const mod=x=>(x%29+29)%29,sum=a=>a.reduce((x,y)=>x+y,0),sig=a=>[...a].sort((a,b)=>a-b).join(","),eq=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
+  const check=(x,m)=>{if(!x)throw Error(m)};
+  const gpTokens=corpus.translit.map((symbol,value)=>({symbol,value})).sort((a,b)=>b.symbol.length-a.symbol.length);
+  function gp(word){
+    const normalized=word.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/[^A-Z]/g,"");
+    const values=[];
+    for(let i=0;i<normalized.length;){
+      if(normalized.startsWith("ING",i)){values.push(21);i+=3;continue}
+      if(normalized.startsWith("IO",i)){values.push(27);i+=2;continue}
+      const token=gpTokens.find(x=>normalized.startsWith(x.symbol,i));
+      check(token,"Unmapped GP spelling "+word);
+      values.push(token.value);i+=token.symbol.length;
     }
-    if (normalized.startsWith("IO", offset)) {
-      values.push(27);
-      offset += 2;
-      continue;
-    }
-    const token = gpTokens.find((candidate) =>
-      normalized.startsWith(candidate.symbol, offset)
-    );
-    assert.ok(token, "unmapped GP spelling: " + normalized.slice(offset));
-    values.push(token.value);
-    offset += token.symbol.length;
+    return values;
   }
-  return values;
-}
-
-/** @param {number} block @returns {number} */
-function physicalPage(block) {
-  return block < 50 ? block : block + 1;
-}
-
-/**
- * @returns {Array<{
- *   startPage:number,startOffset:number,endPage:number,endOffset:number,
- *   values:number[]
- * }>}
- */
-function parseWords() {
-  let block = 0;
-  let page = 0;
-  let pageOffset = 0;
-  let startPage = null;
-  let startOffset = null;
-  let runes = [];
-  const words = [];
-
-  const close = () => {
-    if (runes.length === 0) return;
-    words.push({
-      startPage,
-      startOffset,
-      endPage: page,
-      endOffset: pageOffset - 1,
-      values: runes.map((rune) => runeIndex.get(rune)),
-    });
-    startPage = null;
-    startOffset = null;
-    runes = [];
-  };
-
-  for (const ch of transcription) {
-    if (runeSet.has(ch)) {
-      if (runes.length === 0) {
-        startPage = page;
-        startOffset = pageOffset;
-      }
-      runes.push(ch);
-      pageOffset += 1;
-    } else if (ch === "-" || ch === "." || ch === "&" || ch === "$") {
-      close();
-    } else if (ch === "%") {
-      block += 1;
-      page = physicalPage(block);
-      pageOffset = 0;
+  const clear=signedSource.split("-----BEGIN PGP SIGNATURE-----")[0];
+  const signed=clear.slice(clear.indexOf("Hello.")).split(/[^A-Za-z0-9]+/).filter(x=>/^[A-Za-z]+$/.test(x)).map(x=>({label:x.toUpperCase(),gp:gp(x)}));
+  check(signed.length===43,"signed source count");
+  const ri=new Map(corpus.runes.map((r,i)=>[r,i]));
+  const parts=transcription.replace(/\r/g,"").split(/^\s*%\s*$/m).slice(0,55);
+  let words=[],w=[],sp=-1,ep=-1,st=0;
+  function flush(){if(w.length)words.push({page:sp,endPage:ep,start:st,values:w});w=[]}
+  for(let s=0;s<parts.length;s++){
+    const p=s>=50?s+1:s;let o=0;
+    for(const ch of parts[s]){
+      if(ri.has(ch)){if(!w.length){sp=p;st=o}ep=p;w.push(ri.get(ch));o++}
+      else if(!/[\s/]/u.test(ch))flush();
     }
+    check(o===corpus.pages[p].indices.length,"page offset mismatch");
   }
-  close();
-  return words;
-}
-
-const canonicalWords = parseWords();
-function pageWords(page) {
-  return canonicalWords.filter(w=>w.startPage===page && w.endPage===page).map(w=>({start:w.startOffset,len:w.values.length,sum:w.values.reduce((a,b)=>a+b,0),inds:w.values}));
-}
-for(let p=0;p<58;p++) assert.equal(corpus.pages[p].indices.length,corpus.pages[p].runic_count);
-
-const p25Object = corpus.pages[25].indices.slice(144,150);
-assert.deepEqual(p25Object, [18,3,20,10,11,16]);
-assert.deepEqual(
-  [(p25Object[0]-p25Object[5]+MOD)%MOD,(p25Object[0]+p25Object[5])%MOD],
-  [2,5]
-);
-
-const e = 3;
-const reciprocalExponent = 27;
-const transformed = [
-  modPow(p25Object[0], e, MOD),
-  ...p25Object.slice(1).map((x)=>modPow(x, reciprocalExponent, MOD))
-];
-assert.deepEqual(transformed, [3,10,16,3,8,20]);
-
-const cuts = [];
-for (let cut=1; cut<transformed.length; cut++) {
-  cuts.push([
-    transformed.slice(0,cut).reduce((a,b)=>a+b,0),
-    transformed.slice(cut).reduce((a,b)=>a+b,0)
-  ]);
-}
-assert.deepEqual(cuts, [[3,57],[13,47],[29,31],[32,28],[40,20]]);
-assert.deepEqual(cuts[4], [40,20]);
-
-const clear = signedSource.split("-----BEGIN PGP SIGNATURE-----")[0];
-const signed = clear.slice(clear.indexOf("Hello.")).split(/[^A-Za-z0-9]+/).filter(w=>/^[A-Za-z]+$/.test(w)).map(w=>({word:w.toUpperCase(),gp:gp(w)}));
-assert.equal(signed.length,43);
-const targetStates = new Map(signed.map((w,i)=>[i,w]));
-assert.deepEqual(signed[20],{word:"MEANING",gp:[19,28,9,21]});
-assert.deepEqual(signed[29],{word:"DIRECTION",gp:[23,10,4,18,5,16,27,9]});
-
-const inRange = [...new Set(cuts.flat().filter((x)=>targetStates.has(x)))].sort((a,b)=>a-b);
-assert.deepEqual(inRange, [3,13,20,28,29,31,32,40]);
-
-const receiverRows = [];
-for (const n of inRange) {
-  const target = targetStates.get(n);
-  const len = target.gp.length;
-  const sum = target.gp.reduce((a,b)=>a+b,0);
-  const matches = pageWords(n).filter((w)=>w.len===len && w.sum===sum);
-  receiverRows.push({index:n,word:target.word,len,sum,matches});
-}
-
-const hits = receiverRows.filter((r)=>r.matches.length>0);
-assert.equal(hits.length,1);
-assert.equal(hits[0].index,40);
-assert.equal(hits[0].word,'PATHS');
-assert.equal(hits[0].matches.length,1);
-assert.deepEqual(hits[0].matches[0],{
-  start:71,
-  len:4,
-  sum:54,
-  inds:[4,15,14,21]
-});
-
-// Origin sensitivity: the signed-source ordinal and printed page-number
-// convention are not interchangeable. Keep the selected zero/zero convention
-// but expose all four finite index variants without selecting a new receiver.
-const originCounts = [];
-for (const sourceOrigin of [0,1]) for (const pageOrigin of [0,1]) {
-  const rows = inRange.map(n=>{
-    const target = signed[n-sourceOrigin];
-    const sum = target.gp.reduce((a,b)=>a+b,0);
-    const matches = pageWords(n-pageOrigin).filter(w=>w.len===target.gp.length && w.sum===sum);
-    return {n,target:target.word,page:n-pageOrigin,matches};
+  flush();const canon=words.filter(w=>w.page===w.endPage);
+  check(words.length===2896&&canon.length===2864,"canonical word counts");
+  const obj=corpus.pages[25].indices.slice(144,150);
+  check(eq(obj,[18,3,20,10,11,16]),"p25 object");
+  check(eq([mod(obj[0]-obj[5]),mod(obj[0]+obj[5])],[2,5]),"outer H state");
+  const transformed=obj.map((x,i)=>Number(BigInt(x)**BigInt(i?27:3)%29n));
+  check(eq(transformed,[3,10,16,3,8,20]),"cube/reciprocal");
+  const cuts=Array.from({length:5},(_,i)=>[sum(transformed.slice(0,i+1)),sum(transformed.slice(i+1))]);
+  check(JSON.stringify(cuts)===JSON.stringify([[3,57],[13,47],[29,31],[32,28],[40,20]]),"cut sums");
+  const indices=[...new Set(cuts.flat().filter(x=>x<signed.length))].sort((a,b)=>a-b);
+  const rows=indices.map(index=>{
+    const {label,gp}=signed[index];
+    return {index,label,gp,len:gp.length,sum:sum(gp),matches:canon.filter(w=>w.page===index&&w.values.length===gp.length&&sum(w.values)===sum(gp))};
   });
-  originCounts.push([sourceOrigin,pageOrigin,rows.filter(row=>row.matches.length).length,rows.reduce((a,row)=>a+row.matches.length,0)]);
+  const hits=rows.filter(x=>x.matches.length);
+  check(hits.length===1&&hits[0].index===40&&hits[0].matches.length===1,"only PATHS state receiver");
+  const gInv=Number(5n**21n%23n);
+  check(gInv===14&&gInv*5-3*23===1,"DH reciprocal");
+  const shell=[gInv,8,3,mod(-3)];
+  const key=[mod(15*(shell[0]+shell[3])),mod(15*(shell[1]+shell[2])),mod(15*(shell[2]-shell[1])),mod(15*(shell[3]-shell[0]))];
+  check(eq(key,[20,20,12,6]),"H4 inverse");
+  check(eq([mod(key[0]-key[3]),mod(key[1]-key[2]),mod(key[1]+key[2]),mod(key[0]+key[3])],shell),"H4 replay");
+  const c=hits[0].matches[0];const plain=c.values.map((x,i)=>mod(x-key[i]));
+  check(c.start===71&&eq(plain,signed[40].gp)&&eq(plain,[13,24,2,15]),"PATHS inverse");
+  check(eq(plain.map((x,i)=>mod(x+key[i])),c.values),"PATHS forward");
+  const meaning=signed[20].gp;
+  check(eq(meaning,[19,28,9,21]),"canonical MEANING");
+  const windows=[];
+  for(let p=0;p<56;p++){const a=corpus.pages[p].indices;for(let i=0;i+4<=a.length;i++)windows.push({page:p,start:i,values:a.slice(i,i+4)})}
+  const meaningTests=[1,-1].map(sign=>{
+    const k=key.map(x=>mod(x*sign));
+    const predicted=meaning.map((x,i)=>mod(x+k[i]));
+    const exact=windows.filter(w=>eq(w.values,predicted));
+    const permuted=windows.filter(w=>sig(w.values.map((x,i)=>mod(x-meaning[i])))===sig(k)).map(w=>({...w,delta:w.values.map((x,i)=>mod(x-meaning[i])),completeWord:canon.some(c=>c.page===w.page&&c.start===w.start&&c.values.length===4)}));
+    check(!exact.length,"unexpected exact MEANING");
+    return {sign,predicted,exact,permuted};
+  });
+  return {groupCount:words.length,canonicalCount:canon.length,object:obj,transformed,cuts,rows,shell,key,paths:{cipher:c,plain},meaning:{gp:meaning,windows:windows.length,tests:meaningTests}};
 }
-assert.deepEqual(originCounts,[[0,0,1,1],[0,1,3,5],[1,0,4,4],[1,1,0,0]]);
-console.log('source/page origin sensitivity (origin pair, hit indices, hit objects):',originCounts);
 
-const p = 23;
-const g = 5;
-const A = 8;
-const inverseG = modPow(g,p-2,p);
-assert.equal(inverseG,14);
-assert.equal(inverseG*g - e*p,1);
-
-const shell = [inverseG,A,e,(MOD-e)%MOD];
-assert.deepEqual(shell,[14,8,3,26]);
-
-const key = H4Inv(shell);
-assert.deepEqual(key,[20,20,12,6]);
-assert.deepEqual(H4(key),shell);
-
-const cipher = hits[0].matches[0].inds;
-const plain = cipher.map((x,i)=>(x-key[i]+MOD)%MOD);
-assert.deepEqual(plain,targetStates.get(40).gp);
-assert.deepEqual(plain,[13,24,2,15]);
-
-const replay = plain.map((x,i)=>(x+key[i])%MOD);
-assert.deepEqual(replay,cipher);
-
-console.log('P25 -> PATHS40 direct consumer witness');
-console.log('p25 source object:', p25Object);
-console.log('transformed:', transformed);
-console.log('all cut sums:', cuts);
-console.log('same-index candidate rows:');
-for (const row of receiverRows) {
-  console.log(row.index, row.word, 'state', [row.len,row.sum], 'matches', row.matches.length,
-    row.matches.map((m)=>({start:m.start,inds:m.inds})));
-}
-console.log('selected shell:', shell);
-console.log('H^-1 shell key:', key);
-console.log('p40 cipher:', cipher);
-console.log('plaintext GP:', plain, '= PATHS');
-console.log('forward replay:', replay);
-console.log('PASS');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+console.log(JSON.stringify(experiment(JSON.parse(read('resources/liber-primus/lp2-corpus.json')),read('resources/liber-primus/lp2-transcription.txt'),read('resources/historical/cicada2016-4gq25-outguess.asc')),null,2));
