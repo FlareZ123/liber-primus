@@ -1,0 +1,154 @@
+{
+  "geometry": {
+    "groups": 2896,
+    "runes": 12956,
+    "carries": 32
+  },
+  "capacities": [
+    {
+      "n": 1,
+      "D": 28,
+      "L": 2,
+      "minStates": 14,
+      "minLexiconAt14": 2,
+      "maxJointStates": "14"
+    },
+    {
+      "n": 2,
+      "D": 354,
+      "L": 21,
+      "minStates": 17,
+      "minLexiconAt14": 26,
+      "maxJointStates": "40"
+    },
+    {
+      "n": 3,
+      "D": 704,
+      "L": 42,
+      "minStates": 17,
+      "minLexiconAt14": 51,
+      "maxJointStates": "580"
+    },
+    {
+      "n": 4,
+      "D": 513,
+      "L": 65,
+      "minStates": 8,
+      "minLexiconAt14": 37,
+      "maxJointStates": "10881"
+    },
+    {
+      "n": 5,
+      "D": 317,
+      "L": 31,
+      "minStates": 11,
+      "minLexiconAt14": 23,
+      "maxJointStates": "661649"
+    },
+    {
+      "n": 6,
+      "D": 256,
+      "L": 33,
+      "minStates": 8,
+      "minLexiconAt14": 19,
+      "maxJointStates": "18024949"
+    },
+    {
+      "n": 7,
+      "D": 216,
+      "L": 34,
+      "minStates": 7,
+      "minLexiconAt14": 16,
+      "maxJointStates": "507349303"
+    },
+    {
+      "n": 8,
+      "D": 156,
+      "L": 17,
+      "minStates": 10,
+      "minLexiconAt14": 12,
+      "maxJointStates": "29426259585"
+    },
+    {
+      "n": 9,
+      "D": 78,
+      "L": 14,
+      "minStates": 6,
+      "minLexiconAt14": 6,
+      "maxJointStates": "1036224712562"
+    },
+    {
+      "n": 10,
+      "D": 52,
+      "L": 5,
+      "minStates": 11,
+      "minLexiconAt14": 4,
+      "maxJointStates": "84141446660040"
+    },
+    {
+      "n": 11,
+      "D": 32,
+      "L": 3,
+      "minStates": 11,
+      "minLexiconAt14": 3,
+      "maxJointStates": "4066836588568609"
+    },
+    {
+      "n": 12,
+      "D": 18,
+      "L": 2,
+      "minStates": 9,
+      "minLexiconAt14": 2,
+      "maxJointStates": "176907391602734520"
+    },
+    {
+      "n": 13,
+      "D": 4,
+      "L": 1,
+      "minStates": 4,
+      "minLexiconAt14": 1,
+      "maxJointStates": "10260628712958602189"
+    },
+    {
+      "n": 14,
+      "D": 3,
+      "L": 1,
+      "minStates": 3,
+      "minLexiconAt14": 1,
+      "maxJointStates": "297558232675799463481"
+    }
+  ],
+  "minStates": 17,
+  "maxJointStates": 14,
+  "oneRuneProducts": [
+    28,
+    29
+  ],
+  "toyCases": 160,
+  "controls": [
+    {
+      "S": 14,
+      "joint": true,
+      "keys": [
+        7
+      ],
+      "heldWords": 20,
+      "heldRunes": 95
+    },
+    {
+      "S": 29,
+      "joint": false,
+      "keys": [
+        7
+      ],
+      "heldWords": 20,
+      "heldRunes": 95
+    }
+  ],
+  "notes": "Fixed native vocabulary; apostrophes merged; dictionary includes held native word types, so held check is a key/state implementation control, not lexical recovery.",
+  "pins": [
+    "f7b534a33edeb212d427329798438325307463d7",
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ]
+}
