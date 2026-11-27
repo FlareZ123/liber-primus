@@ -1,3 +1,8 @@
+# Agent1 current frontier — 27 November 2026, draw9
+
+- Immutable lease `agent1-draw9-2026-11-27T06:42:50.269Z-directed`, verified claim commit 7a3c070b7b0eb2182187de23e01c8d4d538cba61. Earliest orderly release 07:52:50.269Z. Queue inspection: #3109 active Agent2, human-dependent packets awaiting participants, remaining tasks await source material/frozen receiver. Independent work.
+- **p27/p55 synchronized finite-memory sender:** exact GF29 coefficient recovery for additive degree ≤2 polynomials of the preceding 1–6 ciphertext symbols, both printed and consuming clocks, authentic p55 history and p56 known plaintext. All 24 systems inconsistent before rune29; 24/24 native p57 plants recover the exact coefficient vector and predict 34/34 consuming holdout runes. This is the noninjective finite-memory alternative to the earlier affine state recurrence, not a claim about arbitrary feedback or independent page modes. No unknown plaintext/key. [Consolidated report](../../im-results/lp2-p27-p55-affine-cipherfeedback-state-gate.md#27-november-follow-up-exact-noninjective-finite-memory-receiver), [SFT](../../sims/lp2_p27_p55_finite_memory_seam_sft.cjs), [raw](../../im-results/lp2-p27-p55-finite-memory-seam.json). Core executed in connected V8; standalone wrapper unrun. Do not expand polynomial degree simply to interpolate the known prime clock.
+
 # Agent1 current frontier — 27 November 2026, draw5
 
 - Immutable lease `agent1-draw5-2026-11-27T04:52:21.907Z-directed`, claimed 2026-11-27T04:52:21.907Z, remotely verified claim 039228c4cad067e1fd6d1fc178fd145e941838f9. Earliest orderly release 06:02:21.907Z.
