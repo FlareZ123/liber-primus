@@ -112,3 +112,23 @@ Reuse the [infinity-ornament decoder](lp2-original-infinity-ornament-source-gate
 Calibration was committed and gate checked before original execution. The held p33 candidate is nonprose and is preserved only as a reproducibility output, not a key or plaintext claim. Retire this exact cuneiform-header shared-pad registration under the native F-hold model; no additional offsets or language tuning follow. This is separate from the OpenPuff password receiver, the Stage10 literal checksum tests, and ordinary page-aligned shared-pad word-constraint tests.
 
 Reproduce with [single-file CJS receiver](../sims/lp2_cuneiform_header_fhold_predict_sft.cjs) from repo root; default complete run, or `--batch 0 2`, `--batch 2 2`, `--batch 4 2`, aggregate gate then `--original-after-calibration`. [Frozen control results](lp2-cuneiform-fhold-marginal-calibration.json) commit 2193b236248e245dcf3652bd006a9fe7a27ad597, [original output](lp2-cuneiform-fhold-marginal-original.json) commit c6ba2b2e7d623ee8be13d80f7f987a14dd21f7c4. Core executed in connector V8, standalone Node wrapper not separately run.
+
+## Agent 8 — low-repeat output rewrite as a shared-pad concealment layer (27 November 2026)
+
+**Decision: negative for this frozen registration and rewrite channel.** The strikingly suppressed LP2 adjacent-repeat rate (86/12955) motivates testing whether ordinary additive shared-pad evidence has been hidden by a post-encryption repeat suppressor. This is a different receiver from the preceding F-transparent test, not an offset search. Keep its six 100-rune training prefixes and 90-rune reversed p33 holdout. Define raw output X=P+K mod29, and physical predecessor Cprev. If X != Cprev, emit X. Otherwise retain X with probability alpha=0.19 and replace it with a uniform choice among the other 28 values with probability 0.81. Physical predecessor is observed, including on the reversed frame. All positions consume pad; this does not test simultaneous F bypass.
+
+A width-256 beam estimates the six raw masks jointly. Conditional on those fitted raw tapes, the exact trigram DP integrates all shared-pad paths and all held-frame rewrite choices. Independent-pad likelihood integrates uniform raw digits through the same channel. Conditional exactness does not imply globally exact six-row mask inference. Freeze alpha and registration without fitting them to the original held row.
+
+| Quantity | Result |
+|---|---|
+| Six independent seeded shared-pad controls | 527/540 MAP key digits, 525/540 held runes; 59 raw-mask errors among 3600 training positions |
+| Predeclared accuracy gate | 5/6 trials reach >=81/90 for both key and held runes; the remaining held recovery is 79/90, retained |
+| Planted channel behavior | 115 rewrites and 21 surviving repeats among 4200 positions |
+| Shared-pad held predictive log BF | +27.82…+102.02 |
+| Wrong seventh pad | −229.39…−145.82 |
+| Independent pads | −204.04…−143.71 |
+| **Original fit / held p33 predictive BF** | **−1878.61 / −226.84** |
+
+The original fit suggests 60 rewritten digits in its 600 training positions (10%), while the planted physical-channel rewrite rate is 115/4200 (2.74%). More importantly, the independently held row scores below every shared-pad control, even below the independent-pad control range. The output is nonprose; no original key or plaintext is claimed. The proposed rewrite layer does not rescue the source-selected shared-pad registration. Do not generalize this to all collision-suppressing mechanisms, combined F-hold/rewrite, distinct page keys, or independent clue-based operations.
+
+[Decoder](../sims/lp2_cuneiform_sharedpad_collision_rewrite_sft.cjs) (commit 4d891712c98491646eba6ec03cc7afb08adfadd6), [frozen calibration](lp2-cuneiform-rewrite-calibration.json) (622343f1012cc90cecbcdd3cce6e3d54edf537c2), [original](lp2-cuneiform-rewrite-original.json) (0473e003dbdd4c1bbfca4a1c19dcad9c731fa3d0). Calibration gate was checked from the committed aggregate before invoking the original-only receiver. Numerical core ran in connector V8; standalone Node wrapper not independently executed.
