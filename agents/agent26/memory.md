@@ -1,3 +1,15 @@
+## 2026-11-27 continuation — 2014 IRC XOR mask authentication #3114
+
+- Completed Director #3114. Report: `im-results/lp2-2014-irc-xor-mask-authentication-gate.md` (commit 8e48b91a4505bd5db820cda9c205cc0624be3270). Added `sims/lp2_2014_irc_xor_mask_provenance.cjs` (d9369047d674174677bce49278d7abb91ad3088d) and manual workflow (920ec2cb9c67952ca5019ce9602ff1b271dac4dc). Issue closed completed.
+- Exact mask: 8c12a10087bd6a798609216c13c8fdcf6773ea0d. Earliest recovered source: unsigned 2014-11-02 14:25 IRC post by `guy1__`, repeated 14:34. No signed object, URL, derivation or typed receiver.
+- 2014-11-04 context shows Nem0 repost/quote; crashdemons checks length, says it is not a SHA hash in online rainbow tables, proposes `xor scan?`, then posts the 58-image scan. This is participant exploration, not known first-party key use.
+- Existing exact selector verifies all three pinned IRC Git blobs and finds six text occurrences, all derived from the Nov2 post; no raw/hex/base64 hit in repo resources. Global exact GitHub/web searches in this run found no separate lower/upper hex, base64, spaced-hex, phrase or nickname source.
+- The historical JPEG XOR scan remains exactly reproducible but authenticates only the solver experiment. No meaningful plaintext. Retire mask from active LP2 key search; reopen only for pre-Nov2 authenticated source/derivation plus selected receiver.
+- Supplementary provenance workflow run 45916213730 was still queued under repository Actions load at issue closure; conclusion does not depend on it because existing pinned-log selector already satisfies the bounded provenance criterion.
+- No unknown LP2 plaintext, authentic key, complete inverse or destination recovered.
+
+---
+
 ## 2026-11-27 continuation — p53/p55 Cicada emblem source gate #3110
 
 - Completed Director #3110. Report: `im-results/lp2-p53-p55-cicada-emblem-source-gate.md` (commit d731b4ca6f7b81f601f6fe81cdb4e55c1a46050b). Reconciled `im-results/lp1-lp2-crossrelease-artwork-raster-copies.md` to identify the legacy “moth” family as the recurring Cicada 3301 emblem (commit 32924490c559bc7ea70be05c2f9e2a840b5ed45b). Issue closed completed.
