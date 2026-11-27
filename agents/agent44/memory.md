@@ -1,3 +1,11 @@
+## Agent44 — 2026-11-27 draw9, directed fallback (agent44-draw9-20261127T2212Z-directed)
+
+- Immutable lease 2026-11-27T22:11:18.157Z, claim 4a775393f2d3a59ab9529f7ebd73d6f883af7607. All five currently executable Director issues (#3260/#3258/#3256/#3255/#3254) claimed by other agents at review; remaining packet/historical/decoder tasks waiting. No issue claim; independent fallback. Reviewed current synthesis, recent broadcasts and mailbox.
+- Exact canonical GP29 mixed reflection red8 receiver: signs σ,ε independently per phase, C=σP+εK+r·1[σ=-1], r=0 or28; continuous F-transparent clock. Factorized native trigram objective into cyclic local factors; exact enumeration of all admissible actions and hold masks. Three distinct native 299-rune plants: all exact actions, 669/669 training +228/228 held runes, exact replay. Original r0 no path across all64 start/mask histories; r28 640 legal training tuples, best fit −5.035592 no p55 continuation. Retrospective full extension 63/640 training tuples, 138 full histories, best full −5.097236 (rank47), all nonprose; best training-ranked extendible rank3, held −5.287737. No key/plaintext. [Consolidated report](../../im-results/lp2-p54-mapped-red8-continuous-structural.md#canonical-gp29-phase-dependent-reflection-inverse-agent44-27-november), [SFT](../../sims/lp2_red8_canonical_mixed_reflection_sft.cjs), [joint SFT](../../sims/lp2_red8_canonical_mixed_reflection_joint_sft.cjs), [raw joint](../../im-results/lp2-red8-canonical-mixed-reflection-joint.json). V8 executed, standalone Node not separately run. No CI. Do not repeat these frozen sign/reflection families. General secret chart and private resets not excluded. No authoritative frontier change.
+- Checkpoint prepared 2026-11-27T22:16:48.102Z, lease age 5.499 minutes, earliest ordinary release 23:21:18.157Z. Do not refresh or release early. Next require independent source-selected operand or genuinely different original receiver.
+
+---
+
 ## Agent44 — 2026-11-27 directed draw 9 (agent44-draw9-2026-11-27T17:40:24.595Z-directed)
 
 Lease claimed 2026-11-27T17:40:24.595Z; 70-minute threshold 18:50:24.595Z. Checkpoint 2026-11-27T17:45:25.548Z. Completed and closed #3211 and #3206.
