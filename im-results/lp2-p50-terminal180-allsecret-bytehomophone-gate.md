@@ -59,9 +59,38 @@ The more constrained previous-plaintext decoder fails rather than becoming vacuo
 
 The [new read-only SFT](../sims/lp2_terminal180_firstorder_codebook_identifiability_sft.cjs) asserts both radix parses, all 16 layouts and disjoint rim pairs, the full solved p56 native text, two distinct all-256-label completions per radix, and two 180-rune native known-law positive controls. It was executed on the exact remote canonical sources using the connected JavaScript runtime; no Node/CI execution is claimed. The controls are native-input replay tests, not independent key recovery. The additional speculative two-label XOR model is subsumed by the deterministic previous-plaintext forward relation for the frozen known registers and is not promoted as a separate research result. No unknown plaintext, authenticated key or destination.
 
+## Arbitrary shared row/column permutations and known-pad inverse (Agent4, 27 November 2026)
+
+The earlier 16 physical traversals leave a different testable possibility: a whole-table homophonic codebook might require a secret permutation of its 30 inner rows and six inner columns. The original 32×8 geometry and solved terminal lengths independently select the 76/180 partition; a transposition is plausible but no first-party clue specifies arbitrary row/column permutations. Test this stronger family before any attempt to fit a p55 codebook. Let `S[r,c]` be the exact interior token (radix59 and radix60 are both injective on the observed tokens), let `Y` be the authentic 180-symbol target reshaped in row- or column-major order, and seek arbitrary bijections `R∈S30, Q∈S6` and arbitrary function `F: token→GP29` satisfying
+
+```
+F(S[r,c]) = Y[R(r), Q(c)]    for every r=0..29, c=0..5.
+```
+
+The three frozen targets are solved p56+p57 plaintext, printed p56+p57 ciphertext, and their GP29 difference (the actual p56 prime-minus-one pad and zero p57 pad). Reversal of either axis is already included in the permutations. This is a codebook recovery problem on actual known plaintext/ciphertext, not an optimization of language scores. With an admissible solution, the original interior contains 127 distinct tokens; 37/76 perimeter positions use those same tokens, so those values become known under the recovered map, while **39/76 remain unobserved**. A perimeter-to-p55 ordering and treatment of unseen tokens would still need independent selection.
+
+**Exact inference.** For each of 720 column permutations, let source row variables range over all 30 target rows with all-different row assignment. Every occurrence pair of a repeated token imposes a unary equality if in the same row, or a binary allowed-pair relation otherwise. Intersect the relations for all shared tokens and remove unsupported domain elements to an arc-consistency fixed point, propagating singleton all-different assignments. An empty domain is an exact contradiction; remaining cases can branch without assuming a key. At a complete assignment the token map is constructed and all 180 relations are checked. For the zero-heavy known-pad target, use a distinct necessary column-frequency condition first: if token x occurs n(x,c) times in source column c, then F(x)=y requires n(x,c)≤count_Y(y,Q(c)) for every c. Filter all candidate row placements by this condition and test maximum bipartite matching of the 30 source rows to 30 target rows. A maximum below 30 supplies a Hall-deficiency certificate, independent of the remaining repeated-token equalities.
+
+| Actual target | Target serialization | Column orders | Result | Maximum row matching under column capacities |
+|---|---|---:|---|---:|
+| Solved plaintext | Row | 720 | 720 UNSAT at propagation root | 30 |
+| Solved plaintext | Column | 720 | 720 UNSAT at propagation root | 30 |
+| Printed ciphertext | Row | 720 | 720 UNSAT at propagation root | 30 |
+| Printed ciphertext | Column | 720 | 720 UNSAT at propagation root | 30 |
+| Authentic difference pad | Row | 720 | 720 UNSAT by Hall deficiency | 27 |
+| Authentic difference pad | Column | 720 | 720 UNSAT by Hall deficiency (also equality root) | 19 |
+
+For the best row-major pad column order [1,0,5,4,3,2], a zero-based Hall witness contains 20 source rows and only 17 admissible neighboring target rows: source [0,2,3,4,5,7,8,9,10,11,14,15,18,20,22,24,26,27,28,29], target [9,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29]. No row permutation can realize this graph. All 720 row-major pad column orders have maximum matching 20–27; the best column-major order has maximum 19. The preliminary equality-only search had capped all 720 row-major pad cases (5,000 nodes per order); the independent Hall test eliminates them without those branches. The final reproducer skips that redundant search.
+
+**Recovery calibration.** Three deterministic hidden arbitrary 256-entry codebooks and independently shuffled row/column permutations were planted on the original token geometry. All 720 column orders were tested on each; exactly one order survived for each plant and its row assignment matched the hidden permutation exactly at the propagation root. The true token map predicts **37/37** independently withheld perimeter values in each control. All true orders pass the column-frequency Hall test (matching 30/30). These are exact model-identification controls, not proof of authorial use. No unseen token value was fitted or claimed.
+
+**Decision:** exclude every shared static token lookup under arbitrary global row and column permutations for these six targets/layouts (**4,320/4,320 complete, zero unresolved**), including the historical solved p56 pad and clear p57 pad. Do not expand arbitrary row/column key searches or claim the 76/180 geometry alone authenticates a key. Separate nonstationary maps or unconstrained cell permutations are different hypotheses; they require independent source selection and prediction of unseen tokens. No unknown LP2 plaintext or key recovered.
+
+[Reproducer](../sims/lp2_terminal180_homophonic_rowcol_permutation_sft.cjs) · [Raw exact results, matching histograms and witnesses](lp2-terminal180-homophonic-rowcol-permutation-output.json). The equality core and independent Hall core were executed on canonical blobs `2550eae357442912220e05dc51147523a61dd75a` and `054f2a0f780b7d46901acbe3d9bf4f0ac1801165` in the connected JS runtime. The assembled Node wrapper was not separately executed. The final raw classification integrates these executed cores; no CI run is claimed.
+
 ## Decision
 
-**Reject a direct arbitrary static byte-homophonic codebook linking the 180 p50 inner cells to known p56/p57 GP29 runes and revealing p55 on the 76-cell rim.** The same mathematical failure applies to separate unknown mappings per solved page in all sixteen physical alignments. Different byte-order rules, a position-dependent/evolving decoder, another nonlocal transport, and a p55-only unrelated cipher remain open but have **no independently selected first-party key expansion rule here**.
+**Reject a direct arbitrary static byte-homophonic codebook linking the 180 p50 inner cells to known p56/p57 GP29 runes and revealing p55 on the 76-cell rim.** This now includes arbitrary global inner-row and inner-column permutations for both terminal registers and their authentic difference pad. The same mathematical failure applies to separate unknown mappings per solved page in all sixteen physical alignments. Different byte-order rules, a position-dependent/evolving decoder, another nonlocal transport, and a p55-only unrelated cipher remain open but have **no independently selected first-party key expansion rule here**.
 
 This source-bounded exclusion is structurally distinct from the earlier 48-program direct arithmetic table readers and the known180 XOR/add/sub + PRNG/visual event codebook gates, because **all 256 byte→29-rune codebook entries are treated as arbitrary hidden keys** with no formula, and the obstruction depends solely on exact source-symbol equality.
 
