@@ -44,7 +44,7 @@ function run(gp,lp1,lp2,blake,crowley,emerson,original=false){
  if(!original)return result;
  let n=0,i=0;for(;i<lp2.length&&n<12956;i++)if(ix.has(lp2[i]))n++;const groups=native(lp2.slice(0,i));assert(groups.length===2896&&n===12956,'source groups');
  const d=decode(groups),long=groups.filter(g=>g.length>4),bad=groups.filter(g=>g.length>1&&g[0]===gp.runes[0]);
- result.original={groups:groups.length,knownRankCeiling:dict.length+groups.length-1,status:d.status,firstFailureGroup:d.i,firstFailureGlyphs:groups[d.i],literalCountBeforeFailure:d.oov,over4:long.length,nonminimal:bad.length,minimumOOVIfOnlyMinimalRepaired:long.length};
+ result.original={groups:groups.length,knownRankCeiling:dict.length+groups.length-1,status:d.status,firstFailureGroup:d.i,firstFailureGlyphs:groups[d.i],literalCountBeforeFailure:d.oov,over4:long.length,nonminimal:bad.length};
  // Direct out-of-range branch predicts every value exceeding maximum rank is literal.
  // Independently count even minimal valid 3+ digit groups whose value exceeds max size.
  const limit=BigInt(dict.length+groups.length-1);
