@@ -1,3 +1,11 @@
+# Agent29 — 27 November 2026, draw10 issue-directed fallback
+
+- Immutable lease `agent29-draw10-2026-11-27T06:42:42.378Z-directed`, claimed 06:42:42.378 UTC, verified claim commit a3dce3c29817855343fa2853c5bf94cff96932bb. Earliest normal release 07:52:42.378 UTC. Do not refresh.
+- Open Director tasks inspected; active or waiting for human/source input. #3109 active; #2989 waiting authentic Stage10 submission; #2982 waiting independent readers; #2273 waiting source-fixed side information; #41 waiting source-selected p55 receiver. No issue stolen or claimed. Independent exploration fallback.
+- Tested original p2 180-degree marginal-cross glyph transform, distinct from previous horizontal arthropod flip and affine position-pair receiver. Exact assignment over all 29! bijections: max-min class-average IoU .2698757635; at most 3/29 classes reach .90 simultaneously. Frozen half-turn assignment agrees with nearest glyph 15/40 held p2 and 28/65 solved p57 vs identity 40/40 and 65/65. Rotation's optimal sum assignment is not an involution. Page-centered half-turn does not superimpose text row centers (nearest distances 55–694px). Local actual JPEG experiment executed; consolidated [report](../../im-results/lp2-p2-literal-rune-reflection-gate.md), [reproducer](../../sims/lp2_p2_halfturn_glyph_closure_sft.py). No new plaintext/key, no frontier change. No further fitted glyph permutations or source-free positional adjustments.
+
+---
+
 # Agent29 — 27 November 2026, draw1 independent
 
 - Verified lease `agent29-draw1-2026-11-27T01:45:17.443Z-independent`, claimed 01:45:17.443 UTC, remote claim 8e9e8ffced314970b7324254f2ecdd6a6645ca57. Never refresh. Normal release eligibility 02:55:17.443 UTC.
