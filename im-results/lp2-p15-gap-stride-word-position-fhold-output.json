@@ -1,0 +1,533 @@
+{
+  "model": "source-literal p15 rank1 phase0 Fibonacci-gap continuous clock; printed-word-position-conditioned emissions and within-word language objective; arbitrary shared GP29 alphabets and literal F holds; length-conditioned donor controls with no inter-word grammar; fit whole-word prefix, frozen alphabets on continuation",
+  "range": [
+    3623,
+    5506
+  ],
+  "words": 432,
+  "fitWords": 334,
+  "cut": 1409,
+  "controls": [
+    {
+      "donor": "Shakespeare",
+      "visibleF": 97,
+      "literalF": 28,
+      "result": {
+        "records": [
+          {
+            "holds": 20,
+            "ll": -3811.398998724273
+          },
+          {
+            "holds": 20,
+            "ll": -3782.2825432952723
+          },
+          {
+            "holds": 20,
+            "ll": -3782.2825413579963
+          },
+          {
+            "holds": 22,
+            "ll": -3782.2825432952723
+          }
+        ],
+        "best": {
+          "fit": 1409,
+          "fitLength": 1409,
+          "held": 474,
+          "heldLength": 474,
+          "fitScore": -4517.946698585102,
+          "heldScore": -1448.5745387471482,
+          "replay": true,
+          "A": [
+            0,
+            14,
+            11,
+            16,
+            5,
+            25,
+            20,
+            4,
+            24,
+            17,
+            1,
+            19,
+            18,
+            13,
+            21,
+            8,
+            3,
+            12,
+            26,
+            23,
+            10,
+            6,
+            27,
+            22,
+            2,
+            9,
+            7,
+            15,
+            28
+          ],
+          "B": [
+            3,
+            9,
+            6,
+            20,
+            23,
+            10,
+            17,
+            18,
+            24,
+            14,
+            8,
+            1,
+            21,
+            13,
+            0,
+            7,
+            4,
+            11,
+            27,
+            12,
+            19,
+            2,
+            25,
+            16,
+            28,
+            22,
+            26,
+            15,
+            5
+          ],
+          "possibleFitEnds": 5
+        },
+        "oracle": {
+          "fit": 1409,
+          "fitLength": 1409,
+          "held": 474,
+          "heldLength": 474,
+          "fitScore": -4517.946698585102,
+          "heldScore": -1448.5745387471482,
+          "replay": true,
+          "A": [
+            0,
+            14,
+            11,
+            16,
+            5,
+            25,
+            20,
+            4,
+            24,
+            17,
+            1,
+            19,
+            18,
+            13,
+            21,
+            8,
+            3,
+            12,
+            26,
+            23,
+            10,
+            6,
+            27,
+            22,
+            2,
+            9,
+            7,
+            15,
+            28
+          ],
+          "B": [
+            3,
+            9,
+            6,
+            20,
+            23,
+            10,
+            17,
+            18,
+            24,
+            14,
+            8,
+            1,
+            21,
+            13,
+            0,
+            7,
+            4,
+            11,
+            27,
+            12,
+            19,
+            2,
+            25,
+            16,
+            28,
+            22,
+            26,
+            15,
+            5
+          ],
+          "possibleFitEnds": 5
+        }
+      }
+    },
+    {
+      "donor": "Gibran",
+      "visibleF": 106,
+      "literalF": 46,
+      "result": {
+        "records": [
+          {
+            "holds": 34,
+            "ll": -3644.831920009003
+          },
+          {
+            "holds": 34,
+            "ll": -3644.831881905641
+          },
+          {
+            "holds": 34,
+            "ll": -3644.831920009003
+          },
+          {
+            "holds": 34,
+            "ll": -3644.83192020413
+          },
+          {
+            "holds": 33,
+            "ll": null
+          },
+          {
+            "holds": 35,
+            "ll": null
+          },
+          {
+            "holds": 35,
+            "ll": -3644.83195465516
+          }
+        ],
+        "best": {
+          "fit": 1409,
+          "fitLength": 1409,
+          "held": 474,
+          "heldLength": 474,
+          "fitScore": -4383.937467027613,
+          "heldScore": -1424.5639809418003,
+          "replay": true,
+          "A": [
+            0,
+            3,
+            18,
+            28,
+            12,
+            5,
+            24,
+            10,
+            6,
+            20,
+            14,
+            22,
+            17,
+            21,
+            23,
+            9,
+            27,
+            4,
+            15,
+            26,
+            19,
+            13,
+            25,
+            8,
+            1,
+            7,
+            11,
+            2,
+            16
+          ],
+          "B": [
+            15,
+            11,
+            8,
+            10,
+            1,
+            20,
+            2,
+            19,
+            28,
+            5,
+            22,
+            18,
+            25,
+            14,
+            6,
+            17,
+            21,
+            0,
+            27,
+            13,
+            4,
+            23,
+            16,
+            3,
+            12,
+            9,
+            26,
+            7,
+            24
+          ],
+          "possibleFitEnds": 2
+        },
+        "oracle": {
+          "fit": 1409,
+          "fitLength": 1409,
+          "held": 474,
+          "heldLength": 474,
+          "fitScore": -4383.937467027613,
+          "heldScore": -1424.5639809418003,
+          "replay": true,
+          "A": [
+            0,
+            15,
+            1,
+            11,
+            24,
+            17,
+            7,
+            22,
+            18,
+            3,
+            26,
+            5,
+            19,
+            4,
+            6,
+            21,
+            10,
+            16,
+            27,
+            9,
+            2,
+            25,
+            12,
+            20,
+            13,
+            8,
+            23,
+            14,
+            28
+          ],
+          "B": [
+            27,
+            23,
+            20,
+            22,
+            13,
+            3,
+            14,
+            2,
+            11,
+            17,
+            5,
+            1,
+            8,
+            26,
+            18,
+            0,
+            4,
+            12,
+            10,
+            25,
+            16,
+            6,
+            28,
+            15,
+            24,
+            21,
+            9,
+            19,
+            7
+          ],
+          "possibleFitEnds": 1
+        }
+      }
+    }
+  ],
+  "gate": true,
+  "original": {
+    "records": [
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 32,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 26,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      },
+      {
+        "holds": 23,
+        "ll": null
+      }
+    ],
+    "best": null,
+    "oracle": null
+  },
+  "inputBlobs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/transcriptions/lp2-image-corrected.txt",
+      "sha": "f7b534a33edeb212d427329798438325307463d7"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/transcriptions/lp1_wulfic_canonical.txt",
+      "sha": "37c96b816495c5f93ca658a01c9918bf92598316"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    }
+  ],
+  "baseBlob": "2f34ca02bbdfd79643171eb854b2004bc49ea031",
+  "runtimeMs": 48209
+}
