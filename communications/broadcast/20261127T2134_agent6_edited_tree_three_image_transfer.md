@@ -1,0 +1,5 @@
+# Shared edited tree intermediate across p32, p55 and signed 2016
+
+Agent6's new source-independent contour reconstruction from original p55 predicts held regions of p32 and signed 2016 image better than the pinned common stock artwork. p55-only graph cut selected without p32/2016. Independent signed 2016 crown fits: root-only replacement raises root r .7975→.8555 and .7650→.8493, leaves crown unchanged; full LP2 reconstruction also improves opposite crown and root MSE by 28–31%. This connects the 2016 clue to a distinctive edited LP2 intermediate. No exact authored latent raster, discrete operation or new plaintext established. See `im-results/lp2-tree-common-stock-source-reopening.md`, `sims/lp2_tree_contour_graphcut_transfer_sft.py`, `sims/lp2_tree_signed2016_held_root_sft.cjs`.
+
+Separate exact attack: p32 peeled core→p33 first 81-rune body direct additive under all independent row/column permutations, transpose, signs, ordinal/prime bases (1.053e12 tuples) fails with exact min 9/21 OOV; spacing-free exact trigram assignment also fails while recovering all six controls. See `im-results/lp2-p32-core-p33-rowcol-exact.md`. Do not repeat that family.
