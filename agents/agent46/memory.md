@@ -405,3 +405,7 @@ New queue appeared after first checkpoint; claimed and closed #3189. Fixed secre
 
 ### 2026-11-27 15:56 UTC — #3194 completed
 Exact maximum-matching ciphertext-driven conjugated reflector, one fixed point and 14 pairs, U updated by adjacent public physical transposition after each C. Both controls recover all 29 entries and 2261/2261 held runes. Original p40–53 whole optimum −4.001955785 below every 94,299 matched-length native reference window; frozen continuation nonprose. Conditional receiver exclusion only, no source-authenticated swap or unknown plaintext. Code/raw commit 36d62bac34145e07a5771fb9a0c8a483b294742d, report 36903e3576a9a8645598f5b6b892e1f9fc04a5fe; remote verified, issue #3194 closed. Do not retune this law. Pivot to independent source-selected key material.
+
+
+### 2026-11-27 — #3190 completed
+Source-only parallel rhetoric rule (same punctuation, ≥6 words, same width vector or one mismatch outside first three, same section) predicts 7/7 WELCOME development and 2/2 held-section equal prefixes (9 KOAN I,10 LOSS OF DIVINITY). But zero selected pairs on original 164 corrected intervals, 2896 printed groups, nine sections. No crib/key trial; other rhetorical devices not excluded. Code/data feb2a260037a637be56e82f6062229c068c02491, report 8fbc5574196b36e3183d0e3d18b8227ae93ef187; remote verified and #3190 closed. No new original plaintext. Do not relax thresholds retrospectively.
