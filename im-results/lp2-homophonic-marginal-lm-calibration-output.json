@@ -1,0 +1,177 @@
+{
+  "controls": [
+    {
+      "truth": [
+        10,
+        25,
+        3,
+        11,
+        9,
+        26,
+        19,
+        1,
+        3,
+        4,
+        16,
+        18,
+        5,
+        23,
+        13,
+        2,
+        8,
+        0,
+        15,
+        27,
+        18,
+        24,
+        20,
+        28,
+        7,
+        6,
+        21,
+        14,
+        17
+      ],
+      "fitAccuracy": 1396,
+      "holdAccuracy": 600,
+      "true": {
+        "fit": {
+          "lm": -2.3016545470192304,
+          "cipher": -2.446432069711294
+        },
+        "hold": {
+          "lm": -2.358618506647815,
+          "cipher": -2.52784842029623
+        }
+      },
+      "map": [
+        10,
+        16,
+        3,
+        26,
+        9,
+        26,
+        19,
+        1,
+        3,
+        4,
+        16,
+        18,
+        5,
+        23,
+        13,
+        2,
+        8,
+        0,
+        15,
+        27,
+        18,
+        24,
+        20,
+        28,
+        7,
+        6,
+        21,
+        14,
+        17
+      ],
+      "fit": {
+        "lm": -2.2709014893640895,
+        "cipher": -2.428577849844987
+      },
+      "hold": {
+        "lm": -2.358618506647815,
+        "cipher": -2.530918560083919
+      },
+      "decoded": "AWARNNGBELIEUENOTHNGFROMTHISBOOCEXCEPTWHATYOUCNOWTOBETRUETESTTHECNOWLEDGEFINDYOURTRUTHEXPERIENCEYOURDEATHDONOTEDITORCHANGETHISBOOCORTHEMESSAGECONTAINEDWITHINEITHERTHEWORDSORTHEIRNUMBERSFORALLISSACREDWELCOMEWELCOMEPILGRIMTOTHEGREATYOURNEYTOWARDTHEENDOFALLTHNGSITISNOTANEASYTRIPBUTFORTHOSEWHOFINDTHEIRW",
+      "distinct": 25
+    },
+    {
+      "truth": [
+        15,
+        4,
+        14,
+        16,
+        18,
+        17,
+        18,
+        5,
+        0,
+        13,
+        26,
+        7,
+        24,
+        6,
+        11,
+        27,
+        10,
+        12,
+        3,
+        9,
+        1,
+        19,
+        28,
+        8,
+        25,
+        20,
+        23,
+        21,
+        2
+      ],
+      "fitAccuracy": 1393,
+      "holdAccuracy": 600,
+      "true": {
+        "fit": {
+          "lm": -2.475780077490015,
+          "cipher": -2.569486924188245
+        },
+        "hold": {
+          "lm": -2.357259330028298,
+          "cipher": -2.434929986039506
+        }
+      },
+      "map": [
+        15,
+        4,
+        14,
+        16,
+        18,
+        17,
+        18,
+        5,
+        0,
+        13,
+        26,
+        7,
+        24,
+        6,
+        11,
+        27,
+        10,
+        12,
+        3,
+        9,
+        1,
+        19,
+        28,
+        8,
+        18,
+        20,
+        23,
+        21,
+        2
+      ],
+      "fit": {
+        "lm": -2.4041524362321516,
+        "cipher": -2.5194707934802687
+      },
+      "hold": {
+        "lm": -2.357259330028298,
+        "cipher": -2.4392675651634295
+      },
+      "decoded": "UTUSINTHISPOINTCHARGEHIMHOMETHATHEAFFECTSTYRANNICALPOWERIFHEEUADEUSTHEREENFORCEHIMWITHHISENUYTOTHEPEOPLEANDTHATTHESPOILGOTONTHEANTIATESWASNEERDISTRIBUTEDWHATWILLHECOMEEDILEHESCOMNGBRUTUSHOWACCOMPANIEDEDILEWITHOLDMENENIUSANDTHOSESENATORSTHATALWAYSFAUOURDHIMSICINIUSHAUEYOUACATALOGUEOFALLTHEUOICESTHATW",
+      "distinct": 27
+    }
+  ],
+  "pass": true
+}
