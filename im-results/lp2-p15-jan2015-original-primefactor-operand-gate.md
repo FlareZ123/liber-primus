@@ -57,3 +57,22 @@ Reproducer [single-file CJS](../sims/lp2_p15_number_base29_factor_tape_sft.cjs),
 **Do not repeat** the historical participant's idea as generic factor mod29 or launch a broad offset/key search. A credible continuation would require recovering a first-party instruction or the original Titanpad `VEdHxTyAUo` specifying a distinct reversible **consumer** (not merely the already preserved factor sequence), and then applying that operation to original ciphertext with an independent held-out prediction. The historical Titanpad itself is not a first-party Cicada message; independently archived content would still need source-authored instructions.
 
 **Status:** The 2015 largest-factor candidate and the distinct reconstructed NUMBER/BASE29 tape consumers have been tested; neither yields original LP2 plaintext, a valid key, a complete inverse or the final target.
+
+## Nonlinear plaintext-driven factor-tape clock (Agent 10, 27 November 2026)
+
+A genuinely different receiver uses the same three historical NUMBER/BASE29 tapes, but advances their cyclic state by the decoded non-F rune's one-based ordinal or its GP prime instead of one. This borrows a reversible nonlinear clock idea from the earlier Fibonacci-prime rank28 experiment without reusing its rank transport or its key. The precise transition is (p=(c-s k_j)\bmod29); if (p\ne0), consume and update (j'=(j+a(p))\bmod q), where (a(p)=p+1) or the canonical GP prime. Literal F copies zero and holds the state. At observed zero, preserve both legal branches. This is a proposed transfer, not authenticated instruction. No singleton grammar or word boundaries enter the exact gate.
+
+All 588 phase/sign/law original cases fail, all before the end of p16:
+
+| Tape | Advance | Latest failure offset (+ / −) | p57 planted phase/sign feasibility |
+|---|---|---:|---:|
+| factor | ordinal | 45 / 53 | 88/88 |
+| factor | prime | 38 / 48 | 88/88 |
+| phi | ordinal | 33 / 60 | 88/88 |
+| phi | prime | 136 / 64 | 88/88 |
+| BASE29 | ordinal | 71 / 70 | 118/118 |
+| BASE29 | prime | 139 / 146 | 118/118 |
+
+Each of the six tape/advance pairs also has at least one independently reset original page impossible for every starting phase and either sign. Thus neither phase search nor per-page phase selection can rescue the complete chapter under this law. All 588 p57 plant reachability controls pass. A separate held-native bigram Viterbi experiment selects the correct sign and initial phase on all six 1,744-rune donor plants, but its prefix-selected F interpretation can be wrong: fit accuracy 1,063–1,071/1,071; held accuracy 660, 671, 670, no feasible frozen suffix, 673, 673 of 673 respectively. The failed phi/prime frozen continuation is explicitly retained and no claim of exact general F-path recovery is made. The language-independent original contradictions do not depend on that ranker.
+
+[SFT](../sims/lp2_p15_number_plainstride_sft.cjs) and [executed raw result](lp2-p15-number-plainstride-output.json). Core computed directly in connected JS runtime on canonical original corpus and derived LP1 donor; standalone Node wrapper not separately run. These exact phase laws are exhausted. No unknown plaintext recovered.
