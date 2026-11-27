@@ -1,0 +1,154 @@
+{
+  "mode": "original",
+  "start": 1,
+  "end": 2,
+  "period": 8,
+  "dictionary": 23689,
+  "rows": [
+    {
+      "name": "p3-7",
+      "n": 1145,
+      "trainN": 317,
+      "anchors": [
+        {
+          "word": [
+            4,
+            24,
+            27,
+            6,
+            22,
+            12,
+            16,
+            19,
+            14
+          ],
+          "offset": 64,
+          "zeros": 2,
+          "index": 11,
+          "prev": 21
+        },
+        {
+          "word": [
+            14,
+            10,
+            26,
+            6,
+            15,
+            15,
+            17,
+            28
+          ],
+          "offset": 198,
+          "zeros": 7,
+          "index": 40,
+          "prev": 3
+        },
+        {
+          "word": [
+            26,
+            13,
+            14,
+            10,
+            7,
+            19,
+            5,
+            10
+          ],
+          "offset": 219,
+          "zeros": 7,
+          "index": 44,
+          "prev": 27
+        }
+      ],
+      "eligible": true,
+      "counts": [
+        {
+          "offset": 64,
+          "width": 9,
+          "local": 26845,
+          "newCycles": 26845,
+          "union": 26845
+        },
+        {
+          "offset": 198,
+          "width": 8,
+          "local": 192029,
+          "newCycles": 192029,
+          "union": 218874
+        },
+        {
+          "offset": 219,
+          "width": 8,
+          "local": 319346,
+          "newCycles": 319346,
+          "union": 538220
+        }
+      ],
+      "containsTrue": null,
+      "cycles": 538220,
+      "survivingCycles": 0,
+      "survivingPhases": 0,
+      "trueSurvives": null,
+      "survivors": []
+    }
+  ],
+  "seed": "0x47a8c8",
+  "inputs": [
+    {
+      "path": "sims/lp2_vnull_fhold_joint_clock_sft.cjs",
+      "sha": "c013df73a3c11047214f1004d9ab0cf216916905"
+    },
+    {
+      "path": "sims/lp2_scroll_vnull_fhold_joint_period8_sft.cjs",
+      "sha": "86ea4dfc5ae87d40b1c0eaa32d1a7de68c9656de"
+    },
+    {
+      "path": "sims/lp2_chapter_vnull_fhold_period8_sft.cjs",
+      "sha": "45e851d046861a85c8a009d72513cba2b9a06268"
+    },
+    {
+      "path": "sims/lp2_vnull_fhold_periodic_bitmask_sft.cjs",
+      "sha": "ce455a4302c4a0f098ca419f07d0fbd86565425e"
+    },
+    {
+      "path": "sims/lp2_vnull_fhold_periodic_language_sft.cjs",
+      "sha": "c54525508a0a4da6228f7c76868dc750e2b199b8"
+    },
+    {
+      "path": "sims/lp2_chapter_vnull_fhold_period8_one_anchor_sft.cjs",
+      "sha": "8ce93304aba5ec0bfe2ea4ceff42a9d71bf8e7a4"
+    },
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/liber-primus/lp2-transcription.txt",
+      "sha": "43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7"
+    },
+    {
+      "path": "resources/control/english_wordfreq_textblob.txt",
+      "sha": "140e1d22b5f8c45deddd2e8b25549d9d6307d938"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/orthodox_daily_prayers_pg34981.txt",
+      "sha": "a887fa2d3d1246de61e9e6ee4e7f08a72e9764f6"
+    }
+  ]
+}
