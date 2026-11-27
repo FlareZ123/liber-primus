@@ -102,3 +102,33 @@ The p29/p50 shared repeated root is now established as **unique among all page/t
 The most promising remaining interpretation is that p29 and the p50 table carry **related GF29 checks or framing** rather than directly sharing a readable keyed stream. That remains a hypothesis. A substantive next step needs an independent original clue supplying an opcode, framing or key that consumes this exact shared factor and makes a falsifiable prediction on unmodified ciphertext. An independently published instruction specifying how to consume this factor would justify a new experiment; extending the failed quotient interpretations with arbitrary shifts or fitted substitutions would repeat the same conjectural search.
 
 **Single-file reproducer:** [Windows Node.js 22 CommonJS SFT](../sims/lp2_p29_grid_pairwise_factor_key_sft.cjs) asserts all 1,540 gcd degrees, the two exact exceptional gcd polynomials, the original p39 red triad, both original quotient lengths, all eight native-language original inverse statistics, reencryption, and the full solved-p57 planted positives.
+
+
+## Full unknown-factor convolution inverse (Agent15, 27 November 2026)
+
+The fixed quotient-as-pad failures do not test a different literal interpretation of the shared quadratic: perhaps p29 is the product of an unknown plaintext polynomial and an unknown key polynomial, with the printed red triad marking a factor of the latter. This receiver is a genuine key-and-plaintext search, not another predetermined quotient or a language-fitted key. It is conditional: the original artifact does not explicitly say to multiply arbitrary polynomials or shorten a plaintext register.
+
+Freeze GF(29), the source high-first coefficient polynomial C, and the ordinary, untruncated product C = P K. Complete factorization into monic irreducibles gives C = u product(f_j^e_j). Every possible nonzero P is s product(f_j^a_j), with 0<=a_j<=e_j and s=1..28; the remaining exponents and reciprocal scalar define K exactly. Enumerate every split, every scalar and both readings of P's coefficient order, retaining native-text candidates of at least 40 significant digits. No word-boundary constraint, fixed key degree, guessed known plaintext or arbitrary key search. Independently count the subset admitting G=(X-24)^2 as a factor of K, not P. The grid's physical leading zero is restored as known padding; field replay reconstructs the 256 residues mod29, not the original 256 full byte values from residues alone.
+
+| Source | Effective degree | Monic divisors (all lengths) | Distinct candidate tapes >=40 | Admit G in key | Best overall native trigram mean | Best with G in key |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| p29 | 276 | 1,536 | 75,488 | 24,976 | -4.351114 (47 runes) | -4.544305 (42 runes) |
+| p50 full grid mod29 | 254 | 48 | 1,344 | 448 | -5.039027 (250 runes) | -5.039027 (250 runes) |
+
+p29 irreducible degree/multiplicity inventory: 1/1, 1/2, 3/1, 6/1, 10/1, 14/1, 14/1, 28/1, 77/1, 121/1. p50: 1/2, 2/1, 3/1, 9/1, 238/1. Thus every p50 candidate of >=40 significant digits necessarily contains the degree-238 factor, has 239–255 significant digits, and its complementary key has degree <=16. Every monic split is checked by exact forward polynomial multiplication; all displayed scaled/reversed candidates likewise replay under a witness.
+
+The p29 best candidate starts `J X F E X M D L TH I N W E M AE O T TH EA R`; the longest-subset winners remain nonprose (minimum candidate lengths 75, 120, 175: best scores -4.750702, -4.782315, -4.962570). The p50 winner starts `X S H J NG Y L A N EO P O O AE X E B EO N X`. No sustained original plaintext.
+
+Frozen trigram scorer: 2,916-rune derived LP1 plaintext reference only, interpolated 3/2/1-gram with half-count unigram smoothing and interpolation strength5. Independent solved p56+p57 native-text windows are multiplied by seeded random hidden polynomials containing G; the attacker receives the product only and runs the same entire factor/scalar/orientation search. Controls overlap because the combined genuine LP2 solved register is only 180 runes.
+
+| Hidden plaintext length / source-product length | Candidate tapes | True plaintext rank | True native score |
+| --- | ---: | ---: | ---: |
+| 60 / 277 | 16,800 | 1 | -1.819637 |
+| 121 / 256 (reversed coefficient encoding) | 163,464 | 1 | -1.834156 |
+| 175 / 277 | 323,008 | 1 | -1.797814 |
+
+All three true plaintexts were recovered exactly as top-ranked factor tapes. This is not uniqueness of the unknown factor-split encoding absent a language or key constraint. The original candidate enumeration is exhaustive for the declared full, nontruncated polynomial-product architecture, but language rejection is an empirical judgment under the frozen native-GP scorer, not a proof about every possible message. Leading-zero plaintext padding, cyclic/truncated multiplication, unknown coefficient relabelings and arbitrary independent keys between smaller blocks are not included. Prior fixed H/G/HG causal/cyclic filter tests remain distinct.
+
+**Decision:** retire the complete arbitrary ordinary-factor-product receiver on p29 and p50, including the stricter source-G-in-key branch. The original shared root remains a structural observation, not evidence of recovered plaintext. No further degree, factor, coefficient orientation or scalar search is warranted in this exact family.
+
+Reproduce: `python sims/lp2_p29_p50_unknown_polynomial_factor_inverse_sft.py resources/liber-primus/lp2-corpus.json resources/liber-primus/lp2-grid-256.json resources/derived/dukotah-r37-lp1-map-runes.json`. Executed locally on the repository source vectors and independent LP1 reference; published code blob 72c88b03e9cba7cffa4385c7baac1314ab2f5320. No CI run claimed.
