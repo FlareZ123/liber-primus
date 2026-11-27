@@ -1,3 +1,7 @@
+## #3158 — implicit source-object dependency (27 Nov)
+
+Exact retrospective controls: original LP1 p5 180° mixed pairs 226/MOBIUS and245/OBSCURA uniquely select GP prime sums among five primitives; all 25 cells match independent earlier MP3 square. p56 128hex + exact 6+2 preceding word widths, 16 typed hash vocabulary phrases and 128 law/mask paths, only −phi first-prime yields HASHES TO and full 45-rune prefix; 12 full legal masks remain, true F hold56 requires continuation. No new unsolved object has independent mixed-coordinate/type anchor plus receiver. p15 4+5 title mismatches KNOW THIS and single-word FIBONACCI; p50 untyped pair codec. Specific upstream dependency absent; do not rescan. [Report](../../im-results/lp2-implicit-source-object-dependency-gate.md).
+
 ## Independent physical page reset extension (27 Nov)
 
 Fixed (15,17) source law excluded even with independent starts on all 13 nonempty p40–53 pages and shared arbitrary inverse rows, authentic latent F: U8≤158/142 => rare7≥74/90 vs maxima68/54. Cheap exact cover excludes 324/812 ordinal and311/812 prime laws; remaining989 unresolved, not general reset closure. Added --page-private to all-law SFT and consolidated report. No extra generic coefficient search absent a selector.
