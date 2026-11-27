@@ -1,0 +1,885 @@
+{
+  "targetCounts": [
+    458,
+    450,
+    455,
+    458,
+    424,
+    443,
+    438,
+    401,
+    414,
+    446,
+    471,
+    450,
+    399,
+    445,
+    458,
+    434,
+    442,
+    445,
+    439,
+    436,
+    460,
+    454,
+    492,
+    439,
+    482,
+    445,
+    448,
+    470,
+    460
+  ],
+  "min": 399,
+  "maxMultiplicity": 5,
+  "targetWordTypes": 2731,
+  "results": [
+    {
+      "source": "native",
+      "grammar": "ordinary",
+      "words": 266,
+      "maxUniqueIncludingOnePartial": 267,
+      "maxRunesIncludingOnePartial": 6929,
+      "minUpper": 0,
+      "upper": [
+        132,
+        362,
+        126,
+        502,
+        493,
+        303,
+        122,
+        156,
+        157,
+        458,
+        408,
+        11,
+        0,
+        147,
+        26,
+        514,
+        418,
+        111,
+        919,
+        227,
+        317,
+        91,
+        0,
+        298,
+        407,
+        6,
+        146,
+        46,
+        66
+      ],
+      "rare": [
+        [
+          "F",
+          132
+        ],
+        [
+          "U",
+          362
+        ],
+        [
+          "TH",
+          126
+        ],
+        [
+          "C",
+          303
+        ],
+        [
+          "G",
+          122
+        ],
+        [
+          "W",
+          156
+        ],
+        [
+          "H",
+          157
+        ],
+        [
+          "J",
+          11
+        ],
+        [
+          "EO",
+          0
+        ],
+        [
+          "P",
+          147
+        ],
+        [
+          "X",
+          26
+        ],
+        [
+          "B",
+          111
+        ],
+        [
+          "M",
+          227
+        ],
+        [
+          "L",
+          317
+        ],
+        [
+          "NG",
+          91
+        ],
+        [
+          "OE",
+          0
+        ],
+        [
+          "D",
+          298
+        ],
+        [
+          "AE",
+          6
+        ],
+        [
+          "Y",
+          146
+        ],
+        [
+          "IA",
+          46
+        ],
+        [
+          "EA",
+          66
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "native",
+      "grammar": "strict",
+      "words": 112,
+      "maxUniqueIncludingOnePartial": 113,
+      "maxRunesIncludingOnePartial": 2774,
+      "minUpper": 0,
+      "upper": [
+        36,
+        172,
+        91,
+        211,
+        232,
+        108,
+        51,
+        71,
+        66,
+        172,
+        173,
+        0,
+        0,
+        61,
+        11,
+        192,
+        137,
+        46,
+        374,
+        101,
+        81,
+        36,
+        0,
+        123,
+        137,
+        6,
+        56,
+        26,
+        31
+      ],
+      "rare": [
+        [
+          "F",
+          36
+        ],
+        [
+          "U",
+          172
+        ],
+        [
+          "TH",
+          91
+        ],
+        [
+          "O",
+          211
+        ],
+        [
+          "R",
+          232
+        ],
+        [
+          "C",
+          108
+        ],
+        [
+          "G",
+          51
+        ],
+        [
+          "W",
+          71
+        ],
+        [
+          "H",
+          66
+        ],
+        [
+          "N",
+          172
+        ],
+        [
+          "I",
+          173
+        ],
+        [
+          "J",
+          0
+        ],
+        [
+          "EO",
+          0
+        ],
+        [
+          "P",
+          61
+        ],
+        [
+          "X",
+          11
+        ],
+        [
+          "S",
+          192
+        ],
+        [
+          "T",
+          137
+        ],
+        [
+          "B",
+          46
+        ],
+        [
+          "E",
+          374
+        ],
+        [
+          "M",
+          101
+        ],
+        [
+          "L",
+          81
+        ],
+        [
+          "NG",
+          36
+        ],
+        [
+          "OE",
+          0
+        ],
+        [
+          "D",
+          123
+        ],
+        [
+          "A",
+          137
+        ],
+        [
+          "AE",
+          6
+        ],
+        [
+          "Y",
+          56
+        ],
+        [
+          "IA",
+          26
+        ],
+        [
+          "EA",
+          31
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "native",
+      "grammar": "near",
+      "words": 223,
+      "maxUniqueIncludingOnePartial": 224,
+      "maxRunesIncludingOnePartial": 5639,
+      "minUpper": 0,
+      "upper": [
+        117,
+        292,
+        121,
+        407,
+        392,
+        233,
+        107,
+        116,
+        121,
+        377,
+        328,
+        6,
+        0,
+        132,
+        21,
+        417,
+        313,
+        81,
+        754,
+        212,
+        257,
+        66,
+        0,
+        248,
+        332,
+        6,
+        116,
+        36,
+        66
+      ],
+      "rare": [
+        [
+          "F",
+          117
+        ],
+        [
+          "U",
+          292
+        ],
+        [
+          "TH",
+          121
+        ],
+        [
+          "R",
+          392
+        ],
+        [
+          "C",
+          233
+        ],
+        [
+          "G",
+          107
+        ],
+        [
+          "W",
+          116
+        ],
+        [
+          "H",
+          121
+        ],
+        [
+          "N",
+          377
+        ],
+        [
+          "I",
+          328
+        ],
+        [
+          "J",
+          6
+        ],
+        [
+          "EO",
+          0
+        ],
+        [
+          "P",
+          132
+        ],
+        [
+          "X",
+          21
+        ],
+        [
+          "T",
+          313
+        ],
+        [
+          "B",
+          81
+        ],
+        [
+          "M",
+          212
+        ],
+        [
+          "L",
+          257
+        ],
+        [
+          "NG",
+          66
+        ],
+        [
+          "OE",
+          0
+        ],
+        [
+          "D",
+          248
+        ],
+        [
+          "A",
+          332
+        ],
+        [
+          "AE",
+          6
+        ],
+        [
+          "Y",
+          116
+        ],
+        [
+          "IA",
+          36
+        ],
+        [
+          "EA",
+          66
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "gibran",
+      "grammar": "ordinary",
+      "words": 1991,
+      "maxUniqueIncludingOnePartial": 1992,
+      "maxRunesIncludingOnePartial": 57350,
+      "minUpper": 0,
+      "upper": [
+        1262,
+        2653,
+        597,
+        3143,
+        4458,
+        2478,
+        1002,
+        1282,
+        1442,
+        3258,
+        2973,
+        91,
+        16,
+        1288,
+        61,
+        5720,
+        3198,
+        1032,
+        7714,
+        1467,
+        3153,
+        962,
+        36,
+        2938,
+        3228,
+        0,
+        902,
+        237,
+        811
+      ],
+      "rare": [
+        [
+          "J",
+          91
+        ],
+        [
+          "EO",
+          16
+        ],
+        [
+          "X",
+          61
+        ],
+        [
+          "OE",
+          36
+        ],
+        [
+          "AE",
+          0
+        ],
+        [
+          "IA",
+          237
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "gibran",
+      "grammar": "strict",
+      "words": 494,
+      "maxUniqueIncludingOnePartial": 495,
+      "maxRunesIncludingOnePartial": 12322,
+      "minUpper": 0,
+      "upper": [
+        256,
+        607,
+        252,
+        802,
+        902,
+        447,
+        257,
+        326,
+        437,
+        717,
+        693,
+        11,
+        6,
+        267,
+        6,
+        1132,
+        697,
+        186,
+        1448,
+        346,
+        546,
+        211,
+        16,
+        568,
+        742,
+        0,
+        252,
+        26,
+        201
+      ],
+      "rare": [
+        [
+          "F",
+          256
+        ],
+        [
+          "TH",
+          252
+        ],
+        [
+          "G",
+          257
+        ],
+        [
+          "W",
+          326
+        ],
+        [
+          "J",
+          11
+        ],
+        [
+          "EO",
+          6
+        ],
+        [
+          "P",
+          267
+        ],
+        [
+          "X",
+          6
+        ],
+        [
+          "B",
+          186
+        ],
+        [
+          "M",
+          346
+        ],
+        [
+          "NG",
+          211
+        ],
+        [
+          "OE",
+          16
+        ],
+        [
+          "AE",
+          0
+        ],
+        [
+          "Y",
+          252
+        ],
+        [
+          "IA",
+          26
+        ],
+        [
+          "EA",
+          201
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "gibran",
+      "grammar": "near",
+      "words": 977,
+      "maxUniqueIncludingOnePartial": 978,
+      "maxRunesIncludingOnePartial": 26397,
+      "minUpper": 0,
+      "upper": [
+        562,
+        1283,
+        392,
+        1553,
+        2133,
+        1012,
+        467,
+        631,
+        787,
+        1513,
+        1428,
+        51,
+        6,
+        592,
+        11,
+        2363,
+        1468,
+        477,
+        3499,
+        732,
+        1287,
+        432,
+        16,
+        1328,
+        1467,
+        0,
+        487,
+        66,
+        401
+      ],
+      "rare": [
+        [
+          "TH",
+          392
+        ],
+        [
+          "J",
+          51
+        ],
+        [
+          "EO",
+          6
+        ],
+        [
+          "X",
+          11
+        ],
+        [
+          "OE",
+          16
+        ],
+        [
+          "AE",
+          0
+        ],
+        [
+          "IA",
+          66
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "emerson",
+      "grammar": "ordinary",
+      "words": 8842,
+      "maxUniqueIncludingOnePartial": 8843,
+      "maxRunesIncludingOnePartial": 305972,
+      "minUpper": 71,
+      "upper": [
+        5187,
+        13999,
+        1637,
+        16093,
+        23298,
+        15933,
+        4563,
+        3852,
+        5622,
+        20539,
+        19914,
+        472,
+        176,
+        9488,
+        1107,
+        27420,
+        21393,
+        5028,
+        38439,
+        8418,
+        15514,
+        3387,
+        151,
+        13348,
+        20474,
+        71,
+        4767,
+        3627,
+        2117
+      ],
+      "rare": [
+        [
+          "EO",
+          176
+        ],
+        [
+          "OE",
+          151
+        ],
+        [
+          "AE",
+          71
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "emerson",
+      "grammar": "strict",
+      "words": 1818,
+      "maxUniqueIncludingOnePartial": 1819,
+      "maxRunesIncludingOnePartial": 57155,
+      "minUpper": 26,
+      "upper": [
+        887,
+        2749,
+        486,
+        3083,
+        4598,
+        3033,
+        827,
+        922,
+        1317,
+        3914,
+        4043,
+        81,
+        46,
+        1637,
+        201,
+        4523,
+        3953,
+        892,
+        7074,
+        1637,
+        2588,
+        441,
+        31,
+        2183,
+        3778,
+        26,
+        952,
+        627,
+        676
+      ],
+      "rare": [
+        [
+          "J",
+          81
+        ],
+        [
+          "EO",
+          46
+        ],
+        [
+          "X",
+          201
+        ],
+        [
+          "OE",
+          31
+        ],
+        [
+          "AE",
+          26
+        ]
+      ],
+      "excludesStaticPermutation": true
+    },
+    {
+      "source": "emerson",
+      "grammar": "near",
+      "words": 3608,
+      "maxUniqueIncludingOnePartial": 3609,
+      "maxRunesIncludingOnePartial": 118371,
+      "minUpper": 31,
+      "upper": [
+        1937,
+        5294,
+        817,
+        6308,
+        9178,
+        6178,
+        1822,
+        1752,
+        2327,
+        8174,
+        8209,
+        186,
+        86,
+        3442,
+        426,
+        9919,
+        8378,
+        1907,
+        14909,
+        3227,
+        5618,
+        1036,
+        66,
+        4848,
+        7904,
+        31,
+        1912,
+        1412,
+        1121
+      ],
+      "rare": [
+        [
+          "J",
+          186
+        ],
+        [
+          "EO",
+          86
+        ],
+        [
+          "OE",
+          66
+        ],
+        [
+          "AE",
+          31
+        ]
+      ],
+      "excludesStaticPermutation": true
+    }
+  ],
+  "notes": "Assumes printed groups correspond to source words up to permutation, with one partial word allowed at trailing length cutoff. Gives upper bound for arbitrary source vocabulary word mixing and stationary rune bijection, not just sampled sentence grammar."
+}
