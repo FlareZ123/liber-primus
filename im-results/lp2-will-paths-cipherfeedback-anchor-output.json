@@ -1,0 +1,251 @@
+{
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+  "geometry": {
+    "x": 132,
+    "y": 1751,
+    "n": 1911,
+    "holdout": 156
+  },
+  "nativeP57Score": -2.748518735805168,
+  "controls": [
+    {
+      "key": [
+        8,
+        2,
+        5,
+        11,
+        7,
+        3,
+        9
+      ],
+      "hold": false,
+      "legal": 1,
+      "candidates": 1,
+      "histories": [
+        1,
+        1
+      ],
+      "truthPaths": [
+        "1"
+      ],
+      "bestTruthAccuracy": 1779,
+      "total": 1779,
+      "donorSuffixScore": -2.811617307853107
+    },
+    {
+      "key": [
+        3,
+        1,
+        8,
+        15,
+        4,
+        5,
+        12
+      ],
+      "hold": true,
+      "legal": 1,
+      "candidates": 1,
+      "histories": [
+        1,
+        1
+      ],
+      "truthPaths": [
+        "466933209365773025280"
+      ],
+      "bestTruthAccuracy": 1766,
+      "total": 1779,
+      "donorSuffixScore": -2.811617307853107
+    }
+  ],
+  "original": [
+    {
+      "m": 6,
+      "hold": false,
+      "histories": [
+        1,
+        1
+      ],
+      "rankHist": {
+        "7": 1
+      },
+      "linearCandidates": 0,
+      "legal": 0,
+      "out": []
+    },
+    {
+      "m": 6,
+      "hold": true,
+      "histories": [
+        2,
+        1
+      ],
+      "rankHist": {
+        "7": 2
+      },
+      "linearCandidates": 1,
+      "legal": 0,
+      "out": [
+        {
+          "k": [
+            9,
+            3,
+            15,
+            27,
+            4,
+            19,
+            24
+          ],
+          "hx": [
+            24,
+            12,
+            10,
+            12,
+            19,
+            9
+          ],
+          "hy": [
+            25,
+            18,
+            19,
+            10,
+            11,
+            22
+          ],
+          "dead": 166,
+          "paths": "0"
+        }
+      ]
+    },
+    {
+      "m": 7,
+      "hold": false,
+      "histories": [
+        1,
+        1
+      ],
+      "rankHist": {
+        "8": 1
+      },
+      "linearCandidates": 1,
+      "legal": 1,
+      "out": [
+        {
+          "k": [
+            18,
+            25,
+            21,
+            25,
+            11,
+            19,
+            13,
+            7
+          ],
+          "hx": [
+            24,
+            12,
+            10,
+            12,
+            0,
+            19,
+            9
+          ],
+          "hy": [
+            25,
+            18,
+            19,
+            10,
+            11,
+            22,
+            1
+          ],
+          "dead": null,
+          "paths": "1",
+          "prefixScore": -3.745954896913942,
+          "suffixScore": -3.7696953395280923,
+          "suffix": "ETSTLSOEOEXSOEOFMNPAEAETHGNGATHGPNNCIBIAINGNGDDCPISELAGIUHLFHGIFCDPFGHJPBEOYSRNGOEBUBBGOXCTMTHNGLJEORFPCUAESRXHHALSABFJAEITHDDILEAOLUEOEODAEPWDBEACGEOAYLTWGEOTOEEATHHEAPNAFJIAETDTHNFLJTJUTNG",
+          "plaintext": "7akk22b3kkdlfrkkkpr4kpc7p95ii8f2maifk26gdi0pr3b9k1cp7ebaj5qmrkjk9h6k42f556ae1cg2ashb0bm6204edcqil3ohmfj64hq8cfl7qj7kpjn8c4m3jbfccknh1dprfr42sdq23nssjnmfl7bomdjjkpq2c425lm4qdsa171oo0g3j94fjmcl1b1rs5be6c8hfpi9o5k6ocfiolbj6i2rhj3kms3scj2rp9hk00ne5lqaap9cqnmk3me3josif87n9rmf4j867e6pmfdgokao28m6bjk7l7en4cp6def7c02p098jrhgpao7oi6femkgb7lrrl3qr6ejqfr8bp98nr9mjo9m7oalccpas7kd9hkdq2co2dho8se5i0liireefjjo6iqjaaq6cl076e3655anshqgj14j8ogdjee1gicems1gb5806os63802n2q4qo5lbiec5hp0fhllma1p4f8447lfr2acdp8ol25onq7a0b79el2g31bmqfis90ol936qc479883io5ek0e444a146ai58p06b79ra82slkco6k81d99femj694ob02fe3kmi9oehmlqra9f4sr45qa9cq5c8970e81ihkp6bd41brjqc3jdr044knpabd9k7n29idijrd9388c53h5l26535p6aj5m8l2ipoii9354rkoa03gmhldmod4ca7hjg7rc3nbk58l24896ki97isggahqgse35k18s4ih22blm64gl8e36rp5d91cjc5ddslknaeiehddjnkpoosgqeg0kgrhrqbno25eahp9iig7q6anhq1m3kinjshcirfbg2cmbcha9b39mfgipq9l7gio4ibbbli29s74eg362ck68qlk30ien8bgp82bdn4ngc4463c60941p80bs8m98onib8l7mnr2i47mgq1fb03eaq4pjqd79cdf10kqodgn7mmhb5fd0lhmqdq83s3b6qebq3jm4aekfrljbcepe24irr3ee6oimen8c4l21q5551bdgmf69b29r45la16o1lhpcdhik97p3fg92am12drsj3esll5h0hn0gb3e6rb7jrk5cgi452dn2e21576cbnr22ake9rd0jli8oj2jgc6ckaeo2k1740mk60mcq03gi8rb2lrm7d0k1pp704c7fb8afsgl5ij9o2fi3bfoae815hdbh5i2j54cr5ndc4515m58qpbpsb12e7dl84k5pofec0rg21qmppa8fiqmprkmppfild96m0b9rafl4gk994qprj8s1dn1jkpqa7l079653bsncirklsdoss168bqshqdhfscde61o2aibl9nnn0ksf3f4478shqicdriflkjq1isfgm6dgo81l2pk2hb4miln40pif1467ko6l8qaad9j7n7mro7o2oqnm7fl81eihms5p853595hdhqi11j14elf9kqb99akob95ckacab24p1c4cfg2deokhsq3bnn3s7e8k7dn902hp4fe9fd4b8fa0r948o36bog65qsrjb75aprbiioqrbqprnl8398aak4d878mg1ba9o7kndkcffk7p412c1757k9sbfqmrgcji5fg70dqdo2figfgkfmmefm30j9dpp26lo26d995ahrallnn5dafiko6a18k086a05nd068bdhcqf4lmh1hh63e5gj2lkbc40d51pf4e88okfoh0bpa2nnaks3k1ccnpd7nhs56coqkg76cgms28sd9o0bapgn290kbgb1gl"
+        }
+      ]
+    },
+    {
+      "m": 7,
+      "hold": true,
+      "histories": [
+        2,
+        1
+      ],
+      "rankHist": {
+        "8": 2
+      },
+      "linearCandidates": 2,
+      "legal": 0,
+      "out": [
+        {
+          "k": [
+            18,
+            25,
+            21,
+            25,
+            11,
+            19,
+            13,
+            7
+          ],
+          "hx": [
+            24,
+            12,
+            10,
+            12,
+            0,
+            19,
+            9
+          ],
+          "hy": [
+            25,
+            18,
+            19,
+            10,
+            11,
+            22,
+            1
+          ],
+          "dead": 216,
+          "paths": "0"
+        },
+        {
+          "k": [
+            9,
+            3,
+            15,
+            27,
+            4,
+            19,
+            24,
+            0
+          ],
+          "hx": [
+            24,
+            12,
+            10,
+            12,
+            19,
+            9,
+            7
+          ],
+          "hy": [
+            25,
+            18,
+            19,
+            10,
+            11,
+            22,
+            1
+          ],
+          "dead": 166,
+          "paths": "0"
+        }
+      ]
+    }
+  ]
+}
