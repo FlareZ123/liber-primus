@@ -1,0 +1,7272 @@
+{
+  "sourceBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/liber-primus/lp2-ink-annotations.json": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "frames": [
+    {
+      "page": 0,
+      "offset": 13,
+      "end": 13,
+      "start": 0,
+      "n": 13,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 14,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 15,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 22,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 2,
+      "offset": 201,
+      "end": 729,
+      "start": 13,
+      "n": 716,
+      "repeats": 4,
+      "minAlias": 18,
+      "maxAlias": 38,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628268",
+          "primeMin": "4628132",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 21,
+          "constant13": "203490",
+          "prime13": "72316",
+          "primeMin": "72312",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628160",
+          "primeMin": "4628080",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 20,
+          "constant13": "77520",
+          "prime13": "36141",
+          "primeMin": "36130",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 25,
+          "constant13": "5200300",
+          "prime13": "1157043",
+          "primeMin": "1157025",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 22,
+          "constant13": "497420",
+          "prime13": "144675",
+          "primeMin": "144564",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 22,
+          "constant13": "497420",
+          "prime13": "144666",
+          "primeMin": "144572",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148101880",
+          "primeMin": "148101880",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 38,
+          "constant13": "5414950296",
+          "prime13": "9478548530",
+          "primeMin": "9478548472",
+          "universalMin": "1024",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 23,
+          "constant13": "1144066",
+          "prime13": "289312",
+          "primeMin": "289152",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 37,
+          "constant13": "3562467300",
+          "prime13": "4739274078",
+          "primeMin": "4739274078",
+          "universalMin": "512",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 20,
+          "constant13": "77520",
+          "prime13": "36124",
+          "primeMin": "36092",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 29,
+          "constant13": "67863915",
+          "prime13": "18506860",
+          "primeMin": "18505416",
+          "universalMin": "2",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 18,
+          "constant13": "8568",
+          "prime13": "8994",
+          "primeMin": "8712",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628038",
+          "primeMin": "4628038",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 23,
+          "constant13": "1144066",
+          "prime13": "289150",
+          "primeMin": "289022",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 29,
+          "constant13": "67863915",
+          "prime13": "18512788",
+          "primeMin": "18512760",
+          "universalMin": "2",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 19,
+          "constant13": "27132",
+          "prime13": "18023",
+          "primeMin": "18005",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 22,
+          "constant13": "497420",
+          "prime13": "144690",
+          "primeMin": "144538",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628572",
+          "primeMin": "4627802",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148102340",
+          "primeMin": "148102252",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 21,
+          "constant13": "203490",
+          "prime13": "72268",
+          "primeMin": "72244",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628148",
+          "primeMin": "4628148",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 23,
+          "constant13": "1144066",
+          "prime13": "289060",
+          "primeMin": "288830",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 25,
+          "constant13": "5200300",
+          "prime13": "1156998",
+          "primeMin": "1156994",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578474",
+          "primeMin": "578474",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578504",
+          "primeMin": "578420",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628092",
+          "primeMin": "4628092",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "offset": 16,
+      "end": 745,
+      "start": 729,
+      "n": 16,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 9,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 14,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 15,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 21,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 26,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 27,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "offset": 119,
+      "end": 848,
+      "start": 745,
+      "n": 103,
+      "repeats": 1,
+      "minAlias": 1,
+      "maxAlias": 9,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 2,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 4,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 12
+        },
+        {
+          "d": 5,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 16
+        },
+        {
+          "d": 6,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "3",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 7,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 8,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 10,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 8,
+          "constant13": "0",
+          "prime13": "8",
+          "primeMin": "5",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "3",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 13,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 15,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 16,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 17,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 18,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 19,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 21,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 22,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 14
+        },
+        {
+          "d": 23,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 24,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 12
+        },
+        {
+          "d": 25,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 26,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 27,
+          "m": 9,
+          "constant13": "0",
+          "prime13": "24",
+          "primeMin": "6",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 3,
+      "offset": 122,
+      "end": 851,
+      "start": 848,
+      "n": 3,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 1,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "offset": 71,
+      "end": 1541,
+      "start": 851,
+      "n": 690,
+      "repeats": 4,
+      "minAlias": 13,
+      "maxAlias": 36,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 29,
+          "constant13": "67863915",
+          "prime13": "18512830",
+          "primeMin": "18512630",
+          "universalMin": "2",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 36,
+          "constant13": "2310789600",
+          "prime13": "2369637404",
+          "primeMin": "2369636760",
+          "universalMin": "256",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578358",
+          "primeMin": "577929",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 22,
+          "constant13": "497420",
+          "prime13": "144632",
+          "primeMin": "144576",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 22,
+          "constant13": "497420",
+          "prime13": "144672",
+          "primeMin": "144588",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "288",
+          "primeMin": "272",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 28,
+          "constant13": "37442160",
+          "prime13": "9256379",
+          "primeMin": "9256377",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 21,
+          "constant13": "203490",
+          "prime13": "72212",
+          "primeMin": "72110",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 28,
+          "constant13": "37442160",
+          "prime13": "9256379",
+          "primeMin": "9256344",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 29,
+          "constant13": "67863915",
+          "prime13": "18512692",
+          "primeMin": "18512422",
+          "universalMin": "2",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628202",
+          "primeMin": "4628060",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "281",
+          "primeMin": "277",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 30,
+          "constant13": "119759850",
+          "prime13": "37025812",
+          "primeMin": "37023216",
+          "universalMin": "4",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578460",
+          "primeMin": "578444",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148102300",
+          "primeMin": "148102288",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 29,
+          "constant13": "67863915",
+          "prime13": "18513036",
+          "primeMin": "18512292",
+          "universalMin": "2",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 20,
+          "constant13": "77520",
+          "prime13": "36120",
+          "primeMin": "36042",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 21,
+          "constant13": "203490",
+          "prime13": "72324",
+          "primeMin": "72301",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 34,
+          "constant13": "927983760",
+          "prime13": "592409356",
+          "primeMin": "592409178",
+          "universalMin": "64",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578752",
+          "primeMin": "578218",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "279",
+          "primeMin": "278",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628130",
+          "primeMin": "4628071",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 25,
+          "constant13": "5200300",
+          "prime13": "1157054",
+          "primeMin": "1157028",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 18,
+          "constant13": "8568",
+          "prime13": "9057",
+          "primeMin": "9016",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628174",
+          "primeMin": "4627852",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 27,
+          "constant13": "20058300",
+          "prime13": "4628198",
+          "primeMin": "4628192",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 18,
+          "constant13": "8568",
+          "prime13": "9032",
+          "primeMin": "9020",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 24,
+          "constant13": "2496144",
+          "prime13": "578540",
+          "primeMin": "578168",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 6,
+      "offset": 82,
+      "end": 1552,
+      "start": 1541,
+      "n": 11,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 3,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 17,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 27,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "offset": 194,
+      "end": 1860,
+      "start": 1552,
+      "n": 308,
+      "repeats": 1,
+      "minAlias": 4,
+      "maxAlias": 19,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 2,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "572",
+          "primeMin": "542",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "282",
+          "primeMin": "276",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "70",
+          "primeMin": "68",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "542",
+          "primeMin": "538",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 16,
+          "constant13": "560",
+          "prime13": "2263",
+          "primeMin": "2233",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 20
+        },
+        {
+          "d": 8,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "112",
+          "primeMin": "72",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 19,
+          "constant13": "27132",
+          "prime13": "18060",
+          "primeMin": "18024",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "648",
+          "primeMin": "470",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "86",
+          "primeMin": "52",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 10,
+          "constant13": "0",
+          "prime13": "36",
+          "primeMin": "20",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 15,
+          "constant13": "105",
+          "prime13": "1139",
+          "primeMin": "1117",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "142",
+          "primeMin": "138",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 15,
+          "constant13": "105",
+          "prime13": "1127",
+          "primeMin": "1117",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 18,
+          "m": 7,
+          "constant13": "0",
+          "prime13": "5",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 8,
+          "constant13": "0",
+          "prime13": "9",
+          "primeMin": "6",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "70",
+          "primeMin": "64",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 8,
+          "constant13": "0",
+          "prime13": "10",
+          "primeMin": "4",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "135",
+          "primeMin": "135",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "75",
+          "primeMin": "65",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 10,
+          "constant13": "0",
+          "prime13": "35",
+          "primeMin": "30",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 10,
+          "constant13": "0",
+          "prime13": "49",
+          "primeMin": "18",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 8,
+          "constant13": "0",
+          "prime13": "8",
+          "primeMin": "8",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "282",
+          "primeMin": "276",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "96",
+          "primeMin": "80",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 7,
+      "offset": 208,
+      "end": 1874,
+      "start": 1860,
+      "n": 14,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 4,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 15,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 20,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 23,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 14,
+      "offset": 137,
+      "end": 3603,
+      "start": 1874,
+      "n": 1729,
+      "repeats": 9,
+      "minAlias": 48,
+      "maxAlias": 78,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 67,
+          "constant13": "1673522988143182792",
+          "prime13": "5088756985852109460",
+          "primeMin": "5088756985849646432",
+          "universalMin": "549755813888",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 64,
+          "constant13": "80360585302050144",
+          "prime13": "636094623231201056",
+          "primeMin": "636094623231158368",
+          "universalMin": "68719476736",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 59,
+          "constant13": "281556246073935",
+          "prime13": "19877956975874528",
+          "primeMin": "19877956975696148",
+          "universalMin": "2147483648",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 51,
+          "constant13": "479302482050",
+          "prime13": "77648269438716",
+          "primeMin": "77648269434046",
+          "universalMin": "8388608",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 68,
+          "constant13": "4376871288488054384",
+          "prime13": "10177513971701749548",
+          "primeMin": "10177513971701685156",
+          "universalMin": "1099511627776",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 55,
+          "constant13": "2902365981900",
+          "prime13": "1242372311001476",
+          "primeMin": "1242372310994200",
+          "universalMin": "134217728",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 53,
+          "constant13": "917616719530",
+          "prime13": "310593077750368",
+          "primeMin": "310593077748504",
+          "universalMin": "33554432",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 57,
+          "constant13": "24506277502140",
+          "prime13": "4969489244080262",
+          "primeMin": "4969489243669052",
+          "universalMin": "536870912",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 72,
+          "constant13": "164307647665439066280",
+          "prime13": "162840223547268971404",
+          "primeMin": "162840223547185521884",
+          "universalMin": "17592186044416",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 60,
+          "constant13": "930196429168650",
+          "prime13": "39755913952036064",
+          "primeMin": "39755913951658816",
+          "universalMin": "4294967296",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 69,
+          "constant13": "11185296223477247384",
+          "prime13": "20355027943403666472",
+          "primeMin": "20355027943403607248",
+          "universalMin": "2199023255552",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 58,
+          "constant13": "83115764363625",
+          "prime13": "9938978488006048",
+          "primeMin": "9938978487963056",
+          "universalMin": "1073741824",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 78,
+          "constant13": "21666925210882458491380",
+          "prime13": "10421774307022674455232",
+          "primeMin": "10421774307022652941952",
+          "universalMin": "1125899906842624",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 69,
+          "constant13": "11185296223477247384",
+          "prime13": "20355027943403659136",
+          "primeMin": "20355027943403621632",
+          "universalMin": "2199023255552",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 52,
+          "constant13": "650833583820",
+          "prime13": "155296538874856",
+          "primeMin": "155296538874668",
+          "universalMin": "16777216",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 50,
+          "constant13": "355397397250",
+          "prime13": "38824134718578",
+          "primeMin": "38824134718564",
+          "universalMin": "4194304",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 62,
+          "constant13": "9214786748697195",
+          "prime13": "159023655807841268",
+          "primeMin": "159023655807839432",
+          "universalMin": "17179869184",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 54,
+          "constant13": "1451182990950",
+          "prime13": "621186155499426",
+          "primeMin": "621186155499204",
+          "universalMin": "67108864",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 64,
+          "constant13": "80360585302050144",
+          "prime13": "636094623221068216",
+          "primeMin": "636094623218408848",
+          "universalMin": "68719476736",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 59,
+          "constant13": "281556246073935",
+          "prime13": "19877956975978254",
+          "primeMin": "19877956975977368",
+          "universalMin": "2147483648",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 72,
+          "constant13": "164307647665439066280",
+          "prime13": "162840223547228259388",
+          "primeMin": "162840223547227578616",
+          "universalMin": "17592186044416",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 76,
+          "constant13": "4545508891965723493940",
+          "prime13": "2605443576755667999744",
+          "primeMin": "2605443576755655991680",
+          "universalMin": "281474976710656",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 65,
+          "constant13": "227085297108752880",
+          "prime13": "1272189246456416860",
+          "primeMin": "1272189246452984488",
+          "universalMin": "137438953472",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 70,
+          "constant13": "27963191397649694200",
+          "prime13": "40710055886807265328",
+          "primeMin": "40710055886807263312",
+          "universalMin": "4398046511104",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 49,
+          "constant13": "262682684348",
+          "prime13": "19412067361353",
+          "primeMin": "19412067356506",
+          "universalMin": "2097152",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 62,
+          "constant13": "9214786748697195",
+          "prime13": "159023655807839270",
+          "primeMin": "159023655807839186",
+          "universalMin": "17179869184",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 48,
+          "constant13": "192940520808",
+          "prime13": "9706033680754",
+          "primeMin": "9706033677892",
+          "universalMin": "1048576",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 56,
+          "constant13": "7694644696200",
+          "prime13": "2484744622258768",
+          "primeMin": "2484744621744656",
+          "universalMin": "268435456",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "offset": 0,
+      "end": 3603,
+      "start": 3603,
+      "n": 0,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 0,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "offset": 9,
+      "end": 3612,
+      "start": 3603,
+      "n": 9,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 1,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 2,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 5,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 28,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        }
+      ]
+    },
+    {
+      "page": 15,
+      "offset": 20,
+      "end": 3623,
+      "start": 3612,
+      "n": 11,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 17,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 21,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 22,
+      "offset": 131,
+      "end": 5506,
+      "start": 3623,
+      "n": 1883,
+      "repeats": 10,
+      "minAlias": 51,
+      "maxAlias": 86,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 72,
+          "constant13": "164307647665439066280",
+          "prime13": "162840223547229123672",
+          "primeMin": "162840223547229123672",
+          "universalMin": "17592186044416",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 75,
+          "constant13": "2033517194155764255300",
+          "prime13": "1302721788377828049736",
+          "primeMin": "1302721788377827407344",
+          "universalMin": "140737488355328",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 73,
+          "constant13": "386917928313719128308",
+          "prime13": "325680447094458291300",
+          "primeMin": "325680447094458258256",
+          "universalMin": "35184372088832",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 70,
+          "constant13": "27963191397649694200",
+          "prime13": "40710055886804794256",
+          "primeMin": "40710055886803091376",
+          "universalMin": "4398046511104",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 57,
+          "constant13": "24506277502140",
+          "prime13": "4969489243989412",
+          "primeMin": "4969489243984692",
+          "universalMin": "536870912",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 51,
+          "constant13": "479302482050",
+          "prime13": "77648269437440",
+          "primeMin": "77648269437374",
+          "universalMin": "8388608",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 73,
+          "constant13": "386917928313719128308",
+          "prime13": "325680447094457617172",
+          "primeMin": "325680447094445848660",
+          "universalMin": "35184372088832",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 65,
+          "constant13": "227085297108752880",
+          "prime13": "1272189246462726806",
+          "primeMin": "1272189246462725740",
+          "universalMin": "137438953472",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 73,
+          "constant13": "386917928313719128308",
+          "prime13": "325680447094458291372",
+          "primeMin": "325680447094458289484",
+          "universalMin": "35184372088832",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 75,
+          "constant13": "2033517194155764255300",
+          "prime13": "1302721788377833165856",
+          "primeMin": "1302721788377833148096",
+          "universalMin": "140737488355328",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 53,
+          "constant13": "917616719530",
+          "prime13": "310593077762128",
+          "primeMin": "310593077735200",
+          "universalMin": "33554432",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 67,
+          "constant13": "1673522988143182792",
+          "prime13": "5088756985850921232",
+          "primeMin": "5088756985850884720",
+          "universalMin": "549755813888",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 69,
+          "constant13": "11185296223477247384",
+          "prime13": "20355027943366742548",
+          "primeMin": "20355027943363028568",
+          "universalMin": "2199023255552",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 63,
+          "constant13": "27629903836729026",
+          "prime13": "318047311615678636",
+          "primeMin": "318047311615677564",
+          "universalMin": "34359738368",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 64,
+          "constant13": "80360585302050144",
+          "prime13": "636094623231255952",
+          "primeMin": "636094623231251472",
+          "universalMin": "68719476736",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 67,
+          "constant13": "1673522988143182792",
+          "prime13": "5088756985850897360",
+          "primeMin": "5088756985850896168",
+          "universalMin": "549755813888",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 63,
+          "constant13": "27629903836729026",
+          "prime13": "318047311615683328",
+          "primeMin": "318047311615669708",
+          "universalMin": "34359738368",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 58,
+          "constant13": "83115764363625",
+          "prime13": "9938978487839248",
+          "primeMin": "9938978487047120",
+          "universalMin": "1073741824",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 86,
+          "constant13": "6486699628473073252685280",
+          "prime13": "2667974222597802313523376",
+          "primeMin": "2667974222597802313368128",
+          "universalMin": "288230376151711744",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 79,
+          "constant13": "46261813081259411427590",
+          "prime13": "20843548614045300620072",
+          "primeMin": "20843548614045289219368",
+          "universalMin": "2251799813685248",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 52,
+          "constant13": "650833583820",
+          "prime13": "155296538925344",
+          "primeMin": "155296538819492",
+          "universalMin": "16777216",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 60,
+          "constant13": "930196429168650",
+          "prime13": "39755913951959764",
+          "primeMin": "39755913951959764",
+          "universalMin": "4294967296",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 68,
+          "constant13": "4376871288488054384",
+          "prime13": "10177513971701784272",
+          "primeMin": "10177513971701783200",
+          "universalMin": "1099511627776",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 63,
+          "constant13": "27629903836729026",
+          "prime13": "318047311615676986",
+          "primeMin": "318047311615676606",
+          "universalMin": "34359738368",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 74,
+          "constant13": "894747614380685501286",
+          "prime13": "651360894188916860656",
+          "primeMin": "651360894188916275072",
+          "universalMin": "70368744177664",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 72,
+          "constant13": "164307647665439066280",
+          "prime13": "162840223547229148648",
+          "primeMin": "162840223547229140164",
+          "universalMin": "17592186044416",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 66,
+          "constant13": "624459857980903560",
+          "prime13": "2544378492925454300",
+          "primeMin": "2544378492925454288",
+          "universalMin": "274877906944",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 64,
+          "constant13": "80360585302050144",
+          "prime13": "636094623231369568",
+          "primeMin": "636094623231356064",
+          "universalMin": "68719476736",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 23,
+      "offset": 16,
+      "end": 5522,
+      "start": 5506,
+      "n": 16,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 2,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 8,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 9,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 23,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 26,
+      "offset": 265,
+      "end": 6527,
+      "start": 5522,
+      "n": 1005,
+      "repeats": 11,
+      "minAlias": 28,
+      "maxAlias": 47,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 39,
+          "constant13": "8122425444",
+          "prime13": "18957097524",
+          "primeMin": "18957096500",
+          "universalMin": "2048",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 35,
+          "constant13": "1476337800",
+          "prime13": "1184817856",
+          "primeMin": "1184817836",
+          "universalMin": "128",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148100876",
+          "primeMin": "148100664",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 40,
+          "constant13": "12033222880",
+          "prime13": "37914194032",
+          "primeMin": "37914194006",
+          "universalMin": "4096",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 38,
+          "constant13": "5414950296",
+          "prime13": "9478547824",
+          "primeMin": "9478547824",
+          "universalMin": "1024",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148102316",
+          "primeMin": "148102310",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 36,
+          "constant13": "2310789600",
+          "prime13": "2369637252",
+          "primeMin": "2369636924",
+          "universalMin": "256",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 31,
+          "constant13": "206253075",
+          "prime13": "74051161",
+          "primeMin": "74051160",
+          "universalMin": "8",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 44,
+          "constant13": "51915527378",
+          "prime13": "606627104920",
+          "primeMin": "606627104796",
+          "universalMin": "65536",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 28,
+          "constant13": "37442160",
+          "prime13": "9256146",
+          "primeMin": "9255824",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 35,
+          "constant13": "1476337800",
+          "prime13": "1184818580",
+          "primeMin": "1184818536",
+          "universalMin": "128",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 31,
+          "constant13": "206253075",
+          "prime13": "74049000",
+          "primeMin": "74048976",
+          "universalMin": "8",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 39,
+          "constant13": "8122425444",
+          "prime13": "18957096968",
+          "primeMin": "18957096672",
+          "universalMin": "2048",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 42,
+          "constant13": "25518731281",
+          "prime13": "151656776276",
+          "primeMin": "151656776152",
+          "universalMin": "16384",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 39,
+          "constant13": "8122425444",
+          "prime13": "18957097212",
+          "primeMin": "18957096788",
+          "universalMin": "2048",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 39,
+          "constant13": "8122425444",
+          "prime13": "18957096668",
+          "primeMin": "18957096616",
+          "universalMin": "2048",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 32,
+          "constant13": "347373600",
+          "prime13": "148102535",
+          "primeMin": "148101920",
+          "universalMin": "16",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 47,
+          "constant13": "140678382384",
+          "prime13": "4853016842304",
+          "primeMin": "4853016832912",
+          "universalMin": "524288",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 34,
+          "constant13": "927983760",
+          "prime13": "592409298",
+          "primeMin": "592409186",
+          "universalMin": "64",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 30,
+          "constant13": "119759850",
+          "prime13": "37025584",
+          "primeMin": "37025482",
+          "universalMin": "4",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 36,
+          "constant13": "2310789600",
+          "prime13": "2369637098",
+          "primeMin": "2369637090",
+          "universalMin": "256",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 35,
+          "constant13": "1476337800",
+          "prime13": "1184818437",
+          "primeMin": "1184817040",
+          "universalMin": "128",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 28,
+          "constant13": "37442160",
+          "prime13": "9256376",
+          "primeMin": "9256200",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 36,
+          "constant13": "2310789600",
+          "prime13": "2369637068",
+          "primeMin": "2369636940",
+          "universalMin": "256",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 34,
+          "constant13": "927983760",
+          "prime13": "592409318",
+          "primeMin": "592409184",
+          "universalMin": "64",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 30,
+          "constant13": "119759850",
+          "prime13": "37025572",
+          "primeMin": "37025565",
+          "universalMin": "4",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 40,
+          "constant13": "12033222880",
+          "prime13": "37914213423",
+          "primeMin": "37914172861",
+          "universalMin": "4096",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 31,
+          "constant13": "206253075",
+          "prime13": "74051132",
+          "primeMin": "74051126",
+          "universalMin": "8",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 27,
+      "offset": 19,
+      "end": 6546,
+      "start": 6527,
+      "n": 19,
+      "repeats": 1,
+      "minAlias": 0,
+      "maxAlias": 3,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 9,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 13,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 24,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 32,
+      "offset": 121,
+      "end": 7960,
+      "start": 6546,
+      "n": 1414,
+      "repeats": 12,
+      "minAlias": 33,
+      "maxAlias": 63,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 46,
+          "constant13": "101766393975",
+          "prime13": "2426508419944",
+          "primeMin": "2426508419886",
+          "universalMin": "262144",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 46,
+          "constant13": "101766393975",
+          "prime13": "2426508420140",
+          "primeMin": "2426508419250",
+          "universalMin": "262144",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 35,
+          "constant13": "1476337800",
+          "prime13": "1184818586",
+          "primeMin": "1184818226",
+          "universalMin": "128",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 59,
+          "constant13": "281556246073935",
+          "prime13": "19877956975975232",
+          "primeMin": "19877956975974656",
+          "universalMin": "2147483648",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 49,
+          "constant13": "262682684348",
+          "prime13": "19412067365044",
+          "primeMin": "19412067340800",
+          "universalMin": "2097152",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 50,
+          "constant13": "355397397250",
+          "prime13": "38824134716544",
+          "primeMin": "38824134715360",
+          "universalMin": "4194304",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 58,
+          "constant13": "83115764363625",
+          "prime13": "9938978487978757",
+          "primeMin": "9938978487972522",
+          "universalMin": "1073741824",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 47,
+          "constant13": "140678382384",
+          "prime13": "4853016839740",
+          "primeMin": "4853016839444",
+          "universalMin": "524288",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 43,
+          "constant13": "36576848211",
+          "prime13": "303313552557",
+          "primeMin": "303313552109",
+          "universalMin": "32768",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 59,
+          "constant13": "281556246073935",
+          "prime13": "19877956975980096",
+          "primeMin": "19877956975979348",
+          "universalMin": "2147483648",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 43,
+          "constant13": "36576848211",
+          "prime13": "303313552342",
+          "primeMin": "303313552266",
+          "universalMin": "32768",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 61,
+          "constant13": "2976397985967525",
+          "prime13": "79511827903913352",
+          "primeMin": "79511827903861552",
+          "universalMin": "8589934592",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 44,
+          "constant13": "51915527378",
+          "prime13": "606627105580",
+          "primeMin": "606627104244",
+          "universalMin": "65536",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 54,
+          "constant13": "1451182990950",
+          "prime13": "621186155499256",
+          "primeMin": "621186155498840",
+          "universalMin": "67108864",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 57,
+          "constant13": "24506277502140",
+          "prime13": "4969489244246992",
+          "primeMin": "4969489243588384",
+          "universalMin": "536870912",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 53,
+          "constant13": "917616719530",
+          "prime13": "310593077741344",
+          "primeMin": "310593077735136",
+          "universalMin": "33554432",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 45,
+          "constant13": "73006223235",
+          "prime13": "1213254210100",
+          "primeMin": "1213254209808",
+          "universalMin": "131072",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 44,
+          "constant13": "51915527378",
+          "prime13": "606627101648",
+          "primeMin": "606627087936",
+          "universalMin": "65536",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 48,
+          "constant13": "192940520808",
+          "prime13": "9706033678792",
+          "primeMin": "9706033678758",
+          "universalMin": "1048576",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 59,
+          "constant13": "281556246073935",
+          "prime13": "19877956975978368",
+          "primeMin": "19877956975978368",
+          "universalMin": "2147483648",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 60,
+          "constant13": "930196429168650",
+          "prime13": "39755913951517414",
+          "primeMin": "39755913951498036",
+          "universalMin": "4294967296",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 44,
+          "constant13": "51915527378",
+          "prime13": "606627105108",
+          "primeMin": "606627101496",
+          "universalMin": "65536",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 49,
+          "constant13": "262682684348",
+          "prime13": "19412067358468",
+          "primeMin": "19412067345648",
+          "universalMin": "2097152",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 63,
+          "constant13": "27629903836729026",
+          "prime13": "318047311615671520",
+          "primeMin": "318047311615670492",
+          "universalMin": "34359738368",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 47,
+          "constant13": "140678382384",
+          "prime13": "4853016831020",
+          "primeMin": "4853016806808",
+          "universalMin": "524288",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 33,
+          "constant13": "573166440",
+          "prime13": "296206056",
+          "primeMin": "296203164",
+          "universalMin": "32",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 60,
+          "constant13": "930196429168650",
+          "prime13": "39755913951964677",
+          "primeMin": "39755913951950559",
+          "universalMin": "4294967296",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 45,
+          "constant13": "73006223235",
+          "prime13": "1213254209919",
+          "primeMin": "1213254209855",
+          "universalMin": "131072",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "offset": 10,
+      "end": 7970,
+      "start": 7960,
+      "n": 10,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 1,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 2,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "offset": 91,
+      "end": 8051,
+      "start": 7970,
+      "n": 81,
+      "repeats": 0,
+      "minAlias": 1,
+      "maxAlias": 6,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 3,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 4,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 5,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 6,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 7,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 18
+        },
+        {
+          "d": 8,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 9,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 10,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "4",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 11,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 13,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 14,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 10
+        },
+        {
+          "d": 15,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 16,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 10
+        },
+        {
+          "d": 17,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 16
+        },
+        {
+          "d": 18,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 19,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 20,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 21,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 22,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 23,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 12
+        },
+        {
+          "d": 24,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 25,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 26,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 27,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 28,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 33,
+      "offset": 99,
+      "end": 8059,
+      "start": 8051,
+      "n": 8,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 39,
+      "offset": 119,
+      "end": 9519,
+      "start": 8059,
+      "n": 1460,
+      "repeats": 11,
+      "minAlias": 35,
+      "maxAlias": 66,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 60,
+          "constant13": "930196429168650",
+          "prime13": "39755913951955332",
+          "primeMin": "39755913951953816",
+          "universalMin": "4294967296",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 64,
+          "constant13": "80360585302050144",
+          "prime13": "636094623231366880",
+          "primeMin": "636094623231354032",
+          "universalMin": "68719476736",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 49,
+          "constant13": "262682684348",
+          "prime13": "19412067359244",
+          "primeMin": "19412067358844",
+          "universalMin": "2097152",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 50,
+          "constant13": "355397397250",
+          "prime13": "38824134718772",
+          "primeMin": "38824134718564",
+          "universalMin": "4194304",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 55,
+          "constant13": "2902365981900",
+          "prime13": "1242372310998642",
+          "primeMin": "1242372310998637",
+          "universalMin": "134217728",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 61,
+          "constant13": "2976397985967525",
+          "prime13": "79511827903917936",
+          "primeMin": "79511827903917936",
+          "universalMin": "8589934592",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 50,
+          "constant13": "355397397250",
+          "prime13": "38824134713248",
+          "primeMin": "38824134713012",
+          "universalMin": "4194304",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 41,
+          "constant13": "17620076360",
+          "prime13": "75828348565",
+          "primeMin": "75828341977",
+          "universalMin": "8192",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 50,
+          "constant13": "355397397250",
+          "prime13": "38824134526424",
+          "primeMin": "38824134509384",
+          "universalMin": "4194304",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 66,
+          "constant13": "624459857980903560",
+          "prime13": "2544378492925495136",
+          "primeMin": "2544378492924951328",
+          "universalMin": "274877906944",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 41,
+          "constant13": "17620076360",
+          "prime13": "75828388708",
+          "primeMin": "75828387476",
+          "universalMin": "8192",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 46,
+          "constant13": "101766393975",
+          "prime13": "2426508374164",
+          "primeMin": "2426508373772",
+          "universalMin": "262144",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 61,
+          "constant13": "2976397985967525",
+          "prime13": "79511827903891824",
+          "primeMin": "79511827903886464",
+          "universalMin": "8589934592",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 46,
+          "constant13": "101766393975",
+          "prime13": "2426508419876",
+          "primeMin": "2426508419874",
+          "universalMin": "262144",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 58,
+          "constant13": "83115764363625",
+          "prime13": "9938978487990576",
+          "primeMin": "9938978487988320",
+          "universalMin": "1073741824",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 46,
+          "constant13": "101766393975",
+          "prime13": "2426508416596",
+          "primeMin": "2426508413672",
+          "universalMin": "262144",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 35,
+          "constant13": "1476337800",
+          "prime13": "1184818551",
+          "primeMin": "1184818502",
+          "universalMin": "128",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 55,
+          "constant13": "2902365981900",
+          "prime13": "1242372310955224",
+          "primeMin": "1242372310921718",
+          "universalMin": "134217728",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 44,
+          "constant13": "51915527378",
+          "prime13": "606627105078",
+          "primeMin": "606627104762",
+          "universalMin": "65536",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 48,
+          "constant13": "192940520808",
+          "prime13": "9706033676888",
+          "primeMin": "9706033676240",
+          "universalMin": "1048576",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 57,
+          "constant13": "24506277502140",
+          "prime13": "4969489243955876",
+          "primeMin": "4969489243941668",
+          "universalMin": "536870912",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 39,
+          "constant13": "8122425444",
+          "prime13": "18957097772",
+          "primeMin": "18957095632",
+          "universalMin": "2048",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 62,
+          "constant13": "9214786748697195",
+          "prime13": "159023655807840816",
+          "primeMin": "159023655807840492",
+          "universalMin": "17179869184",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 49,
+          "constant13": "262682684348",
+          "prime13": "19412067359840",
+          "primeMin": "19412067356952",
+          "universalMin": "2097152",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 52,
+          "constant13": "650833583820",
+          "prime13": "155296538875296",
+          "primeMin": "155296538871488",
+          "universalMin": "16777216",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 53,
+          "constant13": "917616719530",
+          "prime13": "310593077754384",
+          "primeMin": "310593077740008",
+          "universalMin": "33554432",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 57,
+          "constant13": "24506277502140",
+          "prime13": "4969489243994608",
+          "primeMin": "4969489243994608",
+          "universalMin": "536870912",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 53,
+          "constant13": "917616719530",
+          "prime13": "310593077730960",
+          "primeMin": "310593077724152",
+          "universalMin": "33554432",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 39,
+      "offset": 122,
+      "end": 9522,
+      "start": 9519,
+      "n": 3,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 1,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 10,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 25,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 39,
+      "offset": 240,
+      "end": 9640,
+      "start": 9522,
+      "n": 118,
+      "repeats": 1,
+      "minAlias": 1,
+      "maxAlias": 9,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 2,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 22
+        },
+        {
+          "d": 3,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 4,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 5,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 18
+        },
+        {
+          "d": 6,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 10
+        },
+        {
+          "d": 7,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 8,
+          "m": 7,
+          "constant13": "0",
+          "prime13": "4",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 11,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 12
+        },
+        {
+          "d": 12,
+          "m": 9,
+          "constant13": "0",
+          "prime13": "14",
+          "primeMin": "10",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "3",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 14,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 15,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 14
+        },
+        {
+          "d": 16,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 17,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 18,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 20,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 21,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 22,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 14
+        },
+        {
+          "d": 23,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 24,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 25,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 26,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 12
+        },
+        {
+          "d": 27,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 16
+        },
+        {
+          "d": 28,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        }
+      ]
+    },
+    {
+      "page": 53,
+      "offset": 179,
+      "end": 12648,
+      "start": 9640,
+      "n": 3008,
+      "repeats": 18,
+      "minAlias": 79,
+      "maxAlias": 123,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 88,
+          "constant13": "23991388141964792189725656",
+          "prime13": "10671896890391209266710696",
+          "primeMin": "10671896890391209266029984",
+          "universalMin": "1152921504606846976",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 119,
+          "constant13": "5553365704156900808073962130197532",
+          "prime13": "22917724065257170222461256670205952",
+          "primeMin": "22917724065257170222461256670205952",
+          "universalMin": "2475880078570760549798248448",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 112,
+          "constant13": "18672199984318476518728629692316",
+          "prime13": "179044719259821642363120561302488",
+          "primeMin": "179044719259821642363120561302488",
+          "universalMin": "19342813113834066795298816",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 4,
+          "m": 88,
+          "constant13": "23991388141964792189725656",
+          "prime13": "10671896890391209266363024",
+          "primeMin": "10671896890391209265707024",
+          "universalMin": "1152921504606846976",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 93,
+          "constant13": "530793608227164369147707667",
+          "prime13": "341500700492518696524216464",
+          "primeMin": "341500700492518696521273840",
+          "universalMin": "36893488147419103232",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 110,
+          "constant13": "5473598446730542163087740527906",
+          "prime13": "44761179814955410590780140807168",
+          "primeMin": "44761179814955410590780140671232",
+          "universalMin": "4835703278458516698824704",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 7,
+          "m": 122,
+          "constant13": "75838738134916606818339678624164969",
+          "prime13": "183341792522057361779835456042642560",
+          "primeMin": "183341792522057361779835455902824960",
+          "universalMin": "19807040628566084398385987584",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 8,
+          "m": 84,
+          "constant13": "1678910487463504671639480",
+          "prime13": "666993555649450579142048",
+          "primeMin": "666993555649450579141632",
+          "universalMin": "72057594037927936",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 120,
+          "constant13": "13351246888550523161981210609701806",
+          "prime13": "45835448130514340444958864109265344",
+          "primeMin": "45835448130514340444958864109265344",
+          "universalMin": "4951760157141521099596496896",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 101,
+          "constant13": "48417032272174262411923842161",
+          "prime13": "87424179326084786310095224832",
+          "primeMin": "87424179326084786310070502912",
+          "universalMin": "9444732965739290427392",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 110,
+          "constant13": "5473598446730542163087740527906",
+          "prime13": "44761179814955410590780081839640",
+          "primeMin": "44761179814955410590779920386544",
+          "universalMin": "4835703278458516698824704",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 116,
+          "constant13": "406528265807436731663918484210771",
+          "prime13": "2864715508157146277809929000045700",
+          "primeMin": "2864715508157146277809928993050276",
+          "universalMin": "309485009821345068724781056",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 13,
+          "m": 115,
+          "constant13": "175956873685334224558553265246126",
+          "prime13": "1432357754078573138904964504708352",
+          "primeMin": "1432357754078573138904964504485632",
+          "universalMin": "154742504910672534362390528",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 119,
+          "constant13": "5553365704156900808073962130197532",
+          "prime13": "22917724065257170222479085140284784",
+          "primeMin": "22917724065257170222478996278111808",
+          "universalMin": "2475880078570760549798248448",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 105,
+          "constant13": "392519689685382142568182113546",
+          "prime13": "1398786869217356580969972592784",
+          "primeMin": "1398786869217356580953738482768",
+          "universalMin": "151115727451828646838272",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 101,
+          "constant13": "48417032272174262411923842161",
+          "prime13": "87424179326084786310117462520",
+          "primeMin": "87424179326084786310117461792",
+          "universalMin": "9444732965739290427392",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 91,
+          "constant13": "158195555670796472980668420",
+          "prime13": "85375175123129674132722432",
+          "primeMin": "85375175123129674128409472",
+          "universalMin": "9223372036854775808",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 116,
+          "constant13": "406528265807436731663918484210771",
+          "prime13": "2864715508157146277809927184942568",
+          "primeMin": "2864715508157146277809925777532168",
+          "universalMin": "309485009821345068724781056",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 19,
+          "m": 111,
+          "constant13": "9873132292593186948301370249376",
+          "prime13": "89522359629910821181560079582464",
+          "primeMin": "89522359629910821181558707805696",
+          "universalMin": "9671406556917033397649408",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 102,
+          "constant13": "82375403609476708383302153391",
+          "prime13": "174848358652169572620234916552",
+          "primeMin": "174848358652169572620234901592",
+          "universalMin": "18889465931478580854784",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 112,
+          "constant13": "18672199984318476518728629692316",
+          "prime13": "179044719259821642363120570282976",
+          "primeMin": "179044719259821642363120553080256",
+          "universalMin": "19342813113834066795298816",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 79,
+          "constant13": "46261813081259411427590",
+          "prime13": "20843548614045330586072",
+          "primeMin": "20843548614045330586072",
+          "universalMin": "2251799813685248",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 123,
+          "constant13": "178556120524352626831088880670651933",
+          "prime13": "366683585044114723559670913180613632",
+          "primeMin": "366683585044114723559670913180613632",
+          "universalMin": "39614081257132168796771975168",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 108,
+          "constant13": "1845154070986327080915501146241",
+          "prime13": "11190294953738852647695131169520",
+          "primeMin": "11190294953738852647694679499684",
+          "universalMin": "1208925819614629174706176",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 120,
+          "constant13": "13351246888550523161981210609701806",
+          "prime13": "45835448130514340444958864172322912",
+          "primeMin": "45835448130514340444958864122879168",
+          "universalMin": "4951760157141521099596496896",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 112,
+          "constant13": "18672199984318476518728629692316",
+          "prime13": "179044719259821642363120284078048",
+          "primeMin": "179044719259821642363118848877504",
+          "universalMin": "19342813113834066795298816",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 111,
+          "constant13": "9873132292593186948301370249376",
+          "prime13": "89522359629910821181560281536720",
+          "primeMin": "89522359629910821181560281536368",
+          "universalMin": "9671406556917033397649408",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 101,
+          "constant13": "48417032272174262411923842161",
+          "prime13": "87424179326084786309456284056",
+          "primeMin": "87424179326084786309286611008",
+          "universalMin": "9444732965739290427392",
+          "primeUniqueStates": 0
+        }
+      ]
+    },
+    {
+      "page": 54,
+      "offset": 9,
+      "end": 12657,
+      "start": 12648,
+      "n": 9,
+      "repeats": 0,
+      "minAlias": 0,
+      "maxAlias": 2,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 2,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 3,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 4,
+          "m": 2,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 5,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 6,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 7,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 8,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 9,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 10,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 11,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 12,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 13,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 14,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 15,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 16,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 17,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 18,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 19,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 20,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 21,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 22,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 23,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 24,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 25,
+          "m": 1,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 2
+        },
+        {
+          "d": 26,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 27,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        },
+        {
+          "d": 28,
+          "m": 0,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 1
+        }
+      ]
+    },
+    {
+      "page": 55,
+      "offset": 76,
+      "end": 12956,
+      "start": 12657,
+      "n": 299,
+      "repeats": 3,
+      "minAlias": 3,
+      "maxAlias": 20,
+      "ranks": [
+        {
+          "d": 1,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "136",
+          "primeMin": "126",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 2,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "62",
+          "primeMin": "60",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 3,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "3",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 4,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "281",
+          "primeMin": "280",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 5,
+          "m": 9,
+          "constant13": "0",
+          "prime13": "19",
+          "primeMin": "14",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 6,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "3",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 4
+        },
+        {
+          "d": 7,
+          "m": 4,
+          "constant13": "0",
+          "prime13": "1",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 8,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "545",
+          "primeMin": "535",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 9,
+          "m": 18,
+          "constant13": "8568",
+          "prime13": "9048",
+          "primeMin": "9020",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 10,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "572",
+          "primeMin": "546",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 11,
+          "m": 9,
+          "constant13": "0",
+          "prime13": "24",
+          "primeMin": "8",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 12,
+          "m": 5,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 6
+        },
+        {
+          "d": 13,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "564",
+          "primeMin": "552",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 14,
+          "m": 7,
+          "constant13": "0",
+          "prime13": "4",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 15,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "138",
+          "primeMin": "130",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 16,
+          "m": 9,
+          "constant13": "0",
+          "prime13": "15",
+          "primeMin": "9",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 17,
+          "m": 10,
+          "constant13": "0",
+          "prime13": "35",
+          "primeMin": "34",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 18,
+          "m": 3,
+          "constant13": "0",
+          "prime13": "0",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        },
+        {
+          "d": 19,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "145",
+          "primeMin": "126",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 20,
+          "m": 13,
+          "constant13": "1",
+          "prime13": "284",
+          "primeMin": "278",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 21,
+          "m": 7,
+          "constant13": "0",
+          "prime13": "6",
+          "primeMin": "2",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 22,
+          "m": 10,
+          "constant13": "0",
+          "prime13": "30",
+          "primeMin": "30",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 23,
+          "m": 11,
+          "constant13": "0",
+          "prime13": "65",
+          "primeMin": "56",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 24,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "566",
+          "primeMin": "550",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 25,
+          "m": 14,
+          "constant13": "14",
+          "prime13": "562",
+          "primeMin": "562",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 26,
+          "m": 20,
+          "constant13": "77520",
+          "prime13": "36160",
+          "primeMin": "36148",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 27,
+          "m": 12,
+          "constant13": "0",
+          "prime13": "143",
+          "primeMin": "135",
+          "universalMin": "1",
+          "primeUniqueStates": 0
+        },
+        {
+          "d": 28,
+          "m": 6,
+          "constant13": "0",
+          "prime13": "2",
+          "primeMin": "1",
+          "universalMin": "1",
+          "primeUniqueStates": 8
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "frameEnd": 729,
+      "off": 0,
+      "n": 716,
+      "repeat": 4,
+      "alias": 20,
+      "state": 26,
+      "trueMultiplicity": "36196",
+      "wrongStateMultiplicity": "36156",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 848,
+      "off": 173,
+      "n": 103,
+      "repeat": 1,
+      "alias": 5,
+      "state": 18,
+      "trueMultiplicity": "2",
+      "wrongStateMultiplicity": "1",
+      "anyWrongStateUnique": true
+    },
+    {
+      "frameEnd": 1541,
+      "off": 346,
+      "n": 690,
+      "repeat": 4,
+      "alias": 16,
+      "state": 9,
+      "trueMultiplicity": "2261",
+      "wrongStateMultiplicity": "2285",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 1860,
+      "off": 519,
+      "n": 308,
+      "repeat": 1,
+      "alias": 10,
+      "state": 24,
+      "trueMultiplicity": "46",
+      "wrongStateMultiplicity": "40",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 3603,
+      "off": 692,
+      "n": 1729,
+      "repeat": 9,
+      "alias": 37,
+      "state": 22,
+      "trueMultiplicity": "4739274226",
+      "wrongStateMultiplicity": "4739274500",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 5506,
+      "off": 865,
+      "n": 1883,
+      "repeat": 10,
+      "alias": 35,
+      "state": 19,
+      "trueMultiplicity": "1184818544",
+      "wrongStateMultiplicity": "1184818808",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 6527,
+      "off": 1038,
+      "n": 1005,
+      "repeat": 11,
+      "alias": 20,
+      "state": 23,
+      "trueMultiplicity": "35922",
+      "wrongStateMultiplicity": "36338",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 7960,
+      "off": 1211,
+      "n": 1414,
+      "repeat": 12,
+      "alias": 29,
+      "state": 2,
+      "trueMultiplicity": "18512660",
+      "wrongStateMultiplicity": "18512929",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 9519,
+      "off": 1384,
+      "n": 1460,
+      "repeat": 11,
+      "alias": 29,
+      "state": 20,
+      "trueMultiplicity": "18512856",
+      "wrongStateMultiplicity": "18512791",
+      "anyWrongStateUnique": false
+    },
+    {
+      "frameEnd": 9640,
+      "off": 1557,
+      "n": 118,
+      "repeat": 1,
+      "alias": 5,
+      "state": 20,
+      "trueMultiplicity": "3",
+      "wrongStateMultiplicity": "0",
+      "anyWrongStateUnique": true
+    },
+    {
+      "frameEnd": 12956,
+      "off": 1730,
+      "n": 299,
+      "repeat": 3,
+      "alias": 3,
+      "state": 7,
+      "trueMultiplicity": "1",
+      "wrongStateMultiplicity": "0",
+      "anyWrongStateUnique": true
+    }
+  ],
+  "short": {
+    "n": 3,
+    "repeat": 0,
+    "alias": 1,
+    "state": 1,
+    "trueMultiplicity": "1",
+    "wrongStateMultiplicity": "0",
+    "anyWrongStateUnique": true
+  },
+  "sourceRunes": 12956,
+  "marks": 27,
+  "nativeRunes": 2979
+}
