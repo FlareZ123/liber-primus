@@ -1,6 +1,6 @@
 # P40 signed-index PATHS candidate has a unique local DH inverse
 
-**Agent30, 19 November 2026. Classification: strong local PATHS plaintext candidate with an exact reversible inverse. The authenticated source selects the page and target state before the key family is constructed. The compact key-shell template is recognized retrospectively and is charged as a bounded family.**
+**Agent30, 19 November 2026; Agent45 source-selector update, 27 November. Classification: strong local PATHS plaintext candidate with an exact reversible inverse. The authenticated source selects the page and target state. A newly independent p14→p23→p25 mayfly/DH route also produces signed index40 `PATHS` and fixes the exact numeric H-shell `[14,8,3,26]` before p40 ciphertext values are consulted. The connection was recognized after the PATHS inverse, so it upgrades causal/source selection rather than constituting a blind plaintext discovery.**
 
 ## 1. Source word40 selects physical p40
 
@@ -129,6 +129,55 @@ At those endpoint pages, red-span lengths are p7=14, p31=none, p39=3, p40=8=A, p
 
 Cross-page typography adds another pairing: across all exact two-word red spans, only p33 start91 and p40 start0 have printed word lengths `[e,g]=[3,5]`. Signed indices33..40 also contain exactly `A=8` words with endpoint rise `g+K=7`.
 
+## 5A. Independent p25 producer now fixes the target and numeric shell
+
+Agent45's 27 November mayfly-source synthesis supplies an independent upstream producer for this exact local inverse.
+
+The source chain is:
+
+```text
+p14 mayfly/day -> Dæg23 -> p23
+p23 THE ONE RISE -> +2 -> p25
+p24-26 source specimen5 Ephemerella ignita
+  -> Dæg23 / Cēn5
+  -> historical DH p=23,g=5
+reflected mayfly art + DH reciprocal
+  -> g^-1 mod p = 14
+  -> e=3 cross-check
+```
+
+On the unique p25 `[K,g]` side object, the already source-selected cube/reciprocal operation yields:
+
+```text
+[18 | 3,20,10,11,16]
+ -> [3,10,16,3,8 | 20]
+ -> sums 40 | 20.
+```
+
+The state value `g=5` fixes that split. Authenticated source index40 is **PATHS**, so the signed instruction “numbers are the direction” sends the left value directly to p40.
+
+This interpretation has a finite cut control. Across all five cuts, the in-range source indices are `3,13,20,28,29,31,32,40`. Under the same exact-state receiver type used here—same-number page, same canonical rune length and exact GP0 sum—**p40/PATHS is the only hit**. No alternate cut supplies another same-type destination.
+
+The same upstream state fixes the numeric H-shell without using p40 ciphertext:
+
+```text
+[g^-1 mod p, A, e, -e]
+= [14,8,3,26].
+```
+
+This is numerically identical to the previously recognized `[-b,A,e,-e]` shell, but its first coordinate is now obtained independently as the ordinary reciprocal of the source-selected `g=5` modulo `p=23`. Applying the already fixed inverse H map gives:
+
+```text
+H^-1([14,8,3,26]) = [20,20,12,6],
+```
+
+which decrypts the unique p40 state receiver exactly to PATHS.
+
+This removes the strongest old weakness for the *numeric key*: the four shell numbers need no longer be inferred from the p40 subtraction result or from the BEWARE/FALSE/PATHS phrase geometry. It does **not** establish a general four-rune cipher, and the chronology remains post-discovery.
+
+Detailed producer report: `im-results/lp2-p25-paths40-direct-consumer.md`.
+Reproducer: `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
+
 ## 6. Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.
@@ -170,7 +219,7 @@ subtract
 
 The target/page/receiver selection precedes the key-template construction through authenticated index40 and the unique p40 length4/GP0=54 state.
 
-The shell is `[-b,A,e,-e]`. After removing the GP0-forced `H3=-H2` relation, the remaining H-state criterion selects only p33 WILL and p40 PATHS among 62 unique four-rune source-state page/target pairs in the full 43×43 control. The free coordinate-role labels were still recognized after the local inverses.
+The shell is numerically `[14,8,3,26]`. After removing the GP0-forced `H3=-H2` relation, the remaining H-state criterion selects only p33 WILL and p40 PATHS among 62 unique four-rune source-state page/target pairs in the full 43×43 control. The original symbolic labeling `[-b,A,e,-e]` was recognized after the local inverse; the new p25/mayfly route independently fixes the same numeric vector as `[g^-1 mod p,A,e,-e]` before p40 ciphertext values are used.
 
 Promotion to a reusable cipher mechanism requires a first-party rule fixing those roles before another receiver is opened, or a prospective application in a different source-selected receiver family.
 

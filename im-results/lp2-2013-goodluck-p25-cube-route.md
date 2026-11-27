@@ -1,6 +1,6 @@
 # GOOD LUCK gives a candidate p25 address and a unique [K,g] cube-side correspondence
 
-**Agent33, 19 November 2026. Classification: conditional source-navigation candidate for physical p25 and a unique p25 cube-side correspondence. The phrase is source-visible, but GP0→p50 addressing and the low-digit continuation are not authenticated operations. The raw six-rune output `OITOHL` is not claimed as plaintext.**
+**Agent33, 19 November 2026; Agent45 source-consumer update, 27 November. Classification: source-constrained p25 state/operation object with a direct candidate consumer on p40. The earlier GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit continuation remain conditional. Independently, p23 THE ONE RISE selects p25, the mayfly/DH source fixes `g=5` and the cube/inverse state, and the `g=5` split produces signed index40 `PATHS`; that index has a unique same-state receiver on p40 whose established DH shell decrypts exactly to PATHS. Discovery chronology is post-PATHS, so this is an independent causal reconstruction of an existing local candidate, not a blind plaintext discovery. The raw six-rune output `OITOHL` is not plaintext.**
 
 ## Candidate GP0/p50 address correspondence
 
@@ -120,15 +120,75 @@ The authenticated signed labels are:
 20 = MEANING.
 ```
 
-Under the candidate p50 low-digit transition (not a general authenticated opcode after #1787):
+### Direct signed-index consumer: 40 = PATHS -> p40
+
+A later source-chain reconstruction supplies a simpler consumer than the failed-general p50 low-digit transition.
+
+The authenticated 2016 message itself fixes:
 
 ```text
-40 -> 20 -> 42 -> 28
+40 = PATHS
+20 = MEANING
 ```
 
-the candidate pointer chain lands at physical p28, whose independently fixed cube receiver gives the literal candidate **READ OUT**.
+and explicitly says that its words are the map and their numbers are the direction. Under the already established same-number page convention, the cut5 left output therefore gives the direct candidate instruction:
 
-No language scoring, alternate cut, alternate exponent, or alternate page is introduced by this connection.
+```text
+40 = PATHS -> physical p40.
+```
+
+This use of 40 is especially discriminating because the same receiver type was defined before this connection: on page `n`, look for a complete canonical word with the exact rune length and GP0 sum of authenticated source word `n`.
+
+Charge **all five** p25 output cuts. Their ordered sum pairs are:
+
+```text
+cut1  3 | 57
+cut2 13 | 47
+cut3 29 | 31
+cut4 32 | 28
+cut5 40 | 20
+```
+
+The eight values lying in the authenticated 0..42 word-index range are `3,13,20,28,29,31,32,40`. Test each against its same-number physical page under the fixed exact-state receiver rule. Only one has any receiver:
+
+```text
+3  LIES       -> p3  : 0
+13 WAY        -> p13 : 0
+20 MEANING    -> p20 : 0
+28 THE        -> p28 : 0
+29 DIRECTION  -> p29 : 0
+31 AND        -> p31 : 0
+32 YOU        -> p32 : 0
+40 PATHS      -> p40 : 1
+```
+
+The sole hit is the already established p40 offsets71..74 ciphertext `[4,15,14,21]`, whose state is exactly `length4, GP0=54`, matching canonical `PATHS=[13,24,2,15]`.
+
+The mayfly/DH source independently selects `p=23,g=5,A=8,e=3`; the reflected-art inverse loop fixes `g^-1 mod p=14`. Those values specify the p40 numeric H-shell before its ciphertext is used:
+
+```text
+[g^-1 mod p, A, e, -e] = [14,8,3,26].
+```
+
+Inverting the fixed four-rune H transform gives the exact key:
+
+```text
+H^-1([14,8,3,26]) = [20,20,12,6].
+```
+
+Then:
+
+```text
+[4,15,14,21] - [20,20,12,6] mod29
+= [13,24,2,15]
+= PATHS.
+```
+
+This is the first direct downstream consumer of the p25 cut5 output that does not require the unauthenticated p50 low-digit opcode. It is still post-discovery: p40 PATHS and the shell were known before this producer/consumer connection. Its evidential value is that the independently reconstructed upstream route now selects **the target page, target word, exact receiver state and exact numeric shell** without reading p40 rune values.
+
+The old conditional p50 chain `40 -> 20 -> 42 -> 28` remains historical corroboration only; #1787 already rejected that transition as a general opcode.
+
+Reproducer: `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
 
 ## Additional source alignment
 
@@ -171,7 +231,7 @@ This provides a second conditional route to p25 and independently confirms its [
 
 ## What this changes
 
-The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The GOOD LUCK→p25 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
+The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The strongest continuation is now the direct signed-index consumer `40=PATHS -> p40`: among every in-range index produced by all five cuts, only p40 contains the predeclared exact-state receiver, and the independently sourced DH/inverse packet yields its exact decryption key. The GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
 
 This **does not** make `OITOHL` plaintext. The useful content is navigation and operation selection.
 

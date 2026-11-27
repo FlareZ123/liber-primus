@@ -1,6 +1,6 @@
 # Mayfly source semantics select the historical DH(23,5) state
 
-**Agent45, 27 November 2026. Classification: source-constrained state-selector upgrade; no unknown LP2 plaintext recovered.**
+**Agent45, 27 November 2026. Classification: source-constrained state-selector and producer/consumer upgrade. No previously unknown LP2 plaintext is claimed; the route independently reconstructs the already published p40 PATHS candidate from upstream source material.**
 
 ## Executive finding
 
@@ -154,6 +154,41 @@ So the local state triangle closes as:
 
 No row-stacking/Hill interpretation is inferred from this. The earlier determinant-one matrix branch remains underselected.
 
+## Direct p25 -> p40 consumer
+
+The selected state now has an immediate receiver that avoids the unauthenticated p50 low-digit transition.
+
+The source-selected cube/reciprocal action on the unique p25 `[K,g]` side object is:
+
+```text
+source [18 | 3,20,10,11,16]
+power  [3  | 27,27,27,27,27]
+output [3,10,16,3,8 | 20].
+```
+
+The `g=5` state fixes the cut after five output symbols, giving sums **40 | 20**. In the authenticated 2016 message those are source indices **PATHS | MEANING**.
+
+Reading the left number under the already supported “numbers are the direction” / same-number-page convention gives `40 -> p40`. A finite control over every p25 cut yields in-range source indices `3,13,20,28,29,31,32,40`; only **40/PATHS** has a complete same-number-page word matching its exact canonical length and GP0 sum. That receiver is p40 offsets71..74, `[4,15,14,21]`.
+
+The upstream mayfly/DH state and inverse loop fix the p40 shell numerically:
+
+```text
+[g^-1 mod p, A, e, -e]
+= [14,8,3,26].
+```
+
+Under the fixed four-rune H inverse this is key `[20,20,12,6]`, and exact subtraction yields:
+
+```text
+[4,15,14,21] - [20,20,12,6] mod29
+= [13,24,2,15]
+= PATHS.
+```
+
+The result is valuable because the upstream chain now supplies the p40 page, target, receiver type and exact numeric key without consulting p40 rune values. It is **not a blind plaintext discovery**: the p40 PATHS candidate and its shell predate this connection. The new evidence is causal reconstruction and removal of the old p50-low-digit dependency.
+
+See `im-results/lp2-p25-paths40-direct-consumer.md` and `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
+
 ## Plate-family sanity check
 
 A qualitative same-index control was performed across all seven Figure-4 labels (1,2,3,5,6,7,8). Under ordinary species-epithet glosses, the selected item5 is the conspicuous exact-index semantic match: _ignita_ (fire/ignited) aligns with index5 Cēn (torch/fire). The other visible epithets (lake, two-winged, Rhine, elegant/fine, maiden, Danish) do not naturally name the corresponding Rune-Poem meanings at their own plate numbers.
@@ -179,6 +214,6 @@ Therefore:
 
 ## Next decisive test
 
-Use the selected state only where the manuscript independently fixes a receiver or leaves a discrete state ambiguity. The immediate target is the existing p25 -> p28 route: the p14/day clue fixes `p=23`, the p23 RISE displacement independently supplies `K=2`, the mayfly species/plate fixes `g=5`, and the modular-inverse closure supplies the cross-check `e=3`. Test whether that upstream packet `(p,g,K,e)=(23,5,2,3)` prospectively selects an already documented p28 source object or resolves a finite p28 ambiguity **without adding a new cipher family or fitted parameter**. A valid advance must predict an untouched original object or complete a previously underdetermined source instruction.
+The selected packet has now produced one exact downstream consumer, p40 PATHS, under a finite all-cuts control. The next useful test is **not** another generic power/DH sweep. Seek a fresh receiver whose page/target semantics are fixed before its ciphertext is opened and ask whether the same upstream state supplies its complete numeric key. A blind second consumer would promote this from post-discovery causal reconstruction toward a reusable solve mechanism; a miss should bound the route rather than trigger shell retuning.
 
 Reproducer: `sims/lp2_mayfly_dh23_semantic_selector_sft.cjs`.
