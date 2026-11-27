@@ -443,6 +443,18 @@ A constructive heuristic replaces the seven fixed mandatory triples by 40 triple
 
 Two fresh controls (seeds 0x29fa5102 and 0x29fa5103, six random omitted long groups, independent arbitrary permutations/keys) recover exactly in 0.109s and 9.36s of search, respectively. Both give 18/18 valid training truths and 40/40 held truths. Original p40–53: 40 seed attempts, 3,571 completed roots, 31,939,900 affine extensions and 14,883,177 full-vector enumerations in 100.55s summed search; six seed timeouts and no key with >=18/24 lexical support. All 645 shorter original groups remain unconsulted for fit and had no key to score. This is a calibrated heuristic nonrecovery, **not** a general or exact six-OOV exclusion. [Receiver at frozen commit](https://github.com/FlareZ123/liber-primus/blob/77d443bb67416240c8e7182951dada16f2ecfda8/sims/lp2_q8_long_ranked_seed_sft.cpp) · [raw controls and original](lp2-q8-long-ranked-seed-output.json). [Control 2](https://github.com/FlareZ123/liber-primus/actions/runs/45948161944) · [Control 3](https://github.com/FlareZ123/liber-primus/actions/runs/45948166533) · [original](https://github.com/FlareZ123/liber-primus/actions/runs/45948287803).
 
+### Exact q13 fixed-cycle pair join with six concentrated OOVs (Agent5, 27 November)
+
+For p40–53, 15 of the 24 >=10-rune complete groups have no ciphertext F. Freeze seven disjoint pairs of the first 14 eligible groups, balanced by length. At most six OOVs among all 24 guarantees an entirely in-register pair. For a fixed common alphabet, each F-free ciphertext/lexical pair determines the first min(length,13) shifts. Two anchors overlap in at least seven shifts at every relative phase. Encode those shared coordinates exactly in base29 (at most 13 digits fit in uint64); hash-join and enumerate at most three missing shifts, quotient key rotation, discard constant nonprimitive keys, and require >=18/24 dictionary support with all starts and literal-F paths. This is exhaustive for the specified 527 native-word/rubric keyed common alphabets and **all primitive q13 keys**, not arbitrary alphabet permutations. The 645 shorter groups are withheld. Unlike the earlier two-fixed-anchor q13 join, this seven-pair coverage allows six concentrated vocabulary exceptions.
+
+| Run | Anchor option incidences | Compatible pair joins | Distinct complete keys | Qualifying actions |
+| --- | ---: | ---: | ---: | ---: |
+| Control 0 | 16,003,936 | 1 | 841 | 1, exact |
+| Control 1 | 16,003,936 | 1 | 1 | 1, exact |
+| Original | 16,003,936 | 1 | 1 | 0 |
+
+Both controls deliberately spoil one anchor in each of the first six disjoint pairs. Donor truths are length-matched with dictionary replacements where necessary to preserve the F-free anchors; each planted key reproduces all 24 training truths including six intentionally OOV words (18 lexical words), and 40/40 held truths. The sole original complete candidate fails the >=18/24 gate. Thus no fixed-bank q13 action with six or fewer OOVs among the 24 intact groups. The bank and word-register assumptions remain exploratory; no unknown plaintext or authentic key. [Source](../sims/lp2_q13_fixed_cycle_pair_join_sft.cpp) · [raw control/original output](lp2-q13-fixed-cycle-pair-join-output.json) · [original run](https://github.com/FlareZ123/liber-primus/actions/runs/45948660483).
+
 ## Other finite source families
 
 The earlier fixed-keyword, mapped-DIVINITY, fixed keyed-alphabet and red-title terminal conclusions used the defective p54/p55 segmentation described above and are withdrawn for those pages. The corresponding results on earlier visual chapters remain separate evidence and are not changed by this correction. No source-selected alphabet or key has been authenticated.
