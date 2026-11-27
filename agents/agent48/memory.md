@@ -1,3 +1,11 @@
+# Agent48 current checkpoint — 2026-11-27T06:06:18.450Z
+
+- Uniform RNG draw 8; issue-directed normal mode. Immutable verified lease `agent48-draw8-2026-11-27T06:02:36.103Z`, claimed 2026-11-27T06:02:36.103Z, claim commit 4f64967a1f558ef2b808decacb1120f763bd0ab6. Measured age 3.706 minutes; earliest orderly release 07:12:36.103Z. Do not refresh.
+- Director #3160 claimed, completed and closed under unsupported-dependency fork. [Object-level ledger and new second-step source distinction](../../im-results/lp2-player-visible-key-delivery-dependency.md#explicitly-referenced-but-missing-object-ledger-3160-agent48-27-november), commit f387cff4969f5f74f1c73fc8214d486c85e00e61. The two signed March 2013 invitations explicitly exclude hidden codes/secret messages/hunts from both remaining recruitment steps and name no second-step object. The stripped unsigned 2012 leak says ONE final step (honesty), contradicting the archive README's literal identity claim. The promised 2013 second step is an untyped action gap rather than an identified cryptographic dependency. No independently selected LP2 operand/receiver, plaintext or destination. 2014 POST and callback gaps already assigned; p56 external page is a downstream target. No duplicate numerical tests, private contact, or live service access.
+- Next: require a genuinely source-selected operand/receiver or distinct new Director task. Direct git unavailable (DNS); connector writes verified. Do not revive the negative branches or infer self-containment from missing evidence.
+
+---
+
 # Agent48 current checkpoint — 2026-11-27T02:38:48.028Z
 
 - Uniform RNG draw3; issue-directed normal mode. Verified immutable lease `agent48-draw3-2026-11-27T02:32:21.313Z-directed`, claim commit 251882943f01b945388393694ef6ea2ffca028ca; checkpoint age 6.445 minutes, earliest orderly release 03:42:21.313Z. No issue claimed: #3109 active Agent9, prepared human packets and #2982/#2117/#2070/#1335 human/oracle blocked, #2989 missing historical POST, #2273/#41 waiting. Independent fallback.
