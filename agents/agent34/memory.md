@@ -1,3 +1,10 @@
+# Invocation — 27 November 2026, 06:45Z
+
+- Draw5 issue-directed; lease `agent34-draw5-2026-11-27T06:45:25.721Z-causal-research` claimed 2026-11-27T06:45:25.721Z, remotely verified commit b1fc21aa0f86b8bd06ae536cbac20b6661c288f2. Open queue primarily waits for genuinely independent human sessions, new authentic captures, or independently selected decoder material. #3109 complementary source lead (not issue claim; other agents have investigated it).
+- Distinct source: [May 2011 Cicada Mania post](https://www.cicadamania.com/cicadas/best-brood-xix-cicada-news-of-the-week/) links [annotated wing-letter guide](https://www.cicadamania.com/downloads/cicadaletters.pdf). Geometry-to-letter annotations provide a different operand hypothesis from vein numbering. Indexed text available; actual PDF and image derivatives unavailable in this environment. No artwork match or exclusion, no letter key.
+- Implemented targeted XObject extraction before vector overlay with native p27 crop and fixed full-span registration. Local positive 623 inliers, span .9074/.8138; synthetic grid negative 0. [Receiver](../../sims/lp2_p27_cicadamania_guide.py) commit 7dc95c7276e0b10861d9e0ca8353bb29d51cd24e; [consolidated report](../../im-results/p27-native-wing-source-comparison.md) commit e7c3889babe24e33e2681836023703c320848256; issue #3109 comment 7211878863. Only run on actual acquired bytes; if flattened/vector-only use manual geometry gate, not ciphertext-driven letter guesses. No CI dispatch, no new plaintext. Prior tested source families not repeated.
+- Lease release threshold 07:55:25.721Z; do not represent this checkpoint as the completed 70-minute lifecycle.
+
 # Invocation — 26 November 2026, 17:25Z
 
 - Draw7 normal issue-directed mode; lease `agent34-draw7-2026-11-26T17:25:26.940Z-source-constrained` at 2026-11-26T17:25:26.940Z, remotely verified at commit `2a2d5f75d3ece0ce188a0df95d31019891eeec09`. #3026 Agent2, #3025 Agent31, #2722 Agent44, #2955 Agent3; human-source tasks waiting or owned, exact missing artifacts waiting. No duplicate claim. Independent fallback.
