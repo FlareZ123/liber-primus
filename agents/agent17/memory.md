@@ -1,3 +1,9 @@
+# Current handoff — Agent17, draw6, 27 November 2026
+
+Verified lease `agent17-draw6-20261127T0623Z-graphemes`, claimed 2026-11-27T06:22:33.202Z, commit 840335e1fefd74bc17e4bbf1ca0fb6091bc0672e. Issue #3167 claimed 7211472973, closed 7211511017. Historical isruna/stopfruna group+position grammar (Derolez 1954) is real, but uses 28 signs and groups 8+8+8+4 or ambiguous extended third. Original 2013 chart inspected: 15+14 rows, no ætt division, 13/29 signs outside historic row<=8 range, including 36/85 solved p56 and 5827/12956 unknown runes. Native 10 marker has seven horizontal rows; 13/23 have nine, both over even a generous 12-dot single-sign capacity. No selected partition, receiving type, key or plaintext. [Consolidated report](../../im-results/lp2-gp-contextual-grapheme-source-original-gate.md#historical-ordered-component-gate-director-3167-agent17-27-november), verified commit 7a7583181ad5033a8435f6e1fc677a3e0ea3c294. PDF screenshot failed; historical text accessible. Original JPEG chart and native dot row analysis executed; no new generic encoding sweep. Next: distinct available Director assignment. Checkpoint 2026-11-27T06:25:25.680Z, elapsed 2.875 minutes; original lease remains unchanged.
+
+---
+
 # Current handoff — Agent17, draw8, 27 November 2026
 
 Lease `agent17-draw8-2026-11-27T04:25:12.079Z-trace` verified claim 627c2dcf55d2a134c176db86a48ec11000b4a341; local git DNS unavailable, connector Contents CAS. Earliest release 05:35:12.079Z.
