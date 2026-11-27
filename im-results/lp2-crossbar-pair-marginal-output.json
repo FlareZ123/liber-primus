@@ -1,0 +1,209 @@
+{
+  "sourceCommit": "da8dd3946c9b40c648d2501c441ba296ea88a76c",
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "training": [
+    217106,
+    321327
+  ],
+  "heldGibran": 62492,
+  "controls": [
+    {
+      "name": "0_warning",
+      "shared": {
+        "logBF": 6.729715368174794,
+        "meanConfidence": 0.5752027176526782,
+        "entropyBits": 2.1841410608722325,
+        "confidence90": 7,
+        "correct": 13,
+        "correct90": 7
+      },
+      "independent": {
+        "logBF": -2.10477883960516,
+        "meanConfidence": 0.339219819580114,
+        "entropyBits": 3.0951836540757025,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": -2.5055556319462653,
+        "meanConfidence": 0.3769528158756035,
+        "entropyBits": 2.824667012592403,
+        "confidence90": 0
+      }
+    },
+    {
+      "name": "0_welcome",
+      "shared": {
+        "logBF": 1.020086960451664,
+        "meanConfidence": 0.3560602745241417,
+        "entropyBits": 2.87772863163511,
+        "confidence90": 0,
+        "correct": 12,
+        "correct90": 0
+      },
+      "independent": {
+        "logBF": 0.03752790894148461,
+        "meanConfidence": 0.3302002565352971,
+        "entropyBits": 2.896676896533421,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": -0.9260424169654584,
+        "meanConfidence": 0.27691760511843483,
+        "entropyBits": 3.2540279031863975,
+        "confidence90": 0
+      }
+    },
+    {
+      "name": "0_wisdom",
+      "shared": {
+        "logBF": 1.0970596177289451,
+        "meanConfidence": 0.2965441013329439,
+        "entropyBits": 3.09429474732854,
+        "confidence90": 0,
+        "correct": 13,
+        "correct90": 0
+      },
+      "independent": {
+        "logBF": -5.132681498715527,
+        "meanConfidence": 0.40757723640228033,
+        "entropyBits": 2.7622475877226687,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": -1.8997409561091558,
+        "meanConfidence": 0.3492244869877003,
+        "entropyBits": 2.8617790508392607,
+        "confidence90": 0
+      }
+    },
+    {
+      "name": "0_koan_1",
+      "shared": {
+        "logBF": 2.4586880985931145,
+        "meanConfidence": 0.3475835444279484,
+        "entropyBits": 3.0192098304880948,
+        "confidence90": 0,
+        "correct": 8,
+        "correct90": 0
+      },
+      "independent": {
+        "logBF": -3.1733386484022787,
+        "meanConfidence": 0.30567711123401226,
+        "entropyBits": 3.1372192048682916,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": -0.5820114739879614,
+        "meanConfidence": 0.40964569191237193,
+        "entropyBits": 2.697730318533106,
+        "confidence90": 0
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "shared": {
+        "logBF": 0.7263926823836186,
+        "meanConfidence": 0.3306764626942926,
+        "entropyBits": 3.0616949672205034,
+        "confidence90": 0,
+        "correct": 20,
+        "correct90": 0
+      },
+      "independent": {
+        "logBF": -1.47099604392875,
+        "meanConfidence": 0.3124950415986842,
+        "entropyBits": 3.1033020814485677,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": -3.018731050998838,
+        "meanConfidence": 0.3298335696991802,
+        "entropyBits": 3.032235195254381,
+        "confidence90": 0
+      }
+    },
+    {
+      "name": "p57_parable",
+      "shared": {
+        "logBF": 3.1189345843540366,
+        "meanConfidence": 0.31333411894198826,
+        "entropyBits": 3.097735297866272,
+        "confidence90": 0,
+        "correct": 27,
+        "correct90": 0
+      },
+      "independent": {
+        "logBF": -5.278681391171574,
+        "meanConfidence": 0.3114189983331442,
+        "entropyBits": 3.1548285993072653,
+        "confidence90": 0
+      },
+      "misregistered": {
+        "logBF": 1.326438612917201,
+        "meanConfidence": 0.34473293539771194,
+        "entropyBits": 2.9054492479944414,
+        "confidence90": 0
+      }
+    }
+  ],
+  "original": {
+    "logBF": -2.233352674457194,
+    "key": [
+      23,
+      19,
+      5,
+      8,
+      2,
+      12,
+      20,
+      2,
+      15,
+      15,
+      14,
+      22,
+      15,
+      10,
+      10,
+      27,
+      11,
+      1,
+      15,
+      18,
+      4,
+      0,
+      6,
+      1,
+      19,
+      18,
+      11,
+      15,
+      11,
+      24,
+      28,
+      27,
+      16,
+      2,
+      4,
+      19,
+      13,
+      15,
+      10,
+      1,
+      3,
+      5,
+      4,
+      15
+    ],
+    "first": "EEEPRIUESEADICTOYOUMUSTSOOMERCRLLYEUTINOEELR",
+    "second": "OEAINTELISISEHEREINTHISIEITHEUASOORRINOFIIISIA",
+    "meanConfidence": 0.31717760643290077,
+    "entropyBits": 3.1067893326761507,
+    "confidence90": 0
+  }
+}
