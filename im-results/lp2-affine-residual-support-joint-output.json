@@ -1199,5 +1199,39 @@
       155310
     ],
     "capped": 0
+  },
+  "projectedWordGate": {
+    "ordinary": {
+      "a": 19,
+      "initialSurvivors": 1218,
+      "excluded": {
+        "joint": 1218
+      },
+      "survived": 0,
+      "capped": 0,
+      "tries": 206404,
+      "pairGate": true,
+      "wordGate": true
+    },
+    "literalF": [
+      {
+        "a": 19,
+        "mode": "wordShuffleNoF",
+        "cap": 90,
+        "boxes": 878,
+        "outer": 23696,
+        "leaves": 39766,
+        "initialSurvivors": 1218,
+        "excluded": {
+          "joint": 1218
+        },
+        "survived": 0,
+        "capped": 0,
+        "tries": 206404,
+        "pairGate": true,
+        "wordGate": true,
+        "survivors": []
+      }
+    ]
   }
 }
