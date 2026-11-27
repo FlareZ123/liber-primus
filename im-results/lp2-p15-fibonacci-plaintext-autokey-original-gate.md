@@ -1,6 +1,8 @@
-# P15 Fibonacci plaintext-autokey: exact 841-IV collapse and original LP2 failure
+# P15 Fibonacci plaintext-autokey: exact linear collapse and nonlinear prime-weight feedback limits
 
 **Agent1, 23 November 2026. Decision on [Director #2374](https://github.com/FlareZ123/liber-primus/issues/2374): retire the specified page-continuous, additive Fibonacci-plaintext-feedback cipher as a route to native-GP plaintext on original pp16–55.** The result is a complete algebraic characterization of **all 29² possible IV pairs**, independent of language optimization, followed by an untouched-original full-length inverse, a frozen pp16–21 selector and pp40–53 holdout, and three independently sourced native-GP positive plants. It recovers no unknown plaintext, authored key, or destination.
+
+**Current combined frontier (27 November):** the linear plaintext-index feedback below collapses to a cipher-only accumulator. A distinct nonlinear prime-weight feedback law also fails exact all-state F-hold reachability and synchronizes to a forced nonprose no-hold continuation (see final section). Neither is a live original cipher candidate.
 
 ## Source-frozen human route
 
@@ -85,3 +87,41 @@ All three generated ciphertexts exactly inverse to the **full 9,194-rune native 
 **Reject this exact equation with page-continuous GP29 state for ordinary native-GP pp16–55.** A narrower regression suite with a different Shakespeare language model is useful as an independent control, while the [Agent37 all-word-geometry source report](lp2-p15-fibonacci-plain-autokey-original-gate.md) is the lead study of this exact hypothesis and is integrated into the [overall authoritative synthesis](../results/README.md).  The collapse is an algebraic fact independent of original language; the original near-uniform residual and poor unseen-window scores remain fixed across all source-selected or unconstrained IV values. The same scorer recovers all three independently sourced native-GP plant shift-keys and their complete 9,193-rune content. The source p15 Fibonacci prime spiral remains a genuinely solved 16-cell mathematical instruction whose transfer to LP2 plaintext is unproven. This result does not exclude a different recurrence, a non-native GP plaintext encoding, the opposite additive sign, actual external keystream material, or space-altering operations. There is no reason to rescue the failed exact recurrence with unmotivated extra feedback coefficients or page resets.
 
 The complete original-cipher, source-grid, all-key and native-positive single runnable test is [**`sims/lp2_p15_fibonacci_plaintext_autokey_original_sft.cjs`**](../sims/lp2_p15_fibonacci_plaintext_autokey_original_sft.cjs), **[Windows Node22 CI PASS 45121682463](https://github.com/FlareZ123/liber-primus/actions/runs/45121682463)**. It reads original JPEG `32.jpg`, recreates all sixteen p15 numbers, cross-checks each original p16–55 GP rune against the original transcription, enforces every page length and true p50 physical gap, tests all 841 IVs' implied inverse collapse and complete replay, then runs the locked Shakespeare model and three independent native-GP ciphertext plants. No claimed unknown plaintext is generated.
+
+## Nonlinear prime-weight feedback, exact F-hold obstruction and self-synchronization (Agent29)
+
+**Decision:** the distinct nonlinear Fibonacci update below is excluded as a continuous p15-infinity decoder with the historical F-hold rule, for **every** 29² starting state. Its no-hold counterpart has one forced common 7,898-rune suffix, with no native-prose evidence. This does not alter the solved numeric spiral or the linear-feedback conclusions above.
+
+The original p15 source gives the red 3299, adjacent black 3298, Fibonacci-indexed primes and visible infinity glyph. The known Gematria alphabet supplies prime values (q(p)); solved p56 supplies the prime-minus-one arithmetic and literal-F convention. Combining these into this specific recurrence is an exploratory interpretation, not a first-party command. Fix the actual infinity boundary, after the nine upper-heading runes, rather than choose a clock by decoding score. The original p15 tail through p22 is 1,894 runes. No coefficient, sign, alphabet, reset, or phase is fitted.
+
+```text
+initial (a,b) = (3299 mod 29, 3298 mod 29) = (22,21)
+if P == 0 (literal F): emit 0, hold both states
+else: emit C = P + a mod 29
+      (a,b) <- (b, a+b+q(P)-1 mod 29)
+```
+
+For each observed C and current state, the consuming plaintext is exactly (p=(C-a)\bmod29), allowed only if nonzero. A hold edge exists precisely when C=0, with state unchanged. Maintaining the set of reachable state pairs gives the exact union of all legal hidden-F masks; this does not use dictionary, grammar, language distribution or printed word order. The GP29 prime-minus-one vector is `[1,2,4,6,10,12,16,18,22,28,1,7,11,13,17,23,0,2,8,12,14,20,24,1,9,13,15,19,21]`.
+
+| Starting-state domain | First impossible original offset (zero-based from infinity) | Last state (a,b) | Observed C |
+|---|---:|---|---:|
+| Source (22,21) | 139 | (20,25) | 20 |
+| All 841 states | 349 | (10,9) | 10 |
+
+In both cases the sole surviving state requires a forbidden consuming plaintext F on a nonzero ciphertext glyph. The exact original impossibility needs no language assumption. On nine synthetic re-encryptions of the existing solved-native comparator sections (lengths 85–780; distinct fixed planted states), the true state survives **every** position under the F-hold graph. These are implementation controls with known planted states, not independent original-LP2 keys.
+
+### No-hold diagnostic: all starting states synchronize
+
+For the separately defined no-hold variant, every input rune consumes. At fixed C the update is
+
+```text
+T_C(a,b) = (b, b+C+[q(C-a)-1-(C-a)]) mod 29.
+```
+
+The bracketed function of plaintext takes only 20 distinct residues. Therefore each one-step image contains exactly 29×20=580 states for all C. Set propagation on the actual 9,344-rune p15-infinity→p55 register gives an exact singleton after consuming offset **1445**, on physical p20, state index 733 = (25,8). Thus every possible seed produces identical subsequent **7,898** plaintext runes, independent of scoring or key selection. Their IoC is **0.03457842718**. The p40–53 continuation (3,008 runes, same carried state) has IoC **0.03452383269** and begins `OE Y C X Y X NG W EA IA J E M W OE O B N J EO T H I U NG H X L G EO`. This is nonprose, with the fixed known-native comparator IoCs 0.05251–0.07003. No manuscript-level fresh holdout is claimed: this continuation has been examined by prior agents and is evaluated here only under the frozen new equation.
+
+As a secondary check, exhaust all 841 no-hold states on the 1,894-rune first interval. The maximum IoC is 0.03475874826; best add-one conditional GP29 trigram score trained on the nine solved-native records is −3.4000272782 nats/rune. Leave-one-record-out planted controls select the exact seed in 5/9, recover 2,976/2,983 plaintext runes (the four different seed selections lose only 1,2,2,2 leading/near-leading runes), and achieve −2.61 to −3.052 nats/rune. These imperfect seed recoveries are consistent with the proven many-to-one state update, rather than evidence of blind historical-key recovery. The source seed and best scored original candidate replay exactly; reencryption is an invariant of the no-hold model, not authentication.
+
+**Stop this recurrence.** The F-held rule has no legal inverse at any starting state and the no-hold rule forces a frequency-flat continuation. Neither yields authentic plaintext or a key. An independently sourced nonlinear opcode or new key evidence would be required before any successor feedback search.
+
+Reproduce: [standalone CJS SFT](../sims/lp2_p15_prime_weight_fibonacci_feedback_sft.cjs). Inputs: canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, solved-native comparator blob `1b064ef6d85819b7d96adaff31a82d1ec551598f`. Core reachability, controls, all-seed scoring and synchronization were executed in connected V8; standalone Node wrapper not separately executed. Earlier solved-text comparators contain the known two-extra-rune KOAN I transcription variant; it is used solely for a planted algorithm control and not as original image evidence.
