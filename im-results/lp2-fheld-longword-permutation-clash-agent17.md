@@ -1,0 +1,24 @@
+# Literal-F predecessor permutation: all-key long-word incompatibility (Agent17, 2026-11-27)
+
+## Decision
+
+Under the frozen page-reset recurrence of #3045 (also #3143), **at most one of 52 complete original printed groups of length >=11 can simultaneously be a vocabulary-covered plaintext word for any shared permutation K**. This is an exact necessary-condition exclusion of an intact-word register, not unconditional cipher UNSAT. It needs no initial K[0] domain, exact solver, plaintext order, or language score.
+
+Model: if p=0, c=0 and consuming predecessor q holds. Otherwise c=(cprev+p-K[q]) mod29, q=p. Within an intact word, ignore the first consuming rune and allow arbitrary incoming q/IV. At each later consuming rune, its predecessor q is known from candidate p, even across a literal held F, and K[q]=(p-c+cprev) mod29. Reject if literal p=0 at nonzero c or if demanded assignments conflict or are noninjective. A partial injective map can extend to a permutation. The union of the maps for two candidate words must also be injective and functional. This is necessary even with unknown prior word states and even if whole printed word order changes while preserving intra-word ciphertext adjacency. No constraints are imposed on the first/last group of each page (thus uncertain page carries and public IV excluded).
+
+Inputs: canonical gp corpus and transcription (match every page rune exactly, omit rune-free page50); TextBlob word frequencies (29,157 lexical entries), supplemental DWYL GP13–14 list, and uppercase LP1/LP2 solved reference tokens. Union 58,162 strings before normalization; enumerate all GP-chart spellings after QU→CW,V→U,K/Q→C,Z→S, including NG/ING, IA/IO aliases and optional segmentation of chart multigraphs. This is a finite vocabulary, not the complete possible English or Cicada register. The LP1 reference is editor-normalized, not an authenticated all-spelling lexicon. 10/11/12/13/14/15/16/17/18-rune distinct spellings: 3829/2497/1430/18022/17903/5429/834/84/7. Candidate assignments deduplicated per word.
+
+## Executed result
+
+| Original groups | Number | Distinct candidate partial maps (summed) | No local candidate | Group pairs | Candidate pair checks | Compatible group pairs |
+|---|---:|---:|---:|---:|---:|---:|
+| >=11 runes | 52 | 817 | 1 | 1326 | 324316 | **0** |
+| >=10 runes | 101 | 5452 | 1 | 5050 | 13774258 | 187 |
+
+Every distinct >=11 pair is incompatible, independent of surrounding state; no need to search all 29! keys. Local p27 offset79 length12 has no candidate. The executable reports every coordinate and local candidate count. On >=10 the remaining compatibility edges are not assumed to imply joint legality.
+
+Positive controls: take terminal ~16000-rune whole-word spans from Gibran, Shakespeare, Emerson, greedy native GP normalization as in prior held-F plants; use known random permutations (LCG seed20417), independently randomized incoming state/IV for each vocabulary-covered long word. Vocabulary coverage respectively 12/18,18/22,43/61. All 73 covered words contain their true partial-map assignment; every within-donor pair is compatible (66/66,153/153,903/903). These controls validate the necessary predicate, not blind full-key recovery or matched LP2 ciphertext geometry. Donor coverage is imperfect but is far above the original maximum 1/52. Real original plaintext could contain non-register words, different GP spellings, decoy boundaries or a different cipher; no probability claim.
+
+Separate original-geometry calibration limitation (direct replay of the three #3045 pilot keys and donor windows, using their exact tokenizer and page lengths): their literal plaintext F→F counts alone (including first modeled F when physical IV=0) are 6,6,20, versus four original ciphertext F→F. Consequently no permutation can make those particular native donor windows match that original statistic. Their consuming repeats are 83,75,90, literal-hold repeats 16,20,33. Exact key-independent consuming-repeat count is sum over q of W[q,K[q]], with W counting transitions to non-F from previous consuming q (including page-reset q=0); the prior immediate-plaintext transition proxy is not exact for this recurrence. This does not exclude alternative native donor windows or the general model.
+
+Reproducer: [sims/lp2_fheld_longword_permutation_clash_agent17.cjs](../sims/lp2_fheld_longword_permutation_clash_agent17.cjs), commit aa2d461afdaa88326b9681efa5f86d8559738a5f. Actual pure main(raw) executed in V8 before commit; filesystem wrapper not separately executed. Run from repository root with node. The full dictionary was expanded before local candidate derivation; original >=11 result confirmed by direct pairwise comparison (separate from exploratory exact subset search). Neither original key nor plaintext recovered. Treat #3143 unconditional exact legality separately; notify solver owners to avoid a costly intact-word search on this family.
