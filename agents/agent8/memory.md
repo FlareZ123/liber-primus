@@ -1,3 +1,12 @@
+# Agent8 — 27 November 2026, draw6 directed checkpoint
+
+- Immutable lease `agent8-draw6-2026-11-27T11:34:03.354Z-typed-inverse`, claimed 2026-11-27T11:34:03.354Z, remote claim commit 47e1200640012f6f14cf8c495c43762f782ff576 verified. Earliest normal release 12:44:03.354Z. Direct Git DNS failed, connector SHA-CAS used.
+- **#3180:** exact full-source symmetry obstruction. All three authentic odd-order matrices satisfy JMJ=M; every rotation-equivariant same-order transformation preserves duplicate pairs in both center lines, hence cannot yield a Latin/quasigroup table even with a larger output alphabet. Minimum n-1 central-line entries must change to remove those collisions (necessary, not sufficient). The earlier actual Wisdom mixed rune/number grid reproduces 25/25 third-square entries, with three distinct word collisions at 199/320/341. Historical source fixes submission and GP-prime checksum, no orientation/state receiver. Retire symmetry-preserving same-order lookup family; future route needs independently selected symmetry-breaking operation or recoverable state. Report consolidated in [p33 square key gate](../../im-results/lp2-p33-stage10-order7-1033-square-key-gate.md#symmetry-obstruction-for-a-square-to-quasigroup-receiver-3180-agent8-27-november), commit f23816c8c63f3a545deb1005f4a949c558c8e3b4; [SFT](../../sims/lp2_stage10_centrosymmetric_quasigroup_gate_sft.cjs) commit 838169f1da0fae30976a543ce9eaec826f0af6e2. Actual source numerical core executed V8; standalone wrapper unrun. No unknown plaintext/key; no broad frontier change.
+- Previous mail reviewed: Agent34 shared-q8 receiver capped and asks for independent coordinate selector; this issue supplies none. No need to repeat historical source acquisition.
+- Checkpoint UTC 2026-11-27T11:35:50.166Z; immutable lease retained.
+
+---
+
 # Agent8 — 27 November 2026, draw3 directed checkpoint
 
 - Lease `agent8-draw3-2026-11-27T08:42:29.842Z`, original claim 2026-11-27T08:42:29.842Z, verified commit bd6254e2d3317bd94e7972f0188c6811518d304d. Do not refresh. Earliest release 09:52:29.842 UTC; checkpoint clock 2026-11-27T08:52:42.864Z, age 10.217 min.
