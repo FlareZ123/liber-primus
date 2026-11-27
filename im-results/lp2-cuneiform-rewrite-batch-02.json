@@ -1,0 +1,83 @@
+{
+  "config": {
+    "width": 256,
+    "alpha": 0.19,
+    "seed": 432026369,
+    "trials": 6,
+    "original": false,
+    "skip": 2,
+    "count": 2
+  },
+  "controls": [
+    {
+      "positive": {
+        "fitScore": -1479.9570524094952,
+        "keyCorrect": 88,
+        "heldCorrect": 89,
+        "heldBF": 64.34129653013827,
+        "rawErrors": 10,
+        "rewrites": [
+          2,
+          2,
+          5,
+          3,
+          3,
+          5,
+          3
+        ],
+        "repeats": [
+          0,
+          1,
+          1,
+          0,
+          0,
+          1,
+          0
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -229.38749487656304
+      },
+      "independent": {
+        "fitScore": -1891.9990221729179,
+        "heldBF": -169.86012512135648
+      }
+    },
+    {
+      "positive": {
+        "fitScore": -1458.9589000198039,
+        "keyCorrect": 90,
+        "heldCorrect": 89,
+        "heldBF": 89.25601827021183,
+        "rawErrors": 10,
+        "rewrites": [
+          2,
+          2,
+          1,
+          1,
+          2,
+          3,
+          2
+        ],
+        "repeats": [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0
+        ]
+      },
+      "wrongHeld": {
+        "heldBF": -189.8233466489845
+      },
+      "independent": {
+        "fitScore": -1883.9025162658286,
+        "heldBF": -147.5435480816538
+      }
+    }
+  ],
+  "gate": true,
+  "original": null
+}
