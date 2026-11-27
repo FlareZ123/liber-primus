@@ -52,9 +52,10 @@ function study(data, request = null) {
   // Continuous consuming clock, with word-position-conditioned plaintext emissions.
   const startOffset=c.pages.slice(0,15).reduce((s,p)=>s+p.indices.length,0)+20,endOffset=c.pages.slice(0,23).reduce((s,p)=>s+p.indices.length,0);
   let off=0;const groupRows=original.map(P=>{const from=off;off+=P.length;return {P,from,to:off}});
-  const originalWords=groupRows.filter(w=>w.from>=startOffset&&w.to<=endOffset).map(w=>w.P);
+  const originalWords=request?request.CWords:groupRows.filter(w=>w.from>=startOffset&&w.to<=endOffset).map(w=>w.P);
+  assert(Array.isArray(originalWords)&&originalWords.length>=2&&originalWords.every(w=>Array.isArray(w)&&w.length>0&&w.every(v=>Number.isInteger(v)&&v>=0&&v<Q)),"nonempty GP29 ciphertext words");
   const originalC=originalWords.flat();
-  assert(originalC.length===1883&&originalC.join()===c.pages.slice(15,23).flatMap((p,i)=>i?p.indices:p.indices.slice(20)).join(),"p15 body shape");
+  if(!request)assert(originalC.length===1883&&originalC.join()===c.pages.slice(15,23).flatMap((p,i)=>i?p.indices:p.indices.slice(20)).join(),"p15 body shape");
   const lens=originalWords.map(w=>w.length),N=originalC.length,E=15;
   function cls(n,i){if(n<=4)return n*(n-1)/2+i;return i===0?10:i===1?11:i===n-2?13:i===n-1?14:12}
   const classes=lens.flatMap(n=>Array.from({length:n},(_,i)=>cls(n,i)));
@@ -63,11 +64,18 @@ function study(data, request = null) {
   const counts=Array.from({length:E},()=>new Float64Array(Q));for(const w of train)for(let i=0;i<w.length;i++)counts[cls(w.length,i)][w[i]]++;
   const Freq=counts.map(row=>{const sum=row.reduce((a,b)=>a+b);return Float64Array.from(row,(x,p)=>(x+100*freq[p])/(sum+100))});
   const logF=Freq.map(row=>Float64Array.from(row,Math.log));
+  function defaultSchedule(){
   const rank=[],gaps=[1,1,1,2,3,5,8,13,21,34,55,89,144,233,377];let rankNow=1;
   for(let j=0;j<N;j++){rank.push(rankNow);rankNow+=gaps[j%15]}
   const sieve=new Uint8Array(2500000),pr=[0];for(let p=2;pr.length<=rank.at(-1);p++){assert(p<sieve.length,"sieve");if(!sieve[p]){pr.push(p);if(p*p<sieve.length)for(let j=p*p;j<sieve.length;j+=p)sieve[j]=1}}
-  const K=rank.map(i=>m(pr[i]-1));
-  let cut=0,cutWords=0;while(cut+lens[cutWords]<=Math.floor(.75*N)){cut+=lens[cutWords++]}
+  return rank.map(i=>m(pr[i]-1));
+
+  }
+  const K=request?request.K:defaultSchedule();
+  assert(Array.isArray(K)&&K.length>=N&&K.every(v=>Number.isInteger(v)&&v>=0&&v<Q),"GP29 schedule must cover every possible consuming index");
+  let cut=0,cutWords=0;
+  if(request){cutWords=request.fitWords;assert(Number.isInteger(cutWords)&&cutWords>0&&cutWords<lens.length,"fitWords must select a nonempty strict word prefix");cut=lens.slice(0,cutWords).reduce((a,b)=>a+b,0);}
+  else while(cut+lens[cutWords]<=Math.floor(.75*N)){cut+=lens[cutWords++]}
   function seq(C,from,to){const n=C.length,Hlim=[0];for(const x of C)Hlim.push(Hlim.at(-1)+(x===0));const H=Hlim[n]+1;return {C,n,H,lim:Hlim,classes:classes.slice(from,to),start:isStart.slice(from,to),end:isEnd.slice(from,to)}}
   function schedule(S,origin){const sh=new Uint8Array(S.n*S.H);for(let i=0;i<S.n;i++)for(let h=0;h<=S.lim[i];h++)sh[i*S.H+h]=K[origin+i-h];return sh}
   function emissions(A,B,eps){const I=inv(A),M=new Float64Array(E*Q*Q);for(let e=0;e<E;e++)for(let c=0;c<Q;c++)for(let k=0;k<Q;k++){const r=m(B[c]-k);M[(e*Q+c)*Q+k]=Freq[e][I[r]]*(r===0?eps:1)}return M}
@@ -100,6 +108,10 @@ function study(data, request = null) {
     for(const q of unique){let A=q.A,B=q.B,d=decodeSeq(S,0,A,B,true);if(!d)continue;A=refine(A,split(d.P),rand);d=decodeSeq(S,0,A,B);if(!d)continue;for(let j=0;j<2;j++){const a=refine(A,split(d.P),rand),e=decodeSeq(S,0,a,B);if(!e||e.score<=d.score)break;A=a;d=e}if(!best||d.score>best.d.score)best={A,B,d}}
     function evaluate(A,B){const ends=decodeSeq(S,0,A,B,false,true);let joint=null;for(const e of ends){const h=decodeSeq(H,e.end,A,B);if(h&&(!joint||e.score+h.score>joint.e.score+joint.h.score))joint={e,h}}if(!joint)return null;const {e,h}=joint,P=e.P.concat(h.P);return {fit:truth?e.P.filter((v,i)=>v===truth[i]).length:null,fitLength:cut,held:truth?h.P.filter((v,i)=>v===truth[cut+i]).length:null,heldLength:N-cut,fitScore:e.score,heldScore:h.score,replay:enc(P,A,B).join()===C.join(),A,B,...(!truth?{P}:{}),possibleFitEnds:ends.length}}
     return {records,best:best?evaluate(best.A,best.B):null,oracle:truth?evaluate(TA,TB):null}}
+  if(request){
+    const seed=request.seed??0x27f15a2;assert(Number.isInteger(seed)&&seed>0&&seed<=0xffffffff,"seed must be a positive uint32");
+    return {model:"supplied continuous consuming schedule with literal F holds and within-word emissions",words:lens.length,fitWords:cutWords,cut,result:fit(originalC,seed)};
+  }
   const pds=[words(shakespeare),words(gibran)].map(ws=>{const p=Array.from({length:30},()=>[]);for(const w of ws)if(w.length<p.length)p[w.length].push(w);return p});
   const controls=[];
   for(let j=0;j<2;j++){const rand=rng(0x27f1510+j),A=perm(rand,true),B=perm(rand,false),P=lens.flatMap(n=>{const p=pds[j][n];assert(p.length,"control length "+n);return p[Math.floor(rand()*p.length)]}),C=enc(P,A,B);controls.push({donor:j?"Gibran":"Shakespeare",visibleF:C.filter(x=>x===0).length,literalF:P.filter(x=>x===0).length,result:fit(C,0x27f15a0+j,P,A,B)})}
