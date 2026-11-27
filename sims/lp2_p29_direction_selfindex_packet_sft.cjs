@@ -184,7 +184,46 @@ assert.deepEqual(
   ]
 );
 
-// Project p29 is physical LP2 page30. READ OUT THE selects source word29 THE;
+// Page-local fragment numbering includes the carried groups at page seams.
+const localPages = unknownSegments.map((segment, i) => {
+  const groups = [];
+  let values = [], offset = 0, start = 0;
+  function flush() { if (values.length) groups.push({start, values}); values = []; }
+  for (const ch of [...segment]) {
+    const value = runeIndex.get(ch);
+    if (value !== undefined) {
+      if (!values.length) start = offset;
+      values.push(value); offset++;
+    } else if (ch !== "/" && !/\s/u.test(ch)) flush();
+  }
+  flush();
+  return {page: i >= 50 ? i + 1 : i, groups};
+});
+const p28Local = localPages.find(p => p.page === 28).groups;
+assert.equal(p28Local[28].start, 140);
+assert.deepEqual(p28Local[28].values, [24,25]);
+assert.equal(pageWords(28)[27].start, 140);
+assert.deepEqual(pageWords(28)[27].values, [24,25]);
+assert.deepEqual(p28Local[0].values, [13,5]);
+const localPairs = localPages.flatMap(({page,groups}) =>
+  groups[page-1] && groups[page] ? [{page,prior:groups[page-1],current:groups[page]}] : []);
+assert.equal(localPairs.length, 48);
+const localTwos = localPairs.filter(row => row.prior.values.length === 2);
+assert.equal(localTwos.length, 6);
+assert.deepEqual(localTwos.filter(row => {
+  const [a,b] = H2(row.prior.values);
+  return b === a+1;
+}).map(row=>row.page), [29]);
+const localNumbered = localPages.flatMap(({page,groups})=>groups[page]?[{page,word:groups[page]}]:[]);
+assert.equal(localNumbered.length,49);
+const localFours = localNumbered.filter(row=>row.word.values.length===4);
+assert.equal(localFours.length,7);
+assert.deepEqual(localFours.filter(row=>H4(row.word.values)[3]===0).map(row=>row.page),[29]);
+assert.deepEqual([22,23].map(i=>sourceWords[i-1].word),["IS","THE"]);
+assert.deepEqual(sourceWords.filter(row=>row.word==="THE").map(row=>row.ordinal),[2,8,13,18,23,29]);
+
+// Project p29 is physical LP2 page30. The p28 candidate READ OUT THE uses
+// carry-inclusive word29 to select source word29 THE;
 // its immediate authenticated follower is one-based word30 DIRECTION.
 // Use that same one-based 30 on physical page30.
 const projectPage = 29;
@@ -370,7 +409,10 @@ console.log(JSON.stringify({
     direction: directionSource,
   },
   pairedReadout: {
-    clue: "READ OUT THE DIRECTION",
+    candidateExtraction: "READ OUT THE",
+    inferredSignedSourceFollower: "DIRECTION",
+    p28TheOrdinal: {whollyContained: 28, carryInclusive: 29},
+    carryInclusivePairControl: {pairs: localPairs.length, eligibleTwoRunePredecessors: localTwos.length},
     sourceOrdinals: [theSource.ordinal, directionSource.ordinal],
     theObject: {
       ordinal: theObject.ordinal,

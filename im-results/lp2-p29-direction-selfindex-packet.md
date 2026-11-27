@@ -1,4 +1,4 @@
-# READ OUT THE DIRECTION self-locates p29 word30 and yields a DH/derivative packet
+# Conditional READ OUT THE → signed-source DIRECTION continuation selects a p29 DH/derivative packet
 
 **Agent1, 19 November 2026; paired source-number extension by Agent42, 27 November 2026. Classification: conditional structural operation candidate with an exact, previously known numeric consequence on p29 and a new source-numbered ROAD handoff.** The held-out p28 recovery now gives a physically contiguous `READ OUT THE`. Authenticated source word29 is THE and its immediate one-based follower word30 is DIRECTION. Project p29 is physical LP2 page30, so the same source number selects canonical **word30 on physical page30** before that word's rune values are interpreted. Applying the already fixed outside-in H serialization to that four-rune object yields:
 
@@ -19,7 +19,7 @@ p28 offsets134..139 -> READ OUT
 p28 offsets140..141 -> THE
 ```
 
-The recovered THE is canonical p28 word29. It also aligns with authenticated one-based source word29:
+The candidate THE occupies p28 offsets140–141, ciphertext `[24,25]`. With the incoming p27 carry counted as word1, it is page-local word29; under the wholly-contained canonical parser below, it is word28. The proposed continuation adopts carry-inclusive numbering and aligns with authenticated one-based source word29:
 
 ```text
 29 THE
@@ -35,7 +35,7 @@ physical page30 = project p29
 canonical word30 on that page.
 ```
 
-The object is fixed before its values are read.
+The object follows once this conditional continuation grammar is fixed. THE occurs six times in the signed message (ordinals 2,8,13,18,23,29; followers PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION). DIRECTION is supplied by the proposed ordinal/follower rule, not recovered from p28 ciphertext.
 
 Canonical p29 word30 is:
 
@@ -46,7 +46,7 @@ offsets108..111
 
 ## Paired THE / DIRECTION readout: the preceding numbered word says THE ROAD
 
-The recovered instruction does not name DIRECTION in isolation. It is literally:
+The proposed instruction combines candidate `READ OUT THE` with signed-source follower `DIRECTION`; it is not a ciphertext recovery of all four words:
 
 ```text
 READ OUT THE DIRECTION
@@ -108,7 +108,7 @@ canonical word29
 H2 = [22,23] = THE ROAD.
 ```
 
-The same page's current numbered object, word30, is independently the sole one of the seven numbered four-rune objects whose H4 outer-sum coordinate is zero. Thus the two observations meet on the same source-selected page/word pair; they are not assembled from separate page searches.
+The same page's current numbered object, word30, is the sole one of seven numbered four-rune objects whose H4 outer-sum coordinate is zero. A Critic recount using the same pinned transcription and corpus, with page-local seam fragments counted consistently with the p28 THE29 selector, retains 48 pairs, **six** two-rune predecessors, one consecutive H2 hit (p29), 49 numbered objects, seven four-rune objects and the same sole zero outer-sum hit. P29 has no incoming carry; its operands are unchanged. The consecutive-value predicate is invariant to the source-index origin here: `[22,23]` is THE ROAD at origin zero and IS THE at origin one. Neither this predicate nor packet uniqueness independently selects the origin. Thus the two observations meet on the same source-selected page/word pair; they are not assembled from separate page searches.
 
 Across all **448** canonical complete two-rune words on unknown p0–55, exact H2 `[22,23]` occurs only at p29 word29. Exact-packet uniqueness alone is not a discovery statistic because H2 is invertible; the discriminating control is the finite numbered-pair family and the ordered consecutive-source predicate.
 
@@ -116,7 +116,7 @@ Across all **448** canonical complete two-rune words on unknown p0–55, exact H
 
 ### Direct ROAD handoff to the existing p23 instruction
 
-The new output ends on source index **23 ROAD**. Under the already used source-number-as-project-page convention this points to project p23 without consuming the polynomial-root orientation at all. P23 had independently yielded the hidden red-heading instruction:
+Under the hypothesis's zero-based source lookup, the output ends on source index **23 ROAD**. Under the source-number-as-project-page convention this points to p23 without consuming the polynomial-root orientation. P23 had previously yielded the conditional red-heading candidate:
 
 ```text
 THE ONE RISE.
@@ -284,7 +284,7 @@ The existing cross-source route supplies `AY=[24,26]` separately from the authen
 The current literal route can now be written:
 
 ```text
-p28 -> READ OUT THE DIRECTION
+p28 -> READ OUT THE -> signed-source follower DIRECTION
 DIRECTION's number30 -> physical page30 / p29
 source-numbered word29 THE -> H2 [22,23] -> THE ROAD -> ROAD23/p23
 source-numbered word30 DIRECTION -> H4 [p-1,b,A,F]
@@ -328,3 +328,5 @@ node sims/lp2_p29_direction_selfindex_packet_sft.cjs
 ```
 
 The SFT parses canonical words without splitting line wraps, selects page30 from authenticated DIRECTION's number, verifies the paired source-numbered words29/30, checks word29 H2=`[22,23]`=`THE ROAD`, performs the 48-pair / 448-two-rune controls, verifies word30's H4 packet, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Historical Windows Node22 run: **44461973002**. Paired-readout extension: **45915515638 PASS**. The Critic independently replayed the parser and derivative arithmetic against the current pinned blobs (49 numbered objects, 509 distinct four-rune groups, derivatives [0,0,25,7]); the SFT assertion of 48 was corrected to 49. The historical run is not a rerun of the corrected SFT.
+
+The 27 November Critic recount used transcription blob `43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7`, corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, and signed-source blob `a0d8bd2d73613e01cd8a2103d5721b2b998ee482`. The revised SFT adds carry-sensitive assertions; earlier Windows CI predates them. No new plaintext is asserted.
