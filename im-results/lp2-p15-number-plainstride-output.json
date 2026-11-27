@@ -1,0 +1,307 @@
+{
+  "originalLength": 1744,
+  "split": 1071,
+  "donorScore": -2.7423303684567215,
+  "out": [
+    {
+      "family": "factor",
+      "law": "ordinal",
+      "period": 44,
+      "plantedFeasibilityPassed": 88,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 45,
+          "pages": [
+            45,
+            135,
+            103,
+            32,
+            154,
+            72,
+            45
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 53,
+          "pages": [
+            53,
+            85,
+            37,
+            79,
+            68,
+            38,
+            65
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 41,
+        "expectedSign": -1,
+        "expectedStart": 41,
+        "fitCorrect": 1069,
+        "heldCorrect": 660,
+        "fitScore": -2.7413171455379044,
+        "heldScore": -2.7365141488872116
+      }
+    },
+    {
+      "family": "factor",
+      "law": "prime",
+      "period": 44,
+      "plantedFeasibilityPassed": 88,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 38,
+          "pages": [
+            38,
+            86,
+            66,
+            31,
+            74,
+            74,
+            112
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 48,
+          "pages": [
+            48,
+            35,
+            80,
+            83,
+            114,
+            50,
+            40
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 41,
+        "expectedSign": -1,
+        "expectedStart": 41,
+        "fitCorrect": 1071,
+        "heldCorrect": 671,
+        "fitScore": -2.741338880923105,
+        "heldScore": -2.7434067717618578
+      }
+    },
+    {
+      "family": "phi",
+      "law": "ordinal",
+      "period": 44,
+      "plantedFeasibilityPassed": 88,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 33,
+          "pages": [
+            33,
+            87,
+            40,
+            201,
+            37,
+            24,
+            68
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 60,
+          "pages": [
+            60,
+            136,
+            24,
+            60,
+            90,
+            151,
+            null
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 41,
+        "expectedSign": -1,
+        "expectedStart": 41,
+        "fitCorrect": 1067,
+        "heldCorrect": 670,
+        "fitScore": -2.740094455459043,
+        "heldScore": -2.7381668949399973
+      }
+    },
+    {
+      "family": "phi",
+      "law": "prime",
+      "period": 44,
+      "plantedFeasibilityPassed": 88,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 136,
+          "pages": [
+            136,
+            135,
+            46,
+            43,
+            80,
+            206,
+            30
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 64,
+          "pages": [
+            64,
+            119,
+            37,
+            57,
+            51,
+            39,
+            79
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 41,
+        "expectedSign": -1,
+        "expectedStart": 41,
+        "fitCorrect": 1068,
+        "heldCorrect": 0,
+        "fitScore": -2.738434534951369,
+        "heldScore": null
+      }
+    },
+    {
+      "family": "digits",
+      "law": "ordinal",
+      "period": 59,
+      "plantedFeasibilityPassed": 118,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 71,
+          "pages": [
+            71,
+            86,
+            40,
+            51,
+            175,
+            16,
+            47
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 70,
+          "pages": [
+            70,
+            183,
+            78,
+            57,
+            78,
+            185,
+            54
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 56,
+        "expectedSign": -1,
+        "expectedStart": 56,
+        "fitCorrect": 1063,
+        "heldCorrect": 673,
+        "fitScore": -2.74106394499264,
+        "heldScore": -2.743906730508695
+      }
+    },
+    {
+      "family": "digits",
+      "law": "prime",
+      "period": 59,
+      "plantedFeasibilityPassed": 118,
+      "rows": [
+        {
+          "sign": 1,
+          "fullPhases": [],
+          "latestFailure": 139,
+          "pages": [
+            139,
+            89,
+            68,
+            185,
+            123,
+            87,
+            86
+          ],
+          "fit": null,
+          "held": null
+        },
+        {
+          "sign": -1,
+          "fullPhases": [],
+          "latestFailure": 146,
+          "pages": [
+            146,
+            151,
+            174,
+            57,
+            68,
+            50,
+            54
+          ],
+          "fit": null,
+          "held": null
+        }
+      ],
+      "control": {
+        "sign": -1,
+        "start": 56,
+        "expectedSign": -1,
+        "expectedStart": 56,
+        "fitCorrect": 1067,
+        "heldCorrect": 673,
+        "fitScore": -2.739710449502112,
+        "heldScore": -2.743906730508695
+      }
+    }
+  ]
+}
