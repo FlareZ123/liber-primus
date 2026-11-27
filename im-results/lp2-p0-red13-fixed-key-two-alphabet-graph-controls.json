@@ -1,0 +1,1288 @@
+[
+  {
+    "run": 45950467700,
+    "mode": "0",
+    "found": false,
+    "exact": false,
+    "training": 0,
+    "training_truth": 0,
+    "held": 0,
+    "held_truth": 0,
+    "held_count": 38,
+    "omitted": [
+      10,
+      44,
+      60,
+      65,
+      84,
+      92
+    ],
+    "A": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "B": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seeds": [
+      {
+        "seed": [
+          11,
+          3,
+          88
+        ],
+        "roots": 1,
+        "nodes": 940,
+        "tests": 321105920,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          53
+        ],
+        "roots": 1,
+        "nodes": 795,
+        "tests": 359808000,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          65
+        ],
+        "roots": 1,
+        "nodes": 763,
+        "tests": 351948800,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          93
+        ],
+        "roots": 1,
+        "nodes": 1002,
+        "tests": 378333725,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          58
+        ],
+        "roots": 1,
+        "nodes": 923,
+        "tests": 326657024,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          34
+        ],
+        "roots": 1,
+        "nodes": 1165,
+        "tests": 307185664,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          44
+        ],
+        "roots": 1,
+        "nodes": 807,
+        "tests": 288527360,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          53
+        ],
+        "roots": 1,
+        "nodes": 1018,
+        "tests": 347234304,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          57
+        ],
+        "roots": 1,
+        "nodes": 1014,
+        "tests": 342326272,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          18
+        ],
+        "roots": 1,
+        "nodes": 1031,
+        "tests": 310405120,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          88,
+          53
+        ],
+        "roots": 1,
+        "nodes": 1312,
+        "tests": 309652480,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          65
+        ],
+        "roots": 1,
+        "nodes": 1056,
+        "tests": 322531328,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          34,
+          117,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1834,
+        "tests": 324474880,
+        "full": 0,
+        "rank": 42,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          18,
+          84,
+          117
+        ],
+        "roots": 1,
+        "nodes": 1874,
+        "tests": 291506176,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          58,
+          34,
+          51
+        ],
+        "roots": 1,
+        "nodes": 2087,
+        "tests": 350493696,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          57,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1802,
+        "tests": 303848448,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          65,
+          93
+        ],
+        "roots": 1,
+        "nodes": 1337,
+        "tests": 302842538,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          58,
+          51
+        ],
+        "roots": 1,
+        "nodes": 2158,
+        "tests": 339865600,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          18,
+          48
+        ],
+        "roots": 1,
+        "nodes": 2592,
+        "tests": 326996992,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          58,
+          48
+        ],
+        "roots": 1,
+        "nodes": 1669,
+        "tests": 325263360,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          44,
+          84,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1487,
+        "tests": 294710272,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          34,
+          48
+        ],
+        "roots": 1,
+        "nodes": 2630,
+        "tests": 292078592,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          34,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1726,
+        "tests": 301987840,
+        "full": 0,
+        "rank": 42,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          34,
+          44,
+          117
+        ],
+        "roots": 1,
+        "nodes": 2383,
+        "tests": 330005504,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          44,
+          57
+        ],
+        "roots": 1,
+        "nodes": 2556,
+        "tests": 339090432,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          58,
+          48
+        ],
+        "roots": 1,
+        "nodes": 2477,
+        "tests": 365905920,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          57,
+          84,
+          48
+        ],
+        "roots": 1,
+        "nodes": 1990,
+        "tests": 334750621,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1565,
+        "tests": 314137600,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          65,
+          57
+        ],
+        "roots": 1,
+        "nodes": 1467,
+        "tests": 322312192,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          53,
+          34
+        ],
+        "roots": 1,
+        "nodes": 1360,
+        "tests": 314978304,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          44
+        ],
+        "roots": 1,
+        "nodes": 1715,
+        "tests": 321158144,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          93,
+          18
+        ],
+        "roots": 1,
+        "nodes": 1755,
+        "tests": 340502528,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          65,
+          48
+        ],
+        "roots": 1,
+        "nodes": 1446,
+        "tests": 312629248,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          48
+        ],
+        "roots": 1,
+        "nodes": 1281,
+        "tests": 294097920,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          44,
+          48
+        ],
+        "roots": 1,
+        "nodes": 2384,
+        "tests": 362000384,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          93,
+          90
+        ],
+        "roots": 1,
+        "nodes": 2648,
+        "tests": 448744448,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          44,
+          57
+        ],
+        "roots": 1,
+        "nodes": 2221,
+        "tests": 308352000,
+        "full": 0,
+        "rank": 44,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          58,
+          34
+        ],
+        "roots": 1,
+        "nodes": 2142,
+        "tests": 345700352,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          57,
+          84
+        ],
+        "roots": 1,
+        "nodes": 2170,
+        "tests": 354829312,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          84
+        ],
+        "roots": 1,
+        "nodes": 1087,
+        "tests": 350225408,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      }
+    ]
+  },
+  {
+    "run": 45950473071,
+    "mode": "1",
+    "found": false,
+    "exact": false,
+    "training": 0,
+    "training_truth": 0,
+    "held": 0,
+    "held_truth": 0,
+    "held_count": 38,
+    "omitted": [
+      3,
+      10,
+      29,
+      31,
+      39,
+      48
+    ],
+    "A": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "B": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "seeds": [
+      {
+        "seed": [
+          11,
+          3,
+          88
+        ],
+        "roots": 1,
+        "nodes": 810,
+        "tests": 358659072,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          93
+        ],
+        "roots": 1,
+        "nodes": 805,
+        "tests": 337353728,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          53
+        ],
+        "roots": 1,
+        "nodes": 1040,
+        "tests": 376444928,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          65
+        ],
+        "roots": 1,
+        "nodes": 1085,
+        "tests": 362732544,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          34
+        ],
+        "roots": 1,
+        "nodes": 907,
+        "tests": 351159296,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          18
+        ],
+        "roots": 1,
+        "nodes": 988,
+        "tests": 338499584,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          58
+        ],
+        "roots": 1,
+        "nodes": 1163,
+        "tests": 325608448,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          93
+        ],
+        "roots": 1,
+        "nodes": 1391,
+        "tests": 361381702,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          53
+        ],
+        "roots": 1,
+        "nodes": 1939,
+        "tests": 387294208,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          57
+        ],
+        "roots": 1,
+        "nodes": 1154,
+        "tests": 347884544,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          44
+        ],
+        "roots": 1,
+        "nodes": 890,
+        "tests": 323732480,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          65
+        ],
+        "roots": 1,
+        "nodes": 1610,
+        "tests": 387930832,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          44,
+          84,
+          16
+        ],
+        "roots": 1,
+        "nodes": 2378,
+        "tests": 341513216,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          57,
+          48,
+          16
+        ],
+        "roots": 1,
+        "nodes": 2145,
+        "tests": 304829440,
+        "full": 0,
+        "rank": 43,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          84,
+          90
+        ],
+        "roots": 1,
+        "nodes": 2180,
+        "tests": 326328320,
+        "full": 0,
+        "rank": 43,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          65,
+          34
+        ],
+        "roots": 1,
+        "nodes": 2083,
+        "tests": 369447936,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          88,
+          57
+        ],
+        "roots": 1,
+        "nodes": 1764,
+        "tests": 294439936,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          34,
+          49
+        ],
+        "roots": 1,
+        "nodes": 1842,
+        "tests": 331657216,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          58,
+          16
+        ],
+        "roots": 1,
+        "nodes": 3076,
+        "tests": 366137344,
+        "full": 0,
+        "rank": 41,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          88,
+          48,
+          90
+        ],
+        "roots": 1,
+        "nodes": 1544,
+        "tests": 261329920,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          58,
+          84,
+          49
+        ],
+        "roots": 1,
+        "nodes": 3503,
+        "tests": 412392448,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          18,
+          84
+        ],
+        "roots": 1,
+        "nodes": 2189,
+        "tests": 363797504,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          65,
+          58,
+          49
+        ],
+        "roots": 1,
+        "nodes": 2599,
+        "tests": 355926016,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          34,
+          57,
+          49
+        ],
+        "roots": 1,
+        "nodes": 2600,
+        "tests": 369201152,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          57,
+          44
+        ],
+        "roots": 1,
+        "nodes": 2665,
+        "tests": 350660608,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          93,
+          34,
+          90
+        ],
+        "roots": 1,
+        "nodes": 2099,
+        "tests": 278460416,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          18,
+          48,
+          16
+        ],
+        "roots": 1,
+        "nodes": 2327,
+        "tests": 330358784,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          93,
+          58
+        ],
+        "roots": 1,
+        "nodes": 1504,
+        "tests": 313206784,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          65,
+          44
+        ],
+        "roots": 1,
+        "nodes": 2274,
+        "tests": 310451200,
+        "full": 0,
+        "rank": 40,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          53,
+          34
+        ],
+        "roots": 1,
+        "nodes": 1356,
+        "tests": 317888512,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          88,
+          18
+        ],
+        "roots": 1,
+        "nodes": 1594,
+        "tests": 353240064,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          3,
+          65,
+          18
+        ],
+        "roots": 1,
+        "nodes": 1980,
+        "tests": 317924352,
+        "full": 0,
+        "rank": 42,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          53,
+          49
+        ],
+        "roots": 1,
+        "nodes": 2464,
+        "tests": 348468224,
+        "full": 0,
+        "rank": 39,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          48
+        ],
+        "roots": 1,
+        "nodes": 1357,
+        "tests": 314114048,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          88,
+          84,
+          49
+        ],
+        "roots": 1,
+        "nodes": 2454,
+        "tests": 332655616,
+        "full": 0,
+        "rank": 35,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          88,
+          18,
+          48
+        ],
+        "roots": 1,
+        "nodes": 2030,
+        "tests": 342536192,
+        "full": 0,
+        "rank": 36,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          88,
+          53,
+          18
+        ],
+        "roots": 1,
+        "nodes": 1632,
+        "tests": 322682880,
+        "full": 0,
+        "rank": 37,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          88,
+          58,
+          49
+        ],
+        "roots": 1,
+        "nodes": 1613,
+        "tests": 308562944,
+        "full": 0,
+        "rank": 35,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          53,
+          58,
+          49
+        ],
+        "roots": 1,
+        "nodes": 2683,
+        "tests": 382679040,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      },
+      {
+        "seed": [
+          11,
+          3,
+          84
+        ],
+        "roots": 1,
+        "nodes": 1068,
+        "tests": 339289088,
+        "full": 0,
+        "rank": 38,
+        "timed": true,
+        "capped": false
+      }
+    ]
+  }
+]
