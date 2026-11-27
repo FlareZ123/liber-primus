@@ -1,0 +1,214 @@
+{
+  "sourceBlobs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "grid": "2550eae357442912220e05dc51147523a61dd75a"
+  },
+  "result": [
+    {
+      "radix": 59,
+      "model": "cell",
+      "rankFit": 85,
+      "augFit": 85,
+      "rankKnown": 180,
+      "augKnown": 180,
+      "rankAll": 256,
+      "conditionalP55Dimension": 76,
+      "heldP57Dimension": 95,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "relation": [],
+      "arbitraryWitnesses": 32,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 59,
+      "model": "token",
+      "rankFit": 69,
+      "augFit": 70,
+      "rankKnown": 127,
+      "augKnown": 128,
+      "rankAll": 161,
+      "conditionalP55Dimension": 34,
+      "heldP57Dimension": 58,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 59,
+      "model": "gp29",
+      "rankFit": 29,
+      "augFit": 30,
+      "rankKnown": 29,
+      "augKnown": 30,
+      "rankAll": 29,
+      "conditionalP55Dimension": 0,
+      "heldP57Dimension": 0,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 59,
+      "model": "separableRowCol",
+      "rankFit": 39,
+      "augFit": 40,
+      "rankKnown": 39,
+      "augKnown": 40,
+      "rankAll": 39,
+      "conditionalP55Dimension": 0,
+      "heldP57Dimension": 0,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 60,
+      "model": "cell",
+      "rankFit": 85,
+      "augFit": 85,
+      "rankKnown": 180,
+      "augKnown": 180,
+      "rankAll": 255,
+      "conditionalP55Dimension": 75,
+      "heldP57Dimension": 95,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "relation": [
+        {
+          "support": [
+            {
+              "i": 0,
+              "cell": 0,
+              "target": 203,
+              "coef": 1
+            },
+            {
+              "i": 12,
+              "cell": 47,
+              "target": 76,
+              "coef": 1
+            },
+            {
+              "i": 31,
+              "cell": 199,
+              "target": 47,
+              "coef": 1
+            },
+            {
+              "i": 37,
+              "cell": 247,
+              "target": 192,
+              "coef": 1
+            },
+            {
+              "i": 44,
+              "cell": 249,
+              "target": 158,
+              "coef": 9
+            },
+            {
+              "i": 52,
+              "cell": 192,
+              "target": 0,
+              "coef": 1
+            },
+            {
+              "i": 121,
+              "cell": 68,
+              "target": 199,
+              "coef": 1
+            },
+            {
+              "i": 127,
+              "cell": 76,
+              "target": 114,
+              "coef": 1
+            },
+            {
+              "i": 155,
+              "cell": 114,
+              "target": 197,
+              "coef": 1
+            },
+            {
+              "i": 156,
+              "cell": 115,
+              "target": 247,
+              "coef": 1
+            },
+            {
+              "i": 189,
+              "cell": 158,
+              "target": 249,
+              "coef": 9
+            },
+            {
+              "i": 218,
+              "cell": 197,
+              "target": 115,
+              "coef": 1
+            },
+            {
+              "i": 222,
+              "cell": 203,
+              "target": 68,
+              "coef": 1
+            }
+          ],
+          "rhs": 17
+        }
+      ],
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 32
+    },
+    {
+      "radix": 60,
+      "model": "token",
+      "rankFit": 69,
+      "augFit": 70,
+      "rankKnown": 127,
+      "augKnown": 128,
+      "rankAll": 160,
+      "conditionalP55Dimension": 33,
+      "heldP57Dimension": 58,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 60,
+      "model": "gp29",
+      "rankFit": 29,
+      "augFit": 30,
+      "rankKnown": 29,
+      "augKnown": 30,
+      "rankAll": 29,
+      "conditionalP55Dimension": 0,
+      "heldP57Dimension": 0,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    },
+    {
+      "radix": 60,
+      "model": "separableRowCol",
+      "rankFit": 37,
+      "augFit": 38,
+      "rankKnown": 39,
+      "augKnown": 40,
+      "rankAll": 39,
+      "conditionalP55Dimension": 0,
+      "heldP57Dimension": 2,
+      "pointwiseP55Fixed": [],
+      "plantPass": true,
+      "arbitraryWitnesses": 0,
+      "adjustedWitnesses": 0
+    }
+  ]
+}

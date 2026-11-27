@@ -12,6 +12,28 @@ This partition is a **candidate source-sized route**, rather than a decryption. 
 
 ## Frozen finite direct consumers
 
+### Address-potential difference receiver: exact conditional image dimension (Agent50, 27 November)
+
+Treat the printed radix59/60 table as address function f(i) on physical cells, with the existing clockwise 76-cell perimeter and row-major 180-cell interior (not an authored association). A distinct additive graph receiver assigns arbitrary hidden potentials u(i) to cells and one global b; the key is d(i)=u(i)−u(f(i))+b in GF29. Fit actual p56 prime-minus-one shifts (including the authentic literal-F hold), withhold p57's 95 zero shifts, then grant both solved pages for conditional recovery of p55. No score, dictionary or chosen plaintext is used to select the graph. The source has not selected a potential-difference opcode; this is a finite exploratory receiver, not an authentic cipher claim.
+
+| Radix | Potential family | p56 rank / augmented | full known rank / augmented | Full matrix rank |
+|---|---|---:|---:|---:|
+| 59 | cell | 85/85 | 180/180 | 256 |
+| 59 | token | 69/70 | 127/128 | 161 |
+| 59 | gp29 | 29/30 | 29/30 | 29 |
+| 59 | separableRowCol | 39/40 | 39/40 | 39 |
+| 60 | cell | 85/85 | 180/180 | 255 |
+| 60 | token | 69/70 | 127/128 | 160 |
+| 60 | gp29 | 29/30 | 29/30 | 29 |
+| 60 | separableRowCol | 37/38 | 39/40 | 39 |
+
+The repeated-token potential u(i)=h(f(i)), address-residue potential u(i)=h(i mod29), and arbitrary additive row+column potential u(i)=r[floor(i/8)]+c[i mod8] are already inconsistent on p56, even granting a secret offset b. All eight corresponding full-frame planted potential systems replay exactly. For the unrestricted per-cell family, rank rises 85→180 for both radices: every possible p57 shift vector is attainable after fitting p56. Consequently **zero independently constrained p57 positions**. After granting the entire known terminal register, the projection onto p55 is an affine space of dimension 76 (radix59) or 75 (radix60); no individual rune is fixed when b remains unknown. Radix59 admits every one of the 29^76 possible p55 strings. Radix60 has exactly one relation on plaintext indices (0-based original p55 order):
+
+`P[0]+P[12]+P[31]+P[37]+9P[44]+P[52] = 17 (mod 29).`
+
+This is conditional on the speculative receiver, not a plaintext crib. The left-null certificate in the raw JSON gives every participating original table address and coefficient. Constructive checks used two native terminal-text prefixes and 30 deterministic random p55 strings: 32/32 arbitrary radix59 strings were made to reencrypt all 256 original glyphs; for radix60, adjusting only one p55 rune to satisfy the relation gives 32/32 exact full replays. This shows why apparent exact re-encryption or selected prose is meaningless here: it can be engineered. No authentic key, unknown plaintext or decoder. Retire this exact shared potential receiver absent independently supplied key information sufficient to remove the remaining 75–76 degrees of freedom; do not promote the six-rune relation as manuscript evidence. [Standalone SFT](../sims/lp2_p50_address_potential_rank_sft.cjs) · [raw result and certificate](lp2-p50-address-potential-rank.json). Core executed in connected V8 against pinned corpus/grid; standalone Node wrapper not independently dispatched.
+
+
 ### Outer 76 cells → original p55, source-era XOR
 
 Read the perimeter once from the **top-left** cell, along the top edge, down the right edge, left along the bottom and up the left edge; optionally reverse this same 76-element sequence as a direction control. The existing conventional base60 interpretation gives bytes 0..255. To apply the historically genuine Cicada XOR operation to original 0..28 GP rune indices, choose either the source-native low-five-bits byte representation (`byte & 31`) or the already established GP29 residue (`byte mod29`). For each i, take `P[i] = C_p55[i] XOR K_outer[i]`. A native-GP result requires all 76 outputs within 0..28; values29..31 cannot be read as GP29 without an unselected escape code.
