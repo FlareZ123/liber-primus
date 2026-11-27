@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const crypto = require('node:crypto');
-function experiment(A,tweets,b64Text,chart,nativeReference){
+function experiment(A,tweets,b64Text,chart,nativeReference,ordering='spiral-rows'){
  const check=(b,msg)=>{if(!b)throw Error(msg);};const m29=x=>((x%29)+29)%29,m28=x=>((x%28)+28)%28;
  const F=[0,1,2];while(F.length<16)F.push(F.at(-1)+F.at(-2));
  let primes=[];for(let p=2;primes.length<988;p++){if(primes.every(q=>q*q>p||p%q))primes.push(p);}
@@ -15,7 +15,11 @@ function experiment(A,tweets,b64Text,chart,nativeReference){
  check(B.slice(0,8).map(x=>String.fromCharCode(x)).join("")==="iVBORw0K"&&G.slice(0,3).join()==="255,216,255","source format");
  const xor=(x,y)=>x.map((v,i)=>v^y[i]);
  const sources={twitter:T,b64:B,gematria:G,mask:xor(T,B),audio:xor(T,G),data:xor(B,G)};
- const positions=F.flatMap(f=>Array.from({length:rows[f].bytes.length},(_,j)=>rows[f].offset+j));
+ const physical=[3258,3222,3152,3038,3278,3299,3298,2838,3288,3294,3296,2472,4516,1206,708,1820];
+ const rowOrder=ordering.startsWith("physical")?physical.map(v=>F[grid.indexOf(v)]):F;
+ check(rowOrder.length===16&&new Set(rowOrder).size===16&&rowOrder.every(v=>F.includes(v)),"row permutation");
+ check(["spiral-rows","spiral-columns","physical-rows","physical-columns"].includes(ordering),"ordering");
+ const positions=ordering.endsWith("-rows")?rowOrder.flatMap(f=>Array.from({length:rows[f].bytes.length},(_,j)=>rows[f].offset+j)):Array.from({length:65},(_,j)=>rowOrder.filter(f=>j<rows[f].bytes.length).map(f=>rows[f].offset+j)).flat();
  check(positions.length===987&&new Set(positions).size===987,"selected rows");
  const keys=Object.fromEntries(Object.entries(sources).map(([k,v])=>[k,positions.map(p=>v[p])]));
  const text=nativeReference.split(/^### (\d+)\s*$/m);let train=[],nativeHeld=[];
@@ -39,7 +43,7 @@ function experiment(A,tweets,b64Text,chart,nativeReference){
  const fitN=987;
  const held=nativeHeld.flat(), p57=A.pages[57].indices;
  check(held.length>200 && p57.length===95,"native held");
- const out={selection:{F,grid,offsets:F.map(f=>rows[f].offset),lengths:F.map(f=>rows[f].bytes.length),selectedBytes:positions.length,sourceBytes:T.length,operands:Object.keys(keys)},native:{trainRunes:total,heldRunes:held.length,heldScore:score(held),p57Score:score(p57)},direct:[],fhold:[],xor:[],rank:[],controls:{direct:0,fhold:0,rank:0},best:{}};
+ const out={selection:{ordering,rowOrder,F,grid,offsets:F.map(f=>rows[f].offset),lengths:F.map(f=>rows[f].bytes.length),selectedBytes:positions.length,sourceBytes:T.length,operands:Object.keys(keys)},native:{trainRunes:total,heldRunes:held.length,heldScore:score(held),p57Score:score(p57)},direct:[],fhold:[],xor:[],rank:[],controls:{direct:0,fhold:0,rank:0},best:{}};
  const rankModes=["cycle","log15","sorted"];
  function excerpt(p){return p.slice(0,100).map(x=>A.translit[x]).join(" ");}
  const bestRank={};let rankTrials=0,rankPositive=0,maxRank=-Infinity;
@@ -78,4 +82,4 @@ const expected = ["b3164929b090ffee06490e8ca86f495aa1db50c7","3cf34e331497e7e85c
 raw.forEach((b,i)=>assert.equal(gitblob(b),expected[i],sourceFiles[i]));
 const A = read('resources/liber-primus/lp2-corpus.json'), N = read('resources/liber-primus/lp1-plaintext-reference.txt');
 assert.equal(gitblob(A),"054f2a0f780b7d46901acbe3d9bf4f0ac1801165"); assert.equal(gitblob(N),"8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d");
-console.log(JSON.stringify(experiment(JSON.parse(A),raw[0].toString('utf8'),raw[1].toString('utf8'),raw[2],N.toString('utf8')),null,2));
+console.log(JSON.stringify(experiment(JSON.parse(A),raw[0].toString('utf8'),raw[1].toString('utf8'),raw[2],N.toString('utf8'),process.argv[3]||'spiral-rows'),null,2));
