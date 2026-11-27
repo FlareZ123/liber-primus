@@ -1,0 +1,215 @@
+{
+  "counts": {
+    "global": 2896,
+    "complete": 2864,
+    "crossing": 32,
+    "completeSix": 251,
+    "withinPageWindows": 12681,
+    "p20Windows": 264
+  },
+  "source": [
+    18,
+    3,
+    20,
+    10,
+    11,
+    16
+  ],
+  "transformed": [
+    3,
+    10,
+    16,
+    3,
+    8,
+    20
+  ],
+  "H6inverse": [
+    26,
+    9,
+    24,
+    8,
+    28,
+    23
+  ],
+  "target": [
+    19,
+    18,
+    24,
+    9,
+    10,
+    21
+  ],
+  "local": [
+    {
+      "page": 20,
+      "endPage": 20,
+      "start": 58,
+      "values": [
+        18,
+        26,
+        12,
+        8,
+        28,
+        3
+      ],
+      "sum": 95,
+      "residue": 8
+    },
+    {
+      "page": 20,
+      "endPage": 20,
+      "start": 99,
+      "values": [
+        14,
+        23,
+        25,
+        22,
+        15,
+        20
+      ],
+      "sum": 119,
+      "residue": 3
+    },
+    {
+      "page": 20,
+      "endPage": 20,
+      "start": 158,
+      "values": [
+        10,
+        11,
+        20,
+        21,
+        20,
+        10
+      ],
+      "sum": 92,
+      "residue": 5
+    },
+    {
+      "page": 20,
+      "endPage": 20,
+      "start": 263,
+      "values": [
+        14,
+        19,
+        25,
+        15,
+        5,
+        18
+      ],
+      "sum": 96,
+      "residue": 9
+    }
+  ],
+  "results": [
+    {
+      "kind": 0,
+      "sign": 1,
+      "key": [
+        3,
+        10,
+        16,
+        3,
+        8,
+        20
+      ],
+      "enc": [
+        22,
+        28,
+        11,
+        12,
+        18,
+        12
+      ],
+      "residue": 16,
+      "localResidue": 0,
+      "localExact": [],
+      "globalWordExact": [],
+      "pageWindowExact": [],
+      "pageWindowResidue": 5,
+      "allPageWindowPermutationMatches": []
+    },
+    {
+      "kind": 0,
+      "sign": -1,
+      "key": [
+        26,
+        19,
+        13,
+        26,
+        21,
+        9
+      ],
+      "enc": [
+        16,
+        8,
+        8,
+        6,
+        2,
+        1
+      ],
+      "residue": 12,
+      "localResidue": 0,
+      "localExact": [],
+      "globalWordExact": [],
+      "pageWindowExact": [],
+      "pageWindowResidue": 6,
+      "allPageWindowPermutationMatches": []
+    },
+    {
+      "kind": 1,
+      "sign": 1,
+      "key": [
+        26,
+        9,
+        24,
+        8,
+        28,
+        23
+      ],
+      "enc": [
+        16,
+        27,
+        19,
+        17,
+        9,
+        15
+      ],
+      "residue": 16,
+      "localResidue": 0,
+      "localExact": [],
+      "globalWordExact": [],
+      "pageWindowExact": [],
+      "pageWindowResidue": 5,
+      "allPageWindowPermutationMatches": []
+    },
+    {
+      "kind": 1,
+      "sign": -1,
+      "key": [
+        3,
+        20,
+        5,
+        21,
+        1,
+        6
+      ],
+      "enc": [
+        22,
+        9,
+        0,
+        1,
+        11,
+        27
+      ],
+      "residue": 12,
+      "localResidue": 0,
+      "localExact": [],
+      "globalWordExact": [],
+      "pageWindowExact": [],
+      "pageWindowResidue": 6,
+      "allPageWindowPermutationMatches": []
+    }
+  ],
+  "controls": 2880
+}

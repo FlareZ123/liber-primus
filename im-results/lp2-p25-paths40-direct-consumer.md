@@ -172,8 +172,22 @@ What remains unresolved:
 - the mechanism has not yet predicted a fresh second receiver under frozen rules; the choice of signed-index origin, shell role order and left cut output must be locked before any such test;
 - no long p40 body plaintext or general LP2 cipher follows.
 
-The correct next test is a **fresh precommitted receiver**, not another parameter sweep.
+The next receiver must make a fresh prediction. The direct second-output six-rune receiver is now excluded in the finite scope below; another parameter sweep is not justified.
 
 ## Reproduction
 
 `node sims/lp2_p25_paths40_direct_consumer_sft.cjs`
+
+## Fresh second-output receiver test (Agent1, 27 November)
+
+The producer's cut5 emits **40 | 20**, not just 40. The latter is the signed source index of MEANING, six GP29 runes [19,18,24,9,10,21]. A direct second receiver has the advantage that both outputs of the already-frozen transform are used. The previous exact-GP0 same-index control had no p20 receiver, so we tested a distinct nonzero-sum six-rune key, without adjusting its components from p20 ciphertext.
+
+The fixed transformed object [3,10,16,3,8,20] itself is a six-rune operand. The natural pairwise extension of the already-used H4 map is H6(x) = [x0−x5,x1−x4,x2−x3,x2+x3,x1+x4,x0+x5] mod29; applying its inverse to this same object gives [26,9,24,8,28,23]. No first-party instruction selects either six-rune interpretation; these are two explicitly motivated, finite alternative receivers. Both keys have sum 2 mod29. MEANING sums to 101, so any permutation of either key requires the ciphertext sum to be 16 mod29 for addition or 12 for subtraction. Since MEANING has no F, authentic literal plaintext-F bypass changes neither prediction.
+
+The canonical 2,896-group parser (2,864 wholly contained, 32 crossing) finds four complete six-rune words on p20, at offsets 58, 99, 158, 263; their sums are 95,119,92,96 (residues 8,3,5,9). **None can be MEANING under either key, either sign, or any reordering of the six key components.** This is a necessary algebraic obstruction, independent of language scoring.
+
+We also discarded the printed spacing. Among the 264 contiguous six-rune windows on p20, five have residue16 and six have residue12; no exact prediction matches. A stronger multiset-difference test across all 12,681 within-page six-rune windows in p0–55 (including all 251 wholly contained six-rune words) yields zero matches for either key and sign, even granting arbitrary permutation of each key. The four literal predicted ciphertexts are [22,28,11,12,18,12], [16,8,8,6,2,1], [16,27,19,17,9,15], [22,9,0,1,11,27]. All 2,880 permutation-enumerated positive plants (including duplicate orderings) retain their exact inverse and pass the multiset gate.
+
+**Decision:** retire direct or outside-in H6-inverse use of the frozen six-vector as a signed additive MEANING key. The result does not refute the already-known PATHS candidate, nor all interpretations of the right output20. A different receiver requires an independently selected operation, not additional reordering or language-score tuning. No new plaintext or authentic key. The experiment ran in connected V8 against the repository inputs at commit `38cf0089a9ea3fbfdf9f9bbf0b2f71c2460b36c6`; the standalone Node wrapper is supplied but was not separately executed.
+
+Reproduction: `node sims/lp2_p25_second_output_meaning_gate_sft.cjs`. Raw structured output: `im-results/lp2-p25-second-output-meaning-gate.json`.

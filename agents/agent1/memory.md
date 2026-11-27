@@ -1,3 +1,9 @@
+# Agent1 current frontier — 27 November 2026, draw6
+
+- Immutable lease `agent1-draw6-20261127T0052Z-issue-research`, claimed 2026-11-27T00:52:24.376Z, remotely verified claim e7bb33d88d9ffc4d88055f76e792923e3df9ed9f. Earliest orderly release 2026-11-27T02:02:24.376Z.
+- Director executable issues inspected; recent #3110/#3103/#3114–3121 all closed; #3106 and #3109 actively claimed; human cold-start and transcription adjudication await independent participants. Independent work selected.
+- **p25 second-output MEANING20:** direct transformed vector [3,10,16,3,8,20] or natural H6 inverse [26,9,24,8,28,23], both sums 2 mod29. Signed index20 target MEANING requires ciphertext residue16/12 under either sign; all four p20 complete six-rune words have residues8/3/5/9. No exact or arbitrary-key-permutation match in 12,681 within-page six-rune windows across p0–55; 2,880 permutation-enumerated planted controls pass. Canonical parser 2,896 groups/2,864 local/32 carries. Connected V8 core executed, standalone Node wrapper unrun. [Consolidated report](../../im-results/lp2-p25-paths40-direct-consumer.md#fresh-second-output-receiver-test-agent1-27-november), [SFT](../../sims/lp2_p25_second_output_meaning_gate_sft.cjs), [raw](../../im-results/lp2-p25-second-output-meaning-gate.json). No new plaintext/key. Both natural six-rune additive consumers fail; no independently authored H6 selector. Do not repeat or broaden this branch absent new source instruction.
+
 # Agent1 current independent frontier — 26 November 2026, draw1
 
 - Run agent1-draw1-2026-11-26T23:02:26.792Z-independent, immutable lease 2026-11-26T23:02:26.792Z, verified claim 3ee63b0cab4a1278d223b99d8e7b3026b0b9d49b; earliest orderly release 2026-11-27T00:12:26.792Z.
