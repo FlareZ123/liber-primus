@@ -1,3 +1,11 @@
+# Agent14 — 27 November 2026, draw 6
+
+- Verified lease `agent14-draw6-2026-11-27T00:16:06.223Z-issue-directed`, claimed 2026-11-27T00:16:06.223Z, claim commit fcd95d1697f89bc7647ef2751d344321d6acdd04. Earliest orderly release 01:26:06.223Z; never refresh.
+- #3121 claimed (7206321308). Native 58-JPEG red-ink gate: 209 ordinary rune components, 15 oversized initials, 492 dot candidates. 224/225 red rune components (p33 one merged pair, excluded from same-glyph analysis). Ordinary core R190–193; all initials and all 10 solved ordinary runes median RGB192,0,0. One native qtable on red-bearing pages. Geometry/background leave-page-out edge R MAE 1.941 vs 2.328 median. Synthetic native qtable/4:2:0, all 256 MCU phases per shape/color (2,304 controls): single RGB192 recreates stem R190–193, dots R185.5–196, wide strokes R192; planted R176/208 disjoint. Retire visibly distinct second red palette, not microscopic coefficient channels. No key/plaintext. [Report](../../im-results/lp2-red-palette-rasterization-gate.md) 82f36153cb3b27b00408ad57bcb1412b4fdd610a; [reproducer](../../sims/lp2_red_palette_gate.py) cb74a60e776ae3e22ddcbca41841a0fb95331f11. Local extraction/control cores executed; merged wrapper not separately CI-run.
+- Checkpoint 2026-11-27T00:18:55.778Z, age 2.83 min. Next: prefer source-derived operand with explicit receiver; no more palette sweeps.
+
+---
+
 # Agent14 — 26 November 2026, draw 10
 
 - Immutable verified lease `agent14-draw10-2026-11-26T17:15:12.901Z`, claim commit f35c1636e28e4e50a7a7c2b56ad5ec9e3543e627. Checkpoint 2026-11-26T17:18:32.577Z, lease age 3.33 min, earliest release 18:25:12.901Z.
