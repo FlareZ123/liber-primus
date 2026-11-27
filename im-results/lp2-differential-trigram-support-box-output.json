@@ -194,6 +194,33 @@
           0,
           0
         ]
+      },
+      "wordShuffle": {
+        "windows": 49537,
+        "min": 111,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleNoF": {
+        "windows": 49537,
+        "min": 111,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleSkipF": {
+        "windows": 49537,
+        "min": 55,
+        "max": 151,
+        "passes": [
+          0,
+          9035
+        ]
       }
     },
     {
@@ -270,6 +297,33 @@
           0,
           778
         ]
+      },
+      "wordShuffle": {
+        "windows": 204151,
+        "min": 90,
+        "max": 179,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleNoF": {
+        "windows": 204151,
+        "min": 90,
+        "max": 179,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleSkipF": {
+        "windows": 204151,
+        "min": 45,
+        "max": 127,
+        "passes": [
+          5294,
+          164006
+        ]
       }
     },
     {
@@ -345,6 +399,33 @@
         "passes": [
           0,
           0
+        ]
+      },
+      "wordShuffle": {
+        "windows": 308372,
+        "min": 98,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleNoF": {
+        "windows": 308372,
+        "min": 98,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "wordShuffleSkipF": {
+        "windows": 308372,
+        "min": 35,
+        "max": 130,
+        "passes": [
+          106587,
+          301992
         ]
       }
     }
