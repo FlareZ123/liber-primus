@@ -1,0 +1,218 @@
+{
+  "rows": 29157,
+  "uniqueWords": 29061,
+  "results": [
+    {
+      "pair": [
+        14,
+        55
+      ],
+      "sign": 1,
+      "completeWords": [
+        45,
+        47
+      ],
+      "original": {
+        "impossible": 8,
+        "maxOverlap": 7,
+        "example": {
+          "start": 16,
+          "end": 21,
+          "wordIds": [
+            1238,
+            771
+          ]
+        },
+        "components": 12,
+        "failedComponents": 7,
+        "assignments": "0",
+        "plain": null
+      },
+      "controls": [
+        {
+          "matchedAssignments": "8500945575250630656000",
+          "correct": 342,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "26200172718194688000",
+          "correct": 350,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 7
+        },
+        {
+          "matchedAssignments": "989020195040493158400",
+          "correct": 318,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 7
+        },
+        {
+          "matchedAssignments": "8899401640457476915200",
+          "correct": 300,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        }
+      ]
+    },
+    {
+      "pair": [
+        14,
+        55
+      ],
+      "sign": -1,
+      "completeWords": [
+        45,
+        47
+      ],
+      "original": {
+        "impossible": 10,
+        "maxOverlap": 7,
+        "example": {
+          "start": 2,
+          "end": 6,
+          "wordIds": [
+            1235,
+            767
+          ]
+        },
+        "components": 12,
+        "failedComponents": 7,
+        "assignments": "0",
+        "plain": null
+      },
+      "controls": [
+        {
+          "matchedAssignments": "165117195798331392000",
+          "correct": 336,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 7
+        },
+        {
+          "matchedAssignments": "4302093158881689600000",
+          "correct": 344,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 5
+        },
+        {
+          "matchedAssignments": "72253903058955178868736000",
+          "correct": 332,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "24711462678110404608000",
+          "correct": 348,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 6
+        }
+      ]
+    },
+    {
+      "pair": [
+        32,
+        51
+      ],
+      "sign": 1,
+      "completeWords": [
+        45,
+        40
+      ],
+      "original": {
+        "impossible": 6,
+        "maxOverlap": 8,
+        "example": {
+          "start": 11,
+          "end": 16,
+          "wordIds": [
+            1237,
+            1765
+          ]
+        },
+        "components": 11,
+        "failedComponents": 7,
+        "assignments": "0",
+        "plain": null
+      },
+      "controls": [
+        {
+          "matchedAssignments": "100267756958121984",
+          "correct": 342,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 7
+        },
+        {
+          "matchedAssignments": "4851185068650240",
+          "correct": 360,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "655364390531880960",
+          "correct": 352,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "1787623050964800",
+          "correct": 390,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 7
+        }
+      ]
+    },
+    {
+      "pair": [
+        32,
+        51
+      ],
+      "sign": -1,
+      "completeWords": [
+        45,
+        40
+      ],
+      "original": {
+        "impossible": 7,
+        "maxOverlap": 8,
+        "example": {
+          "start": 11,
+          "end": 16,
+          "wordIds": [
+            1237,
+            1765
+          ]
+        },
+        "components": 11,
+        "failedComponents": 8,
+        "assignments": "0",
+        "plain": null
+      },
+      "controls": [
+        {
+          "matchedAssignments": "10669371994275840",
+          "correct": 356,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "177116726586240000",
+          "correct": 294,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "78370215598080",
+          "correct": 352,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        },
+        {
+          "matchedAssignments": "39261188742128640",
+          "correct": 364,
+          "wrongAssignments": "0",
+          "wrongFailedComponents": 8
+        }
+      ]
+    }
+  ]
+}

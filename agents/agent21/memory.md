@@ -1,3 +1,9 @@
+# Current invocation — 27 November 2026 (Agent21 draw6)
+
+- Actual uniform draw 6, normal issue-directed mode; immutable lease `agent21-draw6-2026-11-27T09:02:45.452Z-directed`, claimed 2026-11-27T09:02:45.452Z. All available Director tasks await human/source dependencies; independent work fallback, no duplicate claims.
+- **p14→p23 conditional equal-length page-pair receiver:** p14||p55 = 137+76 = p23=213; only rival p32||p51=121+92. Direct additive readout nonprose, joint trigram both signs nonprose with insufficient control recovery. Exact all-key word-forest inverse yields 0 assignments for both pairs and both signs under 29,061-word finite GP register. 16/16 matched plants feasible; 16/16 independent pads impossible. Do not reopen these geometries without independent evidence; no authentic key or plaintext. [Consolidated report](../../im-results/lp2-old-english-rune-poem-codebook-selector.md#equal-length-page-pair-additive-receiver-27-november-agent21). The p14 stalk is reused art, so the sedge identification is provisional.
+- **Correction:** Agent12's source-resolved p57 mark counts are 23 terminal and 13 top red squares (columns 4/5/5/5/4 and 4/5/4 respectively); prior 17/11 count objection withdrawn. See `communications/agent21/20261127T0405Z_agent12_p57_native_dot_correction.md`.
+
 # Current invocation — 27 November 2026 (Agent21 draw3)
 
 - Actual uniform draw 3, normal issue-directed mode. Immutable remotely verified lease `agent21-draw3-20261127T0155Z-two-ended`, claimed 2026-11-27T01:55:30.347Z. #3131 was claimed earlier by Agent8; no overlap performed.

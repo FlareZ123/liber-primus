@@ -32,10 +32,30 @@ A secondary, nonessential alignment: tokenizing the signed 2016 message as white
 
 No original source fixes whether a would-be key should contain Old English stanza letters, rune-name spellings, first words, syllables, stanza lengths, prime-index sums, one of several historical editions, or a placement/reset rule. These alternatives give different outputs and cannot be compared by looking for pleasant plaintext. In particular, a first-letter or first-rune acrostic of the 29 stanza labels trivially recovers the familiar Futhorc order, not a second 29-symbol permutation.
 
+
+## Equal-length page-pair additive receiver (27 November, Agent21)
+
+The source-selected p14→p23 navigation is provisional: p14's margin stalk is reused on p8–14, and its lateral insect is not the vertical insect on p23–26. See [the source gate](lp2-p14-mayfly-root-stalk-source-gate.md). The exact lengths are p14=137, p55=76, p23=213. Among distinct physical unresolved page pairs, only (14,55) and (32,51) sum to 213 (121+92 for the rival). This is a postselected length coincidence, not a source-authenticated shared-key instruction.
+
+Direct use of p14||p55 as an additive key for p23 yields IoC .0330853 (subtraction) or .0361857 (addition), no prose; original .0318894. Next, give the two streams **every one of 29^213 arbitrary additive pads**: C_A=P_A+K, C_B=P_B+sK (s=+1 or -1), zero-based forward physical order. Exact joint trigram Viterbi, resetting the second language history at its page split, returns nonprose for both signs and both pairs. The score for p14||p55 is -1.892875 / -1.948274 nats per rune. Held native-text matched-pad controls recover only 40–112 of 426 runes across all four cells, and scores overlap the independent-pad controls. The trigram result alone does not establish an exclusion.
+
+A stronger receiver assumes only the complete original printed words come from the pinned TextBlob GP lexicon (29,061 unique words), without assuming any language score or restricting page-edge fragments. Two word partitions overlay to form a forest of interval overlaps. Each edge constrains the shared pad on its intersection; each word candidate determines that pad segment exactly. Bottom-up sum-product over shared-pad signatures counts **every** feasible word/pad assignment exactly (BigInt), with max-product backtracking and replay for nonzero solutions. The algorithm checks the forest property. Source transcription uses the existing '-' and '.' word delimiter convention; no cross-page incomplete words are forced into dictionary entries.
+
+| B stream | Sign s | Complete words A/B | Impossible local overlaps | Failed forest components | Global assignments |
+|---|---:|---:|---:|---:|---:|
+| p14||p55 | +1 | 45/47 | 8 | 7/12 | 0 |
+| p14||p55 | -1 | 45/47 | 10 | 7/12 | 0 |
+| p32||p51 | +1 | 45/40 | 6 | 7/11 | 0 |
+| p32||p51 | -1 | 45/40 | 7 | 8/11 | 0 |
+
+All 16 matched dictionary-word plants have nonzero assignments; all 16 independent-pad negatives have zero. MAP recovers 294–390 of 426 planted runes, with multiple feasible assignments even for positives. This excludes the two fixed additive reuse geometries **conditional on the finite complete-word register**, not arbitrary English, altered word boundaries, F-hold clocks, or other mechanisms. No source-selected key or unknown plaintext. Do not expand the length coincidence into a menu of unrelated transforms.
+
+Reproduce: [trigram SFT](../sims/lp2_p14_p55_p23_sharedpad_sft.cjs), [trigram raw](lp2-p14-p55-p23-sharedpad.json), [exact word-forest SFT](../sims/lp2_p14_p55_p23_sharedpad_word_forest_sft.cjs), [forest raw](lp2-p14-p55-p23-sharedpad-word-forest.json). Both were executed in connected JS; Node wrappers not independently CI-run.
+
 ## Decision for the Director
 
 The proposed 29-stanza **complete codebook** is exhausted as a *source-selected new operation*: its one ordinary historical index mapping is already Gematria Primus. The external poem could still become a source of a key if a separate authenticated clue specifies **which stanza data to extract and how to apply it**; that dependency is presently absent. Reopen this lane only with an independent source-authored selector fixing both a nonidentity operation and target clock before touching the unknown ciphertext. The separate p14 art-attribution assignment #697 can assess the semantic link without this codebook claim.
 
-A 40-rune candidate was deliberately not fabricated through arbitrary stanza-statistic searches; with no selected new decoder, there is no cryptographic inverse to run or to certify. All 12,956 original unknown runes and all source image/transcription records remain unchanged.
+No source-selected new decoder emerged; the conditional page-pair experiment above returned no valid dictionary inverse. All 12,956 original unknown runes and all source image/transcription records remain unchanged.
 
 **Evidence class:** exact historical alphabet equivalence plus a bounded no-selector decision. **No recovered key, ciphertext inversion, unknown plaintext, or destination.**
