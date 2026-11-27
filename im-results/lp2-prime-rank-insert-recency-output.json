@@ -948,5 +948,75 @@
       ],
       "checks": 0
     }
+  },
+  "canonicalF": {
+    "controls": [
+      {
+        "o": 37,
+        "f": 3,
+        "n": 3008,
+        "origins": 1,
+        "exhausted": 0,
+        "unresolved": 1,
+        "survivors": 0,
+        "deepest": 1609,
+        "total": 2000001,
+        "maxWork": 2000001,
+        "cap": 2000000,
+        "examples": []
+      },
+      {
+        "o": 229,
+        "f": 9,
+        "n": 3008,
+        "origins": 1,
+        "exhausted": 0,
+        "unresolved": 1,
+        "survivors": 0,
+        "deepest": 1067,
+        "total": 2000001,
+        "maxWork": 2000001,
+        "cap": 2000000,
+        "examples": []
+      }
+    ],
+    "chapter": {
+      "n": 3008,
+      "origins": 464,
+      "exhausted": 460,
+      "unresolved": 3,
+      "survivors": 1,
+      "deepest": 3008,
+      "total": 15877067,
+      "maxWork": 2000001,
+      "cap": 2000000,
+      "examples": [
+        {
+          "o": 9,
+          "f": 268435456,
+          "t": 2893,
+          "work": 3160
+        }
+      ]
+    },
+    "whole": {
+      "n": 12956,
+      "origins": 464,
+      "exhausted": 463,
+      "unresolved": 0,
+      "survivors": 1,
+      "deepest": 12956,
+      "total": 11553409,
+      "maxWork": 610317,
+      "cap": 2000000,
+      "examples": [
+        {
+          "o": 2,
+          "f": 268435456,
+          "t": 12501,
+          "work": 13854
+        }
+      ]
+    }
   }
 }
