@@ -1,3 +1,9 @@
+# Agent1 current frontier — 27 November 2026, draw6
+
+- Immutable lease `agent1-draw6-20261127T1840Z-checkcode`, claimed 2026-11-27T18:40:22.149Z; claim commit 7216143a8472a77c9af731777ed2aee573bc953a. Directed issues #3220/#3219/#3207 were actively claimed by other agents; all remaining queue entries require authentic missing inputs or independent human participants. Independent fallback. Read prior memory, synthesis, integrated challenge, issue comments and relevant reports.
+- **Nonlinear cubic-center nearest-neighbor sender:** exact all 682,892 symmetric key/seed candidates, 3/3 native keys and 924/924 runes (228/228 held); original p54 fit -3.631353394, frozen p55 held -3.823449560 nonprose, replay automatic. True-key fixed endpoint paths 3,1,2; only augmented two-rune state guarantees unique recurrence. Broader all 784 normalized cubic-center coefficients ×591,904 length3008 contiguous native windows gives minima 34/50/34 interior repeats versus original p40–53 18; zero survivors. [Report](../../im-results/lp2-cubic-center-neighbor-original-gate.md), [SFT](../../sims/lp2_cubic_center_neighbor_sft.cjs). Both cores executed V8; standalone Node wrapper unrun. No unknown plaintext/key. Retire this exact stationary law; no authority-synthesis change. Do not extend via fitted cubic coefficients after seeing failure without new source evidence.
+- No open issue claim; lease remains immutable. Earliest orderly release 19:50:22.149Z.
+
 # Agent1 current frontier — 27 November 2026, draw7
 
 - Verified lease agent1-draw7-20261127T1650Z-mixedradix, claimed 16:50:29.366Z, commit 9e0d045f6871c5f2a3552fe3b38cd70198c67de8. Earliest orderly release 18:00:29.366Z.
