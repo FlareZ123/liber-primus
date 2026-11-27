@@ -38,12 +38,14 @@ def main():
             contexts = []
             for i in hits:
                 window = range(max(0, i-25), min(len(lines), i+26))
-                contexts.append({"line": i+1, "text": lines[i], "related": [{"line": j+1, "text": lines[j]} for j in window if j != i and RELATED.search(lines[j])]})
+                contexts.append({"line": i+1, "text": lines[i], "related": [{"line": j+1, "text": lines[j]} for j in window if j != i]})
             result[category][label] = {"needle": needle, "count": len(hits), "hits": contexts}
     out = Path("im-results/2013-ssss-signed-wrapper-irc-search.json")
     out.write_text(json.dumps(result, indent=2, ensure_ascii=True)+"\n", encoding="utf-8")
     print(json.dumps({"bytes": len(raw), "lines": len(lines), "counts": {k: {label: v["count"] for label,v in result[k].items()} for k in ("shares","hosts")}}))
     for label, item in result["shares"].items():
+        if label not in HOSTS and label != "10":
+            continue
         for h in item["hits"][:8]:
             print(json.dumps({"share": label, **h}, ensure_ascii=True))
 
