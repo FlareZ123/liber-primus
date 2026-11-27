@@ -41,8 +41,11 @@ for plant in (0,1):
      items.append({'index':idx,'length':len(truth),'truth':''.join(s.SYM[t] for t in truth),
                    'cipher':''.join(s.SYM[t] for t in ct),
                    'compatible_words':len(decoded),'compatible_with_true_start':sum(
-                     s.encode(w,p,k,phase)==ct for w in decoded),'alternatives':[
-                     ''.join(s.SYM[t] for t in w) for w in list(sorted(decoded))[:15]
+                     s.encode(w,p,k,phase)==ct for w in decoded),'true_start':phase, 'phase_witnesses':[
+                     {'plaintext_gp':''.join(s.SYM[t] for t in w),
+                      'plaintext_tokens':' '.join(s.ALPHA[t] for t in w),
+                      'starts':[j for j in range(8) if s.encode(w,p,k,j)==ct]}
+                     for w in sorted(decoded)
                    ]})
    rec['chapters'].append({'name':chap['name'],'held':items,
        'unique_with_known_action':sum(t['compatible_words']==1 for t in items),
