@@ -100,6 +100,26 @@ Independent explicit-list oracle enumerated each possible zero hold/consume path
 
 [Latent-F C++ SFT](../sims/lp2_recency_latent_f_sft.cpp) · [raw outputs](lp2-recency-latent-f-output.json). Compile alongside lp2_recency_allpartition_sft.cpp and pass the same canonical compact tape. The nonconsuming-F and ordinary all-update continuous fixed-position/fixed-label architectures are now closed for the finite native register. No source-selected varying insertion rule, periodic rank map or reset mechanism was tested by this closure. No unknown LP2 plaintext/key recovered. Do not repeat any fixed continuous partition fitting.
 
+
+## Secret periodic rank labels: exact joint partition concentration (Agent2, 27 November)
+
+A fixed insertion position need not imply a stationary plaintext-to-rank mapping. Let the bijection M_p be arbitrary and private for each physical-rune phase p modulo q, with all printed runes consuming. Historical solved key lengths 8 and 13 motivate the two tested periods, but do not authenticate this adaptive mechanism.
+
+The ciphertext-driven token trace is unchanged by the phase labels. For a fixed side mask S, let H_p(S) be the maximum count of any relative rank on that side among synchronized phase-p events, and let R_p be the phase's center count. A single plaintext rune can choose any one rank independently at each phase. Its **exact maximum** count for the given partition is therefore
+
+    B_q(S) = sum_p max(H_p(S), H_p(complement(S)), R_p).
+
+Use the signed subset-intersection transform once per phase to compute H_p for all 2^28 masks, then sum the maxima for the same S across phases. The upper bound is sharp for one rune because independent bijections can always assign that rune to the maximizing rank at each phase. Summing independent per-phase maxima over different masks is a looser bound, also reported.
+
+| Period q | Exact joint maximum | Sum of independent phase maxima | Witness mask |
+| --- | ---: | ---: | ---: |
+| 8 | 659 | 852 | 52935990 |
+| 13 | 689 | 962 | 73078798 |
+
+All 268,435,456 masks evaluated per phase. Both maxima are far below the finite native minimum 1,388 on the same 12,793-rune suffix. Independent direct event counting checks each witness, and 28 reduced alphabet/period controls compare every mask and its joint capacity to direct histograms. Full local runs, ~31.5s/45.4s on four threads with AVX512. [SFT](../sims/lp2_recency_phase_capacity_sft.cpp) · [raw](lp2-recency-phase-capacity-output.json). Code local/remote blob 5013e31fec7ccbd782d8e724766adc7b71b87ffa to be verified against source (see commit history). No CI claim.
+
+**Scope:** ordinary all-update continuous fixed-insertion lists with independent arbitrary rank bijections at q8 or q13. The latent-F closure above uses a single fixed forbidden rank; it cannot be transferred to phase-varying forbidden ranks. Resetting lists and varying insertion positions remain distinct. No source-selected decoder, key or unknown plaintext.
+
 ## Interior transparent-F: exact small-side state inverse (Agent10, 24 November)
 
 The earlier interior partition recovery assumed every printed glyph updates the list. The genuine plaintext-F hold emits literal zero without updating; a non-F may also emit zero. This new exact ciphertext-first reduction covers all latent masks, arbitrary initial alphabet and stationary secret rank-to-plaintext permutation at center ranks 1/2 and (by reflection) 27/26.
