@@ -1,0 +1,232 @@
+{
+  "runs": [
+    45947283520,
+    45947287470
+  ],
+  "source": "dda8d03f4471dc46a1947fd8520ff5c6b2049262",
+  "controls": [
+    {
+      "mode": "0",
+      "budget": 6,
+      "dictionary": 38938,
+      "found": false,
+      "exact": false,
+      "train_supported": 0,
+      "train_truth": 0,
+      "holdout_supported": 0,
+      "holdout_truth": 0,
+      "holdout_count": 40,
+      "omitted": [
+        0,
+        8,
+        16,
+        3,
+        11,
+        19
+      ],
+      "pi": [],
+      "key": [],
+      "seeds": [
+        {
+          "seed": [
+            4,
+            11,
+            18
+          ],
+          "done": 82,
+          "total": 82,
+          "nodes": 14671,
+          "extends": 15217249,
+          "enum": 440684,
+          "residual": 0,
+          "timed": false,
+          "seconds": 17.4536
+        },
+        {
+          "seed": [
+            0,
+            7,
+            14
+          ],
+          "done": 137,
+          "total": 137,
+          "nodes": 1,
+          "extends": 645695,
+          "enum": 0,
+          "residual": 0,
+          "timed": false,
+          "seconds": 3.49323
+        },
+        {
+          "seed": [
+            1,
+            8,
+            15
+          ],
+          "done": 276,
+          "total": 276,
+          "nodes": 1,
+          "extends": 1860617,
+          "enum": 0,
+          "residual": 0,
+          "timed": false,
+          "seconds": 7.18065
+        },
+        {
+          "seed": [
+            9,
+            2,
+            16
+          ],
+          "done": 927,
+          "total": 1435,
+          "nodes": 1824,
+          "extends": 46482758,
+          "enum": 778766,
+          "residual": 0,
+          "timed": true,
+          "seconds": 90.0001
+        },
+        {
+          "seed": [
+            3,
+            10,
+            17
+          ],
+          "done": 707,
+          "total": 707,
+          "nodes": 609,
+          "extends": 4031265,
+          "enum": 1682,
+          "residual": 0,
+          "timed": false,
+          "seconds": 9.71447
+        },
+        {
+          "seed": [
+            5,
+            12,
+            19
+          ],
+          "done": 36,
+          "total": 1269,
+          "nodes": 240662,
+          "extends": 30318993,
+          "enum": 39070337,
+          "residual": 0,
+          "timed": true,
+          "seconds": 90.0004
+        },
+        {
+          "seed": [
+            6,
+            13,
+            20
+          ],
+          "done": 22,
+          "total": 1049,
+          "nodes": 337474,
+          "extends": 8810850,
+          "enum": 0,
+          "residual": 0,
+          "timed": true,
+          "seconds": 90.0003
+        }
+      ]
+    },
+    {
+      "mode": "1",
+      "budget": 6,
+      "dictionary": 38938,
+      "found": true,
+      "exact": true,
+      "train_supported": 18,
+      "train_truth": 18,
+      "holdout_supported": 40,
+      "holdout_truth": 40,
+      "holdout_count": 40,
+      "omitted": [
+        0,
+        8,
+        16,
+        3,
+        11,
+        19
+      ],
+      "pi": [
+        0,
+        1,
+        16,
+        18,
+        13,
+        26,
+        8,
+        9,
+        11,
+        15,
+        14,
+        22,
+        24,
+        5,
+        17,
+        20,
+        25,
+        27,
+        19,
+        10,
+        28,
+        12,
+        2,
+        7,
+        4,
+        6,
+        3,
+        23,
+        21
+      ],
+      "key": [
+        18,
+        3,
+        0,
+        5,
+        24,
+        9,
+        8,
+        19
+      ],
+      "seeds": [
+        {
+          "seed": [
+            0,
+            14,
+            7
+          ],
+          "done": 114,
+          "total": 114,
+          "nodes": 0,
+          "extends": 74485,
+          "enum": 841,
+          "residual": 0,
+          "timed": false,
+          "seconds": 0.191565
+        },
+        {
+          "seed": [
+            6,
+            13,
+            20
+          ],
+          "done": 15,
+          "total": 69,
+          "nodes": 40767,
+          "extends": 6426846,
+          "enum": 83,
+          "residual": 0,
+          "timed": false,
+          "seconds": 14.7268
+        }
+      ]
+    }
+  ],
+  "decision": "one of two controls recovered exactly; original not run"
+}
