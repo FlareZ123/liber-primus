@@ -1,6 +1,6 @@
-# Direct 2012 signed *Valēte!* postscript RSA inversion of terminal LP2: original-source negative
+# 2012 Valēte direct LP2 receivers: RSA postscript and trailing-space counts
 
-**13 November 2026, Agent45. Source-motivated historical RSA candidate, no unknown-page plaintext or cryptographic key recovered.**
+**Current decision (27 November 2026):** both the fixed RSA postscript transfer and exact whitespace-count GP29 receiver below are negative in their tested scopes. No unknown-page plaintext or key. Original RSA investigation: Agent45, 13 November 2026.
 
 ## Human solve-path rationale and source
 
@@ -43,3 +43,29 @@ This does not mathematically exclude RSA itself: any C < N is a valid RSA cipher
 Retire the specific direct transport: original p55/p56 GP29 positional integer, both orientations, conventional 65,537 exponent, known 2012 postscript RSA factors, full modular private inverse, direct GP29 or ASCII text. No recoverable unknown LP2 plaintext, new destination or key follows. A source-selected exponent, different block specification or subsequent inverse would be a new independent hypothesis.
 
 Reproduce with the self-contained [CommonJS SFT](../sims/lp2_2012_ps_rsa_p55_source_sft.cjs). It reads the unedited corpus, checks the original decimal modulus, uses exact BigInt arithmetic, tests both directions and an independently genuine solved-text RSA plant.
+
+
+## Exact trailing-space GP29 receiver (Agent3, 27 November 2026)
+
+The [newly acquired byte-preserving Valēte extraction](../resources/historical/cicada2012-valete-source.md) contains 73 trailing ASCII spaces in 21 signed-body lines: `0,2,3,5,7,11,13,1,1,2,11,0,7,0,5,0,3,2,0,0,0`. The familiar prime-shaped rise and fall was already [noted by the community](https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/README.md). The exact local bytes supply the new operand; OpenPGP cleartext canonicalization does not authenticate trailing whitespace. The known 2014 whitespace clue and Wisdom instruction motivate literal counts and Euler totients, but do not identify this particular LP2 recipient or prescribe a repeating key.
+
+Frozen receiver: all 21 line counts, 14 nonzero counts or 12 counts >=2; each literal or Euler-totient (positive counts only, zero lines remain zero shifts by convention). Both additive signs, all 94 phase positions across six keys, ordinary consuming or exact plaintext-F hold (both branches allowed at ciphertext F, consuming plaintext F forbidden). The exact dynamic program counts all legal histories and maximizes a smoothed GP trigram likelihood. Twelve original scopes (nine chapters plus p0 black, p1–2, p55) yield 288 scope/representation/sign/clock records and 4,512 initial-phase cases. Every reported output re-encrypts exactly. The ordinary p0 black-body fit is frozen before the p1–2 continuation.
+
+| Original scope | Best ordinary mean log score | Complete F-held variants (of 12) |
+|---|---:|---:|
+| p0 black (249 runes) | -5.203879 | 5 |
+| p1–2 (467) | -5.242597 | 2 |
+| p55 (76) | -4.951043 | 11 |
+| p0–2 (729) | -5.311149 | 1 |
+| p3–7 (1145) | -5.297818 | 0 |
+| p8–14 (1729) | -5.375887 | 0 |
+| p15–22 (1903) | -5.391360 | 0 |
+| p23–26 (1021) | -5.324067 | 0 |
+| p27–32 (1433) | -5.339824 | 0 |
+| p33–39 (1680) | -5.377479 | 0 |
+| p40–53 (3008) | -5.418146 | 0 |
+| p54–55 (308) | -5.147990 | 1 |
+
+All 144 ordinary best outputs and 20 complete F-held best outputs are nonprose; best F-held score -4.973276 (p55). The 12 frozen p0-to-p1/2 ordinary continuations score at most -5.317460. No new reading. The same code exactly encrypts the 85 native p56 runes with consecutive prime-minus-one shifts and F-hold, and matches 95 clear p57 runes. Train on six other native records; withheld Loss of Divinity and p57 score -2.869597/-2.718692. For 48 hidden-phase plants from those withheld texts all 48 phases recover, all outputs replay, 39/48 plaintexts recover exactly (24/24 ordinary, 15/24 F-held), and 20,366/20,400 runes match. MAP ambiguity in the F-held receiver is real; this does not prove all reachable F histories nonlinguistic independently of the scoring model.
+
+**Decision:** retire the six exact count-key forms with these clocks and phase freedoms. No new authenticated key, plaintext, or destination. No repaired counts or additional transformations without a new source-selected recipient. [CommonJS SFT](../sims/lp2_valete_whitespace_direct_receiver_sft.cjs) and [exact output](lp2-valete-whitespace-direct-receiver-output.json). Core ran in V8 against repository inputs; standalone Node wrapper not separately run.
