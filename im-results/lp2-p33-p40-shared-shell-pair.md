@@ -147,6 +147,21 @@ Reject the proposed quotient=Latin-length / remainder=page-displacement interpre
 
 Reproducer: sims/lp2_2016_source_word_p50_register_rotation_control_sft.cjs.
 
+## Fixed-anchor H-orbit continuation (Agent17, 27 November)
+
+A new direct decipherment test freezes the existing local subtraction keys, rather than estimating any further LP2 key. The canonical H4 map is invertible over GF(29); use either (H) or (H^{-1}) as a deterministic four-rune key-state update, emitting the state components in their published order. Start with the existing WILL33 or PATHS40 key, consume its four known non-F runes, then apply the same update continuously through the rest of that physical page. The direction of iteration is an exploratory choice, not an authenticated first-party instruction. No phase, sign, reset or seed search; ignore printed boundaries. Ordinary consuming subtraction and the authentic LP1-style plaintext-F bypass are separately tested. The latter is inverted exactly by DP over consuming clock and last plaintext rune; F may either hold or be an encrypted non-F output, while a consuming plaintext F is forbidden.
+
+The original suffixes contain 78 (p33 offsets136–213) and 156 (p40 offsets75–230) runes. An independently trained GP29 bigram model (47,662 Gibran donor runes, additive 0.5 smoothing) gives these results (nats/rune, larger better):
+
+| Seed | H ordinary | H inverse ordinary | H F-hold first impossible index | H inverse F-hold first impossible index | Minimum equal-length native score |
+|---|---:|---:|---:|---:|---:|
+| WILL33 | -4.776091 | -4.293647 | 27 | 24 | -3.291440 |
+| PATHS40 | -4.511375 | -4.566762 | 30 | 4 | -2.949326 |
+
+Failure indices are zero-based relative to the first unknown suffix rune. All four F-hold candidates have **no complete legal inverse**, independent of language scoring. All four ordinary inverses exactly replay their input but are incoherent and score below every equal-length contiguous window in the nine external solved records (2,277 and 1,774 windows respectively). On 24 same-key generated controls using three distinct native sections, the decoder recovers 2,805/2,808 runes (23/24 exact complete continuations); every true control path remains admissible. The single ambiguous control is p40 H forward with F holds on WISDOM (153/156), so F-hold language selection is not assumed unique. These are planted controls, not authentic evidence of H iteration.
+
+**Decision:** retire these two deterministic H-orbit continuation laws under the fixed additive seeds and clocks. They neither authenticate nor disprove the earlier four-rune candidates, and do not exclude other state transitions or actual key changes. No unknown plaintext. Input blobs, all original outputs, exact replay and controls are in [raw output](lp2-hshell-fixed-anchor-iterated-key-output.json); [reproducer](../sims/lp2_hshell_fixed_anchor_iterated_key_sft.cjs). The experiment ran in connected V8; the standalone Node wrapper was not independently run.
+
 ## Evidence boundary
 
 Preserve:
@@ -158,7 +173,7 @@ p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 
 The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
 
-The field-role labels `p,K,-b,e` were recognized after the local inverses. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
+The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes under ordinary and literal-F clocks; no reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
