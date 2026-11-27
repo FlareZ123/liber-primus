@@ -164,6 +164,22 @@ There is also a score-independent shared-state obstruction. In the outer and inn
 
 **Decision:** retire these two deterministic H-orbit continuation laws under the fixed additive seeds and clocks. They neither authenticate nor disprove the earlier four-rune candidates, and do not exclude other state transitions or actual key changes. No unknown plaintext. Input blobs, all original outputs, exact replay and controls are in [raw output](lp2-hshell-fixed-anchor-iterated-key-output.json); [reproducer](../sims/lp2_hshell_fixed_anchor_iterated_key_sft.cjs). The experiment ran in connected V8; the standalone Node wrapper was not independently run.
 
+## Exact shared homogeneous recurrence inversion (Agent41, 27 November)
+
+Unlike the fixed H/H-inverse orbit and period-four reuse tests, this attack grants **every stationary homogeneous order-four GF(29) additive key recurrence** `k[i]=a*k[i-1]+b*k[i-2]+c*k[i-3]+d*k[i-4] mod29`, including lower-order cases. The two already published WILL and PATHS candidates supply complete four-symbol key states; there is no language-score fitting or new key-role selection. The model is exploratory rather than first-party authenticated; its purpose is to determine whether both four-rune candidates can belong to one short, continuous, reusable key mechanism, across printed page transitions.
+
+Canonical corpus blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`: start physical p33 offset132, end of p40, 1779 runes. The second crib begins at relative offset1619, leaving 156 untouched suffix runes. The keys are [25,5,26,2] and [20,20,12,6]. All 29^4=707281 tap vectors were generated and checked at the exact ordinary clock distance and every possible literal-F held clock distance 1581..1619 (38 visible zero runes between the anchors). For each matching tap/gap, exact forward reachability permits a hold iff ciphertext=F, or consumption iff C−K≠F, forcing both the known second non-F word and its consuming position. No word boundaries are assumed. The ordinary case has **zero matching tap vectors**; the F-hold case has **46 matching tap/gap pairs before the intervening ciphertext test, zero legal paths through the second crib**. Thus no suffix is opened for either model.
+
+Two same-length positive controls repeat the actual clear 95-rune p57 sequence, replace the two anchor words at the same offsets, and generate ciphertext with independently chosen tap vectors (3,5,8,2) ordinary and (23,5,6,15) F-hold. The ordinary control retains its true tap among three candidates (not unique); the F-hold control has 113 prefilter pairs, exactly one complete legal candidate, the planted taps at consuming distance1568. The controls establish reachability and enumeration, not linguistic authentication or unique recovery of all F masks. The original calculation is an exact all-key exclusion conditional on both proposed cribs, no resets, homogeneous order≤4 and the stated two clocks. It does not disprove either local candidate separately or arbitrary nonlinear/higher-order/state-reset schedules. No plaintext recovered.
+
+Reproducer: `sims/lp2_will_paths_anchor_lfsr4.cpp`. Compile `g++ -O3 -std=c++17 sims/lp2_will_paths_anchor_lfsr4.cpp -o /tmp/lp2_wp`. From repository root run:
+
+```sh
+python -c 'import json;d=json.load(open("resources/liber-primus/lp2-corpus.json"));p=d["pages"];f=lambda a:"".join("0123456789abcdefghijklmnopqrs"[x] for x in a);print(f(sum((x["indices"] for x in p[33:41]),[])[132:]));print(f(p[57]["indices"]))' | /tmp/lp2_wp
+```
+
+Locally compiled and executed against connector-exported canonical tape and p57. Output RESULT columns are ordinary tap count, F-hold prefilter tap/gap count, legal prefix pair count, legal full pair count: original `0 46 0 0`, ordinary plant `3 40 0 0`, F-hold plant `2 113 1 1`. The ordinary and F-hold counts are separate hypotheses on each planted tape. No CI was invoked. Do not repeat arbitrary short homogeneous tap sweeps for this exact pair.
+
 ## Evidence boundary
 
 Preserve:
@@ -175,7 +191,7 @@ p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 
 The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
 
-The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes under ordinary and literal-F clocks; no reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
+The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is also exactly excluded under ordinary and literal-F clocks. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
