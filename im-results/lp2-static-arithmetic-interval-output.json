@@ -1,0 +1,590 @@
+{
+  "inputBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "37c96b816495c5f93ca658a01c9918bf92598316"
+  ],
+  "model": {
+    "trainIDs": [
+      3,
+      8,
+      9,
+      10
+    ],
+    "trainLength": 743,
+    "holdIDs": [
+      11,
+      14
+    ],
+    "weights": [
+      14,
+      38,
+      29,
+      68,
+      48,
+      31,
+      12,
+      34,
+      22,
+      48,
+      38,
+      1,
+      1,
+      12,
+      1,
+      51,
+      41,
+      23,
+      105,
+      18,
+      30,
+      14,
+      1,
+      23,
+      45,
+      3,
+      5,
+      10,
+      6,
+      1
+    ],
+    "EOF": 29,
+    "total": 773,
+    "digits": "GP29 indices, most significant first",
+    "termination": "shortest entire base29 cylinder inside EOF interval; smallest integer at that length"
+  },
+  "control": [
+    {
+      "id": "LP1p11",
+      "plain": 169,
+      "cipher": 157,
+      "repeats": 8,
+      "roundtrip": true,
+      "appendedZero": "noncanonical-eof"
+    },
+    {
+      "id": "LP1p14",
+      "plain": 89,
+      "cipher": 82,
+      "repeats": 1,
+      "roundtrip": true,
+      "appendedZero": "noncanonical-eof"
+    },
+    {
+      "id": "LP2p56",
+      "plain": 85,
+      "cipher": 78,
+      "repeats": 2,
+      "roundtrip": true,
+      "appendedZero": "noncanonical-eof"
+    },
+    {
+      "id": "LP2p57",
+      "plain": 95,
+      "cipher": 86,
+      "repeats": 1,
+      "roundtrip": true,
+      "appendedZero": "noncanonical-eof"
+    }
+  ],
+  "empty": 2,
+  "full": {
+    "length": 12956,
+    "repeats": 86,
+    "status": "noncanonical-eof",
+    "decoded": 207,
+    "canonicalDigits": 189,
+    "prefix": "SRCARPRHNOSMENOOSWWWLTEITERUEFEDSNUE"
+  },
+  "rows": [
+    {
+      "page": 0,
+      "length": 262,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 207,
+      "canonicalDigits": 189,
+      "prefix": "SRCARPRHNOSMENOOSWWWLTEITERUEFEDSNUE"
+    },
+    {
+      "page": 1,
+      "length": 266,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 300,
+      "prefix": "LIMRTHNLEIOEAOUIADTHEEMETNAOAMREAETHBES"
+    },
+    {
+      "page": 2,
+      "length": 201,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 220,
+      "prefix": "ENGLHOEEAEHIRNGCTHPAOTHSIIABSLNWEHOYRSARUN"
+    },
+    {
+      "page": 3,
+      "length": 217,
+      "repeats": 3,
+      "status": "boundary-crossing",
+      "decoded": 252,
+      "prefix": "EGNTHEWWOWONICTHSOTIAEEILEETHONTBOONCLSY"
+    },
+    {
+      "page": 4,
+      "length": 261,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 69,
+      "canonicalDigits": 63,
+      "prefix": "EIFWEBONLTNWDGTHEAETBWCSMSRTRSTHGNTHPAE"
+    },
+    {
+      "page": 5,
+      "length": 263,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 292,
+      "prefix": "OENLOLWGLEOSOUIIWSDNTADENGHLNEBSWOENNG"
+    },
+    {
+      "page": 6,
+      "length": 196,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 98,
+      "canonicalDigits": 91,
+      "prefix": "IDEECNGEEEEATHAOAJUATUUOTNTONGTHPEETEEIAR"
+    },
+    {
+      "page": 7,
+      "length": 208,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 230,
+      "prefix": "GNEDMLTAETHUPSCGEAIAHUUBMOLOAINERTHGHTWE"
+    },
+    {
+      "page": 8,
+      "length": 255,
+      "repeats": 3,
+      "status": "noncanonical-eof",
+      "decoded": 56,
+      "canonicalDigits": 53,
+      "prefix": "JLOLNGDSEAEIWEUWEEEUWOAATWULOSNLUUDCT"
+    },
+    {
+      "page": 9,
+      "length": 268,
+      "repeats": 3,
+      "status": "noncanonical-eof",
+      "decoded": 254,
+      "canonicalDigits": 229,
+      "prefix": "DDUETHTHULEYSYNNHINEOLNOBTLRETHYRBMREUE"
+    },
+    {
+      "page": 10,
+      "length": 263,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 223,
+      "canonicalDigits": 198,
+      "prefix": "OALTDSRNOWROTEEDANNEUSEDEONTMABFRRNGN"
+    },
+    {
+      "page": 11,
+      "length": 273,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 91,
+      "canonicalDigits": 80,
+      "prefix": "AEONTHPIAWEANGNGCESEEAAOSUENEELRCAEOLOCE"
+    },
+    {
+      "page": 12,
+      "length": 261,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 293,
+      "prefix": "ODDUFUAEFOCEDSLEAIURWODIIBSNTOBNGWWEE"
+    },
+    {
+      "page": 13,
+      "length": 272,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 299,
+      "prefix": "RCCEEUJHENNRENBTBMUSEOTHWRCTTTSSAEOTO"
+    },
+    {
+      "page": 14,
+      "length": 137,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 153,
+      "prefix": "SELISTHBLOEENECWCSFBSTSTIOCWBEFHTEINM"
+    },
+    {
+      "page": 15,
+      "length": 159,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 173,
+      "prefix": "FOTHSHLDWEEWEOWEEDUGSUTNHSHBCBGNNIADAU"
+    },
+    {
+      "page": 16,
+      "length": 267,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 301,
+      "prefix": "BSTHECTCENCTDCGSSTWHOYIOMOSTHBEDIABANE"
+    },
+    {
+      "page": 17,
+      "length": 273,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 303,
+      "prefix": "ERIETREACNGSMEITTRATHNMTREOEDCNGDACEUSMA"
+    },
+    {
+      "page": 18,
+      "length": 260,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 212,
+      "canonicalDigits": 188,
+      "prefix": "EAIWNSMROEIAMCGENOORMNEWOTHEUSPETAUIBEC"
+    },
+    {
+      "page": 19,
+      "length": 271,
+      "repeats": 5,
+      "status": "boundary-crossing",
+      "decoded": 297,
+      "prefix": "WTHLSROWTHOEIALGUODNETTHLENGUWTANNWAWEEET"
+    },
+    {
+      "page": 20,
+      "length": 269,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 302,
+      "prefix": "IWSRTHTHEOATHTTTOOEUWAEBETUERNGRWLNGNGUSGEB"
+    },
+    {
+      "page": 21,
+      "length": 273,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 144,
+      "canonicalDigits": 134,
+      "prefix": "ROETCNEPMNACWOTHMNNARTHUEECREDEASBFYSL"
+    },
+    {
+      "page": 22,
+      "length": 131,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 143,
+      "prefix": "ETLSIRRATHPYDEIRAOTRRNAFLBFWAIAUTNHETNG"
+    },
+    {
+      "page": 23,
+      "length": 213,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 242,
+      "prefix": "UAONGIRWESWIAOEEAOAREAAUGDUNUOPANADRTR"
+    },
+    {
+      "page": 24,
+      "length": 270,
+      "repeats": 5,
+      "status": "noncanonical-eof",
+      "decoded": 175,
+      "canonicalDigits": 160,
+      "prefix": "EEAOESDNENTHTHTWIUONUFFUCEIIAEAFEOEEOPTHWE"
+    },
+    {
+      "page": 25,
+      "length": 273,
+      "repeats": 3,
+      "status": "boundary-crossing",
+      "decoded": 307,
+      "prefix": "CEEARFOFESAEODBEFWWTAUEANGSILDOSENEOUOOM"
+    },
+    {
+      "page": 26,
+      "length": 265,
+      "repeats": 2,
+      "status": "boundary-crossing",
+      "decoded": 292,
+      "prefix": "ANDDTHEEAFGRODASWEDHOUHEOTPNWWTHUAESSEWM"
+    },
+    {
+      "page": 27,
+      "length": 234,
+      "repeats": 5,
+      "status": "noncanonical-eof",
+      "decoded": 186,
+      "canonicalDigits": 172,
+      "prefix": "ETHUSESMASSBOUSBWRIEWODTHIDEBGSIAATTNAR"
+    },
+    {
+      "page": 28,
+      "length": 269,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 307,
+      "prefix": "IRULHNGSEEWTHREAEOSITLOBCORBEAAESGCIDO"
+    },
+    {
+      "page": 29,
+      "length": 277,
+      "repeats": 4,
+      "status": "boundary-crossing",
+      "decoded": 305,
+      "prefix": "THENGBONBEOOOTORBNSFUMOBNGUDFEAEEUMHBSMR"
+    },
+    {
+      "page": 30,
+      "length": 263,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 113,
+      "canonicalDigits": 106,
+      "prefix": "LUFBEDRIBBECNANSEEAOTHPOTHDLSHAAEDEOIEAG"
+    },
+    {
+      "page": 31,
+      "length": 269,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 301,
+      "prefix": "THRINGTLHNWUBGIITHIEIEINRRTHSTPIARTHAAPREW"
+    },
+    {
+      "page": 32,
+      "length": 121,
+      "repeats": 2,
+      "status": "boundary-crossing",
+      "decoded": 130,
+      "prefix": "ERSHOASLEESFAITHWEIATLPRCFNGINUATHNGOELNI"
+    },
+    {
+      "page": 33,
+      "length": 214,
+      "repeats": 2,
+      "status": "boundary-crossing",
+      "decoded": 237,
+      "prefix": "MNTORMEISSOWUIACNSEASISIHUWIASIRUXHCSI"
+    },
+    {
+      "page": 34,
+      "length": 261,
+      "repeats": 3,
+      "status": "boundary-crossing",
+      "decoded": 298,
+      "prefix": "ETHLIOUETHURUTEAOASOSRSDASELRNTGRESRO"
+    },
+    {
+      "page": 35,
+      "length": 271,
+      "repeats": 3,
+      "status": "boundary-crossing",
+      "decoded": 305,
+      "prefix": "ETWCSIPRIISORUOGNHEIAIOOSTIHNIAURLARAES"
+    },
+    {
+      "page": 36,
+      "length": 238,
+      "repeats": 3,
+      "status": "noncanonical-eof",
+      "decoded": 69,
+      "canonicalDigits": 63,
+      "prefix": "DAWREIIDERWEARAENBCTNNTAWTHEOSIHEIAOCBN"
+    },
+    {
+      "page": 37,
+      "length": 228,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 255,
+      "prefix": "WENWRSSDOSUNEEAMUTHERBHTHEEFENBTSCTBONG"
+    },
+    {
+      "page": 38,
+      "length": 228,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 256,
+      "prefix": "UASEECAPEBRMOSTONRGTBNGURWEESMNGOEHOOS"
+    },
+    {
+      "page": 39,
+      "length": 240,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 271,
+      "prefix": "SODWSNLEOERCDEADEENNFENGESDOTECAIHNSNGR"
+    },
+    {
+      "page": 40,
+      "length": 231,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 255,
+      "prefix": "FBOTHISOIWUPEIEABFEICROEAMTHOEOEEHLLLNGG"
+    },
+    {
+      "page": 41,
+      "length": 273,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 145,
+      "canonicalDigits": 135,
+      "prefix": "IAUCNWRSTHNGAFHHNAREJEIMEAOTHACNGAROSRYDT"
+    },
+    {
+      "page": 42,
+      "length": 272,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 49,
+      "canonicalDigits": 49,
+      "prefix": "MXAPDETWRMALBUOWPURUOANGESAEUHDIACCTHS"
+    },
+    {
+      "page": 43,
+      "length": 274,
+      "repeats": 3,
+      "status": "boundary-crossing",
+      "decoded": 315,
+      "prefix": "CNGUHSEASINRDNOIAEEFIAOSTHEPOOALONONUEOI"
+    },
+    {
+      "page": 44,
+      "length": 273,
+      "repeats": 4,
+      "status": "boundary-crossing",
+      "decoded": 305,
+      "prefix": "AIAEELNNLNTSAEAOBAJPPDTUBNELWISWETHFOB"
+    },
+    {
+      "page": 45,
+      "length": 270,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 8,
+      "canonicalDigits": 10,
+      "prefix": "OMWUARAB"
+    },
+    {
+      "page": 46,
+      "length": 270,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 295,
+      "prefix": "GUWENNLNCIROARMRFAETHBGIMSYRUTFSSWSORE"
+    },
+    {
+      "page": 47,
+      "length": 274,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 57,
+      "canonicalDigits": 54,
+      "prefix": "YARDOEBNGLHWUSAEEOSORONGBNGNTEPCSEETHMTA"
+    },
+    {
+      "page": 48,
+      "length": 271,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 51,
+      "canonicalDigits": 48,
+      "prefix": "CEOIAALSLPASTHFEATSWIAMSATNOSRLNNGERNODO"
+    },
+    {
+      "page": 49,
+      "length": 66,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 74,
+      "prefix": "AETEIHWPTHRONGEEETHHIAGEUTCOAEECOEHOOWDE"
+    },
+    {
+      "page": 51,
+      "length": 92,
+      "repeats": 1,
+      "status": "noncanonical-eof",
+      "decoded": 37,
+      "canonicalDigits": 36,
+      "prefix": "RACTIDAHHDOLTEMRLMDMATHTHAMMOROEUEYNWR"
+    },
+    {
+      "page": 52,
+      "length": 263,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 308,
+      "prefix": "ITHNINCNEESTWTUEECOAEEDETWTRIRTHEITEOTHO"
+    },
+    {
+      "page": 53,
+      "length": 179,
+      "repeats": 0,
+      "status": "boundary-crossing",
+      "decoded": 199,
+      "prefix": "NEAXINNPOTAONSAUTGSMTOTHMWNNGTTHOETLROES"
+    },
+    {
+      "page": 54,
+      "length": 232,
+      "repeats": 2,
+      "status": "noncanonical-eof",
+      "decoded": 39,
+      "canonicalDigits": 37,
+      "prefix": "LEESECBTDGONSURURBUUROCIGTTEBDCELENY"
+    },
+    {
+      "page": 55,
+      "length": 76,
+      "repeats": 1,
+      "status": "boundary-crossing",
+      "decoded": 84,
+      "prefix": "EEORNGFIRTEITNGAESANASGTHANCRTHEIATHHRCEAEN"
+    }
+  ],
+  "controlNull": {
+    "uniform": {
+      "counts": {
+        "boundary-crossing": 164,
+        "noncanonical-eof": 56
+      },
+      "canonical": []
+    },
+    "matched": {
+      "counts": {
+        "boundary-crossing": 165,
+        "noncanonical-eof": 55
+      },
+      "canonical": []
+    }
+  },
+  "fullNull": {
+    "uniform": {
+      "counts": {
+        "noncanonical-eof": 8
+      },
+      "canonical": []
+    },
+    "matched": {
+      "counts": {
+        "noncanonical-eof": 8
+      },
+      "canonical": []
+    }
+  }
+}
