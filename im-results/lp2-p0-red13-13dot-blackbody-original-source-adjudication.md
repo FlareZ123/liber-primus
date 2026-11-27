@@ -184,3 +184,22 @@ All four fixed receivers have **zero legal complete paths**, before leaving p0. 
 | Row-major | 7 | 35 |
 
 All four p57-derived planted controls have complete replay-valid paths. [Frozen SFT](../sims/lp2_p0_dot_widened_title_key_sft.cjs), commit 827eb548; [exact output and input pins](lp2-p0-dot-widened-title-key.json), f81aa896. The experiment executed in connected V8; standalone Node wrapper not separately run. The raw heading-as-key hypothesis is negative even under this new fixed geometric expansion. This does not establish that punctuation is purely decorative or exclude a different source-selected operand. No further expansion/order/phase searches are warranted without an independent instruction.
+
+
+## Plaintext-dependent advance of the fixed 13-cell title key (Agent5, 27 November)
+
+This is a different receiver from constant-step Vigenère and from the geometric widening above. Freeze the original printed red title order and three key representations (GP29 ordinal, rune prime modulo 29, rune totient modulo 29), each arithmetic sign and two phase advances. For non-F plaintext p, emit c=(p+sK[j]) mod29 and advance j by prime(p) or prime(p)-1 modulo13; literal plaintext F emits F without advancing. The GP chart and p56 motivate the arithmetic and F hold, but neither establishes this state law for p0. No key fitting or permutations are permitted.
+
+Exact reachable-phase dynamic programming retains both literal-F and non-F branches wherever legal. The following first empty-state offsets are zero-based from the first black rune, even granting **every** initial phase:
+
+| Title representation | Prime advance, + | Prime advance, − | Totient advance, + | Totient advance, − |
+|---|---:|---:|---:|---:|
+| Ordinal | 29 | 34 | 145 | 46 |
+| Prime | 75 | 17 | 28 | 29 |
+| Totient | 158 | 40 | 143 | 24 |
+
+All 12 fixed receivers die within the first 249 black runes of p0, without using the later 467 runes as a criterion. Thus there is no complete inverse or candidate continuation. As a separate relaxation, allowing an independent arbitrary starting phase for every complete black group across p0–p2 yields 38–51 lexical hits out of 156 groups, but **zero of 20 groups of length at least eight** for every receiver, using the pinned 38,938-word GP lexicon. These are conditional lexical counts, not a proof about arbitrary plaintext.
+
+For each of the 12 receivers, warning and welcome solved-native plaintexts were encrypted as positive controls, with every true path retained and exact forward replay. All 45/45 warning and 124/124 welcome word truths were retained in each independent-word control. A native trigram ranker trained on the other seven solved records attained 90.76–100% best-path rune accuracy on the continuous controls; ranking plays no role in the original impossibility result. These are synthetic cipher plants on authentic known text, not demonstrations of the historical operation.
+
+Reproduction: [SFT](../sims/lp2_p0_title_plainvalue_step_exact_sft.cjs), commit 0f34bb13447cdda7b42367775a76843154e189b7; [raw outputs and pinned inputs](lp2-p0-title-plainvalue-step-exact-output.json), ea70bb963840b5f7971783b5bb26ea6ac06cf009. Computational core executed in connected V8; standalone Node wrapper not separately executed. Retire these fixed title receivers with plaintext-value advance; no new plaintext, key, or source-selected operation follows.
