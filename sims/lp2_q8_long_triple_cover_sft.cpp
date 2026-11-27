@@ -1,6 +1,8 @@
 // Carry-independent arbitrary-cycle candidate recovery with disjoint
 // mandatory three-word seeds and a concentrated six-OOV budget.
 // Uses existing affine exact engine; no old prefix/carry assumption.
+#include <bits/stdc++.h>
+#include <immintrin.h>
 #pragma GCC target("avx2")
 #include <omp.h>
 #define omp_set_num_threads(x) ((void)0)
