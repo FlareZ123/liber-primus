@@ -1,0 +1,76 @@
+{
+  "trial": 4,
+  "native": false,
+  "fit": 9640,
+  "held": 3316,
+  "sourceRepeatCount": 86,
+  "repeatCount": 86,
+  "expectedRepeat": 0.017557535705775368,
+  "minimumExpectedRepeat": 0.013917059830939561,
+  "target": 0.00663836356619066,
+  "plant": null,
+  "plantPairRank": null,
+  "plantTripleRank": null,
+  "reflectionRank": null,
+  "best": {
+    "b": 18,
+    "k": [
+      24,
+      13
+    ],
+    "init": 8,
+    "fitScore": -5.001637207064694,
+    "initGap": 400.89617051641835,
+    "keyGap": 22.270954692816304
+  },
+  "exactFit": null,
+  "exactHeld": null,
+  "authentic57": null,
+  "heldScore": -5.0830661195844735,
+  "heldHead": "EOBMFXTHFUSRYCCEOISWAEDXEOWBXGSBMDTFTAYXWCENGBGEOCOWBTHWTHSEAOUBLEOAEAEEATEIABAEASXPEOLFCCBOEAEXYXAOEPJDEAIALLNGNEOGDMTHIUXNGPIIJCRRFPMCDOEITHOEBAAEEJSBCHONGIHAEXBSUJNGTPUEOI",
+  "viewRanks": {
+    "left2rank": 58,
+    "right2rank": 58,
+    "left1rank": 29,
+    "right1rank": 29
+  },
+  "replay": true,
+  "modelTop": [
+    {
+      "b": 18,
+      "k": [
+        24,
+        13
+      ],
+      "score": -48210.78103889658,
+      "init": 8
+    },
+    {
+      "b": 7,
+      "k": [
+        11,
+        20
+      ],
+      "score": -48233.0519935894,
+      "init": 38
+    },
+    {
+      "b": 22,
+      "k": [
+        16,
+        18
+      ],
+      "score": -48313.69709497901,
+      "init": 31
+    },
+    {
+      "b": 18,
+      "k": [
+        13,
+        13
+      ],
+      "score": -48339.47686738832,
+      "init": 35
+    }
+  ]
+}
