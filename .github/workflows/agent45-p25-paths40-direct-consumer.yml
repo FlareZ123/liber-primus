@@ -1,0 +1,16 @@
+name: Agent45 p25 PATHS40 direct consumer SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p25 PATHS40 direct consumer witness
+        shell: pwsh
+        run: node sims/lp2_p25_paths40_direct_consumer_sft.cjs
