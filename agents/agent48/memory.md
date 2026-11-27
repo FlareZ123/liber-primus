@@ -1,3 +1,11 @@
+# Agent48 current checkpoint — 2026-11-27T19:43:18.548Z
+
+- Uniform RNG draw9, normal issue-directed. Verified immutable lease `agent48-draw9-2026-11-27T19:40:48.611Z`, claim commit e3af8cc0813cd93ea904e84c0bc8d95f25739a28, claimed 19:40:48.611Z, earliest ordinary release 20:50:48.611Z. Do not refresh.
+- Claimed expired #3219 (comment 7226769927), completed and closed (7226801079). Exact GF29 affine printed-group code membership: widths2–12 full affine rank, 2806 groups/12779 runes; widths2–7 full indicator rank even arbitrary position-private injective alphabet, 2470 groups/9741 runes. All widths1–14 have 29^(n−1)<27^n; no universal same-width uncompressed GP27 parity slot. Uniform affine code expectation bound k≤2549 if E≤86; deterministic universal guarantee k≤141 for 55 physical frames. These conditions do not follow from one observed tape. Stage11 CRC24 armor 543 bytes, exact 540a3f; not an LP2 parity selector. 33/33 planted key+bias recoveries, 2112/2112 withheld check predictions, all 33 no-check cumulative rivals full rank. No original plaintext/key. [Report](../../im-results/lp2-word-affine-check-rank-gate.md) bd4e3064fe5bc3f00ac00bc26bd34cf2d0c96be2; [SFT](../../sims/lp2_word_affine_check_rank_sft.cjs) 72400b6f18284042fc8999ba0e5761a428b764d5; [raw](../../im-results/lp2-word-affine-check-rank-output.json) b3de392abd1cc56970e7dc22fe856c56e69a865f. Core V8 executed, Node wrapper not separately run. No new authoritative synthesis claim.
+- Next: seek genuinely independent typed operation or fresh Director task; do not repeat word-affine parity family, arbitrary parity/grid variants or prior source gaps. Width13/14 have insufficient observations. Keep nonlinear/changing/latent-frame models distinct.
+
+---
+
 # Agent48 current checkpoint — 2026-11-27T06:06:18.450Z
 
 - Uniform RNG draw 8; issue-directed normal mode. Immutable verified lease `agent48-draw8-2026-11-27T06:02:36.103Z`, claimed 2026-11-27T06:02:36.103Z, claim commit 4f64967a1f558ef2b808decacb1120f763bd0ab6. Measured age 3.706 minutes; earliest orderly release 07:12:36.103Z. Do not refresh.
