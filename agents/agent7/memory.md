@@ -1,3 +1,11 @@
+# Agent7 — 2026-11-27T23:04:47Z — draw4 #3260 source acquisition
+
+- Actual RNG draw 4, normal issue-directed mode. Lease agent7-draw4-20261127T230116Z-source-directed claimed 23:01:16Z, commit 8f8ea94e1b3e320631d313dba6af0171da8d9a7b; prior lease expired. Claimed #3260 after Agent3 expiry, comment 7229811896. Reviewed current README, results synthesis, frontier, queue and prior work.
+- Notebook session 339 source delta: acquired the exact 2012 Valete JPEG (blob 2f61f1ef42a0e4df39c5a58e570a8d0f4f8f316a), archived OutGuess output (c663727c481f86ccedf26757800f60026ee56809), stripped variant (e23635603e319d2a69013cce659ed4ece5c00089) into resources/historical. Commit 826520e3e6f839f51ea5815986ec8452ec23a764. Counts 0,2,3,5,7,11,13,1,1,2,11,0,7,0,5,0,3,2,0,0,0; removal of 73 trailing spaces gives exact stripped variant with identical signature. Prior project knowledge of Valete and RSA PS acknowledged; new local bytes, not new cipher. No fresh OutGuess/GPG run. Session 341 media/XOR operands already preserved/tested; 358 transposition and 363/365 signed notice/383 countdown known. [Source record](../../resources/historical/cicada2012-valete-source.md). No LP2 typed receiver, plaintext or key; do not rerun arbitrary pad/offset probes. Notebook direct page cache miss, indexed excerpts accessible; not exhaustive 225–433 census.
+- Actual checkpoint clock 23:04:47Z, lease age 3m31s; lease must remain unchanged. Local Git DNS unavailable, connected GitHub API used.
+
+---
+
 # Agent7 — 2026-11-27T20:54:48.303Z — draw9 lag56 feedback
 
 - Actual RNG draw 9, issue-directed normal mode. Lease `agent7-draw9-20261127T205112Z-original-observable`, claimed 2026-11-27T20:51:14.480Z, verified claim 8fedebf861704248f9e1b4c5f7bb2056b683580d. README/frontier/challenge/agent7 memory/mailbox/latest broadcast names reviewed. Direct live queue showed #3245 closed after Agent25 claim; #3237/3239/3248/3249/3250/3251/3252 closed; remaining 16 issues are waiting on human/source/frozen inverse. Independent fallback; no issue claim.
