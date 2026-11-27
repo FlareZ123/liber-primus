@@ -62,3 +62,29 @@ Each planted trial draws seven distinct nonoverlapping 100-rune windows from the
 The held-row predictive test marginalizes over uncertainty in the six-frame key, rather than merely scoring a convenient candidate plaintext. The original MAP pad and resulting p15 candidate are in the raw JSON for reproducibility, not asserted keys or plaintext. No authentic new rune was decoded. No further offsets or model tweaks are warranted under this registration. This test does not exclude an unrelated cipher, different clocks, F-transparent consumption, or nonlinguistic plaintext.
 
 Reproduce from repository root with `node sims/lp2_infinity_six_frame_pad_holdout_sft.cjs` and `node sims/lp2_infinity_six_frame_trigram_holdout_sft.cjs`. Both algorithm cores executed in the connector JavaScript runtime; the committed standalone Node wrappers were not separately executed. [Bigram calibration](lp2-infinity-six-frame-pad-holdout.json), [trigram calibration and original](lp2-infinity-six-frame-trigram-holdout.json). Commits c893847f9fd4033a0c33b8c8078da417b59eddbf, 5ddba27f6b1562ee38a266e2373cfebc75796302, 7fce3d71fed4206a31b006effacd22d4e2e15cc4, 6d80a5f8de69ea4f363a13a521d8910a3aab00c4.
+
+### Historically authentic plaintext-F bypass: independent-clock prediction
+
+The ordinary-clock negative does not cover the native LP1 plaintext-F bypass. On the same fixed seven-frame registration, let plaintext F emit literal ciphertext F (index0) without consuming the shared pad; all non-F emissions consume one GP29 shift. Each of the seven rows has its own consumption cursor. The six training frames retain 100 physical runes each. Hold out the first 90 physical runes after the enlarged p15 ornament, p15[9,99), to avoid depending on unconstrained tail key digits. No offsets, direction changes or word boundaries are fitted.
+
+A fixed-width state-merging beam searches the six-row joint inverse, with state consisting of six physical positions and each row's two preceding plaintext symbols, and branches at every possible F hold. The beam's partial length-normalization term +2.4 per emitted rune cancels at completion. The ordinary single-MAP-pad pilot (width128, four trials) recovered 89–90 of 90 planted key digits but one held row had no legal decode because of a single key error. This motivates marginalizing key uncertainty, rather than modifying the original cipher model.
+
+The final receiver freezes the six masks inferred by the beam, factors the exact six-row likelihood over consecutive triples of key symbols, then computes the predictive likelihood of the seventh ciphertext by a second sum-product DP over the last two key symbols, seventh physical cursor, and preceding-hold flag. The latter enumerates all seventh-row F masks and all possible shared pads **conditional on the six inferred masks**. The conditional key marginal is exact up to floating-point arithmetic; the fitted masks are approximate, not an exhaustive six-row mask marginal. Viterbi backtrace returns the held-row candidate under the same frozen predictive model. An independent-pad null also integrates every legal hold/emission, so the null is not uniform raw ciphertext. Known-key posterior likelihood and traceback were independently cross-checked against the earlier fixed-key exact DP. The inferred-mask factorization replays the six-row beam score.
+
+The 4-trial posterior pilot corrected the failed seventh-row decode and recovered every fitted hold mask. Fresh calibration: width256, seed 0x4a239e07, 12 planted trials, 90 withheld runes each. The full tool invocation timed out; a deterministic batch switch preserved exactly the same trial sequence, and the six batch files were committed and the aggregate gate frozen before scoring original p15. The native reference windows are disjoint within each trial, but can be reused across trials.
+
+| Quantity | Frozen controls / original |
+|---|---|
+| MAP first 90 key digits, six rows only | 1069/1080 correct |
+| F-mask classification, six training rows | 7198/7200 correct |
+| Seventh plaintext recovery | 1077/1080 correct; 12/12 trials met ≥81/90 for both key and plaintext |
+| Shared seventh predictive log BF | +64.10 to +96.46 |
+| Wrong seventh pad | −326.33 to −216.90 |
+| All independent pads: seventh predictive log BF | −196.95 to −109.26 |
+| All independent pads: six-row fitted log likelihood | −2032.81 to −1962.96 |
+| Shared six-row fitted log likelihood | −1515.38 to −1377.88 |
+| **Original six-row fit / withheld p15** | **−2021.14 / −167.53**, both in independent-pad ranges |
+
+**Decision:** the historical F-bypass clock does not rescue the specific distance-from-infinity-mark additive shared-pad model. No further phase/key search follows from this motif. The original posterior candidate and inferred pad are reproducibility outputs only, not authenticated plaintext or key. The general decoder is a reusable spacing-free inversion method when a different independent clue supplies genuinely repeated additive-pad registrations; it is not evidence that other registrations reuse a pad.
+
+Reproduction: [single-MAP pilot](lp2-infinity-six-frame-fhold-pilot.json); [posterior pilot](lp2-infinity-six-frame-fhold-marginal-pilot.json); [12-trial frozen calibration, with six batch-file links](lp2-infinity-fhold-marginal-calibration.json); [original output](lp2-infinity-fhold-marginal-original.json); [reproducer](../sims/lp2_infinity_six_frame_fhold_marginal_sft.cjs), run from repository root. Default runs the complete calibrated sequence, then original if gate passes. For a time-constrained runtime, `--batch 0 2`, then starts 2,4,6,8,10 with count2; compare the aggregate against the frozen gate before `--original-after-calibration`. Exact computational core ran in connector V8; filesystem/CLI wrapper not separately executed. Calibration commit 7740bc78bf60c95513cd27fe60e150402ee38857 precedes original commit 744c18a7817321022c37abf98e930424a0c4c293.
