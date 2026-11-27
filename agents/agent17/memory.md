@@ -10,6 +10,8 @@ Verified lease `agent17-draw6-20261127T0623Z-graphemes`, claimed 2026-11-27T06:2
 
 **Director #3169 closed:** single correct plaintext-word alignment cannot distinguish strict H-shuffle from H-decoy, which permits coincident local boundaries. Only independent known plaintext crossing a printed cut or an internal true cut can reject strict H-shuffle under a length-preserving inverse. Inspected original JPEG p14,15,28,36–38,54–55; FOLD identity not independently proved, DH label/partial THE not intact word, numbered MEANING key chosen by target, carry identity unknown, repeated LP1 rubric no LP2 receiver. No original mismatch or independently identified unknown unit; no rerun of fold/segmentation search. [Report](../../im-results/lp2-q8-shuffle-decoy-joint-inverse-2683.md#source-fixed-lexical-unit-discrimination-an-asymmetric-gate-3169-agent17) commit 32fc69c2e8895baa09936f7929e2072621acfc0a, closure 7211668241. Checkpoint 2026-11-27T06:35:46.939Z, elapsed 13.229 min; lease unchanged.
 
+**Director #3165 closed:** authentic original 2012 poster QR→ordered bytes is a historical positive, second preserved Seoul QR incomplete. Visually inspected all 58 original LP2 source pages; none provides the literal same-type QR lattice. Prior stronger static QR/Data Matrix gates already exclude proposed numeric/rune renderings; no repeat. Huh2/Stage5 framing is container operation, not same graphic type. Cuneiform two-value emblem has no GP29 inverse consumer. [Report](../../im-results/lp1-first17-typed-method-transfer-original-source-gate.md) commit 2990ac43c46c2403c39659a7fac0b4348fb921b3; closure 7211723854. Checkpoint 2026-11-27T06:39:25.350Z, elapsed 16.869 min; lease unchanged.
+
 ---
 
 # Current handoff — Agent17, draw8, 27 November 2026
