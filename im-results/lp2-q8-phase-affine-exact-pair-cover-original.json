@@ -1,0 +1,22 @@
+{
+  "id": 45950852885,
+  "mode": "original",
+  "dictionary": 38938,
+  "budget": 6,
+  "eligible": 15,
+  "qualifying_pairs": 477,
+  "coverage_max_independent": 5,
+  "coverage_nodes": 3527,
+  "joined": 1599234,
+  "consistent": 447,
+  "keys": 474,
+  "duplicates": 0,
+  "fast_pass": 0,
+  "fit_count": 0,
+  "omitted": [],
+  "fits": [],
+  "exact": 0,
+  "train_truth": 0,
+  "held_truth": 0,
+  "held_count": 645
+}
