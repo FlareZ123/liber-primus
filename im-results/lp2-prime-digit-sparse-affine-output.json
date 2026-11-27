@@ -1,0 +1,1117 @@
+{
+  "N": 20,
+  "controls": [
+    {
+      "base": 6,
+      "C": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "keys": 88
+    },
+    {
+      "base": 6,
+      "C": [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "keys": 20
+    },
+    {
+      "base": 6,
+      "C": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "keys": 19
+    },
+    {
+      "base": 8,
+      "C": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "keys": 128
+    },
+    {
+      "base": 8,
+      "C": [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "keys": 13
+    },
+    {
+      "base": 8,
+      "C": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "keys": 9
+    },
+    {
+      "base": 9,
+      "C": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          1
+        ]
+      ],
+      "keys": 160
+    },
+    {
+      "base": 9,
+      "C": [
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "keys": 14
+    },
+    {
+      "base": 9,
+      "C": [
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "keys": 5
+    }
+  ],
+  "plant": {
+    "C": [
+      [
+        3,
+        11
+      ],
+      [
+        5,
+        29
+      ],
+      [
+        11,
+        59
+      ],
+      [
+        17,
+        83
+      ],
+      [
+        29,
+        41
+      ],
+      [
+        41,
+        43
+      ],
+      [
+        59,
+        67
+      ],
+      [
+        71,
+        3
+      ],
+      [
+        101,
+        107
+      ],
+      [
+        107,
+        5
+      ]
+    ],
+    "P": [
+      [
+        5,
+        11
+      ],
+      [
+        7,
+        29
+      ],
+      [
+        13,
+        59
+      ],
+      [
+        19,
+        83
+      ],
+      [
+        31,
+        41
+      ],
+      [
+        43,
+        43
+      ],
+      [
+        61,
+        67
+      ],
+      [
+        73,
+        3
+      ],
+      [
+        103,
+        107
+      ],
+      [
+        109,
+        5
+      ]
+    ],
+    "keys": 20,
+    "trueRetained": true
+  },
+  "original": [
+    {
+      "base": 110,
+      "reverse": false,
+      "trace": [
+        {
+          "depth": 1,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 3,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 4,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 5,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 6,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 7,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 8,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 9,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 10,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 11,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 12,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 13,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 14,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 15,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 16,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 17,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 18,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 19,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 20,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        }
+      ],
+      "capAt": null,
+      "keys": 1,
+      "nonidentity": 0,
+      "states": [
+        [
+          "1",
+          "0"
+        ]
+      ]
+    },
+    {
+      "base": 110,
+      "reverse": true,
+      "trace": [
+        {
+          "depth": 1,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 3,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 4,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 5,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 6,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 7,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 8,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 9,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 10,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 11,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 12,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 13,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 14,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 15,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 16,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 17,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 18,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 19,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 20,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        }
+      ],
+      "capAt": null,
+      "keys": 1,
+      "nonidentity": 0,
+      "states": [
+        [
+          "1",
+          "0"
+        ]
+      ]
+    },
+    {
+      "base": 128,
+      "reverse": false,
+      "trace": [
+        {
+          "depth": 1,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 3,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 4,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 5,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 6,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 7,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 8,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 9,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 10,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 11,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 12,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 13,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 14,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 15,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 16,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 17,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 18,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 19,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 20,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        }
+      ],
+      "capAt": null,
+      "keys": 1,
+      "nonidentity": 0,
+      "states": [
+        [
+          "1",
+          "0"
+        ]
+      ]
+    },
+    {
+      "base": 128,
+      "reverse": true,
+      "trace": [
+        {
+          "depth": 1,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 2,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 3,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 4,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 5,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 6,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 7,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 8,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 9,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 10,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 11,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 12,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 13,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 14,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 15,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 16,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 17,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 18,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 19,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        },
+        {
+          "depth": 20,
+          "count": 1,
+          "examples": [
+            [
+              "1",
+              "0"
+            ]
+          ]
+        }
+      ],
+      "capAt": null,
+      "keys": 1,
+      "nonidentity": 0,
+      "states": [
+        [
+          "1",
+          "0"
+        ]
+      ]
+    }
+  ]
+}
