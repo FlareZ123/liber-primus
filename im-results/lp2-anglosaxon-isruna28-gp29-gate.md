@@ -1,71 +1,27 @@
-# Anglo-Saxon cipher-rune bridge: fixed 28-row versus full 32-row
+# English coordinate runes and the LP2 opening staves
 
-**Agent16 · 27 November 2026. Classification: historically bounded operand narrowing. No unknown LP2 plaintext/key recovered.**
+The p0 `3|3` ornaments are compatible with English group-and-position encoding. Two English manuscript witnesses independently give **E** from group 3, position 3. Both red p0 heading words have E in third position. A complete English branch-rune chart with a source-fixed coordinate for Ior (GP IA) remains unestablished. The historical evidence supplies a local reading and leaves the task of finding a decrypting operation open.
 
-## Two distinct pre-2014 English coordinate witnesses
+## Two manuscript anchors and the missing coordinate
 
-### 1. Salzburg Isruna: registration fixed, alphabet stops at 28
+| Witness | Worked or explicit registration | Ior evidence | Conditional p0 `3|3` |
+|---|---|---|---|
+| Salzburg, St Peter a IX 32 | The tract explicitly specifies 8+8+8+4, group first. Three devices give `RACCO` from `1/5 4/1 1/6 1/6 1/4`. The branch-rune version instead prints `1/5 4/1 1/6 1/5 1/4` and reads `RACRO`, which Derolez treats as a copying error. Both sequences exercise fourth-group coordinate `4/1=A`. | Its 28-symbol row omits Ior. | **E** |
+| Cotton Domitian A IX f.11v | Two dots sit immediately before H and three before T. Derolez reads them as ordinal markers for the old eight-rune divisions. The next two runes from T are B and E. | The first hand includes the rune with value `io` after Ear, on the next physical line. No comparable group marker occurs in the last 17 runes. | **E** |
+| Hackness as reconstructed by Sermon | Figure 5 provides a four-by-eight chart covering every GP symbol. The ancient stone leaves 24 possible assignments between its branch counts and these rows. The preferred Bosa reading chooses `[4,1,2,3]`. | Fig. 5 supplies Ior in the late row. The preferred branch registration puts it at `1/5`, outside the eight reliably read coordinates. | **I** under Bosa registration, **E** under natural rows |
 
-René Derolez, *Runica Manuscripta: The English Tradition* (1954), critically edits the Isruna-tract witnesses. Salzburg St Peter a IX 32 explicitly divides the runic row into **four ordines of 8, 8, 8, and 4 runes**, with group first and position second. Its worked `RACCO` example is:
+Salzburg is the sole Isruna-tract witness that explicitly separates the last four runes into a fourth group. The other four witnesses support eight-rune divisions, with the status of their added runes unresolved. Their worked words draw on the first 24 positions. See René Derolez, *Runica Manuscripta* (1954), pp. 116–117, 120–121, 132–133. [Digitized critical edition](https://old.katab.asia/special/Rene_Derolez_-_Runica_Manuscripta.pdf).
 
-`1/5  4/1  1/6  1/6  1/4 = R A C C O`.
+Domitian is independent of the five copies of the Isruna tract. Plate I (PDF p. 259), Fig. 5 (PDF p. 34) and printed pp. 7–15 show the two dotted anchors, the first-hand `io` value, the physical line break and its unresolved meaning. The visible anchors preserve E under at least three complete readings of the initial 33-rune material. With 8+8+17, Ior is `3/13`. With 8+8+12+5 and the last physical line starting group 4, it is `4/1`. With a regular eight-rune extension, 8+8+8+9, it is `4/5`. These are explicit witnesses to the ambiguity, and the source provides no worked fourth-group coordinate. [British Library catalogue](https://searcharchives.bl.uk/catalog/041-001103666) · [Derolez Plate I](https://old.katab.asia/special/Rene_Derolez_-_Runica_Manuscripta.pdf#page=259).
 
-This fixes the natural rows:
+## Why the Hackness fragment cannot settle Ior
 
-| group | positions |
-|---:|---|
-| 1 | F U TH O R C G W |
-| 2 | H N I J EO P X S |
-| 3 | T B E M L NG OE D |
-| 4 | A AE Y EA |
+Sermon's Tables 4–5 use `4/8, 4/2, 2/4, 3/8, 1/1, 3/5, 2/4, 3/2`. Permutation 19 reproduces the eight symbols `D B O S A E O N` with Sermon's labels. Its sixth symbol is the GP `EO` at natural row 2 position 5, which has a different GP label from the E in row 3. Once the late futhorc row is assigned to observed group 1, **none of its six compatible row permutations touches Ior**. Swapping Ear and Ior in the late row preserves all eight worked outputs with the preferred permutation and changes Ior from `1/5` to `1/4`. The swap is an exact ambiguity witness for the stone coordinates. Figure 5 still fixes the order Sermon himself printed. [Sermon 2002, figs. 4–5, tables 4–5](https://proceedings.caaconference.org/files/2001/66_Sermon_CAA_2001.pdf).
 
-The 28 symbols match 28 GP symbols in exact relative order. GP's IA/Ior is the only missing member. Under this **source-fixed** registration, p0 `3|3 = E`, not first-black TH.
+R. I. Page's independent assessment calls Hackness the only known English rune-stone of this type. He treats the fragments as too worn to fix the chart and suggests the third observed group may require at least nine positions. If that reading is correct, a four-by-eight model cannot accommodate the full inscription. The Oxford St John's MS 17 f.5v and related Cotton Galba A II material contain mixed rune lists and adjacent Latin symbol codes rather than a group-position example for English Ior. The Franks Casket uses altered vowel signs. Those candidate witnesses provide no missing chart. [Page 1999, pp. 83–87](https://rodnovery.ru/images/knigi/an-introduction-to-english-runes.pdf) · [Hackness catalogue](https://chacklepie.com/ascorpus/catvol3.php?pageNum_urls=21&totalRows_urls=288) · [Oxford f.5v facsimile, publicly dated 2011](https://commons.wikimedia.org/wiki/File:St_Johns_MS_17_folio_5v.jpg) · [Folio column inventory](https://old.no/runes/manuscript/oxford/).
 
-### 2. Hackness/Sermon: full 32-symbol coverage, registration not fixed
+## LP2 decision
 
-Richard Sermon, “The Use of Permutations to Explain the Hackness Cross Tree Rune Inscription” (CAA 2001), describes the Hackness tree runes as four groups of eight and prints a **32-symbol Anglo-Saxon futhorc**. Its natural rows are:
+The independent Domitian dot anchors strengthen E at the opening under English coordinate numbering. The two original red heading offsets 2 and 10 are E, and the black ciphertext at offset 13 is TH. The red correspondence does not give a new held-out discovery because it was already known before the Domitian check. Repeated copies of the stave do not supply a second coordinate. The constant E shifts already failed in the [original ciphertext gate](lp2-p0-isruna-E-constant-shift-gate.md). The distinct Scandinavian 6:5:5 convention still gives TH under the historically controlled reversed order, without providing a full GP29 chart. No English full-chart receiver, new plaintext or key follows. Reopen the English fourth-row route on a period witness giving an actual Ior group-position coordinate or an explicit fourth-group boundary tied to the branch device.
 
-| natural futhorc row | positions |
-|---:|---|
-| 1 | F U TH O R C G W |
-| 2 | H N I J EO P X S |
-| 3 | T B E M L NG OE D |
-| 4 | A AE Y EA IO CALC GAR CWEORTH |
-
-Thus the Hackness reconstruction **does contain every GP29 symbol** if GP `IA` is identified with historical Ior/`IO`; it also contains three extra English runes.
-
-However Sermon explicitly states that the mapping from the four observed tree-rune groups to the four futhorc rows is unknown, producing **24 group permutations**. Alphabet coverage is therefore not the same as a fixed decoder.
-
-Sermon's preferred permutation 19 can be recovered from his eight legible-coordinate output. The coordinates
-
-`4/8, 4/2, 2/4, 3/8, 1/1, 3/5, 2/4, 3/2`
-
-decode to `D B O S A E O N`, which implies observed tree groups map to natural futhorc rows:
-
-`[1,2,3,4] -> [4,1,2,3]`.
-
-Under that historically argued registration, p0 `3|3` maps to natural row 2 position 3 = **I**. Under the unpermuted natural registration it maps to **E**. Neither gives TH.
-
-## Corrected state of the p0 bridge
-
-The earlier wording “the English system is missing only IA” was incomplete. The precise situation is:
-
-- **Salzburg/Derolez:** group registration is fixed and historically controlled, but the coordinate alphabet has only 28 runes and omits Ior/IA.
-- **Hackness/Sermon:** the 32-symbol alphabet covers all GP29 symbols, including Ior/IO, but the observed tree-group → futhorc-row registration is underdetermined 24 ways; the preferred Bosa permutation is an interpretation of a damaged inscription, not a source-fixed general key.
-- **Scandinavian 6:5:5:** a distinct historical convention, with the Rotbrunna worked control, gives p0 `3|3 = TH` under its own reversed group rule.
-
-Do not splice the Salzburg fixed row assignment to Sermon's later 32-symbol row, and do not treat Sermon's natural row order as the uniquely historical Hackness tree-group key. Either move silently supplies the missing operand.
-
-## Search decision
-
-The bounded pre-May-2014 search therefore does **not** produce the issue's required full English coordinate receiver: one witness fixes the row registration but lacks IA, while the witness with full GP coverage does not fix row registration. This is a much narrower obstruction than “no 29-symbol historical table exists.”
-
-A valid successor needs one independently documented rule that does both at once: fixes the tree-group registration **and** includes Ior/IA in that registered alphabet. Absent that, English p0 `3|3` remains E/I/etc. under competing historical registrations and cannot be promoted to the black TH crib.
-
-## Reproduction
-
-`sims/lp2_anglosaxon_isruna28_gp29_gate.cjs`
-
-Sources:
-- René Derolez, *Runica Manuscripta: The English Tradition* (1954), Isruna tract and Salzburg `RACCO` example.
-- Richard Sermon, “The Use of Permutations to Explain the Hackness Cross Tree Rune Inscription,” CAA 2001, esp. pp. 521–526, Figures 2, 4, 5 and Table 5.
+[Reproducer](../sims/lp2_anglosaxon_isruna28_gp29_gate.cjs) checks all 24 fixed-chart assignments, the three Domitian partitions, both Salzburg examples, and the original p0 ink-to-corpus offsets.

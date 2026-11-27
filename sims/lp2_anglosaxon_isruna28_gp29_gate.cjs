@@ -1,87 +1,153 @@
 #!/usr/bin/env node
 'use strict';
 
-// Historical Anglo-Saxon cipher-rune bridge:
-// (A) Derolez 1954 Salzburg Isruna: source-fixed 8+8+8+4 natural groups.
-// (B) Sermon 2001 Hackness reconstruction: four 8-rune rows covering 32
-//     symbols, but the mapping from observed tree-rune groups to futhorc rows
-//     is explicitly unknown (24 permutations). Sermon's preferred permutation
-//     19 is recoverable from his worked BOSA output.
-//
-// This script distinguishes alphabet coverage from group-registration evidence.
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 
-const fs=require('fs');
-const corpus=JSON.parse(fs.readFileSync('resources/liber-primus/lp2-corpus.json','utf8'));
-const gp=corpus.translit;
+const sources = path.join(__dirname, '..', 'resources', 'liber-primus');
+const corpus = JSON.parse(fs.readFileSync(path.join(sources, 'lp2-corpus.json'), 'utf8'));
+const ink = JSON.parse(fs.readFileSync(path.join(sources, 'lp2-p0-physical-ink-override.json'), 'utf8'));
+const gp = corpus.translit;
 
-const salzburg=[
- ['F','U','TH','O','R','C','G','W'],
- ['H','N','I','J','EO','P','X','S'],
- ['T','B','E','M','L','NG','OE','D'],
- ['A','AE','Y','EA']
-];
-const salFlat=salzburg.flat();
-const salCoords=Object.fromEntries(salzburg.flatMap((row,g)=>row.map((x,p)=>[x,[g+1,p+1]])));
-const racco=[['R',1,5],['A',4,1],['C',1,6],['C',1,6],['O',1,4]];
-for(const [s,g,p] of racco){
- if(JSON.stringify(salCoords[s])!==JSON.stringify([g,p]))throw Error('RACCO mismatch '+s);
+/** @typedef {[number, number]} Coordinate */
+
+/** @param {string[][]} rows @param {Coordinate} coordinate */
+function decode(rows, [group, position]) {
+  return rows[group - 1][position - 1];
 }
 
-// Sermon Figure 5 natural futhorc rows. "IO" is historical Ior; compare it
-// to GP's IA label without changing either source.
-const hackness=[
- ['F','U','TH','O','R','C','G','W'],
- ['H','N','I','J','EO','P','X','S'],
- ['T','B','E','M','L','NG','OE','D'],
- ['A','AE','Y','EA','IO','CALC','GAR','CWEORTH']
-];
-const gpToHack=x=>x==='IA'?'IO':x;
-const hackSet=new Set(hackness.flat());
-const gpCovered=gp.filter(x=>hackSet.has(gpToHack(x)));
-
-// Sermon Table 5 permutation 19 maps observed tree groups to natural futhorc
-// rows as [4,1,2,3], because its eight legible coordinates decode:
-// 4/8=d, 4/2=b, 2/4=o, 3/8=s, 1/1=a, 3/5=e, 2/4=o, 3/2=n.
-const perm19=[4,1,2,3];
-function decodeTree(group,pos,rowMap){
- const row=rowMap[group-1];
- return hackness[row-1][pos-1];
+/** @param {string[][]} rows @param {Coordinate[]} coordinates */
+function read(rows, coordinates) {
+  return coordinates.map((coordinate) => decode(rows, coordinate)).join('');
 }
-const bosaCoords=[[4,8],[4,2],[2,4],[3,8],[1,1],[3,5],[2,4],[3,2]];
-const bosa=bosaCoords.map(([g,p])=>decodeTree(g,p,perm19));
-if(bosa.join('')!=='DBOSAEON')throw Error('permutation19 BOSA reconstruction mismatch');
 
-const p0=[3,3];
-const naturalP0=hackness[p0[0]-1][p0[1]-1];
-const preferredP0=decodeTree(p0[0],p0[1],perm19);
+/** @param {string[][]} rows @param {string} rune @returns {Coordinate} */
+function locate(rows, rune) {
+  const group = rows.findIndex((row) => row.includes(rune));
+  assert.notEqual(group, -1, rune);
+  return [group + 1, rows[group].indexOf(rune) + 1];
+}
+
+/** @param {number[]} values @returns {number[][]} */
+function permutations(values) {
+  if (values.length === 0) return [[]];
+  return values.flatMap((value, i) => permutations(values.toSpliced(i, 1))
+    .map((rest) => [value, ...rest]));
+}
+
+/** @param {string[]} letters @param {number[]} lengths */
+function partition(letters, lengths) {
+  let start = 0;
+  const rows = lengths.map((length) => {
+    const row = letters.slice(start, start + length);
+    start += length;
+    return row;
+  });
+  assert.equal(start, letters.length);
+  return rows;
+}
+
+const salzburg = [
+  ['F', 'U', 'TH', 'O', 'R', 'C', 'G', 'W'],
+  ['H', 'N', 'I', 'J', 'EO', 'P', 'X', 'S'],
+  ['T', 'B', 'E', 'M', 'L', 'NG', 'OE', 'D'],
+  ['A', 'AE', 'Y', 'EA'],
+];
+/** @type {Coordinate} */
+const openingStave = [3, 3];
+/** @type {Coordinate[]} */
+const racco = [[1, 5], [4, 1], [1, 6], [1, 6], [1, 4]];
+/** @type {Coordinate[]} */
+const racro = [[1, 5], [4, 1], [1, 6], [1, 5], [1, 4]];
+assert.equal(read(salzburg, racco), 'RACCO');
+assert.equal(read(salzburg, racro), 'RACRO');
+
+// Domitian f. 11v, first hand. Plate I, Figure 5, and Derolez pp. 7–15.
+// Scribe A gives IO the name Ior; use the initial values for M and D.
+// The two and three dots anchor H as 2/1 and T as 3/1. Row 4 is unmarked.
+const domitian = [
+  ...salzburg[0], ...salzburg[1],
+  'T', 'B', 'E', 'M', 'L', 'NG', 'D', 'OE', 'A', 'AE', 'Y', 'EA',
+  'IO', 'Q', 'K', 'ST', 'GAR',
+];
+const domitianExamples = [
+  [8, 8, 17],
+  [8, 8, 12, 5],
+  [8, 8, 8, 9],
+].map((lengths) => {
+  const rows = partition(domitian, lengths);
+  assert.equal(decode(rows, [2, 1]), 'H');
+  assert.equal(decode(rows, [3, 1]), 'T');
+  assert.equal(decode(rows, openingStave), 'E');
+  return { lengths, opening_3_3: decode(rows, openingStave), ior: locate(rows, 'IO') };
+});
+assert.deepEqual(domitianExamples.map((model) => model.ior), [[3, 13], [4, 1], [4, 5]]);
+
+// Sermon Figure 5 and Table 4. Q is Cweorth in the conventional rune labels.
+const hackness = [...salzburg.slice(0, 3), ['A', 'AE', 'Y', 'EA', 'IO', 'K', 'GAR', 'Q']];
+/** @type {Coordinate[]} */
+const legible = [[4, 8], [4, 2], [2, 4], [3, 8], [1, 1], [3, 5], [2, 4], [3, 2]];
+const perm19 = [4, 1, 2, 3];
+const preferred = perm19.map((row) => hackness[row - 1]);
+const preferredGP = legible.map((coordinate) => decode(preferred, coordinate));
+assert.deepEqual(preferredGP, ['D', 'B', 'O', 'S', 'A', 'EO', 'O', 'N']);
+const preferredSermon = preferredGP.map((rune) => rune === 'EO' ? 'E' : rune);
+assert.equal(preferredSermon.join(''), 'DBOSAEON');
+
+const enumeration = permutations([1, 2, 3, 4]).map((map) => {
+  const rows = map.map((row) => hackness[row - 1]);
+  return {
+    map,
+    opening_3_3: decode(rows, openingStave),
+    ior: locate(rows, 'IO'),
+    worked_io: legible.some((coordinate) => decode(rows, coordinate) === 'IO'),
+  };
+});
+assert.equal(enumeration.length, 24);
+assert.equal(enumeration.filter((model) => model.worked_io).length, 6);
+const lateFirst = enumeration.filter((model) => model.map[0] === 4);
+assert.equal(lateFirst.length, 6);
+assert(lateFirst.every((model) => !model.worked_io));
+const iorEarSwapped = preferred.map((row) => row.map((rune) => ({ IO: 'EA', EA: 'IO' })[rune] ?? rune));
+assert.equal(read(iorEarSwapped, legible), read(preferred, legible));
+assert.notDeepEqual(locate(iorEarSwapped, 'IO'), locate(preferred, 'IO'));
+
+const p0 = corpus.pages.find((page) => page.page === ink.physical_page);
+const inkMap = ink.physical_zero_based;
+const firstBlack = inkMap.black_following_runes[0];
+assert.deepEqual(p0.indices.slice(firstBlack.start, firstBlack.start + firstBlack.length), firstBlack.gp_indices);
+const headingThird = inkMap.red_words.map((word) => {
+  assert.deepEqual(p0.indices.slice(word.start, word.start + word.length), word.gp_indices);
+  return gp[p0.indices[word.start + 2]];
+});
+assert.deepEqual(headingThird, ['E', 'E']);
+const missedGP = (letters) => gp.filter((rune) => !letters.includes(rune === 'IA' ? 'IO' : rune));
+assert.deepEqual(missedGP(domitian), []);
+assert.deepEqual(missedGP(hackness.flat()), []);
+assert.deepEqual(missedGP(salzburg.flat()), ['IA']);
 
 console.log(JSON.stringify({
- salzburg_fixed28:{
-  partition:[8,8,8,4],rows:salzburg,
-  gp_covered:gp.filter(x=>salFlat.includes(x)),
-  gp_missing:gp.filter(x=>!salFlat.includes(x)),
-  p0_3_3:naturalP0,
-  racco_control:racco
- },
- hackness_full32:{
-  natural_rows:hackness,
-  gp_coverage_count:gpCovered.length,
-  gp_uncovered:gp.filter(x=>!hackSet.has(gpToHack(x))),
-  alias:{GP_IA:'historical Ior/IO'},
-  registration:'unknown 24-way tree-group -> futhorc-row permutation',
-  natural_registration_p0_3_3:naturalP0,
-  sermon_preferred_permutation19_tree_to_row:perm19,
-  sermon_preferred_BOSA_output:bosa.join(''),
-  preferred_registration_p0_3_3:preferredP0
- },
- p0:{
-  first_black_gp:gp[2],
-  salzburg_3_3:naturalP0,
-  hackness_perm19_3_3:preferredP0,
-  matches_first_black:{
-   salzburg:naturalP0===gp[2],
-   hackness_perm19:preferredP0===gp[2]
-  }
- },
- decision:'Full historical alphabet coverage exists in the Hackness reconstruction, but the required group registration is source-underdetermined. Salzburg fixes registration but stops at 28. Neither direct English convention selects p0 first-black TH.'
-},null,2));
+  salzburg_fixed28: {
+    partition: [8, 8, 8, 4],
+    gp_missing: missedGP(salzburg.flat()),
+    three_worked_devices: read(salzburg, racco),
+    branch_rune_device: read(salzburg, racro),
+    opening_3_3: decode(salzburg, openingStave),
+  },
+  domitian_dot_anchors: { H: [2, 1], T: [3, 1], gp_missing: missedGP(domitian), examples: domitianExamples },
+  hackness_full32: {
+    gp_missing: missedGP(hackness.flat()),
+    preferred_permutation: perm19,
+    preferred_output_sermon: preferredSermon,
+    preferred_output_gp_labels: preferredGP,
+    preferred_ior: locate(preferred, 'IO'),
+    swapped_ior: locate(iorEarSwapped, 'IO'),
+    opening_3_3: decode(preferred, openingStave),
+    possible_opening_values: [...new Set(enumeration.map((entry) => entry.opening_3_3))],
+    tested_permutations: enumeration.length,
+    late_first_permutations: lateFirst.length,
+    late_first_worked_io: lateFirst.filter((model) => model.worked_io).length,
+  },
+  p0: { first_black: gp[p0.indices[firstBlack.start]], red_heading_word_third_runes: headingThird },
+}, null, 2));

@@ -20,7 +20,7 @@ The three transverse members on both sides of the upright give a 3|3 branch coun
 
 ### Direct Anglo-Saxon Futhorc comparator
 
-The closest historical comparator to the manuscript's 29-symbol GP29 alphabet is the Anglo-Saxon Futhorc, not the reduced Younger Futhark. R. Derolez's *Runica Manuscripta: The English Tradition* (1954), chapter II, examines the Isruna tract preserved in five manuscripts, including St Gallen MS 270. The tract describes Hahal-runa as using the left side for the group/row and the right side for the letter's position. Its Futhorc cipher is organized in three groups of eight, with an additional group for later runes; the first 24 runes follow:
+The closest historical comparator to the manuscript's 29-symbol GP29 alphabet is the Anglo-Saxon Futhorc, not the reduced Younger Futhark. R. Derolez's *Runica Manuscripta: The English Tradition* (1954), chapter II, examines the Isruna tract preserved in five manuscripts, including St Gallen MS 270. The tract describes Hahal-runa as using the left side for the group/row and the right side for the letter's position. Its first 24 cipher runes occupy three groups of eight. Salzburg alone makes the last four runes a separate group. Independent Cotton Domitian corroborates the third group's start, and includes Ior without fixing its coordinate. [Historical gate](lp2-anglosaxon-isruna28-gp29-gate.md). The first 24 runes follow.
 
 ```text
 1: f u þ o r c g w
