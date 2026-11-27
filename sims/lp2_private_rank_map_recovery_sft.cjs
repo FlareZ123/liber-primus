@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs');
-const experiment=function(corpus,gibran,shakespeare,emerson){
+const experiment=function(corpus,gibran,shakespeare,emerson,batch=0){
 const n=29,ALL=(1<<n)-1,lo=d=>31-Math.clz32(d&-d),hi=d=>31-Math.clz32(d),pop=x=>{x-=x>>>1&0x55555555;x=(x&0x33333333)+(x>>>2&0x33333333);return ((x+(x>>>4)&0x0f0f0f0f)*0x01010101)>>>24;},single=d=>d!==0&&(d&(d-1))===0,bit=k=>1<<k,low=k=>bit(k)-1,high=k=>ALL^low(k);
 const map=new Map(corpus.translit.map((v,i)=>[v,i]));
 function norm(lit){let D=[];for(let w of lit.toUpperCase().match(/[A-Z]+/g)){w=w.replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S").replace(/ING/g,"NG").replace(/IO/g,"IA");for(let i=0;i<w.length;){let q=w.slice(i,i+2);if(map.has(q)){D.push(map.get(q));i+=2}else D.push(map.get(w[i++]));}}return D;}
@@ -8,7 +8,7 @@ gibran=gibran.toUpperCase();let a=gibran.indexOf("ALMUSTAFA, THE CHOSEN");if(a>=
 const D=norm(gibran),train=[norm(shakespeare),norm(emerson)];
 if(D.length!==48084)throw Error("donor");
 let un=new Float64Array(n).fill(1),B=new Float64Array(n*n),T=new Float64Array(n*n*n);for(let P of train)for(let i=0;i<P.length;i++){un[P[i]]++;if(i)B[n*P[i-1]+P[i]]++;if(i>1)T[n*n*P[i-2]+n*P[i-1]+P[i]]++;}let U=un.reduce((a,b)=>a+b);for(let i=0;i<n;i++)un[i]/=U;for(let i=0;i<n;i++){let s=0;for(let j=0;j<n;j++)s+=B[n*i+j];for(let j=0;j<n;j++)B[n*i+j]=(B[n*i+j]+10*un[j])/(s+10)}for(let i=0;i<n*n;i++){let s=0;for(let j=0;j<n;j++)s+=T[n*i+j];for(let j=0;j<n;j++)T[n*i+j]=Math.log((T[n*i+j]+10*B[n*(i%n)+j])/(s+10))}
-let seed=0x07e4132;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/2**32};const perm=()=>{let x=Array.from({length:n},(_,i)=>i);for(let i=n-1;i>0;i--){let j=Math.floor(rand()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x};
+let seed=batch===0?0x07e4132:0x4b173a00+batch;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/2**32};const perm=()=>{let x=Array.from({length:n},(_,i)=>i);for(let i=n-1;i>0;i--){let j=Math.floor(rand()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x};
 function encode(P,S,R,A,role,hold){let a=A.slice(),C=[];for(let p of P){if(hold&&p===0){C.push(0);continue;}let j=S[p],c=a[j];C.push(c);a.splice(j,1);a.splice(R[role==="plain"?p:c],0,c);}return {C,A:a};}
 function recover(P0,C0,role,hold,limit=2000){
  let P=[],C=[];for(let i=0;i<P0.length;i++){if(hold&&P0[i]===0){if(C0[i]!==0)return {status:"UNSAT",reason:"F"};continue;}P.push(P0[i]);C.push(C0[i]);}
@@ -93,12 +93,12 @@ function decrypt(C,key,role,hold,prev,cap=200000,beam=0){
  }maxStates=Math.max(maxStates,next.size);if(!next.size)return {status:"UNSAT",dead:i,maxStates};if(beam&&next.size>beam){clipped=true;states=new Map([...next.entries()].sort((a,b)=>b[1].score-a[1].score).slice(0,beam));}else{if(next.size>cap)return {status:"UNKNOWN",dead:i,maxStates};states=next;}}
  let best=null,count=0n;for(let q of states.values()){count+=q.count;if(!best||q.score>best.score)best=q;}return {status:"SAT",P:arr(best.out),score:best.score/C.length,maxStates,paths:count.toString(),clipped};
 }
-let controls=[];for(let role of ["plain","cipher"])for(let hold of [false,true]){let P=D.slice(2001,2001+12956),S=perm(),R=Array.from({length:n},()=>Math.floor(rand()*n)),A=perm(),C=encode(P,S,R,A,role,hold).C,fit=8000,r=recover(P.slice(0,fit),C.slice(0,fit),role,hold,2000);let matches=null,decoded=null,keyMatches=null;if(r.key){
+let controls=[],start=batch===0?2001:18001;for(let role of ["plain","cipher"])for(let hold of [false,true]){if(batch!==0&&batch!==1+2*(role==="cipher")+(hold?1:0))continue;let P=D.slice(start,start+12956),S=perm(),R=Array.from({length:n},()=>Math.floor(rand()*n)),A=perm(),C=encode(P,S,R,A,role,hold).C,fit=8000,r=recover(P.slice(0,fit),C.slice(0,fit),role,hold,batch===0?2000:500);let matches=null,decoded=null,keyMatches=null;if(r.key){
  let enc=encode(P,r.key.S,r.key.R,r.key.A,role,hold),prefix=encode(P.slice(0,fit),r.key.S,r.key.R,r.key.A,role,hold);if(prefix.C.some((c,i)=>c!==C[i]))throw Error("fit replay");matches=enc.C.slice(fit).reduce((a,v,i)=>a+(v===C[fit+i]),0);
- let dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit));let exactStatus=dec.status;if(dec.status==="UNKNOWN")dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit),200000,4096);dec.exactStatus=exactStatus;if(dec.P){let pp=dec.P;decoded={...dec,P:undefined,accuracy:pp.reduce((a,v,i)=>a+(v===P[fit+i]),0),replay:encode(pp,r.key.S,r.key.R,prefix.A,role,hold).C.every((c,i)=>c===C[fit+i])};}else decoded=dec;
+ let dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit),200000,batch!==0&&hold?4096:0);let exactStatus=batch!==0&&hold?"NOT_RUN":dec.status;if(dec.status==="UNKNOWN")dec=decrypt(C.slice(fit),{...r.key,A:prefix.A},role,hold,P.slice(fit-2,fit),200000,4096);dec.exactStatus=exactStatus;if(dec.P){let pp=dec.P;decoded={...dec,P:undefined,accuracy:pp.reduce((a,v,i)=>a+(v===P[fit+i]),0),replay:encode(pp,r.key.S,r.key.R,prefix.A,role,hold).C.every((c,i)=>c===C[fit+i])};}else decoded=dec;
  let ref=S[0]>S[1],flip=x=>ref?28-x:x;keyMatches={S:r.key.S.filter((x,i)=>x===flip(S[i])).length,R:r.key.R.filter((x,i)=>x===flip(R[i])).length,A:r.key.A.filter((x,i)=>x===A[ref?28-i:i]).length};
- }controls.push({role,hold,fit,held:P.length-fit,matches,decoded,keyMatches,...r});}
+ }controls.push({start,batch,role,hold,fit,held:P.length-fit,matches,decoded,keyMatches,...r});}
 return {controls};
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt"];
-console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),...paths.slice(1).map(p=>fs.readFileSync(p,'utf8'))),null,2));
+console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),...paths.slice(1).map(p=>fs.readFileSync(p,'utf8')),Number(process.argv[2]||0)),null,2));
