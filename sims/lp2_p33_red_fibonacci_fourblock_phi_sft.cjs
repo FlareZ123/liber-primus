@@ -88,8 +88,38 @@ for(let i=0;i<4;i++){
   const plain=donor.slice(i*49,(i+1)*49);
   assert.equal(legalInverseSummary(forward(plain,start[i]),start[i]).firstImpossible,null);
 }
+// The red words are physically two pairs. If those form a 2x2 cell
+// layout, the p15 authentic first inner spiral traces [TL,TR,BR,BL].
+// Grant every D4 reflection/rotation, rather than selecting the one
+// closest to a surviving original decryption. No phase or cut fitting.
+const corner=[[2,8],[3,5]];
+const innerRoute=[[0,0],[0,1],[1,1],[1,0]];
+const d4=[
+ (i,j)=>[i,j],(i,j)=>[j,1-i],(i,j)=>[1-i,1-j],(i,j)=>[1-j,i],
+ (i,j)=>[1-i,j],(i,j)=>[i,1-j],(i,j)=>[j,i],(i,j)=>[1-j,1-i]
+];
+const orientations=d4.map((view,n)=>{
+  const keyF=innerRoute.map(([r,c])=>{const [a,b]=view(r,c);return corner[a][b];});
+  const summary=blocks.map((b,i)=>legalInverseSummary(b,keyF[i]));
+  return {orientation:n,keyF,primeStarts:keyF.map(k=>primes[k]),
+    firstImpossible:summary.map(s=>s.firstImpossible),
+    legalBlocks:summary.filter(s=>s.firstImpossible===null).length};
+});
+assert.deepEqual(orientations.map(o=>o.firstImpossible),[
+ [null,48,null,null],[29,6,8,3],[0,9,33,null],[null,46,4,1],
+ [null,6,4,3],[29,46,8,1],[null,9,null,null],[0,48,33,null]
+]);
+assert.ok(orientations.every(o=>o.legalBlocks<4));
+assert.deepEqual(orientations[6].keyF,[2,3,5,8]);
+for(const o of orientations){
+  for(let i=0;i<4;i++){
+    const plain=donor.slice(i*49,(i+1)*49);
+    assert.equal(legalInverseSummary(forward(plain,o.keyF[i]),o.keyF[i]).firstImpossible,null);
+  }
+}
 console.log(JSON.stringify({
  originalPage:33,redWordLengths:lengths,primeStarts:start.map(k=>primes[k]),
  blackRunes:black.length,blocks:original,fullP56Control:'85/85 exact',
- nativePlantedBlockControls:'4/4 legal',unknownPlaintextRecovered:false
+ nativePlantedBlockControls:'4/4 physical, 32/32 D4 legal',orientations,
+ unknownPlaintextRecovered:false
 },null,2));
