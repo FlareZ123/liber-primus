@@ -1,0 +1,59 @@
+[
+  {
+    "D": [
+      0,
+      8,
+      0,
+      12,
+      0,
+      27,
+      0,
+      11
+    ],
+    "Z": 85,
+    "start": 3000,
+    "phase": 5,
+    "off": 17,
+    "n": 12956,
+    "retries": 395,
+    "repeats": 197,
+    "search": {
+      "tested": 9100,
+      "patterns": 28,
+      "connected": 40,
+      "held": 2,
+      "truth": {
+        "D": [
+          0,
+          8,
+          0,
+          12,
+          0,
+          27,
+          0,
+          11
+        ],
+        "prefixPhase": 120,
+        "heldPhase": 24
+      }
+    },
+    "nativeTopTwo": 2700,
+    "bound": 2754,
+    "scalarDPMatches": 29
+  },
+  {
+    "original": true,
+    "D": [
+      0,
+      20,
+      0,
+      27,
+      0,
+      7,
+      23,
+      10
+    ],
+    "bound": 1317,
+    "scalarDPMatches": 29
+  }
+]
