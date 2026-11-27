@@ -1,0 +1,444 @@
+{
+  "N": 12956,
+  "continuousTripleCount": 12953,
+  "pageResetTripleCount": 12791,
+  "pages": 55,
+  "maskedStarts": 163,
+  "bruteTests": 30,
+  "continuous": [
+    {
+      "q": 3,
+      "best": 47,
+      "witness": [
+        [
+          2,
+          9,
+          10
+        ],
+        [
+          8,
+          5,
+          13
+        ],
+        [
+          3,
+          16,
+          10
+        ]
+      ],
+      "processed": 1008,
+      "nodes": 6972,
+      "leaves": 295,
+      "outer": 3654,
+      "maxOuterBound": 56
+    },
+    {
+      "q": 4,
+      "best": 88,
+      "witness": [
+        [
+          2,
+          4,
+          9,
+          10
+        ],
+        [
+          8,
+          13,
+          5,
+          27
+        ],
+        [
+          16,
+          24,
+          3,
+          10
+        ]
+      ],
+      "processed": 17359,
+      "nodes": 247413,
+      "leaves": 862,
+      "outer": 23751,
+      "maxOuterBound": 105
+    }
+  ],
+  "reset": [
+    {
+      "q": 3,
+      "best": 46,
+      "witness": [
+        [
+          5,
+          10,
+          13
+        ],
+        [
+          7,
+          16,
+          10
+        ],
+        [
+          25,
+          13,
+          2
+        ]
+      ],
+      "processed": 1336,
+      "nodes": 10457,
+      "leaves": 550,
+      "outer": 3654,
+      "maxOuterBound": 56
+    },
+    {
+      "q": 4,
+      "best": 86,
+      "witness": [
+        [
+          6,
+          14,
+          15,
+          23
+        ],
+        [
+          9,
+          19,
+          23,
+          27
+        ],
+        [
+          2,
+          9,
+          16,
+          19
+        ]
+      ],
+      "processed": 18918,
+      "nodes": 349369,
+      "leaves": 947,
+      "outer": 23751,
+      "maxOuterBound": 105
+    }
+  ],
+  "results": [
+    {
+      "name": "gibran_prophet_58585.txt",
+      "n": 62492,
+      "continuous": {
+        "windows": 49538,
+        "min": 112,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousNoF": {
+        "windows": 49538,
+        "min": 112,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousSkipF": {
+        "windows": 49538,
+        "min": 104,
+        "max": 243,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "withinWord": {
+        "windows": 49538,
+        "min": 111,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "withinWordNoF": {
+        "windows": 49538,
+        "min": 111,
+        "max": 287,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageReset": {
+        "windows": 49537,
+        "min": 107,
+        "max": 286,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageResetNoF": {
+        "windows": 49537,
+        "min": 107,
+        "max": 286,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageResetSkipF": {
+        "windows": 49537,
+        "min": 100,
+        "max": 242,
+        "passes": [
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "shakespeare_first300k.txt",
+      "n": 217106,
+      "continuous": {
+        "windows": 204152,
+        "min": 90,
+        "max": 180,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousNoF": {
+        "windows": 204152,
+        "min": 90,
+        "max": 180,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousSkipF": {
+        "windows": 204152,
+        "min": 86,
+        "max": 174,
+        "passes": [
+          0,
+          1625
+        ]
+      },
+      "withinWord": {
+        "windows": 204152,
+        "min": 90,
+        "max": 179,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "withinWordNoF": {
+        "windows": 204152,
+        "min": 90,
+        "max": 179,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageReset": {
+        "windows": 204151,
+        "min": 82,
+        "max": 179,
+        "passes": [
+          0,
+          10
+        ]
+      },
+      "pageResetNoF": {
+        "windows": 204151,
+        "min": 82,
+        "max": 179,
+        "passes": [
+          0,
+          10
+        ]
+      },
+      "pageResetSkipF": {
+        "windows": 204151,
+        "min": 80,
+        "max": 173,
+        "passes": [
+          0,
+          778
+        ]
+      }
+    },
+    {
+      "name": "emerson_essays_2944.txt",
+      "n": 321327,
+      "continuous": {
+        "windows": 308373,
+        "min": 100,
+        "max": 185,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousNoF": {
+        "windows": 308373,
+        "min": 100,
+        "max": 185,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "continuousSkipF": {
+        "windows": 308373,
+        "min": 97,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "withinWord": {
+        "windows": 308373,
+        "min": 98,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "withinWordNoF": {
+        "windows": 308373,
+        "min": 98,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageReset": {
+        "windows": 308372,
+        "min": 96,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageResetNoF": {
+        "windows": 308372,
+        "min": 96,
+        "max": 184,
+        "passes": [
+          0,
+          0
+        ]
+      },
+      "pageResetSkipF": {
+        "windows": 308372,
+        "min": 94,
+        "max": 183,
+        "passes": [
+          0,
+          0
+        ]
+      }
+    }
+  ],
+  "plants": [
+    {
+      "q": 3,
+      "t": 0,
+      "mode": "ordinary",
+      "tested": 2964,
+      "maxPlain": 230
+    },
+    {
+      "q": 3,
+      "t": 0,
+      "mode": "literalF-physical",
+      "tested": 2672,
+      "maxPlain": 230
+    },
+    {
+      "q": 3,
+      "t": 0,
+      "mode": "literalF-skipAccumulator",
+      "tested": 2652,
+      "maxPlain": 227
+    },
+    {
+      "q": 3,
+      "t": 1,
+      "mode": "ordinary",
+      "tested": 2883,
+      "maxPlain": 270
+    },
+    {
+      "q": 3,
+      "t": 1,
+      "mode": "literalF-physical",
+      "tested": 2604,
+      "maxPlain": 270
+    },
+    {
+      "q": 3,
+      "t": 1,
+      "mode": "literalF-skipAccumulator",
+      "tested": 2582,
+      "maxPlain": 236
+    },
+    {
+      "q": 4,
+      "t": 0,
+      "mode": "ordinary",
+      "tested": 2964,
+      "maxPlain": 230
+    },
+    {
+      "q": 4,
+      "t": 0,
+      "mode": "literalF-physical",
+      "tested": 2672,
+      "maxPlain": 230
+    },
+    {
+      "q": 4,
+      "t": 0,
+      "mode": "literalF-skipAccumulator",
+      "tested": 2652,
+      "maxPlain": 227
+    },
+    {
+      "q": 4,
+      "t": 1,
+      "mode": "ordinary",
+      "tested": 2883,
+      "maxPlain": 270
+    },
+    {
+      "q": 4,
+      "t": 1,
+      "mode": "literalF-physical",
+      "tested": 2604,
+      "maxPlain": 270
+    },
+    {
+      "q": 4,
+      "t": 1,
+      "mode": "literalF-skipAccumulator",
+      "tested": 2582,
+      "maxPlain": 236
+    }
+  ],
+  "inputBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+  ]
+}
