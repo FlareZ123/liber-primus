@@ -57,6 +57,38 @@ async function main(){
  const gap=letters.map((m,i)=>{if(!i)return 0;const s=raw.slice(letters[i-1].index+1,m.index);return s.length?24+96*(s.match(/,/g)||[]).length+192*(s.match(/\./g)||[]).length+384*(s.match(/\n/g)||[]).length:0});
  const diff=t[2].on.flatMap((e,i)=>e.delta===gap[i%238]?[]:[[i,gap[i%238],e.delta]]);
  assert.deepEqual(diff,[[3,24,0],[238,0,576],[476,0,576]]);
+ // Authored within-artifact formatting fault: compare complete three-cycle
+ // note-pair tapes before and after the independently visible LET/THE gap.
+ const chorus=t[2],cycles=Array.from({length:3},(_,k)=>{
+  let tick=0;
+  // Absolute clock: all 714 pairs in this track, including cycle-start gaps.
+  for(let i=0;i<238*k;i++)tick+=chorus.on[i].delta+chorus.off[i].delta;
+  return Array.from({length:238},(_,j)=>{
+   const i=238*k+j,on=chorus.on[i],off=chorus.off[i];
+   tick+=on.delta;const start=tick;tick+=off.delta;
+   return {on,off,start,end:tick};
+  });
+ });
+ const gcd=(a,b)=>b?gcd(b,a%b):Math.abs(a);
+ const equalEvent=(a,b)=>a.on.pitch===b.on.pitch&&a.off.pitch===b.off.pitch&&a.off.delta===b.off.delta;
+ const absoluteDiffs=[[],[],[]],pairs=[[0,1],[0,2],[1,2]];
+ for(let k=0;k<pairs.length;k++){
+  const [a,b]=pairs[k];
+  for(let i=0;i<238;i++){
+   const x=cycles[a][i],y=cycles[b][i];
+   assert.ok(equalEvent(x,y));
+   assert.equal(y.end-x.end,y.start-x.start);
+   if(i!==0&&i!==3)assert.equal(x.on.delta,y.on.delta);
+   absoluteDiffs[k].push(y.start-x.start);
+  }
+ }
+ const fittedGCD=absoluteDiffs.flatMap(a=>a.slice(0,4)).reduce(gcd,0);
+ assert.equal(fittedGCD,24);
+ assert.ok(absoluteDiffs.every(a=>a.slice(4).every(d=>d%fittedGCD===0)));
+ assert.deepEqual(absoluteDiffs.map(a=>[...new Set(a)]),[[31488,31512],[63000,63024],[31512]]);
+ const relativeEnds=cycles.map(a=>a.at(-1).end-a[0].start);
+ assert.deepEqual(relativeEnds,[30912,30936,30936]);
+ console.log(JSON.stringify({authoredChorusFault:{position:3,gaps:cycles.map(a=>a[3].on.delta),equalNotePairs:714,heldPairComparisons:3*234,relativeEnds,absoluteOffsets:absoluteDiffs.map(a=>[...new Set(a)]),fittedGCD,phaseInjectiveGlobalTickModuli:[1,2,3,4,6,8,12,24]}},null,2));
  const p=decode(t[1],"abcdefghiklmnopqrstuvwxyz"),start=t[1].on.findIndex(e=>e.delta===768),entries=[""];
  assert.ok(p.slice(0,start).endsWith("yourwordsare"));
  for(let i=start;i<p.length;i++){const d=t[1].on[i].delta;if(i!==start){assert.ok(d===0||d===384);if(d===384)entries.push("")}entries[entries.length-1]+=p[i]}
