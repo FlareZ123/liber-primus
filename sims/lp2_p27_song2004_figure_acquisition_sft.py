@@ -10,8 +10,7 @@ from pathlib import Path
 import fitz
 
 URLS = (
-    "https://hub.hku.hk/bitstream/10722/43070/1/98340.pdf?accept=1",
-    "https://hub.hku.hk/bitstream/10722/43070/1/98340.pdf",
+    "https://dspace.imech.ac.cn/handle/311007/16255",
 )
 OUT = Path("im-results/lp2-p27-song2004-figure")
 OUT.mkdir(parents=True, exist_ok=True)
