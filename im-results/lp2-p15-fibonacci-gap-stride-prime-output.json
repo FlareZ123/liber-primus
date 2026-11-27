@@ -1,0 +1,6930 @@
+{
+  "fib": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89,
+    144,
+    233,
+    377,
+    610,
+    987
+  ],
+  "ord": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    9,
+    14,
+    22,
+    35,
+    56,
+    90,
+    145,
+    234,
+    378,
+    611,
+    988
+  ],
+  "gaps": [
+    1,
+    1,
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89,
+    144,
+    233,
+    377
+  ],
+  "grid": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "maxRank": 125350,
+  "configCount": 480,
+  "p56Replay": 85,
+  "p56Consumes": 84,
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "truth": {
+        "rank": 6,
+        "phase": 4,
+        "sign": 1
+      },
+      "n": 780,
+      "cut": 400,
+      "fitCandidates": [
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": 1
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": 1
+        }
+      ],
+      "fullCandidates": [
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": 1
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": 1
+        }
+      ],
+      "fitMatch": null,
+      "heldMatch": null,
+      "heldN": 380,
+      "replay": null,
+      "truthScore": -2.717681310231207,
+      "decoded": null
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "truth": {
+        "rank": 378,
+        "phase": 12,
+        "sign": -1
+      },
+      "n": 755,
+      "cut": 400,
+      "fitCandidates": [
+        {
+          "rank": 145,
+          "phase": 8,
+          "sign": 1
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": -1
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": -1
+        }
+      ],
+      "fullCandidates": [
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": -1
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": -1
+        }
+      ],
+      "fitMatch": null,
+      "heldMatch": null,
+      "heldN": 355,
+      "replay": null,
+      "truthScore": -2.775778539346697,
+      "decoded": null
+    }
+  ],
+  "orig": [
+    {
+      "name": "p15 black body through p22",
+      "n": 1883,
+      "cut": 1210,
+      "allCases": [
+        {
+          "rank": 1,
+          "phase": 0,
+          "sign": 1,
+          "death": 59,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 0,
+          "sign": -1,
+          "death": 96,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "sign": -1,
+          "death": 122,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "sign": 1,
+          "death": 75,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "sign": -1,
+          "death": 96,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "sign": 1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "sign": 1,
+          "death": 84,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "sign": 1,
+          "death": 55,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "sign": -1,
+          "death": 162,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "sign": -1,
+          "death": 266,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "sign": -1,
+          "death": 49,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "sign": -1,
+          "death": 191,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "sign": 1,
+          "death": 143,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "sign": -1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "sign": 1,
+          "death": 61,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "sign": -1,
+          "death": 96,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "sign": -1,
+          "death": 122,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "sign": 1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "sign": -1,
+          "death": 62,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "sign": -1,
+          "death": 176,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "sign": -1,
+          "death": 111,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "sign": -1,
+          "death": 107,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "sign": -1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "sign": -1,
+          "death": 255,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "sign": -1,
+          "death": 89,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "sign": -1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "sign": -1,
+          "death": 185,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "sign": 1,
+          "death": 70,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "sign": -1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "sign": -1,
+          "death": 181,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "sign": 1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "sign": -1,
+          "death": 118,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "sign": -1,
+          "death": 78,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "sign": -1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "sign": 1,
+          "death": 106,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "sign": 1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "sign": -1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "sign": 1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "sign": 1,
+          "death": 70,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "sign": 1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "sign": 1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "sign": 1,
+          "death": 30,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "sign": 1,
+          "death": 51,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "sign": -1,
+          "death": 133,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "sign": 1,
+          "death": 104,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "sign": 1,
+          "death": 115,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "sign": -1,
+          "death": 102,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "sign": -1,
+          "death": 64,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "sign": -1,
+          "death": 54,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "sign": 1,
+          "death": 107,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "sign": -1,
+          "death": 110,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "sign": 1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "sign": 1,
+          "death": 101,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "sign": 1,
+          "death": 128,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "sign": 1,
+          "death": 277,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "sign": -1,
+          "death": 192,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": 1,
+          "death": 96,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "sign": 1,
+          "death": 127,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "sign": 1,
+          "death": 214,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "sign": -1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "sign": 1,
+          "death": 108,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "sign": -1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "sign": -1,
+          "death": 204,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "sign": -1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "sign": 1,
+          "death": 181,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "sign": 1,
+          "death": 177,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "sign": 1,
+          "death": 124,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "sign": 1,
+          "death": 86,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "sign": -1,
+          "death": 120,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "sign": 1,
+          "death": 72,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "sign": -1,
+          "death": 95,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": 1,
+          "death": 96,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "sign": 1,
+          "death": 123,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "sign": -1,
+          "death": 61,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "sign": 1,
+          "death": 81,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "sign": -1,
+          "death": 57,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "sign": 1,
+          "death": 63,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "sign": -1,
+          "death": 108,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "sign": 1,
+          "death": 65,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "sign": -1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "sign": 1,
+          "death": 106,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "sign": -1,
+          "death": 189,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "sign": 1,
+          "death": 126,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "sign": 1,
+          "death": 123,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "sign": -1,
+          "death": 171,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "sign": 1,
+          "death": 148,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "sign": -1,
+          "death": 123,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "sign": 1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "sign": -1,
+          "death": 161,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "sign": -1,
+          "death": 100,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "sign": -1,
+          "death": 125,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "sign": 1,
+          "death": 161,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "sign": -1,
+          "death": 95,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "sign": 1,
+          "death": 127,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "sign": 1,
+          "death": 116,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "sign": 1,
+          "death": 89,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "sign": -1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "sign": -1,
+          "death": 113,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "sign": 1,
+          "death": 143,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "sign": 1,
+          "death": 57,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "sign": -1,
+          "death": 98,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "sign": -1,
+          "death": 289,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "sign": -1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "sign": 1,
+          "death": 84,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "sign": 1,
+          "death": 133,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "sign": 1,
+          "death": 127,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "sign": 1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "sign": -1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "sign": -1,
+          "death": 95,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "sign": -1,
+          "death": 124,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "sign": -1,
+          "death": 73,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "sign": 1,
+          "death": 110,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "sign": -1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "sign": 1,
+          "death": 107,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "sign": 1,
+          "death": 111,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "sign": -1,
+          "death": 191,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "sign": -1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "sign": 1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "sign": -1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "sign": 1,
+          "death": 92,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "sign": -1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "sign": -1,
+          "death": 73,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "sign": -1,
+          "death": 95,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "sign": 1,
+          "death": 116,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "sign": 1,
+          "death": 159,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "sign": -1,
+          "death": 95,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "sign": -1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "sign": -1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "sign": 1,
+          "death": 108,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "sign": -1,
+          "death": 97,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "sign": -1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "sign": 1,
+          "death": 50,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "sign": 1,
+          "death": 57,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "sign": -1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "sign": -1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "sign": 1,
+          "death": 64,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "sign": -1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "sign": 1,
+          "death": 84,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "sign": -1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "sign": -1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "sign": 1,
+          "death": 186,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "sign": -1,
+          "death": 58,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "sign": 1,
+          "death": 104,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "sign": -1,
+          "death": 65,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "sign": -1,
+          "death": 117,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "sign": -1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "sign": 1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "sign": -1,
+          "death": 124,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "sign": 1,
+          "death": 105,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "sign": -1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "sign": -1,
+          "death": 287,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "sign": 1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "sign": 1,
+          "death": 64,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "sign": -1,
+          "death": 117,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "sign": 1,
+          "death": 100,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "sign": -1,
+          "death": 134,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "sign": -1,
+          "death": 282,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "sign": -1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "sign": 1,
+          "death": 182,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "sign": 1,
+          "death": 159,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "sign": -1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "sign": -1,
+          "death": 49,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "sign": 1,
+          "death": 99,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "sign": -1,
+          "death": 98,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "sign": -1,
+          "death": 212,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "sign": 1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "sign": 1,
+          "death": 64,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "sign": -1,
+          "death": 62,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "sign": 1,
+          "death": 30,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "sign": 1,
+          "death": 97,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "sign": 1,
+          "death": 216,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "sign": -1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "sign": 1,
+          "death": 104,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "sign": -1,
+          "death": 282,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "sign": 1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "sign": -1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "sign": 1,
+          "death": 127,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "sign": -1,
+          "death": 54,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "sign": 1,
+          "death": 101,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "sign": -1,
+          "death": 92,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "sign": 1,
+          "death": 101,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "sign": -1,
+          "death": 160,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": -1,
+          "death": 147,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "sign": 1,
+          "death": 141,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "sign": -1,
+          "death": 220,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "sign": -1,
+          "death": 191,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "sign": 1,
+          "death": 345,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "sign": 1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "sign": -1,
+          "death": 178,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "sign": -1,
+          "death": 165,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "sign": -1,
+          "death": 57,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "sign": 1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "sign": -1,
+          "death": 71,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "sign": 1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "sign": -1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "sign": 1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "sign": -1,
+          "death": 61,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "sign": 1,
+          "death": 157,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "sign": 1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": -1,
+          "death": 147,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "sign": -1,
+          "death": 16,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "sign": 1,
+          "death": 119,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "sign": 1,
+          "death": 121,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "sign": -1,
+          "death": 61,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "sign": 1,
+          "death": 121,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "sign": -1,
+          "death": 143,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "sign": -1,
+          "death": 110,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "sign": 1,
+          "death": 125,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "sign": -1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "sign": 1,
+          "death": 285,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "sign": -1,
+          "death": 175,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "sign": 1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "sign": -1,
+          "death": 127,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "sign": 1,
+          "death": 75,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "sign": 1,
+          "death": 75,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "sign": -1,
+          "death": 243,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "sign": -1,
+          "death": 170,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "sign": 1,
+          "death": 439,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "sign": -1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "sign": -1,
+          "death": 90,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "sign": 1,
+          "death": 180,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "sign": -1,
+          "death": 574,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "sign": -1,
+          "death": 119,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "sign": -1,
+          "death": 73,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "sign": 1,
+          "death": 57,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "sign": -1,
+          "death": 117,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "sign": 1,
+          "death": 126,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "sign": -1,
+          "death": 153,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "sign": -1,
+          "death": 111,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "sign": -1,
+          "death": 103,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "sign": 1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "sign": -1,
+          "death": 102,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "sign": -1,
+          "death": 151,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "sign": -1,
+          "death": 122,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "sign": -1,
+          "death": 83,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "sign": -1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "sign": -1,
+          "death": 172,
+          "end": []
+        }
+      ],
+      "legal": [],
+      "latestDeath": 574,
+      "fitSelectedOrdinary": {
+        "rank": 2,
+        "phase": 2,
+        "sign": 1,
+        "fit": -3.754866781044349,
+        "held": -3.828959235698141,
+        "preview": "H Y F EO J J E C F T S C S OE EA C U IA W P E E AE R B TH EO EO OE R T J OE N O D A R R H U IA D A U B IA C B N S N R E B AE N B Y NG N AE O OE EA X AE H IA D F O EO O IA EA NG U AE S",
+        "decoded": "ᚻᚣᚠᛇᛄᛄᛖᚳᚠᛏᛋᚳᛋᛟᛠᚳᚢᛡᚹᛈᛖᛖᚫᚱᛒᚦᛇᛇᛟᚱᛏᛄᛟᚾᚩᛞᚪᚱᚱᚻᚢᛡᛞᚪᚢᛒᛡᚳᛒᚾᛋᚾᚱᛖᛒᚫᚾᛒᚣᛝᚾᚫᚩᛟᛠᛉᚫᚻᛡᛞᚠᚩᛇᚩᛡᛠᛝᚢᚫᛋᛈᛟᚠᛋᚫᛈᛖᚫᚹᚹᛚᛄᛡᚩᛟᛇᛏᚦᚪᛠᛠᛄᛇᛈᛡᛉᚠᛡᛟᚫᚹᚢᛁᛈᚫᛖᚾᛚᛇᛟᚾᛋᚫᛏᛗᛇᚻᛠᚾᚣᚦᛗᛖᛒᛖᛁᛞᛉᛗᛇᛇᛉᛉᛉᛈᚾᛠᛟᚾᛋᚩᚣᚪᚦᛝᛗᚳᛚᚠᚳᛗᛚᚪᛚᛚᚫᚾᚪᛡᛖᚦᚣᛇᛄᚢᚱᚾᛡᛡᛒᚫᚠᚷᛋᛗᛒᛝᚣᚪᚷᚻᛠᛁᛗᛏᚻᛗᚪᚩᛋᛒᚱᛖᛁᛖᚣᚣᛗᛇᛇᛞᚳᛠᚢᛁᛁᛝᛄᛞᚱᛚᚳᛋᛖᛡᛉᚻᛄᚳᚫᚪᚩᚣᛚᚪᚾᛒᛏᚱᛏᛒᚱᛞᛇᚱᛁᚱᚾᚢᚫᛠᛋᛒᚾᛁᚾᚳᚹᚱᛉᛈᛚᚫᚪᛈᚹᚹᚾᛄᛈᛗᚻᚳᛗᛁᚾᛁᛋᛝᛋᛚᚣᚾᚳᚢᚹᛗᚳᛏᛝᚾᚷᚦᚹᛉᚫᚦᚱᛄᛇᚷᚩᚾᚹᚻᛋᚩᛠᚣᛁᚱᛒᚠᚩᛗᛁᛒᚪᛚᚾᛏᛞᛞᚷᚾᛁᚪᚫᚷᛈᚾᚹᚻᚾᛞᛗᚫᚦᛖᛈᚻᛝᚫᚩᛋᛞᛗᛗᛒᛉᚹᚹᛇᚦᛏᚹᛠᚪᚫᚩᚾᚪᚢᛏᛁᚫᚩᛠᛁᛋᚫᚷᚣᚪᚾᛗᛄᚱᛞᚷᛁᛋᚢᚪᛖᛝᚷᛇᛗᛠᛒᚱᛄᛒᛖᛇᚻᛉᚪᚠᛖᛁᛇᚢᚾᛁᛏᛄᛡᛏᚻᚻᚾᚪᚱᛏᚷᛒᚳᛖᛇᚹᛞᛄᚢᛚᚱᛋᚷᛋᛄᛝᚱᛞᚷᚠᚷᚷᛟᚦᚩᚦᚱᚻᛗᛇᛉᛈᚳᚩᛗᛋᚦᛖᛇᛟᚫᛠᚠᛠᚩᛗᚹᛒᚷᛉᚻᛝᚫᚢᛞᛖᛞᚳᛚᚩᛟᚱᛞᚦᚫᛟᚳᛟᛞᚷᛗᚢᛖᛒᛚᛚᚪᛏᚢᛞᚢᚩᛏᚹᛋᚣᚻᚫᛉᛉᚪᛚᚦᛖᛉᚠᛉᛏᚾᛖᛞᚱᛗᚱᚳᚢᛞᚪᛗᚦᛒᚷᛟᛖᚻᚩᛒᚫᚹᚪᛖᛟᛇᛖᛈᛁᛝᚾᛋᛚᚦᚷᚫᛏᛖᛒᚹᛞᛇᛋᚱᚳᚢᚩᚱᚢᛗᚳᛁᛈᛞᛝᚷᚾᛉᛉᛁᚠᛇᛒᛁᚪᛉᛈᚫᚷᛝᚻᛈᛚᛏᛞᛏᛝᚢᛇᚠᚫᛠᛁᛝᛏᚪᚱᛝᛖᚢᚳᚹᚫᛄᛚᚣᛗᛒᚹᛗᛁᚣᚣᛡᛡᛝᛝᚫᛚᛒᚠᛗᛄᚾᛁᚾᛡᚪᛞᚳᚢᛚᛁᛖᚣᛉᚠᛠᛏᚩᛈᛠᛁᚫᚪᛁᛖᚫᚣᛞᚠᚠᚣᚾᚳᛋᚪᚱᛞᛠᛠᛏᚢᛖᛉᛡᚢᛇᛞᛋᚠᛒᛋᚢᚣᛖᛟᛡᚹᚳᛈᚻᚦᚪᛗᚳᛏᛚᚢᚪᛞᚷᛒᛏᛈᚢᛞᛟᚷᚣᚦᛒᛚᛋᚫᚣᚪᛝᛇᚠᚢᛄᛝᚦᛁᚩᛠᚣᛏᛡᛁᛏᚫᛋᛁᚪᛋᛚᚢᚳᚪᚱᛉᚳᚷᚫᚠᚣᚦᛠᚻᛏᚪᚣᚠᛠᛏᛏᛠᛚᚹᛖᚾᛚᚱᚱᚾᚩᛚᚾᛇᚠᚹᚩᚾᛏᚾᛟᚢᛒᚳᚠᛈᚫᚳᛗᛁᚫᛖᛁᛝᚠᚠᚠᛝᚠᛚᛏᚦᚱᚷᚱᛚᚷᛉᛈᚢᛗᛁᛗᚪᛈᛝᚾᚳᚩᚢᛖᚱᚠᚷᛗᛗᚪᚾᚫᚢᛏᛖᛞᛚᚦᚪᚦᚳᚳᚩᚢᛄᚹᛁᛈᛟᛋᛋᛏᚾᚱᛋᚷᚫᚠᛇᛋᛇᚣᛒᚷᛚᛇᚣᛝᚳᛡᚠᛝᚫᛉᛈᚪᛡᛉᚹᛒᛖᚩᛈᛒᛒᚣᚹᚦᚦᛋᛁᛞᛗᚻᛈᚠᛈᛖᛄᛉᛋᛇᚢᚠᛇᚣᛄᛇᚢᚷᛇᛁᛟᚢᛡᚳᛄᚠᚾᚹᛄᛇᛒᛋᚳᚫᛝᛋᛚᚣᛡᚠᛁᚦᚪᛠᛈᚦᛇᚱᚹᚩᚱᚻᛉᛡᛝᛒᛄᚹᚻᚾᛖᚢᛉᚻᛉᚢᛞᚾᚱᚾᚪᛒᚠᛝᚳᛏᚫᛝᛏᚹᛗᛠᛏᛡᚪᚠᚾᛈᚣᚾᚪᚱᛁᚫᛚᚷᛈᚷᛠᛟᚾᚷᚾᛞᛉᛈᚳᛉᚪᛖᚹᚹᛡᛞᚻᛠᛡᚳᛒᚱᚫᛟᛗᚦᛉᚷᛖᚳᚾᚣᛒᛇᛖᚻᚣᛗᚠᚦᛟᚪᚦᚢᛋᚻᚢᛒᛠᚻᚪᚳᚱᚪᚻᚩᛏᚷᚢᛄᚦᚻᛟᚢᚦᛒᚣᛏᚩᛗᚪᛈᚪᚹᚾᛋᛚᛡᛒᚦᛁᛖᚹᚳᚪᚢᛇᚻᚷᛉᛁᚪᛉᚫᚫᛝᛁᛝᛝᚻᛞᚪᛋᛏᛉᚣᛄᚦᚹᚦᚱᚷᚪᚣᚻᛈᚻᛏᚷᚠᛖᚷᛖᚩᛟᛇᛡᚫᛡᚷᛟᛡᛡᚣᛉᛇᚻᚪᛡᛖᛏᛞᛏᚱᚱᚪᛟᚱᛗᚱᛝᛋᚷᚠᛒᚳᚩᚩᛄᚦᛞᚠᛏᛗᛚᛝᛇᛝᛉᛒᛒᚾᚳᛡᛚᛁᛇᚦᚦᚫᚷᚪᚩᛡᛖᛚᚣᛗᛏᛈᚠᛟᛚᛟᛡᛠᛈᛞᚹᚹᛄᚷᚪᛈᛁᛏᚢᚪᚠᛄᚠᛇᛖᛡᚩᚢᚩᛚᛟᚹᛄᛇᚦᛁᛞᛝᚠᚱᚫᛟᛞᛝᛁᚷᚩᚫᛞᚷᚻᛡᛖᚢᛟᛇᛗᚫᚢᚾᛠᚦᚣᚹᚹᛇᚾᚻᚪᚹᚳᚷᚹᛁᛇᛄᛚᚣᚷᛡᚢᛚᛚᚷᚪᛗᛒᚠᛚᚣᚱᛠᛇᛡᚩᚾᛟᛋᚻᚪᛚᛄᚹᛚᛇᚩᛡᚪᛄᛠᚢᚫᚩᛞᚩᚱᚩᚣᚫᚻᛡᛚᛠᚾᛞᛖᛚᚢᚫᛠᚹᛁᛝᛖᚣᚪᚾᛁᚷᚹᛇᛉᛚᛠᚱᚩᚷᛉᛠᚢᛉᚳᚣᚻᚳᛡᚩᚣᚻᚢᚠᛁᚱᚳᛋᛗᚱᚣᛠᛡᛄᚹᚾᛋᛗᛉᚻᛖᚻᛇᚫᛚᛟᛁᛉᚦᛞᛇᛟᛄᛞᚱᛉᚻᛇᚾᚳᚳᛟᛠᛠᚳᛉᛋᚢᚣᚻᛒᚹᛞᚳᚱᛟᛞᚷᚦᛇᛁᚢᛒᛇᛏᛝᛋᚷᚢᛇᛖᛄᛖᚷᚫᛋᛞᚠᛚᚢᚾᛒᛞᛈᛝᚫᚫᚻᛒᛡᚹᚷᛇᚪᚢᛚᚻᛡᚾᚢᚪᚪᛒᛝᚾᛚᚣᚫᚦᛝᚱᛞᚫᚱᚠᚣᚪᛏᚹᚾᛉᛋᛖᛡᛄᚢᚷᚻᚳᛄᚠᛡᚠᛟᚩᚫᚫᚹᛇᚱᛒᚪᚠᛒᛁᚫᛚᛒᛞᛇᚾᚳᚢᛇᚣᛖᚦᛈᛖᛗᛠᚩᚠᛈᛒᛖᚱᚾᛟᛖᚫᚾᛚᛗᛝᛝᛇᚹᛞᚢᛠᚣᚹᛝᚻᚷᚢᛡᛞᛋᛏᛁᚣᚱᛚᛈᛈᚦᛉᛉᛡᛈᛠᚢᛈᚣᚠᛖᛖᛏᛗᚳᚣᚷᚹᚦᚦᛋᛄᛠᛟᛠᛄᚪᚱᚩᛄᛉᚱᛏᚣᛉᚢᚻᚱᛠᛋᚢᛋᚫᚢᚻᚻᛞᚢᚢᚦᛞᚾᛋᚻᚦᛟᛈᚱᛁᛝᛋᚱᛇᛇᚫᚹᛟᚠᛁᚩᚢᚾᚳᛝᛋᚷᚹᚾᚫᛈᚠᛇᛇᛇᛏᚫᚾᚻᛖᛝᚠᛁᛏᚻᚫᛈᛒᚹᛠᚫᛗᛖᚷᛏᛒᛚᛈᛞᛈᛁᛏᛒᚱᛄᚣᛒᚦᛄᚠᛟᛋᚻᚳᛖᚪᚣᛡᛡᚠᚹᚻᛝᚷᛡᚳᚳᛇᛗᛇᛠᛒᛏᚣᚪᛇᛚᛝᛚᚣᛚᛠᛗᚪᛏᚹᛝᚪᚷᛋᛟᛇᛡᛇᚾᛇᚩᚳᛋᚦᚷᚳᛒᛠᚫᚣᛋᛈᛗᛋᚠᛈᛖᚩᛁᚱᚻᛖᛚᛋᚩᛝᛚᚫᛏᛄᚩᚻᛏᛡᛄᚳᛖᛇᚷᛉᚣᛈᛞᛖᚣᛝᛈᛉᛒᚦᚫᚢᚠᛇᛠᛏᛗᛒᚩᛏᚢᚹᛠᚻᛈᛉᚳᚪᚦᛞᛁᛚᚩᚾᛇᛖᚣᛄᛈᚻᛒᚫᚠᛝᛞᚷᚦᚻᚣᛉᛇᛉᚦᛋᛒᛇᚪᚫᚱᛇᛠᚪᚾᚷᚣᚾᚹᚪᚻᛏᛄᚠᛄᛉᛁᛈᛝᚠᚫᚦᛋᛁᛖᚣᛠᛉᛈᛝᛗᛄᚦᚣᚳᚹᛈᛒᛝᛇᚪᛋᚠᛟᛖᛈᛏᚦᚫᚳᛋᚱᛖᚱᛚᚢᚻᚹᛠᚷᚫᛞᛗᛇᚩᛉᚣᚩᛋᛝᛒᚱᛟᚱᛞᛄᛇᛒᛈᛞᛁᛡᛞᚱᚫᛡᚱᛞᚻᛏᛚᛗᛄᛗᛚᚱᛖᛋᛇᚣᛠ"
+      },
+      "bestHeld": -3.7493452758618613,
+      "rawHeld": -3.9036720354416037
+    },
+    {
+      "name": "p16 through p22",
+      "n": 1744,
+      "cut": 1071,
+      "allCases": [
+        {
+          "rank": 1,
+          "phase": 0,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 0,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "sign": 1,
+          "death": 46,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "sign": 1,
+          "death": 132,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "sign": -1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "sign": 1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "sign": -1,
+          "death": 145,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "sign": -1,
+          "death": 271,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "sign": 1,
+          "death": 136,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "sign": 1,
+          "death": 66,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "sign": 1,
+          "death": 292,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "sign": 1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "sign": -1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "sign": -1,
+          "death": 46,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "sign": 1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "sign": 1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "sign": -1,
+          "death": 93,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "sign": -1,
+          "death": 408,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "sign": 1,
+          "death": 54,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "sign": -1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "sign": -1,
+          "death": 50,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "sign": 1,
+          "death": 129,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "sign": -1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "sign": 1,
+          "death": 160,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "sign": -1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "sign": -1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "sign": -1,
+          "death": 16,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "sign": 1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "sign": -1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "sign": 1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "sign": -1,
+          "death": 179,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "sign": 1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "sign": 1,
+          "death": 161,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "sign": 1,
+          "death": 76,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "sign": -1,
+          "death": 169,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "sign": -1,
+          "death": 51,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "sign": 1,
+          "death": 275,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "sign": -1,
+          "death": 81,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "sign": 1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "sign": -1,
+          "death": 188,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "sign": 1,
+          "death": 78,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "sign": -1,
+          "death": 159,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "sign": -1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "sign": 1,
+          "death": 68,
+          "end": []
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "sign": 1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "sign": 1,
+          "death": 52,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "sign": -1,
+          "death": 70,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "sign": -1,
+          "death": 77,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "sign": -1,
+          "death": 66,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "sign": -1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "sign": 1,
+          "death": 174,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "sign": -1,
+          "death": 152,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "sign": 1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "sign": 1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "sign": -1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "sign": 1,
+          "death": 141,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "sign": -1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "sign": -1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "sign": -1,
+          "death": 158,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "sign": -1,
+          "death": 94,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "sign": -1,
+          "death": 48,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "sign": -1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "sign": -1,
+          "death": 188,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "sign": 1,
+          "death": 142,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "sign": -1,
+          "death": 51,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "sign": 1,
+          "death": 355,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "sign": -1,
+          "death": 130,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "sign": -1,
+          "death": 100,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "sign": -1,
+          "death": 49,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "sign": 1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "sign": -1,
+          "death": 71,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "sign": 1,
+          "death": 182,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "sign": 1,
+          "death": 81,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "sign": 1,
+          "death": 73,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "sign": -1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "sign": -1,
+          "death": 67,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": 1,
+          "death": 182,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "sign": -1,
+          "death": 280,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "sign": -1,
+          "death": 59,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "sign": 1,
+          "death": 79,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "sign": 1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "sign": -1,
+          "death": 80,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "sign": -1,
+          "death": 191,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "sign": 1,
+          "death": 152,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "sign": 1,
+          "death": 27,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "sign": -1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "sign": 1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "sign": 1,
+          "death": 77,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "sign": -1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "sign": 1,
+          "death": 362,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "sign": 1,
+          "death": 50,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "sign": -1,
+          "death": 80,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "sign": 1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "sign": 1,
+          "death": 49,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "sign": 1,
+          "death": 142,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "sign": -1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "sign": -1,
+          "death": 97,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "sign": 1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "sign": -1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "sign": 1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "sign": 1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "sign": -1,
+          "death": 145,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "sign": -1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "sign": -1,
+          "death": 73,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "sign": 1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "sign": 1,
+          "death": 45,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "sign": -1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "sign": 1,
+          "death": 45,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "sign": -1,
+          "death": 40,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "sign": -1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "sign": 1,
+          "death": 45,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "sign": -1,
+          "death": 114,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "sign": -1,
+          "death": 74,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "sign": 1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "sign": 1,
+          "death": 45,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "sign": -1,
+          "death": 138,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "sign": 1,
+          "death": 45,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "sign": -1,
+          "death": 69,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "sign": 1,
+          "death": 54,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "sign": 1,
+          "death": 180,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "sign": -1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "sign": 1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "sign": 1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "sign": -1,
+          "death": 134,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "sign": 1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "sign": -1,
+          "death": 144,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "sign": -1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "sign": 1,
+          "death": 48,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "sign": -1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "sign": -1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "sign": 1,
+          "death": 62,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "sign": -1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "sign": 1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "sign": -1,
+          "death": 202,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "sign": 1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "sign": -1,
+          "death": 69,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "sign": 1,
+          "death": 130,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "sign": -1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "sign": 1,
+          "death": 38,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "sign": -1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "sign": 1,
+          "death": 49,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "sign": 1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "sign": -1,
+          "death": 205,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "sign": 1,
+          "death": 29,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "sign": -1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "sign": 1,
+          "death": 28,
+          "end": []
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "sign": -1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "sign": 1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "sign": -1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "sign": -1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "sign": 1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "sign": -1,
+          "death": 26,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "sign": 1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "sign": -1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "sign": -1,
+          "death": 34,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "sign": 1,
+          "death": 171,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "sign": -1,
+          "death": 181,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "sign": -1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "sign": -1,
+          "death": 126,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "sign": -1,
+          "death": 46,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "sign": 1,
+          "death": 161,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "sign": 1,
+          "death": 68,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "sign": -1,
+          "death": 23,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "sign": -1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "sign": 1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "sign": -1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "sign": 1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "sign": -1,
+          "death": 16,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "sign": 1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "sign": -1,
+          "death": 16,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "sign": -1,
+          "death": 50,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "sign": 1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "sign": 1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "sign": -1,
+          "death": 47,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "sign": -1,
+          "death": 6,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "sign": 1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "sign": -1,
+          "death": 39,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "sign": 1,
+          "death": 81,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "sign": -1,
+          "death": 42,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "sign": 1,
+          "death": 52,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "sign": 1,
+          "death": 20,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "sign": -1,
+          "death": 70,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "sign": 1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "sign": -1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "sign": 1,
+          "death": 35,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "sign": -1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "sign": 1,
+          "death": 44,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "sign": -1,
+          "death": 41,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "sign": -1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "sign": 1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "sign": -1,
+          "death": 70,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "sign": 1,
+          "death": 67,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "sign": 1,
+          "death": 77,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "sign": -1,
+          "death": 60,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "sign": 1,
+          "death": 72,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "sign": -1,
+          "death": 141,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "sign": -1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "sign": 1,
+          "death": 36,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "sign": -1,
+          "death": 33,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "sign": 1,
+          "death": 289,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "sign": -1,
+          "death": 21,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "sign": 1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "sign": -1,
+          "death": 195,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "sign": -1,
+          "death": 5,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "sign": -1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "sign": 1,
+          "death": 67,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "sign": -1,
+          "death": 11,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "sign": 1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "sign": -1,
+          "death": 19,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "sign": 1,
+          "death": 15,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "sign": 1,
+          "death": 9,
+          "end": []
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "sign": 1,
+          "death": 146,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "sign": 1,
+          "death": 194,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "sign": 1,
+          "death": 157,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "sign": 1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "sign": 1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "sign": 1,
+          "death": 75,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "sign": 1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "sign": 1,
+          "death": 3,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "sign": 1,
+          "death": 145,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "sign": 1,
+          "death": 130,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "sign": 1,
+          "death": 46,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "sign": 1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "sign": -1,
+          "death": 0,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "sign": 1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "sign": -1,
+          "death": 141,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "sign": 1,
+          "death": 32,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "sign": -1,
+          "death": 43,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "sign": 1,
+          "death": 18,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "sign": -1,
+          "death": 65,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "sign": 1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "sign": -1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "sign": -1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "sign": 1,
+          "death": 186,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "sign": -1,
+          "death": 37,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "sign": 1,
+          "death": 25,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "sign": -1,
+          "death": 22,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "sign": 1,
+          "death": 14,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "sign": -1,
+          "death": 13,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "sign": 1,
+          "death": 79,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "sign": -1,
+          "death": 1,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "sign": 1,
+          "death": 7,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "sign": -1,
+          "death": 8,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "sign": 1,
+          "death": 10,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "sign": -1,
+          "death": 24,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "sign": 1,
+          "death": 17,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "sign": -1,
+          "death": 154,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "sign": 1,
+          "death": 53,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "sign": -1,
+          "death": 2,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "sign": 1,
+          "death": 12,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "sign": -1,
+          "death": 4,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "sign": 1,
+          "death": 173,
+          "end": []
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "sign": -1,
+          "death": 31,
+          "end": []
+        }
+      ],
+      "legal": [],
+      "latestDeath": 408,
+      "fitSelectedOrdinary": {
+        "rank": 1,
+        "phase": 6,
+        "sign": -1,
+        "fit": -3.781499005560806,
+        "held": -3.8262866372082542,
+        "preview": "M T S EO IA L T M I S I EO R J O L E S T EO G J U H TH I IA R A EA TH W E Y A E N I T X EA T C E NG O W TH E U EA EO IA A X N S D TH E I N D X I C M I L TH J Y OE IA M N O B O P",
+        "decoded": "ᛗᛏᛋᛇᛡᛚᛏᛗᛁᛋᛁᛇᚱᛄᚩᛚᛖᛋᛏᛇᚷᛄᚢᚻᚦᛁᛡᚱᚪᛠᚦᚹᛖᚣᚪᛖᚾᛁᛏᛉᛠᛏᚳᛖᛝᚩᚹᚦᛖᚢᛠᛇᛡᚪᛉᚾᛋᛞᚦᛖᛁᚾᛞᛉᛁᚳᛗᛁᛚᚦᛄᚣᛟᛡᛗᚾᚩᛒᚩᛈᚣᛚᚻᚱᚹᚾᚢᚾᛒᛄᛞᛇᚪᛗᚦᛒᛏᚻᛁᛞᛖᚷᚹᛇᛡᚻᛖᛁᚳᛝᛡᛗᚫᛟᛋᛚᛟᚾᚳᛏᛖᚷᛡᚢᛟᚻᛄᛝᛠᚦᛇᛄᚪᚳᚪᛡᚳᚾᚷᛝᚪᛇᛄᛋᚳᛋᛁᚦᛇᛇᚳᛗᚷᛖᚷᚪᚫᛟᛞᚩᚢᛗᚪᚠᛞᚦᛝᚠᚾᛝᚢᚱᚣᛋᛖᚠᚱᛞᛝᛈᛗᛗᛞᛖᚾᚾᚦᛖᚫᛁᚻᛈᚳᛉᛄᛖᚦᚻᚳᚹᛇᛠᛖᚢᛗᛖᛋᛗᚾᛄᚠᛉᚠᚣᚠᚣᛟᛖᛏᛄᚹᚫᛡᛗᚾᛒᛋᛖᚱᚩᛝᚩᛚᛠᛉᛁᚳᛇᚻᚢᚷᛁᚻᚹᛏᚱᛟᚻᚠᚹᚩᛚᚣᛗᛗᚾᛄᛉᚫᚻᚱᚣᚱᚪᛏᚷᚱᛟᛏᛟᚪᛝᛉᚹᛇᛇᛚᛁᛚᛝᚾᛉᚷᚦᚻᚱᛏᚢᚻᚹᛈᚾᚷᛗᛝᛖᚠᛒᛈᛡᛏᚣᚾᛞᛏᛞᚪᚣᚫᛗᛠᚦᚩᚪᛁᚣᚷᛠᚻᚩᛒᛋᚣᛁᛁᛖᚾᛋᛞᛁᚣᚷᛝᚣᚳᛝᚦᚾᚫᚳᛟᚢᛠᚢᚱᚳᚱᚩᛚᛏᛠᛡᚣᚷᛇᚦᛡᛡᚾᛗᚷᛠᛈᚪᚣᚷᛟᛞᛟᛡᛡᚳᛄᚾᚠᛁᛝᛏᚩᛈᚩᚢᚱᛞᚫᚩᚳᚹᛗᚷᛏᛋᚪᛚᛚᚱᛉᛄᛝᚱᚾᛇᛠᚪᚳᛋᚣᛇᚷᛏᚪᛄᛁᚻᛝᚾᛖᛉᛝᛏᚷᛋᛈᛏᚱᛝᚠᚣᛇᚢᚩᛟᚩᚷᚫᛗᚢᛏᛄᚣᛈᛒᚻᛡᚾᚢᚢᚠᚢᛠᛠᚻᛗᛗᚫᚦᛟᛟᛗᛏᚩᚾᚣᚻᚳᛏᚪᚩᚾᛞᛡᛏᚱᚱᛄᛈᛝᛈᚷᚦᛠᚦᛋᚩᛗᛚᚪᚳᛝᛏᛖᛝᚾᛟᚳᛚᛋᚪᛗᛡᛠᚻᛡᛖᚷᚣᛄᚪᚪᛠᛄᛝᛡᛖᚷᛏᚩᚱᚦᚣᚣᚳᛈᛡᛞᚹᚻᚱᚻᚪᚻᚢᚷᛉᚫᚫᛚᛖᚻᚪᛈᛉᛡᛠᛒᛋᛉᚫᛞᛈᛝᚢᚠᛈᚦᛗᛚᚩᚩᚾᛋᚷᚳᛞᛈᛇᚱᛋᛋᚦᛇᛖᛖᛁᛒᚩᛉᚠᛞᚳᛁᛟᚦᛡᛡᛟᛈᚳᚠᚠᛋᚩᛡᛏᛋᚳᛁᛡᚢᚢᚦᚣᛠᚢᛉᚩᛖᛗᚹᛈᛞᚢᛗᛇᚻᚣᚳᛞᛠᛚᛝᛁᚹᛟᛝᛗᚠᚢᛟᚹᚫᚹᚻᛗᛖᛈᚦᛚᛚᚩᛉᚳᚩᛁᛝᛞᛟᚹᚷᛠᚫᚩᛚᛏᚾᚢᚦᛈᛄᛈᛁᛋᛟᛠᛈᚠᚠᚠᛗᚷᛟᚠᚷᚷᚫᛋᛒᚾᚣᛄᛟᛒᛋᛡᚱᛡᛏᚷᚻᛡᛁᚱᚻᛖᛖᚦᛞᛟᛒᚹᛖᛟᛟᛋᛖᚷᛗᛝᛁᛈᚾᚢᛒᛒᛋᛚᛟᛇᛒᛒᛞᚢᚩᛉᛏᚹᛟᚾᛄᛈᚪᚾᛁᚠᛋᛄᚳᚪᚾᛇᚪᚪᛏᛖᛗᛏᛒᚦᚻᚾᚫᚣᛋᛈᚣᛇᛋᛒᛉᚦᚢᚻᚠᛟᛇᚳᛡᚩᚳᚱᚣᛉᛉᛒᚪᚳᚹᚪᚢᛞᚠᚱᚾᚪᛟᛞᚦᛈᚷᚣᛁᛠᛁᚱᚪᛝᛏᛞᚹᛁᛁᛇᚷᚷᚫᚳᚢᚣᛇᛋᛄᛁᛒᛝᚩᛖᚾᛖᛚᛉᛟᛒᚻᚫᚩᚢᚣᛠᛄᛗᛈᛞᛈᛖᛋᛗᛏᚷᚦᛖᚱᛞᛋᚹᚢᛉᛞᚷᛟᛟᛡᚳᛟᚣᚻᛉᚳᚻᚫᚣᛏᚷᛇᛗᛉᚱᚢᛇᚳᛉᛚᛒᛈᚣᚱᚻᚣᛚᚱᚻᚣᛉᚫᚠᚾᛝᚷᛄᛏᛠᛋᚢᚳᛡᛒᛗᚩᛇᚠᛝᛟᛉᛒᚫᚻᛁᛡᛟᚠᛡᚢᛖᚹᛈᛟᛋᛒᚦᚹᚢᚾᛠᛈᛁᛋᛁᛚᛝᛡᚩᛚᚱᛒᚩᚣᚩᛄᚷᛁᛋᚾᛡᚣᛟᛡᛟᚷᚫᚱᚫᚠᛈᚱᚱᛚᚦᛒᛚᚷᛗᚫᛒᚩᚹᛒᚪᛝᛟᛈᛝᛇᛡᚳᛞᚫᚫᛈᛏᚪᛠᚠᚢᚩᛗᛒᛝᚷᛗᛟᛠᚩᛖᚠᚳᛟᛞᛖᛡᚠᚣᛚᚦᛒᛗᛈᚣᛡᛇᛄᛝᚫᚳᚳᚣᚠᛖᚳᛗᛝᛋᚹᚷᚫᛚᚩᛗᚫᛁᚩᛟᛒᛖᛁᚪᛇᛡᚳᛝᛈᚦᛒᚦᛉᚳᛇᚣᛖᛁᛉᛖᚦᚹᛉᚪᛈᛟᚷᚹᛡᚪᛋᚱᚪᚷᛖᚷᛈᚫᚾᚢᚠᚩᚻᚫᛞᛒᛟᚹᛝᚫᛏᛏᚱᛉᛈᛚᛁᚾᛉᚫᚩᛠᚪᛚᚹᚫᛞᛏᛞᛗᛡᚣᛇᛈᛖᛖᚦᚱᛗᛖᛏᛁᚫᛝᛉᚪᚦᚻᛒᛉᛟᚫᛡᚳᛒᚦᚩᛖᚱᚩᚷᛞᚪᛒᛝᛟᚫᚱᚢᛇᛚᚹᛇᛒᛋᛚᚪᛉᛒᛝᚣᚦᚾᚩᛞᛏᛟᚩᛒᛋᚾᚾᚠᚹᛇᚠᛒᚱᚠᛗᚹᛡᛖᚪᛞᛠᛡᚱᛞᛉᚱᚫᚫᛄᛟᛚᚠᛖᚳᚩᛉᛇᚠᛠᚾᚪᚢᛒᛖᛏᛁᛇᛉᚣᛝᚩᛟᛠᛡᚢᚱᛡᚷᛟᚢᚳᛖᚦᛡᛏᛝᛋᚫᛈᛏᚾᚹᛋᚩᛗᚦᚦᛗᛁᛗᛞᛇᚹᛄᚢᚷᚣᛟᚦᛠᚾᛟᚻᛏᚱᛡᛏᛈᚢᛚᚷᛏᛠᛞᛝᛝᚠᛖᚾᛒᚱᛁᚱᛗᛄᚠᛇᚢᚪᛏᛞᚦᛗᚹᛏᚹᚻᚫᚩᛉᛞᛖᛖᛗᛟᚩᚫᛋᚩᛇᚠᚹᛠᛖᚹᚫᛟᚱᚢᛒᛝᚻᚱᚠᛒᛒᛡᛡᛒᚾᚻᚱᛝᚱᛇᚱᛗᚩᛉᛗᚷᚠᚳᛋᛄᛋᚪᛋᛋᛠᚫᚣᛗᛈᚻᛇᛡᛈᚠᚢᚻᚾᛖᚾᚠᚷᛝᛏᛈᛄᛁᛋᚠᛒᛒᚱᛒᚷᛚᛚᛈᛟᛏᚠᛟᛠᛡᛏᛒᚠᛡᚱᛒᛟᛁᚢᛝᛞᛝᛁᛁᛉᛚᛉᚠᛡᛏᛞᛏᚦᛏᛞᛋᚾᛟᛏᛇᛄᚪᚫᛠᚦᛉᚪᚢᚾᛚᚣᛄᚾᚫᚠᛈᚪᚾᚻᚫᛡᚠᛁᛋᛝᛋᚦᛝᚩᛒᚱᛒᛒᛋᚢᛖᚣᛚᚱᚾᛈᚣᛟᚫᛗᛒᚻᛠᛋᚻᛖᛗᛠᛟᚠᚣᚣᛝᚫᚻᚣᛉᛚᛁᚾᚣᚩᚾᛁᛒᚾᚱᚳᚫᚷᚳᚻᚪᛈᛈᚫᛞᛞᚦᚠᚱᛟᚩᚱᚪᚫᚹᛁᚻᛝᛁᛖᛋᛒᚢᚢᛡᛞᚷᚱᛄᛗᛖᚢᚦᛈᚣᚹᛈᛠᛞᛠᛈᚠᛁᚦᚻᛞᚢᛖᛇᚠᛠᛞᚱᛡᚫᛟᛇᚫᚷᛏᚳᛞᛝᚣᚳᛚᛉᛄᚣᚳᚳᛝᚷᛗᛈᚠᛠᚩᚳᚾᛁᚱᛈᚷᛖᚫᛚᚻᛇᛚᚫᛄᚣᛖᛁᛋᚷᛇᛡᛞᚱᚠᚪᚹᚦᚩᛡᚣᚫᚪᚾᛚᚳᛉᛏᛠᚣᛠᚠᛞᛋᚷᚷᚣᚹᚻᚪᛝᛉᛁᚦᚪᚳᛝᛡᛚᚪᚢᛇᚦᛏᚣᚳᛡᛄᚹᛏᛗᛋᛏᚫᚪᛝᛁᛇᛖᚷᚫᚪᛈᛡᛖᚱᚪᛒᚠᚱᛉᛠᛠᚷᛗᛚᛋᛗᛚᛗᚦᚷᚱᛁᛝᚹᚻᛝᚩᚩᛠᛚᚹᚻᛒᛡᛈᛄᛇᚱᛝᛈᚹᚩᚣᚳᛡᚠᛁᛏᛄᚦᛇᚪᛄᛉᚣᚱᚫᚷᛉᛖᛇᛞᚢᛁᛡᛠᛈᚻᛗᛒᚾᚾᚦᛉᛏᛝᚹᚫᛟᚪᛏᛄᚾᚻᚣᚦᚾᛠᚫᛗᛞᛇᛡᛋᛇᛚᛒᛇᚩᚾᛁᛈᛖᚫᚠᚷ"
+      },
+      "bestHeld": -3.7353408853722305,
+      "rawHeld": -3.9036720354416037
+    }
+  ],
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  ]
+}
