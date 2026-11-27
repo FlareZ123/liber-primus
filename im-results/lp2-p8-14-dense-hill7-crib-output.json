@@ -1,0 +1,664 @@
+{
+  "schema": 1,
+  "receiver": "arbitrary fixed invertible affine GF29 Hill7, both natural 247x7 layouts",
+  "fitRows": 10,
+  "heldRows": 4,
+  "controls": [
+    {
+      "layout": "row",
+      "trial": 0,
+      "rankHistogram": {
+        "8": 234
+      },
+      "fitMatches": 6,
+      "heldMatches": 5,
+      "wrongMatches": 0,
+      "truthCipherRow": 37,
+      "truthDonorOffset": 270,
+      "matchedRunes": 1729,
+      "key": [
+        [
+          1,
+          12,
+          19,
+          3,
+          8,
+          0,
+          4
+        ],
+        [
+          11,
+          18,
+          20,
+          8,
+          11,
+          26,
+          28
+        ],
+        [
+          10,
+          13,
+          12,
+          9,
+          16,
+          10,
+          28
+        ],
+        [
+          7,
+          15,
+          9,
+          8,
+          1,
+          17,
+          27
+        ],
+        [
+          26,
+          18,
+          27,
+          14,
+          18,
+          17,
+          27
+        ],
+        [
+          17,
+          7,
+          0,
+          28,
+          1,
+          0,
+          3
+        ],
+        [
+          3,
+          3,
+          26,
+          2,
+          27,
+          3,
+          9
+        ],
+        [
+          0,
+          4,
+          17,
+          22,
+          12,
+          24,
+          13
+        ]
+      ]
+    },
+    {
+      "layout": "row",
+      "trial": 1,
+      "rankHistogram": {
+        "8": 234
+      },
+      "fitMatches": 6,
+      "heldMatches": 5,
+      "wrongMatches": 0,
+      "truthCipherRow": 126,
+      "truthDonorOffset": 544,
+      "matchedRunes": 1729,
+      "key": [
+        [
+          3,
+          23,
+          3,
+          8,
+          26,
+          6,
+          26
+        ],
+        [
+          2,
+          24,
+          12,
+          12,
+          14,
+          0,
+          4
+        ],
+        [
+          26,
+          18,
+          0,
+          2,
+          10,
+          10,
+          8
+        ],
+        [
+          7,
+          22,
+          4,
+          14,
+          18,
+          1,
+          26
+        ],
+        [
+          10,
+          10,
+          13,
+          23,
+          17,
+          1,
+          2
+        ],
+        [
+          24,
+          10,
+          8,
+          15,
+          0,
+          9,
+          2
+        ],
+        [
+          10,
+          3,
+          15,
+          7,
+          26,
+          18,
+          7
+        ],
+        [
+          19,
+          21,
+          25,
+          28,
+          16,
+          4,
+          2
+        ]
+      ]
+    },
+    {
+      "layout": "column",
+      "trial": 0,
+      "rankHistogram": {
+        "8": 234
+      },
+      "fitMatches": 9,
+      "heldMatches": 5,
+      "wrongMatches": 0,
+      "truthCipherRow": 37,
+      "truthDonorOffset": 156,
+      "matchedRunes": 1729,
+      "key": [
+        [
+          28,
+          14,
+          13,
+          17,
+          23,
+          27,
+          5
+        ],
+        [
+          19,
+          8,
+          19,
+          9,
+          4,
+          9,
+          5
+        ],
+        [
+          22,
+          17,
+          25,
+          22,
+          27,
+          4,
+          10
+        ],
+        [
+          2,
+          2,
+          6,
+          26,
+          18,
+          8,
+          24
+        ],
+        [
+          14,
+          22,
+          16,
+          19,
+          11,
+          6,
+          19
+        ],
+        [
+          13,
+          23,
+          25,
+          11,
+          26,
+          20,
+          17
+        ],
+        [
+          0,
+          12,
+          9,
+          24,
+          26,
+          17,
+          1
+        ],
+        [
+          15,
+          7,
+          21,
+          17,
+          6,
+          3,
+          8
+        ]
+      ]
+    },
+    {
+      "layout": "column",
+      "trial": 1,
+      "rankHistogram": {
+        "8": 234
+      },
+      "fitMatches": 9,
+      "heldMatches": 5,
+      "wrongMatches": 0,
+      "truthCipherRow": 126,
+      "truthDonorOffset": 292,
+      "matchedRunes": 1729,
+      "key": [
+        [
+          4,
+          25,
+          25,
+          2,
+          13,
+          25,
+          20
+        ],
+        [
+          21,
+          22,
+          14,
+          1,
+          20,
+          2,
+          22
+        ],
+        [
+          1,
+          13,
+          25,
+          8,
+          26,
+          4,
+          22
+        ],
+        [
+          3,
+          1,
+          24,
+          6,
+          26,
+          13,
+          18
+        ],
+        [
+          15,
+          23,
+          5,
+          27,
+          9,
+          1,
+          2
+        ],
+        [
+          11,
+          1,
+          6,
+          27,
+          4,
+          13,
+          12
+        ],
+        [
+          9,
+          6,
+          19,
+          27,
+          4,
+          23,
+          26
+        ],
+        [
+          7,
+          28,
+          28,
+          17,
+          12,
+          5,
+          7
+        ]
+      ]
+    }
+  ],
+  "originals": [
+    {
+      "layout": "row",
+      "originalRankHistogram": {
+        "8": 234
+      },
+      "sources": [
+        {
+          "source": "0_warning",
+          "sourceRunes": 184,
+          "windows": 87,
+          "alignments": 20358,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_welcome",
+          "sourceRunes": 515,
+          "windows": 418,
+          "alignments": 97812,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_wisdom",
+          "sourceRunes": 157,
+          "windows": 60,
+          "alignments": 14040,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_koan_1",
+          "sourceRunes": 780,
+          "windows": 683,
+          "alignments": 159822,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_loss_of_divinity",
+          "sourceRunes": 755,
+          "windows": 658,
+          "alignments": 153972,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "jpg107-167",
+          "sourceRunes": 319,
+          "windows": 222,
+          "alignments": 51948,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "jpg229",
+          "sourceRunes": 89,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "p56_an_end",
+          "sourceRunes": 85,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "p57_parable",
+          "sourceRunes": 95,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+          "sourceRunes": 18355,
+          "windows": 18258,
+          "alignments": 4272372,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-I.txt",
+          "sourceRunes": 6958,
+          "windows": 6861,
+          "alignments": 1605474,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-II.txt",
+          "sourceRunes": 7059,
+          "windows": 6962,
+          "alignments": 1629108,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-III.txt",
+          "sourceRunes": 7484,
+          "windows": 7387,
+          "alignments": 1728558,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+          "sourceRunes": 41181,
+          "windows": 41084,
+          "alignments": 9613656,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        }
+      ]
+    },
+    {
+      "layout": "column",
+      "originalRankHistogram": {
+        "8": 234
+      },
+      "sources": [
+        {
+          "source": "0_warning",
+          "sourceRunes": 184,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_welcome",
+          "sourceRunes": 515,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_wisdom",
+          "sourceRunes": 157,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_koan_1",
+          "sourceRunes": 780,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "0_loss_of_divinity",
+          "sourceRunes": 755,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "jpg107-167",
+          "sourceRunes": 319,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "jpg229",
+          "sourceRunes": 89,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "p56_an_end",
+          "sourceRunes": 85,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "p57_parable",
+          "sourceRunes": 95,
+          "windows": 0,
+          "alignments": 0,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+          "sourceRunes": 18355,
+          "windows": 16860,
+          "alignments": 3945240,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-I.txt",
+          "sourceRunes": 6958,
+          "windows": 5463,
+          "alignments": 1278342,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-II.txt",
+          "sourceRunes": 7059,
+          "windows": 5564,
+          "alignments": 1301976,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/2013-liber-al-bookcode-III.txt",
+          "sourceRunes": 7484,
+          "windows": 5989,
+          "alignments": 1401426,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        },
+        {
+          "source": "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt",
+          "sourceRunes": 41181,
+          "windows": 39686,
+          "alignments": 9286524,
+          "fitMatches": 0,
+          "rankDeficient": 0,
+          "heldMatches": 0,
+          "hits": []
+        }
+      ]
+    }
+  ],
+  "inputCommit": "e7a3bf4c4e34c0ce4e26a5bf0c2bb99186ac42de",
+  "inputBlobs": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/external/blake-marriage-1906-gutenberg45315.txt": "fc503b01bbedbec4e0c8b3d1ded311bed8e28874",
+    "resources/external/2013-liber-al-bookcode-I.txt": "64876892683fab1467481fe87d85743a8ea17982",
+    "resources/external/2013-liber-al-bookcode-II.txt": "cb4353b080d7584441f85502aeccb60796e6fe0f",
+    "resources/external/2013-liber-al-bookcode-III.txt": "36e716252a271d31f5c4ba25b3cb78199ccc1114",
+    "resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt": "12a6bc018047a1276e77f2b7f633d5905732fff9"
+  }
+}

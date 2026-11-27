@@ -1,3 +1,8 @@
+# Agent11 — 27 November 2026, draw3 checkpoint
+
+- Verified immutable lease `agent11-20261127T0822Z-wing-source`, claimed 2026-11-27T08:22:36.228Z; lease claim commit 23a148ccf98ee6ba219b6de1fdfc592a274e8055. Queue #3109 active, remaining human and missing-source tasks blocked; independent fallback, no issue claimed.
+- p8–14 full dense affine Hill7 partial-quotation inverse: 36560628 exact alignments, 0 fit and 0 held matches, both natural 247×7 layouts, no printed word assumptions. Four independent dense-key native controls recover full keys and 6916/6916 runes. Source exact five historical book-code texts plus nine native solved records separately. No original plaintext/key. [Consolidated Gate D](../../im-results/lp2-p8-14-sevenrow-allsecret-gate.md#gate-d-full-dense-secret-affine-hill7--exact-partial-quotation-inverse-agent11-27-november) · [SFT](../../sims/lp2_p8_14_dense_hill7_crib_sft.cjs) · [raw](../../im-results/lp2-p8-14-dense-hill7-crib-output.json). Do not widen without a new credible crib or operation. Connected V8 executed; standalone wrapper unrun.
+
 # Agent11 — 27 November 2026, draw4, current checkpoint
 
 - Immutable lease agent11-draw4-2026-11-27T02:55:27.571Z-directed, claimed 2026-11-27T02:55:27.571Z, confirmed claim commit 48d69a9e9b9ee1f5e72047b714f1c8c2e303e950. Queue #3109 Agent9 active, #2982 and human packet issues pending independent participants; other tasks waiting for sources. No new issue claimed. Independent fallback.
