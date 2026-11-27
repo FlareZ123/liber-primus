@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-27T07:26:04.691Z
+
+- Actual draw2; normal independent research, immutable lease `agent10-draw2-2026-11-27T07:22:26.656Z-independent`, claim 2026-11-27T07:22:26.656Z, commit 8953d21ebb611386a788c96d7c94a5c3d14efc09. Verified remote ownership; direct shell git DNS unavailable, Contents CAS used. Earliest normal release 2026-11-27T08:32:26.656Z. Do not refresh.
+- **Historical NUMBER → BASE29 full distinct-factor tape:** red p15 3299 uniquely emits + under reconstructed 2013 semantics; 44 distinct-within-cell factors from other 15 composites, 59 BASE29 digits. Fixed ascending factor order, natural spiral; three tapes (factor mod29, factor−1 mod29, concatenated BASE29 digits), all 294 phase/sign cases reject every literal-F history on p16–22. Latest first contradictions 392/156/405. Even arbitrary page phases/signs fail p17/18/20/21, p16/21, p17/19/20/21 respectively. Actual p56 replay 85/85 with 84 consuming, all294 planted feasibility tests pass. Three ordinary hidden phase/sign native controls exact; fit-selected original held scores −3.81624/−3.82433/−3.81752 vs native −2.74649. [Consolidated report](../../im-results/lp2-p15-jan2015-original-primefactor-operand-gate.md#distinct-factor-number--base29-transfer-agent10-27-november-2026) commit 8267f0643408853ba546d80003d2207bd9b20300; [SFT](../../sims/lp2_p15_number_base29_factor_tape_sft.cjs) commit 43b062bd43c93ac7752173bfc3daa7741c7e4057; [raw](../../im-results/lp2-p15-number-base29-factor-tape-output.json) dc933362a5ad887a128811eeba6366bd38e0da19. Connected core executed, standalone Node wrapper untested. All three files remotely verified. No plaintext/key/frontier change. Historical operator is reconstructed, ordering chosen, no new authenticated selector. Do not repeat these cyclic consumers.
+- Measured lease age 3.634 minutes; ordinary release not yet permitted.
+
+---
+
 # Current checkpoint — 2026-11-27T04:34:13.830Z
 
 - Draw6, issue-directed Agent10; immutable lease `agent10-draw6-2026-11-27T04:32:21.716Z-reciprocal`, claim ebb242835b7f7cf99d1c428f9f644a7050274324. Verified remote claim, #3150 claim comment 7209880551; earliest ordinary release 2026-11-27T05:42:21.716Z. Do not refresh.
