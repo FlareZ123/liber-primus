@@ -1,0 +1,113 @@
+{
+  "controls": [
+    {
+      "trial": 0,
+      "positive": {
+        "a": 31,
+        "b": 1,
+        "true_rank": 1,
+        "prefix_bf": 9.01920607704,
+        "full_bf": 10.4077291581,
+        "held_bf": 1.38852308102,
+        "mask_triples": 189840,
+        "trie_steps": 2803728,
+        "seconds": 0.522638389
+      },
+      "negative": {
+        "a": 29,
+        "b": 76,
+        "true_rank": -1,
+        "prefix_bf": 5.30855595221,
+        "full_bf": 3.3738985385,
+        "held_bf": -1.93465741371,
+        "mask_triples": 145992,
+        "trie_steps": 2544047,
+        "seconds": 0.472214417
+      }
+    },
+    {
+      "trial": 1,
+      "positive": {
+        "a": 20,
+        "b": 59,
+        "true_rank": 1336,
+        "prefix_bf": 7.59053718004,
+        "full_bf": 4.94290797956,
+        "held_bf": -2.64762920048,
+        "mask_triples": 300736,
+        "trie_steps": 5027768,
+        "seconds": 0.944488462
+      },
+      "negative": {
+        "a": 25,
+        "b": 94,
+        "true_rank": -1,
+        "prefix_bf": 6.84761040925,
+        "full_bf": 3.95242171152,
+        "held_bf": -2.89518869772,
+        "mask_triples": 325992,
+        "trie_steps": 5092797,
+        "seconds": 0.914584047
+      }
+    },
+    {
+      "trial": 2,
+      "positive": {
+        "a": 22,
+        "b": 55,
+        "true_rank": 1,
+        "prefix_bf": 7.56732532692,
+        "full_bf": 7.71015220575,
+        "held_bf": 0.142826878832,
+        "mask_triples": 302976,
+        "trie_steps": 2813967,
+        "seconds": 0.509193657
+      },
+      "negative": {
+        "a": 12,
+        "b": 53,
+        "true_rank": -1,
+        "prefix_bf": 8.28115272692,
+        "full_bf": 6.86929136925,
+        "held_bf": -1.41186135766,
+        "mask_triples": 273024,
+        "trie_steps": 2511791,
+        "seconds": 0.45606079
+      }
+    },
+    {
+      "trial": 3,
+      "positive": {
+        "a": 13,
+        "b": 101,
+        "true_rank": 2,
+        "prefix_bf": 8.00884080199,
+        "full_bf": 8.93378510327,
+        "held_bf": 0.924944301281,
+        "mask_triples": 545280,
+        "trie_steps": 6424208,
+        "seconds": 1.132374083
+      },
+      "negative": {
+        "a": 22,
+        "b": 51,
+        "true_rank": -1,
+        "prefix_bf": 6.13458575394,
+        "full_bf": 3.15753465849,
+        "held_bf": -2.97705109545,
+        "mask_triples": 418656,
+        "trie_steps": 6067396,
+        "seconds": 1.087092411
+      }
+    }
+  ],
+  "gate": {
+    "aligned": 2,
+    "positive_held": 3,
+    "negative_held": 4,
+    "pass": false
+  },
+  "original": null,
+  "run_id": 45914082826,
+  "head_sha": "dc700bbe8013a1d9989bcb760c11ac8b92b896a9"
+}
