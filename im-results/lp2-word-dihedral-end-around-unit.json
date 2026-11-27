@@ -1,0 +1,393 @@
+{
+  "model": "per-width secret unit multiplication modulo 29^L-1, arbitrary dihedral views on both sides, all-max sentinel fixed",
+  "lexicon": 33278,
+  "source": {
+    "fitWords": 47,
+    "fitRunes": 213,
+    "holdWords": 17,
+    "holdRunes": 86
+  },
+  "original": [
+    {
+      "L": 6,
+      "groups": 4,
+      "domains": [
+        {
+          "i": 2,
+          "g": [
+            "52",
+            "4"
+          ],
+          "n": 4364
+        },
+        {
+          "i": 31,
+          "g": [
+            "4",
+            "4"
+          ],
+          "n": 4024
+        },
+        {
+          "i": 41,
+          "g": [
+            "28",
+            "28"
+          ],
+          "n": 4272
+        },
+        {
+          "i": 42,
+          "g": [
+            "1",
+            "13"
+          ],
+          "n": 4331
+        }
+      ],
+      "max": 2,
+      "maxWithFree": 2,
+      "ties": 7,
+      "union": 16984,
+      "examples": [
+        {
+          "key": "11819503",
+          "readings": [
+            {
+              "i": 2,
+              "words": [
+                "UNTOLD"
+              ]
+            },
+            {
+              "i": 42,
+              "words": [
+                "THEORIST"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "19733159",
+          "readings": [
+            {
+              "i": 2,
+              "words": [
+                "CANSAS"
+              ]
+            },
+            {
+              "i": 41,
+              "words": [
+                "FALLETH"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "5808241",
+          "readings": [
+            {
+              "i": 2,
+              "words": [
+                "CANSAS"
+              ]
+            },
+            {
+              "i": 41,
+              "words": [
+                "FALLETH"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "L": 7,
+      "groups": 1,
+      "domains": [
+        {
+          "i": 9,
+          "g": [
+            "1",
+            "1"
+          ],
+          "n": 9374
+        }
+      ],
+      "max": 1,
+      "maxWithFree": 1,
+      "ties": 9374,
+      "union": 9374,
+      "examples": [
+        {
+          "key": "1527295013",
+          "readings": [
+            {
+              "i": 9,
+              "words": [
+                "ABANDON"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "445553513",
+          "readings": [
+            {
+              "i": 9,
+              "words": [
+                "ABANDON"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "1898713769",
+          "readings": [
+            {
+              "i": 9,
+              "words": [
+                "ABASHED"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "L": 8,
+      "groups": 5,
+      "domains": [
+        {
+          "i": 0,
+          "g": [
+            "5",
+            "5"
+          ],
+          "n": 4776
+        },
+        {
+          "i": 13,
+          "g": [
+            "3",
+            "3"
+          ],
+          "n": 4684
+        },
+        {
+          "i": 16,
+          "g": [
+            "12",
+            "12"
+          ],
+          "n": 4800
+        },
+        {
+          "i": 34,
+          "g": [
+            "2",
+            "2"
+          ],
+          "n": 4452
+        },
+        {
+          "i": 37,
+          "g": [
+            "8",
+            "8"
+          ],
+          "n": 4816
+        }
+      ],
+      "max": 1,
+      "maxWithFree": 1,
+      "ties": 23528,
+      "union": 23528,
+      "examples": [
+        {
+          "key": "15495862157",
+          "readings": [
+            {
+              "i": 0,
+              "words": [
+                "ABERDEEN"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "3111506789",
+          "readings": [
+            {
+              "i": 0,
+              "words": [
+                "ABERDEEN"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "42441797089",
+          "readings": [
+            {
+              "i": 0,
+              "words": [
+                "ABERDEEN"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "L": 10,
+      "groups": 2,
+      "domains": [
+        {
+          "i": 12,
+          "g": [
+            "3",
+            "93"
+          ],
+          "n": 2598
+        },
+        {
+          "i": 45,
+          "g": [
+            "24",
+            "24"
+          ],
+          "n": 2400
+        }
+      ],
+      "max": 1,
+      "maxWithFree": 1,
+      "ties": 4998,
+      "union": 4998,
+      "examples": [
+        {
+          "key": "34426209869509",
+          "readings": [
+            {
+              "i": 12,
+              "words": [
+                "ACCUSATIANS"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "12072489386429",
+          "readings": [
+            {
+              "i": 12,
+              "words": [
+                "ACCUSATIANS"
+              ]
+            }
+          ]
+        },
+        {
+          "key": "68657683096789",
+          "readings": [
+            {
+              "i": 12,
+              "words": [
+                "ACCUSATIANS"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "minimumOOV": 7,
+  "controls": [
+    [
+      {
+        "L": 6,
+        "groups": 4,
+        "ties": 1,
+        "retain": true,
+        "held": 4,
+        "heldRunes": 24,
+        "unique": 4,
+        "uniqueRunes": 24
+      },
+      {
+        "L": 7,
+        "groups": 1,
+        "ties": 8748,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 8,
+        "groups": 5,
+        "ties": 1,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 10,
+        "groups": 2,
+        "ties": 1,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      }
+    ],
+    [
+      {
+        "L": 6,
+        "groups": 4,
+        "ties": 1,
+        "retain": true,
+        "held": 4,
+        "heldRunes": 24,
+        "unique": 4,
+        "uniqueRunes": 24
+      },
+      {
+        "L": 7,
+        "groups": 1,
+        "ties": 10206,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 8,
+        "groups": 5,
+        "ties": 1,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      },
+      {
+        "L": 10,
+        "groups": 2,
+        "ties": 4,
+        "retain": true,
+        "held": 0,
+        "heldRunes": 0,
+        "unique": 0,
+        "uniqueRunes": 0
+      }
+    ]
+  ]
+}
