@@ -1,0 +1,97 @@
+{
+  "N": 308,
+  "sourceCounts": [
+    6,
+    11,
+    11,
+    11,
+    8,
+    14,
+    14,
+    10,
+    9,
+    4,
+    12,
+    10,
+    11,
+    11,
+    14,
+    11,
+    8,
+    11,
+    15,
+    18,
+    7,
+    11,
+    10,
+    13,
+    10,
+    6,
+    11,
+    10,
+    11
+  ],
+  "control": {
+    "status": "yes",
+    "nodes": 23
+  },
+  "uniqueHistogramShapes": 286,
+  "results": [
+    {
+      "donor": "solved-native",
+      "windows": 2672,
+      "eligible": 0,
+      "possible": 0,
+      "impossible": 0,
+      "unknown": 0,
+      "exact": 0,
+      "minMismatch": null,
+      "examples": [],
+      "maxNodes": 0
+    },
+    {
+      "donor": "Gibran",
+      "windows": 47322,
+      "eligible": 8,
+      "possible": 0,
+      "impossible": 8,
+      "unknown": 0,
+      "exact": 0,
+      "minMismatch": 233,
+      "examples": [
+        34444
+      ],
+      "maxNodes": 2
+    },
+    {
+      "donor": "Shakespeare",
+      "windows": 216799,
+      "eligible": 114,
+      "possible": 0,
+      "impossible": 114,
+      "unknown": 0,
+      "exact": 0,
+      "minMismatch": 232,
+      "examples": [
+        31478,
+        121307,
+        121315
+      ],
+      "maxNodes": 2
+    },
+    {
+      "donor": "Emerson",
+      "windows": 306544,
+      "eligible": 192,
+      "possible": 0,
+      "impossible": 192,
+      "unknown": 0,
+      "exact": 0,
+      "minMismatch": 227,
+      "examples": [
+        295222
+      ],
+      "maxNodes": 4
+    }
+  ]
+}
