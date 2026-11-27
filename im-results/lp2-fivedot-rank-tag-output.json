@@ -1,0 +1,9037 @@
+{
+  "sources": {
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "chapterLength": 1005,
+  "blocks": 201,
+  "capacity": {
+    "unrestrictedFour": 707281,
+    "unrestrictedFive": 20511149,
+    "multisets": 35960,
+    "maxCanonicalTagCodewords": 1042840,
+    "maxDistinctPermutations": 24
+  },
+  "original": [
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 3,
+        "contradiction": {
+          "runes": [
+            19,
+            3
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            19,
+            3
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          2,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          4,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          4,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          3,
+          4,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            19,
+            3
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          1,
+          4,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          3,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            19,
+            3
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          4,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          4,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          1,
+          4,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            19,
+            3
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          1,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          1,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          1,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          4,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          4,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          3,
+          4,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            13,
+            15
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          3,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          2,
+          4,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          2,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            15,
+            13
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          1,
+          4,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            15,
+            13
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          1,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          1,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          1,
+          4
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            15,
+            13
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          2,
+          4,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            3,
+            19
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          1,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            3,
+            19
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          2,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          3,
+          4,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            3,
+            19
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          2,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            13,
+            15
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          1,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            13,
+            15
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 13
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 13,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          2,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          1,
+          2
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            7,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            3,
+            19
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            7,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 0,
+        "order": [
+          4,
+          3,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 3,
+        "contradiction": {
+          "runes": [
+            3,
+            19
+          ],
+          "forwardBlock": 17,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          3,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          4,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 21,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          4,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          2,
+          4,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          2,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          2,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          2,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          4,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          4,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          3,
+          4,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          2,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          2,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          2,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          3,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          3,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          0,
+          4,
+          3,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          3,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          3,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          3,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          4,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          4,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          0,
+          4,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          0,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          0,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          0,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          4,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          4,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            1,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 4
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          3,
+          4,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          0,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          0,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          0,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          3,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          3,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          2,
+          4,
+          3,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          2,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          2,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          2,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          4,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          4,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          0,
+          4,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          0,
+          4
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          0,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          0,
+          4
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          4,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          4,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          2,
+          4,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          0,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          0,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          0,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          2,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 21,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          2,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          3,
+          4,
+          2,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          2,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          2,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          2,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          3,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          3,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          0,
+          3,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          0,
+          3
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          0,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          0,
+          3
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          3,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          3,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          2,
+          3,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          0,
+          2
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          0,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          0,
+          2
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          2,
+          0
+        ],
+        "distinct": 166,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          2,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 1,
+        "order": [
+          4,
+          3,
+          2,
+          0
+        ],
+        "distinct": 83,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          3,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          4,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          4,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          1,
+          4,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          1,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          1,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          1,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          4,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          4,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          3,
+          4,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          1,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          1,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          1,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          3,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          3,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          0,
+          4,
+          3,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          3,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          3,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          3,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          4,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          4,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          0,
+          4,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          0,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          0,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          0,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          4,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          4,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          3,
+          4,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          0,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          0,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          0,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          3,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          3,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          1,
+          4,
+          3,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          1,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          1,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          1,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          4,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          4,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          0,
+          4,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          0,
+          4
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          0,
+          4
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          0,
+          4
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          4,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          4,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          1,
+          4,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          0,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          0,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            23,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          0,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          1,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          1,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          3,
+          4,
+          1,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          1,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          1,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          1,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          3,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 18,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          3,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          0,
+          3,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          0,
+          3
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          0,
+          3
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            23
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 6
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          0,
+          3
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          3,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          3,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          3,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          0,
+          1
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          0,
+          1
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          0,
+          1
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          1,
+          0
+        ],
+        "distinct": 170,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          1,
+          0
+        ],
+        "distinct": 88,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 2,
+        "order": [
+          4,
+          3,
+          1,
+          0
+        ],
+        "distinct": 82,
+        "tagCount": 26,
+        "distinctPayloadTagCount": 26,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          2,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            27,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          4,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          4,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          1,
+          4,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          1,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          1,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          1,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            27,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          4,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 26,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          4,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          2,
+          4,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          1,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          1,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          1,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          2,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          2,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          0,
+          4,
+          2,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          2,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          2,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          2,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            2,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          4,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          4,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          0,
+          4,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          0,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          0,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            28,
+            19
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          0,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          4,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          4,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          2,
+          4,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          0,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          0,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          0,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            2,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          2,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 26,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          2,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          1,
+          4,
+          2,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            2,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          1,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          1,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          1,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            27,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          4,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 23,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          4,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          0,
+          4,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          0,
+          4
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          0,
+          4
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            11,
+            7
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          0,
+          4
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            27,
+            18
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          4,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 16,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          4,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          1,
+          4,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          0,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          0,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          0,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          1,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          1,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          2,
+          4,
+          1,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            18,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          1,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          1,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 4,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          1,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          2,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          2,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          0,
+          2,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          0,
+          2
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          0,
+          2
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          0,
+          2
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          2,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          2,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            7,
+            11
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          1,
+          2,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            18,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          0,
+          1
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 20,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          0,
+          1
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          0,
+          1
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            18,
+            27
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          1,
+          0
+        ],
+        "distinct": 165,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 13,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          1,
+          0
+        ],
+        "distinct": 86,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            19,
+            28
+          ],
+          "forwardBlock": 6,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 3,
+        "order": [
+          4,
+          2,
+          1,
+          0
+        ],
+        "distinct": 79,
+        "tagCount": 27,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 6,
+        "contradiction": {
+          "runes": [
+            18,
+            2
+          ],
+          "forwardBlock": 3,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 3,
+        "contradiction": {
+          "runes": [
+            2,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          1,
+          3,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          1,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          2,
+          3,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          1,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            2,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          0,
+          3,
+          2,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          2,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            20,
+            28
+          ],
+          "forwardBlock": 12,
+          "reverseBlock": 8
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            26,
+            28
+          ],
+          "forwardBlock": 11,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            26,
+            28
+          ],
+          "forwardBlock": 11,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          0,
+          3,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          0,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            20,
+            28
+          ],
+          "forwardBlock": 12,
+          "reverseBlock": 8
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          2,
+          3,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            1,
+            2
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 21,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          0,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 19,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          1,
+          3,
+          2,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            14
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          1,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            2,
+            1
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          3,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 21,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          3,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            12,
+            7
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          3,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 11,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            26,
+            1
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          0,
+          3
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            13,
+            15
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 9
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 14,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          1,
+          3,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            1,
+            2
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            28,
+            26
+          ],
+          "forwardBlock": 11,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            28,
+            26
+          ],
+          "forwardBlock": 11,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          0,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 12,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          2,
+          3,
+          1,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            14,
+            2
+          ],
+          "forwardBlock": 7,
+          "reverseBlock": 0
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 10,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          1,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            15,
+            13
+          ],
+          "forwardBlock": 15,
+          "reverseBlock": 9
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          0,
+          2,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            28,
+            20
+          ],
+          "forwardBlock": 12,
+          "reverseBlock": 8
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          0,
+          2
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            2
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 17,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          1,
+          2,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 9,
+        "contradiction": {
+          "runes": [
+            1,
+            2
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 15,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            1,
+            26
+          ],
+          "forwardBlock": 4,
+          "reverseBlock": 3
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          0,
+          1
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 7,
+        "contradiction": {
+          "runes": [
+            28,
+            20
+          ],
+          "forwardBlock": 12,
+          "reverseBlock": 8
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    },
+    {
+      "all": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "distinct": 172,
+        "tagCount": 29,
+        "distinctPayloadTagCount": 29,
+        "minRepeatBad": 8,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "first": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "distinct": 85,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 27,
+        "minRepeatBad": 5,
+        "contradiction": {
+          "runes": [
+            7,
+            12
+          ],
+          "forwardBlock": 2,
+          "reverseBlock": 1
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      },
+      "held": {
+        "t": 4,
+        "order": [
+          3,
+          2,
+          1,
+          0
+        ],
+        "distinct": 87,
+        "tagCount": 28,
+        "distinctPayloadTagCount": 28,
+        "minRepeatBad": 3,
+        "contradiction": {
+          "runes": [
+            1,
+            2
+          ],
+          "forwardBlock": 9,
+          "reverseBlock": 7
+        },
+        "acyclic": false,
+        "uniqueOrder": false,
+        "topo": []
+      }
+    }
+  ],
+  "plants": [
+    {
+      "l": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          0,
+          3
+        ]
+      },
+      "off": 0,
+      "n": 804,
+      "observed": 27,
+      "recovered": 804,
+      "adjacent": 31,
+      "trueGate": {
+        "t": 2,
+        "order": [
+          4,
+          1,
+          0,
+          3
+        ],
+        "distinct": 160,
+        "tagCount": 24,
+        "distinctPayloadTagCount": 24,
+        "minRepeatBad": 0,
+        "contradiction": null,
+        "acyclic": true,
+        "uniqueOrder": false,
+        "topo": [
+          2,
+          10,
+          12,
+          14,
+          18,
+          22,
+          26,
+          5,
+          13,
+          21,
+          0,
+          8,
+          16,
+          24,
+          3,
+          6,
+          11,
+          19,
+          25,
+          27,
+          1,
+          9,
+          17,
+          4,
+          20,
+          7,
+          28,
+          15,
+          23
+        ]
+      },
+      "acyclicLayouts": 2,
+      "admissibleLayouts": 2,
+      "topologicalPairAgreement": [
+        329,
+        351
+      ]
+    },
+    {
+      "l": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          3,
+          1
+        ]
+      },
+      "off": 1047,
+      "n": 804,
+      "observed": 24,
+      "recovered": 804,
+      "adjacent": 69,
+      "trueGate": {
+        "t": 4,
+        "order": [
+          2,
+          0,
+          3,
+          1
+        ],
+        "distinct": 151,
+        "tagCount": 24,
+        "distinctPayloadTagCount": 24,
+        "minRepeatBad": 0,
+        "contradiction": null,
+        "acyclic": true,
+        "uniqueOrder": false,
+        "topo": [
+          5,
+          0,
+          11,
+          12,
+          14,
+          17,
+          22,
+          24,
+          7,
+          19,
+          2,
+          25,
+          26,
+          4,
+          9,
+          16,
+          6,
+          21,
+          23,
+          18,
+          1,
+          8,
+          13,
+          20,
+          28,
+          3,
+          15,
+          10,
+          27
+        ]
+      },
+      "acyclicLayouts": 2,
+      "admissibleLayouts": 2,
+      "topologicalPairAgreement": [
+        261,
+        276
+      ]
+    }
+  ]
+}
