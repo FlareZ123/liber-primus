@@ -1,0 +1,87 @@
+{
+  "trial": 2,
+  "native": true,
+  "fit": 9640,
+  "held": 3316,
+  "sourceRepeatCount": 86,
+  "repeatCount": 255,
+  "expectedRepeat": 0.017557535705775368,
+  "minimumExpectedRepeat": 0.013917059830939561,
+  "target": 0.00663836356619066,
+  "plant": {
+    "b": 23,
+    "k": [
+      28,
+      20
+    ],
+    "repeat": 0.017557535705775368,
+    "pair": -63768.188809941224,
+    "triple": -94629.42802805203,
+    "s0": 0,
+    "seed": 18
+  },
+  "plantPairRank": 1,
+  "plantTripleRank": 1,
+  "reflectionRank": 22493,
+  "best": {
+    "b": 23,
+    "k": [
+      28,
+      20
+    ],
+    "init": 18,
+    "fitScore": -2.5979376123933604,
+    "initGap": 23553.89839325253,
+    "keyGap": 22278.538263124763
+  },
+  "exactFit": 9640,
+  "exactHeld": 3316,
+  "authentic57": 95,
+  "heldScore": -2.6014919577620326,
+  "heldHead": "INTOAFOUNTAINILLUSTRATIANANDINTHISLIESMYHONOURANDMYREWARDTHATWHENEUERICOMETOTHEFOUNTAINTODRINCIFINDTHELIUNGWATERITSELFTHIRSTYANDITDRINCSMEWHILEIDRI",
+  "viewRanks": {
+    "left2rank": 58,
+    "right2rank": 58,
+    "left1rank": 29,
+    "right1rank": 29
+  },
+  "replay": true,
+  "modelTop": [
+    {
+      "b": 23,
+      "k": [
+        28,
+        20
+      ],
+      "score": -25041.5206458596,
+      "init": 18
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        17
+      ],
+      "score": -47320.05890898436,
+      "init": 22
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        2
+      ],
+      "score": -47551.92408698584,
+      "init": 0
+    },
+    {
+      "b": 23,
+      "k": [
+        28,
+        22
+      ],
+      "score": -47697.937805149755,
+      "init": 19
+    }
+  ]
+}
