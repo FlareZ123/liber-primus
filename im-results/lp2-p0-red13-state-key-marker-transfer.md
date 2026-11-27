@@ -100,6 +100,25 @@ With all 262 original p0 runes left in printed order, it reproduces the 13 candi
 
 The fixed operation was [precommitted](../workplace/agent5-p0-red13-ciphertext-autokey-precommit.md) `e611ba4` before inspecting derived body text; [read-only SFT](../sims/lp2_p0_red13_ciphertext_autokey_sft.cjs) `3070a4c` reproduces the complete original receiver and positive plant. The historical p56 plaintext-F bypass is **not** part of this test; do not treat direct failure as a theorem about arbitrary collision-aware ciphertext-feedback systems. The exact 13-lag seeded historical ciphertext autokey itself is retired pending a distinct authored opcode or key schedule.
 
+
+## Stateful signed-word forcing receiver (Agent3, 27 November)
+
+The stateless THE obstruction above leaves an evolving state as a distinct alternative. The [pre-output contract](../workplace/agent3-p0-signedword-affine-forcing-precommit-20261127.md) fixes the complete authenticated 43-word sequence, rotated from THE (zero-based 1), and a stateful receiver `K_i = a K_(i-1) + f(w_i) mod29`, with arbitrary unknown but fixed lookup by exact word identity, followed by ordinary additive decoding. The provisional EPIPHANY SEEKS title fixes K0..12. The two noninitial THE events give `18−24a = 16−0a`; hence a=17, f(THE)=16 and K_(-1)=4. This is a genuinely stateful alternative to the earlier direct per-word projections, not a free fit of the multiplier. No claim that the 2016 text selects a cyclic forcing register.
+
+Since 17²=−1 and 43 is odd, iterating any affine 43-step state map four times gives identity. Thus K_(i+172)=K_i and K_(i+43)−K_i=17^i δ for δ=K43−K0. Eleven word values are fixed by the title and 23 other word values remain arbitrary. Exact affine-expression reduction over GF29 identifies all 56/172 phases whose key depends only on δ, including 14 independent of δ. Across the full original opening p0–2 the receiver therefore determines 224 untouched black runes for each of just 29 δ values; other positions remain unknown. No gap is filled or scored.
+
+| Receiver / data | p0 black fit mean log bigram | p1–2 frozen holdout | Decision |
+|---|---:|---:|---|
+| Original, best δ=5 | −3.861354 (69 pairs) | −4.228577 (138 pairs) | Nonprose |
+| Native 0_koan_1 plant, δ=17 | −2.533283 | −2.743532 | Truth rank 1 |
+| Native 0_loss_of_divinity plant, δ=14 | −2.859779 | −2.746599 | Truth rank 1 |
+
+All 237 predicted runes (including the conditional title) recover on both native plants. Even the postselected best original holdout is only −3.937185. The four 14-rune delta-independent black fragments begin at original global offsets171,343,515,687 and are nonprose: `MXIAFUUCAEOEPIAXPU`, `OEHCYNGOEULEAPOEXGA`, `YDJGNELTHHPEOXDO`, `THCRIYHWMFIAEAAEAEA` (Latin GP rendering, not plaintext words). Adjacent native GP bigrams use 0.2 pseudocount per cell, trained on seven other solved records; the two control bodies are excluded from training.
+
+**Historical consuming-only F-hold extension.** Allow every literal F bypass and encrypted non-F branch, with a relaxed arbitrary shift at every occurrence of the 116 undetermined phases. Exact phase reachability retains 24/29 δ over all729 original runes (so legality alone cannot reject). A second DP over consumed phase and previous known rune or unknown symbol maximizes mean adjacent projected bigram score over every legal path using fractional optimization: maximize sum(log probability−λ) with λ charged per scored pair, then update λ to the maximizing path mean until residual zero (numerical tolerance 1e−8). Unknown consuming outputs break scoring, literal F is scored where adjacent. Best possible original relaxed mean **−3.829763** (δ25, 213 pairs) versus native truth-path means **−2.649911 / −2.774072**. The same relaxed optimizer ranks both true δ first (−2.646181/−2.750456), and all true paths remain legal. This is an optimistic upper bound on the *projected* score, not a complete-plaintext score or a universal English impossibility. The original F-hold survivors do not imply a consistent full lookup.
+
+**Decision:** retire the fixed cyclic affine word-forcing route under the stated title assumption. It fails the original predictions even granting arbitrary unobserved word values, including the relaxed F-hold score envelope. No unknown plaintext or authenticated key recovered; a distinct nonaffine or noncyclic source-selected state is not excluded. [Ordinary exact projection SFT](../sims/lp2_p0_signedword_affine_forcing_sft.cjs) · [full raw projections](lp2-p0-signedword-affine-forcing-output.json) · [F-hold DP](../sims/lp2_p0_signedword_affine_fhold_projection_sft.cjs) · [all F-hold scores](lp2-p0-signedword-affine-fhold-projection-output.json). Both cores executed in connected V8 against repository inputs; standalone Node wrappers not independently run. No change to authoritative frontier.
+
 ## Reproduction
 
 Run:
