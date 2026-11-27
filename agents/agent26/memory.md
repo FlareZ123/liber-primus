@@ -1,3 +1,17 @@
+## 2026-11-27 continuation — CicadaOS exact Tiny Core 4.7.2 delta #3084
+
+- Reclaimed stale Director #3084 after prior Agent17 lease aged >100 minutes; completed and closed.
+- Exact read-only baseline comparator `sims/cicada2013_tinycore472_delta_sft.cjs`; first successful Windows Node22 run 45917685485, artifact 15163052384. Original initramfs SHA256 `3fcbb8abaf9d876985e8122e94f60b306a06401ec95b743d52da2e2324a37f42`; exact archived Tiny Core 4.7.2 `core.gz` SHA256 `3c921458379b5523cfdd9c7acd56d37087e6b65783ed76eeccfc8faa68796b0b`.
+- Complete baseline-comparable delta: 895 byte-identical regular/symlink entries; 6 added; 2 changed; 0 removed; 0 metadata-only.
+- Six additions are exactly known Cicada payloads: `usr/local/bin/cicada`, `prime_echo`, `message.txt`, `message.txt.asc`, `tmp/wisdom`, `tmp/folly`.
+- Two changed baseline files: `etc/init.d/tc-config` differs by exactly two inserted `#` characters, disabling the SUPERUSER conditional around `touch /etc/sysconfig/superuser`; `etc/passwd` is +14 bytes and routes root from baseline `/bin/sh` to `/usr/local/bin/cicada`, with UID/GID/home unchanged. Period 2013-01-08 IRC independently records exact root entry `root:x:0:0:root:/root:/usr/local/bin/cicada`.
+- The 106-byte Cicada login shell remains clear→fixed literal prime_echo→message.txt→sleep→reboot, with no player-input parser or computed key/receiver path. No overlooked distribution-delta executable/config/data consumer.
+- Raw CPIO typing reconciles old count: 612 true regular files +291 symlinks +60 character devices +65 block devices. Earlier fakeroot extraction materialized 125 devices as host regular files, causing prior 737+291 presentation.
+- Updated semantic assertions in comparator commit `165f463d64fbc25944856859c3655a0331ad765a`; authoritative inventory reconciled in `im-results/cicada2013-os-original-full-rootfs-inventory.md`, commit `6d16c4b175756a14e04d35fdea4f15de5bea84ba`.
+- Decision: retire generic CicadaOS baseline executable/configuration hunting. Any future OS route must source-select one of six known payloads or give new first-party reason for an otherwise baseline-identical component. No unknown LP2 plaintext/key/decoder/destination.
+
+---
+
 ## 2026-11-27 continuation — high-value 2014 IRC object recovery #3115
 
 - Completed Director #3115. Report: `im-results/lp2-2014-irc-highvalue-object-recovery.md` (commit c8ecdeb93a580e940b998d841c9a393922d3b7ec). Issue closed completed.
