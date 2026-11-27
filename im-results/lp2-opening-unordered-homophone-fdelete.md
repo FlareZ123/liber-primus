@@ -1,6 +1,6 @@
 # Opening LP2: order-free stationary homophone donor gate with arbitrary ciphertext-F deletion
 
-**Agent9, 27 November 2026.** No unknown plaintext or key. An exact necessary-condition exclusion of a finite donor family. Individual-page subset survivors are not complete chart assignments.
+**Agent9, 27 November 2026.** No unknown plaintext or key. An exact necessary-condition exclusion of a finite donor family. The exact disjoint-partition continuation also rejects every contiguous p0→p1 donor, allowing independent arbitrary page charts.
 
 ## Receiver
 
@@ -21,12 +21,25 @@ Three pinned literary witnesses (Gibran, Emerson, Shakespeare) are scanned at ev
 | p1 | 266 | 13 | 25798339 | 1300924 |
 | p2 | 201 | 7 | 14748356 | 3319525 |
 
-These overlapping window tests are not independent observations. Across both full-opening scopes, 126788311 tests yield zero necessary passes. Independent page scopes remain unresolved; subset passes do not establish a realizable homophonic chart or donor. The figures were obtained by executing the algorithm in connected V8 using exact repository input bytes.
+These overlapping window tests are not independent observations. Across both full-opening scopes, 126788311 tests yield zero necessary passes. Independent page scopes have subset survivors; the continuation below resolves the stronger contiguous-donor question. The figures were obtained by executing the algorithm in connected V8 using exact repository input bytes.
 
 ## Calibration and limits
 
 500 seeded small subset-sum instances agree with full brute subset enumeration. Six separate plants from three literary sources in A-Z and GP27 use disjoint homophone assignments and seven added F symbols; all six true donor histograms pass. Arbitrary order is already granted by the count reduction. This is a necessary-condition test, not exact blind key/order recovery.
 
-Reject the finite donor family for a single fixed chart on the complete opening, even with arbitrary rearrangement and F-only deletion. Do not extend this conclusion to private-page charts, nonstationary or multi-rune codes, or unknown prose. A broader joint partition search timed out before completing; no results from that attempt are claimed. No authenticated source selects this combined cipher; do not expand its grid absent an independent operand. Standalone Node wrapper was transcribed from the executed core and pins the observed totals; it has not been separately run.
+Reject the finite donor family for a single fixed chart on the complete opening, even with arbitrary rearrangement and F-only deletion. The following separate test addresses private-page charts. Nonstationary within-page or multi-rune codes and unknown prose remain outside scope. A broader joint partition search timed out before completing; no results from that attempt are claimed. No authenticated source selects this combined cipher; do not expand its grid absent an independent operand. Standalone Node wrapper was transcribed from the executed core and pins the observed totals; it has not been separately run.
 
 [Reproducer](../sims/lp2_opening_unordered_homophone_fdelete_sft.cjs).
+
+## Exact private-page continuation
+
+A disjoint partition of positive cipher counts into target counts is necessary and sufficient for the order-free deterministic many-to-one receiver. Equal source/target bins can be canceled safely: if source bin x occupies a different target group, exchange it with the entire previous group of total x assigned to target x; both sums are preserved. Cancel all equal sizes greedily. Every residual target requires at least two residual bins. Solve the residual exactly by ascending target size and enumeration of distinct source subsets, memoizing remaining multisets. Prune only by cardinality and sum bounds. The final group can consume all remaining bins because the total is invariant. Two thousand seeded small cases agree with exhaustive labeled-bin assignment.
+
+For each exact p0 partition and each p0 F deletion count, examine the immediately following contiguous donor segment for p1, with a fresh arbitrary chart, order and F deletion count. If it passes, repeat for p2. This is not a common-chart constraint. Nine planted three-page chains (three donors × three registers) use independent random charts and 5/7/3 added F symbols; the true deletion/seam chain survives all nine.
+
+| p0 scope | Window/deletion/register tests | Subset passes | Exact p0 partitions (offset/deletion candidates) | Exact p0→p1 chains | Exact p0→p1→p2 chains |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Full | 27641955 | 22924 | 234 | 0 | 0 |
+| Black | 25801433 | 153792 | 369 | 0 | 0 |
+
+The 603 exact first-page candidates all fail the second-page seam. No p2 continuation is reached. This closes the private-page-chart loophole for a single contiguous donor in this finite corpus. It does not rule out independent noncontiguous donor segments, arbitrary unseen prose, or within-page state changes. No original plaintext or source-selected key recovered. Original scan and additional control execution completed in connected V8; the standalone Node wrapper pins inputs and totals, but has not been separately run. [Reproducer](../sims/lp2_opening_privatepage_homophone_seam_sft.cjs).
