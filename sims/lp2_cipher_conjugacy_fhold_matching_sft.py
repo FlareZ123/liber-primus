@@ -10,7 +10,7 @@ import numpy as np
 import networkx as nx
 
 ROOT=pathlib.Path(__file__).resolve().parents[1]
-GP=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text())
+GP=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text(encoding='utf-8'))
 TOKENS=sorted([(s,i) for i,s in enumerate(GP["translit"])],key=lambda x:-len(x[0]))
 N=29
 A=np.repeat([1,-1],29)
@@ -182,7 +182,7 @@ def replay(c,k,dec,start=0,reverse=False):
 
 def main():
     names=["resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt"]
-    tapes=[native((ROOT/x).read_text()) for x in names]
+    tapes=[native((ROOT/x).read_text(encoding='utf-8')) for x in names]
     train=np.concatenate([tapes[0][:14000],tapes[1][:28000]])
     hist=np.bincount(train,minlength=29).astype(float)+.5
     lp=np.log(hist/hist.sum())
