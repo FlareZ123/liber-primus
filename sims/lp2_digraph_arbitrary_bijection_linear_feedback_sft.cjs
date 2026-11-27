@@ -53,5 +53,13 @@ function experiment(corpus, texts){
  const plants=[plant(donors[0],[137,722]),plant(donors[1],[612,48])];
  return {full,chapters,native,train,frozen,plants};
 }
-if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.join(__dirname,"..");const read=p=>fs.readFileSync(path.join(root,p),"utf8");console.log(JSON.stringify(experiment(JSON.parse(read("resources/liber-primus/lp2-corpus.json")),[read("resources/control/shakespeare_first300k.txt"),read("resources/control/gibran_prophet_58585.txt")]),null,2));}
+if(require.main===module){const fs=require("node:fs"),path=require("node:path"),root=path.join(__dirname,"..");const read=p=>fs.readFileSync(path.join(root,p),"utf8");const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));const result=experiment(corpus,[read("resources/control/shakespeare_first300k.txt"),read("resources/control/gibran_prophet_58585.txt")]);result.openingExactSupport=[0,1].map(phase=>exactSupport(corpus.pages.slice(0,3).flatMap(p=>p.indices),phase));console.log(JSON.stringify(result,null,2));}
+function exactSupport(c,phase){
+ const n=Math.floor((c.length-phase)/2)-1,Q=841,L=[],R=[];
+ for(let i=0;i<Q;i++){let a=Math.floor(i/29),b=i%29,l=new Uint16Array(n),r=new Uint8Array(n);for(let j=0;j<n;j++){let k=phase+2*j,x=c[k],y=c[k+1];l[j]=29*((c[k+2]-a*x-b*y+29*56)%29);r[j]=(c[k+3]-a*x-b*y+29*56)%29}L.push(l);R.push(r)}
+ const mark=new Uint32Array(Q);let stamp=0,best=n,key=[],ties=0,atMost256=0;
+ for(let a=0;a<Q;a++){const l=L[a];for(let b=0;b<Q;b++){const r=R[b];stamp++;let count=0;for(let i=0;i<n;i++){let z=l[i]+r[i];if(mark[z]!==stamp){mark[z]=stamp;count++;}}if(count<=256)atMost256++;if(count<best){best=count;key=[a,b];ties=1}else if(count===best)ties++;}}
+ return {phase,n,best,key,ties,atMost256,matrices:stamp};
+}
 module.exports=experiment;
+module.exports.exactSupport=exactSupport;
