@@ -53,6 +53,28 @@ Both native plants use independently randomized initial alphabets and rank mappi
 
 Reproduce `node sims/lp2_recency_fhold_extreme_gate.cjs` and `node sims/lp2_recency_interior_partition_recovery.cjs` from the repository. Repository V8 computations; no CI claim. No unknown LP2 plaintext. Preserve the token-side reduction as the reusable attack; do not rerun the same model without a source-selected update or F-handling rule.
 
+## Exact all-interior partition closure (Agent2, 27 November)
+
+The preceding interior all-update heuristic is now replaced as a decision gate by an **exhaustive all-key result**. Keep its native blind recovery as a positive-method calibration, but there is no longer a surviving ordinary continuous interior partition to optimize.
+
+For a subset S of the 28 public noncentral tokens, every noncenter access e=(t,O) has selected token t and the set O of tokens older than t (t not in O). The relative rank within that side is the number of older selected-side tokens, |O intersect S|. Its histogram polynomial is
+
+    F_S(x) = sum_e 1(t in S) x^|O intersect S|.
+
+The exact identity
+
+    (x-1) F_S(x) = sum_e (x^|(O union {t}) intersect S| - x^|O intersect S|)
+
+turns the factorial initial-order problem and 2^28 side masks into a signed set-intersection polynomial transform. Aggregate positive weights at O union {t} and negative weights at O. For each fixed high mask, form rows indexed by the 12 low input bits, with coefficient at degree popcount(high input & high selected). The per-bit tensor butterfly maps row polynomials (A,B) to (A+B,A+xB). After all 12 bits the rows are the exact signed polynomial for every low selected mask; coefficient-wise division by x-1 uses the negative cumulative sum. Each original event contributes at most one positive and one negative monomial, so 16-bit signed coefficients are safe (at most 12,708 events). For a left side, relative rank j is absolute j; for a right side it is 28-j. All center accesses share the one center rank. Arbitrary fixed outer plaintext labels only relabel this histogram.
+
+**Executed original result:** all 268,435,456 masks, no sampling, all side sizes 0–28, canonical 12,956-rune input, burn-in 163, suffix 12,793 = 12,708 noncenter selections + 85 center repeats. Across all partitions and ranks, exact maximum noncenter count **587** (side size 12, mask 72000811, relative rank 4); center count 85. The largest full-book count is conservatively at most 587+163=750 even granting all burn-in runes to the same symbol. The prior pinned four-work matched-window native lower envelope is 1,388 on the 12,793-rune suffix; 587 is less than half of it. Thus no stationary continuous all-update move-to-any-fixed-position adaptive-list cipher, with any secret initial order or fixed arbitrary rank bijection, produces a native donor in that finite register. This is an exact conditional exclusion, not universal English impossibility.
+
+All 2,044 reduced masks on alphabet sizes 3–11 matched independent direct histograms; six full 29-symbol plants at center positions 0,1,7,14,21,28 matched every true post-burn rank count. Every reported optimum was checked by direct event counting at its witness mask. Local native AVX512 C++ execution, 5.81021 seconds for full enumeration with 4 threads; no CI claim. The manually transferred compact canonical tape was checked against length 12,956 and connected-source FNV-1a 0x75f0ccfa; the original source remains unchanged.
+
+[Exact C++ SFT](../sims/lp2_recency_allpartition_sft.cpp) · [all size-specific maxima](lp2-recency-allpartition-output.json). Reproduce from repository root by converting corpus indices to ASCII using alphabet 0123456789ABCDEFGHIJKLMNOPQRS, excluding pages >=56, and feeding the resulting text file to the compiled SFT. A portable scalar butterfly is provided. Code commit 4affe6db90f2f1d1248a650c0a678be1b7322f4a, output commit 459160229046e86544e7b35996fae24bc3c7716b.
+
+**Scope:** this removes the entire all-update fixed insertion/fixed rank-label family. It does not cover interior latent transparent-F holds, which change token membership and may evade this static partition calculation; the exact near-edge and marker-count results below remain separate. No unknown plaintext or key recovered. Do not rerun heuristic all-update partition fitting.
+
 ## Interior transparent-F: exact small-side state inverse (Agent10, 24 November)
 
 The earlier interior partition recovery assumed every printed glyph updates the list. The genuine plaintext-F hold emits literal zero without updating; a non-F may also emit zero. This new exact ciphertext-first reduction covers all latent masks, arbitrary initial alphabet and stationary secret rank-to-plaintext permutation at center ranks 1/2 and (by reflection) 27/26.
