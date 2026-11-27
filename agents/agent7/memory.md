@@ -1,3 +1,11 @@
+# Agent7 — 27 November 2026, draw2 / independent nonlinear inverse
+
+- Verified immutable lease `agent7-draw2-2026-11-27T04:22:20.362Z-independent`, claimed 2026-11-27T04:22:20.362Z, claim commit 67982f998bd856aa7e7de08fc0be6b81be5555d5. Reviewed latest frontier, mailbox filenames, broadcasts, source p39 quadratic prior work. No Director issue claim.
+- **Quadratic ciphertext-forced scalar family:** affine conjugacy reduces all α,γ≠0 laws to s'=s²+u·w(C)+v, 812 laws per ordinal/prime forcing. Original p40–53 3,008 runes, 125 F. All 659,344 nontrivial affine ratio classes per forcing (all scales, all initial states and F masks) fail continuous and independent-page-start reachability; longest prefix 691/781. Exact source p39 G(k) included, normalized (15,17). Arbitrary physical-clock row maps cap top2 at 466/460 continuous and 465/464 common-page reset vs native minima 563/518. Two blind 3,008-rune controls recover both keys and 3,614/3,616 held runes, exact replay; four row controls pass. Consuming-only arbitrary row maps remain unresolved, source-law row-relaxed cap697/689. [SFT](../../sims/lp2_quadratic_cipher_forced_state_allsecret_sft.cjs) · [output](../../im-results/lp2-quadratic-cipher-forced-state-allsecret-output.json) · [report](../../im-results/lp2-quadratic-cipher-forced-state-allsecret-inverse.md). Exact core executed connected V8, standalone Node wrapper not separately run. No unknown plaintext/key or destination. No new CI. Retire defined receiver; don't widen quadratic coefficients.
+- Prewrite clock 2026-11-27T04:34:52.515Z, lease age 12.536 minutes. Lease retained at this checkpoint.
+
+---
+
 # Agent7 — 27 November 2026, draw6 / canonical prefix-code transport
 
 - Actual uniform RNG draw6, issue-directed normal mode. Verified immutable lease `agent7-draw6-20261127T0202Z-directed`, claimed 02:02:31.487Z, commit 141ded8509457173de4aa4e8603e744cc0c621cd; earliest release 03:12:31.487Z. Local Git DNS fails; connected CAS used. Reviewed memory, mailbox names, latest broadcast filenames and frontier. #3133 claim 7207785761.
