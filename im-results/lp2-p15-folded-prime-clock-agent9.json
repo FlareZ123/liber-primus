@@ -1,0 +1,2329 @@
+{
+  "summary": {
+    "nativeReplay": 85,
+    "gridCells": 16,
+    "foldPrimeIndex": 463,
+    "origins": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      8,
+      13,
+      21,
+      34,
+      55,
+      89,
+      144,
+      233,
+      377,
+      610,
+      987
+    ],
+    "rows": 128,
+    "originalFholdComplete": 0,
+    "plantComplete": 128,
+    "maxPrefix": 299,
+    "perFrame": {
+      "p16": {
+        "length": 1744,
+        "maxPrefix": 299,
+        "ordinaryBest": -3.5170277317254213,
+        "ordinaryWorst": -3.5572224411808255,
+        "controlScore": -3.1594203903347804
+      },
+      "p15black": {
+        "length": 1883,
+        "maxPrefix": 274,
+        "ordinaryBest": -3.508941685665801,
+        "ordinaryWorst": -3.5670558412945157,
+        "controlScore": -3.1608068658289854
+      }
+    },
+    "longest": [
+      {
+        "frame": "p16",
+        "length": 1744,
+        "origin": 8,
+        "delta": 1,
+        "sign": -1,
+        "Fhold": {
+          "length": 299,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 4,
+        "ordinaryScore": -3.5277269172967802,
+        "ordinarySample": "E B T J IA EO R B NG C M N A C NG Y EO E EO C L L E E W W EO EO EO OE G L L L NG U A X B L L R H L A AE S TH I N IA M C E TH TH D B OE H OE NG O W TH G AE C NG Y Y TH C NG TH J L P B W",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1594203903347804
+      },
+      {
+        "frame": "p16",
+        "length": 1744,
+        "origin": 21,
+        "delta": 0,
+        "sign": -1,
+        "Fhold": {
+          "length": 274,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 3,
+        "ordinaryScore": -3.528526299521084,
+        "ordinarySample": "NG OE B I Y J O L Y IA X TH B D EO B C J U NG W U J J R D Y A EA J OE J W O H P N A G M P X E C W R D G E S R NG O L X EO IA NG O X W IA J S X E G S G S W EO NG TH E D Y NG P C",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1594203903347804
+      },
+      {
+        "frame": "p15black",
+        "length": 1883,
+        "origin": 8,
+        "delta": 1,
+        "sign": -1,
+        "Fhold": {
+          "length": 274,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 3,
+        "ordinaryScore": -3.533747331633265,
+        "ordinarySample": "I A TH T R C T EA E NG L A L S EO E EO F TH B D J I I I EA EA EO T G W R TH C S G O EA AE U O P O R Y N IA IA E S TH P X EA R M W N M N E W C P U S NG O AE R E U H EO M Y M B U X",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1608068658289854
+      },
+      {
+        "frame": "p16",
+        "length": 1744,
+        "origin": 610,
+        "delta": 1,
+        "sign": -1,
+        "Fhold": {
+          "length": 161,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 2,
+        "ordinaryScore": -3.5233184582014268,
+        "ordinarySample": "C T NG A M U EA U B M E E EO B A H G OE L D B TH L W X C OE U J T EO IA H EO IA S S M N N X I A AE T R I S TH W H EO G I I E Y U Y OE D Y OE C A B NG D L I Y EO TH Y D R AE W NG IA",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1594203903347804
+      }
+    ],
+    "bestOrdinary": [
+      {
+        "frame": "p15black",
+        "length": 1883,
+        "origin": 21,
+        "delta": 0,
+        "sign": 1,
+        "Fhold": {
+          "length": 110,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 2,
+        "ordinaryScore": -3.508941685665801,
+        "ordinarySample": "W TH B T EO B W IA IA B Y J J OE AE X OE E EA A C W OE U N EO C A W W E D H M T S E OE G AE EO N W T S OE D I N EO J C X S N C O P T OE X S M I I W IA B E N I N U S W OE R H T X",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1608068658289854
+      },
+      {
+        "frame": "p15black",
+        "length": 1883,
+        "origin": 610,
+        "delta": 0,
+        "sign": -1,
+        "Fhold": {
+          "length": 23,
+          "terminalStates": 0
+        },
+        "plantTerminalStates": 2,
+        "ordinaryScore": -3.514675705520219,
+        "ordinarySample": "IA A H U Y A EO P S W L C N EA T U W C J W NG D P F E IA I TH T U X EO L IA OE NG A C E L IA L L I M E D EO J X P W T NG P W J D A A L P AE EO A IA E OE AE E M EO G E EO L AE EO G G",
+        "FholdScore": null,
+        "FholdSample": null,
+        "controlScore": -3.1608068658289854
+      }
+    ]
+  },
+  "rows": [
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 8,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 299,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5277269172967802,
+      "ordinarySample": "E B T J IA EO R B NG C M N A C NG Y EO E EO C L L E E W W EO EO EO OE G L L L NG U A X B L L R H L A AE S TH I N IA M C E TH TH D B OE H OE NG O W TH G AE C NG Y Y TH C NG TH J L P B W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 21,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 274,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.528526299521084,
+      "ordinarySample": "NG OE B I Y J O L Y IA X TH B D EO B C J U NG W U J J R D Y A EA J OE J W O H P N A G M P X E C W R D G E S R NG O L X EO IA NG O X W IA J S X E G S G S W EO NG TH E D Y NG P C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 8,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 274,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.533747331633265,
+      "ordinarySample": "I A TH T R C T EA E NG L A L S EO E EO F TH B D J I I I EA EA EO T G W R TH C S G O EA AE U O P O R Y N IA IA E S TH P X EA R M W N M N E W C P U S NG O AE R E U H EO M Y M B U X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 610,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 161,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5233184582014268,
+      "ordinarySample": "C T NG A M U EA U B M E E EO B A H G OE L D B TH L W X C OE U J T EO IA H EO IA S S M N N X I A AE T R I S TH W H EO G I I E Y U Y OE D Y OE C A B NG D L I Y EO TH Y D R AE W NG IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 21,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 160,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5381493466910494,
+      "ordinarySample": "EO EA TH X TH O X U OE P X T EO O TH H R NG M O N L TH TH G X EO D TH D OE D B T U B T H P EA A OE EO B H T C U AE L W X J F S EA I EO EA X TH EO EO L EO Y U EO N NG IA I D NG C H A A AE J",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 5,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 155,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5219990328888175,
+      "ordinarySample": "H B L AE OE J P W M N G G AE E P Y Y J P E I T O N H A X OE U IA B X Y O L H H I IA B D NG EO C P EA U AE L IA EA U L L OE EA O S N O TH B N F C M NG P EO TH I F NG X P C OE F EO T",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 21,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 145,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5294746564057182,
+      "ordinarySample": "T AE O EO W AE AE B TH TH Y Y T P G D D H I P O B TH I W NG M AE R A E J IA G D J J N EA T U U P R X I EO S TH W H EO G G H E L OE L OE M U E C EO EA O L S O M J EA AE L H G C R H",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 987,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 144,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.546043093514592,
+      "ordinarySample": "TH EA X B NG N U D NG U A N M EA G OE W U B H O Y T P R U NG M G R P A N L B C L A H R OE D IA W EO W G E G J H H S EO G I G A X L T S IA X J G A EO D X B X W AE NG W T L X Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 89,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 139,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.532114582905493,
+      "ordinarySample": "C NG E U E P A W L D I EO F A M F AE W C E A I B B NG F F P M N H N U TH T U NG J I M M AE S X O NG H I OE J NG C IA L G D O A S N A U EA J O O J E W S F X AE B U R Y L R P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 144,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 135,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 6,
+      "ordinaryScore": -3.522343557693376,
+      "ordinarySample": "A M G O NG R S U N L L I M AE H S O W E J OE L A OE C O EO EO H OE R X E I M A R NG C T X D D G G A E U W IA T G S Y L E G TH S A N NG C J H T G S G S W E AE N D EA G X X IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 144,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 129,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5572224411808255,
+      "ordinarySample": "AE L W R OE C T TH I NG NG J L Y N T R H M EO D NG AE D G R P P N D C S M J L AE C OE G B S A A W W AE M TH H EA B W T IA NG M W O T AE I OE G EO N B W T W T H M Y I A F W S S EA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 55,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 126,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.526784719740753,
+      "ordinarySample": "E S Y D M A L D D U I O W E NG H T T Y OE C O A O B E U Y N J L F EO NG X J A U X I L N S A H W EO A IA EA IA D O R AE NG B IA A O O AE TH OE A B EO TH W TH U F IA EO G NG A C U Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 233,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 123,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5235146652368665,
+      "ordinarySample": "TH L AE X TH EA TH H AE E B NG P G O W C EO EO AE TH M Y EA EA N EA H X H E B M X OE P R D Y H H TH M OE S AE I R OE C P OE NG X F B Y L N EA F E R T M R H B EO Y J D C U T S F NG C X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 610,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 119,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5542000064502774,
+      "ordinarySample": "D H P TH M IA J B W AE OE A T EA P D NG W N OE A G P C EA U N E A TH EA W W I Y P EO IA O G J P U AE G OE W U AE L W X J AE P EA R R OE X IA T H L F H EO N R X L N L L TH EO C OE H NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 5,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 117,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.526123901955978,
+      "ordinarySample": "L W X U T B Y J C G C W O IA A C U E T IA TH NG U O C J B Y C L D L E M R L M W X IA TH TH P T N IA T L W F T AE Y S U E IA M I R M AE NG AE M G EO M EO OE W NG U O EO J H F B O",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 5,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 114,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5563553142265873,
+      "ordinarySample": "NG H S TH B E IA EO G W G H R EA AE G TH M B EA O OE TH R G EO E IA G NG A NG M L C NG L H S EA O O X B I EA B NG H U B Y IA T TH M EA L J C L Y OE Y L W P L P D H OE TH R P EO N U E R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 34,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 111,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.531742052291138,
+      "ordinarySample": "U M OE W A NG U B O G W P EA B X A OE H I M NG W X T T O J T EO R W G AE A C AE OE X S Y Y C OE NG EO Y J S TH EA S Y D I AE P EA OE N U EO EA A Y L OE EA R Y W D H S S Y R Y OE H IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 21,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 110,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.508941685665801,
+      "ordinarySample": "W TH B T EO B W IA IA B Y J J OE AE X OE E EA A C W OE U N EO C A W W E D H M T S E OE G AE EO N W T S OE D I N EO J C X S N C O P T OE X S M I I W IA B E N I N U S W OE R H T X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 377,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 109,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5161305491590755,
+      "ordinarySample": "IA C OE B NG N C AE AE N L C W I S R X I T EO U A E U J T W C B M EA R A X N H B NG C J AE E E TH C H S G W EO J EA U IA IA AE M I N P S EO Y S B EA NG N A H U D D G IA M A C EA EA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 8,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 100,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.547230963816104,
+      "ordinarySample": "I W E S J T G U O I NG R R J T C S J B J NG B S D G EA M W D AE C X A TH O IA O O A A C M B U IA U TH X B E B W EO B NG S W B Y EA EA NG IA E OE M H IA O IA L M B AE D C I T EO EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 377,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 97,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5670558412945157,
+      "ordinarySample": "OE Y IA X D EO B R AE OE NG D B T P M P U O T X R W O C J J X OE EO P X TH OE N AE E I S X EO X TH O M TH X G EA NG H NG AE E IA N A T W A TH T G T G G H NG R D H Y TH TH S EO C EA X IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 8,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 93,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.528473454920085,
+      "ordinarySample": "M E B EO EA P C E OE G L I AE G OE IA P M P G NG NG M M H H P P P D W NG NG NG OE TH AE S E NG NG C N NG AE Y T O J I EA L G M O O A E D N D OE R H O W Y G OE IA IA O G OE O EO NG X E H",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 89,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 93,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.536461446620449,
+      "ordinarySample": "P X O AE EO L EO AE D W N Y R X EA H AE AE S G NG M AE AE E H P P S AE W AE M B OE AE P Y TH N W T L U U H AE X X C B J E I R G M O E H EA S Y C R D S L O H H S OE Y P E IA T L G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 13,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 89,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5355994821994146,
+      "ordinarySample": "L W I A X J OE N EA F EA EA OE NG E EA Y R R B D C T X X U C X OE H J I EO C P TH U A IA P N S O R Y P R H A N IA J I L R P U O NG N OE W C P U B NG Y D F T U X X D EA AE D U X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 144,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 83,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5462388641436213,
+      "ordinarySample": "O R IA OE T D D T X D M TH H M EA S D NG I R E T H E W TH E G Y A G M AE J R O OE A G IA I EA U X S U IA X M EA IA M U H TH IA D TH O J J L A P S H Y T B H N TH AE W U T D X X L",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 144,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 79,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5170277317254213,
+      "ordinarySample": "EO IA P E J TH EO G E H M B P I N A A J NG OE T Y B IA C J O W D EO G W S IA J EA S J EA E EA L W TH X E T M EO D A Y OE EA U J J J W J T G D H B F TH M X TH E R D B X TH AE J TH X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 2,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 74,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5297406623740626,
+      "ordinarySample": "NG X IA L T NG J G R S A C W X NG G X I T EO A OE X OE U AE H IA OE OE R N D U IA Y TH G NG J IA EO I M Y TH U N I S I G S T EO R F I W P B EO T C S EO C OE AE E S EO G T I IA U J J C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 34,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 73,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5553093906955398,
+      "ordinarySample": "H J G U B IA B C C E C Y TH G OE TH NG AE M G B S NG D EO I D S W M C NG P N I M P EA G S P A Y W N EO IA E OE NG I TH P EA OE A X F J EA S EO NG M L EO TH C NG EA U H J D H B Y B D M",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 89,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 73,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5338586849126985,
+      "ordinarySample": "D O T AE L S S J R NG U U EA NG E TH TH OE A IA B IA T A NG G TH G T N O AE X L H IA G G TH AE G IA I W M C N G C T D NG M S B D IA I R IA Y EO TH X NG OE OE X B N B W Y F A EO R N AE G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 89,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 72,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.529360248182678,
+      "ordinarySample": "S I TH U Y H IA OE U H TH T A TH N D TH R X I L E H T A IA E G L OE R N AE C TH O X L I G E W C L NG E NG TH P OE IA S EA AE M J J TH U EA OE IA R L L TH E EO NG T N G F L EO IA O P N P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 610,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 68,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.53203354731263,
+      "ordinarySample": "TH U IA Y P C EA G I N NG N L E OE TH NG AE M I NG S NG P AE N OE E L E IA D AE AE O H R P A AE EA R G EO R N A C B X O L TH S J J L EO AE P TH U G X U EA T J F W EA I B F X Y G E A X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 3,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 66,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5399697839166446,
+      "ordinarySample": "G W G O NG R D J S Y S C T Y S L I E H U EO H T E N N L H I L G T L T NG EA L G M A Y H X L X NG S R EO J AE S Y X I H IA D O I U F J W R R IA W D EA Y R P AE H S OE N B C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 1,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 65,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5489950052651964,
+      "ordinarySample": "TH L IA X R O T U L D OE Y OE M X L L G G D AE P L T E W P Y O X S EO X N IA X N O G B NG D S E J NG R G U AE EO AE E W L R NG NG EO G S NG M TH D F G J H L O S Y Y I P R TH P A",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 1,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 63,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.547476160328282,
+      "ordinarySample": "E J OE B J E G EA U H M TH TH W X O W C P C M S C B IA L C OE W B Y G EO IA L M Y EA X H T N C T P E AE G C H W A H N C U OE C R TH TH W P F F C D M L J G C EA J O E AE TH F TH",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 2,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 63,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 5,
+      "ordinaryScore": -3.5326860682765906,
+      "ordinarySample": "L P Y M S L I C O X D R G P L C P N S J D NG P NG F A W Y NG NG O H OE F Y AE U C L I Y J N E AE U F H N X N C X S J O EA N G EO T J S R X J R NG A B X J C S N Y F I I R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 89,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 62,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5645370942735477,
+      "ordinarySample": "G OE M TH M X AE H NG A J P U AE L U Y H G M AE J E E OE U U X L I N I TH O B TH OE EO J L L Y T S R OE N J D EO OE G EA NG W A R AE T I AE TH F EO R R EO M H T U S Y E TH C IA NG C X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 1,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 60,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.531454465415424,
+      "ordinarySample": "I P EO N IA I R M D W NG J Y N D EA L A T J OE OE EA A S S Y Y EA U X EA O A R N U E IA W N X L C N H NG I OE M H TH N Y E T H F S C M G B AE A L I P R P J T D G OE IA C IA F B",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 21,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 55,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 6,
+      "ordinaryScore": -3.5300210415651065,
+      "ordinarySample": "H O E B P E H EA EA E IA EO EO D Y S D M F AE G H D TH I P G AE H H M A N L B T M D W Y P I H B T D A J I P EO G S T I G R X B D S T L J J H EA E M I J I TH T H D C N B S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 144,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 54,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5518603123844708,
+      "ordinarySample": "J Y EO B I U J C B W E T EO N H D D I L NG S AE T Y R I TH G OE J C G X Y I IA X I IA B IA M G U P B S E J OE D AE NG IA F I I I G I S C OE W T EA U E P U B O OE T P U A I U P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 55,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 54,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5425410410054465,
+      "ordinarySample": "TH T D H AE Y TH G IA U TH AE B H W S J A OE G I AE U U EA N B OE U L NG E X S R OE J U G S B D C I T O B B H C NG Y D EO F P Y EA NG C X O U N EA B B EA NG F H L IA AE W I C EA EO F",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 3,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 53,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.552658091699646,
+      "ordinarySample": "Y P L W Y AE C NG J EO S M J G C J N EA Y EO X IA W N J F G W P O G EA U F X O IA M Y R H T H O S R Y EA M T EA H C D J A I X EA I AE X EO EO TH EO OE R Y C B TH S S A F L EO F J",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 55,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 49,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5294905171911646,
+      "ordinarySample": "J I N R L C L AE TH S TH J OE EA B A EO X R A H G I I Y E TH D IA H NG G R TH J E R B EA G G S J IA S L G OE U F E R S O EA Y X H AE C M E F R U N OE TH E D B OE AE G L AE W AE F D",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 55,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 48,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.537830360577977,
+      "ordinarySample": "I N H O M R M A U X U I NG IA T D J P O D W C N N AE B U OE Y W L C O U I B O T IA C C X I Y X M C NG F EA B O X TH IA AE P W A R E B EA O F H NG U B OE T NG A C M A G A EA OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 233,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 45,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.538190311858107,
+      "ordinarySample": "AE O H J G EA W N IA AE OE L X N R D NG T T M N B G EO P AE TH I L N NG T A W U X OE OE X G T L C IA G F G J R NG U O A L OE EA O P N W L D AE H R L A X J Y C Y T S H F F W D R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 1,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 41,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.528068562432134,
+      "ordinarySample": "Y R W EO C AE D B R NG E T G Y D J W D D OE T A P AE A EA E OE O R AE OE U P Y X E X G IA R F I O J C P I Y TH O U EA EA O P N P W U G NG J D U AE IA NG T R X G AE L S O Y IA T A",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 21,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 40,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5447287370927816,
+      "ordinarySample": "S A TH J G A A T U U AE AE S EO C OE OE W N EO TH T U N G L E A O D B I Y C OE I I H IA S F F EO O P N J X U G W J C C W B M NG M NG E F B R J IA TH M X TH E I IA A M W C R O W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 377,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 40,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.555465751111464,
+      "ordinarySample": "U M EO N B M C OE EA G L H NG G OE IA P M P R J P S J TH M A X E EA EO U L H S L I AE W R F C W M B E TH I L S R IA T H AE NG J A I D G U R I W Y EO D F T T IA EA J IA Y G A U L",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 13,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 40,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 5,
+      "ordinaryScore": -3.5239608036059242,
+      "ordinarySample": "U AE J H TH J U NG D O X U O G J AE TH H T EO OE A I L O IA X G E A TH N S O G O G H D P F E E TH EA IA Y C EO AE OE I B Y OE OE X A AE F AE OE EA M D E N C G O D L EO A L R C J P P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 233,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 40,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 6,
+      "ordinaryScore": -3.5256848788281383,
+      "ordinarySample": "E J A B P OE L NG AE P A W J L AE T OE EA W O P N EA C B E M J AE D D U W OE AE L TH H D B F U U EO N X M H P EA G IA C TH AE B B G W N B I EA S R U NG P T C IA Y L W Y T F EO H EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 55,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 39,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.555916830425387,
+      "ordinarySample": "Y H J E P TH H EO Y X N B J H U T T C W I TH EO O J X Y X Y C IA M T U W L G T T G F H F L J G D F EA M OE D F D D D R R G IA TH W I F T AE H T R O A N U A NG E G AE U B M",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 0,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 38,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.543991863951044,
+      "ordinarySample": "AE TH C H O NG NG P IA M EO EO R OE B C C B M L I L W B L Y X L EA M NG T EA O A H EO I F NG TH M H EA N OE U G A IA Y EA E OE Y W W W O EA AE W W NG Y J NG J X F H IA M X J Y E D H X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 3,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 38,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.539959926639892,
+      "ordinarySample": "IA X NG H IA Y G OE EO P T L EO W G EO I F IA P S EA H I EO U W H X R W F TH U S R EA L IA C N B N R T C IA F L B F N G A EO AE J S F J Y S P P O P D C IA G E O T T AE U NG P U EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 34,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 37,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.532560754912551,
+      "ordinarySample": "N EO W TH E EA E G G M G IA O W D O OE Y L W E T OE A P J A T H L G OE X I J L X F W T X AE IA H I P EA M D OE J O X F D AE S U EO F T P OE L NG P O G OE F TH N EO A N E IA E A L",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 3,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 36,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 6,
+      "ordinaryScore": -3.5211178677872206,
+      "ordinarySample": "TH J X M EO O C Y P O AE D B I O L E U O R IA I Y O TH G AE EO OE S C G X OE I AE F IA S J B W B E W OE L B H J T E EO EO EO OE L L L Y AE EA E P OE P J EA IA M F M W TH U T I B F H",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 233,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 33,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5369452657630864,
+      "ordinarySample": "I P I N AE G M Y EA TH T G B AE EO S C U OE P EA EA C W AE B EO H I A B R H F EA H AE N E IA AE OE A N P EO IA H X EA N EA EO R IA F P EA EO IA R O TH I L A EO M H M M A TH I EA F U B NG W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 13,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 32,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.549805135645258,
+      "ordinarySample": "IA EA D E W B N Y U EO Y EO AE I Y G AE NG P R M P D NG I H B P B D N AE F M E AE NG N E TH AE C W M D EA L J S TH OE T F N U A T I D W AE L TH G U W A IA E NG D U I OE C EO AE E T G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 144,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 32,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.528217547736402,
+      "ordinarySample": "T Y NG H IA Y IA EO G W NG AE S G EA W O E H D AE J T X H A EA EO EO G C IA F A P F EO G P Y Y O E M H H U Y S R L F A W OE G M D EO AE C W W B W AE TH P I OE EA B EA F J X C E IA C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 233,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 31,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 6,
+      "ordinaryScore": -3.5201962637327435,
+      "ordinarySample": "B I D T EO NG M L A EO D G I M A S NG IA G TH EO H IA R T B E I A OE OE F G NG A M U W OE T EA F F J H P E W EO IA C Y R U A T T C G H T N IA X O F L EO S R Y AE M G AE S EA J W J",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 13,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 30,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 5,
+      "ordinaryScore": -3.545472491397442,
+      "ordinarySample": "H B A TH A B B N AE S EO X G A M O U AE AE EA E O B IA EA C Y C P I F A O B J Y Y OE X TH T H OE B AE P P H O E B S W S M R F TH IA IA EA G AE EO D H EO G U A U L H O TH B C G EA C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 377,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 30,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.538049182312693,
+      "ordinarySample": "EA G D E OE I G Y Y I NG G H J T C S J B P TH AE M TH EO B H G E L F C AE S I N E OE G EO Y M M O G N T W H P EO F TH EA EA Y L J I X T P IA T E F OE I AE N TH A A W EA L AE G F F",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 987,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 30,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5290684449619505,
+      "ordinarySample": "M R W S A P OE W U TH E L G EA D TH NG J O NG P O I NG P IA IA U C EA F A E B TH F T H P OE T I D EA P R A A U D EO P EO C L AE N O O E TH X G E P F G M G E OE W M P OE AE X X F U",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 1,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 29,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5195477097877768,
+      "ordinarySample": "N EO J H Y N O E OE G L I AE H OE IA M D S I NG NG IA D X X AE AE IA F P IA TH D O H F B Y G H P M R H W L N NG E W U H AE B S W EA X R E C T A D M N EO O EO I S OE C NG Y R Y EA T",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 987,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 29,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 5,
+      "ordinaryScore": -3.532665732170548,
+      "ordinarySample": "E O G X D EO NG G F U B M C IA OE U L I TH L EO TH N L EO Y Y F R IA EA D B T U EA S W EO NG S N OE IA EO O D D F OE J EO J R M A H TH TH B U P C B EO EA C E C B NG G E EO NG A P P EA F",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 0,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 28,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5354853834899838,
+      "ordinarySample": "Y O G N R OE OE X EA L P P C D E G G E L NG J NG H E NG IA S NG F L OE B F R AE N P J U OE O L N F I D TH W AE EA IA F M D IA H H H R F Y H H OE IA EO OE EO S U N EA L S EO IA M A N S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 5,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 28,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5383496506719014,
+      "ordinarySample": "W T M A NG I EO G E H C C A B EO AE AE I EO B N S TH H W D P NG F Y T P AE TH M W W N Y T OE L J R EO IA F A M Y IA F M M NG IA TH X H TH U T H EA R E L EO J U N EA L P EO R NG EA J S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 987,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 27,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5203238210308685,
+      "ordinarySample": "Y AE L N B M N A O X T R N B TH N L EA EO H N J B EA N C I F F X IA I G TH W D W OE R J O F IA X I M J IA NG T W E TH D B W A I C T C IA O J P M N L U I F W S NG R N X N S OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 1,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 25,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5476597431128183,
+      "ordinarySample": "IA C H P G Y A E C OE M B W IA A EO H A A D B AE X Y AE F M D R C Y D TH X IA S M S W EA C U J R EO G X J IA O R TH F F R X I X H TH W OE EO A TH Y EA OE B C S W Y NG T R IA EA B AE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 13,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 25,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5375519232957795,
+      "ordinarySample": "M G N D P I NG H IA EA IA IA NG L B IA AE O O T OE R S P P F R P NG W I N J R EO U F D Y EO H X TH O AE EO O W D H Y I N M O EO F TH L H NG G R EO F T L AE OE EA S F P P OE IA A OE F P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 144,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 25,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5497022884914733,
+      "ordinarySample": "B IA OE N EA IA EA P W H OE Y T W F H R M N A Y EO B S N AE F P P W G EA U AE X U P W X IA IA R M L N N TH IA T C NG U AE H D W L A P Y G H H E H Y O X J D F E F U EO S G M EA G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 610,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 25,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.528376590871182,
+      "ordinarySample": "OE W EO U E Y I T G A NG D S IA EO OE L G H NG D C EO R IA F H B D U IA G G N AE EO J Y TH C I EO F A C NG G F A M G P I A EO IA O O NG P Y S W M EA W J H O P M H M M U J R NG W L",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 3,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 24,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.530030927927552,
+      "ordinarySample": "OE B EA D B A T W N E AE H EO M OE J B J NG S F F B D R Y J J AE IA C E A G O F W J OE L EA S J U H C TH EO S T M J L NG P N O J T Y L P M E L NG G AE U AE L B N NG B U H L EO X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 55,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 24,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5225553754260868,
+      "ordinarySample": "O B A N Y IA O W EA TH O Y E N H T EO AE D W J Y TH TH F I E D TH NG OE M S T C D EO TH W T E A G J B R E E N G OE IA A P U X IA F OE G S R TH I F E E F OE U N NG EA Y H J G F P U",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 610,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 23,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.514675705520219,
+      "ordinarySample": "IA A H U Y A EO P S W L C N EA T U W C J W NG D P F E IA I TH T U X EO L IA OE NG A C E L IA L L I M E D EO J X P W T NG P W J D A A L P AE EO A IA E OE AE E M EO G E EO L AE EO G G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 8,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 22,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5213910218396856,
+      "ordinarySample": "N G B X I S C F TH N L O O I S R X I T I L T X OE C IA E G OE A R P D U TH Y TH TH D D R E T F Y F U P T B T G J T L X G T AE IA IA L Y B NG E W Y TH Y M E T A OE R N S J J",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 987,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 20,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5391487875211527,
+      "ordinarySample": "I NG EA EO S T E EO A X D D D E S U W M IA AE F G A NG U N C M TH L EO J IA G D F EO I F D I X O D I D D OE IA C R X G TH R OE OE O B M L F AE H EO Y EA X M W AE S R C R NG B T U M",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 3,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 19,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5249051298772156,
+      "ordinarySample": "C G C TH L O OE I X AE X R S AE X M N B W F J W S B H H M W N M C S M S L IA M C E D AE W P M P L X O J I A X AE P N W Y OE TH N F EA I G O O Y G OE IA AE O EO A W X NG H T R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 13,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 19,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.532986474733485,
+      "ordinarySample": "N E AE O AE E E I Y T P S W AE L R TH Y Y F M R E EA F G IA G X J U AE R E EO IA IA D S O B N D E Y X X N R M E T H T L C U O EA EA F W Y P A N P W TH AE TH NG N R O E G W F G",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 34,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 19,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.547394149381664,
+      "ordinarySample": "L P EA AE NG U OE P M Y G T Y I S F G R I I A OE EO E U AE H R EA EA G P TH P X N X E G F EO EA EA X P X M IA C G C A R W U OE T C H H G U N G R P TH IA O AE T P J D B EA R EO G F",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 21,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 18,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.539503586967876,
+      "ordinarySample": "L NG T N AE I TH M AE Y P U T OE J T R I F L G F I I O OE AE D IA I NG I G TH W EO H D C E EO P B R G O OE C B X O L TH M P J Y L TH P G Y I X P B C X C X G J L U B OE AE L EO R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 0,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.535354898426938,
+      "ordinarySample": "I X P EO EA P C OE EA H Y X IA EO EA R NG F M EO IA AE R TH E T F IA TH X B R R R C X G NG O EO I D NG H I M O P D OE P O E TH D NG N C E G EA M L Y IA R S OE C T T D EA J AE O EO U W Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 3,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.538905210056328,
+      "ordinarySample": "U I P E J TH R AE EO TH A OE T N TH M B F TH O Y N AE TH U C A J NG X R C P NG N A EA Y X I T G T B G NG M T W I S B J J J NG M M M AE A IA B EO NG EO I IA Y E EA E G U F S N T EA W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 987,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5210275706616643,
+      "ordinarySample": "IA Y NG I E L I AE R S B C I E O I NG F P N I EO E F I G J U U S EA J W O H A H D C EO R U EA S J L EO EA OE B H M O A E H AE J G B G EA R EO X L I NG TH J U H T OE C I S I T D",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 0,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.536194718997254,
+      "ordinarySample": "E I NG X I S C AE AE W X EA U R N IA G F I R X EO F I A M TH NG R R D U J E M X NG AE N O S F R P EO W X O R C TH D EA R F AE NG F U U OE D I EA Y NG E I M H U IA D G F P E EA OE OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 1,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.546986642608405,
+      "ordinarySample": "M EO D E EO M W F TH N L O O H S R H G X G L T G E EA NG G D H E IA W P EA NG L IA F S N B I G B X M Y W G N H AE N I G TH D G C O O H X U U G A L NG EO W G F EO R M Y O U O",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 377,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 17,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5336969867226613,
+      "ordinarySample": "NG AE Y P OE J T O A NG L OE T S EO E EO F TH S P O G TH R I I P NG J EO P U NG H A B N X P J P U TH E U P C IA L W L A B Y H D S G D U S C S C C W L O OE W AE U U X J R IA P Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 987,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 15,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.533356938966432,
+      "ordinarySample": "N L IA J X S B J D P OE OE OE B X F G E Y A EA C D L F H R E U M J I Y C OE EA J N EA OE N P TH OE N OE OE NG Y R O P C U O NG NG TH T E M EA A W J AE IA P E G A X O R O L T S F E",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 2,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 14,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.53405212978068,
+      "ordinarySample": "EA G J X N IA IA D G IA OE E I O F P P IA AE EA L U NG F Y O L Y B H TH A J S O L OE L EO F X TH X C D B B EO U H C J C C N S S B N J L AE P IA S TH H D L I OE EO TH A NG J U G Y Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 55,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 14,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5491907482662985,
+      "ordinarySample": "AE W I B EO U W J AE P H T I W F S S R G N U J TH I P AE P AE R Y E S F G M C S S C EA W EA M I C OE EA IA E NG OE EA OE OE OE O O C Y U G N EA S A W S O TH D H F D L B C A F T E",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 89,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 14,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5294055010504897,
+      "ordinarySample": "X S R Y P NG P Y A H I IA C S F N Y Y T W OE L Y Y M N X X T Y H Y L E D Y X IA O I H B NG TH TH N Y S S G E EO M J C W L R M N F T IA G C A T NG R N N T D IA X M EA B NG W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 144,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 14,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.542904963084418,
+      "ordinarySample": "R C EA D B A A B S A L O N L F T A OE J C M B N M H O M W IA AE W L Y EO C R D AE W EA J F TH S T TH EA S L F EA L TH N O EA A O R EO EO NG AE X T N IA B E N I O Y H TH B A S S NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 8,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 13,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5436544759721844,
+      "ordinarySample": "B EA TH N R OE OE E C OE M B W F A EO X EA Y IA B AE OE U TH G TH G E J O F EO T H NG D B S P NG N NG T A T E B H J EO EO TH G E Y OE A EA Y TH C A J OE N J EA IA M IA M P R C E I J IA R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 34,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 13,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.525417137042516,
+      "ordinarySample": "EA G P L S H I TH OE I C U U F A H G OE L IA NG TH L Y IA R NG R A S C F L EA L R G R IA M F M R U J U W TH Y F U U A Y EA C O P J W I S W F C R G F EA E A X H O F P C H OE OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 377,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 13,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.522201053347522,
+      "ordinarySample": "G IA W EO S T OE X EA OE M M J F A EO X EA Y F IA R Y N H A L C P G IA L P F S O N W Y U P N D E O A O I EA G W C NG B AE H G E EO EO M Y A N E M AE J L U N A L S I R AE U S NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 0,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 12,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.519363629087637,
+      "ordinarySample": "B N L P N X R A A G P IA F O H Y C EA N O P J EA N D E U L O O OE F I B E P L A H TH X EA O EO J G P TH O R U OE IA O EA A L EA F F NG OE N IA AE L B N E W F Y OE C EA EO B IA NG NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 55,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 12,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5410541435404594,
+      "ordinarySample": "B X AE OE E D M OE OE F N TH G B L W S S AE NG R TH D TH T B F AE H I M EA J L P I D F P N M H X D W G J D Y IA Y OE TH O A L T Y D TH TH A U NG D T J U G U F EA Y J C L D R F AE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 34,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 11,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5296156094305435,
+      "ordinarySample": "IA C EO M X W N U NG N R F F EA D W C NG M Y L U M AE Y O L O D X R EA M IA M O C O Y E EA E O F I F G U AE EA F F D AE IA R TH EO I G N X G EA R O C EA IA B D P W TH EA EO R W NG NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 0,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 11,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.538167377950521,
+      "ordinarySample": "TH NG EA B C G B R AE A IA F D OE M AE NG J N A U T AE D NG H T IA G IA E B S E EA M X G J OE OE O T NG EO O S N TH EA B Y IA EO AE N OE Y S W A C OE O Y P J L N D H OE TH TH P E J C L R",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 1,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 11,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5283071253287783,
+      "ordinarySample": "U M Y P O TH S F M OE NG AE NG E P M M C C OE A EO M S B G EO AE TH P X J P H Y P H TH C T L OE X B I L O C F A J A B G M O L L J C X L E U OE EA C I W M TH X AE AE N EO O U EO D",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 8,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 11,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5377367005622733,
+      "ordinarySample": "J AE O B C G B F M OE NG AE NG T P M P U O E A EO J J J F F P B W H C O G T W R F Y TH R X R C IA I EA EA M T O X S F C L H I L I M H G X TH T OE R Y C M TH N P L IA L E TH S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 89,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 10,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.539625486923622,
+      "ordinarySample": "OE TH S A M X X I O L F F IA L B U U NG D Y T Y S D L C U C S H TH A P M W Y C C U A C Y N G E R H C R S OE L E X T OE Y N O Y AE J U P L NG NG P T H T G AE EA D J O H A C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 2,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 9,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.526880414943532,
+      "ordinarySample": "W I W G OE W EA EO L F T H NG TH T AE P M P R B S M M EO I D NG P AE W AE NG NG Y TH AE J L R IA J S TH AE A T W B EO C L TH M J P U A EO D R U X L N P EA I EA G TH N T U S E F E E X",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 233,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 8,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5541639594246757,
+      "ordinarySample": "J X J I Y W L IA F O B W E Y P T G TH D X F F G H Y E P N J AE E C N U F N Y I M EA Y D AE I X P EA N S F I F P C EA U X F P EA C R O J NG AE P L N L L AE O J F U TH E OE H",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 377,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 8,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5365062278023442,
+      "ordinarySample": "W EA H P T B D S F D L L EO U AE P S F IA U EA C IA I N AE NG G X W EA NG X U T R I H IA TH X I A M R AE R J F W H G OE E Y N W M P P L IA AE I M L Y EO NG TH I AE NG T J C Y TH T OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 2,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 6,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5282014568146094,
+      "ordinarySample": "H J H W D H F P NG U B N OE O B Y X L X C E T L L P J A OE X Y H Y OE OE IA O Y EO NG C EA EO T O Y AE B H E P G NG O L EO X TH AE P A C TH S NG I X F J F W O I B TH T M U M M S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 610,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 6,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5357165449377783,
+      "ordinarySample": "G B OE AE L TH F TH E L M M P E AE N W D NG A E O NG H S G D TH EO B P EA N P EA T T L I I S J AE Y B C J T O H N P W J J M IA TH IA D A IA D G AE E OE A NG J IA P O IA A C Y H OE EA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 987,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 6,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5216985967499395,
+      "ordinarySample": "U IA P T L H F OE L F D H E IA C NG G F T W TH AE S EO O F L E C O EO D H M T R M D W O NG OE Y G J G C B C I W W X J C N C D P M S X Y P I C D J OE P T P G A L G S M P AE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 233,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 5,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5354506584094065,
+      "ordinarySample": "Y R N EO W F H I EA Y D NG S I C A OE B B L I E W P X Y O J NG I OE B AE H TH S D D S W B NG G EA W U W EO C OE TH R AE NG D F R X I H NG A Y N C NG AE S EO IA G IA B T N U U H A C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 2,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 5,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.51897465099993,
+      "ordinarySample": "EA B OE J EA F J D B T B D B EO W B P U O T L G J J S TH I NG B N H N O G L W R AE EA X I L I S IA H EA O AE E N X J F P U X T N A F T T Y H OE A H O P D H M NG O R EA OE TH NG",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 34,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 5,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5428530561675164,
+      "ordinarySample": "M EO IA A L F NG EO E AE C S AE N X EA C O N N D NG J B F A W O IA IA C EO U EO P H P B C EA J IA IA P EO P E Y R C R D O G F NG S R W W C F H C O EO U Y TH A S EO I OE T IA O J C EA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 233,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 5,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.521794285911984,
+      "ordinarySample": "O NG Y S O F O N Y M E OE X W R H G P P Y O L IA F F I F N S N M E L S D X C A IA N N O L D T Y J C D G X D OE S U E IA NG I F U M C B L C N E P IA EO A G TH B T U OE G S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 0,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 4,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5293235744395877,
+      "ordinarySample": "J S X P F X G D F N IA S EA P F C OE U L P EA Y C O M B U EA O S E C C C G S W OE R P J A OE N J L R X A D X R M O A OE I G M W F L NG IA EA C T D G B B A F EO Y R P TH H IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 5,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 3,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5486611691213206,
+      "ordinarySample": "EA D C F IA O A B S A G L L IA O B AE NG TH F EO G D F I S F NG R I B Y W T P EO S D C Y C F G B X J EO L IA O TH D EA F D S S G C O Y TH I C O IA T I S H U IA D R F M L O A OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 89,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 3,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.538110192453969,
+      "ordinarySample": "X N U F AE W Y NG F W U S D U H OE U O P N M B W S D Y B C M NG O H A R U TH P M N C B G R M L B L U EO NG Y X IA A E I I U F IA NG Y O M M U B J L S H C EA M J Y TH EO H EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 610,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 3,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.541343483618272,
+      "ordinarySample": "Y D W F AE D J EO X G M R H IA S F G R I G L OE EO EA B Y N U S F P J M Y NG L D R B M Y M M N E B OE J I P EO G S L EO G I OE D D M EO A J D Y B NG A B E J C B J M A J C C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 0,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 2,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5317589493309653,
+      "ordinarySample": "O OE F E G W E C Y AE EA U A D L Y OE EO I AE TH B Y A OE N B EA W EA M E T M F L S W EO D D R B OE P R T I O F E IA EA P Y I D IA T H AE G D R IA X EO NG I A N D O O X M EO G NG C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 3,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 2,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5330168191610576,
+      "ordinarySample": "D E F A E AE B H I M Y N P L D EO E EO OE T U U E A C IA EO EO Y EA G M AE W R U H EO D NG F T EO TH N G O P T B L EO NG OE X I R EO B IA NG X L M NG OE W Y TH Y NG E I OE E TH N NG P S",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 5,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 1,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5540657265318183,
+      "ordinarySample": "EA F EA AE I A X F H M R NG W B R P U W Y S EA U N J TH M U Y U W OE W W C I S J OE G B M OE E O W X R A EA D EO TH B C EA U X IA P O D I M M L Y T NG H S S OE IA EO A AE N AE R AE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 8,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 1,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.532892675464448,
+      "ordinarySample": "E F O I C D D M G D L E H U AE P S F IA EA E Y D TH O W O W M EO R U P B N OE A E T X OE I OE B AE B M E N EO P P O W M IA D AE F IA O G AE EO D I EO F EA L EA L X C G M J EO EA C",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 13,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 1,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.539803219755448,
+      "ordinarySample": "EA F A M H E I IA TH P IA P Y J IA W Y OE X C L X A OE J N E X E A I Y U L M Y OE I M O Y G H L A F NG EO T O D B U I TH AE B J A H Y NG O W TH H AE EA M OE A TH J D G P Y M B W",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 610,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 1,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5335281076491554,
+      "ordinarySample": "U F Y AE EO R IA C N H L H M B NG U L A E N L X L EO A H NG B M B Y OE A A TH W O EO D A IA O C J O H D R T P TH M U X I I M J A EO U F C P F IA S I EA G IA N T EA P AE C B D P",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 21,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 1,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 2,
+      "ordinaryScore": -3.5372510726893758,
+      "ordinarySample": "P F O S O R S TH D X S B P R O N C OE L R I NG O O W S P A O A D A E B TH E B N X F AE D P E N B G TH Y NG H S EO U T F J P F S O P P NG P IA TH P I OE EA J A OE G N AE AE Y EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 2,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.5448737792765797,
+      "ordinarySample": "F W EO S I EA EA A W EA D M J R U X X EA Y F NG TH OE U IA R NG IA E N O AE EO T R NG D NG P U S O S G A E E P TH N G EO G G I T T E I EO NG Y X EA T O N A NG J D P O AE OE EO TH W IA IA",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 5,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 3,
+      "ordinaryScore": -3.518048508415566,
+      "ordinarySample": "F U F Y J AE S U N L C OE H E C X TH H IA T F TH I EO O L TH IA TH H D H H G J T EO D W E L D M R H S C AE F A P O E G F TH S EA X R A J L L NG IA B OE N T T D EA P AE Y I Y C Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p16",
+      "length": 1744,
+      "origin": 377,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.5288514657781147,
+      "ordinarySample": "F E J H T E R NG IA C M W L C NG Y EO E EO O I EO X I U E D P B IA J F M W X M N A G O EA R G E T B U N M X O Y S W A L I D N OE C F O N G AE J OE EA S S Y IA I Y AE C D F M",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1594203903347804
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 2,
+      "delta": 0,
+      "sign": -1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.536060764684143,
+      "ordinarySample": "F E D EO F U EO A E B E A E P H E X TH R B NG W EO EO T O J OE E I N I R W NG H C Y F S J NG J T EA N F R Y M I S EO U X TH S B I AE U B B IA N D AE N R X A N L OE R C F D O OE",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 5,
+      "delta": 1,
+      "sign": 1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5179323043445208,
+      "ordinarySample": "F A G U EA R AE E T AE W NG NG EA R E Y OE O U P W A U J T U OE C J E IA H B X P T A G IA G U W E S EO P NG EA R O A F U A T T W G R IA O J G R EA B J T N TH EA A C U L NG R AE D",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 13,
+      "delta": 0,
+      "sign": 1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 1,
+      "ordinaryScore": -3.533108726443726,
+      "ordinarySample": "F A I W U I F L OE TH P F TH C I A U W S J NG D N M TH Y P C B D U H X TH C TH C W OE EO EA B B U IA Y AE R J A NG N T AE NG NG P D A EA A NG IA E OE B H R C TH OE M J D M O R I EO EO",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    },
+    {
+      "frame": "p15black",
+      "length": 1883,
+      "origin": 34,
+      "delta": 1,
+      "sign": -1,
+      "Fhold": {
+        "length": 0,
+        "terminalStates": 0
+      },
+      "plantTerminalStates": 4,
+      "ordinaryScore": -3.5544829608875395,
+      "ordinarySample": "F E NG G D L F T TH C G EO IA T P D NG W N E L G P S S TH I S J O G C A D R A NG P X AE AE R NG L J AE I X U IA X AE OE N A EO IA NG H F J IA D AE M NG IA O AE G OE W X X AE O AE NG W Y",
+      "FholdScore": null,
+      "FholdSample": null,
+      "controlScore": -3.1608068658289854
+    }
+  ]
+}

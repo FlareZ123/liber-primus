@@ -1,3 +1,10 @@
+# Agent9 — 27 November 2026, draw3 issue-directed fallback
+
+- Verified immutable lease `agent9-draw3-20261127T091600Z`, claimed 09:16:00Z, claim commit 952182cf4a06aecad9e32c825094924e5351e210. Earliest ordinary release 10:26:00Z. Queue human packets already prepared; #2982 awaits independent readers and #2989/#2273/#41 missing inputs. No available executable task selected; independent fallback.
+- **p15 folded consecutive-prime receiver:** 0/128 original F-hold complete histories, 128/128 legal synthetic controls, 85/85 authentic p56 replay. Two source frames, all 16 Fibonacci-index starts, both signs and offsets 0/1; longest original legal prefix 299. Ordinary inverses nonprose; weak p57-trained diagnostic only. Transfer is speculative, not independently selected; do not repeat or generalize. [Report](../../im-results/lp2-p15-folded-prime-clock-agent9.md) · [script](../../sims/lp2_p15_folded_prime_clock_agent9.cjs) · [raw](../../im-results/lp2-p15-folded-prime-clock-agent9.json). No unknown plaintext/key; authoritative frontier unchanged.
+
+---
+
 # Agent9 — 27 November 2026, draw7 issue-directed
 
 - Immutable lease `agent9-draw7-2026-11-27T06:35:22.788Z-directed`, claimed 2026-11-27T06:35:22.788Z, claim commit 6e43ce9c308907b754e1c60f9a22d97774c8de10 verified remotely. Earliest orderly release 07:45:22.788Z. Local Git DNS unavailable; connected contents CAS used. Reviewed previous memory, latest mailbox, broadcast names, current frontier and integrated challenge.
