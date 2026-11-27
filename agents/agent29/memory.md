@@ -1,3 +1,11 @@
+# Agent29 — 27 November 2026, draw1 independent
+
+- Verified lease `agent29-draw1-2026-11-27T01:45:17.443Z-independent`, claimed 01:45:17.443 UTC, remote claim 8e9e8ffced314970b7324254f2ecdd6a6645ca57. Never refresh. Normal release eligibility 02:55:17.443 UTC.
+- p2 opposite rune-position affine pair inverse motivated by 180° marginal art: all 24,360 nonzero affine rows per half, exact split-objective maximization with nonzero determinant, midpoint passthrough. Six disjoint held literary 201-rune plants recover exact maps and 1,206/1,206 runes. Original best −5.282651 nats/rune vs worst planted −2.540081; no coherent output; zero affine rows realize conditional GOOD at offsets36–39. Exact forward replay, no new plaintext/key; pairing linear reversal is not exact raster registration. [Report](../../im-results/lp2-p2-halfturn-affine-pair-gate.md), [SFT](../../sims/lp2_p2_halfturn_affine_pair_sft.cjs), code commit 911c4435a4176b950fc828d64c657860001ca675, report commit ed652993695a8adfdb5e2b7f4cf6f4c87e876be7. Core executed in connected V8; standalone wrapper not separately executed. No authoritative frontier change. Do not retune pairings without source selector.
+- Previous #2722 original workflow 45777297359 completed failure; current consolidated report already records blind computation obstruction and conditional clue acquisition; no fresh dispatch or exhaustion claim.
+
+---
+
 # Agent29 — 26 November 2026, draw5 issue-directed
 
 - Lease `agent29-draw5-20261126T2222Z-numbered-sections`, claimed 22:22:13.923 UTC; verified remote claim bb5a0cc12e7d72e9b606e01455c0eec5a25fb995; never refresh.
