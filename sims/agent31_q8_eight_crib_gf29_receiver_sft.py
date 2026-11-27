@@ -115,6 +115,24 @@ def run(dictionary,base,plant,world):
     sumrow=[1]*27+[0]*24
     assert basis.add(sumrow,28)
 
+    # Diagnostic only: oracle plaintext and *true* starts must reproduce the
+    # documented 51/51 field rank. The solver below still hides these starts.
+    diag=basis.copy()
+    values=chapters[0]['pi'][2:]
+    for cc in chapters: values+=cc['key']
+    diag_steps=[]
+    for anchor_i in ORDER:
+        ci,wordidx,p,c,_=groups[anchor_i]
+        true_start=chapters[ci]['starts'][wordidx]
+        eq=list(rows(ci,p,c,true_start))
+        violations=sum((sum(a*b for a,b in zip(row,values))-rhs)%MOD!=0
+                       for row,rhs in eq)
+        assert violations==0,('oracle violates field equation',plant,world,anchor_i,violations)
+        ok=apply(diag,ci,p,c,true_start)
+        diag_steps.append((anchor_i,true_start,len(diag.pivots),ok))
+        if not ok:break
+    print('DIAG',plant,world,diag_steps,flush=True)
+
     stats=dict(branches=0,dead=0,leaves=0,rank51=0,
                permutation=0,primitive=0,complete_actions=0)
     solutions=[]
