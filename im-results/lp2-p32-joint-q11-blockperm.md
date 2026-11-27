@@ -29,6 +29,10 @@ The refinement optimizes full-stream trigram score, including row seams, from al
 
 Original candidate starts `P M Y W A X E W A U L EA TH E A T W D M I G I`. Its fitted permutation and shifts are recorded in the raw output; neither is authenticated. The original maximum proves no key in this model can attain the weakest observed native-control row-local score under this exact language objective. It does not rule out arbitrary plaintext distributions, variable blocks, a different geometry, F interruptions or a further cipher layer.
 
+## Row-transport extension (derived, no extra search)
+
+The exact row-local objective sums first-symbol and adjacent-pair scores over all eleven rows. Permuting complete ciphertext rows merely permutes terms in every candidate state's start/edge sum, so the entire DP table and maximum are invariant. Therefore the same calibrated score ceiling extends to an arbitrary permutation of the eleven complete eleven-rune blocks, before or after the fixed column transformation. This extension does not preserve the separate full-stream trigram objective or guarantee a native row order; arbitrary individual-rune or printed-word transport is not covered.
+
 ## Reproduction
 
 - [First-pass SFT](../sims/lp2_p32_joint_q11_blockperm_exact_sft.cjs), [raw output](lp2-p32-joint-q11-blockperm-exact-output.json).
