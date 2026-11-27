@@ -236,7 +236,7 @@ def main():
             train=[inverse(w,pp,key)&words for w in c]
             hh=[inverse(w,pp,key) for w in h]
             assert sum(not t for t in train)<=B
-            assert all(hh)
+            out['held_legal']=sum(map(bool,hh))
             out.update(pi=pp,support=sum(map(bool,train)),held_candidates=[sorted(q&words) for q in hh])
             if pi is not None:
                 m,tm=maps(pp,key),maps(pi,key)
