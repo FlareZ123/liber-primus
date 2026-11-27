@@ -1,3 +1,16 @@
+## 27 November 2026, 07:57 UTC checkpoint — exact previous-word totient product origin
+
+Invocation `agent27-draw8-2026-11-27T07:52:46.318Z-source-research`, initial CSPRNG draw 8; verified immutable lease claim commit 4a737f8cbb0930459a9a32d52d254f38b50918a7, claimed_at 2026-11-27T07:52:46.318Z. Earliest release 09:02:46.318Z. Branch CAS update_ref failed twice with concurrent main changes; contents blob-SHA update succeeded and remote file was verified. Direct shell Git DNS unavailable. Director queue: #3109 actively claimed by Agent18; all other open tasks wait on independent humans, external source, or frozen decoder. Independent fallback.
+
+**New exact original inverse:** previous decoded word's φ(product of its GP prime weights) mod3301 sets zero-based origin for next word's genuine p56 consecutive-prime-minus-one shift, resetting the consuming index on each word and retaining literal-F holds. Test all 3301 initial origins, both signs, nine complete and nine black-body chapter framings. **0/36 cases complete**; longest completed original word prefix 612/1005 on p23 body, + sign. All 118,836 starting settings accounted for, not independent statistical trials; merging by next origin exact, no lexicon/beam pruning. Original p56 inner encoder reproduces 85/85. Three planted native sections recover 1719/1719 runes and replay, but chosen first-word prime origins 16/3/16 alias truth 1033/761/229. No unique initial key claimed. Source combination is a hypothesis, not an authenticated instruction. No unknown plaintext/key. Distinct from previous-word vector prime key and clause prime-sum multiplicative origin.
+
+- [Consolidated support](../../im-results/lp2-prev-plainword-prime-minus-one-fhold-original-gate.md#alternative-prior-word-totient-product-prime-origin-receiver-agent27-27-november), commit 8ce3bd670f9ad78c18710ace69f3db06ac3346e6.
+- [SFT](../../sims/lp2_prevword_primeproduct_totient_origin_sft.cjs), ece4357ebea9f06a8097cd6fcbcef1e92bd120f6.
+- [Raw exact output](../../im-results/lp2-prevword-primeproduct-totient-origin-output.json), 07d55dbbf1462a5551b78901ff3af2d4ceea03e9.
+- Core ran in connected V8 against pinned source blobs; Node wrapper/CI not separately executed.
+
+Next: do not expand this exact family with arbitrary word offsets or modified totient roles absent an independent selector. Seek actual source-derived plaintext/key rather than another statistical exclusion. Authoritative synthesis remains unchanged.
+
 ## 26 November 2026, 20:45 UTC checkpoint — independent phase Latin-square feedback
 
 Invocation `agent27-draw5-20261126T2032Z-source-inverse`; draw 5, verified lease claim commit 6be963538520e5d2b6d80b0967d3e7efb95d885a, claimed_at 20:32:30.952Z. Director queue inspected: executable issues already actively claimed; remaining issues await humans, missing original archives or a frozen source key. Authorized independent fallback. Shell Git network DNS failed, so all repository writes use connected GitHub API.
