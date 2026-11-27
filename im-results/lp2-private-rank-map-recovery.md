@@ -179,4 +179,38 @@ Full native C++ enumeration: 536,870,912 partition-side cases; no allowed rank p
 
 Reproduce from repository root: `node sims/lp2_projected_singleton_fixture.cjs > events.txt`, then `g++ -O3 -march=native -fopenmp -std=c++17 sims/lp2_projected_singleton_gate.cpp -o gate`, then `./gate events.txt`. [Fixture generator](../sims/lp2_projected_singleton_fixture.cjs) · [exact transferred events](lp2-projected-singleton-events.txt) (FNV-1a da625de8, SHA-256 1fc9cf96f874c03cb7b2d9728354200aed94b473ae8d7ffb8e17e8b0eb0d30c0) · [native checks](lp2-projected-singleton-controls.json) · [C++](../sims/lp2_projected_singleton_gate.cpp) · [actual local output](lp2-projected-singleton-output.jsonl). Local C++ executed; fixture generation and native controls executed in connected V8; standalone Node wrapper not separately run.
 
-**Decision:** do not finish the expensive three-residue forward scan for common non-F destination triples. The entire distinct-F-destination family is closed under the singleton premise, even beyond GP-prime grouping; equal destination is separately closed. The one unequal non-F pair candidate (3,6,3), A/I {2,8}, in batches0–3 and untested unequal non-F triples remain the narrow next decision. Printed singleton semantics and the continuous feedback architecture themselves remain unestablished. No unknown plaintext or authentic key.
+**Decision:** do not finish the expensive three-residue forward scan for common non-F destination triples. The entire distinct-F-destination family is closed under the singleton premise, even beyond GP-prime grouping; equal destination is separately closed. The unequal non-F triples are resolved by the following full scan and seven-slot contradiction. Printed singleton semantics and the continuous feedback architecture themselves remain unestablished. No unknown plaintext or authentic key.
+
+
+### Complete unequal non-F modulo-four closure (Agent2, 27 November 2026)
+
+The previous partial scan is superseded by exhaustive native C++ propagation over all 11,774 reflection representatives with unequal non-F class destinations (23,548 actual triples). The input is the full 12,956-rune tape, FNV-1a 75f0ccfa, and all 83 zero-based singleton offsets. Three classes are prime 2 (F), prime 1 mod4, prime 3 mod4. A true static rank bijection gives distinct A/I ranks and a third rank for literal plaintext F which is never selected by an ordinary move. Every nonzero glyph always moves; zero branches to hold or ordinary move except at singleton offset 644, where it must move under the premise.
+
+First use independent rank-pair intersections, then enforce the surviving pair throughout the tape, then enumerate the distinct forbidden F rank and propagate forwards/backwards. For backward propagation the current domains of all glyphs except the emitted c exclude its destination; shift each possible rank back over the same closed interval as its corresponding forward displacement. Intersect pre/post marginals with their existing domains and apply singleton all-different closure. At optional zero events keep the union of the hold and move branches if consistent, rather than selecting either. These operations only remove values absent from a necessary local support superset; nonempty domains do not certify compatible total order or state history. The bidirectional cap of 12 sweeps retains every uncontradicted candidate. Controls: 23,548 elementary forward rank transitions, 32 randomized full 29-glyph F-hold paths preserve their true rank pair and forbidden rank. These controls use synthetic A/I markers, not native word boundaries.
+
+| Gate | Remaining |
+|---|---:|
+| Unequal non-F destination representatives | 11,774 |
+| After independent singleton support | 4,077 maps, 10,178 pairs |
+| After full forward pair constraints | 49 pairs |
+| After forward forbidden-F rank constraints | 49 pairs, 1,007 triples (map/pair/F-rank) |
+| After bidirectional domains | 17 pairs, 352 triples |
+
+All 17 surviving pairs have the same relative structure after rank reflection: destination triple (a,a+3,a), A/I pair (a-1,a+5). Translation/reflection reduces them all to **one seven-slot projection**. Take slots 1 through 7 in that inclusive rank interval, class1 inserts at slot5, F and class2 insert at slot2, singleton selections occur at slot1 or slot7. The outside-left and outside-right orders and capacities and forbidden F rank are deliberately discarded. For each full list history its projected history obeys the following exact central transitions, so this is a relaxation of the full sender.
+
+- At each time central slots hold seven distinct glyphs. For a selected glyph c, j=1..7 if central, j=0 if outside left, j=8 if outside right.
+- Ordinary insertion at d shifts slots r<d toward the left iff j<=r, and slots r>d toward the right iff j>=r; slot d becomes c. An outside-left selection evicts the previous slot1 glyph into the left bucket. An outside-right selection analogously evicts slot7. Central selection has no outside eviction. Zero hold leaves all slots unchanged.
+- For a nonzero glyph, left membership is exactly the initial-left bit (if never selected) or an eviction of that glyph since its most recent selection; no other event can remove an outside glyph into the central window. Track zero's left membership separately because its hold decisions are latent. This avoids per-time full 29-rank variables.
+- For a singleton, j must be 1 or 7 and the event must consume, including literal ciphertext zero.
+
+The symbolic solver constructs a QF_BV formula for these constraints, with independent arbitrary initial slots and left membership at each tested interval. A full sender on any of the 17 charts would give a satisfying assignment. Results from local libz3.so.4:
+
+| Input | Marked events | Solver |
+|---|---:|---|
+| Original [0,800) | 6 | UNSAT |
+| Original [4000,4800) | 12 | UNSAT |
+| Five randomized full-list plants at a=1,3,9,19,22, length350–650 | 20,31,53,24,24 | 5/5 SAT |
+
+The preliminary larger all-glyph position encoding returned UNKNOWN after a 15-second cap; it is not used as evidence. The reduced model's two independent original UNSAT results are sufficient, and ignore even the forbidden-F-rank restriction. No language scoring is involved. The earlier exact common non-F projection closes the distinct-F-destination branch, and the earlier stationary-list closure covers the equal-all-destinations case. Thus the **entire continuous GP-prime mod4 C-driven rank family with literal-F holds** is closed under the specified premises (the equal-all case uses its separately documented native-language bound). Other partitions, P-feedback, resets, decoy singleton semantics, non-static charts remain outside scope. No source evidence establishes the mod4 classifier in the first place. Do not extend to generic untyped partition sweeps without a source-selected rule.
+
+Reproduce: derive the original tape by concatenating canonical corrected physical-page rune indices as base29 characters 0–9,A–S. Compile `g++ -O3 -march=native -fopenmp -std=c++17 sims/lp2_unequal_mod4_f_bidi.cpp -o gate`; run `./gate tape.txt`. Then `python sims/lp2_mod4_seven_slot_sat.py tape.txt` (Linux libz3.so.4). Both computational cores executed locally, solver wrapper consolidated from the separately run original and control drivers. [C++ gate](../sims/lp2_unequal_mod4_f_bidi.cpp) · [scan output](lp2-unequal-mod4-f-bidi-output.jsonl) · [seven-slot solver](../sims/lp2_mod4_seven_slot_sat.py) · [solver results](lp2-mod4-seven-slot-sat-output.jsonl).
