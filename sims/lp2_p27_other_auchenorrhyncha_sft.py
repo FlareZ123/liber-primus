@@ -5,6 +5,7 @@ from contextlib import redirect_stdout
 from hashlib import sha256
 from io import BytesIO, StringIO
 import json
+import re
 from urllib.request import Request, urlopen
 
 import cv2
@@ -20,7 +21,7 @@ SOURCES = (
         "https://ufdcimages.uflib.ufl.edu/UF/00/09/88/13/00015/SN00154040_0088_00419.pdf",
         "https://journals.flvc.org/flaent/article/download/75474/73132/",
     )),
-    ("Evans1966-Fig6", 24, (
+    ("Evans1966-Fig6", -6, (
         "https://media.australian.museum/media/Uploads/Journals/17444/425_complete.pdf",
     )),
 )
@@ -34,6 +35,15 @@ def get_page(name, page, urls):
                 b = r.read(LIMIT+1)
             assert len(b) <= LIMIT and b.startswith(b"%PDF")
             doc = fitz.open(stream=b, filetype="pdf")
+            if page < 0:
+                matches=[]
+                for ix in range(min(len(doc), 50)):
+                    tx=doc[ix].get_text()
+                    if re.search(r"(?mi)^\s*Fig\.?\s*"+str(-page)+r"\s*:",tx):
+                        matches.append(ix)
+                print("CAPTION_PAGES",name,matches)
+                assert len(matches)==1, ("caption not uniquely identified", matches)
+                page=matches[0]
             p = doc[page]
             print("SOURCE", json.dumps({"name":name,"url":url,"sha256":sha256(b).hexdigest(),
                 "bytes":len(b),"page_index":page,"page_count":len(doc),
@@ -90,6 +100,7 @@ def main():
         if not any(set(g.edges)==set(r.edges) for r in refs):refs.append(g)
     assert compact_test(Image.fromarray(orig).resize((213,72),Image.Resampling.LANCZOS),refs,"native_control")>0
     for name,page,urls in SOURCES:
+        if name=="Dietrich2005-Fig6":continue  # already completed in run 45968440060
         im=get_page(name,page,urls)
         if im is None:continue
         boxes=crops(im)
