@@ -10,9 +10,12 @@ from urllib.parse import urljoin, urlsplit
 from html.parser import HTMLParser
 from pathlib import Path
 import fitz
+from PIL import Image
+from io import BytesIO
 
 URLS = (
-    "https://dspace.imech.ac.cn/handle/311007/16255",
+    "https://www.researchgate.net/figure/profile/Ak-Soh/publication/8431487/figure/fig1/AS%3A601636183478286%401520452652827/Fig2-A-Scanning-image-of-a-cicada-showing-some-structural-and-morphological.png",
+    "https://www.researchgate.net/publication/profile/Ak-Soh/publication/8431487_Experimental_studies_of_the_material_properties_of_the_forewing_of_cicada_Homptera_Cicdidae/links/00b4951a02c8c97469000000/Experimental-studies-of-the-material-properties-of-the-forewing-of-cicada-Homptera-Cicdidae.pdf",
 )
 OUT = Path("im-results/lp2-p27-song2004-figure")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -37,6 +40,21 @@ attempts = []
 for url in URLS:
     try:
         data, final_url, status = retrieve(url)
+        if data.startswith(b"\x89PNG\r\n\x1a\n") or data.startswith(b"\xff\xd8\xff"):
+            if len(data) > 2_000_000:
+                raise ValueError("Oversized image")
+            with Image.open(BytesIO(data)) as im:
+                im.load()
+                if min(im.size) < 150:
+                    raise ValueError(f"Undersized figure: {im.size}")
+                im.save(OUT / "author-figure2.png")
+                size = list(im.size)
+            result = {"status": "ACQUIRED_IMAGE", "url": url, "final_url": final_url,
+                      "http_status": status, "bytes": len(data),
+                      "sha256": hashlib.sha256(data).hexdigest(), "image_size": size,
+                      "attribution": "UNTESTED: independently annotate panel B",
+                      "prior_attempts": attempts}
+            break
         if not data.startswith(b"%PDF-") and b"<html" in data[:1000].lower():
             parser = DownloadLinks()
             parser.feed(data.decode("utf-8", "replace"))
@@ -55,13 +73,14 @@ for url in URLS:
         if len(data) > 2_000_000 or not data.startswith(b"%PDF-"):
             raise ValueError(f"Not a bounded PDF: {len(data)} bytes, prefix={data[:12]!r}")
         with fitz.open(stream=data, filetype="pdf") as doc:
-            first = doc[0].get_text()
-            if "10.1242/jeb.01122" not in first or len(doc) != 8:
+            first = "\n".join(doc[i].get_text() for i in range(min(2, len(doc))))
+            if "10.1242/jeb.01122" not in first or len(doc) not in (8, 9):
                 raise ValueError("Unexpected DOI or page count")
-            page = doc[3]
-            text = page.get_text()
-            if "3038" not in text or "Fig. 2" not in text:
-                raise ValueError("Expected printed page/figure not found")
+            pages = [i for i in range(len(doc)) if "3038" in doc[i].get_text()
+                     and "Fig. 2" in doc[i].get_text()]
+            if len(pages) != 1:
+                raise ValueError(f"Expected unique printed page/figure, got {pages}")
+            page = doc[pages[0]]
             # Render the single figure page at sufficient resolution for manual
             # interpretation; record image bounding boxes to guide crop selection.
             pix = page.get_pixmap(matrix=fitz.Matrix(3, 3), alpha=False)
@@ -74,7 +93,7 @@ for url in URLS:
             "status": "ACQUIRED", "url": url, "final_url": final_url,
             "http_status": status, "pdf_bytes": len(data),
             "pdf_sha256": hashlib.sha256(data).hexdigest(),
-            "printed_page": 3038, "page_index": 3,
+            "printed_page": 3038, "page_index": pages[0],
             "render_scale": 3, "render_size": [pix.width, pix.height],
             "render_sha256": hashlib.sha256((OUT / "printed-3038.png").read_bytes()).hexdigest(),
             "embedded_images": images, "prior_attempts": attempts,
