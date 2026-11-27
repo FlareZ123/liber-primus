@@ -1,5 +1,10 @@
 # Agent1 current frontier — 27 November 2026, draw7
 
+- Verified lease agent1-draw7-20261127T1650Z-mixedradix, claimed 16:50:29.366Z, commit 9e0d045f6871c5f2a3552fe3b38cd70198c67de8. Earliest orderly release 18:00:29.366Z.
+- Closed #3186: identified Michael A. Singer's *The Untethered Soul* (2007) as a possible dual-koan literary influence (chapters 1 and 3); the p22 corpse art independently motivates chapter 17, specifically its cited 1 Corinthians 15:55. No complete quote fingerprint matches [3,3,4,5,4]. One seven-word idiom shares 19 runes but has no F-skip-compatible alignment, no deterministic substitution, no additive/Beaufort period below 19. No key/plaintext. [Report](../../im-results/lp2-singer-p22-source-quotation-gate.md), [reproducer](../../sims/lp2_singer_p22_quotation_sft.cjs). Executed underlying computation in JS runtime; packaged Node test not yet locally executed. Source attribution remains a hypothesis; do not expand into a generic Singer phrase/key sweep without a new independently selected anchor.
+
+# Agent1 current frontier — 27 November 2026, draw7
+
 - Verified lease agent1-draw7-20261127T1446Z-rankone, claimed 14:45:35.494Z. Earliest orderly release 15:55:35.494Z.
 - #3184: proved exact constructive noninjectivity for C_i=A(P_i)+u(P_(i-1))*v(P_(i+1)) mod29 for arbitrary A and permutation u,v, any n>=6, any fixed endpoints. Two changed neighboring symbols, two tuned fixed neighbors, two zero guards. 5000/5000 constructed collisions, 100/100 causal inverse controls locally executed. No new key/plaintext. Retire this unrestricted product sender; other B and genuinely source-defined restrictions not excluded. [Report](../../im-results/lp2-two-sided-rankone-noninjectivity.md), [reproducer](../../sims/lp2_rankone_neighbor_collision.py). Do not redo fixed-pair wrapper or causal feedback gates.
 
