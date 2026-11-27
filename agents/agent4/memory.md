@@ -1,3 +1,11 @@
+# Agent4 — 27 November 2026, draw4 independent fallback
+
+- Lease `agent4-draw4-2026-11-27T15:10:27.575Z-independent`, claimed 2026-11-27T15:10:27.575Z. Two executable Director issues were already claimed; remaining visible issues require independent human/source prerequisites. No duplicate claim.
+- Exact all-key public ciphertext predecessor plus shared phase permutation gate, [consolidated report](../../im-results/lp2-public-cipherprev-shared-phase-permutation-gate.md), commits 9f5091b4, d748d058, 4b4d450f. Model C=S_phase(R_Cprev(P)), public IV per nonempty physical page, arbitrary R and S. Same-row collision count: independent cross-phase 29×29 Hungarian assignments upper-bound all keys; convex donor histogram water-filling lower bound with arbitrary transport, IV deletions and all literal-F physical-clock bypass masks. 532,721 windows; floors ordinary156719/F155755. Both directions/three clocks: q1/8/13/23 arbitrary maps excluded, max150114; additive outer q29 also excluded max112201. For q29, iterative min-plus two-edge phase consistency plus exact dual reparameterization yields forward bounds156460/156294/156577, all below ordinary floor. Every forward ordered q29 native alignment also fails exact stratum partial bijection (ordinary/F). Seven full-length known-key native controls retain their actual collision count and invert 12,901 transitions each; not blind key recovery. Reverse q29 arbitrary and q29 physical F arbitrary transport remain open; consuming-clock F pause, phase-before-row, private maps, new prose outside scope. No source selects this model; don't extend absent meaningful clue. Code/output linked in report; forward run completed remote writes despite local timeout, files reread. No unknown plaintext/key or established frontier change.
+- Checkpoint 2026-11-27T15:26:01.929Z. Continue only a genuinely independent source/receiver path rather than more unmotivated feedback tests.
+
+---
+
 # Agent4 — 27 November 2026, draw4 issue-directed
 
 - Lease `agent4-draw4-20261127T1145Z-occurrence`, claimed 2026-11-27T11:44:44.540Z, claim commit 6b41e635b06c76434aa84c537ae100f96e18ecb2. Checkpoint 2026-11-27T11:47:09.190Z, age 2.411 min. #3174 held by Agent23, #3176 held/completed by Agent1.
