@@ -1,0 +1,394 @@
+{
+  "fixed": [
+    {
+      "name": "p23",
+      "d": 0,
+      "steps": [
+        183,
+        15,
+        2,
+        1
+      ],
+      "ioc": 0.034322411845156685,
+      "preview": "IAAEOEEOUOEPOAEXXNWWGPAEBDTHIBWEWSSOEOIAEATHLOECHYFXOECIIAAETHUNGWERSTSUEAAEYMYPBEONGBESIDUHMBNGHNMLACGRCTFUONNGLIASGEASCRXA"
+    },
+    {
+      "name": "p40",
+      "d": 0,
+      "steps": [
+        537,
+        47,
+        8,
+        8
+      ],
+      "ioc": 0.03462954318106035,
+      "preview": "YHIIAXEOOIATMDAPTMTJSOCCSOELROEAEGNEASBBURTHFFNGWOEAEPXUATHBDAEREABRAEITHIWMMRSAPMIAXDDYREOCIAMWAOPPEAGYTHSMNSSUAEGIAFAEAE"
+    },
+    {
+      "name": "p23",
+      "d": 1,
+      "steps": [
+        174,
+        18,
+        8,
+        1
+      ],
+      "ioc": 0.034518641850508416,
+      "preview": "EOTEANGIOEEOIMXPWGHNPAEBDTHAWLWUFEOIAESXMBOEOELTHGXJRXAOEAWHTUMSUSEBMAEIEAYPBEONGUNGABLBOETHRNGDAEOCACUOCOEFGIOSEDEOIATTHIXEE"
+    },
+    {
+      "name": "p40",
+      "d": 1,
+      "steps": [
+        525,
+        49,
+        18,
+        8
+      ],
+      "ioc": 0.034531510503501166,
+      "preview": "YHIIAXEAEFEOMWBAEEEAFECTJLMEHUGEOAEOEAEULBSUFGTHTNGWEAEAIHBHSUYAETLRPIHITIEITMEPMIAXDDYREOCIARAENGOIANGIREOAEACBFTWASFIAMNAS"
+    }
+  ],
+  "control": [
+    {
+      "donor": 0,
+      "off": 1000,
+      "seed": 8741,
+      "direction": 1,
+      "fit": {
+        "rank": 19,
+        "kernelSize": 1024,
+        "validMasks": 11,
+        "rowCovers": 1,
+        "colCovers": 1,
+        "charts": 1,
+        "keys": [
+          {
+            "key": [
+              0,
+              1,
+              2,
+              11,
+              18,
+              5,
+              27,
+              19,
+              4,
+              15,
+              25,
+              16,
+              9,
+              26,
+              7,
+              8,
+              13,
+              28,
+              14,
+              21,
+              17,
+              12,
+              22,
+              20,
+              3,
+              6,
+              24,
+              23,
+              10
+            ],
+            "d": 1
+          }
+        ]
+      },
+      "held": [
+        705
+      ]
+    },
+    {
+      "donor": 4,
+      "off": 2000,
+      "seed": 1930,
+      "direction": 0,
+      "fit": {
+        "rank": 19,
+        "kernelSize": 1024,
+        "validMasks": 11,
+        "rowCovers": 1,
+        "colCovers": 1,
+        "charts": 1,
+        "keys": [
+          {
+            "key": [
+              24,
+              5,
+              2,
+              21,
+              18,
+              6,
+              11,
+              28,
+              23,
+              20,
+              17,
+              3,
+              22,
+              12,
+              15,
+              16,
+              8,
+              13,
+              14,
+              26,
+              27,
+              9,
+              25,
+              19,
+              0,
+              1,
+              7,
+              4,
+              10
+            ],
+            "d": 0
+          }
+        ]
+      },
+      "held": [
+        705
+      ]
+    },
+    {
+      "donor": 6,
+      "off": 3000,
+      "seed": 5151,
+      "direction": 1,
+      "fit": {
+        "rank": 19,
+        "kernelSize": 1024,
+        "validMasks": 11,
+        "rowCovers": 1,
+        "colCovers": 1,
+        "charts": 1,
+        "keys": [
+          {
+            "key": [
+              0,
+              2,
+              6,
+              8,
+              17,
+              5,
+              1,
+              13,
+              7,
+              22,
+              20,
+              9,
+              3,
+              19,
+              24,
+              10,
+              14,
+              15,
+              28,
+              4,
+              16,
+              18,
+              23,
+              12,
+              27,
+              26,
+              11,
+              25,
+              21
+            ],
+            "d": 1
+          }
+        ]
+      },
+      "held": [
+        705
+      ]
+    },
+    {
+      "donor": 6,
+      "off": 8000,
+      "seed": 1133,
+      "direction": 1,
+      "fit": {
+        "rank": 19,
+        "kernelSize": 1024,
+        "validMasks": 11,
+        "rowCovers": 1,
+        "colCovers": 1,
+        "charts": 1,
+        "keys": [
+          {
+            "key": [
+              0,
+              2,
+              9,
+              21,
+              27,
+              19,
+              26,
+              28,
+              3,
+              6,
+              20,
+              23,
+              4,
+              25,
+              10,
+              24,
+              7,
+              5,
+              12,
+              14,
+              13,
+              16,
+              15,
+              18,
+              11,
+              1,
+              22,
+              17,
+              8
+            ],
+            "d": 1
+          }
+        ]
+      },
+      "held": [
+        705
+      ]
+    }
+  ],
+  "scan": [
+    {
+      "name": "p23",
+      "donor": 0,
+      "length": 6958,
+      "windows": 5954,
+      "maxRank": 20,
+      "totalBlocks": 119113,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 1,
+      "length": 7059,
+      "windows": 6055,
+      "maxRank": 20,
+      "totalBlocks": 121134,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 2,
+      "length": 7484,
+      "windows": 6480,
+      "maxRank": 20,
+      "totalBlocks": 129633,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 3,
+      "length": 33276,
+      "windows": 32272,
+      "maxRank": 20,
+      "totalBlocks": 645616,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 4,
+      "length": 41181,
+      "windows": 40177,
+      "maxRank": 20,
+      "totalBlocks": 803757,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 5,
+      "length": 3896,
+      "windows": 2892,
+      "maxRank": 20,
+      "totalBlocks": 57856,
+      "survivors": []
+    },
+    {
+      "name": "p23",
+      "donor": 6,
+      "length": 62492,
+      "windows": 61488,
+      "maxRank": 20,
+      "totalBlocks": 1230102,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 0,
+      "length": 6958,
+      "windows": 3959,
+      "maxRank": 20,
+      "totalBlocks": 79202,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 1,
+      "length": 7059,
+      "windows": 4060,
+      "maxRank": 20,
+      "totalBlocks": 81223,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 2,
+      "length": 7484,
+      "windows": 4485,
+      "maxRank": 20,
+      "totalBlocks": 89730,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 3,
+      "length": 33276,
+      "windows": 30277,
+      "maxRank": 20,
+      "totalBlocks": 605748,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 4,
+      "length": 41181,
+      "windows": 38182,
+      "maxRank": 20,
+      "totalBlocks": 763921,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 5,
+      "length": 3896,
+      "windows": 897,
+      "maxRank": 20,
+      "totalBlocks": 17945,
+      "survivors": []
+    },
+    {
+      "name": "p40",
+      "donor": 6,
+      "length": 62492,
+      "windows": 59493,
+      "maxRank": 20,
+      "totalBlocks": 1190298,
+      "survivors": []
+    }
+  ]
+}
