@@ -1,6 +1,6 @@
 # P22 reused solved-LP1 artwork: a frozen mirror-of-authentic-key inverse
 
-**Consolidated 27 November 2026, Agent11. Classification: scoped negative on complete original source. The original mirrored footer does not yield readable p22 prose under either authentic-key reversal or a literal horizontal mirror of physical rune rows on either side of the unchanged historical cipher. No unknown LP2 plaintext or creator-selected key.**
+**Consolidated 27 November 2026, Agent11. Classification: scoped negative on complete original source. The original mirrored footer does not yield readable p22 prose under either authentic-key reversal or a literal horizontal mirror of physical rune rows on either side of the unchanged historical cipher. A separate exact all-key q13 inverse on horizontally mirrored ciphertext also produces no coherent prose. No unknown LP2 plaintext or creator-selected key.**
 
 ## Literal source pairing and the proposed human action
 
@@ -59,3 +59,22 @@ Matched 131-rune plants from two excluded native records, all 26 phases/signs fo
 **Disposition:** retire the literal physical row mirror in either layer order with the genuine LP1 key, including its ordinary-clock relaxation. The artwork remains a real source correspondence and the p16 square remains a different parent candidate. Do not combine multiple speculative mirrors or fit a new key from the failure alone. No unknown plaintext recovered.
 
 [Reproducer](../sims/lp2_p22_mirrored_row_authentic_key_sft.cjs) · [raw output with exact input Git blobs](lp2-p22-mirrored-row-authentic-key-output.json). Run `node sims/lp2_p22_mirrored_row_authentic_key_sft.cjs` from repository root. The core executed in connected V8; the standalone Node wrapper has not been run.
+
+## Blind q13 recovery on the physically mirrored ciphertext (Agent11, 27 November)
+
+The failed literal key does not alone exclude an artwork-selected *cipher family* with another key. Keep the already-frozen horizontal ciphertext-row mirror and historical plaintext-F semantics, but allow **all 29^13 keys** (any phase/sign is absorbed into the arbitrary key). No native plaintext, presumed word boundaries, or guessed key component constrains the original inverse.
+
+For each of the 2^z visible-zero subsets, assign consuming phases, prohibit a key digit at phase j whenever it equals any consuming ciphertext at j (since that would decode to a forbidden consuming F). The restored-order bigram score consists of constant F–F terms, unary factors adjacent to held F, and pair factors between successive consuming phases. Exact max-sum dynamic programming conditions on each allowed first key digit and closes the q13 cycle. Recover the global optimum over every mask, then forward-encrypt and reapply the physical mirror. This is an exact optimizer of the chosen bigram likelihood, not a proof that every lower-scoring plaintext is non-English.
+
+| Original | Visible zeros | Complete masks | Best bigram nats/rune |
+|---|---:|---:|---:|
+| p22, 131 runes | 6 | 64/64 | −3.215044304 |
+| p23, 213 runes, separate comparison | 7 | 128/128 | −3.372875126 |
+
+The p22 MAP key is [8,25,15,23,17,2,1,12,3,7,13,0,22]. It starts O E S A I N R M F D R E E N A N L B E H E N R Y O W E M C O N W S U NG O P E N S T S E B L O O W; isolated letter fragments do not form coherent GP prose. The p23 optimum also remains nonprose; it has a separately optimized key, not a continuation predicted by p22. Every original winning path replays exactly.
+
+Using the same frozen p22 mirror geometry, six hidden-key 131-rune plants (two native records excluded from training, each with the genuine historical key and two independently generated q13 vectors) yield four exact keys/plaintexts and 777/786 correct runes. The two incomplete recoveries both select a one-position rotation of the hidden key and misinterpret a small number of literal-F events. Every true-path score is at least −2.815474, above the exact original p22 optimum. The pseudo-random vectors use deterministic seed3301; they are synthetic controls using native source plaintext, not authentic new cipher evidence.
+
+**Disposition:** retire this additional all-key q13 ciphertext-side horizontal mirror as a practical route to readable p22 prose under the fixed language objective. The result does not reject other periods, a plaintext-side mirror with arbitrary key, non-additive encryption, or alternate source-defined read orders. No new key or original plaintext established. Further expansion of mirror variants needs an independent source selector, rather than tuning around the failure.
+
+[Exact CJS reproducer](../sims/lp2_p22_mirrored_row_allkey_q13_sft.cjs) · [raw results and input blobs](lp2-p22-mirrored-row-allkey-q13-output.json). Run `node sims/lp2_p22_mirrored_row_allkey_q13_sft.cjs`. The core executed in connected V8; the standalone wrapper was not separately run.
