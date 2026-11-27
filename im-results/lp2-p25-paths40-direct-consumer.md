@@ -1,4 +1,4 @@
-# P25 cut5 directly selects and decrypts p40 PATHS
+# P25 cut5: conditional reconstruction of the p40 PATHS local fit
 
 **Agent45, 27 November 2026. Classification: source-constrained producer/consumer reconstruction of an existing local plaintext candidate; no blind new plaintext claim.**
 
@@ -38,7 +38,7 @@ H^-1         = [20,20,12,6]
 = PATHS
 ```
 
-The result does not discover PATHS blindly: p40 PATHS and its exact local inverse were already published. The advance is that a separate source chain now regenerates its target and complete numeric key without consulting the p40 rune values.
+The result does not discover PATHS blindly: p40 PATHS and its exact local inverse were already published. The separate source chain regenerates its target and complete numeric key under retrospective choices of cut, index origins and shell roles. Re-evaluating a fixed formula without reading the target ciphertext does not make its original selection independent.
 
 ## Why the p25 output is not an arbitrary split
 
@@ -58,7 +58,7 @@ cut4 32 | 28
 cut5 40 | 20
 ```
 
-The p25 object's independently recovered outer state is `[K,g]=[2,5]`, so `g=5` fixes cut5 before any destination is inspected.
+The p25 object's proposed outer state is `[K,g]=[2,5]`, so the adopted cut rule gives cut5. The rule was assembled after the destination candidate was known.
 
 For a family control, nevertheless charge **every cut**. The eight resulting values in the authenticated source index range 0..42 are:
 
@@ -156,14 +156,14 @@ plain + key mod29
 
 ## Evidence boundary
 
-What is now materially stronger:
+What the conditional reconstruction actually establishes:
 
-- p25 is independently reached from p23 by THE ONE RISE → +2;
+- the prior p23 THE ONE RISE candidate conditionally leads to p25 by +2;
 - the exact later mayfly source supplies a plausible LP2-local selector for historical DH(23,5);
 - the p25 object is the unique manuscript-wide outer `[K,g]` side object in the previously charged 627-object family;
 - `g=5` fixes the p25 split;
 - all-cut direct-index control selects only p40/PATHS under the pre-existing receiver type;
-- the mayfly/DH/inverse packet supplies the complete numeric p40 H-shell before p40 ciphertext values are consulted;
+- the chosen mayfly/DH/inverse expression regenerates the complete numeric p40 H-shell; its role order was selected retrospectively;
 - exact H inversion, decryption and forward replay recover PATHS.
 
 What remains unresolved:
@@ -197,7 +197,7 @@ Reproduction: `node sims/lp2_p25_second_output_meaning_gate_sft.cjs`. Raw struct
 
 ### Canonical four-rune second receiver
 
-The earlier six-rune test deliberately covers only the expanded spelling. The canonical signed MEANING target is [19,28,9,21] (M EA N ING), sum77. The corrected all-cut census has zero complete p20 groups of length4 and sum77. The same p25 upstream source independently fixes the p40 four-rune key [20,20,12,6], so the minimal direct reuse on its second output predicts these four-rune ciphertexts:
+The earlier six-rune test deliberately covers only the expanded spelling. The canonical signed MEANING target is [19,28,9,21] (M EA N ING), sum77. The corrected all-cut census has zero complete p20 groups of length4 and sum77. The same conditional p25 reconstruction yields the p40 four-rune key [20,20,12,6], so the minimal direct reuse on its second output predicts these four-rune ciphertexts:
 
 - addition: [10,19,21,27];
 - subtraction: [28,8,26,15].

@@ -102,45 +102,42 @@ function physicalPage(block) {
  * }>}
  */
 function parseWords() {
-  let block = 0;
-  let page = 0;
-  let pageOffset = 0;
+  // Current seam-aware canonical grouping: line breaks and slash are not word
+  // separators; page boundaries carry unfinished groups across physical pages.
   let startPage = null;
+  let endPage = null;
   let startOffset = null;
+  let endOffset = null;
   let runes = [];
   const words = [];
-
   const close = () => {
     if (runes.length === 0) return;
-    words.push({
-      startPage,
-      startOffset,
-      endPage: page,
-      endOffset: pageOffset - 1,
-      values: runes.map((rune) => runeIndex.get(rune)),
-    });
-    startPage = null;
-    startOffset = null;
+    words.push({ startPage, startOffset, endPage, endOffset,
+      values: runes.map(rune => runeIndex.get(rune)) });
     runes = [];
   };
-
-  for (const ch of transcription) {
-    if (runeSet.has(ch)) {
-      if (runes.length === 0) {
-        startPage = page;
-        startOffset = pageOffset;
+  const blocks = transcription.split(/^\s*%\s*$/m).slice(0, 55);
+  for (let block = 0; block < blocks.length; block++) {
+    const page = physicalPage(block);
+    let offset = 0;
+    for (const ch of blocks[block]) {
+      if (runeSet.has(ch)) {
+        if (runes.length === 0) {
+          startPage = page;
+          startOffset = offset;
+        }
+        endPage = page;
+        endOffset = offset++;
+        runes.push(ch);
+      } else if (!/[\s/]/u.test(ch)) {
+        close();
       }
-      runes.push(ch);
-      pageOffset += 1;
-    } else if (ch === "-" || ch === "." || ch === "&" || ch === "$") {
-      close();
-    } else if (ch === "%") {
-      block += 1;
-      page = physicalPage(block);
-      pageOffset = 0;
     }
+    assert.equal(offset, corpus.pages[page].indices.length);
   }
   close();
+  assert.equal(words.length, 2896);
+  assert.equal(words.filter(word => word.startPage === word.endPage).length, 2864);
   return words;
 }
 
@@ -329,10 +326,10 @@ assert.deepEqual(localFamilyHits, [{
 // Manuscript-wide exact-key charge.
 const fourRuneUnknownWords = words.filter((word) =>
   word.startPage < 56 &&
-  word.endPage < 56 &&
+  word.startPage === word.endPage &&
   word.values.length === 4
 );
-assert.equal(fourRuneUnknownWords.length, 513);
+assert.equal(fourRuneUnknownWords.length, 509);
 
 const exactKeyHits = [];
 for (const word of fourRuneUnknownWords) {
@@ -406,5 +403,5 @@ console.log(JSON.stringify({
     hits: exactKeyHits,
   },
   classification:
-    "Strong local PATHS candidate. Target/page/receiver come from signed index40 plus unique p40 length4/GP0=54 state; p40 shell [-b,A,e,-e] is independent of HERE, while the shared [x,A,y,-y] serialization remains retrospective.",
+    "Conditional local PATHS fit: zero-based signed index40 and unique p40 length4/GP0=54 state. ROAD shares the same state. The H-shell labeling and origin selection remain retrospective; exact replay is not authentication.",
 }, null, 2));

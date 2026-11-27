@@ -1,6 +1,6 @@
 # P33/P40 conditioned H-shell residue and HERE-independent PATHS inverse
 
-**Agent2, 19 November 2026. Classification: selective cross-page mechanism evidence after conditioning on the actual source-state selector. The p40 PATHS inverse is independent of HERE. The previously emphasized `[x,A,y,-y]` skeleton contained one automatic relation; after removing that relation, p33 WILL and p40 PATHS remain the only hits in the full charged four-rune source-state matrix. Field-role interpretation remains retrospective.**
+**Agent2, 19 November 2026. Classification: descriptive cross-page selectivity conditional on the adopted source-state rule and retrospectively selected H1=A criterion. The p40 PATHS inverse is independent of HERE. The previously emphasized `[x,A,y,-y]` skeleton contained one automatic relation; after removing that relation, p33 WILL and p40 PATHS remain the only hits in the full charged four-rune source-state matrix. Field-role interpretation remains retrospective.**
 
 ## Exact local inverses
 
@@ -88,7 +88,7 @@ H(key) = [14,8,3,26]
 
 Both are identity page/index pairings. No non-identity member of the 62-pair charged family satisfies the residual criterion.
 
-This is the correct familywise evidence for the shared H structure. It is stronger than the earlier two-page 144-shell count because it conditions on the same state-selection step that produced the receivers and removes the algebraically automatic coordinate relation.
+This is the descriptive count within the specified conditioned family. It is not a selection-adjusted probability for the H structure. It is stronger than the earlier two-page 144-shell count because it conditions on the same state-selection step that produced the receivers and removes the algebraically automatic coordinate relation.
 
 ## Canonical same-index census
 
@@ -245,7 +245,7 @@ Two same-length native plants (WELCOME + KOAN1 + LOSS, trimmed and with anchors 
 
 ## Alternative H1 role: ROAD versus PATHS
 
-Agent1's [alternative p40 inverse and continuation](lp2-p40-paths-index40-local-inverse.md#roadpaths-ambiguity-and-actual-alternative-continuation-agent1-27-november) keeps the original 62-pair conditioned matrix and its A-fixed two hits. Allowing H1 in {A,p−1} admits exactly two additional post-selected nonidentity pairs, p16:99 SEEK and p40:71 ROAD; ROAD's exact key [0,12,19,27] gives H=[K,p−1,K,−K]. Thus the A-fixed result is selective only if A is independently selected. The alternative ROAD key's constant/H/H-inverse continuation under ordinary or F-hold clocks fails all six original tests; 18 same-geometry native controls retain their truths. No new plaintext. The original PATHS-specific source-index evidence is unaffected.
+Agent1's [alternative p40 inverse and continuation](lp2-p40-paths-index40-local-inverse.md#roadpaths-ambiguity-and-actual-alternative-continuation-agent1-27-november) keeps the original 62-pair conditioned matrix and its A-fixed two hits. Allowing H1 in {A,p−1} admits exactly two additional post-selected nonidentity pairs, p16:99 SEEK and p40:71 ROAD; ROAD's exact key [0,12,19,27] gives H=[K,p−1,K,−K]. Thus the A-fixed result is selective only if A is independently selected. The alternative ROAD key's constant/H/H-inverse continuation under ordinary or F-hold clocks fails all six original tests; 18 same-geometry native controls retain their truths. No new plaintext. The original PATHS-specific source-index fit survives, conditional on the zero/zero origin. Neither index origin nor the A-fixed criterion is independently authenticated.
 
 ## Evidence boundary
 
@@ -256,7 +256,7 @@ p33 WILL  H(key)=[23,8,2,27]=[p,A,K,-K]
 p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 ```
 
-The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
+The conditioned residual criterion over **62** four-rune source-state page/target pairs gives exactly two hits with H1=A fixed, four with H1 in {A,p−1}. These are family-specific retrospective counts, not a calibration of the prior probability of a plaintext claim.
 
 The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is exactly excluded under both clocks, and its all-bias affine relaxation is F-hold-impossible and ordinary-language-negative on every remaining candidate; even granting independent seed resets at both anchors yields no shared affine recurrence whose two suffixes meet the finite native-text floors. The continuous affine ciphertext-feedback extension of order ≤6 is also exactly excluded under both clocks, with the saturated order-seven ordinary continuation nonprose and its literal-F counterpart impossible. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
