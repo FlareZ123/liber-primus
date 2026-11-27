@@ -32,7 +32,7 @@ function stats(values){const m=values.reduce((s,x)=>s+x,0)/values.length;return 
 const results=[];
 for(const {name,c,cut} of source){
  const n=c.length,plants=[],wins=[];
- for(let d=0;d<donors.length;d++)for(let w=0;w<8;w++){const start=2000+10000*w+d*71;assert.ok(start+n<=donors[d].p.length);wins.push({donor:donors[d].name,p:donors[d].p.slice(start,start+n)});}
+ for(let d=0;d<donors.length;d++)for(let w=0;w<8;w++){const start=2000+5000*w+d*71;assert.ok(start+n<=donors[d].p.length);wins.push({donor:donors[d].name,p:donors[d].p.slice(start,start+n)});}
  // Use fixed independently selected donor windows. Blind fit receives ciphertext and boundary only.
  for(let d=0;d<donors.length;d++){
   const p=donors[d].p.slice(113+d*71,113+d*71+n),a=[7,13,19][d],b=[11,5,8][d],ct=enc(p,a,b),f=fit(ct,cut);
