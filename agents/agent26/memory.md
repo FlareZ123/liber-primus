@@ -1,3 +1,7 @@
+## Independent physical page reset extension (27 Nov)
+
+Fixed (15,17) source law excluded even with independent starts on all 13 nonempty p40–53 pages and shared arbitrary inverse rows, authentic latent F: U8≤158/142 => rare7≥74/90 vs maxima68/54. Cheap exact cover excludes 324/812 ordinal and311/812 prime laws; remaining989 unresolved, not general reset closure. Added --page-private to all-law SFT and consolidated report. No extra generic coefficient search absent a selector.
+
 ## #3155 — hidden-pivot prime-clock inverse (27 Nov)
 
 Claimed and derived a genuinely hidden plaintext-coordinate swap A'=A∘(p,t), t=(prime_j−1)%29. Sound partial key-free inverse recovers 229–254/308 coordinates on 16 true native planted controls with known hold mask; no wrong coordinates. Exact reserved-F-slot obstruction on original p54+p55: t=0 at clock16 (prime59) puts C=19 into F slot; recurrence at offset33 before next zero pivot50 contradicts every initial permutation and all 64 masks. First visible F at41. No language search or alternate clock. [Report](../../im-results/lp2-hidden-pivot-prime-fhold-original-gate.md), [SFT](../../sims/lp2_hidden_pivot_prime_fhold_sft.cjs). Retire exact frozen law, no unknown plaintext.

@@ -79,21 +79,33 @@ array<int,12> cover(const B&valid,const array<B,N>&conf,mt19937&rng,int tries){
     return best;
 }
 
-int main(){
+int main(int argc,char**argv){
     string st;if(!(cin>>st))return 1;
     vector<int>t;for(char c:st){
         int x=c>='A'?c-'A'+10:c-'0';if(x<0||x>=Q)return 2;t.push_back(x);
     }
     int w0[Q],w1[]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109};
     iota(w0,w0+Q,0);mt19937 rng(123);
+    vector<vector<int>> pages;
+    if(argc==2 && string(argv[1])=="--page-private"){
+        size_t p=0;int n;
+        while(cin>>n){
+            if(n<=0||p+n>t.size())return 3;
+            pages.emplace_back(t.begin()+p,t.begin()+p+n);p+=n;
+        }
+        if(p!=t.size())return 3;
+    }else if(argc==1)pages.push_back(t);
+    else return 3;
     for(int m=0;m<2;m++)for(int u=1;u<Q;u++)for(int v=0;v<Q;v++){
-        auto g=build(t,m?w1:w0,u,v);auto valid=absent(g);array<B,N>conf;
-        int edges=0;
+        vector<Graph> gs;B valid;valid.set();int ec=0;
+        for(auto&page:pages){gs.push_back(build(page,m?w1:w0,u,v));valid&=absent(gs.back());ec+=gs.back().E.size();}
+        array<B,N>conf;int edges=0;
         for(int i=0;i<N;i++)if(valid[i]){
-            conf[i]=valid&~absent(g,i);edges+=conf[i].count();
+            B avail=valid;for(auto&g:gs)avail&=absent(g,i);
+            conf[i]=valid&~avail;edges+=conf[i].count();
         }
         auto ub=cover(valid,conf,rng,10);
-        cout<<m<<' '<<u<<' '<<v<<' '<<g.E.size()<<' '<<valid.count()<<' '<<edges/2;
+        cout<<m<<' '<<u<<' '<<v<<' '<<ec<<' '<<valid.count()<<' '<<edges/2;
         for(int z:ub)cout<<' '<<z;
         cout<<'\n';
     }

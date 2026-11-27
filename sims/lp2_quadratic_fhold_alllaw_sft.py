@@ -76,20 +76,35 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--cover-exe",type=Path)
     ap.add_argument("--save",type=Path)
+    ap.add_argument("--page-private",action="store_true",help="Independent start states per physical page; shared row table.")
     args=ap.parse_args()
     corpus=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text(encoding="utf8"))
-    t=[c for p in corpus["pages"] if 40<=p["page"]<=53 for c in p["indices"]]
+    pages=[p["indices"] for p in corpus["pages"] if 40<=p["page"]<=53 and p["indices"]]
+    t=[c for page in pages for c in page]
     assert len(t)==3008 and t.count(0)==125 and hashlib.sha256(bytes(t)).hexdigest()==TAPE_SHA
     tape="".join("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"[c] for c in t)
     with tempfile.TemporaryDirectory() as tmp:
         exe=args.cover_exe.resolve() if args.cover_exe else Path(tmp)/("cover.exe" if os.name=="nt" else "cover")
         if not args.cover_exe:
             subprocess.run(["g++","-O3","-std=c++17",str(Path(__file__).with_name("lp2_quadratic_fhold_alllaw_cover.cpp")),"-o",str(exe)],check=True)
-        raw=subprocess.run([str(exe)],input=tape+"\n",text=True,capture_output=True,check=True).stdout
+        cmd=[str(exe)]+(["--page-private"] if args.page_private else [])
+        inp=tape+"\n"+(" ".join(str(len(p)) for p in pages)+"\n" if args.page_private else "")
+        raw=subprocess.run(cmd,input=inp,text=True,capture_output=True,check=True).stdout
     rows=[list(map(int,line.split())) for line in raw.splitlines()]
     expected=[(m,u,v) for m in range(2) for u in range(1,Q) for v in range(Q)]
     assert [tuple(row[:3]) for row in rows]==expected and all(len(row)==18 for row in rows)
     covers=[row[12] for row in rows]
+    if args.page_private:
+        assert [len(p) for p in pages]==[231,273,272,274,273,270,270,274,271,66,92,263,179]
+        assert hashlib.sha256(bytes(covers)).hexdigest()=="e865e7f927000c06493f94b9485778f0d077a8de7aa25775facdb349d600ac17"
+        counts=[sum(row[0]==m and row[12]<=LIMIT for row in rows) for m in range(2)]
+        fixed=[row[12] for row in rows if row[1:3]==[15,17]]
+        assert counts==[324,311] and fixed==[158,142]
+        print("Page-private cheap exclusions",counts,"fixed source law caps",fixed)
+        print("Remaining laws unresolved",1624-sum(counts))
+        if args.save:
+            args.save.write_text(json.dumps({"cover_U8":covers,"excluded":counts,"fixed_U8":fixed}))
+        return
     assert hashlib.sha256(bytes(covers)).hexdigest()=="5dcb8a6508742bbb6ac6b3bd7ff705ab2f1be6c1706f900064336345d3e2cecf"
     survivors=[tuple(row[:3]) for row in rows if row[12]>LIMIT]
     assert [sum(m==i for m,_,_ in survivors) for i in range(2)]==[67,78]
