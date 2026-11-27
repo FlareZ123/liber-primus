@@ -70,3 +70,18 @@ Inverse-warp this reconstruction to stock coordinates using the p55 fit. Keep pr
 Direct native-grid registration (no stock coordinate rewarp), exhaustive integer lookup offsets ±25 and sigma .5–12 step .25: left-trained dx=-4,dy=-5,sigma=5.25, train .986277, held right .976241, root .996413; right-trained dx=-4,dy=-4,sigma=5.25, train .979437, held left .984359, root .997101. Continuous isotropic left scale .989892,dx=-3.990,dy=-4.281,sigma=5.255; right scale 1.000742,dx=-4.063,dy=-3.951,sigma=5.144. Near-unit scale, almost identical shifts and blur across training halves constitute evidence for a common intermediate. dy differs by one grid cell, so no exact integer transform is established. The p55 inverse lower root has maximum width 29 cells (rows 181–182, x67–95), versus approximately 52 in warped stock; this is descriptive and model-dependent, not an authenticated 29-symbol key.
 
 Reproducer: `sims/lp2_tree_contour_graphcut_transfer_sft.py`. Local equivalents executed on the supplied original JPEGs and committed stock mask; consolidated repository wrapper not separately executed. No plaintext, cipher key or instruction recovered.
+
+## Independent signed 2016 root prediction (Agent6, 21:32 UTC)
+
+The p55-derived graph-cut raster is frozen, inverse-warped into stock coordinates and compared as (a) original reflected stock, (b) stock crown with only rows >=162 replaced by p55 reconstruction, (c) full p55 reconstruction. The exact signed 2016 JPEG (SHA256 a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe) is decoded via pinned jpeg-js v0.4.4. Average 2x2 grayscale blocks; omit blocks whose surrounding 6x6 neighborhood contains intensity >40 to suppress signature/message ink. Independent training halves y290–419, x188–283 and x284–383; held root y430–484, x188–383. Valid block counts left 3120, right 3250, root 2269. Fit stock-only geometry and blur on each half, freeze them, then fit gain and bias for each candidate on the same training half. No root pixels inform selection or photometry. Results:
+
+| Train | Predictor | Opposite crown r | Opposite MSE | Root r | Root MSE |
+|---|---|---:|---:|---:|---:|
+| Left | Stock | .822693 | .945282 | .797486 | 1.823332 |
+| Left | LP2 root only | .822692 | .945461 | .855492 | 1.552429 |
+| Left | Full LP2 reconstruction | .858617 | .679468 | .855623 | 1.311083 |
+| Right | Stock | .930982 | .984610 | .765038 | 2.029548 |
+| Right | LP2 root only | .930987 | .984591 | .849258 | 1.750084 |
+| Right | Full LP2 reconstruction | .936104 | .775785 | .849266 | 1.405796 |
+
+Geometry in signed pixel coordinates [cx,cy,sx,sy] left [201.25,256.25,1.05,1.05], sigma4 stock cells; right [200.25,255.25,1.05,1.05], sigma2.5. Root-only edit improves both independent held root predictions while leaving opposite crown essentially unchanged; full reconstruction additionally improves opposite crown prediction and reduces root MSE 28.1%/30.7%. Thus the signed image likely shares the distinctive edited LP2 intermediate, beyond common stock ancestry. This is positive cross-year evidence; it does not establish author intent, exact shared raster, or a cipher operation. Root text suppression is imperfect (JPEG ringing and blocked pixels remain); similarity metrics are not independent pixel significance tests. Source: `sims/lp2_tree_signed2016_held_root_sft.cjs` plus p55-only mask fixture `im-results/lp2-p55-contour-inverse-mask.b64`. Core executed against connector-fetched exact JPEG bytes in V8; standalone filesystem wrapper not separately executed.
