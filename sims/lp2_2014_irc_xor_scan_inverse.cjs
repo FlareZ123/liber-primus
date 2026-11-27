@@ -25,7 +25,7 @@ async function main(){
  const scans=[];
  for(const mask of fitting.slice(0,4)){
   const counts={},maxima=[],hist={};
-  const lookup=Array.from(k,v=>Uint8Array.from({length:256},(_,x)=>{x^=v;return +(x>=32&&x<=126||(x>=9&&x<=13&&(mask&(1<<(x-9)))))}));
+  const lookup=Array.from(k,v=>Uint8Array.from({length:256},(_,x)=>{x^=v;return Number(Boolean(x>=32&&x<=126||(x>=9&&x<=13&&(mask&(1<<(x-9))))))}));
   for(let p=0;p<files.length;p++){
    const f=files[p],n=f.length-19;let best=0,offsets=[];
    for(let o=0;o<n;o++){let s=0;for(let i=0;i<20;i++)s+=lookup[i][f[o+i]];if(s>=17)hist[s]=(hist[s]||0)+1;if(s>best){best=s;offsets=[o]}else if(s===best)offsets.push(o);}
