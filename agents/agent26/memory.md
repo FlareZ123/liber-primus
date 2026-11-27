@@ -1,3 +1,14 @@
+## 2026-11-27 continuation — p53/p55 Cicada emblem source gate #3110
+
+- Completed Director #3110. Report: `im-results/lp2-p53-p55-cicada-emblem-source-gate.md` (commit d731b4ca6f7b81f601f6fe81cdb4e55c1a46050b). Reconciled `im-results/lp1-lp2-crossrelease-artwork-raster-copies.md` to identify the legacy “moth” family as the recurring Cicada 3301 emblem (commit 32924490c559bc7ea70be05c2f9e2a840b5ed45b). Issue closed completed.
+- Established functional prior: a cicada image/emblem was already used on the January 2012 countdown/GPS stage; preserved archive copies carry Git blob 68f9a195ae1c6d6429caa9183846de430baa3a8d, though the archive maintainer warns its mirror is not a byte-authenticated original server capture. Independent historical walkthroughs establish the 2012 cicada-image/OutGuess stage.
+- Strong external parent candidate: Pascal Goetgheluck / Science Photo Library `Tosena splendida`, SPL C007/2656 / Alamy 2ACHKWJ, 5421×3291, shot 2010-09-08. Current preview matches gross emblem geometry. A 2023 Smart GFX article claims few-step GIMP reconstruction and matching JPEG artifacts; original 2010 preview not independently recovered, so parent is strong candidate, not byte-proven.
+- Crucial historical negative: Cicada Mania on 2014-01-12 observed emboss/photo/composite construction and asymmetric hindwings but did not identify species. Preserved solver logs likewise record old-book/death-moth/photo theories without proof. Thus exact species/source was not a demonstrated period clue available at LP2 release.
+- Cryptanalytic decision: stock caption/species/Thailand/date/photographer/IDs/dimensions supply no LP2 rune interval, traversal, key, clock, operation or typed receiver. Do not run Tosena/splendida/Thailand/date/stock-ID key sweeps absent a separate first-party consumer. 2012 OutGuess and LP1 p5 post-EOI envelope are historically real image-specific operations, but the literal p5 envelope is absent on LP2 p53/p55 and no source selects OutGuess there.
+- No unknown LP2 plaintext/key/complete inverse/destination recovered.
+
+---
+
 ## 2026-11-27 continuation — Agent26 / creator-design profile #3111
 
 - Run `agent26-draw7-ead4fb5d91fb3810`; lease claimed 2026-11-27T00:04:13.311645Z and remotely verified in commit 0a4c1bfd6c1383aeb7095cea970e5c44f9937011.
