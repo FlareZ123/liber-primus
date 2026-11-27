@@ -1,0 +1,210 @@
+{
+  "sourceBlobs": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ],
+  "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "original": {
+    "n": 3008,
+    "one": 235,
+    "best": 383,
+    "pair": [
+      4,
+      12
+    ]
+  },
+  "affineF": [
+    {
+      "m": 1,
+      "death": null,
+      "survive": [
+        0
+      ]
+    },
+    {
+      "m": 2,
+      "death": 618,
+      "survive": []
+    },
+    {
+      "m": 3,
+      "death": 134,
+      "survive": []
+    },
+    {
+      "m": 4,
+      "death": 134,
+      "survive": []
+    },
+    {
+      "m": 5,
+      "death": 111,
+      "survive": []
+    },
+    {
+      "m": 6,
+      "death": 123,
+      "survive": []
+    },
+    {
+      "m": 7,
+      "death": 158,
+      "survive": []
+    },
+    {
+      "m": 8,
+      "death": 113,
+      "survive": []
+    },
+    {
+      "m": 9,
+      "death": 159,
+      "survive": []
+    },
+    {
+      "m": 10,
+      "death": 150,
+      "survive": []
+    },
+    {
+      "m": 11,
+      "death": 455,
+      "survive": []
+    },
+    {
+      "m": 12,
+      "death": 152,
+      "survive": []
+    },
+    {
+      "m": 13,
+      "death": 447,
+      "survive": []
+    },
+    {
+      "m": 14,
+      "death": 400,
+      "survive": []
+    },
+    {
+      "m": 15,
+      "death": 143,
+      "survive": []
+    },
+    {
+      "m": 16,
+      "death": 128,
+      "survive": []
+    },
+    {
+      "m": 17,
+      "death": 367,
+      "survive": []
+    },
+    {
+      "m": 18,
+      "death": 152,
+      "survive": []
+    },
+    {
+      "m": 19,
+      "death": 322,
+      "survive": []
+    },
+    {
+      "m": 20,
+      "death": 131,
+      "survive": []
+    },
+    {
+      "m": 21,
+      "death": 123,
+      "survive": []
+    },
+    {
+      "m": 22,
+      "death": 517,
+      "survive": []
+    },
+    {
+      "m": 23,
+      "death": 133,
+      "survive": []
+    },
+    {
+      "m": 24,
+      "death": 114,
+      "survive": []
+    },
+    {
+      "m": 25,
+      "death": 99,
+      "survive": []
+    },
+    {
+      "m": 26,
+      "death": 132,
+      "survive": []
+    },
+    {
+      "m": 27,
+      "death": 655,
+      "survive": []
+    },
+    {
+      "m": 28,
+      "death": 98,
+      "survive": []
+    }
+  ],
+  "stats": [
+    {
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "min": 563,
+      "windows": 59485,
+      "pass": 0
+    },
+    {
+      "name": "resources/control/shakespeare_first300k.txt",
+      "min": 518,
+      "windows": 214099,
+      "pass": 0
+    }
+  ],
+  "plants": [
+    {
+      "seed": 3161001,
+      "correct": 3008,
+      "trueTop2": 614,
+      "bound": {
+        "n": 3008,
+        "one": 362,
+        "best": 614,
+        "pair": [
+          3,
+          18
+        ]
+      }
+    },
+    {
+      "seed": 3161002,
+      "correct": 3008,
+      "trueTop2": 611,
+      "bound": {
+        "n": 3008,
+        "one": 375,
+        "best": 611,
+        "pair": [
+          3,
+          18
+        ]
+      }
+    }
+  ]
+}
