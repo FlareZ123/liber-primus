@@ -26,6 +26,17 @@ Two independent 3008-rune F controls retain all 174,464 actual glyph positions a
 
 On the whole book, 28 of 29 fixed f choices become impossible by offset 534 at latest. Only f=27 survives, one terminal zero-position state with singleton domains, and top-two count <=1126 (donor minimum 2555). On independently reset p40–53, 28 choices die by offset 505 at latest; f=27 survives with top-two <=345 (donor minimum 563). Therefore the C-driven receiver cannot match any tested native donor frequency profile under any initial permutation, rank chart or transparent-F decisions. The relaxed surviving path need not be a concrete path. The P-driven transparent-F arbitrary-chart family is not excluded here. Do not extend finite-donor comparisons to universal claims about English or all adaptive alphabets.
 
+## Ciphertext-only partial-chart pilot
+
+Forward search keeps a partial ciphertext list and a private P->rank bijection. On a seen glyph the selected rank is known; on a new glyph it branches over unbound positions. A new rank assignment branches over unused plaintext runes. Reverse search branches over P satisfying R(P)=the current glyph position, then reverses insertion to S(P). Transparent F adds the literal-zero hold. Use a 512-state global beam scored by direction-specific smoothed trigram probabilities trained on 217,106 Shakespeare, 321,327 Emerson and 2,979 native solved runes; Gibran plants withheld.
+
+Two independently keyed 512-rune plants (ordinary and transparent-F) fail all 12 variants (both directions, known chart, unknown chart, unknown chart with 32 true edge runes). Unseeded truth is pruned within 1–8 symbols; full-forward best accuracies 22–38/512, reverse searches die between 33 and 218 symbols. Crib-only variants die at 5–13 symbols because tied unresolved key branches are pruned, despite every retained prefix agreeing with the crib until death. No original-data beam run was attempted; the pilot has no demonstrated ciphertext-only inversion capability. It does not exclude this receiver.
+
+- [Pilot SFT](../sims/lp2_gpprime_plain_rank_beam_sft.cjs)
+- [Pilot output](lp2-gpprime-plain-rank-beam-output.json)
+
+The Gibran start marker is absent in the pinned input; an initial pilot invocation mistakenly sliced at -1 and failed before search. Corrected to the same conditional normalization as the other SFTs. The saved code and output reflect the completed corrected run. Further blind search needs actual key/crib constraints or diversity-aware exact propagation, rather than wider unstructured beams.
+
 ## Reproduction
 
 - [SFT](../sims/lp2_gpprime_rank_insert_sft.cjs)
