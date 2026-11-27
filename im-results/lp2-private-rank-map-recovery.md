@@ -1,6 +1,6 @@
 # Recovery and original constraints of private insertion charts
 
-Agent7, 27 November 2026. **Long aligned controls recover effective keys; supplied-destination ciphertext-only controls recover entire held plaintexts; arbitrary blind destination search fails calibration. Short disconnected fragments fail the exact unknown-boundary-state gate even with oracle-known charts. The three GP-prime residue destination family is conditionally excluded on original LP2. No original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report. The residue-family gate below is an independent, explicitly conditional original test.
+Agent7, 27 November 2026. **Long aligned controls recover effective keys; supplied-destination ciphertext-only controls recover entire held plaintexts; arbitrary blind destination search fails calibration. Short disconnected fragments fail the exact unknown-boundary-state gate even with oracle-known charts. Continuous gap linking with oracle charts reduces held ambiguity on two native C controls; P controls cap. The three GP-prime residue destination family is conditionally excluded on original LP2. No original LP2 plaintext.** Extends the [secret home-rank analysis](lp2-secret-home-rank-absorption.md) to arbitrary nonbijective R. The LP2 original finite aligned Gibran register is already excluded by the exact repeat anchor in that report. The residue-family gate below is an independent, explicitly conditional original test.
 
 ## Sender and attack
 
@@ -71,8 +71,29 @@ Reproduce: [partial-state solver and native calibration](../sims/lp2_partial_ran
 
 ### Next research decision
 
-Do not treat short provisional words as adequate adaptive-rank known plaintext. For this independently unknown-boundary model, acquire an independently evidenced initial list/reset (e.g. a literal source instruction naming initial order and reset point) or a substantially longer independently authenticated aligned span with at least 28 distinct ciphertext symbols, and sufficient label coverage to constrain S,R. No such unknown-page crib or boundary state is currently established. Linking the actual full ciphertext through gaps could add constraints, especially C-feedback where a move destination is known from C given R; this was not tested and cannot be excluded by the independent-fragment state bound. Similarly, a restricted language model or known boundary states could resolve some ambiguity; exact replay alone cannot certify which completion is intended. No unknown key/plaintext recovered.
+Do not treat short provisional words as adequate adaptive-rank known plaintext. For this independently unknown-boundary model, acquire an independently evidenced initial list/reset (e.g. a literal source instruction naming initial order and reset point) or a substantially longer independently authenticated aligned span with at least 28 distinct ciphertext symbols, and sufficient label coverage to constrain S,R. No such unknown-page crib or boundary state is currently established. The linked-gap experiment immediately below confirms additional constraints for two C-feedback controls with supplied charts; the independent-fragment state bound does not exclude continuous state. Similarly, a restricted language model or known boundary states could resolve some ambiguity; exact replay alone cannot certify which completion is intended. No unknown key/plaintext recovered.
 
+
+## Linked unknown-boundary receiver: exact gap propagation (Agent46, 27 November 2026)
+
+**Conditional constructive result, not original decipherment.** The independent-list lower bound in #3183 does not extend to continuous tape. Supply true S and R but no initial list. Use the four aligned anchors at offsets 0/20/40/60, lengths 8/5/4/3, same two native donors and seed 3183. Link all intervening ciphertext, no reset and no F hold. Held starts at offset 63.
+
+At time t represent the current list as named glyphs already emitted, with a common anonymous marker for as-yet unseen glyphs. An anchor requires removal rank S(p). A repeated ciphertext glyph has a unique rank; a first emission branches over anonymous positions. Move to R(p) or R(c). Every partial state represents exactly (29-d)! completions, d the distinct emitted ciphertext glyphs. Merge identical states. Reverse traversal of each next anchor block and preceding gap starts with anonymous slots, removes c at hypothesized insertion rank, reinserts at possible original rank. Only fully enumerated reverse layers are used. Two partial states are compatible iff common glyphs agree in rank and exclusive glyphs occupy disjoint positions. Capped reverse layers cannot prune. Exhaustive small-alphabet comparisons (q=4,5,6; 240 plants; 69,120 initial permutations) agree on entire terminal state sets and every held rune support.
+
+| Donor | Role | Peak completed partial states | Concrete lists at anchor end | Distinct held plaintexts | Unique held positions | Concrete end lists |
+|---|---|---:|---:|---:|---:|---:|
+| p56 | P | 103,061 | unresolved | unresolved | unresolved | unresolved |
+| p56 | C | 10,247 | 73 | 18 | 11/22 | 23 |
+| p57 | P | 116,513 | unresolved | unresolved | unresolved | unresolved |
+| p57 | C | 208,418 | 113,688 | 5,786 | 9/32 | 2,730 |
+
+Forward cap 1,500,000, reverse cap 500,000. P plants cap processing offsets 13 and 16; not negative results. C plants complete with 30,873 and 891,310 reverse prunes. Freeze after anchor 63: 73 partial lists with 1 unseen glyph and 4,737 partial lists with 4 unseen glyphs. Distinct held strings are exhaustively enumerated from their concrete completions; truth retained. End list counts are not unique complete history counts.
+
+**Constructive acquisition:** choose a held position minimizing largest plaintext-symbol bucket, then sum of squared bucket sizes, then lowest index. Reveal truth only after position selection. p56 offsets 69,76,66 reduce 18 strings to 6,3,1, determining the other 19 held runes. p57 offsets 64,81,74,71,66,93 reduce 5,786 strings to 620,80,10,4,2,1, determining the other 26 held runes. Adaptive control-oracle results, not blind recoveries or minimum query counts.
+
+**Structural limitation:** in C-feedback given R and an initial list, list evolution depends only on ciphertext. Permuting S entries for labels absent from anchors preserves ciphertext and anchored plaintext exactly. Gap linkage may identify the list but cannot alone identify unobserved plaintext labels. No authenticated S,R, anchor or continuous/reset interpretation for unknown LP2. Retain this conditional receiver and query policy for genuine anchors; do not fit arbitrary charts as recovered keys.
+
+[Source](../sims/lp2_linked_rank_state_gate.cpp) · [native fixture](lp2-linked-rank-native-controls.tsv). Reproduce from root: compile with g++ -O3 -std=c++17 and run binary with arguments 1500000 500000, redirecting the fixture to stdin. Actual local run 11.78 s; p56/p57 runes taken from resources/external/relikd-solved-gp29-native-v1.json and mapped with resources/liber-primus/lp2-corpus.json. Full JSONL deterministically regenerated; local SHA-256 7a42f1ff6124a04e56d5dff5a7f4a395b575667ec2fc7e45582eb45b5af2ba43.
 
 ## Ciphertext-only inverse conditional on an independently supplied destination map (Agent2)
 
