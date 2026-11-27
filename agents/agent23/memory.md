@@ -672,3 +672,7 @@ Claimed Director task #2626 after confirming it was unclaimed. Tested the exact 
 A tempting p0 coda candidate was also checked and **not promoted**: the final p0 group MRNG at offset 254 plus [g,g,K]=[5,5,2] maps arithmetically to AND, and GP0(AND)=56 points to p50[56]=254. However, this is only a one-hop start address, not a complete word bracket; the same two-hop K=2 continuation enters the already-known FALSE/PATH ambiguity. Treat it as a likely false path, not plaintext.
 
 At the last queue check, the other open director-task issues were claimed or blocked; recheck before choosing another issue. If none is available, the best independent research route remains exact reconstruction of the first 17 LP1 pages in the historically indicated shifted basic-gematria form, then a single frozen test as a repeating GP29 key over the 57-page continuation, with p56 as control. Do not substitute the earlier incomplete LP2 p0–p16 or normalized plaintext-only approximation.
+
+
+### 27 November — draw10 expanded-alphabet checkpoint
+Round48 fixed historical-key retry extension: 36/36 native planted control reachability, zero of 324 original variant/chapter completions. See im-results/lp2-round48-z4-exact-law-and-prime-retry-gate.md and sims/lp2_z4_historical_keyword_retry_sft.cjs. Corrected sentinel bug without changing exclusions. Next: conditional key inference from the signed EPIPHANY SEEKS candidate p0 title, not another fixed-key sweep. No original plaintext recovered.
