@@ -11,8 +11,8 @@ const A=29**4,original=g.pages.filter(x=>x.page<=55&&x.indices.length).map(x=>x.
 function scan(frames,wanted=null,rawCounts=false){const last=new Int32Array(A).fill(-1),cnt=new Uint16Array(A);let offset=0,hits=0,tests=0;
 for(const c of frames){const d=c.map((v,i)=>i?(v-c[i-1]+29)%29:0);for(let end=5;end<=c.length;end++)for(const [len,ts] of byLen){const start=end-len;if(start<0)continue;tests+=ts.length;for(let j=0;j<ts.length;j++){const id=proj(ts[j],c,d,start);if(id<0)continue;hits++;if(offset+start>=last[id]){last[id]=offset+end;cnt[id]++}}}offset+=c.length}
 let max=0,best=[],distribution={};for(let i=0;i<A;i++){const n=cnt[i];if(n>max){max=n;best=[i]}else if(n===max)best.push(i);distribution[n]=(distribution[n]||0)+1}return{max,best:best.slice(0,30),ties:best.length,distribution,hits,tests,wanted:wanted===null?null:cnt[wanted],counts:rawCounts?cnt:undefined}}
-if(mode==="refine"){
- const threshold=8,first=scan(original,null,true),groups=new Map();
+if(mode==="refine"||mode==="refine5"){
+ const threshold=mode==="refine5"?5:8,first=scan(original,null,true),groups=new Map();
  for(let id=0;id<A;id++)if(first.counts[id]>=threshold)groups.set(id,[]);
  let offset=0,retained=0;
  for(const c of original){const d=c.map((v,i)=>i?(v-c[i-1]+29)%29:0);for(let end=5;end<=c.length;end++)for(const [len,ts] of byLen){const start=end-len;if(start<0)continue;for(const t of ts){const id=proj(t,c,d,start),arr=groups.get(id);if(!arr)continue;const k=t.qs.map((q,j)=>q*29+(t.edge[2*j+1]-d[start+t.edge[2*j]]+29)%29);arr.push({start:offset+start,end:offset+end,k,w:t.w});retained++}}offset+=c.length}
