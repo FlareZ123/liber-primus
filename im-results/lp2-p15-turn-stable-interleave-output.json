@@ -1,0 +1,331 @@
+{
+  "schedule": "11010100100100",
+  "sourceStart": {
+    "page": 15,
+    "rune": 20,
+    "group": 801
+  },
+  "groups": 2095,
+  "runes": 9333,
+  "laneCounts": [
+    899,
+    1196
+  ],
+  "runs": [
+    {
+      "groups": 899,
+      "score": -0.040512652374252556,
+      "seams": 32
+    },
+    {
+      "groups": 1196,
+      "score": -0.03811359722832973,
+      "seams": 32
+    }
+  ],
+  "original": {
+    "printedScore": -0.03670516846223101,
+    "inverseScore": -0.03911049280916943,
+    "printedSeams": 17,
+    "inverseSeams": 64,
+    "seamsCount": 2094,
+    "routeNull": {
+      "obs": -0.03911049280916943,
+      "min": -0.050161676455842616,
+      "max": -0.019886921538211585,
+      "mean": -0.03615093178392188,
+      "pUpper": 0.7415,
+      "pLower": 0.259
+    },
+    "seamRouteNull": {
+      "obs": 64,
+      "min": 29,
+      "max": 68,
+      "mean": 47.975987993997,
+      "pUpper": 0.006,
+      "pLower": 0.997
+    },
+    "globalLengthNull": {
+      "obs": -0.03911049280916943,
+      "min": -0.0568019464683566,
+      "max": -0.014481197857966694,
+      "mean": -0.03709293174999831,
+      "pUpper": 0.6415,
+      "pLower": 0.359
+    },
+    "inverseFirst20": [
+      "ᛁᚢᛁᚢ",
+      "ᛟᚫᛄᚠᚫ",
+      "ᚣᛠᛚᚪᛉ",
+      "ᚾᚪᚳ",
+      "ᛏᛁᛒᛇᚳᚠᚷ",
+      "ᚹᛈᚻᚱᛞᛉᛏᚢ",
+      "ᛗᛁ",
+      "ᛡᚱ",
+      "ᛈᛟᛒ",
+      "ᚩᛞᚪᚳ",
+      "ᚦᚢᛞᛝ",
+      "ᚪᛚ",
+      "ᛒᚻᚫᛄᛡᛁ",
+      "ᚱᚦᛚᚠ",
+      "ᛉᛗᛒᚩᛠᛈ",
+      "ᚩᛞᚳᛠᚾᚳᚦᛗ",
+      "ᚪᚢᛒᚳᚫ",
+      "ᛏᚦᛒ",
+      "ᛏᚱᛡᚫᚠᛞ",
+      "ᛝᛄᚩ"
+    ],
+    "inverseLast20": [
+      "ᛉᛋᛞᚳ",
+      "ᛟᚻᛇᚾᛈᛏ",
+      "ᚷᚪᛇ",
+      "ᚾᚷᚩᛖᛚᛗᛒᚦ",
+      "ᛗᚳᛟᚦ",
+      "ᛖᛚᚱᛇᛈᚱᛞᚣ",
+      "ᛝᚣᛈ",
+      "ᛋᛖᛉᚹ",
+      "ᚻᚩᛟ",
+      "ᚻᛠᚪᚳᛁᛗᛉᛄᛗᛖ",
+      "ᚷᚩᛏᚦᛉᛖᛠᚱᚷᚣᛝ",
+      "ᚫᛗᛁᚹ",
+      "ᛉᛗ",
+      "ᛋᛇᚷᛞᚦᚫ",
+      "ᚹᚱ",
+      "ᛒᛠᚠᛉᛁᛗᚢᚳᛈᚻᛝᛚᛇ",
+      "ᛇᛖ",
+      "ᛖᛋᛇᚦᚦᛖᛋ",
+      "ᚳᛠᛁᛗᚳᛉ",
+      "ᛞᛄᚢ"
+    ],
+    "replay": true
+  },
+  "nativeControls": [
+    {
+      "name": "0_warning",
+      "groups": 45,
+      "runes": 184,
+      "exact": true,
+      "rivalExactGroups": 6
+    },
+    {
+      "name": "0_welcome",
+      "groups": 124,
+      "runes": 515,
+      "exact": true,
+      "rivalExactGroups": 8
+    },
+    {
+      "name": "0_wisdom",
+      "groups": 31,
+      "runes": 157,
+      "exact": true,
+      "rivalExactGroups": 5
+    },
+    {
+      "name": "0_koan_1",
+      "groups": 208,
+      "runes": 780,
+      "exact": true,
+      "rivalExactGroups": 21
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "groups": 181,
+      "runes": 755,
+      "exact": true,
+      "rivalExactGroups": 17
+    },
+    {
+      "name": "jpg107-167",
+      "groups": 88,
+      "runes": 319,
+      "exact": true,
+      "rivalExactGroups": 12
+    },
+    {
+      "name": "jpg229",
+      "groups": 18,
+      "runes": 89,
+      "exact": true,
+      "rivalExactGroups": 2
+    },
+    {
+      "name": "p56_an_end",
+      "groups": 25,
+      "runes": 85,
+      "exact": true,
+      "rivalExactGroups": 6
+    },
+    {
+      "name": "p57_parable",
+      "groups": 20,
+      "runes": 95,
+      "exact": true,
+      "rivalExactGroups": 2
+    }
+  ],
+  "lengthControls": [
+    {
+      "name": "Emerson",
+      "off": 0,
+      "plain": 0.02950946474807234,
+      "sent": -0.014317597354049591,
+      "recovered": 0.02950946474807234,
+      "wrong": -0.01395889279462679,
+      "equalInventoryRival": -0.03238528045878855
+    },
+    {
+      "name": "Emerson",
+      "off": 2095,
+      "plain": 0.027065221157787134,
+      "sent": -0.013094604812133741,
+      "recovered": 0.027065221157787134,
+      "wrong": -0.012371841333496185,
+      "equalInventoryRival": -0.03104137356085206
+    },
+    {
+      "name": "Emerson",
+      "off": 4190,
+      "plain": 0.03601732458997842,
+      "sent": -0.01709359106457012,
+      "recovered": 0.03601732458997842,
+      "wrong": -0.021606184284405923,
+      "equalInventoryRival": -0.019271469866370336
+    },
+    {
+      "name": "Emerson",
+      "off": 6285,
+      "plain": 0.03126646187219632,
+      "sent": -0.01597135399670257,
+      "recovered": 0.03126646187219632,
+      "wrong": -0.006606637723520456,
+      "equalInventoryRival": -0.035927492647200306
+    },
+    {
+      "name": "Emerson",
+      "off": 8380,
+      "plain": 0.032138157094609945,
+      "sent": -0.019078173034621972,
+      "recovered": 0.032138157094609945,
+      "wrong": -0.01711979239498828,
+      "equalInventoryRival": -0.0338851627814324
+    },
+    {
+      "name": "Emerson",
+      "off": 10475,
+      "plain": 0.02599776311648583,
+      "sent": -0.014155035093436826,
+      "recovered": 0.02599776311648583,
+      "wrong": -0.01800373037006387,
+      "equalInventoryRival": -0.03494430323864565
+    },
+    {
+      "name": "Gibran",
+      "off": 0,
+      "plain": 0.03040201519367255,
+      "sent": -0.024656211053846192,
+      "recovered": 0.03040201519367255,
+      "wrong": -0.0139682029012931,
+      "equalInventoryRival": -0.032862048069019545
+    },
+    {
+      "name": "Gibran",
+      "off": 2095,
+      "plain": 0.01962505143474746,
+      "sent": -0.017142074264588844,
+      "recovered": 0.01962505143474746,
+      "wrong": -0.01519515405949729,
+      "equalInventoryRival": -0.02479740198951111
+    },
+    {
+      "name": "Gibran",
+      "off": 4190,
+      "plain": 0.02154824414725441,
+      "sent": -0.009901346174135277,
+      "recovered": 0.02154824414725441,
+      "wrong": -0.01823897549088771,
+      "equalInventoryRival": -0.0283730316563436
+    },
+    {
+      "name": "Gibran",
+      "off": 6285,
+      "plain": 0.0271301678670103,
+      "sent": -0.00732711592972092,
+      "recovered": 0.0271301678670103,
+      "wrong": -0.009491654217560305,
+      "equalInventoryRival": -0.020766199598570973
+    },
+    {
+      "name": "Gibran",
+      "off": 8380,
+      "plain": 0.024737864560837472,
+      "sent": -0.016338684549021418,
+      "recovered": 0.024737864560837472,
+      "wrong": -0.012811617846058198,
+      "equalInventoryRival": -0.02658855893329608
+    },
+    {
+      "name": "Shakespeare",
+      "off": 0,
+      "plain": -0.01790762996661491,
+      "sent": -0.02333454374278987,
+      "recovered": -0.01790762996661491,
+      "wrong": -0.028294836387307204,
+      "equalInventoryRival": -0.03099830150729193
+    },
+    {
+      "name": "Shakespeare",
+      "off": 2095,
+      "plain": 0.003655476550331935,
+      "sent": -0.027986949152378836,
+      "recovered": 0.003655476550331935,
+      "wrong": -0.01965968692633878,
+      "equalInventoryRival": -0.03776784619807004
+    },
+    {
+      "name": "Shakespeare",
+      "off": 4190,
+      "plain": 0.0073389359095180455,
+      "sent": -0.01636116694932882,
+      "recovered": 0.0073389359095180455,
+      "wrong": -0.02356407773724805,
+      "equalInventoryRival": -0.03750281548533422
+    },
+    {
+      "name": "Shakespeare",
+      "off": 6285,
+      "plain": -0.004918982661311107,
+      "sent": -0.027846957895769804,
+      "recovered": -0.004918982661311107,
+      "wrong": -0.025525501814206052,
+      "equalInventoryRival": -0.04679572067003614
+    },
+    {
+      "name": "Shakespeare",
+      "off": 8380,
+      "plain": -0.003500615816446916,
+      "sent": -0.018975477970426206,
+      "recovered": -0.003500615816446916,
+      "wrong": -0.01588945965283346,
+      "equalInventoryRival": -0.02777409592582907
+    },
+    {
+      "name": "Shakespeare",
+      "off": 10475,
+      "plain": -0.0038460121795352298,
+      "sent": -0.013791940621117871,
+      "recovered": -0.0038460121795352298,
+      "wrong": -0.019708435320088938,
+      "equalInventoryRival": -0.034153216848434045
+    }
+  ],
+  "trainingWords": 37356,
+  "inputBlobs": {
+    "resources/transcriptions/lp2-image-corrected.txt": "f7b534a33edeb212d427329798438325307463d7",
+    "resources/liber-primus/lp2-corpus.json": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "resources/external/relikd-solved-gp29-native-v1.json": "1b064ef6d85819b7d96adaff31a82d1ec551598f",
+    "resources/control/emerson_essays_2944.txt": "a92be8ba5b3511a003a22ba31523c14397aaa83a",
+    "resources/control/gibran_prophet_58585.txt": "df260a07d56bf5998d40a6360b6132c35c252d10",
+    "resources/control/shakespeare_first300k.txt": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  }
+}
