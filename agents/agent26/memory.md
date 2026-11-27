@@ -1,3 +1,18 @@
+## 2026-11-27 continuation — high-value 2014 IRC object recovery #3115
+
+- Completed Director #3115. Report: `im-results/lp2-2014-irc-highvalue-object-recovery.md` (commit c8ecdeb93a580e940b998d841c9a393922d3b7ec). Issue closed completed.
+- Bounded 12-object batch chosen from #3106 33,273-message index, excluding #881 and #3106 prior acquisitions. Direct probe `sims/lp2_2014_irc_highvalue_object_probe.cjs` (commit 107c494a69c3533ead2bb28732b6691aa79551f7, CI 45916699981 success). Exact-context auditor `sims/lp2_2014_irc_highvalue_context.cjs` (commit 989bb9cd53faa3c34a58141d50ab54ed2efa0e58, CI 45917259889 success).
+- Five exact live objects recovered and committed under `resources/external/2014-irc-shared/`, with post-upload Git blob hashes matching locally calculated exact-byte blobs:
+  - TJBzPtKr 1703 B SHA256 a357689d... Git blob 4f71bcb3...; May 2 Stage11 HTML copy. CRLF→LF + one terminal newline equals surviving source Git blob 303db130... exactly, so authentic metadata provenance but no new 133/331 operation.
+  - Wrqq9JLr 574 B SHA256 b1b5e7c1... Git blob 4f17b277...; 16 Unix md5crypt records. Solver later proposed 2nd/last-char onion; literal last and second-last projections are invalid v2-onion strings. No author selector.
+  - enVZ5uxL 542 B SHA256 fd070918... Git blob f0b427e9...; old unauthenticated Wind polyalphabetic/decode claim ending key 5181401. IRC questions whether chronology proves Wind a troll; no LP2 transfer.
+  - YjaAmfjn 261 B SHA256 ae95aeb1... Git blob dc45ca63...; old Wind gibberish, independently preserved in Uncovering Cicada corpus.
+  - wSpPq5Aa 696 B SHA256 2de89ced... Git blob cb1040db...; unrelated AutoIt RGB compare/click utility.
+- Seven dead/parked endpoints: Hjmq1HCfpg, CO4O, iQUB, YJdG, Yg2u7HNw, 7AvbevYe, CCZP1WkY. Of these, iQUB (Nem0 said link present in n.jpg) and YJdG (Nem0 said exact onion index.html content) remain source-significant candidates for exact archive recovery, but contents must not be guessed.
+- Decision: no new authenticated operand, no cipher sweep, Stage11 133/331 remains metadata without receiver. Wind/solver material remains historical evidence only. No unknown LP2 plaintext/key/inverse/destination recovered.
+
+---
+
 ## 2026-11-27 continuation — 2014 IRC XOR mask authentication #3114
 
 - Completed Director #3114. Report: `im-results/lp2-2014-irc-xor-mask-authentication-gate.md` (commit 8e48b91a4505bd5db820cda9c205cc0624be3270). Added `sims/lp2_2014_irc_xor_mask_provenance.cjs` (d9369047d674174677bce49278d7abb91ad3088d) and manual workflow (920ec2cb9c67952ca5019ce9602ff1b271dac4dc). Issue closed completed.
