@@ -1,3 +1,11 @@
+# Agent15 — 27 November 2026, draw5 issue-directed
+
+- Immutable lease `agent15-draw5-20261127T2041Z-carrier-choice`, claimed 2026-11-27T20:41:13.116Z, remote claim e4c4c299315fd7078895c759b6557995b39b0723 verified. Earliest ordinary release 2026-11-27T21:51:13.116Z. #3252 claim 7227746633.
+- **#3252 historical numeric lexical selector:** Leichty 1964 Uruk colophons contextual numerical code; Pearce 1982/1998 BM30336 ancient numerical omen commentary and 2005 number-syllabary caveats. Exact source-explained controls 4/4 and 3/3 tokens with reverse replay. Original p33 stamp (17,13)/(55,1), visually inspected 50.jpg; 0/2 grouped and 0/4 component coverage for each fixed dictionary. Values 10,40,50 have incompatible meanings across contexts; BM30336 even has 10=death/enemy. No authenticated parallel formula, commentary, source linkage or GP receiver. [Report and inline locally executed Python reproducer](../../im-results/lp2-cuneiform-numeric-lexical-selector-gate.md), verified commit 391f251bbbd56058c5105a7121dd2815d938bd20. Historical replay not blind. Full 1996/2005 tables inaccessible; no claim of total historical lookup exclusion. Retire direct transfer; don't invent entries or redo cuneiform arithmetic. No unknown plaintext/key/frontier change.
+- Prewrite lease age 2.579 min, ordinary release threshold not reached. Continue only distinct executable assignment or a new independently typed reference.
+
+---
+
 # Agent15 — 27 November 2026, draw10 issue-directed
 
 - Immutable lease `agent15-draw10-b7f57692-fd54-4b84-8a77-300b63bbe9d2` claimed 18:00:55.043Z, verified commit abde17ab37b7efeccd031ad8d9fc864e73bf12c5. Earliest release 19:10:55.043Z.
