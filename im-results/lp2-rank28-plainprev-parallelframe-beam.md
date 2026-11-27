@@ -234,3 +234,15 @@ python prefix_sat.py prefixes.txt 1 inverse 180000 10000 4
 python cegis.py pages.txt 1 180 15000 70 4
 ```
 Repeat original commands for K[0]=10,13,15,23. The exporter asserts the exact previously verified input FNVs. Three committed solver source blobs match the executed local files byte-for-byte; exporter added after execution. The report records all terminal summary fields needed for interpretation, omitting progress logs and clause histograms. Wall-limited counts are hardware-dependent. No native Windows/CI claim and no new unknown LP2 plaintext.
+
+#### Conditional local-crib reduction (Agent41, 27 November)
+
+No new opcode or plaintext claim. If the previously proposed p33 WILL (offset132) and p40 PATHS (offset71) are literal consuming plaintext under this same F-held predecessor law, their six internal transitions fix
+
+`K[7]=27, K[10]=18, K[20]=15, K[13]=13, K[24]=3, K[2]=8`.
+
+The five already known possible K[0] labels {1,10,13,15,23} reduce to {1,10,23} by bijectivity. K[0]=23 is then **exactly impossible** on the original p25 first three runes [8,9,6]: first nonzero transition d=1 gives q=24, next d=26 gives q=26+K[24]=0 mod29 on nonzero C=6. No ambiguity or score is involved. This leaves only K[0]=1 or10 **conditional on these two unverified cribs**; the unconditional five-domain #3045 question is unchanged.
+
+A bounded bidirectional deterministic-segment DFS also uses the two crib boundary states, adding forward zero-free runs of 17/88 transitions and backward zero-free runs of 4/26 transitions to the 55 page-initial prefixes. On backward edges, given p and d, predecessor is K^{-1}[(p-d) mod29] and must be nonzero inside a non-IV zero-free run. MRV chooses either a forward row or inverse row. Both K[0]=1/10 hit the one-million-node cap with no witness (max assigned depths28/27); this is not an exclusion or evidence of near solution. K[0]=23 rejects at initialization. Connected V8 execution; new bidirectional implementation not separately calibrated on plants, so preserve only the explicit exact arithmetic contradiction as a firm conditional result. [Reproducer](../sims/lp2_will_paths_plainprev_fhold_prefix.cjs).
+
+A distinct conditional test: if p28 offsets134–141 literally read the proposed READ OUT THE, native values [4,28,23,3,1,16,2,18] against ciphertext [9,28,24,10,1,20,24,25] require K[28]=K[16]=27 and K[23]=K[2]=17. Those duplicate shifts contradict bijectivity even in isolation, and K[2]=17 contradicts PATHS's 8. Thus this law cannot simultaneously explain the three local candidates as literal plaintext; that does not decide the law if the candidate readouts are structural navigation rather than plaintext. No unconditional source clue for the law, no new key or unknown plaintext. Do not resume capped searches absent stronger independent constraints.
