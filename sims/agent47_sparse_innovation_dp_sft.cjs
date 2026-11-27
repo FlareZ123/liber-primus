@@ -59,11 +59,47 @@ function experiment(corpus,src){
    }
    return out;
  }
+ function minCostAnchorMarginals(C,A,F,anchors){
+   let D=new Int16Array(S),E=new Int16Array(S);
+   const snapshots=new Map(),aset=new Set(anchors);
+   for(let i=0;i<C.length;i++){
+     if(aset.has(i))snapshots.set(i,D.slice());
+     E.fill(INF);const c=C[i],a=A[i];
+     if(F&&c===0&&(a&1))E.set(D);
+     for(let k=0;k<q;k++){
+       const p=mod(c-k);if(!(a&(1<<p))||(F&&p===0))continue;
+       let best=INF;for(let d=0;d<q;d++)best=Math.min(best,D[k*q+d]);
+       for(let e=0;e<q;e++){const j=mod(k+e)*q+e;E[j]=Math.min(E[j],D[k*q+e],best+1)}
+     }[D,E]=[E,D];
+   }
+   const optimal=Math.min(...D),out=[];
+   D.fill(0);
+   for(let i=C.length-1;i>=0;i--){
+     E.fill(INF);const c=C[i],a=A[i];
+     if(F&&c===0&&(a&1))E.set(D);
+     for(let k=0;k<q;k++){
+       const p=mod(c-k);if(!(a&(1<<p))||(F&&p===0))continue;
+       let best=INF;for(let e=0;e<q;e++)best=Math.min(best,D[mod(k+e)*q+e]);
+       for(let d=0;d<q;d++){const j=k*q+d;E[j]=Math.min(E[j],D[mod(k+d)*q+d],best+1)}
+     }
+     if(aset.has(i)){
+       const prefix=snapshots.get(i),costs=[];
+       for(let p=0;p<q;p++)if(a&(1<<p)){
+         const k=mod(c-p);let v=INF;
+         for(let d=0;d<q;d++)v=Math.min(v,prefix[k*q+d]+E[k*q+d]);
+         costs.push({p,cost:v});
+       }
+       out.push({i,options:costs.filter(x=>x.cost===optimal).map(x=>x.p),costs});
+     }[D,E]=[E,D];
+   }
+   if(Math.min(...D)!==optimal||out.some(x=>!x.options.length))throw Error("forward/backward mismatch");
+   return {optimal,forced:out.filter(x=>x.options.length===1).length,ambiguous:out.filter(x=>x.options.length>1).length,anchors:out.reverse()};
+ }
  const original=[];
  for(const F of [false,true])for(const allowed of [[24,10],[24,10,3]]){
    const A=anchorMask(C.length,obs,allowed),whole=solve(C,A,F),chapters=[];
    for(let i=0;i<starts.length-1;i++){const l=starts[i],h=starts[i+1];chapters.push({n:h-l,anchors:obs.filter(x=>x>=l&&x<h).length,...solve(C.slice(l,h),A.slice(l,h),F)})}
-   original.push({F,allowed,whole,chapters,chapterSum:chapters.reduce((a,x)=>a+(x.cost??Infinity),0)});
+   const marginal=minCostAnchorMarginals(C,A,F,obs);if(marginal.optimal!==whole.cost)throw Error('cost mismatch');original.push({F,allowed,whole,chapters,chapterSum:chapters.reduce((a,x)=>a+(x.cost??Infinity),0),marginal});
  }
  // Native p57 actual clear rune sequence; repeated only for length, with known anchor mask.
  const native=corpus.pages.find(p=>p.page===57).indices;
@@ -72,9 +108,9 @@ function experiment(corpus,src){
  for(const F of [false,true]){
    const P=Array.from({length:190},(_,i)=>native[i%native.length]),changes=new Map([[17,8],[53,12],[97,1]]),pl=plant(P,F,changes),wrong=plant(P,F,new Map(),true);
    const A=Int32Array.from(P,p=>1<<p),sparse=Int32Array.from(P,(p,i)=>i%23===0?1<<p:all);
-   const exact=solve(pl.C,A,F,true),blind=solve(pl.C,sparse,F,true),bad=solve(wrong.C,A,F,true);
+   const exact=solve(pl.C,A,F,true),blind=solve(pl.C,sparse,F,true),bad=solve(wrong.C,A,F,true),badSparse=solve(wrong.C,sparse,F,true);
    if(exact.plain.join()!==P.join()||exact.cost!==pl.events.length||exact.events.join()!==pl.events.join())throw Error("dense calibration");
-   controls.push({F,n:P.length,trueEvents:pl.events,dense:{cost:exact.cost,pathsCapped:exact.pathsCapped,events:exact.events,initial:exact.initial},sparse:{cost:blind.cost,pathsCapped:blind.pathsCapped,events:blind.events,initial:blind.initial,matchedPlain:blind.plain.filter((p,i)=>p===P[i]).length},wrongLaw:{cost:bad.cost,pathsCapped:bad.pathsCapped,actualEvents:wrong.events.length}});
+   controls.push({F,n:P.length,trueEvents:pl.events,dense:{cost:exact.cost,pathsCapped:exact.pathsCapped,events:exact.events,initial:exact.initial},sparse:{cost:blind.cost,pathsCapped:blind.pathsCapped,events:blind.events,initial:blind.initial,matchedPlain:blind.plain.filter((p,i)=>p===P[i]).length},wrongLaw:{cost:bad.cost,pathsCapped:bad.pathsCapped,actualEvents:wrong.events.length,sparseCost:badSparse.cost,sparsePathsCapped:badSparse.pathsCapped}});
  }
  return {n:C.length,anchors:obs.length,chapterStarts:starts,original,controls};
 }
