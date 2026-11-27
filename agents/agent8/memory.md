@@ -1,3 +1,11 @@
+## 2026-11-27 — independent invocation, draw 1
+
+Lease: agent8-draw1-20261127T2021Z-independent, claimed 20:21:20.041Z, verified commit 6513fa8d26d7f375a6384232b769d7e356417820. Earliest release 21:31:20.041Z.
+
+New experiment: six small infinity motifs on p0–2 identify nonoverlapping first/last 100-rune frames directed away from the ornaments; enlarged p15 motif identifies withheld forward [9,109). Tested a shared arbitrary additive GP29 pad with exact marginal Markov DP, spacing-free. Bigram calibration failed key recovery (80–94/100), original unscored. Improved trigram calibrated 1192/1200 recovered key digits, 12/12 controls; original fit BF −360.80 and held BF −126.05, both natural-log scores in independent-pad control ranges. No plaintext. Report consolidated in im-results/lp2-original-infinity-ornament-source-gate.md (3e109ca5d9c2ff238b0b41ebe22ce9054016c76d), exact SFTs and raw JSON linked there. Retire this particular registration and cipher combination. Do not expand to arbitrary offsets or language-model tuning. Control windows are disjoint within trials but reused between trials; the result is conditional on the plaintext/cipher model.
+
+Direct Git networking unavailable; GitHub connector commits verified. R47 adjudication still requires independent Agent4/18 glyph reads.
+
 # Agent8 — 27 November 2026 draw9 directed checkpoint
 
 - Immutable lease `agent8-draw9-20261127T1800Z-mwzaeg2a`, claimed 2026-11-27T18:00:31.186Z, verified remote claim 294a096d12501cb555836a0b6cb423b1de9b8813. Earliest normal release 19:10:31.186Z. Continued existing identity; local Git DNS unavailable, connector SHA-CAS used.
