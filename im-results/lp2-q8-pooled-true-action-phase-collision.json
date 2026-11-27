@@ -1,0 +1,642 @@
+{
+  "method": "oracle_decoding_distinct_from_blind_action_recovery",
+  "dict": 38938,
+  "cases": [
+    {
+      "seed": 3301,
+      "world": "common",
+      "chapters": [
+        {
+          "name": "jpg229",
+          "held": [
+            {
+              "index": 16,
+              "length": 4,
+              "truth": "5937",
+              "cipher": "d6ok",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "5937",
+                  "plaintext_tokens": "C N O W",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 17,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "i1l",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p57_parable",
+          "held": [
+            {
+              "index": 18,
+              "length": 3,
+              "truth": "o9n",
+              "cipher": "3if",
+              "compatible_words": 2,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "11i",
+                  "plaintext_tokens": "U U E",
+                  "starts": [
+                    7
+                  ]
+                },
+                {
+                  "plaintext_gp": "o9n",
+                  "plaintext_tokens": "A N D",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 19,
+              "length": 6,
+              "truth": "iji46i",
+              "cipher": "2mqjc6",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "iji46i",
+                  "plaintext_tokens": "E M E R G E",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 1,
+          "held_count": 2
+        },
+        {
+          "name": "p56_an_end",
+          "held": [
+            {
+              "index": 22,
+              "length": 3,
+              "truth": "31g",
+              "cipher": "0rk",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "31g",
+                  "plaintext_tokens": "O U T",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 23,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "74d",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 24,
+              "length": 4,
+              "truth": "do6i",
+              "cipher": "qs5m",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "do6i",
+                  "plaintext_tokens": "P A G E",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 3,
+          "held_count": 3
+        }
+      ]
+    },
+    {
+      "seed": 3301,
+      "world": "independent",
+      "chapters": [
+        {
+          "name": "jpg229",
+          "held": [
+            {
+              "index": 16,
+              "length": 4,
+              "truth": "5937",
+              "cipher": "3q7j",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "5937",
+                  "plaintext_tokens": "C N O W",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 17,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "jnq",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p57_parable",
+          "held": [
+            {
+              "index": 18,
+              "length": 3,
+              "truth": "o9n",
+              "cipher": "312",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "o9n",
+                  "plaintext_tokens": "A N D",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 19,
+              "length": 6,
+              "truth": "iji46i",
+              "cipher": "kfqpa7",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "iji46i",
+                  "plaintext_tokens": "E M E R G E",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p56_an_end",
+          "held": [
+            {
+              "index": 22,
+              "length": 3,
+              "truth": "31g",
+              "cipher": "hos",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "31g",
+                  "plaintext_tokens": "O U T",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 23,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "sdn",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 24,
+              "length": 4,
+              "truth": "do6i",
+              "cipher": "ias5",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "do6i",
+                  "plaintext_tokens": "P A G E",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 3,
+          "held_count": 3
+        }
+      ]
+    },
+    {
+      "seed": 3302,
+      "world": "common",
+      "chapters": [
+        {
+          "name": "jpg229",
+          "held": [
+            {
+              "index": 16,
+              "length": 4,
+              "truth": "5937",
+              "cipher": "1hqn",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "5937",
+                  "plaintext_tokens": "C N O W",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 17,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "f39",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 3,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    3
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p57_parable",
+          "held": [
+            {
+              "index": 18,
+              "length": 3,
+              "truth": "o9n",
+              "cipher": "oc9",
+              "compatible_words": 2,
+              "compatible_with_true_start": 1,
+              "true_start": 7,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "hi6",
+                  "plaintext_tokens": "B E G",
+                  "starts": [
+                    2
+                  ]
+                },
+                {
+                  "plaintext_gp": "o9n",
+                  "plaintext_tokens": "A N D",
+                  "starts": [
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 19,
+              "length": 6,
+              "truth": "iji46i",
+              "cipher": "3me64i",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 2,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "iji46i",
+                  "plaintext_tokens": "E M E R G E",
+                  "starts": [
+                    2
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 1,
+          "held_count": 2
+        },
+        {
+          "name": "p56_an_end",
+          "held": [
+            {
+              "index": 22,
+              "length": 3,
+              "truth": "31g",
+              "cipher": "m63",
+              "compatible_words": 2,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "31g",
+                  "plaintext_tokens": "O U T",
+                  "starts": [
+                    5
+                  ]
+                },
+                {
+                  "plaintext_gp": "a4i",
+                  "plaintext_tokens": "I R E",
+                  "starts": [
+                    2
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 23,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "794",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 24,
+              "length": 4,
+              "truth": "do6i",
+              "cipher": "9anm",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "do6i",
+                  "plaintext_tokens": "P A G E",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 3
+        }
+      ]
+    },
+    {
+      "seed": 3302,
+      "world": "independent",
+      "chapters": [
+        {
+          "name": "jpg229",
+          "held": [
+            {
+              "index": 16,
+              "length": 4,
+              "truth": "5937",
+              "cipher": "r0b8",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "5937",
+                  "plaintext_tokens": "C N O W",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 17,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "bkb",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 3,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    3
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p57_parable",
+          "held": [
+            {
+              "index": 18,
+              "length": 3,
+              "truth": "o9n",
+              "cipher": "o8r",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 7,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "o9n",
+                  "plaintext_tokens": "A N D",
+                  "starts": [
+                    7
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 19,
+              "length": 6,
+              "truth": "iji46i",
+              "cipher": "43f64i",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 2,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "iji46i",
+                  "plaintext_tokens": "E M E R G E",
+                  "starts": [
+                    2
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 2,
+          "held_count": 2
+        },
+        {
+          "name": "p56_an_end",
+          "held": [
+            {
+              "index": 22,
+              "length": 3,
+              "truth": "31g",
+              "cipher": "27c",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 5,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "31g",
+                  "plaintext_tokens": "O U T",
+                  "starts": [
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 23,
+              "length": 3,
+              "truth": "2af",
+              "cipher": "eem",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 6,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "2af",
+                  "plaintext_tokens": "TH I S",
+                  "starts": [
+                    6
+                  ]
+                }
+              ]
+            },
+            {
+              "index": 24,
+              "length": 4,
+              "truth": "do6i",
+              "cipher": "85g0",
+              "compatible_words": 1,
+              "compatible_with_true_start": 1,
+              "true_start": 0,
+              "phase_witnesses": [
+                {
+                  "plaintext_gp": "do6i",
+                  "plaintext_tokens": "P A G E",
+                  "starts": [
+                    0
+                  ]
+                }
+              ]
+            }
+          ],
+          "unique_with_known_action": 3,
+          "held_count": 3
+        }
+      ]
+    }
+  ],
+  "reproducer": "sims/agent31_q8_true_action_holdout_ambiguity_sft.py",
+  "ci_run": "https://github.com/FlareZ123/liber-primus/actions/runs/46075124766",
+  "license": "computed q8 native control, contains no unknown LP2 plaintext"
+}
