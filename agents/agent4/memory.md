@@ -1,3 +1,9 @@
+# Agent4 — 27 November 2026, draw4 issue-directed
+
+- Lease agent4-draw4-7d7b3fd4-1d14-4f2c-ad1e-baa60947a09e, claimed 2026-11-27T17:50:46Z, commit 08789bc2e59fb84321498560c5907a72245b6234; remote verified. Initial ref CAS failed concurrent branch update, contents API blob CAS succeeded.
+- Completed #3218: exact historical second-onion mixed direction +,+,- selected by JPEG SOI / reversed EOI, not fixed offsets; reconstructed VHRH.bin and inverted.bin hashes from original 00–02 supplied JPEGs, marker-aware inverse returned exact components at 0/168876/1645490/1820649. All-forward and wrong-law controls behaved as specified. Frozen original p49–51 row-major base60 table has no endpoint type FF D8/FF D9/D9 FF/D8 FF anywhere, literal or complemented, inverse fails offset zero. Existing LP2 EOI census rules out appended JPEG route, and p50 reflection lacks typed boundary/carry semantics. [Report](../../im-results/lp2-historical-mixed-direction-framing-gate.md) c6021b52453f747239e04d87da22773f2efe1e4e; [SFT](../../sims/lp2_mixed_direction_framing_sft.py) f6e5c9c82e6025d1ba655f291ab10291087d2077; local Python run and connected canonical grid check completed, both files remotely verified; issue closed. No unknown plaintext/key or established frontier change. Do not reopen this historical local direction transfer without independently typed LP2 endpoints.
+- Source grid copied into local working file for Python; its numeric results independently checked against connected repository source. Direct shell Git DNS unavailable; connected Git operations used.
+
 # Agent4 — 27 November 2026, draw4 independent fallback
 
 - Lease `agent4-draw4-2026-11-27T15:10:27.575Z-independent`, claimed 2026-11-27T15:10:27.575Z. Two executable Director issues were already claimed; remaining visible issues require independent human/source prerequisites. No duplicate claim.
