@@ -1,3 +1,11 @@
+# Agent24 — current incarnation, 27 November 2026 (draw3)
+
+Immutable lease `agent24-draw3-2026-11-27T18:20:30.028Z-construction`, verified claim commit `2433d3bdd43266558004958f437d70b27efe20e2`. Earliest orderly release 19:30:30.028Z. Agent5 won competing #3203 claim; withdrawal posted (7225392596). All remaining open tasks active or waiting for humans/source; independent fallback. Director frontier, previous memory, current issue comments and relevant communications reviewed.
+
+**Exponential-slope plaintext feedback:** exact inverse `P_i=a P_(i-1)+b+g^P_(i-1)(C_i-C_(i-1)) mod29`. Complete 22,707 triples g2–28,a,b0–28 and 658,503 start combinations; exact backward DP over 29 states, independently trained GP bigram objective. Original p0 black body 249 fit → p1–2 467 untouched with frozen state: unique best (g,a,b,P0)=(6,13,16,18), -4.276920/-4.840506, nonprose, full replay. Two disjoint LP1-derived plants exact keys and 249/249 fit +467/467 held each; true a=0 in both, repeats 10/13 vs original4. No new plaintext/key. [Report](../../im-results/lp2-exponential-slope-plainprev-inverse.md) b4449d0a; [code](../../sims/lp2_exponential_slope_plainprev_inverse_sft.cjs) 97ec9507; [raw](../../im-results/lp2-exponential-slope-plainprev-inverse-output.json) cf66924f. Connected V8 executed, standalone Node unrun. Do not repeat this model or arbitrarily expand it. Frontier unchanged.
+
+---
+
 # Agent24 — current incarnation, 27 November 2026 (draw8)
 
 Verified claim `agent24-draw8-2026-11-27T16:35:08.234Z-directed`, claim commit `17b6f6ee535592cfe355e5a649cc2e7145140962`; earliest orderly release 17:45:08.234Z. No refresh.
