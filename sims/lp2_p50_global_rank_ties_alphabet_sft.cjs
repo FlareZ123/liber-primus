@@ -98,6 +98,84 @@ function analyze(corpus,grid) {
   return {matched,empty,witness,domainSizes:domains.map(d=>d.length),recovered,
    firstEmptyWitness:empty.length?{target:empty[0],constraints:details.filter(d=>d.need[empty[0]]).map(d=>({value:d.value,need:d.need[empty[0]],eligible:range(29).filter(x=>d.count[x]>=d.need[empty[0]])}))}:null};
  }
+ /**
+  * Exact maximum number of matched known destination glyphs over all alphabets
+  * and all equal-token permutations, by a maximum-weight perfect matching.
+  * @param {{src:number[],dst:number[],value:number}[]} bs
+  * @param {number[]} input @param {number[]} target @param {boolean[]} known
+  */
+ function maxAgreement(bs,input,target,known){
+  const W=range(29).map(()=>Array(29).fill(0));
+  for(const b of bs){
+   const a=Array(29).fill(0),z=Array(29).fill(0);
+   b.src.forEach(i=>a[input[i]]++);
+   b.dst.forEach(i=>{if(known[i])z[target[i]]++;});
+   for(let x=0;x<29;x++)for(let y=0;y<29;y++)W[y][x]+=Math.min(a[x],z[y]);
+  }
+  // Hungarian shortest augmenting path, costs -W. Index zero is sentinel.
+  const n=29,u=Array(n+1).fill(0),v=u.slice(),p=u.slice(),way=u.slice();
+  for(let i=1;i<=n;i++){
+   p[0]=i;let j0=0;const minv=Array(n+1).fill(Infinity),used=Array(n+1).fill(false);
+   do{
+    used[j0]=true;const i0=p[j0];let delta=Infinity,j1=0;
+    for(let j=1;j<=n;j++)if(!used[j]){
+     const cur=-W[i0-1][j-1]-u[i0]-v[j];
+     if(cur<minv[j]){minv[j]=cur;way[j]=j0;}
+     if(minv[j]<delta){delta=minv[j];j1=j;}
+    }
+    for(let j=0;j<=n;j++)if(used[j]){u[p[j]]+=delta;v[j]-=delta;}else minv[j]-=delta;
+    j0=j1;
+   }while(p[j0]!==0);
+   do{const j1=way[j0];p[j0]=p[j1];j0=j1;}while(j0!==0);
+  }
+  const map=Array(n);for(let j=1;j<=n;j++)map[p[j]-1]=j-1;
+  const score=map.reduce((s,x,y)=>s+W[y][x],0),forward=Array(n);map.forEach((x,y)=>forward[x]=y);
+  // A matching permutation is constructible independently in every tie class.
+  const perm=Array(256),decoded=Array(256);
+  for(const b of bs){
+   const remain=b.src.slice(),pending=b.dst.slice();
+   for(const i of b.dst.filter(i=>known[i])){
+    const k=remain.findIndex(v=>input[v]===map[target[i]]);
+    if(k>=0){perm[i]=remain.splice(k,1)[0];pending.splice(pending.indexOf(i),1);}
+   }
+   pending.forEach((i,k)=>perm[i]=remain[k]);
+  }
+  const back=Array(256);for(let i=0;i<256;i++){decoded[i]=forward[input[perm[i]]];back[perm[i]]=map[decoded[i]];}
+  assert(new Set(perm).size===256&&back.every((v,i)=>v===input[i]),"weighted inverse");
+  assert(decoded.filter((v,i)=>known[i]&&v===target[i]).length===score,"attainability");
+  // Verify dual optimality independently of construction.
+  for(let y=0;y<n;y++)for(let x=0;x<n;x++)assert(u[y+1]+v[x+1]<=-W[y][x],"dual infeasible");
+  assert(u.slice(1).reduce((a,b)=>a+b,0)+v.slice(1).reduce((a,b)=>a+b,0)===-score,"dual gap");
+  return {score,map};
+ }
+ /**
+  * Relax unknown source p55 cells to independent unrestricted values.
+  * Each target-label constraint is necessary, even with unshared use of wildcards.
+  */
+ function knownOnly(bs,input,target,known){
+  const domains=range(29).map(()=>range(29));
+  const certs=range(29).map(()=>[]);
+  for(const b of bs){
+   const a=Array(29).fill(0),z=Array(29).fill(0);let free=0;
+   b.src.forEach(i=>{if(known[i])a[input[i]]++;else free++;});
+   b.dst.forEach(i=>{if(known[i])z[target[i]]++;});
+   for(let y=0;y<29;y++)if(z[y]>free){
+    const possible=range(29).filter(x=>a[x]+free>=z[y]);
+    domains[y]=domains[y].filter(x=>possible.includes(x));
+    certs[y].push({value:b.value,src:b.src,dst:b.dst,free,need:z[y],possible});
+   }
+  }
+  const empty=range(29).filter(y=>domains[y].length===0);
+  let minimal=null;
+  if(empty.length){
+   const y=empty[0],cs=certs[y].slice();
+   const impossible=a=>range(29).every(x=>a.some(c=>!c.possible.includes(x)));
+   for(let i=0;i<cs.length;){const trial=cs.filter((_,j)=>i!==j);if(impossible(trial))cs.splice(i,1);else i++;}
+   assert(impossible(cs),"wildcard certificate");
+   minimal={target:y,blocks:cs};
+  }
+  return {empty,domainSizes:domains.map(x=>x.length),minimal};
+ }
  const known=range(256).map(i=>inv[i]>=76),out=[],controls=[];
  let state=0x54afc9c1;const rng=n=>{state^=state<<13;state^=state>>>17;state^=state<<5;return (state>>>0)%n;};
  function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=rng(i+1);[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -107,12 +185,12 @@ function analyze(corpus,grid) {
   // Only the known interior is given to solve; withheld p55 is not a fit target.
   const pi=shuffle(range(29)),plant=Array(256);
   for(const b of bs){const s=shuffle(b.src);b.dst.forEach((v,i)=>plant[v]=pi[raw[s[i]]]);}
-  const check=solve(bs,raw,plant,known);
-  assert(check.matched===29,"plant failed");
+  const check=solve(bs,raw,plant,known),weight=maxAgreement(bs,raw,plant,known),wild=knownOnly(bs,raw,plant,known);
+  assert(check.matched===29&&weight.score===180&&!wild.empty.length,"plant failed");
   controls.push({reverse,reflect,scatter,match:check.matched,known:known.filter(Boolean).length,heldMatches:ring.filter(i=>check.recovered.unknown[ring.indexOf(i)]===plant[i]).length});
   for(const [name,input,target] of [["raw/raw",raw,raw],["native/native",native,native],["raw/native",raw,native]]){
    const result=solve(bs,input,target,known);
-   out.push({reverse,reflect,scatter,name,...result});
+   out.push({reverse,reflect,scatter,name,...result,maxAgreement:maxAgreement(bs,input,target,known),knownOnly:knownOnly(bs,input,target,known)});
   }
  }
  const hist={};for(const b of blocks(false,false,false))hist[b.src.length]=(hist[b.src.length]||0)+1;
