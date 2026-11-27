@@ -1,0 +1,570 @@
+{
+  "schema": 1,
+  "model": "common GP29 q8, primitive, literal-F holds, independent donor word starts",
+  "minimums": [
+    64,
+    96
+  ],
+  "lens": [
+    18355,
+    6958,
+    7059,
+    7484,
+    41181
+  ],
+  "plants": [
+    {
+      "path": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "n": 64,
+      "seed": 3365,
+      "from": 3055,
+      "to": 3070,
+      "runes": 66,
+      "truth": "0,1,2,18,6,9,10,26,7,22,16,28,15,12,19,8,13,25,11,20,14,5,24,4,17,27,21,3,23:0,13,27,2,26,23,20,9",
+      "exact": false,
+      "heldTruth": 16,
+      "heldTotal": 16,
+      "scan": {
+        "name": "plant",
+        "spans": 1,
+        "alignments": 66,
+        "pairCandidates": 1,
+        "fCompatible": 1,
+        "completeRejected": 0,
+        "unresolved": [],
+        "hits": [
+          {
+            "from": 3055,
+            "to": 3070,
+            "donorRune": 12164,
+            "start": 13,
+            "plain": [
+              "63kni9",
+              "4355f",
+              "gakk",
+              "7i",
+              "naf531i4in",
+              "g73",
+              "6k3hif",
+              "30",
+              "54ajf39",
+              "0a4i",
+              "043j",
+              "78a58",
+              "2i",
+              "fs",
+              "0kin"
+            ],
+            "actions": [
+              {
+                "pi": [
+                  0,
+                  1,
+                  2,
+                  18,
+                  6,
+                  9,
+                  10,
+                  26,
+                  7,
+                  22,
+                  16,
+                  19,
+                  15,
+                  12,
+                  28,
+                  8,
+                  13,
+                  25,
+                  11,
+                  20,
+                  14,
+                  5,
+                  24,
+                  4,
+                  17,
+                  27,
+                  21,
+                  3,
+                  23
+                ],
+                "k": [
+                  13,
+                  27,
+                  2,
+                  26,
+                  23,
+                  20,
+                  9,
+                  0
+                ]
+              },
+              {
+                "pi": [
+                  0,
+                  1,
+                  2,
+                  18,
+                  6,
+                  9,
+                  10,
+                  26,
+                  7,
+                  22,
+                  16,
+                  28,
+                  15,
+                  12,
+                  19,
+                  8,
+                  13,
+                  25,
+                  11,
+                  20,
+                  14,
+                  5,
+                  24,
+                  4,
+                  17,
+                  27,
+                  21,
+                  3,
+                  23
+                ],
+                "k": [
+                  13,
+                  27,
+                  2,
+                  26,
+                  23,
+                  20,
+                  9,
+                  0
+                ]
+              }
+            ],
+            "complete": true
+          }
+        ],
+        "reasons": {
+          "candidate": 1
+        },
+        "nodes": 15,
+        "joins": 43
+      }
+    },
+    {
+      "path": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "n": 96,
+      "seed": 3397,
+      "from": 1018,
+      "to": 1043,
+      "runes": 98,
+      "truth": "0,1,4,2,7,3,16,6,17,26,9,20,22,23,8,19,28,15,24,11,12,13,18,5,21,25,14,10,27:14,25,4,27,5,22,2,6",
+      "exact": true,
+      "heldTruth": 16,
+      "heldTotal": 16,
+      "scan": {
+        "name": "plant",
+        "spans": 1,
+        "alignments": 77,
+        "pairCandidates": 1,
+        "fCompatible": 1,
+        "completeRejected": 0,
+        "unresolved": [],
+        "hits": [
+          {
+            "from": 1018,
+            "to": 1043,
+            "donorRune": 3972,
+            "start": 13,
+            "plain": [
+              "73k1if",
+              "2i",
+              "4o6l",
+              "30",
+              "2i",
+              "fg34jq",
+              "fs",
+              "o9n",
+              "2i",
+              "nifg415ga1i",
+              "f734n",
+              "o4i",
+              "d34gr9f",
+              "30",
+              "igi49agq",
+              "g33",
+              "64sg",
+              "034",
+              "2i",
+              "iqi",
+              "30",
+              "jo9",
+              "2i",
+              "03e",
+              "539nij9f"
+            ],
+            "actions": [
+              {
+                "pi": [
+                  0,
+                  1,
+                  4,
+                  2,
+                  7,
+                  3,
+                  16,
+                  6,
+                  17,
+                  26,
+                  9,
+                  20,
+                  22,
+                  23,
+                  8,
+                  19,
+                  28,
+                  15,
+                  24,
+                  11,
+                  12,
+                  13,
+                  18,
+                  5,
+                  21,
+                  25,
+                  14,
+                  10,
+                  27
+                ],
+                "k": [
+                  4,
+                  27,
+                  5,
+                  22,
+                  2,
+                  6,
+                  14,
+                  25
+                ]
+              }
+            ],
+            "complete": true
+          }
+        ],
+        "reasons": {
+          "candidate": 1
+        },
+        "nodes": 27,
+        "joins": 96
+      }
+    }
+  ],
+  "outputs": [
+    {
+      "path": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "n": 64,
+      "spans": 1542,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 1542,
+          "alignments": 1023586,
+          "pairCandidates": 1073,
+          "fCompatible": 935,
+          "completeRejected": 935,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 229,
+            "zero-shift pattern": 706
+          },
+          "nodes": 8644,
+          "joins": 9171
+        },
+        {
+          "name": "p3-7",
+          "spans": 1542,
+          "alignments": 1665058,
+          "pairCandidates": 499,
+          "fCompatible": 483,
+          "completeRejected": 483,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 326,
+            "affine rejection": 157
+          },
+          "nodes": 11405,
+          "joins": 11363
+        },
+        {
+          "name": "p8-14",
+          "spans": 1542,
+          "alignments": 2565586,
+          "pairCandidates": 2872,
+          "fCompatible": 2252,
+          "completeRejected": 2252,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 525,
+            "zero-shift pattern": 1727
+          },
+          "nodes": 18923,
+          "joins": 21933
+        },
+        {
+          "name": "p15-22",
+          "spans": 1542,
+          "alignments": 2833894,
+          "pairCandidates": 2244,
+          "fCompatible": 1782,
+          "completeRejected": 1782,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1403,
+            "affine rejection": 379
+          },
+          "nodes": 14496,
+          "joins": 16387
+        },
+        {
+          "name": "p23-26",
+          "spans": 1542,
+          "alignments": 1473850,
+          "pairCandidates": 1334,
+          "fCompatible": 1100,
+          "completeRejected": 1100,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 283,
+            "zero-shift pattern": 817
+          },
+          "nodes": 14878,
+          "joins": 15656
+        },
+        {
+          "name": "p27-32",
+          "spans": 1542,
+          "alignments": 2109154,
+          "pairCandidates": 2040,
+          "fCompatible": 1680,
+          "completeRejected": 1680,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1305,
+            "affine rejection": 368,
+            "anchor contradiction": 7
+          },
+          "nodes": 17160,
+          "joins": 18153
+        },
+        {
+          "name": "p33-39",
+          "spans": 1542,
+          "alignments": 2490028,
+          "pairCandidates": 728,
+          "fCompatible": 651,
+          "completeRejected": 651,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 526,
+            "affine rejection": 125
+          },
+          "nodes": 7306,
+          "joins": 7445
+        },
+        {
+          "name": "p40-53",
+          "spans": 1542,
+          "alignments": 4537804,
+          "pairCandidates": 5827,
+          "fCompatible": 4232,
+          "completeRejected": 4232,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 1067,
+            "zero-shift pattern": 3165
+          },
+          "nodes": 51207,
+          "joins": 55040
+        },
+        {
+          "name": "p54-55",
+          "spans": 1542,
+          "alignments": 374404,
+          "pairCandidates": 68,
+          "fCompatible": 68,
+          "completeRejected": 68,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 40,
+            "affine rejection": 28
+          },
+          "nodes": 2862,
+          "joins": 3994
+        }
+      ]
+    },
+    {
+      "path": "resources/external/blake-marriage-1906-gutenberg45315.txt",
+      "n": 96,
+      "spans": 2596,
+      "scopes": [
+        {
+          "name": "p0-2",
+          "spans": 2596,
+          "alignments": 1640303,
+          "pairCandidates": 1379,
+          "fCompatible": 1118,
+          "completeRejected": 1118,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 960,
+            "affine rejection": 158
+          },
+          "nodes": 1375,
+          "joins": 1250
+        },
+        {
+          "name": "p3-7",
+          "spans": 2596,
+          "alignments": 2720239,
+          "pairCandidates": 708,
+          "fCompatible": 655,
+          "completeRejected": 655,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 562,
+            "affine rejection": 93
+          },
+          "nodes": 2113,
+          "joins": 2031
+        },
+        {
+          "name": "p8-14",
+          "spans": 2596,
+          "alignments": 4236303,
+          "pairCandidates": 3950,
+          "fCompatible": 2503,
+          "completeRejected": 2503,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 264,
+            "zero-shift pattern": 2239
+          },
+          "nodes": 4507,
+          "joins": 5307
+        },
+        {
+          "name": "p15-22",
+          "spans": 2596,
+          "alignments": 4688007,
+          "pairCandidates": 3239,
+          "fCompatible": 2126,
+          "completeRejected": 2126,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1908,
+            "affine rejection": 218
+          },
+          "nodes": 3072,
+          "joins": 3011
+        },
+        {
+          "name": "p23-26",
+          "spans": 2596,
+          "alignments": 2398335,
+          "pairCandidates": 1717,
+          "fCompatible": 1215,
+          "completeRejected": 1215,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 194,
+            "zero-shift pattern": 1021
+          },
+          "nodes": 2312,
+          "joins": 2274
+        },
+        {
+          "name": "p27-32",
+          "spans": 2596,
+          "alignments": 3467887,
+          "pairCandidates": 2423,
+          "fCompatible": 1806,
+          "completeRejected": 1806,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 1558,
+            "affine rejection": 241,
+            "anchor contradiction": 7
+          },
+          "nodes": 5058,
+          "joins": 5221
+        },
+        {
+          "name": "p33-39",
+          "spans": 2596,
+          "alignments": 4109099,
+          "pairCandidates": 893,
+          "fCompatible": 732,
+          "completeRejected": 732,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "zero-shift pattern": 679,
+            "affine rejection": 53
+          },
+          "nodes": 428,
+          "joins": 383
+        },
+        {
+          "name": "p40-53",
+          "spans": 2596,
+          "alignments": 7556587,
+          "pairCandidates": 8573,
+          "fCompatible": 4989,
+          "completeRejected": 4989,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 560,
+            "zero-shift pattern": 4429
+          },
+          "nodes": 6893,
+          "joins": 6940
+        },
+        {
+          "name": "p54-55",
+          "spans": 2596,
+          "alignments": 547387,
+          "pairCandidates": 44,
+          "fCompatible": 44,
+          "completeRejected": 44,
+          "unresolved": [],
+          "hits": [],
+          "reasons": {
+            "affine rejection": 11,
+            "zero-shift pattern": 33
+          },
+          "nodes": 138,
+          "joins": 127
+        }
+      ]
+    }
+  ]
+}
