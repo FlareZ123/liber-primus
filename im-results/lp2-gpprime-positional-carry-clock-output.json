@@ -1,0 +1,2062 @@
+{
+  "tests": [
+    {
+      "mode": "ordinary",
+      "sign": 1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 3,
+      "oneWitnessCorrect": 56
+    },
+    {
+      "mode": "ordinary",
+      "sign": 1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 2,
+      "oneWitnessCorrect": 54
+    },
+    {
+      "mode": "ordinary",
+      "sign": -1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 3,
+      "oneWitnessCorrect": 56
+    },
+    {
+      "mode": "ordinary",
+      "sign": -1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 2,
+      "oneWitnessCorrect": 54
+    },
+    {
+      "mode": "plainF",
+      "sign": 1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 2,
+      "oneWitnessCorrect": 80
+    },
+    {
+      "mode": "plainF",
+      "sign": 1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 2,
+      "oneWitnessCorrect": 63
+    },
+    {
+      "mode": "plainF",
+      "sign": -1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 2,
+      "oneWitnessCorrect": 80
+    },
+    {
+      "mode": "plainF",
+      "sign": -1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 1,
+      "oneWitnessCorrect": 65
+    },
+    {
+      "mode": "digitF",
+      "sign": 1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 3,
+      "oneWitnessCorrect": 56
+    },
+    {
+      "mode": "digitF",
+      "sign": 1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 2,
+      "oneWitnessCorrect": 54
+    },
+    {
+      "mode": "digitF",
+      "sign": -1,
+      "donor": 57,
+      "n": 95,
+      "terminal": 3,
+      "oneWitnessCorrect": 56
+    },
+    {
+      "mode": "digitF",
+      "sign": -1,
+      "donor": 56,
+      "n": 85,
+      "terminal": 2,
+      "oneWitnessCorrect": 54
+    }
+  ],
+  "original": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 17,
+      "maxPrefix": 75,
+      "origins": [
+        939
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 1,
+      "maxPrefix": 80,
+      "origins": [
+        842,
+        1318
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 73,
+      "origins": [
+        2582
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 75,
+      "origins": [
+        1824
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 87,
+      "origins": [
+        531
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 14,
+      "maxPrefix": 73,
+      "origins": [
+        1742
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 21,
+      "maxPrefix": 80,
+      "origins": [
+        469
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 92,
+      "origins": [
+        2265
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 27,
+      "maxPrefix": 66,
+      "origins": [
+        1737
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 12,
+      "maxPrefix": 71,
+      "origins": [
+        2510
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 10,
+      "maxPrefix": 90,
+      "origins": [
+        2151
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 84,
+      "origins": [
+        3153
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 1,
+      "maxPrefix": 82,
+      "origins": [
+        2207
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 62,
+      "origins": [
+        2252,
+        2806
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 16,
+      "maxPrefix": 81,
+      "origins": [
+        1848
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 16,
+      "maxPrefix": 86,
+      "origins": [
+        2835,
+        2967
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 90,
+      "origins": [
+        775,
+        1609
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 69,
+      "origins": [
+        1386
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 14,
+      "maxPrefix": 81,
+      "origins": [
+        3166
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 17,
+      "maxPrefix": 122,
+      "origins": [
+        1095
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 12,
+      "maxPrefix": 76,
+      "origins": [
+        1241
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 77,
+      "origins": [
+        2587
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 17,
+      "maxPrefix": 74,
+      "origins": [
+        1234
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 18,
+      "maxPrefix": 90,
+      "origins": [
+        472
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 5,
+      "maxPrefix": 67,
+      "origins": [
+        2626
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 7,
+      "maxPrefix": 72,
+      "origins": [
+        1917
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 13,
+      "maxPrefix": 74,
+      "origins": [
+        1603
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 8,
+      "maxPrefix": 95,
+      "origins": [
+        1394
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 6,
+      "maxPrefix": 82,
+      "origins": [
+        2642
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 29,
+      "maxPrefix": 78,
+      "origins": [
+        1756
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 35,
+      "maxPrefix": 76,
+      "origins": [
+        1809
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 84,
+      "origins": [
+        779
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": false,
+      "zero": 9,
+      "maxPrefix": 96,
+      "origins": [
+        1748
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "ordinary",
+      "sign": 1,
+      "reverse": true,
+      "zero": 28,
+      "maxPrefix": 72,
+      "origins": [
+        2720
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": false,
+      "zero": 7,
+      "maxPrefix": 98,
+      "origins": [
+        1524
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "ordinary",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 75,
+      "origins": [
+        912
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 25,
+      "maxPrefix": 56,
+      "origins": [
+        939
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 1,
+      "maxPrefix": 60,
+      "origins": [
+        1784,
+        1785
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 23,
+      "maxPrefix": 84,
+      "origins": [
+        1353
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 74,
+      "origins": [
+        101
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 88,
+      "origins": [
+        531
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 14,
+      "maxPrefix": 55,
+      "origins": [
+        1016
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 21,
+      "maxPrefix": 74,
+      "origins": [
+        3215
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 73,
+      "origins": [
+        1178
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 14,
+      "maxPrefix": 79,
+      "origins": [
+        1015
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 11,
+      "maxPrefix": 62,
+      "origins": [
+        1405
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 10,
+      "maxPrefix": 59,
+      "origins": [
+        2389
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 83,
+      "origins": [
+        1476
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 8,
+      "maxPrefix": 94,
+      "origins": [
+        1,
+        2
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 36,
+      "maxPrefix": 86,
+      "origins": [
+        2405,
+        2406
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 41,
+      "maxPrefix": 77,
+      "origins": [
+        2192,
+        2193
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 16,
+      "maxPrefix": 102,
+      "origins": [
+        2969,
+        2970
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 6,
+      "maxPrefix": 90,
+      "origins": [
+        1609
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 86,
+      "origins": [
+        2617
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 14,
+      "maxPrefix": 54,
+      "origins": [
+        429,
+        1751
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 20,
+      "maxPrefix": 77,
+      "origins": [
+        1889,
+        1890
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 12,
+      "maxPrefix": 87,
+      "origins": [
+        896
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 58,
+      "origins": [
+        1183,
+        1184
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 17,
+      "maxPrefix": 94,
+      "origins": [
+        3178
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 18,
+      "maxPrefix": 64,
+      "origins": [
+        51
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 5,
+      "maxPrefix": 70,
+      "origins": [
+        1117
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 7,
+      "maxPrefix": 68,
+      "origins": [
+        2338
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 13,
+      "maxPrefix": 76,
+      "origins": [
+        2132
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 8,
+      "maxPrefix": 93,
+      "origins": [
+        1394
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 23,
+      "maxPrefix": 74,
+      "origins": [
+        2850,
+        2851
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 15,
+      "maxPrefix": 66,
+      "origins": [
+        792,
+        793,
+        1093
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 31,
+      "maxPrefix": 77,
+      "origins": [
+        821,
+        822
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 58,
+      "origins": [
+        3243
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 9,
+      "maxPrefix": 81,
+      "origins": [
+        333
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "plainF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 17,
+      "maxPrefix": 74,
+      "origins": [
+        509
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 7,
+      "maxPrefix": 68,
+      "origins": [
+        1524,
+        3017
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "plainF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 75,
+      "origins": [
+        912
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 31,
+      "maxPrefix": 83,
+      "origins": [
+        422
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 1,
+      "maxPrefix": 80,
+      "origins": [
+        842
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 73,
+      "origins": [
+        2582
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "n": 729,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 57,
+      "origins": [
+        1690
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 69,
+      "origins": [
+        531
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 14,
+      "maxPrefix": 63,
+      "origins": [
+        177
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 13,
+      "maxPrefix": 80,
+      "origins": [
+        469
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "n": 1145,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 9,
+      "maxPrefix": 92,
+      "origins": [
+        2265
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 27,
+      "maxPrefix": 71,
+      "origins": [
+        59
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 12,
+      "maxPrefix": 63,
+      "origins": [
+        1199
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 10,
+      "maxPrefix": 70,
+      "origins": [
+        1827
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "n": 1729,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 83,
+      "origins": [
+        1476
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 1,
+      "maxPrefix": 74,
+      "origins": [
+        2313,
+        2314
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 8,
+      "maxPrefix": 67,
+      "origins": [
+        3256,
+        3257,
+        3258
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 16,
+      "maxPrefix": 92,
+      "origins": [
+        495,
+        496
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "n": 1903,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 16,
+      "maxPrefix": 89,
+      "origins": [
+        2967,
+        2969
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 0,
+      "maxPrefix": 83,
+      "origins": [
+        1609
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 86,
+      "origins": [
+        2617
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 14,
+      "maxPrefix": 66,
+      "origins": [
+        1868
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "n": 1021,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 17,
+      "maxPrefix": 85,
+      "origins": [
+        1414
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 12,
+      "maxPrefix": 87,
+      "origins": [
+        2954
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 69,
+      "origins": [
+        2718
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 17,
+      "maxPrefix": 75,
+      "origins": [
+        1234
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "n": 1433,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 18,
+      "maxPrefix": 90,
+      "origins": [
+        472,
+        473
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 5,
+      "maxPrefix": 71,
+      "origins": [
+        2514
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 7,
+      "maxPrefix": 64,
+      "origins": [
+        1406
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 11,
+      "maxPrefix": 74,
+      "origins": [
+        1603
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "n": 1680,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 8,
+      "maxPrefix": 71,
+      "origins": [
+        2183
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 6,
+      "maxPrefix": 73,
+      "origins": [
+        2873
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 2,
+      "maxPrefix": 73,
+      "origins": [
+        2852,
+        2853
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 18,
+      "maxPrefix": 72,
+      "origins": [
+        2629,
+        2630
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "n": 3008,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 84,
+      "origins": [
+        779
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": false,
+      "zero": 9,
+      "maxPrefix": 88,
+      "origins": [
+        676
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "digitF",
+      "sign": 1,
+      "reverse": true,
+      "zero": 17,
+      "maxPrefix": 72,
+      "origins": [
+        715,
+        2720
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": false,
+      "zero": 3,
+      "maxPrefix": 98,
+      "origins": [
+        58
+      ],
+      "full": []
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "n": 308,
+      "mode": "digitF",
+      "sign": -1,
+      "reverse": true,
+      "zero": 5,
+      "maxPrefix": 74,
+      "origins": [
+        2589
+      ],
+      "full": []
+    }
+  ],
+  "collision": [
+    {
+      "mode": "ordinary",
+      "A": [
+        1,
+        3
+      ],
+      "B": [
+        17,
+        2
+      ],
+      "output": {
+        "c": [
+          4,
+          9
+        ],
+        "h": 0,
+        "k": 2
+      }
+    },
+    {
+      "mode": "plainF",
+      "A": [
+        1,
+        3
+      ],
+      "B": [
+        17,
+        2
+      ],
+      "output": {
+        "c": [
+          4,
+          9
+        ],
+        "h": 0,
+        "k": 2
+      }
+    },
+    {
+      "mode": "digitF",
+      "A": [
+        1,
+        3
+      ],
+      "B": [
+        17,
+        2
+      ],
+      "output": {
+        "c": [
+          4,
+          9
+        ],
+        "h": 0,
+        "k": 2
+      }
+    }
+  ],
+  "nativeWords": 276,
+  "wordCollision": [
+    {
+      "reverse": false,
+      "mode": "ordinary",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "ordinary",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "ordinary",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "ordinary",
+      "h0": 3,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "ordinary",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "ordinary",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "ordinary",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "ordinary",
+      "h0": 3,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "plainF",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "plainF",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "plainF",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "plainF",
+      "h0": 3,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "plainF",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "plainF",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "plainF",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "plainF",
+      "h0": 3,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "digitF",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "digitF",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "digitF",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": false,
+      "mode": "digitF",
+      "h0": 3,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "digitF",
+      "h0": 0,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "digitF",
+      "h0": 1,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "digitF",
+      "h0": 2,
+      "collisions": []
+    },
+    {
+      "reverse": true,
+      "mode": "digitF",
+      "h0": 3,
+      "collisions": []
+    }
+  ]
+}

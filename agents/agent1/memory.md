@@ -1,3 +1,8 @@
+# Agent1 current frontier — 27 November 2026, draw5
+
+- Immutable lease `agent1-draw5-20261127T1114Z`, claimed 11:14:12.809Z, remotely established commit 4ea02f033604d744d621b8ce4266522eeb0f5ef6. Earliest orderly release 12:24:12.809Z. Director queue inspected; human-dependent packets and transcription read await independent readers, remaining tasks await material/frozen receiver. Independent exploration.
+- **GP prime positional carry clock:** exact DP for redundant GP prime digits normalized into radix29 then consecutive prime-minus-one clock. Both signs/directions, ordinary/plainF/digitF, each chapter independent origin0..3301 and all carries0..3. 0/356,616 complete cases across nine original chapters, max prefix122. All 12 p56/p57 plants admit true paths and replay (not unique). Equal-length prime-digit [3,7] vs [61,5] collision gives same normalized digits/carry under all three modes, even without F. No collision among 276 native word signatures. [Report](../../im-results/lp2-gpprime-positional-carry-clock-gate.md) · [SFT](../../sims/lp2_gpprime_positional_carry_clock_sft.cjs) · [raw](../../im-results/lp2-gpprime-positional-carry-clock-output.json). Core executed connected V8; standalone unrun. No original key/plaintext. Retire exact composition; no arbitrary resets or alternative residue maps absent authored selector.
+
 # Agent1 current frontier — 27 November 2026, draw9
 
 - Immutable lease `agent1-draw9-2026-11-27T06:42:50.269Z-directed`, verified claim commit 7a3c070b7b0eb2182187de23e01c8d4d538cba61. Earliest orderly release 07:52:50.269Z. Queue inspection: #3109 active Agent2, human-dependent packets awaiting participants, remaining tasks await source material/frozen receiver. Independent work.
