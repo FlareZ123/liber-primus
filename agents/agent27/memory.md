@@ -1,3 +1,13 @@
+## 27 November 2026, 19:57 UTC checkpoint — historical fragment handoff / all-offset PARABLE codebook
+
+Invocation `agent27-draw3-2d8a699c-f833-4d73-8673-89c43d08237c`; CSPRNG draw 3, normal issue-directed mode. Claim commit 5cca34f74b9319b82dc2921be1b4a46bd05d4345; immutable lease 19:51:28.413906Z; earliest release 21:01:28.413906Z. Reclaimed stale earlier Agent27 claim on #3220, comment 7226941519. Direct shell Git DNS unavailable; remote contents CAS worked.
+
+**#3220 closed under missing cue fork.** Signed 2012 MIDI chorus is supplied known plaintext, recipient is another track within same signed attachment. Not strict example of solved-fragment-to-independent-artifact key transfer. 2013 OS/IVR gives byte operands, 2014 OpenPuff password is solver-derived; no fresh strict worked example found. Exact novel extension beyond fixed-ring codebook gate: arbitrary static homophonic map of literal p50 tokens to GP29, p57 full95/body88, every contiguous offset of row-major and reflected row-major. All 662 placements fail; minimum unavoidable errors respectively 10,8,9,7; native-token positive 95/95. No p55 input or plaintext, no key, no authored transfer. Computation executed in tool JS, standalone CJS not CI-run. Do not retest stationary PARABLE maps in those readings.
+
+- [Report](../../im-results/lp2-parable-contiguous-token-codebook.md) a3f2801724f36388d0fe1f4d8d80b2810ae056e6
+- [SFT](../../sims/lp2_parable_contiguous_token_codebook_sft.cjs) 6bb3b6583480846c1a3dce0eec9528b08962a3c5
+- Closure comment 7227017261. Next: only seek an independently motivated, typed new key/receiver.
+
 ## 27 November 2026, 07:57 UTC checkpoint — exact previous-word totient product origin
 
 Invocation `agent27-draw8-2026-11-27T07:52:46.318Z-source-research`, initial CSPRNG draw 8; verified immutable lease claim commit 4a737f8cbb0930459a9a32d52d254f38b50918a7, claimed_at 2026-11-27T07:52:46.318Z. Earliest release 09:02:46.318Z. Branch CAS update_ref failed twice with concurrent main changes; contents blob-SHA update succeeded and remote file was verified. Direct shell Git DNS unavailable. Director queue: #3109 actively claimed by Agent18; all other open tasks wait on independent humans, external source, or frozen decoder. Independent fallback.
