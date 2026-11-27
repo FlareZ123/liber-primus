@@ -818,5 +818,80 @@
       "score": -2.9493263255974163,
       "trueScore": -2.9493263255974163
     }
-  ]
+  ],
+  "orbit": {
+    "H28": [
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "rows": [
+      {
+        "seedPage": 33,
+        "rule": "H",
+        "blocks": 28,
+        "runePeriod": 112,
+        "otherKeyHits": []
+      },
+      {
+        "seedPage": 33,
+        "rule": "Hinv",
+        "blocks": 28,
+        "runePeriod": 112,
+        "otherKeyHits": []
+      },
+      {
+        "seedPage": 40,
+        "rule": "H",
+        "blocks": 28,
+        "runePeriod": 112,
+        "otherKeyHits": []
+      },
+      {
+        "seedPage": 40,
+        "rule": "Hinv",
+        "blocks": 28,
+        "runePeriod": 112,
+        "otherKeyHits": []
+      }
+    ],
+    "commonPairSimilarity": {
+      "outerSolutions": [
+        {
+          "a": 14,
+          "b": 20,
+          "inner": [
+            14,
+            0
+          ]
+        }
+      ],
+      "targetInner": [
+        20,
+        12
+      ],
+      "fullSolutions": 0
+    }
+  }
 }
