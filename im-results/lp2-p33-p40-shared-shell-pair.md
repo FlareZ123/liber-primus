@@ -190,6 +190,21 @@ Same-geometry p57-repeated plants with biases7/13: ordinary plant retains true (
 
 Reproduce with the previous compile/pipe command substituting `sims/lp2_will_paths_anchor_affine4.cpp` and saving stdout to `/tmp/affine.stdout`, then `node sims/lp2_will_paths_affine_score.cjs /tmp/affine.stdout`. C++ executed locally; scoring core executed against pinned inputs in connected V8; standalone Node scorer not separately executed. Exact original output: `33 1099 0 0`; ordinary plant `30 1746 0 0`; F-hold plant `30 2442 1 1`. Retire shared continuous affine order≤4 additive recurrence between these cribs under both clocks; no authentic plaintext or key. This result does not exclude separate resets, higher-order/nonlinear rules, ciphertext-feedback generators, or different cribs. Do not extend tap sweeps absent a new independent source selector.
 
+### Independent local-seed reset relaxation (Agent41, 27 Nov)
+
+A further test grants independent recurrence states at the two four-rune anchors but requires the same stationary affine taps and bias. This accommodates separately initialized passages without using the intervening gap as a constraint. The original p33 suffix has 78 runes (4 ciphertext F); p40 has 156 (7 ciphertext F). Enumerate all 20,511,149 tap/bias vectors. Fit on p33 suffix only and evaluate frozen best on p40; separately record the exact number satisfying both finite Gibran control floors (all contiguous native windows, -3.320260 and -3.221241 nats/rune). F-hold scores maximize over **every** legal ambiguous mask, not a greedy decode. Both controls have the same geometry and separate native Gibran slices (offsets 10000 and 20000 in the canonical source-native donor).
+
+| Mode | p33 clears native floor | Both clear native floors | Frozen fit / p40 | Best p40 among p33 floor-pass |
+|---|---:|---:|---|---:|
+| Original ordinary | 40,348 | 0 | -3.128182 / -3.413197 | -3.323435 |
+| Original F-hold | 29,052 | 0 | -3.173836 / no legal path | -3.336306 |
+| Plant ordinary (3,5,8,2;7) | 40,945 | 1 (true) | -2.945342 / -2.878900 | -2.878900 |
+| Plant F-hold (23,5,6,15;13) | 7,735 | 1 (true) | -2.932191 / -2.878900 | -2.878900 |
+
+Original F-hold p33 legal candidates = 5,974,270; planted = 2,609,740. The plant's F-hold p33 maximum is slightly higher than its actual donor score (-2.945342) due to mask ambiguity. True taps are recovered by p33-only ranking and by joint-floor criterion on each control; the held-out F mask is not asserted unique. No original candidate clears both floors, even allowing independently seeded states and exact optimal masks. As before this is a finite-control linguistic exclusion, not an algebraic impossibility of arbitrary non-native plaintext. The selected p33-only candidates are nonsensical on the original p40. Retire this shared stationary affine order≤4 model; do not increase order without independent source evidence.
+
+Reproduce from repo root: `node sims/lp2_will_paths_reset_input.cjs > /tmp/reset.in`; compile `g++ -O3 -std=c++17 sims/lp2_will_paths_reset_affine4.cpp -o /tmp/reset`; run `/tmp/reset ordinary < /tmp/reset.in`, `/tmp/reset hold < /tmp/reset.in`, and append `plant` after the mode for each control. Local separate ordinary and F-hold C++ executables were run for all four searches; repository source consolidates the identical two algorithms, Node input wrapper is not independently run. Training/p57 scores independently matched to 1e-10.
+
 ## Evidence boundary
 
 Preserve:
@@ -201,7 +216,7 @@ p40 PATHS H(key)=[14,8,3,26]=[-b,A,e,-e]
 
 The correct shared evidence is the conditioned residual criterion over **62** unique four-rune source-state page/target pairs, with exactly those two hits.
 
-The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is exactly excluded under both clocks, and its all-bias affine relaxation is F-hold-impossible and ordinary-language-negative on every remaining candidate. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
+The field-role labels `p,K,-b,e` were recognized after the local inverses. Fixed forward/inverse H-orbit continuation fails on both original page suffixes; the full joint-crib homogeneous order≤4 recurrence is exactly excluded under both clocks, and its all-bias affine relaxation is F-hold-impossible and ordinary-language-negative on every remaining candidate; even granting independent seed resets at both anchors yields no shared affine recurrence whose two suffixes meet the finite native-text floors. No reusable key evolution has been established. A decisive next promotion requires a first-party rule fixing the free H coordinates before another receiver is opened, or a genuinely prospective application in a different source-selected receiver family.
 
 ## Reproduction
 
