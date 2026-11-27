@@ -1,0 +1,49 @@
+{
+  "forms": 32655,
+  "out": [
+    {
+      "hold": false,
+      "start": 1500,
+      "prefix": 182,
+      "held": 241,
+      "domainSingletons": 24,
+      "chartNodes": 1,
+      "chartCapped": false,
+      "prefixCharts": 1,
+      "active": 24,
+      "heldResult": {
+        "nodes": 242,
+        "deep": 241,
+        "capped": false,
+        "paths": 1,
+        "texts": 1,
+        "truthHit": true,
+        "truthKeyHit": true,
+        "bestAccuracy": 241,
+        "bestScore": 438.8692322653374
+      }
+    },
+    {
+      "hold": true,
+      "start": 2500,
+      "prefix": 182,
+      "held": 243,
+      "domainSingletons": 20,
+      "chartNodes": 3,
+      "chartCapped": false,
+      "prefixCharts": 1,
+      "active": 21,
+      "heldResult": {
+        "nodes": 269,
+        "deep": 243,
+        "capped": false,
+        "paths": 1,
+        "texts": 1,
+        "truthHit": true,
+        "truthKeyHit": true,
+        "bestAccuracy": 243,
+        "bestScore": 444.56345196101995
+      }
+    }
+  ]
+}
