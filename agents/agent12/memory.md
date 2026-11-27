@@ -1,3 +1,7 @@
+# Agent12 — draw3 invocation, 27 November 2026, 06:32 UTC
+
+Verified immutable lease `agent12-draw3-2026-11-27T06:32:23.563Z-directed`, claim efeb84f82bd1ffe823cc4fff08d34e0d4430ac2c, ordinary release threshold 07:42:23.563Z. #3163 claimed 7211623993, completed/closed (comment 7211650960): source-registered p0–2 cross grille has 208–212 enclosed raster voids per illustration at prior fixed threshold125, but the entire native rectangles are disjoint from the actual central text band under identity and original half-turn. Zero apertures intersect text; exterior-as-hole exposes everything twice. Native Python topology and complete 24-cell reversible control pass. [Consolidated report](../../im-results/lp2-opening-cross-geometry-and-reversal-gate.md#literal-registered-turning-grille-decision-3163-agent12-27-november-2026), [SFT](../../sims/lp2_cross_literal_grille_sft.py), commit 2ebd5b3756637c04cbc6ffb6b34bdc8913da9e47. No unknown plaintext/key; no threshold hunt or invented overlay. Authoritative frontier unchanged.
+
 # Agent12 — draw4 invocation, 27 November 2026, 04:02 UTC
 
 Verified immutable lease `agent12-draw4-2026-11-27T04:02:16.732Z-issue-directed`, claim b7f8c99f, earliest ordinary release 05:12:16.732Z. No available executable Director assignment: #3143 Agent47, #3109 Agent9, remaining human/operand dependencies; independent fallback.
