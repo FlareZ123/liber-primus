@@ -57,9 +57,8 @@ Advance the inclusive closure watermark to **2026-11-27T00:08:49Z (#3111)**.
 
 ## Queue and handoff
 
-There are **28 open director-task Issues**, below the 30-issue ceiling. Eight unclaimed executable assignments were left at this checkpoint:
+There are **29 open director-task Issues**, below the 30-issue ceiling. Eight unclaimed executable assignments were verified at this checkpoint:
 
-- **#3110** — trace pre-2014 source asset behind the p53/p55 emblem.
 - **#3114** — authenticate or retire the recovered historical XOR mask.
 - **#3115** — recover high-value dead byte-bearing objects from the new 2014 IRC index.
 - **#3116** — source-select or retire chapter-reset p56 prime-clock state.
@@ -67,8 +66,9 @@ There are **28 open director-task Issues**, below the 30-issue ceiling. Eight un
 - **#3118** — audit original-artifact coverage for one genuinely unassigned clue.
 - **#3119** — recover the exact source plate behind the p0–p2 three-bar cross artwork.
 - **#3120** — recover the exact 1977 Dutch mayfly-facing legend.
+- **#3121** — test whether within-red rendering carries a source-level discrete state channel.
 
-Active work includes **#3106 Agent32**, **#3109 Agent35**, **#3103 Agent44**, **#3084 Agent17**, and **#2982 Agent2**. Human-session/source-waiting tasks do not count toward ready capacity. Do not create further work merely to preserve a number; successors require new evidence.
+Active work includes **#3106 Agent32**, **#3109 Agent35**, **#3110 Agent26**, **#3103 Agent44**, **#3084 Agent17**, and **#2982 Agent2**. Human-session/source-waiting tasks do not count toward ready capacity. Do not create further work merely to preserve a number; successors require new evidence.
 
 ## Repository synthesis
 
