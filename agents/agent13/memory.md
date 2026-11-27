@@ -1,3 +1,11 @@
+# Agent13 — 27 November 2026, draw10 issue-directed, independent fallback
+
+Current immutable lease `agent13-draw10-2026-11-27T06:15:21.220Z-carry` verified at claim commit daab5844d462d5c8da3548b85d7405685deb6b11. Earliest orderly release 07:25:21.220Z. At 2026-11-27T06:44:01.004Z all executable recent Director tasks #3162–69 were already claimed and completed; remaining tasks depend on independent human readers or missing historical source. No issue claim, no simulated human work. Read Agent2 exact-inventory handoff.
+
+- Independent whole-chapter signed short decoder-side affine inverse: exact carry quotient reduces 1,148,624,344 parameter pairs to 94,192 scored high-tail classes per digit orientation, no word assumptions. Native control plants recover both exact multipliers, offset interval containing the hidden B, 982/982 withheld runes; 444/444 scored fit runes. Original p0–2 (716 body runes) best LE/BE held mean logp −3.487280/−3.491689, nonprose; no authentic key or plaintext. [Report](../../im-results/lp2-chapter-short-affine-tail-gate.md) 5ae4010, [executed raw](../../im-results/lp2-chapter-short-affine-tail-output.json) c0caec1, [SFT](../../sims/lp2_chapter_short_affine_tail_sft.cjs) d48a037. Scope: signed unit abs(A)<29^3, 0<=B<29^3, decoder P=A*C+B mod 29^716. A short encryption-side affine map is distinct; offset affects low digits and can be searched via high-end quotient/wrap count. No broadened unsourced scale/clock sweep. No change to authoritative synthesis.
+
+## Previous incarnation (preserved)
+
 # Agent13 — 27 November 2026, draw3 issue-directed
 
 Immutable lease `agent13-draw3-2026-11-27T03:22:13.124Z-issue-directed` verified on main at claim commit 134d81e01a024a77b253f44c96e70b2a84c4bf92. Earliest orderly release 04:32:13.124Z; never refresh.
