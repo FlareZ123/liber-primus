@@ -35,3 +35,33 @@ Independent page origins, independently keyed scopes, a different held glyph or 
 - [Raw joint output and input blob IDs](lp2-p56-shared-origin-joint-paths-output.json) — be29843a.
 
 Run the two Node.js scripts in order from a checkout. The second reads the committed compact projection artifact; the first prints a more detailed reproducible output. Both committed study cores executed on the exact GitHub inputs in connected V8. Standalone Node wrappers and CI were not independently executed. The first full raw artifact exceeded the connector's request handling capacity; the compact artifact preserves every surviving origin and the counts, with full domain details reproducible from the code.
+
+## Constructive shared chapter-origin prefilter and inverse
+
+Unlike the page-reset model, the chapter-reset family is not eliminated by unary projection. A full exact chapter-prefix search timed out in connected V8; a capped pilot of origins 0..99, using each chapter through its fourth F and before its fifth, gave 100/100 SAT. The [parameterized prefix solver](../sims/lp2_p56_shared_origin_chapter_prefix_sft.cjs) is available, but a full enumeration is not warranted by that weak pilot.
+
+To recover a shared unknown clock origin instead, approximate the literal-F hold posterior by the binomial distribution of holds among earlier visible F positions. Under a uniform consuming-symbol emission prior, conditional hold probability is f/(f+(1-f)/29), where f=0.026949... is the empirical Emerson GP F frequency (the computed probability is **0.4454361155501794**). At each non-F emitted position, spread the observation over all likely consuming cursors, then aggregate by ciphertext label, shift residue and alternating chapter fold. Score the cross-fold inner product of standardized deviations from each fold's empirical independence table. All 3,302 origins are ranked; no alphabet is fit to a selected candidate at this stage. Widths 64/128/256/512 are truncated to the first 75% of each scope. Sparse relative-cursor aggregation preserves the statistic without repeatedly traversing every observation.
+
+| Hidden origin | Rank at width 64 | 128 | 256 | 512 | True score at 256 / 512 |
+|---:|---:|---:|---:|---:|---:|
+| 137 | 3 | 1 | 1 | 1 | 37.834 / 38.765 |
+| 911 | 2 | 1 | 1 | 1 | 44.581 / 46.798 |
+| 1703 | 1 | 1 | 1 | 1 | 47.986 / 50.399 |
+| 3200 | 31 | 1 | 1 | 1 | 32.345 / 27.295 |
+| Original | — | — | — | — | **16.931 / 13.537** (max over all origins) |
+
+Four independent literary plants (two Shakespeare and two Gibran, disjoint windows and fresh alphabet pairs) recover the exact origin first at all widths ≥128. The predeclared top16-at-any-width gate passes. The original's best origins are 153, 2587 and 2193 at widths128,256,512 respectively; no stable winner and markedly weaker association. This score separation is empirical, not a probability bound or a proof against all alphabets or all language registers.
+
+Apply the previously calibrated pooled spectral/EM inverse to those three leading original candidates (and to two selected-origin plants), holding the selected origin fixed and fitting only the first 75% of each chapter. The frozen suffix retains every legal fitting-end cursor, without alphabet refitting.
+
+| Selected origin | Fit correct / 9713 | Held correct / 3243 | Legal fitting candidates |
+|---|---:|---:|---:|
+| Control 137 | 9711 | 3241 | 20 / 22 |
+| Control 3200 | 9711 | 3238 | 22 / 22 |
+| Original 153 | — | — | 0 / 22 |
+| Original 2587 | — | — | 0 / 22 |
+| Original 2193 | — | — | 0 / 22 |
+
+Both controls replay all 12,956 glyphs exactly and equal their oracle suffix correctness. No original candidate has a strict full fitting path; no original suffix, key or plaintext is decoded. Treat this as a calibrated negative for the leading shared chapter-origin candidates, not an exact exclusion of the 3,302-origin chapter family. Do not increase random restarts or test the remaining weak scores without independent evidence of a different clock law or plaintext register.
+
+[Cross-fold prefilter code](../sims/lp2_p56_unknown_origin_crossfold_sft.cjs) and [raw ranks](lp2-p56-unknown-origin-crossfold-output.json) (c4fdca8e). [Selected-origin receiver](../sims/lp2_p56_primeclock_spectral_pool_sft.cjs) (b5c305c7); raw/compact results [137](lp2-p56-origin-selected-control-137.json), [3200](lp2-p56-origin-selected-control-3200.json), [153](lp2-p56-origin-selected-original-153.json), [2587](lp2-p56-origin-selected-original-2587.json), [2193](lp2-p56-origin-selected-original-2193.json). All cores actually executed in connected V8. The first screen execution timed out before optimization; the sparse version completed in 69.879 s. Control137 full artifact hit a concurrent branch conflict after the summary was emitted, so its recorded output is compact. Other artifacts include pinned inputs and raw records. No separate CI or Node wrapper run claimed.
