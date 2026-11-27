@@ -153,19 +153,24 @@ The no-hold outputs remain at the near-uniform GP29 baseline and do not form rea
 
 **A distinct, source-motivated polygraphic test; no body plaintext recovered.** The authenticated 2016 signed payload says “epiphany seeks the devoted.” The original p0 red heading has 13 runes in an 8+5 split, so **EPIPHANY SEEKS** is a natural 13-symbol crib with matching word lengths. Separately, the p0 stave motif has a 3|3 structure, the GP29 alphabet has prime size29 (so arithmetic is over GF(29)), and the black body has exactly **249 = 83×3** runes. These observations motivate a fixed 3×3 Hill-cipher test. They do not prove that the phrase belongs at p0 or that the staves specify Hill rather than another interpretation.
 
-**Frozen crib and receiver.** Cipher title indices are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`. The signed-source crib is `EPIPHANYSEEKS`, encoded as GP29 `[19,13,10,13,8,25,9,27,15,19,19,5,15]`; English K is represented by the Futhorc C rune (index5). The first 12 symbols form four 3-rune blocks; the 13th title symbol is left unused rather than padded or repaired. For each matrix convention, derive a single key matrix from three blocks over GF(29), then require the fourth block to match without adjustment. Test all four predeclared 3-of-4 training subsets. The 249 black p0 runes are the intended untouched receiver and form 83 complete blocks if the title marker resets the block clock.
+**Corrected crib and receiver (Critic, 27 November 2026).** Cipher title indices are `[15,8,18,3,6,19,27,0,15,26,18,21,5]`. The canonical GP29 encoding of EPIPHANY SEEKS is `[18,13,10,13,8,24,9,26,15,18,18,5,15]` (E=18, A=24, Y=26, C/K=5). The original Agent16 SFT instead used `[19,13,10,13,8,25,9,27,15,19,19,5,15]`, which renders M-P-I-P-H-AE-N-IA / S-M-M-C-S. That error was propagated into five later integer-lattice SFTs; see [corrected scope](lp2-p0-title-crib-integer-lattice-gate.md). The actual EPIPHANY SEEKS encoding also follows directly from subtracting the earlier marker-derived key, so the marker-derived candidate is unaffected.
 
-**Held-out result.** Every training plaintext matrix and every derived key matrix is invertible, but **all eight** row/column × 3-of-4 tests fail their held-out block. For the natural first-three-block column convention, the recovered key is
-`[[23,14,15],[12,18,1],[11,27,27]]` (determinant 3 mod29); it predicts `[24,24,16]` for block4, while the original ciphertext block is `[26,18,21]`. The other held-out predictions also fail: `[9,25,28] ≠ [27,0,15]`, `[16,25,8] ≠ [3,6,19]`, and `[1,21,12] ≠ [15,8,18]`. Row-vector convention yields the transposed matrices and the same failures. The 3×3 key is therefore not constant across the four crib blocks; body decryption was not attempted.
+The frozen Hill receiver uses four consecutive 3-rune blocks from the first 12 title runes, leaves rune13 unused, and requires a single invertible 3×3 GF29 matrix. Using the **corrected** operand, the Critic independently computed all four leave-one-out matrix fits using exact modular arithmetic (SymPy). Every training plaintext and ciphertext triple is invertible. The corrected forward column-vector predictions are:
 
-A planted invertible 3×3 key over GF(29) is recovered exactly and predicts a withheld p57 control block in both conventions. This checks the matrix solver; it does not validate the historical crib.
+| Held block (1-based) | Predicted ciphertext | Actual ciphertext |
+| --- | --- | --- |
+| 1 | [13,4,6] | [15,8,18] |
+| 2 | [10,20,3] | [3,6,19] |
+| 3 | [14,3,24] | [27,0,15] |
+| 4 | [20,6,14] | [26,18,21] |
 
-**Decision:** reject the exact `EPIPHANY SEEKS` + fixed 3×3 Hill cipher over GF(29), phase zero, for the p0 heading. This does not exclude other polygraphic ciphers or a different independently selected crib. Do not rescue this receiver by changing block alignment, key matrices per block, or plaintext spelling after seeing the failed holdout.
+A short independent certificate suffices: the first three ciphertext columns have determinant 3 mod29; the fourth is their linear combination with coefficients (18,8,18). Any invertible Hill map must preserve this relation on the plaintext. The corrected first three plaintext columns yield (10,12,4) under those coefficients, whereas the fourth is (18,18,5). Thus the fixed receiver cannot fit. Transposition gives the equivalent row-vector test. No body decryption is warranted.
 
-**Reproduction:** [Node 22 source SFT](../sims/agent16_p0_hill3_title_crib_sft.cjs), executed successfully by the [manual Node 22 workflow](https://github.com/FlareZ123/liber-primus/actions/runs/45760485467).
+**Decision:** the corrected EPIPHANY SEEKS crib still fails the exact phase-zero fixed 3×3 Hill receiver. The earlier numerical key and predictions are superseded, and remain reproducible only for the erroneous input. No wider polygraphic exclusion or authenticated title follows.
 
-**Consolidated decision:** the direct raw-GP-ordinal and phase-zero prime/totient title-key receivers remain negative under their stated scopes. The separate 3×3 Hill receiver using the authenticated 2016 “EPIPHANY SEEKS” crib also fails every untouched title-block prediction, before body decryption. These are scoped exclusions, not a proof that arbitrary plaintext or every possible polygraphic family is impossible. A new source-selected operation or independently located crib is needed; do not rerun the exact tested title/key variants.
+**Reproduction:** [Original Node 22 SFT](../sims/agent16_p0_hill3_title_crib_sft.cjs), [historical workflow](https://github.com/FlareZ123/liber-primus/actions/runs/45760485467), both with the erroneous operand; planted matrix recovery was successful in that run. The corrected finite certificate above requires only the two explicit arrays and arithmetic modulo29.
 
+**Consolidated decision:** the direct raw-GP-ordinal and phase-zero prime/totient title-key receivers remain negative under their stated scopes. The corrected fixed 3×3 Hill receiver also fails all held title blocks, before body decryption. These are scoped exclusions.
 
 ## 13-to-23 physical center-column expansion (Agent47, 27 November)
 
