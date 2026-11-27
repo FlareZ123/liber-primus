@@ -1,6 +1,6 @@
-# Exact hidden digraph coordinate pairing through fourteen columns
+# Secret digraph tables and transposition layer order
 
-**Decision (Agent40, 27 November 2026):** eight of nine original LP2 chapters exclude the full-width rectangular, fixed-digraph-bijection plus arbitrary fourteen-column transposition architecture against every equal-length contiguous window of three native-GP literary references. The short terminal chapter survives the scalar count alone, but an exact row-equality signature rejects all 601,145 eligible contiguous literary/solved-native windows there. No unknown plaintext or authenticated key. The actual pairing-recovery algorithm recovers both concealed planted pairings, including their relative orientations. Do not infer a historical fourteen-column LP2 instruction from this result.
+**Decision (Agent40, 27 November 2026):** The reverse-order receiver is also conditionally excluded: arbitrary plaintext transposition before one or two fixed GP29² tables fails every 3000-rune p40–53 native reference window, and fixed-width row-major four/eight-table variants fail all possible column pairings.  eight of nine original LP2 chapters exclude the full-width rectangular, fixed-digraph-bijection plus arbitrary fourteen-column transposition architecture against every equal-length contiguous window of three native-GP literary references. The short terminal chapter survives the scalar count alone, but an exact row-equality signature rejects all 601,145 eligible contiguous literary/solved-native windows there. No unknown plaintext or authenticated key. The actual pairing-recovery algorithm recovers both concealed planted pairings, including their relative orientations. Do not infer a historical fourteen-column LP2 instruction from this result.
 
 ## Why this is a separate receiver
 
@@ -63,8 +63,51 @@ The two maxima need not be jointly attainable; this is a deliberately optimistic
 
 p33–39 and p54–55 have no ragged tail, so the earlier exact results apply. Row-major readout of the complete rows is unchanged. Thus the width14 chapter-start result now includes conventional ragged column-major serialization under an arbitrary permutation, even relaxing the association between long column identities and the secret pairing. It still does not address arbitrary row permutations, per-row column keys, variable pair maps or other widths. No plaintext recovered. [Ragged-bound SFT](../sims/lp2_digraph_column14_ragged_bound_sft.cjs), [raw output](lp2-digraph-column14-ragged-bound-output.json). Live V8 execution; native floors reused from the first SFT, not independently recomputed by this small extension.
 
+## Reverse layer order: arbitrary pretransposition and secret pair tables (27 November, Agent40 draw1)
+
+The earlier result assumes the digraph map is **before** transposition. A different sender can first permute plaintext coordinates, then pair them and encrypt under an arbitrary GP29² bijection. Native adjacent-digraph collisions no longer constrain this sender, because the original plaintext neighbors can have been separated. The p40 eight-red-rune heading and exact 3000-rune black body (375×8) motivate both a broad order-independent gate and a tighter row receiver. Neither selects a historical digraph operation.
+
+### Exact concentration capacity for any input permutation
+
+For one fixed pair table, write the observed 841 digraph counts in descending order h[1] ≥ … ≥ h[841], and H(j)=sum of the largest j counts. For any set S of k plaintext GP29 symbols, exactly k² distinct plaintext pair labels have both coordinates in S, exactly 2k(29−k) have one, and the remainder have zero. Under any 841-element bijection, the rearrangement inequality therefore gives
+
+    plaintext occurrences of symbols in S ≤ H(k²) + H(58k−k²).
+
+This is sharp for a single k and any pair histogram (assign the largest counts to the double-weight cells and the next largest to the single-weight cells). The same bound applies to the k most common plaintext symbols, and is invariant under **every** length-preserving plaintext coordinate permutation, including any columnar or arbitrary shuffle before pairing. It also allows arbitrary ordering of complete encrypted pairs after a stationary table. For q independent maps with fixed public period q in pair ordinal, sum the bounds over the q observed phase histograms. On odd-length chapters allow the unpaired rune on either end and count it toward every top-k bound; maximize each k separately across these two phases, an optimistic relaxation. There is no hidden alphabet search and no need to assume the printed spaces survive.
+
+Every contiguous full-length GP-encoded Gibran, Emerson and Shakespeare window is compared at all k=1…28; a pass means necessary-envelope compatibility only. Using the identical three pinned input blobs and serializer as above:
+
+| Physical region | Runes | Native windows | Pass q=1 | Pass q=2 | Pass q=4 | Pass q=8 |
+|---|---:|---:|---:|---:|---:|---:|
+| 0–2 | 729 | 598741 | 323673 | 598741 | 598741 | 598741 |
+| 3–7 | 1145 | 597493 | 5156 | 597493 | 597493 | 597493 |
+| 8–14 | 1729 | 595741 | 0 | 350785 | 595741 | 595741 |
+| 15–22 | 1903 | 595219 | 0 | 258493 | 595219 | 595219 |
+| 23–26 | 1021 | 597865 | 52377 | 597865 | 597865 | 597865 |
+| 27–32 | 1433 | 596629 | 0 | 534185 | 596629 | 596629 |
+| 33–39 | 1680 | 595888 | 0 | 445856 | 595888 | 595888 |
+| 40–53 | 3008 | 591904 | 0 | 0 | 551512 | 591904 |
+| 54–55 | 308 | 600004 | 600004 | 600004 | 600004 | 600004 |
+| 40–53 black body | 3000 | 591928 | 0 | 0 | 552399 | 591928 |
+
+For p40's exact black body the top-eight ceiling is 1436 (q1), 1688 (q2), 2041 (q4), 2193 (q8); the minimum native top-eight count is 1644. The q2 top-eight test alone is insufficient, but **every** reference window violates some k by at least 83 occurrences (q1 by at least 299). Thus even arbitrary plaintext transposition cannot rescue the stationary/alternating pair-table hypothesis for this region. Five of nine whole chapters reject q1, independently of any chosen plaintext pairing. The shorter chapters' passes are not decoded text or evidence of a key. q4/q8 surviving the broad envelope warrants a more source-specific test rather than a larger unrestricted table search.
+
+Three planted controls use arbitrary shuffled plaintext coordinates and independent random 841-element bijections, including authentic clear p57 as native plaintext. All three pass every bound; actual full-key inverses recover 3000 + 3001 + 95 = 6096 runes. The test does not infer the full key. [Standalone SFT](../sims/lp2_digraph_pretransposition_capacity_sft.cjs), [raw all-k and per-corpus output](lp2-digraph-pretransposition-capacity-output.json), commits f0dfa9a4 and 3f139fd3.
+
+### Source-width eight: exact row-slot spectrum gate
+
+Fix the 375×8 black body geometry, but grant **any** secret permutation of the eight plaintext columns, followed by four arbitrary independent pair bijections (one per pair slot) or eight such bijections (separate pair slots on alternating rows). This includes the literal red8 ascending rank order and its inverse; the arbitrary permutation is a much stronger concession. The row-major sender is fully reversible given the column permutation and phase maps. q4 is additionally invariant to arbitrary reordering of the whole plaintext rows. q8 requires the specified alternating row classes.
+
+For each candidate unordered native column edge, tabulate the multiplicity spectrum of its 841 pair labels over 375 rows (q4) or over 188/187 alternating rows (q8). An arbitrary bijection preserves the entire spectrum, not merely ordered collision count Q. Reversing an edge swaps pair coordinates and also preserves it. A valid column order is equivalent to an assignment of the four disjoint edges to the four observed pair slots with identical spectra (both alternating spectra for q8). Exact masks plus recursive perfect matching test all assignments. Rolling windows independently cover every start modulo8; no sampling or learned score.
+
+Original q4 Q values are 162,212,168,162. The q8 values are 46,60,56,54,48,52,50,38. Full target spectra are preserved in the output. Across all 59,493 Gibran, 318,328 Emerson and 214,107 Shakespeare native windows, **not even one candidate column edge matches any original target slot** under either q4 or q8. Hence zero complete pairings, including all 8! column permutations and arbitrary independent bijections. Under the fixed-width row model this closes the broad q4/q8 envelope's apparent survivors; it is not an exclusion of arbitrary input shuffles with q4/q8.
+
+Two concealed row-permutation/pair-table plants recover the unique unordered column pairing and slot assignment from their known donor windows (four edges each, both q4 and q8), and 6000/6000 runes with the actual full keys. Edge orientation and individual table entries are not recovered from spectra. These are model-matched plants, not historical-key recoveries. [SFT](../sims/lp2_p40_pretransposition_phase_digraph_sft.cjs), [raw spectra and witnesses](lp2-p40-pretransposition-phase-digraph-output.json), commits 30efc51b and 40697390. Both cores actually executed using live repository input in V8. Standalone Node wrappers have not been run separately.
+
+**Decision:** retire q1/q2 arbitrary-input-transposition pair tables as a common native-prose architecture on p40–53, and retire the specific row-major 375×8 q4/q8 pair-table receivers. Column-major pretransposition with q4/q8, arbitrary rune-level shuffles under q4/q8, genuinely dynamic maps, compression, and different native text remain outside these gates. No newly decoded original rune, authentic key, or author-selected pair layer follows. Do not widen clock counts solely to rescue the hypothesis.
+
 ## Scope and continuation
 
-Retire this chapter-start 14-column hybrid, including conventional ragged column-major readout, as a common native-prose architecture. The terminal-only interpretation with novel prose is not ruled out by the scalar gate, but it has no source-selected pairing, pi, or credible donor. Different rectangle origin, unconventional ragged framing, arbitrary row permutation (not just reversal in the terminal test), variable cipher state, other widths, and non-native source register are outside the experiment. No further arbitrary width sweeps absent an independent clue. The full-key architecture can be inverted in principle; a new source anchor would need to select the unknown pair-slot order and pi. The established plaintext frontier remains unchanged.
+Retire this chapter-start 14-column hybrid, including conventional ragged column-major readout, as a common native-prose architecture. The terminal-only interpretation with novel prose is not ruled out by the scalar gate, but it has no source-selected pairing, pi, or credible donor. Different rectangle origin, unconventional ragged framing, arbitrary row permutation (not just reversal in the terminal test), variable cipher state, other widths, and non-native source register are outside the experiment. These are the scope limits of the fourteen-column posttransposition gate; the reverse-order receiver and its separate exclusions are stated above. No further arbitrary width sweeps absent an independent clue. The full-key architecture can be inverted in principle; a new source anchor would need to select the unknown pair-slot order and pi. The established plaintext frontier remains unchanged.
 
 Reproduce with [exact pairing SFT](../sims/lp2_digraph_column14_pairing_sft.cjs), [raw pairing output](lp2-digraph-column14-pairing-output.json), [terminal crib SFT](../sims/lp2_digraph_column14_terminal_crib_sft.cjs), and [raw terminal output](lp2-digraph-column14-terminal-crib-output.json). Input Git blob hashes are recorded in both outputs. Both functions actually executed against live repository inputs in V8; no separate Node/CI replay claimed.
