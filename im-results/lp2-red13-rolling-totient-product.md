@@ -20,3 +20,20 @@ Two disjoint 716-rune Gibran plants at starts2001 and12001 for all eight setting
 All four transparent-F original paths exhaust before the end of the 249-rune p0 body. All ordinary variants replay 716/716, produce nonprose and score far below controls on frozen continuation. This rejects only the named 13-rune seed, product-totient/mod29 rolling feedback operation and signs. It does not authenticate the title as key or exclude every totient/history law. No arbitrary modulus or history-length sweep.
 
 [Standalone SFT](../sims/lp2_red13_rolling_totient_product_sft.cjs) · [raw result](lp2-red13-rolling-totient-product-output.json). Exact core executed in connected V8; Node wrapper not separately executed.
+
+## Unknown-history inversion by forced-clear synchronization
+
+The GP weight of T is 59, whose totient is zero modulo 29. A consuming T in the feedback history therefore forces the next 13 consuming shifts to zero. Their ciphertext gives their plaintext and the entire post-anchor history. With transparent F, visible zero must be a hold during that interval: a zero-shift consuming branch cannot encode plaintext F. This recovers a later state without guessing any of the 29^13 possible initial histories.
+
+Use every prospective anchor at offsets 0–128 for plaintext feedback, only actual T offsets for ciphertext feedback. All original synchronization windows finish by offset 142. Fit on offsets 160–248, freeze the best history at offset 249, and evaluate the remaining 467 runes. Sixteen controls with random hidden initial histories recover **7,472/7,472 held runes** and replay exactly. They reuse two donor intervals across eight settings. The inverse does not recover the initial history or discarded prefix.
+
+| Role/sign | Ordinary best held score (even oracle selection) | F-hold complete suffixes / candidate anchors |
+|---|---:|---:|
+| P− | −6.71317 | 0/122 |
+| P+ | −6.39426 | 0/122 |
+| C− | −6.64909 | 0/2 |
+| C+ | −6.32361 | 0/2 |
+
+The C-driven F-hold case is impossible for every initial history, since the two actual early T symbols must consume. For P-driven F-hold, exhaustive testing of all 716 prospective positions, granting arbitrary prefixes, finds no possible T in the first 436 runes for either sign. Earliest potentially legal anchors are 436 (minus) and 524 (plus); the final 14 positions are unclosed and explicitly granted. Maximum exact state count 15; no caps. Across all 47,369 length-716 contiguous Gibran windows, the minimum number of T runes in the first 436 is nine. This excludes every such donor under both signs and arbitrary initial history; it is not an exclusion of arbitrary nonprose. Ordinary P-feedback still conditional on an early T and the language model. No original plaintext recovered.
+
+The reusable result is a zero-factor synchronization attack on rolling multiplicative feedback, not authentication of this receiver. Retire the stated operation absent independently selected evidence.
