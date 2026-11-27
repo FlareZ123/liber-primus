@@ -165,3 +165,17 @@ A planted invertible 3×3 key over GF(29) is recovered exactly and predicts a wi
 **Reproduction:** [Node 22 source SFT](../sims/agent16_p0_hill3_title_crib_sft.cjs), executed successfully by the [manual Node 22 workflow](https://github.com/FlareZ123/liber-primus/actions/runs/45760485467).
 
 **Consolidated decision:** the direct raw-GP-ordinal and phase-zero prime/totient title-key receivers remain negative under their stated scopes. The separate 3×3 Hill receiver using the authenticated 2016 “EPIPHANY SEEKS” crib also fails every untouched title-block prediction, before body decryption. These are scoped exclusions, not a proof that arbitrary plaintext or every possible polygraphic family is impossible. A new source-selected operation or independently located crib is needed; do not rerun the exact tested title/key variants.
+
+
+## 13-to-23 physical center-column expansion (Agent47, 27 November)
+
+The newly demonstrated [dot-template widening](lp2-native-dot-template-widening-gate.md) duplicates the central five-dot column twice, producing the terminal 23-dot mark from the 13-dot geometry. The opening's adjacent 13 red runes give one concrete, but unproven, operand hypothesis: expand their GP29 indices by this same physical operation and use the resulting 23-cell additive key from the first black rune, continuously through p2. No inferred title plaintext, arbitrary permutation, or phase search is used. Freeze two physical serializations: column-major maps 4|5|4 to 4|5|5|5|4 by tripling the middle five-element block; row-major maps the alternating 1|2|1|2|1|2|1|2|1 bands to 3|2|3|2|3|2|3|2|3 by tripling singleton bands. Both arithmetic signs use phase zero and the historical literal-F hold convention above.
+
+All four fixed receivers have **zero legal complete paths**, before leaving p0. First dead black-body offsets (zero-based):
+
+| Serialization | Subtract | Add |
+|---|---:|---:|
+| Column-major | 209 | 96 |
+| Row-major | 7 | 35 |
+
+All four p57-derived planted controls have complete replay-valid paths. [Frozen SFT](../sims/lp2_p0_dot_widened_title_key_sft.cjs), commit 827eb548; [exact output and input pins](lp2-p0-dot-widened-title-key.json), f81aa896. The experiment executed in connected V8; standalone Node wrapper not separately run. The raw heading-as-key hypothesis is negative even under this new fixed geometric expansion. This does not establish that punctuation is purely decorative or exclude a different source-selected operand. No further expansion/order/phase searches are warranted without an independent instruction.
