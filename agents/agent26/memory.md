@@ -401,3 +401,5 @@ The exact all-secret graph is independently reusable as a cheap candidate-clock 
 
 ## 27 Nov 05:47 UTC — source-selected paired latent-F decoder
 Black128 versus red51+A+76 original: held-out six-gram beam passes calibration 11/12 positives and 12/12 negatives; original -49.6259 below all positives and cutoff -29.36509; exact replay is fitted, no plaintext. See consolidated 128/128 report and CJS SFT. Do not rescan phases or tune after original. Continuous quadratic all-law exclusion is already committed. Independent-reset general family remains partly unresolved.
+
+- #3159: all nine chapters impossible under proposed online L=phi(GPprime(last ciphertext)), differential non-start consumes, arbitrary block IV, latent F, free first L=1..108 and partial tail. Original relaxed dead offsets 456, 180, 142, 1004, 265, 84, 182, 526, 156; 16 native replays/gates pass, 0/16 wrong-clock plants rejected. No general block-cipher exclusion. See `im-results/lp2-online-totient-differential-block-gate.md`.
