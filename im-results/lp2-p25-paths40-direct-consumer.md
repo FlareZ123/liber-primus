@@ -81,9 +81,9 @@ Results:
 |---:|---|---|---:|
 | 3 | LIES | len4, GP0 63 | 0 |
 | 13 | WAY | len3, GP0 57 | 0 |
-| 20 | MEANING | len6, GP0 101 | 0 |
+| 20 | MEANING | len4, GP0 77 | 0 |
 | 28 | THE | len2, GP0 20 | 0 |
-| 29 | DIRECTION | len9, GP0 98 | 0 |
+| 29 | DIRECTION | len8, GP0 112 | 0 |
 | 31 | AND | len3, GP0 56 | 0 |
 | 32 | YOU | len3, GP0 30 | 0 |
 | **40** | **PATHS** | **len4, GP0 54** | **1** |
@@ -96,7 +96,9 @@ length = 4
 GP0 = 54.
 ```
 
-This control is stronger than merely observing that 40 happens to name PATHS: the alternative p25 cuts do not produce another consumer of the same pre-existing type.
+This control is stronger than merely observing that 40 happens to name PATHS: the alternative p25 cuts do not produce another consumer under the fixed zero-based source and zero-based page convention. The Critic corrected the initial hard-coded MEANING and DIRECTION encodings to the established signed-source GP encoder (including EA, ING and IO) and changed the parser to exclude seam fragments. The same one-hit result survives both corrections.
+
+Index sensitivity is material: using the identical eight integers with source-index/page-number origins (0,0), (0,1), (1,0), (1,1) yields respectively **1, 3, 4, 0 hit indices** (1, 5, 4, 0 complete groups). The (0,1) hits are LIES/p2, THE/p27, AND/p30; (1,0) hits are PATH/p3, THEIR/p20, ARE/p28, THE/p29. Thus the all-cut control is conditional on the previously adopted zero/zero convention; it cannot establish that convention itself. In particular the related p28 DIRECTION branch uses a one-based ordinal and physical-page convention. The four origin variants are a sensitivity check, not a new search for plaintext.
 
 ## Exact upstream key
 
@@ -132,7 +134,7 @@ Its inverse yields:
 H^-1(S) = [20,20,12,6].
 ```
 
-This is exactly the previously observed p40 subtraction key. The prior symbolic label `[-b,A,e,-e]` remains numerically true because `-b mod29=14`; the new route does not need to infer that first role from p40 output.
+This is exactly the previously observed p40 subtraction key. The prior symbolic label `[-b,A,e,-e]` remains numerically true because `-b mod29=14`. Both labels are deterministic functions of the same already known DH example, and the equality cannot count as independent confirmation of the key or the choice of shell roles. The new route is an alternative explanation of the same numerical coordinate, with the role and order chosen retrospectively.
 
 ## Exact decryption and replay
 
@@ -167,7 +169,7 @@ What remains unresolved:
 - the species-name semantic reading and reflection→modular-reciprocal step are source-constrained interpretations, not signed instructions;
 - assigning cube exponent3 to the boundary and reciprocal exponent27 to the five-rune p25 word is supported by the existing signed-cube operator and side-object work but remains a local two-part application;
 - p40 PATHS was known before this chain was assembled, so this is not a blind plaintext probability;
-- the mechanism has not yet predicted a fresh second receiver under frozen rules;
+- the mechanism has not yet predicted a fresh second receiver under frozen rules; the choice of signed-index origin, shell role order and left cut output must be locked before any such test;
 - no long p40 body plaintext or general LP2 cipher follows.
 
 The correct next test is a **fresh precommitted receiver**, not another parameter sweep.

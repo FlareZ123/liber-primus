@@ -56,31 +56,103 @@ function H4Inv(h) {
 
 const root = path.join(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(root,'resources','liber-primus','lp2-corpus.json'),'utf8'));
-const master = fs.readFileSync(path.join(root,'resources','transcriptions','liber_primus_master.txt'),'utf8');
-const runeValue = new Map(corpus.runes.map((r,i)=>[r,i]));
+const transcription = fs.readFileSync(path.join(root,'resources','liber-primus','lp2-transcription.txt'),'utf8').replace(/\r/g,'');
+const signedSource = fs.readFileSync(path.join(root,'resources','historical','cicada2016-4gq25-outguess.asc'),'utf8').replace(/\r/g,'');
+const runeSet = new Set(corpus.runes);
+const runeIndex = new Map(corpus.runes.map((r,i)=>[r,i]));
+const gpTokens = corpus.translit.map((symbol,value)=>({symbol,value})).sort((l,r)=>r.symbol.length-l.symbol.length);
 
-const segments = master.split('%').slice(16, 74);
-assert.equal(segments.length, 58);
+/** @param {string} word @returns {number[]} */
+function gp(word) {
+  const normalized = word
+    .toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
 
-function pageWords(page) {
-  let offset = 0;
-  const words = [];
-  for (const raw of segments[page].replaceAll('/','').split(/[-.&$§]/)) {
-    const inds = [...raw].filter((ch)=>runeValue.has(ch)).map((ch)=>runeValue.get(ch));
-    if (!inds.length) continue;
-    words.push({
-      start: offset,
-      len: inds.length,
-      sum: inds.reduce((a,b)=>a+b,0),
-      inds
-    });
-    offset += inds.length;
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      values.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      values.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = gpTokens.find((candidate) =>
+      normalized.startsWith(candidate.symbol, offset)
+    );
+    assert.ok(token, "unmapped GP spelling: " + normalized.slice(offset));
+    values.push(token.value);
+    offset += token.symbol.length;
   }
-  assert.equal(offset, corpus.pages[page].runic_count);
+  return values;
+}
+
+/** @param {number} block @returns {number} */
+function physicalPage(block) {
+  return block < 50 ? block : block + 1;
+}
+
+/**
+ * @returns {Array<{
+ *   startPage:number,startOffset:number,endPage:number,endOffset:number,
+ *   values:number[]
+ * }>}
+ */
+function parseWords() {
+  let block = 0;
+  let page = 0;
+  let pageOffset = 0;
+  let startPage = null;
+  let startOffset = null;
+  let runes = [];
+  const words = [];
+
+  const close = () => {
+    if (runes.length === 0) return;
+    words.push({
+      startPage,
+      startOffset,
+      endPage: page,
+      endOffset: pageOffset - 1,
+      values: runes.map((rune) => runeIndex.get(rune)),
+    });
+    startPage = null;
+    startOffset = null;
+    runes = [];
+  };
+
+  for (const ch of transcription) {
+    if (runeSet.has(ch)) {
+      if (runes.length === 0) {
+        startPage = page;
+        startOffset = pageOffset;
+      }
+      runes.push(ch);
+      pageOffset += 1;
+    } else if (ch === "-" || ch === "." || ch === "&" || ch === "$") {
+      close();
+    } else if (ch === "%") {
+      block += 1;
+      page = physicalPage(block);
+      pageOffset = 0;
+    }
+  }
+  close();
   return words;
 }
 
-for (let p=0; p<58; p++) pageWords(p);
+const canonicalWords = parseWords();
+function pageWords(page) {
+  return canonicalWords.filter(w=>w.startPage===page && w.endPage===page).map(w=>({start:w.startOffset,len:w.values.length,sum:w.values.reduce((a,b)=>a+b,0),inds:w.values}));
+}
+for(let p=0;p<58;p++) assert.equal(corpus.pages[p].indices.length,corpus.pages[p].runic_count);
 
 const p25Object = corpus.pages[25].indices.slice(144,150);
 assert.deepEqual(p25Object, [18,3,20,10,11,16]);
@@ -107,16 +179,12 @@ for (let cut=1; cut<transformed.length; cut++) {
 assert.deepEqual(cuts, [[3,57],[13,47],[29,31],[32,28],[40,20]]);
 assert.deepEqual(cuts[4], [40,20]);
 
-const targetStates = new Map([
-  [3,  {word:'LIES',      gp:[20,10,18,15]}],
-  [13, {word:'WAY',       gp:[7,24,26]}],
-  [20, {word:'MEANING',   gp:[19,18,24,9,10,21]}],
-  [28, {word:'THE',       gp:[2,18]}],
-  [29, {word:'DIRECTION', gp:[23,10,4,18,5,16,10,3,9]}],
-  [31, {word:'AND',       gp:[24,9,23]}],
-  [32, {word:'YOU',       gp:[26,3,1]}],
-  [40, {word:'PATHS',     gp:[13,24,2,15]}]
-]);
+const clear = signedSource.split("-----BEGIN PGP SIGNATURE-----")[0];
+const signed = clear.slice(clear.indexOf("Hello.")).split(/[^A-Za-z0-9]+/).filter(w=>/^[A-Za-z]+$/.test(w)).map(w=>({word:w.toUpperCase(),gp:gp(w)}));
+assert.equal(signed.length,43);
+const targetStates = new Map(signed.map((w,i)=>[i,w]));
+assert.deepEqual(signed[20],{word:"MEANING",gp:[19,28,9,21]});
+assert.deepEqual(signed[29],{word:"DIRECTION",gp:[23,10,4,18,5,16,27,9]});
 
 const inRange = [...new Set(cuts.flat().filter((x)=>targetStates.has(x)))].sort((a,b)=>a-b);
 assert.deepEqual(inRange, [3,13,20,28,29,31,32,40]);
@@ -141,6 +209,22 @@ assert.deepEqual(hits[0].matches[0],{
   sum:54,
   inds:[4,15,14,21]
 });
+
+// Origin sensitivity: the signed-source ordinal and printed page-number
+// convention are not interchangeable. Keep the selected zero/zero convention
+// but expose all four finite index variants without selecting a new receiver.
+const originCounts = [];
+for (const sourceOrigin of [0,1]) for (const pageOrigin of [0,1]) {
+  const rows = inRange.map(n=>{
+    const target = signed[n-sourceOrigin];
+    const sum = target.gp.reduce((a,b)=>a+b,0);
+    const matches = pageWords(n-pageOrigin).filter(w=>w.len===target.gp.length && w.sum===sum);
+    return {n,target:target.word,page:n-pageOrigin,matches};
+  });
+  originCounts.push([sourceOrigin,pageOrigin,rows.filter(row=>row.matches.length).length,rows.reduce((a,row)=>a+row.matches.length,0)]);
+}
+assert.deepEqual(originCounts,[[0,0,1,1],[0,1,3,5],[1,0,4,4],[1,1,0,0]]);
+console.log('source/page origin sensitivity (origin pair, hit indices, hit objects):',originCounts);
 
 const p = 23;
 const g = 5;

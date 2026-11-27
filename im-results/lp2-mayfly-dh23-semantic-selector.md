@@ -185,7 +185,7 @@ Under the fixed four-rune H inverse this is key `[20,20,12,6]`, and exact subtra
 = PATHS.
 ```
 
-The result is valuable because the upstream chain now supplies the p40 page, target, receiver type and exact numeric key without consulting p40 rune values. It is **not a blind plaintext discovery**: the p40 PATHS candidate and its shell predate this connection. The new evidence is causal reconstruction and removal of the old p50-low-digit dependency.
+The result is valuable as a conditional reconstruction of the p40 page, target, receiver type and numerical key. Its zero-based source/page convention and ordered shell roles were adopted retrospectively; both reciprocal and negative-b labels for the first coordinate are functions of the same known DH example. The corrected canonical-token cut control preserves the zero/zero result, but other origins change the set of receivers (see the producer report). It is **not a blind plaintext discovery**: the p40 PATHS candidate and its shell predate this connection. The new evidence is causal reconstruction and removal of the old p50-low-digit dependency.
 
 See `im-results/lp2-p25-paths40-direct-consumer.md` and `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
 

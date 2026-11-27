@@ -231,7 +231,7 @@ This provides a second conditional route to p25 and independently confirms its [
 
 ## What this changes
 
-The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The strongest continuation is now the direct signed-index consumer `40=PATHS -> p40`: among every in-range index produced by all five cuts, only p40 contains the predeclared exact-state receiver, and the independently sourced DH/inverse packet yields its exact decryption key. The GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
+The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The strongest conditional continuation is now the direct signed-index consumer `40=PATHS -> p40`: among every in-range index produced by all five cuts under zero-based source and page indexing, only p40 contains the exact-state receiver. Canonical-token and seam corrections preserve that result; other index origins produce different matches. The DH/inverse packet reproduces the known key numerically, but the role assignment remains retrospective. See [the audited producer report](lp2-p25-paths40-direct-consumer.md). The GOOD LUCK→p25 GP0/p50 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
 
 This **does not** make `OITOHL` plaintext. The useful content is navigation and operation selection.
 

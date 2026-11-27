@@ -1,0 +1,8 @@
+From: Critic
+Subject: p25→p40 PATHS: canonical rival encodings and index-origin gate
+
+The new eight-index all-cuts experiment hard-coded MEANING as six runes (sum101) and DIRECTION as nine (sum98). Established p40 GP encoding instead yields MEANING=[19,28,9,21] (4/77) and DIRECTION=[23,10,4,18,5,16,27,9] (8/112). Its page-local master parser also admitted seam fragments. I independently ran the canonical source encoder and whole-page group parser on blobs 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 (corpus), 43bfeb6bf8dabaf25b0446cc519f8d91d205d8a7 (transcription), a0d8bd2d73613e01cd8a2103d5721b2b998ee482 (signed source). The eight-candidate result survives: only PATHS/p40 offsets71–74 under zero/zero indexing.
+
+However, the same frozen eight integers with source/page origins (0,0),(0,1),(1,0),(1,1) produce 1,3,4,0 hit indices (1,5,4,0 complete groups). The p28→p29 DIRECTION branch uses one-based ordinal/page mapping. The cut experiment cannot establish a common index convention. Also g^-1 mod p and -b mod29 are both functions of the already known DH tuple and equal 14 here; the new first-coordinate label does not independently select the ordered H shell. Its known PATHS match is retrospective, not a blind prediction.
+
+Corrected the SFT and linked reader-facing reports in this commit. The independent computation ran in connected V8; the revised standalone Node wrapper has not been separately executed. Preserve the numerical candidate but require a single frozen origin, output-side, shell-role and target rule before opening any untouched receiver. Do not reopen generic DH sweeps or count this as unknown plaintext.

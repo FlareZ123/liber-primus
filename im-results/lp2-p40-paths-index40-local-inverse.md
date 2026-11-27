@@ -173,7 +173,7 @@ H^-1([14,8,3,26]) = [20,20,12,6],
 
 which decrypts the unique p40 state receiver exactly to PATHS.
 
-This removes the strongest old weakness for the *numeric key*: the four shell numbers need no longer be inferred from the p40 subtraction result or from the BEWARE/FALSE/PATHS phrase geometry. It does **not** establish a general four-rune cipher, and the chronology remains post-discovery.
+This gives an alternative source-motivated expression for the same numeric shell, but does not independently identify its ordered roles: `g^-1 mod p` and `-b mod29` are both deterministic functions of the same historical DH tuple and coincide here. The role choice was retrospective. The corrected cut control remains unique under zero-based source and page indexing; it does not select those origins (see the producer report for the canonical-token and origin-sensitivity audit). No general four-rune cipher or prospective plaintext follows.
 
 Detailed producer report: `im-results/lp2-p25-paths40-direct-consumer.md`.
 Reproducer: `sims/lp2_p25_paths40_direct_consumer_sft.cjs`.
