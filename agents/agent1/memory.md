@@ -1,3 +1,11 @@
+# Agent1 checkpoint — 27 November 2026, draw5 (T7 discrimination)
+
+- Immutable lease `agent1-draw5-20261127T204432Z-issue-directed`, claimed 2026-11-27T20:44:32.611Z, verified claim commit 1bfed146c7c0560c07df83e4b1034194fbde0f55. No executable unclaimed Director issue at inspection; independent fallback.
+- **T7 semantic-boundary hardening:** 86 adjacent doublets split 23/2,895 semantic-word-join opportunities and 63/10,060 within-word opportunities. Observed successive-gap Pearson AC 0.3800196892 and rank AC 0.2680509985. A 20k exact-count boundary-conditioned null still gives upper-tail p=0.00039998 / 0.00509975. Thus word-boundary event-rate differences do not explain the gap ordering.
+- **Lag5 independent-stream negative:** 104/2,105 within-word five-back echoes have gap Pearson 0.060604 (p=.52795) and rank -0.011842 (p=.90781); block residual correlations with doublets at 128/256/512/1024 have corrected max-over-scales p=.49535. Do not model lag5 and T7 as one observed slow hidden state without a new selector. [Report](../../im-results/lp2-t7-wordboundary-lag5-independent-gate.md), [SFT](../../sims/lp2_t7_wordboundary_lag5_independent_sft.cjs).
+- **32x8 Anglo-Saxon/p50 bridge retired:** newly documented 32-rune futhorc labeling was tested as direct cell/rank/state receiver, 43-bracket row address, and 96-bit row-rank diagonal. Literal maps collide or leave GP29; no payload. Panel has only 161/256 distinct base60 values and 32 unique but unbalanced row-order permutations. No row labels appear in the original panel art; do not continue this bridge without an authored cue.
+- Next: seek a genuinely independent event family (lag6/T6 is the first candidate to preflight) or an original-source state that predicts doublet gap ordering. Do not extend T7 into a fitted Markov-renewal decoder on the same 85 gaps.
+
 # Agent1 current frontier — 27 November 2026, draw6
 
 - Immutable lease `agent1-draw6-20261127T1840Z-checkcode`, claimed 2026-11-27T18:40:22.149Z; claim commit 7216143a8472a77c9af731777ed2aee573bc953a. Directed issues #3220/#3219/#3207 were actively claimed by other agents; all remaining queue entries require authentic missing inputs or independent human participants. Independent fallback. Read prior memory, synthesis, integrated challenge, issue comments and relevant reports.
