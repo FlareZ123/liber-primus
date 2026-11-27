@@ -114,21 +114,25 @@ Across all **448** canonical complete two-rune words on unknown p0–55, exact H
 
 [Windows Node22 reproduction **45915515638 PASS**](https://github.com/FlareZ123/liber-primus/actions/runs/45915515638).
 
-### Direct ROAD handoff to the existing p23 instruction
+### Direct ROAD handoff to the current p23 RISE route
 
-Under the hypothesis's zero-based source lookup, the output ends on source index **23 ROAD**. Under the source-number-as-project-page convention this points to p23 without consuming the polynomial-root orientation. P23 had previously yielded the conditional red-heading candidate:
+The new output ends on source index **23 ROAD**. Under the already used source-number-as-project-page convention this points directly to project p23 without consuming the retired reciprocal-root23 interpretation.
+
+P23 independently yields the red-heading instruction:
 
 ```text
 THE ONE RISE.
 ```
 
-That earlier route prospectively interpreted one rise from source/project23 to24, selecting authenticated **AND24**. The established numbered-diagonal p24 checkpoint then gives:
+The current p23 synthesis fixes RISE from the repeated source-visible cardinal pair `[3,5]` as a **+2 page operation**. It occurs at p23, p33 and p40 and has independently supported destinations:
 
 ```text
-AND24 -> p24 canonical word25 -> H2 [12,13] -> THE WAY.
+p23 + 2 -> p25
+p33 + 2 -> p35
+p40 + 2 -> p42.
 ```
 
-The new p29 result therefore connects already established pieces as:
+Therefore the new p29 handoff extends only as:
 
 ```text
 READ OUT THE DIRECTION
@@ -136,13 +140,12 @@ READ OUT THE DIRECTION
  -> p29 word29 H2 = THE ROAD
  -> ROAD23 selects p23
  -> p23 THE ONE RISE
- -> one rise 23 -> 24 AND
- -> AND24 numbered checkpoint = THE WAY.
+ -> one RISE = +2 -> p25.
 ```
 
-This is a different p23 selector from the old reciprocal-root23 proposal. The source-selected polynomial orientation remains root24; nothing here revives or overrides the retired root23 branch.
+P25 is independently selected by the authenticated GOOD LUCK route and contains the manuscript-unique `[K,g]` cube-side object leading onward to p28 READ OUT. This is a source-constrained navigation convergence, not a plaintext recovery.
 
-The chain is structural source-register navigation, not continuous unknown-page prose. The remaining promotion gate is a genuinely new reversible ciphertext receiver selected by this route, rather than another coordinate correspondence.
+The earlier literal +1 interpretation `23 -> 24 AND` produced one prospective GP0 echo on p24 but failed unchanged corridor transfer and is now the weaker branch. It must **not** be used to connect this p29 result to the separate AND24 → THE WAY checkpoint. The p29 result therefore does not independently strengthen the WAY→p13:3 closure.
 
 ## READ OUT with the fixed H serialization
 
@@ -308,7 +311,7 @@ Preserve as a **source-selected structural operation candidate**:
 ```text
 READ OUT THE DIRECTION
  -> p29 words29/30
- -> word29 H2=[22,23]=THE ROAD -> ROAD23/p23
+ -> word29 H2=[22,23]=THE ROAD -> ROAD23/p23 -> ONE RISE(+2) -> p25
  -> word30 H4=[p-1,b,A,0]
  -> e=3
  -> p29 derivative order3 at root24
