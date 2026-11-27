@@ -69,6 +69,29 @@ assert.equal(B, 19);
 assert.equal(KFromA, 2);
 assert.equal(KFromB, 2);
 
+const riseDisplacement = 5 - 3;
+assert.equal(riseDisplacement, KFromA);
+
+const inverseG = modPow(g, p - 2, p);
+assert.equal(inverseG, 14);
+
+const figure4Specimens = [1, 2, 3, 5, 6, 7, 8];
+const specimenInverses = figure4Specimens.map((n) => [n, modPow(n, p - 2, p)]);
+assert.deepEqual(specimenInverses, [
+  [1, 1],
+  [2, 12],
+  [3, 8],
+  [5, 14],
+  [6, 4],
+  [7, 10],
+  [8, 3],
+]);
+assert.deepEqual(specimenInverses.filter(([, inverse]) => inverse === 14), [[5, 14]]);
+
+const e = 3;
+assert.equal(14 * g - e * p, 1);
+assert.equal((15 * e) % (p - 1), 1);
+
 console.log('Mayfly/DH23 semantic-selector arithmetic witness');
 console.log('GP index 23:', corpus.runes[23], corpus.translit[23], '(Dæg/day semantic anchor)');
 console.log('GP index 5 :', corpus.runes[5], corpus.translit[5], '(Cēn/torch-fire semantic anchor)');
@@ -76,5 +99,9 @@ console.log('p25 source object:', p25Object);
 console.log('H(outer) = [K,g]:', Kg);
 console.log('state triangle [K,g], [A,g], [K,A]:', Kg, Ag, KA);
 console.log('DH p,g,a,b,A,B,K:', [p, g, a, b, A, B, KFromA]);
+console.log('RISE displacement (=K):', riseDisplacement);
+console.log('Figure-4 inverses mod23:', specimenInverses);
+console.log('g^-1 mod p:', inverseG, '(returns p14)');
+console.log('Bezout witness:', `${inverseG}*${g} - ${e}*${p} = ${inverseG * g - e * p}`);
 console.log('PASS: all source-corpus arithmetic identities reproduce exactly.');
 console.log('NOTE: semantic species-name interpretation is documented evidence, not computationally proved here.');
