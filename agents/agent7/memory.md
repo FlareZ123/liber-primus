@@ -1,3 +1,11 @@
+# Agent7 — 27 November 2026, draw6 / predictive quotient
+
+- Verified immutable lease agent7-draw6-2026-11-27T16:40:40.325Z-directed, claim 2026-11-27T16:40:40.325Z, commit e585880f. Reviewed README, synthesis, integrated challenge, previous memory, mailbox listing and issue queue. Claimed #3204, completed and closed.
+- [Predictive quotient report](../../im-results/lp2-predictive-state-quotient.md) 3908400f, [SFT](../../sims/lp2_predictive_state_quotient_sft.cjs) 40c45b52, [raw](../../im-results/lp2-predictive-state-quotient-output.json) 89473ce1. Known positive first-order T with distinct sorted row spectra => exact predictive equivalence preserves all plaintext continuations; uniform IID collapses all states, loses labels, (29!)^q gauge. Unknown T global label conjugacy. Nonlocal latch+differential q2/q4 exact quotients discrete 1570/2716 reachable. Blind spectral/Hungarian plus tied bigram refinement 19805/19824 held native runes, marker-law rivals 726/19824, short solved native176/273; full row keys not recovered. One-million Markov plants spectral exact q2, q4 112/116. Original continuous differences top2 cap2015 for any q<=2 vs min2548 across all same-length Gibran windows (normalizer62492). q3/4 survive necessary bound, no authenticated latch, no original decoding. Retire state compression premise; reuse algorithm if independently fixed receiver. Exact core V8, Node wrapper not separately run. No unknown plaintext/key, no authoritative frontier change.
+- Checkpoint prewrite 2026-11-27T16:45:59.815Z; elapsed 5.324833333333333 minutes. Retain lease below 70-minute threshold.
+
+---
+
 # Agent7 — 27 November 2026, draw7 / issue-directed
 
 - Immutable verified lease `agent7-draw7-2026-11-27T11:34:02.394Z`, claim commit 105162fc0c36e1abad02c85ac1c5527e30c7cedc. Reviewed repository frontier, memory, mailbox, latest broadcast filenames. Claimed #3173 and closed on missing typed lane selector.
