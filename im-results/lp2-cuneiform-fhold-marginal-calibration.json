@@ -1,0 +1,157 @@
+{
+  "summary": {
+    "count": 6,
+    "keyCorrect": 535,
+    "heldCorrect": 538,
+    "maskErrors": 0,
+    "positiveFit": [
+      -1469.3523223070993,
+      -1368.860335011967
+    ],
+    "positiveHeld": [
+      62.3580348565055,
+      108.58635500608204
+    ],
+    "wrongHeld": [
+      -285.1402839550459,
+      -215.64353190160813
+    ],
+    "independentFit": [
+      -2046.9156441485352,
+      -2023.5040816731944
+    ],
+    "independentHeld": [
+      -175.41615358161744,
+      -132.52445718775408
+    ],
+    "passes": 6,
+    "gate": true
+  },
+  "batches": [
+    "im-results/lp2-cuneiform-fhold-marginal-batch-00.json",
+    "im-results/lp2-cuneiform-fhold-marginal-batch-02.json",
+    "im-results/lp2-cuneiform-fhold-marginal-batch-04.json"
+  ],
+  "controls": [
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1408.67691131216,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 97.18866250429363,
+        "expanded": 47219
+      },
+      "wrongHeld": {
+        "heldBF": -252.80900671670122
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2040.5561238713976,
+        "heldBF": -151.02113942315782,
+        "expanded": 65205
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1469.3523223070993,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 85.94947042116189,
+        "expanded": 46810
+      },
+      "wrongHeld": {
+        "heldBF": -215.64353190160813
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2038.5299411544734,
+        "heldBF": -158.38533417026468,
+        "expanded": 63006
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1429.0534720126877,
+        "keyCorrect": 87,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 98.1613770451844,
+        "expanded": 47290
+      },
+      "wrongHeld": {
+        "heldBF": -238.21555052815364
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2023.5040816731944,
+        "heldBF": -175.41615358161744,
+        "expanded": 63555
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1434.3668288951453,
+        "keyCorrect": 88,
+        "maskErrors": 0,
+        "heldCorrect": 88,
+        "heldBF": 87.64420439730483,
+        "expanded": 46622
+      },
+      "wrongHeld": {
+        "heldBF": -222.24439099719024
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2043.1212305527442,
+        "heldBF": -132.52445718775408,
+        "expanded": 64264
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1390.93008640629,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 108.58635500608204,
+        "expanded": 47116
+      },
+      "wrongHeld": {
+        "heldBF": -285.1402839550459
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2025.9962065498075,
+        "heldBF": -146.79933232692565,
+        "expanded": 62626
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1368.860335011967,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 62.3580348565055,
+        "expanded": 45894
+      },
+      "wrongHeld": {
+        "heldBF": -265.2725886564744
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2046.9156441485352,
+        "heldBF": -137.6284501567397,
+        "expanded": 66805
+      }
+    }
+  ]
+}
