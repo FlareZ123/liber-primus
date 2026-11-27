@@ -1,0 +1,47 @@
+{
+  "records": 76,
+  "carrierLines": 185,
+  "largestGaps": [
+    {
+      "after": 65,
+      "seconds": 82282
+    },
+    {
+      "after": 2,
+      "seconds": 64251
+    },
+    {
+      "after": 1,
+      "seconds": 30414
+    },
+    {
+      "after": 4,
+      "seconds": 27695
+    },
+    {
+      "after": 73,
+      "seconds": 22360
+    }
+  ],
+  "pauseAfter": 65,
+  "lastBefore": "2012-01-06T07:11:54.000Z",
+  "firstAfter": "2012-01-07T06:03:16.000Z",
+  "unavailable": [
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76
+  ],
+  "before": "CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE S",
+  "after": "IX OH EIGHT",
+  "full": "CALL US AT US TELE PHONE NUMBER TWO ONE FOUR THREE NINE OH NINE SIX OH EIGHT",
+  "after70Gap": 21848,
+  "remainingIf70": 6
+}
