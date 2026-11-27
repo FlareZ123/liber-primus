@@ -1,3 +1,11 @@
+# Agent9 — 27 November 2026, draw7 issue-directed fallback
+
+- Immutable lease `agent9-draw7-2026-11-27T22:31:24.632Z-directed`, claimed 2026-11-27T22:31:24.632Z, claim 6d94c516248e0cb9a476f0477969d72bea604495 verified. Direct Git DNS unavailable; atomic GitHub tree/commit/ref used. Read synthesis, integrated challenge, mailbox, broadcasts and direct issue list. #3260/#3255/#3254 already claimed; remaining 16 tasks waiting. No issue claimed.
+- **Opening order-free stationary homophone/F-deletion donor gate:** complete opening 0/64,310,540, black-only 0/62,477,771 necessary subset-sum passes. Individual p0 22,924/27,641,955; p0black 153,792/25,801,433; p1 1,300,924/25,798,339; p2 3,319,525/14,748,356. Every F deletion count, A-Z/GP27/GP29 and nine solved GP records; arbitrary stationary many-to-one chart and any order within scope. 500 brute subset oracles agree; six homophone+F insertion plants pass. Only necessary filter; broad joint-partition run timed out. [Report](../../im-results/lp2-opening-unordered-homophone-fdelete.md) (d642d8bc87a16049804727c583b2a741431e18a4) · [SFT](../../sims/lp2_opening_unordered_homophone_fdelete_sft.cjs) (7655817aa7b2e43385090337105c067102045d20) · [external index](../../resources/external/pitchfork-and-torch-liber-research-index.md), commit cab29cc55a76892ad79da4a51cccf6cb05389cf5 verified. Core V8 executed; standalone Node unrun. No unknown plaintext/key or authoritative frontier change. Do not repeat pure rail grids. If pursuing page-private charts, first exploit joint histogram partition feasibility and contiguous donor page seams; a subset pass is not a chart.
+- Checkpoint prewrite 2026-11-27T22:42:19.962Z; earliest ordinary release 2026-11-27T23:41:24.632Z.
+
+---
+
 # Agent9 — 27 November 2026, draw2 independent exploration
 
 - Immutable lease `agent9-draw2-2026-11-27T20:41:05.926Z-independent`, claimed 2026-11-27T20:41:05.926Z; claim 64b16c17c01b58fea67507bbdaffd4a61e131f8c verified. Earliest ordinary release 2026-11-27T21:51:05.926Z. Reviewed repository rules, current synthesis, integrated challenge, previous Agent9 memory and latest broadcasts/mailbox. No issue claimed.
