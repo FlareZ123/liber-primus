@@ -17,16 +17,22 @@ const scan=(C,D,os)=>{
  const f=new Int16Array(n),g=new Int16Array(n),stampF=new Int32Array(n),stampG=new Int32Array(n);let stamp=0;
  for(const o of os){const rr=reps.map(i=>R[o+i-1]);for(let s=0;s<wins;s++){checked++;stamp++;let ok=true,mapped=0;for(let k=0;k<reps.length;k++){let p=D[s+reps[k]],r=rr[k];if(stampF[p]===stamp&&f[p]!==r||stampG[r]===stamp&&g[r]!==p){ok=false;break}if(stampF[p]!==stamp){stampF[p]=stamp;f[p]=r;stampG[r]=stamp;g[r]=p;mapped++}}if(!ok)continue;posPass++;
  for(let i=1;i<C.length;i++){let p=D[s+i],r=R[o+i-1];if(C[i]!==C[i-1]&&stampF[p]===stamp&&f[p]===r){ok=false;break}}if(!ok)continue;negPass++;
- if(mapped===28){let p=range().find(x=>stampF[x]!==stamp),r=range().find(x=>stampG[x]!==stamp);f[p]=r;stampF[p]=stamp;mapped++}
- if(mapped!==29){partialPass++;if(examples.length<10)examples.push({o,s,mapped,kind:"partial"});continue}
- const S=Array.from(f),slots=range(),bind=Array(n).fill(-1),rev=Array(n).fill(-1);
- for(let i=0;i<C.length;i++){let j=S[D[s+i]],slot=slots[j],c=C[i];if(bind[slot]>=0&&bind[slot]!==c||rev[c]>=0&&rev[c]!==slot){ok=false;break}bind[slot]=c;rev[c]=slot;slots.splice(j,1);slots.splice(R[o+i],0,slot)}
- if(!ok)continue;completePass++;if(examples.length<10)examples.push({o,s,mapped,kind:"complete",S,A:bind,exact:bind.every(x=>x>=0)&&equal(encode(D.slice(s,s+C.length),o,S,bind),C)})
+ const S=Array.from(f,(v,p)=>stampF[p]===stamp?v:-1),free=range().filter(p=>S[p]<0),freeRanks=range().filter(r=>stampG[r]!==stamp);
+ const forbidden=Array(n).fill(0);for(let i=1;i<C.length;i++)if(C[i]!==C[i-1])forbidden[D[s+i]]|=1<<R[o+i-1];
+ let completions=0, nodes=0, capped=false;
+ const visit=(k,used)=>{if(++nodes>200000){capped=true;return}if(k<free.length){let p=free[k];for(let r of freeRanks){if((used|forbidden[p])&(1<<r))continue;S[p]=r;visit(k+1,used|(1<<r));if(capped)break}S[p]=-1;return}
+ const slots=range(),bind=Array(n).fill(-1),rev=Array(n).fill(-1);
+ for(let i=0;i<C.length;i++){let j=S[D[s+i]],slot=slots[j],c=C[i];if(bind[slot]>=0&&bind[slot]!==c||rev[c]>=0&&rev[c]!==slot)return;bind[slot]=c;rev[c]=slot;slots.splice(j,1);slots.splice(R[o+i],0,slot)}
+ const unseen=range().filter(c=>rev[c]<0);for(let j=0;j<n;j++)if(bind[j]<0)bind[j]=unseen.shift();
+ assert(equal(encode(D.slice(s,s+C.length),o,S,bind),C),"candidate replay");
+ completions++;if(examples.length<10)examples.push({o,s,mapped,kind:"complete",S:S.slice(),A:bind,exact:true});
+ };free.sort((p,q)=>freeRanks.filter(r=>!(forbidden[p]&(1<<r))).length-freeRanks.filter(r=>!(forbidden[q]&(1<<r))).length);visit(0,0);
+ if(completions)completePass++;if(capped)partialPass++;
  }}
  return {n:C.length,repeats:reps.length,windows:wins,origins:os.length,checked,posPass,negPass,completePass,partialPass,examples}
 };
 let seed=0x91de15a1;const rng=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/2**32};const perm=()=>{let a=range();for(let i=n-1;i>0;i--){let j=Math.floor(rng()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-const controls=[];for(const [s,o] of [[1001,37],[20001,229]]){let P=D.slice(s,s+N),S=perm(),A=perm(),cp=encode(P,o,S,A);assert(equal(decode(cp,o,S,A),P),"plant invert");let q=scan(cp,D,[o]);let hit=q.examples.find(x=>x.s===s&&x.kind==="complete");controls.push({s,o,truthS:S,truthA:A,...q,exactKey:!!hit&&equal(hit.S,S)&&equal(hit.A,A),exactPlain:!!hit&&hit.exact})}
+const controls=[];for(const [s,o] of [[1001,37],[20001,229]]){let P=D.slice(s,s+N),S=perm(),A=perm(),cp=encode(P,o,S,A);assert(equal(decode(cp,o,S,A),P),"plant invert");let q=scan(cp,D,Array.from({length:origins},(_,i)=>i));let hit=q.examples.find(x=>x.s===s&&x.kind==="complete");controls.push({s,o,truthS:S,truthA:A,...q,exactKey:q.examples.some(x=>x.s===s&&x.o===o&&equal(x.S,S)&&equal(x.A,A)),exactPlain:!!hit&&hit.exact})}
 const os=Array.from({length:origins},(_,i)=>i);
 const start=corpus.pages.filter(p=>p.page<40).reduce((s,p)=>s+p.indices.length,0),end=corpus.pages.filter(p=>p.page<54).reduce((s,p)=>s+p.indices.length,0);
 const whole=scan(C,D,os),chapter=scan(C.slice(start,end),D,os);
