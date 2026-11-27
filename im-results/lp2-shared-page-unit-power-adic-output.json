@@ -1,0 +1,681 @@
+{
+  "N": 20,
+  "W": 16,
+  "fitPages": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    8,
+    9,
+    10,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    24,
+    25,
+    26,
+    28,
+    29,
+    30,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    40,
+    41,
+    42,
+    44,
+    45,
+    46,
+    48,
+    49,
+    51,
+    53,
+    54,
+    55
+  ],
+  "heldPages": [
+    3,
+    7,
+    11,
+    15,
+    19,
+    23,
+    27,
+    31,
+    35,
+    39,
+    43,
+    47,
+    52
+  ],
+  "original": [
+    {
+      "rev": false,
+      "e": "138003565351566498980781861379",
+      "fit": -3.3582360895281758,
+      "held": -3.5122741642160578,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "fit": -3.7141400128620767,
+          "truthRetained": null
+        },
+        {
+          "j": 2,
+          "fit": -3.603969972779433,
+          "truthRetained": null
+        },
+        {
+          "j": 3,
+          "fit": -3.520093507228567,
+          "truthRetained": null
+        },
+        {
+          "j": 4,
+          "fit": -3.4769752167837837,
+          "truthRetained": null
+        },
+        {
+          "j": 5,
+          "fit": -3.441476782413242,
+          "truthRetained": null
+        },
+        {
+          "j": 6,
+          "fit": -3.4263450237469937,
+          "truthRetained": null
+        },
+        {
+          "j": 7,
+          "fit": -3.420519221453746,
+          "truthRetained": null
+        },
+        {
+          "j": 8,
+          "fit": -3.406257508869077,
+          "truthRetained": null
+        },
+        {
+          "j": 9,
+          "fit": -3.395869130739183,
+          "truthRetained": null
+        },
+        {
+          "j": 10,
+          "fit": -3.387837941211364,
+          "truthRetained": null
+        },
+        {
+          "j": 11,
+          "fit": -3.3842739023417603,
+          "truthRetained": null
+        },
+        {
+          "j": 12,
+          "fit": -3.3785797740326275,
+          "truthRetained": null
+        },
+        {
+          "j": 13,
+          "fit": -3.369746940599977,
+          "truthRetained": null
+        },
+        {
+          "j": 14,
+          "fit": -3.3714286268592644,
+          "truthRetained": null
+        },
+        {
+          "j": 15,
+          "fit": -3.3695518032629623,
+          "truthRetained": null
+        },
+        {
+          "j": 16,
+          "fit": -3.367015606143456,
+          "truthRetained": null
+        },
+        {
+          "j": 17,
+          "fit": -3.3629486395514547,
+          "truthRetained": null
+        },
+        {
+          "j": 18,
+          "fit": -3.3612385893696772,
+          "truthRetained": null
+        },
+        {
+          "j": 19,
+          "fit": -3.3608498023206383,
+          "truthRetained": null
+        },
+        {
+          "j": 20,
+          "fit": -3.3582360895281766,
+          "truthRetained": null
+        }
+      ],
+      "sample": [
+        {
+          "page": 0,
+          "text": "X X P T U EA G D EO G C N E G M OE NG IA P A"
+        },
+        {
+          "page": 1,
+          "text": "A N I T NG TH E N D A IA EO AE Y W TH X NG L OE"
+        },
+        {
+          "page": 2,
+          "text": "OE E C W I U I N TH G AE F Y O TH R EO P IA B"
+        },
+        {
+          "page": 3,
+          "text": "L AE O AE W X B P IA M TH EO S I AE X P H L Y"
+        },
+        {
+          "page": 4,
+          "text": "L P A NG A I D E TH P IA G EA G EA J P EO X S"
+        }
+      ]
+    },
+    {
+      "rev": true,
+      "e": "36824852173275248989409060543",
+      "fit": -3.3636002614934903,
+      "held": -3.5229231366360074,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "fit": -3.7064346290939834,
+          "truthRetained": null
+        },
+        {
+          "j": 2,
+          "fit": -3.559201966923312,
+          "truthRetained": null
+        },
+        {
+          "j": 3,
+          "fit": -3.5221907174566724,
+          "truthRetained": null
+        },
+        {
+          "j": 4,
+          "fit": -3.4631641970113574,
+          "truthRetained": null
+        },
+        {
+          "j": 5,
+          "fit": -3.435237101536302,
+          "truthRetained": null
+        },
+        {
+          "j": 6,
+          "fit": -3.4173587841108546,
+          "truthRetained": null
+        },
+        {
+          "j": 7,
+          "fit": -3.406680691158615,
+          "truthRetained": null
+        },
+        {
+          "j": 8,
+          "fit": -3.4012622958782948,
+          "truthRetained": null
+        },
+        {
+          "j": 9,
+          "fit": -3.390582443181279,
+          "truthRetained": null
+        },
+        {
+          "j": 10,
+          "fit": -3.3848440744007675,
+          "truthRetained": null
+        },
+        {
+          "j": 11,
+          "fit": -3.3835161204576463,
+          "truthRetained": null
+        },
+        {
+          "j": 12,
+          "fit": -3.3758598681644822,
+          "truthRetained": null
+        },
+        {
+          "j": 13,
+          "fit": -3.3775827856335208,
+          "truthRetained": null
+        },
+        {
+          "j": 14,
+          "fit": -3.3731011949286187,
+          "truthRetained": null
+        },
+        {
+          "j": 15,
+          "fit": -3.3701357460554773,
+          "truthRetained": null
+        },
+        {
+          "j": 16,
+          "fit": -3.3676066174660897,
+          "truthRetained": null
+        },
+        {
+          "j": 17,
+          "fit": -3.365411155157576,
+          "truthRetained": null
+        },
+        {
+          "j": 18,
+          "fit": -3.361394326958029,
+          "truthRetained": null
+        },
+        {
+          "j": 19,
+          "fit": -3.3618654938310564,
+          "truthRetained": null
+        },
+        {
+          "j": 20,
+          "fit": -3.3636002614934895,
+          "truthRetained": null
+        }
+      ],
+      "sample": [
+        {
+          "page": 0,
+          "text": "N C E J EO Y A EA D T R E T OE T U IA H F AE"
+        },
+        {
+          "page": 1,
+          "text": "U Y Y D E L AE M Y AE D D H R D G M B T O"
+        },
+        {
+          "page": 2,
+          "text": "W Y U E X H O TH H O P E T U C OE Y R T AE"
+        },
+        {
+          "page": 3,
+          "text": "X S A AE EO OE N S OE J E IA L X B EA IA S A J"
+        },
+        {
+          "page": 4,
+          "text": "E TH T Y W OE R H E D M E R S OE EA W F O U"
+        }
+      ]
+    }
+  ],
+  "plants": [
+    {
+      "rev": false,
+      "expected": "9876543212345678987654321",
+      "e": "9876543212345678987654321",
+      "fit": -2.6794909259898203,
+      "held": -2.607647267161641,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "fit": -3.009995536100682,
+          "truthRetained": true
+        },
+        {
+          "j": 2,
+          "fit": -2.8337553614509776,
+          "truthRetained": true
+        },
+        {
+          "j": 3,
+          "fit": -2.742725572189126,
+          "truthRetained": true
+        },
+        {
+          "j": 4,
+          "fit": -2.66267365173963,
+          "truthRetained": true
+        },
+        {
+          "j": 5,
+          "fit": -2.6729143520029535,
+          "truthRetained": true
+        },
+        {
+          "j": 6,
+          "fit": -2.6699363654323576,
+          "truthRetained": true
+        },
+        {
+          "j": 7,
+          "fit": -2.664703232797011,
+          "truthRetained": true
+        },
+        {
+          "j": 8,
+          "fit": -2.6691622723754245,
+          "truthRetained": true
+        },
+        {
+          "j": 9,
+          "fit": -2.6664129348481636,
+          "truthRetained": true
+        },
+        {
+          "j": 10,
+          "fit": -2.6689442922606372,
+          "truthRetained": true
+        },
+        {
+          "j": 11,
+          "fit": -2.6807731179592778,
+          "truthRetained": true
+        },
+        {
+          "j": 12,
+          "fit": -2.697499329719505,
+          "truthRetained": true
+        },
+        {
+          "j": 13,
+          "fit": -2.698674450219391,
+          "truthRetained": true
+        },
+        {
+          "j": 14,
+          "fit": -2.710221396090491,
+          "truthRetained": true
+        },
+        {
+          "j": 15,
+          "fit": -2.6917929067488484,
+          "truthRetained": true
+        },
+        {
+          "j": 16,
+          "fit": -2.687053758107864,
+          "truthRetained": true
+        },
+        {
+          "j": 17,
+          "fit": -2.687234950692638,
+          "truthRetained": true
+        },
+        {
+          "j": 18,
+          "fit": -2.6889391994771574,
+          "truthRetained": true
+        },
+        {
+          "j": 19,
+          "fit": -2.684788819175893,
+          "truthRetained": true
+        },
+        {
+          "j": 20,
+          "fit": -2.6794909259898163,
+          "truthRetained": true
+        }
+      ],
+      "correct": 1100,
+      "total": 1100
+    },
+    {
+      "rev": true,
+      "expected": "123456789876543210123456789",
+      "e": "123456789876543210123456789",
+      "fit": -2.6819842552088744,
+      "held": -2.611356860723119,
+      "replay": true,
+      "trace": [
+        {
+          "j": 1,
+          "fit": -2.9227449862080395,
+          "truthRetained": true
+        },
+        {
+          "j": 2,
+          "fit": -2.789192170762552,
+          "truthRetained": true
+        },
+        {
+          "j": 3,
+          "fit": -2.7504564425451203,
+          "truthRetained": true
+        },
+        {
+          "j": 4,
+          "fit": -2.7166451351519507,
+          "truthRetained": true
+        },
+        {
+          "j": 5,
+          "fit": -2.7200919029934507,
+          "truthRetained": true
+        },
+        {
+          "j": 6,
+          "fit": -2.6988341880277136,
+          "truthRetained": true
+        },
+        {
+          "j": 7,
+          "fit": -2.6803773640774646,
+          "truthRetained": true
+        },
+        {
+          "j": 8,
+          "fit": -2.6799587840391994,
+          "truthRetained": true
+        },
+        {
+          "j": 9,
+          "fit": -2.6983278717666015,
+          "truthRetained": true
+        },
+        {
+          "j": 10,
+          "fit": -2.6970261586680326,
+          "truthRetained": true
+        },
+        {
+          "j": 11,
+          "fit": -2.7160736005148243,
+          "truthRetained": true
+        },
+        {
+          "j": 12,
+          "fit": -2.719718400032422,
+          "truthRetained": true
+        },
+        {
+          "j": 13,
+          "fit": -2.7218209414206456,
+          "truthRetained": true
+        },
+        {
+          "j": 14,
+          "fit": -2.706656502056838,
+          "truthRetained": true
+        },
+        {
+          "j": 15,
+          "fit": -2.7060435022971063,
+          "truthRetained": true
+        },
+        {
+          "j": 16,
+          "fit": -2.7112770738937932,
+          "truthRetained": true
+        },
+        {
+          "j": 17,
+          "fit": -2.702694643263149,
+          "truthRetained": true
+        },
+        {
+          "j": 18,
+          "fit": -2.689491292864448,
+          "truthRetained": true
+        },
+        {
+          "j": 19,
+          "fit": -2.680556956179208,
+          "truthRetained": true
+        },
+        {
+          "j": 20,
+          "fit": -2.681984255208875,
+          "truthRetained": true
+        }
+      ],
+      "correct": 1100,
+      "total": 1100
+    }
+  ],
+  "fixed": [
+    {
+      "rev": false,
+      "k": "3",
+      "inverse": false,
+      "fit": -3.4938839644162623,
+      "held": -3.491890818894609,
+      "sample": "J G A P O H E OE M TH IA B EO R G C OE J S P Y T G D TH N G N X H C OE R U EO D IA I W J",
+      "replay": true
+    },
+    {
+      "rev": false,
+      "k": "3",
+      "inverse": true,
+      "fit": -3.4952860956059797,
+      "held": -3.4944709583620353,
+      "sample": "M EO B W L M AE W O AE A TH Y TH S T C H OE A B J H M E O L L I EO W X EO X S TH M P H E",
+      "replay": true
+    },
+    {
+      "rev": false,
+      "k": "1033",
+      "inverse": false,
+      "fit": -3.4914766680409977,
+      "held": -3.4902429042120646,
+      "sample": "H G J EA O D A A H O AE N F G OE G M F N O B O L OE Y D R P R C B EA G W O P H P EO EA",
+      "replay": true
+    },
+    {
+      "rev": false,
+      "k": "1033",
+      "inverse": true,
+      "fit": -3.4876297969804493,
+      "held": -3.4914351859611346,
+      "sample": "Y N S N OE F IA R G B M G C AE N EO N L H EO EA F D N P F AE B AE NG I H O X G J Y D W L",
+      "replay": true
+    },
+    {
+      "rev": false,
+      "k": "3301",
+      "inverse": false,
+      "fit": -3.4946506714271712,
+      "held": -3.4988946703669694,
+      "sample": "H F F M L S P W M L EO EA E OE O E A C C NG W B EA R P M U O A F I E S R L IA I X P M",
+      "replay": true
+    },
+    {
+      "rev": false,
+      "k": "3301",
+      "inverse": true,
+      "fit": -3.497369027659791,
+      "held": -3.4928377289891017,
+      "sample": "Y B AE W H J EA E IA O EA EA C IA F P B P O I OE IA J E W IA U IA Y Y L P TH S W EO B N EO F",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "3",
+      "inverse": false,
+      "fit": -3.4942627885231987,
+      "held": -3.490599863883065,
+      "sample": "W I E M OE C H T H D AE O NG A AE W OE J C AE U D R U P OE S C M TH P G NG O J M M B M A",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "3",
+      "inverse": true,
+      "fit": -3.49176902527239,
+      "held": -3.488969178618052,
+      "sample": "EA I L IA P I J F EO U D IA EO B R N Y R F Y A T W G P T T OE F NG T EO IA B S X N G P T",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "1033",
+      "inverse": false,
+      "fit": -3.493375444247381,
+      "held": -3.499592734706581,
+      "sample": "B J I C I N NG A A Y H L Y W X Y A T EA W OE I L M EA Y C N IA F I EA TH D E D N N S D",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "1033",
+      "inverse": true,
+      "fit": -3.4920579247539805,
+      "held": -3.4826492362719508,
+      "sample": "X TH H U S F H F P D W Y G IA E X O X S O U N R AE AE E J O R M U IA A M I R I H EO L",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "3301",
+      "inverse": false,
+      "fit": -3.4926769851602644,
+      "held": -3.4945641928037263,
+      "sample": "C A R M G L F T X T R S AE A B EO B TH H B W Y IA TH M L G IA IA M O IA F X L C E R R D",
+      "replay": true
+    },
+    {
+      "rev": true,
+      "k": "3301",
+      "inverse": true,
+      "fit": -3.488658706689269,
+      "held": -3.4808131792734116,
+      "sample": "G IA EA X W W B F D EA EO OE J P Y L N U EO N EA TH P A N L L W P J S S I F S IA EA NG NG L",
+      "replay": true
+    }
+  ],
+  "literalObstruction": [
+    {
+      "rev": false,
+      "valuationOne": [
+        15,
+        40
+      ]
+    },
+    {
+      "rev": true,
+      "valuationOne": [
+        17,
+        27,
+        48,
+        51
+      ]
+    }
+  ]
+}
