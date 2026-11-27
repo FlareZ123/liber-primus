@@ -113,10 +113,10 @@ const fcontrols=[];for(let k=0;k<2;k++){let P=D.slice(10001+k*8000,10001+k*8000+
 const latentF={controls:fcontrols,chapter:fhold(C.slice(start,end),origins),whole:fhold(C,origins)};
 
 
-const exactCanonicalF=(C,os,cap=2000000)=>{
+const exactCanonicalF=(C,os,cap=2000000,initialF=all)=>{
  let exhausted=0,unresolved=0,survivors=0,deepest=0,total=0,maxWork=0,examples=[];
  for(let o of os){
-  let stack=[{i:0,t:o,f:all,A:range()}],work=0,hit=false,cut=false;
+  let stack=[{i:0,t:o,f:initialF,A:range()}],work=0,hit=false,cut=false;
   while(stack.length){let {i,t,f,A}=stack.pop();
    while(i<C.length){
     if(++work>cap){cut=true;break}
@@ -139,7 +139,34 @@ const canonicalFControls=[];
 for(let k=0;k<2;k++){let P=D.slice(10001+k*8000,10001+k*8000+3008),o=[37,229][k],S=perm(),A=range(),plant=encodeF(P,o,S,A);canonicalFControls.push({o,f:S[0],...exactCanonicalF(plant.out,[o])})}
 const canonicalF={controls:canonicalFControls,chapter:exactCanonicalF(C.slice(start,end),os),whole:exactCanonicalF(C,os)};
 
-return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet,latentF,canonicalF}
+
+// Rank28 occurs exactly once (prime29). If S(F)=28, no consuming
+// event can remove the bottom glyph; after prime29 it is permanent.
+// A suffix containing every nonzero C forces that permanent glyph to 0,
+// so every later zero is a hold and every nonzero consumes in ranks0..27.
+const rank28Cap=C=>{
+ const prefix=64,H=C.slice(0,prefix).filter(x=>x===0).length,L=prefix-H;
+ assert(L>prime.indexOf(29),"prime29 not past");const tail=C.slice(prefix),zs=tail.filter(x=>x===0).length,non=tail.filter(x=>x!==0);
+ assert(new Set(non).size===28,"suffix must visit every nonzero");
+ const all28=(1<<28)-1;let best={cap:0},syncMin=Infinity,syncMax=0,unsynced=0;
+ // t at prefix lies between o+L and o+prefix, grant all integers.
+ for(let t=L;t<=origins-1+prefix;t++){
+  let dom=Array(29).fill(all28),hist=Array(28).fill(0),sync=-1;dom[0]=1<<28;
+  for(let i=0;i<non.length;i++){let c=non[i],r=R[t+i],m=dom[c];assert(r<28,"rank28 after prefix");
+   for(let x=m;x;x&=x-1)hist[31-Math.clz32(x&-x)]++;
+   step(dom,c,r); // step() preserves bottom rank28 exactly, since c,r<28.
+   assert(dom[0]===1<<28,"bottom lost");
+   if(sync<0&&dom.every(x=>(x&(x-1))===0))sync=i;
+  }
+  let hs=hist.slice().sort((a,b)=>b-a),cap=prefix+Math.max(hs[0]+hs[1],hs[0]+zs);
+  if(cap>best.cap)best={t,cap,top2:hs.slice(0,2),sync};
+  if(sync<0)unsynced++;else{syncMin=Math.min(syncMin,sync);syncMax=Math.max(syncMax,sync)}
+ }
+ return {n:C.length,prefix,prefixNonzero:L,prefixZero:H,suffixNonzero:non.length,suffixF:zs,cursors:origins+H,best,syncMin,syncMax,unsynced};
+};
+const rank28={whole:rank28Cap(C),chapter:rank28Cap(C.slice(start,end)),nondegenerateCanonicalF:{whole:exactCanonicalF(C,os,2000000,all&~(1<<28)),chapter:exactCanonicalF(C.slice(start,end),os,2000000,all&~(1<<28))}};
+
+return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet,latentF,canonicalF,rank28}
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),JSON.parse(fs.readFileSync(paths[1],'utf8')),fs.readFileSync(paths[2],'utf8')),null,2));
