@@ -1,0 +1,10 @@
+"use strict";
+const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict");
+const root=path.resolve(__dirname,".."),read=p=>fs.readFileSync(path.join(root,p),"utf8");
+const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const reference=read("resources/liber-primus/lp1-plaintext-reference.txt");
+const {buildSourceNativeTrigramModel}=require("./lp1_source_native_trigram_model.cjs");
+const model=buildSourceNativeTrigramModel({corpus,referenceText:reference});
+const tape=corpus.pages.slice(33,41).flatMap(p=>p.indices).slice(132);
+assert.equal(tape.length,1779);assert.equal(model.training.length,3510);
+for(const a of [model.training,tape,corpus.pages[57].indices])console.log(a.map(x=>x.toString(29)).join(""));
