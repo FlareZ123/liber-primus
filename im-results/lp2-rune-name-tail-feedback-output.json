@@ -136,7 +136,13 @@
           "heldScore": -3.5701597964369487,
           "fitText": "OE TH S T R C TH EO B W E Y J NG T M TH NG TH U C E R F E I D D S E NG N O IA S OE S EO C D D F NG I P H C S L T B NG NG C I W G OE C W G N J C S D M U F I AE U EO OE OE R F C N S AE T G AE A S EO E G IA EO L B P R NG G IA OE NG P P H F L O Y X H OE R L OE M G I R L A M U J NG Y E TH Y R P A X A R C E EA I O F X H B S X U AE J D B N Y A B TH AE E E I N C TH B AE R D L Y B J E H J J T L Y R F B A B AE X IA D G C W R N OE I W D L P TH Y Y IA D N OE O D F F X EA AE AE G C E A U M G TH B N I D J M TH AE IA AE G C A C EO Y J O H J R M EA H EO TH R P EO S",
           "heldText": "S U D NG U M TH P N U M F G D U F F D F NG H AE N AE O M Y W O B C G S U L D T R X N D C P J Y D X AE J B P R TH E J EO C TH A AE X EO R L D J NG EO M U A IA F M H IA O B H H P C X G G EO EA F B W OE NG G D L W OE L T T F U AE E L R EO O NG B O W J W OE S P I M U F P D D E C B NG G M F EO X P C L U X S E P C H U TH EO I R EA F P OE E W EO EA N D I N S N A EA N X C A M X EO G H G O S X IA X R P O J I OE G I N EA B W D M H M T C H IA R U S B M O OE AE J N T IA E U H E X S R E C OE AE TH B C IA S M E U F N E T H N OE OE L EO O G S G B A C F H W S U G TH F X L F A L NG O EA A M M",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              15
+            ]
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -147,7 +153,13 @@
           "heldScore": -3.570669952072736,
           "fitText": "O N W U C T EA D OE S EO F I P S G N R EA F NG B J W EA X U OE D OE IA W N L TH AE T G EO W IA N O X J O R IA W I F TH T EO AE Y R E P M I E M W H U A J EO AE G EO OE S AE EO G L R W G A O G X E E I M G W EA E U I U D M L D F U L EA Y L OE U D IA U EA F F EO C L I G TH D D X M L R OE Y F S C A EA N A NG X X E B E A R L E N F X U T P X N EO EA D D H B O H O EO IA N T G M F EO L X I N L S X IA U B L M D P P X G A N EO TH IA J W NG X X N T NG W B R E P E IA E M EA OE I G",
           "heldText": "W EO A W D A R IA I EO F R P E S G E OE I U T I N AE U R NG T NG Y C T H H M N H U D W X M B Y A B A L A O EA R J EO L G P Y O R R F OE Y M IA M NG D H N N AE IA N OE U D J E TH L TH Y OE U",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              6
+            ]
+          }
         }
       ]
     },
@@ -191,7 +203,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 23,
+            "statesBefore": [
+              4
+            ],
+            "cipherRune": 6
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -202,7 +221,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 19,
+            "statesBefore": [
+              28
+            ],
+            "cipherRune": 25
+          }
         }
       ]
     },
@@ -246,7 +272,13 @@
           "heldScore": -3.5354122550428198,
           "fitText": "IA W Y NG H L NG J C OE E I NG AE M G NG L N IA Y C T TH U IA R D O EO C H E R B Y L L AE N D B H IA D D H S N NG NG A A H I G AE T I EO E F N W Y EA N IA NG I A L W C OE OE S G EA B F O T L E TH EO TH E E F R OE B L Y I J X A T U AE R E D C U IA IA N O G IA OE E I J M C EO EA P Y I H Y AE X I D EO L I D X F N L C OE G N F T B U S L O B S NG C W R T IA M TH P F EO L EA I I IA TH C L M IA H AE L EA TH F J H F U B X D IA D E W M I G P G J M H TH X P A D G W X S S TH EO EO OE P U EO B I J Y R I U R J J E H TH EO OE P W L TH N P L NG EA AE L E AE T M S EA F EA",
           "heldText": "L N AE I D N EA F OE T J T D T L A T J M R OE X IA IA D IA P A E D D L P TH W P TH L M D D OE P A B X TH I L EO F B O D Y R O W G M F IA NG C P Y P EO O G M P B G IA O P D Y P X L R G R B S C F D W NG OE TH C Y N G X G A B T N E A P T TH T D S J EA N U E D IA B L R NG AE W B O U I O C A U O J W L N S W AE NG W U D Y IA X EA NG P G Y A IA T U AE EA M EO I S O M J A I EA U TH E EA J IA AE E P TH E J L A U O F U M AE H J I IA A D U Y A TH L G I J I H T U TH AE B E G NG EO M Y C R U OE OE X L W L B G IA C P B AE M EA F I P D D C S F G X I R G M L S S M OE I C Y I P H A S L EO EO G N",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              28
+            ]
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -257,7 +289,13 @@
           "heldScore": -3.510105957784811,
           "fitText": "OE O IA B AE TH S EA EO T B T IA D U J R T U NG NG R EO A X R U X Y EO EA EA AE NG N OE L U W M N J C M AE D EO AE IA Y I H T R D S N U U W NG J W E L N Y TH EA P OE L P T U O EO J EA N O H W J N E TH OE P E IA S D T TH G E C TH P S TH W E X I G N AE T OE R TH EO AE NG M F EO OE D J R M TH D OE S C IA I F S X A J E F R S OE AE D L T Y TH Y L J C Y EA X X P N H G Y E R O R J E D EO EO AE W R I H G P S U OE OE A P G G R EO NG TH A P S IA O B W P F A B EO W EA A M AE C I EA W I O R Y",
           "heldText": "TH D I T I O P AE U OE U NG IA G G X J I R NG L C X AE L EA D E N J Y O E N C L P TH I S X W EA B S NG IA J M E C L T R E Y H IA A P TH Y I L X EO W O T IA X N H TH AE D R AE F G OE L F N A C",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              26
+            ]
+          }
         }
       ]
     },
@@ -301,7 +339,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 61,
+            "statesBefore": [
+              18
+            ],
+            "cipherRune": 8
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -312,7 +357,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 117,
+            "statesBefore": [
+              19
+            ],
+            "cipherRune": 9
+          }
         }
       ]
     },
@@ -356,7 +408,13 @@
           "heldScore": -3.5496654087511668,
           "fitText": "J L I Y C M Y D A AE E EO S Y F L P O E W OE P M J J B B H X NG B AE X G M G R Y E E D EA M Y G R OE EO U D R A R NG N AE E AE G R U EO H G I R EA F B W M J P C H OE X IA R F Y L G R A M W TH P U EO O A EO T O E O OE N AE Y N B G I L X B J OE C AE L U P EO C IA L IA EA Y I D F D C IA AE P EO W S P X W E M EO O G X N U Y IA L L H Y G P C L B E B O B Y EA J F R OE TH E X S G EA H NG A F C X I P NG EA I S J N EO NG EA L M D U G L E TH D IA X AE EO X T T X IA IA D EO EO TH H O I F L B C EO A I EO AE A P W Y EO OE H N L J R S H Y J U R A P S S U A P U",
           "heldText": "R S C A F N P A A J A J EA Y S U Y W X M A N P AE W H J H N H N C E T TH Y U S EA R S W H Y H I B I S X T T P F Y D B Y G J I F Y TH Y AE Y AE EO AE EO D T T O J H G EO O IA B N N P L A Y X AE OE N E EA C EO X H D O R IA EO C L J R O J Y O AE D EO EA O IA OE P S B I A H B C EO W E A EA C F H G S R E A NG N G O X P W B IA P C I D R O W G G N EO B IA I N IA J F F M C J S EA J A OE N TH IA TH P D R U J H A F B J OE I D M W O J I O J N S L U E F P X S G TH X L EA A NG I I W O TH B P G EO L Y M O P T T G EA P A EO W G N M EA AE S NG W D N EA U A I J B I A W S C L M J EO B EA S T",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              7
+            ]
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -367,7 +425,13 @@
           "heldScore": -3.531205370137949,
           "fitText": "G IA M F OE J R A AE EA Y P D W J A EA U L C E R J R C M I D J TH J EO S C C L S G L O OE P E OE N H OE EO Y T E F P B H Y NG O I L C W Y TH O X G W N H G S E U I T W D EO EA C IA R A X L E B P L I L D EA Y T I OE M Y X EA W TH Y W AE TH C U E EA U Y AE L S P X TH E D P R M W X I Y EO D NG X J I L Y EA O B W A O U NG G I W AE B B F R R EA L Y W G TH Y O C D X TH OE IA EA C G NG EO B O E F IA E B D N OE P X S U TH I EO TH A S EO IA U EA D H H L EA M EA I M C D B D IA IA F",
           "heldText": "W R TH G D A W H F IA AE B A M OE A H M AE A O X A H C C G EA OE I I J P J R R OE T C I N OE T EO EO P IA A X R B H AE P O P NG Y W OE E NG S EO T N D O I J IA D OE TH AE H X C X D F B C NG D E",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              20
+            ]
+          }
         }
       ]
     },
@@ -411,7 +475,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 14,
+            "statesBefore": [
+              17
+            ],
+            "cipherRune": 24
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -422,7 +493,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 3,
+            "statesBefore": [
+              13
+            ],
+            "cipherRune": 21
+          }
         }
       ]
     },
@@ -466,7 +544,13 @@
           "heldScore": -3.6145019994847107,
           "fitText": "IA TH TH A A O E EO D H F A EA H M I TH NG TH G N C TH U N T EA Y R R N N R E O IA S T C I J E W I M AE G F EA W OE H AE C OE B C B OE NG OE R Y AE TH TH IA P R Y U I O D AE R IA AE AE P P TH IA S X U G E EO OE R NG H R C OE I L X OE B P L U E D TH G T OE R E B W OE C A E M H S S H F C B J A J W C A L W C Y C T N F U B G H E T X E TH F N C J E EO N TH T X C E B F IA AE G M H IA P D EO G O H NG A IA H AE O EO H IA IA L AE R L I H S EO OE H G S J B O P D P H F O S X NG U EA F F S OE NG I G Y R P OE R X G TH AE E U N F NG N A O EA M E F EA B X A IA TH E X A P",
           "heldText": "S C R G E NG TH P W O G F Y E R L T D O W H U A H E F D IA H AE L E I R U E M X EO TH X L F N W EA EA EA Y EO F C O E N OE G E A F H EO A NG E X H S I B EA NG C G A O M IA D TH B G U L Y TH T A R H R OE I T D F EO NG W NG B B U NG R A O T U A OE B I D IA T B J A IA R F G Y W E R AE I EO EO O EO G B W AE TH D R U B A G EO EA T N Y T F C NG A EA C R L AE F S Y OE M EA J IA J D EA Y Y O G J L S S E EO S S L U G G E F EA R D C W L A O NG A O L EA TH OE I B U AE Y R P O H T P R TH H M T NG N Y B R N I O A C EA C AE L O P A L IA L O L S P N AE S L EO EA H TH N T NG T C P OE EO J F I N EO P R",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              7
+            ]
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -477,7 +561,13 @@
           "heldScore": -3.5582395403723406,
           "fitText": "E M W P N O S X W L T F I E O G B M M T H B U TH R U N P A U O D X E Y EO W IA TH A X Y F C U M X AE N S I B U EA Y T H T F TH Y EA AE D A G C C W Y AE W I E F IA E S D IA E M NG T EO R TH T A O TH E C T S X EA R O E O T AE D E AE B E R EO C L L T EO O W C Y F I J O OE O EA P TH A TH C N O EA NG EO E B NG U M H A OE P AE TH C D W U EO TH O EO E H Y B D E NG E S AE P J N EO O E C AE F L I B S C N W IA G U AE Y EA S IA A S EO EA D Y X B EO W Y I B H L F U R C C S N J J",
           "heldText": "C TH U IA C EO L F EO AE B R X U NG G Y N P G NG IA OE AE T A M L EO F NG O A D D AE G R R NG U R F U EA J J G O NG N NG N O NG Y O I L X TH L P F X IA W NG D OE N W J P X M G R AE C B C Y P P TH",
-          "exactReplay": true
+          "exactReplay": true,
+          "feasibility": {
+            "firstImpossibleOffset": null,
+            "finalStates": [
+              20
+            ]
+          }
         }
       ]
     },
@@ -521,7 +611,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 10,
+            "statesBefore": [
+              2
+            ],
+            "cipherRune": 9
+          }
         },
         {
           "name": "p54-body/p55-carry",
@@ -532,7 +629,14 @@
           "heldScore": null,
           "fitText": null,
           "heldText": null,
-          "exactReplay": null
+          "exactReplay": null,
+          "feasibility": {
+            "firstImpossibleOffset": 11,
+            "statesBefore": [
+              21
+            ],
+            "cipherRune": 21
+          }
         }
       ]
     }
