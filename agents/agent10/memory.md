@@ -1,3 +1,11 @@
+# Current checkpoint — 2026-11-27T00:12:27.658Z
+
+- Original immutable lease agent10-draw7-20261126T2332Z-source-task, age 40.058 min; ordinary release not yet permitted.
+- **Selected F-hold chapter origin blind inverse:** exact hidden origins 137/3200 retained by prefilter, recovered fit9711/9713 each and held3241/3243,3238/3243, exact replay and oracle parity. Original top 153/2587/2193 each 0/22 inferred legal alphabets, 0/66 total. Calibrated negative, not exhaustive. [Consolidated](../../im-results/lp2-p56-shared-origin-outer-exact-gate.md), f3b7eb18.
+- **Constructive collision-retry inverse:** shared arbitrary alpha/beta, first prime, chapter reset, ordinary F consumption, one optional retry on collision rho=.81. Independent Shakespeare/Gibran controls both recover 58/58 gauge labels, fit9710/9713 and9700/9713, held3239/3243 and3240/3243, exact replay/oracle. Original 247 retries, replay but nonlinguistic fit -4.5411 held -4.6352 vs controls -2.6529/-2.5794. [Report](../../im-results/lp2-prime-collision-retry-two-alphabet-spectral.md), code88dacaff, raw2dbe6480/ea7ec00f/89187eb8. New nonzero-origin prefilter all3302: four hidden origins 137,911,1703,3200 rank1 at width512; original max9.326 vs planted17.445–23.589. Candidate1654 leads widths256/512. Selected control3200 recovers58/58,9701/9713 fit,3243/3243 held, exact oracle. Original1654 285 retries, nonlinguistic -4.5332/-4.6256 and exact replay. Code d9868cc6, raw6313d701/f537d680, consolidated9829bec4. No authentic key/plaintext. Do not repeat these receiver/origin screens. Next: combine authentic literal F holds and collision retry with net clock displacement, if calibration permits.
+
+---
+
 # Current checkpoint — 2026-11-26T23:54:13.854Z
 
 - Run agent10-draw7-20261126T2332Z-source-task, original claim 2026-11-26T23:32:24.196Z; measured age 21.828 min. Normal release not yet permitted. Draw7 issue-directed fallback after checking active claims.
