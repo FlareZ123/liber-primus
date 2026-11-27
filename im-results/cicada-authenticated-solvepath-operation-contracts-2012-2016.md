@@ -64,6 +64,7 @@ The preceding contracts already cover the historical operation sequence; this ex
 
 | Original input and clue | Observed output | Independent acceptance signal available to a solver | Limitation |
 |---|---|---|---|
+| Signed 2012 participant RSA challenge ([source](../resources/historical/cicada2012-message-only-displayed.asc)) | Candidate prime pair for the published decimal modulus | Exact integer product equals the independently published modulus, before any message decryption; the unordered pair is unique for a semiprime | The two other archived participant messages are redacted/unverified controls; no analogous typed RSA modulus and candidate-generation input in LP2 |
 | Signed 2013 TCP specification, BASE29 3301 | `3QO` | Explicit worked example and arithmetic equality | Only checks that operation on that input; no LP2 receiver |
 | Signed 2013 ICMP instruction and recovered packet carrier | 959-byte signed next-stage message | Successful gzip parsing followed by valid Cicada signature and actual next-stage locator | Packet reconstruction partly participant-derived; parsing alone does not authenticate |
 | Signed 2014 Stage7 hex object | 6,651,873-byte MP3 | Complete signed input fixes bytes; recovered audio is byte-identical to preserved object | MP3 structure alone is not a unique solution criterion |
@@ -74,6 +75,14 @@ The preceding contracts already cover the historical operation sequence; this ex
 | Signed 2016 message | Words/map/numbers/direction; explicit warning to verify OpenPGP 7A35090F | Verify genuine signed communication against the pinned full Cicada fingerprint | No candidate serialization or acceptance rule for unsolved runes |
 
 The 2012 unsigned first-image mirror and the reconstructed telephone chain are not promoted to authenticated first-party acceptance evidence. The 2013 NEXT request is also deliberately not an oracle: the participant server stores client-supplied text and acknowledges receipt. A valid signature on that text authenticates its author, not a cipher-derived relationship to LP2.
+
+### Independent key validation rather than output validation (#3206, Agent44, 27 Nov 2026)
+
+The 2012 signed RSA challenge explicitly presents a public key and invites the solver to break the low-bit modulus. For candidate distinct prime factors, the exact product must equal the published decimal integer; order and leading zeros are immaterial. The public exponent must also be coprime to the totient. This check is independent of the decrypted number, ciphertext decoding and language scoring. Unlike a plaintext checksum, the product identifies the unordered prime pair uniquely by unique factorization. This is a structural property of the selected semiprime problem, not a generic LP2 algorithm.
+
+Executed control: parse each published modulus/exponent from `resources/external/2012-sq6wmgv2zcsrix6t-{valid-participant-rsa-message,unknown,another-unknown}.asc`; use the six previously recovered factors from `CASES` in [the existing historical reproducer](../sims/2012_rsa_oaep_reproducer.py), without invoking decryption. Enumerate the 15 unordered distinct pairs for each of the three moduli, comparing exact integer products and exponent/totient coprimality. All three source moduli are 372 bits and match their existing records. Each accepts exactly one pair and rejects 14; total 3/3 positives and 0/42 cross-case negatives accepted. Executed with exact BigInt arithmetic. The 42 negative controls are a finite cross-pair experiment, not a statistical estimate of cryptographic collision probability. Only the first message has the signed-source status documented in the existing research; the other two are archival reconstruction controls.
+
+LP2 transfer: p28's DH label does not establish an RSA verification object, and the p49–51 public-verification-register gate ([prior result](lp2-p50-public-verification-register-gate.md)) provides no source-selected RSA key/candidate contract. No original-page product search or decryption is authorized by this precedent. The missing link is a visibly typed original LP2 verifier plus independently selected candidate-generating operand; no guessed product/checksum sweep. #3206 therefore closes as a bounded missing-link result.
 
 ### Two conditional LP2 output gates
 
