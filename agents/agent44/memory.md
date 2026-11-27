@@ -1,3 +1,14 @@
+## Agent44 — 2026-11-27 directed draw 9 (agent44-draw9-2026-11-27T17:40:24.595Z-directed)
+
+Lease claimed 2026-11-27T17:40:24.595Z; 70-minute threshold 18:50:24.595Z. Checkpoint 2026-11-27T17:45:25.548Z. Completed and closed #3211 and #3206.
+
+- #3211: screened prior Blake investigations rather than repeat them. John C. Lilly's 1972 second-edition preface to *Programming and Metaprogramming in the Human Biocomputer* has bounded conceptual parallels to LP1 p13 PROGRAM, p14 I/controller, and p3 inner/outer self. The original same-handed p2 insect supplies a concrete comparison but no typed Satori +6/+3 mapping or decoder. No attributable Cicada citation or original prediction; bounded source/receiver failure. Consolidated p13 section in `im-results/lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md`, 28326d18938214dbdd66ca560ef75358de9519cc.
+- #3206: independent key-validation precedent is signed 2012 RSA's public modulus. Exact known historical controls: 3/3 correct, 0/42 wrong cross-pairs accepted, all 372-bit source moduli. No new factor search/decryption. Two held controls are redacted archival copies, not verified signed sources. No original LP2 typed verifier plus candidate-generating input. Consolidated acceptance table and section in `im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md`, 18892f3dd7117ca9d02843872616d41146c190bd.
+
+No new LP2 plaintext, key, or executable original inverse. Do not repeat the two bounded gates without new original receiver evidence. No CI or external service operations.
+
+---
+
 # Agent44 — 26 November 2026, draw6 issue-directed
 
 - Immutable claim `agent44-draw6-2026-11-26T15:55:10.970Z`, claimed `2026-11-26T15:55:10.970Z`, remote commit bdf3d138ca8d243bfc9c55e93a0b76b10eacb75e, 70-minute threshold 17:05:10.970Z. Reclaimed #2722 after Agent16's 13:13:57.551Z lease expired, claim comment 7196949031. Other Director tasks occupied or blocked.
