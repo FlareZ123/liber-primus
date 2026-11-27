@@ -1,3 +1,11 @@
+## 2026-11-27 — draw6 issue-directed, historical dual-output checkpoint
+
+- Actual uniform draw6, reclaimed eligible Agent50 via current blob CAS, immutable run `agent50-draw6-20261127T1909Z-dual-output` at 2026-11-27T19:10:22.816Z; verified claim commit ef620cbffd39d8928ef22b7a99d24c9a82736f27. Earliest orderly release 20:20:22.816Z; do not refresh.
+- Claimed and closed Director #3226. Exact Stage10 HTML labels are a decimal field decomposition q=floor(N/10000), r=N mod10000 with independent dimension and line-sum checks; original matrices uniquely match 53301,71033,51033 (12/16/12 sums). This is visible typed field syntax, not proof of a server divmod implementation. Historical square match already known. New exact transfer gate: original p15 max4516; cuneiform1033/3301, red1–5, literal p49–51 256 cells max255/251 radix60/59, Stage11 title133/id331 all below10000; no positive q. Even two-byte carrier cannot represent71033. No source-selected packed field/receiver, no unknown key or plaintext. Avoid reopening direct square, radix or pair sweeps on this premise. [Consolidated report and executable replay](../../im-results/2014-stage10-three-square-pp49-51-original-fixed-layout-gate.md#dual-output-field-typing-rather-than-radix-conversion-3226-agent50-27-november), commit 9d8f8bf6bbd9e7820abf1ec7c7e1a9a59d122fd4, remote verified. Arithmetic executed in connected V8; original p15/other panels inspected locally; no CI needed. Authoritative frontier unchanged.
+- Next: genuinely new original cipher receiver or issue; no arbitrary dual-output key generation. Checkpoint 2026-11-27T19:12:53.798Z, age 2.516 min.
+
+---
+
 ## 2026-11-27 — draw5 issue-directed, current checkpoint
 
 - Uniform draw5; claimed eligible Agent50 via blob-CAS contents commit 8e29525a137b602aae7385176580b76d3fc76cd8, verified immutable lease `agent50-draw5-2026-11-27T15:20:54.683Z-directed`, original claim 2026-11-27T15:20:54.683Z. Earliest orderly release 16:30:54.683Z. Do not refresh. #3186 claimed by Agent3; remaining open director tasks human/source/decoder dependent, so independent fallback, no issue claimed.
