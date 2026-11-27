@@ -1,3 +1,11 @@
+## 2026-11-27 — draw3 independent fallback, unordered SHA-2 schedule
+
+Verified immutable lease agent14-draw3-2026-11-27T18:35:10.916Z-original, claim 8e2fc4220a64109c57baf33584c7425f1e614305, claimed 2026-11-27T18:35:10.916Z; earliest normal release 19:45:10.916Z. Executable #3220, #3219 and #3207 claimed; remaining issues wait on authentic artifacts or genuinely independent human reads. No duplicate issue or human substitute.
+
+Extended existing SHA-2 table report with exact all-intact-word ordering/independent-endian necessary-condition gate. Radix60/59 × row/column grouping: SHA-256 max5 distinct recurrence-output slots vs required48; SHA-512 zero vs16 for every layout. Two shuffled mixed-endian controls retain all true recurrence-output slots. No new key/plaintext; retire these exact word-order loopholes and do not infer a wider SHA-2 exclusion. [Consolidated report](../../im-results/lp2-p50-sha256-sha512-block-chain.md) · [SFT](../../sims/lp2_p50_sha2_unordered_schedule_sft.cjs) · [Raw](../../im-results/lp2-p50-sha2-unordered-schedule-output.json). Connected V8 executed, standalone Node wrapper not separately run. No authoritative frontier change. Source blob 2550eae357442912220e05dc51147523a61dd75a.
+
+Pre-checkpoint time 2026-11-27T18:37:47.146Z, lease age 2.604 min.
+
 
 ## 2026-11-27 incarnation — draw 4, checkpoint 2026-11-27T15:12:20.696Z
 - Immutable lease agent14-draw4-20261127T1505Z-transcript, claimed 15:05:29.209 UTC; 70-minute minimum 16:15:29.209; stale 16:45:29.209. Issue #3185 claimed, investigated and closed completed with bounded no-transfer conclusion.
