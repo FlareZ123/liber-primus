@@ -200,6 +200,22 @@ Thus the direct four-word Hill interpretation of either word length or GP-prime 
 
 **Reproduction inputs:** [canonical word parser](../sims/lp2_word_pages.cjs), [LP2 transcription](../resources/liber-primus/lp2-transcription.txt), [GP29 rune/prime corpus](../resources/liber-primus/lp2-corpus.json), [TextBlob word-frequency control](../resources/control/english_wordfreq_textblob.txt), and the signed p15 matrix derivation linked above. The test groups words in printed order, preserving the 32 cross-page words; no reordering or tuned phase is used.
 
+
+## Source-word nonstationary symmetric path filter (Agent15, 27 November 2026)
+
+The 11+10 uniquely dimension-matched opening words have an exact alternative matrix role: eleven diagonal entries and ten successive undirected path edge weights. The blurred/outlined tree pairing motivates a spatial filter; the length match motivates this nonstationary Jacobi matrix rather than the already exhausted stationary Toeplitz three-tap family ([previous study](lp2-p32-separable-tridiagonal-inverse.md)). This is a conjectural typed receiver, **not** an independent historical instruction to use a path or symmetric matrix.
+
+In the original word order, put p0#6 on the diagonal of T and p1#33 on both adjacent diagonals; all other entries zero. Use each original GP index, or its GP prime modulo29. The forward law is C=T P T^t over GF29, with the natural 11×11 p32 reflow. The two source-key matrices have determinants 17 and 24 respectively, so recover the complete 121-rune P by exact modular elimination. The GP-index variant has one zero edge, which is retained; no repair. No unknown parameters, boundary changes, phases or sorting. As a separate already source-motivated key-consumer interpretation, use the recovered 9×9 interior row-major as the one-shot additive pad for the fixed p33 [10,91) black-body block.
+
+| Matrix weights | det T | p32 decoded IoC | p33 C−key IoC | p33 C+key IoC |
+| --- | ---: | ---: | ---: | ---: |
+| GP indices | 17 | .0336088154 | .0327160494 | .0311728395 |
+| GP primes mod29 | 24 | .0311294766 | .0311728395 | .0348765432 |
+
+Original p32/p33 IoC .0341597796/.0330246914. Native solved-p57 cyclic 121-rune plant IoC .0652892562; first81 native IoC .0589506173. Both complete original matrix inverses exactly reencrypt 121/121; both plants recover 121/121. All four p33 candidates exactly reencrypt 81/81, and all four native planted inverse checks recover 81/81. None of the six candidate sequences contains recognizable continuous native prose. The best p33 candidate starts AE TH I NG OE I E A C EO J G P O P AE P TH I C. Reproducer [single-file SFT](../sims/lp2_p32_sourceword_jacobi_inverse_sft.cjs) prints every complete original candidate, not only its IoC. Numerical core executed in connected V8 on the canonical inputs; standalone Node CLI not independently executed. The native plants check inverse implementation, not historical identification; IoC and visual nonprose are diagnostics, not a universal language exclusion.
+
+**Decision:** retire this fixed nonstationary symmetric path-filter receiver and its fixed p33 continuation. It does not provide the missing independent operator or recover unknown plaintext/key. Do not broaden to fitted nonstationary kernels without an authentic selector.
+
 ## Causal relevance and stop rule
 
 This link supplies two *uniquely source-addressed printed ciphertext words*, and the signed 2016 guidance offers a plausible human reason to inspect word sums. It may be used to **propose a concrete next reversible operation or source-derived key/clock** if an independently readable clue supplies one. The 2016 dimensions already serve as p32 11×11 orientation markers, so there is a real competing explanation: their additional collision with opening-page word sums may be incidental.
