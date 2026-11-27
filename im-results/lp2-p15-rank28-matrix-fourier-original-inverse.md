@@ -43,8 +43,21 @@ The real winning training state uses recovered prime-rank matrix, displayed orie
 
 A second independent full-family positive plant used the recovered prime-ordinal matrix with another physical orientation, transpose, readout and seed (3,7,13,17). The correct planted seed is retrieved within its original model, and a gauge-equivalent **top-ranked** model recovers all **1,744/1,744** native runes, including the untouched 673. Therefore the original negative is not merely a failure to search the discrete square variants.
 
+## Independent opposite-side receiver: p8–14, both directions
+
+The original p15 matrix physically follows another seven-page encrypted section, **p8–14**, whose 1,729 original runes have physical page lengths [255,268,263,273,261,272,137]. This supplies a genuinely distinct **source-location** alternative to using the matrix prospectively on p16–22. The matrix operands, four-rune hidden seed, primitive-2 emission, rank28 exception rule, native Gibran model and all 256 exact models were kept *unchanged*. The entire runic string was read either forward or in fully reversed manuscript order, without retuning keys or allowing per-page resets.
+
+| Original source direction | Training pages; rune count | Strictly withheld pages; rune count | Best training average GP-native log score | Frozen heldout log score | Decision |
+|---|---|---|---:|---:|---|
+| **Forward** p8→p14 | p8–11; 1,059 | p12–14; 670 | **−3.90593** | **−4.10521** | No readable plaintext; held IoC about 0.03575 |
+| **Backward** p14→p8, including reversal within pages | p14–11; 943 | p10–8; 786 | **−3.88588** | **−4.19913** | No readable plaintext; held IoC about 0.0352 |
+
+Even the retrospectively best heldout matrix (an impermissible postselection) scores **−4.102999** forward and **−4.144671** backward, far below the genuine native GP language floor observed in the independent p16–22 calibration. An exact **1,729/1,729 original-shaped native-language positive** recovers the four source seed digits for each direction under the same hidden-seed inference. These supplementary tests show no rescue from a different physically adjacent side of the p15 object or from reversing the human reading direction; they do not authenticate a matrix-key placement.
+
+Reproducer: [sims/lp2_p15_rank28_matrix_fourier_reverse_sft.py](../sims/lp2_p15_rank28_matrix_fourier_reverse_sft.py), reusing the frozen primary Fourier implementation and checked-in source. Its numerical core ran against the original corpus and a separate native control; the GitHub wrapper is committed but has not been independently run under CI. The p8–14 and p16–22 negatives cover **both adjacent sections**, not arbitrary receivers elsewhere in LP2.
+
 ## Decision and use
 
-The exact **source-derived 4×4 linear-recurrent, primitive-2 nonrepeat GP29 sender** with unknown four-rune seed is a bounded negative on p16–22 under this specified natural-language model. It is not evidence against unrelated nonlinear sources, different control encodings, a concealed plaintext language or a genuinely author-selected additional layer. No unknown original rune, author key or next-stage destination was recovered.
+The exact **source-derived 4×4 linear-recurrent, primitive-2 nonrepeat GP29 sender** with unknown four-rune seed is a bounded negative on adjacent pp8–14 and pp16–22 under this specified natural-language model. It is not evidence against unrelated nonlinear sources, different control encodings, a concealed plaintext language or a genuinely author-selected additional layer. No unknown original rune, author key or next-stage destination was recovered.
 
 Preserve the spectral seed solver for future **clue-selected linear GF29 hidden-state** mechanisms. This branch should reopen only if an independent clue names a state recurrence or emission law and selects a new original receiver. Expanding free exponent bases, page starts, secret matrices or discretionary symbol exemptions after failure would recreate the unconstrained search this test was designed to avoid.
