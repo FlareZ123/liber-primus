@@ -1,0 +1,226 @@
+{
+  "sourceLength": 1744,
+  "matrix": [
+    [
+      10,
+      3,
+      20,
+      22
+    ],
+    [
+      1,
+      22,
+      21,
+      25
+    ],
+    [
+      11,
+      17,
+      19,
+      7
+    ],
+    [
+      8,
+      12,
+      12,
+      22
+    ]
+  ],
+  "controls": [
+    {
+      "section": 3,
+      "length": 780,
+      "actualIV": 274314,
+      "ordinary": {
+        "iv": 274314,
+        "ties": 1,
+        "fitNLL": 2.9168501872659176,
+        "heldNLL": 2.969943469785575,
+        "heldIoC": 0.06340612816764132
+      },
+      "correctRunes": 780,
+      "heldCorrect": 513,
+      "hold": {
+        "terminalStates": 154206,
+        "firstEmpty": null,
+        "truthRetained": true,
+        "stats": [
+          [
+            100,
+            54069
+          ],
+          [
+            200,
+            26018
+          ],
+          [
+            267,
+            40097
+          ],
+          [
+            300,
+            12785
+          ],
+          [
+            400,
+            12235
+          ],
+          [
+            500,
+            12290
+          ],
+          [
+            600,
+            12233
+          ],
+          [
+            700,
+            228694
+          ],
+          [
+            780,
+            154206
+          ]
+        ]
+      }
+    },
+    {
+      "section": 4,
+      "length": 755,
+      "actualIV": 360866,
+      "ordinary": {
+        "iv": 360866,
+        "ties": 1,
+        "fitNLL": 2.9793370786516853,
+        "heldNLL": 3.0253811475409838,
+        "heldIoC": 0.05948934594540008
+      },
+      "correctRunes": 755,
+      "heldCorrect": 488,
+      "hold": {
+        "terminalStates": 575,
+        "firstEmpty": null,
+        "truthRetained": true,
+        "stats": [
+          [
+            100,
+            399417
+          ],
+          [
+            200,
+            70836
+          ],
+          [
+            267,
+            13709
+          ],
+          [
+            300,
+            8706
+          ],
+          [
+            400,
+            2110
+          ],
+          [
+            500,
+            3576
+          ],
+          [
+            600,
+            3989
+          ],
+          [
+            700,
+            2000
+          ],
+          [
+            755,
+            575
+          ]
+        ]
+      }
+    }
+  ],
+  "original": {
+    "ordinary": {
+      "iv": 50864,
+      "ties": 1,
+      "fitNLL": 3.6114569288389515,
+      "heldNLL": 4.07886865267434,
+      "heldIoC": 0.03458908319618064
+    },
+    "heldPreview": "B J IA H G C NG C EA R G B U G R D J NG B B I TH TH O B R OE I O B AE G H C Y B J M D Y P EO D S EO H R T L B A C U H A Y B A N NG EA X N U M X AE Y N J S L OE N X A NG S N H",
+    "hold": {
+      "terminalStates": 0,
+      "firstEmpty": 1369,
+      "truthRetained": true,
+      "stats": [
+        [
+          100,
+          76584
+        ],
+        [
+          200,
+          16525
+        ],
+        [
+          267,
+          49947
+        ],
+        [
+          300,
+          15829
+        ],
+        [
+          400,
+          15252
+        ],
+        [
+          500,
+          7711
+        ],
+        [
+          600,
+          3858
+        ],
+        [
+          700,
+          1859
+        ],
+        [
+          800,
+          2098
+        ],
+        [
+          900,
+          512
+        ],
+        [
+          1000,
+          268
+        ],
+        [
+          1100,
+          272
+        ],
+        [
+          1200,
+          251
+        ],
+        [
+          1300,
+          28
+        ],
+        [
+          1369,
+          0
+        ]
+      ]
+    }
+  },
+  "inputBlobs": {
+    "cipher": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  }
+}
