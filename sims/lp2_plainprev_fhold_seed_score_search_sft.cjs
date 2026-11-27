@@ -1,5 +1,5 @@
 'use strict';
-const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","im-results/lp2-plainprev-fhold-seed-domain-propagation-output.json","im-results/lp2-plainprev-fhold-seed-domain-search-output.json","resources/external/relikd-solved-gp29-native-v1.json"];
+const INPUTS=["resources/liber-primus/lp2-corpus.json","resources/control/gibran_prophet_58585.txt","resources/control/shakespeare_first300k.txt","resources/control/emerson_essays_2944.txt","im-results/lp2-plainprev-fhold-seed-domain-propagation-output.json","im-results/lp2-plainprev-fhold-seed-domain-search-output.json","resources/external/relikd-solved-gp29-native-v1.json","im-results/lp2-plainprev-fhold-native-crib-seed-output.json","im-results/lp2-plainprev-fhold-native-multicrib-output.json"];
 function run(raw,options={}){
  const {start=0,count=8,controls=false}=options;
  const gp=JSON.parse(raw[0]),prior=JSON.parse(raw[4]),search=JSON.parse(raw[5]),A=29,ALL=(1<<A)-1,mod=(x,m=A)=>(x+m)%m,bit=x=>31-Math.clz32(x),one=x=>x!==0&&(x&(x-1))===0;
@@ -214,6 +214,16 @@ function run(raw,options={}){
   return {donor:j,fixed:partial.filter(v=>v>=0).length,oracle,repeats,recovered,...out};
  }
  if(options.fitPlant!==undefined)return testOne(options.fitPlant,options.cap??128);
+
+ if(options.fitSingle!==undefined){
+  const single=JSON.parse(raw[7]),gate=JSON.parse(raw[8]).priorGate.filter(t=>!t.failures.length);
+  const t=gate[options.fitSingle];
+  const h=single.hits.find(h=>h.page===t.page&&h.i===t.i&&h.name===t.name&&h.j===t.j);
+  const rows=h.rows.slice();rows[0]=t.k0;const D=domains(rows,A);
+  const anchors=[{...t,p:records.find(s=>s.name===t.name).p.slice(t.j,t.j+16)}];
+  return {i:options.fitSingle,page:t.page,offset:t.i,name:t.name,j:t.j,k0:t.k0,fixed:rows.filter(k=>k>=0).length,...fitKey(frames,anchors,D,options.cap??128,FLOOR)};
+ }
+
  if(options.fitSeed!==undefined){
   const t=ranked[options.fitSeed],anchors=[t.a,t.b].map(a=>({...a,p:records.find(s=>s.name===a.name).p.slice(a.j,a.j+12)}));
   return {i:options.fitSeed,a:t.a,b:t.b,fixed:t.fixed,...fitKey(frames,anchors,t.D,options.cap??128,FLOOR)};
@@ -227,4 +237,4 @@ function run(raw,options={}){
  }
  return {start,count,total:ids.length,results};
 }
-if(typeof require!=='undefined'&&require.main===module){const fs=require('node:fs'),path=require('node:path'),root=path.resolve(__dirname,'..');const raw=INPUTS.map(p=>fs.readFileSync(path.join(root,p),'utf8'));const [mode,i,cap]=process.argv.slice(2);const options=mode==='plant'?{fitPlant:Number(i),cap:Number(cap??128)}:mode==='seed'?{fitSeed:Number(i),cap:Number(cap??128)}:{controls:true};console.log(JSON.stringify(run(raw,options),null,2));}
+if(typeof require!=='undefined'&&require.main===module){const fs=require('node:fs'),path=require('node:path'),root=path.resolve(__dirname,'..');const raw=INPUTS.map(p=>fs.readFileSync(path.join(root,p),'utf8'));const [mode,i,cap]=process.argv.slice(2);const options=mode==='plant'?{fitPlant:Number(i),cap:Number(cap??128)}:mode==='seed'?{fitSeed:Number(i),cap:Number(cap??128)}:mode==='single'?{fitSingle:Number(i),cap:Number(cap??128)}:{controls:true};console.log(JSON.stringify(run(raw,options),null,2));}
