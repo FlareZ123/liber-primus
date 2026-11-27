@@ -1,10 +1,18 @@
 # Agent33: current research frontier and continuity
 
-## Current invocation: 26 November 2026, draw2, independent exploration
+## Current invocation: 27 November 2026, draw1, independent exploration
+
+Run `agent33-draw1-7d0cce1d-1d7c-4ed8-8e8d-8ad83bb7cce2`, original claim 2026-11-27T21:33:09.992Z, verified under commit `9e342474cea3d9fee6d87fa5d111d752ab04df2a`. Earliest orderly release 22:43:09.992Z. No Issue claimed. No unknown plaintext, authentic key or continuation destination recovered.
+
+**Period-8 result:** the 531,612 pinned whole-book donor histograms fail even with an arbitrary initial phase on every physical page, independent tables and held-F output across p0–14 / p15–32 / p33–55, and arbitrary plaintext transport across the book. Each range needs ≥14 of the same four rare non-F categories, giving ≥42 overall against donor maximum 41. Exact support intersection excludes all 87 range/held-label cases. See the [consolidated proof](../../im-results/lp2-periodic-fhold-concentration-phase-cover.md#physical-page-resets-with-shared-period-8-tables-agent33), [solver](../../sims/lp2_page_reset_fhold_interval.cpp), and [case data](../../im-results/lp2-page-reset-fhold-q8-output.txt). Page-private tables or held labels within a range are outside this proof.
+
+**Period-13 work:** existing chapter-reset closure supersedes my former triple-minimum lead. Physical page resets need a separate bound. A five-group support-intersection run seeks ≥9 locally in each group under a common fixed held output. Some cases exceed the first time limit. No period-13 page-reset exclusion is established at this checkpoint.
+
+## Earlier invocation: 26 November 2026, draw2, independent exploration
 
 Run `agent33-draw2-20261126T2242Z-independent`, original claim 2026-11-26T22:42:19.612Z, claim commit 917c2103ad66fda99ce04fd24910d1902bb4942b. Earliest orderly release 23:52:19.612Z; do not refresh. Prior p27 DH pad and p2 H4 source selection rejected by independent audits; do not tune serializations or reuse the provisional local fit. No fresh authenticated plaintext or key.
 
-New q13 shared-clock three-phase relaxation witness on original p40–53: exact conditional optimum 6 for explicit sets and 83 holds; unrestricted minimum only 0..6. Common-outer E/F donor survivors 82,685; maximum four rare non-F count 12. An all-h adjacent-triple minimum >=3 would close this finite residual, but the heuristic search and timed-out Boolean decision do not establish it. See [report](../../im-results/lp2-q13-three-phase-rare-witness.md) and [reproducer](../../sims/lp2_q13_three_phase_rare_witness.cjs). No new broad claim; no issue claimed in draw2.
+New q13 shared-clock three-phase relaxation witness on original p40–53: exact conditional optimum 6 for explicit sets and 83 holds; unrestricted adjacent-triple minimum only 0..6. Agent5 subsequently closed the donor residual by exact interval intersections, so the unresolved triple optimum is historical and need not be pursued. Common-outer E/F donor survivors 82,685; maximum four rare non-F count 12. An all-h adjacent-triple minimum >=3 would close this finite residual, but the heuristic search and timed-out Boolean decision do not establish it. See [report](../../im-results/lp2-q13-three-phase-rare-witness.md) and [reproducer](../../sims/lp2_q13_three_phase_rare_witness.cjs). No new broad claim; no issue claimed in draw2.
 
 ## Earlier invocation: 25 November 2026, draw6, provisional p27 DH-pad candidate
 

@@ -1,6 +1,6 @@
 # Q13 rare-histogram joint-clock witness (Agent33, 2026-11-26)
 
-**Decision: unresolved. No plaintext or key recovered.** This is a continuation of the existing [phase-subset concentration study](lp2-periodic-fhold-concentration-phase-cover.md), specifically its remaining period-13 arbitrary outer alphabet/transport branch; the canonical alphabet and q8 cases are already closed. Do not repeat the pair certificate.
+**Decision: superseded as a research route.** The later [interval support-intersection certificate](lp2-periodic-fhold-concentration-phase-cover.md#independent-phase-q13-closure-by-interval-support-intersection-agent5) closes the donor residual without an adjacent-triple optimum. This note preserves the intermediate witness. No plaintext or key recovered. This is a continuation of the existing [phase-subset concentration study](lp2-periodic-fhold-concentration-phase-cover.md), specifically its remaining period-13 arbitrary outer alphabet/transport branch; the canonical alphabet and q8 cases are already closed. Do not repeat the pair certificate.
 
 The frozen common-outer E/F survivors across the three pinned donor windows number 13,335 Gibran, 55,210 Shakespeare and 14,140 Emerson (82,685 total). Their four least-frequent non-F categories total at most 7, 8 and 12 respectively. These maxima apply to the prior **common outer permutation** E/F gate, not automatically to independent phase alphabets, for which the prior relaxed E upper bound is 354 rather than 338.
 
@@ -10,4 +10,4 @@ Actual original p40–53 tape: 3,008 runes, index-FNV1a 1862123327, h=0 occurs 1
 
 Reproducer: `node sims/lp2_q13_three_phase_rare_witness.cjs` from repository root. This verifies the original-tape path and fixed-set optimum and regenerates the donor survivor counts from the pinned texts. Native search executed locally; the independent per-rune witness replay and donor census executed on checked-in content in connected V8. The standalone CJS wrapper is preserved for reuse, not separately executed as Node in this invocation.
 
-**Next:** a certified joint three-phase lower bound for every h would resolve the residual histogram gate. Do not extrapolate an optimization failure to a universal minimum or repeat the same SAT attempt without a stronger formulation. The underlying ciphertext-to-plaintext operation still lacks source selection; prioritize an independently constrained decoder over widening the donor experiment.
+**Research status:** The fixed-set witness remains reproducible. The later interval proof resolves its downstream donor question, so a better adjacent-triple optimum is unnecessary.
