@@ -57,7 +57,7 @@ This follows because h(a,b) is independent for every observed context. Conversel
 |---|---:|---:|
 | 1 row per previous rune, 110 free page heads | 823 | — |
 | 2 rows per previous rune, arbitrary two-predecessor binary classifier | **1,216** | **2,068** |
-| 3 rows per previous rune, arbitrary two-predecessor ternary classifier | 1,455 | — |
+| 3 rows per previous rune, arbitrary two-predecessor ternary classifier | 1,455 | **2,423** |
 | 4 rows per previous rune, arbitrary two-predecessor quaternary classifier | 1,622 | — |
 | Binary selector allowed to vary independently at every occurrence (relaxation) | 1,468 | 2,669 |
 
@@ -71,7 +71,7 @@ All contiguous 12,956-rune windows of three pinned literary references, encoded 
 | Shakespeare | 204,151 | 1,408 | 2,441 |
 | Emerson | 308,372 | 1,491 | 2,514 |
 
-The 2,979 directly transcribed solved-native runes have E=380 and top-two non-F=636, also substantially larger fractions, though this shorter source is not a length-matched control. Therefore the binary family would need at least **192 additional E positions** or at least **373 additional top-two non-F positions** to reach any of the 562,060 tested literary windows. These deficits count positions, not bits of key entropy. The ternary top-one bound rejects every tested Emerson window but does not by itself reject Gibran or Shakespeare. The binary result also applies to a literal-F bypass if the two physical ciphertext predecessors always advance and each state maps consuming non-F runes injectively; allowing free F holds does not increase any non-F subset's output cardinality. It does not extend to histories indexed by a hidden consumed-symbol clock.
+The 2,979 directly transcribed solved-native runes have E=380 and top-two non-F=636, also substantially larger fractions, though this shorter source is not a length-matched control. Therefore the binary family would need at least **192 additional E positions** or at least **373 additional top-two non-F positions** to reach any of the 562,060 tested literary windows. These deficits count positions, not bits of key entropy. The ternary top-one bound rejects every tested Emerson window but does not by itself reject Gibran or Shakespeare. The exact ternary top-two capacity below now excludes every tested window in all three donors. The binary result also applies to a literal-F bypass if the two physical ciphertext predecessors always advance and each state maps consuming non-F runes injectively; allowing free F holds does not increase any non-F subset's output cardinality. It does not extend to histories indexed by a hidden consumed-symbol clock.
 
 Three original-page-length positive controls encrypt the first 12,956 runes of each literary donor under independently seeded secret binary classifications and permutations. All 38,538 constrained symbols replay; the true top-one/top-two counts and respective computed caps are Gibran 1529/2661 ≤ 2075/3435, Shakespeare 1524/2551 ≤ 2029/3349, Emerson 1658/2682 ≤ 2068/3440. These test the bound and exact constructive inverse, not blind recovery of the planted key.
 
@@ -79,8 +79,31 @@ Independent chapter tables **are not excluded**: e.g. original p40–53 alone ad
 
 [Exact SFT and constructive extremal witness](../sims/lp2_twohistory_binary_context_exact_capacity_sft.cjs), commit e4b78bebd37c50634048aff2804d04e23629e2be. Experiment core executed on actual repository inputs in connected V8; standalone Node wrapper not independently executed. Source blobs: corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165, native 1b064ef6d85819b7d96adaff31a82d1ec551598f, Gibran df260a07d56bf5998d40a6360b6132c35c252d10, Shakespeare 94c677ad9dd50771c6670e0c4e4dad9052b46d85, Emerson a92be8ba5b3511a003a22ba31523c14397aaa83a.
 
+## Exact ternary top-two capacity (Agent38, 27 November 2026)
+
+Extend the same physical-history law to an arbitrary ternary classifier and three entirely secret permutations per preceding rune (87 rows). For any fixed pair of non-F plaintext labels, the sharp capacity is
+
+```
+U3(2) = 110 + sum_a max_{A,B,D: |A|=|B|=|D|=2}
+                     sum_b max(n[a,b,A],n[a,b,B],n[a,b,D]).
+```
+
+Here n[a,b,A] sums counts over the two output labels in A. For each a, the 406 two-element sets are represented by threshold masks over the 29 second-predecessor labels. The objective is the sum of popcounts of the threshold-wise union. Enumerate unordered triples of distinct sets (repeated sets cannot improve coverage; replacing a duplicate by an unused set cannot reduce it). Sort by single-set score. For first set u, compute g(v|u) as its marginal gain; submodularity gives U(u,v,w) <= U(u,v)+g(w|u), and <= U(u)+2 max_{v>u} g(v|u). Prune only branches whose upper bound cannot exceed the attained incumbent. The maximum level is computed dynamically. Direct uncompressed winner scores and exhaustive restricted 12-set triples cross-check the mask optimizer for each of 29 rows per input.
+
+**Sharp original maximum: 2,423 of 12,956**, including all 110 unconstrained page heads. The 29 interior row capacities are [78,82,86,79,79,83,82,73,75,80,81,78,74,75,81,76,78,83,81,81,81,83,84,80,84,78,76,83,79]. Assign the fixed labels E/O to each maximizing pair, choose the largest-coverage row for each b, and complete each permutation deterministically. The resulting original inverse attains exactly 2,423 E/O runes and forward-replays all 12,846 modeled positions; it is an extremal witness, not prose.
+
+| Pinned donor | Length-matched windows | Minimum top-two non-F count | Deficit vs original |
+|---|---:|---:|---:|
+| Gibran | 49,537 | 2,548 | 125 |
+| Shakespeare | 204,151 | 2,441 | 18 |
+| Emerson | 308,372 | 2,514 | 91 |
+
+Three fresh full-size native GP plants with independent secret ternary classifiers and rows replay 12,846 constrained runes each. True top-two non-F / computed sharp capacity: Gibran 2661/3683; Shakespeare 2551/3554; Emerson 2682/3697. All 116 restricted exhaustive optimizer crosschecks (29 original + 87 plant) agree. The original maximum fails the entire 562,060-window envelope, independent of printed cuts, word order, and secret key values. The same upper bound covers literal-F holds provided the history is advanced by every physical ciphertext rune and consuming non-F maps remain injective. The 18-position weakest margin is deliberately reported: this is a finite-reference restriction, not a universal English-frequency theorem. Independent chapter keys, four or more rows, hidden consumed-clock history, and different plaintext registers are not excluded.
+
+The [standalone SFT](../sims/lp2_twohistory_ternary_context_exact_capacity_sft.cjs) (commit f964570ad436a5c7a20207ce09dbdb0e505173ab) emits all maximizing row sets, classifiers and inverse tables. The exact core ran in connected V8 on pinned corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165 and donor blobs df260a07d56bf5998d40a6360b6132c35c252d10, 94c677ad9dd50771c6670e0c4e4dad9052b46d85, a92be8ba5b3511a003a22ba31523c14397aaa83a. Standalone Node wrapper not separately executed. No CI dispatched.
+
 ## Cryptanalytic decision
 
-Treat a **fixed arbitrary 29-symbol bijection selected solely by the previous two visible ciphertext runes** as a weak LP2 decryption route unless new original instructions specify an additional key/clock or an alternative plaintext register. The observed ciphertext has no source-recoverable text under this test. A third, external key state or word-position-specific alphabet is not covered merely by counting 841 history states. This result extends the [first-order GP29 all-secret bound](lp2-firstorder-cipherstate-alphabet-capacity.md), while the [16-rune two-history test](lp2-source16-twohistory-codebook-decision.md) asks a distinct capacity question.
+Retire the book-global binary and ternary limited-history architectures against the tested native reference envelope. Treat the broader **fixed arbitrary 29-symbol bijection selected solely by the previous two visible ciphertext runes** as a weak LP2 decryption route unless new original instructions specify an additional key/clock or an alternative plaintext register; the unrestricted 841-row comparison is conditional, not an all-key language exclusion. The observed ciphertext has no source-recoverable text under this test. A third, external key state or word-position-specific alphabet is not covered merely by counting 841 history states. This result extends the [first-order GP29 all-secret bound](lp2-firstorder-cipherstate-alphabet-capacity.md), while the [16-rune two-history test](lp2-source16-twohistory-codebook-decision.md) asks a distinct capacity question.
 
 **Reproducer:** [standalone Windows-compatible CJS SFT](../sims/lp2_two_ciphertext_history_allsecret_collision_sft.cjs). It reads the exact committed original corpus and independent controls, asserts all integer E/D counts, verifies every reversible affine plant symbol and emits the full numeric result. Its exact checked-in source text has executed successfully with the unchanged repository corpus fixtures in an isolated JS runtime; no GitHub Action was created.
