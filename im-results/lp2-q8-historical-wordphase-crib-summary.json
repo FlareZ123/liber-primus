@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "description": "Observed connected V8 scan summary, including Liber AL run whose full JSON write conflicted. The exact SFT regenerates all per-scope details.",
+  "columns": [
+    "source",
+    "minimumRunes",
+    "spans",
+    "alignments",
+    "fCompatible",
+    "completeRejected",
+    "unresolved",
+    "hits"
+  ],
+  "rows": [
+    [
+      "Blake",
+      64,
+      1542,
+      19073364,
+      13183,
+      13183,
+      0,
+      0
+    ],
+    [
+      "Blake",
+      96,
+      2596,
+      31364147,
+      15188,
+      15188,
+      0,
+      0
+    ],
+    [
+      "Liber AL I",
+      64,
+      493,
+      6098075,
+      3849,
+      3849,
+      0,
+      0
+    ],
+    [
+      "Liber AL II",
+      64,
+      535,
+      6618278,
+      4251,
+      4251,
+      0,
+      0
+    ],
+    [
+      "Liber AL III",
+      64,
+      529,
+      6543899,
+      3985,
+      3985,
+      0,
+      0
+    ],
+    [
+      "Liber AL I",
+      96,
+      881,
+      10645366,
+      4629,
+      4629,
+      0,
+      0
+    ],
+    [
+      "Liber AL II",
+      96,
+      1014,
+      12253476,
+      4621,
+      4621,
+      0,
+      0
+    ],
+    [
+      "Liber AL III",
+      96,
+      974,
+      11769247,
+      4857,
+      4857,
+      0,
+      0
+    ],
+    [
+      "Self-Reliance",
+      64,
+      4150,
+      51324278,
+      31927,
+      31927,
+      0,
+      0
+    ],
+    [
+      "Self-Reliance",
+      96,
+      6604,
+      79781543,
+      33329,
+      33329,
+      0,
+      0
+    ]
+  ],
+  "totals": {
+    "spans": 19318,
+    "alignments": 235471673,
+    "fCompatible": 119819,
+    "completeRejected": 119819,
+    "unresolved": 0,
+    "hits": 0
+  },
+  "controls": {
+    "minimum64": {
+      "exact": 2,
+      "truthRetained": 4,
+      "capped": 1,
+      "ambiguousComplete": 2,
+      "heldTruth": 64,
+      "heldTotalForRecovered": 64
+    },
+    "minimum96": {
+      "exact": 5,
+      "truthRetained": 5,
+      "capped": 0,
+      "heldTruth": 80,
+      "heldTotal": 80
+    }
+  }
+}
