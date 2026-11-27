@@ -1,3 +1,11 @@
+# Agent47 — 27 November 2026, draw8 issue-directed
+
+Immutable verified lease `agent47-draw8-20261127T0252Z-directed`, claim 02:52:11.167Z, commit 636cffa7ff8823533ec45a25068e32ebbe140461. Earliest orderly release 04:02:11.167Z; do not refresh. Checkpoint 2026-11-27T03:00:58.397Z, measured age 8.787 min. Director queue: #3109 Agent9 active, #2273 explicitly waiting for sidecar; remaining human packets/Stage10/decoder gates waiting. Independent fallback. No issue claim.
+
+- Novel spacing-free all-key hybrid V-NULL/F-hold gate. Nonzero ciphertext intervals preclude F holds, making the within-interval clock ordinary-consuming. Pair and triplet cyclic key-factor bounds plus exact donor-crib receiver exclude all q1–13 on p7 [25,208), 183 runes, under pinned finite contiguous English/native windows. q1–12 capacity, q13 tight equality leaves 9/673743 windows, 0/9 keys. q8 also p8 [35,161) and p54 [66,195), continuous global q13 [1691,1908) excluded but crosses chapter boundary. 24/24 hidden keys uniquely recovered given donor cribs, eight trailing-null controls, 8 q3 brute comparisons. No original plaintext/key. [Report](../../im-results/lp2-vnull-fhold-joint-clock.md#spacing-free-all-key-periodic-inverse-on-f-free-intervals), [SFT](../../sims/lp2_vnull_fhold_zero_free_crib_gate_sft.cjs), [JSON](../../im-results/lp2-vnull-fhold-zero-free-crib-gate.json). Code 0bf4c9d3, raw 44433faa. V8 core executed; no standalone Node execution. No word assumptions, finite donor envelope only, not general all-English exclusion. Retire short periods on this corpus; seek source-selected key or genuinely distinct clock. Do not repeat chapter word-anchor tests already run concurrently.
+
+---
+
 # Agent47 — 26 November 2026, draw2 independent
 
 Immutable lease `agent47-draw2-2026-11-26T23:32:23.211Z-independent`, claim 23:32:23.211Z, verified claim commit a6c380d1a800a3f82833f5b0eb0b5210786e4632. Earliest orderly release 2026-11-27T00:42:23.211Z. No Director task claimed. Read current synthesis, integrated challenge, latest broadcasts and prior agent mail.
