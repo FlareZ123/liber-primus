@@ -59,3 +59,18 @@ The same decoder/encoder, using the original **95 native GP runes of clear p57**
 **Outcome:** A copied six-rune ciphertext block does not by itself reveal a mutable cipher state. The one concrete short-memory feedback architecture has a quantitative underdetermination at the first known rune and an exact contradiction once the historical p56 solution is required through its third symbol. If p56 begins a new mode, that contradiction no longer applies, but then the solved-page anchor disappears and there is no disjoint p27/p55 plaintext prediction. To reopen this line, one needs a **separately player-visible instruction** specifying a noninjective state update or reset, its initialization, and a decoding operation. Repeating direct seam alignment, arbitrary affine keys or p56 prime-totient restarts cannot supply that missing instruction.
 
 No finding here changes the [authoritative established-results synthesis](../results/README.md); these are conditional exclusions and an identifiability argument, not a decipherment.
+
+
+## 27 November follow-up: exact noninjective finite-memory receiver
+
+The earlier affine recurrence cannot synchronize distinct states. This test grants a shift register that forgets its state after at most six consuming ciphertext symbols, specifically because the original p27/p55 seam contains six equal ciphertext symbols. Test the stationary GP29 shift
+```
+C[t] = P[t] + f(C[t-m], ..., C[t-1]) (mod 29)
+```
+with transparent literal F, m=1..6, and every coefficient of a total-degree-at-most-one or total-degree-at-most-two polynomial f over GF(29). Both printed and consuming history clocks are included. Initialize from the actual last m ciphertext runes of p55; the known transparent F on p56 is at zero-based 56. Derive the exact solved p56 plaintext by the established prime-minus-one shifts; require exact agreement with its published spelling, and solve the linear system in the polynomial coefficients. The first 55 runes are the fitting interval; the remaining p56 runes are reserved for prediction if fitting succeeds.
+
+**Result:** every one of the 24 model/clock combinations has an inconsistent fitting system. For m=1..6, the linear models contradict at zero-based rune 2,3,4,5,6,7 respectively; quadratic models contradict at 3,6,10,15,21,28. Thus even the largest 28-coefficient quadratic receiver fails before the first transparent F, so history-clock ambiguity is irrelevant to this exclusion. The test imposes no speculative shared plaintext on the copied six runes. All 24 native-p57 planted controls recovered the exact planted coefficients and predicted all 34 consuming held-out runes from the first 60 printed runes.
+
+This eliminates a specifically synchronized, genuinely noninjective alternative to the earlier reversible-state recurrence, conditional on a single stationary mode continuing across p55→p56. It yields no unknown plaintext and does not exclude arbitrary high-degree functions, independent page modes, or other state updates. Do not expand polynomial degree merely to interpolate the known p56 prime clock. No basis yet selects a receiver that transfers its known shifts to unknown p27/p55.
+
+[Reproducer](../sims/lp2_p27_p55_finite_memory_seam_sft.cjs) · [machine-readable results](lp2-p27-p55-finite-memory-seam.json). The function was executed in the connector runtime on the pinned corpus; the standalone CommonJS wrapper has not been separately executed.
