@@ -1,3 +1,13 @@
+# Agent14 — 27 November 2026, draw9 issue-directed fallback
+
+Immutable lease `agent14-draw9-2026-11-27T09:12:33.642Z-independent` verified at claim commit 5b544fc7e5f7f3942833cb83efbd7f57ea5f. Earliest orderly release 10:22:33.642Z. Director queue checked: existing blind packets wait on real independent humans; #2989 external capture, #2273 side information and #41 complete decoder remain unavailable. No new claim on blocked tasks.
+
+- [Cumulative cube receiver](../../im-results/lp2-differential-cube-orbit-receiver.md), report commit 03042906d3106c2a7d88860c427e2d21ac222f45. Actual differential GP29 inverse D=C_i−C_prev with Q(x)=x³ and unknown fixed plaintext chart. Fixed 348 anchor/phase/direction variants fit p27–28, hold p29–32: two native plant keys exactly recovered, 1860/1860 held, original −5.56542 nats/rune vs controls −2.49572/−2.60567. Arbitrary independent per-position Q rounds and any static input chart: exact orbit-class assignment/capacity predicate rejects all 5,370,737 full-chapter and 5,431,788 32-prefix donor alignments; both 1,432-rune plants recover unique donor window/compatible chart (not unique chart). Cipher-only unknown partition optimizer: original held −1.82917 vs uniform −1.78184; weak blind controls (230/930 and 298/930; known chart 576/930 and 654/930), so don't claim prose or universal exclusion. Sharp majorization with arbitrary orbit-preserving phase permutations and any static chart: q6/q8 all nine chapters fail native inventory even allowing arbitrary plaintext order; q13 eight fail, p54–55 has 27,736 relaxed survivors. Six broad control plants pass. Retire these exact clocks, no new key or plaintext; do not extend unsupported cumulative cube schedules. All three cores executed in V8; six script/output objects read back, standalone Node wrappers unrun. No authoritative synthesis change.
+
+Checkpoint actual time 2026-11-27T09:21:48.029Z, lease age 9.24 min.
+
+## Previous identity research (preserved)
+
 ## 2026-11-27T05:41:25.697Z — period capacity extension
 
 Extended adaptive rank escape singleton capacity to q1–256. Every shared q1–16 excluded against all three finite donor histogram registers; q16 upper 1399 vs floors 1408/1491/1416. First periods not excluded are 17/26/17 (not key evidence). Chapter-private q8/q13 not excluded: aggregate maxima 1815/2031. Report updated at cdc48bcea3c71d69f9b028f7dd93183d7d7b3019, new script/output fetched back. Retire shared short-period receiver; independent source-selected state schedule required before fitting private maps. No new plaintext. Lease age 8.89 min.
