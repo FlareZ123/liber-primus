@@ -66,6 +66,21 @@ Two contiguous Gibran controls, random arbitrary charts and initial permutations
 - [Crib continuation SFT](../sims/lp2_gpprime_plain_rank_crib_continuation_sft.cjs)
 - [Raw output](lp2-gpprime-plain-rank-crib-continuation-output.json)
 
+## Independent-word rank-pattern gate (Agent 2, 2026-11-27)
+
+In the ordinary model, starting list A is immaterial to the equality pattern of a reset word: permuting A relabels every output symbol consistently. Encode a word's pattern by the distance to the previous occurrence of each output glyph (zero on first occurrence). This yields an exact per-word necessary condition for the shared secret chart S even when every word has its own initial list. For a tracked glyph at rank q, removal at s and insertion at d update q to q-[s<q]+[d<=q-[s<q]] when s differs from q. Immediate repeat/nonrepeat and gap bounds are inexpensive relaxations, but do not imply exact support.
+
+Exploratory original tests chose 35 printed groups of length >=8 ranked by sum of reciprocal gaps to preceding equal glyphs (stable original index order). The shared arbitrary-chart unary relaxation was SAT but its concrete chart exactly supported only 19/35 independently initialized words. A full symbolic equality-pattern model was SAT for the first two groups (1476 and 1970, zero-based; arbitrary reset lists; lexical witnesses UNEMPLOYMENT and MALICIAUSLY, **not plaintext evidence**). The exact eight-group run timed out at 10 s; a shared two-step constraint relaxation admitted ordinary and F-hold charts with exact replay on only 3/8 and 2/8 respectively; three-step ordinary run timed out at 8 s. No original arbitrary-chart exclusion follows.
+
+A decisive *control* shows why the independent-word objective is inadequate. Use the pinned TextBlob lexicon (29,060 GP forms; 17,635 with length 7–14) and Gibran's Prophet (12,353 words, fixed 2/3 source-position split). Among 1,078 eligible lengths, 175 are outside the lexicon and deliberately excluded. Encode 605 fit and 298 held words using one arbitrary planted chart and independently reset lists. All 406 single-transposition neighbors of the planted rank chart were exhaustively scored. **27 wrong charts have complete support on all 903 observed patterns.** A G/W swap changes the actual planted word patterns of 120 fit and 35 held words (1,214 runes total) despite complete lexical coverage. An AE/Y swap scores strictly higher than truth in both splits under both uniform log-mass and square-root-frequency-weighted log-mass; eight neighbors beat truth on uniform fit and six on weighted fit. This is a counterexample to chart identifiability from independent-word pattern coverage and to those scoring objectives, not merely a failed optimizer. Two-start annealing and soft-pattern pilots also failed to recover the planted key (0–1/29 chart entries correct despite 292–297/298 held pattern support).
+
+Do not repeat independent-word-only key optimization. A credible continuation requires cross-word state constraints or a source-authenticated chart/crib; no source currently selects this insertion model. This experiment is ordinary-only for the exhaustive neighbor result and does not exclude a continuous GP-prime receiver, F-hold receiver, or arbitrary-reset receiver in general.
+
+- [Exact neighbor SFT](../sims/lp2_gpprime_rank_wordpattern_neighbors_sft.cjs)
+- [Exact output](lp2-gpprime-rank-wordpattern-neighbors-output.json)
+
+The neighbor experiment was independently executed in local C++ and connected V8 on the pinned inputs; only the latter compact reproducer is committed. The exploratory SAT and optimizer results are local diagnostics, not separately reproduced in the repository.
+
 ## Reproduction
 
 - [SFT](../sims/lp2_gpprime_rank_insert_sft.cjs)
