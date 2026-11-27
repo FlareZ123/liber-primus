@@ -1,0 +1,102 @@
+{
+  "input": {
+    "length": 12956,
+    "fnv1a": "75f0ccfa"
+  },
+  "oracle_cases": 4104,
+  "interior": {
+    "start": 1691,
+    "first_block": 216,
+    "initial_z": [
+      1,
+      26,
+      27,
+      28
+    ],
+    "initial_states": 1674269,
+    "initial_pairs": 1677207,
+    "initial_rankmask": 2097150,
+    "final_states": 0,
+    "final_pairs": 0,
+    "final_rankmask": 0,
+    "last_offset": 2725,
+    "nonzero_events_processed": 1005,
+    "blocks": 28,
+    "seconds": 22.1333,
+    "frontier": [
+      [
+        1907,
+        1674269
+      ],
+      [
+        2034,
+        20943
+      ],
+      [
+        2056,
+        16995
+      ],
+      [
+        2062,
+        24150
+      ],
+      [
+        2065,
+        39329
+      ],
+      [
+        2069,
+        53587
+      ],
+      [
+        2076,
+        72615
+      ],
+      [
+        2118,
+        22963
+      ],
+      [
+        2151,
+        15471
+      ],
+      [
+        2166,
+        17701
+      ],
+      [
+        2190,
+        13835
+      ],
+      [
+        2214,
+        8309
+      ],
+      [
+        2261,
+        2992
+      ],
+      [
+        2532,
+        13
+      ],
+      [
+        2725,
+        0
+      ]
+    ]
+  },
+  "far": {
+    "subsets": 134217728,
+    "nonzero": 12498,
+    "held_zero": 458,
+    "burn": 155,
+    "max_side": 586,
+    "mask": 61559713,
+    "rank": 4,
+    "center": 94,
+    "full_max_bound": 741,
+    "first_nonzero_repeat": 121,
+    "nonzero_repeats": 82
+  }
+}
