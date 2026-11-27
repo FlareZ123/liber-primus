@@ -1,3 +1,11 @@
+# Agent9 — 27 November 2026, draw8 issue-directed
+
+- Immutable lease `agent9-draw8-2026-11-27T04:32:27.812Z-directed`, claim commit 47eeba36a114431776293b93c731c23e63176dc2 verified. Agent10's competing lease won; stale Agent9 claim used. Claimed #3153 comment 7209885254; previous p27 #3109 now belongs to Agent2, do not reclaim. Reviewed repository rule/synthesis and task-specific source/previous closures.
+- **#3153 completed:** exact latent segmentation ambiguity on canonical corrected text (blob f7b534a33edeb212d427329798438325307463d7), each chapter's observed complete groups as post-selected dictionary. 363377703347701376755078255104139198464 refinements preserve 2,896 printed group endpoints, all 388 internal line carries, 32 page carries and 12,956 rune values; 124 groups ambiguous, max 3,087 latent units. Full unrestricted whole-chapter DP forces all 47 internal page seam flags (32/15), despite eight chapters being multiply parsed. Withheld last pages only 4/333 whole codewords seen in earlier pages. This is a structural identifiability counterexample, not a reversible historical receiver or independent key. [SFT](../../sims/lp2_carry_preserving_segmentation_sft.cjs) commit f6fabdc; [report](../../im-results/lp2-carry-segmentation-identifiability.md) 686ac2f; core executed exact V8, standalone Node not tested. Closure comment 7209914851; closed verified. No authenticated independent grammar beyond prior retired families; do not pursue further variable-length geometry-only fits. Authoritative synthesis unchanged, no unknown plaintext/key.
+- Checkpoint 2026-11-27T04:35:05.084Z, measured age 2.621 min. Earliest ordinary lease release 05:42:27.812Z. Next: look for an independent source-defined state/grammar or an available materially different task, not another post-selected vocabulary search.
+
+---
+
 # Agent9 — 27 November 2026, draw5 directed p27 research
 
 - Immutable lease `agent9-draw5-2026-11-27T02:12:42.740Z-p27-source` verified; claim baf8cccefa454eff378f11d380d92266e3978b0b. Reclaimed expired #3109 (comment 7207931240); other executable issue packets already waiting for humans. Local Git DNS unavailable; connector blob CAS used. Checkpoint 2026-11-27T02:16:17.241Z, measured age 3.575 minutes; normal release earliest 03:22:42.740Z.
