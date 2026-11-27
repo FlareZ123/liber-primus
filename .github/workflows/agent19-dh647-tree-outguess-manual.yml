@@ -1,0 +1,76 @@
+name: Agent19 conditional DH647 source-tree OutGuess exact probe
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  conditional-source-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build pinned OutGuess 0.4 (known historical Cicada receiver)
+        shell: bash
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Two same-key plants and two authentic historical controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p outguess-results-agent19-dh647
+          printf 'AGENT19 DH647 SOURCE-CANDIDATE CONTROL\n' > /tmp/test-plaintext.txt
+          for KEY in 647 M9; do
+            outguess -k "$KEY" -d /tmp/test-plaintext.txt resources/liber-primus/49.jpg "/tmp/plant-$KEY.jpg"
+            outguess -k "$KEY" -r "/tmp/plant-$KEY.jpg" "/tmp/decoded-$KEY.txt"
+            cmp /tmp/test-plaintext.txt "/tmp/decoded-$KEY.txt"
+            echo "PLANT_OK key=$KEY SHA256=$(sha256sum /tmp/decoded-$KEY.txt | cut -d' ' -f1)"
+          done
+          outguess -r resources/liber-primus/00.jpg /tmp/known-lp1-0.txt
+          grep -q '^-----BEGIN PGP SIGNED MESSAGE-----' /tmp/known-lp1-0.txt
+          outguess -r resources/liber-primus/08.jpg /tmp/known-lp1-8.txt
+          grep -q 'For those who have fallen behind' /tmp/known-lp1-8.txt
+          echo "HISTORICAL_CONTROLS_OK"
+      - name: Exact source-frozen keys on three selected original scans
+        shell: bash
+        run: |
+          set -uo pipefail
+          for KEY in 647 M9; do
+            for PAGE in 49 50 72; do
+              OUT="outguess-results-agent19-dh647/$KEY-$PAGE.bin"
+              LOG="outguess-results-agent19-dh647/$KEY-$PAGE.log"
+              outguess -k "$KEY" -r "resources/liber-primus/$PAGE.jpg" "$OUT" > "$LOG" 2>&1
+              CODE=$?
+              echo "EXTRACTION key=$KEY page=$PAGE code=$CODE"
+              if test -f "$OUT"; then
+                python3 - "$KEY" "$PAGE" "$CODE" "$OUT" <<'PY'
+          import hashlib, json, math, pathlib, sys
+          key,page,status,filename=sys.argv[1:]
+          b=pathlib.Path(filename).read_bytes()
+          n=len(b); counts=[b.count(x) for x in range(256)]
+          entropy=-sum((v/n)*math.log2(v/n) for v in counts if v and n)
+          printable=sum(x in (9,10,13) or 32<=x<=126 for x in b)/n if n else 0
+          istext=(n>=24 and printable>.97)
+          flags=[k for k,magic in [('zip',b'PK\\x03\\x04'),('gzip',b'\\x1f\\x8b'),('png',b'\\x89PNG'),('PGP',b'-----BEGIN PGP')] if b.startswith(magic)]
+          print('RAW_RESULT '+json.dumps(dict(key=key,page=page,code=int(status),length=n,sha256=hashlib.sha256(b).hexdigest(),entropy=round(entropy,5),printable=round(printable,5),first32=b[:32].hex(),flags=flags,text=istext)))
+          PY
+              else
+                echo "NO_OUTPUT key=$KEY page=$PAGE"
+              fi
+            done
+          done
+      - name: Preserve original bytes and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent19-dh647-two-password-three-original-images
+          path: outguess-results-agent19-dh647/
+          if-no-files-found: warn
