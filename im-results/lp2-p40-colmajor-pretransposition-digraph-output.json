@@ -1,0 +1,280 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    }
+  ],
+  "header": [
+    0,
+    9,
+    19,
+    26,
+    6,
+    23,
+    25,
+    8
+  ],
+  "orders": [
+    [
+      0,
+      4,
+      7,
+      1,
+      2,
+      5,
+      6,
+      3
+    ],
+    [
+      0,
+      3,
+      4,
+      7,
+      1,
+      5,
+      6,
+      2
+    ]
+  ],
+  "originals": [
+    {
+      "label": "rank-order",
+      "key": [
+        0,
+        4,
+        7,
+        1,
+        2,
+        5,
+        6,
+        3
+      ],
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "windows": 59493,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      }
+    },
+    {
+      "label": "rank-order",
+      "key": [
+        0,
+        4,
+        7,
+        1,
+        2,
+        5,
+        6,
+        3
+      ],
+      "name": "resources/control/emerson_essays_2944.txt",
+      "windows": 318328,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      }
+    },
+    {
+      "label": "rank-order",
+      "key": [
+        0,
+        4,
+        7,
+        1,
+        2,
+        5,
+        6,
+        3
+      ],
+      "name": "resources/control/shakespeare_first300k.txt",
+      "windows": 214107,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      }
+    },
+    {
+      "label": "inverse-rank",
+      "key": [
+        0,
+        3,
+        4,
+        7,
+        1,
+        5,
+        6,
+        2
+      ],
+      "name": "resources/control/gibran_prophet_58585.txt",
+      "windows": 59493,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      }
+    },
+    {
+      "label": "inverse-rank",
+      "key": [
+        0,
+        3,
+        4,
+        7,
+        1,
+        5,
+        6,
+        2
+      ],
+      "name": "resources/control/emerson_essays_2944.txt",
+      "windows": 318328,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      }
+    },
+    {
+      "label": "inverse-rank",
+      "key": [
+        0,
+        3,
+        4,
+        7,
+        1,
+        5,
+        6,
+        2
+      ],
+      "name": "resources/control/shakespeare_first300k.txt",
+      "windows": 214107,
+      "q4": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 0
+      },
+      "q8": {
+        "spectra": 0,
+        "exact": 0,
+        "first": null,
+        "maxPhases": 1
+      }
+    }
+  ],
+  "plants": [
+    {
+      "q": 4,
+      "seed": 1074267137,
+      "key": [
+        0,
+        4,
+        7,
+        1,
+        2,
+        5,
+        6,
+        3
+      ],
+      "recovered": 3000,
+      "exact": {
+        "spectra": 1,
+        "exact": 1,
+        "first": {
+          "start": 0,
+          "observedMapEntries": [
+            237,
+            230,
+            232,
+            220
+          ]
+        },
+        "maxPhases": 4
+      }
+    },
+    {
+      "q": 8,
+      "seed": 1074268161,
+      "key": [
+        0,
+        3,
+        4,
+        7,
+        1,
+        5,
+        6,
+        2
+      ],
+      "recovered": 3000,
+      "exact": {
+        "spectra": 1,
+        "exact": 1,
+        "first": {
+          "start": 0,
+          "observedMapEntries": [
+            142,
+            146,
+            142,
+            137,
+            146,
+            136,
+            136,
+            138
+          ]
+        },
+        "maxPhases": 8
+      }
+    }
+  ]
+}
