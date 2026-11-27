@@ -54,6 +54,40 @@ def extract(text,pattern,s,w,l):
             "word_count":len(words),"turn_count":len(turns),"labels":[x[0] for x in turns[:s]],
             "turn_offset":pos}
 
+def geometry_text(page):
+    # Reconstruct visible line ordering from span baseline positions rather
+    # than trusting individual PDF text-block line breaks.
+    lines=[]
+    for block in page.get_text("dict")["blocks"]:
+        if block["type"]!=0:
+            continue
+        for line in block["lines"]:
+            for span in line["spans"]:
+                x,y=span["origin"]
+                if span["text"].strip():
+                    lines.append((y,x,span["text"],span["bbox"]))
+    rows=[]
+    for y,x,t,b in sorted(lines):
+        if not rows or abs(y-rows[-1][0])>2:
+            rows.append([y,[]])
+        rows[-1][1].append((x,t,b))
+    result=[]
+    for y,spans in rows:
+        spans.sort()
+        parts=[]
+        previous=None
+        for x,t,b in spans:
+            if previous is not None and x-previous>1.5:
+                parts.append(" ")
+            parts.append(t)
+            previous=b[2]
+        text="".join(parts)
+        result.append(text)
+        labels=[(m.group(1),m.start()) for m in ANY.finditer(text)]
+        if labels and page.number+1 in (317,397,487,488,489,490):
+            print("BASELINE",page.number+1,round(y,2),round(spans[0][0],2),json.dumps(labels),flush=True)
+    return "\n".join(result)
+
 def main():
     sys.stdout.reconfigure(errors="backslashreplace")
     raw=get(URL)
@@ -63,11 +97,16 @@ def main():
         subprocess.run([sys.executable,"-m","pip","install","--disable-pip-version-check","PyMuPDF==1.26.7"],check=True)
         import fitz
     doc=fitz.open(stream=raw,filetype="pdf")
-    for mode in ("raw","sorted"):
+    reference_url="https://cicadanotebook.com/files/geb_125.py"
+    with urlopen(Request(reference_url,headers={"User-Agent":"LiberPrimusResearch/1.0"}),timeout=35) as r:
+        reference=r.read(100000)
+    assert hashlib.sha256(reference).hexdigest()=="5a7095134b0e3f716bc89a315dd5fd92c5b427d409b75a5d62b277ecf856d273"
+    print("REFERENCE_CODE",json.dumps(reference.decode("utf-8"),ensure_ascii=True),flush=True)
+    for mode in ("geometry",):
         selected=[]
         for name,opening,n,s,w,l in ROWS:
             pages=[doc[i-1] for i in range(opening,opening+n)]
-            texts=[p.get_text(sort=(mode=="sorted")) for p in pages]
+            texts=[geometry_text(p) for p in pages]
             # Remove stand-alone page numbers, preserving the line boundaries
             # that carry the distinction between the two coordinate rules.
             text="\n".join(re.sub(r"(?m)^\s*\d{1,3}\s*$","",x) for x in texts)
