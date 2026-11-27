@@ -49,7 +49,7 @@ function experiment(corpus,transcription,lexicon){
  }
  const leftText="BELIEVE NOTHING FROM THIS BOOK EXCEPT WHAT YOU KNOW TO BE TRUE TEST THE KNOWLEDGE FIND YOUR TRUTH EXPERIENCE YOUR DEATH DO NOT EDIT OR CHANGE THIS BOOK OR THE MESSAGE CONTAINED WITHIN EITHER THE WORDS OR THEIR NUMBERS FOR ALL IS SACRED";
  const rightText="WE FOLLOW DOGMA SO THAT WE CAN BELONG AND BE RIGHT OR WE FOLLOW REASON SO WE CAN BELONG AND BE RIGHT THERE IS NOTHING TO BE RIGHT ABOUT TO BELONG IS DEATH IT IS THE BEHAVIORS OF CONSUMPTION PRESERVATION AND ADHERENCE THAT HAVE US LOSE OUR PRIMALITY AND THUS OUR DIVINITY";
- function windows(t,n){const ws=t.split(" ").map(gp),out=[];for(let i=0;i<ws.length;i++){let group=[];for(let j=i;j<ws.length;j++){group.push(ws[j]);const flat=group.flat();if(flat.length>n)break;if(flat.length===n&&flat.includes(0)&&group.every(w=>dict[w.length].has(w.join(","))))out.push(group)}}return out}
+ function windows(t,n){const ws=t.split(" ").map(gp),out=[];for(let i=0;i<ws.length;i++){let group=[];for(let j=i;j<ws.length;j++){group.push(ws[j]);const flat=group.flat();if(flat.length>n)break;if(flat.length===n&&flat.includes(0)&&group.every(w=>dict[w.length].has(w.join(","))))out.push([...group])}}return out}
  const primes=[];for(let n=2;primes.length<100;n++)if(primes.every(p=>p*p>n||n%p!==0))primes.push(n);
  function enc(ws,sign,hold){let k=0;return ws.flat().map(p=>hold&&p===0?0:mod(p+sign*(primes[k++]-1)))}
  const controls=[];
