@@ -1,0 +1,89 @@
+{
+  "config": {
+    "width": 128,
+    "baseline": 2.4,
+    "seed": 2591891900,
+    "trials": 4,
+    "original": false
+  },
+  "controls": [
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1452.6134590269185,
+        "keyCorrect": 90,
+        "heldCorrect": 90,
+        "heldBF": 94.2003393429303,
+        "expanded": 26764
+      },
+      "wrongHeld": {
+        "heldBF": -282.5365919092221
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2029.6370766910463,
+        "heldBF": null,
+        "expanded": 36631
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1475.6245406961207,
+        "keyCorrect": 89,
+        "heldCorrect": 89,
+        "heldBF": 90.98669353642808,
+        "expanded": 27298
+      },
+      "wrongHeld": {
+        "heldBF": null
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -1962.4594037259817,
+        "heldBF": -244.23006815966994,
+        "expanded": 35621
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1478.371376509234,
+        "keyCorrect": 89,
+        "heldCorrect": 89,
+        "heldBF": 83.29377335552698,
+        "expanded": 25802
+      },
+      "wrongHeld": {
+        "heldBF": null
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2021.7729737171826,
+        "heldBF": null,
+        "expanded": 35930
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1467.9790646819827,
+        "keyCorrect": 89,
+        "heldCorrect": 0,
+        "heldBF": null,
+        "expanded": 26364
+      },
+      "wrongHeld": {
+        "heldBF": null
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2029.78881262805,
+        "heldBF": null,
+        "expanded": 34046
+      }
+    }
+  ],
+  "gate": false,
+  "original": null
+}
