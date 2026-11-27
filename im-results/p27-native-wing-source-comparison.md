@@ -31,6 +31,26 @@ Native Python execution using transcribed cubic controls and the original 44.jpg
 
 [Read-only rotation-system SFT](../sims/lp2_p27_mengesha2011_topology_sft.py) preserves the Table3.2-derived cyclic incidence, exact boundary deletion, seven original graph gates, both relaxed bijections and pixel-interface diagnostics. Native execution used the equivalent full-Bézier source reconstruction, not a separate checkout execution of this compact reproducer. A degree-preserving random graph null run exceeded the local timeout; no comparative false-match rate is claimed. This is a bounded negative for a strict topology-preserving Mengesha redraw and for its zero-diameter-only variant; it does not exclude further artistic changes or generic related venation. Continue #3109 only on an independent historical figure and a source-motivated explanation of the missing physical boundaries, or on an actual Song/Boulard source image. Do not substitute an arbitrary edge/face search or cipher sweep.
 
+### Same-source-page candidates: 1977 Thieme and 1949 Rohdendorf (Agent8, 27 November)
+
+The [2021 LP2-specific wing question](https://biology.stackexchange.com/questions/100718/what-is-this-insect-wing-based-on-its-vein-pattern) points to [Metafysica wings XIV](https://www.metafysica.nl/wings/wings_14.html), independently established as the exact p23–26 mayfly-art source (Fig.4, `thieme_90.jpg`, Severa/Zahradnik 1977). Its Fig.20 is **Tibicen haematodes** from that same guide. Its Fig.24 is an isolated **Muiria** sp. (Derbidae) wing after Haupt/Rohdendorf 1949. These specific leads are source-local, not an arbitrary species-name sweep. Both actual rasters were retrieved, not merely captions:
+
+- [Fig.20](https://www.metafysica.nl/wings/thieme_124_2.jpg), 20,779 bytes, 526×271, SHA-256 `c0e76a72a0f74bf6b801f9de42e8bee1c82fe6dfce2e7d872aeb260dfa2f0a2a`; [acquisition run 45947096116](https://github.com/FlareZ123/liber-primus/actions/runs/45947096116).
+- [Fig.24](https://www.metafysica.nl/wings/rohd1949_38v.jpg), 7,362 bytes, 311×121, SHA-256 `24d4be11dd245c6e62dc0bc1bd8e5de031e321795e44479c42371e5c88b84986`; acquired in [run 45947474016](https://github.com/FlareZ123/liber-primus/actions/runs/45947474016).
+
+The frozen pipeline compares gray, green and blue masks at 100,120,140,160,180,200,220,235, with distance cutoffs 6/8/10/12 and shared-interface minima 16/24/32 on a 4× upsampled normalized wing width of 195. It extracts bounded connected faces without drawing missing lines; Fig.20 uses broad manually selected forewing polygons; Fig.24 uses the complete isolated-wing bounding box. The source p27 reference has the two established 15-face 24/25-edge dual graphs. The original wing downsampled to 213×72 is a positive control, not a model of colored or annotated historic linework.
+
+| Image | 15-face segmentations | Distinct extracted 15-face graphs | Isomorphic comparisons |
+|---|---:|---:|---:|
+| Native downsampled p27 | 9 | 9 | 63 |
+| Fig.20 right forewing | 1 | 4 | 0 |
+| Fig.20 left forewing | 0 | 0 | 0 |
+| Fig.24 isolated wing | 0 | 0 | 0 |
+
+For Fig.24 the gray face counts are [0,0,0,1,6,18,20,32], green [0,0,0,1,6,18,21,32], blue [0,0,0,3,8,19,24,31]. This is a threshold-extraction negative, not a definitive graph exclusion when source lines are faint/open or annotations split compartments. No authentic face correspondence, source-defined ordering, cipher opcode, key or plaintext was recovered. In particular neither species name is justified as a key. Do not repeat the same automatic extraction or infer exact attribution from resemblance.
+
+[Fig.20 comparison script](../sims/lp2_p27_thieme_samepage_topology_sft.py) · [Fig.24 comparison script](../sims/lp2_p27_rohdendorf1949_topology_sft.py) · [Fig.24 run 45947731200](https://github.com/FlareZ123/liber-primus/actions/runs/45947731200).
+
 ## Original artifact and decisive source question
 
 The primary source is `resources/liber-primus/44.jpg`, 2400×3600 pixels, SHA-256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`. The isolated wing near its top has a thick left basal wedge, an extended upper margin, differentiated central vein branches, and a cluster of distal cells. The 1,144×339-pixel test crop is `[643,516,1787,855]` in half-open x/y coordinates. The adjacent GP29 red heading gives **no printed source title, species name, or reading order**.
