@@ -55,6 +55,11 @@
 
 ---
 
+### Checkpoint 2: terminal joint q8 and IO correction (15:49 UTC)
+- Exact joint two-anchor receiver: 64 groups/299 black runes (carry joined), first 12 groups/51 runes held, 52 groups/248 fit. Require 13-rune group54 and 11-rune group47 supported, <=3 OOV. Arbitrary common pi, primitive q8, arbitrary word starts, transparent F.
+- [Indexed code](../../sims/lp2_q8_terminal_dual_anchor_indexed.cpp) (c85e86e, blob 866b9054) exhausted **275/275 original primary anchor states**, 608 secondary paths, 24,854,209 joins, 1,086,156 packed permutations, no candidate, no timeout. Exact conditional exclusion for 38,938 forms, not all q8 (anchors can be OOV, holdout changed from p55 to first p54 groups). Uniform seed3301 initial exact action + 12/12 held truths; seed1033 timeout 88/279; weighted seed2014 indexed exact action + 12/12. [Consolidated report](../../im-results/lp2-shared-gp29-cycle-action-calibration.md) commit fcdcd0e2f680973d91d8ff3384cf0e8c2283a28b.
+- [IO alias audit](../../sims/lp2_native_lexicon_io_alias_sft.cjs) c917616a: old IA-only generator misses systematic IO→ᛡ. Base 38,910→40,730; with frozen native extras 38,938→40,751 (+1,813), seven previously missing solved forms now systematically derived. Expanded sorted FNV cf60443a matches local and remote; original narrower negative remains scoped. Local files /mnt/data/agent29-q8, incremental novel-only receiver compiled and running during invocation (original + targeted control). Never retest old-old paths with no novel supports. Next independent gap: branches allowing one/both long anchors OOV.
+
 ## Follow-up research — p55 strict-interior receiver test (26 November 2026)
 
 - Applied the frozen 43-residue 2016-word/p50-low-digit vector to the source-selected 43-rune strict interior of p55. Selection is grounded in the 43 authenticated signed words, the frozen p50 rule, and p57's solved instruction to shed circumferences/find the divinity within. Fixed inverse: (P_i=(C_i-s_i)\bmod29), with no phase, permutation, reset, or alternate boundary.
