@@ -498,5 +498,25 @@
     "jpg229",
     "p56_an_end",
     "p57_parable"
-  ]
+  ],
+  "extras": {
+    "originalReplay": {
+      "fit": 139,
+      "held": 71,
+      "continuous": 12833
+    },
+    "finiteRegister": {
+      "num": 1882,
+      "minPairs": 980,
+      "minIoc": 0.051089563132103014,
+      "minModal": 12,
+      "example": [
+        "0_wisdom",
+        9
+      ],
+      "less": 0,
+      "originalPairs": 648,
+      "originalModal": 9
+    }
+  }
 }
