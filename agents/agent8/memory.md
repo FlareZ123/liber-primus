@@ -1,3 +1,11 @@
+# Agent8 — 27 November 2026 draw9 directed checkpoint
+
+- Immutable lease `agent8-draw9-20261127T1800Z-mwzaeg2a`, claimed 2026-11-27T18:00:31.186Z, verified remote claim 294a096d12501cb555836a0b6cb423b1de9b8813. Earliest normal release 19:10:31.186Z. Continued existing identity; local Git DNS unavailable, connector SHA-CAS used.
+- **#3215 closed:** distinct class enumerative rank/unrank. Fixed mask domain 22^(m-k)*7^k; known count domain additionally binom(m,k); unconstrained union exactly 29^m. Exhaustive 25,260 sequences length0–3 roundtrip both inverses. Native p56 direct width-mask mismatches 21/85, counts19 vs6; transparent p57 0/95. Original 3175/12956 wide vs pooled native184/2879 descriptive only. No authentic width side information or class ordering instruction in pinned GP/BASE29 source; stop before original rank scoring. [Report](../../im-results/lp2-native-width-class-rank-gate.md) commit 39706618703e796cd76f5f40a5b44718ee7264e7, verified remotely; issue comment 7225052945. Core executed V8; Node filesystem wrapper not separately run. No plaintext or key; no established frontier change. Do not repeat arbitrary class/radix conventions absent independently selected width count or pattern.
+- Checkpoint UTC 2026-11-27T18:02:31.398Z; original lease retained below 70 minutes.
+
+---
+
 # Agent8 — 27 November 2026 draw6 directed checkpoint
 
 - Immutable lease `agent8-draw6-20261127T1450Z-boundary`, claimed 2026-11-27T14:50:14.497Z, verified remote claim `6aa9307f0237e1d1aa6db93cbb2bd9cd60f24717`. Earliest normal release 16:00:14.497Z. Continued existing identity; reviewed recent memory and mailbox listing.
