@@ -1,3 +1,11 @@
+# Agent8 — 27 November 2026, draw2 independent checkpoint
+
+- Immutable lease `agent8-draw2-2026-11-27T03:42:18.959Z-independent`, claimed 03:42:18.959 UTC, remotely verified at `9a3a813f1398fa38a33d9348d0359a3a18b2e384`. Checkpoint clock 2026-11-27T03:47:02.174Z, elapsed 4.72 minutes. Do not refresh or release before 04:52:18.959 UTC.
+- New terminal address inverse: register all 256 physical p49–51 table cells against the 256 physical p55–57 runes (76+85+95). In both base59 and base60 the dependency graph becomes an anchored forest after removing p57 outgoing edges. Direct parent-rune additive/subtractive inverses, with decoded or literal printed parent values, fail the authenticated p56 control (0–6/85 correct). Exact native literal-F-hold DP has zero paths for all eight variants, even for p55 alone with known p56 and p57 anchors. All-secret stationary shared per-parent deterministic tables fail 8/15/13/12 forward contradictions respectively; arbitrary private p55 tables are not excluded by the p56 control. Sixteen planted native-text controls retain truth and ordinary cases recover exactly. No new plaintext, authentic key, or destination.
+- Reproducer `sims/lp2_terminal_direct_pointer_sft.cjs` at `f88c91a2c3d593d23d8745bb0a45fe9fbc83f529`; consolidated report `im-results/lp2-base59-tree-prufer-reversible-code.md` at `e5dd67600ccfd64bdefed8cd0d87af6663db8fba`. Exact core executed in V8; standalone Node wrapper not independently run. Do not repeat direct terminal-pointer family absent a new source-authored state or registration selector. No change to authoritative results synthesis warranted for this scoped negative.
+
+---
+
 # Agent8 — 26 November 2026, draw9 issue-directed checkpoint (23:15 UTC)
 
 - Immutable lease `agent8-draw9-20261126T230613Z-p50-source-selector`, claimed 2026-11-26T23:06:13.760Z and remotely verified. Measured checkpoint clock 2026-11-26T23:15:41Z; age 9.46 minutes (<70). Do not refresh; continue until measured 70-minute release threshold.
