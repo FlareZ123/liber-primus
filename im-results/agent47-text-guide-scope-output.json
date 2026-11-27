@@ -1,0 +1,227 @@
+{
+  "historical": {
+    "keyLength": 22,
+    "runeCount": 18,
+    "controls": [
+      {
+        "mask": 0,
+        "offset": 0,
+        "output": "AUOWYFGL5LCSFJ3 NONIAN",
+        "consumed": 18
+      },
+      {
+        "mask": 0,
+        "offset": 1,
+        "output": "PEAENIUJD5IMBDTH3 EOTIJNG",
+        "consumed": 18
+      },
+      {
+        "mask": 0,
+        "offset": 2,
+        "output": "JXLOEJGXP5ANGJXC3 AEBDDD",
+        "consumed": 18
+      },
+      {
+        "mask": 0,
+        "offset": 3,
+        "output": "YTRDTNRIA5YSTHBE3 YUGAEEA",
+        "consumed": 18
+      },
+      {
+        "mask": 0,
+        "offset": 4,
+        "output": "EAFCEAMEAEF5LGCUM3 IPHUJ",
+        "consumed": 18
+      },
+      {
+        "mask": 1,
+        "offset": 0,
+        "output": "AUOWYFGL5IMBDTH3 EOTIJNG",
+        "consumed": 19
+      },
+      {
+        "mask": 1,
+        "offset": 1,
+        "output": "PEAENIUJD5ANGJXC3 AEBDDD",
+        "consumed": 19
+      },
+      {
+        "mask": 1,
+        "offset": 2,
+        "output": "JXLOEJGXP5YSTHBE3 YUGAEEA",
+        "consumed": 19
+      },
+      {
+        "mask": 1,
+        "offset": 3,
+        "output": "YTRDTNRIA5LGCUM3 IPHUJ",
+        "consumed": 19
+      },
+      {
+        "mask": 2,
+        "offset": 0,
+        "output": "AUOWYFGL5LCSFJ3 EOTIJNG",
+        "consumed": 19
+      },
+      {
+        "mask": 2,
+        "offset": 1,
+        "output": "PEAENIUJD5IMBDTH3 AEBDDD",
+        "consumed": 19
+      },
+      {
+        "mask": 2,
+        "offset": 2,
+        "output": "JXLOEJGXP5ANGJXC3 YUGAEEA",
+        "consumed": 19
+      },
+      {
+        "mask": 2,
+        "offset": 3,
+        "output": "YTRDTNRIA5YSTHBE3 IPHUJ",
+        "consumed": 19
+      },
+      {
+        "mask": 3,
+        "offset": 0,
+        "output": "AUOWYFGL5IMBDTH3 AEBDDD",
+        "consumed": 20
+      },
+      {
+        "mask": 3,
+        "offset": 1,
+        "output": "PEAENIUJD5ANGJXC3 YUGAEEA",
+        "consumed": 20
+      },
+      {
+        "mask": 3,
+        "offset": 2,
+        "output": "JXLOEJGXP5YSTHBE3 IPHUJ",
+        "consumed": 20
+      },
+      {
+        "mask": 4,
+        "offset": 0,
+        "output": "AUOWYFGL5LCSFJ3 EOTIJNG",
+        "consumed": 19
+      },
+      {
+        "mask": 4,
+        "offset": 1,
+        "output": "PEAENIUJD5IMBDTH3 AEBDDD",
+        "consumed": 19
+      },
+      {
+        "mask": 4,
+        "offset": 2,
+        "output": "JXLOEJGXP5ANGJXC3 YUGAEEA",
+        "consumed": 19
+      },
+      {
+        "mask": 4,
+        "offset": 3,
+        "output": "YTRDTNRIA5YSTHBE3 IPHUJ",
+        "consumed": 19
+      },
+      {
+        "mask": 5,
+        "offset": 0,
+        "output": "AUOWYFGL5IMBDTH3 AEBDDD",
+        "consumed": 20
+      },
+      {
+        "mask": 5,
+        "offset": 1,
+        "output": "PEAENIUJD5ANGJXC3 YUGAEEA",
+        "consumed": 20
+      },
+      {
+        "mask": 5,
+        "offset": 2,
+        "output": "JXLOEJGXP5YSTHBE3 IPHUJ",
+        "consumed": 20
+      },
+      {
+        "mask": 6,
+        "offset": 0,
+        "output": "AUOWYFGL5LCSFJ3 AEBDDD",
+        "consumed": 20
+      },
+      {
+        "mask": 6,
+        "offset": 1,
+        "output": "PEAENIUJD5IMBDTH3 YUGAEEA",
+        "consumed": 20
+      },
+      {
+        "mask": 6,
+        "offset": 2,
+        "output": "JXLOEJGXP5ANGJXC3 IPHUJ",
+        "consumed": 20
+      },
+      {
+        "mask": 7,
+        "offset": 0,
+        "output": "AUOWYFGL5IMBDTH3 YUGAEEA",
+        "consumed": 21
+      },
+      {
+        "mask": 7,
+        "offset": 1,
+        "output": "PEAENIUJD5ANGJXC3 IPHUJ",
+        "consumed": 21
+      }
+    ],
+    "matches": [
+      {
+        "mask": 0,
+        "offset": 0,
+        "output": "AUOWYFGL5LCSFJ3 NONIAN",
+        "consumed": 18
+      }
+    ]
+  },
+  "p10": {
+    "nativeScope": {
+      "runes": 68,
+      "groups": [
+        3,
+        4,
+        2,
+        3,
+        7,
+        4,
+        8,
+        3,
+        3,
+        5,
+        5,
+        8,
+        2,
+        3,
+        3,
+        "7",
+        1,
+        4
+      ],
+      "strictLiteralCompatible": false
+    },
+    "relaxed": [
+      {
+        "i": 12,
+        "j": 18,
+        "preDigit": 8,
+        "postDigit": 5,
+        "suffixLengths": [
+          4,
+          5
+        ],
+        "cipher": "ᛋᛒ-ᚠᛞᛇ-ᚩᚦᛏ-7-ᚷ-ᛚᛄᛖᚫ",
+        "diagnostic": {
+          "output": "HEA-NEN-PPO-7-AE-FCXS",
+          "consumed": 13
+        }
+      }
+    ]
+  }
+}
