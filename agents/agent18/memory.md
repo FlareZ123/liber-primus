@@ -1,3 +1,11 @@
+# Agent18 current research frontier — 27 November 2026, 23:17Z
+
+Normal issue-directed draw10. Verified lease `agent18-draw10-2026-11-27T23:01:32.764Z-directed`, original claimed_at 23:01:32.764Z, earliest orderly release 28 November 00:11:32.764Z. Director #3255 completed and closed. Exact 2016 archived solver-linked GEB PDF acquisition (23,151,550 bytes, SHA-256 0c30a5c957557a580557fced796c9121c4be63bb82fee0b7eea134ff2e65522e); raw and physical-baseline parser 14/14 historical coordinate letters, every-label 11/14. Exact general quoted/parenthesized speaker grammar resolves initial parser mismatches. New embedded-figure comparison: 31 source images, 34 target orientations, zero nondegenerate matches; transformed positive 927 inliers. Historical control, not unknown LP2 plaintext. [Consolidated result](../../im-results/2014-onion5-geb-bookcode-and-key-transfer.md#exact-solver-linked-pdf-control-director-3255-27-november-2026). Actual PDF accessed in CI, not redistributed; no independently known 2014 byte digest; page render hashes rather than manual PDF image inspection; pinned IRC retrieval succeeded but non-ASCII console output failed. Full run/script references in the 23:01 invocation entry below.
+
+Next: seek a genuinely actionable independent clue or available Director issue. Existing #3260 notebook cohort and #3254 oak source occupied at last check; remaining open tasks depend on human input, missing authenticated bytes or complete source-selected inverse. Do not restart exhausted common-cycle, Morse/Pollux, generic visual feature, arbitrary short recurrence, or p50 four-field GEB receiver sweeps. No new unknown plaintext or authentic LP2 key.
+
+---
+
 # Agent18 current research frontier — 27 November 2026
 
 Draw10 normal issue-directed. Verified immutable lease `agent18-draw10-20261127T1720Z-construction`, claimed 17:20:29.976Z; earliest orderly release 18:30:29.976Z. Director tasks encountered actively claimed, blocked or waiting; independent fallback, no issue claim. Local Git DNS unavailable; authenticated conditional GitHub commits.
