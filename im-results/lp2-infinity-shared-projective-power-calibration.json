@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "N": 100,
+    "Q": 29,
+    "K": 30,
+    "matrices": [
+      [
+        22,
+        21,
+        19,
+        17
+      ],
+      [
+        11,
+        1,
+        10,
+        3
+      ],
+      [
+        20,
+        22,
+        25,
+        7
+      ],
+      [
+        22,
+        12,
+        17,
+        21
+      ]
+    ],
+    "composite": [
+      11,
+      8,
+      13,
+      7
+    ],
+    "order": 30,
+    "distinctFiniteMaps": 30,
+    "trainingLengths": [
+      6970,
+      7067,
+      7501,
+      18430,
+      163841
+    ],
+    "seed": "0xab183cc7"
+  },
+  "controls": [
+    {
+      "positive": {
+        "fitScore": 257.56283879151033,
+        "heldScore": 113.20772251235371,
+        "keyCorrect": 100,
+        "heldCorrect": 100
+      },
+      "wrongHeld": {
+        "heldScore": -354.8209852562909
+      },
+      "independent": {
+        "fitScore": -325.228281118254,
+        "heldScore": -179.03731408652789
+      }
+    },
+    {
+      "positive": {
+        "fitScore": 295.9780650328232,
+        "heldScore": 74.85378859120965,
+        "keyCorrect": 99,
+        "heldCorrect": 99
+      },
+      "wrongHeld": {
+        "heldScore": -297.36803464657964
+      },
+      "independent": {
+        "fitScore": -323.3382981203931,
+        "heldScore": -133.12326282866593
+      }
+    },
+    {
+      "positive": {
+        "fitScore": 280.0396222650295,
+        "heldScore": 95.04859977723686,
+        "keyCorrect": 100,
+        "heldCorrect": 100
+      },
+      "wrongHeld": {
+        "heldScore": -374.29973791633824
+      },
+      "independent": {
+        "fitScore": -348.1056847858131,
+        "heldScore": -136.5113945403716
+      }
+    },
+    {
+      "positive": {
+        "fitScore": 277.96245951380547,
+        "heldScore": 72.00314692620441,
+        "keyCorrect": 100,
+        "heldCorrect": 100
+      },
+      "wrongHeld": {
+        "heldScore": -287.66879198628726
+      },
+      "independent": {
+        "fitScore": -356.00619265993464,
+        "heldScore": -136.21204931463944
+      }
+    },
+    {
+      "positive": {
+        "fitScore": 217.6580511904267,
+        "heldScore": 97.82984684617304,
+        "keyCorrect": 100,
+        "heldCorrect": 100
+      },
+      "wrongHeld": {
+        "heldScore": -222.54801918654744
+      },
+      "independent": {
+        "fitScore": -325.53898472472156,
+        "heldScore": -157.65061449702762
+      }
+    },
+    {
+      "positive": {
+        "fitScore": 275.26158313934184,
+        "heldScore": 125.79459242996973,
+        "keyCorrect": 98,
+        "heldCorrect": 99
+      },
+      "wrongHeld": {
+        "heldScore": -280.311517308829
+      },
+      "independent": {
+        "fitScore": -300.8048848338535,
+        "heldScore": -159.57249427746865
+      }
+    }
+  ],
+  "gate": true
+}
