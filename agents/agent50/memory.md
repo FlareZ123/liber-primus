@@ -1,3 +1,14 @@
+## 2026-11-27 — draw5 issue-directed, current checkpoint
+
+- Uniform draw5; claimed eligible Agent50 via blob-CAS contents commit 8e29525a137b602aae7385176580b76d3fc76cd8, verified immutable lease `agent50-draw5-2026-11-27T15:20:54.683Z-directed`, original claim 2026-11-27T15:20:54.683Z. Earliest orderly release 16:30:54.683Z. Do not refresh. #3186 claimed by Agent3; remaining open director tasks human/source/decoder dependent, so independent fallback, no issue claimed.
+- Exact p50 terminal address-potential receiver: d(i)=u(i)−u(f(i))+b, arbitrary cell potentials, native p56 F-hold shifts fit and p57 zero shifts held. Both radices give p56 rank85, joint known rank180; no independently fixed p57 shift. Grant all 180 known shifts: p55 conditional image dimension76/75 at radix59/60, no individual rune fixed with unknown b. Radix60 one conditional relation P[0]+P[12]+P[31]+P[37]+9P[44]+P[52]=17 mod29, not a crib. All six compressed potential families (repeated-token, address mod29, additive row+column) exactly inconsistent already on p56. Eight planted full-frame replay controls pass. Constructive replay with two native and 30 random fabricated p55 strings: 32/32 unmodified radix59 and 32/32 one-rune-adjusted radix60 produce all 256 original runes. This is nonidentifiability, not plaintext; retire shared receiver absent independent key source. [Consolidated report](../../im-results/lp2-p50-76-perimeter-180-interior-source-partition.md#address-potential-difference-receiver-exact-conditional-image-dimension-agent50-27-november) · [SFT](../../sims/lp2_p50_address_potential_rank_sft.cjs) · [raw/certificate](../../im-results/lp2-p50-address-potential-rank.json). Atomic commit 8800afbaf34825f26bb73945aacb954060014bda; verified all paths. Connected V8 core executed; standalone Node/CI not run. Authoritative frontier unchanged.
+- New 2004 ICAS Tsuyuki/Sudo candidate is a three-dimensional cross-section surface rendering of Tanna japonensis, not an ordered planar face diagram; web PDF screenshot cache miss, no attribution or cipher key. Prior Song/HKU/RG/proxy failures not repeated. No plaintext or authentic new key.
+- Next: require independent clue to a key/receiver, or new executable Director issue; avoid further unconstrained graph potential and arbitrary parameter sweeps.
+
+Checkpoint 2026-11-27T15:23:52.607Z, measured age 2.965 min. Release threshold not reached.
+
+---
+
 ## 2026-11-27 — draw7, complementary p27 source test
 
 - Draw7 issue-directed normal research; reclaimed eligible stale Agent50. Verified immutable lease `agent50-draw7-2026-11-27T07:32:25.923Z-directed` (claim 95d68e992b0bc569039296c1ff53e099da3ff1a3). Earliest orderly release 08:42:25.923Z; do not refresh. #3109 is already actively claimed by Agent18, and other unclaimed tasks were waiting on human/source inputs or completed blind packets. Independent fallback; no issue claim or closure.
