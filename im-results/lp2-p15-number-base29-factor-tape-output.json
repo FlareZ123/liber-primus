@@ -1,0 +1,3383 @@
+{
+  "corpusBlob": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "nativeBlob": "0fb8fcaaf793628e0e76c6b17e9643170bbb9508",
+  "spiral": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "NUMBER": [
+    [],
+    [
+      2,
+      17,
+      97
+    ],
+    [
+      2,
+      103
+    ],
+    [
+      2,
+      3,
+      61
+    ],
+    [
+      2,
+      3,
+      137
+    ],
+    [
+      2,
+      11,
+      149
+    ],
+    [
+      2,
+      3,
+      181
+    ],
+    [
+      2,
+      3,
+      179
+    ],
+    [
+      2,
+      197
+    ],
+    [
+      2,
+      7,
+      31
+    ],
+    [
+      2,
+      3,
+      11,
+      43
+    ],
+    [
+      2,
+      3,
+      103
+    ],
+    [
+      2,
+      5,
+      7,
+      13
+    ],
+    [
+      2,
+      3,
+      59
+    ],
+    [
+      2,
+      3,
+      67
+    ],
+    [
+      2,
+      1129
+    ]
+  ],
+  "factorCount": 44,
+  "sourceLength": 1744,
+  "fitRunes": 1071,
+  "heldRunes": 673,
+  "p56NativeReplay": {
+    "runes": 85,
+    "consumed": 84,
+    "plain": "A-N-E-N-D-W-I-TH-I-N-TH-E-D-E-E-P-W-E-B-TH-E-R-E-E-X-I-S-T-S-A-P-A-G-E-TH-A-T-H-A-S-H-E-S-T-O-I-T-I-S-TH-E-D-U-T-Y-O-F-E-U-E-R-Y-P-I-L-G-R-I-M-T-O-S-E-E-C-O-U-T-TH-I-S-P-A-G-E"
+  },
+  "nativeReference": {
+    "training": 1000,
+    "donor": 1744,
+    "fit": -2.741338880923105,
+    "held": -2.746488039351219
+  },
+  "families": [
+    {
+      "name": "NUMBER factors modulo29",
+      "period": 44,
+      "key": [
+        2,
+        17,
+        10,
+        2,
+        16,
+        2,
+        3,
+        3,
+        2,
+        3,
+        21,
+        2,
+        11,
+        4,
+        2,
+        3,
+        7,
+        2,
+        3,
+        5,
+        2,
+        23,
+        2,
+        7,
+        2,
+        2,
+        3,
+        11,
+        14,
+        2,
+        3,
+        16,
+        2,
+        5,
+        7,
+        13,
+        2,
+        3,
+        1,
+        2,
+        3,
+        9,
+        2,
+        27
+      ],
+      "caseCount": 88,
+      "controlsPassed": 88,
+      "fullSurvivors": [],
+      "maxFailure": 392,
+      "pageCases": [
+        {
+          "survives": 1,
+          "maxFailure": 142
+        },
+        {
+          "survives": 0,
+          "maxFailure": 180
+        },
+        {
+          "survives": 0,
+          "maxFailure": 148
+        },
+        {
+          "survives": 3,
+          "maxFailure": 222
+        },
+        {
+          "survives": 0,
+          "maxFailure": 218
+        },
+        {
+          "survives": 0,
+          "maxFailure": 182
+        },
+        {
+          "survives": 2,
+          "maxFailure": 117
+        }
+      ],
+      "ordinaryBestFit": {
+        "sign": -1,
+        "phase": 37,
+        "feasible": false,
+        "failure": 123,
+        "ends": [],
+        "ordinaryFit": -3.74688582833623,
+        "ordinaryHeld": -3.8162434378772825,
+        "preview": "S-X-OE-M-B-X-X-T-NG-EA-T-IA-R-B-G-G-Y-F-A-N-TH-OE-J-E"
+      },
+      "ordinaryOracleHeld": -3.7046184920976604,
+      "ordinaryHiddenControl": {
+        "sign": -1,
+        "phase": 41,
+        "fit": -2.741338880923105,
+        "held": -2.746488039351219,
+        "correct": true
+      },
+      "cases": [
+        {
+          "sign": 1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.8492620891231577,
+          "ordinaryHeld": -3.7664316711603583,
+          "preview": "I-R-EA-X-U-H-E-J-W-A-J-M-L-N-TH-AE-H-AE-T-L-R-E-C-U"
+        },
+        {
+          "sign": 1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.8380062891521303,
+          "ordinaryHeld": -3.7396017379412276,
+          "preview": "G-N-IA-EO-R-T-I-G-EO-A-I-J-B-NG-U-EO-OE-OE-X-X-S-B-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.814242110599975,
+          "ordinaryHeld": -3.7933648132915696,
+          "preview": "J-H-AE-S-EO-H-C-J-EO-D-TH-H-F-L-B-Y-M-L-H-AE-X-M-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8011596869586404,
+          "ordinaryHeld": -3.804456727556006,
+          "preview": "I-G-EA-D-R-O-I-J-J-S-EA-L-EA-W-TH-D-B-X-M-A-T-E-C-OE"
+        },
+        {
+          "sign": 1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.8039927115832795,
+          "ordinaryHeld": -3.7671186181127814,
+          "preview": "H-N-W-S-EA-H-I-I-O-EO-J-M-S-NG-EA-NG-J-AE-E-Y-S-B-EA-F"
+        },
+        {
+          "sign": 1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7903757892489134,
+          "ordinaryHeld": -3.7550958954111193,
+          "preview": "J-B-EA-I-R-H-N-TH-F-A-I-G-F-E-Y-S-OE-A-L-AE-X-J-G-R"
+        },
+        {
+          "sign": 1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7846410420602785,
+          "ordinaryHeld": -3.7895532360885253,
+          "preview": "M-N-D-S-R-W-U-EA-EO-D-Y-L-Y-T-L-Y-NG-Y-M-A-H-E-I-F"
+        },
+        {
+          "sign": 1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 14,
+          "ends": [],
+          "ordinaryFit": -3.8092584702664847,
+          "ordinaryHeld": -3.804593891370529,
+          "preview": "J-R-EA-S-O-EA-IA-J-J-I-J-B-A-I-TH-AE-D-AE-E-E-S-OE-G-X"
+        },
+        {
+          "sign": 1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 392,
+          "ends": [],
+          "ordinaryFit": -3.788619947230885,
+          "ordinaryHeld": -3.8038718116316157,
+          "preview": "G-N-EA-X-A-AE-I-I-IA-A-H-S-E-NG-U-IA-OE-A-EO-AE-M-E-L-NG"
+        },
+        {
+          "sign": 1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 10,
+          "ends": [],
+          "ordinaryFit": -3.7551558250058092,
+          "ordinaryHeld": -3.799156154091393,
+          "preview": "J-N-IA-G-NG-H-N-Y-EO-NG-G-N-F-L-O-Y-NG-E-M-F-S-O-IA-F"
+        },
+        {
+          "sign": 1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.779449959596967,
+          "ordinaryHeld": -3.787172013395851,
+          "preview": "J-H-M-O-R-W-AE-J-N-M-F-L-EA-OE-TH-AE-S-AE-D-AE-F-I-G-S"
+        },
+        {
+          "sign": 1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 37,
+          "ends": [],
+          "ordinaryFit": -3.8279656667298916,
+          "ordinaryHeld": -3.783519747074421,
+          "preview": "I-F-T-S-O-D-I-H-W-P-J-M-U-NG-U-M-OE-F-M-I-W-E-NG-F"
+        },
+        {
+          "sign": 1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.79155339220483,
+          "ordinaryHeld": -3.793913592602414,
+          "preview": "TH-Y-EA-X-M-H-W-G-U-A-I-NG-F-L-A-Y-Y-AE-R-B-S-R-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7743418817179895,
+          "ordinaryHeld": -3.7538363498896494,
+          "preview": "EA-N-IA-U-R-C-C-F-EO-D-EO-L-EA-X-TH-U-OE-I-J-AE-U-E-C-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.81479703914015,
+          "ordinaryHeld": -3.7731936517108604,
+          "preview": "J-H-X-S-U-O-EA-J-J-AE-J-M-OE-NG-G-Y-W-B-M-J-S-B-C-F"
+        },
+        {
+          "sign": 1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 18,
+          "ends": [],
+          "ordinaryFit": -3.768953099059416,
+          "ordinaryHeld": -3.774821830451825,
+          "preview": "I-A-EA-EO-EA-Y-I-I-P-A-I-P-F-AE-TH-J-X-AE-C-AE-X-B-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 29,
+          "ends": [],
+          "ordinaryFit": -3.7729940002907143,
+          "ordinaryHeld": -3.7779972277384153,
+          "preview": "Y-N-AE-I-OE-H-N-EO-EO-D-R-L-R-NG-T-E-OE-J-M-A-X-E-C-I"
+        },
+        {
+          "sign": 1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.778421700733013,
+          "ordinaryHeld": -3.825159213048826,
+          "preview": "J-G-D-R-R-W-J-J-J-B-J-A-F-G-D-Y-H-AE-E-A-S-B-T-F"
+        },
+        {
+          "sign": 1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 15,
+          "ends": [],
+          "ordinaryFit": -3.814545866765765,
+          "ordinaryHeld": -3.802406116244927,
+          "preview": "H-R-B-S-O-N-I-I-C-A-S-L-X-P-TH-EO-OE-A-E-AE-X-EA-G-L"
+        },
+        {
+          "sign": 1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 9,
+          "ends": [],
+          "ordinaryFit": -3.7755105850085386,
+          "ordinaryHeld": -3.7742960090492117,
+          "preview": "G-IA-EA-X-C-H-N-R-EO-EA-J-C-NG-NG-B-Y-NG-A-M-A-AE-E-Y-IA"
+        },
+        {
+          "sign": 1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.7560035533115443,
+          "ordinaryHeld": -3.7658448339104535,
+          "preview": "F-N-IA-T-R-W-O-J-T-A-AE-EO-F-W-TH-AE-NG-AE-E-G-S-N-R-F"
+        },
+        {
+          "sign": 1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7964783865172698,
+          "ordinaryHeld": -3.8154432626584156,
+          "preview": "J-H-F-S-O-U-I-S-EO-N-O-L-S-NG-U-AE-OE-A-F-AE-G-T-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 142,
+          "ends": [],
+          "ordinaryFit": -3.8175439895669334,
+          "ordinaryHeld": -3.737383468018873,
+          "preview": "I-I-EA-X-Y-H-X-J-Y-T-J-G-F-L-U-Y-NG-G-M-T-P-E-C-A"
+        },
+        {
+          "sign": 1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 10,
+          "ends": [],
+          "ordinaryFit": -3.779901742168054,
+          "ordinaryHeld": -3.790927142534435,
+          "preview": "EO-N-IA-H-R-EO-I-AE-R-A-Y-L-EA-L-TH-AE-O-AE-I-D-S-B-U-F"
+        },
+        {
+          "sign": 1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.789125904695991,
+          "ordinaryHeld": -3.763742880645854,
+          "preview": "J-H-NG-S-H-H-A-O-EO-I-J-M-EA-NG-U-W-OE-T-B-AE-X-P-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.75732345844701,
+          "ordinaryHeld": -3.8013855322506034,
+          "preview": "I-TH-EA-M-R-OE-TH-J-IA-A-I-M-F-L-EO-Y-P-D-M-A-I-E-C-Y"
+        },
+        {
+          "sign": 1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.783457860140333,
+          "ordinaryHeld": -3.7552792445036585,
+          "preview": "R-N-O-S-E-F-I-Y-EO-D-I-L-EA-TH-TH-B-L-AE-E-L-S-B-O-F"
+        },
+        {
+          "sign": 1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.7837085581188847,
+          "ordinaryHeld": -3.760056787605911,
+          "preview": "J-P-EA-F-AE-H-AE-J-J-D-J-M-I-NG-OE-A-OE-A-X-AE-X-S-G-H"
+        },
+        {
+          "sign": 1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7704754120335147,
+          "ordinaryHeld": -3.8150516741815,
+          "preview": "S-N-P-W-R-D-I-I-J-A-I-U-F-EO-F-Y-NG-L-M-A-EO-E-X-F"
+        },
+        {
+          "sign": 1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.8116923304830435,
+          "ordinaryHeld": -3.8257084932793632,
+          "preview": "J-D-L-S-M-H-N-I-EO-D-NG-L-L-M-TH-AE-B-AE-E-OE-S-Y-G-A"
+        },
+        {
+          "sign": 1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8140416394582872,
+          "ordinaryHeld": -3.7800162240936652,
+          "preview": "AE-U-EA-U-R-W-N-J-J-C-J-J-IA-NG-U-NG-OE-A-T-AE-D-E-U-F"
+        },
+        {
+          "sign": 1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.8036795003988875,
+          "ordinaryHeld": -3.7264673651925815,
+          "preview": "O-N-X-S-O-W-I-I-OE-A-TH-E-F-L-Y-Y-NG-OE-M-R-S-P-G-F"
+        },
+        {
+          "sign": 1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7895320426765484,
+          "ordinaryHeld": -3.872253359653069,
+          "preview": "J-A-EA-X-O-H-N-NG-EO-S-N-L-EA-T-TH-AE-M-AE-IA-AE-I-E-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.800704656409958,
+          "ordinaryHeld": -3.8099841931612546,
+          "preview": "Y-N-IA-X-R-W-L-J-O-OE-J-M-A-NG-U-D-OE-R-M-L-S-E-C-L"
+        },
+        {
+          "sign": 1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.7863185970134796,
+          "ordinaryHeld": -3.785477532772709,
+          "preview": "J-H-IA-S-O-E-I-TH-I-A-I-S-F-L-EA-Y-U-AE-X-AE-S-B-Y-B"
+        },
+        {
+          "sign": 1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.797817777302632,
+          "ordinaryHeld": -3.7593300151275306,
+          "preview": "I-H-EA-X-X-H-U-N-EO-D-G-L-EA-E-TH-C-OE-L-M-AE-X-N-D-F"
+        },
+        {
+          "sign": 1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 12,
+          "ends": [],
+          "ordinaryFit": -3.7774930414810104,
+          "ordinaryHeld": -3.7721903580105605,
+          "preview": "I-N-IA-AE-R-EA-H-J-J-M-J-M-Y-NG-I-Y-B-AE-M-A-G-G-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.8131854559656815,
+          "ordinaryHeld": -3.763994321207012,
+          "preview": "J-H-N-S-A-G-I-I-W-A-I-B-F-F-TH-NG-OE-AE-E-T-O-E-C-S"
+        },
+        {
+          "sign": 1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7684337586047727,
+          "ordinaryHeld": -3.7902003793752783,
+          "preview": "I-M-EA-G-TH-H-N-G-EO-D-H-L-H-NG-Y-Y-OE-A-I-P-S-B-NG-F"
+        },
+        {
+          "sign": 1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7782264869184656,
+          "ordinaryHeld": -3.7717486806654588,
+          "preview": "NG-N-M-P-R-W-C-J-J-NG-J-EA-F-T-TH-Y-NG-T-W-AE-X-R-G-Y"
+        },
+        {
+          "sign": 1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7793840753305123,
+          "ordinaryHeld": -3.7579971612079843,
+          "preview": "J-F-Y-S-O-O-I-I-N-A-M-L-A-NG-TH-AE-P-P-M-A-U-E-O-A"
+        },
+        {
+          "sign": 1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.794909988459707,
+          "ordinaryHeld": -3.7046184920976604,
+          "preview": "TH-W-EA-X-EA-H-N-H-EO-O-J-S-F-NG-U-B-I-AE-E-J-S-S-U-E"
+        },
+        {
+          "sign": 1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7769005911911098,
+          "ordinaryHeld": -3.7412388469909725,
+          "preview": "N-N-IA-I-R-W-W-J-L-A-G-L-F-L-OE-X-OE-A-C-AE-EO-P-A-F"
+        },
+        {
+          "sign": 1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 46,
+          "ends": [],
+          "ordinaryFit": -3.7722268907350505,
+          "ordinaryHeld": -3.845282974371486,
+          "preview": "J-H-D-S-O-C-I-M-EO-M-J-L-EA-EO-M-Y-NG-J-M-OE-I-W-G-EA"
+        },
+        {
+          "sign": -1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 70,
+          "ends": [],
+          "ordinaryFit": -3.7819581283141304,
+          "ordinaryHeld": -3.792752274667303,
+          "preview": "T-E-O-L-J-EO-G-S-NG-EA-S-AE-P-H-G-TH-J-F-Y-C-U-OE-J-O"
+        },
+        {
+          "sign": -1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 63,
+          "ends": [],
+          "ordinaryFit": -3.795856421335682,
+          "ordinaryHeld": -3.7494606101735,
+          "preview": "L-P-R-OE-H-R-X-L-T-EA-T-R-T-AE-W-S-Y-O-EA-J-M-D-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.7745316359222936,
+          "ordinaryHeld": -3.764549646796309,
+          "preview": "S-X-G-M-F-EO-M-S-T-F-A-W-R-Y-L-U-F-C-C-F-L-NG-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 54,
+          "ends": [],
+          "ordinaryFit": -3.821067932864075,
+          "ordinaryHeld": -3.8086008571229675,
+          "preview": "T-T-O-J-H-B-X-S-B-H-IA-A-C-I-G-R-TH-J-D-U-E-OE-J-J"
+        },
+        {
+          "sign": -1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 70,
+          "ends": [],
+          "ordinaryFit": -3.7772109530694364,
+          "ordinaryHeld": -3.859479020781577,
+          "preview": "E-P-A-M-P-EO-X-T-AE-J-S-AE-E-AE-N-G-H-F-A-EA-M-D-B-R"
+        },
+        {
+          "sign": -1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 7,
+          "ends": [],
+          "ordinaryFit": -3.7799537633254388,
+          "ordinaryHeld": -3.799939409899553,
+          "preview": "S-C-O-A-H-EO-S-A-EA-EA-T-N-R-EA-J-EO-Y-U-OE-F-L-F-I-F"
+        },
+        {
+          "sign": -1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 27,
+          "ends": [],
+          "ordinaryFit": -3.822973641205735,
+          "ordinaryHeld": -3.75438033291187,
+          "preview": "W-P-H-M-H-P-D-IA-T-F-F-A-W-U-B-U-IA-EA-D-U-Y-OE-G-R"
+        },
+        {
+          "sign": -1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 135,
+          "ends": [],
+          "ordinaryFit": -3.7848833604282364,
+          "ordinaryHeld": -3.843166803780853,
+          "preview": "S-E-O-M-N-NG-Y-S-B-P-S-IA-N-W-G-TH-AE-F-A-W-M-E-I-M"
+        },
+        {
+          "sign": -1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.8315975251804066,
+          "ordinaryHeld": -3.7455699990261344,
+          "preview": "L-P-O-L-B-A-X-T-U-EA-E-F-S-AE-W-F-Y-U-U-F-S-OE-AE-EO"
+        },
+        {
+          "sign": -1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 60,
+          "ends": [],
+          "ordinaryFit": -3.792387909325655,
+          "ordinaryHeld": -3.79184203675812,
+          "preview": "S-P-R-EA-L-EO-S-F-T-TH-L-G-R-Y-C-U-IA-W-D-AE-M-H-E-R"
+        },
+        {
+          "sign": -1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 3,
+          "ends": [],
+          "ordinaryFit": -3.7527853560285815,
+          "ordinaryHeld": -3.767691122959939,
+          "preview": "S-X-EO-TH-H-P-EA-S-M-R-Y-A-C-A-G-TH-R-F-M-F-C-U-I-E"
+        },
+        {
+          "sign": -1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.7736535665493363,
+          "ordinaryHeld": -3.783687264973399,
+          "preview": "T-OE-S-M-N-Y-X-E-NG-I-S-AE-O-AE-W-H-Y-AE-D-S-IA-OE-A-R"
+        },
+        {
+          "sign": -1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 0,
+          "ends": [],
+          "ordinaryFit": -3.801177912228514,
+          "ordinaryHeld": -3.7734212463422327,
+          "preview": "A-AE-O-L-OE-EO-B-L-IA-EA-T-D-R-Y-P-U-OE-F-N-H-M-W-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.7775740761153913,
+          "ordinaryHeld": -3.8244666189141063,
+          "preview": "IA-P-R-R-H-S-M-Y-T-F-X-A-C-O-G-Y-Y-S-TH-F-R-OE-J-C"
+        },
+        {
+          "sign": -1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 63,
+          "ends": [],
+          "ordinaryFit": -3.7876024941123085,
+          "ordinaryHeld": -3.7943986459273242,
+          "preview": "S-X-B-M-J-B-AE-S-B-IA-S-AE-J-AE-TH-U-EO-H-D-X-M-D-J-R"
+        },
+        {
+          "sign": -1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.7670979604837713,
+          "ordinaryHeld": -3.785578189192209,
+          "preview": "T-IA-O-OE-P-D-X-T-S-EA-T-TH-R-NG-G-T-C-F-H-F-L-D-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.784942981529446,
+          "ordinaryHeld": -3.763002021291163,
+          "preview": "F-P-G-A-M-EO-S-X-T-F-OE-A-F-AE-NG-N-Y-X-D-U-L-OE-J-D"
+        },
+        {
+          "sign": -1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 2,
+          "ends": [],
+          "ordinaryFit": -3.825577902331139,
+          "ordinaryHeld": -3.804361660350724,
+          "preview": "S-T-H-U-H-P-P-S-B-G-S-L-R-J-X-U-J-F-A-U-M-D-F-R"
+        },
+        {
+          "sign": -1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.7932106882031436,
+          "ordinaryHeld": -3.8323571522982975,
+          "preview": "E-E-X-M-N-J-X-T-D-EA-J-A-M-R-G-S-Y-U-A-F-L-EO-I-P"
+        },
+        {
+          "sign": -1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 70,
+          "ends": [],
+          "ordinaryFit": -3.761754649148284,
+          "ordinaryHeld": -3.7938027056557244,
+          "preview": "L-A-O-L-W-EO-S-OE-T-A-S-I-EO-AE-L-U-IA-U-D-U-N-OE-M-G"
+        },
+        {
+          "sign": -1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 7,
+          "ends": [],
+          "ordinaryFit": -3.8304154834563615,
+          "ordinaryHeld": -3.7819902579846834,
+          "preview": "Y-P-R-E-H-P-NG-S-EO-EA-U-O-R-I-G-TH-IA-F-A-M-M-TH-EO-R"
+        },
+        {
+          "sign": -1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 61,
+          "ends": [],
+          "ordinaryFit": -3.7912109467953514,
+          "ordinaryHeld": -3.7961274131781626,
+          "preview": "S-X-TH-M-N-M-X-J-T-X-D-A-E-AE-W-TH-Y-U-P-F-EA-A-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 16,
+          "ends": [],
+          "ordinaryFit": -3.8251058290080615,
+          "ordinaryHeld": -3.82847663884635,
+          "preview": "T-EO-O-L-S-EO-I-S-TH-W-S-N-R-Y-W-U-IA-M-D-N-NG-OE-J-N"
+        },
+        {
+          "sign": -1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 12,
+          "ends": [],
+          "ordinaryFit": -3.825940525474268,
+          "ordinaryHeld": -3.795373910027476,
+          "preview": "X-P-R-Y-H-H-X-U-A-EA-F-A-C-Y-G-TH-T-F-O-TH-M-D-S-R"
+        },
+        {
+          "sign": -1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.76162665625382,
+          "ordinaryHeld": -3.8494922148923183,
+          "preview": "S-X-I-M-R-EO-F-D-T-P-S-AE-C-AE-W-L-Y-N-AE-F-L-IA-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.803311248549528,
+          "ordinaryHeld": -3.833404075485116,
+          "preview": "T-L-O-S-H-IA-OE-S-U-EA-T-AE-R-Y-AE-U-G-TH-D-U-A-OE-J-W"
+        },
+        {
+          "sign": -1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 20,
+          "ends": [],
+          "ordinaryFit": -3.7618245322578243,
+          "ordinaryHeld": -3.7778429659979236,
+          "preview": "OE-P-EA-M-D-L-X-F-T-F-T-A-C-S-G-I-EA-F-A-C-M-D-P-R"
+        },
+        {
+          "sign": -1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 0,
+          "ends": [],
+          "ordinaryFit": -3.7856330873782342,
+          "ordinaryHeld": -3.759763614668487,
+          "preview": "S-N-O-C-T-EO-EA-S-B-F-S-AE-D-AE-S-O-Y-U-EA-F-L-AE-I-AE"
+        },
+        {
+          "sign": -1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 51,
+          "ends": [],
+          "ordinaryFit": -3.804453115220574,
+          "ordinaryHeld": -3.781525429775514,
+          "preview": "J-P-E-IA-H-Y-X-T-B-EA-T-X-R-C-H-U-IA-C-D-U-OE-OE-TH-R"
+        },
+        {
+          "sign": -1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 48,
+          "ends": [],
+          "ordinaryFit": -3.775852031303557,
+          "ordinaryHeld": -3.804351252901482,
+          "preview": "S-EA-J-M-OE-EO-S-T-T-F-C-A-P-IA-G-TH-TH-F-A-O-M-X-I-N"
+        },
+        {
+          "sign": -1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.8247580496535813,
+          "ordinaryHeld": -3.7617157234706675,
+          "preview": "U-NG-O-R-H-P-S-S-B-E-S-R-G-AE-W-G-Y-U-Y-F-J-OE-S-R"
+        },
+        {
+          "sign": -1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 2,
+          "ends": [],
+          "ordinaryFit": -3.765625752917497,
+          "ordinaryHeld": -3.845068746331616,
+          "preview": "D-P-B-M-N-P-X-T-G-EA-A-Y-R-Y-J-U-IA-O-D-NG-M-IA-I-R"
+        },
+        {
+          "sign": -1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.813694705604175,
+          "ordinaryHeld": -3.800117459527279,
+          "preview": "S-IA-O-L-N-EO-S-C-T-H-B-A-C-U-G-TH-F-F-S-F-A-OE-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.797296195356991,
+          "ordinaryHeld": -3.8188693340252065,
+          "preview": "F-P-R-L-H-P-R-S-AE-U-S-AE-N-AE-W-R-Y-NG-D-C-M-OE-J-P"
+        },
+        {
+          "sign": -1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.8086848943049927,
+          "ordinaryHeld": -3.7609785409837015,
+          "preview": "S-X-R-M-N-TH-X-A-E-EA-T-F-R-Y-N-U-E-F-EA-F-M-D-M-T"
+        },
+        {
+          "sign": -1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.7952784605535657,
+          "ordinaryHeld": -3.8074312906792382,
+          "preview": "T-X-O-L-IA-EO-D-B-T-F-L-A-C-EA-G-OE-Y-C-D-F-L-TH-OE-R"
+        },
+        {
+          "sign": -1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 27,
+          "ends": [],
+          "ordinaryFit": -3.7978300453478733,
+          "ordinaryHeld": -3.786291831987272,
+          "preview": "T-P-R-N-H-NG-T-S-B-R-S-AE-W-AE-IA-U-TH-F-D-U-EA-C-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 123,
+          "ends": [],
+          "ordinaryFit": -3.74688582833623,
+          "ordinaryHeld": -3.8162434378772825,
+          "preview": "S-X-OE-M-B-X-X-T-NG-EA-T-IA-R-B-G-G-Y-F-A-N-TH-OE-J-E"
+        },
+        {
+          "sign": -1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 34,
+          "ends": [],
+          "ordinaryFit": -3.798483416268193,
+          "ordinaryHeld": -3.733463507656177,
+          "preview": "T-O-O-EA-I-EO-S-L-T-F-E-A-AE-AE-J-U-Y-U-O-EO-M-D-A-R"
+        },
+        {
+          "sign": -1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.7888685186815385,
+          "ordinaryHeld": -3.8078730150309794,
+          "preview": "C-P-EO-NG-H-P-M-S-B-TH-S-T-R-U-G-U-IA-N-G-F-L-W-I-W"
+        },
+        {
+          "sign": -1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.8163902843072695,
+          "ordinaryHeld": -3.818691360047813,
+          "preview": "S-OE-C-M-N-B-X-T-M-EA-W-A-N-AE-G-TH-G-EO-D-U-R-OE-P-N"
+        },
+        {
+          "sign": -1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.792380136293733,
+          "ordinaryHeld": -3.7499343442746853,
+          "preview": "A-S-O-L-P-EO-S-E-T-L-S-F-R-AE-W-I-N-F-A-X-M-AE-S-S"
+        },
+        {
+          "sign": -1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 37,
+          "ends": [],
+          "ordinaryFit": -3.8244906299512826,
+          "ordinaryHeld": -3.760646886939969,
+          "preview": "B-P-R-A-H-P-B-S-H-EA-L-A-R-Y-S-P-Y-U-H-F-OE-IA-NG-R"
+        },
+        {
+          "sign": -1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 22,
+          "ends": [],
+          "ordinaryFit": -3.8033283681222008,
+          "ordinaryHeld": -3.804661449446092,
+          "preview": "S-X-H-M-N-S-X-W-T-R-S-A-C-C-E-U-IA-X-D-O-A-R-I-C"
+        }
+      ]
+    },
+    {
+      "name": "NUMBER factor totients modulo29",
+      "period": 44,
+      "key": [
+        1,
+        16,
+        9,
+        1,
+        15,
+        1,
+        2,
+        2,
+        1,
+        2,
+        20,
+        1,
+        10,
+        3,
+        1,
+        2,
+        6,
+        1,
+        2,
+        4,
+        1,
+        22,
+        1,
+        6,
+        1,
+        1,
+        2,
+        10,
+        13,
+        1,
+        2,
+        15,
+        1,
+        4,
+        6,
+        12,
+        1,
+        2,
+        0,
+        1,
+        2,
+        8,
+        1,
+        26
+      ],
+      "caseCount": 88,
+      "controlsPassed": 88,
+      "fullSurvivors": [],
+      "maxFailure": 156,
+      "pageCases": [
+        {
+          "survives": 0,
+          "maxFailure": 156
+        },
+        {
+          "survives": 2,
+          "maxFailure": 183
+        },
+        {
+          "survives": 1,
+          "maxFailure": 183
+        },
+        {
+          "survives": 2,
+          "maxFailure": 151
+        },
+        {
+          "survives": 1,
+          "maxFailure": 192
+        },
+        {
+          "survives": 0,
+          "maxFailure": 214
+        },
+        {
+          "survives": 3,
+          "maxFailure": 101
+        }
+      ],
+      "ordinaryBestFit": {
+        "sign": -1,
+        "phase": 22,
+        "feasible": false,
+        "failure": 1,
+        "ends": [],
+        "ordinaryFit": -3.7292028666068373,
+        "ordinaryHeld": -3.824330060987517,
+        "preview": "S-J-TH-M-X-J-N-X-U-G-X-H-O-AE-G-F-Y-E-OE-H-L-NG-I-H"
+      },
+      "ordinaryOracleHeld": -3.7128565647916796,
+      "ordinaryHiddenControl": {
+        "sign": -1,
+        "phase": 41,
+        "fit": -2.741338880923105,
+        "held": -2.746488039351219,
+        "correct": true
+      },
+      "cases": [
+        {
+          "sign": 1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.814427350243535,
+          "ordinaryHeld": -3.7727608251198124,
+          "preview": "J-C-F-S-TH-N-M-EO-H-AE-EO-L-NG-I-O-Y-N-Y-B-NG-C-M-G-TH"
+        },
+        {
+          "sign": 1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 22,
+          "ends": [],
+          "ordinaryFit": -3.77943514796787,
+          "ordinaryHeld": -3.7544055550658735,
+          "preview": "W-I-EA-P-C-B-J-W-P-AE-J-EO-E-OE-TH-P-D-D-S-S-T-E-H-U"
+        },
+        {
+          "sign": 1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.8003593178299697,
+          "ordinaryHeld": -3.7583061094292005,
+          "preview": "EO-N-Y-T-P-N-G-EO-P-A-O-N-U-NG-E-IA-L-NG-N-Y-S-L-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 138,
+          "ends": [],
+          "ordinaryFit": -3.774155707674876,
+          "ordinaryHeld": -3.7807352551599704,
+          "preview": "J-W-F-A-C-R-J-EO-EO-T-F-NG-F-H-O-A-E-S-L-AE-B-M-G-D"
+        },
+        {
+          "sign": 1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 23,
+          "ends": [],
+          "ordinaryFit": -3.7966738051703692,
+          "ordinaryHeld": -3.7804624254265113,
+          "preview": "N-I-H-T-F-N-J-J-R-P-EO-L-T-OE-F-OE-EO-Y-M-IA-T-E-F-U"
+        },
+        {
+          "sign": 1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.775400572782873,
+          "ordinaryHeld": -3.769319829799164,
+          "preview": "EO-E-F-J-C-N-I-O-U-AE-J-W-U-M-IA-T-D-AE-NG-Y-S-EO-W-C"
+        },
+        {
+          "sign": 1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 42,
+          "ends": [],
+          "ordinaryFit": -3.777651089363273,
+          "ordinaryHeld": -3.751243801216576,
+          "preview": "L-I-A-T-C-H-TH-F-P-A-IA-NG-IA-B-NG-IA-OE-IA-L-AE-N-M-J-U"
+        },
+        {
+          "sign": 1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8057788445358818,
+          "ordinaryHeld": -3.77977858632432,
+          "preview": "EO-C-F-T-R-F-EA-EO-EO-J-EO-E-AE-J-O-Y-A-Y-M-M-T-D-W-S"
+        },
+        {
+          "sign": 1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.760021608984964,
+          "ordinaryHeld": -3.813083539427334,
+          "preview": "W-I-F-S-AE-Y-J-J-EA-AE-N-T-M-OE-TH-EA-D-AE-P-Y-L-M-NG-OE"
+        },
+        {
+          "sign": 1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 47,
+          "ends": [],
+          "ordinaryFit": -3.7772987449543556,
+          "ordinaryHeld": -3.7451037993521874,
+          "preview": "EO-I-EA-W-OE-N-I-IA-P-OE-W-I-U-NG-R-IA-OE-M-L-U-T-R-EA-U"
+        },
+        {
+          "sign": 1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 156,
+          "ends": [],
+          "ordinaryFit": -3.803023661460888,
+          "ordinaryHeld": -3.7428207548808556,
+          "preview": "EO-N-L-R-C-H-Y-EO-I-L-U-NG-F-D-O-Y-T-Y-A-Y-U-J-W-T"
+        },
+        {
+          "sign": 1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.790474705063347,
+          "ordinaryHeld": -3.767205681193749,
+          "preview": "J-U-B-T-R-A-J-N-H-X-EO-L-TH-OE-TH-L-D-U-L-J-H-M-OE-U"
+        },
+        {
+          "sign": 1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 22,
+          "ends": [],
+          "ordinaryFit": -3.7814771008974053,
+          "ordinaryHeld": -3.77307116004337,
+          "preview": "O-IA-F-S-L-N-H-W-TH-AE-J-OE-U-NG-AE-IA-IA-Y-C-E-T-C-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.796707118779956,
+          "ordinaryHeld": -3.7555615348031766,
+          "preview": "F-I-EA-TH-C-G-G-U-P-A-P-NG-F-S-O-TH-D-J-EO-Y-TH-M-G-F"
+        },
+        {
+          "sign": 1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.784055381051795,
+          "ordinaryHeld": -3.763101252833218,
+          "preview": "EO-N-S-T-TH-R-F-EO-EO-Y-EO-L-D-OE-W-IA-H-E-L-EO-T-E-G-U"
+        },
+        {
+          "sign": 1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.7929967173536103,
+          "ordinaryHeld": -3.7784085071857643,
+          "preview": "J-AE-F-P-F-IA-J-J-X-AE-J-X-U-Y-O-EO-S-Y-G-Y-S-E-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.763606628644484,
+          "ordinaryHeld": -3.781625120067345,
+          "preview": "IA-I-Y-J-D-N-I-P-P-A-C-NG-C-OE-B-M-D-EO-L-AE-S-M-G-J"
+        },
+        {
+          "sign": 1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 136,
+          "ends": [],
+          "ordinaryFit": -3.8035430974091518,
+          "ordinaryHeld": -3.8035249350387454,
+          "preview": "EO-W-A-C-C-H-EO-EO-EO-E-EO-AE-U-W-A-IA-N-Y-M-AE-T-E-B-U"
+        },
+        {
+          "sign": 1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8236089284739876,
+          "ordinaryHeld": -3.8366491503404645,
+          "preview": "N-C-E-T-R-I-J-J-G-AE-T-NG-S-X-O-P-D-AE-M-Y-S-F-W-NG"
+        },
+        {
+          "sign": 1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.782402464930433,
+          "ordinaryHeld": -3.7952656844443062,
+          "preview": "W-EA-F-S-G-N-I-C-P-F-EO-G-OE-OE-E-IA-OE-AE-L-AE-Y-M-IA-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 43,
+          "ends": [],
+          "ordinaryFit": -3.7691354734606763,
+          "ordinaryHeld": -3.7632924114309323,
+          "preview": "U-I-EA-B-C-H-R-EO-B-AE-Y-P-U-H-O-Y-OE-Y-M-W-T-I-C-U"
+        },
+        {
+          "sign": 1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.757625119320222,
+          "ordinaryHeld": -3.806469223399897,
+          "preview": "EO-N-U-T-R-TH-J-T-P-I-R-NG-T-OE-TH-Y-D-AE-U-Y-W-B-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 90,
+          "ends": [],
+          "ordinaryFit": -3.805018243948493,
+          "ordinaryHeld": -3.8170708477088833,
+          "preview": "J-J-F-S-IA-N-S-EO-IA-B-EO-W-U-NG-TH-IA-OE-W-L-B-X-M-G-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 90,
+          "ends": [],
+          "ordinaryFit": -3.794334849622865,
+          "ordinaryHeld": -3.785036064870426,
+          "preview": "P-I-EA-N-C-P-J-Y-C-AE-IA-NG-F-NG-O-Y-R-Y-J-A-T-E-TH-U"
+        },
+        {
+          "sign": 1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.801520474410571,
+          "ordinaryHeld": -3.816823849854652,
+          "preview": "EO-N-OE-T-N-N-AE-R-P-J-EO-L-F-OE-TH-H-D-B-E-Y-S-X-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 52,
+          "ends": [],
+          "ordinaryFit": -3.80125026838851,
+          "ordinaryHeld": -3.7886564307027806,
+          "preview": "J-O-F-L-C-D-O-EO-EA-AE-J-L-U-NG-P-IA-X-A-L-AE-J-M-G-IA"
+        },
+        {
+          "sign": 1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 79,
+          "ends": [],
+          "ordinaryFit": -3.8011311041669114,
+          "ordinaryHeld": -3.7564458156757645,
+          "preview": "C-I-R-T-M-U-J-IA-P-A-J-NG-F-O-O-E-NG-Y-M-NG-T-E-R-U"
+        },
+        {
+          "sign": 1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.785597251752564,
+          "ordinaryHeld": -3.824303376370644,
+          "preview": "EO-X-F-U-Y-N-Y-EO-EO-A-EO-L-J-OE-D-AE-D-AE-S-Y-S-T-W-N"
+        },
+        {
+          "sign": 1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 95,
+          "ends": [],
+          "ordinaryFit": -3.7733580391976798,
+          "ordinaryHeld": -3.8035534259342825,
+          "preview": "T-I-X-H-C-A-J-J-EO-AE-J-TH-U-P-U-IA-OE-NG-L-AE-P-M-S-U"
+        },
+        {
+          "sign": 1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 17,
+          "ends": [],
+          "ordinaryFit": -3.78245713930047,
+          "ordinaryHeld": -3.7336990439840787,
+          "preview": "EO-A-NG-T-L-N-I-J-P-A-OE-NG-NG-L-O-Y-E-Y-M-D-T-IA-W-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.796436600106072,
+          "ordinaryHeld": -3.79424405323489,
+          "preview": "Y-TH-F-TH-C-H-I-EO-EO-G-EO-EO-EA-OE-TH-OE-D-AE-B-Y-A-M-TH-U"
+        },
+        {
+          "sign": 1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.777802251151715,
+          "ordinaryHeld": -3.7909223800292167,
+          "preview": "R-I-S-T-R-H-J-J-D-AE-O-M-U-NG-IA-IA-OE-D-L-C-T-X-W-U"
+        },
+        {
+          "sign": 1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8001868436091284,
+          "ordinaryHeld": -3.7128565647916796,
+          "preview": "EO-AE-F-S-R-N-I-OE-P-T-I-NG-F-B-O-Y-L-Y-EA-Y-J-M-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 12,
+          "ends": [],
+          "ordinaryFit": -3.7948031143689187,
+          "ordinaryHeld": -3.8079449851465443,
+          "preview": "IA-I-EA-S-C-H-NG-EO-R-D-EO-L-AE-OE-TH-A-D-C-L-NG-T-M-G-NG"
+        },
+        {
+          "sign": 1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7866765648121556,
+          "ordinaryHeld": -3.8060248378398245,
+          "preview": "EO-N-EA-T-R-M-J-O-J-AE-J-T-U-NG-F-IA-TH-Y-S-Y-T-E-IA-E"
+        },
+        {
+          "sign": 1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 138,
+          "ends": [],
+          "ordinaryFit": -3.8282139704953306,
+          "ordinaryHeld": -3.778720847048835,
+          "preview": "J-N-F-S-S-N-TH-I-P-A-W-NG-F-M-O-G-D-NG-L-Y-S-I-A-U"
+        },
+        {
+          "sign": 1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.761053520570548,
+          "ordinaryHeld": -3.7820588245925015,
+          "preview": "J-I-EA-Y-C-F-N-EO-EO-L-EO-L-IA-OE-J-IA-E-Y-L-AE-W-W-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 76,
+          "ends": [],
+          "ordinaryFit": -3.75261332831302,
+          "ordinaryHeld": -3.7758903632799323,
+          "preview": "EO-N-I-T-AE-W-J-J-H-AE-J-E-U-U-O-OE-D-Y-M-B-R-M-G-T"
+        },
+        {
+          "sign": 1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 22,
+          "ends": [],
+          "ordinaryFit": -3.7808162667683773,
+          "ordinaryHeld": -3.7593099335943236,
+          "preview": "J-L-F-W-O-N-I-W-P-A-N-NG-N-OE-IA-IA-D-AE-J-X-T-E-OE-U"
+        },
+        {
+          "sign": 1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.8060534141102234,
+          "ordinaryHeld": -3.755761685778116,
+          "preview": "OE-I-L-X-C-H-G-EO-EO-OE-EO-F-U-B-O-IA-OE-B-H-Y-S-C-W-IA"
+        },
+        {
+          "sign": 1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7851243325611037,
+          "ordinaryHeld": -3.75395263681425,
+          "preview": "EO-U-IA-T-R-R-J-J-I-AE-L-NG-AE-OE-O-Y-X-X-L-AE-TH-M-R-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.8185401383427173,
+          "ordinaryHeld": -3.8268285577622443,
+          "preview": "O-H-F-S-F-N-I-N-P-R-EO-T-U-OE-TH-E-J-Y-M-EO-T-T-TH-M"
+        },
+        {
+          "sign": 1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.79158355282775,
+          "ordinaryHeld": -3.7828423562540507,
+          "preview": "I-I-EA-J-C-H-H-EO-NG-AE-W-NG-U-NG-D-S-D-AE-G-Y-P-X-AE-U"
+        },
+        {
+          "sign": 1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7695299710322874,
+          "ordinaryHeld": -3.721456955035708,
+          "preview": "EO-N-A-T-R-G-J-L-P-L-EO-NG-F-P-L-IA-OE-EO-L-D-J-H-W-F"
+        },
+        {
+          "sign": -1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.7493243668759275,
+          "ordinaryHeld": -3.8129348426896805,
+          "preview": "S-B-TH-M-I-J-C-X-L-IA-X-A-EO-W-C-U-I-EA-AE-R-F-NG-I-TH"
+        },
+        {
+          "sign": -1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 16,
+          "ends": [],
+          "ordinaryFit": -3.799260985957398,
+          "ordinaryHeld": -3.8156075057603354,
+          "preview": "M-EO-O-NG-W-O-P-M-S-IA-S-O-S-A-G-X-AE-TH-IA-I-E-OE-H-O"
+        },
+        {
+          "sign": -1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.806770905678273,
+          "ordinaryHeld": -3.7738698965327706,
+          "preview": "X-P-C-E-EA-J-E-X-S-EA-D-G-O-AE-M-F-EA-R-R-EA-M-L-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.8040964311554832,
+          "ordinaryHeld": -3.794889232819076,
+          "preview": "S-S-TH-I-W-T-P-X-T-W-Y-D-R-N-C-O-U-I-OE-F-B-NG-I-I"
+        },
+        {
+          "sign": -1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 16,
+          "ends": [],
+          "ordinaryFit": -3.805971353584394,
+          "ordinaryHeld": -3.770914762362514,
+          "preview": "B-EO-D-E-EO-J-P-S-A-I-X-A-B-A-H-C-W-EA-D-IA-E-OE-T-O"
+        },
+        {
+          "sign": -1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.755304984617905,
+          "ordinaryHeld": -3.7266689210890043,
+          "preview": "X-R-TH-D-W-J-X-D-IA-IA-S-H-O-IA-I-J-AE-F-NG-EA-M-EA-N-EA"
+        },
+        {
+          "sign": -1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.783455984652019,
+          "ordinaryHeld": -3.830125079313961,
+          "preview": "G-EO-W-E-W-EO-OE-Y-S-EA-EA-D-G-F-T-F-Y-IA-OE-F-AE-NG-C-O"
+        },
+        {
+          "sign": -1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 20,
+          "ends": [],
+          "ordinaryFit": -3.772673828794806,
+          "ordinaryHeld": -3.825278709276892,
+          "preview": "X-B-TH-E-H-L-AE-X-T-EO-X-Y-H-G-C-U-A-EA-D-G-E-B-N-E"
+        },
+        {
+          "sign": -1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.784215118873871,
+          "ordinaryHeld": -3.7428879879053394,
+          "preview": "M-EO-TH-M-T-D-P-S-F-IA-B-EA-X-A-G-EA-AE-F-F-EA-X-NG-A-J"
+        },
+        {
+          "sign": -1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.811409472769571,
+          "ordinaryHeld": -3.7526727844388694,
+          "preview": "X-EO-O-IA-M-J-X-EA-S-U-M-C-O-AE-R-F-Y-G-OE-A-E-W-B-O"
+        },
+        {
+          "sign": -1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 69,
+          "ends": [],
+          "ordinaryFit": -3.8115671496205326,
+          "ordinaryHeld": -3.798396404344407,
+          "preview": "X-P-J-U-W-EO-IA-X-E-O-AE-D-R-D-C-U-O-EA-E-EA-R-F-N-B"
+        },
+        {
+          "sign": -1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.773571494258666,
+          "ordinaryHeld": -3.7701754002052015,
+          "preview": "S-NG-X-E-H-AE-P-B-L-N-X-A-TH-A-G-W-AE-A-OE-X-Y-NG-D-O"
+        },
+        {
+          "sign": -1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.7738068272511325,
+          "ordinaryHeld": -3.7839228570398498,
+          "preview": "D-A-TH-M-NG-J-T-M-Y-IA-S-OE-O-AE-EO-F-NG-EA-H-W-E-G-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 11,
+          "ends": [],
+          "ordinaryFit": -3.7674966290494085,
+          "ordinaryHeld": -3.7837034674851293,
+          "preview": "Y-EO-O-O-W-X-E-AE-S-EA-P-D-R-TH-C-AE-AE-X-U-EA-O-NG-I-R"
+        },
+        {
+          "sign": -1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.8064514796669697,
+          "ordinaryHeld": -3.792129567037555,
+          "preview": "X-P-T-E-I-T-A-X-T-Y-X-A-I-A-U-F-J-W-OE-P-E-OE-I-O"
+        },
+        {
+          "sign": -1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.800145727929618,
+          "ordinaryHeld": -3.781202596396187,
+          "preview": "S-Y-TH-NG-EO-OE-P-S-X-IA-S-U-O-L-C-S-R-EA-W-EA-M-OE-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 3,
+          "ends": [],
+          "ordinaryFit": -3.7570986749050497,
+          "ordinaryHeld": -3.7824188829604073,
+          "preview": "EA-EO-C-D-E-J-X-P-S-EA-NG-D-EA-A-L-H-AE-P-OE-F-M-NG-I-OE"
+        },
+        {
+          "sign": -1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.7938003645305303,
+          "ordinaryHeld": -3.7564127092970474,
+          "preview": "X-S-W-F-W-EO-EO-X-T-C-X-M-O-I-P-F-I-EA-D-F-E-OE-EA-O"
+        },
+        {
+          "sign": -1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.8174216037155766,
+          "ordinaryHeld": -3.791645707018454,
+          "preview": "B-B-P-E-H-I-P-S-OE-IA-I-D-E-O-C-X-AE-F-D-EA-M-J-N-EO"
+        },
+        {
+          "sign": -1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.7995246900925936,
+          "ordinaryHeld": -3.7921955125483,
+          "preview": "M-D-TH-M-G-J-X-NG-S-D-X-N-J-A-M-F-Y-F-OE-F-H-NG-E-C"
+        },
+        {
+          "sign": -1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 14,
+          "ends": [],
+          "ordinaryFit": -3.795263913375876,
+          "ordinaryHeld": -3.759608778253972,
+          "preview": "AE-EO-O-B-W-EO-L-X-J-IA-F-TH-O-N-C-U-Y-EA-D-E-E-U-J-O"
+        },
+        {
+          "sign": -1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.78525994413873,
+          "ordinaryHeld": -3.81705676990641,
+          "preview": "X-P-U-E-H-E-P-I-S-P-OE-D-B-A-G-U-AE-F-EO-EA-IA-D-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.7292028666068373,
+          "ordinaryHeld": -3.824330060987517,
+          "preview": "S-J-TH-M-X-J-N-X-U-G-X-H-O-AE-G-F-Y-E-OE-H-L-NG-I-H"
+        },
+        {
+          "sign": -1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.772104963601701,
+          "ordinaryHeld": -3.789714963424209,
+          "preview": "P-EO-O-AE-W-W-P-F-D-IA-EA-D-R-AE-C-U-S-EA-TH-U-E-OE-X-O"
+        },
+        {
+          "sign": -1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.7970370475932675,
+          "ordinaryHeld": -3.793729768965812,
+          "preview": "X-P-N-E-O-J-EA-OE-S-EO-X-A-R-A-G-M-AE-H-A-EA-M-Y-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 11,
+          "ends": [],
+          "ordinaryFit": -3.7356482026114186,
+          "ordinaryHeld": -3.7932079182867757,
+          "preview": "S-M-TH-X-W-Y-NG-X-F-IA-S-A-O-AE-A-F-C-U-OE-F-D-NG-I-G"
+        },
+        {
+          "sign": -1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.791093259977778,
+          "ordinaryHeld": -3.7844389520188733,
+          "preview": "NG-EO-IA-E-OE-M-P-EA-S-EA-S-D-R-X-C-N-IA-EA-D-R-E-OE-EO-O"
+        },
+        {
+          "sign": -1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.766872156966016,
+          "ordinaryHeld": -3.7659653477193897,
+          "preview": "X-H-TH-R-S-J-IA-X-T-EA-X-A-OE-A-X-TH-AE-F-IA-EA-M-A-N-A"
+        },
+        {
+          "sign": -1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.765105495116553,
+          "ordinaryHeld": -3.7289140858392282,
+          "preview": "I-EO-B-Y-W-AE-P-S-T-IA-S-P-O-R-W-F-Y-R-OE-F-NG-NG-U-O"
+        },
+        {
+          "sign": -1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.8001219290871946,
+          "ordinaryHeld": -3.7648504946004366,
+          "preview": "X-IA-I-E-NG-J-X-S-S-EA-R-D-EO-Y-C-U-U-EA-D-TH-E-P-N-H"
+        },
+        {
+          "sign": -1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 3,
+          "ends": [],
+          "ordinaryFit": -3.761253303815797,
+          "ordinaryHeld": -3.771091992566454,
+          "preview": "F-L-TH-O-W-EO-X-X-T-B-X-O-C-A-G-C-AE-F-AE-EA-I-NG-X-O"
+        },
+        {
+          "sign": -1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.8189538375164016,
+          "ordinaryHeld": -3.7494439883514863,
+          "preview": "OE-EO-T-E-H-EO-P-S-C-IA-D-AE-O-AE-I-F-Y-TH-OE-L-E-Y-N-O"
+        },
+        {
+          "sign": -1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 31,
+          "ends": [],
+          "ordinaryFit": -3.759686368783158,
+          "ordinaryHeld": -3.8317609282059264,
+          "preview": "X-Y-TH-M-H-J-X-R-S-W-T-D-R-F-C-U-EA-EA-X-EA-D-NG-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.7974496180529913,
+          "ordinaryHeld": -3.7584270814057237,
+          "preview": "EA-EO-O-M-W-EO-O-X-A-F-X-A-H-A-G-O-AE-L-OE-R-E-NG-I-EO"
+        },
+        {
+          "sign": -1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.7658954442822528,
+          "ordinaryHeld": -3.7830283523709407,
+          "preview": "X-P-O-E-H-U-P-D-B-IA-S-EA-O-AE-H-F-B-EA-IA-EA-E-OE-E-S"
+        },
+        {
+          "sign": -1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 37,
+          "ends": [],
+          "ordinaryFit": -3.785883688810257,
+          "ordinaryHeld": -3.806612643248649,
+          "preview": "S-P-TH-M-Y-J-OE-T-S-EA-M-D-R-IA-C-NG-AE-R-OE-EA-M-U-NG-O"
+        },
+        {
+          "sign": -1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.755171560566686,
+          "ordinaryHeld": -3.7392007543137176,
+          "preview": "S-EO-O-H-W-L-S-X-T-O-X-A-G-A-Y-F-U-EA-OE-F-IA-R-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 17,
+          "ends": [],
+          "ordinaryFit": -3.747551418519127,
+          "ordinaryHeld": -3.721843466912537,
+          "preview": "X-P-NG-E-T-P-P-S-L-IA-S-Y-O-T-C-C-AE-EA-D-H-U-NG-I-B"
+        },
+        {
+          "sign": -1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7898060829489157,
+          "ordinaryHeld": -3.8181338499279436,
+          "preview": "S-TH-TH-IA-N-J-X-M-S-EA-B-D-A-A-I-F-AE-F-TH-J-E-OE-D-O"
+        },
+        {
+          "sign": -1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.7841913752316816,
+          "ordinaryHeld": -3.7694097589720266,
+          "preview": "R-EO-J-L-W-EO-E-X-T-U-X-S-O-F-C-F-Y-H-C-EA-M-G-N-G"
+        },
+        {
+          "sign": -1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 25,
+          "ends": [],
+          "ordinaryFit": -3.7804337704785915,
+          "ordinaryHeld": -3.7729580259435345,
+          "preview": "X-NG-R-E-H-T-P-S-E-IA-G-D-H-A-C-U-C-J-OE-F-O-NG-EO-H"
+        },
+        {
+          "sign": -1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.7439598480671643,
+          "ordinaryHeld": -3.7637546792393795,
+          "preview": "D-X-TH-M-EO-J-X-B-S-M-X-EA-O-A-G-N-H-EA-D-P-E-A-X-X"
+        },
+        {
+          "sign": -1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 16,
+          "ends": [],
+          "ordinaryFit": -3.8097261462691763,
+          "ordinaryHeld": -3.7791841463797615,
+          "preview": "T-EO-O-D-W-EO-T-X-W-IA-M-D-O-AE-X-EO-AE-F-W-EA-NG-Y-L-O"
+        },
+        {
+          "sign": -1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.821894733011549,
+          "ordinaryHeld": -3.815290567176297,
+          "preview": "X-P-W-E-H-X-P-G-S-O-X-D-R-R-B-F-Y-P-OE-TH-D-O-N-R"
+        }
+      ]
+    },
+    {
+      "name": "NUMBER factors BASE29 digits",
+      "period": 59,
+      "key": [
+        2,
+        17,
+        3,
+        10,
+        2,
+        3,
+        16,
+        2,
+        3,
+        2,
+        3,
+        2,
+        3,
+        4,
+        21,
+        2,
+        11,
+        5,
+        4,
+        2,
+        3,
+        6,
+        7,
+        2,
+        3,
+        6,
+        5,
+        2,
+        6,
+        23,
+        2,
+        7,
+        1,
+        2,
+        2,
+        3,
+        11,
+        1,
+        14,
+        2,
+        3,
+        3,
+        16,
+        2,
+        5,
+        7,
+        13,
+        2,
+        3,
+        2,
+        1,
+        2,
+        3,
+        2,
+        9,
+        2,
+        1,
+        9,
+        27
+      ],
+      "caseCount": 118,
+      "controlsPassed": 118,
+      "fullSurvivors": [],
+      "maxFailure": 405,
+      "pageCases": [
+        {
+          "survives": 1,
+          "maxFailure": 146
+        },
+        {
+          "survives": 0,
+          "maxFailure": 185
+        },
+        {
+          "survives": 2,
+          "maxFailure": 174
+        },
+        {
+          "survives": 0,
+          "maxFailure": 222
+        },
+        {
+          "survives": 0,
+          "maxFailure": 260
+        },
+        {
+          "survives": 0,
+          "maxFailure": 182
+        },
+        {
+          "survives": 6,
+          "maxFailure": 117
+        }
+      ],
+      "ordinaryBestFit": {
+        "sign": 1,
+        "phase": 15,
+        "feasible": false,
+        "failure": 5,
+        "ends": [],
+        "ordinaryFit": -3.7352045013352004,
+        "ordinaryHeld": -3.817521288071011,
+        "preview": "I-C-AE-S-F-T-I-G-P-A-J-M-L-OE-M-Y-NG-A-C-AE-EO-P-A-F"
+      },
+      "ordinaryOracleHeld": -3.694292147224516,
+      "ordinaryHiddenControl": {
+        "sign": -1,
+        "phase": 56,
+        "fit": -2.741338880923105,
+        "held": -2.746488039351219,
+        "correct": true
+      },
+      "cases": [
+        {
+          "sign": 1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.800792012088354,
+          "ordinaryHeld": -3.7699248861423933,
+          "preview": "J-H-EA-X-TH-E-I-TH-N-OE-J-M-AE-T-TH-AE-E-OE-M-NG-D-E-U-U"
+        },
+        {
+          "sign": 1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.8103326596122264,
+          "ordinaryHeld": -3.763096670969618,
+          "preview": "I-N-IA-P-X-H-U-H-I-A-I-T-A-NG-U-OE-M-AE-S-R-S-P-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.80817563576311,
+          "ordinaryHeld": -3.779808675282246,
+          "preview": "J-H-Y-AE-R-EA-W-N-EO-D-W-S-F-L-IA-D-OE-NG-IA-AE-I-M-G-F"
+        },
+        {
+          "sign": 1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7796609791331,
+          "ordinaryHeld": -3.7937078743550385,
+          "preview": "I-W-N-S-A-C-H-J-J-L-G-L-EA-B-EA-Y-E-R-M-L-T-E-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.772466114787513,
+          "ordinaryHeld": -3.789625516578893,
+          "preview": "N-M-EA-G-U-G-I-I-H-M-J-M-AE-E-TH-OE-U-AE-X-Y-S-E-C-L"
+        },
+        {
+          "sign": 1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7844203161616834,
+          "ordinaryHeld": -3.7723168430820495,
+          "preview": "NG-N-M-EO-TH-H-N-W-W-A-I-T-Y-NG-IA-C-OE-L-L-AE-S-B-Y-U"
+        },
+        {
+          "sign": 1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 22,
+          "ends": [],
+          "ordinaryFit": -3.7735403784208152,
+          "ordinaryHeld": -3.8006707614539166,
+          "preview": "J-F-AE-P-R-W-G-G-EO-D-W-B-F-B-I-Y-B-Y-M-AE-X-N-W-B"
+        },
+        {
+          "sign": 1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7603982611555593,
+          "ordinaryHeld": -3.7720789175336282,
+          "preview": "TH-G-Y-S-O-R-C-J-J-L-H-L-AE-F-TH-NG-D-AE-M-A-G-M-D-F"
+        },
+        {
+          "sign": 1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 18,
+          "ends": [],
+          "ordinaryFit": -3.79015890909091,
+          "ordinaryHeld": -3.773159942632701,
+          "preview": "H-W-EA-X-F-O-I-I-H-NG-J-T-H-NG-Y-IA-OE-AE-E-T-T-G-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 28,
+          "ends": [],
+          "ordinaryFit": -3.784764641900721,
+          "ordinaryHeld": -3.7480523856618557,
+          "preview": "N-N-IA-J-EA-H-N-W-N-A-W-EA-F-T-O-Y-OE-A-I-Y-O-E-C-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 405,
+          "ends": [],
+          "ordinaryFit": -3.794236280312526,
+          "ordinaryHeld": -3.8103950896037397,
+          "preview": "J-H-A-I-R-W-G-H-EO-L-M-L-A-OE-TH-Y-NG-T-L-P-S-B-C-S"
+        },
+        {
+          "sign": 1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.8071510078535997,
+          "ordinaryHeld": -3.79219596840723,
+          "preview": "I-C-D-S-O-R-W-J-H-O-J-S-U-NG-TH-AE-P-Y-W-AE-X-B-NG-F"
+        },
+        {
+          "sign": 1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 66,
+          "ends": [],
+          "ordinaryFit": -3.8062523054651836,
+          "ordinaryHeld": -3.788087303367551,
+          "preview": "W-R-EA-X-F-C-I-W-L-A-G-NG-F-NG-U-B-D-P-M-A-X-R-G-Y"
+        },
+        {
+          "sign": 1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.751453168135944,
+          "ordinaryHeld": -3.8043128398416646,
+          "preview": "G-N-IA-J-U-H-G-M-EO-M-EO-L-F-L-OE-IA-I-AE-E-A-U-E-O-A"
+        },
+        {
+          "sign": 1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8331667311441184,
+          "ordinaryHeld": -3.7506113887969112,
+          "preview": "J-H-A-EO-R-R-E-J-W-AE-J-L-EA-EO-O-X-OE-A-E-J-S-S-U-E"
+        },
+        {
+          "sign": 1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7352045013352004,
+          "ordinaryHeld": -3.817521288071011,
+          "preview": "I-C-AE-S-F-T-I-G-P-A-J-M-L-OE-M-Y-NG-A-C-AE-EO-P-A-F"
+        },
+        {
+          "sign": 1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 10,
+          "ends": [],
+          "ordinaryFit": -3.8186272810815622,
+          "ordinaryHeld": -3.8327408112361714,
+          "preview": "W-G-EA-J-EO-H-C-EO-EO-A-I-J-U-N-TH-AE-NG-J-M-OE-I-W-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.772565378231056,
+          "ordinaryHeld": -3.7931237840728174,
+          "preview": "H-N-A-D-R-O-J-J-EO-D-TH-NG-B-NG-U-AE-H-AE-T-L-R-E-C-F"
+        },
+        {
+          "sign": 1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 44,
+          "ends": [],
+          "ordinaryFit": -3.781284949827424,
+          "ordinaryHeld": -3.7923731080649854,
+          "preview": "J-C-W-S-EA-N-I-J-J-S-EO-H-F-L-U-EO-OE-OE-X-X-S-B-G-U"
+        },
+        {
+          "sign": 1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.8074071908975933,
+          "ordinaryHeld": -3.7880115814303528,
+          "preview": "W-B-EA-I-C-H-I-I-O-AE-EA-L-EA-L-B-Y-M-L-H-AE-X-E-W-F"
+        },
+        {
+          "sign": 1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7795197605041517,
+          "ordinaryHeld": -3.7282737633103795,
+          "preview": "M-N-D-T-R-H-N-TH-P-EO-J-M-EA-W-TH-D-B-X-M-A-S-M-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.787384984770766,
+          "ordinaryHeld": -3.812960931877,
+          "preview": "J-R-F-S-R-W-U-EO-F-A-I-M-S-NG-EA-NG-J-AE-E-AE-T-E-C-F"
+        },
+        {
+          "sign": 1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7744099949220375,
+          "ordinaryHeld": -3.7611340232790775,
+          "preview": "G-I-EA-S-O-EA-J-EA-EO-D-I-G-F-E-Y-S-OE-A-M-Y-S-B-G-OE"
+        },
+        {
+          "sign": 1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.7640445937509543,
+          "ordinaryHeld": -3.809151230942911,
+          "preview": "EO-N-EA-X-A-N-IA-J-J-D-Y-L-Y-T-L-Y-NG-AE-L-AE-X-E-EA-F"
+        },
+        {
+          "sign": 1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8112222628172776,
+          "ordinaryHeld": -3.808730710489768,
+          "preview": "J-N-IA-G-C-AE-I-I-J-I-J-B-A-I-TH-AE-OE-Y-M-A-S-J-G-U"
+        },
+        {
+          "sign": 1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 38,
+          "ends": [],
+          "ordinaryFit": -3.8184570910303703,
+          "ordinaryHeld": -3.7267396732861005,
+          "preview": "J-H-M-T-NG-H-N-I-IA-A-H-S-E-NG-U-Y-D-AE-E-AE-H-E-W-OE"
+        },
+        {
+          "sign": 1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 18,
+          "ends": [],
+          "ordinaryFit": -3.738059005440123,
+          "ordinaryHeld": -3.78891085822004,
+          "preview": "I-F-F-O-R-W-N-Y-EO-NG-G-N-F-L-TH-IA-OE-A-M-E-S-M-EA-R"
+        },
+        {
+          "sign": 1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.786071106415874,
+          "ordinaryHeld": -3.7851594757114717,
+          "preview": "TH-I-T-S-O-W-AE-J-N-M-F-L-EA-NG-O-Y-NG-AE-EO-AE-T-J-I-F"
+        },
+        {
+          "sign": 1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.8363172551624913,
+          "ordinaryHeld": -3.8156193240131997,
+          "preview": "EO-Y-EA-X-O-D-I-H-W-P-J-M-F-OE-TH-AE-OE-E-M-Y-H-OE-G-X"
+        },
+        {
+          "sign": 1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 9,
+          "ends": [],
+          "ordinaryFit": -3.806380484065055,
+          "ordinaryHeld": -3.7607509854257186,
+          "preview": "EA-N-IA-X-M-H-W-G-U-A-I-L-U-NG-U-Y-S-AE-L-E-M-E-L-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7649360433876864,
+          "ordinaryHeld": -3.7373122331343556,
+          "preview": "J-H-IA-U-R-C-C-F-EO-D-J-NG-F-L-TH-M-OE-Y-EO-F-S-O-C-NG"
+        },
+        {
+          "sign": 1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 29,
+          "ends": [],
+          "ordinaryFit": -3.829068173332378,
+          "ordinaryHeld": -3.773747436559795,
+          "preview": "I-H-X-S-U-O-EA-J-J-A-EO-L-EA-NG-A-Y-D-E-D-AE-F-B-IA-F"
+        },
+        {
+          "sign": 1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.8121984948259495,
+          "ordinaryHeld": -3.783529620709093,
+          "preview": "I-A-EA-EO-EA-Y-I-I-EO-AE-J-M-F-X-TH-IA-S-F-M-I-X-I-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 40,
+          "ends": [],
+          "ordinaryFit": -3.787778925710441,
+          "ordinaryHeld": -3.814342843703968,
+          "preview": "Y-N-AE-I-OE-H-N-J-P-A-I-L-OE-NG-O-M-Y-AE-R-A-W-E-C-S"
+        },
+        {
+          "sign": 1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 10,
+          "ends": [],
+          "ordinaryFit": -3.8046690713576,
+          "ordinaryHeld": -3.7915725007192926,
+          "preview": "J-G-D-R-R-W-I-EO-EO-D-J-P-F-OE-A-U-OE-I-E-B-S-B-NG-F"
+        },
+        {
+          "sign": 1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.851500224629954,
+          "ordinaryHeld": -3.7394556117838116,
+          "preview": "H-R-B-S-O-H-J-J-J-A-R-L-U-X-G-Y-W-A-J-AE-X-R-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.7855108389965975,
+          "ordinaryHeld": -3.760196693821699,
+          "preview": "G-IA-EA-X-R-N-I-I-EO-B-J-NG-OE-AE-TH-J-NG-B-M-A-U-E-C-F"
+        },
+        {
+          "sign": 1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 17,
+          "ends": [],
+          "ordinaryFit": -3.7814339870736227,
+          "ordinaryHeld": -3.694292147224516,
+          "preview": "F-N-IA-S-C-H-N-J-C-A-EO-P-R-NG-T-AE-X-AE-E-J-S-B-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 4,
+          "ends": [],
+          "ordinaryFit": -3.791973783020185,
+          "ordinaryHeld": -3.7391312060883517,
+          "preview": "J-H-EA-T-R-W-I-R-EO-AE-R-A-F-G-U-E-OE-A-C-AE-X-E-C-F"
+        },
+        {
+          "sign": 1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.8133224027695793,
+          "ordinaryHeld": -3.769428736178816,
+          "preview": "I-N-F-S-O-H-O-J-P-B-S-L-X-L-D-Y-NG-J-M-A-S-B-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 17,
+          "ends": [],
+          "ordinaryFit": -3.771268049278761,
+          "ordinaryHeld": -3.7761986769478373,
+          "preview": "J-I-EA-X-R-U-I-EO-C-EA-J-C-EA-P-TH-AE-H-AE-E-AE-X-E-C-IA"
+        },
+        {
+          "sign": 1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 59,
+          "ends": [],
+          "ordinaryFit": -3.7491129837582,
+          "ordinaryHeld": -3.7832235912930963,
+          "preview": "EO-N-IA-S-Y-H-J-R-T-A-AE-M-NG-NG-U-EO-OE-A-M-A-S-B-R-I"
+        },
+        {
+          "sign": 1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.8027654717527546,
+          "ordinaryHeld": -3.812080877318052,
+          "preview": "J-H-EA-H-R-N-O-S-EO-N-I-EO-F-L-B-Y-NG-AE-E-AE-X-T-T-F"
+        },
+        {
+          "sign": 1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.8084568292696925,
+          "ordinaryHeld": -3.7707138217679983,
+          "preview": "I-N-NG-S-C-U-X-J-Y-D-O-L-EA-W-TH-AE-OE-A-M-A-P-EA-G-L"
+        },
+        {
+          "sign": 1,
+          "phase": 44,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7839625018425007,
+          "ordinaryHeld": -3.769866749603652,
+          "preview": "J-TH-EA-T-Y-EO-I-AE-J-T-J-M-S-NG-U-Y-NG-AE-E-D-AE-E-Y-Y"
+        },
+        {
+          "sign": 1,
+          "phase": 45,
+          "feasible": false,
+          "failure": 138,
+          "ends": [],
+          "ordinaryFit": -3.8196106583096685,
+          "ordinaryHeld": -3.7361881986928176,
+          "preview": "R-N-F-H-H-H-A-I-R-A-I-G-F-L-TH-AE-OE-A-B-G-S-N-O-IA"
+        },
+        {
+          "sign": 1,
+          "phase": 46,
+          "feasible": false,
+          "failure": 30,
+          "ends": [],
+          "ordinaryFit": -3.772550607620324,
+          "ordinaryHeld": -3.774732770493712,
+          "preview": "J-I-NG-M-R-OE-N-O-EO-D-Y-L-EA-NG-U-Y-NG-D-F-AE-G-S-R-F"
+        },
+        {
+          "sign": 1,
+          "phase": 47,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.799118447033707,
+          "ordinaryHeld": -3.7628396969238427,
+          "preview": "EO-TH-O-S-E-W-TH-J-J-I-J-M-F-L-TH-AE-L-G-M-T-EO-T-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 48,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7849839047249203,
+          "ordinaryHeld": -3.8050960369914164,
+          "preview": "R-P-EA-F-O-F-I-I-IA-A-I-L-EA-NG-U-A-O-AE-I-OE-P-E-C-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 49,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.7955866064382198,
+          "ordinaryHeld": -3.7546095790030756,
+          "preview": "S-N-P-X-AE-H-N-Y-EO-D-J-M-F-L-F-W-OE-T-T-D-S-B-TH-A"
+        },
+        {
+          "sign": 1,
+          "phase": 50,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.7966557954293267,
+          "ordinaryHeld": -3.820478083779557,
+          "preview": "J-D-IA-W-R-W-AE-J-J-A-I-L-EA-M-EO-Y-P-OE-B-AE-X-X-U-F"
+        },
+        {
+          "sign": 1,
+          "phase": 51,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.7888795871452463,
+          "ordinaryHeld": -3.821486335540057,
+          "preview": "AE-H-L-S-O-D-I-I-EO-D-J-M-IA-TH-TH-B-M-D-M-A-J-P-G-EA"
+        },
+        {
+          "sign": 1,
+          "phase": 52,
+          "feasible": false,
+          "failure": 24,
+          "ends": [],
+          "ordinaryFit": -3.798832943096818,
+          "ordinaryHeld": -3.718925260096481,
+          "preview": "I-U-EA-X-M-H-N-J-J-A-I-E-I-NG-OE-D-L-AE-E-NG-I-E-C-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 53,
+          "feasible": false,
+          "failure": 12,
+          "ends": [],
+          "ordinaryFit": -3.769562528468001,
+          "ordinaryHeld": -3.747649979682594,
+          "preview": "O-N-IA-U-R-W-I-I-EO-D-N-U-F-EO-EA-A-OE-A-S-L-S-B-TH-Y"
+        },
+        {
+          "sign": 1,
+          "phase": 54,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.783344750062149,
+          "ordinaryHeld": -3.786293290221322,
+          "preview": "J-H-X-S-O-H-N-J-J-OE-NG-L-L-E-F-Y-NG-NG-X-AE-X-X-O-F"
+        },
+        {
+          "sign": 1,
+          "phase": 55,
+          "feasible": false,
+          "failure": 19,
+          "ends": [],
+          "ordinaryFit": -3.790796177131052,
+          "ordinaryHeld": -3.858336060939056,
+          "preview": "I-A-EA-X-R-W-I-I-I-C-J-J-Y-M-TH-AE-E-L-M-A-J-S-G-AE"
+        },
+        {
+          "sign": 1,
+          "phase": 56,
+          "feasible": false,
+          "failure": 5,
+          "ends": [],
+          "ordinaryFit": -3.763888126522758,
+          "ordinaryHeld": -3.7644176961695472,
+          "preview": "Y-N-IA-S-O-H-N-N-OE-A-TH-B-IA-NG-U-OE-B-AE-E-NG-EO-E-TH-H"
+        },
+        {
+          "sign": 1,
+          "phase": 57,
+          "feasible": false,
+          "failure": 32,
+          "ends": [],
+          "ordinaryFit": -3.8068086599266495,
+          "ordinaryHeld": -3.780157240288335,
+          "preview": "J-H-EA-X-R-W-H-NG-EO-S-H-E-F-L-IA-NG-OE-A-S-OE-S-X-X-F"
+        },
+        {
+          "sign": 1,
+          "phase": 58,
+          "feasible": false,
+          "failure": 13,
+          "ends": [],
+          "ordinaryFit": -3.774818583157991,
+          "ordinaryHeld": -3.8129603655504547,
+          "preview": "I-N-IA-S-O-G-L-J-O-NG-N-L-EA-B-Y-Y-NG-NG-T-AE-J-Y-G-A"
+        },
+        {
+          "sign": -1,
+          "phase": 0,
+          "feasible": false,
+          "failure": 21,
+          "ends": [],
+          "ordinaryFit": -3.7938776058565153,
+          "ordinaryHeld": -3.7885465683521216,
+          "preview": "S-X-O-L-I-TH-X-A-M-U-S-AE-H-U-G-TH-U-O-D-R-J-OE-S-O"
+        },
+        {
+          "sign": -1,
+          "phase": 1,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.793891628845879,
+          "ordinaryHeld": -3.817369235875642,
+          "preview": "T-P-R-NG-IA-EO-D-E-E-EA-T-EA-N-AE-W-C-F-F-IA-NG-M-IA-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 2,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.7784519901716918,
+          "ordinaryHeld": -3.816284727025458,
+          "preview": "S-X-C-N-H-NG-B-B-T-F-M-F-R-Y-I-R-Y-R-S-F-A-NG-I-R"
+        },
+        {
+          "sign": -1,
+          "phase": 3,
+          "feasible": false,
+          "failure": 64,
+          "ends": [],
+          "ordinaryFit": -3.7795744881917774,
+          "ordinaryHeld": -3.7449990969855054,
+          "preview": "T-S-OE-M-B-S-T-S-B-O-L-A-C-F-N-U-U-NG-D-C-E-OE-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 4,
+          "feasible": false,
+          "failure": 21,
+          "ends": [],
+          "ordinaryFit": -3.8248902679027115,
+          "ordinaryHeld": -3.7747697586142217,
+          "preview": "B-O-O-EA-J-X-X-T-L-R-S-AE-H-EA-G-C-E-F-EA-EA-M-OE-J-P"
+        },
+        {
+          "sign": -1,
+          "phase": 5,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.8091236677569436,
+          "ordinaryHeld": -3.8161723114041437,
+          "preview": "C-P-EO-OE-I-EO-S-M-NG-EA-T-EA-W-AE-I-OE-Y-C-OE-F-M-D-M-O"
+        },
+        {
+          "sign": -1,
+          "phase": 6,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.785625028641181,
+          "ordinaryHeld": -3.779057071314951,
+          "preview": "S-OE-G-NG-H-P-E-L-T-F-M-IA-R-F-IA-U-TH-EA-D-F-L-TH-N-T"
+        },
+        {
+          "sign": -1,
+          "phase": 7,
+          "feasible": false,
+          "failure": 14,
+          "ends": [],
+          "ordinaryFit": -3.7658651903374323,
+          "ordinaryHeld": -3.7812336838933653,
+          "preview": "A-T-C-M-N-T-M-S-B-O-E-A-H-B-G-G-AE-F-D-U-EA-NG-OE-R"
+        },
+        {
+          "sign": -1,
+          "phase": 8,
+          "feasible": false,
+          "failure": 36,
+          "ends": [],
+          "ordinaryFit": -3.7617728311131864,
+          "ordinaryHeld": -3.8060798018649242,
+          "preview": "E-S-O-L-EO-B-X-T-L-TH-S-EA-AE-AE-J-F-Y-F-A-N-E-C-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 9,
+          "feasible": false,
+          "failure": 7,
+          "ends": [],
+          "ordinaryFit": -3.7801012895872184,
+          "ordinaryHeld": -3.8047560559283733,
+          "preview": "B-P-R-D-P-EO-S-M-M-EA-M-T-R-U-C-U-Y-U-O-EA-TH-OE-J-C"
+        },
+        {
+          "sign": -1,
+          "phase": 10,
+          "feasible": false,
+          "failure": 3,
+          "ends": [],
+          "ordinaryFit": -3.781788748970993,
+          "ordinaryHeld": -3.778260587252594,
+          "preview": "S-X-W-A-H-P-E-E-T-O-W-A-N-A-G-U-IA-N-OE-EO-M-D-J-E"
+        },
+        {
+          "sign": -1,
+          "phase": 11,
+          "feasible": false,
+          "failure": 14,
+          "ends": [],
+          "ordinaryFit": -3.8357547445176,
+          "ordinaryHeld": -3.7683122653309935,
+          "preview": "T-B-H-M-N-T-B-S-L-L-S-F-O-AE-G-TH-G-EA-G-F-L-D-A-R"
+        },
+        {
+          "sign": -1,
+          "phase": 12,
+          "feasible": false,
+          "failure": 70,
+          "ends": [],
+          "ordinaryFit": -3.794583838569206,
+          "ordinaryHeld": -3.848840326753745,
+          "preview": "M-E-O-L-EO-S-X-M-H-EA-L-D-R-AE-W-I-AE-EO-D-U-L-W-I-W"
+        },
+        {
+          "sign": -1,
+          "phase": 13,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.769839454966243,
+          "ordinaryHeld": -3.7754847661314557,
+          "preview": "L-P-R-D-J-EO-E-W-T-R-X-A-R-Y-S-F-N-F-A-U-R-OE-P-N"
+        },
+        {
+          "sign": -1,
+          "phase": 14,
+          "feasible": false,
+          "failure": 14,
+          "ends": [],
+          "ordinaryFit": -3.7980384612798614,
+          "ordinaryHeld": -3.7823930518454936,
+          "preview": "S-X-W-OE-H-T-G-S-NG-IA-S-A-C-C-C-P-Y-U-A-X-M-AE-S-S"
+        },
+        {
+          "sign": -1,
+          "phase": 15,
+          "feasible": false,
+          "failure": 2,
+          "ends": [],
+          "ordinaryFit": -3.827914848018364,
+          "ordinaryHeld": -3.8120231160544633,
+          "preview": "T-B-G-M-EO-R-X-L-S-EA-S-AE-P-A-E-U-IA-U-H-F-OE-IA-NG-R"
+        },
+        {
+          "sign": -1,
+          "phase": 16,
+          "feasible": false,
+          "failure": 0,
+          "ends": [],
+          "ordinaryFit": -3.7829227112598667,
+          "ordinaryHeld": -3.7919870321982168,
+          "preview": "M-T-O-D-F-EO-M-X-T-EA-T-R-O-H-G-TH-IA-X-D-O-A-R-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 17,
+          "feasible": false,
+          "failure": 27,
+          "ends": [],
+          "ordinaryFit": -3.810442575159118,
+          "ordinaryHeld": -3.799137814321716,
+          "preview": "E-P-W-J-H-B-P-S-T-F-A-D-T-AE-W-TH-J-F-Y-C-U-OE-J-R"
+        },
+        {
+          "sign": -1,
+          "phase": 18,
+          "feasible": false,
+          "failure": 54,
+          "ends": [],
+          "ordinaryFit": -3.8196151199619575,
+          "ordinaryHeld": -3.7887133431089457,
+          "preview": "S-B-A-M-P-J-X-S-B-H-X-W-R-Y-W-S-Y-O-EA-J-M-D-I-O"
+        },
+        {
+          "sign": -1,
+          "phase": 19,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.817317387991164,
+          "ordinaryHeld": -3.791852794527916,
+          "preview": "M-C-O-A-W-EO-X-T-AE-IA-IA-A-C-Y-L-U-F-C-C-F-L-OE-N-R"
+        },
+        {
+          "sign": -1,
+          "phase": 20,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.836459000537227,
+          "ordinaryHeld": -3.8244588582188896,
+          "preview": "W-P-H-E-H-EO-S-A-S-J-S-AE-C-I-G-R-TH-J-D-U-M-NG-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 21,
+          "feasible": false,
+          "failure": 11,
+          "ends": [],
+          "ordinaryFit": -3.8178559393559595,
+          "ordinaryHeld": -3.8384214250004023,
+          "preview": "S-E-TH-M-H-P-D-X-EA-EA-T-AE-E-AE-N-G-H-F-A-F-E-OE-J-R"
+        },
+        {
+          "sign": -1,
+          "phase": 22,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.800176181936183,
+          "ordinaryHeld": -3.7578360915620177,
+          "preview": "L-EO-O-M-N-NG-P-IA-T-F-T-N-R-EA-J-EO-Y-U-D-EA-M-D-I-J"
+        },
+        {
+          "sign": -1,
+          "phase": 23,
+          "feasible": false,
+          "failure": 49,
+          "ends": [],
+          "ordinaryFit": -3.775600348586784,
+          "ordinaryHeld": -3.7648198514642366,
+          "preview": "X-P-O-L-B-J-Y-S-B-F-F-A-W-U-B-U-IA-F-OE-F-L-OE-B-R"
+        },
+        {
+          "sign": -1,
+          "phase": 24,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.770548755845464,
+          "ordinaryHeld": -3.8202506865985257,
+          "preview": "S-P-R-EA-W-A-X-T-B-P-S-IA-N-W-G-TH-Y-EA-D-U-M-F-I-O"
+        },
+        {
+          "sign": -1,
+          "phase": 25,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.8144769268677416,
+          "ordinaryHeld": -3.8554107429795272,
+          "preview": "S-X-EO-E-L-EO-S-T-U-EA-E-F-S-AE-W-U-AE-F-A-F-Y-OE-N-J"
+        },
+        {
+          "sign": -1,
+          "phase": 26,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.8169596479159447,
+          "ordinaryHeld": -3.7451252745101145,
+          "preview": "T-OE-TH-TH-H-P-S-F-T-TH-L-G-R-Y-G-F-Y-U-D-W-M-NG-B-F"
+        },
+        {
+          "sign": -1,
+          "phase": 27,
+          "feasible": false,
+          "failure": 1,
+          "ends": [],
+          "ordinaryFit": -3.7850512456184844,
+          "ordinaryHeld": -3.7419484893195856,
+          "preview": "A-EO-S-M-N-P-EA-S-M-R-Y-A-C-AE-C-U-IA-F-U-F-E-F-G-R"
+        },
+        {
+          "sign": -1,
+          "phase": 28,
+          "feasible": false,
+          "failure": 48,
+          "ends": [],
+          "ordinaryFit": -3.7846450267880627,
+          "ordinaryHeld": -3.843551131702721,
+          "preview": "X-AE-O-L-N-Y-X-E-NG-I-S-AE-R-A-G-TH-Y-W-D-EA-Y-E-I-M"
+        },
+        {
+          "sign": -1,
+          "phase": 29,
+          "feasible": false,
+          "failure": 7,
+          "ends": [],
+          "ordinaryFit": -3.805461380635955,
+          "ordinaryHeld": -3.7981159470551593,
+          "preview": "IA-P-R-L-OE-EO-B-L-IA-EA-T-A-O-AE-W-U-R-F-OE-W-S-OE-AE-C"
+        },
+        {
+          "sign": -1,
+          "phase": 30,
+          "feasible": false,
+          "failure": 61,
+          "ends": [],
+          "ordinaryFit": -3.7623495964872595,
+          "ordinaryHeld": -3.7909571591728204,
+          "preview": "S-X-R-R-H-S-M-Y-T-F-S-D-R-Y-G-H-Y-EA-U-AE-M-H-J-EO"
+        },
+        {
+          "sign": -1,
+          "phase": 31,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.8108567698867764,
+          "ordinaryHeld": -3.7992619374447507,
+          "preview": "T-X-B-M-J-B-AE-S-B-EA-X-A-C-AE-P-U-AE-W-M-F-C-D-E-R"
+        },
+        {
+          "sign": -1,
+          "phase": 32,
+          "feasible": false,
+          "failure": 35,
+          "ends": [],
+          "ordinaryFit": -3.8115655451593597,
+          "ordinaryHeld": -3.762447547293692,
+          "preview": "T-IA-O-OE-P-D-X-T-T-IA-S-AE-R-O-G-F-R-AE-D-S-L-U-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 33,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.774100639240183,
+          "ordinaryHeld": -3.786384849194756,
+          "preview": "F-P-G-A-M-EO-S-S-S-EA-T-A-J-AE-C-H-OE-F-N-U-IA-OE-J-E"
+        },
+        {
+          "sign": -1,
+          "phase": 34,
+          "feasible": false,
+          "failure": 12,
+          "ends": [],
+          "ordinaryFit": -3.7768241781795973,
+          "ordinaryHeld": -3.771405539856719,
+          "preview": "S-T-H-U-H-P-X-X-T-F-S-TH-R-A-P-Y-Y-S-A-H-M-D-A-R"
+        },
+        {
+          "sign": -1,
+          "phase": 35,
+          "feasible": false,
+          "failure": 64,
+          "ends": [],
+          "ordinaryFit": -3.764579613970444,
+          "ordinaryHeld": -3.833998150796777,
+          "preview": "E-E-X-M-N-EO-P-S-B-EA-OE-A-O-O-TH-U-EO-U-TH-F-L-W-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 36,
+          "feasible": false,
+          "failure": 0,
+          "ends": [],
+          "ordinaryFit": -3.773355796740659,
+          "ordinaryHeld": -3.752726265844219,
+          "preview": "L-A-O-L-H-J-X-T-T-G-S-D-J-NG-G-T-IA-H-D-U-R-OE-J-R"
+        },
+        {
+          "sign": -1,
+          "phase": 37,
+          "feasible": false,
+          "failure": 48,
+          "ends": [],
+          "ordinaryFit": -3.8029082428579772,
+          "ordinaryHeld": -3.7855090658997,
+          "preview": "Y-P-R-M-W-EO-S-S-D-EA-X-TH-F-AE-NG-TH-C-F-A-X-M-D-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 38,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.8115388565384456,
+          "ordinaryHeld": -3.757045340989642,
+          "preview": "S-X-O-E-H-P-X-OE-T-IA-OE-L-R-J-W-N-Y-U-H-F-L-OE-J-R"
+        },
+        {
+          "sign": -1,
+          "phase": 39,
+          "feasible": false,
+          "failure": 11,
+          "ends": [],
+          "ordinaryFit": -3.805859356069911,
+          "ordinaryHeld": -3.8514293311243235,
+          "preview": "T-P-TH-M-N-EO-NG-S-S-G-J-A-M-Y-X-U-IA-X-D-U-M-D-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 40,
+          "feasible": false,
+          "failure": 16,
+          "ends": [],
+          "ordinaryFit": -3.762750040089969,
+          "ordinaryHeld": -3.8102065171213813,
+          "preview": "S-EO-O-L-H-M-X-X-D-A-S-I-C-R-G-TH-J-F-A-F-L-OE-J-G"
+        },
+        {
+          "sign": -1,
+          "phase": 41,
+          "feasible": false,
+          "failure": 31,
+          "ends": [],
+          "ordinaryFit": -3.785585831800405,
+          "ordinaryHeld": -3.785025812924996,
+          "preview": "X-P-R-M-S-EO-P-OE-EO-EA-U-AE-EO-AE-W-S-Y-U-D-U-M-D-EO-D"
+        },
+        {
+          "sign": -1,
+          "phase": 42,
+          "feasible": false,
+          "failure": 2,
+          "ends": [],
+          "ordinaryFit": -3.8032327712177705,
+          "ordinaryHeld": -3.75968122125268,
+          "preview": "S-X-O-Y-H-J-NG-J-T-X-T-O-R-Y-L-U-IA-F-A-F-L-A-F-R"
+        },
+        {
+          "sign": -1,
+          "phase": 43,
+          "feasible": false,
+          "failure": 97,
+          "ends": [],
+          "ordinaryFit": -3.787390207835505,
+          "ordinaryHeld": -3.7838045281172676,
+          "preview": "T-P-I-M-W-M-I-S-TH-F-D-A-C-I-G-TH-Y-U-D-U-NG-EO-I-P"
+        },
+        {
+          "sign": -1,
+          "phase": 44,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.8209215317904035,
+          "ordinaryHeld": -3.8009923803757055,
+          "preview": "S-L-O-E-S-H-X-U-B-W-S-AE-E-AE-W-U-IA-F-A-TH-N-OE-M-W"
+        },
+        {
+          "sign": -1,
+          "phase": 45,
+          "feasible": false,
+          "failure": 11,
+          "ends": [],
+          "ordinaryFit": -3.7932187214345947,
+          "ordinaryHeld": -3.7460904472687,
+          "preview": "OE-P-TH-Y-R-EO-F-T-A-EA-T-N-R-Y-G-TH-Y-U-AE-M-M-TH-P-G"
+        },
+        {
+          "sign": -1,
+          "phase": 46,
+          "feasible": false,
+          "failure": 31,
+          "ends": [],
+          "ordinaryFit": -3.8160644967897936,
+          "ordinaryHeld": -3.735211016547528,
+          "preview": "S-EO-I-S-H-IA-S-D-T-F-F-A-C-AE-W-U-IA-TH-P-F-EA-AE-EO-R"
+        },
+        {
+          "sign": -1,
+          "phase": 47,
+          "feasible": false,
+          "failure": 146,
+          "ends": [],
+          "ordinaryFit": -3.804569485672376,
+          "ordinaryHeld": -3.8017881501598216,
+          "preview": "X-L-EA-M-D-P-OE-S-B-P-S-AE-R-Y-G-TH-EA-M-D-N-OE-A-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 48,
+          "feasible": false,
+          "failure": 8,
+          "ends": [],
+          "ordinaryFit": -3.805577529872484,
+          "ordinaryHeld": -3.724388896641217,
+          "preview": "OE-N-O-C-N-L-X-T-U-EA-T-A-C-AE-W-O-T-F-O-O-NG-OE-J-H"
+        },
+        {
+          "sign": -1,
+          "phase": 49,
+          "feasible": false,
+          "failure": 27,
+          "ends": [],
+          "ordinaryFit": -3.797294416901862,
+          "ordinaryHeld": -3.770892660451512,
+          "preview": "J-P-E-L-T-EO-S-F-T-F-S-AE-R-Y-H-L-Y-N-Y-TH-M-D-X-N"
+        },
+        {
+          "sign": -1,
+          "phase": 50,
+          "feasible": false,
+          "failure": 6,
+          "ends": [],
+          "ordinaryFit": -3.778358965518993,
+          "ordinaryHeld": -3.7805148643112174,
+          "preview": "S-EA-R-IA-H-P-EA-S-B-EA-T-A-C-IA-AE-U-G-O-AE-F-L-Y-S-R"
+        },
+        {
+          "sign": -1,
+          "phase": 51,
+          "feasible": false,
+          "failure": 73,
+          "ends": [],
+          "ordinaryFit": -3.75361154394833,
+          "ordinaryHeld": -3.8048930619716193,
+          "preview": "U-X-J-M-N-Y-X-T-T-F-S-AE-G-S-G-I-F-TH-D-U-D-IA-I-C"
+        },
+        {
+          "sign": -1,
+          "phase": 52,
+          "feasible": false,
+          "failure": 73,
+          "ends": [],
+          "ordinaryFit": -3.7958463052185123,
+          "ordinaryHeld": -3.8023065079736944,
+          "preview": "T-NG-O-L-OE-EO-S-S-B-EA-T-Y-D-AE-S-R-EA-F-A-R-A-OE-J-H"
+        },
+        {
+          "sign": -1,
+          "phase": 53,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.7483739898383877,
+          "ordinaryHeld": -3.792584924868432,
+          "preview": "D-P-R-R-H-P-X-T-T-F-B-X-R-C-N-O-Y-U-IA-C-M-D-X-W"
+        },
+        {
+          "sign": -1,
+          "phase": 54,
+          "feasible": false,
+          "failure": 51,
+          "ends": [],
+          "ordinaryFit": -3.8100441582533016,
+          "ordinaryHeld": -3.7968785531139937,
+          "preview": "S-X-B-M-N-EO-S-S-B-U-C-A-P-EA-H-U-IA-R-EA-F-L-Y-P-R"
+        },
+        {
+          "sign": -1,
+          "phase": 55,
+          "feasible": false,
+          "failure": 26,
+          "ends": [],
+          "ordinaryFit": -3.7770992031063013,
+          "ordinaryHeld": -3.808767406730353,
+          "preview": "T-IA-O-L-H-P-X-T-E-E-S-R-W-IA-G-TH-U-C-D-U-D-AE-I-H"
+        },
+        {
+          "sign": -1,
+          "phase": 56,
+          "feasible": false,
+          "failure": 77,
+          "ends": [],
+          "ordinaryFit": -3.8043123981102736,
+          "ordinaryHeld": -3.8416404041953394,
+          "preview": "F-P-R-M-N-EO-S-B-G-EA-A-IA-G-AE-W-C-TH-F-A-R-OE-OE-X-AE"
+        },
+        {
+          "sign": -1,
+          "phase": 57,
+          "feasible": false,
+          "failure": 53,
+          "ends": [],
+          "ordinaryFit": -3.766028275649163,
+          "ordinaryHeld": -3.761444515830945,
+          "preview": "S-X-O-L-H-P-T-C-T-H-E-Y-R-Y-I-G-Y-U-IA-O-M-Y-TH-R"
+        },
+        {
+          "sign": -1,
+          "phase": 58,
+          "feasible": false,
+          "failure": 27,
+          "ends": [],
+          "ordinaryFit": -3.775566477798319,
+          "ordinaryHeld": -3.8123134335986957,
+          "preview": "T-P-R-M-N-X-R-S-AE-TH-B-A-C-F-J-U-IA-R-Y-F-D-X-I-N"
+        }
+      ]
+    }
+  ]
+}
