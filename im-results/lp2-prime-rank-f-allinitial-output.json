@@ -1,0 +1,263 @@
+{
+  "start": 1692,
+  "cursor_min": 1632,
+  "cursor_max": 2155,
+  "cap": 5000,
+  "singleton": 1,
+  "seconds": 0.49547,
+  "controls": 6,
+  "results": [
+    {
+      "f": 0,
+      "dead": 1907,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 28211
+    },
+    {
+      "f": 1,
+      "dead": 1953,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 39145
+    },
+    {
+      "f": 2,
+      "dead": 1967,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 48527
+    },
+    {
+      "f": 3,
+      "dead": 2061,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 55198
+    },
+    {
+      "f": 4,
+      "dead": 2181,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 63684
+    },
+    {
+      "f": 5,
+      "dead": 2261,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 69283
+    },
+    {
+      "f": 6,
+      "dead": 2305,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 73233
+    },
+    {
+      "f": 7,
+      "dead": 2510,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 88961
+    },
+    {
+      "f": 8,
+      "dead": 2331,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 93671
+    },
+    {
+      "f": 9,
+      "dead": 2470,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 99761
+    },
+    {
+      "f": 10,
+      "dead": 2421,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 122507
+    },
+    {
+      "f": 11,
+      "dead": 2457,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 113208
+    },
+    {
+      "f": 12,
+      "dead": 2410,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 105421
+    },
+    {
+      "f": 13,
+      "dead": 2621,
+      "final": 0,
+      "exact": 0,
+      "peak": 644,
+      "merges": 0,
+      "work": 179548
+    },
+    {
+      "f": 14,
+      "dead": 2604,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 112911
+    },
+    {
+      "f": 15,
+      "dead": 2530,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 145388
+    },
+    {
+      "f": 16,
+      "dead": 2612,
+      "final": 0,
+      "exact": 0,
+      "peak": 1025,
+      "merges": 0,
+      "work": 234358
+    },
+    {
+      "f": 17,
+      "dead": 2848,
+      "final": 0,
+      "exact": 0,
+      "peak": 969,
+      "merges": 0,
+      "work": 212086
+    },
+    {
+      "f": 18,
+      "dead": 2622,
+      "final": 0,
+      "exact": 0,
+      "peak": 873,
+      "merges": 0,
+      "work": 229145
+    },
+    {
+      "f": 19,
+      "dead": 2639,
+      "final": 0,
+      "exact": 0,
+      "peak": 953,
+      "merges": 0,
+      "work": 213210
+    },
+    {
+      "f": 20,
+      "dead": 2791,
+      "final": 0,
+      "exact": 0,
+      "peak": 875,
+      "merges": 0,
+      "work": 206609
+    },
+    {
+      "f": 21,
+      "dead": 2555,
+      "final": 0,
+      "exact": 0,
+      "peak": 540,
+      "merges": 0,
+      "work": 164060
+    },
+    {
+      "f": 22,
+      "dead": 2505,
+      "final": 0,
+      "exact": 0,
+      "peak": 743,
+      "merges": 0,
+      "work": 185334
+    },
+    {
+      "f": 23,
+      "dead": 2510,
+      "final": 0,
+      "exact": 0,
+      "peak": 524,
+      "merges": 0,
+      "work": 159365
+    },
+    {
+      "f": 24,
+      "dead": 2552,
+      "final": 0,
+      "exact": 0,
+      "peak": 694,
+      "merges": 0,
+      "work": 172627
+    },
+    {
+      "f": 25,
+      "dead": 2479,
+      "final": 0,
+      "exact": 0,
+      "peak": 592,
+      "merges": 0,
+      "work": 151596
+    },
+    {
+      "f": 26,
+      "dead": 2476,
+      "final": 0,
+      "exact": 0,
+      "peak": 570,
+      "merges": 0,
+      "work": 150707
+    },
+    {
+      "f": 27,
+      "dead": 2854,
+      "final": 0,
+      "exact": 0,
+      "peak": 778,
+      "merges": 0,
+      "work": 170617
+    }
+  ]
+}
