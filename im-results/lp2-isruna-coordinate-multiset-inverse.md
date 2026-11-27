@@ -26,3 +26,18 @@ Even the most favorable chart requires 112/156 opening or 2080/2896 whole-book g
 **Decision:** retire same-historical-chart coordinate-permutation receivers under the declared lexical/donor assumptions. This extends direct cyclic-lag/odd-Bifid hole legality to arbitrary valid coordinate-only routing. Different input/output charts, coordinate-value changes, and out-of-register prose remain unexcluded. No authentic opcode or new plaintext. Do not repeat chart/routing sweeps without new evidence.
 
 [Executable SFT](../sims/lp2_isruna_coordinate_multiset_inverse_sft.cjs) · [Raw output and source blob IDs](lp2-isruna-coordinate-multiset-inverse.json). Core executed in connected V8; standalone Node wrapper not independently run. Code/output commit 495c9519f751baa631620e64edae7b514cf632c4.
+
+## Distinct receiver: literal binary digit planes
+
+The historical four-row/eight-position charts naturally encode each group as a two-bit digit and each position as a three-bit digit. Rather than recombine coordinates into runes, take one coordinate tape in original order, concatenate fixed-width binary values, and read bytes. Use the five Salzburg Ior insertions and Domitian's 8+8+8+9 GP29 projection (six charts; the other Domitian layouts have more than eight GP position values and are outside this binary model). Opening black716 gives 179 complete group bytes or 268 complete position bytes and four trailing bits. No independent instruction establishes byte packing as the opcode.
+
+For each chart, permit every permutation of the four/two-bit or eight/three-bit digit labels, each bit origin0–7 and both tape directions: 384 group and 645,120 position variants per chart. To compute the exact minimum number of bytes with the high bit set, tally each original digit at each bit place that lands at a byte high bit. For any proposed bijection, the high-bit count is the sum of these independent assignment costs. Enumerate the 4!/8! assignments on these small matrices, then directly unpack the extremal witness to confirm the optimum. This is an exact all-key ASCII gate, not a language score.
+
+- Every group variant necessarily has high-bit bytes; the best ratio is 72/178.
+- Every position variant necessarily has high-bit bytes; the best ratio is 98/267 (Salzburg slots4/5). Across six charts, **0/3,873,024** assignments/origins/directions produce all-ASCII bytes (equivalent charts counted separately).
+- All 48 literal chart/dimension/orientation/scope decodes (opening or entire original book) are invalid UTF-8 and have none of the eight tested leading file/armor signatures (gzip, bzip2, ZIP, PNG, JPEG, PDF, ELF, PGP-style BEGIN armor).
+- Positive controls encode the 17-byte phrase PRIMES ARE SACRED as both digit widths under a hidden reversed alphabet assignment; the true inverse recovers 17/17 bytes and the high-bit test admits a valid zero-high-bit assignment in each case. This validates the necessary condition, not unique ASCII recovery.
+
+Reject this direct ASCII digit-plane representation for the black opening independent of language, digit permutation or byte origin. Literal binary decode did not expose an identified file header. Other packed layouts, encrypted/compressed binary or a joint coordinate receiver remain outside scope. No original payload or unknown plaintext. Do not extend with arbitrary codec sweeps absent a new source clue.
+
+[Bitplane SFT](../sims/lp2_isruna_coordinate_bitplane_inverse_sft.cjs) · [raw output](lp2-isruna-coordinate-bitplane-inverse.json) · code/output commit be35d4cc648fc5aa9a8fede42244a8048f418872. Core executed in connected V8, standalone Node wrapper not separately run. Initial repeated full-byte scan timed out; exact assignment formulation avoids it.
