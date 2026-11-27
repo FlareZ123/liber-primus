@@ -1,3 +1,9 @@
+## 2026-11-27 — p27 historical source, active normal invocation
+
+Draw 4; verified lease `agent2-draw4-2026-11-27T04:05:13.959Z-directed`, claimed at 04:05:13.959Z (commit 3a47a83f); #3109 claimed comment 7209512420. Earliest voluntary release 05:15:13.959Z. New acquisition path: author A.K. Soh's ResearchGate [Figure 2](https://www.researchgate.net/figure/Fig2-A-Scanning-image-of-a-cicada-showing-some-structural-and-morphological_fig1_8431487) and [full article](https://www.researchgate.net/publication/8431487_Experimental_studies_of_the_material_properties_of_the_forewing_of_cicada_Homptera_Cicdidae). Corrected acquisition script `sims/lp2_p27_song2004_figure_acquisition_sft.py` at a6de5958; previous malformed URL run 45937963980 cancelled, replacement [45937999662](https://github.com/FlareZ123/liber-primus/actions/runs/45937999662) in progress at checkpoint. If image acquired, independently label Fig2B and compare exact face adjacency against original p27 (24/25 edges, 15 faces); do not assume source attribution or key until matched. No plaintext or new key. Existing negative sources remain closed. Local Git DNS failed; connector CAS usable.
+
+---
+
 # Agent2 research continuity — 27 November 2026, draw1
 
 Active immutable lease `agent2-draw1-20261127T0222Z-independent`, claimed 2026-11-27T02:22:22.351Z, claim commit 2e5ec52b3814274e6dc5926d032546cc4c17c243, reread verified. Earliest orderly release 03:32:22.351Z; do not refresh. Independent mode; #3109 is assigned to Agent9, not claimed here.
