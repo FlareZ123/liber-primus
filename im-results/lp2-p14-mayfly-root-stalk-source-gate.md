@@ -44,6 +44,34 @@ Consequently the 1977/2022 Figure4 specimen5 precedent **must remain scoped to t
 
 Other inspected pre-2014/period natural-history source families: (a) the 1897 Halford *Dry Fly Entomology* plate; (b) the 1917 U.S. Bureau of Fisheries [Ephemeroptera plate](https://commons.wikimedia.org/wiki/File:Ephemeroptera_illustration.jpg); (c) 1969 T. T. Macan *The Study of Mayflies*; (d) Australian Museum mayfly anatomy material and its named illustrator. They explain an adult mayfly's upraised wings and paired/triple tail, but none inspected has a proven source-identical image of p14, a page-relevant sequence of cipher operands, or an executable source-authored decoding instruction. The p14 drawing's wing and tail are plausibly stylised by the LP creator, but the artwork origin remains unresolved.
 
+## 27 November 2026 source-ranked parent search (#3117)
+
+**Agent11 bounded source search.** The p14 drawing was compared against additional dated pre-2014 mayfly illustration families and the rooted-stalk drawing against historically available branching diagrams. This is a source-ranking result, not an exhaustive claim about every published illustration.
+
+### Lateral insect
+
+The source gate is intentionally morphological. The original p14 animal is right-facing, has a strongly recurved and heavily banded abdomen, an obvious upright veined wing, and three apparent terminal filaments. A useful parent must reproduce those distinctive relations closely enough that its own caption, figure number, or ordering can be inherited without choosing it from ciphertext.
+
+- **John George Wood, *The Boy's Own Book of Natural History* (1861).** The openly preserved ClipArt ETC derivative identifies the common *Ephemera vulgata* and preserves Wood's source metadata ([source page](https://etc.usf.edu/clipart/53400/53494/53494_mayfly.htm)). Its specimen is a dorsal, wings-spread adult with a straight abdomen. It is a period-authentic mayfly illustration but a strong wrong-source control for the p14 side profile.
+- **L. H. Joutel mayfly life-cycle chromolithograph (1900).** A surviving catalogue dates the numbered multi-stage plate to 1900 ([record](https://artsourceinternational.com/shop/vintage-prints/insects/mayflies/)). It is especially discriminating because a genuine match would have supplied source-native stage numbers. The winged figures are naturalistic, straight-bodied life-cycle specimens rather than the manuscript's recurved, dark-banded lateral animal. No stage number can therefore be transferred to p14.
+- **Buel P. Colton, *Zoology: Descriptive and Practical* (1903).** The complete book is independently preserved by the Biodiversity Heritage Library ([bibliographic record](https://www.biodiversitylibrary.org/bibliography/34905)). Its mayfly anatomy material is a useful pre-2014 illustrated-zoology family, but no inspected Colton figure supplies the p14 full-body composition. ClipArt ETC also exposes an historical “Adult Mayfly” asset in the same broad gallery whose individual source page is no longer retrievable in the current public interface; without the original page/source attribution and a visual registration it is an acquisition lead, not a parent.
+- **U.S. Bureau of Fisheries Ephemeroptera plate (1917).** The Smithsonian-derived plate is preserved with explicit 1917–18 context ([source record](https://commons.wikimedia.org/wiki/File:Ephemeroptera_illustration.jpg)). Its adults are scientific dorsal/spread-wing specimens with straight bodies, again excluding it as the p14 master.
+- **Later pre-LP2 identification art.** A 1999 *Texas Parks & Wildlife* side-view mayfly and other identification drawings show the general one-upright-wing/long-tail pose, but their straight, fine-line anatomy does not reproduce the p14 abdomen, wing construction, or stylized banding. They establish that the pose is generic enough that side view alone cannot identify a source.
+
+These candidates span the most useful historical alternatives because they include dorsal scientific plates, a numbered life-cycle plate, textbook anatomy, and side-view identification art. None crosses the exact/strong-registration gate, so none contributes a legitimate species label, stage number, figure number, or traversal. This also reinforces the existing separation from the p23–26/p57 *Ephemerella ignita* candidate plate rather than merging two visibly different drawing families.
+
+### Rooted stalk
+
+The seven-page stalk is already much more strongly explained by the manuscript itself than by any external plate: six copies are exact raster templates after side placement and the opposite-side copies register by translation without reflection. Additional pre-2014 Fibonacci/tree-growth diagrams (including the long-circulating Fibonacci-tree family and graph/tree representations) were checked as topology controls. Those diagrams encode recursive bifurcation as labelled or regular graph structure and do not reproduce the manuscript's narrow single stalk, asymmetric sparse side shoots, or fan-like roots. No botanical plate with matching root/branch junctions and a source-native numbering/order was recovered.
+
+The earlier Henry Bottomley/OEIS Fibonacci-tree proposal remains a semantic analogy, not an image parent: it lacks the p14 root geometry and does not prescribe a mapping from its branch order to the seven repeated manuscript templates. The exact internal copy evidence therefore outranks external Fibonacci resemblance.
+
+### Decision for #3117
+
+The examined external families provide **source-ranked negatives**, while the internal reuse remains exact. The p8–14 artwork currently supports a layout observation—one recycled rooted-stalk template alternating margins, plus a distinct p14 mayfly-like illustration—but no external caption/order can be inherited as a key or receiver. No ciphertext decoding was run because no parent passed the source gate.
+
+Treat this family as **internal decoration/layout evidence only for current cryptanalytic purposes**, not as proof that the artwork was intended to be meaningless. Reopen source-derived cryptanalysis only with a dateable parent that strongly registers the distinctive p14 insect or stalk topology and itself fixes a caption, figure/stage number, order, or operation before ciphertext inspection.
+
 ## Life-stage identification gate (#2034)
 
 **Agent33, 21 November 2026.** The p14 side-profile drawing has a large, expanded, veined upright wing and three apparent terminal filaments. These visible features support a **mayfly-like winged form**; its stylized, low-resolution anatomy does not establish a species, sex, or exact life stage. In particular, visible wing venation and tail count do not distinguish the winged subimago from the imago. No abdominal gills are clearly depicted, but absence in a simplified drawing is weak evidence. This is an anatomical interpretation of the drawing, not an authenticated artist's identification.
