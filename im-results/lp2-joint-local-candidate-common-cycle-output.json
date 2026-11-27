@@ -1,0 +1,457 @@
+{
+  "anchors": [
+    {
+      "page": 0,
+      "offset": 39,
+      "name": "LUCK",
+      "p": [
+        20,
+        1,
+        5,
+        5
+      ],
+      "c": [
+        8,
+        17,
+        9,
+        27
+      ]
+    },
+    {
+      "page": 0,
+      "offset": 49,
+      "name": "GOOD",
+      "p": [
+        6,
+        3,
+        3,
+        23
+      ],
+      "c": [
+        24,
+        21,
+        26,
+        14
+      ]
+    },
+    {
+      "page": 0,
+      "offset": 117,
+      "name": "FOUND",
+      "p": [
+        0,
+        3,
+        1,
+        9,
+        23
+      ],
+      "c": [
+        12,
+        2,
+        11,
+        10,
+        2
+      ]
+    },
+    {
+      "page": 2,
+      "offset": 36,
+      "name": "GOOD",
+      "p": [
+        6,
+        3,
+        3,
+        23
+      ],
+      "c": [
+        1,
+        2,
+        8,
+        26
+      ]
+    },
+    {
+      "page": 32,
+      "offset": 30,
+      "name": "YOU",
+      "p": [
+        26,
+        3,
+        1
+      ],
+      "c": [
+        0,
+        3,
+        2
+      ]
+    },
+    {
+      "page": 33,
+      "offset": 132,
+      "name": "WILL",
+      "p": [
+        7,
+        10,
+        20,
+        20
+      ],
+      "c": [
+        3,
+        15,
+        17,
+        22
+      ]
+    },
+    {
+      "page": 34,
+      "offset": 4,
+      "name": "BE",
+      "p": [
+        17,
+        18
+      ],
+      "c": [
+        12,
+        23
+      ]
+    },
+    {
+      "page": 35,
+      "offset": 25,
+      "name": "FOUND",
+      "p": [
+        0,
+        3,
+        1,
+        9,
+        23
+      ],
+      "c": [
+        19,
+        17,
+        19,
+        24,
+        11
+      ]
+    },
+    {
+      "page": 37,
+      "offset": 146,
+      "name": "LUCK",
+      "p": [
+        20,
+        1,
+        5,
+        5
+      ],
+      "c": [
+        3,
+        2,
+        6,
+        27
+      ]
+    },
+    {
+      "page": 38,
+      "offset": 49,
+      "name": "FOUND",
+      "p": [
+        0,
+        3,
+        1,
+        9,
+        23
+      ],
+      "c": [
+        19,
+        25,
+        22,
+        26,
+        3
+      ]
+    },
+    {
+      "page": 40,
+      "offset": 71,
+      "name": "PATHS",
+      "p": [
+        13,
+        24,
+        2,
+        15
+      ],
+      "c": [
+        4,
+        15,
+        14,
+        21
+      ]
+    }
+  ],
+  "results": [
+    {
+      "q": 8,
+      "clock": "global",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 8,
+      "clock": "reset",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 8,
+      "clock": "page",
+      "nodes": 12,
+      "pairPrune": 14,
+      "collision": 8,
+      "bestRank": 19,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 8,
+      "clock": "word",
+      "nodes": 418,
+      "pairPrune": 424,
+      "collision": 312,
+      "bestRank": 19,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 13,
+      "clock": "global",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 13,
+      "clock": "reset",
+      "nodes": 1,
+      "pairPrune": 1,
+      "collision": 0,
+      "bestRank": 0,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 13,
+      "clock": "page",
+      "nodes": 2733,
+      "pairPrune": 1767,
+      "collision": 2386,
+      "bestRank": 24,
+      "capHit": false,
+      "leaf": null,
+      "decision": "excluded"
+    },
+    {
+      "q": 13,
+      "clock": "word",
+      "nodes": 50001,
+      "pairPrune": 34418,
+      "collision": 43503,
+      "bestRank": 24,
+      "capHit": true,
+      "leaf": null,
+      "decision": "capped"
+    }
+  ],
+  "minimal": [
+    {
+      "q": 8,
+      "anchors": [
+        "0:117 FOUND",
+        "32:30 YOU",
+        "33:132 WILL",
+        "35:25 FOUND",
+        "38:49 FOUND",
+        "40:71 PATHS"
+      ],
+      "result": {
+        "q": 8,
+        "clock": "page",
+        "nodes": 693,
+        "pairPrune": 2493,
+        "collision": 294,
+        "bestRank": 18,
+        "capHit": false,
+        "leaf": null,
+        "decision": "excluded"
+      },
+      "deletions": [
+        {
+          "removed": "0:117",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "32:30",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "33:132",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "35:25",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "38:49",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "40:71",
+          "decision": "relaxation_survives"
+        }
+      ]
+    },
+    {
+      "q": 13,
+      "anchors": [
+        "0:49 GOOD",
+        "0:117 FOUND",
+        "2:36 GOOD",
+        "32:30 YOU",
+        "33:132 WILL",
+        "35:25 FOUND",
+        "37:146 LUCK",
+        "38:49 FOUND",
+        "40:71 PATHS"
+      ],
+      "result": {
+        "q": 13,
+        "clock": "page",
+        "nodes": 29046,
+        "pairPrune": 47942,
+        "collision": 23123,
+        "bestRank": 24,
+        "capHit": false,
+        "leaf": null,
+        "decision": "excluded"
+      },
+      "deletions": [
+        {
+          "removed": "0:49",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "0:117",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "2:36",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "32:30",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "33:132",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "35:25",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "37:146",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "38:49",
+          "decision": "relaxation_survives"
+        },
+        {
+          "removed": "40:71",
+          "decision": "relaxation_survives"
+        }
+      ]
+    }
+  ],
+  "controls": [
+    {
+      "q": 8,
+      "clock": "global",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 2
+    },
+    {
+      "q": 8,
+      "clock": "reset",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 2
+    },
+    {
+      "q": 8,
+      "clock": "page",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 33
+    },
+    {
+      "q": 8,
+      "clock": "word",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 211
+    },
+    {
+      "q": 13,
+      "clock": "global",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 2
+    },
+    {
+      "q": 13,
+      "clock": "reset",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 2
+    },
+    {
+      "q": 13,
+      "clock": "page",
+      "forced": "relaxation_survives",
+      "unrestricted": "relaxation_survives",
+      "unrestrictedNodes": 2454
+    },
+    {
+      "q": 13,
+      "clock": "word",
+      "forced": "relaxation_survives",
+      "unrestricted": "capped",
+      "unrestrictedNodes": 50001
+    }
+  ],
+  "literalFIncompatible": [
+    "0:117 FOUND",
+    "35:25 FOUND",
+    "38:49 FOUND"
+  ]
+}
