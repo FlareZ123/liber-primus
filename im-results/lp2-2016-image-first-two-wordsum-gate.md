@@ -216,6 +216,30 @@ Original p32/p33 IoC .0341597796/.0330246914. Native solved-p57 cyclic 121-rune 
 
 **Decision:** retire this fixed nonstationary symmetric path-filter receiver and its fixed p33 continuation. It does not provide the missing independent operator or recover unknown plaintext/key. Do not broaden to fitted nonstationary kernels without an authentic selector.
 
+
+### All-key same-axis congruence: exact finite-source identification search
+
+The fixed path filter above is one member of the much broader reversible family C=T P T^t for any invertible 11×11 matrix T over GF29. A separate independently motivated plaintext candidate is an exact contiguous 121-rune passage from the signed 2016 message accompanying the 563×569 tree image. Rather than search T or rely on group segmentation/language scores, exploit an exact pencil fingerprint. For every t in GF29,
+
+    C+t C^t = T(P+t P^t)T^t
+    det(C+t C^t)/det(C) = det(P+t P^t)/det(P).
+
+P must be nonsingular since original C has determinant 8. The normalized polynomials have degree at most11 and constant1, so evaluation at t=1,...,11 gives a complete polynomial-equality test. This is a necessary invariant, not a sufficient classification of all matrix congruence classes. A surviving donor would require constructive T recovery and independent original validation. No arbitrary alphabet relabeling, reordered text, variable T or different left/right operators are included. The 11×11 source reading and paired blur/outline motivate the same-axis case; the source does not authenticate matrix congruence.
+
+Original p32 fingerprint: [15,12,18,9,24,13,16,7,17,7,12]. Search every contiguous 121-rune window of the signed prose from Hello through Good luck (before numeral 3301), each separate normalized solved-reference section (remove standalone bracketed editorial notes), and three pinned literary controls, using the existing ING/IO-calibrated GP spelling rule. Solved reference sections are finite donor text, not newly authenticated source runes.
+
+| Donor | Windows | Invertible | After t=1 | After t=2 | After t=3 | After t=4 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Signed 2016 prose | 27 | 27 | 1 | 0 | 0 | 0 |
+| Solved reference sections | 1603 | 1526 | 50 | 4 | 0 | 0 |
+| Gibran | 62,372 | 59,762 | 2,097 | 63 | 1 | 0 |
+| Shakespeare | 216,986 | 208,679 | 7,250 | 248 | 9 | 0 |
+| Emerson | 321,207 | 308,984 | 10,708 | 333 | 6 | 0 |
+
+Across 602195 exact tested windows, none matches even the first four polynomial evaluations. In two independently keyed plants, generate a dense invertible T with fixed seed 0x332711; the same scan recovers the unique true signed-prose start0 and Gibran start1942 from their ciphertexts (27 and 62,372 candidates). The plant identifies the donor window, not the unknown full T; no claim of key recovery. [Standalone reproducible SFT](../sims/lp2_p32_congruence_fingerprint_sft.cjs) uses the same exact determinant core executed in V8 in two calls, with no language-score threshold. CLI wrapper not independently executed.
+
+**Decision:** no exact tested donor passage can underlie original p32 under any invertible common-axis GF29 congruence, even an arbitrary dense matrix. This is a finite-source exclusion only; it does not rule out new prose or independent left/right filters. No further same-axis key fitting against these sources is warranted.
+
 ## Causal relevance and stop rule
 
 This link supplies two *uniquely source-addressed printed ciphertext words*, and the signed 2016 guidance offers a plausible human reason to inspect word sums. It may be used to **propose a concrete next reversible operation or source-derived key/clock** if an independently readable clue supplies one. The 2016 dimensions already serve as p32 11×11 orientation markers, so there is a real competing explanation: their additional collision with opening-page word sums may be incidental.
