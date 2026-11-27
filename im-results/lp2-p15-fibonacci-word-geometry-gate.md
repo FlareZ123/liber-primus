@@ -1,6 +1,8 @@
-# Director #3057 — Fibonacci-word drawing rule versus p15 integer spiral
+# p15 Fibonacci historical-operation gates — drawing rule and rational convergents
 
-Agent15, 26 November 2026. **Result: reject the direct historical Fibonacci-word drawing interpretation; no typed two-operation cipher selected.**
+**Current decision:** direct historical Fibonacci-word drawing (#3057) and direct consecutive rational convergents (#3139) do not supply a typed cipher receiver. The exact numeric spiral remains established.
+
+## #3057 — Fibonacci-word drawing rule (Agent15, 26 November 2026)
 
 ## Independent historical rule
 
@@ -19,3 +21,25 @@ The Fibonacci word contains no adjacent 1s at any phase: each 1 in the substitut
 No source-selected mapping from the two word symbols to reversible GP29 operations, initial state or rune clock was recovered. A search over invented binary operations would violate the task's gate. Reject this literal geometrical route, leave other binary hypotheses untested, do not perform an arbitrary p15–22 fit. This does not invalidate the exact sixteen-cell integer formula. No new plaintext or key.
 
 Reproducer: [sims/lp2_p15_fibonacci_word_geometry_gate_sft.cjs](../sims/lp2_p15_fibonacci_word_geometry_gate_sft.cjs), exact computational core executed in connected V8; standalone Node wrapper not separately executed. Code result: 28/28 historic control, forbidden 11 at offsets 6/0. Independent source comparison is a historical plausibility test, not proof of what the author intended.
+
+
+## #3139 — adjacent rational convergents and Euclidean quotients (Agent13, 27 November 2026)
+
+**Decision: no independent convergent/Euclidean receiver selected.** Direct consecutive ratios of the printed values, recovered prime values, and actual one-based prime ordinals fail a necessary condition. The unshifted Fibonacci ratios reproduce the classical identity exactly, but that is already entailed by the solved construction.
+
+Saarik Kalia, [The Generalizations of the Golden Ratio](https://math.mit.edu/research/highschool/primes/materials/2011/Kalia-Generalizations.pdf), dated 23 December 2011, Theorem 3.1 (printed p5), proves the all-one continued-fraction identity. Section 2 gives 9/7 = [1;3,2]. [Hunter College Euclidean notes](https://www.cs.hunter.cuny.edu/~saad/courses/493.55/notes/note1.pdf), indexed pre-2014, section 3 gives 13,8,5,3,2,1,0. Both worked controls and all ratio reconstructions pass. These are historical mathematical conventions, not Cicada instructions.
+
+Read the actual red-origin spiral ESWWNNEEESSSWWW. Compare four operands: printed differences, recovered primes, their one-based ordinals, unshifted distinct Fibonacci values (omit initial zero solely because division by zero is undefined). For each sequence x, set reduced r_i=x_(i+1)/x_i. Consecutive simple continued-fraction convergents must have absolute cross-determinant D_i=|num(r_i)*den(r_(i+1))-num(r_(i+1))*den(r_i)|=1. This condition is invariant under reciprocation and reversal.
+
+| Operand | Ratios | Unit determinants | All-one convergents (canonical terminal 2) |
+|---|---:|---:|---:|
+| Printed cells | 15 | 1/14 | 0/15 |
+| Recovered prime values | 15 | 1/14 | 2/15 |
+| Actual one-based prime ordinals | 15 | 7/14 | 6/15 |
+| Nonzero unshifted Fibonacci values | 14 | 13/13 | 14/14 |
+
+First failures: printed 3298/3299 and 1648/1649 give 1650; prime 5/3 and 7/5 give 4; ordinal 6/4 and 9/6 are identical after reduction (D=0). The Fibonacci quotient lists are [2], [1,2], ..., [13 ones,2]; their entire register is fixed by length. All unit determinants follow from Cassini's identity. Thus the unshifted sequence carries no independent information, and the actual one-based ordinal ratios are a different mathematical object.
+
+Original scan 32.jpg directly inspected: sixteen evenly arranged labels in 4×4 grid, only 3299 red, separate infinity mark below, then red rubric. No fraction bars, paired labels, marked quotient/remainder register, or additional endpoint. A classical Euclidean rectangle construction for 987×610 would require squares of size 610,377,233,...,2,1,1, rather than the observed uniform-pitch array. This is a mismatch of literal geometry, not a claim that all convergent diagrams must be tilings. Infinity could suggest a limit/repetition but does not fix phi, a quotient/remainder/Bezout/matrix readout, a GP29 source/sink, or a clock. No independent exact feature or authored operand selects a reversible receiver. #1469 and #2562 remain distinct prior negatives. No original ciphertext scoring or modular sweep. Retire this specific route unless an independent selector appears; retain the 16-cell integer solution.
+
+[Reproducer](../sims/lp2_p15_convergent_gate_sft.cjs): exact computational core executed in V8 with assertion adapter and independently checked using Python Fraction/gcd. Standalone Node wrapper not separately executed.
