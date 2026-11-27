@@ -1,0 +1,443 @@
+{
+  "control0": {
+    "mode": "control0",
+    "source": "resources/control/emerson_essays_2944.txt",
+    "phrase": "SEE WHAT IT DOES NOT LIVE IT",
+    "tr": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.x...xx-.x---x-xx.-..x..x...-x.xx..x-",
+    "offset": 1704,
+    "plant": 6,
+    "key": {
+      "sep": 4637472,
+      "dots": 302527630
+    },
+    "fit": {
+      "clip": false,
+      "separatorMasks": 40295,
+      "separatorNodes": 80611,
+      "scenarios": 40295,
+      "lexFeasible": 97,
+      "keyNodes": 1032,
+      "completePaths": 68,
+      "distinctKeys": 68,
+      "trueKeyRank": 2,
+      "top": [
+        {
+          "sep": 4637474,
+          "dots": 302529676,
+          "dashes": 95486033,
+          "score": -44.16514673616245,
+          "visible": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.x...xx-.x---x-xx....x.xx....x.xx..x-",
+          "completions": [
+            "SEE",
+            "WHAT",
+            "IT",
+            "DOES",
+            "NOT",
+            "HE",
+            "HE",
+            "IT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "...x.x.",
+            ".--x....x.-x-",
+            "..x-",
+            "-..x---x.x...",
+            "-.x---x-",
+            "....x.",
+            "....x.",
+            "..x-"
+          ]
+        },
+        {
+          "sep": 4637472,
+          "dots": 302527630,
+          "dashes": 95488081,
+          "score": -44.25643797927184,
+          "visible": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.x...xx-.x---x-xx.-..x..x...-x.xx..x-",
+          "completions": [
+            "SEE",
+            "WHAT",
+            "IT",
+            "DOES",
+            "NOT",
+            "LIVE",
+            "IT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "...x.x.",
+            ".--x....x.-x-",
+            "..x-",
+            "-..x---x.x...",
+            "-.x---x-",
+            ".-..x..x...-x.",
+            "..x-"
+          ]
+        },
+        {
+          "sep": 4637474,
+          "dots": 302527628,
+          "dashes": 95488081,
+          "score": -53.978440416543094,
+          "visible": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.x...xx-.x---x-xx.-..x.xx...-x.xx..x-",
+          "completions": [
+            "SEE",
+            "WHAT",
+            "IT",
+            "DOES",
+            "NOT",
+            "LE",
+            "VE",
+            "IT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "...x.x.",
+            ".--x....x.-x-",
+            "..x-",
+            "-..x---x.x...",
+            "-.x---x-",
+            ".-..x.",
+            "...-x.",
+            "..x-"
+          ]
+        },
+        {
+          "sep": 5161762,
+          "dots": 302005388,
+          "dashes": 95486033,
+          "score": -55.00613713319057,
+          "visible": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.xx..xx-.x---x-xx....x.xx....x.xx..x-",
+          "completions": [
+            "SEE",
+            "WHAT",
+            "IT",
+            "DOE",
+            "I",
+            "NOT",
+            "HE",
+            "HE",
+            "IT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "...x.x.",
+            ".--x....x.-x-",
+            "..x-",
+            "-..x---x.",
+            "..",
+            "-.x---x-",
+            "....x.",
+            "....x.",
+            "..x-"
+          ]
+        },
+        {
+          "sep": 5161760,
+          "dots": 302003342,
+          "dashes": 95488081,
+          "score": -55.097428376299945,
+          "visible": "...x.x.xx.--x....x.-x-xx..x-xx-..x---x.xx..xx-.x---x-xx.-..x..x...-x.xx..x-",
+          "completions": [
+            "SEE",
+            "WHAT",
+            "IT",
+            "DOE",
+            "I",
+            "NOT",
+            "LIVE",
+            "IT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "...x.x.",
+            ".--x....x.-x-",
+            "..x-",
+            "-..x---x.",
+            "..",
+            "-.x---x-",
+            ".-..x..x...-x.",
+            "..x-"
+          ]
+        }
+      ],
+      "templateCache": 2602,
+      "localCache": 3086
+    }
+  },
+  "control1": {
+    "mode": "control1",
+    "source": "resources/control/gibran_prophet_58585.txt",
+    "phrase": "UNTO LOVE WHEN YOU LOVE",
+    "tr": "..-x-.x-x---xx.-..x---x...-x.xx.--x....x.x-.xx-.--x---x..-xx.-..x---x...-x.",
+    "offset": 1823,
+    "plant": 0,
+    "key": {
+      "sep": 3552388,
+      "dots": 201361467
+    },
+    "fit": {
+      "clip": false,
+      "separatorMasks": 53425,
+      "separatorNodes": 106857,
+      "scenarios": 53425,
+      "lexFeasible": 132,
+      "keyNodes": 556,
+      "completePaths": 1,
+      "distinctKeys": 1,
+      "trueKeyRank": 1,
+      "top": [
+        {
+          "sep": 3552388,
+          "dots": 201361467,
+          "dashes": 327762752,
+          "score": -38.61382792081642,
+          "visible": "..-x-.x-x---xx.-..x---x...-x.xx.--x....x.x-.xx-.--x---x..-xx.-..x---x...-x.",
+          "completions": [
+            "UNTO",
+            "LOVE",
+            "WHEN",
+            "YOU",
+            "LOVE"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-x-.x-x---",
+            ".-..x---x...-x.",
+            ".--x....x.x-.",
+            "-.--x---x..-",
+            ".-..x---x...-x."
+          ]
+        }
+      ],
+      "templateCache": 2008,
+      "localCache": 2313
+    }
+  },
+  "control2": {
+    "mode": "control2",
+    "source": "resources/control/shakespeare_first300k.txt",
+    "phrase": "HIS NOBILITY AND WERE I ANY THING",
+    "tr": "...x..x...xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx..xx.-x-",
+    "offset": 1920,
+    "start": 1,
+    "plant": 2,
+    "key": {
+      "sep": 172593792,
+      "dots": 344205581
+    },
+    "fit": {
+      "clip": true,
+      "separatorMasks": 113948,
+      "separatorNodes": 227941,
+      "scenarios": 168663,
+      "lexFeasible": 2278,
+      "keyNodes": 16273,
+      "completePaths": 86,
+      "distinctKeys": 70,
+      "trueKeyRank": 2,
+      "top": [
+        {
+          "sep": 172561024,
+          "dots": 344238349,
+          "dashes": 20071522,
+          "score": -31.015192769374465,
+          "visible": "...x..x...xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx...x.-x-",
+          "completions": [
+            "HIS",
+            "NOBILITY",
+            "AND",
+            "WERE",
+            "SAME"
+          ],
+          "completionCounts": [
+            91,
+            1,
+            1,
+            1,
+            127
+          ],
+          "fragments": [
+            "...x..x...",
+            "-.x---x-...x..x.-..x..x-x-.--",
+            ".-x-.x-..",
+            ".--x.x.-.x.",
+            "...x.-x-"
+          ]
+        },
+        {
+          "sep": 172593792,
+          "dots": 344205581,
+          "dashes": 20071522,
+          "score": -32.38055403013516,
+          "visible": "...x..x...xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx..xx.-x-",
+          "completions": [
+            "HIS",
+            "NOBILITY",
+            "AND",
+            "WERE",
+            "I",
+            "AND"
+          ],
+          "completionCounts": [
+            91,
+            1,
+            1,
+            1,
+            1,
+            1009
+          ],
+          "fragments": [
+            "...x..x...",
+            "-.x---x-...x..x.-..x..x-x-.--",
+            ".-x-.x-..",
+            ".--x.x.-.x.",
+            "..",
+            ".-x-"
+          ]
+        },
+        {
+          "sep": 172561024,
+          "dots": 277129485,
+          "dashes": 87180386,
+          "score": -32.84929522180911,
+          "visible": "...x.-x...xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx...x.-x-",
+          "completions": [
+            "HAS",
+            "NOBILITY",
+            "AND",
+            "WERE",
+            "SAME"
+          ],
+          "completionCounts": [
+            4,
+            1,
+            1,
+            1,
+            127
+          ],
+          "fragments": [
+            "...x.-x...",
+            "-.x---x-...x..x.-..x..x-x-.--",
+            ".-x-.x-..",
+            ".--x.x.-.x.",
+            "...x.-x-"
+          ]
+        },
+        {
+          "sep": 172593792,
+          "dots": 277096717,
+          "dashes": 87180386,
+          "score": -34.21465648256981,
+          "visible": "...x.-x...xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx..xx.-x-",
+          "completions": [
+            "HAS",
+            "NOBILITY",
+            "AND",
+            "WERE",
+            "I",
+            "AND"
+          ],
+          "completionCounts": [
+            4,
+            1,
+            1,
+            1,
+            1,
+            1009
+          ],
+          "fragments": [
+            "...x.-x...",
+            "-.x---x-...x..x.-..x..x-x-.--",
+            ".-x-.x-..",
+            ".--x.x.-.x.",
+            "..",
+            ".-x-"
+          ]
+        },
+        {
+          "sep": 172561024,
+          "dots": 277129484,
+          "dashes": 87180387,
+          "score": -38.437167905190606,
+          "visible": "...x.-x..-xx-.x---x-...x..x.-..x..x-x-.--xx.-x-.x-..xx.--x.x.-.x.xx...x.-x-",
+          "completions": [
+            "WISCHAU",
+            "NOBILITY",
+            "AND",
+            "WERE",
+            "SAME"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            127
+          ],
+          "fragments": [
+            "...x.-x..-",
+            "-.x---x-...x..x.-..x..x-x-.--",
+            ".-x-.x-..",
+            ".--x.x.-.x.",
+            "...x.-x-"
+          ]
+        }
+      ],
+      "templateCache": 6919,
+      "localCache": 8342
+    }
+  }
+}
