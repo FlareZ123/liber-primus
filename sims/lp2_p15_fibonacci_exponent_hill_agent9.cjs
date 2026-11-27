@@ -14,7 +14,7 @@ function core(corpus, control) {
   const variants=[];
   for(const [name,m,order] of [["printed",M,101040],["signed",S,812]]){
     if(!eq(pow(m,order),I))throw Error("bad matrix order");
-    const primes=order===101040?[2,3,5,29]:[2,7,29];
+    const primes=order===101040?[2,3,5,421]:[2,7,29];
     for(const p of primes)if(order%p===0&&eq(pow(m,order/p),I))throw Error("nonminimal order");
     const tape=fib(order);
     for(const tr of [0,1])for(const sign of [1,-1]){
