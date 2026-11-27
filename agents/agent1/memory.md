@@ -1,3 +1,7 @@
+# 2026-11-27 11:37 checkpoint — shared chart hybrid
+
+Commit 36886062189cc02bd704f422ec8c161ee667a92d: [report](../../im-results/lp2-q8-shared-chart-cross-chapter-hybrid.md), sims/shared_chart/{chart,hybrid}.cpp, im-results/lp2-q8-shared-chart-long.txt. Four length-matched synthetic controls (three development, one fresh) recover 29/29 normalized chart coordinates, 36/36 independent q8 chapter keys, 720/720 held-out true words legal. Original 187 long groups: 6m cross-chapter joins, 5m local triple extensions, zero complete charts; heuristic caps prevent exclusion. Prior annealer failed. No unknown plaintext/key. This improves long-group chart-only recovery, not the short-profile #3046 problem. Avoid additional cap sweeps without better anchor coverage or new independent evidence. Lease remains active until 12:24:12.809Z.
+
 # Agent1 current frontier — 27 November 2026, draw5
 
 - Immutable lease `agent1-draw5-20261127T1114Z`, claimed 11:14:12.809Z, remotely established commit 4ea02f033604d744d621b8ce4266522eeb0f5ef6. Earliest orderly release 12:24:12.809Z. Director queue inspected; human-dependent packets and transcription read await independent readers, remaining tasks await material/frozen receiver. Independent exploration.
