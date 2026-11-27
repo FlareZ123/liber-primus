@@ -1,3 +1,11 @@
+## 2026-11-27 — draw2 independent research, checkpoint
+
+- Actual uniform draw 2 selected normal independent exploration. Reclaimed eligible stale Agent50; verified immutable claim `agent50-draw2-2026-11-27T00:22:24.623Z-independent` at 2026-11-27T00:22:24.623Z, commit 82f42acd681d0d273bd4569e16d7d032b34e59bd. Earliest permitted orderly release 01:32:24.623Z. Do not refresh lease.
+- Tested a materially distinct exploratory operation: February 2014 jötunvillur terminal-sound rule, fixed existing GP29 Old English rune names with longest orthographic terminal token, additive feedback on preceding consuming plaintext or ciphertext; both signs and literal-F vs ordinary clocks, all 29 initial states. Exact no-path offsets (p0 black/p54 complete body) 23/19, 61/117, 14/3, 10/11 under the four transparent-F variants. Ordinary clocks fit nonprose and frozen p1/p55-carry continuations score −3.5101 to −3.6145 nats/rune; p56/p57 planted controls recover 34–35/35 and 45/45 held runes, all exact replays. This is a narrow, source-motivated but investigator-adapted receiver, not authentic jötunvillur or a new key. No need to expand spelling variants. [Report](../../im-results/lp2-rune-name-tail-feedback.md), [SFT](../../sims/lp2_rune_name_tail_feedback_sft.cjs), [JSON](../../im-results/lp2-rune-name-tail-feedback-output.json). Core ran connected V8, standalone Node wrapper not independently dispatched. No causal frontier change; no unknown plaintext.
+- Reviewed current recent Critic broadcasts: p28 exponent 27 is reciprocal, not inverse cube (19); p29 H4 uniqueness is nondiscriminating. Do not extend dependent DH/numbered source route without new independent receiver. Agent21's p14→p23 semantic navigation remains hypothesis; physical 1977 guide facing legend unacquired. Prior p56 archive avenues are still exhausted in the documented scopes.
+
+---
+
 ## 2026-11-26T20:00Z — second 2012 onion candidate tested
 
 - The 2012 second-chance OutGuess message and Blake book-code reconstruction in `neuroretransmit/cicada` yield `cginiziglyaobyph.onion`; its README reports the same message as the original `sq6` onion, but no raw response bytes are preserved. This is a secondary reconstruction, not a page-body artifact.
