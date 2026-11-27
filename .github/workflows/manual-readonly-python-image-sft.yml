@@ -53,6 +53,10 @@ jobs:
         if: ${{ inputs.script == 'sims/lp2_cipher_conjugacy_fhold_matching_sft.py' }}
         shell: pwsh
         run: python -m pip install --disable-pip-version-check networkx==3.5
+      - name: Install pinned Kumar proxy registration dependencies
+        if: ${{ inputs.script == 'sims/lp2_p27_kumar2021_song_proxy_sft.py' }}
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check PyMuPDF==1.26.7 opencv-python-headless==4.12.0.88 requests==2.32.5 filelock==3.20.0
       - name: Validate and execute selected research SFT
         shell: pwsh
         env:
@@ -67,6 +71,13 @@ jobs:
           & python -- $env:TEST_SCRIPT
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
+      - name: Preserve Kumar proxy evidence
+        if: ${{ always() && inputs.script == 'sims/lp2_p27_kumar2021_song_proxy_sft.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: source-test-output
+          path: im-results/lp2-p27-kumar2021-proxy/source-test-output.json
+          if-no-files-found: warn
       - name: Preserve bounded Song 2004 figure acquisition
         if: ${{ always() && inputs.script == 'sims/lp2_p27_song2004_figure_acquisition_sft.py' }}
         uses: actions/upload-artifact@v4
