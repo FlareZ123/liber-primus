@@ -119,7 +119,7 @@ static void farRank(const vector<int>& c){
 #pragma omp parallel
   {vector<Row> rows(1<<low);Best local{};
 #pragma omp for schedule(static)
-    for(int hi=0;hi<(1<<high);++hi){fillrows(rows,terms,low,hi);for(Mask lo=0;lo<(1<<low);++lo){Mask s=(Mask(hi)<<low)|lo;int m=pc(s),v=0;for(int j=0;j<m;++j){v-=rows[lo].a[j];assert(v>=0);Best b{v,s,j};if(better(b,local))local=b;}assert(v==rows[lo].a[m]);}}
+    for(int hi=0;hi<(1<<high);++hi){fillrows(rows,terms,low,hi);for(Mask lo=0;lo<(Mask(1)<<low);++lo){Mask s=(Mask(hi)<<low)|lo;int m=pc(s),v=0;for(int j=0;j<m;++j){v-=rows[lo].a[j];assert(v>=0);Best b{v,s,j};if(better(b,local))local=b;}assert(v==rows[lo].a[m]);}}
 #pragma omp critical
     {if(better(local,best))best=local;}
   }
