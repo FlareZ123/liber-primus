@@ -1,0 +1,62 @@
+{
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/liber-primus/lp2-ink-annotations.json",
+      "sha": "0614aca67969a14ae006e0c1ae6aee6dcd8136e6"
+    }
+  ],
+  "original": {
+    "mode": "p54",
+    "p": 54,
+    "start": 66,
+    "end": 195,
+    "rows": [
+      {
+        "q": 13,
+        "D": 35,
+        "lo": 94,
+        "best": {
+          "t": 21,
+          "w": 100,
+          "cap": 12800,
+          "floor": -800,
+          "windows": 1569425,
+          "gap": -700
+        },
+        "search": {
+          "q": 13,
+          "n": 129,
+          "D": 35,
+          "lo": 94,
+          "masks": 8192,
+          "starts": 62134,
+          "windows": 1569425,
+          "tested": 509001728,
+          "passedQ1": 34876033,
+          "furthest": 19,
+          "success": []
+        }
+      }
+    ]
+  }
+}
