@@ -1,41 +1,287 @@
 {
-  "records": 46,
-  "coordinates": 44,
-  "distinctCoordinates": 41,
-  "repeats": [
-    {
-      "coordinate": "I:2:15",
-      "positions": [
-        1,
-        34
-      ],
-      "characters": [
-        "t",
-        "t"
-      ]
-    },
-    {
-      "coordinate": "I:60:11",
-      "positions": [
-        38,
-        45
-      ],
-      "characters": [
-        "1",
-        "1"
-      ]
-    },
-    {
-      "coordinate": "II:76:3",
-      "positions": [
-        42,
-        43
-      ],
-      "characters": [
-        "3",
-        "3"
-      ]
+  "historical": {
+    "records": 46,
+    "coordinates": 44,
+    "distinctCoordinates": 41,
+    "repeats": [
+      {
+        "coordinate": "I:2:15",
+        "positions": [
+          1,
+          34
+        ],
+        "characters": [
+          "t",
+          "t"
+        ]
+      },
+      {
+        "coordinate": "I:60:11",
+        "positions": [
+          38,
+          45
+        ],
+        "characters": [
+          "1",
+          "1"
+        ]
+      },
+      {
+        "coordinate": "II:76:3",
+        "positions": [
+          42,
+          43
+        ],
+        "characters": [
+          "3",
+          "3"
+        ]
+      }
+    ],
+    "output": "https:--www.dropbox.com-s-r7sgeb5dtmzj14s-3301"
+  },
+  "calibration": {
+    "controls": [
+      {
+        "name": "0_warning",
+        "n": 184,
+        "pairs": [
+          [
+            1,
+            34
+          ],
+          [
+            2,
+            36
+          ],
+          [
+            3,
+            18
+          ]
+        ],
+        "wrongPair": [
+          1,
+          35
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 372
+      },
+      {
+        "name": "0_welcome",
+        "n": 515,
+        "pairs": [
+          [
+            1,
+            13
+          ],
+          [
+            2,
+            16
+          ],
+          [
+            4,
+            22
+          ]
+        ],
+        "wrongPair": [
+          1,
+          14
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 1365
+      },
+      {
+        "name": "0_wisdom",
+        "n": 157,
+        "pairs": [
+          [
+            2,
+            15
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            5,
+            32
+          ]
+        ],
+        "wrongPair": [
+          2,
+          16
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 291
+      },
+      {
+        "name": "0_koan_1",
+        "n": 780,
+        "pairs": [
+          [
+            1,
+            11
+          ],
+          [
+            2,
+            17
+          ],
+          [
+            3,
+            20
+          ]
+        ],
+        "wrongPair": [
+          1,
+          12
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 2160
+      },
+      {
+        "name": "0_loss_of_divinity",
+        "n": 755,
+        "pairs": [
+          [
+            1,
+            17
+          ],
+          [
+            4,
+            39
+          ],
+          [
+            5,
+            51
+          ]
+        ],
+        "wrongPair": [
+          1,
+          18
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 2085
+      },
+      {
+        "name": "jpg107-167",
+        "n": 319,
+        "pairs": [
+          [
+            1,
+            46
+          ],
+          [
+            2,
+            14
+          ],
+          [
+            3,
+            19
+          ]
+        ],
+        "wrongPair": [
+          1,
+          47
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 777
+      },
+      {
+        "name": "jpg229",
+        "n": 89,
+        "pairs": [
+          [
+            1,
+            11
+          ],
+          [
+            2,
+            26
+          ],
+          [
+            3,
+            18
+          ]
+        ],
+        "wrongPair": [
+          1,
+          12
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 87
+      },
+      {
+        "name": "p56_an_end",
+        "n": 85,
+        "pairs": [
+          [
+            2,
+            13
+          ],
+          [
+            4,
+            51
+          ],
+          [
+            5,
+            16
+          ]
+        ],
+        "wrongPair": [
+          2,
+          15
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 75
+      },
+      {
+        "name": "p57_parable",
+        "n": 95,
+        "pairs": [
+          [
+            1,
+            17
+          ],
+          [
+            2,
+            18
+          ],
+          [
+            3,
+            34
+          ]
+        ],
+        "wrongPair": [
+          1,
+          18
+        ],
+        "correct": 3,
+        "wrongMaskFeasible": 0,
+        "wrongLawFeasible": 0,
+        "held": 105
+      }
+    ],
+    "summary": {
+      "plants": 27,
+      "wrongMaskFeasible": 0,
+      "wrongLawFeasible": 0,
+      "held": 7317
     }
-  ],
-  "output": "https:--www.dropbox.com-s-r7sgeb5dtmzj14s-3301"
+  }
 }
