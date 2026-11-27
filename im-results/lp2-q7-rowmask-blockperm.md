@@ -30,6 +30,10 @@ All six planted shared keys recovered. Fresh fits recover 1,708, 1,701, 1,722 ru
 
 Exact original fit adjacent-difference maximum −3.3647081207 nats/difference is below all six planted maxima (−3.3151926997 to −3.2957923547). Every possible key, including arbitrary row offsets, falls below the weakest observed control on that fixed objective. No universal language impossibility or separate trigram upper bound follows. Fitted order [1,0,2,5,4,6,3], shifts [0,4,17,23,15,2,1] are optimizer candidates, not authenticated keys. Original fit begins F F T I C W H A D E Y A F A C E O N A W E E L NG, with no convincing continuous reading; neither holdout supplies one.
 
+## Row-transport extension (derived, no extra search)
+
+The exact adjacent-difference objective depends only on ordered-column-pair histograms across the rows. Arbitrarily reordering complete seven-rune blocks preserves every histogram, every candidate edge score and the global maximum. Thus the same calibrated difference ceiling extends to arbitrary chapter-private row permutations, with all row masks transported along with their blocks. The separate full-stream trigram refinement and held scores require fixed reading order; arbitrary printed-word or individual-rune transport is not covered.
+
 ## Reproduce
 
 [CommonJS experiment](../sims/lp2_q7_rowmask_blockperm_sft.cjs), [corrected output](lp2-q7-rowmask-blockperm-output.json). Core executed in connected V8 against repository texts; separate filesystem wrapper not independently executed. No workflow added. Retire this model for ordinary GP-English under the specified layout and key clock.
