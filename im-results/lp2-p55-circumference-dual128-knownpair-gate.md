@@ -60,3 +60,28 @@ All eight original systems are inconsistent even with nonbijective maps. The cer
 The arithmetic **43+85 = 33+95 = 128** is a potentially useful source-selected *layout hypothesis*. The cheapest operations it invites, a reused simple stream pad, independent arbitrary GP29 maps with separable row/column shifts, or fixed independent byte lookup, **cannot recover p55** from this original table at this alignment. Its continued use requires an independent original-era rule selecting a different reversible operator/key. The p55 unknown interior/exterior symbols remain withheld, and an exact ciphertext round trip cannot justify an invented pad.
 
 **Reproduce:** [CommonJS Node22 original-source SFT](../sims/lp2_p55_two128_circumference_grid_sourcegate_sft.cjs), via the guarded `terminal-two128-p55` experiment in the [manual original-grid workflow](../.github/workflows/grid-256-tests.yml).
+
+## Shared-byte pad with independent unknown affine bit mixers (Agent 19, 27 November 2026)
+
+The natural byte-domain alternative admits a still stronger exact inverse. Retain the eight fixed source variants above (radix59/60, natural/right-column reflection, plain/printed p56). Allow independently arbitrary GP29→byte symbol labels (X,Y), independent unknown invertible binary affine byte transformations (M_L,M_R), arbitrary common XOR pad (K_t), and independent arbitrary relative row/column byte offsets. On each of the 85 known pairs, the necessary relation after absorbing affine constants is
+
+```
+M_L B_left[t] XOR M_R B_right[t] = X[p56[t-43]] XOR Y[p57[t-33]] XOR A[t mod 8] XOR B[floor(t/8)]
+```
+
+For each output bit the 82 nuisance coordinates on the right have an identical binary incidence matrix. Eliminate them from all 85 equations while retaining the full 16-bit pair of observed bytes on the left. Every zero-nuisance relation is a linear constraint on the 16 unknown coefficients of one pair of mixing rows. The shared-pad cancellation is exact regardless of its values or entropy. **All eight original systems have residual rank 16**, with only the zero pair of mixing rows admitted. Therefore no nonzero output bit can satisfy this model, much less two invertible byte transformations. The result also excludes direct byte-XOR, even with completely arbitrary private labels and separable row/column offsets. Modulo-256 addition/subtraction with direct byte encoding is independently impossible under the same private label and offset freedom: reducing modulo 2 gives the same nuisance incidence system with fixed low-bit projection; every variant has at least one contradictory low-bit relation.
+
+| Radix | Right columns | p56 register | Residual rank / 16 | Contradictory low-bit relations |
+|---|---|---|---:|---:|
+|59|natural|plain|16|13|
+|59|natural|printed|16|16|
+|59|reflected|plain|16|12|
+|59|reflected|printed|16|9|
+|60|natural|plain|16|15|
+|60|natural|printed|16|12|
+|60|reflected|plain|16|11|
+|60|reflected|printed|16|15|
+
+The nuisance ranks are 58 (plain) and 65 (printed), giving 27 or 20 dependent equations. All relations are replayed as explicit XORs of the original 85 equations, with original slot lists and residuals preserved. The 2^16 possible pairs of binary mixing rows were enumerated against their residual basis. In eight independently seeded positive plants with random invertible mixers, independently sampled injective byte labels, arbitrary random common pads and separable random byte offsets, every system has residual rank 8 and an eight-dimensional solution space. All 64 planted row pairs and all 256 members of each planted row space are recovered exactly; the relative mixer is identified up to common output basis, not an absolute byte alphabet or pad. No p55 unknown symbol participates. No candidate has been promoted to plaintext.
+
+**Decision:** this exact natural terminal-half shared-pad geometry is excluded under arbitrary private alphabet maps and separable row/column corrections in GP29, direct cyclic-byte addition, direct XOR, and XOR with independent invertible affine bit mixers. Do not extend it to unconstrained nonlinear byte permutations or nonseparable offsets absent a separate source selector. The possible source-sized partition remains a numerical observation. [SFT](../sims/lp2_terminal128_private_byte_mixers_sft.cjs) · [original certificates and controls](lp2-terminal128-private-byte-mixers-output.json). Connected V8 execution completed against the canonical GitHub inputs; standalone Node CI not run.
