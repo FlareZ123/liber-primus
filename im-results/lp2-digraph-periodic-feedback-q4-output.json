@@ -1,0 +1,216 @@
+{
+  "sourceBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85",
+    "df260a07d56bf5998d40a6360b6132c35c252d10"
+  ],
+  "q": 4,
+  "result": [
+    {
+      "phase": 0,
+      "pooled": 0.001354589260257641,
+      "maxIndividual": 0.0013689415936068213,
+      "minSupport": 504,
+      "ls": [
+        {
+          "n": 1619,
+          "score": 1777,
+          "key": [
+            38,
+            391
+          ],
+          "ties": 1,
+          "rate": 0.0013567257177017967,
+          "supportAtBest": 681,
+          "minSupportBound": 507
+        },
+        {
+          "n": 1620,
+          "score": 1765,
+          "key": [
+            343,
+            105
+          ],
+          "ties": 1,
+          "rate": 0.0013459001517473826,
+          "supportAtBest": 687,
+          "minSupportBound": 510
+        },
+        {
+          "n": 1619,
+          "score": 1764,
+          "key": [
+            211,
+            516
+          ],
+          "ties": 1,
+          "rate": 0.0013468003185289643,
+          "supportAtBest": 686,
+          "minSupportBound": 510
+        },
+        {
+          "n": 1619,
+          "score": 1793,
+          "key": [
+            249,
+            738
+          ],
+          "ties": 1,
+          "rate": 0.0013689415936068213,
+          "supportAtBest": 690,
+          "minSupportBound": 504
+        }
+      ]
+    },
+    {
+      "phase": 1,
+      "pooled": 0.0013454642071018522,
+      "maxIndividual": 0.0013490907952611562,
+      "minSupport": 509,
+      "ls": [
+        {
+          "n": 1619,
+          "score": 1765,
+          "key": [
+            737,
+            261
+          ],
+          "ties": 1,
+          "rate": 0.0013475638107730283,
+          "supportAtBest": 686,
+          "minSupportBound": 510
+        },
+        {
+          "n": 1619,
+          "score": 1754,
+          "key": [
+            149,
+            763
+          ],
+          "ties": 1,
+          "rate": 0.0013391653960883238,
+          "supportAtBest": 683,
+          "minSupportBound": 512
+        },
+        {
+          "n": 1619,
+          "score": 1767,
+          "key": [
+            237,
+            190
+          ],
+          "ties": 1,
+          "rate": 0.0013490907952611562,
+          "supportAtBest": 694,
+          "minSupportBound": 509
+        },
+        {
+          "n": 1619,
+          "score": 1763,
+          "key": [
+            1,
+            246
+          ],
+          "ties": 1,
+          "rate": 0.0013460368262849002,
+          "supportAtBest": 687,
+          "minSupportBound": 510
+        }
+      ]
+    }
+  ],
+  "native": [
+    {
+      "name": "Shakespeare",
+      "windows": 33,
+      "mins": [
+        0.005257309944868084,
+        0.005386437781871793
+      ],
+      "minIndividual": 0.004973388477833148
+    },
+    {
+      "name": "Gibran",
+      "windows": 8,
+      "mins": [
+        0.006181231792757575,
+        0.006244030445016724
+      ],
+      "minIndividual": 0.005969745856336719
+    }
+  ],
+  "plant": {
+    "keys": [
+      [
+        134,
+        41
+      ],
+      [
+        680,
+        191
+      ],
+      [
+        493,
+        607
+      ],
+      [
+        161,
+        754
+      ]
+    ],
+    "train": [
+      {
+        "n": 1214,
+        "score": 4170,
+        "key": [
+          134,
+          41
+        ],
+        "ties": 1,
+        "rate": 0.00566352162392315,
+        "supportAtBest": 314,
+        "minSupportBound": 155
+      },
+      {
+        "n": 1215,
+        "score": 4373,
+        "key": [
+          680,
+          191
+        ],
+        "ties": 1,
+        "rate": 0.005929451325753724,
+        "supportAtBest": 317,
+        "minSupportBound": 149
+      },
+      {
+        "n": 1215,
+        "score": 4177,
+        "key": [
+          493,
+          607
+        ],
+        "ties": 1,
+        "rate": 0.005663690415658199,
+        "supportAtBest": 308,
+        "minSupportBound": 155
+      },
+      {
+        "n": 1215,
+        "score": 3911,
+        "key": [
+          161,
+          754
+        ],
+        "ties": 1,
+        "rate": 0.005303014894814272,
+        "supportAtBest": 317,
+        "minSupportBound": 164
+      }
+    ],
+    "exactUnique": 4,
+    "heldCorrect": 1618,
+    "heldCount": 1618,
+    "heldPooled": 0.0058909665719047155
+  }
+}
