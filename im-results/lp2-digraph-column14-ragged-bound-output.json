@@ -1,0 +1,291 @@
+{
+  "inputSha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+  "results": [
+    {
+      "pages": [
+        0,
+        2
+      ],
+      "R": 52,
+      "t": 1,
+      "possibleEdges": 260,
+      "comparisons": 14157,
+      "maxSelf": 14,
+      "selfUpper": 62,
+      "maxCross": 11,
+      "crossWitness": [
+        {
+          "j": 0,
+          "k": 0,
+          "start": 0
+        },
+        {
+          "j": 1,
+          "k": 1,
+          "start": 53
+        },
+        {
+          "j": 2,
+          "k": 1,
+          "start": 105
+        },
+        {
+          "j": 3,
+          "k": 1,
+          "start": 157
+        }
+      ],
+      "upper": 524,
+      "nativeFloor": 548,
+      "excluded": true
+    },
+    {
+      "pages": [
+        3,
+        7
+      ],
+      "R": 81,
+      "t": 11,
+      "possibleEdges": 685,
+      "comparisons": 69432,
+      "maxSelf": 22,
+      "selfUpper": 110,
+      "maxCross": 21,
+      "crossWitness": [
+        {
+          "j": 3,
+          "k": 3,
+          "start": 246
+        },
+        {
+          "j": 10,
+          "k": 9,
+          "start": 819
+        },
+        {
+          "j": 4,
+          "k": 3,
+          "start": 327
+        },
+        {
+          "j": 12,
+          "k": 9,
+          "start": 981
+        }
+      ],
+      "upper": 992,
+      "nativeFloor": 1392,
+      "excluded": true
+    },
+    {
+      "pages": [
+        8,
+        14
+      ],
+      "R": 123,
+      "t": 7,
+      "possibleEdges": 1169,
+      "comparisons": 176463,
+      "maxSelf": 36,
+      "selfUpper": 222,
+      "maxCross": 40,
+      "crossWitness": [
+        {
+          "j": 1,
+          "k": 0,
+          "start": 123
+        },
+        {
+          "j": 9,
+          "k": 6,
+          "start": 1113
+        },
+        {
+          "j": 7,
+          "k": 4,
+          "start": 865
+        },
+        {
+          "j": 10,
+          "k": 7,
+          "start": 1237
+        }
+      ],
+      "upper": 1902,
+      "nativeFloor": 3490,
+      "excluded": true
+    },
+    {
+      "pages": [
+        15,
+        22
+      ],
+      "R": 135,
+      "t": 13,
+      "possibleEdges": 260,
+      "comparisons": 14157,
+      "maxSelf": 44,
+      "selfUpper": 248,
+      "maxCross": 41,
+      "crossWitness": [
+        {
+          "j": 1,
+          "k": 0,
+          "start": 135
+        },
+        {
+          "j": 9,
+          "k": 8,
+          "start": 1223
+        },
+        {
+          "j": 5,
+          "k": 4,
+          "start": 679
+        },
+        {
+          "j": 8,
+          "k": 7,
+          "start": 1087
+        }
+      ],
+      "upper": 1970,
+      "nativeFloor": 4232,
+      "excluded": true
+    },
+    {
+      "pages": [
+        23,
+        26
+      ],
+      "R": 72,
+      "t": 13,
+      "possibleEdges": 260,
+      "comparisons": 14157,
+      "maxSelf": 14,
+      "selfUpper": 72,
+      "maxCross": 17,
+      "crossWitness": [
+        {
+          "j": 0,
+          "k": 0,
+          "start": 0
+        },
+        {
+          "j": 2,
+          "k": 2,
+          "start": 146
+        },
+        {
+          "j": 3,
+          "k": 3,
+          "start": 219
+        },
+        {
+          "j": 10,
+          "k": 10,
+          "start": 730
+        }
+      ],
+      "upper": 786,
+      "nativeFloor": 1092,
+      "excluded": true
+    },
+    {
+      "pages": [
+        27,
+        32
+      ],
+      "R": 102,
+      "t": 5,
+      "possibleEdges": 1036,
+      "comparisons": 142503,
+      "maxSelf": 28,
+      "selfUpper": 172,
+      "maxCross": 31,
+      "crossWitness": [
+        {
+          "j": 3,
+          "k": 1,
+          "start": 307
+        },
+        {
+          "j": 11,
+          "k": 3,
+          "start": 1125
+        },
+        {
+          "j": 10,
+          "k": 3,
+          "start": 1023
+        },
+        {
+          "j": 13,
+          "k": 5,
+          "start": 1331
+        }
+      ],
+      "upper": 1474,
+      "nativeFloor": 2398,
+      "excluded": true
+    },
+    {
+      "pages": [
+        33,
+        39
+      ],
+      "R": 120,
+      "t": 0,
+      "nativeFloor": 3332,
+      "status": "complete rectangle; previous exact test"
+    },
+    {
+      "pages": [
+        40,
+        53
+      ],
+      "R": 214,
+      "t": 12,
+      "possibleEdges": 469,
+      "comparisons": 36663,
+      "maxSelf": 82,
+      "selfUpper": 510,
+      "maxCross": 87,
+      "crossWitness": [
+        {
+          "j": 2,
+          "k": 2,
+          "start": 430
+        },
+        {
+          "j": 10,
+          "k": 8,
+          "start": 2148
+        },
+        {
+          "j": 4,
+          "k": 3,
+          "start": 859
+        },
+        {
+          "j": 8,
+          "k": 6,
+          "start": 1718
+        }
+      ],
+      "upper": 4164,
+      "nativeFloor": 11102,
+      "excluded": true
+    },
+    {
+      "pages": [
+        54,
+        55
+      ],
+      "R": 22,
+      "t": 0,
+      "nativeFloor": 66,
+      "status": "complete rectangle; previous exact test"
+    }
+  ]
+}
