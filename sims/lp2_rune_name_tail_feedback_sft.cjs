@@ -29,6 +29,20 @@ function experiment(data, reference) {
   const p57=data.pages[57].indices;
   const targets=[{name:"p0-black/p1",fit:data.pages[0].indices.slice(13),held:data.pages[1].indices},{name:"p54-body/p55-carry",fit:data.pages[54].indices.slice(9,222),held:[...data.pages[54].indices.slice(222),...data.pages[55].indices]}];
   const equal=(a,b)=>a.length===b.length&&a.every((x,i)=>x===b[i]);
+  function feasibility(c,v){
+    let states=new Set(Array.from({length:29},(_,i)=>i));
+    for(let i=0;i<c.length;i++){
+      const x=c[i], next=new Set();
+      for(const s of states){
+        if(v.hold&&x===0)next.add(s);
+        const p=mod(x-v.sign*tail[s]);
+        if(!v.hold||p!==0)next.add(v.prev==="plain"?p:x);
+      }
+      if(!next.size)return {firstImpossibleOffset:i,statesBefore:[...states].sort((a,b)=>a-b),cipherRune:x};
+      states=next;
+    }
+    return {firstImpossibleOffset:null,finalStates:[...states].sort((a,b)=>a-b)};
+  }
   const results=[];
   for(let vi=0;vi<variants.length;vi++){
     const v=variants[vi],controls=[];
@@ -38,7 +52,7 @@ function experiment(data, reference) {
       const recovered=fit&&held?[...fit.path,...held.path]:null;
       controls.push({nativePage:56+ci,seed,fitScore:fit&&fit.score/cut,heldScore:held&&held.score/(p.length-cut),fitMatches:fit&&fit.path.filter((x,i)=>x===p[i]).length,heldMatches:held&&held.path.filter((x,i)=>x===p[i+cut]).length,fitLength:cut,heldLength:p.length-cut,exactReplay:recovered&&equal(encrypt(recovered,fit.origin,v),c)});
     }
-    const original=targets.map(t=>{const fit=decode(t.fit,v,seeds),held=fit&&decode(t.held,v,[fit]);return {name:t.name,seed:fit?.origin??null,fitLength:t.fit.length,heldLength:t.held.length,fitScore:fit&&fit.score/t.fit.length,heldScore:held&&held.score/t.held.length,fitText:fit&&render(fit.path),heldText:held&&render(held.path),exactReplay:fit&&held&&equal(encrypt([...fit.path,...held.path],fit.origin,v),[...t.fit,...t.held])};});
+    const original=targets.map(t=>{const fit=decode(t.fit,v,seeds),held=fit&&decode(t.held,v,[fit]);return {name:t.name,feasibility:feasibility(t.fit,v),seed:fit?.origin??null,fitLength:t.fit.length,heldLength:t.held.length,fitScore:fit&&fit.score/t.fit.length,heldScore:held&&held.score/t.held.length,fitText:fit&&render(fit.path),heldText:held&&render(held.path),exactReplay:fit&&held&&equal(encrypt([...fit.path,...held.path],fit.origin,v),[...t.fit,...t.held])};});
     results.push({v,controls,original});
   }
   return {names,tail,tailLabels:tail.map(i=>A[i]),trainingRunes:T.length,p56Control:render(p56),p57Control:render(p57),results};
