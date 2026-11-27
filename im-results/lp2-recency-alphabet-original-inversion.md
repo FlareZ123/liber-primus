@@ -1,6 +1,6 @@
 # Public-state recency alphabet: exact continuous stationary closure
 
-**Decision (27 November):** ordinary all-update and literal-F-hold continuous fixed-position, fixed-rank-label lists are exhaustively excluded for the finite native donor register. Interior forbidden ranks in the F-hold model are structurally impossible, irrespective of language. See the exact closures below. Earlier partial tests remain useful as controls.
+**Decision (27 November):** ordinary all-update and literal-F-hold continuous fixed-position, fixed-rank-label lists are exhaustively excluded for the finite native donor register. Interior forbidden ranks in the F-hold model are structurally impossible, irrespective of language. Front/back specialization is additionally excluded even with private physical-page resets and arbitrary private held labels. See the exact closures below. Earlier partial tests remain useful as controls.
 
 ## Model and independent reason to test
 
@@ -30,6 +30,27 @@ Grant every possible z at burn-in, and all29 choices of f. Exact DP propagates a
 | p54–55 | 205 | 28 | 13 | 17 | 18 |
 
 For each scope compare with every equal-length contiguous window in the pinned 2013 Book of the Law and Marriage of Heaven and Hell, using greedy GP transcription. All full-book forbidden ranks0..27 die by offset364. The survivor f28 includes the degenerate state zero permanently last, and even its most favorable legal path cannot yield the native unigram maxima. An independently planted native KOAN with arbitrary initial alphabet, arbitrary rank permutation and F-hold retains true f5. Thus the exact conditional native-prose extreme-position model fails even with latent F and independently restarted tested ranges; no original key.
+
+## Exact page-private extreme-position inverse with arbitrary held label (Agent26, 27 November)
+
+Physical-page resets are no escape for the front/back specialization. Grant **every physical page** its own arbitrary initial alphabet, arbitrary bijective plaintext-to-rank map, forbidden consuming rank f corresponding to plaintext F, and arbitrary held ciphertext label h (not necessarily zero). A held F leaves the list unchanged; a consuming non-F may also emit h. This is strictly more permissive than literal-F output. Move-to-back is equivalent by reversing rank coordinates.
+
+Unlike the earlier suffix gate this inverse includes the initial unseen region. Maintain the public recency order of the distinct non-h glyphs already observed. State z is the number of more recent distinct non-h glyphs than a previously consumed h, or the sentinel 29 when h has never consumed. On a repeat non-h access with relative rank q, the true rank is q+[z<=q] when h has consumed, q otherwise. Move to front and increment z iff this access passes h. On first consumption of any glyph, its rank may be any position in the current unseen suffix, except f. The successive selections in this suffix are independent Lehmer digits: any permitted sequence is realized by an initial permutation. A visible h can be held without changes or consumed at its known rank z (or an unseen rank if not previously consumed), resetting z=0. Every consuming f is forbidden. Thus reachability and rank-coordinate minima are exact for each h,f; no guessed initial list, burn-in, or explicit enumeration of hold masks is needed.
+
+For every surviving h,f, independently minimize the count of each rank by min-plus DP, then add the k smallest minima excluding f. These individual minima need not be jointly attainable, so the sum is a conservative lower bound for the total count of **any** k distinct non-F plaintext runes. Minimize over h,f separately on each physical page and sum across pages. The same global k plaintext categories correspond to k distinct ranks on each page, despite arbitrary private maps. This bound therefore remains valid after arbitrary pre-encryption positional transport preserving the full plaintext histogram; it does not require contiguous prose per page, preserved word boundaries, or a common key.
+
+| Scope (full 12,956 runes, p0–55; p50 empty) | k=1 | k=2 | k=3 | k=4 | k=5 | k=6 | k=7 | k=8 |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Arbitrary held label per page |22|96|195|318|456|609|781|969|
+| Literal F held label per page |73|200|367|567|780|1009|1256|1519|
+| Ordinary all-update, private page keys |67|202|383|592|822|1070|1336|1623|
+| Maximum k-rarest non-F total over all native windows |5|13|24|41|94|168|259|382|
+
+**Decision:** all 562,060 equal-length native windows (Gibran 49,537, Shakespeare 204,151, Emerson 308,372) are impossible under this front/back family, including arbitrarily private page keys and held labels, and arbitrary histogram-preserving transport. At k=4 the relaxed original lower bound exceeds the largest donor total by 277. Donor-specific maxima are 36, 35, 41. Native tokenizer: QU→CW, V→U, K/Q→C, Z→S, ING→NG, IO→IA, greedy within words. These are exact finite-register exclusions, not universal impossibility of English. The ordinary comparison applies because any chosen non-F categories are also a subset of all rank categories.
+
+**Controls:** independent explicit-list oracle (all initial orders and all hold/consume branches for alphabets 3,4,5) agrees on all 1,200 h,f/tape cases, including 800 legal and 400 impossible cases. Known-key original solved p57 plant replays 95/95 (3 held F, 3 consuming h). Full native Gibran plant with matched physical page lengths and fresh independent keys/h per page replays 12,956/12,956 (322 true F, 456 consuming h); every true rank histogram dominates its coordinate lower bounds. Its aggregate k=1..8 bound [0,0,0,0,0,0,1,12] is below the true rare totals [0,1,2,6,17,39,142,293]. These are necessary-bound and known-key controls, not blind key recovery.
+
+[Runnable SFT](../sims/lp2_recency_pageprivate_outer_fhold_sft.cjs) · [Complete raw outputs including per-page minima, control keys, donor paths and source blob hashes](lp2-recency-pageprivate-outer-fhold-output.json). The complete core executed in the connected JS runtime (~21.7 s); standalone Node wrapper not independently executed; no CI claim. Canonical corpus blob 054f2a0f780b7d46901acbe3d9bf4f0ac1801165. No original key or unknown plaintext. Do not repeat this front/back page-private family. Interior page-private resets, varying insertion positions, and changing rank maps are not covered.
 
 ## Interior move: new constructive reduction to 28 bits
 
