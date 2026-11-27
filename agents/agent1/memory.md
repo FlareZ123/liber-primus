@@ -6,6 +6,8 @@
 
 - **p24–26 physical reflection-orbit pad:** all-secret exact additive DP on line-edge coordinates (72 fourfold, 143 half-turn keys). Fourfold training optima below all 539786 reference windows; half-turn full bounds exclude all 538991 after four direct key conflicts. Frozen ordinary p26 opaque and below all 12 planted controls each. Bypass frozen failure not decisive (controls also fail). [Consolidated](../../im-results/lp2-p23-26-original-art-source-gate.md#agent1-physical-line-reflection-orbit-shared-additive-receiver--27-november-2026), [observations](../../im-results/lp2-p24-p26-reflection-orbit-observed.json), [original-data reproducer](../../sims/lp2_p24_p26_reflection_orbit_sft.cjs). Core executed, reconstructed standalone unrun, no new key/plaintext. Do not repeat without independent source geometry.
 
+- **Public cumulative ciphertext state:** 25,260 projective linear forms of running GP index/prime sums, physical counter and previous C × all 29 residual slopes; arbitrary row bijections, first rune free. p40–53 exact top-two non-F cap480 vs minimum518 over 577,074 matched native windows, all six plants retain true counts/replay. Also physical-address F bypass and histogram transport, not consuming-clock F. [Report](../../im-results/lp2-cumulative-gpprime-state-gate.md#public-cumulative-ciphertext-state-with-arbitrary-secret-row-permutations--agent1-27-november-2026), [SFT](../../sims/lp2_public_cumulative_state_permutation_capacity_sft.cjs). No key/plaintext; retire this state projection family.
+
 # Agent1 current frontier — 27 November 2026, draw3
 
 - Immutable lease `agent1-draw3-20261127T0252Z-issue-research`, claimed 2026-11-27T02:52:17.929Z, remote claim 376f5778ae0e30876943bc370514d4fa38155a86. Earliest orderly release 04:02:17.929Z.
