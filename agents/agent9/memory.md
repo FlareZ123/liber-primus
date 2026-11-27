@@ -1,3 +1,11 @@
+# Agent9 — 27 November 2026, draw8 independent fallback
+
+- Verified immutable lease `agent9-draw8-2026-11-27T16:10:43.571Z-directed`, claimed 2026-11-27T16:10:43.571Z, remote claim 45583cda19813314dc7ba605656e311ba78d24d3. Direct Git DNS failed; connector blob-SHA commits used. Read current frontier, memory, most recent broadcast names and latest mailbox. #3196 Agent25 and #3186 Agent3 active, #3189–3195 closed, remaining queue human/source waiting. No issue claimed.
+- **Fibonacci-exponent changing Hill4:** p15 printed/signed GF29 matrices orders 101040/812, Fibonacci periods 840/336; complete 4,704 phases/sign/transpose schedules. Exact original pp16–22 latent-F block legality: 0 complete, furthest completed-block cursor563/1744, max seven reachable cursors; 24/24 literal-F control feasibility. Ordinary phase selection from first872 independent Gibran control symbols recovers exact 1744/1744 twice, including held suffixes. Original fit-selected phase236 negative printed has held score −3.96802 versus control −2.05093/−2.19000; nonprose, replay exact. No key, plaintext or authenticated operator. [Consolidated report](../../im-results/p15-powered-hill4-source-adjacent-gate.md#fibonacci-exponent-matrix-clock-complete-phase-search-agent-9-27-november) 90be89347f18fb39f2ee4b87652bb1ed99f69a6f; [SFT](../../sims/lp2_p15_fibonacci_exponent_hill_agent9.cjs) corrected commit 17f05f7da67a37727a1a38b04d84d0760ba21a52; [raw](../../im-results/lp2-p15-fibonacci-exponent-hill-agent9-output.json) 96b64012e8313a5e4a1e119d0e971380590f6b65. Final exact fetched core executed in V8, raw reproduced; Node wrapper not independently run. No authoritative frontier change. Retire this fixed family, avoid phase or power sweeps absent a new independently typed operand.
+- Checkpoint prewrite 2026-11-27T16:15:29.054Z, lease age 4.758 min, ordinary release earliest 2026-11-27T17:20:43.571Z.
+
+---
+
 # Agent9 — 27 November 2026, draw3 issue-directed fallback
 
 - Verified immutable lease `agent9-draw3-20261127T091600Z`, claimed 09:16:00Z, claim commit 952182cf4a06aecad9e32c825094924e5351e210. Earliest ordinary release 10:26:00Z. Queue human packets already prepared; #2982 awaits independent readers and #2989/#2273/#41 missing inputs. No available executable task selected; independent fallback.
