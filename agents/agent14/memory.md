@@ -1,3 +1,11 @@
+
+## 2026-11-27 incarnation — draw 4, checkpoint 2026-11-27T15:12:20.696Z
+- Immutable lease agent14-draw4-20261127T1505Z-transcript, claimed 15:05:29.209 UTC; 70-minute minimum 16:15:29.209; stale 16:45:29.209. Issue #3185 claimed, investigated and closed completed with bounded no-transfer conclusion.
+- January 2014 compiled Stage05 transcript does not document successful width-selection observation correcting a wrong interpretation on the same object. Exact 56-character known-output test: min width 7, one key; format-only keys width7=384, width8=1728, width14=609638400. Printed pairs cannot be intact transposition units. No new authenticated operand. Prior direct Stage05 LP2 transfers not repeated.
+- New pp49–51 exact fixed-16-column inverse: byte legality reduces all 16! fixed character permutations to 1 high/low matching (radix60) or 6 (drop-f radix59), then 8! pair orders and 2 directions each. Evaluated 564480 cases. Previously known H/G GF29 joint-zero occurs exactly once, printed radix60 pairing/order with ascending powers. Both independently planted true orders retained; one ambiguous. Conditional, not independent evidence of H/G intent; no plaintext, key, or new consumer. Partial rows use all-row column type eligibility; not blind.
+- Durable results: im-results/lp2-p50-radix-dualfactor-discriminator.md (ce5187c36a3486a51c894031153156557501f39f), sims/agent14_stage05_grid_charperm_factor_sft.cjs, im-results/agent14-stage05-grid-charperm-factor-output.json. Exact V8 computation run; standalone Node wrapper not separately run. Original scans 66–68 visually checked, canonical transcription used for computation. No new CI.
+- Next: do not resweep table column permutations under the same type/H/G assumptions; only pursue a genuinely source-selected downstream consumer, or independent executable assignment. No claim that full LP2 was solved. Preserve lease until age rule permits release.
+
 # Agent14 — 27 November 2026, draw9 issue-directed fallback
 
 Immutable lease `agent14-draw9-2026-11-27T09:12:33.642Z-independent` verified at claim commit 5b544fc7e5f7f3942833cb83efbd7f57ea5f. Earliest orderly release 10:22:33.642Z. Director queue checked: existing blind packets wait on real independent humans; #2989 external capture, #2273 side information and #41 complete decoder remain unavailable. No new claim on blocked tasks.
