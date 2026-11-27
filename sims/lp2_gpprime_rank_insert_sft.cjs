@@ -30,10 +30,20 @@ if(sf[p]!==stamp){sf[p]=stamp;f[p]=r;sg[r]=stamp;g[r]=p;mapped++}}
 if(!ok)continue;posPass++;let forbidden=Array(n).fill(0);
 for(let i=1;i<C.length;i++){if(C[i]===C[i-1])continue;let p=D[s+i],r=R[kind==="cipher"?C[i-1]:D[s+i-1]];if(sf[p]===stamp&&f[p]===r){ok=false;break}forbidden[p]|=1<<r}
 if(!ok)continue;negPass++;
-let S=range().map(p=>sf[p]===stamp?f[p]:-1),free=range().filter(p=>S[p]<0),rs=range().filter(r=>sg[r]!==stamp);
-free.sort((p,q)=>rs.filter(r=>!(forbidden[p]&(1<<r))).length-rs.filter(r=>!(forbidden[q]&(1<<r))).length);
+// Proposed donor fixes the insertion schedule in both roles. Propagate
+// possible initial-list ranks and intersect each plaintext's static rank
+// domain with every observed occurrence, without guessing an initial order.
+let sd=range().map(p=>(sf[p]===stamp?1<<f[p]:all)&~forbidden[p]),dom=Array(n).fill(all);
+for(let i=0;i<C.length;i++){let p=D[s+i],c=C[i],r=R[kind==="cipher"?c:p],a=dom[c]&sd[p];sd[p]=a;if(!a){ok=false;break}
+let mn=31-Math.clz32(a&-a),mx=31-Math.clz32(a),lr=low(r),lm=low(mn+1),lx=low(mx);
+for(let g=0;g<n;g++){if(g===c)continue;let x=dom[g],rm=((x&~lm)>>>1)|(x&lx);dom[g]=(rm&lr)|((rm&~lr)<<1);if(!dom[g])ok=false}
+dom[c]=1<<r;if(!ok)break;
+}
+if(!ok)continue;
+let S=range().map(p=>-1),free=range(),rs=range();
+free.sort((p,q)=>{let count=x=>{let k=0;for(;x;x&=x-1)k++;return k};return count(sd[p])-count(sd[q])});
 let nodes=0,capped=false,solutions=0;
-const visit=(k,used)=>{if(++nodes>200000){capped=true;return}if(k<free.length){let p=free[k];for(let r of rs){if((used|forbidden[p])&(1<<r))continue;S[p]=r;visit(k+1,used|(1<<r));if(capped)break}S[p]=-1;return}
+const visit=(k,used)=>{if(++nodes>200000){capped=true;return}if(k<free.length){let p=free[k];for(let r of rs){if((used&(1<<r))||!(sd[p]&(1<<r)))continue;S[p]=r;visit(k+1,used|(1<<r));if(capped)break}S[p]=-1;return}
 let slots=range(),bind=Array(n).fill(-1),rev=Array(n).fill(-1);for(let i=0;i<C.length;i++){let p=D[s+i],j=S[p],slot=slots[j],c=C[i],r=R[kind==="cipher"?c:p];if(bind[slot]>=0&&bind[slot]!==c||rev[c]>=0&&rev[c]!==slot)return;bind[slot]=c;rev[c]=slot;slots.splice(j,1);slots.splice(r,0,slot)}
 let unseen=range().filter(c=>rev[c]<0);for(let j=0;j<n;j++)if(bind[j]<0)bind[j]=unseen.shift();assert(eq(encode(D.slice(s,s+C.length),S,bind,kind),C),"replay");solutions++;if(examples.length<10)examples.push({s,mapped,S:S.slice(),A:bind});
 };visit(0,0);if(solutions)complete++;if(capped)unknown++;
