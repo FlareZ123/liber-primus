@@ -1,0 +1,3252 @@
+[
+  {
+    "base": 110,
+    "reverse": false,
+    "forcedIdentityDigits": 231,
+    "unchangedRunes": 11675,
+    "total": 12956,
+    "firstNonuniqueActive": 38,
+    "firstNonuniqueKeys": [
+      [
+        0,
+        0
+      ],
+      [
+        55,
+        55
+      ]
+    ],
+    "changing": [],
+    "trace": [
+      {
+        "digit": 0,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 1,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 2,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 3,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 4,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 5,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 6,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 7,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 8,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 9,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 10,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 11,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 12,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 13,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 14,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 15,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 16,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 17,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 18,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 19,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 20,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 21,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 22,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 23,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 24,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 25,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 26,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 27,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 28,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 29,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 30,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 31,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 32,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 33,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 34,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 35,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 36,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 37,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 38,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 39,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 40,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 41,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 42,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 43,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 44,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 45,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 46,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 47,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 48,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 49,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 50,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 51,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 52,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 53,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 54,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 55,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 56,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 57,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 58,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 59,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 60,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 61,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 62,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 63,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 64,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 65,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 66,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 67,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 68,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 69,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 70,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 71,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 72,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 73,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 74,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 75,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 76,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 77,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 78,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 79,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 80,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 81,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 82,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 83,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 84,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 85,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 86,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 87,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 88,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 89,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 90,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 91,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 92,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 93,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 94,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 95,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 96,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 97,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 98,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 99,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 100,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 101,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 102,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 103,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 104,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 105,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 106,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 107,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 108,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 109,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 110,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 111,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 112,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 113,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 114,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 115,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 116,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 117,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 118,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 119,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 120,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 121,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 122,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 123,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 124,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 125,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 126,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 127,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 128,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 129,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 130,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 131,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 132,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 133,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 134,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 135,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 136,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 137,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 138,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 139,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 140,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 141,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 142,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 143,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 144,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 145,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 146,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 147,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 148,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 149,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 150,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 151,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 152,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 153,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 154,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 155,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 156,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 157,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 158,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 159,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 160,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 161,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 162,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 163,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 164,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 165,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 166,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 167,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 168,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 169,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 170,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 171,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 172,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 173,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 174,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 175,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 176,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 177,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 178,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 179,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 180,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 181,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 182,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 183,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 184,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 185,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 186,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 187,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 188,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 189,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 190,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 191,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 192,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 193,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 194,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 195,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 196,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 197,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 198,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 199,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 200,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 201,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 202,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 203,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 204,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 205,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 206,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 207,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 208,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 209,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 210,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 211,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 212,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 213,
+        "active": 43,
+        "keys": 1
+      },
+      {
+        "digit": 214,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 215,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 216,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 217,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 218,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 219,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 220,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 221,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 222,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 223,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 224,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 225,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 226,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 227,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 228,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 229,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 230,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 231,
+        "active": 38,
+        "keys": 2
+      }
+    ]
+  },
+  {
+    "base": 110,
+    "reverse": true,
+    "forcedIdentityDigits": 271,
+    "unchangedRunes": 12930,
+    "total": 12956,
+    "firstNonuniqueActive": 11,
+    "firstNonuniqueKeys": [
+      [
+        0,
+        0
+      ],
+      [
+        28,
+        40
+      ],
+      [
+        78,
+        66
+      ],
+      [
+        92,
+        84
+      ]
+    ],
+    "changing": [
+      [
+        28,
+        40
+      ],
+      [
+        78,
+        66
+      ],
+      [
+        92,
+        84
+      ]
+    ],
+    "trace": [
+      {
+        "digit": 0,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 1,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 2,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 3,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 4,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 5,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 6,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 7,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 8,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 9,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 10,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 11,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 12,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 13,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 14,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 15,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 16,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 17,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 18,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 19,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 20,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 21,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 22,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 23,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 24,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 25,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 26,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 27,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 28,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 29,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 30,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 31,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 32,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 33,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 34,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 35,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 36,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 37,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 38,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 39,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 40,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 41,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 42,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 43,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 44,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 45,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 46,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 47,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 48,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 49,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 50,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 51,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 52,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 53,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 54,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 55,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 56,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 57,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 58,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 59,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 60,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 61,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 62,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 63,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 64,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 65,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 66,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 67,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 68,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 69,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 70,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 71,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 72,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 73,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 74,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 75,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 76,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 77,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 78,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 79,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 80,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 81,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 82,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 83,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 84,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 85,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 86,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 87,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 88,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 89,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 90,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 91,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 92,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 93,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 94,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 95,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 96,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 97,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 98,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 99,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 100,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 101,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 102,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 103,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 104,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 105,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 106,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 107,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 108,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 109,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 110,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 111,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 112,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 113,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 114,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 115,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 116,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 117,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 118,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 119,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 120,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 121,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 122,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 123,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 124,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 125,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 126,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 127,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 128,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 129,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 130,
+        "active": 51,
+        "keys": 1
+      },
+      {
+        "digit": 131,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 132,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 133,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 134,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 135,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 136,
+        "active": 50,
+        "keys": 1
+      },
+      {
+        "digit": 137,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 138,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 139,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 140,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 141,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 142,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 143,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 144,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 145,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 146,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 147,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 148,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 149,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 150,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 151,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 152,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 153,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 154,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 155,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 156,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 157,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 158,
+        "active": 49,
+        "keys": 1
+      },
+      {
+        "digit": 159,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 160,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 161,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 162,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 163,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 164,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 165,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 166,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 167,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 168,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 169,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 170,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 171,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 172,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 173,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 174,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 175,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 176,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 177,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 178,
+        "active": 48,
+        "keys": 1
+      },
+      {
+        "digit": 179,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 180,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 181,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 182,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 183,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 184,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 185,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 186,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 187,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 188,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 189,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 190,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 191,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 192,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 193,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 194,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 195,
+        "active": 47,
+        "keys": 1
+      },
+      {
+        "digit": 196,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 197,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 198,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 199,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 200,
+        "active": 46,
+        "keys": 1
+      },
+      {
+        "digit": 201,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 202,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 203,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 204,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 205,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 206,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 207,
+        "active": 45,
+        "keys": 1
+      },
+      {
+        "digit": 208,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 209,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 210,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 211,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 212,
+        "active": 44,
+        "keys": 1
+      },
+      {
+        "digit": 213,
+        "active": 43,
+        "keys": 1
+      },
+      {
+        "digit": 214,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 215,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 216,
+        "active": 42,
+        "keys": 1
+      },
+      {
+        "digit": 217,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 218,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 219,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 220,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 221,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 222,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 223,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 224,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 225,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 226,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 227,
+        "active": 41,
+        "keys": 1
+      },
+      {
+        "digit": 228,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 229,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 230,
+        "active": 39,
+        "keys": 1
+      },
+      {
+        "digit": 231,
+        "active": 38,
+        "keys": 1
+      },
+      {
+        "digit": 232,
+        "active": 37,
+        "keys": 1
+      },
+      {
+        "digit": 233,
+        "active": 37,
+        "keys": 1
+      },
+      {
+        "digit": 234,
+        "active": 36,
+        "keys": 1
+      },
+      {
+        "digit": 235,
+        "active": 36,
+        "keys": 1
+      },
+      {
+        "digit": 236,
+        "active": 36,
+        "keys": 1
+      },
+      {
+        "digit": 237,
+        "active": 36,
+        "keys": 1
+      },
+      {
+        "digit": 238,
+        "active": 35,
+        "keys": 1
+      },
+      {
+        "digit": 239,
+        "active": 35,
+        "keys": 1
+      },
+      {
+        "digit": 240,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 241,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 242,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 243,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 244,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 245,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 246,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 247,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 248,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 249,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 250,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 251,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 252,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 253,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 254,
+        "active": 34,
+        "keys": 1
+      },
+      {
+        "digit": 255,
+        "active": 33,
+        "keys": 1
+      },
+      {
+        "digit": 256,
+        "active": 33,
+        "keys": 1
+      },
+      {
+        "digit": 257,
+        "active": 33,
+        "keys": 1
+      },
+      {
+        "digit": 258,
+        "active": 33,
+        "keys": 1
+      },
+      {
+        "digit": 259,
+        "active": 33,
+        "keys": 1
+      },
+      {
+        "digit": 260,
+        "active": 32,
+        "keys": 1
+      },
+      {
+        "digit": 261,
+        "active": 29,
+        "keys": 1
+      },
+      {
+        "digit": 262,
+        "active": 28,
+        "keys": 1
+      },
+      {
+        "digit": 263,
+        "active": 24,
+        "keys": 1
+      },
+      {
+        "digit": 264,
+        "active": 24,
+        "keys": 1
+      },
+      {
+        "digit": 265,
+        "active": 23,
+        "keys": 1
+      },
+      {
+        "digit": 266,
+        "active": 22,
+        "keys": 1
+      },
+      {
+        "digit": 267,
+        "active": 21,
+        "keys": 1
+      },
+      {
+        "digit": 268,
+        "active": 20,
+        "keys": 1
+      },
+      {
+        "digit": 269,
+        "active": 17,
+        "keys": 1
+      },
+      {
+        "digit": 270,
+        "active": 14,
+        "keys": 1
+      },
+      {
+        "digit": 271,
+        "active": 11,
+        "keys": 4
+      }
+    ]
+  },
+  {
+    "base": 128,
+    "reverse": false,
+    "forcedIdentityDigits": 25,
+    "unchangedRunes": 1375,
+    "total": 12956,
+    "firstNonuniqueActive": 55,
+    "firstNonuniqueKeys": [
+      [
+        0,
+        0
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "changing": [
+      [
+        64,
+        64
+      ]
+    ],
+    "trace": [
+      {
+        "digit": 0,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 1,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 2,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 3,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 4,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 5,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 6,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 7,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 8,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 9,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 10,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 11,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 12,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 13,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 14,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 15,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 16,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 17,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 18,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 19,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 20,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 21,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 22,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 23,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 24,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 25,
+        "active": 55,
+        "keys": 2
+      }
+    ]
+  },
+  {
+    "base": 128,
+    "reverse": true,
+    "forcedIdentityDigits": 96,
+    "unchangedRunes": 5226,
+    "total": 12956,
+    "firstNonuniqueActive": 52,
+    "firstNonuniqueKeys": [
+      [
+        0,
+        0
+      ],
+      [
+        64,
+        64
+      ]
+    ],
+    "changing": [
+      [
+        64,
+        64
+      ]
+    ],
+    "trace": [
+      {
+        "digit": 0,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 1,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 2,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 3,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 4,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 5,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 6,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 7,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 8,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 9,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 10,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 11,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 12,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 13,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 14,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 15,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 16,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 17,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 18,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 19,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 20,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 21,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 22,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 23,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 24,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 25,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 26,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 27,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 28,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 29,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 30,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 31,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 32,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 33,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 34,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 35,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 36,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 37,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 38,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 39,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 40,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 41,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 42,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 43,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 44,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 45,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 46,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 47,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 48,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 49,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 50,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 51,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 52,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 53,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 54,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 55,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 56,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 57,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 58,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 59,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 60,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 61,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 62,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 63,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 64,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 65,
+        "active": 55,
+        "keys": 1
+      },
+      {
+        "digit": 66,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 67,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 68,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 69,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 70,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 71,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 72,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 73,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 74,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 75,
+        "active": 54,
+        "keys": 1
+      },
+      {
+        "digit": 76,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 77,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 78,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 79,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 80,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 81,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 82,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 83,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 84,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 85,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 86,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 87,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 88,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 89,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 90,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 91,
+        "active": 53,
+        "keys": 1
+      },
+      {
+        "digit": 92,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 93,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 94,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 95,
+        "active": 52,
+        "keys": 1
+      },
+      {
+        "digit": 96,
+        "active": 52,
+        "keys": 2
+      }
+    ]
+  }
+]
