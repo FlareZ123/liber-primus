@@ -105,7 +105,16 @@
         "heldDead": null,
         "fitText": "Y L Y G W AE T X W O M NG AE IA IA IA OE C EA U U IA M Y L TH Y S TH E H A E AE B OE C X EO X C EA G P A P R M X N E U L E EO EA H L AE P O W E Y AE AE C G EA F R NG M W J G P E G R Y U R TH S G R R C AE AE D R T E S O O IA E OE G TH F T TH D S W T R NG N X P H H EA E D B T R M P EO E H EA OE Y M I N F A X M AE F M EA EO M C B O H P A C A A TH EA N C AE IA S C EO R C IA OE H IA M NG R R OE Y X M I TH F O T TH EA E T TH T L C S Y D O A AE G Y G M J M P E T G D O I W J EO B P N NG EO P Y X S A OE F B F J C N L Y N U TH EA",
         "heldText": "AE G L B AE B X U W W L L EA N G D I R H A U NG R E M S Y H U N B X U B U P E N Y U L U NG G M OE Y F N OE TH B X G O A F U B X U L Y U P X N F F D B T OE EA T G P U EA H B F H Y TH F Y I IA R AE EA OE N M B D Y S J G AE E P I TH EA IA IA M W Y J D H T I S Y H AE AE NG M T T EA G F A NG AE J R H J AE M T EA TH O E X P NG O I TH IA L U NG E S G E M I X B R N R EA U W A AE U Y A B NG TH T D TH L TH R L N OE U A F C F EO P AE L D M AE C O Y J EA E TH E C C TH NG B C G E EO F X T R P EA EA O T U J TH P I T C M H P G M IA T U D T L AE A Y L OE EO G NG OE EO N A TH F M I OE W OE M O OE Y A P L C P C U G W I TH EA D R H NG NG X B H F U N Y B I AE EA N H R I U T TH I A O Y S OE E A R T AE S EO H N TH NG W D O NG U R NG P L U L O Y J N X X T F Y H F E NG U OE X Y T IA O P F NG N B D A S N TH OE NG A EA X EO X J U B Y C I IA D AE OE TH T L T L EO M AE A M EO M EA R H T R W Y EO EA EO C T Y I W F F D T U L O D J R OE EO C N IA X W OE OE I U NG E N IA D J F TH AE P L N D TH M D AE C D J P J L N EO AE E EO R W M O S P M AE NG L J I AE TH R Y OE D A I AE Y Y R W Y I E P N I T P OE G J S TH U IA Y S OE EA EO I B I J F M S P IA F R D C F I B F NG O AE IA W X A M H TH J TH B EO L OE IA N U I S E W E U R C H B B M NG NG T Y U TH P R J W B G J T M G H C J G L U X E J T Y TH Y F I D G F P O O O G E AE EO X S C S X OE S B P C N L L Y F IA Y P B U S EA C P E P E NG A A O X U TH E I N B D R IA G C OE A IA C B EO S EA F EA L R P T AE H NG IA E Y EA EA D J AE N F N EA TH EO I TH A EO X G N X D I E TH NG B EO J J C F P IA N TH N L OE P G L N OE T EO TH F T U A M A X B EA X E W R H IA TH OE E EA O D AE IA C L X E M R U W N O IA L OE I T E B EO B L M AE AE EA P R EA O H C S EA EO B P F P W U Y R B IA Y X E U E O H EA Y D U I TH X Y A M T AE F H B H A H AE IA A F T C E AE W W AE A L M A S B H N F G R T S R U U B E U TH OE C U OE IA E NG G I EO X OE NG M D B EA J S P IA OE E S N W Y G OE AE IA NG EO E AE A S H H N Y S T EA G TH T L O T NG C E D F E F N EO D E P S EO L OE W Y R H S D G M X I U D IA R R L I T G EA F J Y P L D R D E EO Y Y W E N X AE D I C O G E P C NG H T G O Y IA B B J M U H F AE F AE B E AE E C R Y A NG M AE EA N H OE OE I A D M OE L AE N H EA IA O EA Y I IA EO A IA NG F EO X A C D R AE AE F S IA AE O EA AE X IA X NG AE S S TH O J W O EA EA R X F B C H H AE C EA S EA AE EO S B O A EA L B I I D EA Y TH F T D OE TH N M J E Y U T P AE D L M T H G E C F NG Y G P O EO P C X P I E D P NG NG IA L EO A N U H H C T NG C EO X NG D EA I J R NG U J W H S N S A IA M H A NG E TH X N EO C Y NG X U S G NG T P G J I NG R OE TH T O NG T EO J EA D AE P I O T O D J NG C X I OE I F B G R TH B IA F C G E S EA D N X I TH TH E I N D A E G R H I TH U AE C P NG R E C H D W J TH T EA N U",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -155,7 +164,19 @@
         "fitDead": null,
         "heldDead": 9,
         "fitText": "Y L Y G W AE T X W O M NG AE IA IA IA OE C EA U U IA M Y L TH Y S TH E H A E AE B OE C X EO X C EA G P A P R M X N E U L E EO EA H L AE P O F AE J M A G N F G TH A C H M W P AE IA EO M U H A NG R W M G R Y D J H Y H O W L A L N B U A O D OE EA A Y F EO H OE AE IA AE J AE AE B J J EA M EO J F O B EA D P D Y OE IA B S R W N EO S H EO NG B E W O O D X D P OE L AE AE NG B N NG A T G J W E EO M M A I M S R Y E I W I TH T A B IA AE B O T EA M H C X J Y R NG S N T X EO D J C X AE NG U W Y NG D W AE S TH P NG D P P B EO EO D N EA F",
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 550,
+          "phasesBefore": [
+            14
+          ],
+          "phasesAfterFit": [
+            2,
+            3,
+            4,
+            5
+          ]
+        }
       }
     },
     {
@@ -206,7 +227,16 @@
         "heldDead": null,
         "fitText": "EO G Y C D I O W N H B O A J P P H C IA B S X EO EA AE F H X S R D I E A R W NG W X M O I C Y I EA M M P AE O B P L B Y M M N EA E OE E AE EO I NG EA U C TH O E L Y NG EA E C L J B Y R L R S O E J J N R S C F M AE F D L B U P TH B N S G O E H TH T E G M IA TH N O TH R E F Y C U U IA A U N OE S I F M A T R S C NG I S X W Y I L I A U S D NG E F L O D O E P H D IA E H E L S EA M B NG U P E TH B EA B O T O P W L A C TH H J NG EO G E IA R F J E J NG X N L Y IA O P H H Y F M T L OE R EA U S Y L N M P D B A U",
         "heldText": "U R TH T N O F T W G W C S TH H EA H S W H T W M E E TH J A D J OE EO EO T X EA R A Y F W S H EA NG IA A J H G B O F G TH J X B I T G E H F Y F A S F OE R U N NG E J J EO IA NG O S D Y U T J Y L G U Y R H O O N EO S I OE I C G EO W Y N Y O OE EO Y D W O A TH M I U D O E F TH X NG F D H I IA Y I T D U S EO B E R X EO H B Y A F AE EA O B EA NG R C I P R E AE Y U G C G A X EO I O NG U O H E P R N E L NG X I S L F J F I W T NG U O X AE A X R B E R NG T H I W J T D EA IA TH M EA EA IA M U B R R E H IA R O D EA NG M Y O S I N OE U OE H M G IA NG W OE J AE N E OE NG S L E NG O E H EO A EO W M F IA O J C NG U EO N M D NG L U TH A OE O X A EA N N X A D R N B U E O Y H A Y NG TH I M TH AE X EA OE AE A D EO NG X L X M W EA L F W B P R J M EO IA EA I D S R NG F N EA P N F H J J L OE O N I S H E W H B U M I AE I X O EO L I Y I I N A E AE X TH J O J I C EO E S E A N G EO A D IA AE L TH EO I G T X I N O AE U C I B H IA L N Y U NG N S EO G M F H J N Y S TH A F C AE T R A NG W R W Y EA Y L H EA I C C G EO B X X Y C J W L I Y I E Y EA IA NG G N N EO EO M W AE Y O F TH EO NG J R C A U B T IA AE TH W S C EO OE H OE EA O U EA P F O I M T O M C M X A J OE F I M W E AE E I X AE L N H X AE U R W B B E NG U M OE B O L F EO T B P O IA NG R EA P NG B B W E Y NG G U P C AE O M R TH IA NG OE M S EA E O TH OE O EO C T L O Y P G U O EA C H W C P OE F TH J EA F EA X L EA E EO C G J B C M EA P B D A O N R Y OE M N B F I S D X EO S X G R EO O I A X F D A I IA W Y J A F H S T EA O R F I AE C OE F N AE E U H TH EA R P I IA A Y OE B A G OE EO OE C AE S E B F J S X I C I X T S EA C F G P AE P NG TH X E N AE Y NG C U J NG N EA E H T P G H I S C TH EA I OE A D W IA Y M X E H R TH P EA I S C J E F I M O P Y P C S C AE I R A C F D B F EO A E O I T U M P OE M A J I S TH C B EO NG D E Y AE B G X U D A S G O O F L D O OE T EO U G L T H IA B H L Y C T IA M U OE U X Y U P Y N O TH TH N TH R R A J W IA R AE D TH OE A TH EA L X I C S TH G E T L NG O I OE L C W D OE TH EA U IA L NG D J L U B EA R U P D T N P R O W A O EA U C N H EO R N M N E J P J D J J M D C N E E NG R P R H OE O EA C TH AE EA T A C T D F A T I R J IA D O S AE H W C J EA H A W N O Y EA B R M N A D X IA TH S J Y L X F AE O EA AE F I L D O EO I T H F U U I A IA P F W AE X TH T M R N H Y I O IA S O L H W EO M S H U U I Y T T I X G B N Y H S M R C X C NG S A C Y E AE B U F E AE AE B IA W M R L S NG AE OE IA M C S I EO A N TH N EA W NG Y W Y J TH O P G T S C L IA F NG OE S A IA Y D G N E W EA A U I IA E A N H J R M W D R I W F T S C H U F EA P S M S NG S TH E W T J IA P I E S S U IA TH W Y W L X N N A T I H N F EA Y P L NG R S IA I D U O R W T NG H W I R NG R W Y T B E W E M S B E D N OE J U O P AE D",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -255,7 +285,14 @@
         "heldScore": null,
         "fitDead": 25,
         "heldDead": null,
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 25,
+          "phasesBefore": [
+            10
+          ],
+          "phasesAfterFit": null
+        }
       }
     },
     {
@@ -306,7 +343,16 @@
         "heldDead": null,
         "fitText": "X NG O NG P X P R D F L M E A L S D J X W M A N P B O A H EA J AE AE A J D J TH R EA J G Y EA I B U C AE F S W IA I C N F G P OE G L H A EO TH X TH AE S Y C M EO R R D X A NG I S IA D E EO W TH Y TH E P A I TH A R F OE X S D R A Y N M A NG OE OE OE E EA U I N G NG S T C B I C M U S IA S M IA B O G OE EO S AE J G H AE TH G TH E U U I B OE AE U B C IA TH S X EO G I Y TH L I N R C IA OE U EO P J L H A Y AE R O C R OE L P I NG EO IA NG AE NG E D IA EO C B H I H O O A U O R R F E M A IA U I T U EO AE L OE X OE EA G S G O IA IA NG S",
         "heldText": "OE W E I OE I TH TH P OE Y N AE EA OE L J TH U NG D N C A C NG S C L AE X S EA I IA G G I O T Y M E AE G M IA IA TH M A C S EO E U E IA W U IA NG A D I W Y U G N D C M E O O X EA NG C I B N O B G S W B L OE F L TH T I J IA NG Y EO X S O Y EA F AE L T F X EO F D OE EA EO T A OE Y M EO P N T W G I IA X H D A H Y B N AE A L M L EA IA NG W NG X B TH M J EO EA G L T F D OE G D S IA H OE E IA M EO E IA B OE EO EA I E U NG W S IA B B G G IA M X B P G OE G U M H NG G O A L J L E W NG O M I OE J N NG X C X N C IA U E I J X IA T U U W AE P OE M L G W OE AE A P M C D OE EA IA S P EA M G W D C S T AE I IA U EA Y D I A B O H H A AE T NG N IA W L G C M B G IA S O OE NG Y N I AE W C EA F J F IA P S S B NG B TH U E Y G NG H R A U X IA Y N X Y T Y NG D U AE J S X OE D U B M IA T EA O D G X F X IA X G I J AE NG A H J E X S J P EO R IA I X G T P F X M NG O B B E C T E EO L E C C OE C G L R IA I NG N IA R IA T OE G E L G B B R NG R U S F G S P L AE M EO Y IA OE T TH A T EA U H J M N G P E T A D IA L R U EO Y A E X S TH L R L U H I EO P OE Y Y T X EA D P M A OE O OE M X C P EO T W I EA Y P X L EA H H M TH R EO NG J AE TH Y X J N OE T H U EA G M F D Y F R Y OE U E A F TH AE AE D H F EA W EA B D AE TH IA O O M P R W OE TH IA R X L M X P M E O M M B AE X AE IA P L R U TH R D NG W F A F P T E D U H T O OE U R N E EO W OE TH U EO G P W M H C X J A Y N D M X D X S D EO NG OE X A EA A I NG X M J TH F J W TH C A I P EO D M X X TH E I H AE OE T NG I EA OE X C J X S IA Y NG L R P I G A C L N F E NG P EO EA G W J J A B IA G N U IA TH U J L G A Y NG EA EA EO N G EO O N O IA N IA B W AE L O C O S Y L C EA F S S NG L A TH P J N J H G U TH C TH F L H D T TH A G N W W T Y D NG I Y T R X L NG B N W F Y X C D D Y C EA O F A M S OE A AE IA NG D W A TH IA U C OE X Y IA R C AE G E A B B B J R TH AE R S J B L OE H X U Y U EO M OE R U L B X M EA A M IA E D R R IA A W TH U M OE B T X NG EA T M P EA W EO EA D D W L E A X F M TH I NG Y C EA P EO B Y EA EA N H R OE W J W L M C Y I I T S G O P Y H P S U IA TH L W B W W D J EA I M Y EA P AE S Y EO A G B T NG A A IA O S R H AE J Y NG O TH AE D M M L IA Y P AE M D EA S I H EO E N G J G X X H EO S G TH M NG X W Y C A X J M F J L L L P OE TH AE F R E C S W B EA NG EA M OE N W EO G F M TH X Y C X OE R Y E J L TH OE TH U NG L F U D F F Y Y J OE C G X D TH D AE C S OE P P I F B T NG D AE T EO AE T E Y B NG S EA TH W EO A EO W C I S I B L X U O J OE U IA EO EO TH F TH F TH S J O S T U OE IA P Y U NG EA B C N O N E IA F S IA N C EA H D H IA EO C U EO TH O AE R C X P E H E J I I IA D X TH TH NG NG IA C I AE IA W OE TH S EA N L OE OE IA B B L S F W R X AE L R N G L AE EA EA Y W OE U O S L Y IA D M NG X F IA J F E EA M H TH L B G W I D T L IA S NG I OE TH J TH U J H B B OE B G L",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -355,7 +401,14 @@
         "heldScore": null,
         "fitDead": 9,
         "heldDead": null,
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 9,
+          "phasesBefore": [
+            9
+          ],
+          "phasesAfterFit": null
+        }
       }
     },
     {
@@ -406,7 +459,16 @@
         "heldDead": null,
         "fitText": "A C L M B NG G B OE J T C TH X L AE W EA EO J Y B OE EO EA EA I NG E J G N EO N IA E A B IA OE TH EO EO F B J E P IA M X L D R L AE NG Y EO G U NG EO I G NG A N X H U C AE D R R IA EO M X OE L W B D O B I NG E D H IA F EA J OE G P Y M M H T N F H N L Y F J EO F NG C NG C C T S U IA O D H H J X U D O T AE OE OE EA P N I S E S C P X T X F B O N E S N C A EA P D TH AE I NG L L OE NG O TH F D AE EO OE T D H T AE X T OE TH Y IA G D L D D W N J E R J F O NG S O NG TH X L T T D R I TH W OE TH H O F F D NG G G R OE N M O R W C L C X",
         "heldText": "R O R D EO I EO S U L U T E EO NG TH W B X J D M E EO O AE OE IA R A AE J X D B G T D L X U Y J N C U D P S N A S EA F T C AE L L F N B I W F W W X D W IA EO EO TH TH X I X C A I IA OE L S I OE F U M R AE G S G I NG J N A T NG H T AE I AE J R G F A AE B NG Y G C F D R OE C AE O N Y L D H TH NG U W D M OE O OE S A U O H Y TH EA F C P EA IA C A TH EA T R R IA IA F EA W X N R H TH B M OE TH S S Y M NG D B EO B OE EA B B IA M D AE D NG I Y C R TH T O IA NG T T EO E S IA J L L X S AE G U N TH IA OE EO P EO L X B NG W F J G U J L P J Y Y P M G R NG I Y N C R G T AE M L NG O C E M L EA G AE L J E Y U U O H T X R D H S T TH OE S C A P IA O T B D U T EO NG W OE IA D J EO NG P I J D EA EA C B TH U M EA OE R EA C W S L T IA B Y M IA X X U EA T X A OE J F G P U IA O S X O I T M P J I P IA AE I NG N N OE EO E J IA X OE N IA B B I A M R J R NG EO C TH EA P R E G E OE R G O N F IA M M S D AE C EA IA X J R L I AE P M T EA F W B L S I M O J A O EO AE AE N E TH S X T N X AE N D T EA Y B IA L N J I R J AE X OE OE NG H S M S T T NG F EO D G X A L NG NG W EO U L H T EO M A E U I L X O EO AE A I G EO IA H F S NG I AE E E S AE AE W A G G H J EO D B R U M P O H E T TH X F EO N P NG EO W NG L IA EA M J S B O P O U TH J F A J O AE T C IA O M EA T W B NG O W N Y A T M X NG R R C A IA EA W G F B C Y D F OE OE J B Y T T X S S F D TH EA L N H S IA EA OE U T T O P C I U W TH NG O IA EO Y EA B X IA E OE IA S A Y TH S H IA J T U EO IA P P X AE NG S OE Y C IA Y Y NG IA A P Y D EO C I R D D D OE N IA TH P B O N IA EO AE W NG A EO S TH P TH X Y P Y Y R AE A W C T Y T T EA AE TH L EA P OE B B B N H U N I H I M T A S EA C NG U H M J S T R NG C EO IA L S M L E W R F EA P TH L G IA OE N C F Y Y B TH E AE A TH L EA H I L W P Y S EO L IA EA Y H G D W D W W Y A EO J E O Y NG M J O T NG NG TH X B IA U EA TH G O Y EA I EA T H NG R U W X F B Y J D R T AE S X H N IA EA W NG TH TH TH F S F U E O F R NG N F W J O X C EO OE C O G TH X X I O M H AE R IA EO EO D P EO EO E N E B I C S X P O R H G AE F C G P Y X G B OE D J U TH O O L Y D NG EO IA B U G G N X H H I M W T TH H EO AE W OE Y NG A OE OE W T NG AE R O W E TH R G N E C A U D IA EO EA OE D N I NG W NG J Y TH B O J X B I OE OE E E EO P I TH T G Y EO TH G P NG T N OE F U IA O A C G EA W OE M B B G NG M E P R F EO TH U L EO G M EA AE IA OE X OE J AE EO I U OE S M TH NG G U E E X R N EA D M B Y C J D L M E F B H P W EA E TH B AE EO I J EO O EA N EA T F X OE J O X S I T N OE S EA P J Y T C T J G S J U H X EO T T C E OE H IA I EA S W N G U W W N H L X TH TH P N NG O E L J NG B OE G AE J P X EO S N M TH EO O N Y E E B EA E N U G I AE NG A P EA EA E F F N I R M M H D O G M L NG EO EA U R T IA R O N EO R C R P B I S D S I B T L IA NG L IA L EA L NG E B A NG U NG NG C S Y A EA R",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -456,7 +518,17 @@
         "fitDead": null,
         "heldDead": 41,
         "fitText": "A C L M B NG G B OE J T C TH X L AE W EA EO J Y B OE EO EA EA I NG E J G N EO N IA F TH W C T A B P Y EO G TH J OE T IA IA P J X E Y IA N U AE F D O IA TH S G F EA A Y A Y Y L U E AE R IA H B NG X Y N N A J I J R G E T I T B B P J W M TH T J S Y T C EA OE R EO EA P R H N TH R R N P P AE NG F EA W TH N NG L I EA X I P E U OE OE J IA S W AE S L N M T EO H W G U NG S A O B E H OE OE R F T R IA Y R W EO H G T W B L IA A X T AE C C X AE N U N Y EO IA EA M TH P F J OE A EO G L E AE H G S F X NG P W Y OE S O L X E E W IA Y J N E F",
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 332,
+          "phasesBefore": [
+            8
+          ],
+          "phasesAfterFit": [
+            1,
+            2
+          ]
+        }
       }
     },
     {
@@ -507,7 +579,16 @@
         "heldDead": null,
         "fitText": "J W L P C L P P Y H I U IA P I EO N EA G EA AE A E T AE OE G B B U OE J EO O S B TH P TH M AE H H EA W IA L P NG W P IA M H B M B OE J AE B D EO R D L TH C E C A U NG OE D L F EO P TH NG IA O NG L Y P G L H I I IA D T I F TH B D P S R S EA T I N X X EA E H R E EA B U R G TH O IA Y J W S W E IA B EA EO A EO N U P O IA X AE J N I H EO I EA W M J E N Y R TH A B L AE NG G L I W A NG Y M EA U NG T M I M R S S U E OE AE X Y P M A L B O C I H L P F Y N X I B G J X EO EO OE D Y R W T M W I AE R L S TH TH O EO AE NG O IA A R IA U E",
         "heldText": "U Y F M J F EA B U X E S AE H AE EA U P I I P G L EO Y P NG C F EA OE C I M T AE O AE L H E AE E C N IA B N J H X TH U F I OE A IA T R G J G O EA Y D T D U S J M IA G J R I U D F X A L N IA NG W Y D U M TH J C F H P N E R L S EO F W M W F C M J IA B S X C EO AE IA U T U NG TH EA P OE D TH M L H O IA T T EA E X X B C H L M IA W U B AE NG U L U E O G R NG S EA G O E G IA R IA T N N R S N X E EA M NG N J E A T W X NG D M J L B OE N U AE EO EA Y J O E EO EO O Y E T A J N NG TH F EA E F OE G U J IA I NG E U AE W C L IA OE P C X AE L S I U S G OE H A L H T M W M EA EA N S P T A C S W P E L E F I R L J IA M R X G E A S EA EO EO C EA L X B Y EO J J D A IA B EA J EA N X H B A A R W E O M OE I O G U J EO X EO D T T G F X H E IA D I EA M C AE TH EO L X C S H L N D S B H R N D A F H J N T F B E D E M O D P T F J NG R C NG L M U G AE W F X C H N G G Y Y EA C S D EO B NG U IA B U P R X IA A L S L AE D O P M C Y NG O C EO TH M NG F G EO IA J P G AE T AE O J S G OE NG A X C W N D IA IA X T I L S J D EO I EO B EA TH I H X E H L EA O T IA X R EO J N J L U R H P I H F NG R TH H Y IA T B NG R P B AE J F OE U L TH C IA IA X D J NG F Y N W C EO EO IA P M EA J P S F G EA T TH AE P W J T OE F C U AE EA EA TH W W OE I U D TH N S E W J N TH X C U NG I S I L D L W A NG T G P AE NG TH L M AE NG EO IA M Y I R P OE J R L AE A T H IA TH F EA T E S D EA B TH R Y O U J M F EO L T T NG D OE M NG J L AE NG TH I IA C R F M D B I H NG B X EO P W IA L X L C L B D B H U N D I AE D T Y Y N N NG F O D H A Y H Y EO N M EO N I U I L OE F A X D W T L R S G NG G B OE N E T W R J H A Y N S G D P E J A R J B I M C O S J B N N NG T J E I C N R D T EO N T I A T C U EA T P M TH EO P D N T O C R T O EO T TH X L NG T AE S TH IA R B O O AE X EA P E Y X L Y W W P S B IA P W X O EA AE D TH R A X AE I R B O L D T F J X I U F L OE N I R H B S N NG AE M U W J R IA EO EA AE O J AE TH W C L P EO H Y TH Y TH IA P R Y C M TH P O C H T L W H H B EA C M I EA O P L EA H C F NG AE R AE F EA X F C NG U W C EA Y EA T AE P H X IA J E C P C E C TH G S G G E I EO M A NG R B EA M T O EO L S L C W EO M O P C OE TH E Y M Y TH S A D O IA L X B S D AE P EA I R R EO OE T G B M N X EA I TH OE J NG OE S NG I Y NG W Y TH F E U TH IA Y N NG B J D L Y X B U D H IA F I EA H M OE P Y F I Y H M H G F EO TH NG TH S D F AE X E U O A M E W P W J B H E AE AE NG C W O A B NG R IA EO R EA J I A P AE I AE I NG U M T S R R H F J O I C OE EO R G IA H S C E W NG H L P EA X E W B Y U S U Y C H O J G TH T I U NG F J NG Y G M E B NG M F NG W EO R EA B N P M J I C U S EO P A B EA B H I M N D L A O S D AE C N D G NG H B L C Y T AE N OE Y F S B L C N G NG R J N NG W N M J N W O OE IA S H Y IA A A E EO P L L L H D C N X D G F",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -557,7 +638,19 @@
         "fitDead": null,
         "heldDead": 161,
         "fitText": "J W L P C L P P Y H I U IA P I EO N EA G EA AE A E T AE OE G B B U OE J EO O S B TH P TH M AE H H EA W IA L P NG W P IA M H B M B OE J AE B F EO C Y OE U G B G L R OE T IA E IA EO X C D Y R L NG OE T W X EO H H IA A M EO EA O T A N E C N O X H N S B U F H R E AE T C EA R R EA AE IA S EO T W E IA X IA T M I J Y J R TH M Y J N I C J X D C NG W T I U N O A B L OE L I S H N L M IA F C C D S L G M R P X Y E E A E O B NG D NG P O C H W T P AE AE P L X F W J J J P T AE D IA W P F J S TH H OE J TH TH IA I AE T Y EA A H O W F",
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 395,
+          "phasesBefore": [
+            8
+          ],
+          "phasesAfterFit": [
+            3,
+            4,
+            5,
+            6
+          ]
+        }
       }
     },
     {
@@ -608,7 +701,16 @@
         "heldDead": null,
         "fitText": "IA M O IA AE S G H M O Y D OE AE U EA NG J L M L B P N L N EA EO F NG N D A B G EO A H A X EO U O J IA X O AE G IA H L X U EO G I B D T R G A E X S A F J F J D T C X W EO A IA OE T L IA X S P G U O EA Y OE I H W C OE Y I E F H EA IA M O OE NG EA C D J O Y P S I AE T Y E S I J TH TH H TH J OE R NG W W O AE P AE B E N E G TH C A C C J IA G D U D B EA A M I S EO X U O U D W R J I D D T N X Y EO EA IA G B U C I C NG G X B S R AE F OE EA W AE EO J F N O EO EA G U C W C X P T M U I TH O L Y S TH A Y S O EO R S EO S EA L AE J",
         "heldText": "AE P OE X D L S F P EA N I E O E D B G C OE R OE O A J R T IA A NG B NG O X EA T M H O OE N L J F TH OE R TH G L C E P EO A P M L J Y U IA EA IA J B I EA G S G G EO OE EA G L O AE G L U W O D E T F NG T AE G A G B L A AE NG O A S H W OE TH G F A B I IA I F F C F C L L AE O D T X M F C G T I S U IA L J O NG P Y C R B L C I OE F AE I L H D S P N M E T G G D EA IA J U X Y OE EA F AE T IA D C P NG X X R IA J M EA IA U R G R TH S I B TH AE EO C D N TH M U A Y D NG J J B G AE X Y EO M C EO C L NG G L C X P B E TH B J X C AE M C L P I O AE TH EA B L S W L EA R IA X NG D TH I F N M B G D AE U C N A O EA P G X EO EA Y Y C W IA P O W IA D P N R M W D TH I W I TH M G NG R W O R B M T IA C S TH W U IA EA AE R W U C E EA W OE EO Y OE N OE T C NG X NG E Y A J U B IA OE J R T I I O L TH E W L A D NG U L EO J E J X M T H EA L IA R T M EO S EO AE EA L D OE N B EA AE E E J B D IA I T W R X AE I H B AE T EA E M P I P L I AE H TH AE P R S M O Y EO T OE U EA L G AE Y EO EA H B TH I EA B X M U IA TH NG X X I Y U U S H G T W Y C EO J OE Y L Y O EA S NG IA N OE U Y W D F IA O P E EA H O O OE T L A O N E O F R E R EO E G OE B B P Y B E X Y G AE EO A M R F F EA C OE AE I S D AE F L U NG J A L F F G EA P T B P I M D A TH F B Y D E X F TH U M AE F Y W F D T Y H C O X W M W G W U G L X Y W EO L R O X TH N A A H S G Y S EO B J L E E EO J U N I T D I Y L M IA P TH G EO A C W J X E S X H R S H EO E OE I M A A EO E I C A X EO Y O F M I C C S IA S I E R U AE NG X Y H G U B NG TH R X A M T O W B A N A D I W TH C D C W S A W C I M EA C A I EA T EA EO N TH P EA IA L D L N B R H U T H C R M T TH R OE TH M D I R EO TH R H N G U U NG NG T H W W TH J O M O IA AE J W F TH X Y R E TH J AE F L N IA A W E Y O G W L H Y L EA R AE IA H C S AE U J C S M TH F H TH I OE AE IA U S J I X Y Y M W L Y Y EO S J I EA EO AE C C D A P B AE O EA L H TH NG R I I AE F G Y OE EA NG L S TH EO X M M J H C O M Y P A OE AE A P B TH T R IA IA O N S D U O F M NG TH OE P D H P D U F T X L T T T J Y X AE T D TH IA D P NG J H R A Y I AE N F G F J F E EA I E Y C OE A R S T Y EO NG X O AE W O G W B M Y I IA G F S Y C M X N OE TH W G B E S W EO H E EO G D OE A L A C U Y EO EO R W D Y A B D EO N IA R A B T F NG A A C D Y I B AE R F AE X S M N I AE I U OE EO U S L TH W R NG OE C M O G U U EO O E R X F X A E N J AE M B X U IA F M D TH EA P E L X F D AE M F EO L I A E M G O M G L Y E C R NG G EA IA E A O OE G AE C NG S W T Y X L IA M N TH X O P H S W P M H P P IA S B F U IA R U E N C P EO T D R J Y X J EO X X T X TH A A S F NG IA I G O F D I EA G M F M R L OE R F E P M AE I I E F NG X OE R L TH J F M J E R N M A IA H W B NG L EO EA R R X TH AE EO G NG IA M C I F EA NG L M B P EA G S O J A G B D C E EA A",
-        "replay": true
+        "replay": true,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": null,
+          "finalPhases": [
+            8
+          ],
+          "phasesAfterFit": [
+            9
+          ]
+        }
       }
     },
     {
@@ -657,7 +759,14 @@
         "heldScore": null,
         "fitDead": 89,
         "heldDead": null,
-        "replay": null
+        "replay": null,
+        "fullFeasibility": {
+          "firstImpossibleChapterOffset": 89,
+          "phasesBefore": [
+            11
+          ],
+          "phasesAfterFit": null
+        }
       }
     }
   ]
