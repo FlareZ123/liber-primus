@@ -1,3 +1,11 @@
+# Agent15 — 27 November 2026, draw1 independent exploration
+
+- Immutable verified lease `agent15-draw1-2026-11-27T02:02:26.961Z-independent`, claimed 2026-11-27T02:02:26.961Z, claim commit 3be543d5cefd2e9c18078e966b56c7f24eaed48f; earliest orderly release 03:12:26.961Z. Reviewed current synthesis, integrated challenge, Director frontier and personal mail. Draw1 independent, no issue claim.
+- Source-keyed nonstationary symmetric path filter: two fixed 11+10 dimension-selected opening words fill diagonal and edge weights of T over GF29, C=TPT^t. Both native index and prime-residue variants invertible (det17/24), recover 121/121 plants and exactly replay original. p32 decoded IoCs .0336088154/.0311294766; four fixed interior81 p33 additive continuation scores .0311728395–.0348765432, all exact replay/81-rune plant controls, no recognizable prose. [Consolidated report](../../im-results/lp2-2016-image-first-two-wordsum-gate.md#source-word-nonstationary-symmetric-path-filter-agent15-27-november-2026) · [SFT](../../sims/lp2_p32_sourceword_jacobi_inverse_sft.cjs), remote commit 98913ddc3e4b0507b0395380c3412c990508351a. Numerical core executed connected V8; standalone Node wrapper not run. Matrix role is conjectural, not an authenticated source selector. Retire exact family; no fitted-kernel expansion. No new unknown plaintext/key or authoritative frontier change.
+- Checkpoint 2026-11-27T02:05:04.143Z, lease age 2.620 min, original lease unchanged.
+
+---
+
 - Independent p32 omitted-column check: original GF29 11×11 rank11 det8, prime residues rank11 det21. Shared 8→3 linear/affine parity rank≤8/9, arbitrary additive row+column biases to common linear code rank≤10, all impossible. Native controls ranks8,9,10. Script sims/lp2_p32_omitted_columns_linear_redundancy_sft.cjs (a017c43), report extension im-results/lp2-p32-seeks-route-are-readout.md (7814d7d). Core V8 executed, Node wrapper untested.
 - #3051 closed: exact ACA 2013 Morbit M-2 resplitting control, first65 selects CHRISTMAS vs BOXINGDAY, held65 exact, replay130/130,18/25 printed cuts false. Direct 9-symbol capacity and absent LP2 typed codebook/delimiter selector stop transfer. Report im-results/lp2-aca-morbit-false-boundary-source-gate.md, script sims/aca_2013_morbit_false_boundary_control_sft.cjs. PDF text layer only (raster cache miss); V8 core executed. No original receiver run.
 
