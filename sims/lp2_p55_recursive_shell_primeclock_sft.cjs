@@ -27,6 +27,14 @@ function run(corpus,source,reference) {
  const target=corpus.pages[55].indices, r=route(rows[55].map(x=>x.length));out.geometry={lengths:rows[55].map(x=>x.length),...r};
  out.plants=[p56.slice(0,76),corpus.pages[57].indices.slice(0,76)].map((p,i)=>{let c=encrypt(p,r.order),d=decode(c,r.order),ss=d.paths.sort((a,b)=>score(b.p)-score(a.p));let rank=ss.findIndex(a=>eq(a.p,p));check(rank>=0,"planted inverse");return {id:i,paths:ss.length,true_rank:rank+1,truth_score:score(p),best_score:score(ss[0].p),recovered_top:eq(ss[0].p,p),cipher_zeros:c.filter(x=>x===0).length}});
  out.original=[true,false].map(hold=>{let d=decode(target,r.order,hold);let ss=d.paths.sort((a,b)=>score(b.p)-score(a.p));return {hold,paths:ss.length,legal_prefix:d.counts.filter(x=>x>0).length,max_states:Math.max(...d.counts),death:d.death,best_score:ss.length?score(ss[0].p):null,top:ss.slice(0,3).map(s=>({score:score(s.p),text:pretty(s.p),runes:s.p}))}});
+ // Independently motivated p54 chapter epoch: red nine-rune heading, ordinary p54→p55 carry.
+ const body54=corpus.pages[54].indices.slice(9), lengths54=rows[54].map(x=>x.length);lengths54[0]-=9;
+ check(body54.length===223&&lengths54.reduce((a,b)=>a+b,0)===223,"p54 black body");
+ const r54=route(lengths54), chapter=body54.concat(target), order54=r54.order.concat(r.order.map(i=>i+223));
+ const native=p56.concat(corpus.pages[57].indices),plant=native.concat(native).slice(0,299);
+ const planted=decode(encrypt(plant,order54),order54);
+ const ranked=planted.paths.sort((a,b)=>score(b.p)-score(a.p));const plantRank=ranked.findIndex(x=>eq(x.p,plant))+1;check(plantRank>0,"chapter control truth");
+ out.chapter={lengths54,rings54:r54.rings,length:chapter.length,plant:{length:plant.length,paths:ranked.length,true_rank:plantRank,score:score(plant)},original:[true,false].map(hold=>{const d=decode(chapter,order54,hold);const ranked=d.paths.sort((a,b)=>score(b.p)-score(a.p));return {hold,paths:ranked.length,legal_prefix:d.counts.filter(x=>x>0).length,max_states:Math.max(...d.counts),death:d.death,score:ranked.length?score(ranked[0].p):null,p55_score:ranked.length?score(ranked[0].p.slice(223)):null,top:ranked.slice(0,1).map(x=>({text:pretty(x.p),runes:x.p}))}})};
  return out
 }
 if(typeof module!=="undefined")module.exports=run;
