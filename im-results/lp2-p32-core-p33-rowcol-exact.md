@@ -45,3 +45,26 @@ Compile C++17 optimized; generate input with Python. For controls/default budget
 ## Next decision
 
 Retire this specific transfer family under ordinary printed-word GP prose. A new approach must either independently justify breaking segmentation or introduce a source-selected nonlinear operation. Do not enumerate arbitrary orderings again under identical assumptions. The common artwork relationship and exact axis sums survive this negative.
+
+## Spacing-free exact objective (follow-up; no printed-word assumption)
+
+Using the same complete parameter family and two literal bases, independently maximize a quantized conditional GP trigram log probability over 63 within-row trigrams (seven per row). No word length, separator, word dictionary membership, or inter-row trigram is scored. For each column permutation and sign/transpose choice, all 81 possible (output row, source row) scores form a 9×9 matrix. Its exact maximum bijective assignment follows from Hungarian minimization on negative scores. The sum of rowwise maxima is an upper bound; partial row computation uses the global maximum possible trigram score for every omitted term. Only assignments whose upper bound is below the incumbent are skipped. No beam or local-search cap.
+
+Training uses **only base TextBlob** normalized frequency weights (1,105,285 word occurrences) with exact expected within-/between-word trigram counts in an iid word stream, smoothed hierarchical unigram/bigram backoff. Six independent solved GP source sections (1260 runes; exclude the three entire donor chapters WARNING, KOAN1 and LOSS OF DIVINITY) supply a native posterior update with four conditional pseudo-counts from the general model. Neither original cipher nor control passages are used to fit the model. Scores rounded to integer milli-nats before search.
+
+| Case | Ordinal exact best mean nats / scored trigram | Prime exact best | Control key and plaintext |
+| --- | ---: | ---: | --- |
+| WARNING | -2.349079 | -2.349079 | exact 81/81, planted key |
+| KOAN1 | -1.922190 | -1.922190 | exact 81/81, planted key |
+| LOSS | -2.861905 | -2.861905 | exact 81/81, planted key |
+| Original p33 body | -3.707746 | -3.696460 | no readable candidate |
+
+Both original maxima are substantially worse than all three authentic held excerpts. Exact argmax GP-compact tape, ordinal: pr7lbojhad58lf3ij2okeijd3as63la7a9f4k1cf1nnkf8snl4igi9ssdfka5o47634301k74m6j14q91. Prime: nfgqnkq9in3381h39k304ih1eq3seri539gjmchhihqag37965ghkospfonagnaicohfi4oaqdi9di190. Each re-encodes all81; neither offers authentic recovered prose.
+
+This independent score supplies a calibrated **spacing-free negative for the same permuted-core family** under its GP-language model. It is not a theorem about all grammatically valid GP prose; three controls are small and are not exactly matched on ciphertext repeat profile. There is no reason to retry arbitrary permutations solely by replacing the dictionary. The original score is globally exact for the declared 63-trigram objective, not a full 79-trigram text optimum. Hungarian tie diagnostics count tied column tuples, not every row-assignment tie.
+
+- [C++ exact score solver](../sims/lp2_p32_core_p33_rowcol_spacingfree.cpp)
+- [Independent training/input generator](../sims/lp2_p32_core_p33_rowcol_spacingfree_input.py)
+- [Raw output](lp2-p32-core-p33-rowcol-spacingfree-output.txt)
+
+The C++ algorithm and all eight original/control/basis cases were actually executed locally. The repo-source Python wrapper was adapted from the locally executed model and exact compact native streams, with the same base lexicon frequency total and normalized-set fingerprint; fresh checkout wrapper not independently executed. No new plaintext/key.
