@@ -1,0 +1,41 @@
+{
+  "records": 46,
+  "coordinates": 44,
+  "distinctCoordinates": 41,
+  "repeats": [
+    {
+      "coordinate": "I:2:15",
+      "positions": [
+        1,
+        34
+      ],
+      "characters": [
+        "t",
+        "t"
+      ]
+    },
+    {
+      "coordinate": "I:60:11",
+      "positions": [
+        38,
+        45
+      ],
+      "characters": [
+        "1",
+        "1"
+      ]
+    },
+    {
+      "coordinate": "II:76:3",
+      "positions": [
+        42,
+        43
+      ],
+      "characters": [
+        "3",
+        "3"
+      ]
+    }
+  ],
+  "output": "https:--www.dropbox.com-s-r7sgeb5dtmzj14s-3301"
+}
