@@ -1,0 +1,2221 @@
+{
+  "cross": {
+    "dups": [
+      [
+        106,
+        0
+      ]
+    ],
+    "gaps": [
+      [
+        132,
+        133,
+        52
+      ],
+      [
+        133,
+        134,
+        225
+      ],
+      [
+        134,
+        135,
+        203
+      ],
+      [
+        180,
+        182,
+        539
+      ]
+    ],
+    "known": 235,
+    "unknown": [
+      133,
+      134,
+      135,
+      181,
+      182
+    ],
+    "variants": 16,
+    "minInvalid": 3,
+    "maxPrintable": 10,
+    "cross": [
+      {
+        "mask": 8,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd453af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 9,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4d3af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 10,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd413af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 11,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd493af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 12,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd473af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 13,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4f3af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 14,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd433af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 15,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4b3af5aa5c3a78aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 16,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd453af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 17,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4d3af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 18,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd413af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 19,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd493af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 20,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd473af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 21,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4f3af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 22,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd433af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      },
+      {
+        "mask": 23,
+        "hex": "1049cfb2dd60c45c0ca8bdd584dd4b3af5aa5c3a74aa0870928475d50000",
+        "printable": 10,
+        "invalid": 3
+      }
+    ],
+    "fixed": [
+      {
+        "name": "low",
+        "hex": "dc32cd3caaf41655def00c3aeac649ee24375b68d234c9588765727ce745",
+        "printable": 15,
+        "invalid": 3
+      },
+      {
+        "name": "high",
+        "hex": "91806a5b95c136bc96957e7cdc4bc0211ba67cd02b01867094d31353eeae",
+        "printable": 11,
+        "invalid": 3
+      },
+      {
+        "name": "parity",
+        "hex": "adcfdf52003a251abe4f5d2f06270cbeee78c800a10e66396e7a2b30d4ca",
+        "printable": 14,
+        "invalid": 2
+      }
+    ],
+    "inversionPrintable": 95,
+    "selected": [
+      [
+        0,
+        126,
+        52
+      ],
+      [
+        1,
+        114,
+        40
+      ]
+    ],
+    "unconfirmedSlots": 21,
+    "plant": true
+  },
+  "segment": {
+    "bits": 425,
+    "ones": 104,
+    "pad": [
+      0,
+      27,
+      2,
+      17,
+      0,
+      0,
+      16,
+      0,
+      16,
+      0,
+      21,
+      0,
+      0,
+      0,
+      24,
+      8,
+      10,
+      8,
+      16,
+      16,
+      8,
+      7,
+      27,
+      1,
+      2,
+      8,
+      0,
+      25,
+      26,
+      5,
+      0,
+      0,
+      0,
+      11,
+      8,
+      22,
+      16,
+      0,
+      20,
+      2,
+      4,
+      0,
+      21,
+      20,
+      0,
+      28,
+      0,
+      1,
+      2,
+      10,
+      8,
+      18,
+      0,
+      8,
+      16,
+      0,
+      2,
+      0,
+      5,
+      2,
+      5,
+      9,
+      24,
+      21,
+      4,
+      0,
+      7,
+      8,
+      24,
+      8,
+      0,
+      16,
+      4,
+      20,
+      0,
+      1,
+      8,
+      0,
+      17,
+      2,
+      10,
+      0,
+      2,
+      17,
+      1
+    ],
+    "zeros": 24,
+    "conditionalAllLegalProbability": 0.5924205720230475
+  },
+  "training": 2978,
+  "controls": {
+    "p56": -2.561830397436454,
+    "p57": -2.533063730532087,
+    "raw": -3.552285354621485
+  },
+  "plants": [
+    {
+      "page": 56,
+      "sign": 1,
+      "hold": false,
+      "matches": 85,
+      "n": 85,
+      "paths": "1"
+    },
+    {
+      "page": 57,
+      "sign": 1,
+      "hold": false,
+      "matches": 95,
+      "n": 95,
+      "paths": "1"
+    },
+    {
+      "page": 56,
+      "sign": 1,
+      "hold": true,
+      "matches": 85,
+      "n": 85,
+      "paths": "2"
+    },
+    {
+      "page": 57,
+      "sign": 1,
+      "hold": true,
+      "matches": 95,
+      "n": 95,
+      "paths": "6"
+    },
+    {
+      "page": 56,
+      "sign": -1,
+      "hold": false,
+      "matches": 85,
+      "n": 85,
+      "paths": "1"
+    },
+    {
+      "page": 57,
+      "sign": -1,
+      "hold": false,
+      "matches": 95,
+      "n": 95,
+      "paths": "1"
+    },
+    {
+      "page": 56,
+      "sign": -1,
+      "hold": true,
+      "matches": 85,
+      "n": 85,
+      "paths": "2"
+    },
+    {
+      "page": 57,
+      "sign": -1,
+      "hold": true,
+      "matches": 95,
+      "n": 95,
+      "paths": "15"
+    }
+  ],
+  "full": [
+    {
+      "sign": 1,
+      "hold": false,
+      "controlMatches": 5,
+      "score": -3.5443187709368886,
+      "paths": "1",
+      "preview": "SITSGMJFEAYYNGCTHTIASNGAGATHRHTEABEAEBEOINGMUOMIJGPNGOEBIEOIFXPHXNWPTIAAEOULLNGEOFGOEYENGIADGHTOEGSJJAEFOEAHTFAEGYPNGEJIAMIY"
+    },
+    {
+      "sign": 1,
+      "hold": true,
+      "controlMatches": 5,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "sign": -1,
+      "hold": false,
+      "controlMatches": 3,
+      "score": -3.556310698984938,
+      "paths": "1",
+      "preview": "SGLLGMXFTHYINGCTHGXGHIANJTFILSBLEOIAEOINGEOBEOEIOEINGNMRBHEOEORCFSXAEIPLIACTJNICLFLNTCNGUTHBHENGLSTHAERIAYHEORUGYTNGNGJDAMIT"
+    },
+    {
+      "sign": -1,
+      "hold": true,
+      "controlMatches": 3,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    }
+  ],
+  "originalCount": 220,
+  "legalCount": 119,
+  "best": [
+    {
+      "page": 51,
+      "sign": 1,
+      "hold": true,
+      "score": -3.433643056881899,
+      "paths": "5",
+      "preview": "WNJEOIALIABOECIANRMPDSSAUMEXGBOEABUHIJAMUGTHDEAOEEOOEIAADOEGMPPPRSOWLLFJLFOETPTHNGOEOIIAIITLLABELYABSLTHMJJMJOF"
+    },
+    {
+      "page": 38,
+      "sign": -1,
+      "hold": false,
+      "score": -3.4893227052999247,
+      "paths": "1",
+      "preview": "UDWFCYXAEOEYFSHIEOJIYTHFYNGYOWULGYCEPEOEDUAEFSNHAEBWMXCMFRJYJNGEONGHUTWYBHYWERDIAFEONYEONSMAEDWICIABITFEAMYWHLOSBIAPD"
+    },
+    {
+      "page": 33,
+      "sign": -1,
+      "hold": false,
+      "score": -3.4967422621978534,
+      "paths": "1",
+      "preview": "DITOEFIJWAGROEFTPUNOXTHXRYIRRREAAAWXMHTHIORNGPEOAEXENGGHTTHHEALTEDTCUXNAFIDOWEOGRGPDIADXGEEANEAUIAOEIPIADJLHTHEAINGCOEEOE"
+    },
+    {
+      "page": 52,
+      "sign": 1,
+      "hold": true,
+      "score": -3.4977427217263344,
+      "paths": "18",
+      "preview": "PFNGMWEONGWAEXCAEXDIAAEWMBGEANHONIEABDEHTHRLEIAIAEAOEDAEARRBXSEXSYANGEASHYDIANUGHWUEHEDBPSGNGPRPPBILTOIJNGJEALTHYFONCFJOEOE"
+    },
+    {
+      "page": 44,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5130509785557362,
+      "paths": "1",
+      "preview": "EAEAHMYTHAEOEPOIHISPCEOOXHUMEEAEFITYMIAEATJBRTHAEIIAEAEPNGPEONCAETUTHWRXTHFEOSYATHAJCAENGIAAEEOIAEAOEAESXHELAAJMNJIXTHLCSCOEBETRM"
+    },
+    {
+      "page": 37,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5132200408936614,
+      "paths": "1",
+      "preview": "NALTHNUUIHTCWSYJWDOEJYMOETHAEEDNGEOTHJCHEREOBXHAEDNGEAEMAMOEMOECIRCSLWCHTHOYEOHEOXTTHHIFDNGEAABHNGNLRSTHJWREAXYFBIUFWUEARS"
+    },
+    {
+      "page": 1,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5137129167145194,
+      "paths": "1",
+      "preview": "AEOBIANSGRXWDLIAOEFBJWWYHIAGUAEAEBWYYFYXEAHFDFFUAEEAEOEOOELHEROFWHUTHAOEIERYUCECIEOTPLGNGLEAGLTHSSEOYOEORJOEDNGTHPXXGXXPFSB"
+    },
+    {
+      "page": 51,
+      "sign": 1,
+      "hold": false,
+      "score": -3.516668215250937,
+      "paths": "1",
+      "preview": "WNJEOIALIABOECIANRMPDSSAUMEXGBOEABUHIJAMUGTHDEAOEEOOEIAADOEGMPPPRSOWLLFGDASYUOEPMAOEIACTHEOTAXNMJATHMDOOWXNFPLP"
+    },
+    {
+      "page": 8,
+      "sign": -1,
+      "hold": false,
+      "score": -3.517117058721392,
+      "paths": "1",
+      "preview": "XHTWUXGCEPABIANJWANGLPJEOYLDXXTIAYITOOEHXTHLFAEWMRTROEWBPEOCLSRPEBXIAMRPWCAEULJYOEAAYANGTHYRXOEALFHCPCXYEAALXHYWHULI"
+    },
+    {
+      "page": 0,
+      "sign": 1,
+      "hold": false,
+      "score": -3.517577864805065,
+      "paths": "1",
+      "preview": "SITSGMJFEAYYNGCTHTIASNGAGATHRHTEABEAEBEOINGMUOMIJGPNGOEBIEOIFXPHXNWPTIAAEOULLNGEOFGOEYENGIADGHTOEGSJJAEFOEAHTFAEGYPNGEJIAMIY"
+    }
+  ],
+  "original": [
+    {
+      "page": 0,
+      "sign": 1,
+      "hold": false,
+      "score": -3.517577864805065,
+      "paths": "1",
+      "preview": "SITSGMJFEAYYNGCTHTIASNGAGATHRHTEABEAEBEOINGMUOMIJGPNGOEBIEOIFXPHXNWPTIAAEOULLNGEOFGOEYENGIADGHTOEGSJJAEFOEAHTFAEGYPNGEJIAMIY"
+    },
+    {
+      "page": 1,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5137129167145194,
+      "paths": "1",
+      "preview": "AEOBIANSGRXWDLIAOEFBJWWYHIAGUAEAEBWYYFYXEAHFDFFUAEEAEOEOOELHEROFWHUTHAOEIERYUCECIEOTPLGNGLEAGLTHSSEOYOEORJOEDNGTHPXXGXXPFSB"
+    },
+    {
+      "page": 2,
+      "sign": 1,
+      "hold": false,
+      "score": -3.595785973374049,
+      "paths": "1",
+      "preview": "OENGEALTBAELWHAEMEAROEUIANTHMRTOEGIMPWJPEAWIOETHSXTHBACXAESJXULYMUNGESJNGTHDEONOEPAEAETRSSDRRJIAEOTHIABEANGNGAWBAEIABFGNGFREMHPEOING"
+    },
+    {
+      "page": 3,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5360692961292473,
+      "paths": "1",
+      "preview": "LPILNGCSTNJAXHTGXCCBMETHYCIPNJONGNBEATCTIAABPIAWWIRBOWILSLEOTHBCNOBAPOEFFALIAIARTOIOEOEEHJHISWMRFSBAELEAEATHPOEGTHEYI"
+    },
+    {
+      "page": 4,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5729760747226353,
+      "paths": "1",
+      "preview": "LFAAEXILMEIEAGFNOYRCTBMUPELGNGCOEWEAGNGIEAEORNGIEOWFUIGFMPOEYEOEOXBODMHEAAOSJEAEGIABYOEOIADETHTOEJTCAELLEUEOTHFJISMGIEAGPIAAEAE"
+    },
+    {
+      "page": 5,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5875398305839075,
+      "paths": "1",
+      "preview": "RIAEOLJAEOLPCFDINGHYCXTHIXUOCNGEAAOEEUNGFXEOGEEOHMFNXCWEOAEOLIJIIDAEREOXXJAEAOEFHPAETHAEIFAENGRYLNGYEONGEALEOEAHAEBHSCUIEAOETXCAXO"
+    },
+    {
+      "page": 6,
+      "sign": 1,
+      "hold": false,
+      "score": -3.6026841817024224,
+      "paths": "1",
+      "preview": "XWXLDEOIABEOAEBJEAAOEIEEAJREAOFXJEOTHEAEGIADYOESFSRDLOYTHAEGNGIAWCNAEOFYBAEHBUJNGXFEOLXSOEHTHEAHEODBEIAIAIASREORNGIAAEHMGXEFOMIAFHTCS"
+    },
+    {
+      "page": 7,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5710857462586727,
+      "paths": "1",
+      "preview": "HDEXBSEUEOGLCJMTEARIAEOJGOEIAEOEAAELNILTHOELCDCEOEOXDGAESLEAIJEXNAEDLHJEOMRHEARPTEAGMTHUIRDMCARNHOBRAEOOEBAMIXMCCNGOEWNPCW"
+    },
+    {
+      "page": 8,
+      "sign": 1,
+      "hold": false,
+      "score": -3.571954670509347,
+      "paths": "1",
+      "preview": "XEOEOTHUXOCSPJBIANNGLRCBIAIAUEMIAXARTITOFNGEAEALENGEAMLCRAWSNNGEPSBIEPXBSDABNGBUGAWGANGEPNGFIRNERLAEOOPNINGEAABXCYDHULL"
+    },
+    {
+      "page": 9,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5369264150356408,
+      "paths": "1",
+      "preview": "YNDEJNGOALPOUNPOJHSGDGLNGEAJATHEYIADSPOMPGHNFIJUATHIATHSGCEMEAIARAETHTAEPBOECHOEOELRIEBRBHRWSJNXSHNGBXXTHNGXMCAENGNNGEAWIO"
+    },
+    {
+      "page": 10,
+      "sign": 1,
+      "hold": false,
+      "score": -3.548463372763121,
+      "paths": "1",
+      "preview": "CTEAAETSXEMTHGLESRPRCIAOEXTATWEAUXSSDITHSIAFYIAIAOEAESOEOEWTHIAWCSRMIONEOWEOYHPAOENGJAESPMGPOEEAICGHMWCMRJAELGNTHXYAERXOECTHUOEH"
+    },
+    {
+      "page": 11,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5474170012931037,
+      "paths": "1",
+      "preview": "IABOUWBOELCTHBIEABOAEMIDLUOENGFRUJAHEANGYXRTFBXXSNGFNREAEWMWUGMTHGOLWEJMYSHNSYOEPFFIAAEDFTNRIBEALEOFAEOTHFBLOIALTLHCEAAC"
+    },
+    {
+      "page": 12,
+      "sign": 1,
+      "hold": false,
+      "score": -3.604596648823815,
+      "paths": "1",
+      "preview": "CEOTHBWEAAETSCTUIAWIAIATHCXYDEAEAFOEJWNNGTREADCFEDPBIAINGNGEBGACPEOGIPTTGIACOENDNGCDTYPOEOEGRICMEAMEASEOFXEAJESGFLJIABIAJUEBDFEAA"
+    },
+    {
+      "page": 13,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5906315151281425,
+      "paths": "1",
+      "preview": "GRIADGCUIOLLEAWNUEAAEANGHHTHPAEMHIAAERIAFYMMNDPPPUIOFYEBOPANNGAEEANGALIAIAGULSIASEAXAULXMNUBEAWYIWAESFTHNGMOAFCLPLPBUNGM"
+    },
+    {
+      "page": 14,
+      "sign": 1,
+      "hold": false,
+      "score": -3.558591231960077,
+      "paths": "1",
+      "preview": "TPIASLDOEGELXMEATHGXIAUGIMCIAEOECNMYLEACXFDXEARJDCIAEAGAETENGAJMPYIAAERPEAJAEFCRXUBHEAXFECJEOIAEGNGYFEDOFCXNMPXDYXJPUNIAFO"
+    },
+    {
+      "page": 15,
+      "sign": 1,
+      "hold": false,
+      "score": -3.561618058794231,
+      "paths": "1",
+      "preview": "FOETHAEAIOEHLNNGNCGNEAHPCTHDEOFLBJREAAEGXEOTHGREOLREOEXGJHFNDOLIALPIOETHUUCAEEAWSAEHCOEIAHDADNBIATEAPLTHPXXPAEBTHPYUMDIABNGNFTHNGE"
+    },
+    {
+      "page": 16,
+      "sign": 1,
+      "hold": false,
+      "score": -3.559981304198544,
+      "paths": "1",
+      "preview": "EAEOEHTOEOEEOXPEATOEAYEUESJTHNOEAOEEAREOCAETHOEWRHTJSBWDPIOEBNOESEOIARMNFNGNGGUOEMMODHYNSSIAALOERXOEIALRIOEIALCAEBJMGGOOEHNEOOOEDJ"
+    },
+    {
+      "page": 17,
+      "sign": 1,
+      "hold": false,
+      "score": -3.551169231398524,
+      "paths": "1",
+      "preview": "LRJGTHEOUIAHBONMCXIBEACFAEXIAMLTHEOUAOENTREAWTHTHEOIMMJHPEALEADDOHJEHMNIAIATHOABAERPNRNPIAUOFTEGTHNGNAAERAEXECEAROTYIINOTWFA"
+    },
+    {
+      "page": 18,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5670063863970523,
+      "paths": "1",
+      "preview": "EAYNAEALBGEAWJBIEAITHPOTHOAEEAYWYEOGWBOIANGDOEEAIYIAGOIAILIIDTHEAOIAANGNGUDDXAEEAMLRRTHHXIALHXEONYTHLWUIGBTEOACFFAECUIASYWARNGBCH"
+    },
+    {
+      "page": 19,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5462989818732096,
+      "paths": "1",
+      "preview": "NCLNGFODFXSBDWEABCDATATSXIANTHOESYAECNGOOEPOEAIOEEOXDEEMLCPUFOCCOEHEOFIAWGDBRTAEOLLLXALNGBOIOERSAGAEOEICJOENRTEULIAHEOOAEEOE"
+    },
+    {
+      "page": 20,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5464800291579537,
+      "paths": "1",
+      "preview": "PPEAFGIAEPIAYNGOETHDNLXMCJNPIUDGOEFIAWXCEAEBHITHAIABFEOTOEEMCNGEAMCAFIEOTHLPAWEARJYCYFOXMEOBLTHIOEIANFEROEDEOEMICLAEFOAXLBSM"
+    },
+    {
+      "page": 21,
+      "sign": 1,
+      "hold": false,
+      "score": -3.53005417885427,
+      "paths": "1",
+      "preview": "CIAYGCGTIAENUGYCWYNGJIYTISWEAFNLEAEOEOOITHBIIIAGBTHFEOWLBENGUOEOXGTHGEANGEFBCBEEAGWHOEOXIAHIAIAOIIASRANOEGTHEATHTFHSPIOPPUSEAEB"
+    },
+    {
+      "page": 22,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5831480506222513,
+      "paths": "1",
+      "preview": "NGNGHEJGEOSEIJYFWYUMTHXGRWWNAEJEAJRTHLGOEDAHOIAEADJSAERHOEUONDJAEFJFYYMFSWOENBEHJNTWUOYMOUMLBFNOEGYECWMIAUATHEOLPGLEOIA"
+    },
+    {
+      "page": 23,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5456809974596175,
+      "paths": "1",
+      "preview": "UYCRGXWGDBEEOTBSEEIAEANCFNGIAIOEOJJCGEABMESINGTEAFSJWFEAEAOELNGJTNGWTHTRWOMTHLUYWYHLISFOEPEAAUDAESBSEAGBYREMOESMLAAEYOCTHEO"
+    },
+    {
+      "page": 24,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5885693498548528,
+      "paths": "1",
+      "preview": "DGIAUJAEOECNGWLIAPEAEOJIEAGLLBJDOTGACEOOWUAEOWEAHEEOBMYJUOEIAEOALGBGEAWIPTHOEAEHAEFJYMDGHEHFEACMFANEAYWOESEONPOEPRAECNOEFUJXNIAL"
+    },
+    {
+      "page": 25,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5241807265731557,
+      "paths": "1",
+      "preview": "HJRMXCIAYEAPPOERBTHOJIDOEIABEACENUSGTXXAWNNIAIAPXTHWMAIUEANAENGPLEUPOBENGOEFNISLAEFRGDHIAYEEAMOENXJCUJTOEAEATHIAEAXUOLIEALNGE"
+    },
+    {
+      "page": 26,
+      "sign": 1,
+      "hold": false,
+      "score": -3.55640923871832,
+      "paths": "1",
+      "preview": "IACWJOJIEOIAEAOIANDYFOLNGJOEXIUJGUOFHOETHSSCWFBMLLGEAHHOEIYEJUCACMNXTHISIGRXUEAEOOEDGBMNGNONGFWYDEOUOEOESOEFUBEOGGIGBGTHFI"
+    },
+    {
+      "page": 27,
+      "sign": 1,
+      "hold": false,
+      "score": -3.549086632061249,
+      "paths": "1",
+      "preview": "MSAOSOHAENGLYEOIMAEEOCYYOEFEAOYGOEBRYGUBEEABWYAEOEFFMEAXBWYEYWBLTHJPIAYCEORLLDMFOGNCNOAEFHRIAIAEOIDNPSTHCYTNEEFRXYUJXEAJ"
+    },
+    {
+      "page": 28,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5481317724635173,
+      "paths": "1",
+      "preview": "PWNXBILDLNGWIAWLEOOEATGFSWEABTHSRLSCCPNGLXPATHGPAHHYLJAEMNGRTNGWIAUOCNDPPIOEDUWAXCFAEWYMBOERNGAEIAFOEEANSHGTNGCPJPWJETMSU"
+    },
+    {
+      "page": 29,
+      "sign": 1,
+      "hold": false,
+      "score": -3.570560645443697,
+      "paths": "1",
+      "preview": "THAERPTLFYXNGXOEATTDTBNGHNXRFTHTNIAPTAELAEAEABUYEDAELDYPDANGNGAEXHXIARSYIFLCOEESIEDXTPSXBXIAIAEOEOORLIXFXDEOIAEOGFSJEAEUIMIAS"
+    },
+    {
+      "page": 30,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5855391211995555,
+      "paths": "1",
+      "preview": "DYJUMXNBAERYYOEYNLOOEEOIIBITHEOLUEOUBGAEOGGOBDAUFGWDHJGRNGEMTJLIAEOGSTHMOEYDGOEEAAEIANDFGEAJTHNHRAEOTHURJNGTCIAOOENGYRJAJTOEAJ"
+    },
+    {
+      "page": 31,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5732020042135875,
+      "paths": "1",
+      "preview": "THWSRTXJDEAIAJFPEEAWFEODNGUXGWJRUFYSHXCTHTHYIACLDCDDAELEAOXBISLPBFGJAEYNXHPJRIEAFIEOWEAFNGMSOCOEYNGDXOOEUSWBFUIUIALTYTD"
+    },
+    {
+      "page": 32,
+      "sign": 1,
+      "hold": false,
+      "score": -3.577533155389958,
+      "paths": "1",
+      "preview": "LRDMAEUYIAEWFHWBAWEOIDJXFRWSMRLCAFOTHYAYTHXTNGJLHONGEEOYEXEACNBIATAMUFTHCOIOBHAEMMXHYYHIAEANGPGTHNGAEJISSFEAOENGTMUUTHSBJR"
+    },
+    {
+      "page": 33,
+      "sign": 1,
+      "hold": false,
+      "score": -3.547968999192294,
+      "paths": "1",
+      "preview": "DXEOBFIHWNGGLOEFTDXETJEAIAMUHFBRWUXWXMSSAFRINRAEUWNGHHXIABEOPTTHLTUURCXJLIAWRTTBGISTDEOMEDCHUGMLIBDEJLCTHAEIHCOEEOEA"
+    },
+    {
+      "page": 34,
+      "sign": 1,
+      "hold": false,
+      "score": -3.567919334763786,
+      "paths": "1",
+      "preview": "MMWLEODNGMRIWNIAEDOEGDAEEACUIJOLAEIADINGIWPYIFEOURUTHDHFTHNGMGYADACMEOBLGPJJINGCSXYFYNIACIXAJTGXSOEBIAPTEAEOAEAGNGBOEGLUOEJW"
+    },
+    {
+      "page": 35,
+      "sign": 1,
+      "hold": false,
+      "score": -3.568516865421039,
+      "paths": "1",
+      "preview": "NGEOWEAYMCSEBUIAESOEBEAREFGAEIOJBDIAGOADEAAJGFIAAEILTHIXYMOEBYIAEAWTHBMAEBDENEACDEABIWEOAEEJROCEALAETGJEORMTTUNNGFTYDHUAEGJY"
+    },
+    {
+      "page": 36,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5629484373550677,
+      "paths": "1",
+      "preview": "YJEAMNGHMYBOELNXXAONGEONBAETHPXAEAEOLTHUEASBLDEOITHWPULAOEPUJXPHMXIABEATWBHTTHOENGYYBTHNGFODDEOOETEEATRAEPTHEOEONEOPJWISOTIAGHAE"
+    },
+    {
+      "page": 37,
+      "sign": 1,
+      "hold": false,
+      "score": -3.541813622467096,
+      "paths": "1",
+      "preview": "NEATYNUIAICTNGWSYNGLOGHDOHGDXWNGLHUCHEJAETHJHXMPEEOHANGOEBEXDYCEABWUHNGEATDEEAGTBNGLPDELPBGCNSFATHWTHTHEEAINGFBWUYWBEARAE"
+    },
+    {
+      "page": 38,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5465418158083204,
+      "paths": "1",
+      "preview": "UIAOACYJAEFEPFSHLAELDDEAPEOAEAEALUEAEOTCEPAEGHIAAEEJUHEOGWNGXOSNBRYAEEOBHLEOYHIAAEWRBRJFNUSEOWEAMLMTIUOESILAEDMYRHBOTHBIAPR"
+    },
+    {
+      "page": 39,
+      "sign": 1,
+      "hold": false,
+      "score": -3.53568356531579,
+      "paths": "1",
+      "preview": "SNFNGSINGBIAEAFBULIAOEEAOESTJBJOEDRAEUIAIYNGIAHIAMOEPHORNGEANGEAIYOEMNACWSEAFAEEAREJIAXFICEHXUCFSMSIABAERNTBNGBESEYPMNSEOAECGEB"
+    },
+    {
+      "page": 40,
+      "sign": 1,
+      "hold": false,
+      "score": -3.53895116896863,
+      "paths": "1",
+      "preview": "FJBNGDNHHPOEYHEORAHHCEOEOOEUIAJANNGECTRJIAGOEAEYEAXBNJFDGXLFCRXWUWNBNGBAEMNEYOERTHAIAEBJDNGIACLGUIIEOJLEGWAEEWJNATCSOSNG"
+    },
+    {
+      "page": 41,
+      "sign": 1,
+      "hold": false,
+      "score": -3.56193130960491,
+      "paths": "1",
+      "preview": "EAEOOEIAYMWYEABTHJDOXHIYHCAEEAICNEAFEARWDTMFTHEANXOEONEAURBJIXIAEFYEOMUFCNGLOEADTHGLNUNWXEOIEMBNGASMNGAFOEOEPTAEASOETHYSTHLTHNGTR"
+    },
+    {
+      "page": 42,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5393359474952835,
+      "paths": "1",
+      "preview": "DTWTHTHIARYXNAETHBCONGNGHCIFNAEERUUEOEAAPNAEEOTFLISFNGOAAEXJMEAAIATHTOLPDMSEOSINGTHAEPONGIDMAOPAMANGTEAORLIRXGIEATHNBEONDUHBNTH"
+    },
+    {
+      "page": 43,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5702923050385147,
+      "paths": "1",
+      "preview": "HPHUTIAMITNPUAEMEWXMMREFAEAEAGFFYAIAJNYWNPTNNFWHANHJBSLDXEOBYIALUCUGDBUWDAECEOSGBAETHEOCOOEADCAEAFSDAYLIAREOEAIASHNYRC"
+    },
+    {
+      "page": 44,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5414445911935712,
+      "paths": "1",
+      "preview": "EAORXYTHOEOEIOYHISDENGTJCXCOEYXPIAONIAEATEUEPHXGMEACTHNGSEOWUCFDTNGRRITHMHCHCETJLNTHJAENMBOEDEAXOXFALGBNSGNTHLTHSTHOERETRF"
+    },
+    {
+      "page": 45,
+      "sign": 1,
+      "hold": false,
+      "score": -3.562916917072587,
+      "paths": "1",
+      "preview": "CRECNGEOXHTTNITHJXNGDDEAGIANGNGDMEOAXLDUSOWWEAPIAILMEOOOIAEWTHNCXOTYNGNISXEOXDNGNGJYTGFRSFTHJNGJOCXSEOEOFRJEOOESXWHNYTNYIBG"
+    },
+    {
+      "page": 46,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5203137507304394,
+      "paths": "1",
+      "preview": "HEEOHIJXDPIARSIWYCNGAYSEODJESYRGENGGNUIAAERXGDTEOEWNGTCNFAEHHWACESAXXMYOENGDOEBGYNDIAWJUSRENOEAEAFMSXCOGBOETEAOEFOLMES"
+    },
+    {
+      "page": 47,
+      "sign": 1,
+      "hold": false,
+      "score": -3.54205518711239,
+      "paths": "1",
+      "preview": "EAEOFFEALSCWILFUXLGFDNEAJANEOSWTFEOEAITHEOTAEIAJWIUJRSCBHIABLUMHEATHIARAEAWTHPNGRAEJFLWSINEAESCCAUUTTHCNGCEABUATNGRGWBNGPMIF"
+    },
+    {
+      "page": 48,
+      "sign": 1,
+      "hold": false,
+      "score": -3.518864251361525,
+      "paths": "1",
+      "preview": "HWHXJGCEXIAAILONCMTYWAEIDNPIAFPTABOETHEALTHJTEOIAOETOEENGAENGIANMOBPSNGYFWBBDRNGGIAYEAEOXOUEAEOIXNXAEMONGUTEOJNGARAXBYFIATME"
+    },
+    {
+      "page": 49,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5865164017417164,
+      "paths": "1",
+      "preview": "IALNEOLOEDCDNGXTHMSUIAXLODNLEHMJTHLFLJEHETCMAEAHMXAIEONBOEOEAILNXRAEOEMABOEOMND"
+    },
+    {
+      "page": 51,
+      "sign": 1,
+      "hold": false,
+      "score": -3.516668215250937,
+      "paths": "1",
+      "preview": "WNJEOIALIABOECIANRMPDSSAUMEXGBOEABUHIJAMUGTHDEAOEEOOEIAADOEGMPPPRSOWLLFGDASYUOEPMAOEIACTHEOTAXNMJATHMDOOWXNFPLP"
+    },
+    {
+      "page": 52,
+      "sign": 1,
+      "hold": false,
+      "score": -3.561078120014292,
+      "paths": "1",
+      "preview": "PTHBRAEOOEOELEOOEYAEXEAXDNJBXFECTHOEOTSDHTHOEDRRXHJNGFOCAEPXBGBTPPLTHGEAEUGYLJACJWTHIAEYIAMEOEOYNGAEOTHUXBYEODWPHTHIFONFFJXIA"
+    },
+    {
+      "page": 53,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5465340103778087,
+      "paths": "1",
+      "preview": "EOIAYHYUOPIAINNOOEXIAPDJNEATABTHJNOEJUBUJMDYTHDUSTHYEOIAITHJAEAEIOEOEOELIAYIRIAJIAEUIAHNRICWEPLUULOEOEIAJRHXIUIAAIAFEXSNYWITOEN"
+    },
+    {
+      "page": 54,
+      "sign": 1,
+      "hold": false,
+      "score": -3.587717213856848,
+      "paths": "1",
+      "preview": "ANGMGIATHIAIOIATHPNGUEOTNHHCPAFGPFINEAHAEGOHTHTHTHOAECEAFCITEOTHIYHYLEAYEOETHOAEEOEIAPAEBFBYTOEOADHIMIAHFEAUXOEBGIANGUAEYDJLYEOETHRYJ"
+    },
+    {
+      "page": 55,
+      "sign": 1,
+      "hold": false,
+      "score": -3.5892916700027713,
+      "paths": "1",
+      "preview": "NGIABOEWSUXOSLGDTHUNGBTUEOEFGTYNGXXOEAECPHIEOMOSOAENFAEBEOGEOBYHTHBXIAEAEPEOYFPGWUUEAOJIGDAYYEN"
+    },
+    {
+      "page": 0,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 1,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 2,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 3,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 4,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 5,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 6,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 7,
+      "sign": 1,
+      "hold": true,
+      "score": -3.5710857462586727,
+      "paths": "1",
+      "preview": "HDEXBSEUEOGLCJMTEARIAEOJGOEIAEOEAAELNILTHOELCDCEOEOXDGAESLEAIJEXNAEDLHJEOMRHEARPTEAGMTHUIRDMCARNHOBRAEOOEBAMIXMCCNGOEWNPCW"
+    },
+    {
+      "page": 8,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 9,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 10,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 11,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 12,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 13,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 14,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 15,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 16,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 17,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 18,
+      "sign": 1,
+      "hold": true,
+      "score": -3.5695695503824143,
+      "paths": "6",
+      "preview": "EAYNAEALBGEAWJBIEAITHPOTHOAEEAYWYEOGWBOIANGDOEEAIYIAGOIAILIIDTHFRGOETHONTHWTDRTDHMEALICNGAIAIMYPJNGXOEIALAEGXIEFYIAAEAITHYWANNGAECO"
+    },
+    {
+      "page": 19,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 20,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 21,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 22,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 23,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 24,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 25,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 26,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 27,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 28,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 29,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 30,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 31,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 32,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 33,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 34,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 35,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 36,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 37,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 38,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 39,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 40,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 41,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 42,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 43,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 44,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 45,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 46,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 47,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 48,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 49,
+      "sign": 1,
+      "hold": true,
+      "score": -3.613246132483397,
+      "paths": "1",
+      "preview": "IALNFOOEIEICGIMSAEJTEJDUMNJLBDTUEAGEHFATIATHOIOEOEOUYJNMAEOCEEOEAUAEJOEOEYBITHTHETH"
+    },
+    {
+      "page": 51,
+      "sign": 1,
+      "hold": true,
+      "score": -3.433643056881899,
+      "paths": "5",
+      "preview": "WNJEOIALIABOECIANRMPDSSAUMEXGBOEABUHIJAMUGTHDEAOEEOOEIAADOEGMPPPRSOWLLFJLFOETPTHNGOEOIIAIITLLABELYABSLTHMJJMJOF"
+    },
+    {
+      "page": 52,
+      "sign": 1,
+      "hold": true,
+      "score": -3.4977427217263344,
+      "paths": "18",
+      "preview": "PFNGMWEONGWAEXCAEXDIAAEWMBGEANHONIEABDEHTHRLEIAIAEAOEDAEARRBXSEXSYANGEASHYDIANUGHWUEHEDBPSGNGPRPPBILTOIJNGJEALTHYFONCFJOEOE"
+    },
+    {
+      "page": 53,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 54,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 55,
+      "sign": 1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 0,
+      "sign": -1,
+      "hold": false,
+      "score": -3.56870348855711,
+      "paths": "1",
+      "preview": "SGLLGMXFTHYINGCTHGXGHIANJTFILSBLEOIAEOINGEOBEOEIOEINGNMRBHEOEORCFSXAEIPLIACTJNICLFLNTCNGUTHBHENGLSTHAERIAYHEORUGYTNGNGJDAMIT"
+    },
+    {
+      "page": 1,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5441019122025765,
+      "paths": "1",
+      "preview": "AHNGONSNRBWWLIAOEMRTHDIFAEOTHOFEOBEALWFYXNGASYFJCREAAEDOEEHLHDTXHBMHEAOELOEXSLEYCAEAGFLNFTHEAHWTHLMOYWBGJEIAYTHPBXNXIAPFSW"
+    },
+    {
+      "page": 2,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5839217899132496,
+      "paths": "1",
+      "preview": "OEBOAETBEALIHNMEAREOBEAECOELUEHXGPEACDEAWISEUBTHEAEAPXNYJEOUOEUIBEAETHXNGGDOEPOTHXTHRTETHCIRWMNEORXBRAEEOAJOEIAIAPRJNGFWEOEHYEOIJ"
+    },
+    {
+      "page": 3,
+      "sign": -1,
+      "hold": false,
+      "score": -3.534096284629751,
+      "paths": "1",
+      "preview": "LNXAENGCETEOJHXHTAEUAENGLOECTOEWXFNOYTHNBEANNGTHPAGNGNGIALEITHBCJUWOELEACBNNPNGCTHEOPHACXBLTGEXEOLCHTEOUSJAGFJNGULEATHTHTOEMTHEYF"
+    },
+    {
+      "page": 4,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5610387298868846,
+      "paths": "1",
+      "preview": "LAEEAUXIDMNGIEOGFNOEPANGMLGSNLAOENGYTBEAGNGOSIAWNGNGTSFXNGGIAMSYBEAMXRGDDHNEAPRUTHRGEORTMEOUTHFTHENJNGNTLADOEOIARTISOEGPEAMPIAAES"
+    },
+    {
+      "page": 5,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5863841725567798,
+      "paths": "1",
+      "preview": "RDTAEJAEGLTCPDINGIAPAEUCPUSEAWAESAXEOJNGFXCOERSHURBXEEEOOEEOOEXTHYBDEOWEOEXNGEANNGHPTPIESYFEAFSYOEHYBAEMLTRIAEPEOLCUPEAAETIACAXOE"
+    },
+    {
+      "page": 6,
+      "sign": -1,
+      "hold": false,
+      "score": -3.59108215562472,
+      "paths": "1",
+      "preview": "XOEAEDEOUBSAEUJEAAEOYNSXWSBAETSEATHLEOTIADYSTHSERCAJYSWGMIANNFEOIFPLAEEOBJSTHOMAEEAXFNIAEEAJLCBLXIAOMAEOHYFAERDJXEOOOEIAPHTCC"
+    },
+    {
+      "page": 7,
+      "sign": -1,
+      "hold": false,
+      "score": -3.572478434054329,
+      "paths": "1",
+      "preview": "HMOEMBSNGUNGOMLCJNOMLUSIALEALTHEAEABXMILTHSWLYCDTOEDMWSEEAEOSNUTAEIDHSEOFHEBDYAEALGNGBIWTHUCYLNPWHRFHABLDSXMHCAOELNPCY"
+    },
+    {
+      "page": 8,
+      "sign": -1,
+      "hold": false,
+      "score": -3.517117058721392,
+      "paths": "1",
+      "preview": "XHTWUXGCEPABIANJWANGLPJEOYLDXXTIAYITOOEHXTHLFAEWMRTROEWBPEOCLSRPEBXIAMRPWCAEULJYOEAAYANGTHYRXOEALFHCPCXYEAALXHYWHULI"
+    },
+    {
+      "page": 9,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5831228940832998,
+      "paths": "1",
+      "preview": "YCIADJNGGADPTUNPOEIAEATHNYOECBUSJTHILHDSPAEGEANHLREJXGTHAETHBIAECYEAXWAEGTGBIAJANGUOECLFCBWAEMRNTHJXEGHAEOETXIAAEMMCEANGEONMEAWIOE"
+    },
+    {
+      "page": 10,
+      "sign": -1,
+      "hold": false,
+      "score": -3.595646314102933,
+      "paths": "1",
+      "preview": "CEOOUTSBEOETHMLESDFANGUAEUULEJSUGNAEDITHHXSFIANYRSGXECTHFJAETHJMYGNTWOEUETHXGFJITHOGGTUIIWOEHAJAEMHTIALTHPWXYEARBOEETHUOEIA"
+    },
+    {
+      "page": 11,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5517359828769535,
+      "paths": "1",
+      "preview": "IAPWGWBAELHTHUIEABOEEOIYYDBWBTHHBJTTHNNGYXYOSLXAEMFFOESEDWNGJNGOEYTHOEGLJENGDWRIAOEDYWFMTIAEATHJTJLIOEOJEWCYEOIAROELOULMLNGCEAAA"
+    },
+    {
+      "page": 12,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5658043523186205,
+      "paths": "1",
+      "preview": "CHGOEWEAEATECFUIAWBXOENGBFIPATHYIAWUSYREADIATRYPEATHENGCFBRAWBOOEBPOMGTHCOPRIAWAYIANEOOERPPUEANGSSBRCEASDBGAEATIABUJREUDFEAX"
+    },
+    {
+      "page": 13,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5274220082217185,
+      "paths": "1",
+      "preview": "GFTHEAGCRIGLREAWNLSTJAJATNIADAIABIAHFYMEOAENTPACEOPHESOSEAFHOEJEOGEALHXCALRDIAFSRJUDOEUNOREAEOUUWFLTHTHBDHAFHLTLYBUNGN"
+    },
+    {
+      "page": 14,
+      "sign": -1,
+      "hold": false,
+      "score": -3.570899714857149,
+      "paths": "1",
+      "preview": "TNTHLLDAEGNGLIAMEATHAEUEBNPGMGIAYNGNJLUEACXOEIFTHROEIAPIAEOBAEXEDEATHGLYXEARBEANGFIDDIANBOESRTEHMDIALOENGTHRNDWCWXCDEXDFXXPXNIAFOE"
+    },
+    {
+      "page": 15,
+      "sign": -1,
+      "hold": false,
+      "score": -3.572032155802221,
+      "paths": "1",
+      "preview": "FEAOEWAEAPOEJLOENGNCAEAEMATHEHHTHARJAEOEGGXEOAOEMSLSTYXMOEHIANAEWJXIAPYAETHCUSFNAECNTCWXIAIAYBEAIAESPAEGRXEEIABIABTHUMYIALNGOEFTHNGH"
+    },
+    {
+      "page": 16,
+      "sign": -1,
+      "hold": false,
+      "score": -3.565733839619619,
+      "paths": "1",
+      "preview": "ENGYPTOSESXYEATOEPNBNGEIAURJWSOELIAOECAETHSDMJTOEMAEWWAILBJYGEACRGEOFAENGTCOHNTTHHJAECTHIAIAEARRTNIAAEHUOETHAEWAEPSAGGGOEJNAEOOEDU"
+    },
+    {
+      "page": 17,
+      "sign": -1,
+      "hold": false,
+      "score": -3.533560057967582,
+      "paths": "1",
+      "preview": "LFSJTHEORIAJBTNMCRYHSHOEOEADNGAEEOOEEONTRNGDBCEONGDIAJNGAEAEEAAEIADAEEAOENTHICGPPWNEOPDLEAFIARJJTLOETHYPSAEHUTEUONOTFIPNTTWFX"
+    },
+    {
+      "page": 18,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5770464576929473,
+      "paths": "1",
+      "preview": "EAOEPFEALLGTHWABIEAFERMCGEOPOENUEAGEAJPIANGDSSAEFIABWGIRNGINGTHUWEJEANGBYDEAENDUOEDSTXEOWIAUEGBHTHOEDUSIHTTFWFAEFIUIAEYIABNGBCIA"
+    },
+    {
+      "page": 19,
+      "sign": -1,
+      "hold": false,
+      "score": -3.568454042182478,
+      "paths": "1",
+      "preview": "NUAYFOYFBSUDWEAWNGXJMIAOFIFPEOEWLGCNGOSFHIAIRTOEDTHFMECSCLMEOCNJEORIABIRGDFROCWIUADFEAOEONRLEAYAEYSWJEPNTERLUHAEOAEEOH"
+    },
+    {
+      "page": 20,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5573771760363373,
+      "paths": "1",
+      "preview": "PNOCGIEAPUYCOETHDEAWCGHXAEIAGOIAOEOENGNGBXCEAJRDPTHGTHAEFAEIAOETMWAEMGEOATPEOGLDEABBDACCJTOEUMSAETHTHEONIFPLEHIAAEEOXDSCLEAFGAIALBSN"
+    },
+    {
+      "page": 21,
+      "sign": -1,
+      "hold": false,
+      "score": -3.564930669479425,
+      "paths": "1",
+      "preview": "CDUJCGMIEANXGYCYPEOIAPFOAJNOTNEOOEOEEOOIARAEPIABNGIFAEELSEDCDEANGGENEAAEEINGSGHEOXWOEMTHUIAJGNOEOXSNEAFOEIWUTHEORPSPPOTPXSEAEW"
+    },
+    {
+      "page": 22,
+      "sign": -1,
+      "hold": false,
+      "score": -3.58499379199209,
+      "paths": "1",
+      "preview": "NGBEODJGNGOEEDJYFYPNGGCBOEEONPEOJLCXTHLGSIIJONOTHJEAWRGOEOWFIEAETXFUYFRAEAEEOOEAEEOEIAEAOWRJHMCBMAENGLNYJEAEUJAIAUIATHSLYGLEOB"
+    },
+    {
+      "page": 23,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5980157938746826,
+      "paths": "1",
+      "preview": "UOENNGXIGYBTHEOTBCCNXTHEONGXBFXMEOOCSGEABEOCUPNGIAOHSAEFYEAAAEOIADNOEITHLRBWFLIXCWJAIYSOUAEAYBDUMHSOJMYFOEAOESOELIAAEIOCTHTH"
+    },
+    {
+      "page": 24,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5444076190627865,
+      "paths": "1",
+      "preview": "DTHTHGJAEAECAWRIAPEATHIAUSNDWTHWAEWOGTEAOEOWUBEAOETHHFTAEMIOEULIAXEAJOEAGSIIBTHOFEXMACMHOEIACHOWTMTHJNRUIAOEMBJPEBNAECEOOEOUAXNIAI"
+    },
+    {
+      "page": 25,
+      "sign": -1,
+      "hold": false,
+      "score": -3.538978853755469,
+      "paths": "1",
+      "preview": "HWHAXCUYTHPYOERBNGMTHYYAEXTHAWOEAEUWFYXXAFAEAUIAAEIWOGIEAEAJFEOFIAEBTONGETHYIIAFEAEAAEXLAEIHUCFEANGNNMSAEUSNGAAELGSAEABUGLDEALNGH"
+    },
+    {
+      "page": 26,
+      "sign": -1,
+      "hold": false,
+      "score": -3.530085903497898,
+      "paths": "1",
+      "preview": "IAUJTOJPEOUEATIANDTTDWAXNEAGOSOEUADEOETHSHNGOEOBUAEAGEOMHLIEAOETHBEOANGOENETHLMLADIANEAYNPOEBOEFLOJOEFEOUXEOCIAASERGBEONGPGUGTHFF"
+    },
+    {
+      "page": 27,
+      "sign": -1,
+      "hold": false,
+      "score": -3.579646738359899,
+      "paths": "1",
+      "preview": "MJEAHSOJAEALIEOIMSEAAEPFAETPEAEAINBAELTUBENGROEFAERRHMEOAEBCYLUIARIATHIATIAUCOEHUNPOHOLAEAAEOEAHMRFXEHXXNBLRCOELXEEORBYXJXEAU"
+    },
+    {
+      "page": 28,
+      "sign": -1,
+      "hold": false,
+      "score": -3.559983011105593,
+      "paths": "1",
+      "preview": "POPMBIDDDNGLIAWLTHMMONOTHNGAMGTHREONSCPNGPUEAIATHBBOHNGHLNAENGAEAOEAWXRONNRBDEAEOWNWNUATAEICUBALNGUTHLOEOXBHTHLYCPXPIJTHTMSL"
+    },
+    {
+      "page": 29,
+      "sign": -1,
+      "hold": false,
+      "score": -3.572077058524925,
+      "paths": "1",
+      "preview": "THNGHETLOYBNGIAOEATGIWRAJAEEAFTHGONMWYAELAEBSORYFIARLWHPNGADAETUSXXWSUIIASJHEAEEHUGFSBAEAEIAFEAEOHHJIECTDHTHBGFEJNGAEXIMIAC"
+    },
+    {
+      "page": 30,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5781460679253034,
+      "paths": "1",
+      "preview": "DOESGMXEOBEARIYOEYEAWDNSPYTHGRTWURAIAGAEOEAOEELDGCHGLCHNGGAENGDJWUEOISEODOSPMUEAIXEAIFNWOETHJARFTOEUHTDTUTHHOENGFRXAATOEAU"
+    },
+    {
+      "page": 31,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5332451100614457,
+      "paths": "1",
+      "preview": "THOMNTXXDTHIAAFPEEDLEAYABEATHNSLUNGLAEHXCAEEOUCTHIAPDWWLYOTNGUTHIAPROGSAEWPAYOAEOIPTFEAWTHHOMBMCIAUEODEHCEYMEOBFRIRIARTYTP"
+    },
+    {
+      "page": 32,
+      "sign": -1,
+      "hold": false,
+      "score": -3.599526036163626,
+      "paths": "1",
+      "preview": "LFIAAAEUFIANGWPHWBXDOYYXUXFNMGREOEACFOTHMJEOCXIAAEMLNGXNGTEOEAOECSEONRUTEAMJREODOEDJBOEEONGXJCHHFSNGEIOENGFTEOSJRROENGMMRUSSBJD"
+    },
+    {
+      "page": 33,
+      "sign": -1,
+      "hold": false,
+      "score": -3.4967422621978534,
+      "paths": "1",
+      "preview": "DITOEFIJWAGROEFTPUNOXTHXRYIRRREAAAWXMHTHIORNGPEOAEXENGGHTTHHEALTEDTCUXNAFIDOWEOGRGPDIADXGEEANEAUIAOEIPIADJLHTHEAINGCOEEOE"
+    },
+    {
+      "page": 34,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5492151954681037,
+      "paths": "1",
+      "preview": "MSJAEEODAMWILNIAEPNYIEATHNGSGPWWAEMBLNGIWGPAEOEOEOHNTHWMFFNGNGIBJUANGOEEONGLTBNGFFCPSEAPMPNUPNGXYIATJEGOENGOSTATFEAGABAEGRUOEJY"
+    },
+    {
+      "page": 35,
+      "sign": -1,
+      "hold": false,
+      "score": -3.581152898054464,
+      "paths": "1",
+      "preview": "NGXWEOEAYOECEEUUIAECNHSWNGTLNGEOWIABSNGTOADNGJYNFNEAYIRPIEOYNGYHPCEADCBDAEIAIAEAIAEETHEATHYYEAAENGMSOWSLULYJTNNGTEOCXNGFMYYHXAEGJT"
+    },
+    {
+      "page": 36,
+      "sign": -1,
+      "hold": false,
+      "score": -3.552924400180877,
+      "paths": "1",
+      "preview": "YWOANGHOEYLOTHLNXRJDHSEORIEOIBUAETGUTHUEAHRGYEONGGSPXTHALPOSCFSMUUBOTBNGECNGGFYJRNGHFGTHCECNTDOWRFEREOHPBPJIIEOFIAGHS"
+    },
+    {
+      "page": 37,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5132200408936614,
+      "paths": "1",
+      "preview": "NALTHNUUIHTCWSYJWDOEJYMOETHAEEDNGEOTHJCHEREOBXHAEDNGEAEMAMOEMOECIRCSLWCHTHOYEOHEOXTTHHIFDNGEAABHNGNLRSTHJWREAXYFBIUFWUEARS"
+    },
+    {
+      "page": 38,
+      "sign": -1,
+      "hold": false,
+      "score": -3.4893227052999247,
+      "paths": "1",
+      "preview": "UDWFCYXAEOEYFSHIEOJIYTHFYNGYOWULGYCEPEOEDUAEFSNHAEBWMXCMFRJYJNGEONGHUTWYBHYWERDIAFEONYEONSMAEDWICIABITFEAMYWHLOSBIAPD"
+    },
+    {
+      "page": 39,
+      "sign": -1,
+      "hold": false,
+      "score": -3.582794735367489,
+      "paths": "1",
+      "preview": "SCRYSIABUEAPBULBNMNEMIATHWAIALAEOENGLYNGIAUXCAEPMWEONGEOLGYIEAYIAETHCDEEARAENHEAFBIAHIMCIAUUHHYMBXBUHFTNGXHBXMDYPOENEEONCGEW"
+    },
+    {
+      "page": 40,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5615806460719566,
+      "paths": "1",
+      "preview": "FWNGXGDEOHJPGYHEODJEAAHSEABXOTHIAAUSEACTRRXNGAEAEHOOEBOEOEFNGGTALNGJXDRWPBTHNGGHEATHCOEEEXYAELMCNGFNGLJCUITTOEETHJUEWXNIATESOSJ"
+    },
+    {
+      "page": 41,
+      "sign": -1,
+      "hold": false,
+      "score": -3.577759915758664,
+      "paths": "1",
+      "preview": "EAHYOYMIYTHBSJDORAUPJHEOPGWPSFLIABDTMOEEXEOXRWBEAXSBNITXTTREOGRFNNGUYCEONGMEANSAEYUEOPYUBDJSAAESFYIASTLOLOETHFSMHRTHNGTD"
+    },
+    {
+      "page": 42,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5815532354943325,
+      "paths": "1",
+      "preview": "DEOJWTHIIARFXOEAETHBAMEOHJHYXCIAOELUOEGNAPNEEATHOLNGMHNGTGAEEOJNGOSXNTMDPIAMAETAEEAJSRPBHFIMIAJAANGJNGNGODRASGXTHXRTHNLEOEODXHBNNG"
+    },
+    {
+      "page": 43,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5897090652387673,
+      "paths": "1",
+      "preview": "HNEOGTIAOEIMNYUAEMHDCGOEWCXLUOOEFNGLCIAJNMDATTLPHWNGGNGJMMJINGEORFIAAUSCTEOWXSDINGTHTHGLRPEOWMOEFIAAEAEEACBDLUAEIARSEAUSNGNYRA"
+    },
+    {
+      "page": 44,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5130509785557362,
+      "paths": "1",
+      "preview": "EAEAHMYTHAEOEPOIHISPCEOOXHUMEEAEFITYMIAEATJBRTHAEIIAEAEPNGPEONCAETUTHWRXTHFEOSYATHAJCAENGIAAEEOIAEAOEAESXHELAAJMNJIXTHLCSCOEBETRM"
+    },
+    {
+      "page": 45,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5519075437049543,
+      "paths": "1",
+      "preview": "CFOEINGEOBHMTOEITHJRHXITHNXGBAEDEAAGXRUSOFDXTIANGAIAEOTXIATWRPAEUITPANXSAOEPOPCFJJOAETREHPJDIAOIEGEOTCGJHYLXWJNFTOEYIBAE"
+    },
+    {
+      "page": 46,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5620025997735847,
+      "paths": "1",
+      "preview": "HXTPIJBDTIABSIWTNGFOEIAFTHYMPOETHYAEFEANGGNDXJWXBIAAEGENGXCJRTASWJHEMAAEFSEOCTHOETHOETAEDUSOEUBLEXYSEARABXUWJBOEMEAAEFTLMEC"
+    },
+    {
+      "page": 47,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5488714131739307,
+      "paths": "1",
+      "preview": "EAHRCEALECIIRFUXIOELIEOTHIANCXMDTNGGNITHEONEOPXWNGCMREATBGIAMANGGSEJCIAHAECJEOTHJBRJXWYTHIEOWFSWNGAGCWTHNYWEAPCFTNGWGIBCPMIM"
+    },
+    {
+      "page": 48,
+      "sign": -1,
+      "hold": false,
+      "score": -3.550235501760061,
+      "paths": "1",
+      "preview": "HOEOMJGHEBIAHILOEANGIOFIEOAMJBXFCICBOETHNGWBXTFWGOEFREMAEDTHFGIBFENGUFBNGIAEODCXIAJSTHUORWFOEOUNMFIOPJOTHSYARIAXLYPIATMH"
+    },
+    {
+      "page": 49,
+      "sign": -1,
+      "hold": false,
+      "score": -3.630230350997902,
+      "paths": "1",
+      "preview": "IATPBLOEYCYNGIATHMSLXCWGYAECXIDIATHEODUJEHJOLOEAIEOIAXHNGEUNMYDSBLAEBRFOEFEAIANGTHOBD"
+    },
+    {
+      "page": 51,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5839043779137887,
+      "paths": "1",
+      "preview": "WCSBIALUBAECJNRMOIGTHIARGOIHNGNANAEIJAEOBNGCDIYLOEJGDLGNGBRFJSMILAFTIACRTXUPRJEOXCCLIAATAEMTEAOEMIAHCWIPCPLT"
+    },
+    {
+      "page": 52,
+      "sign": -1,
+      "hold": false,
+      "score": -3.585158512553306,
+      "paths": "1",
+      "preview": "PIANGNAEOAEOEDEOGYAEXEUXAEXLUXXWGMEAIAEDHTHSIMWXMSFFTTATPTNGYRDPFDTHIEAEACTSIAOCAEDNGYAEFGUEOXPNGUWOEUEOEEAEOMJEHTHPFGNPFJXB"
+    },
+    {
+      "page": 53,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5907799857611007,
+      "paths": "1",
+      "preview": "EODUPYUGPUIOENOOERXRIXEOSULMGIANXCJBUJEOIEOCDEOMIYAENIFJIAFUNFOEWUYXRHSLXLJTNEYADETEAEOUOEMEODTHTHREOMEOUDEAOFEBSEOYLITOEEA"
+    },
+    {
+      "page": 54,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5795370289907287,
+      "paths": "1",
+      "preview": "ABDJIATHUIGIASPNGUTHOFAJHFNAEHBTIUOEEAEGOUEBCOWNWFENGTITHEOUEAPIAEAPSEGOGTEATONAEFTHPGNOIATHMINGXHCONGXYOEHIABCUYDXLFEOTHTHRYU"
+    },
+    {
+      "page": 55,
+      "sign": -1,
+      "hold": false,
+      "score": -3.5856165102224913,
+      "paths": "1",
+      "preview": "NGDNGIAWSRXGSRGDTHLHHORNGNXTHEUHXGTGCPHOEACGSXFBFNEAEOREOMUEAEAXXTHEBEOWRDAYXNEABIAFOEDIACHEJ"
+    },
+    {
+      "page": 0,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 1,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 2,
+      "sign": -1,
+      "hold": true,
+      "score": -3.572907627711981,
+      "paths": "6",
+      "preview": "OEBOAETBEALIHNMEAREOBEAECOELUEHXGPEACDEAWISEUBTHEAEAPXNYJEOUOEUIBEAETHXNGGDOEPOTHXTHRTETHCIRWMNEORXBRAEEOAJOEIAIAPRJNGFLCGACIOIT"
+    },
+    {
+      "page": 3,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 4,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 5,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 6,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 7,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 8,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 9,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 10,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 11,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 12,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 13,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 14,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 15,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 16,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 17,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 18,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 19,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 20,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 21,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 22,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 23,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 24,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 25,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 26,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 27,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 28,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 29,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 30,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 31,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 32,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 33,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 34,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 35,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 36,
+      "sign": -1,
+      "hold": true,
+      "score": -3.528861025559035,
+      "paths": "5",
+      "preview": "YWOANGHOEYLOTHLNXRJDFWEOEOJNGWTARLCOEWUEAYWNGOEAUAPBOEOSNGEOTHXYTHCHOEOERUEEOASUGNBUROCAHMXENRTHAGEEAXIAOLPINTHUJDYTHMHMGHL"
+    },
+    {
+      "page": 37,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 38,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 39,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 40,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 41,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 42,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 43,
+      "sign": -1,
+      "hold": true,
+      "score": -3.520658385781421,
+      "paths": "378",
+      "preview": "HNEOGTIAOEIMNYUAEMHDCGOEWCXLFTHTHAEMYOJNHYIFNFIARIATHMNEATHETUOCOERTHIAUBICJHXIALEABWUXEAFUEOOESPEOYDAEXMYDATNIATHUTXSFAEYLF"
+    },
+    {
+      "page": 44,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 45,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 46,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 47,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 48,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 49,
+      "sign": -1,
+      "hold": true,
+      "score": -3.643281431858872,
+      "paths": "2",
+      "preview": "IATPBLOEYCYNGIATHMSLXCWGYAECXIDIATHEODUJEHFGGEAJMUAEETOENTHHEAESBWNBNLIAAATHABTGCIA"
+    },
+    {
+      "page": 51,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 52,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 53,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 54,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    },
+    {
+      "page": 55,
+      "sign": -1,
+      "hold": true,
+      "score": null,
+      "paths": "0",
+      "preview": null
+    }
+  ]
+}
