@@ -1,0 +1,1402 @@
+{
+  "selection": {
+    "F": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      8,
+      13,
+      21,
+      34,
+      55,
+      89,
+      144,
+      233,
+      377,
+      610,
+      987
+    ],
+    "grid": [
+      3299,
+      3298,
+      3296,
+      3294,
+      3288,
+      3278,
+      3258,
+      3222,
+      3152,
+      3038,
+      2838,
+      2472,
+      1820,
+      708,
+      1206,
+      4516
+    ],
+    "offsets": [
+      0,
+      65,
+      130,
+      195,
+      325,
+      520,
+      845,
+      1365,
+      2210,
+      3575,
+      5785,
+      9360,
+      15145,
+      24505,
+      39650,
+      64155
+    ],
+    "lengths": [
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      65,
+      12
+    ],
+    "selectedBytes": 987,
+    "sourceBytes": 64167,
+    "operands": [
+      "twitter",
+      "b64",
+      "gematria",
+      "mask",
+      "audio",
+      "data"
+    ]
+  },
+  "native": {
+    "trainRunes": 2585,
+    "heldRunes": 408,
+    "heldScore": 0.8928122322767075,
+    "p57Score": 0.8313186888886459
+  },
+  "direct": [
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.128746191220534,
+      "hold": -2.1496048142164224,
+      "excerpt": "EA EO OE R C B R NG U TH E EO O J U D AE W F AE A F A O D R T J U NG Y AE E M T N O X R C R H NG Y F AE I A B Y A W S W I U EO D AE O A EA AE R NG R R C L T P G Y Y O L H P C EO N A X IA P IA X D L OE P NG X EO EO E M H B G"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1617021900974964,
+      "hold": -2.0914153222171454,
+      "excerpt": "EA NG NG EO AE EO O R NG S E L OE I L OE O J E AE EA EA E E J L TH X TH U TH J AE C E W A S A I EA W S B T W U OE X AE X N J L F P F E AE Y NG Y U D H AE G B P O C TH O EO T M J AE C Y A D A B S D OE OE L L NG H NG A R EO J I Y O"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1216256156109647,
+      "hold": -2.0929316061175802,
+      "excerpt": "EO M L X C X U Y TH IA A H EA N U NG AE S F AE W EO R NG O A W T I IA TH M I G B W A R S C IA R Y F W OE D J X D U U B P A D IA G T O N L A OE A NG U N G F A J TH G EA O Y T AE T OE X G IA A S B G P L P D L R F IA G O E J"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.147426050837599,
+      "hold": -2.1453521751763964,
+      "excerpt": "EO EA M OE AE N F N OE J A T E H L L O M E AE J J IA W L J OE M J W W C B NG M C T C G I OE O L L D R X N J OE L O P Y X G S U T Y G E F EO J P O NG EA T T W H NG EO TH F EA AE U H P T B Y J AE C P E NG I IA T NG NG IA C IA H"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1689628895693973,
+      "hold": -2.2205564121651666,
+      "excerpt": "E EO J AE OE EO IA EO I O O T X X X IA EA T A X T H H OE E E EA W S IA E EO B I D O W G M IA W E OE U D NG H IA M E NG P EO C L G X W IA R T E TH NG I D T P NG N EA OE I X D A L S J J U OE EO G B R R Y EO AE C U I IA NG H F F C P"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.2120424655400637,
+      "hold": -2.156718482570142,
+      "excerpt": "E TH I S NG M TH U I W TH I F TH U P TH B R M TH S D A T I F IA L OE B G H Y C D C O E B N X G L G N O IA P S M E TH NG EO H Y F X AE EO A B C N Y EA P G A IA O F T M O M S N M B F A IA J AE G G N TH I AE H X IA OE TH NG OE OE"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1083037096705337,
+      "hold": -2.0827083774950994,
+      "excerpt": "TH M N G OE N A B J EA N EO I EO X AE EA A A X EA L B J IA N M EO A R D G N Y A U EA AE U IA U X IA R U E NG X T S IA W X J C EA F M E R U I U I P J P B W OE I IA S D M W N E TH S X EO R G EA NG W N C D C O T M N B T A G E"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.2264319150539262,
+      "hold": -2.232704852356979,
+      "excerpt": "TH N H AE NG T EA G J O H G AE F U J TH AE R M X IA O P AE U L O F EA OE F F P G NG Y OE F B O I J D P G T X I EO AE EO R IA Y U EO EO C AE Y T T D EO X AE B NG H N H C AE S S H E F D U M T IA OE P N E TH F I IA X G S TH E T D IA"
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.0913029490945503,
+      "hold": -2.140037652035462,
+      "excerpt": "Y C AE L T M S U P T TH U E R D G EA C C TH P B T U S Y EO W J X B EA G AE F IA EA NG J B A N IA B NG H AE TH J EO B M O A E E U S U O L O F S J X L S B TH W D W D G N NG J IA R EA IA R H S TH EA W AE W G E M EA S X A I H E"
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.092501355276245,
+      "hold": -2.1595963251284176,
+      "excerpt": "Y T TH AE L O EO TH A B B AE M B L EO D G AE Y J IA OE A C NG C X T P F D I D AE EO TH Y A S W B L TH B IA R X U B NG EA T L L OE U NG N NG B C U U T T EO J F NG P AE AE EA OE C G I F AE OE W J H W AE O NG EO F F EO F G L C L W S A"
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1652821510755142,
+      "hold": -2.046677089965309,
+      "excerpt": "I EO D U T T EO G X EO H Y X TH D R EA P C TH AE F AE M A B O EO L L OE OE IA EO U AE L J OE B E C O L EA C N E H N D P C U O J T IA NG O C A EA R X TH B M O S E EA EO O TH NG I X E H EO B AE H Y M TH M E C G L AE L O D J C N D"
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.0664129411894847,
+      "hold": -2.2300759253148668,
+      "excerpt": "I D F G L F N W AE P D NG S S L I D X AE Y D I TH P X EO AE M AE M C B TH I Y I D T G S U P AE C A A B U IA X IA OE E Y C S T R F NG TH Y F M M R N S S C A U U H E B A P L F G Y O H E P G R C IA F X G IA H X W TH T F"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.071379405397007,
+      "hold": -2.1873065448476363,
+      "excerpt": "N F F U F R W Y F T T B H B H P NG N B W EA OE NG M L U B G IA TH F J D C AE S G T C L AE R OE W AE T N I H O X OE J F J M D D L AE H P H L S C A D AE M NG Y Y M H R IA N M R H Y B Y U EA A N EO S NG N A S P S EO R X S"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1685205602713906,
+      "hold": -2.118181261910019,
+      "excerpt": "N N EA N L EA G N L F T AE IA T IA EO EA P G W O NG S C H B O N EA J C Y U L IA P IA B AE AE L O T IA EO IA F H C TH R A W P U TH J E L M C J P I TH Y Y G E G P OE O C NG O U NG M E D AE IA T O A O H EO P F AE TH IA C N R G D EO"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1128957010150677,
+      "hold": -2.112441139877301,
+      "excerpt": "TH TH P B I IA IA NG O P Y O D O D TH F P EO X O M W C G IA G NG P B EA R C L H U NG TH X M G H AE M J TH A AE D B J S NG L D C T G NG I AE G EO G U L I L U Y T L TH P D M W L J A D EO O EA W X W L NG IA C G I U EA U P W NG TH"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.184835485966613,
+      "hold": -2.1232238869486855,
+      "excerpt": "TH J EO AE U OE Y R D Y Y J P TH P U W B U X W E U L D X NG A X Y R M EO G I EA P O C A U W M I IA P S D L T U B B R P B R U NG R OE R B AE B EO EO O D P H T H EA W E I O J N N J P E N I S M NG AE P OE B P L A C N U EA"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.2136192563420245,
+      "hold": -2.1357251023125254,
+      "excerpt": "EA F E OE B EA U B N B U NG M L NG B A E EO AE L U C N S S F TH EO H NG IA OE AE O N I H L P EA X D J M EO W P I A J EA H IA NG A AE W OE Y F O X H R A W TH Y EO W P I W EA H I J AE O F A S C C C X EO R E P E L U OE C OE AE TH OE"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1081089434646754,
+      "hold": -2.1434860474718076,
+      "excerpt": "EA M B EO T G C G N NG F S C H H O IA M NG U G H L J P W U OE B O L NG P EO X F H C M O U I W U TH F TH P R NG N R IA X P Y H F N E AE N F NG O IA M TH J IA G D F N A T N J D J T TH IA Y EA Y T NG U A E P E B EA M A B M TH"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1372457383450447,
+      "hold": -2.0897934043868838,
+      "excerpt": "NG TH TH N IA OE NG EO EO X J W C G W G O OE W O A IA L A U EO E B IA D L L R J S A AE D F EO N E Y D C IA OE EA AE N H NG E E R I E M D J B AE E D M I OE EA TH M TH W S U X D M OE B D S I U W J L Y D P U Y S G T H L D EA N N"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.110090911592168,
+      "hold": -2.120271349324023,
+      "excerpt": "NG NG U EA Y F AE U EO E I U L D D NG G D T H I C G Y EA R M H O E M X A IA Y S D L EA TH J X I P B S B EA M G G Y H C AE EO U EO I O P TH R W E P C EA T C U B C O I TH E OE S TH TH B P EA C EO EA O I W TH I R O X C AE L Y E"
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.070039221794881,
+      "hold": -2.138720210205532,
+      "excerpt": "W OE O B J G E G EO U F G D I U AE A W OE P B I P B EO D P TH H A L X J J N R TH D EO O T C EA IA B EA A B TH E W C EA B M W EO S AE AE R B EO TH C S J R OE C S X W T J OE J W EO AE IA F W W O O N OE B F X G F TH T J B G C IA"
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.129394928357161,
+      "hold": -2.1590318082226863,
+      "excerpt": "W R N OE S M S W D TH S U A D IA TH M H P H S L M J TH E G N P D O N S N C E C EA AE U EA P NG EO P E O F NG D J X EO P NG J EO NG R X U M P B I B O F C A NG T AE NG IA E AE G X B NG N X W A Y P W R OE H F I N NG TH P O EO R"
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -1.959053406940932,
+      "hold": -2.128292159899784,
+      "excerpt": "F A T R NG F N U S IA I NG N AE T X O J B L NG W EA O IA L TH B D I M W OE Y NG M B N NG TH Y N TH I O X I O B O R IA N H TH OE C IA Y I NG I T B L U Y U IA EO I H EO I Y H L E R T P S OE N N E NG R Y EO IA O S B TH Y E N EO X"
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.1277861107124325,
+      "hold": -2.1237736039972863,
+      "excerpt": "F G OE N AE P G TH Y EA AE T I N P L IA EO H S M B C Y B S A A EA N TH TH Y A B R L X C F N B A A EA R E S W H H W OE R R Y C R C EA E EO B O AE O E Y I TH T I U S P R C B G H W A F N U EO AE E P C NG Y AE A W B X G M L"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.171519435650738,
+      "hold": -2.189944545624236,
+      "excerpt": "X X S U C B R NG TH EO NG J TH I U D AE EO F AE A OE X NG P OE O C IA U M U NG C N B H B C B NG M NG A F NG IA NG L AE E R P EO E EO TH EA C G N EO L T P P D G EO M U G F G NG L J D B A F OE H M G N D D D S F OE Y N S B W O X G"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.212877874509408,
+      "hold": -2.0445490815832548,
+      "excerpt": "X D X N AE EO O R OE AE NG M NG N L OE O T E AE EA NG H W U N E H EA I A T EA L J S F E AE OE T E S S T O E M B A H G N AE H A M D C F G I AE G F C AE E C G OE TH G NG C M X G B N S NG E N H C TH OE D P H N R NG W J EA C D O"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.2139133357283844,
+      "hold": -2.114932982796141,
+      "excerpt": "Y B IA B C X U Y U B NG N F I U NG AE I F AE W M X O P G L OE P E N X W L A EA M U X OE I OE Y TH W Y G X J A W R M H T EO H U W F A W F I O EO J H X Y W J EA Y I O D G P R TH T EO G TH R H G I IA Y OE H W Y EA E H NG J"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.0976315354774537,
+      "hold": -2.043983132201795,
+      "excerpt": "Y Y Y AE AE N F N NG U NG B M N L L O X E AE J E H E U OE G AE X IA X F X G Y Y J TH C IA C NG L OE D H Y EO H D Y G S NG G A AE AE W D NG C C F M R P L W P EA W C EO D TH Y E P E B S OE AE R F T C I AE C N S M E OE I I U H"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.0952011783536513,
+      "hold": -2.1713862089720286,
+      "excerpt": "R X R OE OE EO IA EO J P G S P P X IA EA NG A X T U IA J H W S U EO W J B L AE T J EO N L I A F OE EA D B AE A OE B S I I I EA B R EO W W U TH Y R TH O G X P EO T OE P D EO A D AE D D NG L G IA I S P Y S E NG TH OE A A W B A TH P"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.127094939330461,
+      "hold": -2.189193499208498,
+      "excerpt": "R R O EO NG M TH U J B C N EA U U P TH OE R M TH H P P G EA T NG B TH I J J EO IA TH I G M F Y AE G E G C L A T X P S F Y L M T C D EA Y H EO B U G E X IA IA S O O AE H O OE AE NG TH H IA E M R W S G EO A Y Y L J U NG M T M OE"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1504341090444243,
+      "hold": -2.0917780993075867,
+      "excerpt": "T B T N OE N A B I E G P J P X AE EA M A X EA IA IA OE H L O E IA A U U G J TH OE D OE F S P O IA G U OE R B P T R I T G Y B I X N U T Y G IA NG TH D T S M OE IA EO X U W G H M O D X I X G I IA N TH U E TH R OE G E EA F N E"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.124528156623295,
+      "hold": -2.1121518310248284,
+      "excerpt": "T W S EA NG T EA G I OE C W Y U U J TH L R M X C P A G EO R N O M F A Y IA P P NG M EA C S EA J AE P I EA B W P TH S G OE E M OE W AE OE EO O NG J L C G T F C NG H TH T Y S C H B J I NG OE G F TH F E EA W D Y TH N EO O U NG Y IA"
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.0236796388220784,
+      "hold": -2.0896875415116316,
+      "excerpt": "EO W E B T M S U X Y C F B O D G EA I C TH P I G M C S EA U H D I R N J OE G R A EO F EO L IA S NG R P EA X J J T U F Y F L L I G C T A IA O D I T N C A D I O A N A NG I T M AE IA F H P H W EA F OE M TH AE E P EO C C E"
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.0991498747087074,
+      "hold": -2.147752942836846,
+      "excerpt": "EO E A OE L O EO TH AE IA L A E T L EO D J AE Y J L EO P A I NG H P OE OE EA P N E L W F AE IA A EA L F B D NG J R T S AE X AE EA R L Y E A TH E AE P H AE TH EO NG A U AE EA H J C N L EO H P C C F F W EO NG S OE T P EO O D R H TH EO A"
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.041883570062442,
+      "hold": -2.1446771535626685,
+      "excerpt": "A I U R T T EO G P TH C IA S O D R EA H C TH AE W G U C EA T E D J F B A Y H B S H NG C U D O OE EA N NG NG C I F T W AE A F Y OE EO F L J R NG OE OE IA E J EO U EA N D P NG W R G AE NG M TH T R H OE M S EO M M P D F A D I EO D"
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.0225102599801157,
+      "hold": -2.1912479979188944,
+      "excerpt": "A NG W N L F N W A O L OE T T L I D N AE Y D B EO A A D N AE EA I EO EO EA A R TH E P C O P TH AE W A EA F R A S R AE L NG Y R Y EA L E B P C W IA A M X D TH W U IA EA F B NG O H B S EA N T AE TH Y R TH C P P D U C S M W M F"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1124682728126527,
+      "hold": -2.1514455858171364,
+      "excerpt": "J F E W F B D OE TH X OE C AE G H X NG A B W Y I B H T IA IA R G Y D M D Y H X I M G R OE I Y EO A E C TH I L EA U L B M D TH O R AE S E W EA X EA EA C H IA E OE N N AE P E R R N TH M W C IA OE AE E U EO B P M B W J C O Y N"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1035216787552162,
+      "hold": -2.1198376138179977,
+      "excerpt": "J N B S L EO OE C OE IA OE P S C IA P EA EA G W U N J D R X P W W G EA C U EO I EO TH L Y N B N L O J F AE F W M E O T U N G M IA R M EO T EO E U L U B U X I E S A N EO NG T R D B E B A F E R B U I AE F Y F EA C Y C G G"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.0662102031529765,
+      "hold": -2.1305611153237662,
+      "excerpt": "F TH A J I X J AE U S L S G X D U F IA EO X C TH J T I U AE D C OE C AE C EA AE TH B EA P G N TH NG X EO F EA R NG F Y W EO O S U H Y H I E U P IA TH Y G N E E M A M D G I T AE Y M F M P L I L G J O U N TH S EA C C L H N H"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.182020832701044,
+      "hold": -2.1931390328687272,
+      "excerpt": "F J D M U N I H NG EA L D AE P P F W TH U X N U C TH IA B J Y G TH I J EO X IA F N F R J R U S C EA J M TH E EA T N H T C P AE NG H R S EA E B E E H NG J C J L AE N M N M H Y R S E D I EO T X I O EA B E OE J Y EA EO I E C"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.038706550746909,
+      "hold": -2.1744276866274244,
+      "excerpt": "U F W EA B EO B P J S W N W N NG E A R EO AE E E U IA J EO I F L O S G OE B S H X J NG Y AE L IA T E X O C EO EO AE W B S F EA R T G Y W H P T O E J P N L R N OE Y T B U G I H D B C P TH EA S NG OE S N OE S O T U S A X T"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1614096751712486,
+      "hold": -2.149926519156243,
+      "excerpt": "U M G E T M NG TH J M G O OE Y H R IA C NG U R AE T F N R J L AE IA X F P R Y EA EO H L T IA T J G U TH IA C G N D EO W TH NG U T N OE E O X EA F TH NG D P D G O M EO EA EO AE F G H T I A B C AE L B U M NG X B P M OE S B T TH AE"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.134168091219626,
+      "hold": -2.1351807411976744,
+      "excerpt": "M TH P O IA N C T I T C M B B W C O W W O Y I A G C S H M M EA Y EO R M O AE NG L EA EA EO EO OE E G AE Y W D NG D P N U AE G I I I J I L M S L T E B M J C J O J Y X EA IA O E NG B J EA X Y AE X A R U J J X X A U F Y S"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.092533280936356,
+      "hold": -2.066684209095157,
+      "excerpt": "M NG EO OE Y T N C I L R P O C D L G H T H EO B I H O W N I A D AE G A G X T M B IA E X H G H E P NG W B E NG E EA B B H OE O Y O G Y C EA M M U B R Y R NG OE P OE OE IA IA U Y H A D L H E IA D NG I G G N U L N O NG X A"
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1198693564893745,
+      "hold": -2.14903422982049,
+      "excerpt": "N OE NG D J M C TH X EA G D J EA U Y A OE OE P S IA N G H L D F T M X OE J O NG O G Y P T P J O O T U L N R G NG P H C IA J L A N AE J OE J I R N S S C P EO I M G EA TH TH TH Y U NG OE Y S F Y I TH G Y I I A R I W I C B NG"
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.087121692570494,
+      "hold": -2.1206401075951784,
+      "excerpt": "N R IA EA S O TH O AE F NG E EO EO IA O M D P H P H S F IA S T W NG E Y B S U B B N TH Y X AE M AE B EO L EA NG D J AE OE NG U F S L U B X H A EO AE N J W J B O E EO H J S IA T U EA OE S TH R S NG L X T OE M R R C J S IA G TH A IA"
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1268522035992645,
+      "hold": -2.1358009212465254,
+      "excerpt": "IA A IA IA NG T OE C P F R R NG W T P O AE B L D M O X TH D NG M S S AE EA OE C N L P G L E F O IA C R EO X J S S M M F L D E Y E P I X C B N NG W OE M S R P EO F L N EA F D M J M OE O U EO A L A H S TH EA L S H U AE I F L"
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.138072328173559,
+      "hold": -2.1104475985435043,
+      "excerpt": "IA G R O AE F M G A U M EA OE L P M IA Y H S NG F N H NG E X Y L X H D Y O C C T J R T EO J L M F TH OE D C L D EA P T AE OE Y A NG EA J W E A Y N X S IA D M X E AE AE A X OE NG O P TH I U R E A N A H AE OE U OE P NG NG W W Y"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1965070580522776,
+      "hold": -2.1300182472286666,
+      "excerpt": "G J X EO C U B N B I E J TH J U OE AE G F AE U EA A I D AE E P D S F B P OE B F AE G I U A Y N TH W F T G U IA EO W C R T EO S IA NG G TH AE R W OE M G U F J R E B T E J L EA T EO T F OE EO N S U X C X X NG B J C AE EO R G E"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1045821803831966,
+      "hold": -2.2364104903296904,
+      "excerpt": "G L P L AE AE T NG H D E M NG I L NG O I E AE C IA E AE J EO R T A A C O L H M IA B W U G M AE O OE D J W R IA Y TH N U B G A O OE NG F EA D N Y N J H P OE IA AE X D TH TH I D J T Y TH EA O TH J J N P C EO OE H A D Y M R G S S"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.117486329272968,
+      "hold": -2.1097102544432444,
+      "excerpt": "C L EA G C U B N S M A N F N U OE AE T F AE U P R X O O C X B R EA IA S O T T TH EO N N W S N A F E B F U OE P U IA T E EO A TH L F TH D T M D G EA P Y C R EA J T P EO X U X T S N IA P EA IA U S EA EA EO D B C W L P W F EA"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.1766183584738266,
+      "hold": -2.1143211900767716,
+      "excerpt": "C F IA X AE AE T NG G O A B M H L NG O L E AE C EO IA F L M L B E P R P OE E E X D P F X TH X O S T F H IA IA NG O O D F H A EO Y L D EA NG NG N I IA U AE M NG AE A B TH Y J B P X U U H H O U D N X EA Y L I A B EA X C N N AE"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1772072780343232,
+      "hold": -2.1459833027921107,
+      "excerpt": "AE J O R OE AE J F Y J O S P X X Y EA S A X OE W H F E I U N H NG NG R EO P A D F IA AE D IA W I G U AE X N O M N P TH TH Y B B J D W D S I A J N E N U R M C U R N S O U OE J H IA L L P NG L B Y B G U P Y X S OE AE D AE"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.0724565913704613,
+      "hold": -2.095235321933592,
+      "excerpt": "AE U TH D NG O S E Y S TH N EA TH U EO TH T R M H X D TH T TH TH F P T L IA O F G X IA A A P F O D AE P P N N Y T W E NG E E M F R I EA M NG AE H I EO U N S M E S L G C D TH U L M A C O EO W P OE Y D D J AE J P L F A B J C"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1643718981077473,
+      "hold": -2.1544662786455357,
+      "excerpt": "A L B IA OE AE J F A L N P J EO X Y EA AE A X OE NG B R IA B B I TH I L X X D D I G R A TH I AE I EA D X S O O X I W A X EA B Y S OE U D P OE W EO AE J NG IA IA M S A R R T Y O L S W W AE NG O R L E L TH R O P L T I D EA B G"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.190324653331503,
+      "hold": -2.158584316118062,
+      "excerpt": "A I T B NG O S E A A H W Y F U EO TH Y R M H EA O G AE N E U W C M H C I C U R U D NG EO NG D E G TH I O Y J H EO X U L M N H N OE M M H L J EA D NG EO P E AE X G F A AE O E D D X H P Y AE OE IA B H N IA J W OE A AE L C S"
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1731383244938653,
+      "hold": -2.1581368596272594,
+      "excerpt": "R R B EA T O EA E F A TH F B R D C EA R C TH M T T H S E X N R H L L U EA U E NG P B P S IA S OE EA EO TH P A P C M OE NG A F R M Y G IA F H E EO F OE J Y Y IA G IA P NG F R Y N R G O EO OE J M S IA I EA W E OE IA H NG B G Y U"
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.0584745966069025,
+      "hold": -2.1875963615935237,
+      "excerpt": "R S D R L T AE M J AE B A E B L J D C AE Y B Y OE TH C P W T N W O S C Y Y O A E U J IA G H W A TH I AE X E N EA G B Y R R AE C A A TH N R B TH X W N T R H T E H AE E AE J AE F EO M OE O P M EO Y NG U EO O C P EO P O R W"
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1101934353186826,
+      "hold": -2.178773642204824,
+      "excerpt": "O P TH OE T O EA E IA R H IA S TH D C EA X C TH M U AE EO A AE U I IA Y M U O N F C IA M T NG IA T S S NG U O W A H G P S R Y F P D AE F IA IA L U P T S D D L IA T NG P T U IA EA W H C EO B D U TH S EA R P C L OE NG I T E N L J"
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.1545209806385124,
+      "hold": -2.143204334285353,
+      "excerpt": "O A H IA L T AE M N C D OE T S L J D S AE Y B J TH G X L D B O AE TH AE W W AE M U A F M I A H F B L J M X P I OE EA F EA R P F R E A F NG T E E W M G I R E I E O Y EO IA N F EA NG A D OE AE M P L G EA X O EA S W X G IA B"
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.1664473515347957,
+      "hold": -2.1180629026244824,
+      "excerpt": "AE IA W I F B D OE U R T T W B H X NG H B W Y L NG X L N M EO O H O O A I U OE P A S T H U Y E C EA O EA AE NG C IA U EA N B F J J EA N G EO D L L EA G A U EO OE G F Y IA NG O TH R C IA S C NG T EO O IA NG NG N M X L OE C H D O"
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1541418670119468,
+      "hold": -2.142416042770491,
+      "excerpt": "AE W G E L EO OE C NG B T A Y T IA P EA EO G W U M S F H AE C S R B H E TH AE O L C AE G NG O F L N NG I D Y OE L A F Y EO EA F B G J OE G R B P W EO U E B B R E EO S I Y A S TH E L Y AE A D EO L TH IA M F AE Y Y EO T Y I O F"
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": false,
+      "fit": -1.980269533040333,
+      "hold": -2.1144458014637904,
+      "excerpt": "S R G H I X J AE TH AE Y R A O D U F X EO X C NG W I G M R S H J AE EO R S O D X D R D D J NG H TH M U W G EA L I TH NG AE W I E U W A P H O AE C G H TH S AE A OE O C AE P Y EA A Y J C L T Y M Y G NG C G S TH NG D L O EO X"
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.0983557904852015,
+      "hold": -2.1816177975884607,
+      "excerpt": "S P C T U N I H OE N Y EO X TH P F W E U X N L U AE D G M E N L U IA J U C NG G A A EA E I S EA E U NG C O IA I EO IA C S M IA P U U NG J P OE EO Y H L A TH B L EA E E A T N EA N EO I S I E OE IA AE G M P OE OE X P B EO C NG J"
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.0457349398272746,
+      "hold": -2.234891202866111,
+      "excerpt": "S IA AE TH B EO B P I C U L E L NG E A B EO AE E EA C R S D TH H B X A M D U H T B T U N J J IA OE EA A U TH IA P TH R IA Y M OE TH A P F U AE E J N I J X AE D IA N M B B TH R C H O Y AE P P AE OE TH G M A P E S F F EO S F J I"
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.058878996067092,
+      "hold": -2.0980648575236955,
+      "excerpt": "S B A NG T M NG TH I N F X R H H R IA E NG U R G L G P S O EA OE N D P X B M W S P F EA P W J EO J EO AE TH NG I F N B P J A X B F NG Y TH R A H P D X I N Y M N M P I O C G J P O AE C M X R S T U E P P T G Y B NG EA M"
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.1314160690860318,
+      "hold": -2.085878096971631,
+      "excerpt": "C R A F IA N C T J Y J H G G W C O D W O Y F L F U R T J OE B B EA O G I B E S M T Y NG OE EO AE S EA I H L B T EA M G EO EO TH O H T O X L X A E T O H J J G L AE F AE EA C D E N O EA L O N F IA A Y S J B U P U A F NG"
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.26175436143317,
+      "hold": -2.163564019613619,
+      "excerpt": "C D D M Y T N C J U I TH NG D D L G A T H EO W G TH EA AE B TH IA EO T OE D OE NG H T EO E G EA B G TH H O D I TH B S NG E G IA X A A M F EO N F R P IA U T B D I NG AE OE NG H A EA O TH C T S L X A J N A U TH I N R W IA O T B U"
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": false,
+      "fit": -2.100270867494216,
+      "hold": -2.1101084759643807,
+      "excerpt": "D L I Y J M C TH P E F C OE I U Y A G OE P S H P EO EO TH S H P U D G EO T X J N TH OE EA EA TH O N Y J E G M W IA I E T B C E O T EA C I T C I U S T NG T G I T Y F T C U A AE A U C S D L Y T O G X G A U D E I I X S"
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": -1,
+      "delta": true,
+      "fit": -2.1660369589716364,
+      "hold": -2.040964053158668,
+      "excerpt": "D TH T TH S O TH O A M S F D D IA O M W P H P E M G TH Y H S E F G U T X I AE EO W G Y J I AE D OE U Y E N EO TH M TH EO M N E N A B TH EO B L S O W EO R G EO EO C TH T EO M F Y B E I EO S S X U U M EA H F C H EA N G W NG NG"
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -2.143365541519026,
+      "hold": -2.1369137481963536,
+      "excerpt": "P Y N A NG T OE C X I I OE I AE T P O EO B L D N EA H IA EO F J E R T S NG NG T EO I U J G X EO IA EA D TH T X F X P OE M N R A EA I G W L B EO X S S OE E EA U M EO O F H X Y A NG T T X A U E U R I J G IA O L E A M AE C O Y"
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": true,
+      "fit": -2.134591346155354,
+      "hold": -2.103009828519124,
+      "excerpt": "P H S F AE F M G AE J AE B J N P M IA P H S NG M C TH B W OE E D O EA I AE M EO Y P G A R Y L L P M NG A Y M M B TH O C G EA EA T X AE B M P F L B X X J L AE X NG C A I J D D H I D TH U I A H A IA EA NG Y U AE F I NG TH I O"
+    }
+  ],
+  "fhold": [
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 35,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 165,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 205,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 88,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 34,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 21,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 1,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 43,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 1,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 105,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 10,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 0,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 42,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 12,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 41,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 38,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 11,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 30,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 1,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 0,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 1,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 218,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 27,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 9,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 41,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 12,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 40,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 9,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 8,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 34,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": -1,
+      "prefix": 4,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "sign": 1,
+      "prefix": 36,
+      "endStates": 0,
+      "n": 9344
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": -1,
+      "prefix": 104,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 3,
+      "endStates": 0,
+      "n": 9333
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": -1,
+      "prefix": 10,
+      "endStates": 0,
+      "n": 9194
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "sign": 1,
+      "prefix": 26,
+      "endStates": 0,
+      "n": 9194
+    }
+  ],
+  "xor": [
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "illegal": 861,
+      "n": 987
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "illegal": 861,
+      "n": 987
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "illegal": 862,
+      "n": 987
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "illegal": 976,
+      "n": 987
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "illegal": 976,
+      "n": 987
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "illegal": 975,
+      "n": 987
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "illegal": 779,
+      "n": 987
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "illegal": 781,
+      "n": 987
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "illegal": 785,
+      "n": 987
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "illegal": 848,
+      "n": 987
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "illegal": 845,
+      "n": 987
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "illegal": 849,
+      "n": 987
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "illegal": 758,
+      "n": 987
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "illegal": 756,
+      "n": 987
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "illegal": 754,
+      "n": 987
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "illegal": 905,
+      "n": 987
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "illegal": 908,
+      "n": 987
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "illegal": 903,
+      "n": 987
+    }
+  ],
+  "rank": [
+    {
+      "source": "twitter",
+      "origin": "p15-lower-rubric",
+      "rank": "log15",
+      "holdRepeat": false,
+      "sign": 1,
+      "escape": 12,
+      "fit": -1.8583602457699748,
+      "hold": -1.9403828692095346,
+      "excerpt": "L B EA N P H OE TH D N E EA X F J D U B P G O IA F W T EA C AE T NG P G R R W U EA D A I TH L S L M J B L EA B OE B C T A N N AE E S G D G IA R J U NG N R H M T O W W U S NG A G AE F L A I IA TH U C P E C H E G G U E X"
+    },
+    {
+      "source": "twitter",
+      "origin": "p15-black-body",
+      "rank": "cycle",
+      "holdRepeat": false,
+      "sign": -1,
+      "escape": 12,
+      "fit": -1.8522922306985798,
+      "hold": -2.028450273235039,
+      "excerpt": "C AE EA A TH TH W I NG G W O C R J TH NG R M W A J B IA R O H AE W O T H I X H O R T IA W T IA M I W S E L M P T W IA L T J B OE B M T H TH M G L R U IA Y TH TH E F X AE OE C S N G EA C R TH U EA B M T O X H Y OE D EA EA AE U"
+    },
+    {
+      "source": "twitter",
+      "origin": "p16-start",
+      "rank": "log15",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 22,
+      "fit": -1.8955736282089326,
+      "hold": -2.014615453216357,
+      "excerpt": "L T H W AE F N M B G H EO U H O N C P N W U L J P EO A NG N W G B EA C Y E T B H J F C U U N B O X N M J P EO J X A U AE B O L AE H D B L L F R NG G NG AE U T H IA U L W T I AE R T O EA U C R OE T U TH X Y AE R AE P J"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-lower-rubric",
+      "rank": "cycle",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 22,
+      "fit": -1.8521340131913118,
+      "hold": -1.990731154046557,
+      "excerpt": "TH NG IA M D D EO Y EA J T F B F U AE P E T B C IA W N N TH AE U EO EA AE EO A EO TH F E A NG P O TH M F F TH N W B P A O L IA L TH X U X A O G TH R EA EA EA A I N I Y T L C F NG Y W H IA F Y H T B AE EO O E E X F W I EA N EA R AE"
+    },
+    {
+      "source": "b64",
+      "origin": "p15-black-body",
+      "rank": "cycle",
+      "holdRepeat": false,
+      "sign": -1,
+      "escape": 22,
+      "fit": -1.8160721846946213,
+      "hold": -2.0525756548410063,
+      "excerpt": "EO I U S F NG N S M A G W N N L A M R I L NG O EO X F F N E C P M A S F E N W B F D I D D M TH R X G H E R D NG I S EA AE M P X U NG P C F L A B TH TH J D L A B H J U F U R F W R E TH H TH P W W U E U L E M A D I"
+    },
+    {
+      "source": "b64",
+      "origin": "p16-start",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 12,
+      "fit": -1.9134775159635664,
+      "hold": -2.047051888924551,
+      "excerpt": "T Y G J U G I M U AE IA Y P O S OE H G D O A Y M S T P M I Y S X D S A D C Y J F N G S NG C U IA L R C E G AE AE E Y O P W NG D N G A W E X Y F N J O U F J A I H L S P TH N B N AE AE I M L EO B O S M X P TH I D G"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-lower-rubric",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 12,
+      "fit": -1.9070127866085373,
+      "hold": -2.035279214250948,
+      "excerpt": "R P P C U R EA U E G I TH I U OE Y J U AE U H H P A X C C IA TH NG IA D C N S H M O T X Y OE AE F NG S EA L F X AE B H L S G IA C O G O F A P R C S P H B OE EA O OE M X AE I E P L T IA IA AE L A Y S B B E L W B W U T C W"
+    },
+    {
+      "source": "gematria",
+      "origin": "p15-black-body",
+      "rank": "log15",
+      "holdRepeat": false,
+      "sign": -1,
+      "escape": 22,
+      "fit": -1.906528414328417,
+      "hold": -2.0398203813846885,
+      "excerpt": "W I W J A B W IA A L Y X U F NG F J EA M Y X C IA C R P W J M EO F G P J N N D IA B G P NG F O P R M EA C B NG AE E D NG L L L EO A EO B IA T I N H X AE U O L I EA J I A S X U NG N P NG A L T F D H R O T EO TH X W N T P"
+    },
+    {
+      "source": "gematria",
+      "origin": "p16-start",
+      "rank": "sorted",
+      "holdRepeat": false,
+      "sign": 1,
+      "escape": 12,
+      "fit": -1.9223967692289659,
+      "hold": -2.033836522948673,
+      "excerpt": "L O OE B O J F X Y L EA T TH D C IA N R TH M L J N D G X E A N EA L D AE W M T W D G H T U NG IA N C X C C C AE O F D IA OE A J O D L AE P D TH B N I D S P I Y P OE C TH P O H NG A W P NG Y M J P EO A OE P H A D P I A N"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-lower-rubric",
+      "rank": "log15",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 12,
+      "fit": -1.8286508296949215,
+      "hold": -2.003812291364834,
+      "excerpt": "G IA C H S C U O A D S H D W TH F TH Y NG OE R X N F AE H IA C H X X I Y A P D M T L N J L G O Y NG A I H Y L NG O W B M NG B H M B G D C X M H D AE L R R F NG B B L Y AE F T O N S J E E N B J G F IA U AE T D N G X"
+    },
+    {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "rank": "cycle",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 12,
+      "fit": -1.8812378518180894,
+      "hold": -2.009526373341246,
+      "excerpt": "NG TH E B R A W J E T R TH R O TH G OE J IA D M F EA C T AE X O G IA M TH L B J M J D TH TH B M S NG S X F D E J J U M N S G C E A D C G P N X I O EA L AE R B G OE P J EA S TH P OE M F OE D NG S U Y N X M O H H C A A J EA"
+    },
+    {
+      "source": "mask",
+      "origin": "p16-start",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 22,
+      "fit": -1.8962184961340072,
+      "hold": -2.033913925985288,
+      "excerpt": "A B D EO C H H X EA T AE L W Y AE R I P I C L D C C TH H D A IA EA EO U E J S X U T TH B EO I EO G P W C L X I P O NG T AE I NG C TH TH P M D J TH O C I IA C AE A X N E P AE R T A M EA N IA F X T B O OE E N O O L F B X D A"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-lower-rubric",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 22,
+      "fit": -1.8588834227045488,
+      "hold": -2.003183795824684,
+      "excerpt": "E R R H U T N S U R I C P C NG AE J F AE U C N Y X IA J A N EA W N J EA EA A NG H D NG EA U U EO N TH Y M C P E NG M O X S N P W M G EA S I G S P F I EA H IA P M C B G R B M O H A P NG F EA O E AE I IA L EO I I E N M IA D"
+    },
+    {
+      "source": "audio",
+      "origin": "p15-black-body",
+      "rank": "log15",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 22,
+      "fit": -1.866681544774892,
+      "hold": -2.0674796278863394,
+      "excerpt": "S G N H A U B EO C D Y N AE AE NG EA J IA M Y J X P L M M C T H P W U C W X G X M M AE Y S T F N Y C C I I EO M EA NG T S N E AE S F D B X S Y H T C P F H E O IA Y A T G T TH M IA I J R E S AE H R F U W E P N N U TH"
+    },
+    {
+      "source": "audio",
+      "origin": "p16-start",
+      "rank": "cycle",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 25,
+      "fit": -1.8625335001828893,
+      "hold": -2.0343077346957483,
+      "excerpt": "S T C T S A E N P W OE EO J S I OE N A Y T O S E NG T F C T J D O H F P OE R NG S IA C E X B P B U R N A O W EO U F F E P T R M A N J R L F M D NG EA H P P S E Y NG G NG J J NG L N I L D C D AE S Y IA N M A IA J D J"
+    },
+    {
+      "source": "data",
+      "origin": "p15-lower-rubric",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": -1,
+      "escape": 12,
+      "fit": -1.9210266510115301,
+      "hold": -1.951041368326112,
+      "excerpt": "J D TH P EA W L F S Y N N E I TH L I F B S W C OE S D AE AE W N U X IA I B N T Y P EA S B C R AE EA A G F W P S P IA W W X Y E P TH C AE T OE X S OE S A U C E I B Y D G OE C A IA D W X P F S H L M G H I S A S U A B W"
+    },
+    {
+      "source": "data",
+      "origin": "p15-black-body",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 22,
+      "fit": -1.7972026010043296,
+      "hold": -2.0378904263590245,
+      "excerpt": "M W H X IA L E J S F X R R R T R NG A D H EO G NG C E I IA E S E T F C A F X P L R M R P AE C S W U R R N F S L W D EA S AE A D R U IA EO TH O F EO X NG EA A N C U A A P D EA N AE Y IA G NG B S AE F B NG L W I L TH EA W O"
+    },
+    {
+      "source": "data",
+      "origin": "p16-start",
+      "rank": "cycle",
+      "holdRepeat": false,
+      "sign": 1,
+      "escape": 12,
+      "fit": -1.9012991347548711,
+      "hold": -2.0388603990700256,
+      "excerpt": "D IA W P E C H AE F S A H W I U EA I AE C O U L D OE NG T R M U U EA OE E AE H I R Y NG M O I Y IA NG O E S TH N S L G W H S U G J A M F G E D EA IA L Y G U N D R I N L TH W L OE D IA E IA L P T F EO EA J EA C W J N H E O"
+    }
+  ],
+  "controls": {
+    "direct": 24,
+    "fhold": 12,
+    "rank": 72
+  },
+  "best": {
+    "direct": {
+      "source": "b64",
+      "origin": "p16-start",
+      "sign": 1,
+      "delta": false,
+      "fit": -1.959053406940932,
+      "hold": -2.128292159899784,
+      "excerpt": "F A T R NG F N U S IA I NG N AE T X O J B L NG W EA O IA L TH B D I M W OE Y NG M B N NG TH Y N TH I O X I O B O R IA N H TH OE C IA Y I NG I T B L U Y U IA EO I H EO I Y H L E R T P S OE N N E NG R Y EO IA O S B TH Y E N EO X"
+    },
+    "rank": {
+      "source": "data",
+      "origin": "p15-black-body",
+      "rank": "sorted",
+      "holdRepeat": true,
+      "sign": 1,
+      "escape": 22,
+      "fit": -1.7972026010043296,
+      "hold": -2.0378904263590245,
+      "excerpt": "M W H X IA L E J S F X R R R T R NG A D H EO G NG C E I IA E S E T F C A F X P L R M R P AE C S W U R R N F S L W D EA S AE A D R U IA EO TH O F EO X NG EA A N C U A A P D EA N AE Y IA G NG B S AE F B NG L W I L TH EA W O"
+    },
+    "fhold": {
+      "source": "mask",
+      "origin": "p15-black-body",
+      "sign": 1,
+      "prefix": 218,
+      "endStates": 0,
+      "n": 9333
+    },
+    "xor": {
+      "source": "audio",
+      "origin": "p16-start",
+      "illegal": 754,
+      "n": 987
+    }
+  },
+  "rankTrials": 6264,
+  "rankPositive": 0,
+  "maxRank": -1.7972026010043296,
+  "selectedHex": {
+    "twitter": "b69ccce300104a464802545959580001008d0000ff8b6131616a6a632737293d3e322b3b3e3f263a203c0c4762677c326767713d73716d697b6e3000505b494e47404a727b0843460c44595114476a555f5c5b57604064511292ae7337217a616c682b636d7f2d77454f3c425b4051475f545740575c515741096e5c745b5c5612465a5712565b445b5c5b464b12455b465a5b5c12535c5612575f5740559aee54585c314a02561601220056796423586f8cb0616d20456c607366646f6264545045310000000501020337363636f7f2ba6fffc400b5100002010303020403050504040000017d01020300041105122131414f7d370e0722711b3281895d081e70afc11723273a21262c2f2b575a5c5d686f6b7772707175745350525c5d59484a4f3a3839c5c6c7f1858b9f96e7fbefefaad860e1e2e3e4e5e6e7e8dd2ad5f533b9f5f6375a636465666768696a737475767778797a82838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4da4c44df8937c35f5a993b56ba1aef5fb76b9414138cf8bea450e2fb63ae550832e069a3d975e5cc784c6479ca379f01b5a8c501300fdc8461304d46bd665e00844148a3e0ca3437d93d968e77c84830a420a73b2ebe4d7ba6f057be81e1cbe458e522f6bc13abdbafb998f1727c34e67455dcb72542b729a4a9a80c501c47db98ba101e5a739a2e3245e79da1ea3a187390048ab301f5eb58d60270fd85358e7737b23703b891cd98455300e1e6e15f1708c354a5e951f299171e1b55503658496c0d3db32bf86db4f93ec33a4e7e06deb070aae8cee1194846fb44baeb4700a3a247b83a8ccf1532a0193dfc8e7dc87a709edced68bf8bd5c6a3e31aaae72056b210121f36b57c1b311fbe95f3bdaf7a71c25e4a62be3ea264057266106dff01ffc6739ab7b6ddf147dd25ff82e206fb3d1c97e9b362b9f66065f02102f14f949898dfe31723ffd6915000bb641897fb20a36a862e876d12db07571ce27bf06d74893fd430e19183e0564d6b8cc0d3b4c9e5a00b7179ddf98009803e65ea660ef3068e5ec529e6788b4551c698cd9f5e186e6668a304403de22a03082d6156d21f31948ed40ab48bccc3076495be476382ba5263cdba2ac143caed91f521721f457aab7bb697430b514fc6700d63652da1385c976273bbfaecd3d560e4b0a9be388261ee62ea016cbc8adb08728aac6cb578e1248bfd817c857d5b93343952310cf7cb424548e68b5864ab01ca86fdcb20614e1b0a0d3981c84c702dd250f11aae76a89c3fc33a5f081dfa8d52ccec87b8633b1a78edcb6799c07aae4dfac18068e5b3e684f5c24f64d8c4126d360c84f9314f94",
+    "b64": "6956424f5277304b47676f414141414e535568455567414141676b414141494c43415141414144496f38643441414141416d4a4c523051412f3465507a4c38414141414a6345685a637741410a43784d4141417354415143616e4267414141414864456c4e52516663444238584a5363774d6778464141416741456c4551565234327532643631626a4f684a4753374c4476502f72456b75610a4839616c5370496451304f416b3733586d6a6e64445954456c6a39566c6572694a416b41514d5a7a43514141535141414a4145416b4151415142494141456b4141435142414a4145414541530a4141424a4141416b415143514241424145674141535141414a4145416b4541534141424a4141416b415143514241424145674141535141414a4145416b4151415142494141456b4141435142414a4145414541534141424a0a4141416b4141534141424a4141416b41514351424142410a45674141535141414a4145416b4151415142494141456b4141435142414a4145414541534141424a4141416b4151410a5142494141456b4141435142414a4145414541534141424a4141416b415143514241424145674141535141414a4145416b4151415142494141456b414143514a4c4f624a37556d322b50385865366e586355780a6230496934656e582b386676734d735373427469576c757665476e483332746c6f58334d7a35302b7446654a6945656c7164686e503875526e7573684d55662b68780a3853613633742f306d5033543363692b6d362b762b623058472b6b347348622f49646e7a2b63544b53355536337150494533624e54356b534d473570556a6b79554d416b2f2f724a59777235377a715052726b71420a64685261544c6245747373794f3836346c366c2f46592b647653345133654f34307935334c38762b62613178594d6733714a43773165694455313259383350385361415863374c3748486c2f745633465352756c6c627943456f75504b7a74494b2b4d6a546d762f726a6e382f652b2b64765a37562f7a0a75667639354876654f755057446d67767366573747665a62777032624f5931387144594238416e584a64537073324e542f525768726a0a4b7a5a6a75673954747678517030546e4f584b2b3232532b6136513639704c73683977556c32374e4733303130333330313033333031303333303130333330313033333031303333303130333330313033333031303333303130333330310a30333330313033333031300a33333031303333303130333330313033333031303333303130333330313033333031303333303130333330313033333031303333303130333330313033333031333031303333303130333330",
+    "gematria": "ffd8ffe000104a46494600010100000100010000ffdb004300080606070605080707070909080a0c140d0c0b0b0c1912130f141d1a1f1e1d1a1c1c20242e2720222c231c1c2837292c30313434341f27393d38323c2e333432ffdb0043010909090c0b0c180d0d1832211c213232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232323232ffc0001108034a025603012200021101031101ffc4001f0000010501010101010100000000000000000102030405060708090a0bffc400b5100002010303020403050504040000017d01020300041105122131410613516107227114328191a1082342b1c11588898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d4d5d6d7d8d9dae1e2e3e4e5e6e7e8e9eaf1f2f3f4f5f6f75a636465666768696a737475767778797a82838485868788898a92939495969798999aa2a3a4a5a6a7a8a9aab2b3b4b5b6b7b8b9bac2c3c4c5c6c7c8c9cad2d3d42800a2b7fc3be09f1278b048da1e9535da4676bc80aa203e9b98819f6cd53d73c3fab786effec5ac584d67718dc1641f7c7aa9e8c3dc50066514514005145140056cd60d001455ed3f45d5755cff0067699797b8f94fd9e06936ff00df22a7bdf0c6bfa64465bfd0f52b48c725e7b49100fc48a00c9a5a28a0028a29541660aa09243752f5d96f1348df928ab1a8f87f5ad2230fa96917f64a4e01b9b66407fefa02803368a2b5edbc29e23bcb61736ba06a93c04644b15a48ca7f103140191453e686dd0ef1eccfd9c4d773c5c484b13b406edc0cfcbea2bc4efbc61e24d534d934ed475bbebcb49183325ccc65e47420be48fc2803ea2f825ff248741ffb78ff00d289e22803c5be315fbe95f1b4ea318cbda1b59d47a95556fe95f4fe9d7f6faae9b6d7f692092dae63596371dd59722be43f8b3e21d33c4df102eb53d22e7ed3672451577fe19f15f8885b699a0782b4e64b940cf79e544b335e316eb2657840bb571d280380a2bb3f1649a0e99f156f24b5b286eb4882ed19ed227da8e40532229c1c2e89629a41043b5d57eee536edcaf3ce33c9f5aa89f107c531ea7a96a4bab31bcd4a2f2aee478a36de98c6d00ae147fbb8aaff00f08278c3fe853d73ff0005d37ff17ff8399bff0091abe60f825ff257f42ffb78ff00d2792bebfa00e7fedbe30ffa01687ff8399fff009168fb678c3fe805a1ff00e0e66ffe45ae828a00e7fed9e30f0168a28a002b92f1f991f43b38a09fecd7136a16e905e91916b26fc89083c374c60f04ba8ef5d6d57bbb5b7bdb692d6ee08ae6de51b648a540eae3d083c114bb010051451400514945007fffd9",
+    "mask": "dfca8eac52677a0d0f653b181819414f53d86845aaec2070200d0122667660717d737a7a7f7e62734f04687323263d73260a3b7121413c28545a55502a17710f06010b38184d2b1c6f3318101e0412181e1d1a243401351273fcec1476603b20240c6e0f232d7c11260b7e7a030a022428193038111d101626482b30310a0a0426742f6576606a263113330c0c417217022c0b7360163723735d176e2139c99e1d3c0d0105433d21327a6d3c170067013bc9dc0b54762909121a2c25042335190a3f72514141565043427d7773779cb3eb2eae8649f45145694042405346424f444145454152774043414a455044796060021e3f764c4667165a73d2d81c495431ea807c66666960676e656a161b371c392c3a3533323030131211010d1c18020b0a7b5378948796b3cccaded38cbaaeacfb9a21aba3a6a5a0a7b4a99c689fff72f8b49d761b302524242d29282b18352435263a3838c389c1e2c7c6dbd8cbd3d9d5d0d7fcd9c8dbf3e1ede4e7e2c3e8ebf1e2f6f4fcf6fdf8ff83908584848d89888bb992859b46159dc076821a31d87a15eb58ae15f62ed55152dfb9ffe61aa3ba22c5145971b12be29b34a0ab390d37288b76d540f0e9ae40614e8dc628710c03d6271f43d50b04ec82800362b40fbdde4f902d06ca78c46e56b42f4bef9963dbefb9e0dc3e9351bbcf40d899dbd0cf9d070a51a11a1def85512ed87197e4d2396037339dfdf0795b3f1feb4a5a2bb7a5d4b8546d00f849dfd52a9d9352ee5111cbb641a1475ae204578bf2a4b328652b97cd836f4f4fe83f919a1990b65e7a752f7b550c023f38688518893dfdbc0da1741a4b6d8dfd379f989b8b723113b605d1c46872e9fb30ca0fbbb56462f26b568dcc77ac1222ff88a10afaffa6b5daac229cd34c60de3f54461dd10a48054e8df0bc899f0344f1127214955cc3557d2b2b775e8e4bbcb142ffdef288c075841dccd2da559a7c44f4deff55f1be0c4a847731b71cc6edf4b3816e60bab9e4004bc11051dcd06dc93eeb58a81f78b53f7879c950941b2ebe69fb4aebe4e5966f7823faa59cc199b2e466160fae9fd73ec7583f88117ec164c107f411973cd2076987f695d53a4b1e155aed506f6fb5427162272a2c887544f3b7807ec2f39db33730fbf11f28a9886030e6db1c9075f39ddd86494b681016994cf8d0703b607ff5433d52551e92086da751408bcbdce0e650d5809a8d08b351dd51da305c8fb9eb3942b99f5c8448d217bbccb14fb64d6a99040a61013dc7f8717579d6816b579b30fab5cefb11517d283a3c09b2fb7c411de163c12b9e459bac0ef3096c382ccabe61fcddb78b500b2b48def857a8f0499d7dcbf1b35bd582d6b7c6f27e57e8f5225e053cb5c9027ca4",
+    "audio": "49443303000000000144545858580000008c00000050617261626c6520312c3539352c3237372c363431004c696b652074686520696e737461722c2074756e6e656c696e6720746f2074686520737572666163655c6e5765206d7573742073686564206f7572206f776e2063697263756d666572656e6365733b5c6e46696e642074686520646976696e6974792077697468696e20616e6420656d657267652e544954320000001500000054686520496e7374617220456d657267656e6365545045310000000500000033333031fffbb0640000000000000000000000000000000000000000000000000000000000000000496e666f0000000f000018fc003d321e0002abaeb0b3b5b8babdc0c2c5c7cacccfd2d4d7d9dcdee1e3e6e9ebeef0f3f5f8fbfd000000394c414d45332e39387201ba000000000000000034c02407c04d0000c00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f24ce668750c23c048e18b1e60047a6a6d2de2a89326d8803fc863640f7b687bf11ade25368b20602001030847f6fb1ec9d26ce9f3d38c8204241c06b8720f40812d9eaee0de61dae67843fb2b374857cdb73083d7f1949bcfc6a8be5ec36c59a8239d50f876140b5a92d036579b807774a9941729d8ed0104ab2225040a2771919e274cafaaf53d7a9a75171042c267294227851a68e21d129803c94be132708d3532046b1a2420246cb13b2a879234b7625094e3ade0a8d1dd610b64102f4c1a8a8be0bdda14a26d3de9b0ff8afab7e5f01e76e4325fbbf4080082a4cf92347a96aaff613273a1a3232b6130eb99bc5aced620c56b55a4579951ab6eb51c58a9b2c29bfd1eb6b9a5004000000209454bfd7ffffffff997f732fbe792eef0806e552fc54d4124d4dce9be7c9cf33f5f8916f8a8628d436aca2d94f2ca512361ea4bfffbb2405c1e4984a888e00d829079944521122270f3469034092d8cc99515343268c918e211215b695b222c294ca1a6c115b9f792957b6d106d1c1842820bc1241242eba084e2ca416a9bcf237a68f5a495a690cdb5976bdb04cd1c8b2c44bb8b279519409ba122848d524b2681b3885b15987510d5c1b34895520ba44f6cba7aaea8c9663cf368d439709cc883222367aec0965c408213d30719cf5b53bedf7cba0d6d100004c372e2978d8a3d044e1f6d1b63f82083859dbdfcca7cfcb386f72cbc9cabe98a30c62101e1140c32b1957523aa92d556db2666c4d7b9e80c1c19600cbc004e9907194003a71a39fc033840c111c0a5871326a4fffbb264c08206636545e1794e648981066d6745c1f94eb04d",
+    "data": "968ebdaf52677a0d0e216f404041414f53546845aabc4102416f6d4746474c444446564848494e457b35683f4a4d585352625e51482f4f5c352879705e621f61636d62567f6d5f734f4770753e77676a787c7941686f6277539199670240484841684e60565f5c7e51655e196a786151457f554a747373735573775e776364600600470056040350587d5a787561057e7644621d4077594753387a0b535eacb04975593305433d34327a6d687f65474855baa86a26566c6477684b406a40504d5a7a43514141535043424e44434663485b4aae8649f45145694042405346424f444145454152774043414a45504479606002575110234667165573d2c0e0496903f4807ecdc8d9d3d2d6dfd7d6d9f2dbf3e0f5e7e7e5e9eccdf3f2e7e4f7f6f2f8ff83a8859487968a808b9396bf949794899b9baba3a6a5a0a7b4a9a8a8bbf8b2b5b49db61b302524242d29282b18352435263a3838c389c1e2c7c6dbd8cbd3d9d5d0d7fcd9c8dbf3e1ede4e7e2c3e8ebf1e2f6f4fcf6fdf8ff83908584848d89888bb99285690af3f5b57aa1da7939f10b8b5cd47f9b0337f9c1f9617fd9d2c0de2dbe7c2280abf5c7adbf80cb190c3420cc802e5e393bc2a9929d01442c5510056e55100354269a42625e62b85277fe2564a7655107cff4ed8145bbd0205fcb65b17a8c8596b0cceb3736cc9281421fab5091d1d66eb47b9278f63570934ff01c643d14ec6c6e5e1790b51e7720b1c2b2c4fa960a29ba6e5acf427f8e407652d8805773d1ca6fd0003c91d6849744d410bd4a115bf82db8ab7237f93867831b7e4b6b7a4018b5b38838c29d9f9081e4118b90b1da680d29e97ca9d4c9c51bb687750bfa46936d9a356e89c6c5c1d14037bd27ee1048ec29a86461af5bf12c8b074c29cf14c96cfdcfbb0367b3ed050e8df0be80da48b98eed8deb6ccb346786ccb999ae0e25e99e87b29fd65c1c9c3a615021e50a136abc5cbc72169b7421de76bd60947d2ca60b48332e3ca4f060a8c3211dd34ca9f98c1ff97ad8ec3e250b71544599010e1a8c01325209f5c4cd062301d68cd0603f73f1dfe19d3be4ba2eaa4427ca93750040d3451fb113de1846031c39b6af52beba80fc7d9ddaf8de9975af3ba100cccecfd422993e5952bf37ba62b0d79e9b21d375a893cbc951c6bb088f8ded0404aa6c37e431b64cc808abcc33a19ad63cb16fc367c71ccb49cf33e1491adbc933d7cfebd03cca30584ccb09aecf33a258ca57bf0cd83491cc33d0d765ce769db2bb30d4cde9d23f0b5b91ba311ba1c2c9a0c4080b90aedce4205a27d936da2927825cfba0b2f347f53f358abdc6e6e44b88684bea591e5dd0bbd6ed6286799573d9d3e1b3f2278b303361742433627974304ccce9"
+  },
+  "sourcePins": {
+    "ref": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+    "twitter": "b3164929b090ffee06490e8ca86f495aa1db50c7",
+    "b64": "3cf34e331497e7e85c6707c22d07e500397cc794",
+    "gematria": "65ded13617196f0fd5d210855a75452ff2e7a340",
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "native": "8ed037a6ddeef2b20a10bd6a84830e7cf9f43f7d"
+  }
+}
