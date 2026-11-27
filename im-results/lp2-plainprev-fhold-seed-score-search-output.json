@@ -2482,6 +2482,25 @@
           }
         ]
       }
+    },
+    {
+      "donor": 1,
+      "fixed": 11,
+      "oracle": 0.6797915648588613,
+      "repeats": 94,
+      "recovered": null,
+      "status": "UNKNOWN",
+      "nodes": 128,
+      "propDead": 1,
+      "scoreDead": 114,
+      "evaluated": 13,
+      "rootUpper": 1.2165535152080713,
+      "leaf": 0,
+      "frameEvals": 2887,
+      "N": 10049,
+      "H": 2355,
+      "floor": 0.65,
+      "witness": null
     }
   ],
   "original": []
