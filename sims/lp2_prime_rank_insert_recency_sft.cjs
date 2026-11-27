@@ -112,7 +112,34 @@ const encodeF=(P,o,S,A)=>{A=A.slice();let out=[],states=[],t=o;for(let p of P){i
 const fcontrols=[];for(let k=0;k<2;k++){let P=D.slice(10001+k*8000,10001+k*8000+3008),o=[37,229][k],S=perm(),A=perm(),plant=encodeF(P,o,S,A);fcontrols.push({o,f:S[0],...fhold(plant.out,origins,plant)})}
 const latentF={controls:fcontrols,chapter:fhold(C.slice(start,end),origins),whole:fhold(C,origins)};
 
-return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet,latentF}
+
+const exactCanonicalF=(C,os,cap=2000000)=>{
+ let exhausted=0,unresolved=0,survivors=0,deepest=0,total=0,maxWork=0,examples=[];
+ for(let o of os){
+  let stack=[{i:0,t:o,f:all,A:range()}],work=0,hit=false,cut=false;
+  while(stack.length){let {i,t,f,A}=stack.pop();
+   while(i<C.length){
+    if(++work>cap){cut=true;break}
+    let c=C[i],j=A.indexOf(c);assert(j>=0,"rank missing");
+    if(c===0){stack.push({i:i+1,t,f,A:A.slice()})}
+    f&=~(1<<j);
+    if(!f)break;
+    A.splice(j,1);A.splice(R[t++],0,c);i++;
+   }
+   deepest=Math.max(deepest,i);
+   if(i===C.length){hit=true;if(examples.length<10)examples.push({o,f,t,work});break}
+   if(cut)break;
+  }
+  total+=work;maxWork=Math.max(maxWork,work);
+  if(hit)survivors++;else if(cut)unresolved++;else exhausted++;
+ }
+ return {n:C.length,origins:os.length,exhausted,unresolved,survivors,deepest,total,maxWork,cap,examples}
+};
+const canonicalFControls=[];
+for(let k=0;k<2;k++){let P=D.slice(10001+k*8000,10001+k*8000+3008),o=[37,229][k],S=perm(),A=range(),plant=encodeF(P,o,S,A);canonicalFControls.push({o,f:S[0],...exactCanonicalF(plant.out,[o])})}
+const canonicalF={controls:canonicalFControls,chapter:exactCanonicalF(C.slice(start,end),os),whole:exactCanonicalF(C,os)};
+
+return {source:{N,donor:D.length,start,end,origins},controls,whole,chapter,canonical:{best,maxTop2},privateAlphabet,latentF,canonicalF}
 };
 const paths=["resources/liber-primus/lp2-corpus.json","resources/external/relikd-solved-gp29-native-v1.json","resources/control/gibran_prophet_58585.txt"];
 console.log(JSON.stringify(experiment(JSON.parse(fs.readFileSync(paths[0],'utf8')),JSON.parse(fs.readFileSync(paths[1],'utf8')),fs.readFileSync(paths[2],'utf8')),null,2));
