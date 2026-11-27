@@ -1,4 +1,6 @@
-# Public-state recency alphabet: exact extremes and blind interior-partition recovery
+# Public-state recency alphabet: exact continuous stationary closure
+
+**Decision (27 November):** ordinary all-update and literal-F-hold continuous fixed-position, fixed-rank-label lists are exhaustively excluded for the finite native donor register. Interior forbidden ranks in the F-hold model are structurally impossible, irrespective of language. See the exact closures below. Earlier partial tests remain useful as controls.
 
 ## Model and independent reason to test
 
@@ -75,6 +77,29 @@ All 2,044 reduced masks on alphabet sizes 3–11 matched independent direct hist
 
 **Scope:** this removes the entire all-update fixed insertion/fixed rank-label family. It does not cover interior latent transparent-F holds, which change token membership and may evade this static partition calculation; the exact near-edge and marker-count results below remain separate. No unknown plaintext or key recovered. Do not rerun heuristic all-update partition fitting.
 
+
+## Exact continuous latent-F closure (Agent2, 27 November)
+
+The stationary fixed-position list with literal nonconsuming plaintext F is now covered for every initial list, fixed insertion position and fixed bijective rank label. There are three exhaustive cases for the never-consumed rank f=M(F).
+
+1. **Center:** impossible. There are 82 adjacent equal nonzero ciphertext pairs, first at zero-based offsets 121/122. The second selection necessarily uses the center rank.
+2. **Outermost side rank:** that rank's glyph can only change if the rank itself is selected. All 28 nonzero ciphertext glyphs occur, so the permanently unused glyph must be zero. All printed zeros (458) are therefore genuine holds. Delete them and the permanently unused rank, obtaining the ordinary 28-glyph fixed-position list. The signed transform evaluates all 134,217,728 side partitions of its 27 noncentral tokens. Exact synchronized maximum 586, center count 94, burn-in 155 nonzero selections. Thus the largest full-text plaintext count is at most max(458,586+155)=741. This is below the previous four-work matched-window minimum 1,388 even on a shorter original-length suffix. Finite native-register exclusion, not universal plaintext impossibility.
+3. **Other side rank:** no key or F-hold path exists at all, independently of the plaintext distribution. The exact reachability argument below proves this.
+
+### Exact latent state
+
+At a nonzero boundary, maintain the public recency ordering of nonzero glyphs (most recent first). The center is the latest nonzero. Assign 27 baseline nonzero side tokens and one distinguished zero token Z, using the same transfer rule as the ordinary trace but ignoring intervening zeros. State (S,z) consists of the token membership mask of the side containing f, and zero's insertion position z in the nonzero recency order (1..28). Within either side, ranks measured from the far end equal the count of same-side older glyphs. Reflection covers the opposite side. The candidate f is a relative rank j≥1 on the selected side, and a bitset records all values of j that have not yet been consumed.
+
+For the next nonzero glyph b, let d be its index in the public nonzero recency order, t its baseline side token (absent for a center repeat), O the mask of older nonzero glyphs, and O0(z) the mask of nonzero glyphs older than zero. For a gap with no zeros, or with every zero held, if t belongs to S the consumed side rank is popcount(S&O)+[Z in S and z>d]. Clear that bit from the candidate rank set. Set z to z+[d≥z]; S is unchanged.
+
+For a gap containing one or more zeros, a second branch consumes at least one zero. The first consuming zero selects rank popcount(S&O0(z)) if Z is in S. Extra zeros can all be held; consuming further zeros only selects center, which is allowed in this case and does not change the state. If b differs from the previous nonzero center, the next nonzero consumes popcount(S&O) on its own side. The baseline token membership bits t and Z swap to account for the actual center changes, and z becomes 1. If b equals the previous nonzero center, it instead selects the former zero side's near-center rank popcount(S excluding Z), with no membership swap. This exhausts the relevant zero-gap choices. For identical resulting (S,z), OR the surviving rank bits; paths for different forbidden ranks need not agree. Every path for a genuine fixed forbidden rank is retained.
+
+Start after physical rune 1691, inside a zero-free interval, where all 28 nonzero glyphs have been observed. Grant **all** side masks and every compatible z in {1,26,27,28}, even if unreachable from the actual beginning. The next 216 nonzero events contain no zeros and converge to z=28. Compute the exact missing side ranks j≥1 for every mask and each initial z using the signed polynomial transform. Merge the resulting 1,674,269 distinct states (1,677,207 state-rank pairs). Continue with exact sparse branching and OR merges for each subsequent gap and zero-free block. The frontier shrinks to 20,943 states by offset 2034, 13 by offset 2532, and **zero by offset 2725**. This is an unconditional contradiction to the non-outermost/noncenter forbidden rank, even under an overrelaxed initial state.
+
+Independent explicit-list oracle enumerated each possible zero hold/consume path and compared final state-rank triples on 4,104 complete reduced starting-state cases (alphabet sizes 4–8, all masks/z and j≥1, three sequences each). All agreed. The prior exhaustive transform controls cover the initialization polynomial. The far-rank histogram optimum was independently evaluated directly at its reported mask 61559713, relative rank 4. Full local original run returned exact state extinction, then enumerated the far-rank branch. Source bytes verified against local Git blob 4cc1221f753c3dd530c754d069ced1b10cb9e3cc. No CI claim.
+
+[Latent-F C++ SFT](../sims/lp2_recency_latent_f_sft.cpp) · [raw outputs](lp2-recency-latent-f-output.json). Compile alongside lp2_recency_allpartition_sft.cpp and pass the same canonical compact tape. The nonconsuming-F and ordinary all-update continuous fixed-position/fixed-label architectures are now closed for the finite native register. No source-selected varying insertion rule, periodic rank map or reset mechanism was tested by this closure. No unknown LP2 plaintext/key recovered. Do not repeat any fixed continuous partition fitting.
+
 ## Interior transparent-F: exact small-side state inverse (Agent10, 24 November)
 
 The earlier interior partition recovery assumed every printed glyph updates the list. The genuine plaintext-F hold emits literal zero without updating; a non-F may also emit zero. This new exact ciphertext-first reduction covers all latent masks, arbitrary initial alphabet and stationary secret rank-to-plaintext permutation at center ranks 1/2 and (by reflection) 27/26.
@@ -122,4 +147,4 @@ Original p0–39 prefix: 9,640 runes / 2,161 words. Remaining p40–55 heldout: 
 
 The total comparison comprises 576,032 windows (8,546 Law, 5,458 Blake, 204,120 Shakespeare, 308,371 Emerson, 49,537 Gibran). G and B fit **zero** windows; reject those marker identities for the fixed continuous architecture on these finite native registers, despite the original likelihood nomination of G. NG and EA fit some windows and are not excluded by count alone; neither constitutes authentic plaintext or a source-selected rank. No source clue selects R or the operation. Do not expand these scores into a claimed crib or run arbitrary marker/model tuning.
 
-[Executed SFT](../sims/lp2_recency_fhold_center_marker_likelihood_sft.cjs) · [raw results](lp2-recency-fhold-center-marker-likelihood-output.json) · [code/output commit](https://github.com/FlareZ123/liber-primus/commit/4e62620383e420735676b9bb492e5681f33f7583). Run with Node from repository root. Executed in connected V8, no independent Windows CI claimed. The earlier four near-edge position exclusions and the new G/B marker exclusions are complementary, not a full exclusion of every interior key. No unknown-LP2 plaintext/key.
+[Executed SFT](../sims/lp2_recency_fhold_center_marker_likelihood_sft.cjs) · [raw results](lp2-recency-fhold-center-marker-likelihood-output.json) · [code/output commit](https://github.com/FlareZ123/liber-primus/commit/4e62620383e420735676b9bb492e5681f33f7583). Run with Node from repository root. Executed in connected V8, no independent Windows CI claimed. These historical partial gates are superseded for the continuous stationary model by Agent2's exact all-partition and forbidden-rank closure above. No unknown-LP2 plaintext/key.
