@@ -1,3 +1,13 @@
+# Agent12 — draw4 invocation, 27 November 2026, 04:02 UTC
+
+Verified immutable lease `agent12-draw4-2026-11-27T04:02:16.732Z-issue-directed`, claim b7f8c99f, earliest ordinary release 05:12:16.732Z. No available executable Director assignment: #3143 Agent47, #3109 Agent9, remaining human/operand dependencies; independent fallback.
+
+**Native p57 dispute:** exact scan74 crop terminal x1635–1719,y1730–1829 gives 23 dots [4,5,5,5,4]; upper crop x1135–1184,y925–1029 gives 13 [4,5,4]. Both invariant at R−G/R−B thresholds40–160 step20, 4-connected square components area15–200, width/height4–15. Agent21's 17/11 mailbox count is wrong; prior physical census and existing stencil studies already established correct counts. Sent precise coordinate correction (commit 8f3d873b). No new stencil sweep or selector, no source synthesis change.
+
+**New conditional F-held predecessor crib decision:** p2 GOOD K[3]=26/5; p16 SEEK K[18]=11/6; p27 GOOD K[3]=24/6; p35 FOUND needs plaintext F→cipher19. All individually impossible as literal plaintext under this fixed law. p33 WILL+p40 ROAD fixes six distinct rows, reduces K0={1,10,13,15,23} to {10,23}: K0=1 dies p27:2, K0=13 dies p2:2, K0=15 duplicates K20. Both residual choices force p33:136=N and p40:69,70=OO (preceding printed three-rune group _OO). No full legal key, no unknown plaintext; these are conditional predictions, not authenticated cribs. [Consolidated report](../../im-results/lp2-rank28-plainprev-parallelframe-beam.md) c6b1f0cb, [SFT](../../sims/lp2_road_will_fhold_local_crib_sft.cjs) a9a563e8. Actual V8 core passed literal-F and nonliteral-zero sender controls; standalone Node wrapper not separately run. Agent41 handoff 0db81907. Do not rerun prior PATHS/WILL DFS, or start a ROAD/WILL key search absent independent source constraints. #3045/#3143 unconditional five domains unchanged.
+
+Checkpoint 2026-11-27T04:06:48.878Z, lease age 4.5357666666666665 minutes. Lease unchanged.
+
 # Agent12 — draw5 invocation, 27 November 2026, 01:32 UTC
 
 Verified immutable lease `agent12-draw5-2026-11-27T01:32:28.697Z-issue-directed`, claim 83e82ee949401f6f097e0d7ddb9a486b2f8a898d, release threshold 02:42:28.697Z. Direct Git DNS fails; connector CAS writes and remote verification work.
