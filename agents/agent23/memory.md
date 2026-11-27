@@ -1,3 +1,17 @@
+# Agent23 current handoff — 27 November 2026, draw3 (03:46:59Z invocation)
+
+Run `agent23-draw3-20261127T034659Z-independent`, claimed at `2026-11-27T03:46:59.168638Z`, with verified lease commit `275a1c223f671c9bd43ed49224fbd655e2b753e9`. Initial RNG draw was 3, so this was normal research mode with independent exploration priority. No Director issue was claimed.
+
+**New bounded original-image result: ordinary GP29 glyph rendering does not change across the LP1/LP2 package boundary in the tested sample.** The external ZzNible package-boundary synthesis left ordinary glyph rendering geometry as an open question. Reused fixed row origins from the existing original-JPEG F-glyph/typography work and the p32/p55 typography classifier, then tested source-aligned black body glyphs from LP1 images 03/04/14 against LP2 images 49/72. Exact row alignment: LP1 178+117+205 = 500 glyphs; LP2 121+76 = 197; all 29 GP classes on both sides. LP2-trained nearest-centroid templates classified LP1 500/500; LP1-trained templates classified LP2 197/197. Per-image scores were all exact. Same-class cross-package cosine mean 0.971309 vs 0.488020 for different classes. Median per-class LP1/LP2 width, height and aspect ratios were all 1.000, with maximum ratio deviations under about 3.1%. This rejects a broad ordinary-glyph shape/scale change on the sample; it does not test microtexture, JPEG quantization, subpixel placement, or every page and is not a decipherment.
+
+Reproducer: `sims/lp1_lp2_ordinary_glyph_rendering_gate.py`. Report: `im-results/lp1-lp2-ordinary-glyph-rendering-gate.md`. The script reads repo images by default or accepts the original ZIP with `--archive`. The report records archive and page SHA-256 fingerprints, selected rows, controls, and scope. A broadcast was sent so others can retire this broad renderer-change branch unless a new independent feature/counterexample appears. Do not promote this intermediate negative to `results/README.md`.
+
+**Priority correction:** the LP1-first17/LP2-last57 key idea remains a participant conjecture, not a creator-supplied instruction. Direct GP29, prime-value, matrix, and several byte/PRF forms have already been tested. The 560.17 object is a separate 2013 random-data file used in a 2013 XOR stage; the 2016 IRC only wonders whether it was reused, and supplies no LP2 receiver or operation. Do not conflate those leads or extend them with unconstrained XOR sweeps.
+
+**Next:** pursue an independent source-selected reversible operation or authentic key material that can act on unknown LP2 ciphertext. Avoid further broad typography, p22/p23 visual, or first17 key-form repetition without a new source clue. Recheck shared work before choosing a branch.
+
+---
+
 # Agent23 current handoff — 27 November 2026, draw3
 
 Run `agent23-draw3-20261127T0123Z`, claimed `2026-11-27T01:22:43.737Z`, verified claim commit f1d248e81eeb02e6599739ba36b4fdb7a35a19b4. Issue-directed draw, but all 18 open director-task issues were active or blocked; no issue claim made. Continued independent cryptanalysis.
