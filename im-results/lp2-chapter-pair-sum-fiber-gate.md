@@ -40,11 +40,11 @@ The exact ordered original sum tape matches **zero** eligible literary or solved
 | Shakespeare | 204,151 | 1,538,096 | 215,308 | 489 |
 | Original | 1 | 1,443,286 | 51,366 | 835 |
 
-These are exact finite comparisons, not population p-values. In five of nine chapters (p8–14 through p40–53 inclusive), the sum collision count alone falls below every same-length literary window; the other four do not have that particular marginal obstruction.
+These are exact finite comparisons, not population p-values. In six of nine chapters (p8–14 through p40–53 inclusive), the sum collision count alone falls below every same-length literary window; the other three do not have that particular marginal obstruction.
 
 ## Positive plants and limitation
 
-Independently shuffle all 29 fiber permutations (two frozen xorshift32 seeds). Forward and inverse are verified on all 841 pair types; held ciphertext exactly preserves sum order, occupancy and collision counts. Fit the inverse from 10,000 known native-GP donor anchor pairs (no held values used), completing a fiber only if its remaining entry is uniquely forced. Gibran: 486 distinct anchors, 1,981/2,000 held pairs recover exactly, 19 unobserved types/events remain unknown. Emerson: 502 distinct anchors, 1,977/2,000 exact, 23 unknown. No incorrect recovered pairs; no fiber completion was forced. True full-key inverse replays all held pairs; the learned partial map does **not** claim full recovery. For a fiber with m observed distinct pairs, (29-m)! completions remain in the absence of an independent source constraint. Synthetic success is calibration only.
+Independently shuffle all 29 fiber permutations (two frozen xorshift32 seeds). Forward and inverse are verified on all 841 pair types; held ciphertext exactly preserves sum order, occupancy and collision counts. Fit the inverse from 10,000 known native-GP donor anchor pairs (no held values used), completing a fiber only if its remaining entry is uniquely forced. Gibran: 486 distinct anchors, 1,981/2,000 held pairs recover exactly, 19 unobserved pair events remain unknown. Emerson: 502 distinct anchors, 1,977/2,000 exact, 23 unknown. No incorrect recovered pairs; no fiber completion was forced. True full-key inverse replays all held pairs; the learned partial map does **not** claim full recovery. For a fiber with m observed distinct pairs, (29-m)! completions remain in the absence of an independent source constraint. Synthetic success is calibration only.
 
 ## Scope and next decision
 
