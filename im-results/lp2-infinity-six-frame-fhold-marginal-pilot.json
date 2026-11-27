@@ -1,0 +1,93 @@
+{
+  "config": {
+    "width": 128,
+    "baseline": 2.4,
+    "seed": 2591891900,
+    "trials": 4,
+    "original": false
+  },
+  "controls": [
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1452.6134590269185,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 94.0831899344767,
+        "expanded": 26764
+      },
+      "wrongHeld": {
+        "heldBF": -273.1529123367791
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2029.6370766910463,
+        "heldBF": -175.2613096349852,
+        "expanded": 36631
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1475.6245406961207,
+        "keyCorrect": 89,
+        "maskErrors": 0,
+        "heldCorrect": 89,
+        "heldBF": 90.9953931048081,
+        "expanded": 27298
+      },
+      "wrongHeld": {
+        "heldBF": -321.4932976823155
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -1962.4594037259817,
+        "heldBF": -148.88553029568027,
+        "expanded": 35621
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1478.371376509234,
+        "keyCorrect": 89,
+        "maskErrors": 0,
+        "heldCorrect": 89,
+        "heldBF": 83.36096049827194,
+        "expanded": 25802
+      },
+      "wrongHeld": {
+        "heldBF": -309.25417579167043
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2021.7729737171826,
+        "heldBF": -180.8642868979898,
+        "expanded": 35930
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1467.9790646819827,
+        "keyCorrect": 89,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 94.25957211538241,
+        "expanded": 26364
+      },
+      "wrongHeld": {
+        "heldBF": -268.6692778715163
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2029.78881262805,
+        "heldBF": -166.99967318773975,
+        "expanded": 34046
+      }
+    }
+  ],
+  "gate": true,
+  "original": null
+}
