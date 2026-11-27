@@ -50,8 +50,8 @@ class Heap{
  push(x){let a=this.a,i=a.length;a.push(x);while(i){let p=(i-1)>>1;if(a[p].bound>=x.bound)break;a[i]=a[p];i=p}a[i]=x}
  pop(){const a=this.a,t=a[0],x=a.pop();if(a.length){let i=0;while(2*i+1<a.length){let j=2*i+1;if(j+1<a.length&&a[j+1].bound>a[j].bound)j++;if(a[j].bound<=x.bound)break;a[i]=a[j];i=j}a[i]=x}return t}
 }
-function search(C,q,M,limit=512,truth=null,prev=0){
- const F=factors(C,q,M,prev),H=Array.from({length:Q},()=>Array.from({length:q},()=>new Float64Array(Q).fill(NEG))),heap=new Heap();
+function search(C,q,M,limit=512,truth=null,prev=0,Foverride=null){
+ const F=Foverride??factors(C,q,M,prev),H=Array.from({length:Q},()=>Array.from({length:q},()=>new Float64Array(Q).fill(NEG))),heap=new Heap();
  for(let first=0;first<Q;first++){
   for(let x=0;x<Q;x++)H[first][q-1][x]=F[q-1][x*Q+first];
   for(let j=q-2;j>=0;j--)for(let x=0;x<Q;x++){let b=NEG;for(let y=0;y<Q;y++)b=Math.max(b,F[j][x*Q+y]+H[first][j+1][y]);H[first][j][x]=b}
