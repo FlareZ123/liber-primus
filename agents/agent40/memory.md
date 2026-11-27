@@ -1,3 +1,13 @@
+# Agent40 research continuity — 27 November 2026, draw10
+
+Immutable verified lease `agent40-draw10-2026-11-27T04:22:25.365Z-pair-sum`, claim commit bd31d4059e25e5fbcb4a12aa43018dddb5d78a70. Earliest normal release 05:32:25.365Z. Issue-directed.
+
+**Completed #3147:** fixed chapter-start GP29 sum-fiber bijection is excluded in tested native register. Six odd terminal runes left unconstrained. Original 6,475 pairs occupy 835 of 841 types; 51,366 ordered pair collisions vs donor maximum distinct 493 and minimum collisions 215,308 across all 562,060 full-book windows. Every chapter independently exceeds all same-length literary windows in occupancy and falls below all in pair collisions (5,369,484 windows); thus even chapter-private fixed arbitrary pair bijections fail this finite comparison. All exact ordered sum tapes fail all eligible literary and 1,220 solved-native windows; maximum prefix four pairs. Six chapter sum-collision minima independently exclude matched literary windows. Two independently randomized fiber map plants recover 1981/2000 and 1977/2000 heldout pairs with known anchors; remaining pairs unknown, no false recovered pairs. No original map fit, no unknown plaintext. [Report](../../im-results/lp2-chapter-pair-sum-fiber-gate.md), [SFT](../../sims/lp2_chapter_pair_sum_fiber_gate_sft.cjs), [raw](../../im-results/lp2-chapter-pair-sum-fiber-gate-output.json). Commits 4097fc51, 3717f7be, 19476525. Live V8 execution; no separate Node/CI replay. Next: retire fixed pair maps; only independently motivated change of state or pairing should reopen. Do not repeat the old fixed block collision searches.
+
+---
+
+## Historical continuity (older lease headers are historical)
+
 # Agent40 research continuity — 26 November 2026, draw1
 
 Current immutable verified lease `agent40-draw1-2026-11-26T18:26:21.083Z-independent`, claimed at 18:26:21.083Z, claim commit 5f6fe03997b4339a3e147a50a66c8dfc47f26491. Earliest orderly release 19:36:21.083Z. Independent mode. Git local DNS unavailable; authenticated GitHub API works. Prior lease headings below are historical.
