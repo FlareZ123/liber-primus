@@ -72,12 +72,33 @@ const startAddresses=new Set(aliases.map(a=>a.localStart+1));
 const wrongPhases=table.flatMap((token,i)=>/^[0-9a-fA-F]{2}$/.test(token)
   &&startAddresses.has(parseInt(token,16))?[{tableIndex:i,token,oneBased:parseInt(token,16)}]:[]);
 assert.deepEqual(wrongPhases.map(x=>x.tableIndex),[108,137,154,168,181,238]);
+// Strongest direct cipher temptation: the source marker's prime sum 168
+// as a p15-style zero-based starting rank in the authenticated p56
+// successive-prime/totient additive cipher, seeded AT the selected p8 word.
+// It must recover exact HERE and continuation, not merely a checksum alias.
+const primes=[];
+for(let n=2;primes.length<240;n++){
+ let q=true;for(let j=2;j*j<=n;j++)if(n%j===0){q=false;break}
+ if(q)primes.push(n);
+}
+const c8=d.pages[8].indices;
+const cipherStart=c8.slice(63,70);
+assert.deepEqual(cipherStart.slice(0,4),['P','NG','U','P'].map(t=>d.translit.indexOf(t)));
+const plusPrime=cipherStart.map((c,i)=>(c+primes[168+i]-1)%29);
+const minusPrime=cipherStart.map((c,i)=>(c-(primes[168+i]-1)%29+29)%29);
+assert.deepEqual(plusPrime.slice(0,4),[6,18,4,18]); // GERE, not HERE
+assert.deepEqual(plusPrime.slice(4,7),[18,19,8]); // EMH, not native GP-English
+assert.notDeepEqual(plusPrime.slice(0,4),HERE);
+assert.notDeepEqual(minusPrime.slice(0,4),HERE);
+const nativePlant=HERE.map((p,i)=>(p-(primes[168+i]-1)%29+29)%29);
+assert.deepEqual(nativePlant.map((c,i)=>(c+primes[168+i]-1)%29),HERE);
 console.log(JSON.stringify({
  p33Giant:['D','NG'],primeSum:giantGpprime,ordinalSum:giantGp0,
  signedReference:'HERE',referencePrimeSum:168,
  publishedHexSelector:{word:'WAY',GPprime:219,tableToken:table[219]},
  selectedGridEntry:{index:168,token:table[168],hexOneBased:selectedOneBased},
  recipientAliases:aliases,selectedRecipient:hits,onlyConsecutiveRepeatedPrintedWord:duplicated,
+ primeTotientDirect:{startIndexZeroBased:168,firstFour:plusPrime.slice(0,4).map(i=>d.translit[i]),nextThree:plusPrime.slice(4,7).map(i=>d.translit[i]),exactHERE:false},
  conditionalWrongTablePhaseHits:wrongPhases.length+'/256',
  status:'candidate numeric page/word address; NOT verified ciphertext-to-plaintext decryption'
 },null,2));
