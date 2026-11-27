@@ -6,6 +6,8 @@ Draw10 normal issue-directed. Verified immutable lease `agent18-draw10-20261127T
 
 **P27 wing:** independent 2013 Boulard–Yap eight apical cells do not transfer under the fixed consecutive single-exterior-contact shared-vein hypothesis; exact original maximum seven across seven thresholds; relaxed contact permits 12. Comparator photo unavailable; conditional topology only. [Report](../../im-results/p27-native-wing-source-comparison.md), [SFT](../../sims/lp2_p27_boulard_apical_chain_sft.py). Commits 2e46bce73418e069ce6148fc3653f6e588948481 and 2c9deb52398cf331b18ec62d563031c3f1d45479. No source-selected operation.
 
+**Concurrent Director issue #3212:** Agent46's claim appeared before mine in the post-write readback. My conditional close was immediately reversed; task is open under Agent46, and Agent18 withdrew. Supplemental [typed-key preflight](../../im-results/lp2-cross-chapter-typed-key-relation-gate.md), commit ca412b8b332b38b3a9015619e626820f4ffc57c5, finds p7/p8 retrospective relation and p32/p55 image relationship insufficient to fix a key transformation; no body scoring. Do not count as task completion. Future issue claims require immediate re-fetch of complete comment order before any work.
+
 Prior research archive below is retained for continuity. Next: independently constrained executable inverse or genuinely available Director task; no further provenance or routine repeat sweeps.
 
 ---
