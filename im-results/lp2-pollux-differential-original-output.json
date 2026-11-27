@@ -1,0 +1,1185 @@
+{
+  "grammar": [
+    {
+      "name": "full",
+      "n": 12955,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 11681,
+          "neg": 3723
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 12072,
+          "neg": 3723
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 11754,
+          "neg": 3723
+        }
+      ]
+    },
+    {
+      "name": "chapter0",
+      "n": 728,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 698,
+          "neg": 640
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 17,
+          "count": 0,
+          "example": null,
+          "pos": 686,
+          "neg": 640
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 79,
+          "count": 0,
+          "example": null,
+          "pos": 660,
+          "neg": 640
+        }
+      ]
+    },
+    {
+      "name": "chapter1",
+      "n": 1144,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 1072,
+          "neg": 952
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 5,
+          "count": 0,
+          "example": null,
+          "pos": 1076,
+          "neg": 952
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 15,
+          "count": 0,
+          "example": null,
+          "pos": 1026,
+          "neg": 952
+        }
+      ]
+    },
+    {
+      "name": "chapter2",
+      "n": 1728,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 1621,
+          "neg": 1358
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 1619,
+          "neg": 1358
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 13,
+          "count": 0,
+          "example": null,
+          "pos": 1559,
+          "neg": 1358
+        }
+      ]
+    },
+    {
+      "name": "chapter3",
+      "n": 1902,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 1765,
+          "neg": 1426
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 1785,
+          "neg": 1426
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 11,
+          "count": 0,
+          "example": null,
+          "pos": 1727,
+          "neg": 1426
+        }
+      ]
+    },
+    {
+      "name": "chapter4",
+      "n": 1020,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 956,
+          "neg": 879
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 935,
+          "neg": 879
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 9,
+          "count": 0,
+          "example": null,
+          "pos": 917,
+          "neg": 879
+        }
+      ]
+    },
+    {
+      "name": "chapter5",
+      "n": 1432,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 1352,
+          "neg": 1152
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 1363,
+          "neg": 1152
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 13,
+          "count": 0,
+          "example": null,
+          "pos": 1286,
+          "neg": 1152
+        }
+      ]
+    },
+    {
+      "name": "chapter6",
+      "n": 1679,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 1578,
+          "neg": 1321
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 5,
+          "count": 0,
+          "example": null,
+          "pos": 1574,
+          "neg": 1321
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 15,
+          "count": 0,
+          "example": null,
+          "pos": 1529,
+          "neg": 1321
+        }
+      ]
+    },
+    {
+      "name": "chapter7",
+      "n": 3007,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 2819,
+          "neg": 2026
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 1,
+          "count": 0,
+          "example": null,
+          "pos": 2814,
+          "neg": 2026
+        },
+        {
+          "L": 8,
+          "status": "UNSAT",
+          "nodes": 3,
+          "count": 0,
+          "example": null,
+          "pos": 2716,
+          "neg": 2026
+        }
+      ]
+    },
+    {
+      "name": "chapter8",
+      "n": 307,
+      "results": [
+        {
+          "L": 4,
+          "status": "UNSAT",
+          "nodes": 7,
+          "count": 0,
+          "example": null,
+          "pos": 287,
+          "neg": 274
+        },
+        {
+          "L": 5,
+          "status": "UNSAT",
+          "nodes": 11,
+          "count": 0,
+          "example": null,
+          "pos": 282,
+          "neg": 274
+        },
+        {
+          "L": 8,
+          "status": "SAT",
+          "nodes": 21,
+          "count": 1,
+          "example": 302675973,
+          "pos": 276,
+          "neg": 274
+        }
+      ]
+    },
+    {
+      "name": "p55",
+      "n": 75,
+      "results": [
+        {
+          "L": 4,
+          "status": "SAT",
+          "nodes": 17,
+          "count": 1,
+          "example": 406943615,
+          "pos": 66,
+          "neg": 68
+        },
+        {
+          "L": 5,
+          "status": "SAT",
+          "nodes": 18,
+          "count": 1,
+          "example": 404255743,
+          "pos": 68,
+          "neg": 68
+        },
+        {
+          "L": 8,
+          "status": "SAT",
+          "nodes": 17,
+          "count": 1,
+          "example": 402748415,
+          "pos": 59,
+          "neg": 68
+        }
+      ]
+    }
+  ],
+  "complete-forward": {
+    "mode": "complete-forward",
+    "dictionary": 29134,
+    "fit": {
+      "clip": false,
+      "separatorMasks": 70614,
+      "separatorNodes": 141235,
+      "scenarios": 70614,
+      "lexFeasible": 262,
+      "keyNodes": 1525,
+      "completePaths": 30,
+      "distinctKeys": 30,
+      "trueKeyRank": null,
+      "top": [
+        {
+          "sep": 37828449,
+          "dots": 229261464,
+          "dashes": 269518854,
+          "score": -84.5621066054312,
+          "visible": "..-.x-.xx...x....x.xx.x--.xx-.x.x-..xx.-x.-.x.xx..xx.x....xx.x-x.-x-xx..x-.",
+          "completions": [
+            "FN",
+            "SHE",
+            "EG",
+            "NED",
+            "ARE",
+            "I",
+            "EH",
+            "ETAT",
+            "IN"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-.x-.",
+            "...x....x.",
+            ".x--.",
+            "-.x.x-..",
+            ".-x.-.x.",
+            "..",
+            ".x....",
+            ".x-x.-x-",
+            "..x-."
+          ]
+        },
+        {
+          "sep": 37824353,
+          "dots": 229265560,
+          "dashes": 269518854,
+          "score": -84.56210660543121,
+          "visible": "..-.x-.xx...x....x.xx.x--.xx-.x.x-..xx.-x.-.x.xx..xx.x....xx.x-..-x-xx..x-.",
+          "completions": [
+            "FN",
+            "SHE",
+            "EG",
+            "NED",
+            "ARE",
+            "I",
+            "EH",
+            "EXT",
+            "IN"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-.x-.",
+            "...x....x.",
+            ".x--.",
+            "-.x.x-..",
+            ".-x.-.x.",
+            "..",
+            ".x....",
+            ".x-..-x-",
+            "..x-."
+          ]
+        },
+        {
+          "sep": 306262881,
+          "dots": 229262360,
+          "dashes": 1083526,
+          "score": -87.12177602560081,
+          "visible": "..-.x-.xx...x....x.xx.x--.xx-.x.xx.-xx.-x.-.x-x...xx.x....xx.x-x.-x-xx..x-.",
+          "completions": [
+            "FN",
+            "SHE",
+            "EG",
+            "NE",
+            "A",
+            "ARTS",
+            "EH",
+            "ETAT",
+            "IN"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-.x-.",
+            "...x....x.",
+            ".x--.",
+            "-.x.",
+            ".-",
+            ".-x.-.x-x...",
+            ".x....",
+            ".x-x.-x-",
+            "..x-."
+          ]
+        },
+        {
+          "sep": 306258785,
+          "dots": 229266456,
+          "dashes": 1083526,
+          "score": -87.12177602560081,
+          "visible": "..-.x-.xx...x....x.xx.x--.xx-.x.xx.-xx.-x.-.x-x...xx.x....xx.x-..-x-xx..x-.",
+          "completions": [
+            "FN",
+            "SHE",
+            "EG",
+            "NE",
+            "A",
+            "ARTS",
+            "EH",
+            "EXT",
+            "IN"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-.x-.",
+            "...x....x.",
+            ".x--.",
+            "-.x.",
+            ".-",
+            ".-x.-.x-x...",
+            ".x....",
+            ".x-..-x-",
+            "..x-."
+          ]
+        },
+        {
+          "sep": 37828449,
+          "dots": 229261466,
+          "dashes": 269518852,
+          "score": -87.58031173483725,
+          "visible": "..-.x-.xx...x....x.xx.x-..xx-.x.x-..xx.-x.-.x.xx..xx.x....xx.x-x.-x-xx..x..",
+          "completions": [
+            "FN",
+            "SHE",
+            "ED",
+            "NED",
+            "ARE",
+            "I",
+            "EH",
+            "ETAT",
+            "II"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            "..-.x-.",
+            "...x....x.",
+            ".x-..",
+            "-.x.x-..",
+            ".-x.-.x.",
+            "..",
+            ".x....",
+            ".x-x.-x-",
+            "..x.."
+          ]
+        }
+      ],
+      "templateCache": 3771,
+      "localCache": 4055
+    }
+  },
+  "complete-reverse": {
+    "mode": "complete-reverse",
+    "dictionary": 29134,
+    "fit": {
+      "clip": false,
+      "separatorMasks": 70614,
+      "separatorNodes": 141247,
+      "scenarios": 70614,
+      "lexFeasible": 228,
+      "keyNodes": 861,
+      "completePaths": 4,
+      "distinctKeys": 4,
+      "trueKeyRank": null,
+      "top": [
+        {
+          "sep": 46217029,
+          "dots": 488652808,
+          "dashes": 1738930,
+          "score": -101.06858131470143,
+          "visible": ".-x--xx-x-xx-x.xx-...x.xx.-xx-x---x--xx-..x.x--xx.--x.xx-x..-xx-x.x-.xx.-x-",
+          "completions": [
+            "AM",
+            "TT",
+            "TE",
+            "BE",
+            "A",
+            "TOM",
+            "DEM",
+            "WE",
+            "TU",
+            "TEN",
+            "AT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            ".-x--",
+            "-x-",
+            "-x.",
+            "-...x.",
+            ".-",
+            "-x---x--",
+            "-..x.x--",
+            ".--x.",
+            "-x..-",
+            "-x.x-.",
+            ".-x-"
+          ]
+        },
+        {
+          "sep": 46217029,
+          "dots": 488654856,
+          "dashes": 1736882,
+          "score": -102.62582458147956,
+          "visible": ".-x--xx-x.xx-x.xx-...x.xx.-xx-x---x--xx-..x.x-.xx.-.x.xx-x..-xx-x.x-.xx.-x-",
+          "completions": [
+            "AM",
+            "TE",
+            "TE",
+            "BE",
+            "A",
+            "TOM",
+            "DEN",
+            "RE",
+            "TU",
+            "TEN",
+            "AT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            ".-x--",
+            "-x.",
+            "-x.",
+            "-...x.",
+            ".-",
+            "-x---x--",
+            "-..x.x-.",
+            ".-.x.",
+            "-x..-",
+            "-x.x-.",
+            ".-x-"
+          ]
+        },
+        {
+          "sep": 46217029,
+          "dots": 220219400,
+          "dashes": 270172338,
+          "score": -103.84960001310168,
+          "visible": ".-x--xx-x.xx-x.xx-...x.xx.-xx-x---x--xx-.-x.x-.xx.-.x.xx-x..-xx-x.x-.xx.-x-",
+          "completions": [
+            "AM",
+            "TE",
+            "TE",
+            "BE",
+            "A",
+            "TOM",
+            "KEN",
+            "RE",
+            "TU",
+            "TEN",
+            "AT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            ".-x--",
+            "-x.",
+            "-x.",
+            "-...x.",
+            ".-",
+            "-x---x--",
+            "-.-x.x-.",
+            ".-.x.",
+            "-x..-",
+            "-x.x-.",
+            ".-x-"
+          ]
+        },
+        {
+          "sep": 46217029,
+          "dots": 488636424,
+          "dashes": 1755314,
+          "score": -107.92819621835564,
+          "visible": ".-x--xx-x-xx-x.xx-...x.xx.-xx-x---x--xx-..x.x--xx---x.xx-x..-xx-x.x-.xx.-x-",
+          "completions": [
+            "AM",
+            "TT",
+            "TE",
+            "BE",
+            "A",
+            "TOM",
+            "DEM",
+            "OE",
+            "TU",
+            "TEN",
+            "AT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "fragments": [
+            ".-x--",
+            "-x-",
+            "-x.",
+            "-...x.",
+            ".-",
+            "-x---x--",
+            "-..x.x--",
+            "---x.",
+            "-x..-",
+            "-x.x-.",
+            ".-x-"
+          ]
+        }
+      ],
+      "templateCache": 3773,
+      "localCache": 4063
+    }
+  },
+  "clipped-forward": {
+    "mode": "clipped-forward",
+    "dictionary": 29134,
+    "fit": {
+      "clip": true,
+      "separatorMasks": 117102,
+      "separatorNodes": 234249,
+      "scenarios": 162138,
+      "lexFeasible": 1492,
+      "keyNodes": 13484,
+      "completePaths": 416,
+      "distinctKeys": 354,
+      "trueKeyRank": null,
+      "top": [
+        {
+          "sep": 403198833,
+          "dots": 133236878,
+          "dashes": 173056,
+          "score": -49.40462280025942,
+          "visible": "x...x..x...-x.xx..-.x.-..x.x.xx.-x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+          "completions": [
+            "PROGRESSIVE",
+            "FLEE",
+            "AS",
+            "CITIES",
+            "HIT",
+            "THE"
+          ],
+          "completionCounts": [
+            42,
+            1,
+            1,
+            1,
+            1,
+            250
+          ],
+          "fragments": [
+            "x...x..x...-x.",
+            "..-.x.-..x.x.",
+            ".-x...",
+            "-.-.x..x-x..x.x...",
+            "....x..x-",
+            "-x..."
+          ]
+        },
+        {
+          "sep": 403198837,
+          "dots": 133236874,
+          "dashes": 173056,
+          "score": -54.53921516926981,
+          "visible": "x...xx.x...-x.xx..-.x.-..x.x.xx.-x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+          "completions": [
+            "WAS",
+            "EVE",
+            "FLEE",
+            "AS",
+            "CITIES",
+            "HIT",
+            "THE"
+          ],
+          "completionCounts": [
+            6235,
+            1,
+            1,
+            1,
+            1,
+            1,
+            250
+          ],
+          "fragments": [
+            "x...",
+            ".x...-x.",
+            "..-.x.-..x.x.",
+            ".-x...",
+            "-.-.x..x-x..x.x...",
+            "....x..x-",
+            "-x..."
+          ]
+        },
+        {
+          "sep": 403198833,
+          "dots": 116459662,
+          "dashes": 16950272,
+          "score": -57.70664061001062,
+          "visible": "x...x..x...-x.xx..-.x.-..x.x.xx--x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+          "completions": [
+            "PROGRESSIVE",
+            "FLEE",
+            "MS",
+            "CITIES",
+            "HIT",
+            "THE"
+          ],
+          "completionCounts": [
+            42,
+            1,
+            1,
+            1,
+            1,
+            250
+          ],
+          "fragments": [
+            "x...x..x...-x.",
+            "..-.x.-..x.x.",
+            "--x...",
+            "-.-.x..x-x..x.x...",
+            "....x..x-",
+            "-x..."
+          ]
+        },
+        {
+          "sep": 403198837,
+          "dots": 116459658,
+          "dashes": 16950272,
+          "score": -62.841232979021015,
+          "visible": "x...xx.x...-x.xx..-.x.-..x.x.xx--x...xx-.-.x..x-x..x.x...xx....x..x-xx-x...",
+          "completions": [
+            "WAS",
+            "EVE",
+            "FLEE",
+            "MS",
+            "CITIES",
+            "HIT",
+            "THE"
+          ],
+          "completionCounts": [
+            6235,
+            1,
+            1,
+            1,
+            1,
+            1,
+            250
+          ],
+          "fragments": [
+            "x...",
+            ".x...-x.",
+            "..-.x.-..x.x.",
+            "--x...",
+            "-.-.x..x-x..x.x...",
+            "....x..x-",
+            "-x..."
+          ]
+        },
+        {
+          "sep": 134763505,
+          "dots": 401672198,
+          "dashes": 173064,
+          "score": -66.55722858025601,
+          "visible": "x...x..x...-x.xx..-.x.-..x.x.xx.-..x.xx-.-.x.xx-x..x.x-..xx....x..x-xx-x...",
+          "completions": [
+            "PROGRESSIVE",
+            "FLEE",
+            "LE",
+            "CE",
+            "TIED",
+            "HIT",
+            "THE"
+          ],
+          "completionCounts": [
+            42,
+            1,
+            1,
+            1,
+            1,
+            1,
+            250
+          ],
+          "fragments": [
+            "x...x..x...-x.",
+            "..-.x.-..x.x.",
+            ".-..x.",
+            "-.-.x.",
+            "-x..x.x-..",
+            "....x..x-",
+            "-x..."
+          ]
+        }
+      ],
+      "templateCache": 5248,
+      "localCache": 6232
+    }
+  },
+  "clipped-reverse": {
+    "mode": "clipped-reverse",
+    "dictionary": 29134,
+    "fit": {
+      "clip": true,
+      "separatorMasks": 117102,
+      "separatorNodes": 234245,
+      "scenarios": 162138,
+      "lexFeasible": 1396,
+      "keyNodes": 6714,
+      "completePaths": 208,
+      "distinctKeys": 181,
+      "trueKeyRank": null,
+      "top": [
+        {
+          "sep": 316770413,
+          "dots": 85608208,
+          "dashes": 134230146,
+          "score": -63.78300053283769,
+          "visible": "x-x....x.xx-.x.xx...x.x.xx..x-x...xx..x-xx-...x.x.-x-.xx.x.-.x..x.xx.x...x.",
+          "completions": [
+            "THE",
+            "NE",
+            "SEE",
+            "ITS",
+            "IT",
+            "BEAN",
+            "ERIE",
+            "ESPECIALLY"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            19
+          ],
+          "fragments": [
+            "-x....x.",
+            "-.x.",
+            "...x.x.",
+            "..x-x...",
+            "..x-",
+            "-...x.x.-x-.",
+            ".x.-.x..x.",
+            ".x...x."
+          ]
+        },
+        {
+          "sep": 316770413,
+          "dots": 152721168,
+          "dashes": 67117186,
+          "score": -64.29654434025814,
+          "visible": "x-x....x.xx..x-xx.--x.x.xx..x-x...xx..x-xx-...x.x.-x--xx.x-..x..x-xx-x.-.x.",
+          "completions": [
+            "THE",
+            "IT",
+            "WEE",
+            "ITS",
+            "IT",
+            "BEAM",
+            "EDIT",
+            "TREATMENT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            318
+          ],
+          "fragments": [
+            "-x....x.",
+            "..x-",
+            ".--x.x.",
+            "..x-x...",
+            "..x-",
+            "-...x.x.-x--",
+            ".x-..x..x-",
+            "-x.-.x."
+          ]
+        },
+        {
+          "sep": 316786797,
+          "dots": 152704784,
+          "dashes": 67117186,
+          "score": -65.72584960636462,
+          "visible": "x-x....x.xx..x-xx.--x.x.xx..x-x...xx..x-xx-...x.xx-x--xx.x-..x..x-xx-x.-.x.",
+          "completions": [
+            "THE",
+            "IT",
+            "WEE",
+            "ITS",
+            "IT",
+            "BE",
+            "TM",
+            "EDIT",
+            "TREATMENT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            318
+          ],
+          "fragments": [
+            "-x....x.",
+            "..x-",
+            ".--x.x.",
+            "..x-x...",
+            "..x-",
+            "-...x.",
+            "-x--",
+            ".x-..x..x-",
+            "-x.-.x."
+          ]
+        },
+        {
+          "sep": 316786797,
+          "dots": 85600016,
+          "dashes": 134221954,
+          "score": -67.70559563137603,
+          "visible": "x-x....x.xx-.x.xx...x.x.xx..x-x...xx..x-xx....x.xx-x..xx.x.-.x..x.xx.x...x.",
+          "completions": [
+            "THE",
+            "NE",
+            "SEE",
+            "ITS",
+            "IT",
+            "HE",
+            "TI",
+            "ERIE",
+            "ESPECIALLY"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            19
+          ],
+          "fragments": [
+            "-x....x.",
+            "-.x.",
+            "...x.x.",
+            "..x-x...",
+            "..x-",
+            "....x.",
+            "-x..",
+            ".x.-.x..x.",
+            ".x...x."
+          ]
+        },
+        {
+          "sep": 316786797,
+          "dots": 152712976,
+          "dashes": 67108994,
+          "score": -68.08560804617196,
+          "visible": "x-x....x.xx..x-xx.--x.x.xx..x-x...xx..x-xx....x.xx-x.-xx.x-..x..x-xx-x.-.x.",
+          "completions": [
+            "THE",
+            "IT",
+            "WEE",
+            "ITS",
+            "IT",
+            "HE",
+            "TA",
+            "EDIT",
+            "TREATMENT"
+          ],
+          "completionCounts": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            318
+          ],
+          "fragments": [
+            "-x....x.",
+            "..x-",
+            ".--x.x.",
+            "..x-x...",
+            "..x-",
+            "....x.",
+            "-x.-",
+            ".x-..x..x-",
+            "-x.-.x."
+          ]
+        }
+      ],
+      "templateCache": 5219,
+      "localCache": 6190
+    }
+  }
+}
