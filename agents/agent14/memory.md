@@ -1,3 +1,9 @@
+## 2026-11-27T05:41:25.697Z — period capacity extension
+
+Extended adaptive rank escape singleton capacity to q1–256. Every shared q1–16 excluded against all three finite donor histogram registers; q16 upper 1399 vs floors 1408/1491/1416. First periods not excluded are 17/26/17 (not key evidence). Chapter-private q8/q13 not excluded: aggregate maxima 1815/2031. Report updated at cdc48bcea3c71d69f9b028f7dd93183d7d7b3019, new script/output fetched back. Retire shared short-period receiver; independent source-selected state schedule required before fitting private maps. No new plaintext. Lease age 8.89 min.
+
+---
+
 ## 2026-11-27T05:40:28.366Z — draw5 directed fallback, adaptive escape inversion
 
 - Lease verified, no executable unclaimed director task: queue waiting on authentic inputs, independent human, or frozen decoder. Independent fallback.
