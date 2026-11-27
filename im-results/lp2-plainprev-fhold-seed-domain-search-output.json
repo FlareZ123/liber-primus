@@ -1834,6 +1834,374 @@
           "witness": null
         }
       ]
+    },
+    {
+      "start": 75,
+      "count": 15,
+      "cap": 256,
+      "total": 145,
+      "exactResults": [
+        {
+          "i": 75,
+          "a": {
+            "page": 40,
+            "i": 73,
+            "name": "jpg107-167",
+            "j": 90
+          },
+          "b": {
+            "page": 45,
+            "i": 40,
+            "name": "0_welcome",
+            "j": 186
+          },
+          "k0": 13,
+          "fixed": 18,
+          "after": 97,
+          "status": "UNSAT",
+          "nodes": 156,
+          "visited": 392239,
+          "dead": 93,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 76,
+          "a": {
+            "page": 16,
+            "i": 167,
+            "name": "0_loss_of_divinity",
+            "j": 649
+          },
+          "b": {
+            "page": 23,
+            "i": 138,
+            "name": "0_loss_of_divinity",
+            "j": 386
+          },
+          "k0": 15,
+          "fixed": 18,
+          "after": 98,
+          "status": "UNSAT",
+          "nodes": 89,
+          "visited": 186493,
+          "dead": 55,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 77,
+          "a": {
+            "page": 13,
+            "i": 240,
+            "name": "0_koan_1",
+            "j": 733
+          },
+          "b": {
+            "page": 48,
+            "i": 111,
+            "name": "p56_an_end",
+            "j": 16
+          },
+          "k0": 1,
+          "fixed": 18,
+          "after": 99,
+          "status": "UNSAT",
+          "nodes": 134,
+          "visited": 360379,
+          "dead": 81,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 78,
+          "a": {
+            "page": 15,
+            "i": 136,
+            "name": "jpg107-167",
+            "j": 156
+          },
+          "b": {
+            "page": 43,
+            "i": 105,
+            "name": "0_welcome",
+            "j": 146
+          },
+          "k0": 15,
+          "fixed": 18,
+          "after": 99,
+          "status": "UNSAT",
+          "nodes": 197,
+          "visited": 478526,
+          "dead": 116,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 79,
+          "a": {
+            "page": 19,
+            "i": 70,
+            "name": "0_koan_1",
+            "j": 395
+          },
+          "b": {
+            "page": 24,
+            "i": 186,
+            "name": "0_loss_of_divinity",
+            "j": 492
+          },
+          "k0": 1,
+          "fixed": 18,
+          "after": 99,
+          "status": "UNSAT",
+          "nodes": 143,
+          "visited": 378511,
+          "dead": 87,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 80,
+          "a": {
+            "page": 21,
+            "i": 108,
+            "name": "0_loss_of_divinity",
+            "j": 458
+          },
+          "b": {
+            "page": 33,
+            "i": 121,
+            "name": "0_koan_1",
+            "j": 694
+          },
+          "k0": 1,
+          "fixed": 18,
+          "after": 99,
+          "status": "UNSAT",
+          "nodes": 153,
+          "visited": 378995,
+          "dead": 95,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 81,
+          "a": {
+            "page": 17,
+            "i": 202,
+            "name": "jpg107-167",
+            "j": 158
+          },
+          "b": {
+            "page": 27,
+            "i": 75,
+            "name": "jpg229",
+            "j": 14
+          },
+          "k0": 10,
+          "fixed": 18,
+          "after": 100,
+          "status": "UNSAT",
+          "nodes": 180,
+          "visited": 508764,
+          "dead": 110,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 82,
+          "a": {
+            "page": 2,
+            "i": 93,
+            "name": "jpg107-167",
+            "j": 158
+          },
+          "b": {
+            "page": 51,
+            "i": 36,
+            "name": "0_loss_of_divinity",
+            "j": 639
+          },
+          "k0": 15,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNSAT",
+          "nodes": 202,
+          "visited": 451217,
+          "dead": 123,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 83,
+          "a": {
+            "page": 5,
+            "i": 158,
+            "name": "0_koan_1",
+            "j": 291
+          },
+          "b": {
+            "page": 30,
+            "i": 103,
+            "name": "0_loss_of_divinity",
+            "j": 203
+          },
+          "k0": 1,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNSAT",
+          "nodes": 230,
+          "visited": 592042,
+          "dead": 145,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 84,
+          "a": {
+            "page": 11,
+            "i": 67,
+            "name": "0_koan_1",
+            "j": 768
+          },
+          "b": {
+            "page": 23,
+            "i": 175,
+            "name": "0_koan_1",
+            "j": 394
+          },
+          "k0": 15,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 641076,
+          "dead": 153,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 85,
+          "a": {
+            "page": 13,
+            "i": 51,
+            "name": "0_koan_1",
+            "j": 30
+          },
+          "b": {
+            "page": 13,
+            "i": 197,
+            "name": "0_loss_of_divinity",
+            "j": 453
+          },
+          "k0": 23,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 652477,
+          "dead": 156,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 86,
+          "a": {
+            "page": 13,
+            "i": 51,
+            "name": "0_koan_1",
+            "j": 30
+          },
+          "b": {
+            "page": 13,
+            "i": 197,
+            "name": "0_loss_of_divinity",
+            "j": 490
+          },
+          "k0": 23,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 652477,
+          "dead": 156,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 87,
+          "a": {
+            "page": 27,
+            "i": 69,
+            "name": "0_welcome",
+            "j": 444
+          },
+          "b": {
+            "page": 41,
+            "i": 261,
+            "name": "0_koan_1",
+            "j": 25
+          },
+          "k0": 1,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 617216,
+          "dead": 163,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 88,
+          "a": {
+            "page": 42,
+            "i": 80,
+            "name": "jpg107-167",
+            "j": 161
+          },
+          "b": {
+            "page": 51,
+            "i": 63,
+            "name": "0_koan_1",
+            "j": 701
+          },
+          "k0": 23,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 538309,
+          "dead": 163,
+          "leaves": 0,
+          "witness": null
+        },
+        {
+          "i": 89,
+          "a": {
+            "page": 42,
+            "i": 260,
+            "name": "0_loss_of_divinity",
+            "j": 651
+          },
+          "b": {
+            "page": 52,
+            "i": 62,
+            "name": "0_koan_1",
+            "j": 26
+          },
+          "k0": 15,
+          "fixed": 18,
+          "after": 101,
+          "status": "UNKNOWN",
+          "nodes": 256,
+          "visited": 686853,
+          "dead": 157,
+          "leaves": 0,
+          "witness": null
+        }
+      ]
     }
   ]
 }
