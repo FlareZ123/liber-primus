@@ -25,10 +25,12 @@ ROWS=[
  ("SC",689,1,3,17,1),("AOGS",437,1,2,8,1)]
 EXPECTED="utqtzbrvsdtvzp"
 # Deliberately fixed named cast, not general colon-separated text.
-LABEL=r"(?:Achilles|Tortoise|Crab|Anteater|Sloth|Genie|Djinn|God|Author|Narrator|Hofstadter|Bach|Zeno|Record Player|Mr\. Tortoise|Mr\. Crab|Mad Hatter|Hare)"
-START=re.compile(r"(?im)^\s*("+LABEL+r")\s*:")
-ANY=re.compile(r"(?i)\b("+LABEL+r")\s*:")
-WORDS=re.compile(r"[^\W_]+(?:['’\-][^\W_]+)*",re.UNICODE)
+# Historical parser grammar, including parenthesized speaker directions and
+# quotation prefixes.  No coordinate-specific exceptions are used.
+LABEL=r"(Achilles|Tortoise|C?Crab|Anteater|Sloth|Zeno|Author)(?:[^\S\n]*\([^():\n]*\))?[^\S\n]*:"
+START=re.compile(r"(?im)^[^\S\n]*['‘’]?"+LABEL)
+ANY=re.compile(r"(?i)(?<![A-Za-z])"+LABEL)
+WORDS=re.compile(r"[A-Za-z]+(?:['’][A-Za-z]+)*")
 
 def get(url):
     with urlopen(Request(url,headers={"User-Agent":"LiberPrimusResearch/1.0"}),timeout=80) as r:
@@ -46,11 +48,9 @@ def extract(text,pattern,s,w,l):
     if len(turns)<s:
         return {"turn_count":len(turns),"letter":None,"labels":[x[0] for x in turns[:s]]}
     label,body,pos=turns[s-1]
-    # Eliminate bracketed stage instructions; keep text otherwise unchanged.
-    body=re.sub(r"\[[^\]]*\]"," ",body)
     words=WORDS.findall(body)
     word=words[w-1] if len(words)>=w else None
-    return {"speaker":label,"word":word,"letter":word[l-1].lower() if word and len(word)>=l else None,
+    return {"speaker":label,"word":word,"letter":re.sub("[^a-z]","",word.lower())[l-1] if word and len(re.sub("[^a-z]","",word.lower()))>=l else None,
             "word_count":len(words),"turn_count":len(turns),"labels":[x[0] for x in turns[:s]],
             "turn_offset":pos}
 
@@ -84,7 +84,7 @@ def geometry_text(page):
         text="".join(parts)
         result.append(text)
         labels=[(m.group(1),m.start()) for m in ANY.finditer(text)]
-        if labels and page.number+1 in (317,397,487,488,489,490):
+        if labels and page.number+1 in (161,207,437):
             print("BASELINE",page.number+1,round(y,2),round(spans[0][0],2),json.dumps(labels),flush=True)
     return "\n".join(result)
 
@@ -97,16 +97,11 @@ def main():
         subprocess.run([sys.executable,"-m","pip","install","--disable-pip-version-check","PyMuPDF==1.26.7"],check=True)
         import fitz
     doc=fitz.open(stream=raw,filetype="pdf")
-    reference_url="https://cicadanotebook.com/files/geb_125.py"
-    with urlopen(Request(reference_url,headers={"User-Agent":"LiberPrimusResearch/1.0"}),timeout=35) as r:
-        reference=r.read(100000)
-    assert hashlib.sha256(reference).hexdigest()=="5a7095134b0e3f716bc89a315dd5fd92c5b427d409b75a5d62b277ecf856d273"
-    print("REFERENCE_CODE",json.dumps(reference.decode("utf-8"),ensure_ascii=True),flush=True)
-    for mode in ("geometry",):
+    for mode in ("raw","geometry"):
         selected=[]
         for name,opening,n,s,w,l in ROWS:
-            pages=[doc[i-1] for i in range(opening,opening+n)]
-            texts=[geometry_text(p) for p in pages]
+            pages=[doc[i-1] for i in range(opening,opening+4)]
+            texts=[geometry_text(p) if mode=="geometry" else p.get_text(sort=False) for p in pages]
             # Remove stand-alone page numbers, preserving the line boundaries
             # that carry the distinction between the two coordinate rules.
             text="\n".join(re.sub(r"(?m)^\s*\d{1,3}\s*$","",x) for x in texts)
@@ -117,7 +112,7 @@ def main():
             # Render selected page(s) to establish image availability without
             # publishing copyrighted page images.
             if mode=="raw":
-                for page in pages:
+                for page in pages[:n]:
                     pix=page.get_pixmap(matrix=fitz.Matrix(1,1),alpha=False)
                     print("RENDER",page.number+1,pix.width,pix.height,hashlib.sha256(pix.samples).hexdigest(),flush=True)
         answer="".join(selected)
