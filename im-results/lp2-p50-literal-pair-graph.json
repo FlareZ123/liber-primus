@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "issue": 3247,
+  "source": "resources/liber-primus/base60-grid.json",
+  "source_blob_sha": "4698c0806e6bab06a39cfbc3c3283b862de58b35",
+  "geometry": [
+    32,
+    8
+  ],
+  "token_count": 256,
+  "graph": {
+    "vertex_count": 59,
+    "source_vertices": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "sink_only_vertex_count": 54,
+    "nontrivial_sccs": [
+      [
+        "0",
+        "4"
+      ]
+    ],
+    "scc_sizes": [
+      2,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "euler_cycle": false,
+    "euler_trail": false,
+    "repeated_edge_histogram": {
+      "1": 92,
+      "2": 49,
+      "3": 14,
+      "4": 6
+    },
+    "max_edge_multiplicity": 4,
+    "digit_internal_edge_count": 17
+  },
+  "observed": {
+    "forward_internal_chain_joins": 3,
+    "reverse_internal_chain_joins": 1,
+    "forward_row_boundary_joins": 0,
+    "reverse_row_boundary_joins": 1,
+    "max_forward_walk_edges": 2,
+    "max_reverse_walk_edges": 2,
+    "mirror_reciprocal_pairs": 0,
+    "mirror_equal_pairs": 0,
+    "forward_pairs": [
+      {
+        "row0": 1,
+        "col0": 6,
+        "a": "33",
+        "b": "3W",
+        "via": "3"
+      },
+      {
+        "row0": 26,
+        "col0": 3,
+        "a": "11",
+        "b": "1A",
+        "via": "1"
+      },
+      {
+        "row0": 31,
+        "col0": 4,
+        "a": "30",
+        "b": "0a",
+        "via": "0"
+      }
+    ],
+    "reverse_pairs": [
+      {
+        "row0": 1,
+        "col0": 4,
+        "a": "47",
+        "b": "04",
+        "via": "4"
+      }
+    ],
+    "reverse_boundary_pair": {
+      "after_row0": 23,
+      "a": "0X",
+      "b": "00"
+    }
+  },
+  "exact_null_expectation": {
+    "forward_internal_chain_joins": 2.8583333333333334,
+    "reverse_internal_chain_joins": 2.8583333333333334,
+    "forward_row_boundary_joins": 0.39557291666666666,
+    "reverse_row_boundary_joins": 0.39557291666666666,
+    "mirror_equal_pairs": 0.4980392156862745,
+    "mirror_reciprocal_pairs": 0.01568627450980392,
+    "ordered_forward_compatible_pairs": 833,
+    "ordered_reverse_compatible_pairs": 833,
+    "ordered_equal_pairs": 254,
+    "ordered_reciprocal_pairs": 8,
+    "ordered_pair_denominator": 65280
+  },
+  "permutation_null": {
+    "draws": 100000,
+    "seed_hex": "0x3247c0de",
+    "p_two": {
+      "forward_internal_chain_joins": 1,
+      "reverse_internal_chain_joins": 0.3799562004379956,
+      "forward_row_boundary_joins": 1,
+      "reverse_row_boundary_joins": 0.6667133328666713,
+      "mirror_reciprocal_pairs": 1,
+      "mirror_equal_pairs": 1
+    }
+  },
+  "decision": "negative: graph gate fails; no adjacent p49/p51 receiver instantiated"
+}

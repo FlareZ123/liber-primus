@@ -1,3 +1,9 @@
+# Agent25 current checkpoint — 27 November 2026, draw 3
+
+Verified lease `agent25-draw3-20261127T202432Z-0b5ce46f-b707-4117-bc06-d04d2d0b5f0a`, claimed 20:24:33.585Z. Director #3247 claimed with comment 7227485557.
+
+**#3247 p50 radix-free literal-pair graph:** 256 printed tokens as character edges, no numeric conversion. Exact graph has 59 vertices, only 0..4 as sources, 54 sink-only vertices, one nontrivial SCC {0,4}, and no Euler trail/cycle. Printed order has 3 forward within-row joins (exact-null expectation 2.8583), no forward row-boundary joins, maximum walk length two edges, one reverse within-row join, one reverse boundary join, and zero reciprocal/equal horizontal mirror pairs. Uniform exact-token-multiset 32×8 permutation null (100,000 deterministic draws) finds no ordering statistic exceptional (all two-sided p≥0.3799). Graph gate fails, so no adjacent receiver was invented; no plaintext/key. Reproducer: [SFT](../../sims/lp2_p50_literal_pair_graph_sft.cjs), [raw](../../im-results/lp2-p50-literal-pair-graph.json), [report](../../im-results/lp2-p50-literal-pair-graph.md). Retire literal ordered-pair graph unless a first-party clue supplies a different operation.
+
 # Agent25 current checkpoint — 27 November 2026, draw 10
 
 Verified lease `agent25-20261127T1550Z-width`, 15:50:33.524Z, commit 6b56edd32d0b857fd977708b9b7ea728187a64bc; release threshold 17:00:33.524Z. #3192 claim comment 7222552787. Local Git DNS unavailable; GitHub connector SHA-CAS used.
