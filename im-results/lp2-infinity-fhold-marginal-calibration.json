@@ -1,0 +1,280 @@
+{
+  "summary": {
+    "count": 12,
+    "keyCorrect": 1069,
+    "heldCorrect": 1077,
+    "maskErrors": 2,
+    "positiveFit": [
+      -1515.3804823851785,
+      -1377.877924003586
+    ],
+    "positiveHeld": [
+      64.0954989703595,
+      96.4555075197539
+    ],
+    "wrongHeld": [
+      -326.32855103027697,
+      -216.90347992189186
+    ],
+    "independentFit": [
+      -2032.8065099935582,
+      -1962.9550568963127
+    ],
+    "independentHeld": [
+      -196.95226469210365,
+      -109.25990563877463
+    ],
+    "passes": 12,
+    "gate": true
+  },
+  "batches": [
+    "im-results/lp2-infinity-fhold-marginal-batch-00.json",
+    "im-results/lp2-infinity-fhold-marginal-batch-02.json",
+    "im-results/lp2-infinity-fhold-marginal-batch-04.json",
+    "im-results/lp2-infinity-fhold-marginal-batch-06.json",
+    "im-results/lp2-infinity-fhold-marginal-batch-08.json",
+    "im-results/lp2-infinity-fhold-marginal-batch-10.json"
+  ],
+  "controls": [
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1446.9809400244367,
+        "keyCorrect": 89,
+        "maskErrors": 1,
+        "heldCorrect": 90,
+        "heldBF": 85.74232454991272,
+        "expanded": 51386
+      },
+      "wrongHeld": {
+        "heldBF": -236.8254126916487
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2008.807825785935,
+        "heldBF": -162.6020668468874,
+        "expanded": 69860
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1402.5687669993388,
+        "keyCorrect": 88,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 90.61788276035594,
+        "expanded": 52600
+      },
+      "wrongHeld": {
+        "heldBF": -276.5350365122137
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -1962.9550568963127,
+        "heldBF": -196.95226469210365,
+        "expanded": 73147
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1377.877924003586,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 64.0954989703595,
+        "expanded": 51066
+      },
+      "wrongHeld": {
+        "heldBF": -263.11628375398766
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2023.3170884133017,
+        "heldBF": -109.25990563877463,
+        "expanded": 68432
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1478.0632323530651,
+        "keyCorrect": 89,
+        "maskErrors": 0,
+        "heldCorrect": 89,
+        "heldBF": 89.79404063762831,
+        "expanded": 50672
+      },
+      "wrongHeld": {
+        "heldBF": -326.32855103027697
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2006.2057874562101,
+        "heldBF": -164.11902257403455,
+        "expanded": 70050
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1407.727345387781,
+        "keyCorrect": 90,
+        "maskErrors": 1,
+        "heldCorrect": 90,
+        "heldBF": 94.57177398590204,
+        "expanded": 50481
+      },
+      "wrongHeld": {
+        "heldBF": -220.3035205218642
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2004.3958776388426,
+        "heldBF": -144.65369050262598,
+        "expanded": 71066
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1464.615836227022,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 73.31389995398956,
+        "expanded": 49836
+      },
+      "wrongHeld": {
+        "heldBF": -255.9187337327233
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2029.4828718372464,
+        "heldBF": -173.3052515827062,
+        "expanded": 71837
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1436.291883226406,
+        "keyCorrect": 88,
+        "maskErrors": 0,
+        "heldCorrect": 88,
+        "heldBF": 86.12552182050376,
+        "expanded": 51512
+      },
+      "wrongHeld": {
+        "heldBF": -216.90347992189186
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2032.8065099935582,
+        "heldBF": -166.61880123872567,
+        "expanded": 71930
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1444.859137171323,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 76.83202715531593,
+        "expanded": 53229
+      },
+      "wrongHeld": {
+        "heldBF": -266.1869035674373
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2016.2443563860265,
+        "heldBF": -126.01929289643863,
+        "expanded": 67729
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1454.6112198182323,
+        "keyCorrect": 85,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 74.399892783067,
+        "expanded": 53660
+      },
+      "wrongHeld": {
+        "heldBF": -259.5663202610584
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -1996.796381534944,
+        "heldBF": -192.67906375159333,
+        "expanded": 70661
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1475.072039164106,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 93.41108644797822,
+        "expanded": 51037
+      },
+      "wrongHeld": {
+        "heldBF": -283.91931257181244
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -1966.6789510785386,
+        "heldBF": -166.4830101074453,
+        "expanded": 72206
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1515.3804823851785,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 96.4555075197539,
+        "expanded": 52928
+      },
+      "wrongHeld": {
+        "heldBF": -271.88194213935884
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2005.2581471763206,
+        "heldBF": -123.86565609691667,
+        "expanded": 74781
+      }
+    },
+    {
+      "positive": {
+        "complete": true,
+        "fitScore": -1464.4652795005113,
+        "keyCorrect": 90,
+        "maskErrors": 0,
+        "heldCorrect": 90,
+        "heldBF": 93.44809825415678,
+        "expanded": 51397
+      },
+      "wrongHeld": {
+        "heldBF": -269.7273013551476
+      },
+      "independent": {
+        "complete": true,
+        "fitScore": -2001.5630053814277,
+        "heldBF": -158.2575913801429,
+        "expanded": 68905
+      }
+    }
+  ]
+}
