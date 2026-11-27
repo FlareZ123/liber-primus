@@ -192,6 +192,10 @@ These sources were checked for public LP2 plaintext, key, cipher, and source-mat
 
 - The [cross-ledger audit](https://github.com/njloof/cicada-lp2-sweeps/commit/6acd3bb9516520ed1d994e18ebd781188d043465) reviews Leo-Y-Zhang, TheronEagle and jens-wedin ledgers read-only. It reports no new campaign-worthy claim. This is prior-art reconciliation, not a new source artifact, key, or decryption; do not repeat it without a new external claim.
 
+### TheronEagle/liber-primus-research — original-source correction, 27 November 2026
+
+- [Lead #0](https://github.com/TheronEagle/liber-primus-research/blob/main/skill/cicada-3301-solver/references/open-leads.md) and [September 30 rerun](https://github.com/TheronEagle/liber-primus-research/blob/main/experiments/2026-09-30/lead0_rerun.py) claim repeated eight-word length patterns for archive images 22/47 and 43/58. Both are artifacts of hyphen-only grouping across genuine printed four-dot stops, confirmed visually on images 22 and 43. Correct physical LP2 spans p5/p30 and p26/p41 have unequal boundaries. An exact joint arbitrary shared-additive-pad trie inverse on those real spans, both relative signs and ordinary/latent literal-F clocks, finds zero finite-lexicon completions in 40 clock/sign/mask cases; all eight native planted controls survive. No new plaintext. [Original-input report and reproducer](../../im-results/lp2-external-repeated-length-unequal-boundary-pad.md). Retire both claimed length selectors.
+
 ### RiskAverseTech/cicada-ioc (latest relevant update 20 November 2026)
 
 - The [latest commit](https://github.com/RiskAverseTech/cicada-ioc/commit/94469e7f5326a21368cee2589f1d794c0dbb55eb) explicitly says no results changed; it reconciles line-end counts and records S-weighting as soft (p=0.085). Its [blind image re-read](https://github.com/RiskAverseTech/cicada-ioc/blob/main/results/reread_echoes.md) covers 12,807/12,956 aligned positions, with zero disagreements against the transcription and 149 unread. This is a transcription cross-check, not a new cipher result.
