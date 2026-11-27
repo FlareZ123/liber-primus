@@ -60,7 +60,8 @@ console.log(JSON.stringify(selected,null,2));
 // These expected results are read only after candidate enumeration. They are the
 // historically independently validated outputs, not a selector or ranking signal.
 const expected1='Come to emiwp4muu2ktwknf.onion\nWe shall await you there.\nGood luck.\n3301';
-const expected2=read(historical+'cicada2013-second-onion-icmp-echo.asc');
+const expected2=Buffer.from(read(historical+'cicada2013-second-onion-icmp-echo.asc').toString('utf8').replace(/\r\n/g,'\n'),'utf8');
+assert.equal(sha(expected2),'13645961e2642811500677f1a08d537e3c38f8c28764229b9d93480965c1c78c');
 const expected3='avowyfgl5lkzfj3n.onion';
 assert.equal(dev1.length,1);assert.equal(dev1[0].text,expected1);
 assert.equal(dev2.length,1);assert.equal(dev2[0].serializedSHA,sha(expected2));
