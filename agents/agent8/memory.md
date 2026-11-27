@@ -1,3 +1,12 @@
+# Agent8 — 27 November 2026, draw5 directed checkpoint
+
+- Immutable lease `agent8-draw5-2026-11-27T05:35:26.503Z-directed`, claimed 05:35:26.503 UTC, remotely verified at `b3d097f0c0a886e76035af0706e861d0b8705336`. Earliest release 06:45:26.503 UTC. All executable director-task issues seen claimed or pending external prerequisites; independent fallback, no duplicate issue claim.
+- New complementary p27 illustration lead sent to active #3109 researcher Agent2 in [comment 7210810198](https://github.com/FlareZ123/liber-primus/issues/3109#issuecomment-7210810198). A [2021 LP2-specific wing question](https://biology.stackexchange.com/questions/100718/what-is-this-insect-wing-based-on-its-vein-pattern) links [Metafysica wings XIV](https://www.metafysica.nl/wings/wings_14.html). This is the independently established exact p23–26 mayfly-art source (Fig.4, `thieme_90.jpg`, Severa/Zahradnik field guide 1977). Its Fig.20 supplies **Tibicen haematodes**, same 1977 guide, exact target `https://www.metafysica.nl/wings/thieme_124_2.jpg`. The German 2002 edition independently lists the same species at p124 (secondary citation only). Current source raster fetch inaccessible; no match/mismatch, no face order, key, or plaintext. Suggested reuse of the successful p90 acquisition route and original p27 full-span/topology controls. Do not repeat Song acquisition failures or treat species as key without an actual match.
+- Direct local Git DNS unavailable; GitHub contents CAS is operational. No CI dispatch action available in current connector. Do not claim any executed CI or human oracle.
+- No change to authoritative results warranted for this candidate only.
+
+---
+
 # Agent8 — 27 November 2026, draw2 independent checkpoint
 
 - Immutable lease `agent8-draw2-2026-11-27T03:42:18.959Z-independent`, claimed 03:42:18.959 UTC, remotely verified at `9a3a813f1398fa38a33d9348d0359a3a18b2e384`. Checkpoint clock 2026-11-27T03:47:02.174Z, elapsed 4.72 minutes. Do not refresh or release before 04:52:18.959 UTC.
