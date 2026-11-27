@@ -136,4 +136,22 @@ All 24,360 nonconstant triples and the 29 previously excluded constant maps are 
 
 [SFT](../sims/lp2_prime_mod4_adaptive_destination_allinitial_sft.cjs) · raw batches [0](lp2-prime-mod4-adaptive-destination-batch00.json), [1–3](lp2-prime-mod4-adaptive-destination-batches01-03.json), [4–6](lp2-prime-mod4-adaptive-destination-batches04-06.json), [7–9](lp2-prime-mod4-adaptive-destination-batches07-09.json), [10–12](lp2-prime-mod4-adaptive-destination-batches10-12.json), [13–14](lp2-prime-mod4-adaptive-destination-batches13-14.json). Executed all batches in connected V8.
 
-**Decision:** retain the supplied-destination inverse as a usable downstream receiver for an independently evidenced map. Reject the finite residue family under ordinary consumption and native singleton reading. Neither the blind map search nor a long run of exact finite exclusions establishes an original LP2 solution.
+**Decision:** retain the supplied-destination inverse for an independently evidenced map. Ordinary consumption is excluded under the stated native singleton reading; the literal-F extension is partially tested below. Neither the blind map search nor the finite exclusions establishes an original LP2 solution.
+
+## Literal-F hold extension: partial original gate (Agent2, 27 November 2026)
+
+The ordinary residue-class exclusion above does not transfer to authentic transparent F. For the same three destination classes and all private initial lists, treat ciphertext zero as the union of the identity transition (plaintext F) and an ordinary removal/insertion. At native A/I singleton printed groups only the ordinary transition is permitted; every surviving global pair is propagated across all 83 such groups. Union of marginal rank domains is a sound relaxation: it grants incompatible combinations and does not yet exclude the private F-rank from ordinary moves. A surviving state is therefore not an exact feasible cipher history or a key.
+
+All six solved-native plants (2979 runes each, 27 singleton groups) retain their planted A/I rank pair with actual literal-F holds; 23,548 elementary rank-transform checks pass. The original rune indices agree with the 12,956-rune corrected corpus. Four completed reflection batches cover R(F)=0,1,2,3, all 29×29 choices for the other two destination ranks including constant triples.
+
+| Quantity | Count |
+|---|---:|
+| Destination maps tested | 3,364 |
+| Independent-pair contradictions | 2,141 |
+| Candidate pairs after independent intersection | 8,671 |
+| Remaining maps rejected by propagated pair constraints | 1,115 |
+| Remaining map/pair combinations | 108 |
+
+107 survivors share a common non-F destination d=1..27, with A/I ranks d−1,d+1 (R(F)=0 lacks d=1). The sole unequal non-F destination candidate is R=(3,6,3), A/I ranks {2,8}. All are relaxed candidates, not recovered plaintext. A prototype additional F-rank test timed out without a completed result. Batches R(F)=4..14 and exact hidden-F rank/state consistency remain open. The finite partial test does not justify retiring the whole F-hold family.
+
+[SFT](../sims/lp2_prime_mod4_latent_f_singleton_sft.cjs) · [batch0 and six controls](lp2-prime-mod4-latent-f-batch00.json) · [batches1–3](lp2-prime-mod4-latent-f-batch01-03.json). The connected V8 core was actually executed; standalone Node wrapper not separately run. Reproduce from repository root with `node sims/lp2_prime_mod4_latent_f_singleton_sft.cjs <batch>`. Continue by exploiting the nearly common-destination survivor structure and proving exact feasibility or contradiction before any language search. No source-authenticated destination map or unknown original plaintext.
