@@ -1,0 +1,3572 @@
+{
+  "grid": [
+    3299,
+    3298,
+    3296,
+    3294,
+    3288,
+    3278,
+    3258,
+    3222,
+    3152,
+    3038,
+    2838,
+    2472,
+    1820,
+    708,
+    1206,
+    4516
+  ],
+  "ord": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    9,
+    14,
+    22,
+    35,
+    56,
+    90,
+    145,
+    234,
+    378,
+    611,
+    988
+  ],
+  "gaps": [
+    1,
+    1,
+    1,
+    2,
+    3,
+    5,
+    8,
+    13,
+    21,
+    34,
+    55,
+    89,
+    144,
+    233,
+    377
+  ],
+  "p56Replay": 85,
+  "assignmentReferenceCases": 100,
+  "donorLengths": [
+    217106,
+    62492,
+    321327
+  ],
+  "controls": [
+    {
+      "di": 0,
+      "off": 10000,
+      "rank": 1,
+      "phase": 0,
+      "n": 1883,
+      "cut": 1210,
+      "actualTop1": 229,
+      "actualTop2": 397,
+      "cap1": 250,
+      "cap2": 401,
+      "signSymmetry": true,
+      "blind": {
+        "fitMatches": 310,
+        "heldMatches": 154,
+        "heldN": 673,
+        "outerGaugeMatches": 29,
+        "replay": true
+      }
+    },
+    {
+      "di": 2,
+      "off": 30000,
+      "rank": 378,
+      "phase": 1,
+      "n": 1744,
+      "cut": 1071,
+      "actualTop1": 175,
+      "actualTop2": 323,
+      "cap1": 218,
+      "cap2": 356,
+      "signSymmetry": true,
+      "blind": {
+        "fitMatches": 281,
+        "heldMatches": 151,
+        "heldN": 673,
+        "outerGaugeMatches": 29,
+        "replay": true
+      }
+    }
+  ],
+  "res": [
+    {
+      "start": 15,
+      "skip": 20,
+      "n": 1883,
+      "min": [
+        {
+          "windows": 215224,
+          "mins": [
+            160,
+            312
+          ]
+        },
+        {
+          "windows": 60610,
+          "mins": [
+            185,
+            339
+          ]
+        },
+        {
+          "windows": 319445,
+          "mins": [
+            180,
+            338
+          ]
+        }
+      ],
+      "allmin": [
+        160,
+        312
+      ],
+      "positiveSignCases": 240,
+      "totalSignedCases": 480,
+      "maxima": [
+        168,
+        272
+      ],
+      "survive1": 80,
+      "surviveBoth": 0,
+      "allCases": [
+        {
+          "rank": 1,
+          "phase": 0,
+          "b1": 157,
+          "b2": 260,
+          "pairDifference": 10
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "b1": 150,
+          "b2": 253,
+          "pairDifference": 14
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "b1": 160,
+          "b2": 259,
+          "pairDifference": 8
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "b1": 145,
+          "b2": 247,
+          "pairDifference": 4
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "b1": 155,
+          "b2": 255,
+          "pairDifference": 2
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "b1": 162,
+          "b2": 256,
+          "pairDifference": 8
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "b1": 163,
+          "b2": 266,
+          "pairDifference": 2
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "b1": 156,
+          "b2": 260,
+          "pairDifference": 8
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "b1": 150,
+          "b2": 257,
+          "pairDifference": 10
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 7
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "b1": 156,
+          "b2": 256,
+          "pairDifference": 2
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "b1": 150,
+          "b2": 252,
+          "pairDifference": 9
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "b1": 161,
+          "b2": 261,
+          "pairDifference": 12
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 10
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "b1": 150,
+          "b2": 247,
+          "pairDifference": 2
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "b1": 153,
+          "b2": 253,
+          "pairDifference": 1
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "b1": 160,
+          "b2": 255,
+          "pairDifference": 12
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "b1": 159,
+          "b2": 258,
+          "pairDifference": 3
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "b1": 158,
+          "b2": 255,
+          "pairDifference": 5
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "b1": 160,
+          "b2": 265,
+          "pairDifference": 3
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "b1": 157,
+          "b2": 255,
+          "pairDifference": 5
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "b1": 155,
+          "b2": 254,
+          "pairDifference": 2
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "b1": 160,
+          "b2": 264,
+          "pairDifference": 10
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "b1": 159,
+          "b2": 265,
+          "pairDifference": 13
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "b1": 154,
+          "b2": 252,
+          "pairDifference": 5
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "b1": 149,
+          "b2": 250,
+          "pairDifference": 13
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "b1": 149,
+          "b2": 249,
+          "pairDifference": 6
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "b1": 157,
+          "b2": 258,
+          "pairDifference": 13
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "b1": 149,
+          "b2": 246,
+          "pairDifference": 6
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "b1": 156,
+          "b2": 255,
+          "pairDifference": 8
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "b1": 156,
+          "b2": 255,
+          "pairDifference": 1
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "b1": 153,
+          "b2": 261,
+          "pairDifference": 14
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "b1": 161,
+          "b2": 258,
+          "pairDifference": 2
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "b1": 152,
+          "b2": 261,
+          "pairDifference": 11
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "b1": 158,
+          "b2": 262,
+          "pairDifference": 14
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "b1": 153,
+          "b2": 254,
+          "pairDifference": 10
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "b1": 159,
+          "b2": 255,
+          "pairDifference": 11
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "b1": 158,
+          "b2": 260,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 11
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "b1": 148,
+          "b2": 251,
+          "pairDifference": 3
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "b1": 152,
+          "b2": 251,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "b1": 156,
+          "b2": 257,
+          "pairDifference": 7
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "b1": 151,
+          "b2": 253,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "b1": 157,
+          "b2": 260,
+          "pairDifference": 13
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "b1": 157,
+          "b2": 256,
+          "pairDifference": 4
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "b1": 158,
+          "b2": 258,
+          "pairDifference": 4
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "b1": 145,
+          "b2": 246,
+          "pairDifference": 6
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "b1": 152,
+          "b2": 249,
+          "pairDifference": 9
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "b1": 149,
+          "b2": 252,
+          "pairDifference": 14
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "b1": 155,
+          "b2": 252,
+          "pairDifference": 1
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "b1": 153,
+          "b2": 255,
+          "pairDifference": 5
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 7
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "b1": 153,
+          "b2": 253,
+          "pairDifference": 12
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "b1": 149,
+          "b2": 251,
+          "pairDifference": 4
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 2
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "b1": 152,
+          "b2": 252,
+          "pairDifference": 1
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "b1": 158,
+          "b2": 256,
+          "pairDifference": 1
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "b1": 155,
+          "b2": 255,
+          "pairDifference": 12
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "b1": 157,
+          "b2": 263,
+          "pairDifference": 6
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "b1": 161,
+          "b2": 259,
+          "pairDifference": 11
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "b1": 156,
+          "b2": 257,
+          "pairDifference": 7
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "b1": 156,
+          "b2": 254,
+          "pairDifference": 7
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "b1": 153,
+          "b2": 252,
+          "pairDifference": 4
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 11
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "b1": 165,
+          "b2": 262,
+          "pairDifference": 13
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "b1": 155,
+          "b2": 254,
+          "pairDifference": 8
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "b1": 153,
+          "b2": 255,
+          "pairDifference": 12
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "b1": 158,
+          "b2": 264,
+          "pairDifference": 2
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "b1": 156,
+          "b2": 262,
+          "pairDifference": 2
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "b1": 159,
+          "b2": 258,
+          "pairDifference": 4
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "b1": 157,
+          "b2": 254,
+          "pairDifference": 12
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "b1": 159,
+          "b2": 257,
+          "pairDifference": 9
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 13
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "b1": 147,
+          "b2": 244,
+          "pairDifference": 4
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 12
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "b1": 150,
+          "b2": 252,
+          "pairDifference": 9
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "b1": 160,
+          "b2": 258,
+          "pairDifference": 6
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "b1": 152,
+          "b2": 256,
+          "pairDifference": 6
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "b1": 160,
+          "b2": 260,
+          "pairDifference": 4
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "b1": 157,
+          "b2": 254,
+          "pairDifference": 11
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "b1": 153,
+          "b2": 256,
+          "pairDifference": 9
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "b1": 163,
+          "b2": 262,
+          "pairDifference": 11
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "b1": 148,
+          "b2": 252,
+          "pairDifference": 10
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "b1": 157,
+          "b2": 254,
+          "pairDifference": 11
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "b1": 146,
+          "b2": 245,
+          "pairDifference": 1
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "b1": 162,
+          "b2": 262,
+          "pairDifference": 1
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "b1": 157,
+          "b2": 253,
+          "pairDifference": 12
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "b1": 160,
+          "b2": 254,
+          "pairDifference": 2
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "b1": 149,
+          "b2": 248,
+          "pairDifference": 8
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "b1": 160,
+          "b2": 262,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "b1": 158,
+          "b2": 257,
+          "pairDifference": 9
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "b1": 149,
+          "b2": 251,
+          "pairDifference": 4
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "b1": 154,
+          "b2": 258,
+          "pairDifference": 5
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "b1": 152,
+          "b2": 250,
+          "pairDifference": 12
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "b1": 167,
+          "b2": 267,
+          "pairDifference": 13
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "b1": 154,
+          "b2": 257,
+          "pairDifference": 6
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 12
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "b1": 142,
+          "b2": 246,
+          "pairDifference": 7
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "b1": 160,
+          "b2": 257,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "b1": 151,
+          "b2": 247,
+          "pairDifference": 2
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "b1": 157,
+          "b2": 262,
+          "pairDifference": 8
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "b1": 154,
+          "b2": 249,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "b1": 162,
+          "b2": 258,
+          "pairDifference": 6
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "b1": 159,
+          "b2": 257,
+          "pairDifference": 11
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "b1": 159,
+          "b2": 263,
+          "pairDifference": 10
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "b1": 157,
+          "b2": 257,
+          "pairDifference": 7
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 2
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "b1": 162,
+          "b2": 257,
+          "pairDifference": 14
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "b1": 154,
+          "b2": 253,
+          "pairDifference": 5
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "b1": 156,
+          "b2": 255,
+          "pairDifference": 11
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "b1": 153,
+          "b2": 254,
+          "pairDifference": 13
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "b1": 151,
+          "b2": 249,
+          "pairDifference": 1
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "b1": 157,
+          "b2": 261,
+          "pairDifference": 9
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "b1": 155,
+          "b2": 263,
+          "pairDifference": 6
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "b1": 153,
+          "b2": 253,
+          "pairDifference": 8
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "b1": 156,
+          "b2": 256,
+          "pairDifference": 9
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "b1": 162,
+          "b2": 263,
+          "pairDifference": 6
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "b1": 153,
+          "b2": 255,
+          "pairDifference": 4
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "b1": 152,
+          "b2": 251,
+          "pairDifference": 12
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "b1": 158,
+          "b2": 255,
+          "pairDifference": 2
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "b1": 155,
+          "b2": 253,
+          "pairDifference": 7
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "b1": 156,
+          "b2": 257,
+          "pairDifference": 8
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "b1": 159,
+          "b2": 264,
+          "pairDifference": 1
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "b1": 151,
+          "b2": 253,
+          "pairDifference": 14
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "b1": 151,
+          "b2": 251,
+          "pairDifference": 10
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "b1": 149,
+          "b2": 250,
+          "pairDifference": 2
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "b1": 158,
+          "b2": 261,
+          "pairDifference": 7
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "b1": 162,
+          "b2": 262,
+          "pairDifference": 5
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "b1": 152,
+          "b2": 255,
+          "pairDifference": 13
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "b1": 153,
+          "b2": 252,
+          "pairDifference": 5
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "b1": 160,
+          "b2": 263,
+          "pairDifference": 14
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "b1": 153,
+          "b2": 257,
+          "pairDifference": 2
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "b1": 164,
+          "b2": 262,
+          "pairDifference": 4
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "b1": 161,
+          "b2": 265,
+          "pairDifference": 14
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "b1": 155,
+          "b2": 254,
+          "pairDifference": 3
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "b1": 149,
+          "b2": 246,
+          "pairDifference": 5
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "b1": 152,
+          "b2": 255,
+          "pairDifference": 4
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "b1": 151,
+          "b2": 255,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "b1": 155,
+          "b2": 250,
+          "pairDifference": 3
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "b1": 161,
+          "b2": 265,
+          "pairDifference": 2
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "b1": 163,
+          "b2": 259,
+          "pairDifference": 4
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "b1": 155,
+          "b2": 252,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "b1": 152,
+          "b2": 252,
+          "pairDifference": 8
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "b1": 155,
+          "b2": 259,
+          "pairDifference": 7
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "b1": 155,
+          "b2": 252,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "b1": 152,
+          "b2": 256,
+          "pairDifference": 14
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "b1": 152,
+          "b2": 248,
+          "pairDifference": 11
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 7
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 9
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "b1": 155,
+          "b2": 258,
+          "pairDifference": 10
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "b1": 153,
+          "b2": 257,
+          "pairDifference": 3
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "b1": 154,
+          "b2": 250,
+          "pairDifference": 14
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 13
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "b1": 157,
+          "b2": 261,
+          "pairDifference": 3
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "b1": 166,
+          "b2": 269,
+          "pairDifference": 13
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "b1": 152,
+          "b2": 253,
+          "pairDifference": 5
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "b1": 150,
+          "b2": 251,
+          "pairDifference": 10
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "b1": 153,
+          "b2": 255,
+          "pairDifference": 6
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "b1": 152,
+          "b2": 249,
+          "pairDifference": 12
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "b1": 151,
+          "b2": 249,
+          "pairDifference": 6
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "b1": 155,
+          "b2": 255,
+          "pairDifference": 14
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "b1": 159,
+          "b2": 257,
+          "pairDifference": 13
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "b1": 155,
+          "b2": 255,
+          "pairDifference": 14
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "b1": 151,
+          "b2": 248,
+          "pairDifference": 2
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "b1": 158,
+          "b2": 257,
+          "pairDifference": 11
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 13
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "b1": 159,
+          "b2": 257,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "b1": 151,
+          "b2": 256,
+          "pairDifference": 10
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "b1": 162,
+          "b2": 259,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "b1": 151,
+          "b2": 251,
+          "pairDifference": 6
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "b1": 150,
+          "b2": 249,
+          "pairDifference": 13
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "b1": 155,
+          "b2": 250,
+          "pairDifference": 10
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "b1": 163,
+          "b2": 266,
+          "pairDifference": 2
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "b1": 154,
+          "b2": 252,
+          "pairDifference": 2
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "b1": 149,
+          "b2": 249,
+          "pairDifference": 12
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "b1": 156,
+          "b2": 250,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "b1": 154,
+          "b2": 251,
+          "pairDifference": 13
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "b1": 153,
+          "b2": 252,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 4
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "b1": 151,
+          "b2": 254,
+          "pairDifference": 13
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "b1": 149,
+          "b2": 249,
+          "pairDifference": 1
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "b1": 158,
+          "b2": 254,
+          "pairDifference": 1
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "b1": 160,
+          "b2": 263,
+          "pairDifference": 10
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "b1": 149,
+          "b2": 251,
+          "pairDifference": 3
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "b1": 155,
+          "b2": 257,
+          "pairDifference": 3
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "b1": 158,
+          "b2": 260,
+          "pairDifference": 9
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "b1": 153,
+          "b2": 251,
+          "pairDifference": 3
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "b1": 159,
+          "b2": 258,
+          "pairDifference": 13
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "b1": 162,
+          "b2": 259,
+          "pairDifference": 1
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "b1": 153,
+          "b2": 254,
+          "pairDifference": 2
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "b1": 150,
+          "b2": 254,
+          "pairDifference": 5
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "b1": 154,
+          "b2": 261,
+          "pairDifference": 3
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "b1": 160,
+          "b2": 261,
+          "pairDifference": 2
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "b1": 149,
+          "b2": 250,
+          "pairDifference": 12
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "b1": 154,
+          "b2": 257,
+          "pairDifference": 3
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "b1": 168,
+          "b2": 272,
+          "pairDifference": 9
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "b1": 152,
+          "b2": 252,
+          "pairDifference": 7
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "b1": 158,
+          "b2": 261,
+          "pairDifference": 13
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "b1": 151,
+          "b2": 256,
+          "pairDifference": 2
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "b1": 158,
+          "b2": 256,
+          "pairDifference": 7
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "b1": 154,
+          "b2": 257,
+          "pairDifference": 4
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "b1": 157,
+          "b2": 256,
+          "pairDifference": 9
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "b1": 162,
+          "b2": 261,
+          "pairDifference": 10
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "b1": 153,
+          "b2": 256,
+          "pairDifference": 2
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "b1": 150,
+          "b2": 250,
+          "pairDifference": 3
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "b1": 152,
+          "b2": 257,
+          "pairDifference": 12
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "b1": 157,
+          "b2": 258,
+          "pairDifference": 11
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "b1": 152,
+          "b2": 254,
+          "pairDifference": 9
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "b1": 155,
+          "b2": 258,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "b1": 160,
+          "b2": 257,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "b1": 159,
+          "b2": 252,
+          "pairDifference": 10
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "b1": 156,
+          "b2": 257,
+          "pairDifference": 11
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "b1": 158,
+          "b2": 254,
+          "pairDifference": 2
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "b1": 151,
+          "b2": 251,
+          "pairDifference": 5
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "b1": 151,
+          "b2": 256,
+          "pairDifference": 7
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "b1": 154,
+          "b2": 253,
+          "pairDifference": 2
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "b1": 160,
+          "b2": 260,
+          "pairDifference": 7
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "b1": 153,
+          "b2": 254,
+          "pairDifference": 7
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "b1": 154,
+          "b2": 255,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "b1": 153,
+          "b2": 249,
+          "pairDifference": 4
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "b1": 159,
+          "b2": 264,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "b1": 157,
+          "b2": 259,
+          "pairDifference": 7
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "b1": 162,
+          "b2": 264,
+          "pairDifference": 1
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "b1": 156,
+          "b2": 261,
+          "pairDifference": 11
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "b1": 158,
+          "b2": 261,
+          "pairDifference": 6
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 5
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "b1": 156,
+          "b2": 259,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "b1": 158,
+          "b2": 254,
+          "pairDifference": 5
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "b1": 154,
+          "b2": 256,
+          "pairDifference": 10
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "b1": 159,
+          "b2": 258,
+          "pairDifference": 5
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "b1": 167,
+          "b2": 263,
+          "pairDifference": 11
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "b1": 152,
+          "b2": 253,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 4
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "b1": 167,
+          "b2": 267,
+          "pairDifference": 8
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "b1": 155,
+          "b2": 256,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "b1": 150,
+          "b2": 246,
+          "pairDifference": 13
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "b1": 144,
+          "b2": 244,
+          "pairDifference": 8
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "b1": 154,
+          "b2": 254,
+          "pairDifference": 14
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "b1": 153,
+          "b2": 253,
+          "pairDifference": 7
+        }
+      ]
+    },
+    {
+      "start": 16,
+      "skip": 0,
+      "n": 1744,
+      "min": [
+        {
+          "windows": 215363,
+          "mins": [
+            146,
+            288
+          ]
+        },
+        {
+          "windows": 60749,
+          "mins": [
+            170,
+            314
+          ]
+        },
+        {
+          "windows": 319584,
+          "mins": [
+            166,
+            312
+          ]
+        }
+      ],
+      "allmin": [
+        146,
+        288
+      ],
+      "positiveSignCases": 240,
+      "totalSignedCases": 480,
+      "maxima": [
+        162,
+        262
+      ],
+      "survive1": 306,
+      "surviveBoth": 0,
+      "allCases": [
+        {
+          "rank": 1,
+          "phase": 0,
+          "b1": 150,
+          "b2": 245,
+          "pairDifference": 12
+        },
+        {
+          "rank": 1,
+          "phase": 1,
+          "b1": 148,
+          "b2": 246,
+          "pairDifference": 7
+        },
+        {
+          "rank": 1,
+          "phase": 2,
+          "b1": 148,
+          "b2": 244,
+          "pairDifference": 7
+        },
+        {
+          "rank": 1,
+          "phase": 3,
+          "b1": 141,
+          "b2": 241,
+          "pairDifference": 2
+        },
+        {
+          "rank": 1,
+          "phase": 4,
+          "b1": 156,
+          "b2": 248,
+          "pairDifference": 5
+        },
+        {
+          "rank": 1,
+          "phase": 5,
+          "b1": 152,
+          "b2": 249,
+          "pairDifference": 4
+        },
+        {
+          "rank": 1,
+          "phase": 6,
+          "b1": 148,
+          "b2": 245,
+          "pairDifference": 13
+        },
+        {
+          "rank": 1,
+          "phase": 7,
+          "b1": 148,
+          "b2": 241,
+          "pairDifference": 9
+        },
+        {
+          "rank": 1,
+          "phase": 8,
+          "b1": 154,
+          "b2": 244,
+          "pairDifference": 7
+        },
+        {
+          "rank": 1,
+          "phase": 9,
+          "b1": 154,
+          "b2": 250,
+          "pairDifference": 6
+        },
+        {
+          "rank": 1,
+          "phase": 10,
+          "b1": 154,
+          "b2": 248,
+          "pairDifference": 10
+        },
+        {
+          "rank": 1,
+          "phase": 11,
+          "b1": 151,
+          "b2": 247,
+          "pairDifference": 10
+        },
+        {
+          "rank": 1,
+          "phase": 12,
+          "b1": 153,
+          "b2": 252,
+          "pairDifference": 3
+        },
+        {
+          "rank": 1,
+          "phase": 13,
+          "b1": 145,
+          "b2": 245,
+          "pairDifference": 2
+        },
+        {
+          "rank": 1,
+          "phase": 14,
+          "b1": 142,
+          "b2": 241,
+          "pairDifference": 1
+        },
+        {
+          "rank": 2,
+          "phase": 0,
+          "b1": 154,
+          "b2": 249,
+          "pairDifference": 7
+        },
+        {
+          "rank": 2,
+          "phase": 1,
+          "b1": 151,
+          "b2": 247,
+          "pairDifference": 7
+        },
+        {
+          "rank": 2,
+          "phase": 2,
+          "b1": 143,
+          "b2": 235,
+          "pairDifference": 2
+        },
+        {
+          "rank": 2,
+          "phase": 3,
+          "b1": 161,
+          "b2": 250,
+          "pairDifference": 8
+        },
+        {
+          "rank": 2,
+          "phase": 4,
+          "b1": 144,
+          "b2": 238,
+          "pairDifference": 13
+        },
+        {
+          "rank": 2,
+          "phase": 5,
+          "b1": 145,
+          "b2": 241,
+          "pairDifference": 1
+        },
+        {
+          "rank": 2,
+          "phase": 6,
+          "b1": 147,
+          "b2": 242,
+          "pairDifference": 1
+        },
+        {
+          "rank": 2,
+          "phase": 7,
+          "b1": 144,
+          "b2": 240,
+          "pairDifference": 3
+        },
+        {
+          "rank": 2,
+          "phase": 8,
+          "b1": 141,
+          "b2": 235,
+          "pairDifference": 9
+        },
+        {
+          "rank": 2,
+          "phase": 9,
+          "b1": 145,
+          "b2": 241,
+          "pairDifference": 4
+        },
+        {
+          "rank": 2,
+          "phase": 10,
+          "b1": 150,
+          "b2": 250,
+          "pairDifference": 11
+        },
+        {
+          "rank": 2,
+          "phase": 11,
+          "b1": 144,
+          "b2": 237,
+          "pairDifference": 3
+        },
+        {
+          "rank": 2,
+          "phase": 12,
+          "b1": 150,
+          "b2": 246,
+          "pairDifference": 3
+        },
+        {
+          "rank": 2,
+          "phase": 13,
+          "b1": 149,
+          "b2": 243,
+          "pairDifference": 6
+        },
+        {
+          "rank": 2,
+          "phase": 14,
+          "b1": 150,
+          "b2": 244,
+          "pairDifference": 13
+        },
+        {
+          "rank": 3,
+          "phase": 0,
+          "b1": 148,
+          "b2": 244,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 1,
+          "b1": 149,
+          "b2": 241,
+          "pairDifference": 7
+        },
+        {
+          "rank": 3,
+          "phase": 2,
+          "b1": 148,
+          "b2": 244,
+          "pairDifference": 7
+        },
+        {
+          "rank": 3,
+          "phase": 3,
+          "b1": 162,
+          "b2": 262,
+          "pairDifference": 9
+        },
+        {
+          "rank": 3,
+          "phase": 4,
+          "b1": 149,
+          "b2": 245,
+          "pairDifference": 3
+        },
+        {
+          "rank": 3,
+          "phase": 5,
+          "b1": 152,
+          "b2": 245,
+          "pairDifference": 4
+        },
+        {
+          "rank": 3,
+          "phase": 6,
+          "b1": 144,
+          "b2": 239,
+          "pairDifference": 8
+        },
+        {
+          "rank": 3,
+          "phase": 7,
+          "b1": 141,
+          "b2": 238,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 8,
+          "b1": 148,
+          "b2": 237,
+          "pairDifference": 9
+        },
+        {
+          "rank": 3,
+          "phase": 9,
+          "b1": 151,
+          "b2": 247,
+          "pairDifference": 8
+        },
+        {
+          "rank": 3,
+          "phase": 10,
+          "b1": 144,
+          "b2": 239,
+          "pairDifference": 9
+        },
+        {
+          "rank": 3,
+          "phase": 11,
+          "b1": 141,
+          "b2": 240,
+          "pairDifference": 5
+        },
+        {
+          "rank": 3,
+          "phase": 12,
+          "b1": 149,
+          "b2": 240,
+          "pairDifference": 6
+        },
+        {
+          "rank": 3,
+          "phase": 13,
+          "b1": 150,
+          "b2": 236,
+          "pairDifference": 9
+        },
+        {
+          "rank": 3,
+          "phase": 14,
+          "b1": 141,
+          "b2": 233,
+          "pairDifference": 2
+        },
+        {
+          "rank": 4,
+          "phase": 0,
+          "b1": 156,
+          "b2": 253,
+          "pairDifference": 5
+        },
+        {
+          "rank": 4,
+          "phase": 1,
+          "b1": 145,
+          "b2": 240,
+          "pairDifference": 12
+        },
+        {
+          "rank": 4,
+          "phase": 2,
+          "b1": 150,
+          "b2": 245,
+          "pairDifference": 2
+        },
+        {
+          "rank": 4,
+          "phase": 3,
+          "b1": 148,
+          "b2": 243,
+          "pairDifference": 9
+        },
+        {
+          "rank": 4,
+          "phase": 4,
+          "b1": 149,
+          "b2": 246,
+          "pairDifference": 11
+        },
+        {
+          "rank": 4,
+          "phase": 5,
+          "b1": 145,
+          "b2": 236,
+          "pairDifference": 8
+        },
+        {
+          "rank": 4,
+          "phase": 6,
+          "b1": 150,
+          "b2": 239,
+          "pairDifference": 3
+        },
+        {
+          "rank": 4,
+          "phase": 7,
+          "b1": 149,
+          "b2": 243,
+          "pairDifference": 11
+        },
+        {
+          "rank": 4,
+          "phase": 8,
+          "b1": 145,
+          "b2": 238,
+          "pairDifference": 5
+        },
+        {
+          "rank": 4,
+          "phase": 9,
+          "b1": 148,
+          "b2": 243,
+          "pairDifference": 3
+        },
+        {
+          "rank": 4,
+          "phase": 10,
+          "b1": 146,
+          "b2": 240,
+          "pairDifference": 1
+        },
+        {
+          "rank": 4,
+          "phase": 11,
+          "b1": 142,
+          "b2": 236,
+          "pairDifference": 7
+        },
+        {
+          "rank": 4,
+          "phase": 12,
+          "b1": 143,
+          "b2": 242,
+          "pairDifference": 7
+        },
+        {
+          "rank": 4,
+          "phase": 13,
+          "b1": 144,
+          "b2": 237,
+          "pairDifference": 10
+        },
+        {
+          "rank": 4,
+          "phase": 14,
+          "b1": 148,
+          "b2": 240,
+          "pairDifference": 1
+        },
+        {
+          "rank": 6,
+          "phase": 0,
+          "b1": 145,
+          "b2": 235,
+          "pairDifference": 9
+        },
+        {
+          "rank": 6,
+          "phase": 1,
+          "b1": 149,
+          "b2": 244,
+          "pairDifference": 13
+        },
+        {
+          "rank": 6,
+          "phase": 2,
+          "b1": 150,
+          "b2": 246,
+          "pairDifference": 10
+        },
+        {
+          "rank": 6,
+          "phase": 3,
+          "b1": 149,
+          "b2": 250,
+          "pairDifference": 5
+        },
+        {
+          "rank": 6,
+          "phase": 4,
+          "b1": 140,
+          "b2": 233,
+          "pairDifference": 7
+        },
+        {
+          "rank": 6,
+          "phase": 5,
+          "b1": 147,
+          "b2": 241,
+          "pairDifference": 14
+        },
+        {
+          "rank": 6,
+          "phase": 6,
+          "b1": 151,
+          "b2": 241,
+          "pairDifference": 7
+        },
+        {
+          "rank": 6,
+          "phase": 7,
+          "b1": 140,
+          "b2": 234,
+          "pairDifference": 5
+        },
+        {
+          "rank": 6,
+          "phase": 8,
+          "b1": 147,
+          "b2": 248,
+          "pairDifference": 13
+        },
+        {
+          "rank": 6,
+          "phase": 9,
+          "b1": 142,
+          "b2": 237,
+          "pairDifference": 6
+        },
+        {
+          "rank": 6,
+          "phase": 10,
+          "b1": 155,
+          "b2": 249,
+          "pairDifference": 10
+        },
+        {
+          "rank": 6,
+          "phase": 11,
+          "b1": 148,
+          "b2": 242,
+          "pairDifference": 5
+        },
+        {
+          "rank": 6,
+          "phase": 12,
+          "b1": 142,
+          "b2": 240,
+          "pairDifference": 2
+        },
+        {
+          "rank": 6,
+          "phase": 13,
+          "b1": 139,
+          "b2": 232,
+          "pairDifference": 14
+        },
+        {
+          "rank": 6,
+          "phase": 14,
+          "b1": 149,
+          "b2": 242,
+          "pairDifference": 6
+        },
+        {
+          "rank": 9,
+          "phase": 0,
+          "b1": 148,
+          "b2": 241,
+          "pairDifference": 5
+        },
+        {
+          "rank": 9,
+          "phase": 1,
+          "b1": 140,
+          "b2": 236,
+          "pairDifference": 12
+        },
+        {
+          "rank": 9,
+          "phase": 2,
+          "b1": 152,
+          "b2": 245,
+          "pairDifference": 13
+        },
+        {
+          "rank": 9,
+          "phase": 3,
+          "b1": 147,
+          "b2": 250,
+          "pairDifference": 7
+        },
+        {
+          "rank": 9,
+          "phase": 4,
+          "b1": 149,
+          "b2": 248,
+          "pairDifference": 9
+        },
+        {
+          "rank": 9,
+          "phase": 5,
+          "b1": 147,
+          "b2": 243,
+          "pairDifference": 6
+        },
+        {
+          "rank": 9,
+          "phase": 6,
+          "b1": 150,
+          "b2": 248,
+          "pairDifference": 3
+        },
+        {
+          "rank": 9,
+          "phase": 7,
+          "b1": 145,
+          "b2": 251,
+          "pairDifference": 1
+        },
+        {
+          "rank": 9,
+          "phase": 8,
+          "b1": 153,
+          "b2": 245,
+          "pairDifference": 13
+        },
+        {
+          "rank": 9,
+          "phase": 9,
+          "b1": 148,
+          "b2": 242,
+          "pairDifference": 12
+        },
+        {
+          "rank": 9,
+          "phase": 10,
+          "b1": 152,
+          "b2": 250,
+          "pairDifference": 10
+        },
+        {
+          "rank": 9,
+          "phase": 11,
+          "b1": 152,
+          "b2": 244,
+          "pairDifference": 5
+        },
+        {
+          "rank": 9,
+          "phase": 12,
+          "b1": 145,
+          "b2": 240,
+          "pairDifference": 11
+        },
+        {
+          "rank": 9,
+          "phase": 13,
+          "b1": 144,
+          "b2": 238,
+          "pairDifference": 13
+        },
+        {
+          "rank": 9,
+          "phase": 14,
+          "b1": 143,
+          "b2": 237,
+          "pairDifference": 5
+        },
+        {
+          "rank": 14,
+          "phase": 0,
+          "b1": 151,
+          "b2": 242,
+          "pairDifference": 7
+        },
+        {
+          "rank": 14,
+          "phase": 1,
+          "b1": 154,
+          "b2": 248,
+          "pairDifference": 9
+        },
+        {
+          "rank": 14,
+          "phase": 2,
+          "b1": 143,
+          "b2": 234,
+          "pairDifference": 10
+        },
+        {
+          "rank": 14,
+          "phase": 3,
+          "b1": 152,
+          "b2": 248,
+          "pairDifference": 8
+        },
+        {
+          "rank": 14,
+          "phase": 4,
+          "b1": 151,
+          "b2": 248,
+          "pairDifference": 3
+        },
+        {
+          "rank": 14,
+          "phase": 5,
+          "b1": 149,
+          "b2": 241,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 6,
+          "b1": 146,
+          "b2": 239,
+          "pairDifference": 11
+        },
+        {
+          "rank": 14,
+          "phase": 7,
+          "b1": 144,
+          "b2": 239,
+          "pairDifference": 4
+        },
+        {
+          "rank": 14,
+          "phase": 8,
+          "b1": 145,
+          "b2": 239,
+          "pairDifference": 12
+        },
+        {
+          "rank": 14,
+          "phase": 9,
+          "b1": 151,
+          "b2": 240,
+          "pairDifference": 11
+        },
+        {
+          "rank": 14,
+          "phase": 10,
+          "b1": 152,
+          "b2": 250,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 11,
+          "b1": 143,
+          "b2": 237,
+          "pairDifference": 5
+        },
+        {
+          "rank": 14,
+          "phase": 12,
+          "b1": 143,
+          "b2": 242,
+          "pairDifference": 1
+        },
+        {
+          "rank": 14,
+          "phase": 13,
+          "b1": 157,
+          "b2": 256,
+          "pairDifference": 8
+        },
+        {
+          "rank": 14,
+          "phase": 14,
+          "b1": 149,
+          "b2": 244,
+          "pairDifference": 11
+        },
+        {
+          "rank": 22,
+          "phase": 0,
+          "b1": 148,
+          "b2": 243,
+          "pairDifference": 5
+        },
+        {
+          "rank": 22,
+          "phase": 1,
+          "b1": 148,
+          "b2": 243,
+          "pairDifference": 14
+        },
+        {
+          "rank": 22,
+          "phase": 2,
+          "b1": 152,
+          "b2": 246,
+          "pairDifference": 5
+        },
+        {
+          "rank": 22,
+          "phase": 3,
+          "b1": 145,
+          "b2": 238,
+          "pairDifference": 9
+        },
+        {
+          "rank": 22,
+          "phase": 4,
+          "b1": 140,
+          "b2": 234,
+          "pairDifference": 2
+        },
+        {
+          "rank": 22,
+          "phase": 5,
+          "b1": 154,
+          "b2": 243,
+          "pairDifference": 2
+        },
+        {
+          "rank": 22,
+          "phase": 6,
+          "b1": 147,
+          "b2": 244,
+          "pairDifference": 1
+        },
+        {
+          "rank": 22,
+          "phase": 7,
+          "b1": 147,
+          "b2": 246,
+          "pairDifference": 8
+        },
+        {
+          "rank": 22,
+          "phase": 8,
+          "b1": 153,
+          "b2": 247,
+          "pairDifference": 4
+        },
+        {
+          "rank": 22,
+          "phase": 9,
+          "b1": 146,
+          "b2": 242,
+          "pairDifference": 12
+        },
+        {
+          "rank": 22,
+          "phase": 10,
+          "b1": 148,
+          "b2": 246,
+          "pairDifference": 5
+        },
+        {
+          "rank": 22,
+          "phase": 11,
+          "b1": 141,
+          "b2": 240,
+          "pairDifference": 6
+        },
+        {
+          "rank": 22,
+          "phase": 12,
+          "b1": 150,
+          "b2": 240,
+          "pairDifference": 5
+        },
+        {
+          "rank": 22,
+          "phase": 13,
+          "b1": 147,
+          "b2": 239,
+          "pairDifference": 4
+        },
+        {
+          "rank": 22,
+          "phase": 14,
+          "b1": 152,
+          "b2": 243,
+          "pairDifference": 5
+        },
+        {
+          "rank": 35,
+          "phase": 0,
+          "b1": 147,
+          "b2": 241,
+          "pairDifference": 7
+        },
+        {
+          "rank": 35,
+          "phase": 1,
+          "b1": 143,
+          "b2": 237,
+          "pairDifference": 3
+        },
+        {
+          "rank": 35,
+          "phase": 2,
+          "b1": 150,
+          "b2": 245,
+          "pairDifference": 6
+        },
+        {
+          "rank": 35,
+          "phase": 3,
+          "b1": 149,
+          "b2": 239,
+          "pairDifference": 7
+        },
+        {
+          "rank": 35,
+          "phase": 4,
+          "b1": 142,
+          "b2": 238,
+          "pairDifference": 10
+        },
+        {
+          "rank": 35,
+          "phase": 5,
+          "b1": 150,
+          "b2": 248,
+          "pairDifference": 10
+        },
+        {
+          "rank": 35,
+          "phase": 6,
+          "b1": 137,
+          "b2": 235,
+          "pairDifference": 13
+        },
+        {
+          "rank": 35,
+          "phase": 7,
+          "b1": 138,
+          "b2": 232,
+          "pairDifference": 8
+        },
+        {
+          "rank": 35,
+          "phase": 8,
+          "b1": 148,
+          "b2": 241,
+          "pairDifference": 13
+        },
+        {
+          "rank": 35,
+          "phase": 9,
+          "b1": 147,
+          "b2": 245,
+          "pairDifference": 1
+        },
+        {
+          "rank": 35,
+          "phase": 10,
+          "b1": 140,
+          "b2": 237,
+          "pairDifference": 9
+        },
+        {
+          "rank": 35,
+          "phase": 11,
+          "b1": 157,
+          "b2": 249,
+          "pairDifference": 8
+        },
+        {
+          "rank": 35,
+          "phase": 12,
+          "b1": 141,
+          "b2": 238,
+          "pairDifference": 14
+        },
+        {
+          "rank": 35,
+          "phase": 13,
+          "b1": 150,
+          "b2": 245,
+          "pairDifference": 3
+        },
+        {
+          "rank": 35,
+          "phase": 14,
+          "b1": 151,
+          "b2": 250,
+          "pairDifference": 6
+        },
+        {
+          "rank": 56,
+          "phase": 0,
+          "b1": 149,
+          "b2": 242,
+          "pairDifference": 2
+        },
+        {
+          "rank": 56,
+          "phase": 1,
+          "b1": 149,
+          "b2": 240,
+          "pairDifference": 7
+        },
+        {
+          "rank": 56,
+          "phase": 2,
+          "b1": 147,
+          "b2": 243,
+          "pairDifference": 9
+        },
+        {
+          "rank": 56,
+          "phase": 3,
+          "b1": 142,
+          "b2": 237,
+          "pairDifference": 1
+        },
+        {
+          "rank": 56,
+          "phase": 4,
+          "b1": 146,
+          "b2": 241,
+          "pairDifference": 4
+        },
+        {
+          "rank": 56,
+          "phase": 5,
+          "b1": 149,
+          "b2": 244,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 6,
+          "b1": 148,
+          "b2": 247,
+          "pairDifference": 5
+        },
+        {
+          "rank": 56,
+          "phase": 7,
+          "b1": 141,
+          "b2": 233,
+          "pairDifference": 3
+        },
+        {
+          "rank": 56,
+          "phase": 8,
+          "b1": 143,
+          "b2": 237,
+          "pairDifference": 4
+        },
+        {
+          "rank": 56,
+          "phase": 9,
+          "b1": 149,
+          "b2": 240,
+          "pairDifference": 2
+        },
+        {
+          "rank": 56,
+          "phase": 10,
+          "b1": 147,
+          "b2": 244,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 11,
+          "b1": 144,
+          "b2": 243,
+          "pairDifference": 12
+        },
+        {
+          "rank": 56,
+          "phase": 12,
+          "b1": 141,
+          "b2": 240,
+          "pairDifference": 6
+        },
+        {
+          "rank": 56,
+          "phase": 13,
+          "b1": 149,
+          "b2": 244,
+          "pairDifference": 9
+        },
+        {
+          "rank": 56,
+          "phase": 14,
+          "b1": 141,
+          "b2": 233,
+          "pairDifference": 5
+        },
+        {
+          "rank": 90,
+          "phase": 0,
+          "b1": 140,
+          "b2": 233,
+          "pairDifference": 14
+        },
+        {
+          "rank": 90,
+          "phase": 1,
+          "b1": 150,
+          "b2": 245,
+          "pairDifference": 13
+        },
+        {
+          "rank": 90,
+          "phase": 2,
+          "b1": 139,
+          "b2": 238,
+          "pairDifference": 2
+        },
+        {
+          "rank": 90,
+          "phase": 3,
+          "b1": 142,
+          "b2": 232,
+          "pairDifference": 14
+        },
+        {
+          "rank": 90,
+          "phase": 4,
+          "b1": 154,
+          "b2": 250,
+          "pairDifference": 11
+        },
+        {
+          "rank": 90,
+          "phase": 5,
+          "b1": 147,
+          "b2": 240,
+          "pairDifference": 8
+        },
+        {
+          "rank": 90,
+          "phase": 6,
+          "b1": 144,
+          "b2": 236,
+          "pairDifference": 7
+        },
+        {
+          "rank": 90,
+          "phase": 7,
+          "b1": 151,
+          "b2": 244,
+          "pairDifference": 5
+        },
+        {
+          "rank": 90,
+          "phase": 8,
+          "b1": 145,
+          "b2": 240,
+          "pairDifference": 11
+        },
+        {
+          "rank": 90,
+          "phase": 9,
+          "b1": 148,
+          "b2": 241,
+          "pairDifference": 3
+        },
+        {
+          "rank": 90,
+          "phase": 10,
+          "b1": 155,
+          "b2": 252,
+          "pairDifference": 3
+        },
+        {
+          "rank": 90,
+          "phase": 11,
+          "b1": 150,
+          "b2": 247,
+          "pairDifference": 11
+        },
+        {
+          "rank": 90,
+          "phase": 12,
+          "b1": 145,
+          "b2": 241,
+          "pairDifference": 9
+        },
+        {
+          "rank": 90,
+          "phase": 13,
+          "b1": 144,
+          "b2": 235,
+          "pairDifference": 5
+        },
+        {
+          "rank": 90,
+          "phase": 14,
+          "b1": 152,
+          "b2": 251,
+          "pairDifference": 1
+        },
+        {
+          "rank": 145,
+          "phase": 0,
+          "b1": 148,
+          "b2": 244,
+          "pairDifference": 5
+        },
+        {
+          "rank": 145,
+          "phase": 1,
+          "b1": 149,
+          "b2": 240,
+          "pairDifference": 9
+        },
+        {
+          "rank": 145,
+          "phase": 2,
+          "b1": 151,
+          "b2": 248,
+          "pairDifference": 8
+        },
+        {
+          "rank": 145,
+          "phase": 3,
+          "b1": 142,
+          "b2": 234,
+          "pairDifference": 5
+        },
+        {
+          "rank": 145,
+          "phase": 4,
+          "b1": 141,
+          "b2": 231,
+          "pairDifference": 4
+        },
+        {
+          "rank": 145,
+          "phase": 5,
+          "b1": 145,
+          "b2": 239,
+          "pairDifference": 6
+        },
+        {
+          "rank": 145,
+          "phase": 6,
+          "b1": 151,
+          "b2": 245,
+          "pairDifference": 14
+        },
+        {
+          "rank": 145,
+          "phase": 7,
+          "b1": 156,
+          "b2": 248,
+          "pairDifference": 2
+        },
+        {
+          "rank": 145,
+          "phase": 8,
+          "b1": 150,
+          "b2": 244,
+          "pairDifference": 2
+        },
+        {
+          "rank": 145,
+          "phase": 9,
+          "b1": 150,
+          "b2": 254,
+          "pairDifference": 5
+        },
+        {
+          "rank": 145,
+          "phase": 10,
+          "b1": 153,
+          "b2": 253,
+          "pairDifference": 6
+        },
+        {
+          "rank": 145,
+          "phase": 11,
+          "b1": 152,
+          "b2": 244,
+          "pairDifference": 13
+        },
+        {
+          "rank": 145,
+          "phase": 12,
+          "b1": 148,
+          "b2": 242,
+          "pairDifference": 4
+        },
+        {
+          "rank": 145,
+          "phase": 13,
+          "b1": 146,
+          "b2": 238,
+          "pairDifference": 8
+        },
+        {
+          "rank": 145,
+          "phase": 14,
+          "b1": 139,
+          "b2": 235,
+          "pairDifference": 1
+        },
+        {
+          "rank": 234,
+          "phase": 0,
+          "b1": 140,
+          "b2": 234,
+          "pairDifference": 4
+        },
+        {
+          "rank": 234,
+          "phase": 1,
+          "b1": 147,
+          "b2": 242,
+          "pairDifference": 5
+        },
+        {
+          "rank": 234,
+          "phase": 2,
+          "b1": 145,
+          "b2": 237,
+          "pairDifference": 11
+        },
+        {
+          "rank": 234,
+          "phase": 3,
+          "b1": 145,
+          "b2": 239,
+          "pairDifference": 2
+        },
+        {
+          "rank": 234,
+          "phase": 4,
+          "b1": 135,
+          "b2": 230,
+          "pairDifference": 3
+        },
+        {
+          "rank": 234,
+          "phase": 5,
+          "b1": 145,
+          "b2": 246,
+          "pairDifference": 14
+        },
+        {
+          "rank": 234,
+          "phase": 6,
+          "b1": 145,
+          "b2": 235,
+          "pairDifference": 4
+        },
+        {
+          "rank": 234,
+          "phase": 7,
+          "b1": 149,
+          "b2": 245,
+          "pairDifference": 14
+        },
+        {
+          "rank": 234,
+          "phase": 8,
+          "b1": 147,
+          "b2": 242,
+          "pairDifference": 10
+        },
+        {
+          "rank": 234,
+          "phase": 9,
+          "b1": 152,
+          "b2": 247,
+          "pairDifference": 1
+        },
+        {
+          "rank": 234,
+          "phase": 10,
+          "b1": 150,
+          "b2": 247,
+          "pairDifference": 14
+        },
+        {
+          "rank": 234,
+          "phase": 11,
+          "b1": 142,
+          "b2": 236,
+          "pairDifference": 5
+        },
+        {
+          "rank": 234,
+          "phase": 12,
+          "b1": 148,
+          "b2": 243,
+          "pairDifference": 11
+        },
+        {
+          "rank": 234,
+          "phase": 13,
+          "b1": 145,
+          "b2": 243,
+          "pairDifference": 5
+        },
+        {
+          "rank": 234,
+          "phase": 14,
+          "b1": 151,
+          "b2": 244,
+          "pairDifference": 8
+        },
+        {
+          "rank": 378,
+          "phase": 0,
+          "b1": 139,
+          "b2": 229,
+          "pairDifference": 1
+        },
+        {
+          "rank": 378,
+          "phase": 1,
+          "b1": 147,
+          "b2": 237,
+          "pairDifference": 3
+        },
+        {
+          "rank": 378,
+          "phase": 2,
+          "b1": 139,
+          "b2": 232,
+          "pairDifference": 11
+        },
+        {
+          "rank": 378,
+          "phase": 3,
+          "b1": 144,
+          "b2": 237,
+          "pairDifference": 3
+        },
+        {
+          "rank": 378,
+          "phase": 4,
+          "b1": 151,
+          "b2": 244,
+          "pairDifference": 6
+        },
+        {
+          "rank": 378,
+          "phase": 5,
+          "b1": 152,
+          "b2": 251,
+          "pairDifference": 11
+        },
+        {
+          "rank": 378,
+          "phase": 6,
+          "b1": 146,
+          "b2": 239,
+          "pairDifference": 12
+        },
+        {
+          "rank": 378,
+          "phase": 7,
+          "b1": 146,
+          "b2": 240,
+          "pairDifference": 13
+        },
+        {
+          "rank": 378,
+          "phase": 8,
+          "b1": 153,
+          "b2": 250,
+          "pairDifference": 12
+        },
+        {
+          "rank": 378,
+          "phase": 9,
+          "b1": 150,
+          "b2": 247,
+          "pairDifference": 10
+        },
+        {
+          "rank": 378,
+          "phase": 10,
+          "b1": 146,
+          "b2": 244,
+          "pairDifference": 13
+        },
+        {
+          "rank": 378,
+          "phase": 11,
+          "b1": 149,
+          "b2": 243,
+          "pairDifference": 11
+        },
+        {
+          "rank": 378,
+          "phase": 12,
+          "b1": 156,
+          "b2": 250,
+          "pairDifference": 5
+        },
+        {
+          "rank": 378,
+          "phase": 13,
+          "b1": 147,
+          "b2": 239,
+          "pairDifference": 7
+        },
+        {
+          "rank": 378,
+          "phase": 14,
+          "b1": 152,
+          "b2": 242,
+          "pairDifference": 2
+        },
+        {
+          "rank": 611,
+          "phase": 0,
+          "b1": 153,
+          "b2": 243,
+          "pairDifference": 13
+        },
+        {
+          "rank": 611,
+          "phase": 1,
+          "b1": 155,
+          "b2": 253,
+          "pairDifference": 12
+        },
+        {
+          "rank": 611,
+          "phase": 2,
+          "b1": 142,
+          "b2": 237,
+          "pairDifference": 14
+        },
+        {
+          "rank": 611,
+          "phase": 3,
+          "b1": 147,
+          "b2": 238,
+          "pairDifference": 14
+        },
+        {
+          "rank": 611,
+          "phase": 4,
+          "b1": 143,
+          "b2": 239,
+          "pairDifference": 7
+        },
+        {
+          "rank": 611,
+          "phase": 5,
+          "b1": 146,
+          "b2": 243,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 6,
+          "b1": 150,
+          "b2": 246,
+          "pairDifference": 2
+        },
+        {
+          "rank": 611,
+          "phase": 7,
+          "b1": 136,
+          "b2": 234,
+          "pairDifference": 6
+        },
+        {
+          "rank": 611,
+          "phase": 8,
+          "b1": 141,
+          "b2": 234,
+          "pairDifference": 11
+        },
+        {
+          "rank": 611,
+          "phase": 9,
+          "b1": 140,
+          "b2": 237,
+          "pairDifference": 3
+        },
+        {
+          "rank": 611,
+          "phase": 10,
+          "b1": 152,
+          "b2": 246,
+          "pairDifference": 10
+        },
+        {
+          "rank": 611,
+          "phase": 11,
+          "b1": 144,
+          "b2": 244,
+          "pairDifference": 4
+        },
+        {
+          "rank": 611,
+          "phase": 12,
+          "b1": 151,
+          "b2": 249,
+          "pairDifference": 1
+        },
+        {
+          "rank": 611,
+          "phase": 13,
+          "b1": 143,
+          "b2": 239,
+          "pairDifference": 1
+        },
+        {
+          "rank": 611,
+          "phase": 14,
+          "b1": 150,
+          "b2": 247,
+          "pairDifference": 3
+        },
+        {
+          "rank": 988,
+          "phase": 0,
+          "b1": 147,
+          "b2": 236,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 1,
+          "b1": 145,
+          "b2": 239,
+          "pairDifference": 4
+        },
+        {
+          "rank": 988,
+          "phase": 2,
+          "b1": 154,
+          "b2": 244,
+          "pairDifference": 6
+        },
+        {
+          "rank": 988,
+          "phase": 3,
+          "b1": 149,
+          "b2": 243,
+          "pairDifference": 8
+        },
+        {
+          "rank": 988,
+          "phase": 4,
+          "b1": 143,
+          "b2": 238,
+          "pairDifference": 8
+        },
+        {
+          "rank": 988,
+          "phase": 5,
+          "b1": 151,
+          "b2": 245,
+          "pairDifference": 4
+        },
+        {
+          "rank": 988,
+          "phase": 6,
+          "b1": 148,
+          "b2": 242,
+          "pairDifference": 2
+        },
+        {
+          "rank": 988,
+          "phase": 7,
+          "b1": 147,
+          "b2": 242,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 8,
+          "b1": 147,
+          "b2": 239,
+          "pairDifference": 1
+        },
+        {
+          "rank": 988,
+          "phase": 9,
+          "b1": 140,
+          "b2": 237,
+          "pairDifference": 2
+        },
+        {
+          "rank": 988,
+          "phase": 10,
+          "b1": 156,
+          "b2": 248,
+          "pairDifference": 14
+        },
+        {
+          "rank": 988,
+          "phase": 11,
+          "b1": 143,
+          "b2": 239,
+          "pairDifference": 9
+        },
+        {
+          "rank": 988,
+          "phase": 12,
+          "b1": 145,
+          "b2": 238,
+          "pairDifference": 10
+        },
+        {
+          "rank": 988,
+          "phase": 13,
+          "b1": 149,
+          "b2": 245,
+          "pairDifference": 11
+        },
+        {
+          "rank": 988,
+          "phase": 14,
+          "b1": 136,
+          "b2": 225,
+          "pairDifference": 5
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    }
+  ]
+}
