@@ -1,6 +1,6 @@
 # Prime-position adaptive alphabet: exact inverse and all-initial-order original gate
 
-**Decision:** retire the ordinary-consuming receiver defined here under the native GP29 reference register. Its literal-F extension has an exact full-book canonical-list nondegenerate exclusion and an all-initial-list rank28 concentration exclusion; arbitrary initial lists with F at another rank remain unresolved. No unknown LP2 plaintext, authentic key, or source-selected insertion operation.
+**Decision:** retire the ordinary-consuming receiver defined here under the native GP29 reference register. Its continuous literal-F extension now has an all-initial-list nondegenerate impossibility (Agent2, below), and an all-initial-list rank28 native concentration exclusion. No unknown LP2 plaintext, authentic key, or source-selected insertion operation.
 
 ## Motivation and explicit reversible sender
 
@@ -59,10 +59,21 @@ Grant the first64 positions completely free, all 28! upper-list orders, every po
 | Whole book | 468 | 1,203 | 2,555 |
 | p40–53 | 467 | 489 | 563 |
 
-All tested cursor cases synchronize. Thus the f28 degeneration fails under the finite native reference register **for every initial list and every secret rank chart**, not just the canonical list. Arbitrary initial lists with f≠28 remain unexcluded by the pooled F relaxation.
+All tested cursor cases synchronize. Thus the f28 degeneration fails under the finite native reference register **for every initial list and every secret rank chart**, not just the canonical list. The pooled relaxation alone does not exclude arbitrary initial lists with f≠28; the separate exact all-initial-list closure below does.
+
+
+## Exact all-initial-list nondegenerate F closure (Agent2, 27 November)
+
+The unresolved arbitrary-initial-order case for the same continuous prime-minus-one insertion schedule is now closed. Separate each fixed forbidden rank f=0..27, rather than pooling all f in a single state. For each state (prime cursor t, 29 glyph-position domains), remove f from the selected glyph's possible ranks before applying the existing min/max rank-domain update. Propagate the all-different constraint by removing singleton occupied ranks from every nonsingleton domain and rejecting duplicate singleton ranks. Both operations preserve every genuine permutation. At a printed zero, branch to hold (same list and clock) or consume; at nonzero only consume. Deduplicate identical domain vectors and cursor. Optional capacity merging uses unions and therefore remains a safe overapproximation; **no capacity merges were needed on the original**.
+
+Start at zero-based physical offset 1692, granting arbitrary permutations at this offset and all 524 possible cursors t=1632..2155. The lower end counts all preceding nonzero glyphs; the upper end grants the largest permitted origin463 plus all preceding printed runes. This is deliberately more permissive than reconstructing the earlier prefix. The first interval is zero-free through offset1907. Every forbidden rank0..27 dies, with earliest extinction f0 at1907 and latest f27 at2854. Peak frontier 1,025 states; 3,688,371 abstract consume transitions total; no cap or untested states. Six independently generated true F-hold paths with arbitrary initial lists, distinct f and cursor retained their actual cursor and every actual glyph position throughout each 350-rune test. This is a containment control, not a language or blind recovery claim.
+
+The nondegenerate contradiction holds for **every initial permutation and every tested initial prime origin 0..463**, regardless of language or F mask. The prior rank28 theorem and finite native concentration bound separately exclude the only remaining degeneration. Together with the prior ordinary all-initial-list bound, retire this exact continuous prime-position architecture. Independently reset chapters and different clock/insertion laws are outside this new original window proof.
+
+[Local C++ SFT](../sims/lp2_prime_rank_f_allinitial_sft.cpp) · [raw results](lp2-prime-rank-f-allinitial-output.json). Compile C++17 with optimization/OpenMP; feed the canonical compact GP29 tape (alphabet 0123456789ABCDEFGHIJKLMNOPQRS, length12956, FNV1a75f0ccfa), arguments `1692 5000 1`. Full local original search 0.495s on four threads. Remote source blob f17b7cad5f590d26cac296b5c2fdb2e6a8d1f190 matches tested local bytes. No CI claim, no unknown plaintext or key.
 
 ## Reproduction and next action
 
 - [SFT](../sims/lp2_prime_rank_insert_recency_sft.cjs), `node sims/lp2_prime_rank_insert_recency_sft.cjs`.
 - [Exact output](lp2-prime-rank-insert-recency-output.json). Executed the exact core in connected V8 using the fetched pinned repository inputs. The standalone Node wrapper was not independently executed; no CI run.
-- The new reusable contribution is the rank-domain synchronization proof and exact repeat-anchor key inference for *any public insertion-rank schedule*. Avoid widening arbitrary unselected prime functions. The nondegenerate arbitrary-initial-list F extension remains mathematically unresolved; do not interpret the pooled domain survivors as a recovered key. A future exact constraint may exploit public state synchronization, but no independently selected insertion operation is established. This does not exclude all adaptive alphabets, arbitrary changing rank labels, or other plaintext registers.
+- The new reusable contribution is the rank-domain synchronization proof and exact repeat-anchor key inference for *any public insertion-rank schedule*. Avoid widening arbitrary unselected prime functions. The previously unresolved continuous nondegenerate arbitrary-initial-list F extension is now excluded by the independent forbidden-rank domain propagation above; do not interpret earlier pooled domain survivors as a recovered key. A future exact constraint may exploit public state synchronization, but no independently selected insertion operation is established. This does not exclude all adaptive alphabets, arbitrary changing rank labels, or other plaintext registers.
