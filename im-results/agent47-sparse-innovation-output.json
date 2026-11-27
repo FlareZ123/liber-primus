@@ -1,0 +1,430 @@
+{
+  "n": 12956,
+  "anchors": 83,
+  "chapterStarts": [
+    0,
+    729,
+    1874,
+    3603,
+    5506,
+    6527,
+    7960,
+    9640,
+    12648,
+    12956
+  ],
+  "original": [
+    {
+      "F": false,
+      "allowed": [
+        24,
+        10
+      ],
+      "whole": {
+        "cost": 36,
+        "pathsCapped": 2
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "anchors": 5,
+          "cost": 2,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1145,
+          "anchors": 8,
+          "cost": 3,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1729,
+          "anchors": 11,
+          "cost": 3,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1903,
+          "anchors": 18,
+          "cost": 8,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1021,
+          "anchors": 5,
+          "cost": 1,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1433,
+          "anchors": 12,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1680,
+          "anchors": 9,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 3008,
+          "anchors": 13,
+          "cost": 5,
+          "pathsCapped": 2
+        },
+        {
+          "n": 308,
+          "anchors": 2,
+          "cost": 0,
+          "pathsCapped": 2
+        }
+      ],
+      "chapterSum": 30
+    },
+    {
+      "F": false,
+      "allowed": [
+        24,
+        10,
+        3
+      ],
+      "whole": {
+        "cost": 30,
+        "pathsCapped": 2
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "anchors": 5,
+          "cost": 2,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1145,
+          "anchors": 8,
+          "cost": 2,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1729,
+          "anchors": 11,
+          "cost": 2,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1903,
+          "anchors": 18,
+          "cost": 7,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1021,
+          "anchors": 5,
+          "cost": 1,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1433,
+          "anchors": 12,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1680,
+          "anchors": 9,
+          "cost": 3,
+          "pathsCapped": 2
+        },
+        {
+          "n": 3008,
+          "anchors": 13,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 308,
+          "anchors": 2,
+          "cost": 0,
+          "pathsCapped": 2
+        }
+      ],
+      "chapterSum": 25
+    },
+    {
+      "F": true,
+      "allowed": [
+        24,
+        10
+      ],
+      "whole": {
+        "cost": 68,
+        "pathsCapped": 2
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "anchors": 5,
+          "cost": 3,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1145,
+          "anchors": 8,
+          "cost": 6,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1729,
+          "anchors": 11,
+          "cost": 7,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1903,
+          "anchors": 18,
+          "cost": 12,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1021,
+          "anchors": 5,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1433,
+          "anchors": 12,
+          "cost": 9,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1680,
+          "anchors": 9,
+          "cost": 10,
+          "pathsCapped": 2
+        },
+        {
+          "n": 3008,
+          "anchors": 13,
+          "cost": 13,
+          "pathsCapped": 2
+        },
+        {
+          "n": 308,
+          "anchors": 2,
+          "cost": 1,
+          "pathsCapped": 2
+        }
+      ],
+      "chapterSum": 65
+    },
+    {
+      "F": true,
+      "allowed": [
+        24,
+        10,
+        3
+      ],
+      "whole": {
+        "cost": 62,
+        "pathsCapped": 2
+      },
+      "chapters": [
+        {
+          "n": 729,
+          "anchors": 5,
+          "cost": 3,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1145,
+          "anchors": 8,
+          "cost": 5,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1729,
+          "anchors": 11,
+          "cost": 6,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1903,
+          "anchors": 18,
+          "cost": 11,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1021,
+          "anchors": 5,
+          "cost": 4,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1433,
+          "anchors": 12,
+          "cost": 7,
+          "pathsCapped": 2
+        },
+        {
+          "n": 1680,
+          "anchors": 9,
+          "cost": 8,
+          "pathsCapped": 2
+        },
+        {
+          "n": 3008,
+          "anchors": 13,
+          "cost": 11,
+          "pathsCapped": 2
+        },
+        {
+          "n": 308,
+          "anchors": 2,
+          "cost": 1,
+          "pathsCapped": 2
+        }
+      ],
+      "chapterSum": 56
+    }
+  ],
+  "controls": [
+    {
+      "F": false,
+      "n": 190,
+      "trueEvents": [
+        [
+          17,
+          8
+        ],
+        [
+          53,
+          12
+        ],
+        [
+          97,
+          1
+        ]
+      ],
+      "dense": {
+        "cost": 3,
+        "pathsCapped": 1,
+        "events": [
+          [
+            17,
+            8
+          ],
+          [
+            53,
+            12
+          ],
+          [
+            97,
+            1
+          ]
+        ],
+        "initial": [
+          7,
+          4
+        ]
+      },
+      "sparse": {
+        "cost": 3,
+        "pathsCapped": 2,
+        "events": [
+          [
+            28,
+            7
+          ],
+          [
+            79,
+            27
+          ],
+          [
+            93,
+            1
+          ]
+        ],
+        "initial": [
+          7,
+          0
+        ],
+        "matchedPlain": 98
+      },
+      "wrongLaw": {
+        "cost": 188,
+        "pathsCapped": 1,
+        "actualEvents": 189
+      }
+    },
+    {
+      "F": true,
+      "n": 190,
+      "trueEvents": [
+        [
+          17,
+          8
+        ],
+        [
+          54,
+          12
+        ],
+        [
+          100,
+          1
+        ]
+      ],
+      "dense": {
+        "cost": 3,
+        "pathsCapped": 1,
+        "events": [
+          [
+            17,
+            8
+          ],
+          [
+            54,
+            12
+          ],
+          [
+            100,
+            1
+          ]
+        ],
+        "initial": [
+          7,
+          4
+        ]
+      },
+      "sparse": {
+        "cost": 3,
+        "pathsCapped": 2,
+        "events": [
+          [
+            1,
+            8
+          ],
+          [
+            54,
+            12
+          ],
+          [
+            100,
+            1
+          ]
+        ],
+        "initial": [
+          7,
+          22
+        ],
+        "matchedPlain": 170
+      },
+      "wrongLaw": {
+        "cost": 182,
+        "pathsCapped": 1,
+        "actualEvents": 183
+      }
+    }
+  ]
+}
