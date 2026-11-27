@@ -25,6 +25,18 @@ assert.equal(grid.length,256);
 assert.equal(panels.pages.reduce((n,p)=>n+p.bytes.length,0),256);
 assert.equal(crypto.createHash("sha256").update(grid).digest("hex"),
  "3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
+const panelText=JSON.parse(read("resources/liber-primus/base60-grid.json"));
+const tokens=panelText.rows.flat();
+assert.equal(tokens.length,256);
+assert.equal(panelText.alphabet.length,60);
+const parseCell=(t,alpha)=>alpha.indexOf(t[0])*alpha.length+alpha.indexOf(t[1]);
+assert.deepEqual(Buffer.from(tokens.map(t=>parseCell(t,panelText.alphabet))),grid);
+const alphabet59=panelText.alphabet.replace("f","");
+assert.equal(alphabet59.length,59);
+const grid59=Buffer.from(tokens.map(t=>parseCell(t,alphabet59)));
+assert.equal(crypto.createHash("sha256").update(grid59).digest("hex"),
+ "511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79");
+const literalRegisters=[["base60",grid],["base59",grid59]];
 assert.ok(lp1.includes("THE CIRCUMFERENCE PRACTICES THREE BEHAVIORS WHICH CAUSE THE LOSS OF DIVINITY"));
 const words=["CONSUMPTION","PRESERVATION","ADHERENCE","DIVINITY"];
 const starts=words.slice(0,3).map(w=>lp1.indexOf("\n"+w+"\n"));
@@ -82,12 +94,26 @@ const magic=[
  ["SQLite",Buffer.from("SQLite format 3")],["HTML",Buffer.from("<html")],
  ["UTF8-BOM",Buffer.from("efbbbf","hex")]
 ];
+const exteriorOffsets=[1,4,5,6,7,8,9,14,15,20,21,22,23,35,36,41,
+ 42,45,46,47,48,54,55,61,62,63,64,69,70,72,73,75];
+const p55=gp.pages[55].indices;
+assert.equal(p55.length,76);
+const shell=exteriorOffsets.map(i=>p55[i]);
+assert.equal(shell.length,32);
+assert.deepEqual(shell.slice(0,8),[25,7,15,17,14,19,15,25]);
+const mod29=x=>(x%29+29)%29;
+const shellReadouts=[-1,1].map(sign=>{
+ const decoded=shell.map((c,i)=>mod29(c+sign*inner[i]));
+ return {sign,first24GP:decoded.slice(0,24).map(i=>gp.translit[i]).join("-"),
+  fullGP:decoded.map(i=>gp.translit[i]).join("")};
+});
 const outputs=[];
+for(const [tableName,source] of literalRegisters)
 for(const [keyName,key] of Object.entries(keys)){
  const native=Buffer.from(("CICADA 3301. Original source-derived key plant.\n").repeat(7)
   .slice(0,256).padEnd(256," "),"utf8");
  for(const order of ["original-rowmajor","byte-reversal"]){
-  const ciphertext=order==="original-rowmajor"?grid:Buffer.from(grid).reverse();
+  const ciphertext=order==="original-rowmajor"?source:Buffer.from(source).reverse();
   for(const method of ["ECB","CBC","CTR"]){
    const planted=crypt(method,key,native,false);
    const recovered=crypt(method,key,planted,true);
@@ -98,15 +124,15 @@ for(const [keyName,key] of Object.entries(keys)){
    const gpByte=[...decoded].filter(b=>b<29).length;
    const magicPrefix=magic.filter(([,prefix])=>decoded.subarray(0,prefix.length).equals(prefix))
     .map(([name])=>name);
-   outputs.push({keyName,order,method,printable,gpByte,
+   outputs.push({tableName,keyName,order,method,printable,gpByte,
     first16hex:decoded.subarray(0,16).toString("hex"),
     sha256:crypto.createHash("sha256").update(decoded).digest("hex"),
     magicPrefix});
   }
  }
 }
-assert.equal(outputs.length,12);
-assert.deepEqual(outputs.map(x=>x.printable),
+assert.equal(outputs.length,24);
+assert.deepEqual(outputs.slice(0,12).map(x=>x.printable),
  [103,103,86,99,103,106,102,90,96,102,93,95]);
 assert.ok(outputs.every(x=>x.magicPrefix.length===0));
 console.log(JSON.stringify({
@@ -117,6 +143,9 @@ console.log(JSON.stringify({
   .map(([name,k])=>[name,k.toString("hex")])),
  p50Bytes:grid.length,
  p50Sha256:crypto.createHash("sha256").update(grid).digest("hex"),
+ p50Base59Sha256:crypto.createHash("sha256").update(grid59).digest("hex"),
+ p55ExteriorOffsets:exteriorOffsets, p55ExteriorLength:shell.length,
+ p55ShellDirectGP: shellReadouts,
  controls:"NIST AES-256 ECB vector and 12 256-byte exact native encrypt/decrypt plants pass",
  outputs
 },null,2));
