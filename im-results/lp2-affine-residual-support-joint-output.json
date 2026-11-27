@@ -1,0 +1,38 @@
+{
+  "inputBlobs": [
+    "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+  ],
+  "results": [
+    {
+      "a": 16,
+      "cap": 91,
+      "boxes": 617,
+      "outer": 23658,
+      "leaves": 27861,
+      "initialSurvivors": 740,
+      "excluded": {
+        "joint": 740
+      },
+      "survived": 0,
+      "capped": 0,
+      "tries": 76959,
+      "survivors": []
+    },
+    {
+      "a": 19,
+      "cap": 90,
+      "boxes": 878,
+      "outer": 23696,
+      "leaves": 39766,
+      "initialSurvivors": 185,
+      "excluded": {
+        "joint": 185
+      },
+      "survived": 0,
+      "capped": 0,
+      "tries": 70669,
+      "survivors": []
+    }
+  ]
+}
