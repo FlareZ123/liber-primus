@@ -44,6 +44,36 @@ def decode_group(group,key,mask,start,dictionary):
         if not states:return ()
     return tuple(sorted({plain for _,plain in states if plain in dictionary}))
 
+def forward_group(plain,key,mask,start):
+    out=[]
+    phase=start
+    for p in plain:
+        if p==0:
+            out.append(SYM[0]); continue
+        a=-1 if ((mask>>phase)&1) else 1
+        out.append(SYM[(a*p+key[phase])%MOD])
+        phase=(phase+1)%8
+    return ''.join(out)
+
+def native_source_model_controls(words,key,mask,dictionary):
+    # Genuine complete lexical donor words are not needed: use 47 existing
+    # dictionary forms with identical length profile and deterministic phases.
+    bylen=collections.defaultdict(list)
+    for word in dictionary:bylen[len(word)].append(word)
+    plant=[]
+    for i,c in enumerate(words):
+        forms=bylen[len(c)]
+        assert forms
+        # Alternate forms containing F to exercise bypass, when available.
+        preferred=[w for w in forms if (0 in w)==bool(i%2)]
+        chosen=sorted(preferred or forms)[i % len(preferred or forms)]
+        phase=(7*i+11)%8
+        cipher=forward_group(chosen,key,mask,phase)
+        assert chosen in decode_group(cipher,key,mask,phase,dictionary),('plant failed',i,mask)
+        plant.append((chosen,cipher))
+    assert len(plant)==47
+    return True
+
 def evaluate():
     original=json.loads(SRC.read_text(encoding='utf-8'))
     body=original['p54']['body_groups']
@@ -58,11 +88,14 @@ def evaluate():
     assert len(D)==38910
     bylen=collections.Counter(map(len,D))
     all_best=[]
+    positive_models=0
     distribution=collections.Counter()
     total_cases=0
     for sign in (1,-1):
         key=[(sign*v)%MOD for v in red]
         for mask in range(256):
+            native_source_model_controls(complete,key,mask,D)
+            positive_models+=1
             supported=[]
             counts=[]
             for g in complete:
@@ -96,7 +129,7 @@ def evaluate():
          'dictionary_size':len(D),'completed_training_groups':47,
          'training_runes':213,
          'carry_unseen_in_fitting':carry,
-         'red8_gp_indices':red,'variants':total_cases,
+         'red8_gp_indices':red,'variants':total_cases,'positive_plants_recovered':positive_models,
          'family_parameterization':'two global key signs times all 2^8 per-phase rotation/reflection vectors; 8 independent word phases; optional literal F holds',
          'maximum_supported_complete_words':best[0],
          'best':[
@@ -111,7 +144,7 @@ def evaluate():
          'held_after_freeze':follow,
          'limitations':'canonical GP chart, source-red GP key, static per-phase sign, per-word starts, intact word groups and <=3 original OOV; no secret pi or rearrangement'}
     print(json.dumps(out,separators=(',',':')),flush=True)
-    assert total_cases==512
+    assert total_cases==512 and positive_models==512
     if best[0]<44:
         print('PASS: all 512 source-red fixed-key dihedral masks require >3 OOV; no p55 key/decoder; original ciphertext unchanged.',flush=True)
     else:
