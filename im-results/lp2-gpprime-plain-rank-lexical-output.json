@@ -1,0 +1,476 @@
+{
+  "forms": 32655,
+  "bylen": [
+    0,
+    26,
+    195,
+    820,
+    2326,
+    4069,
+    5292,
+    5405,
+    4867,
+    3813,
+    2683,
+    1618,
+    870,
+    423,
+    172,
+    53,
+    16,
+    5,
+    2
+  ],
+  "controls": [
+    {
+      "a": 7,
+      "b": 13,
+      "hold": false,
+      "active": [
+        {
+          "a": 7,
+          "b": 13
+        }
+      ],
+      "stages": [
+        {
+          "start": 1353,
+          "rev": false,
+          "n": 76,
+          "lens": [
+            14,
+            7,
+            7,
+            10,
+            8,
+            5,
+            4,
+            9,
+            2,
+            7,
+            3
+          ],
+          "entered": 812,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 341715,
+          "deep": 76,
+          "truthResult": {
+            "n": 76,
+            "nodes": 475,
+            "deep": 76,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "EMBARRASSMENTSGROSSLYBWUSHEDTYRANNICALINDUCTIANTEMPSPEUREXTREMESTCFWADDLEDRIAT",
+            "bestScore": 13.166801226834897
+          }
+        },
+        {
+          "start": 622,
+          "rev": true,
+          "n": 71,
+          "lens": [
+            5,
+            7,
+            3,
+            5,
+            11,
+            3,
+            4,
+            9,
+            11,
+            13
+          ],
+          "entered": 1,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 437,
+          "deep": 71,
+          "truthResult": {
+            "n": 71,
+            "nodes": 437,
+            "deep": 71,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "SHACOASSERTSDELBLOCEYOUTHFULNESSREALCLUNGCACHECTICAPPROPRIATIANGRANDCHILDREN",
+            "bestScore": 13.192366937972958
+          }
+        },
+        {
+          "start": 1215,
+          "rev": false,
+          "n": 68,
+          "lens": [
+            12,
+            7,
+            11,
+            4,
+            3,
+            12,
+            3,
+            3,
+            4,
+            5,
+            4
+          ],
+          "entered": 1,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 444,
+          "deep": 68,
+          "truthResult": {
+            "n": 68,
+            "nodes": 444,
+            "deep": 68,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "DOMESTICATIANPICCLEDCONTNGENCIESNOAHALOEINDIFFERENCYBAGLEACBEADSFAWNSSOTS",
+            "bestScore": 10.29890232479079
+          }
+        }
+      ],
+      "held": [
+        {
+          "n": 76,
+          "nodes": 665,
+          "deep": 76,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 76,
+          "best": "EMBARRASSMENTSGROSSLYBWUSHEDTYRANNICALINDUCTIANTEMPSPEUREXTREMESTCFWADDLEDRIAT",
+          "bestScore": 13.166801226834897
+        },
+        {
+          "n": 71,
+          "nodes": 860,
+          "deep": 71,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 71,
+          "best": "SHACOASSERTSDELBLOCEYOUTHFULNESSREALCLUNGCACHECTICAPPROPRIATIANGRANDCHILDREN",
+          "bestScore": 13.192366937972958
+        },
+        {
+          "n": 68,
+          "nodes": 1122,
+          "deep": 68,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 68,
+          "best": "DOMESTICATIANPICCLEDCONTNGENCIESNOAHALOEINDIFFERENCYBAGLEACBEADSFAWNSSOTS",
+          "bestScore": 10.29890232479079
+        }
+      ]
+    },
+    {
+      "a": 17,
+      "b": 4,
+      "hold": true,
+      "active": [
+        {
+          "a": 17,
+          "b": 4
+        }
+      ],
+      "stages": [
+        {
+          "start": 1353,
+          "rev": false,
+          "n": 76,
+          "lens": [
+            14,
+            7,
+            7,
+            10,
+            8,
+            5,
+            4,
+            9,
+            2,
+            7,
+            3
+          ],
+          "entered": 812,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 454324,
+          "deep": 76,
+          "truthResult": {
+            "n": 76,
+            "nodes": 205,
+            "deep": 76,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "STAPHYLOCOCCALSPECTREJANUARYTREMENDOUSEMPHATICSHINNNOAHCOUNSELEDIFCARTERSWEN",
+            "bestScore": 18.980568494902492
+          }
+        },
+        {
+          "start": 622,
+          "rev": true,
+          "n": 71,
+          "lens": [
+            5,
+            7,
+            3,
+            5,
+            11,
+            3,
+            4,
+            9,
+            11,
+            13
+          ],
+          "entered": 1,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 3170,
+          "deep": 71,
+          "truthResult": {
+            "n": 71,
+            "nodes": 3170,
+            "deep": 71,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "GUINEASCRUPLEMOBBAGGNGIRREUOCABLEDANWAITNARROWESTUNCWALIFIEDSWEDENBORGISM",
+            "bestScore": 14.763485986104921
+          }
+        },
+        {
+          "start": 1215,
+          "rev": false,
+          "n": 68,
+          "lens": [
+            12,
+            7,
+            11,
+            4,
+            3,
+            12,
+            3,
+            3,
+            4,
+            5,
+            4
+          ],
+          "entered": 1,
+          "remaining": 1,
+          "found": 1,
+          "capped": 0,
+          "nodes": 1007,
+          "deep": 68,
+          "truthResult": {
+            "n": 68,
+            "nodes": 1007,
+            "deep": 68,
+            "capped": false,
+            "complete": 1,
+            "truthHit": false,
+            "bestAccuracy": null,
+            "best": "COINCIDENTLYDASTARDNERUOUSNESSSOUTHEWNGCONSTRUCTIUEANGIAINDMATTTHROWNPAST",
+            "bestScore": 22.548791168644783
+          }
+        }
+      ],
+      "held": [
+        {
+          "n": 76,
+          "nodes": 787,
+          "deep": 76,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 76,
+          "best": "STAPHYLOCOCCALSPECTREJANUARYTREMENDOUSEMPHATICSHINNNOAHCOUNSELEDIFCARTERSWEN",
+          "bestScore": 18.980568494902492
+        },
+        {
+          "n": 71,
+          "nodes": 3373,
+          "deep": 71,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 71,
+          "best": "GUINEASCRUPLEMOBBAGGNGIRREUOCABLEDANWAITNARROWESTUNCWALIFIEDSWEDENBORGISM",
+          "bestScore": 14.763485986104921
+        },
+        {
+          "n": 68,
+          "nodes": 12327,
+          "deep": 68,
+          "capped": false,
+          "complete": 1,
+          "truthHit": true,
+          "bestAccuracy": 68,
+          "best": "COINCIDENTLYDASTARDNERUOUSNESSSOUTHEWNGCONSTRUCTIUEANGIAINDMATTTHROWNPAST",
+          "bestScore": 22.548791168644783
+        }
+      ]
+    }
+  ],
+  "native": [
+    {
+      "tr": 0,
+      "start": 207,
+      "hold": false,
+      "n": 134,
+      "nodes": 4000001,
+      "deep": 36,
+      "capped": true,
+      "complete": 0,
+      "truthHit": false,
+      "bestAccuracy": null,
+      "best": null,
+      "bestScore": null
+    },
+    {
+      "tr": 1,
+      "start": 715,
+      "hold": true,
+      "n": 132,
+      "nodes": 4000001,
+      "deep": 43,
+      "capped": true,
+      "complete": 0,
+      "truthHit": false,
+      "bestAccuracy": null,
+      "best": null,
+      "bestScore": null
+    }
+  ],
+  "original": [
+    {
+      "hold": false,
+      "active": [],
+      "stages": [
+        {
+          "start": 1353,
+          "rev": false,
+          "n": 76,
+          "lens": [
+            14,
+            7,
+            7,
+            10,
+            8,
+            5,
+            4,
+            9,
+            2,
+            7,
+            3
+          ],
+          "entered": 812,
+          "remaining": 0,
+          "found": 0,
+          "capped": 0,
+          "nodes": 403132,
+          "deep": 20,
+          "truthResult": null
+        }
+      ]
+    },
+    {
+      "hold": true,
+      "active": [],
+      "stages": [
+        {
+          "start": 1353,
+          "rev": false,
+          "n": 76,
+          "lens": [
+            14,
+            7,
+            7,
+            10,
+            8,
+            5,
+            4,
+            9,
+            2,
+            7,
+            3
+          ],
+          "entered": 812,
+          "remaining": 0,
+          "found": 0,
+          "capped": 0,
+          "nodes": 385488,
+          "deep": 20,
+          "truthResult": null
+        }
+      ]
+    }
+  ],
+  "geometry": [
+    {
+      "start": 1353,
+      "rev": false,
+      "lens": [
+        14,
+        7,
+        7,
+        10,
+        8,
+        5,
+        4,
+        9,
+        2,
+        7,
+        3
+      ]
+    },
+    {
+      "start": 622,
+      "rev": true,
+      "lens": [
+        5,
+        7,
+        3,
+        5,
+        11,
+        3,
+        4,
+        9,
+        11,
+        13
+      ]
+    },
+    {
+      "start": 1215,
+      "rev": false,
+      "lens": [
+        12,
+        7,
+        11,
+        4,
+        3,
+        12,
+        3,
+        3,
+        4,
+        5,
+        4
+      ]
+    }
+  ]
+}
