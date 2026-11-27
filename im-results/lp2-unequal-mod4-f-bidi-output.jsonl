@@ -1,0 +1,15 @@
+{"batch":0,"maps":812,"dead1":542,"pairs1":676,"dead2":270,"pairs2":0,"dead3":0,"pairs3":0,"fkeys":0,"survivors":[]}
+{"batch":1,"maps":812,"dead1":530,"pairs1":703,"dead2":282,"pairs2":0,"dead3":0,"pairs3":0,"fkeys":0,"survivors":[]}
+{"batch":2,"maps":812,"dead1":530,"pairs1":703,"dead2":282,"pairs2":0,"dead3":0,"pairs3":0,"fkeys":0,"survivors":[]}
+{"batch":3,"maps":812,"dead1":530,"pairs1":704,"dead2":281,"pairs2":1,"dead3":0,"pairs3":1,"fkeys":20,"survivors":[[3,6,3,2,8,536870400]]}
+{"batch":4,"maps":812,"dead1":530,"pairs1":704,"dead2":280,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[4,7,4,3,9,536869891]]}
+{"batch":5,"maps":812,"dead1":530,"pairs1":704,"dead2":280,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[5,8,5,4,10,536868871]]}
+{"batch":6,"maps":812,"dead1":530,"pairs1":704,"dead2":280,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[6,9,6,5,11,536866831]]}
+{"batch":7,"maps":812,"dead1":530,"pairs1":704,"dead2":280,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[7,10,7,6,12,536862751]]}
+{"batch":8,"maps":812,"dead1":530,"pairs1":704,"dead2":280,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[8,11,8,7,13,536854591]]}
+{"batch":9,"maps":812,"dead1":530,"pairs1":704,"dead2":278,"pairs2":6,"dead3":2,"pairs3":2,"fkeys":38,"survivors":[[9,6,9,4,10,536866816],[9,12,9,8,14,536838271]]}
+{"batch":10,"maps":812,"dead1":530,"pairs1":704,"dead2":278,"pairs2":6,"dead3":2,"pairs3":2,"fkeys":42,"survivors":[[10,7,10,5,11,536862751],[10,13,10,9,15,536805631]]}
+{"batch":11,"maps":812,"dead1":530,"pairs1":704,"dead2":278,"pairs2":6,"dead3":2,"pairs3":2,"fkeys":42,"survivors":[[11,8,11,6,12,536854591],[11,14,11,10,16,536740351]]}
+{"batch":12,"maps":812,"dead1":530,"pairs1":704,"dead2":278,"pairs2":6,"dead3":2,"pairs3":2,"fkeys":42,"survivors":[[12,9,12,7,13,536838271],[12,15,12,11,17,536609791]]}
+{"batch":13,"maps":812,"dead1":530,"pairs1":704,"dead2":278,"pairs2":6,"dead3":2,"pairs3":2,"fkeys":42,"survivors":[[13,10,13,8,14,536805631],[13,16,13,12,18,536348671]]}
+{"batch":14,"maps":406,"dead1":265,"pairs1":352,"dead2":139,"pairs2":3,"dead3":1,"pairs3":1,"fkeys":21,"survivors":[[14,11,14,9,15,536740351]]}
