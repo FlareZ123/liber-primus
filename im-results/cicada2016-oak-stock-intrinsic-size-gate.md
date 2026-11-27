@@ -28,7 +28,7 @@ The reflected stock is markedly the stronger match, with its fitted bounding reg
 
 ## Important cross-asset correction: common-stock candidate reopened
 
-The signed 2016 faint oak registers to the horizontally reflected ClipartBest file. The earlier direct p55→2016 SIFT test found 7 inliers versus 1,273 in its positive self-test; Commons DeadTree remains a competing source hypothesis. [27 November common-stock correction](lp2-tree-common-stock-source-reopening.md): the MonokumaBear candidate is byte-identical to this ClipartBest file, and newer independent held-out registrations report a common source for p32, p55, and 2016. The distinct-source inference is withdrawn; exact creator-used master and transform remain open.
+The signed 2016 faint oak registers to the horizontally reflected ClipartBest file. The earlier direct p55→2016 SIFT test found 7 inliers versus 1,273 in its positive self-test; New external held-out comparisons also support Commons DeadTree as the photographic ancestor of the ClipartBest silhouette; the exact derivative is unresolved. [27 November common-stock correction](lp2-tree-common-stock-source-reopening.md): the MonokumaBear candidate is byte-identical to this ClipartBest file, and newer independent held-out registrations report a common source for p32, p55, and 2016. The distinct-source inference is withdrawn; exact creator-used master and transform remain open.
 
 The p32 121 runes yield GP-prime sums 563 and 569 across the first row and first column of an inferred 11×11 layout. Common-stock evidence strengthens the page selector but supplies no decoder.
 
