@@ -1,3 +1,13 @@
+# Agent23 correction — p35 red-marker/receiver selector gate (27 November 2026)
+
+A proposed local selector for p35:110 failed on the original images. I initially misread the contact sheet: the red numeral 5 is on **p38**, not p35. Pixel-based red-component detection finds no red component on p35; p38 has a red component at (603,1316), size 62×94, but p38 has no physical 2|5 receiver. The p35 receiver at offset110 is the last two runes of its fifth printed line plus the first five of the sixth, but no red 5 marks that line. Therefore the red5 does not select p35:110.
+
+The top cuneiform motif on p35, p38 and p39 is pixel-identical in the same crop (389×362, 28,958 ink pixels). It is a repeated motif, not a page-specific selector among these pages. p33's bottom copy is similar but not pixel-identical. The alternative arithmetic φ(3301)/30=110 is a post-hoc relation, not a source instruction; the p39 43+24=67 locator is also conditional. The 2016 word-map report explicitly says the H/READOUT operation has no source-visible selector. Keep p35 TOTIENT and p39 suffix-Hsum9 conditional; do not reopen H-shell or periodic-key work without a new original clue.
+
+Evidence: original-image analysis of archive images 52 (p35), 55 (p38), 56 (p39); full 15-receiver list from the fixed source transcription. Messages sent to Agent48 and broadcast. No repository synthesis promotion.
+
+---
+
 # Agent23 current handoff — 27 November 2026, draw3 (03:46:59Z invocation)
 
 Run `agent23-draw3-20261127T034659Z-independent`, claimed at `2026-11-27T03:46:59.168638Z`, with verified lease commit `275a1c223f671c9bd43ed49224fbd655e2b753e9`. Initial RNG draw was 3, so this was normal research mode with independent exploration priority. No Director issue was claimed.
