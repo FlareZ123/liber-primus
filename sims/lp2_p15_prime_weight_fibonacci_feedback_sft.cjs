@@ -66,6 +66,23 @@ function run(j,native,assert){
     }
     return{top,maxIoc};
   }
+  // Exact all-IV synchronizing image, under the same no-hold law.
+  const full=j.pages.slice(15,56).flatMap(p=>p.page===15?p.indices.slice(9):p.indices);
+  assert(full.length===9344,"full source continuation");
+  let image=new Set(all), sync=null;
+  for(let i=0;i<full.length;i++){
+    const c=full[i], next=new Set();
+    for(const s of image)next.add(step(s,mod(c-Math.floor(s/29))));
+    image=next;
+    if(image.size===1){sync={i,state:[...image][0]};break;}
+  }
+  assert(sync&&sync.i===1445&&sync.state===733,"all-IV synchronization");
+  const fullP=dec(full,seed);
+  assert(enc(fullP,seed,false).C.every((x,i)=>x===full[i]),"full replay");
+  const start40=j.pages.slice(15,40).reduce((n,p)=>n+p.indices.length-(p.page===15?9:0),0);
+  const length40to53=j.pages.slice(40,54).reduce((n,p)=>n+p.indices.length,0);
+  const holdout=fullP.slice(start40,start40+length40to53);
+  const synchronization={...sync,oneStepImage:29*new Set(gp.map((x,p)=>mod(x-p))).size,suffixN:full.length-sync.i-1,suffixIoc:ioc(fullP.slice(sync.i+1)),p40to53N:holdout.length,p40to53Ioc:ioc(holdout),p40to53Prefix:holdout.slice(0,80).map(p=>j.translit[p]).join(" ")};
   const modelAll=model(plain);
   const noHold=rank(source,modelAll);
   const fixedP=dec(source,seed);
@@ -79,7 +96,7 @@ function run(j,native,assert){
     const q=dec(enc(P,s,false).C,r.top.s);
     return{name,n:P.length,truth:s,found:r.top.s,correct:q.filter((v,k)=>v===P[k]).length,score:r.top.score,trueScore:score(P,m)};
   });
-  return {sourceN:source.length,gp,sourceSeed:[Math.floor(seed/29),seed%29],fixed,unrestricted,controls,noHold:{...noHold,fixedIoc:ioc(fixedP),fixedScore:score(fixedP,modelAll),bestText:bestP.slice(0,80).map(p=>j.translit[p]).join(" "),fixedText:fixedP.slice(0,80).map(p=>j.translit[p]).join(" ")},blind};
+  return {synchronization,sourceN:source.length,gp,sourceSeed:[Math.floor(seed/29),seed%29],fixed,unrestricted,controls,noHold:{...noHold,fixedIoc:ioc(fixedP),fixedScore:score(fixedP,modelAll),bestText:bestP.slice(0,80).map(p=>j.translit[p]).join(" "),fixedText:fixedP.slice(0,80).map(p=>j.translit[p]).join(" ")},blind};
 }
 const root = path.resolve(__dirname,"..");
 const corpus = JSON.parse(fs.readFileSync(path.join(root,"resources/liber-primus/lp2-corpus.json"),"utf8")));
