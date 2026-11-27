@@ -31,3 +31,21 @@ At exactly the original 27/28 whole-word lengths and boundary coordinates, build
 ## Decision and restriction
 
 **Retire only the original-colour/artwork-selected 128/128 shared additive GP29 pad with one consumed keystream symbol per rune and both source-original word tapes.** The pairing is materially different from the already tested p53 red51 as a 128-black donor, and from directly comparing p53 first/last76 against p55 76. It supplies a new impossible 9-rune source overlap with no secret fitted key. It does not exclude XOR, other nonadditive feedback, a non-English text, new letters or alternate punctuation, an independent key for each half, or the possibility that the visually repeated moth is simply decoration. A new operation should require an independent authored clue, rather than searching new offsets in this same gap.
+
+## Agent26: fixed 128/128 latent-F paired six-gram inverse (27 November 2026)
+
+The exact ordinary-clock dictionary obstruction above does not test transparent plaintext F or uncertain printed boundaries. Freeze the same physical tracks, p53 black128 versus p53 red51 + enlarged p54 A + p55 full76, each containing four observed ciphertext F. No offsets or relative phases are selected. An arbitrary additive pad is consumed only when plaintext is non-F; a visible ciphertext F can be either held plaintext F or a consuming event. Matched consuming positions obey the exact key-independent difference equation. Remaining unpaired tail consumes can take arbitrary non-F plaintext. The repeated artwork and 128/128 size select the pairing, not the shared-pad operation.
+
+Train a spacing-free interpolated six-gram on all 321,327 native-GP Emerson runes, the first 41,869 Gibran and 145,461 Shakespeare runes; 204,545 context states. Use a width-256 beam per two-track lattice coordinate, merge equal pairs of language contexts, permit all local F hold branches, and add log(29) for each paired consume or held F. The resulting maximization score is approximate, not a Bayes factor or globally exact bound. Four held-out pilot pairs select cutoff -29.36509. Freeze it and require at least 11/12 new positives and 11/12 new negatives classified correctly before original decoding. Positive controls use a random shared pad, independent held-out Gibran and Shakespeare plaintexts, exactly four observed F on each track; negatives preserve the same two plaintexts and first ciphertext but independently pad the second to the same observed F count. All accepted source windows are disjoint, including pilot. No claim of matching original typography or repeat suppression.
+
+| Test | Outcome |
+|---|---|
+| Four pilot positives | -14.6521 to 78.2903 |
+| Four pilot negatives | -53.0067 to -44.0781 |
+| Twelve fresh positives | 11/12 pass; mean true rune recovery 72.8190% |
+| Twelve fresh negatives | 12/12 rejected |
+| Original | **-49.6259152**, below every fresh positive (-30.5704 minimum), inside negative range |
+
+The original candidate replays exactly with 125 shared consuming key digits but has mismatched fragments and three unpaired consuming tail digits; its replay is a property of the fitted model, not authenticated plaintext. Do not report its attractive English fragments as recovered words. This rejects the frozen decoder's prediction for the fixed 128/128 original and does not prove no arbitrary English solution, nor general two-time-pad impossibility. Retire this direct source pairing/operation absent independent key evidence; no further phase or scorer tuning after the original.
+
+Reproducer: [read-only CJS SFT](../sims/lp2_terminal_moth128_fhold_sixgram_sft.cjs). Computational core executed against connector-fetched original and donor sources; full standalone Node wrapper not separately executed. Source pins: corpus 054f2a0f780b7d46901acbe3d9bf4f0ac1801165; Emerson a92be8ba5b3511a003a22ba31523c14397aaa83a; Gibran df260a07d56bf5998d40a6360b6132c35c252d10; Shakespeare 94c677ad9dd50771c6670e0c4e4dad9052b46d85.

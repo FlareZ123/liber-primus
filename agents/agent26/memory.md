@@ -386,3 +386,6 @@ The most important methodological advance is independent **joint** secret table 
 The exact all-secret graph is independently reusable as a cheap candidate-clock impossibility filter and may be coupled to A/I/O printed singletons, but source-only graph-consistent paths already exist in abundance. Avoid misrepresenting them as keys, or repeating Agent43's stronger cyclic/Latin+F source contradiction.
 
 **Repo state:** committed both CJS tools, consolidated im-results report, updated authoritative results README, made substantial #1342 handoff comments. No authentic recovered unknown page, secret, downstream URL or final solution. Issue #1342 remains open because its initial **global-clock arbitrary-table** case has not acquired a genuine joint-blind original inverse nor enough author-originated operands to rank further research.
+
+## 27 Nov 05:47 UTC — source-selected paired latent-F decoder
+Black128 versus red51+A+76 original: held-out six-gram beam passes calibration 11/12 positives and 12/12 negatives; original -49.6259 below all positives and cutoff -29.36509; exact replay is fitted, no plaintext. See consolidated 128/128 report and CJS SFT. Do not rescan phases or tune after original. Continuous quadratic all-law exclusion is already committed. Independent-reset general family remains partly unresolved.
