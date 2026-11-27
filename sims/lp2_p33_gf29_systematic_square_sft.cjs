@@ -13,9 +13,9 @@ function experiment(d,ink,sq){
  function encode(data,n,s){const z=Array.from({length:n-1},(_,i)=>data.slice(i*(n-1),(i+1)*(n-1)));assert(data.length===(n-1)**2,"data");for(const row of z)row.push(mod(s-sum(row)));z.push(Array.from({length:n},(_,j)=>mod(s-sum(z.map(row=>row[j])))));return z}
  function test(g,s){const n=g.length, data=g.slice(0,-1).flatMap(row=>row.slice(0,-1)),pred=encode(data,n,s),checks=[];for(let i=0;i<n;i++)for(let j=0;j<n;j++)if(i===n-1||j===n-1)checks.push({i,j,actual:g[i][j],predicted:pred[i][j],residue:mod(g[i][j]-pred[i][j])});return {matched:checks.filter(x=>!x.residue).length,total:checks.length,checks,roundtrip:eq(g,pred),data}}
  function rowcols(g){return [...g.map(sum),...g[0].map((_,j)=>sum(g.map(r=>r[j])))]}
- // The historical p56 decryptor holds ciphertext F and consumes no shift there.
+ // Only the known plaintext F at p56 physical rune offset56 is non-consuming; other ciphertext Fs consume shifts.
  const primes=[];for(let x=2;primes.length<85;x++)if(!primes.some(p=>p*p<=x&&x%p===0))primes.push(x);
- let k=0;const p56=d.pages[56].indices.map(c=>c===0?0:mod(c-(primes[k++]-1)));assert(eq(p56.slice(0,5),[24,9,18,9,23]),"AN END");const p57=d.pages[57].indices;
+ let k=0;const p56=d.pages[56].indices.map((c,i)=>i===56?0:mod(c-(primes[k++]-1)));assert(k===84&&d.pages[56].indices[56]===0&&p56.map(x=>d.translit[x]).join("")==="ANENDWITHINTHEDEEPWEBTHEREEXISTSAPAGETHATHASHESTOITISTHEDUTYOFEUERYPILGRIMTOSEECOUTTHISPAGE","AN END");const p57=d.pages[57].indices;
  const donor=[...p57,...p56];assert(donor.length===180,"control");
  // Matching random controls: uniform shuffles preserve the exact original multiset; low-repeat
  // controls shuffle then condition on the original total count of adjacent repeats.
