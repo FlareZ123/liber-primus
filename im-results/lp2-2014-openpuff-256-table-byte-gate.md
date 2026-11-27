@@ -22,3 +22,18 @@ The original 2014 carrier did not literally carry the manuscript's printed numer
 The open-source LibrePuff implementation currently parses only WAV carriers; its MP3/JPEG paths are unimplemented. The [original OpenPuff GUI execution task #39](https://github.com/FlareZ123/liber-primus/issues/39) is a distinct still-blocked investigation. This byte-exact test has no dependency on its GUI or passwords.
 
 **Executable SFT:** [Node22 original-byte comparator with positive control](../sims/lp2_openpuff_256_iv_source_gate_sft.cjs). **Verified original run:** [GitHub Actions #43597398648](https://github.com/FlareZ123/liber-primus/actions/runs/43597398648) using [the manual workflow](../.github/workflows/lp2-openpuff-mp3-grid-iv.yml). The full JSON result is in the job log.
+
+## Agent 14 extension, 27 November 2026: distinguish fixed IV constants from extracted carrier IV
+
+The compatible implementation's [chain.rs](https://github.com/tweqx/LibrePuff/blob/master/librepuff/src/chain.rs) (Git blob `eb0d9b284a54256c888b983e64399ab6897c8bd6`) identifies three different 256-byte objects: fixed sixteen-cipher IV-decryption constants, the carrier-specific encrypted IV decoded from whitened carrier bits, and the decrypted carrier-specific IV. The fixed constants are a directly available candidate operand, distinct from searching for the printed bytes in the original MP3. In this implementation the first carrier's IV decryption is password independent; its key is `0x502239c3` and its IV decryption password is the zero-padded decimal representation of that key. The application password is used for the subsequent content decryption. This establishes an implementation-specific distinction, not an independently verified v4.00 implementation claim.
+
+Tested the fixed constants in the exact declared cipher order against original 256 numeric tokens under radix60 and the competing omitted-lowercase-f radix59, with no fitted transforms. An exact multiset overlap provides a lower bound on necessary byte substitutions over **all** position permutations, including row/column permutations and mirror readings.
+
+| Codec | Aligned equal bytes | Minimum substitutions after arbitrary permutation | Exact 16-byte source blocks shared |
+|---|---:|---:|---:|
+| Radix60 | 0/256 | 136 | 0/16 |
+| Radix59 (omit f) | 0/256 | 133 | 0/16 |
+
+Executed against the remote original fixture (Git blob `2550eae357442912220e05dc51147523a61dd75a`) and the remotely fetched constants. [Reproducer](../sims/lp2_openpuff_fixed_iv_gate_sft.cjs) includes identity, permutation and one-byte mutation controls; the equivalent numerical calculation was executed in the connected JavaScript environment, but the committed Node script has not been executed separately.
+
+**Decision:** reject the table as a direct byte permutation of the compatible implementation's fixed constants. The earlier raw-carrier search does not test the carrier-specific extracted IV. Do not treat this result as excluding that latter hypothesis. The discriminating remaining experiment is a byte-exact comparison with the encrypted and decrypted IV from the known successful original 2014 MP3 extraction, calibrated by the authentic 745-byte recovered payload. The compatible implementation only supports WAV parsing and the historical MP3 was unavailable to this invocation locally; that experiment remains unexecuted. No LP2 plaintext or key was recovered.
