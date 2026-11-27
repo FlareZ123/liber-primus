@@ -138,6 +138,14 @@ jobs:
           path: im-results/stage10-participant-irc-capture-search/
           if-no-files-found: warn
 
+      - name: Preserve targeted 2013 SSSS wrapper search
+        if: ${{ success() && inputs.script == 'sims/2013_ssss_signed_wrapper_irc_search.py' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-ssss-signed-wrapper-irc-search
+          path: im-results/2013-ssss-signed-wrapper-irc-search.json
+          if-no-files-found: error
+
 
   r4-composite-h1:
     if: ${{ inputs.script == 'sims/lp2_r4_composite_h1_sft.py' }}
