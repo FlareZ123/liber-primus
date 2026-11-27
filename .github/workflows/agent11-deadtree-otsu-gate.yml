@@ -1,0 +1,14 @@
+name: Agent11 DeadTree Otsu source gate
+on:
+  workflow_dispatch:
+jobs:
+  otsu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy opencv-python-headless
+      - run: python sims/dead_tree_otsu_source_gate.py
