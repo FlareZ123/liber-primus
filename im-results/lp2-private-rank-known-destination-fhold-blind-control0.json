@@ -1,0 +1,728 @@
+{
+  "seed": 318309,
+  "z": 0,
+  "R": [
+    9,
+    25,
+    23,
+    16,
+    9,
+    9,
+    26,
+    23,
+    25,
+    26,
+    16,
+    25,
+    9,
+    21,
+    21,
+    6,
+    16,
+    26,
+    6,
+    16,
+    20,
+    25,
+    26,
+    23,
+    23,
+    16,
+    26,
+    6,
+    25
+  ],
+  "S": [
+    22,
+    17,
+    5,
+    13,
+    10,
+    1,
+    6,
+    0,
+    24,
+    19,
+    4,
+    25,
+    21,
+    28,
+    26,
+    18,
+    11,
+    2,
+    15,
+    8,
+    14,
+    16,
+    20,
+    7,
+    3,
+    23,
+    12,
+    9,
+    27
+  ],
+  "init": [
+    24,
+    2,
+    28,
+    10,
+    0,
+    4,
+    27,
+    6,
+    15,
+    13,
+    19,
+    16,
+    3,
+    17,
+    14,
+    26,
+    25,
+    23,
+    22,
+    20,
+    8,
+    11,
+    21,
+    5,
+    7,
+    12,
+    18,
+    1,
+    9
+  ],
+  "repeat": 34,
+  "results": [
+    {
+      "oracle": true,
+      "learned": {
+        "A": [
+          4,
+          24,
+          2,
+          14,
+          0,
+          8,
+          19,
+          25,
+          28,
+          27,
+          11,
+          3,
+          26,
+          18,
+          6,
+          5,
+          17,
+          7,
+          15,
+          12,
+          10,
+          21,
+          23,
+          22,
+          16,
+          20,
+          13,
+          9,
+          1
+        ],
+        "score": -8887.532122800483,
+        "bad": 0,
+        "f": 23,
+        "starts": [
+          {
+            "score": -8887.532122800483,
+            "bad": 0,
+            "f": 23,
+            "initial": -9847.193108779418,
+            "history": [
+              {
+                "score": -8953.176188866582,
+                "bad": 1,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8922.435725709161,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8910.591910443529,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8902.680827583408,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8897.903427574918,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8893.540199159856,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8890.311008914137,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8887.532122800483,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -9762.99457476438,
+            "bad": 2,
+            "f": 26,
+            "initial": -9787.565170378799,
+            "history": [
+              {
+                "score": -9779.162605608115,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9774.787851146077,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9773.181629570103,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9771.069565379528,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9766.703186819868,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9765.264582239746,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9763.935957030099,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9762.99457476438,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -9773.734591709777,
+            "bad": 2,
+            "f": 26,
+            "initial": -10233.02524163057,
+            "history": [
+              {
+                "score": -9795.774570039486,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9786.848472948914,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9783.51192427516,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9780.539106705,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9778.311570249756,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9776.428933589013,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9774.691178220648,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9773.734591709777,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8891.780846936586,
+            "bad": 0,
+            "f": 23,
+            "initial": -10227.97391314698,
+            "history": [
+              {
+                "score": -9783.427155515616,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -9774.831822920034,
+                "bad": 2,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8906.494584270446,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8898.779210498235,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8896.75270846797,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8895.242134335494,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8893.867627819753,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              },
+              {
+                "score": -8891.780846936586,
+                "bad": 0,
+                "holds": 90,
+                "changes": 0
+              }
+            ]
+          }
+        ]
+      },
+      "rankAccuracy": 2879,
+      "holdAccuracy": 3000,
+      "holdCorrectOnZeros": 161,
+      "trueHolds": 90,
+      "zeroFit": 161,
+      "key": {
+        "K": [
+          7,
+          5,
+          17,
+          24,
+          10,
+          2,
+          6,
+          23,
+          19,
+          27,
+          4,
+          16,
+          26,
+          3,
+          20,
+          18,
+          21,
+          1,
+          15,
+          9,
+          22,
+          12,
+          25,
+          0,
+          8,
+          11,
+          14,
+          28,
+          13
+        ],
+        "score": -6958.328675237181
+      },
+      "fitAccuracy": 2969,
+      "held": {
+        "dead": null,
+        "peak": 24,
+        "accuracy": 2990,
+        "score": -2.2737078562423525,
+        "nativeScore": -2.2748833986484382,
+        "replay": true,
+        "prefix": "NREASONANDWHENTHESTORMCOMESANDTHEMIGHTYWINDSHACESTHEFORESTANDTHUNDERANDLIGHTNNGPROCLAIMTHEMAJESTYOFTHESCYTHENLETYOURHEARTSAYINAWEG"
+      }
+    },
+    {
+      "oracle": false,
+      "learned": {
+        "A": [
+          3,
+          2,
+          19,
+          11,
+          15,
+          12,
+          28,
+          10,
+          26,
+          18,
+          14,
+          5,
+          6,
+          16,
+          21,
+          0,
+          4,
+          8,
+          23,
+          24,
+          27,
+          25,
+          22,
+          17,
+          20,
+          7,
+          13,
+          1,
+          9
+        ],
+        "score": -8863.56443600966,
+        "bad": 0,
+        "f": 23,
+        "starts": [
+          {
+            "score": -8922.629156826573,
+            "bad": 0,
+            "f": 23,
+            "initial": -9696.680409692746,
+            "history": [
+              {
+                "score": -8942.579743012855,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8936.133462547814,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8931.613322232222,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8929.185023610955,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8927.530073566706,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8925.89150772637,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8924.504167001933,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              },
+              {
+                "score": -8922.629156826573,
+                "bad": 0,
+                "holds": 161,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8864.045002328996,
+            "bad": 0,
+            "f": 23,
+            "initial": -10288.269572738078,
+            "history": [
+              {
+                "score": -9771.54364138946,
+                "bad": 3,
+                "holds": 68,
+                "changes": 68
+              },
+              {
+                "score": -8883.299676448898,
+                "bad": 0,
+                "holds": 75,
+                "changes": 33
+              },
+              {
+                "score": -8876.189590048863,
+                "bad": 0,
+                "holds": 74,
+                "changes": 1
+              },
+              {
+                "score": -8873.122131982833,
+                "bad": 0,
+                "holds": 74,
+                "changes": 0
+              },
+              {
+                "score": -8870.993744671288,
+                "bad": 0,
+                "holds": 74,
+                "changes": 0
+              },
+              {
+                "score": -8869.461818609127,
+                "bad": 0,
+                "holds": 74,
+                "changes": 0
+              },
+              {
+                "score": -8866.689778182297,
+                "bad": 0,
+                "holds": 73,
+                "changes": 1
+              },
+              {
+                "score": -8864.045002328996,
+                "bad": 0,
+                "holds": 72,
+                "changes": 1
+              }
+            ]
+          },
+          {
+            "score": -8864.646912878967,
+            "bad": 0,
+            "f": 23,
+            "initial": -10313.818223465458,
+            "history": [
+              {
+                "score": -9742.674228440166,
+                "bad": 2,
+                "holds": 76,
+                "changes": 81
+              },
+              {
+                "score": -8896.546328292521,
+                "bad": 0,
+                "holds": 74,
+                "changes": 26
+              },
+              {
+                "score": -8884.740359843576,
+                "bad": 0,
+                "holds": 73,
+                "changes": 1
+              },
+              {
+                "score": -8875.218888638026,
+                "bad": 0,
+                "holds": 77,
+                "changes": 4
+              },
+              {
+                "score": -8871.234706031091,
+                "bad": 0,
+                "holds": 78,
+                "changes": 1
+              },
+              {
+                "score": -8868.229123631862,
+                "bad": 0,
+                "holds": 78,
+                "changes": 0
+              },
+              {
+                "score": -8865.609560011337,
+                "bad": 0,
+                "holds": 78,
+                "changes": 0
+              },
+              {
+                "score": -8864.646912878967,
+                "bad": 0,
+                "holds": 78,
+                "changes": 0
+              }
+            ]
+          },
+          {
+            "score": -8863.56443600966,
+            "bad": 0,
+            "f": 23,
+            "initial": -10282.545575807078,
+            "history": [
+              {
+                "score": -9729.424517947304,
+                "bad": 2,
+                "holds": 86,
+                "changes": 59
+              },
+              {
+                "score": -9706.64146879845,
+                "bad": 2,
+                "holds": 88,
+                "changes": 6
+              },
+              {
+                "score": -9700.469657241514,
+                "bad": 2,
+                "holds": 88,
+                "changes": 0
+              },
+              {
+                "score": -8880.628545998497,
+                "bad": 0,
+                "holds": 74,
+                "changes": 28
+              },
+              {
+                "score": -8872.257489034086,
+                "bad": 0,
+                "holds": 74,
+                "changes": 4
+              },
+              {
+                "score": -8868.035117252231,
+                "bad": 0,
+                "holds": 73,
+                "changes": 1
+              },
+              {
+                "score": -8865.865039386163,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              },
+              {
+                "score": -8863.56443600966,
+                "bad": 0,
+                "holds": 73,
+                "changes": 0
+              }
+            ]
+          }
+        ]
+      },
+      "rankAccuracy": 2747,
+      "holdAccuracy": 2947,
+      "holdCorrectOnZeros": 108,
+      "trueHolds": 90,
+      "zeroFit": 161,
+      "key": {
+        "K": [
+          7,
+          5,
+          17,
+          24,
+          10,
+          2,
+          6,
+          23,
+          19,
+          27,
+          4,
+          16,
+          26,
+          3,
+          20,
+          18,
+          21,
+          1,
+          15,
+          9,
+          22,
+          12,
+          25,
+          0,
+          8,
+          11,
+          14,
+          28,
+          13
+        ],
+        "score": -7662.040074162713
+      },
+      "fitAccuracy": 2802,
+      "held": {
+        "dead": null,
+        "peak": 24,
+        "accuracy": 2990,
+        "score": -2.2737078562423525,
+        "nativeScore": -2.2748833986484382,
+        "replay": true,
+        "prefix": "NREASONANDWHENTHESTORMCOMESANDTHEMIGHTYWINDSHACESTHEFORESTANDTHUNDERANDLIGHTNNGPROCLAIMTHEMAJESTYOFTHESCYTHENLETYOURHEARTSAYINAWEG"
+      }
+    }
+  ]
+}
