@@ -1,0 +1,1576 @@
+{
+  "inputs": {
+    "corpus": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165",
+    "signed": "a0d8bd2d73613e01cd8a2103d5721b2b998ee482",
+    "native": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+  },
+  "signedLabels": [
+    "HELLO",
+    "THE",
+    "PATH",
+    "LIES",
+    "EMPTY",
+    "EPIPHANY",
+    "SEEKS",
+    "THE",
+    "DEVOTED",
+    "LIBER",
+    "PRIMUS",
+    "IS",
+    "THE",
+    "WAY",
+    "ITS",
+    "WORDS",
+    "ARE",
+    "THE",
+    "MAP",
+    "THEIR",
+    "MEANING",
+    "IS",
+    "THE",
+    "ROAD",
+    "AND",
+    "THEIR",
+    "NUMBERS",
+    "ARE",
+    "THE",
+    "DIRECTION",
+    "SEEK",
+    "AND",
+    "YOU",
+    "WILL",
+    "BE",
+    "FOUND",
+    "GOOD",
+    "LUCK",
+    "BEWARE",
+    "FALSE",
+    "PATHS",
+    "VERIFY",
+    "OPENPGP"
+  ],
+  "rotatedWords": [
+    "THE",
+    "PATH",
+    "LIES",
+    "EMPTY",
+    "EPIPHANY",
+    "SEEKS",
+    "THE",
+    "DEVOTED",
+    "LIBER",
+    "PRIMUS",
+    "IS",
+    "THE",
+    "WAY",
+    "ITS",
+    "WORDS",
+    "ARE",
+    "THE",
+    "MAP",
+    "THEIR",
+    "MEANING",
+    "IS",
+    "THE",
+    "ROAD",
+    "AND",
+    "THEIR",
+    "NUMBERS",
+    "ARE",
+    "THE",
+    "DIRECTION",
+    "SEEK",
+    "AND",
+    "YOU",
+    "WILL",
+    "BE",
+    "FOUND",
+    "GOOD",
+    "LUCK",
+    "BEWARE",
+    "FALSE",
+    "PATHS",
+    "VERIFY",
+    "OPENPGP",
+    "HELLO"
+  ],
+  "lookup": {
+    "THE": 16,
+    "PATH": 17,
+    "LIES": 6,
+    "EMPTY": 28,
+    "EPIPHANY": 23,
+    "SEEKS": 0,
+    "DEVOTED": 16,
+    "LIBER": 7,
+    "PRIMUS": 8,
+    "IS": 9,
+    "WAY": 8
+  },
+  "unknownWords": [
+    "ITS",
+    "WORDS",
+    "ARE",
+    "MAP",
+    "THEIR",
+    "MEANING",
+    "ROAD",
+    "AND",
+    "NUMBERS",
+    "DIRECTION",
+    "SEEK",
+    "YOU",
+    "WILL",
+    "BE",
+    "FOUND",
+    "GOOD",
+    "LUCK",
+    "BEWARE",
+    "FALSE",
+    "PATHS",
+    "VERIFY",
+    "OPENPGP",
+    "HELLO"
+  ],
+  "deltaExpression": [
+    25,
+    28,
+    17,
+    18,
+    28,
+    0,
+    1,
+    17,
+    18,
+    28,
+    12,
+    28,
+    1,
+    12,
+    28,
+    17,
+    1,
+    12,
+    28,
+    17,
+    1,
+    12,
+    28,
+    17
+  ],
+  "affine": [
+    [
+      26,
+      0
+    ],
+    [
+      24,
+      0
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      19,
+      0
+    ],
+    [
+      27,
+      0
+    ],
+    [
+      24,
+      0
+    ],
+    [
+      18,
+      0
+    ],
+    [
+      3,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      8,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      16,
+      0
+    ],
+    [
+      19,
+      0
+    ],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+      4,
+      12
+    ],
+    [
+      26,
+      1
+    ],
+    [
+      24,
+      17
+    ],
+    [
+      8,
+      28
+    ],
+    [
+      19,
+      12
+    ],
+    [
+      27,
+      1
+    ],
+    [
+      24,
+      17
+    ],
+    [
+      18,
+      28
+    ],
+    [
+      3,
+      12
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      8,
+      17
+    ],
+    [
+      0,
+      28
+    ],
+    [
+      16,
+      12
+    ],
+    [
+      19,
+      1
+    ],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+      4,
+      11
+    ],
+    [
+      26,
+      13
+    ],
+    [
+      24,
+      18
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      19,
+      11
+    ],
+    [
+      27,
+      13
+    ],
+    [
+      24,
+      18
+    ],
+    [
+      18,
+      16
+    ],
+    [
+      3,
+      11
+    ],
+    [
+      0,
+      13
+    ],
+    [
+      8,
+      18
+    ],
+    [
+      0,
+      16
+    ],
+    [
+      16,
+      11
+    ],
+    [
+      19,
+      13
+    ],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+      4,
+      28
+    ],
+    [
+      26,
+      12
+    ],
+    [
+      24,
+      1
+    ],
+    [
+      8,
+      17
+    ],
+    [
+      19,
+      28
+    ],
+    [
+      27,
+      12
+    ],
+    [
+      24,
+      1
+    ],
+    [
+      18,
+      17
+    ],
+    [
+      3,
+      28
+    ],
+    [
+      0,
+      12
+    ],
+    [
+      8,
+      1
+    ],
+    [
+      0,
+      17
+    ],
+    [
+      16,
+      28
+    ],
+    [
+      19,
+      12
+    ],
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    [
+      4,
+      0
+    ]
+  ],
+  "forcedPhases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    128,
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139,
+    140,
+    141,
+    171
+  ],
+  "independentPhases": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    171
+  ],
+  "sourceLengths": [
+    [
+      "0_warning",
+      184
+    ],
+    [
+      "0_welcome",
+      515
+    ],
+    [
+      "0_wisdom",
+      157
+    ],
+    [
+      "0_koan_1",
+      780
+    ],
+    [
+      "0_loss_of_divinity",
+      755
+    ],
+    [
+      "jpg107-167",
+      319
+    ],
+    [
+      "jpg229",
+      89
+    ],
+    [
+      "p56_an_end",
+      85
+    ],
+    [
+      "p57_parable",
+      95
+    ]
+  ],
+  "original": {
+    "ranks": [
+      {
+        "delta": 5,
+        "fit": {
+          "mean": -3.8613544413684053,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.228577420227097,
+          "n": 138
+        }
+      },
+      {
+        "delta": 23,
+        "fit": {
+          "mean": -4.012397639396387,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.12665371939565,
+          "n": 138
+        }
+      },
+      {
+        "delta": 8,
+        "fit": {
+          "mean": -4.0361468119016255,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.166427874648011,
+          "n": 138
+        }
+      },
+      {
+        "delta": 24,
+        "fit": {
+          "mean": -4.038179606509416,
+          "n": 69
+        },
+        "hold": {
+          "mean": -3.941933103862126,
+          "n": 138
+        }
+      },
+      {
+        "delta": 18,
+        "fit": {
+          "mean": -4.041116651899266,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.133891376300126,
+          "n": 138
+        }
+      },
+      {
+        "delta": 20,
+        "fit": {
+          "mean": -4.058930925354656,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.083437104447541,
+          "n": 138
+        }
+      },
+      {
+        "delta": 14,
+        "fit": {
+          "mean": -4.061710135364965,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.219401744533824,
+          "n": 138
+        }
+      },
+      {
+        "delta": 16,
+        "fit": {
+          "mean": -4.070010231059426,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.128088561529578,
+          "n": 138
+        }
+      },
+      {
+        "delta": 4,
+        "fit": {
+          "mean": -4.084127023804301,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.313013481928513,
+          "n": 138
+        }
+      },
+      {
+        "delta": 19,
+        "fit": {
+          "mean": -4.091391184365087,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.1532202008367785,
+          "n": 138
+        }
+      },
+      {
+        "delta": 12,
+        "fit": {
+          "mean": -4.102239953702506,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.119333316461633,
+          "n": 138
+        }
+      },
+      {
+        "delta": 13,
+        "fit": {
+          "mean": -4.121513518341951,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.27976850320363,
+          "n": 138
+        }
+      },
+      {
+        "delta": 28,
+        "fit": {
+          "mean": -4.132359481601855,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.3114184297739975,
+          "n": 138
+        }
+      },
+      {
+        "delta": 22,
+        "fit": {
+          "mean": -4.140358099784674,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.115942258915062,
+          "n": 138
+        }
+      },
+      {
+        "delta": 17,
+        "fit": {
+          "mean": -4.154072784097485,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.087474353822776,
+          "n": 138
+        }
+      },
+      {
+        "delta": 2,
+        "fit": {
+          "mean": -4.156914382714089,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.104186258866079,
+          "n": 138
+        }
+      },
+      {
+        "delta": 21,
+        "fit": {
+          "mean": -4.183380801467047,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.1071013290273175,
+          "n": 138
+        }
+      },
+      {
+        "delta": 15,
+        "fit": {
+          "mean": -4.183654517948124,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.304921362230143,
+          "n": 138
+        }
+      },
+      {
+        "delta": 1,
+        "fit": {
+          "mean": -4.193750672082713,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.261129613015881,
+          "n": 138
+        }
+      },
+      {
+        "delta": 26,
+        "fit": {
+          "mean": -4.200719640673775,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.122003724676952,
+          "n": 138
+        }
+      },
+      {
+        "delta": 0,
+        "fit": {
+          "mean": -4.2071680355050995,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.241433377368679,
+          "n": 138
+        }
+      },
+      {
+        "delta": 9,
+        "fit": {
+          "mean": -4.21848654815684,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.2477390461498405,
+          "n": 138
+        }
+      },
+      {
+        "delta": 11,
+        "fit": {
+          "mean": -4.233107105098935,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.169432336526584,
+          "n": 138
+        }
+      },
+      {
+        "delta": 25,
+        "fit": {
+          "mean": -4.2681899079772405,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.210974261120669,
+          "n": 138
+        }
+      },
+      {
+        "delta": 6,
+        "fit": {
+          "mean": -4.311903314648604,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.087141827598765,
+          "n": 138
+        }
+      },
+      {
+        "delta": 7,
+        "fit": {
+          "mean": -4.325752574798747,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.275489838854994,
+          "n": 138
+        }
+      },
+      {
+        "delta": 10,
+        "fit": {
+          "mean": -4.3877806033062186,
+          "n": 69
+        },
+        "hold": {
+          "mean": -3.9371850434332014,
+          "n": 138
+        }
+      },
+      {
+        "delta": 3,
+        "fit": {
+          "mean": -4.398575172876634,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.302570263991431,
+          "n": 138
+        }
+      },
+      {
+        "delta": 27,
+        "fit": {
+          "mean": -4.474682565503107,
+          "n": 69
+        },
+        "hold": {
+          "mean": -4.1472009553639095,
+          "n": 138
+        }
+      }
+    ],
+    "independent": [
+      {
+        "start": 171,
+        "end": 185,
+        "indices": [
+          19,
+          14,
+          27,
+          0,
+          1,
+          1,
+          5,
+          25,
+          22,
+          13,
+          27,
+          14,
+          13,
+          1
+        ],
+        "text": "MXIAFUUCAEOEPIAXPU"
+      },
+      {
+        "start": 343,
+        "end": 357,
+        "indices": [
+          22,
+          8,
+          5,
+          26,
+          21,
+          22,
+          1,
+          20,
+          28,
+          13,
+          22,
+          14,
+          6,
+          24
+        ],
+        "text": "OEHCYNGOEULEAPOEXGA"
+      },
+      {
+        "start": 515,
+        "end": 529,
+        "indices": [
+          26,
+          23,
+          11,
+          6,
+          9,
+          18,
+          20,
+          2,
+          8,
+          13,
+          12,
+          14,
+          23,
+          3
+        ],
+        "text": "YDJGNELTHHPEOXDO"
+      },
+      {
+        "start": 687,
+        "end": 701,
+        "indices": [
+          2,
+          5,
+          4,
+          10,
+          26,
+          8,
+          7,
+          19,
+          0,
+          27,
+          28,
+          25,
+          24,
+          28
+        ],
+        "text": "THCRIYHWMFIAEAAEAEA"
+      }
+    ],
+    "bestFragments": [
+      {
+        "start": 42,
+        "end": 56,
+        "indices": [
+          21,
+          11,
+          24,
+          6,
+          20,
+          8,
+          9,
+          11,
+          16,
+          21,
+          8,
+          22,
+          5,
+          18
+        ],
+        "text": "NGJAGLHNJTNGHOECE"
+      },
+      {
+        "start": 85,
+        "end": 99,
+        "indices": [
+          7,
+          10,
+          4,
+          12,
+          19,
+          21,
+          2,
+          10,
+          5,
+          4,
+          20,
+          2,
+          6,
+          13
+        ],
+        "text": "WIREOMNGTHICRLTHGP"
+      },
+      {
+        "start": 128,
+        "end": 142,
+        "indices": [
+          10,
+          19,
+          26,
+          17,
+          0,
+          21,
+          7,
+          1,
+          7,
+          12,
+          10,
+          19,
+          18,
+          27
+        ],
+        "text": "IMYBFNGWUWEOIMEIA"
+      },
+      {
+        "start": 171,
+        "end": 185,
+        "indices": [
+          19,
+          14,
+          27,
+          0,
+          1,
+          1,
+          5,
+          25,
+          22,
+          13,
+          27,
+          14,
+          13,
+          1
+        ],
+        "text": "MXIAFUUCAEOEPIAXPU"
+      },
+      {
+        "start": 214,
+        "end": 228,
+        "indices": [
+          26,
+          26,
+          19,
+          5,
+          2,
+          18,
+          13,
+          9,
+          16,
+          15,
+          24,
+          9,
+          20,
+          21
+        ],
+        "text": "YYMCTHEPNTSANLNG"
+      },
+      {
+        "start": 257,
+        "end": 271,
+        "indices": [
+          22,
+          20,
+          21,
+          3,
+          20,
+          19,
+          12,
+          8,
+          15,
+          2,
+          4,
+          0,
+          20,
+          4
+        ],
+        "text": "OELNGOLMEOHSTHRFLR"
+      },
+      {
+        "start": 300,
+        "end": 314,
+        "indices": [
+          21,
+          4,
+          0,
+          22,
+          19,
+          3,
+          22,
+          3,
+          10,
+          17,
+          22,
+          15,
+          26,
+          4
+        ],
+        "text": "NGRFOEMOOEOIBOESYR"
+      },
+      {
+        "start": 343,
+        "end": 357,
+        "indices": [
+          22,
+          8,
+          5,
+          26,
+          21,
+          22,
+          1,
+          20,
+          28,
+          13,
+          22,
+          14,
+          6,
+          24
+        ],
+        "text": "OEHCYNGOEULEAPOEXGA"
+      },
+      {
+        "start": 386,
+        "end": 400,
+        "indices": [
+          6,
+          24,
+          15,
+          13,
+          22,
+          15,
+          27,
+          20,
+          1,
+          2,
+          20,
+          16,
+          11,
+          15
+        ],
+        "text": "GASPOESIALUTHLTJS"
+      },
+      {
+        "start": 429,
+        "end": 443,
+        "indices": [
+          14,
+          10,
+          7,
+          5,
+          11,
+          2,
+          17,
+          20,
+          0,
+          16,
+          10,
+          17,
+          14,
+          22
+        ],
+        "text": "XIWCJTHBLFTIBXOE"
+      },
+      {
+        "start": 472,
+        "end": 486,
+        "indices": [
+          24,
+          15,
+          22,
+          27,
+          13,
+          6,
+          9,
+          26,
+          26,
+          24,
+          0,
+          7,
+          15,
+          16
+        ],
+        "text": "ASOEIAPGNYYAFWST"
+      },
+      {
+        "start": 515,
+        "end": 529,
+        "indices": [
+          26,
+          23,
+          11,
+          6,
+          9,
+          18,
+          20,
+          2,
+          8,
+          13,
+          12,
+          14,
+          23,
+          3
+        ],
+        "text": "YDJGNELTHHPEOXDO"
+      },
+      {
+        "start": 558,
+        "end": 572,
+        "indices": [
+          22,
+          5,
+          17,
+          1,
+          18,
+          5,
+          8,
+          18,
+          3,
+          21,
+          3,
+          19,
+          28,
+          11
+        ],
+        "text": "OECBUECHEONGOMEAJ"
+      },
+      {
+        "start": 601,
+        "end": 615,
+        "indices": [
+          17,
+          8,
+          5,
+          5,
+          1,
+          11,
+          25,
+          20,
+          24,
+          2,
+          23,
+          4,
+          14,
+          18
+        ],
+        "text": "BHCCUJAELATHDRXE"
+      },
+      {
+        "start": 644,
+        "end": 658,
+        "indices": [
+          1,
+          14,
+          24,
+          14,
+          16,
+          28,
+          9,
+          4,
+          13,
+          9,
+          21,
+          22,
+          25,
+          7
+        ],
+        "text": "UXAXTEANRPNNGOEAEW"
+      },
+      {
+        "start": 687,
+        "end": 701,
+        "indices": [
+          2,
+          5,
+          4,
+          10,
+          26,
+          8,
+          7,
+          19,
+          0,
+          27,
+          28,
+          25,
+          24,
+          28
+        ],
+        "text": "THCRIYHWMFIAEAAEAEA"
+      }
+    ],
+    "reach": [
+      {
+        "delta": 0,
+        "prefix": 729,
+        "states": 9
+      },
+      {
+        "delta": 1,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 2,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 3,
+        "prefix": 729,
+        "states": 12
+      },
+      {
+        "delta": 4,
+        "prefix": 729,
+        "states": 6
+      },
+      {
+        "delta": 5,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 6,
+        "prefix": 729,
+        "states": 12
+      },
+      {
+        "delta": 7,
+        "prefix": 729,
+        "states": 5
+      },
+      {
+        "delta": 8,
+        "prefix": 539,
+        "states": 0
+      },
+      {
+        "delta": 9,
+        "prefix": 729,
+        "states": 9
+      },
+      {
+        "delta": 10,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 11,
+        "prefix": 729,
+        "states": 9
+      },
+      {
+        "delta": 12,
+        "prefix": 729,
+        "states": 10
+      },
+      {
+        "delta": 13,
+        "prefix": 729,
+        "states": 12
+      },
+      {
+        "delta": 14,
+        "prefix": 51,
+        "states": 0
+      },
+      {
+        "delta": 15,
+        "prefix": 729,
+        "states": 14
+      },
+      {
+        "delta": 16,
+        "prefix": 729,
+        "states": 13
+      },
+      {
+        "delta": 17,
+        "prefix": 729,
+        "states": 7
+      },
+      {
+        "delta": 18,
+        "prefix": 729,
+        "states": 15
+      },
+      {
+        "delta": 19,
+        "prefix": 729,
+        "states": 17
+      },
+      {
+        "delta": 20,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 21,
+        "prefix": 729,
+        "states": 14
+      },
+      {
+        "delta": 22,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 23,
+        "prefix": 49,
+        "states": 0
+      },
+      {
+        "delta": 24,
+        "prefix": 729,
+        "states": 11
+      },
+      {
+        "delta": 25,
+        "prefix": 729,
+        "states": 7
+      },
+      {
+        "delta": 26,
+        "prefix": 50,
+        "states": 0
+      },
+      {
+        "delta": 27,
+        "prefix": 729,
+        "states": 6
+      },
+      {
+        "delta": 28,
+        "prefix": 56,
+        "states": 0
+      }
+    ],
+    "forcedBodyCount": 224
+  },
+  "controls": [
+    {
+      "name": "0_koan_1",
+      "delta": 17,
+      "rank": 1,
+      "best": {
+        "delta": 17,
+        "fit": {
+          "mean": -2.5332825342815464,
+          "n": 69
+        },
+        "hold": {
+          "mean": -2.7435322982464627,
+          "n": 138
+        }
+      },
+      "truth": {
+        "delta": 17,
+        "fit": {
+          "mean": -2.5332825342815464,
+          "n": 69
+        },
+        "hold": {
+          "mean": -2.7435322982464627,
+          "n": 138
+        }
+      },
+      "forcedRecovered": 237,
+      "Ftruth": {
+        "prefix": 729,
+        "states": 11
+      }
+    },
+    {
+      "name": "0_loss_of_divinity",
+      "delta": 14,
+      "rank": 1,
+      "best": {
+        "delta": 14,
+        "fit": {
+          "mean": -2.8597788499074905,
+          "n": 69
+        },
+        "hold": {
+          "mean": -2.7465992919618927,
+          "n": 138
+        }
+      },
+      "truth": {
+        "delta": 14,
+        "fit": {
+          "mean": -2.8597788499074905,
+          "n": 69
+        },
+        "hold": {
+          "mean": -2.7465992919618927,
+          "n": 138
+        }
+      },
+      "forcedRecovered": 237,
+      "Ftruth": {
+        "prefix": 729,
+        "states": 13
+      }
+    }
+  ]
+}
