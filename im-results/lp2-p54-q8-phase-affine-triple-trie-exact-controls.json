@@ -1,0 +1,98 @@
+[
+  {
+    "run": 45951125347,
+    "mode": "0",
+    "dictionary": 38938,
+    "budget": 3,
+    "anchor_ids": [
+      0,
+      13,
+      16,
+      34,
+      37,
+      45
+    ],
+    "alignments": 1280,
+    "nodes": 189889184,
+    "child_pairs": 1414673151,
+    "leaf_triples": 266,
+    "consistent": 180,
+    "max_missing": 0,
+    "keys": 180,
+    "duplicates": 0,
+    "fit_count": 1,
+    "omitted": [
+      0,
+      16,
+      45
+    ],
+    "fits": [
+      {
+        "key": [
+          1,
+          35,
+          351,
+          45,
+          226,
+          393,
+          517,
+          623
+        ],
+        "training": 44,
+        "held": 17
+      }
+    ],
+    "exact": 1,
+    "train_truth": 47,
+    "held_truth": 17,
+    "held_count": 17
+  },
+  {
+    "run": 45951130796,
+    "mode": "1",
+    "dictionary": 38938,
+    "budget": 3,
+    "anchor_ids": [
+      0,
+      13,
+      16,
+      34,
+      37,
+      45
+    ],
+    "alignments": 1280,
+    "nodes": 179368490,
+    "child_pairs": 1369546582,
+    "leaf_triples": 226,
+    "consistent": 161,
+    "max_missing": 0,
+    "keys": 161,
+    "duplicates": 0,
+    "fit_count": 1,
+    "omitted": [
+      0,
+      13,
+      37
+    ],
+    "fits": [
+      {
+        "key": [
+          35,
+          613,
+          284,
+          664,
+          312,
+          742,
+          656,
+          804
+        ],
+        "training": 44,
+        "held": 17
+      }
+    ],
+    "exact": 1,
+    "train_truth": 47,
+    "held_truth": 17,
+    "held_count": 17
+  }
+]
