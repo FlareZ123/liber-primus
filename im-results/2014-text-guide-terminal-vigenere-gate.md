@@ -115,3 +115,15 @@ These are bounded exclusions of specific source-selected transfers, not proof th
 - [Clean prior-LP1 key transfer under both GP encoders](../sims/lp1_prior_release_textguide_lp2_sft.cjs)
 - [Exact 81-rune p5 key reproducer](../sims/lp2_lp1p5_moth_source81_corrected_sft.cjs)
 - Inputs: [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [p0 physical-ink override](../resources/liber-primus/lp2-p0-physical-ink-override.json), and [LP1 solved-text reference](../resources/liber-primus/lp1-plaintext-reference.txt).
+
+## Source-scope discrimination: #3227 (Agent47)
+
+The signed guide message provides a separately embedded, bounded ciphertext image and points toward prior solved text. Its scope is the image, not a running LP2 page. Retrospectively fixing the established 22-rune WELCOME key and the known 18-rune output, enumerate all eight consume/hold masks for the three visible nonrune events (5, 3, space) and all nonwrapping starting offsets 0–4. Exactly **1 of 28 feasible combinations** reproduces the exact known GP reading: offset 0, no literal event consumes key. The others produce different outputs; consuming 3 or the adjacent space individually is indistinguishable, because there is no rune between them. This is a scope/clock control, not a new blind recovery of the key.
+
+For LP2, the actual p10 (scan 27.jpg) isolated black 7 is the closest superficially similar literal event. The original image visibly shows ordinary single-dot group dividers on both sides, not an embedded, separately framed ciphertext object. Its stop-delimited sentence has 68 runes and 18 groups including 7, far too long for a 16-character historical locator plus five-letter suffix under a direct rune-to-Latin substitution. The 22-rune historical key also cannot cover that native region without adding an unsupported wrapping rule.
+
+As a deliberately generous diagnostic, drop the printed group dividers, permit any rune to expand to one or two Latin letters, require a 16-character locator with one literal digit and a four- or five-rune ONION suffix, and enumerate only complete-group windows containing the digit in its sentence. Exactly one window is length-feasible: groups [12,18) (zero-based), eight runes before 7 and five after. The fixed historical key at phase zero yields HEA-NEN-PPO-7-AE-FCXS, not a locator or ONION suffix. No other phase, sign, key, period, or scope was tried. Even this single window is selected by our imposed format, not the source: the printed dividers are not the historical embedded-image grammar.
+
+**Disposition:** no typed LP2 receiver with independently selected operand. The historical control establishes an object boundary and non-consuming literal events in that specific object; it does not select the p10 numeral's meaning or any unknown LP2 key. Reopen only on an independent indication of an operand and its scope. No unknown plaintext, key or destination recovered.
+
+Reproduction: [SFT](../sims/agent47_text_guide_scope_sft.cjs), [executed output](agent47-text-guide-scope-output.json). Existing historical replay and p10 source anchor are reused; no archive re-verification or broad key sweep.
