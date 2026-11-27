@@ -1,0 +1,253 @@
+{
+  "original": [
+    {
+      "source": "all99",
+      "target": "whole",
+      "sign": 1,
+      "n": 1680,
+      "possible": false,
+      "max": 80,
+      "states": 140,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "after_heading",
+      "sign": 1,
+      "n": 1670,
+      "possible": false,
+      "max": 178,
+      "states": 248,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "p33_black1",
+      "sign": 1,
+      "n": 81,
+      "possible": true,
+      "max": 81,
+      "states": 117,
+      "ends": 1,
+      "bf": -3.259174055436224,
+      "plaintext": "PTFDUPIAANGHNBEOLHGPNGMGCTHRBENGYAIHSAUOEMEOELEATHJEOOEOEBXTHIAWJHSPPYYGAEXMHRCEAWSRMLXRNXEAOEOLCTH"
+    },
+    {
+      "source": "all99",
+      "target": "p33_black2",
+      "sign": 1,
+      "n": 115,
+      "possible": false,
+      "max": 5,
+      "states": 6,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "whole",
+      "sign": -1,
+      "n": 1680,
+      "possible": false,
+      "max": 66,
+      "states": 77,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "after_heading",
+      "sign": -1,
+      "n": 1670,
+      "possible": false,
+      "max": 57,
+      "states": 75,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "p33_black1",
+      "sign": -1,
+      "n": 81,
+      "possible": false,
+      "max": 57,
+      "states": 75,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "all99",
+      "target": "p33_black2",
+      "sign": -1,
+      "n": 115,
+      "possible": false,
+      "max": 34,
+      "states": 38,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "whole",
+      "sign": 1,
+      "n": 1680,
+      "possible": false,
+      "max": 84,
+      "states": 97,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "after_heading",
+      "sign": 1,
+      "n": 1670,
+      "possible": false,
+      "max": 49,
+      "states": 56,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "p33_black1",
+      "sign": 1,
+      "n": 81,
+      "possible": false,
+      "max": 49,
+      "states": 56,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "p33_black2",
+      "sign": 1,
+      "n": 115,
+      "possible": false,
+      "max": 10,
+      "states": 11,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "whole",
+      "sign": -1,
+      "n": 1680,
+      "possible": false,
+      "max": 42,
+      "states": 58,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "after_heading",
+      "sign": -1,
+      "n": 1670,
+      "possible": false,
+      "max": 21,
+      "states": 29,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "p33_black1",
+      "sign": -1,
+      "n": 81,
+      "possible": false,
+      "max": 21,
+      "states": 29,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    },
+    {
+      "source": "central49",
+      "target": "p33_black2",
+      "sign": -1,
+      "n": 115,
+      "possible": false,
+      "max": 36,
+      "states": 41,
+      "ends": 0,
+      "bf": null,
+      "plaintext": null
+    }
+  ],
+  "controls": [
+    {
+      "source": "all99",
+      "sign": 1,
+      "n": 83,
+      "bf": 1.1731694490608302,
+      "exact": true
+    },
+    {
+      "source": "all99",
+      "sign": -1,
+      "n": 82,
+      "bf": 1.1843907270925176,
+      "exact": true
+    },
+    {
+      "source": "central49",
+      "sign": 1,
+      "n": 81,
+      "bf": 1.2386717843311776,
+      "exact": true
+    },
+    {
+      "source": "central49",
+      "sign": -1,
+      "n": 83,
+      "bf": 1.1676602008109682,
+      "exact": true
+    }
+  ],
+  "inputs": [
+    {
+      "path": "resources/liber-primus/lp2-corpus.json",
+      "sha": "054f2a0f780b7d46901acbe3d9bf4f0ac1801165"
+    },
+    {
+      "path": "resources/cicada2014-openpuff-magic-squares.txt",
+      "sha": "0cff0a94f16a8603443619b6338def411c9f7bd5"
+    },
+    {
+      "path": "resources/control/shakespeare_first300k.txt",
+      "sha": "94c677ad9dd50771c6670e0c4e4dad9052b46d85"
+    },
+    {
+      "path": "resources/control/emerson_essays_2944.txt",
+      "sha": "a92be8ba5b3511a003a22ba31523c14397aaa83a"
+    },
+    {
+      "path": "resources/control/gibran_prophet_58585.txt",
+      "sha": "df260a07d56bf5998d40a6360b6132c35c252d10"
+    },
+    {
+      "path": "resources/external/relikd-solved-gp29-native-v1.json",
+      "sha": "1b064ef6d85819b7d96adaff31a82d1ec551598f"
+    }
+  ],
+  "dependency": "c013df73a3c11047214f1004d9ab0cf216916905"
+}
