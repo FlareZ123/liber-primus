@@ -1,7 +1,7 @@
 "use strict";
 const fs=require("node:fs");
 function experiment(raw,config={}){
- const gp=JSON.parse(raw[0]),f=JSON.parse(raw[1]),n=JSON.parse(raw[2]),lex=new Map(),ri=new Map(gp.runes.map((r,i)=>[r,i])),compact="0123456789abcdefghijklmnopqrs",Q=8,B=29,M=36,cap=config.cap??40000000,maxHidden=config.maxHidden??2;
+ const gp=JSON.parse(raw[0]),f=JSON.parse(raw[1]),n=JSON.parse(raw[2]),lex=new Map(),ri=new Map(gp.runes.map((r,i)=>[r,i])),compact="0123456789abcdefghijklmnopqrs",Q=8,B=29,M=36,cap=config.cap??160000000,maxHidden=config.maxHidden??2;
  const id=a=>String.fromCharCode(...a.map(x=>65+x)),digits=s=>Array.from(s,x=>x.charCodeAt(0)-65),show=a=>a.map(x=>gp.translit[x]).join("");
  const tokens=gp.translit.map((t,i)=>({t,i})).sort((a,b)=>b.t.length-a.t.length);
  function norm(w,alt){w=w.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U").replace(/[KQ]/g,"C").replace(/Z/g,"S");let a=[];for(let j=0;j<w.length;){const t=alt&&w.startsWith("ING",j)?{t:"ING",i:21}:alt&&w.startsWith("IO",j)?{t:"IO",i:27}:tokens.find(x=>w.startsWith(x.t,j));if(!t)return null;a.push(t.i);j+=t.t.length;}return a;}
@@ -17,7 +17,7 @@ function experiment(raw,config={}){
   const same=Array(C.length+1).fill(0);for(let j=C.length-2;j>=0;j--)same[j]=same[j+1]+(C[j]===C[j+1]);
   for(const P of candidates){
    const L=P.length,CL=C.length;
-   function addKey(){const key=canonical(K);witnesses++;if(!keys.has(key))keys.set(key,show(P));}
+   function addKey(){const key=canonical(K);if(keys.has(key))return;for(let t=0;t<Q;t++)for(let v=0;v<=M;v++){const e=emit(P,K,t,v);if(e&&e.C.length===CL&&e.C.every((x,z)=>x===C[z])){witnesses++;keys.set(key,show(P));return;}}}
    function rest(i,j,prev,r){
     fullChecks++;let t=0;
     for(;i<L;i++){
@@ -39,10 +39,9 @@ function experiment(raw,config={}){
     if(j<CL&&C[j]!==prev){const k=mod(C[j]-p);if(k<B){K[at]=k;walk(at+1,i+1,j+1,C[j],0);if(stopped)return;}}
     if(spare>0)for(let c=29;c<M;c++)if(c!==prev){const k=mod(c-p);if(k<B){K[at]=k;walk(at+1,i+1,j,c,0);if(stopped)return;}}
    }
-   // Any initial state that does not collide is represented by the sentinel.
-   walk(0,0,0,36,0);
-   // All possible first-attempt collisions, including a latent (silent) predecessor.
-   if(!stopped)for(let k=0;k<B;k++){K[0]=k;walk(1,0,0,(P[0]+k)%M,1);if(stopped)break;}
+   // Rotate the key so its first assigned digit emits the first visible output.
+   // Every path has at least Q attempts from this point. Recheck the prefix at full-key acceptance.
+   for(let i0=0;i0<=L-CL&&!stopped;i0++){const k=mod(C[0]-P[i0]);if(k<B){K[0]=k;walk(1,i0+1,1,C[0],0);}}
    if(stopped)break;completed++;
   }
   return {keys,nodes,fullChecks,witnesses,words:candidates.length,completed,complete:!stopped};
