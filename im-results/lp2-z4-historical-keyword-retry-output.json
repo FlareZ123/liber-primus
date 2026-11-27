@@ -1,0 +1,2532 @@
+{
+  "rows": [
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 73,
+        "attempts": 392,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 11,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 46,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 28,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 79,
+        "attempts": 392,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 30,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 61,
+        "attempts": 368,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 30,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 120,
+        "attempts": 440,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 24,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 111,
+        "attempts": 416,
+        "doublets": 3
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 24,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 35,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 108,
+        "attempts": 416,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 24,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 84,
+        "attempts": 397,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 28,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 54,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 50,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 87,
+        "attempts": 397,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 54,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 5,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 66,
+        "attempts": 373,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 54,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 5,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 130,
+        "attempts": 441,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 139,
+        "attempts": 441,
+        "doublets": 3
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 36,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 136,
+        "attempts": 441,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 103,
+        "attempts": 421,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 21,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 51,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 48,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 50,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 109,
+        "attempts": 421,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 54,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 15
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 109,
+        "attempts": 421,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 12,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 54,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 4,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 179,
+        "attempts": 493,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 185,
+        "attempts": 493,
+        "doublets": 3
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 34,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 16
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "DIUINITY",
+      "m": 37,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 185,
+        "attempts": 493,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 27,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 7,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 34,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        },
+        {
+          "prefix": 3,
+          "complete": false,
+          "states": 0,
+          "maxStates": 8
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 25,
+        "attempts": 340,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 40,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 61,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 61,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 65,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 55,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 42,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 32,
+        "attempts": 337,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 60,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 45,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 109,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 42,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 32,
+        "attempts": 337,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 60,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 49,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 109,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 42,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 22,
+        "attempts": 346,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 47,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 36,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 31,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 17
+        },
+        {
+          "prefix": 37,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 35,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 32,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 37,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 26,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 25,
+        "attempts": 340,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 38,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 48,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 34,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 99,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 59,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 86,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 32,
+        "attempts": 337,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 60,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 45,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 108,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 32,
+        "attempts": 337,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 60,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 49,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 108,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 37,
+        "attempts": 358,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 29,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 31,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 36,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 29,
+          "complete": false,
+          "states": 0,
+          "maxStates": 14
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 36,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 29,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 39,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": 1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 25,
+        "attempts": 340,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 41,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 46,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 49,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": 1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 37,
+        "attempts": 340,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 56,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 65,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 19
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": 1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 37,
+        "attempts": 340,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 23,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 17,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 56,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 14,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 65,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 43,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 25,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": -1,
+      "mode": "ordinary",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 54,
+        "attempts": 378,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 31,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 31,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 19,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 42,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": -1,
+      "mode": "F-preserves",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 30,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 36,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 22
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    },
+    {
+      "name": "FIRFUMFERENFE",
+      "m": 37,
+      "sign": -1,
+      "mode": "F-updates",
+      "control": {
+        "prefix": 308,
+        "total": 308,
+        "silent": 33,
+        "attempts": 339,
+        "doublets": 0
+      },
+      "original": [
+        {
+          "prefix": 53,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 33,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 30,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 36,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 15,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 22,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 18,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        },
+        {
+          "prefix": 20,
+          "complete": false,
+          "states": 0,
+          "maxStates": 13
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "variants": 36,
+    "fullControls": 36,
+    "completedChapters": 0,
+    "maxPrefixes": [
+      {
+        "N": 729,
+        "best": 53
+      },
+      {
+        "N": 1145,
+        "best": 53
+      },
+      {
+        "N": 1729,
+        "best": 61
+      },
+      {
+        "N": 1903,
+        "best": 61
+      },
+      {
+        "N": 1021,
+        "best": 99
+      },
+      {
+        "N": 1433,
+        "best": 19
+      },
+      {
+        "N": 1680,
+        "best": 109
+      },
+      {
+        "N": 3008,
+        "best": 86
+      },
+      {
+        "N": 308,
+        "best": 25
+      }
+    ],
+    "completeRows": []
+  }
+}
